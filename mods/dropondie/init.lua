@@ -38,6 +38,80 @@ minetest.register_on_dieplayer(function(player)
    for i=1,player_inv:get_size("craft") do
       drop(pos, player_inv:get_stack("craft", i))
       player_inv:set_stack("craft", i, nil)
+    end
+
+    -- Drop unified_inventory bags and their contents
+   if minetest.get_modpath("unified_inventory") then
+      
+      local bag_id = {"bag1"}
+      local contents_id = ""
+      local n = 0
+
+      for n = 1, 4 do
+         if player_inv:get_size(bag_id[n]) == 1 then
+            contents_id = bag_id[n].."contents"
+            -- Drop the contents of the bag (but keep the bag itself)
+            for i = 1, player_inv:get_size(contents_id) do
+               -- Drop a clone of this item's stack and remove the one from the inventory
+               drop(pos, player_inv:get_stack(contents_id, i))
+               player_inv:set_stack(contents_id, i, nil)
+            end
+         end
+      end
    end
-   
-end)
+      if minetest.get_modpath("unified_inventory") then
+      
+      local bag_id = {"bag2"}
+      local contents_id = ""
+      local n = 0
+
+      for n = 1, 4 do
+         if player_inv:get_size(bag_id[n]) == 1 then
+            contents_id = bag_id[n].."contents"
+            -- Drop the contents of the bag (but keep the bag itself)
+            for i = 1, player_inv:get_size(contents_id) do
+               -- Drop a clone of this item's stack and remove the one from the inventory
+               drop(pos, player_inv:get_stack(contents_id, i))
+               player_inv:set_stack(contents_id, i, nil)
+            end
+         end
+      end
+   end
+   if minetest.get_modpath("unified_inventory") then
+      
+      local bag_id = {"bag3"}
+      local contents_id = ""
+      local n = 0
+
+      for n = 1, 4 do
+         if player_inv:get_size(bag_id[n]) == 1 then
+            contents_id = bag_id[n].."contents"
+            -- Drop the contents of the bag (but keep the bag itself)
+            for i = 1, player_inv:get_size(contents_id) do
+               -- Drop a clone of this item's stack and remove the one from the inventory
+               drop(pos, player_inv:get_stack(contents_id, i))
+               player_inv:set_stack(contents_id, i, nil)
+            end
+         end
+      end
+   end
+   if minetest.get_modpath("unified_inventory") then
+      
+      local bag_id = {"bag4"}
+      local contents_id = ""
+      local n = 0
+
+      for n = 1, 4 do
+         if player_inv:get_size(bag_id[n]) == 1 then
+            contents_id = bag_id[n].."contents"
+            -- Drop the contents of the bag (but keep the bag itself)
+            for i = 1, player_inv:get_size(contents_id) do
+               -- Drop a clone of this item's stack and remove the one from the inventory
+               drop(pos, player_inv:get_stack(contents_id, i))
+               player_inv:set_stack(contents_id, i, nil)
+            end
+         end
+      end
+   end
+
+ end)
