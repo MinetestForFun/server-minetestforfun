@@ -50,7 +50,7 @@ mobs:register_mob("mobs:lava_flan", {
 		punch_end = 28,
 	},
 	jump = true,
-	step = 0.5,
+	step = 2,
 	blood_texture = "fire_basic_flame.png",
 })
 mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 15, -1, 1000, 3, 0)
