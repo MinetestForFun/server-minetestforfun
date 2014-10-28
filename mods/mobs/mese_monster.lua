@@ -65,7 +65,7 @@ mobs:register_mob("mobs:mese_monster", {
 	step = 1,
 	blood_texture = "default_mese_crystal_fragment.png",
 })
-mobs:register_spawn("mobs:mese_monster", {"default:stone", "nether:netherrack", }, 3, -1, 4000, 1, -20)
+mobs:register_spawn("mobs:mese_monster", {"default:stone", "nether:netherrack"}, 3, -1, 4000, 1, -20)
 
 -- Mese Monster Crystal Shards (weapon)
 
