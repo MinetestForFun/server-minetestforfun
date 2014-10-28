@@ -1,0 +1,30 @@
+-------------------------------------------------------------
+Credit for textures of "along_shore"
+-------------------------------------------------------------
+(If more than one author is listed the names are in alphabetical order)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOLDER									TEXTURE							AUTHORS
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+../along_shore/textures				    along_shore_seaweed_1Darker.png	Neuromancer, VanessaE
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+../along_shore/textures/old            (along_shore_empty.png) 		   (Mossmanikin)
+										along_shore_lilypads_1.png		Mossmanikin, Neuromancer
+										along_shore_lilypads_2.png		Mossmanikin, Neuromancer
+										along_shore_lilypads_3.png		Mossmanikin, Neuromancer
+										along_shore_lilypads_4.png		Mossmanikin, Neuromancer
+										along_shore_pondscum_1.png		Neuromancer
+										along_shore_seaweed_1.png		Neuromancer, VanessaE
+										along_shore_seaweed_2.png		Mossmanikin, Neuromancer, VanessaE
+										along_shore_seaweed_3.png		Mossmanikin, Neuromancer, VanessaE
+										along_shore_seaweed_4.png		Mossmanikin, Neuromancer, VanessaE
+										flowers_seaweed.png				Neuromancer, VanessaE
+										flowers_waterlily.png			Mossmanikin, VanessaE
+										flowers_waterlily_22.5.png		Mossmanikin, VanessaE
+										flowers_waterlily_45.png		Mossmanikin, VanessaE
+										flowers_waterlily_67.5.png		Mossmanikin, VanessaE
+										lillypad3Flower16x.png			Neuromancer	
+										LillyPad3x16.png				Neuromancer		
+										lillyPad5x16.png				Neuromancer			
+										MultiLilly16x.png				Neuromancer
+										pondscum16xc.png				Neuromancer
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

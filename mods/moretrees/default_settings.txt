@@ -1,0 +1,87 @@
+-- Global configuration variables
+
+-- Enable the various kinds of trees.
+
+moretrees.enable_apple_tree		= true
+moretrees.enable_oak			= true
+moretrees.enable_sequoia		= true
+moretrees.enable_palm			= true
+moretrees.enable_pine			= true
+moretrees.enable_rubber_tree	= true
+moretrees.enable_willow			= true
+moretrees.enable_acacia			= true
+moretrees.enable_birch			= true
+moretrees.enable_spruce			= true
+moretrees.enable_jungle_tree	= true
+moretrees.enable_fir			= true
+moretrees.enable_beech			= false
+
+-- set this to true to make moretrees spawn saplings at mapgen time instead
+-- of fully-grown trees, which will grow into full trees very quickly.  With
+-- older versions of plants_lib, doing this will reduce mapgen lag.
+
+moretrees.spawn_saplings		= false
+
+-- Set this to true to allow usage of the stairsplus mod in moreblocks
+
+moretrees.enable_stairsplus		= true
+
+-- Set this to true if you want the plantlike drawtype for leaves, which 
+-- improves some peoples' framerates without resorting to making leaf nodes opaque.
+-- Affects default leaves and default jungle leaves also.
+
+moretrees.plantlike_leaves		= false
+
+-- Set this to true to enable leaf decay of all trees except the default ones.
+
+moretrees.enable_leafdecay		= true
+
+-- Enable this one if you want this mod's leafdecay code to affect the old
+-- default trees too; this setting is independent of the one above.  You'll
+-- want to manually disable the default leafdecay code in minetest_game if
+-- you enable this, otherwise you'll have two sets of leaf decay code running
+-- at the same time, which will just waste CPU for no benefit.
+
+moretrees.enable_default_leafdecay	= true
+
+-- Enable this one for default *jungle* leaves
+
+moretrees.enable_default_jungle_leafdecay	= true
+
+-- Enable this if you want moretrees to redefine default apples so that they
+-- fall when leaves decay/are dug.
+
+moretrees.enable_redefine_apple		= true
+
+-- various settings to configure default and default-jungle leaf decay.
+
+moretrees.leafdecay_delay		= 2
+moretrees.leafdecay_chance		= 100
+moretrees.leafdecay_radius		= 5
+
+moretrees.default_jungle_leafdecay_delay = 2
+moretrees.default_jungle_leafdecay_chance = 100
+moretrees.default_jungle_leafdecay_radius = 5
+
+moretrees.palm_leafdecay_radius		= 15
+
+moretrees.default_leafdecay_delay	= 3
+moretrees.default_leafdecay_chance	= 50
+moretrees.default_leafdecay_radius	= 4
+
+-- Change these settings if you want default trees to be gradually cut down
+-- above the elevation where firs normally generate.
+
+moretrees.firs_remove_default_trees	= false
+moretrees.firs_remove_interval		= 2
+moretrees.firs_remove_chance		= 150
+
+-- Sapling settings
+
+moretrees.sapling_interval		= 500
+moretrees.sapling_chance		= 20
+
+-- If this variable is set to true, drop leaves out as entities during leaf
+-- decay, rather than just disappearing them.
+
+moretrees.decay_leaves_as_items = false

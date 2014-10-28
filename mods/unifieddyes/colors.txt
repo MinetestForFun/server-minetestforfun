@@ -1,0 +1,90 @@
+
+
+Full-saturation colors:
+-----------------------
+
+dark aqua                          0, 84, 42  unifieddyes_dark_aqua.png
+dark blue                          0,  0, 84  unifieddyes_dark_blue.png
+dark cyan                          0, 84, 83  unifieddyes_dark_cyan.png
+dark green                         0, 84,  0  unifieddyes_dark_green.png
+dark lime                         43, 84,  0  unifieddyes_dark_lime.png
+dark magenta                      84,  0, 83  unifieddyes_dark_magenta.png
+dark orange                       84, 42,  0  unifieddyes_dark_orange.png
+dark red                          84,  0,  0  unifieddyes_dark_red.png
+dark redviolet                    84,  0, 42  unifieddyes_dark_redviolet.png
+dark skyblue                       0, 42, 84  unifieddyes_dark_skyblue.png
+dark violet                       43,  0, 84  unifieddyes_dark_violet.png
+dark yellow                       84, 83,  0  unifieddyes_dark_yellow.png
+medium aqua                        0,169, 84  unifieddyes_medium_aqua.png
+medium blue                        0,  0,169  unifieddyes_medium_blue.png
+medium cyan                        0,169,167  unifieddyes_medium_cyan.png
+medium green                       0,169,  0  unifieddyes_medium_green.png
+medium lime                       87,169,  0  unifieddyes_medium_lime.png
+medium magenta                   169,  0,167  unifieddyes_medium_magenta.png
+medium orange                    169, 84,  0  unifieddyes_medium_orange.png
+medium red                       168,  0,  0  unifieddyes_medium_red.png
+medium redviolet                 169,  0, 84  unifieddyes_medium_redviolet.png
+medium skyblue                     0, 84,169  unifieddyes_medium_skyblue.png
+medium violet                     87,  0,169  unifieddyes_medium_violet.png
+medium yellow                    169,167,  0  unifieddyes_medium_yellow.png
+aqua                               1,255,127  unifieddyes_aqua.png
+blue                               1,  1,255  unifieddyes_blue.png
+cyan                               1,255,252  unifieddyes_cyan.png
+green                              1,255,  1  unifieddyes_green.png
+lime                             132,255,  1  unifieddyes_lime.png
+magenta                          255,  1,252  unifieddyes_magenta.png
+orange                           255,127,  1  unifieddyes_orange.png
+red                              255,  0,  0  unifieddyes_red.png
+redviolet                        255,  1,127  unifieddyes_redviolet.png
+skyblue                            1,127,255  unifieddyes_skyblue.png
+violet                           132,  1,255  unifieddyes_violet.png
+yellow                           255,252,  1  unifieddyes_yellow.png
+
+Low-saturation colors:
+----------------------
+
+dark aqua 50% saturation          21, 63, 42  unifieddyes_dark_aqua_s50.png
+dark blue 50% saturation          21, 21, 63  unifieddyes_dark_blue_s50.png
+dark cyan 50% saturation          21, 63, 63  unifieddyes_dark_cyan_s50.png
+dark green 50% saturation         21, 63, 21  unifieddyes_dark_green_s50.png
+dark lime 50% saturation          43, 63, 21  unifieddyes_dark_lime_s50.png
+dark magenta 50% saturation       63, 21, 63  unifieddyes_dark_magenta_s50.png
+dark orange 50% saturation        63, 42, 21  unifieddyes_dark_orange_s50.png
+dark red 50% saturation           63, 21, 21  unifieddyes_dark_red_s50.png
+dark redviolet 50% saturation     63, 21, 42  unifieddyes_dark_redviolet_s50.png
+dark skyblue 50% saturation       21, 42, 63  unifieddyes_dark_skyblue_s50.png
+dark violet 50% saturation        43, 21, 63  unifieddyes_dark_violet_s50.png
+dark yellow 50% saturation        63, 63, 21  unifieddyes_dark_yellow_s50.png
+medium aqua 50% saturation        42,126, 84  unifieddyes_medium_aqua_s50.png
+medium blue 50% saturation        42, 42,126  unifieddyes_medium_blue_s50.png
+medium cyan 50% saturation        42,126,126  unifieddyes_medium_cyan_s50.png
+medium green 50% saturation       42,126, 42  unifieddyes_medium_green_s50.png
+medium lime 50% saturation        86,126, 42  unifieddyes_medium_lime_s50.png
+medium magenta 50% saturation    126, 42,126  unifieddyes_medium_magenta_s50.png
+medium orange 50% saturation     126, 84, 42  unifieddyes_medium_orange_s50.png
+medium red 50% saturation        127, 42, 42  unifieddyes_medium_red_s50.png
+medium redviolet 50% saturation  126, 42, 84  unifieddyes_medium_redviolet_s50.png
+medium skyblue 50% saturation     42, 84,126  unifieddyes_medium_skyblue_s50.png
+medium violet 50% saturation      86, 42,126  unifieddyes_medium_violet_s50.png
+medium yellow 50% saturation     126,126, 42  unifieddyes_medium_yellow_s50.png
+aqua 50% saturation               65,191,127  unifieddyes_aqua_s50.png
+blue 50% saturation               65, 65,191  unifieddyes_blue_s50.png
+cyan 50% saturation               65,191,190  unifieddyes_cyan_s50.png
+green 50% saturation              65,191, 65  unifieddyes_green_s50.png
+lime 50% saturation              130,191, 65  unifieddyes_lime_s50.png
+magenta 50% saturation           191, 65,190  unifieddyes_magenta_s50.png
+orange 50% saturation            191,127, 65  unifieddyes_orange_s50.png
+red 50% saturation               192, 64, 64  unifieddyes_red_s50.png
+redviolet 50% saturation         191, 65,127  unifieddyes_redviolet_s50.png
+skyblue 50% saturation            65,127,191  unifieddyes_skyblue_s50.png
+violet 50% saturation            130, 65,191  unifieddyes_violet_s50.png
+yellow 50% saturation            191,190, 65  unifieddyes_yellow_s50.png
+
+Greyscale:
+----------
+
+black                              0,  0,  0  unifieddyes_black.png
+dark grey                         64, 64, 64  unifieddyes_darkgrey_paint.png
+medium grey                      128,128,128  unifieddyes_grey_paint.png
+light grey                       192,192,192  unifieddyes_lightgrey_paint.png
+white                            255,255,255  unifieddyes_white_paint.png

@@ -1,0 +1,10 @@
+Ironzorg's Flowers mod served as the basis for the three mods that eventually 
+went into creating this file.  Any code still remaining from that mod is 
+entirely his work (though I'm pretty sure it's all been phased out).
+
+Flowers textures by Ironzorg.
+
+Junglegrass textures are modified copies of the original one from the game's 
+default set.
+
+All remaining code, textures, etc. by Vanessa Ezekowitz.

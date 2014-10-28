@@ -1,0 +1,38 @@
+version 0.2.3:
+  - Added animated router front
+  - Added all crafts for new items
+
+version 0.2.2:
+  - Added printer
+  - Added server
+
+version 0.2.1:
+  - Added modern tower pc
+  - Added wifi router
+  - Added flatscreen LCD and keyboard
+
+Version 0.2.0:
+  - Added recipes.
+  - Partly re-written.
+  - Removed original baby tower (seemed out of place).
+  - You can now turn devices on and off by right-clicking.
+  - Mod is now on github.
+
+Version 0.1.4:
+  - Added Admiral 64 & 128 (Commodore 64 & 128 lookalikes)
+
+Version 0.1.3:
+  - Added SX Spectre (Sinclair ZX Spectrum lookalike)
+  - Added Pony SlayStation 2 (Sony PlayStation lookalike)
+  - Minor fixes to textures.
+
+Version 0.1.2:
+  - Nodes now use the node box as selection box.
+  - Added Pony SlayStation (Sony PlayStation lookalike)
+  - Added Pony Vanio (Sony VAIO lookalike...err...just a generic laptop)
+
+Version 0.1.1:
+  - Added SheFriend SOO (Amiga 500 lookalike)
+
+Version 0.1.0:
+  - Initial Version only a baby tower.

@@ -1,0 +1,24 @@
+Changelog
+---------
+
+2012-08-06: Tweaked selection boxes on all nodes.  Tweaked seaweed to use 
+signlike instead of raillike drawtype, (still forced to only spawn flat as 
+usual).  Adjusted light level limits to give it more time to grow.  Created 
+this changelog file using github commit messages as the basis.  Shrunk the 
+geranium flower down a bit to better match the others.
+
+2012-08-03: Tuned out the random-numbers-inside-ABM stuff. Uses the ABM's 
+chance setting instead.  Should be approximately the same as before, but 
+hopefully using a tad less CPU.  Minor tweak to ABM interval/growing delay.
+
+2012-08-01: Added blue geranium to the collection of flowers.
+
+2012-07-31: Disable debug by default.
+
+2012-07-30: many updates over the course of the day - first commit, removed 
+some redundant files, added wield/inventory image entries for each item, to 
+force the game to draw them properly (these shouldn't be needed, must be a 
+bug).  Tweaked spawn code so that the radius check also includes the name of 
+the item being spawned as well as items in group:flower, that way all items can 
+have a radius test, and not just those in group:flower. Fiddled with the spawn 
+rates a bit.

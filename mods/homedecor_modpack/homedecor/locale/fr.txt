@@ -1,0 +1,180 @@
+
+#
+# Language: Français
+# Author: Calinou
+#
+
+### kitchen_cabinet.lua ###
+Kitchen Cabinet = Meuble de cuisine
+## 1: Player name, 2: position
+%s moves stuff in kitchen cabinet at %s = %s déplace des objets dans un meuble de cuisine à %s
+%s moves stuff to kitchen cabinet at %s = %s édplace des objets vers un meuble de cuisine à %s
+%s takes stuff from kitchen cabinet at %s = %s prend des objets d'un meuble de cuisine à %s
+Half-height Kitchen Cabinet (on ceiling) = Meuble de cuisine réduit en hauteur (sur le plafond)
+Under-sink cabinet = Meuble sous évier
+Kitchen Cabinet with sink = Meuble de cuisine avec lavabo
+
+### door_models.lua ###
+Mahogany Closet Door = Porte en bois d'acajou
+Oak Closet Door = Porte en bois de chêne
+Fancy Wood/Glass Door = Porte artistique en bois et verre
+Glass Office Door = Porte en verre
+Glass and Wood, Mahogany-colored = Porte couleur acajou en bois et verre
+Glass and Wood, Oak-colored = Porte couleur chêne en bois et verre
+Glass and Wood, White = Porte blanche en bois et verre
+Plain Wooden Door = Porte en bois simple
+left = gauche
+right = droite
+## 1: Side the doors opens to
+(Top Half, %s-opening) = (partie supérieur, charnière à %s)
+(%s-opening) = (charnière à %s)
+
+### door_nodes.lua ###
+Not enough vertical space to place a door! = Pas assez d'espace vertical pour placer une porte !
+
+### crafts.lua ###
+Brass Ingot = Lingot de laiton
+Bucket of white paint = Seau de peinture blanche
+Legs for Small Utility table = Pieds pour table basse
+Plastic sheet = Bout de plastique
+Silicon lump = Silicone
+Simple Integrated Circuit = Circuit intégré simple
+Small Wooden Drawer = Petit tiroir en bois
+Terracotta Roof Tile = Tuile de toit en terre cuite
+Titanium Dioxide = Dioxide de titane
+Uncooked Terracotta Base = Base de terre non cuite
+Unprocessed Plastic base = Base de plastique non transformée
+
+### fences.lua ###
+Barbed Wire Fence = Barrière en fil barbelé
+Barbed Wire Fence Gate = Porte de barrière en fil barbelé
+Brass Fence/railing = Barrière en laiton
+Brass Fence/railing with sign = Barrière en laiton avec pancarte
+Chainlink Fence = Grillage
+Chainlink Fence Gate = Porte de grillage
+Chainlink Fence Gate (open) = Porte de grillage (ouverte)
+Unpainted Picket Fence = Barrière en piquets non peinte
+Unpainted Picket Fence Gate = Porte de barrière en piquets non peinte
+White Picket Fence = Barrière en piquets blanche
+White Picket Fence Gate = Porte de barrière en piquets blanche
+Wooden Privacy Fence = Barrière en bois
+Wrought Iron Fence/railing = Barrière en fer forgé
+Wrought Iron Fence/railing with sign = Barrière en fer forgé avec pancarte
+want to simply place the wielded item like usual. = veut simplement placer l'objet comme d'habitude.
+
+### init.lua ###
+Loaded! = Chargé !
+Asphalt Shingles = Bardeaux d'asphalte
+Black Plastic Flower Pot = Pot de fleur en plastique noir
+Brass Pole = Barre en laiton
+Brass Table Legs = Pieds de table en laiton
+red = rouges
+green = vertes
+blue = bleues
+white = blanches
+pink = roses
+violet = violettes
+## 1: Color name
+Curtains (%s) = Volets (%s)
+Drop-Ceiling Tile = Dalle suspendue au plafond
+Glass Skylight = Verre
+Glass Table (Small, Round) = Table en verre (petite, ronde)
+Glass Table (Small, Square) = Table en verre (petite, carrée)
+Green Plastic Flower Pot = Pot de fleur en plastique vert
+Large Area Rug = Grande couverture
+Large Glass Table Piece = Grand bout de verre de table
+Large Stereo Speaker = Grand haut-parleur stéréo
+Legs for Utility Table = Pieds pour table basse
+Projection Screen Material = Matériel pour projecteur
+Small Surround Speaker = Petit haut-parleur surround
+Small Throw Rug = Petite couverture
+Stereo Receiver = Récepteur stéréo
+Terracotta Flower Pot = Pot de fleur en terre cuite
+Terracotta Roofing = Tuile en terre cuite
+Textured Ceiling Paint = Papier peint avec motif pour plafond
+Utility Table = Table basse
+Utility table mk2 = Table basse MK2
+Wooden Shutter (Black) = Volet en bois (noir)
+Wooden Shutter (Dark Grey) = Volet en bois (gris foncé)
+Wooden Shutter (Forest Green) = Volet en bois (vert foncé)
+Wooden Shutter (Grey) = Volet en bois (gris)
+Wooden Shutter (Light Blue) = Volet en bois (bleu clair)
+Wooden Shutter (Purple) = Volet en bois (violet)
+Wooden Shutter (Red) = Volet en bois (rouge)
+Wooden Shutter (Unpainted Mahogany) = Volet en bois (acajou non peint)
+Wooden Shutter (Unpainted Oak) = Volet en bois (chêne non peint)
+Wooden Shutter (White) = Volet en bois (blanc)
+Wooden Shutter (Yellow) = Volet en bois (jaune)
+Wooden Tabletop piece = Bout de dessus de table
+Wooden Tabletop (Small, Round) = Dessus de table (petit, rond)
+Wooden Tabletop (Small, Square) = Dessus de table (petit, carré)
+Wood Shingles = Bardeaux de bois
+Wrought Iron Pole = Barre de fer forgé
+someone = quelqu'un
+## 1: Player name
+Sorry, %s owns that spot. = Désolé, %s est propriétaire de cette zone.
+
+### lighting.lua ###
+White Glowlight (small cube) = Lampe blanche (petit cube)
+White Glowlight (small cube, on ceiling) = Lampe blanche (petit cube, sur le plafond)
+White Glowlight (thick) = Lampe blanche (épaisse)
+White Glowlight (thick, on wall) = Lampe blanche (épaisse, sur le mur)
+White Glowlight (thin) = Lampe blanche (fine)
+White Glowlight (thin, on wall) = Lampe blanche (fine, sur le mur)
+Yellow Glowlight (small cube) = Lampe jaune (petit cube)
+Yellow Glowlight (small cube, on ceiling) = Lampe jaune (petit cube, sur le plafond)
+Yellow Glowlight (thick) = Lampe jaune (épaisse)
+Yellow Glowlight (thick, on wall) = Lampe jaune (épaisse, sur le mur)
+Yellow Glowlight (thin) = Lampe jaune (fine)
+Yellow Glowlight (thin, on wall) = Lampe jaune (fine, sur le mur)
+
+### locked.lua ###
+## 1: Item description, 2: Owner name
+%s (owned by %s) = %s (propriété de %s)
+## 1: Player name, 2: Item description, 3: Owner name, 4: Position
+%s tried to access a %s belonging to %s at %s = %s a essayé d'accéder à %s qui est propriété de %s à %s 
+## 1: Item description
+%s (Locked) = %s (verrouillé)
+Locked Cabinet = Meuble verrouillé
+Locked Nightstand = Table de chevet verrouillée
+Locked Fridge = Réfrégirateur verrouillé
+Locked Oven = Four verrouillé
+
+### nightstands.lua ###
+Mahogany Nightstand with One Drawer = Table de chevet en acajou avec un tiroir
+Mahogany Nightstand with Two Drawers = Table de chevet en acajou avec deux tiroirs
+Oak Nightstand with One Drawer = Table de chevet en chêne avec un tiroir
+Oak Nightstand with Two Drawers = Table de chevet en chêne avec deux tiroirs
+## 1: Player name, 2: position
+%s moves stuff in nightstand at %s = %s déplace des objets dans une table de chevet à %s
+%s moves stuff to nightstand at %s = %s déplace des objets vers une table de chevet à %s
+%s takes stuff from nightstand at %s = %s prend des objets d'une table de chevet à %s
+One-drawer Nightstand = Table de chevet avec un tiroir
+Two-drawer Nightstand = Table de chevet avec deux tiroirs
+
+### oven.lua ###
+Oven = Four
+## 1: Item name
+Could not insert '%s' = Ne peut insérer '%s'
+## 1: Percentage
+Oven active: %d%% = Four actif : %d%%
+Oven out of fuel = Four sans carburant
+Oven is empty = Four vide
+
+### refrigerator.lua ###
+Refrigerator = Réfrégirateur
+## 1: Player name, 2: position
+%s moves stuff in refrigerator at %s = %s déplace des objets dans un réfrégirateur à %s
+%s moves stuff to refrigerator at %s = %s déplace des objets vers un réfrégirateur à %s
+%s takes stuff from refrigerator at %s = %s prend des objets d'un réfrégirateur à %s
+Not enough vertical space to place a refrigerator! = Pas assez d'espace vertical pour placer un réfrégirateur !
+
+### television.lua ###
+Small CRT Television = Petite télévision à tube cathodique
+
+### signs_lib.lua ###
+E: character map file not found = E: fichier de table de caractère non trouvé
+## 1: Full String, 2: pos in string, 3: current char at pos
+W: unknown symbol in '%s' at %d (probably %s) = A: symbole inconnu dans '%s' dans %d (probablement %s)
+%s wrote "%s" to sign at %s =
+signs loaded =

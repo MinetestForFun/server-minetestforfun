@@ -1,0 +1,223 @@
+# Translation by Xanthin
+
+### Special strings ###
+
+### kitchen_cabinet.lua ###
+Kitchen Cabinet = Kuechenschrank
+## 1: Player name, 2: position
+%s moves stuff in kitchen cabinet at %s = %s bewegt etwas im Kuechenschrank bei %s
+%s moves stuff to kitchen cabinet at %s = %s legt etwas in den Kuechenschrank bei %s
+%s takes stuff from kitchen cabinet at %s = %s nimmt etwas aus dem Kuechenschrank bei %s
+Half-height Kitchen Cabinet (on ceiling) = Halbhoher Kuechenschrank (haengend)
+Under-sink cabinet = Unterschrank
+Kitchen Cabinet with sink = Unterschrank mit Spuele
+
+### door_models.lua ###
+Mahogany Closet Door = Wandschranktuer aus Mahagoni 
+Oak Closet Door = Wandschranktuer aus Eiche
+Fancy Wood/Glass Door = Schicke Holz/Glastuer
+Glass Office Door = Glasbuerotuer
+Glass and Wood, Mahogany-colored = Glas-Holz-Tuer, mahagonifarben
+Glass and Wood, Oak-colored = Glas-Holz-Tuer, eichefarben
+Glass and Wood, White = Glas-Holz-Tuer, weiss
+Plain Wooden Door = Einfache Holztuer
+left = links
+right = rechts
+## 1: Side the doors opens to
+#deaktiviert, weil es nicht funktioniert
+#(Top Half, %s-opening) = (obere Haelfte, %soeffnend)
+#(%s-opening) = (%soeffnend)
+
+
+### door_nodes.lua ###
+Not enough space above that spot to place a door! = Es gibt nicht genug Raum ueber dieser Stelle um die Tuer zu platzieren!
+
+### crafts.lua ###
+Brass Ingot = Messingbarren
+Bucket of white paint = Eimer mit weisser Farbe
+Legs for Small Utility table = Tischbeine fuer kleinen Arbeitsplatte
+Plastic sheet = Kunststoffplatte
+Silicon lump = Silikonklumpen
+Simple Integrated Circuit = Einfacher integrierter Schaltkreis
+Small Wooden Drawer = Kleiner Holzschubkasten
+Terracotta Roof Tile = Terrakottadachziegel
+Titanium Dioxide = Titandioxid
+Uncooked Terracotta Base = Ungebrannte Terrakotta
+Unprocessed Plastic base = Unverarbeitetes Plastik
+
+### door_models.lua ###
+
+### door_nodes.lua ###
+
+### fences.lua ###
+Barbed Wire Fence = Stacheldrahtzaun
+Barbed Wire Fence Corner = Stacheldrahtzaunecke
+Barbed Wire Fence Gate = Stacheldrahtzauntor
+Brass Fence/railing = Messingzaun/Gelaender
+Brass Fence/railing with sign = Messingzaun/Gelaender mit Schild
+Chainlink Fence = Maschendrahtzaun
+Chainlink Fence Corner = Maschendrahtzaunecke
+Chainlink Fence Gate = Maschendrahtzauntor
+Unpainted Picket Fence = Unlackierter Lattenenzaun
+Unpainted Picket Fence Corner = Unlackierte Lattenenzaunecke
+Unpainted Picket Fence Gate = Unlackiertes Lattenzauntor
+White Picket Fence = Weisser Lattenzaun
+White Picket Fence Corner = Weisse Lattenzaunecke
+White Picket Fence Gate = Weisses Lattenzauntor
+Wooden Privacy Fence = Sichtschutzzaun aus Holz
+Wooden Privacy Fence Corner = Sichtschutzzaunecke aus Holz
+Wrought Iron Fence/railing = Schmiedeeiserner Zaun/Gelaender
+Wrought Iron Fence/railing with sign = Schmiedeeiserner Zaun/Gelaender mit Schild
+want to simply place the wielded item like usual. = Moechte einfach den getragenen Gegenstand wie gewohnt platzieren.
+
+### furniture.lua ###
+Table = Tisch
+Chair = Stuhl
+Black = schwarz
+Red = rot
+Pink = rosa
+Violet = violett
+Blue = blau
+Dark Green = dunkelgruen
+## 1: Color name
+Armchair (%s) = Sessel (%s)
+Table Lamp = Tischlampe
+
+### furniture_medieval.lua ###
+Bars = Gitterstaebe
+Binding Bars = Eckverbindung fuer Gitterstaebe
+Chains = Ketten
+Wall Torch = Wandfackel
+
+### furniture_bathroom.lua ###
+Toilet = Toilette
+Sink = Waschbecken
+Taps = Wasserhahn
+Shower Tray = Duschtasse
+Shower Head = Duschbrause
+
+### init.lua ###
+Loaded! = Geladen!
+Air Conditioner = Klimaanlage
+Asphalt Shingles = Asphaltschindeln
+Asphalt Shingles (outer corner) = Asphaltschindeln (Aussenecke)
+Asphalt Shingles (inner corner) = Asphaltschindeln (Innenecke)
+Black Plastic Flower Pot = Schwarzer Plastikblumentopf
+Brass Pole = Messingstange
+Brass Table Legs = Messingtischbeine
+Wrought Iron Table Legs = Schmiedeeiserne Tischbeine
+red = rot
+green = gruen
+blue = blau
+white = weiss
+pink = rosa
+violet = violett
+## 1: Color name
+Curtains (%s) = Vorhaenge (%s)
+Drop-Ceiling Tile = Deckenplatte
+Glass Skylight = Glasdachfenster
+Glass Skylight Frosted  = Milchglasdachfenster
+Glass Table (Small, Round) = Glastischplatte (klein, rund)
+Glass Table (Small, Square) = Glastischplatte (klein, quadratisch)
+Glass Table Piece (large) = Glastischplatte (gross)
+Green Plastic Flower Pot = Gruener Plastikblumentopf
+Large Area Rug = Grosser Teppich
+Glass Table Piece (large) = Glastischplatte (gross)
+Large Stereo Speaker = Grosser Lautsprecher
+Legs for Utility Table = Tischbeine fuer Arbeitsplatte
+Projection Screen Material = Projektorleinwand
+Small Surround Speaker = Kleiner Lautsprecher
+Small Throw Rug = Kleiner Teppich
+Stereo Receiver = Stereoanlage
+Terracotta Flower Pot = Terrakottablumentopf
+Terracotta Shingles = Terrakottaschindeln
+Terracotta Shingles (outer corner) = Terrakottaschindeln (Aussenecke)
+Terracotta Shingles (inner corner) = Terrakottaschindeln (Innenecke)
+Textured Ceiling Paint = Deckenfarbe (Raufaser)
+Utility Table = Arbeitsplatte
+Utility table mk2 = Arbeitsplatte Modell 2
+Wooden Shutter (Black) = Holzjalousie (schwarz)
+Wooden Shutter (Dark grey) = Holzjalousie (dunkelgrau)
+Wooden Shutter (Forest green) = Holzjalousie (waldgruen)
+Wooden Shutter (Grey) = Holzjalousie (grau)
+Wooden Shutter (Light blue) = Holzjalousie (hellblau)
+Wooden Shutter (Violet) = Holzjalousie (violett)
+Wooden Shutter (Red) = Holzjalousie (rot)
+Wooden Shutter (Mahogany) = Holzjalousie (mahagoni)
+Wooden Shutter (Unpainted oak) = Holzjalousie (eiche)
+Wooden Shutter (White) = Holzjalousie (weiss)
+Wooden Shutter (Yellow) = Holzjalousie (gelb)
+Wood Table Piece (large)= Holztischplatte (gross)
+Wood Table (Small, Round) = Holztischplatte (klein, rund)
+Wood Table (Small, Square) = Holztischplatte (klein, quadratisch)
+Wood Shingles = Holzschindeln
+Wood Shingles (outer corner) = Holzschindeln (Aussenecke)
+Wood Shingles (inner corner) = Holzschindeln (Innenecke)
+Wrought Iron Pole = Schmiedeeiserne Stange
+someone = jemand
+## 1: Player name
+Sorry, %s owns that spot. = Tut mir leid, %s gehoert diese Stelle.
+
+### lighting.lua ###
+White Glowlight (small cube) = Weisse Gluehlampe (kleiner Wuerfel)
+White Glowlight (small cube, on ceiling) = Weisse Gluehlampe (kleiner Wuerfel, an der Decke)
+White Glowlight (thick) = Weisse Gluehlampe (dick)
+White Glowlight (thick, on wall) = Weisse Gluehlampe (dick, an der Wand)
+White Glowlight (thin) = Weisse Gluehlampe (duenn)
+White Glowlight (thin, on wall) = Weisse Gluehlampe (duenn, an der Wand)
+Yellow Glowlight (small cube) = Gelbe Gluehlampe (kleiner Wuerfel)
+Yellow Glowlight (small cube, on ceiling) = Gelbe Gluehlampe (kleiner Wuerfel, an der Decke)
+Yellow Glowlight (thick) = Gelbe Gluehlampe (dick)
+Yellow Glowlight (thick, on wall) = Gelbe Gluehlampe (dick, an der Wand)
+Yellow Glowlight (thin) = Gelbe Gluehlampe (duenn)
+Yellow Glowlight (thin, on wall) = Gelbe Gluehlampe (duenn, an der Wand)
+
+### locked.lua ###
+## 1: Item description, 2: Owner name
+%s (owned by %s) = %s (gehoert %s)
+## 1: Player name, 2: Item description, 3: Owner name, 4: Position
+%s tried to access a %s belonging to %s at %s = %s versuchte Zugang zu %s von %s zu bekommen bei %s
+## 1: Item description
+%s (Locked) = %s (verschlossen)
+Locked Fridge = Verschlossener Kuehlschrank
+Locked Cabinet = Verschlossener Schrank
+Locked Nightstand = Verschlossener Nachttisch
+Locked Oven = Verschlossener Herd
+Locked Oven (active) = Verschlossener Herd (aktiv)
+Locked Microwave Oven = Verschlossene Mikrowelle
+Locked Microwave Oven (active) = Verschlossene Mikrowelle (aktiv)
+
+### nightstands.lua ###
+Mahogany Nightstand with One Drawer = Mahagoninachttisch mit einer Schublade
+Mahogany Nightstand with Two Drawers = Mahagoninachttisch mit zwei Schubladen
+Oak Nightstand with One Drawer = Eichenachttisch mit einer Schublade
+Oak Nightstand with Two Drawers = Eichenachttisch mit zwei Schubladen
+## 1: Player name, 2: position
+%s moves stuff in nightstand at %s = %s bewegt etwas im Nachttisch
+%s moves stuff to nightstand at %s = %s legt etwas in den Nachttisch
+%s takes stuff from nightstand at %s = %s nimmt etwas aus dem Nachttisch
+One-drawer Nightstand = Nachttisch mit einer Schublade
+Two-drawer Nightstand = Nachttisch mit zwei Schubladen
+
+### oven.lua ###
+Oven = Herd
+Microwave Oven = Mikrowelle
+## 1: Item descrition
+Could not insert '%s' = Kann '%s' nicht einfuegen
+## 1: Item description, 2: Percentage
+%s active: %d%% = %s ist aktiv: %d%%
+## 1: Item description
+%s is empty = %s ist leer
+: Out of fuel = : kein Brennmaterial vorhanden
+: output bins are full = : Produktfelder sind voll
+
+### refrigerator.lua ###
+Refrigerator = Kuehlschrank
+## 1: Player name, 2: position
+%s moves stuff in refrigerator at %s = %s bewegt etwas im Kuehlschrank bei %s
+%s moves stuff to refrigerator at %s = %s legt etwas in den Kuehlschrank bei %s
+%s takes stuff from refrigerator at %s = %s nimmt etwas aus dem Kuehlschrank bei %s
+Not enough vertical space to place a refrigerator! = Es gibt nicht genug Raum ueber dieser Stelle um den Kuehlschrank zu platzieren!
+
+### television.lua ###
+Small CRT Television = Kleiner Roehrenfernseher

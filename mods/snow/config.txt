@@ -1,0 +1,18 @@
+# Reduces the amount of resources and fps used by snowfall.
+lighter_snowfall = false
+# Enables smooth transition of biomes
+smooth_biomes = true
+# The minumum height a snow biome will generate.
+min_height = 3
+# Disable this to prevent sleds from being riden.
+sleds = true
+# Disable this to stop snow from being smoothed.
+smooth_snow = true
+# Disable this to remove christmas saplings from being found.
+christmas_content = true
+# Whether you are running a legacy minetest version (auto-detected).
+legacy = false
+# Enables debug output.
+debug = false
+# Enables falling snow.
+enable_snowfall = true

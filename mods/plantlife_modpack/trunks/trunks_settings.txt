@@ -1,0 +1,70 @@
+-- Settings for generation of stuff (at map-generation time)
+
+
+
+
+
+Horizontal_Trunks 		= true
+
+
+
+Trunks_Max_Count		= 320 -- absolute maximum number in an area of 80x80x80 nodes
+
+
+Trunks_Rarity			= 99 -- larger values make trunks more rare (100 means chance of 0 %)
+
+
+
+
+
+Big_Twigs			= true -- twigs larger than one node
+Twigs_on_ground 		= true
+
+
+
+Twigs_on_ground_Max_Count	= 640 -- absolute maximum number in an area of 80x80x80 nodes
+
+Twigs_on_ground_Rarity		= 66 -- larger values make twigs more rare (100 means chance of 0 %)
+
+
+
+
+
+Twigs_on_water 			= true
+
+
+
+Twigs_on_water_Max_Count	= 320 -- absolute maximum number in an area of 80x80x80 nodes
+
+
+Twigs_on_water_Rarity		= 33 -- larger values make twigs more rare (100 means chance of 0 %)
+
+
+
+
+
+Moss_on_ground			= true
+
+
+
+Moss_on_ground_Max_Count	= 400 -- absolute maximum number in an area of 80x80x80 nodes
+
+Moss_on_ground_Rarity		= 79 -- larger values makes moss more rare (100 means chance of 0 %)
+
+
+
+
+
+Moss_on_trunk			= true
+
+
+
+Moss_on_trunk_Max_Count		= 640 -- absolute maximum number in an area of 80x80x80 nodes
+
+Moss_on_trunk_Rarity		= 24 -- larger values makes moss more rare (100 means chance of 0 %)
+
+
+Auto_Roof_Corner 		= true -- behavior is similar (not the same!) to the one of minecraft stairs
+
+
+Roots					= true

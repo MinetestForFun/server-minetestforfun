@@ -1,0 +1,52 @@
+-- Here you can enable/disable the different plants
+REEDMACE_GENERATES 					= 	true
+SMALL_JUNCUS_GENERATES 				= 	true
+EXTRA_TALL_GRASS_GENERATES 			= 	true
+
+
+
+-- Amount of Reedmace near water or swamp
+REEDMACE_NEAR_WATER_PER_MAPBLOCK	=	35		-- plants per 80x80x80 nodes (absolute maximum number)
+REEDMACE_NEAR_WATER_RARITY			=	40		-- percent
+
+-- Amount of Reedmace in water
+REEDMACE_IN_WATER_PER_MAPBLOCK		=	35		-- plants per 80x80x80 nodes (absolute maximum number)
+REEDMACE_IN_WATER_RARITY			=	65		-- percent
+
+-- Amount of Reedmace for oases, tropical beaches and tropical swamps
+REEDMACE_FOR_OASES_PER_MAPBLOCK		=	35		-- plants per 80x80x80 nodes (absolute maximum number)
+REEDMACE_FOR_OASES_RARITY			=	90		-- percent
+
+-- growing of reedmace sapling
+REEDMACE_GROWING_TIME 				= 	16800  	-- seconds
+REEDMACE_GROWING_CHANCE 			= 	5		-- percent
+
+
+
+-- Amount of small Juncus near water or swamp
+JUNCUS_NEAR_WATER_PER_MAPBLOCK		=	70		-- plants per 80x80x80 nodes (absolute maximum number)
+JUNCUS_NEAR_WATER_RARITY			=	75		-- percent
+
+-- Amount of small Juncus at dunes/beach
+JUNCUS_AT_BEACH_PER_MAPBLOCK		=	70		-- plants per 80x80x80 nodes (absolute maximum number)
+JUNCUS_AT_BEACH_RARITY				=	75		-- percent
+
+
+
+-- Tall Grass on dirt with grass
+TALL_GRASS_PER_MAPBLOCK				=	4800	-- plants per 80x80x80 nodes (absolute maximum number)
+TALL_GRASS_RARITY					=	75		-- percent
+
+
+
+-- short grass becomes dirt with grass again
+GRASS_REGROWING_TIME 				= 	16800 	-- seconds
+GRASS_REGROWING_CHANCE 				= 	0.5		-- percent
+
+HAY_DRYING_TIME 					= 	3600 	-- seconds
+
+REED_WILL_DRY 						= 	false	-- wet reed nodes will become dry reed nodes
+REED_DRYING_TIME 					= 	3600 	-- seconds
+
+AUTO_ROOF_CORNER 					= 	true
+	

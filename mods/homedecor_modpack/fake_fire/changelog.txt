@@ -1,0 +1,86 @@
+CHANGELOG
+~~~~~~~~~~~~~~~~~
+
+2014_07_27:
+
+* Replaced LazyJ's smoke nodes pictures by smoke particles. Lighter, prettier, configurable smoke.
+* Code clean-up.
+
+
+2014_06_21:
+
+	* Added changelog.txt, 2014_06_19. Some changes are much older than this.
+	I've been making little tweaks to it for several months and finally decided
+	to give it an overhaul.
+	* Code clean-up.
+	* Split the init.lua file stuff into separate files and moved them into the
+	"modfiles" folder.
+	* I had added a lump of coal to be dropped when the flame was dug but, as
+	one of our moderators pointed out, once word got out, new players would
+	snuff-out every fake_fire they found just to get easy coal. The coal drop
+	was removed.
+	* Changed the flint crafting recipe to require 2 gravel instead of one.
+	This resolves a crafting conflict with another mod. The recipe is also
+	shapless now.
+	* Added crafting recipes for 1 cobble to 1 gravel, then 1 gravel to 1 sand.
+	For Wazuland2 these recipes are commented out because another mod takes
+	care of them (the reason for changing the flint recipe).
+	* Health-damage disabled. This fork is strictly for decoration.
+	* Waving added to flames and smoke.
+	* Rising, disappearing smoke-puffs added. Smoke columns will rise to 14
+	spaces above the flame or chimney top.
+	* Smoke can be punched to remove.
+	* Never-ending flint and steel disabled. May add it as a priv later.
+	* Extinguishing with water and lava(??) disabled. Again, this fork is
+	strictly for decoration so dousing the flames with water or lava would just
+	make a big, needless mess. Much easier and cleaner to just punch the flame.
+	* Flame images are hidden from creative inventory but are still	provided
+	for in the code and image files if you want them to be visible.	Just remove
+	the "not_in_creative_inventory" part from the groups of the	flame types and
+	they will be visible again. Having the images in inventory is useful when
+	playing in creative mode or if you want to torture griefers who put in the
+	time and effort to get the materials to make the fire hoping to be able to
+	burn things only to discover that it is *fake* and *harmless*. Bwa-hahaha!
+	* Added ice-fire, a blue-colored flame that only ignites on snow and ice
+	stuff.
+	* Added added ability to switch between smoking and non-smoking flames by
+	punching them. Default is non-smoking.
+	* Added stone and sandstone chimney caps that can produce smoke when punched
+	(smoking and non-smoking versions). Useful for small builds where a 3x3
+	chimney would be too oversized in proportion to the reset of the build.
+	* Added animated, glowing embers. This hearth-warming block emits a
+	mid-level light and simulates the hot coals under a flame. Flames are not
+	required and the embers blocks are smokeless.
+	
+	
+	
+2014_06_23:
+
+	* Flames - "sunlight_propagates = true,"
+	-- Adding sunlight_propagtes and leaving comments as a future reference.
+	-- If true, sunlight will go infinitely through this (no shadow is cast).
+	-- Because fire produces light it should be "true" so fire *doesn't* have
+	-- a shadow. 
+	
+	* Embers - "sunlight_propagates = true,"
+	-- Adding sunlight_propagtes and leaving comments as a future reference.
+	-- If true, sunlight will go infinitely through this (no shadow is cast).
+	-- Because embers produce some light it should be somewhat "true" but this
+	-- is an area where Minetest lacks in subtlety so I'm opting for 100% that
+	-- embers *don't* have a shadow. 
+	
+	* Bug Fix - Server Crash when Flint-Steel Clicked on Nothing (sky).
+	-- Players can see farther than they can reach. Even though the player
+	-- was aiming for a node several spaces ahead of them, Minetest's targeting
+	-- range doesn't extend that far. The player saw the node they were aiming
+	-- at, Minetest's target range ended and Minetest saw "nothing"
+	-- (a nil value). The bug was a conflict in the code so when that
+	-- particular nil value popped up, Minetest was confused by the bug, threw
+	-- up it's hands in frustration and said "I quit!" by crashing.
+	
+	* Original init.lua Added
+	-- What I thought was the original init.lua file turned out to be one I had
+	-- tinkered with months ago. So I extracted the actual original init.lua
+	-- file from a zip file of the original mod. Why bother including it in my
+	-- fork? Because it's a reference to compare to and learn from.
+	

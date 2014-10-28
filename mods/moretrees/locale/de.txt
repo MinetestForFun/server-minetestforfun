@@ -1,0 +1,74 @@
+# Translation by Xanthin
+
+### crafts.lua ###
+Coconut Milk = Kokosnussmilch
+Raw Coconut = Kokosnussfleisch
+Acorn Muffin batter = Eichelmuffinteig
+Acorn Muffin = Eichelmuffin
+Roasted Spruce Cone Nuts = Geroestete Fichtenzapfen
+Roasted Pine Cone Nuts = Geroestete Kiefernzapfen
+Roasted Fir Cone Nuts = Geroestete Tannenzapfen
+
+### node_defs.lua ###
+Beech Tree Trunk = Buchenstamm
+Apple Tree Trunk = Apfelbaumstamm
+Oak Tree Trunk = Eichenstamm
+Giant Sequoia Trunk = Riesenmammutbaumstamm
+Birch Tree Trunk = Birkenstamm
+Palm Tree Trunk = Palmenstamm
+Spruce Tree Trunk = Fichtenstamm
+Pine Tree Trunk = Kiefernstamm
+Willow Tree Trunk = Weidenstamm
+Rubber Tree Trunk = Gummibaumstamm
+Jungle Tree Trunk = Tropenbaumstamm
+Douglas Fir Trunk = Douglasienstamm
+Beech Tree Planks = Buchebretter
+Apple Tree Planks = Apfelbaumbretter
+Oak Tree Planks = Eichenbretter
+Giant Sequoia Planks = Riesenmammutbaumbretter
+Birch Tree Planks = Birkebretter
+Palm Tree Planks = Palmenbretter
+Spruce Tree Planks = Fichtenbretter
+Pine Tree Planks = Kiefernbretter
+Willow Tree Planks = Weidenbretter
+Rubber Tree Planks = Gummibaumbretter
+Jungle Tree Planks = Tropenholzbretter
+Douglas Fir Planks = Douglasienbretter
+Beech Tree Sapling = Buchesetzling
+Apple Tree Sapling = Apfelbaumsetzling
+Oak Tree Sapling = Eichensetzling
+Giant Sequoia Sapling = Riesenmammutbaumsetzling
+Birch Tree Sapling = Birkensetzling
+Palm Tree Sapling = Palmensetzling
+Spruce Tree Sapling = Fichtensetzling
+Pine Tree Sapling = Kiefernsetzling
+Willow Tree Sapling = Weidensetzling
+Rubber Tree Sapling = Gummibaumsetzling
+Jungle Tree Sapling = Tropenbaumsetzling
+Douglas Fir Sapling = Douglasiensetzling
+Beech Tree Leaves = Buchenlaub
+Apple Tree Leaves = Apfelbaumlaub
+Oak Tree Leaves = Eichenlaub
+Giant Sequoia Leaves = Riesenmammutbaumlaub
+Birch Tree Leaves = Birkenlaub
+Palm Tree Leaves = Palmenlaub
+Spruce Tree Leaves = Fichtennadeln
+Pine Tree Leaves = Kiefernnadeln
+Willow Tree Leaves = Weidenlaub
+Rubber Tree Leaves = Gummibaumlaub
+Jungle Tree Leaves = Tropenbaumlaub
+Douglas Fir Leaves = Douglasiennadeln
+
+Acorn = Eichel
+Coconut = Kokosnuss
+Spruce Cone = Fichtenzapfen
+Pine Cone = Kiefernzapfen
+Fir Cone = Tannenzapfen
+Jungle Sapling = Tropenbaumsetzling
+Jungle Tree Leaves (Green) = Tropenbaumlaub (gruen)
+Jungle Tree Leaves (Yellow) = Tropenbaumlaub (gelb)
+Jungle Tree Leaves (Red) = Tropenbaumlaub (rot)
+Douglas Fir Leaves (Bright) = Douglasiennadeln (breit)
+Rubber Tree Trunk (Empty) = Gummibaumstamm (leer)
+
+[Moretrees] Loaded (2013-02-11) = [Moretrees] geladen (2013-02-11)

@@ -1,0 +1,43 @@
+# Template
+
+Strawberry = 
+Blackberry = 
+Blueberry = 
+Raspberry = 
+Gooseberry = 
+Mixed Berry = 
+Basket with Strawberry Pies = 
+Basket with Blackberry Pies = 
+Basket with Blueberry Pies = 
+Basket with Raspberry Pies = 
+Basket with Gooseberry Pies = 
+Basket with Mixed Berry Pies = 
+currently fruitless = 
+Strawberry Bush = 
+Blackberry Bush = 
+Blueberry Bush = 
+Raspberry Bush = 
+Gooseberry Bush = 
+Mixed Berry Bush = 
+Basket = 
+Sugar = 
+Raw Strawberry pie = 
+Raw Blackberry pie = 
+Raw Blueberry pie = 
+Raw Raspberry pie = 
+Raw Gooseberry pie = 
+Raw Mixed Berry pie = 
+Cooked Strawberry pie = 
+Cooked Blackberry pie = 
+Cooked Blueberry pie = 
+Cooked Raspberry pie = 
+Cooked Gooseberry pie = 
+Cooked Mixed Berry pie = 
+Slice of Strawberry pie = 
+Slice of Blackberry pie = 
+Slice of Blueberry pie = 
+Slice of Raspberry pie = 
+Slice of Gooseberry pie = 
+Slice of Mixed Berry pie = 
+
+[Bushes] Loaded. = 

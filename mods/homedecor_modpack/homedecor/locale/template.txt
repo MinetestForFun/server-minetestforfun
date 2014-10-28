@@ -1,0 +1,232 @@
+##########################
+# Template language file #
+##########################
+
+### Special strings ###
+
+### kitchen_cabinet.lua ###
+Kitchen Cabinet =
+## 1: Player name, 2: position
+%s moves stuff in kitchen cabinet at %s =
+%s moves stuff to kitchen cabinet at %s =
+%s takes stuff from kitchen cabinet at %s =
+Half-height Kitchen Cabinet (on ceiling) =
+Under-sink cabinet =
+Kitchen Cabinet with sink =
+
+### door_models.lua ###
+Mahogany Closet Door =
+Oak Closet Door =
+Fancy Wood/Glass Door =
+Glass Office Door =
+Glass and Wood, Mahogany-colored =
+Glass and Wood, Oak-colored =
+Glass and Wood, White =
+Plain Wooden Door =
+left =
+right =
+## 1: Side the doors opens to
+(Top Half, %s-opening) =
+(%s-opening) =
+
+
+### door_nodes.lua ###
+Not enough space above that spot to place a door! =
+
+### crafts.lua ###
+Brass Ingot =
+Bucket of white paint =
+Legs for Small Utility table =
+Plastic sheet =
+Silicon lump =
+Simple Integrated Circuit =
+Small Wooden Drawer =
+Terracotta Roof Tile =
+Titanium Dioxide =
+Uncooked Terracotta Base =
+Unprocessed Plastic base =
+
+### door_models.lua ###
+
+### door_nodes.lua ###
+
+### fences.lua ###
+Barbed Wire Fence =
+Barbed Wire Fence Corner =
+Barbed Wire Fence Gate =
+Brass Fence/railing =
+Brass Fence/railing with sign =
+Chainlink Fence =
+Chainlink Fence Corner =
+Chainlink Fence Gate =
+Unpainted Picket Fence =
+Unpainted Picket Fence Corner =
+Unpainted Picket Fence Gate =
+White Picket Fence =
+White Picket Fence Corner =
+White Picket Fence Gate =
+Wooden Privacy Fence =
+Wooden Privacy Fence Corner =
+Wrought Iron Fence/railing =
+Wrought Iron Fence/railing with sign =
+want to simply place the wielded item like usual. =
+
+### furniture.lua ###
+Table =
+Chair =
+Black =
+Red =
+Pink =
+Violet =
+Blue =
+Dark Green =
+## 1: Color name
+Armchair (%s) =
+Table Lamp =
+
+### furniture_medieval.lua ###
+Bars =
+Binding Bars =
+Chains =
+Wall Torch =
+
+### furniture_bathroom.lua ###
+Toilet =
+Sink =
+Taps =
+Shower Tray =
+Shower Head =
+
+### init.lua ###
+Loaded! =
+Air Conditioner =
+Asphalt Shingles =
+Asphalt Shingles (outer corner) =
+Asphalt Shingles (inner corner) =
+Black Plastic Flower Pot =
+Brass Pole =
+Brass Table Legs =
+Wrought Iron Table Legs =
+red =
+green =
+blue =
+white =
+pink =
+violet =
+## 1: Color name
+Curtains (%s) =
+Drop-Ceiling Tile =
+Glass Skylight =
+Glass Skylight Frosted  =
+Glass Table (Small, Round) =
+Glass Table (Small, Square) =
+Glass Table Piece (large) =
+Green Plastic Flower Pot =
+Large Area Rug =
+Glass Table Piece (large) =
+Large Stereo Speaker =
+Legs for Utility Table =
+Projection Screen Material =
+Small Surround Speaker =
+Small Throw Rug =
+Stereo Receiver =
+Terracotta Flower Pot =
+Terracotta Shingles =
+Terracotta Shingles (outer corner) =
+Terracotta Shingles (inner corner) =
+Textured Ceiling Paint =
+Utility Table =
+Utility table mk2 =
+Wooden Shutter (Black) =
+Wooden Shutter (Dark grey) =
+Wooden Shutter (Forest green) =
+Wooden Shutter (Grey) =
+Wooden Shutter (Light blue) =
+Wooden Shutter (Violet) =
+Wooden Shutter (Red) =
+Wooden Shutter (Mahogany) =
+Wooden Shutter (Unpainted oak) =
+Wooden Shutter (White) =
+Wooden Shutter (Yellow) =
+Wood Table Piece (large)=
+Wood Table (Small, Round) =
+Wood Table (Small, Square) =
+Wood Shingles =
+Wood Shingles (outer corner) =
+Wood Shingles (inner corner) =
+Wrought Iron Pole =
+someone =
+## 1: Player name
+Sorry, %s owns that spot. =
+
+### lighting.lua ###
+White Glowlight (small cube) =
+White Glowlight (small cube, on ceiling) =
+White Glowlight (thick) =
+White Glowlight (thick, on wall) =
+White Glowlight (thin) =
+White Glowlight (thin, on wall) =
+Yellow Glowlight (small cube) =
+Yellow Glowlight (small cube, on ceiling) =
+Yellow Glowlight (thick) =
+Yellow Glowlight (thick, on wall) =
+Yellow Glowlight (thin) =
+Yellow Glowlight (thin, on wall) =
+
+### locked.lua ###
+## 1: Item description, 2: Owner name
+%s (owned by %s) =
+## 1: Player name, 2: Item description, 3: Owner name, 4: Position
+%s tried to access a %s belonging to %s at %s =
+## 1: Item description
+%s (Locked) =
+Locked Fridge =
+Locked Cabinet =
+Locked Nightstand =
+Locked Oven =
+Locked Oven (active) =
+Locked Microwave Oven =
+Locked Microwave Oven (active) =
+
+### nightstands.lua ###
+Mahogany Nightstand with One Drawer =
+Mahogany Nightstand with Two Drawers =
+Oak Nightstand with One Drawer =
+Oak Nightstand with Two Drawers =
+## 1: Player name, 2: position
+%s moves stuff in nightstand at %s =
+%s moves stuff to nightstand at %s =
+%s takes stuff from nightstand at %s =
+One-drawer Nightstand =
+Two-drawer Nightstand =
+
+### oven.lua ###
+Oven =
+Microwave Oven =
+## 1: Item descrition
+Could not insert '%s' =
+## 1: Item description, 2: Percentage
+%s active: %d%% =
+## 1: Item description
+%s is empty =
+: Out of fuel =
+: output bins are full =
+
+### refrigerator.lua ###
+Refrigerator =
+## 1: Player name, 2: position
+%s moves stuff in refrigerator at %s =
+%s moves stuff to refrigerator at %s =
+%s takes stuff from refrigerator at %s =
+Not enough vertical space to place a refrigerator! =
+
+### television.lua ###
+Small CRT Television =
+
+### signs_lib.lua ###
+%s wrote "%s" to sign at %s =
+Reading cached character database. =
+Font seems to have changed. Rebuilding cache. =
+Could not find font line height in cached DB. Trying brute force. =
+Registered %s and %s =
+signs loaded =

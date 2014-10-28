@@ -1,0 +1,16 @@
+-------------------------------------------------------------
+Credit for textures of "woodsoils"
+-------------------------------------------------------------
+(If more than one author is listed the names are in alphabetical order)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOLDER								TEXTURE								AUTHORS
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+../woodsoils/textures				woodsoils_ground.png				Mossmanikin
+									woodsoils_ground_cover.png			Mossmanikin
+									woodsoils_ground_cover_side.png		Mossmanikin
+									woodsoils_ground_cover_side2.png	Mossmanikin
+									woodsoils_ground_cover2.png			Mossmanikin
+									woodsoils_ground_side.png			Mossmanikin
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+../woodsoils/textures/not in use	woodsoils.png						Mossmanikin
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

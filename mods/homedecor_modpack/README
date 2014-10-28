@@ -1,0 +1,53 @@
+This is what I consider to be a fairly feature-filled home decor 
+modpack.  As such, it comes in multiple parts:
+
+* The actual homedecor mod, which supplies a bunch of stuff found in 
+most homes (like flower pots, home electronics, brass and wrought-iron 
+tables, and a bunch of other things).
+
+* A "3d extras" mod, which supplies things that re-define something in 
+some other mod (or in the default game) so that those objects become 
+fully 3d (instead of a flat cube), as well as things which are directly 
+related.  This mod, for example, provides 3d bookshelves and their empty 
+and half-depth "open frame" counterparts.
+
+* A signs library forked from the one that thexyz and PilzAdam first 
+made, which produces visible text on signs (and which has been extended 
+to put signs on fences, including the brass and wrought iron ones here 
+in homedecor).
+
+* Sdzen's building_blocks mod, which is here to supply not only a few 
+blocks to build with, obviously, :-) but also to supply a number of 
+materials to craft other things in Homedecor with.
+
+All items can be accessed either by crafting various other items 
+together, or with the usual /give commands.  To get a list of the actual 
+node names, just go into the homedecor/ folder and run the listnodes.sh 
+Bash script.  Note that a few of the listed nodes are kinda useless by 
+themselves (like the various parts of the folding doors).
+
+All of the images used for the recipes in the forum post tracking this 
+mod are included in the crafting-guide/ folder.
+
+Most stuff can be made from materials found through a game world.  Some 
+stuff can only be crafted by using materials from another mod (look for 
+the orange highlights).  Currently, this mod can use materials from 
+moreores, mesecons, wool, and unifieddyes if present. You can still use 
+the usual /give commands to get the items that depend on these mods if 
+you don't use them installed.
+
+This mod is still a work-in-progress, but should be complete enough not 
+to irritate anyone. :-) Namely, many items can be used as fuel but the 
+burn times need tuning and I need to tune the cook time and fuel usage 
+on the four smelted items.
+
+Much of the code (especially for the doors) plus the bucket were taken 
+from the files which come with Minetest and altered to suit.  Many 
+thanks to Jeija for coming up with an elegant cylinder using nodeboxes; 
+see his 'irregular' mods).  His code is used herein (you can guess where
+:-) ).
+
+Dependencies: none (just the game's default stuff)
+
+Recommends: buckets, flowers, unifieddyes, junglegrass, moreores, 
+mesecons, wool

@@ -1,0 +1,198 @@
+
+# Brazilian Portuguese translation of homedecor
+# Last update: 2013/11/10
+# Last translator: Aracnus <frederico@teia.bio.br>
+
+### Special strings ###
+
+### kitchen_cabinet.lua ###
+Kitchen Cabinet = Armário de cozinha
+## 1: Player name, 2: position
+%s moves stuff in kitchen cabinet at %s = %s moveu itens no armário de cozinha em %s
+%s moves stuff to kitchen cabinet at %s = %s moveu itens para o armário de cozinha em %s
+%s takes stuff from kitchen cabinet at %s =  %s retirou itens do armário de cozinha em %s
+Half-height Kitchen Cabinet (on ceiling) = Meio armário de cozinha (no teto)
+Under-sink cabinet = Armário sob a pia
+Kitchen Cabinet with sink = Armário de cozinha com pia
+
+### door_models.lua ###
+Mahogany Closet Door = Porta do armário de mogno
+Oak Closet Door = Porta do armário de carvalho
+Fancy Wood/Glass Door = Porta de madeira/vidro trabalhada
+Glass Office Door = Porta de escritório de vidro
+Glass and Wood, Mahogany-colored = Vidro e madeira (mogno)
+Glass and Wood, Oak-colored = Vidro e madeira (carvalho)
+Glass and Wood, White = Vidro e madeira (branca)
+Plain Wooden Door = Porta de madeira simples
+left = esquerda
+right = direita
+## 1: Side the doors opens to
+(Top Half, %s-opening) = (Metade superior, abre para %s)
+(%s-opening) = (abre para %s)
+
+
+### door_nodes.lua ###
+Not enough vertical space to place a door! = Não existe espaço vertical suficiente para colocar uma porta.
+
+### crafts.lua ###
+Brass Ingot = Lingote de bronze
+Bucket of white paint = Balde de tinta branca
+Legs for Small Utility table = Pernas para mesa pequena
+Plastic sheet = Folha de plástico
+Silicon lump = Massa de silício
+Simple Integrated Circuit = Circuito integrado simples
+Small Wooden Drawer = Gaveta pequena de madeira
+Terracotta Roof Tile = Telha de terracota
+Titanium Dioxide = Dióxido de titânio
+Uncooked Terracotta Base = Base bruta de terracota
+Unprocessed Plastic base = Base de plástico não processada
+
+### door_models.lua ###
+
+### door_nodes.lua ###
+
+### fences.lua ###
+Barbed Wire Fence = Cerca de arame farpado
+Barbed Wire Fence Gate = Portão da cerca de arame farpado
+Brass Fence/railing = Cerca/corrimão de bronze
+Brass Fence/railing with sign = Cerca/corrimão de bronze, com placa
+Chainlink Fence = Cerca de tela de arame
+Chainlink Fence Gate = Portão da cerca de tela de arame
+Chainlink Fence Gate (open) = Portão da cerca de tela de arame (aberto)
+Unpainted Picket Fence = Cerca de tábuas não pintada
+Unpainted Picket Fence Gate = Portão da cerca de madeira não pintado
+White Picket Fence = Cerca de madeira branca
+White Picket Fence Gate = Portão da cerca de madeira branco
+Wooden Privacy Fence = Cerca fechada de mandeira
+Wrought Iron Fence/railing = Cerca/corrimão de ferro forjado
+Wrought Iron Fence/railing with sign = Cerca/corrimão de ferro forjado, com placa
+want to simply place the wielded item like usual. = quer somente colocar o item empunhado normalmente.
+
+### furniture_medieval.lua ###
+Bars = Barras
+Binding Bars = Barras do canto
+Chains = Correntes
+Wall Torch = Tocha de parede
+
+### furniture_bathroom.lua ###
+Toilet = Vaso sanitário
+Sink = Pia
+Taps = Torneira
+Shower Tray = Ralo do chuveiro
+Shower Head = Chuveiro
+
+### init.lua ###
+Loaded! = Carregado!
+Asphalt Shingles = Telhas de asfalto
+Black Plastic Flower Pot = Vaso de flor de plástico preto
+Brass Pole = Poste de bronze
+Brass Table Legs = Pernas da mesa de bronze
+red = vermelho
+green = verde
+blue = azul
+white = branco
+pink = rosa
+violet = violeta
+## 1: Color name
+Curtains (%s) = Cortina (%s)
+Drop-Ceiling Tile = Placa de teto
+Glass Skylight = Claraboia de vidro
+Glass Table (Small, Round) = Mesa de vidro (pequena, redonda)
+Glass Table (Small, Square) = Mesa de vidro (pequena, quadrada)
+Green Plastic Flower Pot = Vaso de flor de plástico verde
+Large Area Rug = Tapete grande
+Large Glass Table Piece = Pedaço da mesa grande de vidro
+Large Stereo Speaker = Auto-falante grande
+Legs for Utility Table = Pernas para mesa
+Projection Screen Material = Material de tela de projeção
+Small Surround Speaker = Auto-falante pequeno
+Small Throw Rug = Tapete pequeno
+Stereo Receiver = Aparelho de som
+Terracotta Flower Pot = Vaso de flor de terracota
+Terracotta Roofing = Telhado de terracota
+Textured Ceiling Paint = Pintura texturizada do teto
+Utility Table = Mesa de trabalho
+Utility table mk2 = Mesa de trabalho mk2
+Wooden Shutter (Black) = Persiana de madeira (preta)
+Wooden Shutter (Dark Grey) = Persiana de madeira (cinza escura)
+Wooden Shutter (Forest Green) = Persiana de madeira (verde)
+Wooden Shutter (Grey) = Persiana de madeira (cinza)
+Wooden Shutter (Light Blue) = Persiana de madeira (azul clara)
+Wooden Shutter (Purple) = Persiana de madeira (roxa)
+Wooden Shutter (Red) = Persiana de madeira (vermelha)
+Wooden Shutter (Unpainted Mahogany) = Persiana de madeira (mogno)
+Wooden Shutter (Unpainted Oak) = Persiana de madeira (carvalho)
+Wooden Shutter (White) = Persiana de madeira (branca)
+Wooden Shutter (Yellow) = Persiana de madeira (amarela)
+Wooden Tabletop piece = Pedaço do tampo da mesa
+Wooden Tabletop (Small, Round) = Tampo da mesa (pequeno, arredondado)
+Wooden Tabletop (Small, Square) = Tampo da mesa (pequeno, quadrado)
+Wood Shingles = Telhas de madeira
+Wrought Iron Pole = Poste de ferro forjado
+someone = alguém
+## 1: Player name
+Sorry, %s owns that spot. = Desculpe, mas esse local pertence a %s.
+
+### lighting.lua ###
+White Glowlight (small cube) = Arandela branca (cubo pequeno)
+White Glowlight (small cube, on ceiling) = Arandela branca (cubo pequeno, na parede)
+White Glowlight (thick) = Arandela branca (grossa)
+White Glowlight (thick, on wall) = Arandela branca (grossa, na parede)
+White Glowlight (thin) = Arandela branca (fina)
+White Glowlight (thin, on wall) = Arandela branca (fina, na parede)
+Yellow Glowlight (small cube) = Arandela amarela (cubo pequeno)
+Yellow Glowlight (small cube, on ceiling) = Arandela amarela (cubo pequeno, na parede)
+Yellow Glowlight (thick) = Arandela amarela (grossa)
+Yellow Glowlight (thick, on wall) = Arandela amarela (grossa, na parede)
+Yellow Glowlight (thin) = Arandela amarela (fina)
+Yellow Glowlight (thin, on wall) = Arandela amarela (fina, na parede)
+
+### locked.lua ###
+## 1: Item description, 2: Owner name
+%s (owned by %s) = %s (pertence a %s)
+## 1: Player name, 2: Item description, 3: Owner name, 4: Position
+%s tried to access a %s belonging to %s at %s = %s tentou acessar %s pertencente a %s em %s
+## 1: Item description
+%s (Locked) = %s (trancado)
+Locked Cabinet = Armário trancado
+Locked Nightstand = Criado-mudo trancado
+
+### nightstands.lua ###
+Mahogany Nightstand with One Drawer = Criado-mudo de mogno, com uma gaveta
+Mahogany Nightstand with Two Drawers = Criado-mudo de mogno, com duas gavetas
+Oak Nightstand with One Drawer = Criado-mudo de carvalho, com uma gaveta
+Oak Nightstand with Two Drawers = Criado-mudo de carvalho, com duas gavetas
+## 1: Player name, 2: position
+%s moves stuff in nightstand at %s = %s moveu item(ns) no criado-mudo em %s
+%s moves stuff to nightstand at %s = %s moveu item(ns) para o criado-mudo em %s
+%s takes stuff from nightstand at %s = %s tirou item(ns) do criado-mudo em %s
+One-drawer Nightstand = Criado-mudo com uma gaveta
+Two-drawer Nightstand = Criado-mudo com duas gavetas
+
+### oven.lua ###
+Oven = Forno
+## 1: Item name
+Could not insert '%s' = Não foi possível inserir '%s'
+## 1: Percentage
+Oven active: %d%% = Forno ativo: %d%%
+Oven out of fuel = O forno está sem combustível
+Oven is empty = O forno está vazio
+
+### refrigerator.lua ###
+Refrigerator = Geladeira
+## 1: Player name, 2: position
+%s moves stuff in refrigerator at %s = %s moveu item(ns) na geladeira em %s
+%s moves stuff to refrigerator at %s = %s moveu item(ns) para a geladeira em %s
+%s takes stuff from refrigerator at %s = %s tirou item(ns) da geladeira em %s
+Not enough vertical space to place a refrigerator! = Não existe espaço vertical suficiente para adicionar uma geladeira.
+
+### television.lua ###
+Small CRT Television = TV de tubo pequena
+
+### signs_lib.lua ###
+%s wrote "%s" to sign at %s = %s escreveu "%s" na placa em %s
+Reading cached character database. = Lendo banco de dados de caracteres no cache.
+Font seems to have changed. Rebuilding cache. = Aparentemente as fontes foram alteradas. Reconstruindo o cache.
+Could not find font line height in cached DB. Trying brute force. = Não foi possível encontrar a altura da linha da fonte no cache do BD. Tentando na marra.
+Registered %s and %s = %s e %s registrados
+signs loaded = placas carregadas

@@ -1,0 +1,229 @@
+Changelog
+---------
+
+2013-03-16: Kaeza pushed fixes for signs on wrought iron/brass fences not 
+showing the text.  This also fixed a potential undesired replacement bug.  He 
+also fixed many of the sounds in the mod so that they aren't based on leaves. 
+:-)
+
+2013-03-11: Kaeza merged in code from my fork of thexyz/PilzAdam's 
+3d/visible-text signs mods and fixed some bugs in my signs-on-fenceposts code 
+in homedecor.  If you have any of those three versions of the signs mod, 
+uninstall it.  Homedecor will cover its functionality.  Thanks to kaeza for the 
+contribution!  Also, now signs-on-fences work slightly differently than before 
+when digging - dig to get the sign back from the post, then dig the remaining 
+post to get that back as well.
+
+2013-02-13: changed glowlight recipes to avoid conflicts with moreblocks (now 
+uses moreblocks glowglass *and* super glowglass together), made IC rely on 
+moreores copper ingot, added recipes to craft glow cubes back into glowlight 
+slabs.  See crafting guide for details.
+
+2012-02-09: Add ability to place a sign directly onto a brass/wrought iron 
+fencepost, rather than crafting a sign-on-fencepost from one of each.  Place a 
+brass or wrought iron fencepost, then attempt to place a sign against it.  
+Instead of the sign floating in air, the fencepost will be replaced with one 
+bearing the sign in the same node.  Dig to get the two pieces back as separate 
+items, right click the resultant sign to edit the text thereon.
+
+2012-02-08: Added ability to add signs to brass/wrought iron fenceposts.
+
+2013-01-23: Completely rewrote all doors code to condense them into two files - 
+one with the nodebox models, and one with the actual node definitions.  In the 
+process, cleaned up the code that handles node_ownership and protection mods. 
+Also made the mod automatically enable either left-click or right-click to 
+open/close a door, depending on whether the game supports it (actually it 
+checks for the existance of an unrelated function that happened to be added the 
+same time as the new right-click function).  Renamed some textures, duplicated 
+all of the _lr.png textures to make it easier to register the textures in a 
+loop and to allow for more flexible texturing.
+
+2012-10-11 (late night): Minor update - fixed a recipe conflict with throwing 
+mod.  Unprocessed plastic, when made from jungle grass or dry shrubs, now 
+requires three jungle grass (yields 6) or three dry shrubs (yields 3).  Still 
+works with 6 leaves also.  Extended the above owned-node support to work with 
+glomie's "protector" mod since it has a similar bug as node_ownership has.
+
+  All server Admins: If you have Home Decor and you use either node_ownership
+  or protector (or both), please update your copy of Home Decor as soon as
+  practical.
+
+2012-10-09: Added code to all doors to check for the presence of node_ownership 
+and adapt accordingly.  If that mod is present, you can only place doors in 
+land you own, or land you have been given permission by the owner to build in, 
+or land that is not owned at all.  Singleplayer mode still works the same as 
+before.  Works around a bug in node_ownership where it doesn't completely 
+handle the on_place= construct in register_node(), causing it to only delete 
+half of an illegally-placed door.
+
+2012-10-05: Added titanium dioxide and white paint from Unified Dyes as 
+alternates if that mod isn't present.  Both are compatible/interchangeable with 
+the ones from that mod.  Uses the same crafting recipes as UD uses, plus a 
+couple of alternates in case of materials shortages.  Added white and mahogany 
+variants of the aforementioned grid-style glass-and-wood door.
+
+2012-10-04: Added a couple new types of doors, converted the others to 
+nodeboxes.  All door code has been rewritten mostly from scratch.  These new 
+doors should convert over just fine, or at least you won't lose anything.  You 
+may have to dig and re-place a few if their orientation is wrong.  Also note 
+that these always return the left-opening version when you dig one.
+
+2012-10-03: Refrigerators are now two nodes tall and have a 10x5 inventory 
+space.  If you have two stacked up already before this update, you'll need to 
+empty them, dig them, and then re-place one or both, and put their contents 
+back in.  Sorry about the inconvenience, the one-node-tall ones were only 
+supposed to be temporary anyway. Besides, now one stores more than twice as 
+much as before. :-) The associated crafting recipe yields only one now, in 
+keeping with this change.
+
+2012-10-01: Added white glowlights, changed nodenames for yellow glowlights to 
+indicate that they're supposed to be yellow (you'll need to destroy and 
+re-craft them, sorry).
+
+2012-09-30: Added a few different kinds of fences - bare/unpainted wooden and 
+classic white picket fences, chainlink, barbed wire, and wooden privacy fence 
+(e.g to put around a backyard pool).
+
+Also added gates that open/close on a click, for the picket fences, chainlink 
+fence, and barbed wire fence.  For the privacy fence, use a regular door if you 
+need a gate.
+
+2012-09-30: Big set of updates today to make the mod a little easier to use in 
+places and to add some more nodes.  Recipe changes: Brass and wrought iron 
+poles, table legs, and fences/railings were too expensive in practice.  
+Increased recipe outputs. Small square glass table now comes from one small 
+round table (instead of three-to-two).  Large square glass table comes from one 
+small square now instead of two.  Small round, small square, and large wooden 
+tables follow the same pattern.
+   
+  Recycling: All glass tables can be recycled back into glass blocks via the
+  Vessels mod's recipes.  All are 3:1 with glass fragments (and thus, 3:1 with
+  glass blocks), so there's no glass wasted.  All wooden tables can be crafted
+  into sticks by putting three of a given item onto the crafting grid.  Any
+  such craft yields 4 sticks, so there's no waste.  Glass skylights recycle
+  3:1 also, which does result in a little waste.
+
+  New nodes:
+
+  Added working oven (really just a furnace with new textures/recipe)
+  Added mini-fridge that stores 24 slots
+  Added kitchen cabinet that stores 24 slots
+  Added half-size kitchen cabinet that stores 12 slots (6x2)
+  Added kitchen sink with under-sink cabinet that stores 16 slots
+  Added slab-sized, half-slab-sized, and microblock-sized glowlights (e.g.
+    ceiling fixtures and yard/sidewalk lighting)
+  Added curtains in 6 colors:  red, green, blue, purple, pink, white
+
+  Misc. changes: 3d-ified nightstands (e.g. nodeboxes), improved their
+  textures somewhat.  Got rid of the dressers - they were never brought to a
+  working state, but they're obsolete now (stacked two-drawer nightstands look
+  the same anyway).
+   
+  Notes about this update: This mod now requires Moreblocks for some recipes -
+  namely fridge and oven, and uses the Vessels mod's recycle crafts.
+
+2012-09-27: Changed most uses of dyes so that they can come from the game's 
+in-built groups-based dye system, where appropriate.  Unified Dyes can still 
+supply the colors, this just makes it possible to use any other dye system that 
+might come about as long as it uses the groups method.  Improved recipe outputs 
+for all shutters and mahogany folding door (better ratios of objects to 
+colorants).
+
+  Added intermediate "unprocessed plastic" step to get from materials to
+  plastic sheeting (now craft some materials to get unprocessed plastic, then
+  smelt that to get the sheeting), added alternate recipes to produce it,
+  improved ratio of materials to plastic.  Minor code cleanups.
+
+  Later in the day: Nightstands now offer small inventories - one-drawer units 
+  get 8 slots, while two-drawer nightstands get 16 slots (8x2).  They're
+  smaller than chests because they're cheaper to make.  Note that if you have
+  nightstands already placed, dig them up and place them again to enable their
+  new inventory capabilities.
+
+2012-09-25: Added alternate recipes for most items that use dyes.  Removed 
+Mesecons dependency from TV and stereo (uses in-built silicon lumps if Mesecons 
+isn't present).  Replaced speakers' Mesecons Noteblocks with copper ingots from 
+Moreores.
+
+2012-08-01: Added optional recipes for items that use wool to also use cotton
+instead.  Choose one or the other in any given recipe (you can't mix the two).
+No, it isn't a Kosher thing. ;-)
+
+2012-07-28: Noticed I technically had left/right textures swapped on a few 
+blocks.  The textures were drawn to counteract this, without my realizing I was 
+doing just that. :-) Fixed.  Also replaced all "tile_images" references with 
+"tiles", since the former is deprecated in favor of the latter.
+
+2012-07-26:  Updated to use the Vessels mod to give back empty dye bottles.
+
+2012-07-24: Made all objects that use a dye require a more appropriate color, 
+made all objects that use a dye give back empty bottles on craft, made grey 
+shutters use the various grey paints directly.  Moved this changelog out of the 
+forum post and into this separate file.
+
+2012-07-12: Moved project to github.
+
+2012-07-02: Deleted a few redundant files from the unified dyes mod.
+
+2012-06-30: Added a fancy wood-and-glass door.  Textures used here were 
+formerly used for (and have been replaced by new textures for) the default wood 
+door in my realistic texture packs.
+
+2012-06-27: Relaxed dependency on UnifiedDyes to prevent depending on Flowers.  
+The mod will still use them if available; if not, you just can't craft the 
+various colored objects.
+
+2012-06-26: Separated dyes into their own mod ("unifieddyes").  Added a copy of 
+flowers and made this mod depend on it and unified dyes.  Updated all crafting 
+recipes to fit, got rid of the conditional code for flowers (since it is a 
+dependency now), removed a bunch of redundant register_craftitem code, fixed 
+some copy&paste errors on the window shutters.  As a consequence of these 
+changes, white paint, titanium dioxide, and all colors of dyes will have to be 
+removed and replaced (but the things that depend on them are fine).
+
+2012-06-25: Removed all of the old legacy_wallmounted references - I didn't 
+realize they were deprecated (and they were causing out-of-nodes issues also).
+
+2012-06-23: Added small speaker, round brass pole, square wrought iron pole 
+(without connecting rungs).  Fairly recent version of Minetest required for 
+these to work (uses nodeboxes).  Note that if you've placed brass or wrought 
+iron poles in your world already, they will be drawn using these newer styles; 
+if you need the square poles and/or connecting rungs, you'll need to remove 
+them and craft brass/wrought iron fences instead.
+
+2012-06-16: Tweaked terracotta roof tiles/shingles to give the 4 pieces back on 
+digging a 'shingle'.
+
+2012-06-15 (a bit later): Did the same for the stereo and television and 
+improved them in the process.
+
+2012-06-15: Tweaked the speaker textures, added separate images for all 6 
+sides.
+
+2012-06-14: Added right-opening versions of oak and mahogany "folding" doors - 
+allows one to create double doors.  Split the two colors into separate files.  
+Inspired by Calinou's update to the default doors mod - works the same way too. 
+:-)
+
+2012-06-13 (a lot later): Changed the crafting recipe slightly for nightstands 
+- they're designated as 'oak' now.  Added crafting recipe for mahogany 
+variants.  If you've already placed nightstands into your world, you should 
+remove them before updating - sorry, you'll have to rebuild them due my having 
+had to change the node names.  Added initial crafting recipes for oak and 
+mahogany drawers and complete dressers (dresser components are not yet useful, 
+work in progress.  See crafts.lua for more details).
+
+2012-06-13: Changed buckets of white paint so that the empty bucket is returned 
+when the bucket of paint is crafted into something else (rather than when the 
+bucket of paint is first created).  * Fixed copy&paste error from the previous 
+bucket change.  * Moved smelting and crafting of white paint from crafts.lua 
+over to dyes.lua.
+
+2012-06-12: Multiple post-release updates over the course of the day. * Fixed 
+recipe collision with glass panes.  * Implemented a full set of dyes derived 
+from flowers, updated all related crafting recipes and screenshots to match. * 
+Collected all dyes into one file.  Changed recipes for blue and purple dyes to 
+something that makes a bit more sense. :-) * Tweaked oak shutters to give two 
+pieces on crafting. * Added alternate recipes for orange and green dyes.
+
+2012-06-12: Initial release.

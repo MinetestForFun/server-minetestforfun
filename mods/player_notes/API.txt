@@ -1,0 +1,23 @@
+Minetest player_notes mod - API
+===============================
+
+player_notes.add_note(name, target, note)
+ Adds a note to a player
+ Returns nil on success, otherwise error string
+ ^ name		->	player or object which added the note
+ ^ target	->	to which player the note should get added
+ ^ note		->	the note text to add to <name>
+
+player_notes.rm_note(target, key)
+ Removes a note from a player
+ Returns nil on success, otherwise error string
+ ^ target	->	from which player the note should get removed
+ ^ key		->	key of the note to remove from <name>
+ 
+player_notes.save_data()
+ Saves changed data (use this after add_note or rm_note)
+ Returns nothing
+ 
+player_notes.player[]
+ player_notes.player["dummy"] = { key1 = note1, key2 = note2, ... }
+ 

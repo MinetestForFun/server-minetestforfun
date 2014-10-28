@@ -1,0 +1,36 @@
+# Translation by Xanthin and hawkril
+
+Wheat = Weizen
+Flour = Mehl
+Potato = Kartoffel
+Tomato = Tomate
+Carrot = Karotte
+Milk = Milch
+Egg = Ei
+Cocoa Bean = Kakaobohne
+Raw meat = rohes Fleisch
+Venison = Wildbret
+Sugar = Zucker
+Chocolate Powder = Schokoladenpulver
+Dark Chocolate = Dunkle Schokolade
+Milk Chocolate = Vollmilchschokolade
+Pasta = Nudeln
+Bowl = Schuessel
+Butter = Butter
+Cheese = Kaese
+Baked Potato = Ofenkartoffel
+Pasta Bake = Nudelauflauf
+Raw Pasta Bake = Ungekochter Nudelauflauf
+chicken Soup = Huehnersuppe
+tomato Soup = Tomatensuppe
+Uncooked tomato Soup = Ungekochte Tomatensuppe
+Uncooked chicken Soup = Ungekochte Huehnersuppe
+apple Juice = Apfelsaft
+cactus Juice = Kaktussaft
+Rainbow Juice = Regenbogensaft
+Cake = Kuchen
+Chocolate Cake = Schokoladenkuchen
+Carrot Cake = Karottenkuchen
+Cake Mix = Backmischung
+Chocolate Cake Mix = Backmischung fuer Schokoladenkuchen
+Carrot Cake Mix = Backmischung fuer Karottenkuchen

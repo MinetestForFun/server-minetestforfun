@@ -1,0 +1,5 @@
+# Translation by Xanthin
+
+someone = jemand
+Sorry, %s owns that spot. = Entschuldige, %s gehoert diese Stelle.
+[Plantlife Library] Loaded = [Plantlife Library] Geladen

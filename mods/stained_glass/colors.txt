@@ -1,0 +1,148 @@
+
+
+Full-saturation colors:
+-----------------------
+
+
+	red                              255,  0,  0  stained_glass_red.png
+	orange                           255,127,  0  stained_glass_orange.png
+	lime                             127,255,  0  stained_glass_lime.png
+	green                              0,255,  0  stained_glass_green.png
+	aqua                               0,255,127  stained_glass_aqua.png
+	cyan                               0,255,255  stained_glass_cyan.png
+	skyblue                            0,127,255  stained_glass_skyblue.png
+	blue                               0,  0,255  stained_glass_blue.png
+	violet                           127,  0,255  stained_glass_violet.png
+	magenta                          255,  0,255  stained_glass_magenta.png
+	redviolet                        255,  0,127  stained_glass_redviolet.png
+
+
+	medium red                       169,  0,  0  stained_glass_medium_red.png
+	medium orange                    169, 84,  0  stained_glass_medium_orange.png
+	medium yellow                    169,169,  0  stained_glass_medium_yellow.png
+	medium lime                       84,169,  0  stained_glass_medium_lime.png
+	medium green                       0,169,  0  stained_glass_medium_green.png
+	medium aqua                        0,169, 84  stained_glass_medium_aqua.png
+	medium cyan                        0,169,169  stained_glass_medium_cyan.png
+	medium skyblue                     0, 84,169  stained_glass_medium_skyblue.png
+	medium blue                        0,  0,169  stained_glass_medium_blue.png
+	medium violet                     84,  0,169  stained_glass_medium_violet.png
+	medium magenta                   169,  0,169  stained_glass_medium_magenta.png
+	medium redviolet                 169,  0, 84  stained_glass_medium_redviolet.png
+
+
+	dark red                          84,  0,  0  stained_glass_dark_red.png
+	dark orange                       84, 42,  0  stained_glass_dark_orange.png
+	dark yellow                       84, 84,  0  stained_glass_dark_yellow.png
+	dark lime                         42, 84,  0  stained_glass_dark_lime.png
+	dark green                         0, 84,  0  stained_glass_dark_green.png
+	dark aqua                          0, 84, 42  stained_glass_dark_aqua.png
+	dark cyan                          0, 84, 84  stained_glass_dark_cyan.png
+	dark skyblue                       0, 42, 84  stained_glass_dark_skyblue.png
+	dark blue                          0,  0, 84  stained_glass_dark_blue.png
+	dark violet                       42,  0, 84  stained_glass_dark_violet.png
+	dark magenta                      84,  0, 84  stained_glass_dark_magenta.png
+	dark redviolet                    84,  0, 42  stained_glass_dark_redviolet.png
+
+
+
+
+
+Low-saturation colors:
+----------------------
+
+
+	red 50% saturation               191, 65, 65  stained_glass_red_s50.png
+	orange 50% saturation            191,127, 65  stained_glass_orange_s50.png
+	yellow 50% saturation            191,191, 65  stained_glass_yellow_s50.png
+	lime 50% saturation              127,191, 65  stained_glass_lime_s50.png
+	green 50% saturation              65,191, 65  stained_glass_green_s50.png
+	aqua 50% saturation               65,191,127  stained_glass_aqua_s50.png
+	cyan 50% saturation               65,191,191  stained_glass_cyan_s50.png
+	skyblue 50% saturation            65,127,191  stained_glass_skyblue_s50.png
+	blue 50% saturation               65, 65,191  stained_glass_blue_s50.png
+	violet 50% saturation            127, 65,191  stained_glass_violet_s50.png
+	magenta 50% saturation           191, 65,191  stained_glass_magenta_s50.png
+	redviolet 50% saturation         191, 65,127  stained_glass_redviolet_s50.png
+
+
+
+	medium red 50% saturation        126, 42, 42  stained_glass_medium_red_s50.png
+	medium orange 50% saturation     126, 84, 42  stained_glass_medium_orange_s50.png
+	medium yellow 50% saturation     126,126, 42  stained_glass_medium_yellow_s50.png
+	medium lime 50% saturation        86,126, 42  stained_glass_medium_lime_s50.png
+	medium green 50% saturation       42,126, 42  stained_glass_medium_green_s50.png
+	medium aqua 50% saturation        42,126, 84  stained_glass_medium_aqua_s50.png
+	medium cyan 50% saturation        42,126,126  stained_glass_medium_cyan_s50.png
+	medium skyblue 50% saturation     42, 84,126  stained_glass_medium_skyblue_s50.png
+	medium blue 50% saturation        42, 42,126  stained_glass_medium_blue_s50.png
+	medium violet 50% saturation      86, 42,126  stained_glass_medium_violet_s50.png
+	medium magenta 50% saturation    126, 42,126  stained_glass_medium_magenta_s50.png
+	medium redviolet 50% saturation  126, 42, 84  stained_glass_medium_redviolet_s50.png
+
+
+
+	dark red 50% saturation           63, 21, 21  stained_glass_dark_red_s50.png
+	dark orange 50% saturation        63, 42, 21  stained_glass_dark_orange_s50.png
+	dark yellow 50% saturation        63, 63, 21  stained_glass_dark_yellow_s50.png
+	dark lime 50% saturation          42, 63, 21  stained_glass_dark_lime_s50.png
+	dark green 50% saturation         21, 63, 21  stained_glass_dark_green_s50.png
+	dark aqua 50% saturation          21, 63, 42  stained_glass_dark_aqua_s50.png
+	dark cyan 50% saturation          21, 63, 63  stained_glass_dark_cyan_s50.png
+	dark skyblue 50% saturation       21, 42, 63  stained_glass_dark_skyblue_s50.png
+	dark blue 50% saturation          21, 21, 63  stained_glass_dark_blue_s50.png
+	dark violet 50% saturation        42, 21, 63  stained_glass_dark_violet_s50.png
+	dark magenta 50% saturation       63, 21, 63  stained_glass_dark_magenta_s50.png
+	dark redviolet 50% saturation     63, 21, 42  stained_glass_dark_redviolet_s50.png
+
+
+
+
+Light colors:
+----------------------
+
+
+	light red                         255,121,121  stained_glass_light_red.png
+	light orange                      255,187,121  stained_glass_light_orange.png
+	light yellow                      253,255,121  stained_glass_light_yellow.png
+	light lime                        187,255,121  stained_glass_light_lime.png
+	light green                       121,255,121  stained_glass_light_green.png
+	light aqua                        121,255,187  stained_glass_light_aqua.png
+	light cyan                        121,253,255  stained_glass_light_cyan.png
+	light skyblue                     121,187,255  stained_glass_light_skyblue.png
+	light blue                        121,121,255  stained_glass_light_blue.png
+	light violet                      187,121,255  stained_glass_light_violet.png
+	light magenta                     255,121,253  stained_glass_light_magenta.png
+	light redviolet                   255,121,187  stained_glass_light_redviolet.png
+
+
+
+	pastel red                         255,187,187  stained_glass_pastel_red.png
+	pastel orange                      255,221,187  stained_glass_pastel_orange.png
+	pastel yellow                      254,255,187  stained_glass_pastel_yellow.png
+	pastel lime                        221,255,187  stained_glass_pastel_lime.png
+	pastel green                       187,255,187  stained_glass_pastel_green.png
+	pastel aqua                        187,255,221  stained_glass_pastel_aqua.png
+	pastel cyan                        187,254,255  stained_glass_pastel_cyan.png
+	pastel skyblue                     187,221,255  stained_glass_pastel_skyblue.png
+	pastel blue                        187,187,255  stained_glass_pastel_blue.png
+	pastel violet                      221,187,255  stained_glass_pastel_violet.png
+	pastel magenta                     255,187,254  stained_glass_pastel_magenta.png
+	pastel redviolet                   255,187,221  stained_glass_pastel_redviolet.png
+
+
+
+	faint red                         255,219,219  stained_glass_faint_red.png
+	faint orange                      255,237,219  stained_glass_faint_orange.png
+	faint yellow                      254,255,219  stained_glass_faint_yellow.png
+	faint lime                        237,255,219  stained_glass_faint_lime.png
+	faint green                       219,255,219  stained_glass_faint_green.png
+	faint aqua                        219,255,237  stained_glass_faint_aqua.png
+	faint cyan                        219,254,255  stained_glass_faint_cyan.png
+	faint skyblue                     219,237,255  stained_glass_faint_skyblue.png
+	faint blue                        227,227,255  stained_glass_faint_blue.png
+	faint violet                      237,219,255  stained_glass_faint_violet.png
+	faint magenta                     255,219,254  stained_glass_faint_magenta.png
+	faint redviolet                   255,219,237  stained_glass_faint_redviolet.png
+
+

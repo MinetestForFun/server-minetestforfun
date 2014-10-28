@@ -1,0 +1,74 @@
+# Template
+
+### crafts.lua ###
+Coconut Milk = 
+Raw Coconut = 
+Acorn Muffin batter = 
+Acorn Muffin = 
+Roasted Spruce Cone Nuts = 
+Roasted Pine Cone Nuts = 
+Roasted Fir Cone Nuts = 
+
+### node_defs.lua ###
+Beech Tree Trunk = 
+Apple Tree Trunk = 
+Oak Tree Trunk = 
+Giant Sequoia Trunk = 
+Birch Tree Trunk = 
+Palm Tree Trunk = 
+Spruce Tree Trunk = 
+Pine Tree Trunk = 
+Willow Tree Trunk = 
+Rubber Tree Trunk = 
+Jungle Tree Trunk = 
+Douglas Fir Trunk = 
+Beech Tree Planks = 
+Apple Tree Planks = 
+Oak Tree Planks = 
+Giant Sequoia Planks = 
+Birch Tree Planks = 
+Palm Tree Planks = 
+Spruce Tree Planks = 
+Pine Tree Planks = 
+Willow Tree Planks = 
+Rubber Tree Planks = 
+Jungle Tree Planks = 
+Douglas Fir Planks = 
+Beech Tree Sapling = 
+Apple Tree Sapling = 
+Oak Tree Sapling = 
+Giant Sequoia Sapling = 
+Birch Tree Sapling = 
+Palm Tree Sapling = 
+Spruce Tree Sapling = 
+Pine Tree Sapling = 
+Willow Tree Sapling = 
+Rubber Tree Sapling = 
+Jungle Tree Sapling = 
+Douglas Fir Sapling = 
+Beech Tree Leaves = 
+Apple Tree Leaves = 
+Oak Tree Leaves = 
+Giant Sequoia Leaves = 
+Birch Tree Leaves = 
+Palm Tree Leaves = 
+Spruce Tree Leaves = 
+Pine Tree Leaves = 
+Willow Tree Leaves = 
+Rubber Tree Leaves = 
+Jungle Tree Leaves = 
+Douglas Fir Leaves = 
+
+Acorn = 
+Coconut = 
+Spruce Cone = 
+Pine Cone = 
+Fir Cone = 
+Jungle Sapling = 
+Jungle Tree Leaves (Green) = 
+Jungle Tree Leaves (Yellow) = 
+Jungle Tree Leaves (Red) = 
+Douglas Fir Leaves (Bright) = 
+Rubber Tree Trunk (Empty) = 
+
+[Moretrees] Loaded (2013-02-11) = 

@@ -1,0 +1,43 @@
+# Translation by Xanthin
+
+Strawberry = Erdbeere
+Blackberry = Brombeere
+Blueberry = Blaubeere
+Raspberry = Himbeere
+Gooseberry = Stachelbeere
+Mixed Berry = Beerenmix
+Basket with Strawberry Pies = Korb mit Erdbeertorten
+Basket with Blackberry Pies = Korb mit Brombeertorten
+Basket with Blueberry Pies = Korb mit Blaubeertorten
+Basket with Raspberry Pies = Korb mit Himbeertorten
+Basket with Gooseberry Pies = Korb mit Stachelbeertorten
+Basket with Mixed Berry Pies = Korb mit Beerenmixtorten
+currently fruitless = zur Zeit fruechteloser
+Strawberry Bush = Erdbeerbusch
+Blackberry Bush = Brombeerbusch
+Blueberry Bush = Blaubeerbusch
+Raspberry Bush = Himbeerbusch
+Gooseberry Bush = Stachelbeerbusch
+Mixed Berry Bush = Beerenmixbusch
+Basket = Korb
+Sugar = Zucker
+Raw Strawberry pie = Rohe Erdbeertorte
+Raw Blackberry pie = Rohe Brombeertorte
+Raw Blueberry pie = Rohe Blaubeertorte
+Raw Raspberry pie = Rohe Himbeertorte
+Raw Gooseberry pie = Rohe Stachelbeertorte
+Raw Mixed Berry pie = Rohe Beerenmixtorte
+Cooked Strawberry pie = Erdbeertorte
+Cooked Blackberry pie = Brombeertorte
+Cooked Blueberry pie = Blaubeertorte
+Cooked Raspberry pie = Himbeertorte
+Cooked Gooseberry pie = Stachelbeertorte
+Cooked Mixed Berry pie = Beerenmixtorte
+Slice of Strawberry pie = Erdbeertortenstueck
+Slice of Blackberry pie = Brombeertortenstueck
+Slice of Blueberry pie = Blaubeertortenstueck
+Slice of Raspberry pie = Himbeertortenstueck
+Slice of Gooseberry pie = Stachelbeertortenstueck
+Slice of Mixed Berry pie = Beerenmixtortenstueck
+
+[Bushes] Loaded. = [Bushes] Geladen.

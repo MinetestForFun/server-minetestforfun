@@ -1,0 +1,13 @@
+# Translation by Xanthin
+
+Waterlily = Seerose
+Seaweed = Seetang
+Potted Rose = Eingetopfte Rose
+Potted Tulip = Eingetopfte Tulpe
+Potted Yellow Dandelion = Eingetopfter Loewenzahn
+Potted White Dandelion = Eingetopfte Pusteblume
+Potted Blue Geranium = Eingetopfte blaue Geranie
+Potted Viola = Eingetopftes Veilchen
+Flower Pot = Blumentopf
+
+[Flowers] Loaded. = [Flowers] Geladen.

@@ -1,0 +1,6 @@
+
+# Language: Español
+# Author: Diego Martínez <lkaezadl3@gmail.com>
+
+Plastic sheet = Placa de Plastico
+Unprocessed Plastic base = Base de Plastico No Procesada

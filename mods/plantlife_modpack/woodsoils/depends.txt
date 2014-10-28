@@ -1,0 +1,7 @@
+default
+plants_lib
+bushes?
+ferns?
+moretrees?
+trees?
+trunks?

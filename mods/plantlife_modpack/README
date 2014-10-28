@@ -1,0 +1,72 @@
+README file for Plantlife mod, by Vanessa Ezekowitz
+---------------------------------------------------
+
+Plantlife is a combined form of my Flowers and Poison Ivy mods and an expanded
+version of the old Bushes mod, now called bushes_classic.  The entire package
+has been significantly rewritten and re-organized.  This mod supplies all
+three of these components and should be 100% compatible with mods that used
+the old versions.
+
+Its purpose is to add various kinds of flowers, cotton plants, water foliage, 
+poison ivy, and fruit bushes, obviously. :-)  All of these are spawned as 
+normal nodes and can be collected and used in any recipes that depend on the 
+old mods.
+
+Spawning of plants is sensitive to the amount of available light.  Flowers,
+cotton, and waterlilies only spawn when there at least a signficant amount of
+light.  Seaweed will grow only in dimly-lit areas.  Poison ivy also grows only 
+in the daytime, but require less light than flowers.
+
+Growing of poison ivy will only occur for plants that are on the same surface
+that is necessary for them to spawn on, so they won't grow if placed on e.g.
+cobble or homedecor flower pot, etc.  This doesn't affect wall-climbing poison
+ivy, since it uses a different growth pattern.
+
+All plants use multiple controls provided by plants_lib, to keep where they
+grow under control - no more random spread of plants!  In addition, the density
+of the plants in any region they appear in has been fixed and brought under
+control.
+
+Poison ivy is found sparsely among junglegrass, but will not grow near flowers.
+
+------------------------------------------------------------------------------
+
+Important details:
+
+Configuration: Any of the three components of this mod can be disabled 
+by just removing their respective directories.
+
+Dependencies: Just the game's default stuff.
+
+Recommends: Nothing in particular.
+
+Conflicts: This mod should not be installed alongside the original, separate 
+Poison Ivy, or old Bushes mods.  If those exist, delete them, as this mod
+supplies their functionality.  If you still use the old Jungle Grass mod
+either as previously supplied with this modpack, or in its standalone form,
+you'll want to delete the "junglegrass" directory from this modpack to get rid
+of the aliases-to-air that it supplies.
+
+Software Requirements: This mod requires Minetest 0.4.9 or later.  It is 
+unlikely to work with old versions.
+
+------------------------------------------------------------------------------
+
+Crafting:
+
+For crafting recipes, please see the forum thread for this modpack:
+
+https://forum.minetest.net/viewtopic.php?f=11&t=3898
+
+------------------------------------------------------------------------------
+
+Notes:
+
+Poison Ivy will spawn on grass and in some cases, on vertical surfaces 
+including trees and jungle trees where they meet the dirt or grass.  Ivy 
+previously spawned on the ground taller/thicker or start climbing up said 
+vertical surfaces and trees.
+
+At present, the poison ivy presents little more than an annoyance - they can 
+only be cut down and either re-planted or thrown away.  No damage is done by 
+harvesting them, yet. ;-)

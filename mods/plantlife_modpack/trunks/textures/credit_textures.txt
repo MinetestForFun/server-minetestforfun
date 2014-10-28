@@ -1,0 +1,34 @@
+-------------------------------------------------------------
+Credit for textures of "trunks"
+-------------------------------------------------------------
+(If more than one author is listed the names are in alphabetical order)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOLDER								TEXTURE							AUTHORS
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+../trunks/textures					trunks_moss.png					Neuromancer
+									trunks_moss_fungus.png			Neuromancer
+									trunks_twig_1.png 				Mossmanikin
+									trunks_twig_2.png 				Mossmanikin, Neuromancer
+									trunks_twig_3.png 				Mossmanikin, Neuromancer
+									trunks_twig_4.png 				Mossmanikin, Neuromancer
+									trunks_twig_5.png 				Mossmanikin, Neuromancer
+								   (trunks_twig_6.png) 			   (Mossmanikin)
+									trunks_twig_7.png 				Mossmanikin, Neuromancer
+									trunks_twig_8.png 				Mossmanikin, Neuromancer
+									trunks_twig_9.png 				Mossmanikin, Neuromancer
+									trunks_twig_10.png 				Mossmanikin, Neuromancer
+									trunks_twig_11.png 				Mossmanikin, Neuromancer
+									trunks_twigs.png 				Mossmanikin
+									trunks_twigs_corner.png 		Mossmanikin
+									trunks_twigs_top.png 			Mossmanikin
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+../trunks/textures/old & unused		comboSticks.png					Mossmanikin, Neuromancer	
+									comboSticks_2.png				Mossmanikin, Neuromancer
+									trunks_twig_1e.png				Mossmanikin, Neuromancer
+									trunks_twig_1n.png				Mossmanikin, Neuromancer
+									trunks_twig_2n.png				Mossmanikin, Neuromancer
+									trunks_twig_3n.png				Mossmanikin, Neuromancer
+									trunks_twig_4n.png				Mossmanikin, Neuromancer
+									trunks_twig_5-8.png				Mossmanikin, Neuromancer
+									trunks_twig_9-12.png			Mossmanikin, Neuromancer
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

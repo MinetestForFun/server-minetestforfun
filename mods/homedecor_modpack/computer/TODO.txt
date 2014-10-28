@@ -1,0 +1,29 @@
+
+TO-DO List:
+
+- New Nodes:
+
+  - Computers:
+    - Mainframe (well me have a rackserver now)
+    - My Computer :P
+
+  - Peripherals:
+    - Scanner ( well we have a printer/scanner combo now)
+
+  - Consoles:
+    - NES
+    - SNES
+    - DC
+
+  - Handhelds
+    - GB/C
+    - GBA
+    - Calculator
+    - Smartphone
+
+- Animated screens
+
+- Implement some kind of games (take code from `tetris' mod?). [It would be
+   nice if Minetest provided a "canvas" GUI widget :)].
+
+- Get more suggestions :)

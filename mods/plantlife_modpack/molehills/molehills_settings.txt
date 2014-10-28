@@ -1,0 +1,6 @@
+-- Settings for generation of stuff (at map-generation time)
+
+Molehills_Max_Count		= 320 -- absolute maximum number in an area of 80x80x80 nodes
+
+Molehills_Rarity		= 87 -- larger values make molehills more rare (100 means chance of 0 %)
+
