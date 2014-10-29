@@ -368,7 +368,6 @@ minetest.register_node("nether:apple", {
 		end
 		local amount = math.random(4, 6)
     local p_hunger = tonumber(hud.hunger[user:get_player_name()])
-    if not p_hunger then return end
     p_hunger = p_hunger+9
     if p_hunger > 30 then p_hunger = 30 end
     hud.hunger[user:get_player_name()] = p_hunger
