@@ -160,7 +160,7 @@ local guide_infos = {
 		{"image", {0.5, 0.5, cube("nether_netherrack_brick.png"), 1}},
 		{"image", {0.5, 0.5, cube("nether_netherrack_brick.png")}},
 		{"y", 0.2},
-		{"text", "You can extract blood from the blood nodes you get from the blood".."
+		{"text", "You can extract blood from the blood nodes you get from the blood"..
 			 "structure.\n"..
 			"You can also get blood with a nether fruit."},
 		{"y", 0.2},
