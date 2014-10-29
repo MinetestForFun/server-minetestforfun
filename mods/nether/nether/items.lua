@@ -368,8 +368,13 @@ minetest.register_node("nether:apple", {
 		end
 		local amount = math.random(4, 6)
     local p_hunger = tonumber(hud.hunger[user:get_player_name()])
+<<<<<<< HEAD
     if not p_hunger then return end
     p_hunger = p_hunger+9
+=======
+    --if not p_hunger then return end -- test si résoud notre problème avec le nether fruit
+    p_hunger = p_hunger+3
+>>>>>>> a1529c8ce87c71e1cca87e885c36dcdacb2be296
     if p_hunger > 30 then p_hunger = 30 end
     hud.hunger[user:get_player_name()] = p_hunger
     hud.set_hunger(user)
