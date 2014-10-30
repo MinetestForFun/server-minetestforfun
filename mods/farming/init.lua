@@ -97,7 +97,7 @@ minetest.register_abm({
 			pos.y = pos.y+1
 		
 			-- check light
-			if minetest.get_node_light(pos) < 13 then return end
+			if minetest.get_node_light(pos) <= 11 then return end
 		
 		end
 		
