@@ -81,6 +81,7 @@ end
 --This function places snow checking at the same time for snow level and increasing as needed.
 --This also takes into account sourrounding snow and makes snow even.
 function snow.place(pos)
+	if pos.y < -19000 then return end -- Don't put anything in the nether!
 	local node = minetest.get_node_or_nil(pos)
 	local drawtype = ""
 	if node and minetest.registered_nodes[node.name] then
