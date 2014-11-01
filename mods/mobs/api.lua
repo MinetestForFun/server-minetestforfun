@@ -1,8 +1,9 @@
 mobs = {}
+mobs.mod = "redo"
 function mobs:register_mob(name, def)
 	minetest.register_entity(name, {
 		name = name,
-		hp_min = def.hp_min or 5, --
+		hp_min = def.hp_min or 5,
 		hp_max = def.hp_max,
 		physical = true,
 		collisionbox = def.collisionbox,
@@ -46,6 +47,7 @@ function mobs:register_mob(name, def)
 		blood_texture = def.blood_texture or "mobs_blood.png",
 		rewards = def.rewards or nil,
 		animaltype = def.animaltype,
+		shoot_offset = def.shoot_offset or 0,
 		
 		stimer = 0,
 		timer = 0,
@@ -572,7 +574,7 @@ function mobs:register_mob(name, def)
 					local obj = minetest.add_entity(p, self.arrow)
 					local amount = (vec.x^2+vec.y^2+vec.z^2)^0.5
 					local v = obj:get_luaentity().velocity
-					vec.y = vec.y+1
+					vec.y = vec.y + self.shoot_offset -- 2
 					vec.x = vec.x*v/amount
 					vec.y = vec.y*v/amount
 					vec.z = vec.z*v/amount
@@ -844,7 +846,7 @@ function mobs:register_arrow(name, def)
 
 		on_step = function(self, dtime)
 			local pos = self.object:getpos()
-			if minetest.get_node(self.object:getpos()).name ~= "air" then
+			if minetest.registered_nodes[minetest.get_node(self.object:getpos()).name].walkable then
 				self.hit_node(self, pos, node)
 				self.object:remove()
 				return

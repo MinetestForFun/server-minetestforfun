@@ -25,7 +25,7 @@ mobs:register_mob("mobs:mese_monster", {
 	view_range = 16,
 	walk_velocity = 1,
 	run_velocity = 3,
-	damage = 5,
+	damage = 7,
 	drops = {
 		{name = "default:mese_crystal",
 		chance = 9,
@@ -82,7 +82,7 @@ mobs:register_arrow("mobs:mese_arrow", {
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
 			damage_groups = {fleshy=1},
-		}, {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z})
+		}, 0) -- {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z})
 	end,
 	
 	hit_node = function(self, pos, node)

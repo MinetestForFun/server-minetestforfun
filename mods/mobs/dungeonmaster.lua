@@ -77,11 +77,10 @@ mobs:register_arrow("mobs:fireball", {
 	hit_player = function(self, player)
 		local s = self.object:getpos()
 		local p = player:getpos()
-		local vec = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=6},
-		}, vec)
+			damage_groups = {fleshy=8},
+		}, 0) -- {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z})
 	end,
 
 	-- node hit, bursts into flame (cannot blast through obsidian)
