@@ -343,7 +343,7 @@ end
 --! @return true/false (succesfully changed privileges)
 -------------------------------------------------------------------------------
 function factions.set_admin(name,playername,value)
-	mobf_assert_backtrace(type(playername) == "string")
+	--mobf_assert_backtrace(type(playername) == "string")
 	if factions.data.factions[name] ~= nil then
 		if value then
 			factions.data.factions[name].adminlist[playername] = true

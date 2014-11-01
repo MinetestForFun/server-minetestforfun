@@ -16,7 +16,7 @@ table.icontains = table.icontains or function(t, v)
 	return false
 end
 
-local players_in_nether = {}
+players_in_nether = {}
 local file = io.open(minetest.get_worldpath()..'/nether_players', "r")
 if file then
 	local contents = file:read('*all')
