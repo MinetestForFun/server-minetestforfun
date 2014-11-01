@@ -99,13 +99,17 @@ minetest.register_chatcommand("sethome", {
 			local output = 0
 			if is_in_nether then
 				output = io.open(nether_homes_file, "w")
+				if output == 0 then return end -- Had not open the file
+				for i, v in pairs(homepos.nether) do
+					output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
+				end
             else
 				output = io.open(real_homes_file, "w")
+				for i, v in pairs(homepos.real) do
+					output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
+				end
 			end
-			if output == 0 then return end -- Had not open the file
-            for i, v in pairs(homepos) do
-                output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
-            end
+			
             io.close(output)
             changed = false
         end
