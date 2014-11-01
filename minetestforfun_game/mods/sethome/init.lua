@@ -75,9 +75,20 @@ minetest.register_chatcommand("sethome", {
     func = function(name)
         local player = minetest.env:get_player_by_name(name)
         local pos = player:getpos()
-        if not players_in_nether then return end
+        -- Find players in the nether
+        local players_in_nether = {}
+        local seeking = 0
+
+        local nether_file = io.open(minetest.get_worldpath().."/nether_players","r")
+        if not nether_file then return end
+
+		local player_in_nether_read = nether_file:read()
+		--if player_in_nether_read == "" then 
+        --if not players_in_nether then return end
+        player_in_nether = player_in_nether_read:split(" ")
+
         local is_in_nether = table.icontains(players_in_nether, name)
-        if is_in_nether then
+        if is_in_nether == true then
 			homepos.nether[player:get_player_name()] = pos
 		else
 			homepos.real[player:get_player_name()] = pos
@@ -85,11 +96,13 @@ minetest.register_chatcommand("sethome", {
         minetest.chat_send_player(name, "Home set!")
         changed = true
         if changed then
+			local output = 0
 			if is_in_nether then
-				local output = io.open(nether_homes_file, "w")
+				output = io.open(nether_homes_file, "w")
             else
-				local output = io.open(real_homes_file, "w")
+				output = io.open(real_homes_file, "w")
 			end
+			if output == 0 then return end -- Had not open the file
             for i, v in pairs(homepos) do
                 output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
             end
