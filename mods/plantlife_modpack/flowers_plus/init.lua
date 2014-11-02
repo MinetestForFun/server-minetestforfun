@@ -118,7 +118,8 @@ for i in ipairs(lilies_list) do
 					elseif waterlily == 8 then
 						nodename = "flowers:waterlily_s4"
 					end
-					minetest.set_node(place_pos, {name = nodename, param2 = math.random(0,3) })
+						if place_pos == nil  then return itemstack end -- pour éviter crash avec nénuphare
+minetest.set_node(place_pos, {name = nodename, param2 = math.random(0,3) })
 				else
 					local fdir = minetest.dir_to_facedir(placer:get_look_dir())
 					minetest.set_node(place_pos, {name = "flowers:waterlily", param2 = fdir})
