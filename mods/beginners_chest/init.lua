@@ -12,7 +12,7 @@ local interval_max = 7200
 
 minetest.register_globalstep(function(dtime)
 	interval_timer = interval_timer+dtime
-	print(interval_timer)
+	--print(interval_timer)
 	if interval_timer < interval_max then return end -- We have to wait
 	interval_timer = 0
 	local chest = minetest.get_node(chest_position)
