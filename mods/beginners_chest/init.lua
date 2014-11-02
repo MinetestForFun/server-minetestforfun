@@ -17,10 +17,10 @@ minetest.register_globalstep(function(dtime)
 	local chest = minetest.get_node(chest_position)
 	if chest.name ~= "default:chest" then
 		if chest.name == "ignore" then
-			print("[b_chest] Unable to reload chest : area not loaded")
+			-- print("[b_chest] Unable to reload chest : area not loaded") -- c'est cool mais ça fait une boucle et un debug.txt de 40Mo
 			return
 		elseif chest.name ~= "air" then
-			print("[b_chest] Unable to place chest : position still used")
+			-- print("[b_chest] Unable to place chest : position still used") -- c'est cool mais ça fait une boucle et un debug.txt de 40Mo
 			return
 		elseif chest.name == "air" then
 				minetest.add_node(chest_position,{name = "default:chest"})
@@ -30,6 +30,6 @@ minetest.register_globalstep(function(dtime)
 			
 	local meta = minetest.get_meta(chest_position)
 	local inv = meta:get_inventory()
-	inv:set_list("main",{[1] = "3d_armor:boots_steel", [2] = "default:pick_stone", [3] = "default:pick_steel", [32] = ""})
+	inv:set_list("main",{[1] = "3d_armor:boots_steel", [2] = "default:pick_stone", [3] = "default:sword_stone", [32] = ""})
 	interval_timer = 0
 end)

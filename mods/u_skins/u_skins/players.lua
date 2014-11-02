@@ -13,7 +13,7 @@ u_skins.load_players()
 local ttime = 0
 minetest.register_globalstep(function(t)
 	ttime = ttime + t
-	if ttime < 120 then --every 6min'
+	if ttime < 120 then --every 2min'
 		return
 	end
 	ttime = 0

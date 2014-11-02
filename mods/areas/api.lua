@@ -1,8 +1,8 @@
-
+--
 -- Returns a list of areas that include the provided position
 function areas:getAreasAtPos(pos)
 	local a = {}
-	local px, py, pz = pos.x, pos.y, pos.z
+	local px, py, pz = pos.x, pos.y, pos.z 
 	for id, area in pairs(self.areas) do
 		local ap1, ap2 = area.pos1, area.pos2
 		if px >= ap1.x and px <= ap2.x and
@@ -20,6 +20,7 @@ function areas:canInteract(pos, name)
 		return true
 	end
 	local owned = false
+		if pos == nil  then return not owned end -- pour éviter crash avec nénuphar
 	for _, area in pairs(self:getAreasAtPos(pos)) do
 		if area.owner == name or area.open then
 			return true
