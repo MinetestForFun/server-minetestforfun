@@ -97,7 +97,7 @@ for i in ipairs(lilies_list) do
 			if not minetest.is_protected(place_pos, placer:get_player_name()) then
 
 			local nodename = "default:cobble" -- if this block appears, something went....wrong :-)
-
+					if place_pos == nil  then return itemstack end -- pour éviter crash avec nénuphare
 				if not keys["sneak"] then
 					local node = minetest.get_node(pt.under)
 					local waterlily = math.random(1,8)
@@ -118,7 +118,6 @@ for i in ipairs(lilies_list) do
 					elseif waterlily == 8 then
 						nodename = "flowers:waterlily_s4"
 					end
-						if place_pos == nil  then return itemstack end -- pour éviter crash avec nénuphare
 minetest.set_node(place_pos, {name = nodename, param2 = math.random(0,3) })
 				else
 					local fdir = minetest.dir_to_facedir(placer:get_look_dir())
@@ -199,6 +198,7 @@ for i in ipairs(algae_list) do
 
 			local nodename = "default:cobble" -- :D
 
+					if place_pos == nil  then return itemstack end -- pour éviter crash avec nénuphare
 				if not keys["sneak"] then
 					--local node = minetest.get_node(pt.under)
 					local seaweed = math.random(1,4)
