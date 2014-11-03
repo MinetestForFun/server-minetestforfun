@@ -133,6 +133,23 @@ minetest.register_node("seaplants:seaplantssandkelpgreen", {
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+     		if not pointed_thing.type == "node" then
+			return itemstack
+		end
+		local pn = placer:get_player_name()
+		if minetest.is_protected(pointed_thing.above, pn) then
+			return itemstack
+		end
+		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.env:get_meta(pointed_thing.above)
+		meta:set_string("owner", pn)
+		nodeupdate(pointed_thing.above)
+		if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+		end
+		return itemstack
+	end
 })
 
 minetest.register_node("seaplants:seaplantsdirtkelpgreen", {
@@ -151,6 +168,23 @@ minetest.register_node("seaplants:seaplantssandkelpbrown", {
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+     		if not pointed_thing.type == "node" then
+			return itemstack
+		end
+		local pn = placer:get_player_name()
+		if minetest.is_protected(pointed_thing.above, pn) then
+			return itemstack
+		end
+		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.env:get_meta(pointed_thing.above)
+		meta:set_string("owner", pn)
+		nodeupdate(pointed_thing.above)
+		if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+		end
+		return itemstack
+	end
 })
 
 minetest.register_node("seaplants:seaplantsdirtkelpbrown", {
@@ -169,6 +203,23 @@ minetest.register_node("seaplants:seaplantssandseagrassgreen", {
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+     		if not pointed_thing.type == "node" then
+			return itemstack
+		end
+		local pn = placer:get_player_name()
+		if minetest.is_protected(pointed_thing.above, pn) then
+			return itemstack
+		end
+		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.env:get_meta(pointed_thing.above)
+		meta:set_string("owner", pn)
+		nodeupdate(pointed_thing.above)
+		if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+		end
+		return itemstack
+	end
 })
 
 minetest.register_node("seaplants:seaplantsdirtseagrassgreen", {
@@ -187,6 +238,23 @@ minetest.register_node("seaplants:seaplantssandseagrassred", {
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+     		if not pointed_thing.type == "node" then
+			return itemstack
+		end
+		local pn = placer:get_player_name()
+		if minetest.is_protected(pointed_thing.above, pn) then
+			return itemstack
+		end
+		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.env:get_meta(pointed_thing.above)
+		meta:set_string("owner", pn)
+		nodeupdate(pointed_thing.above)
+		if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+		end
+		return itemstack
+	end
 })
 
 minetest.register_node("seaplants:seaplantsdirtseagrassred", {
