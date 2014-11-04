@@ -182,12 +182,12 @@ minetest.register_node("arrow_signs:wall", {
 minetest.register_craft({
 	type = 'shapeless',
 	output = 'arrow_signs:wall',
-	recipe = {'group:sign', 'default:stick'},
+	recipe = {'default:sign_wall', 'default:stick'},
 })
 minetest.register_craft({
 	output = 'default:sign_wall',
 	recipe = {
-		{'group:sign'},
+		{'arrow_signs:wall'},
 	}
 })
 
