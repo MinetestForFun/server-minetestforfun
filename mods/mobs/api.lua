@@ -19,7 +19,7 @@ function mobs:register_mob(name, def)
 		light_damage = def.light_damage,
 		water_damage = def.water_damage,
 		lava_damage = def.lava_damage,
-		disable_fall_damage = def.disable_fall_damage,
+		fall_damage = def.fall_damage or true,
 		drops = def.drops,
 		armor = def.armor,
 		drawtype = def.drawtype,
@@ -88,7 +88,7 @@ function mobs:register_mob(name, def)
 			local v = self.object:getvelocity()
 			return (v.x^2 + v.z^2)^(0.5)
 		end,
-		
+--[[
 		in_fov = function(self,pos)
 			-- checks if POS is in self's FOV
 			local yaw = self.object:getyaw()
@@ -112,7 +112,7 @@ function mobs:register_mob(name, def)
 				return true
 			end
 		end,
-		
+]]
 		set_animation = function(self, type)
 			if not self.animation then
 				return
@@ -194,7 +194,7 @@ function mobs:register_mob(name, def)
 
 			-- drop egg
 			if self.animaltype == "clucky" then
-				if math.random(1, 1000) <= 1
+				if math.random(1, 1500) < 2
 				and minetest.get_node(self.object:getpos()).name == "air"
 				and self.state == "stand" then
 					minetest.set_node(self.object:getpos(), {name="mobs:egg"})
@@ -208,12 +208,26 @@ function mobs:register_mob(name, def)
 				end
 				local x = math.sin(yaw) * -2
 				local z = math.cos(yaw) * 2
-				self.object:setacceleration({x=x, y=-10, z=z})
+--				self.object:setacceleration({x=x, y=-10, z=z})
+--			else
+--				self.object:setacceleration({x=0, y=-10, z=0})
+--			end
+-- Mobs float in water now, to revert uncomment previous 4 lines and remove following block of 12
+				if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+					self.object:setacceleration({x = x, y = 1.5, z = z})
+				else
+					self.object:setacceleration({x = x, y = -10, z = z}) -- 14.5
+				end
 			else
-				self.object:setacceleration({x=0, y=-10, z=0})
+				if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+					self.object:setacceleration({x = 0, y = 1.5, z = 0})
+				else
+					self.object:setacceleration({x = 0, y = -10, z = 0}) -- 14.5
+				end
 			end
-			
-			if self.disable_fall_damage and self.object:getvelocity().y == 0 then
+
+			-- fall damage
+			if self.fall_damage and self.object:getvelocity().y == 0 then
 				if not self.old_y then
 					self.old_y = self.object:getpos().y
 				else
@@ -246,7 +260,7 @@ function mobs:register_mob(name, def)
 				end
 				self.timer = 0
 			end
-			
+
 			if self.sounds and self.sounds.random and math.random(1, 100) <= 1 then
 				minetest.sound_play(self.sounds.random, {object = self.object})
 			end
@@ -254,7 +268,7 @@ function mobs:register_mob(name, def)
 			local do_env_damage = function(self)
 				local pos = self.object:getpos()
 				local n = minetest.get_node(pos)
-				
+
 				if self.light_damage and self.light_damage ~= 0
 					and pos.y>0
 					and minetest.get_node_light(pos)
@@ -263,16 +277,16 @@ function mobs:register_mob(name, def)
 					and minetest.get_timeofday() < 0.8
 				then
 					self.object:set_hp(self.object:get_hp()-self.light_damage)
-					if self.object:get_hp() == 0 then
+					if self.object:get_hp() < 1 then
 						self.object:remove()
 					end
 				end
-				
+
 				if self.water_damage and self.water_damage ~= 0 and
 					minetest.get_item_group(n.name, "water") ~= 0
 				then
 					self.object:set_hp(self.object:get_hp()-self.water_damage)
-					if self.object:get_hp() == 0 then
+					if self.object:get_hp() < 1 then
 						self.object:remove()
 					end
 				end
@@ -281,7 +295,7 @@ function mobs:register_mob(name, def)
 					minetest.get_item_group(n.name, "lava") ~= 0
 				then
 					self.object:set_hp(self.object:get_hp()-self.lava_damage)
-					if self.object:get_hp() == 0 then
+					if self.object:get_hp() < 1 then
 						self.object:remove()
 					end
 				end
@@ -320,7 +334,7 @@ function mobs:register_mob(name, def)
 						p.y = p.y + 1
 						sp.y = sp.y + 1		-- aim higher to make looking up hills more realistic
 						local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
-						if dist < self.view_range and self.in_fov(self,p) then
+						if dist < self.view_range then -- and self.in_fov(self,p) then
 							if minetest.line_of_sight(sp,p,2) == true then
 								self.do_attack(self,player,dist)
 								break
@@ -442,7 +456,7 @@ function mobs:register_mob(name, def)
 					self.set_animation(self, "walk")
 				end
 			elseif self.state == "walk" then
-				if math.random(1, 100) <= 30 then
+				if math.random(1, 100) < 31 then
 					self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/180*math.pi))
 				end
 				if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
@@ -452,7 +466,7 @@ function mobs:register_mob(name, def)
 				end
 				self:set_animation("walk")
 				self.set_velocity(self, self.walk_velocity)
-				if math.random(1, 100) <= 30 then
+				if math.random(1, 100) < 31 then
 					self.set_velocity(self, 0)
 					self.state = "stand"
 					self:set_animation("stand")
@@ -518,7 +532,7 @@ function mobs:register_mob(name, def)
 								full_punch_interval=1.0,
 								damage_groups = {fleshy=self.damage}
 							}, vec)
-							if self.attack.player:get_hp() <= 0 then
+							if self.attack.player:get_hp() < 1 then
 								self.state = "stand"
 								self:set_animation("stand")
 							end
@@ -560,7 +574,7 @@ function mobs:register_mob(name, def)
 				self.object:setyaw(yaw)
 				self.set_velocity(self, 0)
 				
-				if self.timer > self.shoot_interval and math.random(1, 100) <= 60 then
+				if self.timer > self.shoot_interval and math.random(1, 100) < 61 then
 					self.timer = 0
 
 					self:set_animation("punch")
@@ -574,7 +588,7 @@ function mobs:register_mob(name, def)
 					local obj = minetest.add_entity(p, self.arrow)
 					local amount = (vec.x^2+vec.y^2+vec.z^2)^0.5
 					local v = obj:get_luaentity().velocity
-					vec.y = vec.y + self.shoot_offset -- 2
+					vec.y = vec.y + self.shoot_offset -- was +1, this way shoot aim is accurate
 					vec.x = vec.x*v/amount
 					vec.y = vec.y*v/amount
 					vec.z = vec.z*v/amount
@@ -613,7 +627,7 @@ function mobs:register_mob(name, def)
 					self.object:set_properties(tmp.textures)
 				end]]
 			end
-			if self.lifetimer <= 0 and not self.tamed and self.type ~= "npc" then
+			if self.lifetimer < 1 and not self.tamed and self.type ~= "npc" then
 				self.object:remove()
 			end
 		end,
@@ -632,8 +646,8 @@ function mobs:register_mob(name, def)
 			process_weapon(hitter,tflp,tool_capabilities)
 
 			local pos = self.object:getpos()
-			if self.object:get_hp() <= 0 then
-				if hitter and hitter:is_player() and hitter:get_inventory() then
+			if self.object:get_hp() < 1 then
+				if hitter and hitter:is_player() then -- and hitter:get_inventory() then
 					for _,drop in ipairs(self.drops) do
 						if math.random(1, drop.chance) == 1 then
 							local d = ItemStack(drop.name.." "..math.random(drop.min, drop.max))
@@ -697,7 +711,7 @@ function mobs:register_mob(name, def)
 			end
 
 			--blood_particles
-
+--[[
 			if self.blood_amount > 0 and pos then
 				local p = pos
 				p.y = p.y + self.blood_offset
@@ -719,7 +733,7 @@ function mobs:register_mob(name, def)
 					self.blood_texture --texture
 				)
 			end
-
+]]--
 			-- knock back effect, adapted from blockmen's pyramids mod
 			-- https://github.com/BlockMen/pyramids
 			local kb = self.knock_back
@@ -738,7 +752,7 @@ function mobs:register_mob(name, def)
 
 			self.object:setvelocity({x=dir.x*kb,y=ykb,z=dir.z*kb})
 			self.pause_timer = r
-
+--[[
 			-- attack puncher and call other mobs for help
 			if self.passive == false then
 				if self.state ~= "attack" then
@@ -755,6 +769,7 @@ function mobs:register_mob(name, def)
 					end
 				end
 			end
+]]--
 		end,
 		
 	})
@@ -777,15 +792,14 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 			end
 			
 			pos.y = pos.y+1
-			if not minetest.get_node_light(pos) then
+
+			if not minetest.get_node_light(pos)
+			or minetest.get_node_light(pos) > max_light
+			or minetest.get_node_light(pos) < min_light then
+		--print ("LIGHT", name)
 				return
 			end
-			if minetest.get_node_light(pos) > max_light then
-				return
-			end
-			if minetest.get_node_light(pos) < min_light then
-				return
-			end
+
 			if pos.y > max_height then
 				return
 			end
@@ -805,11 +819,8 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 				max_dist = {x=33000,z=33000}
 			end
 	
-			if math.abs(pos.x) < min_dist.x or math.abs(pos.z) < min_dist.z then
-				return
-			end
-			
-			if math.abs(pos.x) > max_dist.x or math.abs(pos.z) > max_dist.z then
+			if math.abs(pos.x) < min_dist.x or math.abs(pos.z) < min_dist.z
+			or math.abs(pos.x) > max_dist.x or math.abs(pos.z) > max_dist.z then
 				return
 			end
 		
@@ -846,6 +857,7 @@ function mobs:register_arrow(name, def)
 
 		on_step = function(self, dtime)
 			local pos = self.object:getpos()
+			--if minetest.get_node(self.object:getpos()).name ~= "air" then
 			if minetest.registered_nodes[minetest.get_node(self.object:getpos()).name].walkable then
 				self.hit_node(self, pos, node)
 				self.object:remove()

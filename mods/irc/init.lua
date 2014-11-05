@@ -17,8 +17,9 @@ if not jit and package.config:sub(1, 1) == "/" then
 	package.path = package.path..
 			";/usr/share/lua/5.1/?.lua"..
 			";/usr/share/lua/5.1/?/init.lua"
-	package.cpath = package.cpath..
-			";/usr/lib/lua/5.1/?.so"
+   	package.cpath = package.cpath..
+ --			";/usr/lib/lua/5.1/?.so"
+			";/usr/lib/x86_64-linux-gnu/lua/5.1/?.so"
 end
 
 irc = {
