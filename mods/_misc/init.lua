@@ -10,12 +10,16 @@ dofile(minetest.get_modpath("_misc").."/chatcommands.lua")
 
 -- Rules
 dofile(minetest.get_modpath("_misc").."/rules.lua")
+-- No Interact Messages
+dofile(minetest.get_modpath("_misc").."/nointeract_messages.lua")
+
+-- irc
+dofile(minetest.get_modpath("_misc").."/irc.lua")
+-- No Shout Messages
+dofile(minetest.get_modpath("_misc").."/noshout_messages.lua")
 
 -- Aliases
 dofile(minetest.get_modpath("_misc").."/aliases.lua")
-
--- No Interact Messages
-dofile(minetest.get_modpath("_misc").."/nointeract_messages.lua")
 
 -- Craft Obsidian
 dofile(minetest.get_modpath("_misc").."/craft_obsidian.lua")

@@ -37,7 +37,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		end
 		return
 	elseif fields.decline then
-		minetest.kick_player(name, "Aurevoir ! Vous devez accepter les règles pour jouer sur le serveur (revennez si vous changez d'avoir).")
+		minetest.kick_player(name, "Aurevoir ! Vous devez accepter les règles pour jouer sur le serveur (revennez si vous changez d'avis).")
 		return
 	end
 end)
