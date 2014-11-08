@@ -60,7 +60,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			local privs = minetest.get_player_privs(name)
 			privs.shout = true
 			minetest.set_player_privs(name, privs)
-		end
+		--end
 		return
 	elseif fields.decline then
 		minetest.kick_player(name, "Aurevoir ! Vous devez accepter les règles de l'irc pour jouer sur le serveur (revennez si vous changez d'avis).")
