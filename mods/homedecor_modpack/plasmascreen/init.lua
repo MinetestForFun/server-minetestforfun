@@ -215,146 +215,146 @@ after_place_node = function(pos,placer,itemstack)
 	local p = {x=pos.x, y=pos.y, z=pos.z}
 		if param2 == 0 then
 			pos.x = pos.x-1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen4", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.x = pos.x+2
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen6", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.y = pos.y+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen3", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.x = pos.x-1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen2", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.x = pos.x-1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen1", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 		elseif param2 == 1 then
 			pos.z = pos.z+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
         minetest.set_node(pos,{name="plasmascreen:screen4", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.z = pos.z-2
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen6", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.y = pos.y+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen3", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.z = pos.z+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen2", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.z = pos.z+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen1", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 		elseif param2 == 2 then
 			pos.x = pos.x+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
         minetest.set_node(pos,{name="plasmascreen:screen4", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.x = pos.x-2
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen6", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.y = pos.y+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen3", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.x = pos.x+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen2", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.x = pos.x+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen1", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 		elseif param2 == 3 then
 			pos.z = pos.z-1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
         minetest.set_node(pos,{name="plasmascreen:screen4", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.z = pos.z+2
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen6", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.y = pos.y+1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen3", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.z = pos.z-1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen2", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 			pos.z = pos.z-1
-		if minetest.registered_nodes[minetest.env:get_node(pos).name].buildable_to  then
+		if minetest.registered_nodes[minetest.get_node(pos).name].buildable_to  then
 		minetest.set_node(pos,{name="plasmascreen:screen1", param2=minetest.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.env:remove_node(p)
+			minetest.remove_node(p)
 			return true
 		end
 		end

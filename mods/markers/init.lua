@@ -84,7 +84,7 @@ markers.marker_placed = function( pos, placer, itemstack )
       return;
    end
  
-   local meta = minetest.env:get_meta( pos );
+   local meta = minetest.get_meta( pos );
    local name = placer:get_player_name();
 
    meta:set_string( 'infotext', 'Marker at '..minetest.pos_to_string( pos )..
@@ -199,7 +199,7 @@ markers.marker_can_dig = function(pos,player)
       return true;
    end
 
-   local meta  = minetest.env:get_meta( pos );
+   local meta  = minetest.get_meta( pos );
    local owner = meta:get_string( 'owner' );
    local time  = meta:get_string( 'time' ); 
 
@@ -273,7 +273,7 @@ end
 markers.get_marker_formspec = function(player, pos, error_msg)
    local formspec = "";
 
-   local meta  = minetest.env:get_meta( pos );
+   local meta  = minetest.get_meta( pos );
    local owner = meta:get_string( 'owner' );
 
    local name  = player:get_player_name();
@@ -424,7 +424,7 @@ markers.marker_on_receive_fields = function(pos, formname, fields, sender)
    end
 
 
-   local meta  = minetest.env:get_meta( pos );
+   local meta  = minetest.get_meta( pos );
 
    local name  = sender:get_player_name();
 

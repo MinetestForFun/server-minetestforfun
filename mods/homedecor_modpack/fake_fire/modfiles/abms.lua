@@ -22,13 +22,13 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos, node)
-		if minetest.env:find_node_near(pos, 1, {"default:water_source",
+		if minetest.find_node_near(pos, 1, {"default:water_source",
 		"default:water_flowing","default:lava_source",
 		"default:lava_flowing"}) then
 		minetest.sound_play("fire_extinguish",
 		{gain = 1.0, max_hear_distance = 20,})
 		node.name = "air"
-		minetest.env:set_node(pos, node)
+		minetest.set_node(pos, node)
 		end
 	end
 })

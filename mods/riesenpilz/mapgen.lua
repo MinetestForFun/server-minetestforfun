@@ -91,8 +91,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 
 	local x0,z0,x1,z1 = minp.x,minp.z,maxp.x,maxp.z	-- Assume X and Z lengths are equal
-	local env = minetest.env	--Should make things a bit faster.
-	local perlin1 = env:get_perlin(51,3, 0.5, perlin_scale)	--Get map specific perlin
+	--local env = minetest|.env	--Should make things a bit faster.
+	local perlin1 = minetest.get_perlin(51,3, 0.5, perlin_scale)	--Get map specific perlin
 
 	--[[if not (perlin1:get2d({x=x0, y=z0}) > 0.53) and not (perlin1:get2d({x=x1, y=z1}) > 0.53)
 	and not (perlin1:get2d({x=x0, y=z1}) > 0.53) and not (perlin1:get2d({x=x1, y=z0}) > 0.53)
@@ -137,9 +137,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 		--[[remove usual stuff
-		local trees = env:find_nodes_in_area(minp, maxp, USUAL_STUFF)
+		local trees = minetest.find_nodes_in_area(minp, maxp, USUAL_STUFF)
 		for i,v in pairs(trees) do
-			env:remove_node(v)
+			minetest.remove_node(v)
 		end]]
 
 
@@ -221,15 +221,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					elseif pr:next(1,5000) == 1 then
 						riesenpilz_circle(c.riesenpilz_glowshroom, boden, 3, 3)
 					--[[elseif pr:next(1,80) == 1 then
-						env:add_node(boden, {name="riesenpilz:brown"})
+						minetest.add_node(boden, {name="riesenpilz:brown"})
 					elseif pr:next(1,90) == 1 then
-						env:add_node(boden, {name="riesenpilz:red"})
+						minetest.add_node(boden, {name="riesenpilz:red"})
 					elseif pr:next(1,100) == 1 then
-						env:add_node(boden, {name="riesenpilz:fly_agaric"})
+						minetest.add_node(boden, {name="riesenpilz:fly_agaric"})
 					elseif pr:next(1,4000) == 1 then
-						env:add_node(boden, {name="riesenpilz:lavashroom"})
+						minetest.add_node(boden, {name="riesenpilz:lavashroom"})
 					elseif pr:next(1,5000) == 1 then
-						env:add_node(boden, {name="riesenpilz:glowshroom"})]]
+						minetest.add_node(boden, {name="riesenpilz:glowshroom"})]]
 					elseif pr:next(1,380) == 1 then
 						tab[num] = {1, boden}
 						num = num+1
@@ -275,8 +275,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 end)
 --[[	if maxp.y < -10 then
 		local x0,z0,x1,z1 = minp.x,minp.z,maxp.x,maxp.z	-- Assume X and Z lengths are equal
-		local env = minetest.env	--Should make things a bit faster.
-		local perlin1 = env:get_perlin(11,3, 0.5, 200)	--Get map specific perlin
+		local env = minetest.|env	--Should make things a bit faster.
+		local perlin1 = minetest.get_perlin(11,3, 0.5, 200)	--Get map specific perlin
 
 		--[if not (perlin1:get2d({x=x0, y=z0}) > 0.53) and not (perlin1:get2d({x=x1, y=z1}) > 0.53)
 		and not (perlin1:get2d({x=x0, y=z1}) > 0.53) and not (perlin1:get2d({x=x1, y=z0}) > 0.53)
@@ -303,12 +303,12 @@ end)
 				for y=minp.y,maxp.y,1 do
 					local pos = {x=x, y=y, z=z}
 
-					if env:get_node(pos).name == "air"
-					and env:get_node({x=x, y=y-1, z=z}).name == "default:stone"
+					if minetest.get_node(pos).name == "air"
+					and minetest.get_node({x=x, y=y-1, z=z}).name == "default:stone"
 					and pr:next(1,40) == 33
-					and env:find_node_near(pos, 4, "group:igniter")
-					and not env:find_node_near(pos, 3, "group:igniter") then
-						env:add_node(pos, {name="riesenpilz:lavashroom"})
+					and minetest.find_node_near(pos, 4, "group:igniter")
+					and not minetest.find_node_near(pos, 3, "group:igniter") then
+						minetest.add_node(pos, {name="riesenpilz:lavashroom"})
 					end
 				end
 			end

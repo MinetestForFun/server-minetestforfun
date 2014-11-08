@@ -83,7 +83,7 @@ local music = {
 }
 
 local is_daytime = function()
-	return (minetest.env:get_timeofday() > 0.2 and  minetest.env:get_timeofday() < 0.8)
+	return (minetest.get_timeofday() > 0.2 and  minetest.get_timeofday() < 0.8)
 end
 
 local get_ambience = function(player)
@@ -97,12 +97,12 @@ local get_ambience = function(player)
 
 	local pos = player:getpos()
 	pos.y = pos.y+1.5
-	local nodename = minetest.env:get_node(pos).name
+	local nodename = minetest.get_node(pos).name
 	if string.find(nodename, "default:water") then
 		play_water = true
 	elseif nodename == "air" then
 		pos.y = pos.y-1.5
-		local nodename = minetest.env:get_node(pos).name
+		local nodename = minetest.get_node(pos).name
 		if string.find(nodename, "default:water") then
 			play_splash = true
 		end

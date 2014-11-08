@@ -21,12 +21,12 @@ if( minetest.get_modpath( 'pipeworks' )) then
 			tubedevice = 1, tubedevice_receiver = 1 };
 	chesttools.chest_add.tube = {
 		insert_object = function(pos, node, stack, direction)
-			local meta = minetest.env:get_meta(pos)
+			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			return inv:add_item("main", stack)
 		end,
 		can_insert = function(pos, node, stack, direction)
-			local meta = minetest.env:get_meta(pos)
+			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			return inv:room_for_item("main", stack)
 		end,
@@ -429,7 +429,7 @@ minetest.register_node( 'chesttools:shared_chest', {
 		local name = user:get_player_name();
 
 		local pos  = minetest.get_pointed_thing_position( pointed_thing, mode );
-		local node = minetest.env:get_node_or_nil( pos );
+		local node = minetest.get_node_or_nil( pos );
 
 		if( node == nil or not( node.name )) then
 			return nil;

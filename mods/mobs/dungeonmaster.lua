@@ -91,12 +91,12 @@ mobs:register_arrow("mobs:fireball", {
 			for dy=-1,1 do
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-					local n = minetest.env:get_node(p).name
+					local n = minetest.get_node(p).name
 					if n ~= "default:obsidian" and n ~= "ethereal:obsidian_brick" then	
 					if minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30 then
-						minetest.env:set_node(p, {name="fire:basic_flame"})
+						minetest.set_node(p, {name="fire:basic_flame"})
 					else
-						minetest.env:set_node(p, {name="air"})
+						minetest.set_node(p, {name="air"})
 					end
 					end
 				end

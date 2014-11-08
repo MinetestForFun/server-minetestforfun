@@ -68,30 +68,30 @@ local xmas_tree = {
 
 --Makes pine tree
 function snow.make_pine(pos,snow,xmas)
-        local env = minetest.env
-        local perlin1 = env:get_perlin(112,3, 0.5, 150)
+        
+        local perlin1 = minetest.get_perlin(112,3, 0.5, 150)
         local try_node = function(pos, node)
-                local n = env:get_node(pos).name
+                local n = minetest.get_node(pos).name
                 if n == "air" or n == "ignore" then
-                        env:add_node(pos,node)
+                        minetest.add_node(pos,node)
                 end
         end
         --Clear ground.
         for x=-1,1 do
         for z=-1,1 do
-                if env:get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snow" then
-                        env:remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
+                if minetest.get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snow" then
+                        minetest.remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
                 end
-                if env:get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snowblock" then
-                        env:remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
+                if minetest.get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snowblock" then
+                        minetest.remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
                 end
         end
         end
         if xmas then
-                env:remove_node(pos)
-                minetest.env:spawn_tree(pos, xmas_tree)
+                minetest.remove_node(pos)
+                minetest.spawn_tree(pos, xmas_tree)
         else
-                minetest.env:spawn_tree(pos, pine_tree)
+                minetest.spawn_tree(pos, pine_tree)
         end
         if snow then
                 local x,z = pos.x,pos.z

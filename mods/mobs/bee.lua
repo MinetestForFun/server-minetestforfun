@@ -49,7 +49,7 @@ minetest.register_craftitem("mobs:bee", {
 	
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "mobs:bee")
+			minetest.add_entity(pointed_thing.above, "mobs:bee")
 			itemstack:take_item()
 		end
 		return itemstack
@@ -88,7 +88,7 @@ minetest.register_node("mobs:beehive", {
 	after_place_node = function(pos, placer, itemstack)
 		if placer:is_player() then
 			minetest.set_node(pos, {name="mobs:beehive", param2=1})
-			minetest.env:add_entity(pos, "mobs:bee")
+			minetest.add_entity(pos, "mobs:bee")
 		end
 	end,
 	

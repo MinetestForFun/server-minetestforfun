@@ -1002,7 +1002,7 @@ colormachine.main_menu_formspec = function( pos, option )
       form = form.."label[0.5,0.25;CREATIVE MODE:]".."label[0.5,0.75;no dyes or input consumed]";
    end
 
-   local meta = minetest.env:get_meta(pos);
+   local meta = minetest.get_meta(pos);
    local inv  = meta:get_inventory();
 
    -- display the name of the color the machine is set to
@@ -1232,7 +1232,7 @@ end
 
 colormachine.check_owner = function( pos, player )
    -- only the owner can put something in
-   local meta = minetest.env:get_meta(pos);
+   local meta = minetest.get_meta(pos);
 
    if( meta:get_string('owner') ~= player:get_player_name() ) then
       minetest.chat_send_player( player:get_player_name(),
@@ -1294,7 +1294,7 @@ end
 
 colormachine.on_metadata_inventory_put = function( pos, listname, index, stack, player )
   
-   local meta = minetest.env:get_meta(pos);
+   local meta = minetest.get_meta(pos);
    local inv  = meta:get_inventory();
 
    -- nothing to do if onnly a dye was inserted
@@ -1352,7 +1352,7 @@ end
 
 colormachine.on_metadata_inventory_take = function( pos, listname, index, stack, player )
   
-   local meta = minetest.env:get_meta(pos);
+   local meta = minetest.get_meta(pos);
    local inv  = meta:get_inventory();
 
 
@@ -1758,7 +1758,7 @@ minetest.register_node("colormachine:colormachine", {
 
         on_construct = function(pos)
 
-           local meta = minetest.env:get_meta(pos);
+           local meta = minetest.get_meta(pos);
 
            meta:set_string('selected_shade',       3 ); -- grey-shade
            meta:set_string('selected_grey_shade',  1 );
@@ -1780,7 +1780,7 @@ minetest.register_node("colormachine:colormachine", {
         end,
 
         after_place_node = function(pos, placer)
-           local meta = minetest.env:get_meta(pos);
+           local meta = minetest.get_meta(pos);
 
            meta:set_string( "owner", ( placer:get_player_name() or "" ));
            meta:set_string( "infotext", "Spray booth (owned by "..( meta:get_string( "owner" ) or "" )..")");
@@ -1792,7 +1792,7 @@ minetest.register_node("colormachine:colormachine", {
               return 0;
            end
 
-           local meta = minetest.env:get_meta(pos);
+           local meta = minetest.get_meta(pos);
            for k,v in pairs( fields ) do
               if( k == 'main_menu' ) then
                  meta:set_string( 'formspec', colormachine.main_menu_formspec(pos, "analyze") );
@@ -1880,7 +1880,7 @@ minetest.register_node("colormachine:colormachine", {
 
         can_dig = function(pos,player)
 
-           local meta = minetest.env:get_meta(pos);
+           local meta = minetest.get_meta(pos);
            local inv = meta:get_inventory()
 
            if( not( colormachine.check_owner( pos, player ))) then

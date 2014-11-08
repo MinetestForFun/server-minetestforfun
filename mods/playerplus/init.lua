@@ -40,7 +40,7 @@ minetest.register_globalstep(function(dtime)
 					pos = near
 					
 					-- am I touching the cactus? if so it hurts
-					for _,object in ipairs(minetest.env:get_objects_inside_radius(pos, 1.0)) do
+					for _,object in ipairs(minetest.get_objects_inside_radius(pos, 1.0)) do
 						if object:get_hp() > 0 then
 							object:set_hp(object:get_hp()-1)
 						end

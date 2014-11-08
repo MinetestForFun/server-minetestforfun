@@ -54,7 +54,7 @@ minetest.register_craftitem("mobs:chicken", {
 	
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "mobs:chicken")
+			minetest.add_entity(pointed_thing.above, "mobs:chicken")
 			itemstack:take_item()
 		end
 		return itemstack

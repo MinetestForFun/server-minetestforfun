@@ -21,7 +21,7 @@ local trampoline_punch = function(pos, node)
 	local id = string.sub(node.name, #node.name)
 	id = id + 1
 	if id == 7 then id = 1 end
-	minetest.env:add_node(pos, {name = string.sub(node.name, 1, #node.name - 1)..id})
+	minetest.add_node(pos, {name = string.sub(node.name, 1, #node.name - 1)..id})
 end
 
 for i = 1, 6 do

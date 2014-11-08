@@ -9,7 +9,7 @@ minetest.register_node("more_chests:wifi", {
 	legacy_facedir_simple = true,
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec",
 				"size[8,9]"..
 				"list[current_player;more_chests:wifi;0,0;8,4;]"..

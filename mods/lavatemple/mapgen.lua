@@ -47,10 +47,11 @@ minetest.register_on_generated(function(minp,maxp,seed)
 		for x=pos1.x,pos2.x do
 		for y=pos1.y,pos2.y do
 		for z=pos1.z,pos2.z do
-			minetest.env:remove_node({x=x,y=y,z=z})
+			minetest.remove_node({x=x,y=y,z=z})
 		end end end
 		-- Deserialize the temple
-		worldedit.deserialize(ltp, contents, minetest.env)
+		--worldedit.deserialize(ltp, contents, minetest|.env)
+		worldedit.deserialize(ltp, contents, minetest)
 	end
 end)
 

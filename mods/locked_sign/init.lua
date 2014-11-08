@@ -21,32 +21,32 @@ minetest.register_node("locked_sign:sign_wall_locked", {
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 	after_place_node = function(pos, placer)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
 		meta:set_string("infotext", "\"\" (owned by " .. placer:get_player_name() .. ")")
 	end,
 	on_construct = function(pos)
-		--local n = minetest.env:get_node(pos)
-		local meta = minetest.env:get_meta(pos)
+		--local n = minetest.get_node(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", "hack:sign_text_input")
 		meta:set_string("infotext", "\"\"")
 	end,
 	can_dig = function(pos,player)
-		local meta = minetest.env:get_meta(pos);
+		local meta = minetest.get_meta(pos);
 		local owner = meta:get_string("owner")
 		local pname = player:get_player_name()
 		return pname == owner or pname == minetest.setting_get("name")
 			or minetest.check_player_privs(pname, {sign_editor=true})
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		local owner = meta:get_string("owner")
 		local pname = sender:get_player_name()
 		if pname ~= owner and pname ~= minetest.setting_get("name")
 		  and not minetest.check_player_privs(pname, {sign_editor=true}) then
 			return
 		end
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		fields.text = fields.text or ""
 		print((sender:get_player_name() or "").." wrote \""..fields.text..
 				"\" to sign at "..minetest.pos_to_string(pos))

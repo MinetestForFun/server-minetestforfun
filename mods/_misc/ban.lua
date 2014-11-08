@@ -26,7 +26,7 @@ minetest.register_chatcommand("future_ban", {
             minetest.chat_send_player(name, "Future ban list: " .. dump(future_ban_list))
             return
         end
-        if not minetest.env:get_player_by_name(param) then
+        if not minetest.get_player_by_name(param) then
             table.insert(future_ban_list, param)
             minetest.chat_send_player(name, param .. " to future ban list added.")
             minetest.log("action", name .. " added " .. param .. " to future ban list.")

@@ -156,7 +156,7 @@ local music = {
 }
 
 local is_daytime = function()
-	return (minetest.env:get_timeofday() > 0.2 and  minetest.env:get_timeofday() < 0.8)
+	return (minetest.get_timeofday() > 0.2 and  minetest.get_timeofday() < 0.8)
 end
 
 --[[old
@@ -166,7 +166,7 @@ local nodes_in_range = function(pos, search_distance, node_name)
 	for p_x=(pos.x-search_distance), (pos.x+search_distance) do
 		for p_y=(pos.y-search_distance), (pos.y+search_distance) do
 			for p_z=(pos.z-search_distance), (pos.z+search_distance) do
-				local search_n = minetest.env:get_node({x=p_x, y=p_y, z=p_z})
+				local search_n = minetest.get_node({x=p_x, y=p_y, z=p_z})
 				if search_n.name == node_name then
 					nodes_found = nodes_found + 1
 				end
@@ -180,7 +180,7 @@ end --]]
 local nodes_in_range = function(pos, search_distance, node_name)
 	minp = {x=pos.x-search_distance,y=pos.y-search_distance, z=pos.z-search_distance}
 	maxp = {x=pos.x+search_distance,y=pos.y+search_distance, z=pos.z+search_distance}
-	nodes = minetest.env:find_nodes_in_area(minp, maxp, node_name)
+	nodes = minetest.find_nodes_in_area(minp, maxp, node_name)
 --	minetest.chat_send_all("Found (" .. node_name .. ": " .. #nodes .. ")")
 	return #nodes
 end
@@ -189,7 +189,7 @@ end
 local get_ambience = function(player)
 	local pos = player:getpos()
 	pos.y = pos.y+1.0
-	local nodename = minetest.env:get_node(pos).name
+	local nodename = minetest.get_node(pos).name
 	if string.find(nodename, "default:water") then
 		if music then
 			return {water=water, water_frequent=water_frequent, music=music}
@@ -198,7 +198,7 @@ local get_ambience = function(player)
 		end
 	elseif nodename == "air" then
 		pos.y = pos.y-1.5
-		local nodename = minetest.env:get_node(pos).name
+		local nodename = minetest.get_node(pos).name
 		pos.y = pos.y+1.5
 		if string.find(nodename, "default:water") then
 			if music then
@@ -224,7 +224,7 @@ local get_ambience = function(player)
 		end
 	end	
 	pos.y = pos.y-2 
-	nodename = minetest.env:get_node(pos).name
+	nodename = minetest.get_node(pos).name
 	--minetest.chat_send_all("Found " .. nodename .. pos.y )
 	if string.find(nodename, "default:sand") and pos.y < 5 then
 		if music then

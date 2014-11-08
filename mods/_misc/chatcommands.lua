@@ -84,7 +84,7 @@ minetest.register_chatcommand("ban", {
 --    description = "Teleport to the spawn location.",
 --    privs = {shout=true},
 --    func = function(name, param)
---            local player = minetest.env:get_player_by_name(name)
+--            local player = minetest.:get_player_by_name(name)
 --            minetest.chat_send_player(name, "Teleported to spawn!")
 --            player:setpos({x=0.0, y=5.0, z=0.0})
 --            return true
@@ -97,7 +97,7 @@ minetest.register_chatcommand("sethome", {
         description = "Set your home location.",
         privs = {shout=true},
         func = function(name, param)
-                player = minetest.env:get_player_by_name(name)
+                player = minetest.:get_player_by_name(name)
                 test = player:getpos()
                 local file = io.open(minetest.get_worldpath().."/home/"..player:get_player_name().."_home", "w")
                 if not file then
@@ -116,7 +116,7 @@ minetest.register_chatcommand("home", {
 	description = "Vous teleporte a l'emplacement de votre 'home'.",
 	privs = {shout=true},
 	func = function(name, param)
-		player = minetest.env:get_player_by_name(name)
+		player = minetest.:get_player_by_name(name)
 		local file = io.open(minetest.get_worldpath().."/home/"..player:get_player_name().."_home", "r")
 		if not file then
 			minetest.chat_send_player(name, "Vous devez definir votre emplacement 'home' ! Pour ce faire, utilisez la commande /sethome.")
@@ -129,7 +129,7 @@ minetest.register_chatcommand("home", {
 			minetest.chat_send_player(name, "Il y a eut une erreur, s'il vous plait contactez le detenteur du serveur.")
 			return
 		end
-		minetest.env:get_player_by_name(name):setpos(pos)
+		minetest.:get_player_by_name(name):setpos(pos)
 		minetest.chat_send_player(name, "Vous voilà chez vous.")
 	end
 })

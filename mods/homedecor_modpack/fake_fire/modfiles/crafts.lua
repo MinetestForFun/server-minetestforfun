@@ -15,9 +15,9 @@ minetest.register_craftitem("fake_fire:old_flint_and_steel", {
 	stack_max = 1,
 	liquids_pointable = false,
 	on_use = function(itemstack, user, pointed_thing)
-		n = minetest.env:get_node(pointed_thing)
+		n = minetest.get_node(pointed_thing)
 		if pointed_thing.type == "node" then
-			minetest.env:add_node(pointed_thing.above,
+			minetest.add_node(pointed_thing.above,
 			{name="fake_fire:fake_fire"})
 			minetest.sound_play("",
 			{gain = 1.0, max_hear_distance = 20,})

@@ -192,7 +192,7 @@ function nodeupdate_single(p, delay)
 				core.after(0.1, nodeupdate_single, {x=p.x, y=p.y, z=p.z}, false)
 			else
 				n.level = core.get_node_level(p)
-				local meta = minetest.env:get_meta(p)
+				local meta = minetest.get_meta(p)
 				--print('get owner '.. meta:get_string("owner"))
 				spawn_falling_node(p, n, meta:get_string("owner"))
 				core.remove_node(p)

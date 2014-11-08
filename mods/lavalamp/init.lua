@@ -56,7 +56,7 @@ for i in ipairs(lavalamps_list) do
 		groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
 		on_rightclick = function(pos, node, clicker)
 	        node.name = "lavalamp:"..colour.."_off"
-	        minetest.env:set_node(pos, node)
+	        minetest.set_node(pos, node)
 	    end,
 	})
 
@@ -97,7 +97,7 @@ for i in ipairs(lavalamps_list) do
 	    drop = "lavalamp:"..colour,
 		on_rightclick = function(pos, node, clicker)
 	        node.name = "lavalamp:"..colour
-	        minetest.env:set_node(pos, node)
+	        minetest.set_node(pos, node)
 	    end,
 	})
 

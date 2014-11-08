@@ -136,8 +136,8 @@ minetest.register_node("seacoral:seacoralsandcyan", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -171,8 +171,8 @@ minetest.register_node("seacoral:seacoralsandmagenta", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -206,8 +206,8 @@ minetest.register_node("seacoral:seacoralsandaqua", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -241,8 +241,8 @@ minetest.register_node("seacoral:seacoralsandlime", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -276,8 +276,8 @@ minetest.register_node("seacoral:seacoralsandskyblue", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -311,8 +311,8 @@ minetest.register_node("seacoral:seacoralsandredviolet", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -720,7 +720,7 @@ action = function(pos, node, active_object_count, active_object_count_wider)
 	minetest.get_node(yp).name == "noairblocks:water_sourcex") and
 	(minetest.get_node(yyp).name == "default:water_source" or
 	minetest.get_node(yyp).name == "noairblocks:water_sourcex")) then
-		local objs = minetest.env:get_objects_inside_radius(pos, 2)
+		local objs = minetest.get_objects_inside_radius(pos, 2)
 		for k, obj in pairs(objs) do
 			obj:set_hp(obj:get_hp()+ 1)
 		end

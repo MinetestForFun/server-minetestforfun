@@ -35,7 +35,7 @@ minetest.register_craftitem("fishing:fishing_rod_baited", {
 	liquids_pointable = true,
 	on_use = function (itemstack, user, pointed_thing)
 		if pointed_thing and pointed_thing.under then
-			local node = minetest.env:get_node(pointed_thing.under)
+			local node = minetest.get_node(pointed_thing.under)
 			if string.find(node.name, "default:water_source") then
 				if math.random(1, 100) < 5 then
 					local inv = user:get_inventory()

@@ -217,12 +217,12 @@ minetest.register_node("money:shop", {
 	sounds = default.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	after_place_node = function(pos, placer)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name())
 		meta:set_string("infotext", "Untuned Shop (owned by " .. placer:get_player_name() .. ")")
 	end,
 	on_construct = function(pos)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", "size[8,6.6]"..
 			"field[0.256,0.5;8,1;shopname;Name of your shop:;]"..
 			"field[0.256,1.5;8,1;action;Do you want buy(B) or sell(S) or buy and sell(BS):;]"..
@@ -238,12 +238,12 @@ minetest.register_node("money:shop", {
 		meta:set_string("form", "yes")
 	end,
 	can_dig = function(pos,player)
-		local meta = minetest.env:get_meta(pos);
+		local meta = minetest.get_meta(pos);
 		local inv = meta:get_inventory()
 		return inv:is_empty("main") and (meta:get_string("owner") == player:get_player_name() or minetest.get_player_privs(player:get_player_name())["money_admin"])
 	end,
 	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if not has_shop_privilege(meta, player) then
 			minetest.log("action", player:get_player_name()..
 					" tried to access a shop belonging to "..
@@ -254,7 +254,7 @@ minetest.register_node("money:shop", {
 		return count
 	end,
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if not has_shop_privilege(meta, player) then
 			minetest.log("action", player:get_player_name()..
 					" tried to access a shop belonging to "..
@@ -265,7 +265,7 @@ minetest.register_node("money:shop", {
 		return stack:get_count()
 	end,
     allow_metadata_inventory_take = function(pos, listname, index, stack, player)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if not has_shop_privilege(meta, player) then
 			minetest.log("action", player:get_player_name()..
 					" tried to access a shop belonging to "..
@@ -288,7 +288,7 @@ minetest.register_node("money:shop", {
 				" takes stuff from shop at "..minetest.pos_to_string(pos))
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if meta:get_string("form") == "yes" then
 			if fields.shopname ~= "" and (fields.action == "B" or fields.action == "S" or fields.action == "BS") and minetest.registered_items[fields.nodename] and tonumber(fields.amount) and tonumber(fields.amount) >= 1 and (meta:get_string("owner") == sender:get_player_name() or minetest.get_player_privs(sender:get_player_name())["money_admin"]) then
 				if fields.action == "B" then
@@ -332,7 +332,7 @@ minetest.register_node("money:shop", {
 					s = " buy and sell "
 					ss = "button[1,5;2,1;buttonbuy;Buy("..fields.costsell..")]" .. "button[5,5;2,1;buttonsell;Sell("..fields.costbuy..")]"
 				end
-				local meta = minetest.env:get_meta(pos)
+				local meta = minetest.get_meta(pos)
 				meta:set_string("formspec", "size[8,10;]"..
 					"list[context;main;0,0;8,4;]"..
 					"label[0.256,4.5;You can"..s..fields.amount.." "..fields.nodename.."]"..
@@ -408,12 +408,12 @@ minetest.register_node("money:barter_shop", {
 	sounds = default.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	after_place_node = function(pos, placer)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name())
 		meta:set_string("infotext", "Untuned Barter Shop (owned by " .. placer:get_player_name() .. ")")
 	end,
 	on_construct = function(pos)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", "size[8,5.6]"..
 			"field[0.256,0.5;8,1;bartershopname;Name of your barter shop:;]"..
 			"field[0.256,1.5;8,1;nodename1;What kind of a node do you want to exchange:;]"..
@@ -426,12 +426,12 @@ minetest.register_node("money:barter_shop", {
 		meta:set_string("form", "yes")
 	end,
 	can_dig = function(pos,player)
-		local meta = minetest.env:get_meta(pos);
+		local meta = minetest.get_meta(pos);
 		local inv = meta:get_inventory()
 		return inv:is_empty("main") and (meta:get_string("owner") == player:get_player_name() or minetest.get_player_privs(player:get_player_name())["money_admin"])
 	end,
 	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if not has_shop_privilege(meta, player) then
 			minetest.log("action", player:get_player_name()..
 					" tried to access a barter shop belonging to "..
@@ -442,7 +442,7 @@ minetest.register_node("money:barter_shop", {
 		return count
 	end,
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if not has_shop_privilege(meta, player) then
 			minetest.log("action", player:get_player_name()..
 					" tried to access a barter shop belonging to "..
@@ -453,7 +453,7 @@ minetest.register_node("money:barter_shop", {
 		return stack:get_count()
 	end,
     allow_metadata_inventory_take = function(pos, listname, index, stack, player)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if not has_shop_privilege(meta, player) then
 			minetest.log("action", player:get_player_name()..
 					" tried to access a barter shop belonging to "..
@@ -476,7 +476,7 @@ minetest.register_node("money:barter_shop", {
 				" takes stuff from barter shop at "..minetest.pos_to_string(pos))
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if meta:get_string("form") == "yes" then
 			if fields.bartershopname ~= "" and minetest.registered_items[fields.nodename1] and minetest.registered_items[fields.nodename2] and tonumber(fields.amount1) and tonumber(fields.amount1) >= 1 and tonumber(fields.amount2) and tonumber(fields.amount2) >= 1 and (meta:get_string("owner") == sender:get_player_name() or minetest.get_player_privs(sender:get_player_name())["money_admin"]) then
 				meta:set_string("formspec", "size[8,10;]"..
@@ -540,7 +540,7 @@ minetest.register_node("money:admin_shop", {
 	sounds = default.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	on_construct = function(pos)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("infotext", "Untuned Admin Shop")
 		meta:set_string("formspec", "size[8,5.6]"..
 			"field[0.256,0.5;8,1;action;Do you want buy(B) or sell(S) or buy and sell(BS):;]"..
@@ -555,7 +555,7 @@ minetest.register_node("money:admin_shop", {
 		return minetest.get_player_privs(player:get_player_name())["money_admin"]
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if meta:get_string("form") == "yes" then
 			if (fields.action == "B" or fields.action == "S" or fields.action == "BS") and minetest.registered_items[fields.nodename] and tonumber(fields.amount) and tonumber(fields.amount) >= 1 and (meta:get_string("owner") == sender:get_player_name() or minetest.get_player_privs(sender:get_player_name())["money_admin"]) then
 				if fields.action == "B" then
@@ -599,7 +599,7 @@ minetest.register_node("money:admin_shop", {
 					s = " buy and sell "
 					ss = "button[1,0.5;2,1;buttonbuy;Buy("..fields.costsell..")]" .. "button[5,0.5;2,1;buttonsell;Sell("..fields.costbuy..")]"
 				end
-				local meta = minetest.env:get_meta(pos)
+				local meta = minetest.get_meta(pos)
 				meta:set_string("formspec", "size[8,5.5;]"..
 					"label[0.256,0;You can"..s..fields.amount.." "..fields.nodename.."]"..
 					ss..
@@ -650,7 +650,7 @@ minetest.register_node("money:admin_barter_shop", {
 	sounds = default.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	on_construct = function(pos)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", "size[8,4.6]"..
 			"field[0.256,0.5;8,1;nodename1;What kind of a node do you want to exchange:;]"..
 			"field[0.256,1.5;8,1;nodename2;for:;]"..
@@ -664,7 +664,7 @@ minetest.register_node("money:admin_barter_shop", {
 		return minetest.get_player_privs(player:get_player_name())["money_admin"]
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		if meta:get_string("form") == "yes" then
 			if minetest.registered_items[fields.nodename1] and minetest.registered_items[fields.nodename2] and tonumber(fields.amount1) and tonumber(fields.amount1) >= 1 and tonumber(fields.amount2) and tonumber(fields.amount2) >= 1 and (meta:get_string("owner") == sender:get_player_name() or minetest.get_player_privs(sender:get_player_name())["money_admin"]) then
 				meta:set_string("formspec", "size[8,6;]"..

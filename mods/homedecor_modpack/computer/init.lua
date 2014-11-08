@@ -30,7 +30,7 @@ computer.register = function ( name, def )
                 if (def.on_turn_off(pos, node, clicker, itemstack)) then return; end
             end
             node.name = OFFSTATE;
-            minetest.env:set_node(pos, node);
+            minetest.set_node(pos, node);
             nodeupdate(pos);
         end;
     });
@@ -55,7 +55,7 @@ computer.register = function ( name, def )
                 if (def.on_turn_on(pos, node, clicker, itemstack)) then return; end
             end
             node.name = ONSTATE;
-            minetest.env:set_node(pos, node);
+            minetest.set_node(pos, node);
             nodeupdate(pos);
         end;
         drop = ONSTATE;

@@ -21,13 +21,13 @@ minetest.register_node("sponge:sponge", {
 			local on_water = false
 			local pos = pointed_thing.above
 		-- verifier si il est dans l'eau ou a cotée
-		if string.find(minetest.env:get_node(pointed_thing.above).name, "water_source") 
-		or  string.find(minetest.env:get_node(pointed_thing.above).name, "water_flowing") then
+		if string.find(minetest.get_node(pointed_thing.above).name, "water_source") 
+		or  string.find(minetest.get_node(pointed_thing.above).name, "water_flowing") then
 			on_water = true
 		end
 		for i=-1,1 do
 			p = {x=pos.x+i, y=pos.y, z=pos.z}
-			n = minetest.env:get_node(p)
+			n = minetest.get_node(p)
 			-- On verifie si il y a de l'eau
 			if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
 				on_water = true
@@ -35,7 +35,7 @@ minetest.register_node("sponge:sponge", {
 		end
 		for i=-1,1 do
 			p = {x=pos.x, y=pos.y+i, z=pos.z}
-			n = minetest.env:get_node(p)
+			n = minetest.get_node(p)
 			-- On verifie si il y a de l'eau
 			if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
 				on_water = true
@@ -43,7 +43,7 @@ minetest.register_node("sponge:sponge", {
 		end
 		for i=-1,1 do
 			p = {x=pos.x, y=pos.y, z=pos.z+i}
-			n = minetest.env:get_node(p)
+			n = minetest.get_node(p)
 			-- On verifie si il y a de l'eau
 			if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
 				on_water = true
@@ -55,10 +55,10 @@ minetest.register_node("sponge:sponge", {
 					for j=-3,3 do
 						for k=-3,3 do
 							p = {x=pos.x+i, y=pos.y+j, z=pos.z+k}
-							n = minetest.env:get_node(p)
+							n = minetest.get_node(p)
 							-- On Supprime l'eau
 							if (n.name=="default:water_flowing") or (n.name == "default:water_source")then
-								minetest.env:add_node(p, {name="air"})
+								minetest.add_node(p, {name="air"})
 								change = true
 							end
 						end
@@ -66,11 +66,11 @@ minetest.register_node("sponge:sponge", {
 				end
 			end
 			p = {x=pos.x, y=pos.y, z=pos.z}
-			n = minetest.env:get_node(p)
+			n = minetest.get_node(p)
 			if change == true then
-				minetest.env:add_node(pointed_thing.above, {name = "sponge:sponge_wet"})	
+				minetest.add_node(pointed_thing.above, {name = "sponge:sponge_wet"})	
 			else
-				minetest.env:add_node(pointed_thing.above, {name = "sponge:sponge"})	
+				minetest.add_node(pointed_thing.above, {name = "sponge:sponge"})	
 			end
 		return itemstack
 		

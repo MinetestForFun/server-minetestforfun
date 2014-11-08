@@ -18,8 +18,8 @@ minetest.register_node("seagravel:seagravel", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -46,8 +46,8 @@ minetest.register_node("seagravel:seagravel_cyan", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -74,8 +74,8 @@ minetest.register_node("seagravel:seagravel_magenta", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -102,8 +102,8 @@ minetest.register_node("seagravel:seagravel_lime", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -130,8 +130,8 @@ minetest.register_node("seagravel:seagravel_aqua", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -158,8 +158,8 @@ minetest.register_node("seagravel:seagravel_skyblue", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -186,8 +186,8 @@ minetest.register_node("seagravel:seagravel_redviolet", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -217,8 +217,8 @@ stairs.register_stair_and_slab("seagravel", "seagravel:seagravel",
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -244,8 +244,8 @@ stairs.register_stair_and_slab("seagravel_cyan", "seagravel:seagravel_cyan",
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -271,8 +271,8 @@ stairs.register_stair_and_slab("seagravel_magenta", "seagravel:seagravel_magenta
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -298,8 +298,8 @@ stairs.register_stair_and_slab("seagravel_lime", "seagravel:seagravel_lime",
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -325,8 +325,8 @@ stairs.register_stair_and_slab("seagravel_aqua", "seagravel:seagravel_aqua",
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -352,8 +352,8 @@ stairs.register_stair_and_slab("seagravel_skyblue", "seagravel:seagravel_skyblue
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -379,8 +379,8 @@ stairs.register_stair_and_slab("seagravel_redviolet", "seagravel:seagravel_redvi
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then

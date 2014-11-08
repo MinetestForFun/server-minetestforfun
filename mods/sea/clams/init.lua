@@ -25,8 +25,8 @@ minetest.register_node("clams:sandalgae", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -70,8 +70,8 @@ minetest.register_node("clams:sandalgaeused", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then

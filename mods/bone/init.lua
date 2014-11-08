@@ -75,17 +75,17 @@ end
 
 function generate_tree(pos, trunk, leaves)
 	pos.y = pos.y-1
-	local nodename = minetest.env:get_node(pos).name
+	local nodename = minetest.get_node(pos).name
 		
 	pos.y = pos.y+1
-	if not minetest.env:get_node_light(pos) then
+	if not minetest.get_node_light(pos) then
 		return
 	end
 
 	node = {name = ""}
 	for dy=1,4 do
 		pos.y = pos.y+dy
-		if minetest.env:get_node(pos).name ~= "air" then
+		if minetest.get_node(pos).name ~= "air" then
 			return
 		end
 		pos.y = pos.y-dy
@@ -93,7 +93,7 @@ function generate_tree(pos, trunk, leaves)
 	node = {name = "default:tree"}
 	for dy=0,4 do
 		pos.y = pos.y+dy
-		minetest.env:set_node(pos, node)
+		minetest.set_node(pos, node)
 		pos.y = pos.y-dy
 	end
 
@@ -111,40 +111,40 @@ function generate_tree(pos, trunk, leaves)
 				pos.z = pos.z+dz
 
 				if dx == 0 and dz == 0 and dy==3 then
-					if minetest.env:get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-						minetest.env:set_node(pos, node)
+					if minetest.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
+						minetest.set_node(pos, node)
 						if rarity == 1 then
-							minetest.env:set_node(pos, apple_leave())
+							minetest.set_node(pos, apple_leave())
 						else
-							minetest.env:set_node(pos, air_leave())
+							minetest.set_node(pos, air_leave())
 						end
 					end
 				elseif dx == 0 and dz == 0 and dy==4 then
-					if minetest.env:get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-						minetest.env:set_node(pos, node)
+					if minetest.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
+						minetest.set_node(pos, node)
 						if rarity == 1 then
-							minetest.env:set_node(pos, apple_leave())
+							minetest.set_node(pos, apple_leave())
 						else
-							minetest.env:set_node(pos, air_leave())
+							minetest.set_node(pos, air_leave())
 						end
 					end
 				elseif math.abs(dx) ~= 2 and math.abs(dz) ~= 2 then
-					if minetest.env:get_node(pos).name == "air" then
-						minetest.env:set_node(pos, node)
+					if minetest.get_node(pos).name == "air" then
+						minetest.set_node(pos, node)
 						if rarity == 1 then
-							minetest.env:set_node(pos, apple_leave())
+							minetest.set_node(pos, apple_leave())
 						else
-							minetest.env:set_node(pos, air_leave())
+							minetest.set_node(pos, air_leave())
 						end
 					end
 				else
 					if math.abs(dx) ~= 2 or math.abs(dz) ~= 2 then
-						if minetest.env:get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-							minetest.env:set_node(pos, node)
+						if minetest.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
+							minetest.set_node(pos, node)
 						if rarity == 1 then
-							minetest.env:set_node(pos, apple_leave())
+							minetest.set_node(pos, apple_leave())
 						else
-							minetest.env:set_node(pos, air_leave())
+							minetest.set_node(pos, air_leave())
 						end
 						end
 					end
@@ -181,34 +181,34 @@ end)
 
 local function duengen(pointed_thing)
 pos = pointed_thing.under
-n = minetest.env:get_node(pos)
+n = minetest.get_node(pos)
 if n.name == "" then return end
 local stage = ""
 if n.name == "default:sapling" then
-	minetest.env:set_node(pos, {name="air"})
+	minetest.set_node(pos, {name="air"})
 	generate_tree(pos, "default:tree", "default:leaves")
 elseif string.find(n.name, "farming:wheat_") ~= nil then
 	stage = string.sub(n.name, 15)
 	if stage == "3" then
-		minetest.env:set_node(pos, {name="farming:wheat"})
+		minetest.set_node(pos, {name="farming:wheat"})
 	elseif math.random(1,5) < 3 then
-		minetest.env:set_node(pos, {name="farming:wheat"})
+		minetest.set_node(pos, {name="farming:wheat"})
 	else
-		minetest.env:set_node(pos, {name="farming:wheat_"..math.random(2,3)})
+		minetest.set_node(pos, {name="farming:wheat_"..math.random(2,3)})
 	end
 elseif string.find(n.name, "farming:cotton_") ~= nil then
 	stage = tonumber(string.sub(n.name, 16))
 	if stage == 1 then
-		minetest.env:set_node(pos, {name="farming:cotton_"..math.random(stage,2)})
+		minetest.set_node(pos, {name="farming:cotton_"..math.random(stage,2)})
 	else
-		minetest.env:set_node(pos, {name="farming:cotton"})
+		minetest.set_node(pos, {name="farming:cotton"})
 	end
 elseif string.find(n.name, "farming:pumpkin_") ~= nil then
 	stage = tonumber(string.sub(n.name, 17))
 	if stage == 1 then
-		minetest.env:set_node(pos, {name="farming:pumpkin_"..math.random(stage,2)})
+		minetest.set_node(pos, {name="farming:pumpkin_"..math.random(stage,2)})
 	else
-		minetest.env:set_node(pos, {name="farming:pumpkin"})
+		minetest.set_node(pos, {name="farming:pumpkin"})
 	end
 	
 elseif n.name == "default:dirt_with_grass" then
@@ -216,14 +216,14 @@ elseif n.name == "default:dirt_with_grass" then
 		for j = -3, 2, 1 do
 			pos = pointed_thing.above
 			pos = {x=pos.x+i, y=pos.y, z=pos.z+j}
-			n = minetest.env:get_node(pos)
-			n2 = minetest.env:get_node({x=pos.x, y=pos.y-1, z=pos.z})
+			n = minetest.get_node(pos)
+			n2 = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z})
 
 			if n.name ~= ""  and n.name == "air" and n2.name == "default:dirt_with_grass" then
 				if math.random(0,5) > 3 then
-					minetest.env:set_node(pos, {name=plant_tab[math.random(0, rnd_max)]})
+					minetest.set_node(pos, {name=plant_tab[math.random(0, rnd_max)]})
 				else
-					minetest.env:set_node(pos, {name=plant_tab[math.random(0, 5)]})
+					minetest.set_node(pos, {name=plant_tab[math.random(0, 5)]})
 				end
 				
 				

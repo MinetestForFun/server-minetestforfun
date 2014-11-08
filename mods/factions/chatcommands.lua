@@ -79,7 +79,7 @@ end
 -------------------------------------------------------------------------------
 function factions_chat.cmdhandler(playername,parameter)
 
-	local player = minetest.env:get_player_by_name(playername)
+	local player = minetest.get_player_by_name(playername)
 	local params = parameter:split(" ")
 	local cmd = params[1]
 	
@@ -136,7 +136,7 @@ function factions_chat.cmdhandler(playername,parameter)
 	if cmd == "leave" then
 		if params[2] ~= nil then
 			if params[3] ~= nil then
-				local toremove = minetest.env:get_player_by_name(params[3])
+				local toremove = minetest.get_player_by_name(params[3])
 				--allowed if faction_admin, admin of faction or player itself
 				if minetest.check_player_privs(playername,{ faction_admin=true }) or
 					factions.is_admin(params[2],playername) and
@@ -182,7 +182,7 @@ function factions_chat.cmdhandler(playername,parameter)
 			if params[3] ~= nil and
 				minetest.check_player_privs(playername,{ faction_admin=true }) then
 				
-				local toadd = minetest.env:get_player_by_name(params[3])
+				local toadd = minetest.get_player_by_name(params[3])
 				
 				if toadd ~= nil then
 					if factions.member_add(params[2],toadd) then
@@ -354,7 +354,7 @@ end
 -------------------------------------------------------------------------------
 function factions_chat.allfactions_chathandler(playername,parameter)
 	
-	local player = minetest.env:get_player_by_name(playername)
+	local player = minetest.get_player_by_name(playername)
 	
 	if player ~= nil then
 	  local recipients = {}
@@ -391,7 +391,7 @@ end
 -------------------------------------------------------------------------------
 function factions_chat.chathandler(playername,parameter)
 	
-	local player = minetest.env:get_player_by_name(playername)	
+	local player = minetest.get_player_by_name(playername)	
 	
 	if player ~= nil then
 	  local line = parameter:split(" ")	
