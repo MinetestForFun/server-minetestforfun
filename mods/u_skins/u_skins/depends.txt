@@ -1,2 +1,0 @@
-unified_inventory
-default
