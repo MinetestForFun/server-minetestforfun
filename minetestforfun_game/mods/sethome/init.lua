@@ -48,23 +48,32 @@ minetest.register_chatcommand("home", {
     description = "Teleport you to your home point",
     privs = {home=true},
     func = function(name)
-        local player = minetest.env:get_player_by_name(name)
-        if not player_in_nether then return end
-        local is_in_nether = table.icontains(players_in_nether, name)
+        
+		local player = minetest.get_player_by_name(name)
+		local player_pos = player:getpos()
+        local is_player_in_nether = player_pos.y < -19600
 
         if player == nil then
             -- just a check to prevent the server crashing
             return false
         end
-        if homepos[player:get_player_name()] then
-			if is_in_nether then
-				player:setpos(nether.homepos[player:get_player_name()])
-            else
-				player:setpos(real.homepos[player:get_player_name()])
+
+        if is_player_in_nether then
+			if homepos.nether[name] ~= nil then
+				player:setpos(homepos.nether[name])
+				minetest.log("action",name.." teleported with /home to "..homepos.nether[name].x..","..homepos.nether[name].y..","..homepos.nether[name].z..", in the nether.")
+				core.chat_send_player(name, "Teleported to home in the nether!")
+			else
+				core.chat_send_player(name, "Set a home in the nether using /sethome")
 			end
-            minetest.chat_send_player(name, "Teleported to home!")
-        else
-            minetest.chat_send_player(name, "Set a home using /sethome")
+		else
+			if homepos.real[name] ~= nil then
+				player:setpos(homepos.real[name])
+				minetest.log("action",name.." teleported with /home to "..homepos.real[name].x..","..homepos.real[name].y..","..homepos.real[name].z..", in the real world.")
+				core.chat_send_player(name,"Teleported to home in the real world!")
+			else
+				core.chat_send_player(name, "Set a home in the real world using /sethome")
+			end
         end
     end,
 })
@@ -73,30 +82,25 @@ minetest.register_chatcommand("sethome", {
     description = "Set your home point",
     privs = {home=true},
     func = function(name)
-        local player = minetest.env:get_player_by_name(name)
-        local pos = player:getpos()
-        -- Find players in the nether
-        local players_in_nether = {}
-        local seeking = 0
-
-        local nether_file = io.open(minetest.get_worldpath().."/nether_players","r")
-        if not nether_file then return end
-
-		local player_in_nether_read = nether_file:read()
-		--if player_in_nether_read == "" then 
-        --if not players_in_nether then return end
-        player_in_nether = player_in_nether_read:split(" ")
-
-        local is_in_nether = table.icontains(players_in_nether, name)
-        if is_in_nether == true then
-			homepos.nether[player:get_player_name()] = pos
+		
+		local player_pnt = minetest.get_player_by_name(name)
+		local player_pos = player_pnt:getpos()
+		local player_is_in_nether = player_pos.y < -19600
+		
+		if player_is_in_nether == true then
+			homepos.nether[name] = pos
+			minetest.log("action",name.." set its home position to "..player_pos.x..","..player_pos.y..","..player_pos.z..", in the nether.")
+			core.chat_send_player(name,"Home set in the nether!")
 		else
-			homepos.real[player:get_player_name()] = pos
+			homepos.real[name] = pos
+			minetest.log("action",name.." set its home position to "..player_pos.x..","..player_pos.y..","..player_pos.z..", in the real world.")
+			core.chat_send_player(name,"Home set in the real world!")
 		end
-        minetest.chat_send_player(name, "Home set!")
-        changed = true
+		
+		changed = true
         if changed then
 			local output = 0
+			
 			if is_in_nether then
 				output = io.open(nether_homes_file, "w")
 				if output == 0 then return end -- Had not open the file
