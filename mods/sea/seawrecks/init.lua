@@ -97,7 +97,7 @@ minetest.register_node("seawrecks:ubootchest", {
 		
 		local kind_of_price = math.floor(math.random()*2)
     local amount_of_price = math.floor(math.random()*10)+1
-    local ingot_price = {"default:steel_ingot","default:copper_ingot","default:gold_ingot","moreores:tin_ingot","moreore:silver_ingot"}
+    local ingot_price = {"default:steel_ingot","default:copper_ingot","default:gold_ingot","moreores:tin_ingot","moreores:silver_ingot"}
     local price_group = {"",""}
     choosen_ingot = math.floor(math.random()*5)+1
     price_group[1] = ingot_price[choosen_ingot].." "..amount_of_price
