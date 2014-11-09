@@ -1,0 +1,75 @@
+Vanessa's Colored Woods mod
+===========================
+
+This mod provides a multitude of colors of wood, sticks, and fences to 
+Minetest, as per the palette outlined by my Unified Dyes mod.
+
+Requires unifieddyes and flowers if you want to craft the various items.  If 
+you don't have (or don't want to use) those two mods, you can also use /giveme 
+to get the items you want.
+
+Objects and their texture files are named using the same scheme as UnifiedDyes:
+
+coloredwood:wood_red
+coloredwood:stick_dark_green 
+coloredwood:fence_medium_blue_s50
+
+And so on.
+
+
+Crafting
+========
+
+Colored wood blocks
+-------------------
+
+Place two regular wood blocks and one portion of the desired dye color 
+into the crafting grid, in any position. Yields two colored wood blocks.  Use 
+these directly to build with, or craft them into sticks.
+
+
+Colored sticks
+--------------
+
+Just drop a colored wood block into the crafting grid as you would with an 
+uncolored wood block.  Yields 4 sticks of the same color as the wood block.
+
+While you cannot directly dye uncolored sticks, you can use them to craft 
+colored fences.
+
+
+Colored fences
+--------------
+
+Lay out six of the above colored sticks (must be all the same color) in the 
+usual two-row fence-crafting pattern.  Yields two colored fenceposts).
+
+ ----   ----   ----
+CStick CStick CStick
+CStick CStick CStick
+
+OR: Lay out six regular sticks in the usual fence-crafting pattern, plus one 
+portion of the desired dye color in the upper left corner of the grid (yields 
+two colored fenceposts):
+
+ Dye   ---   ---
+Stick Stick Stick
+Stick Stick Stick
+
+OR: Place two regular wooden fenceposts into the crafting grid along with one 
+portion of the desired dye color, in any position.  Yields two colored 
+fenceposts.
+
+
+Ladders
+-------
+
+Finally, if you find yourself short on uncolored sticks to make ladders out of, 
+and you have a surplus of one or more colors, you can craft them into regular, 
+uncolored ladders.  Place any colored sticks you want, in any combination, into 
+the crafting grid in the standard ladder pattern.  Yields two colored ladders 
+(to try to make up for the wasted dye).
+
+CStick  ----  CStick
+CStick CStick CStick
+CStick  ----  CStick
