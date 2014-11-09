@@ -14,9 +14,9 @@ dofile(minetest.get_modpath("_misc").."/rules.lua")
 dofile(minetest.get_modpath("_misc").."/nointeract_messages.lua")
 
 -- irc
---dofile(minetest.get_modpath("_misc").."/irc.lua")
+dofile(minetest.get_modpath("_misc").."/irc.lua")
 -- No Shout Messages
---dofile(minetest.get_modpath("_misc").."/noshout_messages.lua")
+dofile(minetest.get_modpath("_misc").."/noshout_messages.lua")
 
 -- Aliases
 dofile(minetest.get_modpath("_misc").."/aliases.lua")
