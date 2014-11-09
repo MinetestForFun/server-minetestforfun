@@ -127,8 +127,8 @@ function add_falling_protect_item(named)
 		  if minetest.is_protected(pointed_thing.above, pn) then
 			 return itemstack
 		  end
-		  minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		  local meta = minetest.env:get_meta(pointed_thing.above)
+		  minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		  local meta = minetest.get_meta(pointed_thing.above)
 		  meta:set_string("owner", pn)
 		  nodeupdate(pointed_thing.above)
 		  if not minetest.setting_getbool("creative_mode") then
@@ -169,7 +169,7 @@ function add_protected_bukket_liquid(nameofbukket,liquidsourcename)
 				return
 			end
 			-- Check if pointing to a buildable node
-			n = minetest.env:get_node(pointed_thing.under)
+			n = minetest.get_node(pointed_thing.under)
 			
 			if is_protected_area(pointed_thing.under, 7 ,user:get_player_name()) then
 				minetest.chat_send_player(user:get_player_name(),"You cant place here - Too short of a protected area.")
@@ -182,14 +182,14 @@ function add_protected_bukket_liquid(nameofbukket,liquidsourcename)
 			if minetest.registered_nodes[n.name].buildable_to then
 				-- buildable; replace the node
 				minetest.log("action", user:get_player_name().. " use "..nameofbukket.." at  ".. minetest.pos_to_string(pointed_thing.under))
-				minetest.env:add_node(pointed_thing.under, {name=liquidsourcename})
+				minetest.add_node(pointed_thing.under, {name=liquidsourcename})
 			else
 				-- not buildable to; place the liquid above
 				-- check if the node above can be replaced
-				n = minetest.env:get_node(pointed_thing.above)
+				n = minetest.get_node(pointed_thing.above)
 				if minetest.registered_nodes[n.name].buildable_to then
 					minetest.log("action", user:get_player_name().. " use "..nameofbukket.."  at  ".. minetest.pos_to_string(pointed_thing.above))
-					minetest.env:add_node(pointed_thing.above, {name=liquidsourcename})
+					minetest.add_node(pointed_thing.above, {name=liquidsourcename})
 				else
 					-- do not remove the bucket with the liquid
 					return

@@ -15,24 +15,27 @@ local IRC = [[
 7) Il ne sera toléré aucun type de discrimination contre quelque participant que ce soit, ni aucune forme d'insulte envers les opérateurs, semi-opérateurs et administrateurs d'InchraNet.
 
 Voici les sanctions prévues pour les infractions aux règles ci-dessus.
-+-----------------------+-----------------------------------+---------------------------------------+
-| Niveau d'infraction : 			| Infraction(s) commise(s) : 		| Sanctions appliquées :				|
-| 						| Manque de respect enver autrui	| Devoice une demi-journée				|
-|	Niveau DIRT				| Provocation envers autrui		| Devoie une journée					|
-|						| Insultes envers autrui		| Kick + devoice une journée				|
-+-----------------------+-----------------------------------+---------------------------------------+
-|						| Récidive d'infraction niveau dirt	| Kick + Ban 1/2 journée				|
-|	Niveau STONE				| Flood, Discrimination			| Kick + devoice deux heures				|
-|						| Spam					| Kick + devoice 1 jour + ban 1/2 journée		|
-+-----------------------+-----------------------------------+---------------------------------------+
-|						| Récidive d'infraction niveau stone	| Kick + Ban 4 jours + devoice 5 jours			|
-|	Niveau MESE				| Contenu à caractère sexuel		| Kick + Ban 1 semaine + devoice 5 jours		|
-|						| Irrespect envers l'équipe		| Kick + Ban 10 jours + devoice 8 jours 		|
-+-----------------------+-----------------------------------+---------------------------------------+
-|						| Récidive d'infraction niveau mese 	| Kick + Ban 1 mois + devoice 2 semaines		|
-|	Niveau OBSIDIAN				| Violation des lois en vigueur		| Kick + Ban définitif + Gline			|
-|						| Violation des règles d'InchraNet 	| Kick + Ban définitif + Gline				|
-+-----------------------+-----------------------------------+---------------------------------------+
+
+- Infraction niveau DIRT : 
+	Manque de respect envers autrui : Devoice une journée
+	Provocation envers autrui : Devoice une journée
+	Insultes envers autrui : Kick + Devoice une journée
+	
+- Infraction niveau STONE :
+	- Récidivide d'infraction niveau dirt : Kick + Ban 1/2 journée
+	- Flood, Discrimination : Kick + Devoice deux heures
+	- Spam : Kick + Devoice 1 jour + Ban 1/2 journée
+	
+- Infraction niveau MESE : 
+	- Récidive d'infraction niveau stone : Kick + Ban 4 jours + devoice 5 jours
+	- Diffusion de contenu à caractère sexuel : Kick + Ban 1 semaine + devoice 5 jours
+	- Irrespect envers l'équipe du canal : Kick + Ban 10 jours + devoice 8 jours
+
+- Infraction niveau OBSIDIAN :
+	- Récidive d'infraction niveau mese : Kick + Ban 1 mois + devoice 2 semaines
+	- Violation des lois en vigueur : Kick + Ban définitif + Gline si accord des IrcOP d'InchraNet
+	- Violation des règles d'InchraNet : Kick + Ban définitif + Gline ou sanction défnie par l'équipe d'InchraNet
+	
 
 Autres règles de bienséances :
 - Ne demandez pas à faire partie des opérateurs/semi-opérateurs du canal.

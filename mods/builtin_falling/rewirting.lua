@@ -143,8 +143,8 @@ minetest.override_item("default:lava_source", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -163,8 +163,8 @@ minetest.override_item("default:lava_flowing", {
 		if minetest.is_protected(pointed_thing.above, pn) then
 			return itemstack
 		end
-		minetest.env:add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.env:get_meta(pointed_thing.above)
+		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
+		local meta = minetest.get_meta(pointed_thing.above)
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
@@ -181,7 +181,7 @@ if PROTECT_LAVA_REALTIME == 1 then
 		interval = 1,
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
-				local meta = minetest.env:get_meta(pos)		
+				local meta = minetest.get_meta(pos)		
 				if meta:get_string("owner") ~= nil and minetest.is_protected(pos, meta:get_string("owner")) then
 					minetest.add_node(pos,{name="air"})
 				end
@@ -196,7 +196,7 @@ if PROTECT_WATER_REALTIME == 1 then
 		interval = 1,
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
-				local meta = minetest.env:get_meta(pos)		
+				local meta = minetest.get_meta(pos)		
 				if meta:get_string("owner") ~= nil and minetest.is_protected(pos, meta:get_string("owner")) then
 					minetest.add_node(pos,{name="air"})
 				end
