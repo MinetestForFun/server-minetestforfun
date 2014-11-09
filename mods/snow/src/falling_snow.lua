@@ -79,7 +79,7 @@ if snow.enable_snowfall then
 	local get_snow = function(pos)
 		--Legacy support.
 		if weather_legacy == "snow" then
-			local perlin1 = minetest.:get_perlin(112,3, 0.5, 150)
+			local perlin1 = minetest.get_perlin(112,3, 0.5, 150)
 			if perlin1:get2d( {x=pos.x, y=pos.z} ) > 0.53 then
 				return true
 			else
@@ -106,13 +106,13 @@ if snow.enable_snowfall then
 	local snow_fall=function (pos, player, animate)
 			local ground_y = nil
 			for y=pos.y+10,pos.y+20,1 do
-				local n = minetest.:get_node({x=pos.x,y=y,z=pos.z}).name
+				local n = minetest.get_node({x=pos.x,y=y,z=pos.z}).name
 				if n ~= "air" and n ~= "ignore" then
 					return
 				end
 			end
 			for y=pos.y+10,pos.y-15,-1 do
-				local n = minetest.:get_node({x=pos.x,y=y,z=pos.z}).name
+				local n = minetest.get_node({x=pos.x,y=y,z=pos.z}).name
 				if n ~= "air" and n ~= "ignore" then
 					ground_y = y
 					break
@@ -151,7 +151,7 @@ if snow.enable_snowfall then
 			local smaxp = addvectors(ppos, {x= 20, y=0, z= 20})
 		
 			-- Make sure player is not in a cave/house...
-			if get_snow(ppos) and minetest.:get_node_light(ppos, 0.5) == 15 then
+			if get_snow(ppos) and minetest.get_node_light(ppos, 0.5) == 15 then
 
 				local minp = addvectors(ppos, {x=-9, y=3, z=-9})
 				local maxp = addvectors(ppos, {x= 9, y=5, z= 9})

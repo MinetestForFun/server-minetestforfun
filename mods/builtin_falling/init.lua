@@ -12,7 +12,6 @@ PROTECT_WATER_REALTIME = 0 -- 0 for OFF , 1 for ON
 -- List of your node need to rewirte
 --
 add_falling_protect_item("default:sand")
-add_falling_protect_item("default:redsand")
 add_falling_protect_item("default:gravel")
 
 add_protected_bukket_liquid("bucket:bucket_lava","default:lava_source") -- lava bukket
