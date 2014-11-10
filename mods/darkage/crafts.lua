@@ -351,3 +351,32 @@ minetest.register_craft({
 		{"default:steel_ingot"},
 	}
 })
+
+-- Added
+
+minetest.register_craft({
+	output = "darkage:ors_brick 4",
+	type = "shapeless",
+	recipe = {
+		{"darkage:ors","darkage:ors"},
+		{"darkage:ors","darkage:ors"},
+	}
+})
+
+minetest.register_craft({
+	output = "darkage:slate_brick 4",
+	type = "shapeless",
+	recipe = {
+		{"darkage:slate","darkage:slate"},
+		{"darkage:slate","darkage:slate"},
+	}
+})
+
+minetest.register_craft({
+	output = "darkage:basalt_brick 4",
+	type = "shapeless",
+	recipe = {
+		{"darkage:basalt","darkage:basalt"},
+		{"darkage:basalt","darkage:basalt"},
+	}
+})
