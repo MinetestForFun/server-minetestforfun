@@ -5,8 +5,9 @@ minetest.register_globalstep(function(dtime)
 	TIMER = 0
 	for _,player in ipairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
-		if not minetest.check_player_privs(name, {interact=true}) then
+		if not minetest.check_player_privs(name, {interact=shout}) then
 			minetest.chat_send_player(name, "Hey " .. name .. " ! Pour pouvoir communiquer avec les autres joueurs sur ce serveur, tu dois lire les règles de l'irc et les accepter. Tape /irc.")
+			minetest.chat_send_player(name, "Hey " .. name .. " ! To speak to other people on this server, you have to read the rules of our irc channel and agree to them. Type /irc.")
 		end
 	end
 end)
