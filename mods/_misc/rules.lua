@@ -1,18 +1,18 @@
 # Based on https://github.com/ChaosWormz/mt_terms_of_use
 
 local RULES = [[
-Voici les règles :
+Voici les regles :
 
 1)	Aucune atteinte intentionnelle au bon fonctionnement du serveur ne sera admise. (lag, crash, exploit de bug, etc...)
-2)	La triche (hack, client modifié, etc...) n'est pas tolérée sur le serveur. Soyez fair-play et apprenez à jouer selon les règles.
-3)	Sur le serveur, le PVP est autorisé, le vole/grief est aussi autorisé. (pensez au mod areas pour protéger vos biens)
+2)	La triche (hack, client modifie, etc...) n'est pas toleree sur le serveur. Soyez fair-play et apprenez a jouer selon les regles.
+3)	Sur le serveur, le PVP est autorise, le vole/grief est aussi autorise, le grief n'est pas autorise sur les constructions publics. (pensez au mod areas pour proteger vos biens)
 4)	Merci de ne pas spammer ou flooder.
-5)	Chaque joueur à l'entière responsabilité de son compte, nous ne sommes en aucun cas responsable d'une utilisation frauduleuse de votre compte dans le jeu.
-6)	Si possible, évitez les constructions de tours en 1x1 et, poser des blocs gâchant le décor n'importe ou. Ceci pour que le serveur reste le plus beau, sauvage et naturel possibe.
-7)	Ne demandez pas à être membre de l'equipe du serveur.
+5)	Chaque joueur a l'entiere responsabilite de son compte, nous ne sommes en aucun cas responsable d'une utilisation frauduleuse de votre compte dans le jeu.
+6)	Si possible, evitez les constructions de tours en 1x1 mais aussi, de poser des blocs gachant le decor, n'importe ou. Ceci pour que le serveur reste le plus beau, sauvage et naturel possible.
+7)	Ne demandez pas a etre membre de l'equipe du serveur.
 8)	Aucune forme d'insulte ou de racisme n'est admise.
 
-Cliquez sur le bouton "Accepter" pour pouvoir construire et intéragir sur le serveur.
+Cliquez sur le bouton "Accepter" pour pouvoir construire et interagir sur le serveur.
 ]]
 
 local function make_formspec()
