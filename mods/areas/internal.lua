@@ -1,4 +1,7 @@
 
+-- Mega_builder privilege
+minetest.register_privilege("megabuilder","Can protect an infinite amount of areas.")
+
 function areas:player_exists(name)
 	return minetest.auth_table[name] ~= nil
 end
@@ -110,21 +113,22 @@ end
 -- has more than max_areas.
 function areas:canPlayerAddArea(pos1, pos2, name)
 	if minetest.check_player_privs(name, self.adminPrivs) then
-		return true
+		--return true
 	end
 
 	-- Check self protection privilege, if it is enabled,
 	-- and if the area is too big.
-	if (not self.self_protection) or 
+	--[[if (not self.self_protection) or 
 	   (not minetest.check_player_privs(name,
 	   		{[areas.self_protection_privilege]=true})) then
 		return false, "Self protection is disabled or you do not have"
 				.." the necessary privilege."
-	end
+	end]]--
 
-	if (pos2.x - pos1.x) > self.self_protection_max_size.x or
+	if ((pos2.x - pos1.x) > self.self_protection_max_size.x or
 	   (pos2.y - pos1.y) > self.self_protection_max_size.y or
-	   (pos2.z - pos1.z) > self.self_protection_max_size.z then
+	   (pos2.z - pos1.z) > self.self_protection_max_size.z)
+	   and minetest.get_player_privs(name)["megabuilder"] == false then
 		return false, "Area is too big."
 	end
 
@@ -135,7 +139,9 @@ function areas:canPlayerAddArea(pos1, pos2, name)
 			count = count + 1
 		end
 	end
-	if count >= self.self_protection_max_areas then
+	if count >= self.self_protection_max_areas 
+	   and minetest.get_player_privs(name)["megabuilder"] == 
+false then
 		return false, "You have reached the maximum amount of"
 				.." areas that you are allowed to  protect."
 	end
