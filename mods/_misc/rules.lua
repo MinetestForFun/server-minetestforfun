@@ -17,6 +17,7 @@ Cliquez sur le bouton "Accepter" pour pouvoir construire et interagir sur le ser
 
 local function make_formspec()
 	local size = { "size[10,8]" }
+	table.insert(size, "background[-1.5,-1.5;13,11;background.jpg]")
 	table.insert(size, "textarea[0.5,0.5;9.5,8;TOS;Voici les regles, cliquez sur Accepter si vous etes d'accord avec;"..RULES.."]")
 	table.insert(size, "button_exit[6,7.4;1.5,0.5;accept;J'accepte]")
 	table.insert(size, "button[7.5,7.4;1.5,0.5;decline;Je refuse]")
