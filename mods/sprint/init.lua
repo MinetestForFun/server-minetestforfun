@@ -78,7 +78,7 @@ minetest.register_globalstep(function(dtime)
 					playerInfo["stamina"] = 0
 					setState(playerName, 0)
 					if SPRINT_WARN then
-						minetest.chat_send_player(playerName, "Your sprint stamina has run out!")
+						minetest.chat_send_player(playerName, "Votre sprint s'arrete, plus d'endurance ! Your sprint stamina has run out !")
 					end
 				end
 			
