@@ -20,6 +20,17 @@ chests = {
 		[32] = ""
 	}
   }
+  [2] = {
+    position = {x = 34, y = 20, z = 101},
+    interval_max = 7200,
+    stuff = {
+	[1] = "3d_armor:steel_chest",
+	[2] = "throwing:bow_stone",
+	[3] = "default:sword_stone",
+	[4] = "farming:carrot 3",
+	[32] = ""
+    }
+  }
 }
 
 minetest.register_globalstep(function(dtime)
