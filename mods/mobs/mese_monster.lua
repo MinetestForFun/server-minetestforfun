@@ -25,7 +25,7 @@ mobs:register_mob("mobs:mese_monster", {
 	view_range = 16,
 	walk_velocity = 1,
 	run_velocity = 3,
-	damage = 7,
+	damage = 6,
 	drops = {
 		{name = "default:mese_crystal",
 		chance = 9,
