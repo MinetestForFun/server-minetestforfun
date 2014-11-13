@@ -1,37 +1,35 @@
 
---= Raspberries
+--= Blueberries
 
-minetest.register_craftitem("farming:raspberries", {
-	description = "Raspberries",
-	inventory_image = "farming_raspberries.png",
+minetest.register_craftitem("farming:blueberries", {
+	description = "Blueberries",
+	inventory_image = "farming_blueberries.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		return farming.place_seed(itemstack, placer, pointed_thing, "farming:raspberry_1")
+		return farming.place_seed(itemstack, placer, pointed_thing, "farming:blueberry_1")
 	end,
 	on_use = minetest.item_eat(1),
 })
 
--- Raspberry Smoothie
+-- Blueberry Muffin (Thanks to sosogirl123 for muffin image in deviantart.com)
 
-minetest.register_craftitem("farming:smoothie_raspberry", {
-	description = "Raspberry Smoothie",
-	inventory_image = "farming_raspberry_smoothie.png",
-	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
+minetest.register_craftitem("farming:muffin_blueberry", {
+	description = "Blueberry Muffin",
+	inventory_image = "farming_blueberry_muffin.png",
+	on_use = minetest.item_eat(2),
 })
 
 minetest.register_craft({
-	output = "farming:smoothie_raspberry",
+	output = "farming:muffin_blueberry 2",
 	recipe = {
-		{"default:snow"},
-		{"farming:raspberries"},
-		{"vessels:drinking_glass"},
+		{"farming:blueberries", "farming:bread", "farming:blueberries"},
 	}
 })
 
--- Define Raspberry growth stages
+-- Define Blueberry growth stages
 
-minetest.register_node("farming:raspberry_1", {
+minetest.register_node("farming:blueberry_1", {
 	drawtype = "plantlike",
-	tiles = {"farming_raspberry_1.png"},
+	tiles = {"farming_blueberry_1.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	waving = 1,
@@ -43,9 +41,9 @@ minetest.register_node("farming:raspberry_1", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:raspberry_2", {
+minetest.register_node("farming:blueberry_2", {
 	drawtype = "plantlike",
-	tiles = {"farming_raspberry_2.png"},
+	tiles = {"farming_blueberry_2.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	waving = 1,
@@ -57,9 +55,9 @@ minetest.register_node("farming:raspberry_2", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:raspberry_3", {
+minetest.register_node("farming:blueberry_3", {
 	drawtype = "plantlike",
-	tiles = {"farming_raspberry_3.png"},
+	tiles = {"farming_blueberry_3.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	waving = 1,
@@ -71,11 +69,11 @@ minetest.register_node("farming:raspberry_3", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Last stage of Raspberry growth does not have growing=1 so abm never has to check these
+-- Last stage of Blueberry growth does not have growing=1 so abm never has to check these
 
-minetest.register_node("farming:raspberry_4", {
+minetest.register_node("farming:blueberry_4", {
 	drawtype = "plantlike",
-	tiles = {"farming_raspberry_4.png"},
+	tiles = {"farming_blueberry_4.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	waving = 1,
@@ -84,9 +82,9 @@ minetest.register_node("farming:raspberry_4", {
 	is_ground_content = true,
 	drop = {
 		items = {
-			{items = {'farming:raspberries 2'},rarity=1},
-			{items = {'farming:raspberries'},rarity=2},
-			{items = {'farming:raspberries'},rarity=3},
+			{items = {'farming:blueberries 2'},rarity=1},
+			{items = {'farming:blueberries'},rarity=2},
+			{items = {'farming:blueberries'},rarity=3},
 		}
 	},
 	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},

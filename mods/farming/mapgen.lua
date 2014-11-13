@@ -52,7 +52,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						-- If dirt with grass, add plant in various stages of maturity
 						if nn == "default:dirt_with_grass" then
 						
-							local type = math.random(1,10)
+							local type = math.random(1,11)
 							if type == 1 and ground_y > 15 then
 								minetest.set_node(p,{name="farming:potato_"..pr:next(3, 4)})
 							elseif type == 2 then
@@ -73,6 +73,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								minetest.set_node(p,{name="farming:raspberry_4"})
 							elseif type == 10 and ground_y > 10 then
 								minetest.set_node(p,{name="farming:rhubarb_3"})
+							elseif type == 11 and ground_y > 5 then
+								minetest.set_node(p,{name="farming:blueberry_4"})
 							end
 						end
 					end

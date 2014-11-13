@@ -1,15 +1,7 @@
 
--- Re-register Jungletree (tree=2 for placement below)
+-- Override default jungletree, add tree=2 for cocoa placement
 
-minetest.register_node(":default:jungletree", {
-	description = "Jungle Tree",
-	tiles = {"default_jungletree_top.png", "default_jungletree_top.png", "default_jungletree.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {tree=2,choppy=2,oddly_breakable_by_hand=1,flammable=2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
+minetest.override_item("default:jungletree", {groups = {tree=2,choppy=2,oddly_breakable_by_hand=1,flammable=2}})
 
 -- Place Cocoa
 

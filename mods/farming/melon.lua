@@ -136,6 +136,6 @@ minetest.register_node("farming:melon_8", {
 			{items = {'farming:melon_slice 9'},rarity=1},
 		}
 	},
-	groups = {choppy=3,flammable=2,plant=1},
+	groups = {snappy=3,flammable=2,plant=1},
 	sounds = default.node_sound_wood_defaults(),
 })

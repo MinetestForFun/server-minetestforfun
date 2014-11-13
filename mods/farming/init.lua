@@ -1,5 +1,5 @@
 --[[
-	Minetest Farming Redo Mod 1.09 (19th September 2014)
+	Minetest Farming Redo Mod 1.10 (4th November 2014)
 	by TenPlus1
 ]]
 
@@ -23,6 +23,7 @@ dofile(minetest.get_modpath("farming").."/sugar.lua")
 dofile(minetest.get_modpath("farming").."/pumpkin.lua")
 dofile(minetest.get_modpath("farming").."/cocoa.lua")
 dofile(minetest.get_modpath("farming").."/raspberry.lua")
+dofile(minetest.get_modpath("farming").."/blueberry.lua")
 dofile(minetest.get_modpath("farming").."/rhubarb.lua")
 dofile(minetest.get_modpath("farming").."/donut.lua") -- sweet treat
 dofile(minetest.get_modpath("farming").."/mapgen.lua")

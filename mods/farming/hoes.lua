@@ -43,10 +43,7 @@ end
 function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	local pt = pointed_thing
 	-- check if pointing at a node
-	if not pt then
-		return
-	end
-	if pt.type ~= "node" then
+	if not pt or pt.type ~= "node" then
 		return
 	end
 	
@@ -62,10 +59,8 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	local above = minetest.get_node(p)
 	
 	-- return if any of the nodes is not registered
-	if not minetest.registered_nodes[under.name] then
-		return
-	end
-	if not minetest.registered_nodes[above.name] then
+	if not minetest.registered_nodes[under.name]
+	or not minetest.registered_nodes[above.name] then
 		return
 	end
 	
