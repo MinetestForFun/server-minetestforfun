@@ -14,7 +14,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	view_range = 16,
 	walk_velocity = 1,
 	run_velocity = 3,
-	damage = 12,
+	damage = 13,
 	drops = {
 		{name = "default:mese_crystal_fragment",
 		chance = 1,
