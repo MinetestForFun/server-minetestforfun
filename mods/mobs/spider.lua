@@ -3,8 +3,8 @@
 
 mobs:register_mob("mobs:spider", {
 	type = "monster",
-	hp_min = 20,
-	hp_max = 40,
+	hp_min = 30,
+	hp_max = 35,
 	collisionbox = {-0.9, -0.01, -0.7, 0.7, 0.6, 0.7},
 	textures = {"mobs_spider.png"},
 	visual_size = {x=7,y=7},
@@ -14,8 +14,8 @@ mobs:register_mob("mobs:spider", {
 	view_range = 15,
 	walk_velocity = 1,
 	run_velocity = 3,
-    armor = 200,
-	damage = 3,
+    armor = 100,
+	damage = 4,
 	drops = {
 		{name = "farming:string",
 		chance = 2,
@@ -29,6 +29,10 @@ mobs:register_mob("mobs:spider", {
 		chance = 15,
 		min = 1,
 		max = 2,},
+		{name = "maptools:copper_coin",
+		chance = 2,
+		min = 2,
+		max = 6,},
 	},
     light_resistant = true,
 	drawtype = "front",

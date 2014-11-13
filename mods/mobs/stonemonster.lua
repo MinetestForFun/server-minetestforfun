@@ -3,7 +3,7 @@
 
 mobs:register_mob("mobs:stone_monster", {
 	type = "monster",
-	hp_min = 25,
+	hp_min = 30,
 	hp_max = 35,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
@@ -14,24 +14,24 @@ mobs:register_mob("mobs:stone_monster", {
 	view_range = 16,
 	walk_velocity = 2,
 	run_velocity = 4,
-	damage = 3,
+	damage = 5,
 	drops = {
 		{name = "default:torch",
 		chance = 10,
 		min = 3,
 		max = 5,},
 		{name = "default:iron_lump",
-		chance=5,
-		min=1,
-		max=2,},
+		chance = 5,
+		min = 1,
+		max = 2,},
 		{name = "default:coal_lump",
-		chance=3,
-		min=1,
-		max=3,},
-		{name = "maptools:copper_coin",
+		chance = 3,
+		min = 1,
+		max = 3,},
+		{name = "maptools:silver_coin",
 		chance = 2,
 		min = 2,
-		max = 4,},
+		max = 3,},
 	},
 	light_resistant = true,
 	armor = 60,
@@ -56,4 +56,4 @@ mobs:register_mob("mobs:stone_monster", {
 	step = 1,
 	blood_texture = "mobs_blood.png",
 })
-mobs:register_spawn("mobs:stone_monster", {"default:stone"}, 3, -1, 5000, 1, 0)
+mobs:register_spawn("mobs:stone_monster", {"default:stone", "nether:dirt_top"}, 3, -1, 5000, 1, 0)

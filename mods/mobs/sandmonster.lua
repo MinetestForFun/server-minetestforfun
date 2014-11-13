@@ -3,7 +3,7 @@
 
 mobs:register_mob("mobs:sand_monster", {
 	type = "monster",
-	hp_min = 10,
+	hp_min = 15,
 	hp_max = 20,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",

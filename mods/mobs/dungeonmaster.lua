@@ -3,8 +3,8 @@
 
 mobs:register_mob("mobs:dungeon_master", {
 	type = "monster",
-	hp_min = 45,
-	hp_max = 55,
+	hp_min = 50,
+	hp_max = 60,
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
 	mesh = "mobs_dungeon_master.x",
@@ -34,8 +34,8 @@ mobs:register_mob("mobs:dungeon_master", {
 		max = 1,},
 		{name = "maptools:silver_coin",
 		chance = 1,
-		min = 1,
-		max = 5,},
+		min = 2,
+		max = 10,},
 	},
 	armor = 60,
 	drawtype = "front",

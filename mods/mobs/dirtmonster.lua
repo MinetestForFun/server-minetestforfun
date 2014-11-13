@@ -2,7 +2,7 @@
 
 mobs:register_mob("mobs:dirt_monster", {
 	type = "monster",
-	hp_min = 20,
+	hp_min = 25,
 	hp_max = 30,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
@@ -13,7 +13,7 @@ mobs:register_mob("mobs:dirt_monster", {
 	view_range = 16,
 	walk_velocity = 3,
 	run_velocity = 5,
-	damage = 3,
+	damage = 4,
 	drops = {
 		{name = "default:dirt",
 		chance = 1,
@@ -22,7 +22,7 @@ mobs:register_mob("mobs:dirt_monster", {
 		{name = "maptools:copper_coin",
 		chance = 2,
 		min = 2,
-		max = 4,},
+		max = 8,},
 	},
 	armor = 90,
 	drawtype = "front",
