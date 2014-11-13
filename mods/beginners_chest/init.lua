@@ -19,7 +19,7 @@ chests = {
 		[3] = "default:sword_stone",
 		[32] = ""
 	}
-  }
+  },
   [2] = {
     position = {x = 34, y = 20, z = 101},
     interval_max = 7200,

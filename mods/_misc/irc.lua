@@ -47,11 +47,11 @@ Autres regles de bienseances :
 ]]
 
 local function make_formspec()
-	local size = { "size[10,8]" }
-	table.insert(size, "background[-1.5,-1.5;13,11;background.jpg]")
-	table.insert(size, "textarea[0.5,0.5;9.5,8;TOS;Voici les regles, cliquez sur Accepter si vous etes d'accord avec;"..minetest.formspec_escape(IRC).."]")
-	table.insert(size, "button_exit[6,7.4;1.5,0.5;accept;J'accepte]")
-	table.insert(size, "button[7.5,7.4;1.5,0.5;decline;Je refuse]")
+	local size = { "size[12,10;]" }
+	table.insert(size, "background[-0.22,-0.25;13,11;background.jpg]")
+	table.insert(size, "textarea[.50,1;12,10;TOS;Voici les regles, cliquez sur Accepter si vous etes d'accord avec;"..minetest.formspec_escape(IRC).."]")
+	table.insert(size, "button_exit[6,9.9;1.5,0.5;accept;J'accepte]")
+	table.insert(size, "button[7.5,9.9;1.5,0.5;decline;Je refuse]")
 	return table.concat(size)
 end
 
