@@ -26,7 +26,7 @@ minetest.register_globalstep(function(dtime)
 		local player = minetest.get_player_by_name(playerName)
 		if player ~= nil then
 			--Check if they are moving or not
-			players[playerName]["moving"] = player:get_player_control()["sneak"]
+			players[playerName]["moving"] = player:get_player_control()["up"]
 			-- s'arrete si le joueur fait un clique gauche ou droit
 			if player:get_player_control()["RMB"] or player:get_player_control()["LMB"] and STOP_ON_CLICK == true then
 				players[playerName]["state"] = 0
