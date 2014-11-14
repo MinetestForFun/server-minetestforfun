@@ -505,6 +505,11 @@ minetest.register_craft({
 	recipe = {{"default:bronzeblock"},}
 })
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6af63a7e5d47ce158443a7a59da2954f046f7129
 minetest.register_craft({
 	output = "default:goldblock",
 	recipe = {
