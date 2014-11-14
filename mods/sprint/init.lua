@@ -1,4 +1,11 @@
---Sprint mod for Minetest by GunshipPenguin
+--[[
+Sprint mod for Minetest by GunshipPenguin
+
+To the extent possible under law, the author(s)
+have dedicated all copyright and related and neighboring rights 
+to this software to the public domain worldwide. This software is
+distributed without any warranty. 
+]]
 
 --Configuration variables, these are all explained in README.md
 local SPRINT_SPEED = 1.35
@@ -9,9 +16,25 @@ local SPRINT_WARN = true
 STOP_ON_CLICK = true --If true, sprinting will stop when either the left mouse button or the right mouse button is pressed
 
 local players = {}
+local staminaHud = {}
 
 minetest.register_on_joinplayer(function(player)
-	players[player:get_player_name()] = {state = 0, timeOut = 0, stamina = SPRINT_STAMINA, moving = false}
+	playerName = player:get_player_name()
+	players[playerName] = {
+	state = 0, 
+	timeOut = 0, 
+	stamina = SPRINT_STAMINA, 
+	moving = false, 
+	hud= player:hud_add({
+		hud_elem_type = "statbar",
+		position = {x=0.5,y=1},
+		size = {x=24, y=24},
+		text = "stamina.png",
+		number = 20,
+		alignment = {x=0,y=1},
+		offset = {x=-320, y=-186},
+	}),
+	}
 end)
 minetest.register_on_leaveplayer(function(player)
 	playerName = player:get_player_name()
@@ -86,6 +109,10 @@ minetest.register_globalstep(function(dtime)
 			elseif playerInfo["state"] ~= 3 and playerInfo["stamina"] < SPRINT_STAMINA then
 				playerInfo["stamina"] = playerInfo["stamina"] + dtime
 			end
+			
+			--Update the players's hud sprint stamina bar
+			player:hud_change(playerInfo["hud"], "number", playerInfo["stamina"])
+			
 		end
 	end
 end)
