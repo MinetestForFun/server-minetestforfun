@@ -32,13 +32,6 @@ minetest.register_craftitem("default:iron_lump", {
 	groups = {ingot_lump = 1},
 })
 
-minetest.register_craftitem("default:tin_lump", {
-	description = "Tin Lump",
-	wield_scale = {x = 1, y = 1, z = 2},
-	inventory_image = "default_tin_lump.png",
-	groups = {ingot_lump = 1},
-})
-
 minetest.register_craftitem("default:copper_lump", {
 	description = "Copper Lump",
 	wield_scale = {x = 1, y = 1, z = 2},
@@ -49,13 +42,6 @@ minetest.register_craftitem("default:copper_lump", {
 minetest.register_craftitem("default:mese_crystal", {
 	description = "Mese Crystal",
 	inventory_image = "default_mese_crystal.png",
-})
-
-minetest.register_craftitem("default:silver_lump", {
-	description = "Silver Lump",
-	wield_scale = {x = 1, y = 1, z = 2},
-	inventory_image = "default_silver_lump.png",
-	groups = {ingot_lump = 1},
 })
 
 minetest.register_craftitem("default:gold_lump", {
@@ -84,13 +70,6 @@ minetest.register_craftitem("default:steel_ingot", {
 	groups = {ingot = 1},
 })
 
-minetest.register_craftitem("default:tin_ingot", {
-	description = "Tin Ingot",
-	wield_scale = {x = 1, y = 1, z = 2},
-	inventory_image = "default_tin_ingot.png",
-	groups = {ingot = 1},
-})
-
 minetest.register_craftitem("default:copper_ingot", {
 	description = "Copper Ingot",
 	wield_scale = {x = 1, y = 1, z = 2},
@@ -102,13 +81,6 @@ minetest.register_craftitem("default:bronze_ingot", {
 	description = "Bronze Ingot",
 	wield_scale = {x = 1, y = 1, z = 2},
 	inventory_image = "default_bronze_ingot.png",
-	groups = {ingot = 1},
-})
-
-minetest.register_craftitem("default:silver_ingot", {
-	description = "Silver Ingot",
-	wield_scale = {x = 1, y = 1, z = 2},
-	inventory_image = "default_silver_ingot.png",
 	groups = {ingot = 1},
 })
 

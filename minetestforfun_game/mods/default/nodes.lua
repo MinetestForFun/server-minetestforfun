@@ -119,21 +119,6 @@ minetest.register_node("default:desert_stone_with_copper", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stone_with_tin", {
-	description = "Tin Ore",
-	tiles = {"default_stone.png^default_mineral_tin.png"},
-	is_ground_content = true,
-	groups = {cracky = 3},
-	drop = {
-		items = {
-			{items = {"default:cobble"}},
-			{items = {"default:tin_lump"}},
-			{items = {"maptools:copper_coin 2"}},
-		},
-	},
-	sounds = default.node_sound_stone_defaults(),
-})
-
 minetest.register_node("default:stone_with_mese", {
 	description = "Mese Ore",
 	tiles = {"default_stone.png^default_mineral_mese.png"},
@@ -144,21 +129,6 @@ minetest.register_node("default:stone_with_mese", {
 			{items = {"default:cobble"}},
 			{items = {"default:mese_crystal"}},
 			{items = {"maptools:silver_coin 1"}},
-		},
-	},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-minetest.register_node("default:stone_with_silver", {
-	description = "Silver Ore",
-	tiles = {"default_stone.png^default_mineral_silver.png"},
-	is_ground_content = true,
-	groups = {cracky = 3},
-	drop = {
-		items = {
-			{items = {"default:cobble"}},
-			{items = {"default:silver_lump"}},
-			{items = {"maptools:copper_coin 3"}},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
@@ -2037,14 +2007,6 @@ minetest.register_node("default:steelblock", {
 	sounds = default.node_sound_metal_defaults(),
 })
 
-minetest.register_node("default:tinblock", {
-	description = "Tin Block",
-	tiles = {"default_tin_block.png"},
-	is_ground_content = true,
-	groups = {cracky = 1, level = 2, ingot_block = 1},
-	sounds = default.node_sound_metal_defaults(),
-})
-
 minetest.register_node("default:copperblock", {
 	description = "Copper Block",
 	tiles = {"default_copper_block.png"},
@@ -2099,14 +2061,6 @@ minetest.register_node("default:meze", {
 	end,
 })
 minetest.register_alias("default:meze_block", "default:meze")
-
-minetest.register_node("default:silverblock", {
-	description = "Silver Block",
-	tiles = {"default_silver_block.png"},
-	is_ground_content = true,
-	groups = {cracky = 1, ingot_block = 1},
-	sounds = default.node_sound_metal_defaults(),
-})
 
 minetest.register_node("default:goldblock", {
 	description = "Gold Block",
@@ -2401,9 +2355,7 @@ if minetest.setting_getbool("xray") then
 	-- Nodes to make partially see-through:
 	minetest.override_item("default:stone_with_coal",    {tiles = {"default_mineral_coal.png"}})
 	minetest.override_item("default:stone_with_iron",    {tiles = {"default_mineral_iron.png"}})
-	minetest.override_item("default:stone_with_tin",     {tiles = {"default_mineral_tin.png"}})
 	minetest.override_item("default:stone_with_copper",  {tiles = {"default_mineral_copper.png"}})
-	minetest.override_item("default:stone_with_silver",  {tiles = {"default_mineral_silver.png"}})
 	minetest.override_item("default:stone_with_gold",    {tiles = {"default_mineral_gold.png"}})
 	minetest.override_item("default:stone_with_mese",    {tiles = {"default_mineral_mese.png"}})
 	minetest.override_item("default:stone_with_diamond", {tiles = {"default_mineral_diamond.png"}})

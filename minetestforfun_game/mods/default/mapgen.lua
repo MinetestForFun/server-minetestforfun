@@ -231,30 +231,6 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "default:stone_with_silver",
-	wherein        = "default:stone",
-	clust_scarcity = 14 * 14 * 14,
-	clust_num_ores = 3,
-	clust_size     = 2,
-	height_min     = -127,
-	height_max     = -16,
-	flags          = "absheight",
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
-	ore            = "default:stone_with_silver",
-	wherein        = "default:stone",
-	clust_scarcity = 12 * 12 * 12,
-	clust_num_ores = 5,
-	clust_size     = 3,
-	height_min     = -30000,
-	height_max     = -128,
-	flags          = "absheight",
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
 	ore            = "default:stone_with_gold",
 	wherein        = "default:stone",
 	clust_scarcity = 15 * 15 * 15,
@@ -332,18 +308,6 @@ minetest.register_ore({
 	clust_size     = 3,
 	height_min     = -30000,
 	height_max     = -64,
-	flags          = "absheight",
-})
-
-minetest.register_ore({
-	ore_type       = "scatter",
-	ore            = "default:stone_with_tin",
-	wherein        = "default:stone",
-	clust_scarcity = 15 * 15 * 15,
-	clust_num_ores = 5,
-	clust_size     = 3,
-	height_min     = -30000,
-	height_max     = 64,
 	flags          = "absheight",
 })
 
