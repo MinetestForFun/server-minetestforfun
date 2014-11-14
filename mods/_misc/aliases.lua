@@ -1,14 +1,22 @@
--- Remove stone_with_tin from default carbone subgame => virer doublon minerais brutes
+-- Supprime les doublons avec Moreores du subgame carbone
+-- Stone
 minetest.register_alias("default:stone_with_tin", "default:stone")
 minetest.register_alias("default:stone_with_silver", "default:stone")
-
--- Remove lump from default carbone subgame => virer doublon minerais
+-- Lump
 minetest.register_alias("default:tin_lump", "default:stone")
 minetest.register_alias("default:silver_lump", "default:stone")
-
--- Remove ingot from default carbone subgame => virer doublon lingots
+-- Ingot
 minetest.register_alias("default:tin_ingot", "default:stone")
 minetest.register_alias("default:silver_ingot", "default:stone")
+-- Block
+minetest.register_alias("default:tinblock", "default:stone")
+minetest.register_alias("default:silverblock", "default:stone")
+-- Tools
+minetest.register_alias("default:pick_silver", "default:stone")
+minetest.register_alias("default:shovel_silver", "default:stone")
+minetest.register_alias("default:axe_silver", "default:stone")
+minetest.register_alias("default:sword_silver", "default:stone")
+minetest.register_alias("default:knife_silver", "default:stone")
 
 -- Remove torch from torches => remise des torches par défaut
 minetest.register_alias("torches:floor", "default:torch")
