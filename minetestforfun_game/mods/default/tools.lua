@@ -72,19 +72,6 @@ minetest.register_tool("default:pick_bronze", {
 		damage_groups = {fleshy = 4},
 	},
 })
-minetest.register_tool("default:pick_silver", {
-	description = "Silver Pickaxe",
-	inventory_image = "default_tool_silverpick.png",
-	tool_capabilities = {
-		full_punch_interval = 1.2,
-		max_drop_level = 1,
-		groupcaps = {
-			cracky = {times = {[1] = 2.4, [2] = 1.0, [3] = 0.65}, uses = 20, maxlevel = 2},
-			crumbly = {times = {[1] = 2.0, [2] = 0.9, [3] = 0.36}, uses = 20, maxlevel = 1},
-		},
-		damage_groups = {fleshy = 4},
-	},
-})
 minetest.register_tool("default:pick_gold", {
 	description = "Golden Pickaxe",
 	inventory_image = "default_tool_goldpick.png",
@@ -190,19 +177,6 @@ minetest.register_tool("default:shovel_bronze", {
 		max_drop_level = 1,
 		groupcaps = {
 			crumbly = {times = {[1] = 2.0, [2] = 0.9, [3] = 0.36}, uses = 40, maxlevel = 2},
-		},
-		damage_groups = {fleshy = 3},
-	},
-})
-minetest.register_tool("default:shovel_silver", {
-	description = "Silver Shovel",
-	inventory_image = "default_tool_silvershovel.png",
-	wield_image = "default_tool_silvershovel.png^[transformR90",
-	tool_capabilities = {
-		full_punch_interval = 1.2,
-		max_drop_level = 1,
-		groupcaps = {
-			crumbly = {times = {[1] = 1.65, [2] = 0.6, [3] = 0.32}, uses = 30, maxlevel = 2},
 		},
 		damage_groups = {fleshy = 3},
 	},
@@ -316,19 +290,6 @@ minetest.register_tool("default:axe_bronze", {
 		damage_groups = {fleshy = 5},
 	},
 })
-minetest.register_tool("default:axe_silver", {
-	description = "Silver Axe",
-	inventory_image = "default_tool_silveraxe.png",
-	tool_capabilities = {
-		full_punch_interval = 1.2,
-		max_drop_level = 1,
-		groupcaps = {
-			choppy = {times = {[1] = 2.2, [2] = 1.0, [3] = 0.55}, uses = 20, maxlevel = 2},
-			snappy = {times = {[3] = 0.125}, uses = 0, maxlevel = 1},
-		},
-		damage_groups = {fleshy = 5},
-	},
-})
 minetest.register_tool("default:axe_gold", {
 	description = "Golden Axe",
 	inventory_image = "default_tool_goldaxe.png",
@@ -434,18 +395,6 @@ minetest.register_tool("default:sword_bronze", {
 		damage_groups = {fleshy = 5},
 	}
 })
-minetest.register_tool("default:sword_silver", {
-	description = "Silver Sword",
-	inventory_image = "default_tool_silversword.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level = 1,
-		groupcaps = {
-			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 30, maxlevel = 2},
-		},
-		damage_groups = {fleshy = 5},
-	}
-})
 minetest.register_tool("default:sword_gold", {
 	description = "Golden Sword",
 	inventory_image = "default_tool_goldsword.png",
@@ -492,17 +441,5 @@ minetest.register_tool("default:sword_mese", {
 			snappy = {times = {[1] = 1.5, [2] = 0.7, [3] = 0.1}, uses = 15, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 6},
-	}
-})
-
-
-
-minetest.register_tool("default:knife_silver", {
-	description = "Knife",
-	inventory_image = "default_tool_silverknife.png",
-	wield_image = "default_tool_silverknife.png^[transformR90",
-	tool_capabilities = {
-		full_punch_interval = 0.4,
-		damage_groups = {fleshy = 3},
 	}
 })
