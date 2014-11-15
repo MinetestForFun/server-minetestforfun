@@ -14,7 +14,7 @@ local colored_block_description = "Wood Planks"
 local neutral_block = "default:wood"
 local colored_block_sunlight = "false"
 local colored_block_walkable = "true"
-local colored_block_groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2, not_in_creative_inventory=1}
+local colored_block_groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2}
 local colored_block_sound = "default.node_sound_wood_defaults()"
 
 for shade = 1, 3 do
