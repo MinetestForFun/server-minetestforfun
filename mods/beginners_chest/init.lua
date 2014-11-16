@@ -11,8 +11,7 @@
 chests = {
   [1] = {
     position = {x = 5, y = 40, z = -1},
-    interval_timer = 0,
-    interval_max = 7200,
+    interval_max = 3600,
 	stuff = {
 		[1] = "3d_armor:boots_steel",
 		[2] = "default:pick_stone",
@@ -22,7 +21,7 @@ chests = {
   },
   [2] = {
     position = {x = 34, y = 20, z = 101},
-    interval_max = 7200,
+    interval_max = 2400,
     stuff = {
 	[1] = "3d_armor:steel_chest",
 	[2] = "throwing:bow_stone",

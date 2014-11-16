@@ -48,7 +48,7 @@ minetest.register_globalstep(function(dtime)
 		return
 	end 
 	for _, player in ipairs(minetest.get_connected_players()) do
-		if math.random() > PPPCHA then
+		if math.random() > PPPCHA or player:getpos().y < -19600 then
 			return
 		end
 		local ppos = player:getpos()
