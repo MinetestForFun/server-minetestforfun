@@ -99,8 +99,8 @@ for shade = 1, 3 do
 		        output = colorname.." 2",
 			recipe = {
 				{ "unifieddyes:"..shadename..huename, "", "" },
-		                {"default:stick", "default:stick", "default:stick"},
-		                {"default:stick", "default:stick", "default:stick"},
+		                {"group:stick", "group:stick", "group:stick"},
+		                {"group:stick", "group:stick", "group:stick"},
 		        },
 		})
 
@@ -108,8 +108,8 @@ for shade = 1, 3 do
 		        output = s50colorname.." 2",
 			recipe = {
 				{ "unifieddyes:"..shadename..huename.."_s50", "", "" },
-		                {"default:stick", "default:stick", "default:stick"},
-		                {"default:stick", "default:stick", "default:stick"},
+		                {"group:stick", "group:stick", "group:stick"},
+		                {"group:stick", "group:stick", "group:stick"},
 		        },
 		})
 
@@ -182,8 +182,8 @@ for hue = 1, 12 do
 	        output = colorname.." 2",
 		recipe = {
 			{ "unifieddyes:light_"..huename, "", "" },
-	                {"default:stick", "default:stick", "default:stick"},
-	                {"default:stick", "default:stick", "default:stick"},
+	                {"group:stick", "group:stick", "group:stick"},
+	                {"group:stick", "group:stick", "group:stick"},
 	        },
 	})
 
@@ -197,7 +197,37 @@ for hue = 1, 12 do
 		},
 	})
 end
-	
+
+-- extra recipes for default dye colors.
+
+for _, color in ipairs(coloredwood.default_hues) do
+	minetest.register_craft({
+		output = "coloredwood:fence_"..color.." 2",
+		recipe = {
+			{ "dye:"..color, "", "" },
+			{"group:stick", "group:stick", "group:stick"},
+			{"group:stick", "group:stick", "group:stick"},
+		},
+	})
+end
+
+minetest.register_craft({
+	output = "coloredwood:fence_light_red 2",
+	recipe = {
+		{ "dye:pink", "", "" },
+		{"group:stick", "group:stick", "group:stick"},
+		{"group:stick", "group:stick", "group:stick"},
+	},
+})
+
+minetest.register_craft({
+	output = "coloredwood:fence_dark_orange 2",
+	recipe = {
+		{ "dye:brown", "", "" },
+		{"group:stick", "group:stick", "group:stick"},
+		{"group:stick", "group:stick", "group:stick"},
+	},
+})
 
 -- ============================================================
 -- The 5 levels of greyscale.
@@ -253,8 +283,8 @@ for grey = 1,5 do
 	        output = greyshadename.." 2",
 		recipe = {
 			{ greyname3, "", "" },
-	                {"default:stick", "default:stick", "default:stick"},
-	                {"default:stick", "default:stick", "default:stick"},
+	                {"group:stick", "group:stick", "group:stick"},
+	                {"group:stick", "group:stick", "group:stick"},
 	        },
 	})
 

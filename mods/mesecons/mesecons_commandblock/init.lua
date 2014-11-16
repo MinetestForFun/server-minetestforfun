@@ -1,34 +1,46 @@
 minetest.register_chatcommand("say", {
 	params = "<text>",
 	description = "Say <text> as the server",
-	privs = {server = true},
+	privs = {server=true},
 	func = function(name, param)
-		minetest.chat_send_all("*** " .. param)
-		minetest.log("action", name .. " broadcasts \"" .. param .. "\".")
+		minetest.chat_send_all(name .. ": " .. param)
 	end
 })
 
-if minetest.setting_getbool("enable_damage") then
-	minetest.register_chatcommand("hp", {
-		params = "<name> <value>",
-		description = "Set health of <name> to <value> HP",
-		privs = {ban = true},
-		func = function(name, param)
-			local found, _, target, value = param:find("^([^%s]+)%s+(%d+)$")
-			if found == nil then
-				minetest.chat_send_player(name, "Invalid usage: /hp <name> <value>")
-				return
-			end
-			local player = minetest.get_player_by_name(target)
-			if player then
-				player:set_hp(value)
-				minetest.log("action", name .. " sets " .. target .. "'s HP to " .. value .. ".")
-			else
-				minetest.chat_send_player(name, "Invalid target: " .. target)
-			end
+minetest.register_chatcommand("tell", {
+	params = "<name> <text>",
+	description = "Say <text> to <name> privately",
+	func = function(name, param)
+		local found, _, target, message = param:find("^([^%s]+)%s+(.*)$")
+		if found == nil then
+			minetest.chat_send_player(name, "Invalid usage: " .. param)
+			return
 		end
-	})
-end
+		if not minetest.get_player_by_name(target) then
+			minetest.chat_send_player(name, "Invalid target: " .. target)
+		end
+		minetest.chat_send_player(target, name .. " whispers: " .. message, false)
+	end
+})
+
+minetest.register_chatcommand("hp", {
+	params = "<name> <value>",
+	description = "Set health of <name> to <value> hitpoints",
+	privs = {ban=true},
+	func = function(name, param)
+		local found, _, target, value = param:find("^([^%s]+)%s+(%d+)$")
+		if found == nil then
+			minetest.chat_send_player(name, "Invalid usage: " .. param)
+			return
+		end
+		local player = minetest.get_player_by_name(target)
+		if player then
+			player:set_hp(value)
+		else
+			minetest.chat_send_player(name, "Invalid target: " .. target)
+		end
+	end
+})
 
 local function initialize_data(meta)
 	local commands = meta:get_string("commands")
@@ -67,7 +79,7 @@ local function after_place(pos, placer)
 end
 
 local function receive_fields(pos, formname, fields, sender)
-	if fields.quit then
+	if not fields.submit then
 		return
 	end
 	local meta = minetest.get_meta(pos)

@@ -16,7 +16,7 @@
 -- use too much memory from the sandbox.
 -- You can add more functions to the environment
 -- (see where local env is defined)
--- Something nice to play is is appending minetest. to it.
+-- Something nice to play is is appending minetest.env to it.
 
 local BASENAME = "mesecons_luacontroller:luacontroller"
 

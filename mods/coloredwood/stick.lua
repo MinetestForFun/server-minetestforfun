@@ -5,7 +5,6 @@
 
 local colored_block_modname = "coloredwood"
 local colored_block_description = "Stick"
-local neutral_block = "default:stick"
 
 for shade = 1, 3 do
 
@@ -41,13 +40,13 @@ for shade = 1, 3 do
 		minetest.register_craftitem(colorname, {
 		        description = itemdesc,
 		        inventory_image = pngname,
-			groups = { coloredsticks=1}
+			groups = { coloredsticks=1, stick=1 }
 		})
 
 		minetest.register_craftitem(s50colorname, {
 		        description = s50itemdesc,
 		        inventory_image = s50pngname,
-			groups = { coloredsticks=1}
+			groups = { coloredsticks=1, stick=1 }
 		})
 
 		minetest.register_craft( {
@@ -82,7 +81,7 @@ for hue = 1, 12 do
 	minetest.register_craftitem(colorname, {
 	        description = itemdesc,
 	        inventory_image = pngname,
-		groups = { coloredsticks=1}
+		groups = { coloredsticks=1, stick=1 }
 	})
 
 	minetest.register_craft({
@@ -121,7 +120,7 @@ for grey = 1,5 do
 	minetest.register_craftitem(greyshadename, {
 	        description = itemdesc,
 	        inventory_image = pngname,
-		groups = { coloredsticks=1}
+		groups = { coloredsticks=1, stick=1 }
 	})
 
 	minetest.register_craft({

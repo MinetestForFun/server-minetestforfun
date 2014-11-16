@@ -28,7 +28,7 @@ minetest.register_alias("mesecons:delayer", "mesecons_delayer:delayer_off_1")
 minetest.register_alias("mesecons:solarpanel", "mesecons_solarpanel:solar_panel_off")
 
 
--- Backwards compatibility
+--Backwards compatibility
 minetest.register_alias("mesecons:mesecon_off", "mesecons:wire_00000000_off")
 minetest.register_alias("mesecons_pistons:piston_sticky", "mesecons_pistons:piston_sticky_on")
 minetest.register_alias("mesecons_pistons:piston_normal", "mesecons_pistons:piston_normal_on")

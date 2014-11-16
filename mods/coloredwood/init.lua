@@ -57,6 +57,22 @@ coloredwood.shades2 = {
 	""		-- represents "no special shade name", e.g. full.
 }
 
+coloredwood.default_hues = {
+	"white",
+	"grey",
+	"dark_grey",
+	"black",
+	"violet",
+	"blue",
+	"cyan",
+	"dark_green",
+	"green",
+	"yellow",
+	"orange",
+	"red",
+	"magenta"
+}
+
 coloredwood.hues = {
 	"red",
 	"orange",

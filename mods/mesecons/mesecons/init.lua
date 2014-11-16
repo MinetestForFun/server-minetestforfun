@@ -131,12 +131,11 @@ function mesecon:receptor_off(pos, rules)
 	mesecon.queue:add_action(pos, "receptor_off", {rules}, nil, rules)
 end
 
+
+print("[OK] Mesecons")
+
 --The actual wires
 dofile(minetest.get_modpath("mesecons").."/wires.lua");
 
 --Services like turnoff receptor on dignode and so on
 dofile(minetest.get_modpath("mesecons").."/services.lua");
-
-if minetest.setting_getbool("log_mods") then
-	minetest.log("action", "Carbone: [mesecons] loaded.")
-end

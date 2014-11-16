@@ -13,7 +13,6 @@ minetest.register_node(":default:mese", {
 	tiles = {minetest.registered_nodes["default:mese"].tiles[1]},
 	is_ground_content = true,
 	groups = {cracky=1},
-	light_source = 7,
 	sounds = default.node_sound_stone_defaults(),
 	mesecons = {conductor = {
 		state = mesecon.state.off,
