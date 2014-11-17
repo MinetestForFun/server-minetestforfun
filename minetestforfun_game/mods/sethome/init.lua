@@ -1,5 +1,3 @@
---local realhomes_file = 
---local netherhomes_file = minetest.get_worldpath() .. "/netherhomes"
 local homes_file = {["real"] = minetest.get_worldpath() .. "/realhomes",
 					 ["nether"] = minetest.get_worldpath() .. "/netherhomes"}
 local homepos = {["real"] = {}, ["nether"] = {}}
