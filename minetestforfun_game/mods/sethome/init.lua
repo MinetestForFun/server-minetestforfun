@@ -1,23 +1,28 @@
-local homes_file = minetest.get_worldpath() .. "/homes"
-local homepos = {}
+--local realhomes_file = 
+--local netherhomes_file = minetest.get_worldpath() .. "/netherhomes"
+local homes_file = {["real"] = minetest.get_worldpath() .. "/realhomes",
+					 ["nether"] = minetest.get_worldpath() .. "/netherhomes"}
+local homepos = {["real"] = {}, ["nether"] = {}}
 
 local function loadhomes()
-    local input = io.open(homes_file, "r")
-    if input then
-		repeat
-            local x = input:read("*n")
-            if x == nil then
-            	break
-            end
-            local y = input:read("*n")
-            local z = input:read("*n")
-            local name = input:read("*l")
-            homepos[name:sub(2)] = {x = x, y = y, z = z}
-        until input:read(0) == nil
-        io.close(input)
-    else
-        homepos = {}
-    end
+    for key,_ in pairs(homes_file) do
+		local input = io.open(homes_file[key], "r")
+		if input then
+			repeat
+				local x = input:read("*n")
+				if x == nil then
+					break
+				end
+				local y = input:read("*n")
+				local z = input:read("*n")
+				local name = input:read("*l")
+				homepos[key][name:sub(2)] = {x = x, y = y, z = z}
+			until input:read(0) == nil
+			io.close(input)
+		else
+			homepos[key] = {}
+		end
+	end
 end
 
 loadhomes()
@@ -35,8 +40,12 @@ minetest.register_chatcommand("home", {
             -- just a check to prevent the server crashing
             return false
         end
-        if homepos[player:get_player_name()] then
-            player:setpos(homepos[player:get_player_name()])
+		local p_status = "real"
+		if player:getpos().y < -19600 then
+			p_status = "nether"
+		end
+        if homepos[p_status][player:get_player_name()] then
+            player:setpos(homepos[p_status][player:get_player_name()])
             minetest.chat_send_player(name, "Teleported to home!")
         else
             minetest.chat_send_player(name, "Set a home using /sethome")
@@ -50,12 +59,16 @@ minetest.register_chatcommand("sethome", {
     func = function(name)
         local player = minetest.env:get_player_by_name(name)
         local pos = player:getpos()
-        homepos[player:get_player_name()] = pos
+		local p_status = "real"
+		if pos.y < -19600 then
+			p_status = "nether"
+		end
+        homepos[p_status][player:get_player_name()] = pos
         minetest.chat_send_player(name, "Home set!")
         changed = true
         if changed then
-        	local output = io.open(homes_file, "w")
-            for i, v in pairs(homepos) do
+        	local output = io.open(homes_file[p_status], "w")
+            for i, v in pairs(homepos[p_status]) do
                 output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
             end
             io.close(output)
