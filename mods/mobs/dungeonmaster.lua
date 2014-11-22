@@ -32,6 +32,10 @@ mobs:register_mob("mobs:dungeon_master", {
 		chance = 30,
 		min = 1,
 		max = 1,},
+		{name = "maptools:gold_coin",
+		chance = 15,
+		min = 1,
+		max = 2,},
 		{name = "maptools:silver_coin",
 		chance = 1,
 		min = 2,
@@ -80,7 +84,7 @@ mobs:register_arrow("mobs:fireball", {
 		local p = player:getpos()
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=8},
+			damage_groups = {fleshy=13},
 		}, 0) -- {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z})
 	end,
 
