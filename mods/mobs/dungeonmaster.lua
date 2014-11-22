@@ -92,7 +92,7 @@ mobs:register_arrow("mobs:fireball", {
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
 					local n = minetest.get_node(p).name
-					if p.y < -19600 and n ~= "nether:rack" and n:split(":")[1] == "nether" then
+					if p.y < -19600 and n ~= "nether:netherrack" and n:split(":")[1] == "nether" then
 						return
 					end
 					if n ~= "default:obsidian" and n ~= "ethereal:obsidian_brick" then	
