@@ -146,14 +146,14 @@ for i in ipairs(sofas_list) do
 		}
 	})
 
-	minetest.register_craft({
+--[[	minetest.register_craft({
 		output = "lrfurn:sofa_"..colour,
 		recipe = {
 			{"wool:"..colour, "wool:"..colour, "", },
 			{"group:wood_slab", "group:wood_slab", "", },
 			{"group:stick", "group:stick", "", }
 		}
-	})
+	})]] -- Uncomment if further declaration of a group:wood_slab
 
 end
 
