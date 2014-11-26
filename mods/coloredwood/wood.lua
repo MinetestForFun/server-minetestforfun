@@ -17,6 +17,17 @@ local colored_block_walkable = "true"
 local colored_block_groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2}
 local colored_block_sound = "default.node_sound_wood_defaults()"
 
+-- Show the wood planks in the crafting guide:
+-- Value copy the groups table to another one to pass to stairsplus:register_all()
+-- oherwise stairsplus:register_all() will add the ["not_in_creative_inventory"] = 1 key/value to the groups
+-- of the original table and force the coloredwood planks to be removed from the crafting guide. 
+local stairsplus_groups = {}
+if coloredwood.enable_stairsplus then
+	for k, v in pairs(colored_block_groups) do
+		stairsplus_groups[k] = v
+	end
+end
+
 for shade = 1, 3 do
 
 	local shadename = coloredwood.shades[shade]
@@ -63,7 +74,7 @@ for shade = 1, 3 do
 				"wood_"..shadename..huename,
 				colorname,
 				{
-					groups = colored_block_groups,
+					groups = stairsplus_groups,
 					tiles =	{ pngname },
 					description = nodedesc,
 					drop = "wood_"..shadename..huename,
@@ -75,7 +86,7 @@ for shade = 1, 3 do
 				"wood_"..shadename..huename.."_s50",
 				s50colorname,
 				{
-					groups = colored_block_groups,
+					groups = stairsplus_groups,
 					tiles =	{ s50pngname },
 					description = s50nodedesc,
 					drop = "wood_"..shadename..huename.."_s50",
@@ -144,7 +155,7 @@ for hue = 1, 12 do
 			"wood_light_"..huename,
 			colorname,
 			{
-				groups = colored_block_groups,
+				groups = stairsplus_groups,
 				tiles =	{ pngname },
 				description = nodedesc,
 				drop = "wood_light_"..huename,
@@ -203,7 +214,7 @@ for grey = 1,5 do
 			"wood_"..greyname,
 			greyshadename,
 			{
-				groups = colored_block_groups,
+				groups = stairsplus_groups,
 				tiles =	{ pngname },
 				description = nodedesc,
 				drop = "wood_"..greyname,
