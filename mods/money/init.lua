@@ -55,7 +55,7 @@ local exist = money.exist
 --End.
 
 --Creates player's account, if the player doesn't have it.
-minetest.register_on_joinplayer(function(player)
+--[[ minetest.register_on_joinplayer(function(player)
 	name = player:get_player_name()
 	if not exist(name) then
 		local input = io.open(minetest.get_worldpath() .. "/money_" .. name .. ".txt") --For compatible with old versions.
@@ -69,19 +69,19 @@ minetest.register_on_joinplayer(function(player)
 			accounts[name] = {money = INITIAL_MONEY}
 		end
 	end
-end)
+	end) --]]
 --End.
 	
 --Registration privileges.
-minetest.register_privilege("money", "Can use /money [pay <account> <amount>] command")
+--[[minetest.register_privilege("money", "Can use /money [pay <account> <amount>] command")
 minetest.register_privilege("money_admin", {
 	description = "Can use /money <account> | freeze/unfreeze <account> | take/set/inc/dec <account> <amount>",
 	give_to_singleplayer = false,
-})
+})--]]
 --End.
 
 --Registration "money" command.
-minetest.register_chatcommand("money", {
+--[[ minetest.register_chatcommand("money", {
 	privs = {money=true},
 	params = "[<account> | freeze/unfreeze <account> | pay/take/set/inc/dec <account> <amount>]",
 	description = "Operations with money",
@@ -202,7 +202,7 @@ minetest.register_chatcommand("money", {
 		minetest.chat_send_player(name, "Invalid parameters (see /help money)")
 	end,
 })
---End.
+--End. --]]
 
 local function has_shop_privilege(meta, player)--Does player have permissions for this shop?
 	return player:get_player_name() == meta:get_string("owner") or minetest.get_player_privs(player:get_player_name())["money_admin"]
