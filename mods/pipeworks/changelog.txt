@@ -1,0 +1,93 @@
+Changelog
+---------
+
+2013-01-13: Tubes can transport items now! Namely, I added Novatux/Nore's item 
+transport mod as a default part of this mod, to make tubes do something useful!
+Thanks to Nore and RealBadAngel for the code contributions!
+
+2013-01-05: made storage tanks connect from top/bottom, made storage tank and 
+pipe textures use the ^ combine operator so they can show the actual liquid 
+going through the pipes/tanks.
+
+2013-01-04 (a bit later): Made pipes able to carry water! It was just a minor 
+logic error resulting from moving the water flowing code into it's own file 
+when I originally imported it.  Many thanks to Mauvebic for writing it!
+
+2013-01-04: First stage of integrating Mauvebic's water flowing code.  This is 
+experimental and doesn't move water yet - but at least it doesn't break 
+anything :-)
+
+2013-01-01: Various minor tweaks to textures, facedir settings, some other 
+stuff.  Changed crafting recipes to account for revamped pumps, valves, etc.  
+Now requires the moreores mod and most recent git (for mese crystal fragments) 
+to craft a pump.  Added a "sealed" entry/exit panel (really just a horizontal 
+pipe with a metal panel overlayed into the middle).  Also, tweaked pipes to 
+always drop the empty ones.  Revamped pumps so that now they should sit in/on 
+liquid and be connected only from the top, relegated grates to decorational- 
+only, added outlet spigot.  Got rid of a few obsolete textures.  Got rid of 
+that whole _x and _z naming thing - now all directional devices (pumps, valves, 
+spigots, tanks) use facedir.  Valves, spigots no longer auto-rotate to find 
+nearby pipes.
+
+2012-09-17: Added test object for pneumatic tube autorouting code, made tubes 
+connect to it and any object that bears groups={tubedevice=1} (connects to any 
+side)
+
+2012-09-05: All recipes doubled except for junglegrass -> plastic sheet (since 
+that is derived from home decor)
+
+2012-09-02: Fixed plastic sheeting recipe.  Added crafting recipes for various 
+objects, with options: If homedecor is installed, use the plastic sheeting 
+therein.  If not, we define it manually.  If the Technic mod is installed, 
+don't define any recipes at all.  Also removed the extra "loaded!" messages and 
+tweaked the default pipe alias to point to something that is actually visible 
+:-)
+
+2012-09-01:  flattened wielded pipe segment.
+
+2012-08-24: Added square-ish pneumatic tubes with their own autoplace code 
+(does not connect to steel pipes or pipe-oriented devices), then revised their 
+textures shortly after.  Fixed a recursion bug that sometimes caused a stack 
+overflow.  Old pipes were overriding the pipeworks:pipe defintion that belongs 
+with the new pipes.
+
+2012-08-22: Added outlet grate, made it participate in autoplace algorithm.  
+Extended storage tank to show fill level in 10% steps (0% to 100%).  Added 
+"expansion tank" that appears if the user stacks tanks upwards.  (Downwards is 
+not checked).
+
+2012-08-21: Made storage tank participate in autoplace algorithm.  Tuned API a 
+little to allow for more flexible placement.  Re-organized code a bit to allow 
+for some upcoming rules changes.  Made storage tanks' upper/lower fittins and 
+intake grate participate in autoplace algorithm.
+
+2012-08-20: Added temporary nodes for storage tank and intake grating, but 
+without autoplace.
+
+2012-08-19: Pumps and valves now fully participate in the 
+auto-rotate/auto-place algorithm.
+
+2012-08-18: Total rewrite again.  All pipes are now nice and round-looking, and 
+they auto-connect!  Also added temporary nodes for pump and valve (each with an 
+on/off setting - punch to change).  No crafting recipes yet and the pipes still 
+don't do anything useful yet.  Soon.
+
+2012-08-06:  Moved this changelog off the forum post and into a separate file.
+
+2012-08-05 (multiple updates): Rewrote pipeworks to use loops and tables to 
+create the nodes. Requires far less code now. Added -X, +X, -Y, +Y, -Z, +Z 
+capped stubs and a short centered horizontal segment. Changed node definitions 
+so that the aforementioned "short centered" segment is given on dig/drop.  
+Renamed it to just "pipeworks:pipe" (and pipe_loaded). Added empty/loaded 
+indicator images to the capped ends, removed some redundant comments. Made the 
+empty/loaded indication at the capped end more prominent.
+
+2012-07-21: Added screenshot showing pipes as they look now that nodebox 
+texture rotation is fixed.
+
+2012-07-18: Changed the mod name and all internals to 'pipeworks' instead of 
+'pipes'... after a couple of mistakes :-)
+
+2012-07-12: moved project to github.
+
+2012-06-23: Initial release, followed by reworking the textures a bit.

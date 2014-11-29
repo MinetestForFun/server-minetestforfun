@@ -82,9 +82,15 @@ local function get_real_port_states(pos)
 	local meta = minetest.get_meta(pos)
 	local L = {}
 	local n = meta:get_int("real_portstates") - 1
+<<<<<<< HEAD
 	for _, name in ipairs(port_names) do
 		L[name] = ((n % 2) == 1)
 		n = math.floor(n / 2)
+=======
+	for _, index in ipairs({"a", "b", "c", "d"}) do
+		L[index] = ((n%2) == 1)
+		n = math.floor(n/2)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 	end
 	return L
 end
@@ -99,7 +105,11 @@ local function merge_port_states(ports, vports)
 	}
 end
 
+<<<<<<< HEAD
 local function generate_name(ports)
+=======
+local generate_name = function (ports)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 	local d = ports.d and 1 or 0
 	local c = ports.c and 1 or 0
 	local b = ports.b and 1 or 0
@@ -169,6 +179,7 @@ local function overheat_off(pos)
 end
 
 
+<<<<<<< HEAD
 local function overheat(pos, meta)
 	if mesecon.do_overheat(pos) then -- If too hot
 		local node = minetest.get_node(pos)
@@ -178,6 +189,10 @@ local function overheat(pos, meta)
 		minetest.after(0.2, overheat_off, pos)
 		return true
 	end
+=======
+local overheat_off = function(pos)
+	mesecon.receptor_off(pos, mesecon.rules.flat)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 end
 
 ------------------------
@@ -224,9 +239,24 @@ local function remove_functions(x)
 	return x
 end
 
+<<<<<<< HEAD
 local function get_interrupt(pos)
 	-- iid = interrupt id
 	local function interrupt(time, iid)
+=======
+local safe_serialize = function(value)
+	return minetest.serialize(deep_copy(value))
+end
+
+mesecon.queue:add_function("lc_interrupt", function (pos, luac_id, iid)
+	-- There is no luacontroller anymore / it has been reprogrammed / replaced
+	if (minetest.get_meta(pos):get_int("luac_id") ~= luac_id) then return end
+	lc_update(pos, {type="interrupt", iid = iid})
+end)
+
+local getinterrupt = function(pos)
+	local interrupt = function (time, iid) -- iid = interrupt id
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 		if type(time) ~= "number" then return end
 		local luac_id = minetest.get_meta(pos):get_int("luac_id")
 		mesecon.queue:add_action(pos, "lc_interrupt", {luac_id, iid}, time, iid, 1)
@@ -252,6 +282,7 @@ local safe_globals = {
 local function create_environment(pos, mem, event)
 	-- Gather variables for the environment
 	local vports = minetest.registered_nodes[minetest.get_node(pos).name].virtual_portstates
+<<<<<<< HEAD
 	local vports_copy = {}
 	for k, v in pairs(vports) do vports_copy[k] = v end
 	local rports = get_real_port_states(pos)
@@ -323,6 +354,76 @@ local function create_environment(pos, mem, event)
 			difftime = os.difftime,
 			time = os.time,
 		},
+=======
+	vports = {a = vports.a, b = vports.b, c = vports.c, d = vports.d}
+	local rports = get_real_portstates(pos)
+
+	return {
+			print = safe_print,
+			pin = merge_portstates(vports, rports),
+			port = vports,
+			interrupt = getinterrupt(pos),
+			digiline_send = getdigiline_send(pos),
+			mem = mem,
+			tostring = tostring,
+			tonumber = tonumber,
+			heat = minetest.get_meta(pos):get_int("heat"),
+			-- overheat_max Unit: actions per second, checks are every 1 second
+			heat_max = mesecon.setting("overheat_max", 20),
+			string = {
+				byte = string.byte,
+				char = string.char,
+				find = string.find,
+				format = string.format,
+				gmatch = string.gmatch,
+				gsub = string.gsub,
+				len = string.len,
+				lower = string.lower,
+				upper = string.upper,
+				match = string.match,
+				rep = string.rep,
+				reverse = string.reverse,
+				sub = string.sub,
+			},
+			math = {
+				abs = math.abs,
+				acos = math.acos,
+				asin = math.asin,
+				atan = math.atan,
+				atan2 = math.atan2,
+				ceil = math.ceil,
+				cos = math.cos,
+				cosh = math.cosh,
+				deg = math.deg,
+				exp = math.exp,
+				floor = math.floor,
+				fmod = math.fmod,
+				frexp = math.frexp,
+				huge = math.huge,
+				ldexp = math.ldexp,
+				log = math.log,
+				log10 = math.log10,
+				max = math.max,
+				min = math.min,
+				modf = math.modf,
+				pi = math.pi,
+				pow = math.pow,
+				rad = math.rad,
+				random = math.random,
+				sin = math.sin,
+				sinh = math.sinh,
+				sqrt = math.sqrt,
+				tan = math.tan,
+				tanh = math.tanh,
+			},
+			table = {
+				insert = table.insert,
+				maxn = table.maxn,
+				remove = table.remove,
+				sort = table.sort
+			},
+			event = event,
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 	}
 	env._G = env
 
@@ -361,7 +462,11 @@ local function create_sandbox(code, env)
 		return nil, "Binary code prohibited."
 	end
 	local f, msg = loadstring(code)
+<<<<<<< HEAD
 	if not f then return nil, msg end
+=======
+	if not f then return _, msg end
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 	setfenv(f, env)
 
 	return function(...)
@@ -403,10 +508,17 @@ local function run(pos, event)
 	-- Create environment
 	local env = create_environment(pos, mem, event)
 
+<<<<<<< HEAD
 	-- Create the sandbox and execute code
 	local f, msg = create_sandbox(code, env)
 	if not f then return msg end
 	local success, msg = pcall(f)
+=======
+	-- create the sandbox and execute code
+	local chunk, msg = create_sandbox (code, env)
+	if not chunk then return msg end
+	local success, msg = pcall(chunk)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 	if not success then return msg end
 	if type(env.port) ~= "table" then
 		return "Ports set are invalid."
@@ -550,6 +662,7 @@ for d = 0, 1 do
 			"jeija_microcontroller_sides.png",
 			"jeija_microcontroller_sides.png"
 		},
+<<<<<<< HEAD
 		inventory_image = top,
 		paramtype = "light",
 		groups = groups,
@@ -576,6 +689,41 @@ for d = 0, 1 do
 		end,
 		is_luacontroller = true,
 	})
+=======
+
+	inventory_image = top,
+	paramtype = "light",
+	groups = groups,
+	drop = BASENAME.."0000",
+	sunlight_propagates = true,
+	selection_box = selectionbox,
+	node_box = nodebox,
+	on_construct = reset_meta,
+	on_receive_fields = function(pos, formname, fields)
+		if not fields.program then
+			return
+		end
+		reset(pos)
+		reset_meta(pos, fields.code)
+		local err = lc_update(pos, {type="program"})
+		if err then
+			print(err)
+			reset_meta(pos, fields.code, err)
+		end
+	end,
+	sounds = default.node_sound_stone_defaults(),
+	mesecons = mesecons,
+	digiline = digiline,
+	virtual_portstates = {	a = a == 1, -- virtual portstates are
+				b = b == 1, -- the ports the the
+				c = c == 1, -- controller powers itself
+				d = d == 1},-- so those that light up
+	after_dig_node = function (pos, node)
+		mesecon.receptor_off(pos, output_rules)
+	end,
+	is_luacontroller = true,
+})
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 end
 end
 end

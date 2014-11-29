@@ -62,7 +62,11 @@ function mesecon.rule2bit(findrule, allrules)
 	end
 	for m,metarule in ipairs( allrules) do
 	for _,    rule in ipairs(metarule ) do
+<<<<<<< HEAD
 		if mesecon.cmpPos(findrule, rule) then
+=======
+		if mesecon.cmpPos(findrule, rule) and mesecon.cmpSpecial(findrule, rule) then
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 			return m
 		end
 	end
@@ -82,7 +86,11 @@ function mesecon.rule2metaindex(findrule, allrules)
 
 	for m, metarule in ipairs( allrules) do
 	for _,     rule in ipairs(metarule ) do
+<<<<<<< HEAD
 		if mesecon.cmpPos(findrule, rule) then
+=======
+		if mesecon.cmpPos(findrule, rule) and mesecon.cmpSpecial(findrule, rule) then
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 			return m
 		end
 	end
@@ -153,7 +161,11 @@ function mesecon.set_bit(binary,bit,value)
 end
 
 function mesecon.invertRule(r)
+<<<<<<< HEAD
 	return {x = -r.x, y = -r.y, z = -r.z}
+=======
+	return {x = -r.x, y = -r.y, z = -r.z, sx = r.sx, sy = r.sy, sz = r.sz}
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 end
 
 function mesecon.addPosRule(p, r)
@@ -164,6 +176,13 @@ function mesecon.cmpPos(p1, p2)
 	return (p1.x == p2.x and p1.y == p2.y and p1.z == p2.z)
 end
 
+<<<<<<< HEAD
+=======
+function mesecon.cmpSpecial(r1, r2)
+	return (r1.sx == r2.sx and r1.sy == r2.sy and r1.sz == r2.sz)
+end
+
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 function mesecon.tablecopy(table) -- deep table copy
 	if type(table) ~= "table" then return table end -- no need to copy
 	local newtable = {}

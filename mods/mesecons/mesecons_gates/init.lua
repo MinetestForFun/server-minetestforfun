@@ -39,8 +39,31 @@ local function set_gate(pos, node, state)
 	end
 end
 
+<<<<<<< HEAD
 local function update_gate(pos, node, link, newstate)
 	local gate = minetest.registered_nodes[node.name]
+=======
+function set_gate(pos, on)
+	gate = get_gate(pos)
+	local meta = minetest.get_meta(pos)
+	if on ~= gate_state(pos) then
+		if mesecon.do_overheat(pos) then
+			pop_gate(pos)
+		else
+			local node = minetest.get_node(pos)
+			if on then
+				minetest.swap_node(pos, {name = "mesecons_gates:"..gate.."_on", param2=node.param2})
+				mesecon.receptor_on(pos,
+				gate_get_output_rules(node))
+			else
+				minetest.swap_node(pos, {name = "mesecons_gates:"..gate.."_off", param2=node.param2})
+				mesecon.receptor_off(pos,
+				gate_get_output_rules(node))
+			end
+		end
+	end
+end
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 
 	if gate.inputnumber == 1 then
 		set_gate(pos, node, gate.assess(newstate == "on"))
@@ -54,6 +77,7 @@ local function update_gate(pos, node, link, newstate)
 	end
 end
 
+<<<<<<< HEAD
 function register_gate(name, inputnumber, assess, recipe)
 	local get_inputrules = inputnumber == 2 and gate_get_input_rules_twoinputs or
 		gate_get_input_rules_oneinput
@@ -100,6 +124,15 @@ function register_gate(name, inputnumber, assess, recipe)
 	})
 
 	minetest.register_craft({output = basename.."_off", recipe = recipe})
+=======
+function pop_gate(pos)
+	gate = get_gate(pos)
+	minetest.remove_node(pos)
+	minetest.after(0.2, function (pos)
+		mesecon.receptor_off(pos, mesecon.rules.flat)
+	end , pos) -- wait for pending parsings
+	minetest.add_item(pos, "mesecons_gates:"..gate.."_off")
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 end
 
 register_gate("diode", 1, function (input) return input end,

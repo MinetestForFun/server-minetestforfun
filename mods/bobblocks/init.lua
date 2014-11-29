@@ -1,0 +1,8 @@
+print("[BobBlocks By minetest@rabbibob.com] Version 0.0.8 loading....")
+dofile(minetest.get_modpath("bobblocks") .. "/blocks.lua")
+print("[BobBlocks] loaded Blocks")
+dofile(minetest.get_modpath("bobblocks") .. "/health.lua")
+print("[BobBlocks] loaded Health")
+dofile(minetest.get_modpath("bobblocks") .. "/trap.lua")
+print("[BobBlocks] loaded Traps")
+print("[BobBlocks By minetest@rabbibob.com] Version 0.0.8 loaded!")

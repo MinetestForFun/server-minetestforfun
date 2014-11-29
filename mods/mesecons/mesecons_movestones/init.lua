@@ -67,7 +67,11 @@ minetest.register_node("mesecons_movestones:movestone", {
 			local direction=mesecon.get_movestone_direction(pos)
 			if not direction then return end
 			minetest.remove_node(pos)
+<<<<<<< HEAD
 			mesecon.on_dignode(pos, node)
+=======
+			mesecon.update_autoconnect(pos)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 			minetest.add_entity(pos, "mesecons_movestones:movestone_entity")
 		end
 	}}
@@ -151,7 +155,11 @@ minetest.register_node("mesecons_movestones:sticky_movestone", {
 			local direction=mesecon.get_movestone_direction(pos)
 			if not direction then return end
 			minetest.remove_node(pos)
+<<<<<<< HEAD
 			mesecon.on_dignode(pos, node)
+=======
+			mesecon.update_autoconnect(pos)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 			minetest.add_entity(pos, "mesecons_movestones:sticky_movestone_entity")
 		end
 	}}
@@ -188,8 +196,12 @@ minetest.register_entity("mesecons_movestones:sticky_movestone_entity", {
 			if  name ~= "air" and name ~= "ignore"
 			and ((not minetest.registered_nodes[name])
 			or minetest.registered_nodes[name].liquidtype == "none") then
+<<<<<<< HEAD
 				mesecon.mvps_push(pos, self.lastdir,
 					mesecon.setting("movestone_max_push", 50))
+=======
+				mesecon.mvps_push(pos, self.lastdir, MOVESTONE_MAXIMUM_PUSH)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 				--STICKY
 				mesecon.mvps_pull_all(pos, self.lastdir)
 			end
@@ -201,7 +213,11 @@ minetest.register_entity("mesecons_movestones:sticky_movestone_entity", {
 		end
 
 		local success, stack, oldstack =
+<<<<<<< HEAD
 			mesecon.mvps_push(pos, direction, mesecon.setting("movestone_max_push", 50))
+=======
+			mesecon.mvps_push(pos, direction, MOVESTONE_MAXIMUM_PUSH)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 		if not success then -- Too large stack/stopper in the way
 			local nn = {name="mesecons_movestones:sticky_movestone"}
 			minetest.add_node(pos, nn)

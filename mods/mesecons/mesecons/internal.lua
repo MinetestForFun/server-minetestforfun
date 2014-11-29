@@ -240,10 +240,14 @@ function mesecon.changesignal(pos, node, rulename, newstate, depth)
 		return
 	end
 
+<<<<<<< HEAD
 	-- Include "change" in overwritecheck so that it cannot be overwritten
 	-- by "active" / "deactivate" that will be called upon the node at the same time.
 	local overwritecheck = {"change", rulename}
 	mesecon.queue:add_action(pos, "change", {rulename, newstate}, nil, overwritecheck, 1 / depth)
+=======
+	mesecon.queue:add_action(pos, "change", {rulename, newstate}, nil, rulename, 1 / depth)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 end
 
 -- Conductors
@@ -517,7 +521,14 @@ function mesecon.rules_link(output, input, dug_outputrules) --output/input are p
 			for _, inputrule in ipairs(mesecon.flattenrules(inputrules)) do
 				-- Check if input accepts from output
 				if  mesecon.cmpPos(mesecon.addPosRule(input, inputrule), output) then
+<<<<<<< HEAD
 					return true, inputrule
+=======
+					if inputrule.sx == nil or outputrule.sx == nil
+					or mesecon.cmpSpecial(inputrule, outputrule) then
+						return true, inputrule
+					end
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 				end
 			end
 		end
@@ -537,7 +548,14 @@ function mesecon.rules_link_rule_all(output, rule)
 	for _, inputrule in ipairs(mesecon.flattenrules(inputrules)) do
 		-- Check if input accepts from output
 		if  mesecon.cmpPos(mesecon.addPosRule(input, inputrule), output) then
+<<<<<<< HEAD
 			table.insert(rules, inputrule)
+=======
+			if inputrule.sx == nil or rule.sx == nil
+			or mesecon.cmpSpecial(inputrule, rule) then
+				table.insert(rules, inputrule)
+			end
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 		end
 	end
 	return rules
@@ -555,7 +573,14 @@ function mesecon.rules_link_rule_all_inverted(input, rule)
 	
 	for _, outputrule in ipairs(mesecon.flattenrules(outputrules)) do
 		if  mesecon.cmpPos(mesecon.addPosRule(output, outputrule), input) then
+<<<<<<< HEAD
 			table.insert(rules, mesecon.invertRule(outputrule))
+=======
+			if outputrule.sx == nil or rule.sx == nil
+			or mesecon.cmpSpecial(outputrule, rule) then
+				table.insert(rules, mesecon.invertRule(outputrule))
+			end
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 		end
 	end
 	return rules
@@ -592,7 +617,11 @@ function mesecon.is_powered(pos, rule)
 			local nn = minetest.get_node(np)
 			if (mesecon.is_conductor_on (nn, mesecon.invertRule(rname))
 			or mesecon.is_receptor_on (nn.name)) then
+<<<<<<< HEAD
 				table.insert(sourcepos, np)
+=======
+				sourcepos.insert(np)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 			end
 		end
 	end

@@ -94,7 +94,11 @@ function mesecon.mvps_push(pos, dir, maximum) -- pos: pos of mvps; dir: directio
 
 	-- add nodes
 	for _, n in ipairs(nodes) do
+<<<<<<< HEAD
 		local np = mesecon.addPosRule(n.pos, dir)
+=======
+		np = mesecon.addPosRule(n.pos, dir)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 		minetest.add_node(np, n.node)
 		minetest.get_meta(np):from_table(n.meta)
 	end
@@ -123,8 +127,13 @@ mesecon.register_on_mvps_move(function(moved_nodes)
 end)
 
 function mesecon.mvps_pull_single(pos, dir) -- pos: pos of mvps; direction: direction of pull (matches push direction for sticky pistons)
+<<<<<<< HEAD
 	local np = mesecon.addPosRule(pos, dir)
 	local nn = minetest.get_node(np)
+=======
+	np = mesecon.addPosRule(pos, dir)
+	nn = minetest.get_node(np)
+>>>>>>> b86fd8cfa9dadcc359b95cdc1135488beae0f467
 
 	if ((not minetest.registered_nodes[nn.name]) --unregistered node
 	or minetest.registered_nodes[nn.name].liquidtype == "none") --non-liquid node
