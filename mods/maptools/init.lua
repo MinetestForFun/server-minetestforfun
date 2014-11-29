@@ -428,23 +428,28 @@ minetest.register_node("maptools:igniter", {
 minetest.register_node("maptools:superapple", {
 	description = S("Super Apple"),
 	range = 12,
-	stack_max = 10000,
+	stack_max = 99,
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"maptools_superapple.png"},
 	inventory_image = "maptools_superapple.png",
 	paramtype = "light",
 	sunlight_propagates = true,
+	walkable = false,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
 	},
-	walkable = false,
-	groups = {fleshy=3, dig_immediate=3, not_in_creative_inventory = 0},
+	is_ground_content = true,
+	groups = {fleshy = 3, dig_immediate = 3, not_in_creative_inventory = 0, flammable = 2, leafdecay = 3, leafdecay_drop = 1},
 	on_use = minetest.item_eat(20),
-	sounds = default.node_sound_defaults(),
+	sounds = default.node_sound_leaves_defaults(),
+	after_place_node = function(pos, placer, itemstack)
+		if placer:is_player() then
+			minetest.set_node(pos, {name = "maptools:superapple", param2= 1})
+		end
+	end,
 })
-
 -- Items
 
 minetest.register_craftitem("maptools:copper_coin", {
