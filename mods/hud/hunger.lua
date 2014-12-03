@@ -294,6 +294,7 @@ if minetest.get_modpath("maptools") then
 end
 
 if minetest.get_modpath("mobs") ~= nil then
+	overwrite("mobs:cheese", 4)
 	overwrite("mobs:meat", 6)
 	overwrite("mobs:meat_raw", 3)
 	overwrite("mobs:rat_cooked", 5)
