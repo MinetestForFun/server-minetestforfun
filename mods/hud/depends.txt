@@ -9,6 +9,7 @@ dwarves?
 ethereal?
 farming?
 farming_plus?
+ferns?
 fishing?
 fruit?
 glooptest?
