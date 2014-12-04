@@ -175,6 +175,7 @@ for i in ipairs(moretrees.treelist) do
 			groups = {snappy=3, flammable=2, leaves=1, moretrees_leaves=1},
 			sounds = default.node_sound_leaves_defaults(),
 
+			walkable = false,
 			drop = {
 				max_items = 1,
 				items = {

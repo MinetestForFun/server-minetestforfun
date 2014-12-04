@@ -90,8 +90,8 @@ minetest.register_globalstep(function(dtime)
 					if playerInfo["stamina"] <= 0 then
 						playerInfo["stamina"] = 0
 						setSprinting(playerName, false)
-						minetest.chat_send_player(playerName, "Votre sprint s'arrete, plus d'endurance ! Your sprint stamina has run out !")
 						playerInfo["timeOut"] = 1
+						minetest.sound_play("default_snore",{object=player})
 					end
 				end
 			end
