@@ -5,13 +5,14 @@ local LIQUID_MAX = 8  --The number of water levels when liquid_finite is enabled
 
 minetest.register_alias("bucket", "bucket:bucket_empty")
 minetest.register_alias("bucket_water", "bucket:bucket_water")
+minetest.register_alias("bucket_acid", "bucket:bucket_acid")
 minetest.register_alias("bucket_lava", "bucket:bucket_lava")
 
 minetest.register_craft({
 	output = "bucket:bucket_empty 1",
 	recipe = {
-		{"default:steel_ingot", "", "default:steel_ingot"},
-		{"", "default:steel_ingot", ""},
+		{"group:ingot", "", "group:ingot"},
+		{"", "group:ingot", ""},
 	}
 })
 
@@ -191,6 +192,14 @@ bucket.register_liquid(
 	"Lava Bucket"
 )
 
+bucket.register_liquid(
+	"default:acid_source",
+	"default:acid_flowing",
+	"bucket:bucket_acid",
+	"bucket_acid.png",
+	"Acid Bucket"
+)
+	
 minetest.register_craft({
 	type = "fuel",
 	recipe = "bucket:bucket_lava",
