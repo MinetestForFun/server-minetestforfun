@@ -175,7 +175,6 @@ for i in ipairs(moretrees.treelist) do
 			groups = {snappy=3, flammable=2, leaves=1, moretrees_leaves=1},
 			sounds = default.node_sound_leaves_defaults(),
 
-			walkable = false,
 			drop = {
 				max_items = 1,
 				items = {
@@ -437,3 +436,5 @@ minetest.register_alias("conifers:leaves", "moretrees:fir_leaves")
 minetest.register_alias("conifers:leaves_special", "moretrees:fir_leaves_bright")
 minetest.register_alias("conifers:sapling", "moretrees:fir_sapling")
 
+-- Overriding moretrees' palm leaves:
+minetest.override_item("moretrees:palm_leaves",{walkable = false})
