@@ -91,7 +91,7 @@ minetest.register_globalstep(function(dtime)
 						playerInfo["stamina"] = 0
 						setSprinting(playerName, false)
 						playerInfo["timeOut"] = 1
-						minetest.sound_play("default_snore",{object=player})
+						minetest.sound_play("default_breathless",{object=player})
 					end
 				end
 			end

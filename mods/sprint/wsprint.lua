@@ -89,7 +89,7 @@ minetest.register_globalstep(function(dtime)
 				if playerInfo["stamina"] <= 0 then
 					playerInfo["stamina"] = 0
 					setState(playerName, 0)
-					minetest.sound_play("default_snore",{object=player})
+					minetest.sound_play("default_breathless",{object=player})
 				end
 			
 			--Increase player's stamina if he/she is not sprinting and his/her stamina is less than SPRINT_STAMINA
