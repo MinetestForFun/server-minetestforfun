@@ -145,7 +145,7 @@ if minetest.get_modpath("mushroom") ~= nil then
 	-- mushroom potions: red = strong poison, brown = light restorative
 	if minetest.get_modpath("vessels") then
 		overwrite("mushroom:brown_essence", 1, "vessels:glass_bottle", nil, 4)
-		-- overwrite("mushroom:poison", 1, "vessels:glass_bottle", 10)
+		overwrite("mushroom:poison", 1, "vessels:glass_bottle", 10)
 	end
 end
 
