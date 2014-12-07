@@ -40,7 +40,23 @@ minetest.register_globalstep(function(dtime)
 	--Loop through all connected players
 	for playerName,playerInfo in pairs(players) do
 		local player = minetest.get_player_by_name(playerName)
+		local pos = player:getpos()
 		if player ~= nil then
+			-- From playerplus :
+			-- am I near a cactus?
+			pos.y = pos.y + 0.1
+			local near = minetest.find_node_near(pos, 1, "default:cactus")
+			if near then
+				pos = near
+				
+				-- am I touching the cactus? if so it hurts
+				for _,player in ipairs(minetest.get_objects_inside_radius(pos, 1.0)) do
+					if player:get_hp() > 0 then
+						player:set_hp(player:get_hp()-1)
+					end
+				end
+			end
+			
 			--Check if they are moving or not
 			players[playerName]["moving"] = player:get_player_control()["up"]
 			
