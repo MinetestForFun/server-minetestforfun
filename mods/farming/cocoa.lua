@@ -70,7 +70,7 @@ minetest.register_craft( {
 minetest.register_craftitem("farming:chocolate_dark", {
 	description = "Bar of Dark Chocolate",
 	inventory_image = "farming_chocolate_dark.png",
-	on_use = minetest.item_eat(3),
+	on_use = minetest.item_eat(2),
 })
 
 minetest.register_craft( {
@@ -92,7 +92,7 @@ minetest.register_node("farming:cocoa_1", {
 			{items = {'farming:cocoa_beans 1'},rarity=2},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},},
+	selection_box = {type = "fixed",fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27},},
 	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,growing=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
@@ -107,7 +107,7 @@ minetest.register_node("farming:cocoa_2", {
 			{items = {'farming:cocoa_beans 1'},rarity=1},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},},
+	selection_box = {type = "fixed",fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27},},
 	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,growing=1},
 	sounds = default.node_sound_leaves_defaults(),
 })
@@ -125,7 +125,7 @@ minetest.register_node("farming:cocoa_3", {
 			{items = {'farming:cocoa_beans 1'},rarity=2},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},},
+	selection_box = {type = "fixed",fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27},},
 	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 })

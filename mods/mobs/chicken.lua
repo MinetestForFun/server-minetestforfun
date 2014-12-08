@@ -37,6 +37,21 @@ mobs:register_mob("mobs:chicken", {
 			clicker:get_inventory():add_item("main", "mobs:chicken")
 			self.object:remove()
 		end
+-- A VOIR POUR RENDRE TAMED/APPRIVOISABLE
+--		if item:get_name() == "farming:wheat" then
+--			if not minetest.setting_getbool("creative_mode") then
+--				item:take_item()
+--				clicker:set_wielded_item(item)
+--			end
+--			self.food = (self.food or 0) + 1
+--			if self.food >= 4 then
+--					self.food = 0
+--					self.tamed = true
+--				end
+--			end
+--			return
+--		end
+
 	end,
 	jump = true,
 	step = 1,

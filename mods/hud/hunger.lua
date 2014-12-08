@@ -265,25 +265,25 @@ end
 --- mes modifs /début ---
 
 if minetest.get_modpath("farming") and farming.mod == "redo" then
-   overwrite("farming:bread", 6)
+   overwrite("farming:bread", 5)
    overwrite("farming:potato", 1)
-   overwrite("farming:baked_potato", 6)
-   overwrite("farming:cucumber", 4)
-   overwrite("farming:tomato", 4)
+   overwrite("farming:baked_potato", 5)
+   overwrite("farming:cucumber", 3)
+   overwrite("farming:tomato", 3)
    overwrite("farming:carrot", 3)
    overwrite("farming:carrot_gold", 6, "", nil, 10)
    overwrite("farming:corn", 3)
    overwrite("farming:corn_cob", 5)
    overwrite("farming:melon_slice", 2)
    overwrite("farming:pumpkin_slice", 1)
-   overwrite("farming:pumpkin_bread", 9)
+   overwrite("farming:pumpkin_bread", 7)
    overwrite("farming:coffee_cup", 2, "farming:drinking_cup")
    overwrite("farming:coffee_cup_hot", 3, "farming:drinking_cup", nil, 2)
    overwrite("farming:cookie", 2)
    overwrite("farming:chocolate_dark", 3)
    overwrite("farming:donut", 4)
-   overwrite("farming:donut_chocolate", 6)
-   overwrite("farming:donut_apple", 6)
+   overwrite("farming:donut_chocolate", 5)
+   overwrite("farming:donut_apple", 5)
    overwrite("farming:raspberries", 1)
    overwrite("farming:blueberries", 1)
    overwrite("farming:muffin_blueberry", 4)
@@ -291,7 +291,7 @@ if minetest.get_modpath("farming") and farming.mod == "redo" then
 	overwrite("farming:smoothie_raspberry", 2, "vessels:drinking_glass")
    end
    overwrite("farming:rhubarb", 1)
-   overwrite("farming:rhubarb_pie", 6)
+   overwrite("farming:rhubarb_pie", 5)
 end
 
 if minetest.get_modpath("maptools") then
@@ -302,6 +302,7 @@ if minetest.get_modpath("mobs") ~= nil then
 	overwrite("mobs:cheese", 4)
 	overwrite("mobs:meat", 6)
 	overwrite("mobs:meat_raw", 3)
+	overwrite("mobs:meat", 5)
 	overwrite("mobs:rat_cooked", 5)
 	overwrite("mobs:honey", 2)
 	overwrite("mobs:pork_raw", 4)
