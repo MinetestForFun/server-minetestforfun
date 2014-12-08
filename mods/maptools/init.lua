@@ -436,7 +436,6 @@ minetest.register_node("maptools:superapple", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
-	visual_scale = tmp.visual_scale,
 	node_box = {
 		type = "fixed",
 		fixed = {
