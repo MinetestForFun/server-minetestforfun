@@ -429,16 +429,26 @@ minetest.register_node("maptools:superapple", {
 	description = S("Super Apple"),
 	range = 12,
 	stack_max = 99,
-	drawtype = "plantlike",
+	drawtype = "nodebox",
 	visual_scale = 1.0,
-	tiles = {"maptools_superapple.png"},
+	tiles = {"maptools_super_apple_top.png","maptools_super_apple_bottom.png","maptools_super_apple_side.png"},
 	inventory_image = "maptools_superapple.png",
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
-	selection_box = {
+	visual_scale = tmp.visual_scale,
+	node_box = {
 		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
+		fixed = {
+			{-3/16,	-7/16,	-3/16,	3/16,	1/16,	3/16},
+			{-4/16,	-6/16,	-3/16,	4/16,	0,		3/16},
+			{-3/16,	-6/16,	-4/16,	3/16,	0,		4/16},
+			{-1/32,	1/16,	-1/32,	1/32,	4/16,	1/32},
+			{-1/16,	1.6/16,	0,		1/16,	1.8/16,	1/16},
+			{-2/16,	1.4/16,	1/16,	1/16,	1.6/16,	2/16},
+			{-2/16,	1.2/16,	2/16,	0,		1.4/16,	3/16},
+			{-1.5/16,	1/16,	.5/16,	0.5/16,		1.2/16,	2.5/16},
+		}
 	},
 	is_ground_content = true,
 	groups = {fleshy = 3, dig_immediate = 3, not_in_creative_inventory = 0, flammable = 2, leafdecay = 3, leafdecay_drop = 1},
@@ -450,6 +460,7 @@ minetest.register_node("maptools:superapple", {
 		end
 	end,
 })
+
 -- Items
 
 minetest.register_craftitem("maptools:copper_coin", {
