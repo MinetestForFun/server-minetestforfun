@@ -1,6 +1,8 @@
 -= MOBS-MOD for MINETEST =-
 by PilzAdam, KrupnovPavel, Zeg9 and TenPlus1
+
 This mod contains the following additions:
+
 - Giant Spiders (found in desert caves, drop string when killed)
 - Bee's (found around flowers, drop honey when killed, right-click to pick up, also Beehives)
 - Chicken (lays eggs, added fried egg, raw & cooked chicken, right-click to pick up)
@@ -11,14 +13,18 @@ This mod contains the following additions:
 - Sand, Dirt, Stone, Tree Monsters, Oerkki and Dungeon Masters as standard
 - Lava Flan, Mese Monsters added to spice things up a bit
 - Cook milk in furnace to get cheese wedge, 9 wedges make 1 cheese block
+
 ..with the following new features:
+
 - Hitting a mob has knock-back effect like in minecraft, and with blood effect
 - Mobs float in water, so monsters can still chase you
 - Mobs can die from falling from a height
 - Mobs have better health and drops
 - Hitting a mob also puts them into fight mode (apart from animals)
 - Compatible with Ethereal mod, mobs now spawn on ethereal worlds
+
 Changelog:
+
 0.6 - Api now supports multi-textured mobs, e.g oerkki, dungeon master, rats and chickens have random skins when spawning (sheep fix TODO), also new Honey block
 0.5 - Mobs now float in water, die from falling, and some code improvements
 0.4 - Dungeon Masters and Mese Monsters have much better aim due to shoot_offset, also they can both shoot through nodes that aren't walkable (flowers, grass etc) plus new sheep sound :)
