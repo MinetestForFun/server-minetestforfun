@@ -16,7 +16,7 @@ end
 
 -- Default player appearance
 default.player_register_model("character.x", {
-	animation_speed = 30,
+	animation_speed = 35,
 	textures = {"character.png", },
 	animations = {
 		-- Standard animations.
@@ -94,15 +94,18 @@ end
 minetest.register_on_joinplayer(function(player)
 	default.player_attached[player:get_player_name()] = false
 	default.player_set_model(player, "character.x")
-	player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
+	player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 35)
 	
 	-- set GUI
-	if not minetest.setting_getbool("creative_mode") then
-		player:set_inventory_formspec(default.gui_suvival_form)
+		if minetest.setting_getbool("creative_mode") then
+	--	creative.set_creative_formspec(player, 0, 1)
+	else
+		player:set_inventory_formspec(gui_suvival_form)
 	end
-	player:hud_set_hotbar_image("gui_hotbar.png")
-	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
-end)
+	minetest.after(0.5,function()
+		player:hud_set_hotbar_image("gui_hotbar.png")
+		player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
+	end)
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
@@ -124,7 +127,7 @@ minetest.register_globalstep(function(dtime)
 		if model and not player_attached[name] then
 			local controls = player:get_player_control()
 			local walking = false
-			local animation_speed_mod = model.animation_speed or 30
+			local animation_speed_mod = model.animation_speed or 35
 
 			-- Determine if the player is walking
 			if controls.up or controls.down or controls.left or controls.right then
@@ -138,21 +141,22 @@ minetest.register_globalstep(function(dtime)
 
 			-- Apply animations based on what the player is doing
 			if player:get_hp() == 0 then
-				player_set_animation(player, "lay")
+				player_set_animation(player, "lay", animation_speed_mod)
+				player:set_eye_offset({x = 0, y = -10, z = 0}, {x = 0
 			elseif walking then
 				if player_sneak[name] ~= controls.sneak then
 					player_anim[name] = nil
 					player_sneak[name] = controls.sneak
 				end
-				if controls.LMB then
+				if controls.LMB or controls.RMB then
 					player_set_animation(player, "walk_mine", animation_speed_mod)
 				else
 					player_set_animation(player, "walk", animation_speed_mod)
 				end
-			elseif controls.LMB then
-				player_set_animation(player, "mine")
+			elseif controls.LMB or controls.RMB then
+				player_set_animation(player, "mine", animation_spee
 			else
-				player_set_animation(player, "stand", animation_speed_mod)
+				player_set_animation(player, "stand", animation_speed_mod * 0.4)
 			end
 		end
 	end
