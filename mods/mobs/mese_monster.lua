@@ -19,7 +19,11 @@ mobs:register_mob("mobs:mese_monster", {
 	collisionbox = {-0.5, -1.5, -0.5, 0.5, 0.5, 0.5},
 	visual = "mesh",
 	mesh = "zmobs_mese_monster.x",
-	textures = {"zmobs_mese_monster.png"},
+	--textures = {"zmobs_mese_monster.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"zmobs_mese_monster.png"},
+	},
 	visual_size = {x=1, y=1},
 	makes_footstep_sound = true,
 	view_range = 16,
