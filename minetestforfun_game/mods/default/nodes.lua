@@ -1105,6 +1105,7 @@ minetest.register_node("default:acid_source", {
 	liquid_alternative_flowing = "default:acid_flowing",
 	liquid_alternative_source = "default:acid_source",
 	liquid_viscosity = WATER_VISC,
+	liquid_renewable = false,
 	damage_per_second = 3,
 	post_effect_color = {a = 120, r = 50, g = 90, b = 30},
 	groups = {water = 3, liquid = 3, puts_out_fire = 1},
