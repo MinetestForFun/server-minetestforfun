@@ -56,7 +56,7 @@ blood_texture = "mobs_blood.png",
 	end,
 	
 })
-mobs:register_spawn("mobs:pumba", {"default:dirt_with_grass"}, 20, 8, 9000, 1, 31000)
+mobs:register_spawn("mobs:pumba", {"default:dirt_with_grass", "default:dirt"}, 20, 8, 9000, 1, 31000)
 
 -- Porkchops
 
