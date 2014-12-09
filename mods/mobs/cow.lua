@@ -6,7 +6,11 @@ mobs:register_mob("mobs:cow", {
 	hp_min = 10,
 	hp_max = 15,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"mobs_cow.png"},
+	--textures = {"mobs_cow.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"mobs_cow.png"},
+	},
 	visual = "mesh",
 	mesh = "mobs_cow.x",
 	makes_footstep_sound = true,
