@@ -17,7 +17,11 @@ mobs:register_mob("mobs:lava_flan", {
 	collisionbox = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5},
 	visual = "mesh",
 	mesh = "zmobs_lava_flan.x",
-	textures = {"zmobs_lava_flan.png"},
+	--textures = {"zmobs_lava_flan.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"zmobs_lava_flan.png"},
+	},
 	visual_size = {x=1, y=1},
 	makes_footstep_sound = true,
 	view_range = 10,
