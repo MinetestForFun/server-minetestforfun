@@ -11,21 +11,22 @@ minetest.register_node("fire:basic_flame", {
 	}},
 	inventory_image = "fire_basic_flame.png",
 	light_source = 14,
-	groups = {igniter=2,dig_immediate=3},
+	groups = {igniter=2,dig_immediate=3,hot=3},
 	drop = '',
 	walkable = false,
 	buildable_to = true,
 	damage_per_second = 4,
-
+	
 	on_construct = function(pos)
 		minetest.after(0, fire.on_flame_add_at, pos)
 	end,
-
+	
 	on_destruct = function(pos)
 		minetest.after(0, fire.on_flame_remove_at, pos)
 	end,
 })
 
+fire = {}
 fire.D = 6
 -- key: position hash of low corner of area
 -- value: {handle=sound handle, name=sound name}
@@ -82,10 +83,12 @@ function fire.update_sounds_around(pos)
 end
 
 function fire.on_flame_add_at(pos)
+	--print("flame added at "..minetest.pos_to_string(pos))
 	fire.update_sounds_around(pos)
 end
 
 function fire.on_flame_remove_at(pos)
+	--print("flame removed at "..minetest.pos_to_string(pos))
 	fire.update_sounds_around(pos)
 end
 
@@ -116,6 +119,7 @@ minetest.register_abm({
 		local p = fire.find_pos_for_flame_around(p0)
 		if p then
 			minetest.set_node(p, {name="fire:basic_flame"})
+			fire.on_flame_add_at(p)
 		end
 	end,
 })
@@ -141,6 +145,7 @@ minetest.register_abm({
 			local p2 = fire.find_pos_for_flame_around(p)
 			if p2 then
 				minetest.set_node(p2, {name="fire:basic_flame"})
+				fire.on_flame_add_at(p2)
 			end
 		end
 	end,
@@ -155,6 +160,7 @@ minetest.register_abm({
 		-- If there is water or stuff like that around flame, remove flame
 		if fire.flame_should_extinguish(p0) then
 			minetest.remove_node(p0)
+			fire.on_flame_remove_at(p0)
 			return
 		end
 		-- Make the following things rarer
@@ -164,6 +170,7 @@ minetest.register_abm({
 		-- If there are no flammable nodes around flame, remove flame
 		if not minetest.find_node_near(p0, 1, {"group:flammable"}) then
 			minetest.remove_node(p0)
+			fire.on_flame_remove_at(p0)
 			return
 		end
 		if math.random(1,4) == 1 then
@@ -180,6 +187,7 @@ minetest.register_abm({
 		else
 			-- remove flame
 			minetest.remove_node(p0)
+			fire.on_flame_remove_at(p0)
 		end
 	end,
 })
