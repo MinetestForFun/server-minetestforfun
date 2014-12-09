@@ -8,7 +8,12 @@ mobs:register_mob("mobs:rat", {
 	collisionbox = {-0.2, -0.01, -0.2, 0.2, 0.2, 0.2},
 	visual = "mesh",
 	mesh = "mobs_rat.x",
-	textures = {"mobs_rat.png"},
+	--textures = {"mobs_rat.png"},
+	available_textures = {
+		total = 2,
+		texture_1 = {"mobs_rat.png"},
+		texture_2 = {"mobs_rat_brown.png"},
+	},
 	makes_footstep_sound = false,
 	walk_velocity = 1,
 	armor = 200,

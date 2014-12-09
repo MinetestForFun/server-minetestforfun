@@ -8,7 +8,11 @@ mobs:register_mob("mobs:stone_monster", {
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_stone_monster.x",
-	textures = {"mobs_stone_monster.png"},
+	--textures = {"mobs_stone_monster.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"mobs_stone_monster.png"},
+	},
 	visual_size = {x=3, y=2.6},
 	makes_footstep_sound = true,
 	view_range = 16,

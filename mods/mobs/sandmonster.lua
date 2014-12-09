@@ -8,7 +8,11 @@ mobs:register_mob("mobs:sand_monster", {
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_sand_monster.x",
-	textures = {"mobs_sand_monster.png"},
+	--textures = {"mobs_sand_monster.png"},
+		available_textures = {
+		total = 1,
+		texture_1 = {"mobs_sand_monster.png"},
+	},
 	visual_size = {x=8,y=8},
 	makes_footstep_sound = true,
 	view_range = 16,
