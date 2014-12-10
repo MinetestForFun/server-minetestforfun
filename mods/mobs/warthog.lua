@@ -5,7 +5,11 @@ mobs:register_mob("mobs:pumba", {
 	hp_min = 10,
 	hp_max = 15,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"mobs_pumba.png"},
+	--textures = {"mobs_pumba.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"mobs_pumba.png"},
+	},
 	visual = "mesh",
 	mesh = "mobs_pumba.x",
 	makes_footstep_sound = true,
