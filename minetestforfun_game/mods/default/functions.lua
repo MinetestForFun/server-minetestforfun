@@ -7,40 +7,20 @@
 function default.node_sound_defaults(table)
 	table = table or {}
 	table.footstep = table.footstep or
-			{name = "default_hard_footstep", gain = 0.6}
-	table.dig = table.dig or
-			{name = "default_hard_footstep", gain = 0.7}
+			{name="", gain=1.0}
 	table.dug = table.dug or
-			{name = "default_hard_footstep", gain = 0.8}
+			{name="default_dug_node", gain=0.25}
 	table.place = table.place or
-			{name = "default_hard_footstep", gain = 0.8}
+			{name="default_place_node_hard", gain=1.0}
 	return table
 end
 
 function default.node_sound_stone_defaults(table)
 	table = table or {}
 	table.footstep = table.footstep or
-			{name = "default_hard_footstep", gain = 0.6}
-	table.dig = table.dig or
-			{name = "default_hard_footstep", gain = 0.7}
+			{name="default_hard_footstep", gain=0.5}
 	table.dug = table.dug or
-			{name = "default_hard_footstep", gain = 0.8}
-	table.place = table.place or
-			{name = "default_hard_footstep", gain = 0.8}
-	default.node_sound_defaults(table)
-	return table
-end
-
-function default.node_sound_metal_defaults(table)
-	table = table or {}
-	table.footstep = table.footstep or
-			{name = "default_metal_footstep", gain = 0.575}
-	table.dig = table.dig or
-			{name = "default_metal_footstep", gain = 0.65}
-	table.dug = table.dug or
-			{name = "default_metal_footstep", gain = 0.8}
-	table.place = table.place or
-			{name = "default_metal_footstep", gain = 0.8}
+			{name="default_hard_footstep", gain=1.0}
 	default.node_sound_defaults(table)
 	return table
 end
@@ -48,27 +28,11 @@ end
 function default.node_sound_dirt_defaults(table)
 	table = table or {}
 	table.footstep = table.footstep or
-			{name = "default_dirt_footstep", gain = 0.8}
-	table.dig = table.dig or
-			{name = "default_dirt_footstep", gain = 0.9}
+			{name="default_dirt_footstep", gain=1.0}
 	table.dug = table.dug or
-			{name = "default_dirt_footstep", gain = 1.0}
+			{name="default_dirt_footstep", gain=1.5}
 	table.place = table.place or
-			{name = "default_dirt_footstep", gain = 1.0}
-	default.node_sound_defaults(table)
-	return table
-end
-
-function default.node_sound_gravel_defaults(table)
-	table = table or {}
-	table.footstep = table.footstep or
-			{name = "default_dirt_footstep", gain = 0.8}
-	table.dig = table.dig or
-			{name = "default_dirt_footstep", gain = 0.9}
-	table.dug = table.dug or
-			{name = "default_dirt_footstep", gain = 1.0}
-	table.place = table.place or
-			{name = "default_dirt_footstep", gain = 1.0}
+			{name="default_place_node", gain=1.0}
 	default.node_sound_defaults(table)
 	return table
 end
@@ -76,13 +40,11 @@ end
 function default.node_sound_sand_defaults(table)
 	table = table or {}
 	table.footstep = table.footstep or
-			{name = "default_sand_footstep", gain = 0.6}
-	table.dig = table.dig or
-			{name = "default_sand_footstep", gain = 0.7}
+			{name="default_sand_footstep", gain=0.2}
 	table.dug = table.dug or
-			{name = "default_sand_footstep", gain = 0.8}
+			{name="default_sand_footstep", gain=0.4}
 	table.place = table.place or
-			{name = "default_sand_footstep", gain = 0.8}
+			{name="default_place_node", gain=1.0}
 	default.node_sound_defaults(table)
 	return table
 end
@@ -90,13 +52,9 @@ end
 function default.node_sound_wood_defaults(table)
 	table = table or {}
 	table.footstep = table.footstep or
-			{name = "default_wood_footstep", gain = 0.625}
-	table.dig = table.dig or
-			{name = "default_wood_footstep", gain = 0.7}
+			{name="default_wood_footstep", gain=0.5}
 	table.dug = table.dug or
-			{name = "default_wood_footstep", gain = 0.8}
-	table.place = table.place or
-			{name = "default_wood_footstep", gain = 0.8}
+			{name="default_wood_footstep", gain=1.0}
 	default.node_sound_defaults(table)
 	return table
 end
@@ -104,13 +62,13 @@ end
 function default.node_sound_leaves_defaults(table)
 	table = table or {}
 	table.footstep = table.footstep or
-			{name = "default_grass_footstep", gain = 0.6}
-	table.dig = table.dig or
-			{name = "default_grass_footstep", gain = 0.7}
+			{name="default_grass_footstep", gain=0.35}
 	table.dug = table.dug or
-			{name = "default_snow_footstep", gain = 0.8}
+			{name="default_grass_footstep", gain=0.7}
+	table.dig = table.dig or
+			{name="default_dig_crumbly", gain=0.4}
 	table.place = table.place or
-			{name = "default_snow_footstep", gain = 0.8}
+			{name="default_place_node", gain=1.0}
 	default.node_sound_defaults(table)
 	return table
 end
@@ -118,28 +76,27 @@ end
 function default.node_sound_glass_defaults(table)
 	table = table or {}
 	table.footstep = table.footstep or
-			{name = "default_hard_footstep", gain = 0.55}
-	table.dig = table.dig or
-			{name = "default_hard_footstep", gain = 0.65}
+			{name="default_glass_footstep", gain=0.5}
 	table.dug = table.dug or
-			{name = "default_break_glass", gain = 0.8}
-	table.place = table.place or
-			{name = "default_hard_footstep", gain = 0.75}
+			{name="default_break_glass", gain=1.0}
 	default.node_sound_defaults(table)
 	return table
 end
 
--- Legacy:
+--
+-- Legacy
+--
+
 function default.spawn_falling_node(p, nodename)
 	spawn_falling_node(p, nodename)
 end
 
--- Horrible crap to support old code,
--- don't use this and never do what this does, it's completely wrong!
--- (more specifically, the client and the C++ code doesn't get the group).
+-- Horrible crap to support old code
+-- Don't use this and never do what this does, it's completely wrong!
+-- (More specifically, the client and the C++ code doesn't get the group)
 function default.register_falling_node(nodename, texture)
 	minetest.log("error", debug.traceback())
-	minetest.log("error", "WARNING: default.register_falling_node is deprecated.")
+	minetest.log('error', "WARNING: default.register_falling_node is deprecated")
 	if minetest.registered_nodes[nodename] then
 		minetest.registered_nodes[nodename].groups.falling_node = 1
 	end
@@ -151,89 +108,37 @@ end
 
 -- Global environment step function
 function on_step(dtime)
-	-- print("on_step, " .. p .. ", " .. node)
+	-- print("on_step")
 end
 minetest.register_globalstep(on_step)
 
 function on_placenode(p, node)
-	-- print("on_placenode, " .. p .. ", " .. node)
+	--print("on_placenode")
 end
 minetest.register_on_placenode(on_placenode)
 
 function on_dignode(p, node)
-	-- print("on_dignode, " .. p .. ", " .. node)
+	--print("on_dignode")
 end
 minetest.register_on_dignode(on_dignode)
 
 function on_punchnode(p, node)
-	-- print("on_punchnode, " .. p .. ", " .. node)
 end
 minetest.register_on_punchnode(on_punchnode)
 
+
 --
--- Lava cooling
+-- Lavacooling
 --
-
-local function cool_wf_vm(pos, node1, node2)
-	local t1 = os.clock()
-	local minp = vector.subtract(pos, 10)
-	local maxp = vector.add(pos, 10)
-	local manip = minetest.get_voxel_manip()
-	local emerged_pos1, emerged_pos2 = manip:read_from_map(minp, maxp)
-	local area = VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
-	local nodes = manip:get_data()
-
-	local stone = minetest.get_content_id(node2)
-	local lava = minetest.get_content_id(node1)
-
-	for i in area:iterp(minp, maxp) do
-		local p = area:position(i)
-		if nodes[i] == lava and minetest.find_node_near(p, 1, {"group:water"}) then
-			nodes[i] = stone
-		end
-	end
-				
-	manip:set_data(nodes)
-	manip:write_to_map()
-	-- minetest.log("action", "Lava cooling happened at (" .. pos.x .. "," .. pos.y .. "," .. pos.z .. ").")
-	local t1 = os.clock()
-	manip:update_map()
-	-- minetest.log("action", string.format("Lava cooling updated the map after ca. %.2fs.", os.clock() - t1))
-end
-
-local del1 = 0
-local count = 0
 
 default.cool_lava_source = function(pos)
-	local del2 = tonumber(os.clock())
-	if del2-del1 < 0.1
-	and count > 1 then
-		cool_wf_vm(pos, "default:lava_source", "default:obsidian_cooled")
-		count = 0
-	else
-		minetest.set_node(pos, {name = "default:obsidian_cooled"})
-		minetest.sound_play("default_cool_lava", {pos = pos, gain = 0.2})
-		if del2-del1 < 0.1 then
-			count = count + 1
-		end
-	end
-	del1 = del2
+	minetest.set_node(pos, {name="default:obsidian"})
+	minetest.sound_play("default_cool_lava", {pos = pos,  gain = 0.25})
 end
 
 default.cool_lava_flowing = function(pos)
-	local del2 = tonumber(os.clock())
-	if del2-del1 < 0.1
-	and count > 1 then
-		cool_wf_vm(pos, "default:lava_flowing", "default:cobble_cooled")
-		count = 0
-	else
-		minetest.set_node(pos, {name = "default:cobble_cooled"})
-		minetest.sound_play("default_cool_lava", {pos = pos, gain = 0.2})
-		if del2-del1 < 0.1 then
-			count = count + 1
-		end
-	end
-	del1 = del2
+	minetest.set_node(pos, {name="default:stone"})
+	minetest.sound_play("default_cool_lava", {pos = pos,  gain = 0.25})
 end
 
 minetest.register_abm({
@@ -245,12 +150,6 @@ minetest.register_abm({
 		default.cool_lava_flowing(pos, node, active_object_count, active_object_count_wider)
 	end,
 })
-
-default.after_place_leaves = function(pos, placer, itemstack, pointed_thing)
-	local node = minetest.get_node(pos)
-	node.param2 = 1
-	minetest.set_node(pos, node)
-end
 
 minetest.register_abm({
 	nodenames = {"default:lava_source"},
@@ -272,18 +171,18 @@ minetest.register_abm({
 	interval = 30,
 	chance = 25,
 	action = function(pos, node)
-		pos.y = pos.y - 1
+		pos.y = pos.y-1
 		local name = minetest.get_node(pos).name
 		if minetest.get_item_group(name, "sand") ~= 0 then
-			pos.y = pos.y + 1
+			pos.y = pos.y+1
 			local height = 0
 			while minetest.get_node(pos).name == "default:cactus" and height < 4 do
-				height = height + 1
-				pos.y = pos.y + 1
+				height = height+1
+				pos.y = pos.y+1
 			end
 			if height < 4 then
 				if minetest.get_node(pos).name == "air" then
-					minetest.set_node(pos, {name = "default:cactus"})
+					minetest.set_node(pos, {name="default:cactus"})
 				end
 			end
 		end
@@ -292,34 +191,34 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"default:papyrus"},
-	neighbors = {"default:dirt", "default:dirt_with_grass", "default:dirt_with_snow", "default:sand", "default:desert_sand"},
+	neighbors = {"default:dirt", "default:dirt_with_grass"},
 	interval = 30,
 	chance = 25,
 	action = function(pos, node)
-		pos.y = pos.y - 1
+		pos.y = pos.y-1
 		local name = minetest.get_node(pos).name
-		if name == "default:dirt"
-		or name == "default:dirt_with_grass"
-		or name == "default:dirt_with_snow"
-		or name == "default:sand"
-		or name == "default:desert_sand" then
+		if name == "default:dirt" or name == "default:dirt_with_grass" then
 			if minetest.find_node_near(pos, 3, {"group:water"}) == nil then
 				return
 			end
-			pos.y = pos.y + 1
+			pos.y = pos.y+1
 			local height = 0
 			while minetest.get_node(pos).name == "default:papyrus" and height < 4 do
-				height = height + 1
-				pos.y = pos.y + 1
+				height = height+1
+				pos.y = pos.y+1
 			end
 			if height < 4 then
 				if minetest.get_node(pos).name == "air" then
-					minetest.set_node(pos, {name = "default:papyrus"})
+					minetest.set_node(pos, {name="default:papyrus"})
 				end
 			end
 		end
 	end,
 })
+
+--
+-- dig upwards
+--
 
 function default.dig_up(pos, node, digger)
 	if digger == nil then return end
@@ -330,7 +229,9 @@ function default.dig_up(pos, node, digger)
 	end
 end
 
-if minetest.setting_getbool("leaf_decay") ~= false then -- “If not defined or set to true then”
+--
+-- Leafdecay
+--
 
 default.leafdecay_trunk_cache = {}
 default.leafdecay_enable_cache = true
@@ -343,23 +244,30 @@ minetest.register_globalstep(function(dtime)
 			math.floor(dtime * finds_per_second)
 end)
 
+default.after_place_leaves = function(pos, placer, itemstack, pointed_thing)
+	local node = minetest.get_node(pos)
+	node.param2 = 1
+	minetest.set_node(pos, node)
+end
+
 minetest.register_abm({
 	nodenames = {"group:leafdecay"},
 	neighbors = {"air", "group:liquid"},
-	interval = 1, -- A low interval and a high inverse chance spreads the load.
+	-- A low interval and a high inverse chance spreads the load
+	interval = 1,
 	chance = 2,
 
 	action = function(p0, node, _, _)
-		-- print("leafdecay ABM at "..p0.x..", "..p0.y..", "..p0.z..")")
+		--print("leafdecay ABM at "..p0.x..", "..p0.y..", "..p0.z..")")
 		local do_preserve = false
 		local d = minetest.registered_nodes[node.name].groups.leafdecay
 		if not d or d == 0 then
-			-- print("not groups.leafdecay")
+			--print("not groups.leafdecay")
 			return
 		end
 		local n0 = minetest.get_node(p0)
 		if n0.param2 ~= 0 then
-			-- print("param2 ~= 0")
+			--print("param2 ~= 0")
 			return
 		end
 		local p0_hash = nil
@@ -369,13 +277,13 @@ minetest.register_abm({
 			if trunkp then
 				local n = minetest.get_node(trunkp)
 				local reg = minetest.registered_nodes[n.name]
-				-- Assume ignore is a trunk, to make the thing work at the border of the active area:
+				-- Assume ignore is a trunk, to make the thing work at the border of the active area
 				if n.name == "ignore" or (reg and reg.groups.tree and reg.groups.tree ~= 0) then
-					-- print("Cached trunk still exists.")
+					--print("cached trunk still exists")
 					return
 				end
-				-- print("Cached trunk is invalid.")
-				-- Cache is invalid:
+				--print("cached trunk is invalid")
+				-- Cache is invalid
 				table.remove(default.leafdecay_trunk_cache, p0_hash)
 			end
 		end
@@ -384,30 +292,34 @@ minetest.register_abm({
 		end
 		default.leafdecay_trunk_find_allow_accumulator =
 				default.leafdecay_trunk_find_allow_accumulator - 1
-		-- Assume ignore is a trunk, to make the thing work at the border of the active area:
+		-- Assume ignore is a trunk, to make the thing work at the border of the active area
 		local p1 = minetest.find_node_near(p0, d, {"ignore", "group:tree"})
 		if p1 then
 			do_preserve = true
 			if default.leafdecay_enable_cache then
-				-- print("Caching trunk.")
-				-- Cache the trunk:
+				--print("caching trunk")
+				-- Cache the trunk
 				default.leafdecay_trunk_cache[p0_hash] = p1
 			end
 		end
 		if not do_preserve then
-			-- Drop stuff other than the node itself:
-			itemstacks = minetest.get_node_drops(n0.name)
+			-- Drop stuff other than the node itself
+			local itemstacks = minetest.get_node_drops(n0.name)
 			for _, itemname in ipairs(itemstacks) do
-				if minetest.get_item_group(n0.name, "leafdecay_drop") ~= 0
-				or itemname ~= n0.name then
-					minetest.add_item(p0, itemname)
+				if minetest.get_item_group(n0.name, "leafdecay_drop") ~= 0 or
+						itemname ~= n0.name then
+					local p_drop = {
+						x = p0.x - 0.5 + math.random(),
+						y = p0.y - 0.5 + math.random(),
+						z = p0.z - 0.5 + math.random(),
+					}
+					minetest.add_item(p_drop, itemname)
 				end
 			end
+			-- Remove node
 			minetest.remove_node(p0)
-			-- minetest.log("action", n0.name .. " decayed at " .. minetest.pos_to_string(p0) .. ".")
 			nodeupdate(p0)
 		end
 	end
 })
 
-end -- Ends: if minetest.setting_getbool("leaf_decay") ~= false

@@ -6,19 +6,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:pinewood 4',
-    recipe = {
-		{'default:pinetree'},
-	}
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "default:pine_sapling",
-	burntime = 10,
-})
-
-minetest.register_craft({
 	output = "default:junglewood 4",
 	recipe = {{"default:jungletree"},}
 })

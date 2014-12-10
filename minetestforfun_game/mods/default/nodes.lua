@@ -476,7 +476,6 @@ minetest.register_node("default:jungleleaves", {
 			}
 		}
 	},
-	after_place_node = default.after_place_leaves,
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -539,7 +538,6 @@ minetest.register_node("default:leaves", {
 			}
 		}
 	},
-	after_place_node = default.after_place_leaves,
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -610,8 +608,7 @@ minetest.register_node("default:bookshelf", {
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		if listname == "books" then
-			if minetest.get_item_group(stack:get_name(), "book") ~= 0
-				and to_stack:is_empty() then
+			if stack:get_name() == "default:book" then
 				return 1
 			else
 				return 0
@@ -814,8 +811,9 @@ minetest.register_node("default:water_flowing", {
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
 	liquid_viscosity = WATER_VISC,
+	freezemelt = "default:snow",
 	post_effect_color = {a = 120, r = 20, g = 60, b = 80},
-	groups = {water= 3, liquid = 3, puts_out_fire = 1, not_in_creative_inventory = 1},
+	groups = {water= 3, liquid = 3, puts_out_fire = 1, not_in_creative_inventory = 1, freezes = 1, melt_around = 1},
 })
 
 minetest.register_node("default:water_source", {
@@ -845,8 +843,9 @@ minetest.register_node("default:water_source", {
 	liquid_alternative_flowing = "default:water_flowing",
 	liquid_alternative_source = "default:water_source",
 	liquid_viscosity = WATER_VISC,
+	freezemelt = "default:ice",
 	post_effect_color = {a = 120, r = 20, g = 60, b = 80},
-	groups = {water= 3, liquid = 3, puts_out_fire = 1},
+	groups = {water= 3, liquid = 3, puts_out_fire = 1, freezes = 1},
 })
 
 --[[
@@ -1140,7 +1139,7 @@ minetest.register_node("default:torch", {
 		wall_bottom = {-0.25, -0.5   , -0.25, 0.25, 0.0625, 0.25},
 		wall_side   = {-0.25, -0.5  , -0.25, -0.5, 0.0625, 0.25},
 	},
-	groups = {choppy = 2, dig_immediate = 3, flammable = 1, attached_node = 1},
+	groups = {choppy = 2, dig_immediate = 3, flammable = 1, attached_node = 1, hot = 2},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -1322,67 +1321,226 @@ minetest.register_node("default:chest_locked", {
 	end,
 })
 
-minetest.register_node("default:pine_needles",{
-	description = "Pine Needles",
-	drawtype = "allfaces_optional",
-	visual_scale = 1.3,
-	tiles = {"default_pine_needles.png"},
-	waving = 1,
-	paramtype = "light",
+function default.furnace_active(pos, percent, item_percent)
+    local formspec = 
+	"size[8,8.5]"..
+	gui_slots..
+	"list[current_name;src;2.75, 0.5;1,1;]" ..
+	"list[current_name;fuel;2.75,2.5;1,1;]" ..
+	"image[2.75,1.5;1,1;default_furnace_fire_bg.png^[lowpart:" ..
+	(100-percent)..":default_furnace_fire_fg.png]" ..
+        "image[3.75,1.5;1,1;gui_furnace_arrow_bg.png^[lowpart:" ..
+        (item_percent * 100)..":gui_furnace_arrow_fg.png^[transformR270]" ..
+	"list[current_name;dst;4.75,0.96;2,2;]" ..
+	"list[current_player;main;0,4.25;8,4;]" ..
+	default.get_hotbar_bg(0, 4.25) ..
+	default.get_hotbar_bg(0, 5.25)
+    return formspec
+  end
+
+function default.get_furnace_active_formspec(pos, percent)
+	local meta = minetest.get_meta(pos)local inv = meta:get_inventory()
+	local srclist = inv:get_list("src")
+	local cooked = nil
+	local aftercooked = nil
+	if srclist then
+		cooked, aftercooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
+	end
+	local item_percent = 0
+	if cooked then
+		item_percent = meta:get_float("src_time")/cooked.time
+	end
+       
+        return default.furnace_active(pos, percent, item_percent)
+end
+
+default.furnace_inactive_formspec =
+	"size[8,8.5]"..
+	gui_slots..
+	"list[current_name;src;2.75, 0.5;1,1;]" ..
+	"list[current_name;fuel;2.75,2.5;1,1;]" ..
+	"image[2.75,1.5;1,1;default_furnace_fire_bg.png]" ..
+	"image[3.75,1.5;1,1;gui_furnace_arrow_bg.png^[transformR270]" ..
+	"list[current_name;dst;4.75, 0.96;2,2;]" ..
+	"list[current_player;main;0,4.25;8,4;]" ..
+	default.get_hotbar_bg(0, 4.25) ..
+	default.get_hotbar_bg(0, 5.25)
+
+minetest.register_node("default:furnace", {
+	description = "Furnace",
+	tiles = {"default_furnace_top.png", "default_furnace_bottom.png", "default_furnace_side.png",
+		"default_furnace_side.png", "default_furnace_side.png", "default_furnace_front.png"},
+	paramtype2 = "facedir",
+	groups = {cracky = 2},
 	is_ground_content = false,
-	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				-- player will get sapling with 1/20 chance
-				items = {"default:pine_sapling"},
-				rarity = 20,
+	sounds = default.node_sound_stone_defaults(),
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("formspec", default.furnace_inactive_formspec)
+		meta:set_string("infotext", "Furnace")
+		local inv = meta:get_inventory()
+		inv:set_size("fuel", 1)
+		inv:set_size("src", 1)
+		inv:set_size("dst", 4)
+	end,
+	can_dig = function(pos,player)
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory()
+		if not inv:is_empty("fuel") then
+			return false
+		elseif not inv:is_empty("dst") then
+			return false
+		elseif not inv:is_empty("src") then
+			return false
+		end
+		return true
+	end,
+	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+		if minetest.is_protected(pos, player:get_player_name()) then
+			return 0
+		end
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		if listname == "fuel" then
+			if minetest.get_craft_result({method = "fuel",width = 1, items ={stack}}).time ~= 0 then
+				if inv:is_empty("src") then
+					meta:set_string("infotext","Furnace is empty")
+				end
+				return stack:get_count()
+			else
+				return 0
+			end
+		elseif listname == "src" then
+			return stack:get_count()
+		elseif listname == "dst" then
+			return 0
+		end
+	end,
+	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+		if minetest.is_protected(pos, player:get_player_name()) then
+			return 0
+		end
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		local stack = inv:get_stack(from_list, from_index)
+		if to_list == "fuel" then
+			if minetest.get_craft_result({method = "fuel",width = 1, items ={stack}}).time ~= 0 then
+				if inv:is_empty("src") then
+					meta:set_string("infotext","Furnace is empty")
+				end
+				return count
+			else
+				return 0
+			end
+		elseif to_list == "src" then
+			return count
+		elseif to_list == "dst" then
+			return 0
+		end
+	end,
+	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+		if minetest.is_protected(pos, player:get_player_name()) then
+			return 0
+		end
+		return stack:get_count()
+	end,
+})
+
+minetest.register_node("default:furnace_active", {
+	description = "Furnace (active)",
+	tiles = {
+		"default_furnace_top.png",
+		"default_furnace_bottom.png",
+		"default_furnace_side.png",
+		"default_furnace_side.png",
+		"default_furnace_side.png",
+		{
+			image = "default_furnace_front_active.png",
+			backface_culling = false,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 1
 			},
-			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
-				items = {"default:pine_needles"},
-			}
 		}
 	},
-	sounds = default.node_sound_leaves_defaults(),
-	after_place_node = default.after_place_leaves,
-})
-
-minetest.register_node("default:pine_sapling", {
-	description = "Pine Sapling",
-	drawtype = "plantlike",
-	visual_scale = 1.0,
-	tiles = {"default_pine_sapling.png"},
-	inventory_image = "default_pine_sapling.png",
-	wield_image = "default_pine_sapling.png",
-	paramtype = "light",
-	walkable = false,
-	is_ground_content = true,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
-	},
-	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1},
-	sounds = default.node_sound_leaves_defaults(),
-})
-
-minetest.register_node("default:pinetree", {
-	description = "Pine Tree",
-	tiles = {"default_pinetree_top.png", "default_pinetree_top.png", "default_pinetree.png"},
 	paramtype2 = "facedir",
+	light_source = 9,
+	drop = "default:furnace",
+	groups = {cracky = 2, not_in_creative_inventory = 1,hot= 1},
 	is_ground_content = false,
-	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
-minetest.register_node("default:pinewood", {
-	description = "Pinewood Planks",
-	tiles = {"default_pinewood.png"},
-	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_stone_defaults(),
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("formspec", default.furnace_inactive_formspec)
+		meta:set_string("infotext", "Furnace");
+		local inv = meta:get_inventory()
+		inv:set_size("fuel", 1)
+		inv:set_size("src", 1)
+		inv:set_size("dst", 4)
+	end,
+	can_dig = function(pos,player)
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory()
+		if not inv:is_empty("fuel") then
+			return false
+		elseif not inv:is_empty("dst") then
+			return false
+		elseif not inv:is_empty("src") then
+			return false
+		end
+		return true
+	end,
+	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+		if minetest.is_protected(pos, player:get_player_name()) then
+			return 0
+		end
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		if listname == "fuel" then
+			if minetest.get_craft_result({method = "fuel",width = 1, items ={stack}}).time ~= 0 then
+				if inv:is_empty("src") then
+					meta:set_string("infotext","Furnace is empty")
+				end
+				return stack:get_count()
+			else
+				return 0
+			end
+		elseif listname == "src" then
+			return stack:get_count()
+		elseif listname == "dst" then
+			return 0
+		end
+	end,
+	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+		if minetest.is_protected(pos, player:get_player_name()) then
+			return 0
+		end
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		local stack = inv:get_stack(from_list, from_index)
+		if to_list == "fuel" then
+			if minetest.get_craft_result({method = "fuel",width = 1, items ={stack}}).time ~= 0 then
+				if inv:is_empty("src") then
+					meta:set_string("infotext","Furnace is empty")
+				end
+				return count
+			else
+				return 0
+			end
+		elseif to_list == "src" then
+			return count
+		elseif to_list == "dst" then
+			return 0
+		end
+	end,
+	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+		if minetest.is_protected(pos, player:get_player_name()) then
+			return 0
+		end
+		return stack:get_count()
+	end,
 })
 
 -- Locked Furnace thanks to kotolegokot:
@@ -2151,14 +2309,16 @@ minetest.register_node("default:snow", {
 	sunlight_propagates = true,
 	walkable = false,
 	buildable_to = true,
+	leveled = 7,
 	drawtype = "nodebox",
+	freezemelt = "default:water_flowing",
 	node_box = {
-		type = "fixed",
+		type = "leveled",
 		fixed = {
 			{-0.5, -0.5, -0.5,  0.5, -0.375, 0.5},
 		},
 	},
-	groups = {crumbly = 3, falling_node = 1},
+	groups = {crumbly = 3, falling_node = 1, melts = 1, float = 1},
 	sounds = default.node_sound_dirt_defaults({footstep = {name = "default_snow_footstep", gain = 0.7}}),
 	on_construct = function(pos)
 		pos.y = pos.y - 1
@@ -2175,7 +2335,8 @@ minetest.register_node("default:snowblock", {
 	description = "Snow Block",
 	tiles = {"default_snow.png"},
 	is_ground_content = true,
-	groups = {crumbly = 3},
+	freezemelt = "default:water_source",
+	groups = {crumbly = 3, melts = 1},
 	sounds = default.node_sound_dirt_defaults({footstep = {name = "default_snow_footstep", gain = 0.625}}),
 })
 
