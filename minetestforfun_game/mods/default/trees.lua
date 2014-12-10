@@ -180,4 +180,3 @@ function default.grow_jungletree(pos, bad)
 	vm:write_to_map()
 	vm:update_map()
 end
-
