@@ -345,7 +345,7 @@ minetest.register_node("default:gravel", {
 			{items = {"default:gravel"}},
 		},
 	},
-	sounds = default.node_sound_gravel_defaults(),
+	--sounds = default.node_sound_gravel_defaults(),
 	on_place = function(itemstack, placer, pointed_thing)
      		if not pointed_thing.type == "node" then
 			return itemstack
