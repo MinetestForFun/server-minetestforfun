@@ -1,7 +1,5 @@
 -- minetest/fire/init.lua
 
-fire = {}
-
 minetest.register_node("fire:basic_flame", {
 	description = "Fire",
 	drawtype = "firelike",
@@ -11,18 +9,18 @@ minetest.register_node("fire:basic_flame", {
 	}},
 	inventory_image = "fire_basic_flame.png",
 	light_source = 14,
-	groups = {igniter=2,dig_immediate=3},
+	groups = {igniter=2,dig_immediate=3,hot=3},
 	drop = '',
 	walkable = false,
 	buildable_to = true,
 	damage_per_second = 4,
 	
-	on_construct = function(pos)
-		minetest.after(0, fire.on_flame_add_at, pos)
+	after_place_node = function(pos, placer)
+		fire.on_flame_add_at(pos)
 	end,
 	
-	on_destruct = function(pos)
-		minetest.after(0, fire.on_flame_remove_at, pos)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		fire.on_flame_remove_at(pos)
 	end,
 })
 

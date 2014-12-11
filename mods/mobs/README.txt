@@ -1,4 +1,4 @@
-+-= MOBS-MOD for MINETEST =-
+-= MOBS-MOD for MINETEST =-
 by PilzAdam, KrupnovPavel, Zeg9 and TenPlus1
 
 This mod contains the following additions:

@@ -1,6 +1,55 @@
 -- Minetest 0.4 mod: player
 -- See README.txt for licensing and other information.
 
+--[[
+
+API
+---
+
+default.player_register_model(name, def)
+^ Register a new model to be used by players.
+^ <name> is the model filename such as "character.x", "foo.b3d", etc.
+^ See Model Definition below for format of <def>.
+
+default.registered_player_models[name]
+^ See Model Definition below for format.
+
+default.player_set_model(player, model_name)
+^ <player> is a PlayerRef.
+^ <model_name> is a model registered with player_register_model.
+
+default.player_set_animation(player, anim_name [, speed])
+^ <player> is a PlayerRef.
+^ <anim_name> is the name of the animation.
+^ <speed> is in frames per second. If nil, default from the model is used
+
+default.player_set_textures(player, textures)
+^ <player> is a PlayerRef.
+^ <textures> is an array of textures
+^ If <textures> is nil, the default textures from the model def are used
+
+default.player_get_animation(player)
+^ <player> is a PlayerRef.
+^ Returns a table containing fields "model", "textures" and "animation".
+^ Any of the fields of the returned table may be nil.
+
+Model Definition
+----------------
+
+model_def = {
+	animation_speed = 30, -- Default animation speed, in FPS.
+	textures = {"character.png", }, -- Default array of textures.
+	visual_size = {x = 1, y = 1,}, -- Used to scale the model.
+	animations = {
+		-- <anim_name> = { x =<start_frame>, y =<end_frame>, },
+		foo = { x = 0, y = 19, },
+		bar = { x = 20, y =39, },
+		-- ...
+	},
+}
+
+]]
+
 -- Player animation blending
 -- Note: This is currently broken due to a bug in Irrlicht, leave at 0
 local animation_blend = 0
@@ -19,14 +68,12 @@ default.player_register_model("character.x", {
 	animation_speed = 35,
 	textures = {"character.png", },
 	animations = {
-		-- Standard animations.
-		stand     = { x=  0, y= 79, },
-		lay       = { x=162, y=166, },
-		walk      = { x=168, y=187, },
-		mine      = { x=189, y=198, },
-		walk_mine = { x=200, y=219, },
-		-- Extra animations (not currently used by the game).
-		sit       = { x= 81, y=160, },
+		stand =     {x = 0,   y = 40},
+		lay =       {x = 162, y = 166},
+		walk =      {x = 168, y = 187},
+		mine =      {x = 189, y = 198},
+		walk_mine = {x = 200, y = 219},
+		sit =       {x = 81,  y = 160},
 	},
 })
 
@@ -46,7 +93,7 @@ function default.player_get_animation(player)
 	}
 end
 
--- Called when a player's appearance needs to be updated
+-- Called when a player"s appearance needs to be updated
 function default.player_set_model(player, model_name)
 	local name = player:get_player_name()
 	local model = models[model_name]
@@ -58,7 +105,7 @@ function default.player_set_model(player, model_name)
 			mesh = model_name,
 			textures = player_textures[name] or model.textures,
 			visual = "mesh",
-			visual_size = model.visual_size or {x=1, y=1},
+			visual_size = model.visual_size or {x = 1, y = 1},
 		})
 		default.player_set_animation(player, "stand")
 	else
@@ -94,10 +141,10 @@ end
 minetest.register_on_joinplayer(function(player)
 	default.player_attached[player:get_player_name()] = false
 	default.player_set_model(player, "character.x")
-	player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 35)
+	player:set_local_animation({x = 0, y = 40}, {x = 168, y = 187}, {x = 189, y = 198}, {x = 200, y = 219}, 35)
 	
 	-- set GUI
-		if minetest.setting_getbool("creative_mode") then
+	if minetest.setting_getbool("creative_mode") then
 	--	creative.set_creative_formspec(player, 0, 1)
 	else
 		player:set_inventory_formspec(gui_suvival_form)
@@ -106,6 +153,7 @@ minetest.register_on_joinplayer(function(player)
 		player:hud_set_hotbar_image("gui_hotbar.png")
 		player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
 	end)
+end)
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
@@ -116,7 +164,6 @@ end)
 
 -- Localize for better performance.
 local player_set_animation = default.player_set_animation
-local player_attached = default.player_attached
 
 -- Check each player and apply animations
 minetest.register_globalstep(function(dtime)
@@ -124,7 +171,7 @@ minetest.register_globalstep(function(dtime)
 		local name = player:get_player_name()
 		local model_name = player_model[name]
 		local model = model_name and models[model_name]
-		if model and not player_attached[name] then
+		if model and not default.player_attached[name] then
 			local controls = player:get_player_control()
 			local walking = false
 			local animation_speed_mod = model.animation_speed or 35
@@ -136,13 +183,13 @@ minetest.register_globalstep(function(dtime)
 
 			-- Determine if the player is sneaking, and reduce animation speed if so
 			if controls.sneak then
-				animation_speed_mod = animation_speed_mod / 2
+				animation_speed_mod = animation_speed_mod * 0.5
 			end
 
 			-- Apply animations based on what the player is doing
 			if player:get_hp() == 0 then
 				player_set_animation(player, "lay", animation_speed_mod)
-				player:set_eye_offset({x = 0, y = -10, z = 0}, {x = 0
+				player:set_eye_offset({x = 0, y = -10, z = 0}, {x = 0, y = -10, z = 0})
 			elseif walking then
 				if player_sneak[name] ~= controls.sneak then
 					player_anim[name] = nil
@@ -154,7 +201,7 @@ minetest.register_globalstep(function(dtime)
 					player_set_animation(player, "walk", animation_speed_mod)
 				end
 			elseif controls.LMB or controls.RMB then
-				player_set_animation(player, "mine", animation_spee
+				player_set_animation(player, "mine", animation_speed_mod)
 			else
 				player_set_animation(player, "stand", animation_speed_mod * 0.4)
 			end

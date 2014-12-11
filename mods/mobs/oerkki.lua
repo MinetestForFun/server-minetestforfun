@@ -10,11 +10,10 @@ mobs:register_mob("mobs:oerkki", {
 	mesh = "mobs_oerkki.x",
 	--textures = {"mobs_oerkki.png"},
 	available_textures = {
-        	total = 2,
+		total = 2,
 		texture_1 = {"mobs_oerkki.png"},
 		texture_2 = {"mobs_oerkki2.png"},
 	},
-
 	visual_size = {x=5, y=5},
 	makes_footstep_sound = false,
 	view_range = 16,
