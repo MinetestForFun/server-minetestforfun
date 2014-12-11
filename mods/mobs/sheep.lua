@@ -6,7 +6,11 @@ mobs:register_mob("mobs:sheep", {
 	hp_min = 10,
 	hp_max = 15,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"mobs_sheep.png"},
+	--textures = {"mobs_sheep.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"mobs_sheep.png"},
+	},
 	visual = "mesh",
 	mesh = "mobs_sheep.x",
 	makes_footstep_sound = true,
