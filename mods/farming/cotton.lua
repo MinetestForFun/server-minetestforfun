@@ -39,8 +39,9 @@ minetest.register_alias("farming:string", "farming:cotton")
 minetest.register_craft({
 	output = "wool:white",
 	recipe = {
-		{"farming:string", "farming:string"},
-		{"farming:string", "farming:string"},
+		{"farming:string", "farming:string", "farming:string"},
+		{"farming:string", "farming:string", "farming:string"},
+		{"farming:string", "farming:string", "farming:string"},
 	}
 })
 
