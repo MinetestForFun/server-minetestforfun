@@ -20,6 +20,17 @@ minetest.register_craft({
 
 -- Sugar
 
+-- Use the sugar from farming redo if available
+if minetest.get_modpath("farming") and farming.mod == "redo" then
+	--[[ We really have nothing to do to use farming:sugar in the recipes
+	     because they use the generic group group:food_sugar
+	     which is added to the groups list of farming:sugar by the mod "food". 
+	--]]
+
+	--Temporary alias to replace existing bushes:sugar in the world
+	--minetest.register_alias("bushes:sugar", "farming:sugar")
+
+else
 minetest.register_craftitem(":bushes:sugar", {
     description = S("Sugar"),
     inventory_image = "bushes_sugar.png",
@@ -33,6 +44,7 @@ minetest.register_craft({
 	{ "default:papyrus", "default:papyrus" },
     },
 })
+end
 
 for i, berry in ipairs(bushes_classic.bushes) do
 	local desc = bushes_classic.bushes_descriptions[i]
