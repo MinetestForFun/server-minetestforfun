@@ -28,7 +28,7 @@ if minetest.get_modpath("farming") and farming.mod == "redo" then
 	--]]
 
 	--Temporary alias to replace existing bushes:sugar in the world
-	--minetest.register_alias("bushes:sugar", "farming:sugar")
+	minetest.register_alias("bushes:sugar", "farming:sugar")
 
 else
 minetest.register_craftitem(":bushes:sugar", {
