@@ -17,8 +17,6 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	end
 
 	local pos = pointed_thing.under
-	local keys = user:get_player_control()
-	local player_name = user:get_player_name()
 
 	if minetest.is_protected(pos, user:get_player_name()) then
 		minetest.record_protection_violation(pos, user:get_player_name())
@@ -47,15 +45,14 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	elseif mode == ROTATE_AXIS then
 		n = nextrange(axisdir, 5) * 4
 	end
-	
+
 	node.param2 = n
 	minetest.swap_node(pos, node)
 
 	if not minetest.setting_getbool("creative_mode") then
 		itemstack:add_wear(65535 / (USES - 1))
 	end
-	
-	itemstack:set_wear(item_wear)
+
 	return itemstack
 end
 
@@ -82,7 +79,6 @@ minetest.register_craft({
 	}
 })
 
--- Compatibility with original mod
 minetest.register_alias("screwdriver:screwdriver1", "screwdriver:screwdriver")
 minetest.register_alias("screwdriver:screwdriver2", "screwdriver:screwdriver")
 minetest.register_alias("screwdriver:screwdriver3", "screwdriver:screwdriver")
