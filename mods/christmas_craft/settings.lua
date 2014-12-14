@@ -1,6 +1,7 @@
 
 print (" ---- Overrider christmas_craft = true! ---- ")
 
+minetest.after(0, function()
 minetest.register_node(":default:dirt_with_grass", {
 	description = "Dirt with Grass",
 	tiles = {"snow.png", "default_dirt.png", "grass_w_snow_side.png"},
@@ -15,6 +16,7 @@ minetest.register_node(":default:dirt_with_grass", {
 		footstep = {name="default_grass_footstep", gain=0.4},
 	}),
 })
+end)
 
 minetest.register_node(":default:leaves", {
 	description = "Leaves",
