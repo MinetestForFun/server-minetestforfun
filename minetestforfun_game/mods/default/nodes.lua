@@ -1156,9 +1156,9 @@ minetest.register_node("default:sign_wall", {
 	walkable = false,
 	node_box = {
 		type = "wallmounted",
-		wall_top    = {-0.4375, 0.4375, -0.3125, 0.4375, 0.5, 0.3125},
+		wall_top = {-0.4375, 0.4375, -0.3125, 0.4375, 0.5, 0.3125},
 		wall_bottom = {-0.4375, -0.5, -0.3125, 0.4375, -0.4375, 0.3125},
-		wall_side   = {-0.5, -0.3125, -0.4375, -0.4375, 0.3125, 0.4375},
+		wall_side = {-0.5, -0.3125, -0.4375, -0.4375, 0.3125, 0.4375},
 	},
 	selection_box = {type = "wallmounted"},
 	groups = {choppy = 2, dig_immediate = 2, attached_node = 1},
