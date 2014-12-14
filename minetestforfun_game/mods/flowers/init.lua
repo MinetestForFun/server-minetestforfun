@@ -27,7 +27,7 @@ minetest.register_node("flowers:dandelion_white", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15},
+		fixed = { -0.5, -0.5, -0.5, 0.5, -0.2, 0.5},
 	},
 })
 
@@ -84,7 +84,7 @@ minetest.register_node("flowers:rose", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15},
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.3, 0.15},
 	},
 })
 
@@ -122,7 +122,7 @@ minetest.register_node("flowers:viola", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15},
+		fixed = { -0.5, -0.5, -0.5, 0.5, -0.2, 0.5 },
 	},
 })
 
