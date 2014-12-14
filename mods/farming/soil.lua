@@ -45,7 +45,8 @@ minetest.register_abm({
 		end
 
 		-- check if there is water nearby and change soil accordingly
-		if minetest.find_node_near(pos, 3, {"group:water"}) then
+		if minetest.find_node_near(pos, 3, {"group:water"}) and
+			minetest.find_node_near(pos, 3, {"ignore"}) then
 			if node.name == "farming:soil" then
 				minetest.set_node(pos, {name="farming:soil_wet"})
 			end
