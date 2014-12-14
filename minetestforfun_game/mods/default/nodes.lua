@@ -455,7 +455,7 @@ minetest.register_node("default:junglewood", {
 
 minetest.register_node("default:jungleleaves", {
 	description = "Jungle Leaves",
-	drawtype = "glasslike",
+	drawtype = "allfaces_optional",
 	tiles = {"default_jungleleaves.png"},
 	paramtype = "light",
 	waving = 1,
@@ -477,7 +477,6 @@ minetest.register_node("default:jungleleaves", {
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
-	post_effect_color = {a = 180, r = 30, g = 50, b = 20},
 })
 
 minetest.register_node("default:junglesapling", {
