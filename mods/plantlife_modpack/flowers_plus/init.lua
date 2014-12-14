@@ -94,7 +94,7 @@ for i in ipairs(lilies_list) do
 				place_pos = pt.above
 			end
 
-			if not minetest.is_protected(place_pos, placer:get_player_name()) then
+			if place_pos and not minetest.is_protected(place_pos, placer:get_player_name()) then
 
 			local nodename = "default:cobble" -- if this block appears, something went....wrong :-)
 					if place_pos == nil  then return itemstack end -- pour éviter crash avec nénuphare
@@ -118,7 +118,7 @@ for i in ipairs(lilies_list) do
 					elseif waterlily == 8 then
 						nodename = "flowers:waterlily_s4"
 					end
-minetest.set_node(place_pos, {name = nodename, param2 = math.random(0,3) })
+					minetest.set_node(place_pos, {name = nodename, param2 = math.random(0,3) })
 				else
 					local fdir = minetest.dir_to_facedir(placer:get_look_dir())
 					minetest.set_node(place_pos, {name = "flowers:waterlily", param2 = fdir})

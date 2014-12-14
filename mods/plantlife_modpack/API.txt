@@ -262,8 +262,8 @@ biome = {
 				-- node.  Useful in snow biomes to keep
 				-- objects from spawning in snow that's on the
 				-- wrong surface for that object.
-	avoid_nodes = {table},	-- List of nodes or groups to avoid when
-				-- spawning.
+	avoid_nodes = {table},	-- List of nodes to avoid when spawning.
+				-- Groups are not supported here.
 	avoid_radius = num,	-- how much distance to leave between the
 				-- object to be added and the objects to be
 				-- avoided.  If this or the avoid_nodes value

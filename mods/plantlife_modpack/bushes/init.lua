@@ -161,8 +161,7 @@ abstract_bushes.grow_bush_node = function(pos,dir, leaf_type)
 	local right_here = {x=pos.x, y=pos.y+1, z=pos.z}
 	local above_right_here = {x=pos.x, y=pos.y+2, z=pos.z}
 	
-	--local bush_branch_type = math.random(1,3)
-	--local bush_branch_type = 2
+	local bush_branch_type = 2
 	
 	-- MM: I'm not sure if it's slower now than before...
 	if dir ~= 5 and leaf_type == 1 then

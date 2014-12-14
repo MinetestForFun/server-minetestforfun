@@ -243,7 +243,7 @@ minetest.register_abm({
   chance = 8,
   action = function(pos, node, active_object_count, active_object_count_wider)
     if minetest.find_node_near(pos, 5, "group:tree") == nil then
-      walldir = node.param2
+      local walldir = node.param2
       minetest.add_node(pos, {name=node.name.."_rotten", param2 = walldir})
     end
   end
@@ -257,7 +257,7 @@ minetest.register_abm({
     local p = {x=pos.x, y=pos.y-1, z=pos.z}
     local n = minetest.get_node(p)
     if n.name == "air" then
-      walldir = node.param2
+      local walldir = node.param2
       minetest.add_node(p, {name=node.name, param2 = walldir})
     end
   end
