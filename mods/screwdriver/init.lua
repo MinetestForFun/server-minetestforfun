@@ -6,6 +6,10 @@ local function nextrange(x, max)
 	return x
 end
 
+local ROTATE_FACE = 1
+local ROTATE_AXIS = 2
+local USES = 10
+
 -- Handles rotation
 local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	if pointed_thing.type ~= "node" then
@@ -34,21 +38,19 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	local n = node.param2
 	local axisdir = math.floor(n / 4)
 	local rotation = n - axisdir * 4
-	if mode == 1 then
+	if mode == ROTATE_FACE then
 		n = axisdir * 4 + nextrange(rotation, 3)
-	elseif mode == 3 then
+	elseif mode == ROTATE_AXIS then
 		n = nextrange(axisdir, 5) * 4
 	end
 	
 	node.param2 = n
 	minetest.swap_node(pos, node)
 
-	local item_wear = tonumber(itemstack:get_wear())
-	item_wear = item_wear + 300 -- was 327
-	if item_wear > 65535 then
-		itemstack:clear()
-		return itemstack
+	if not minetest.setting_getbool("creative_mode") then
+		itemstack:add_wear(65535 / (USES - 1))
 	end
+	
 	itemstack:set_wear(item_wear)
 	return itemstack
 end
@@ -58,11 +60,11 @@ minetest.register_tool("screwdriver:screwdriver", {
 	description = "Screwdriver (left-click rotates face, right-click rotates axis)",
 	inventory_image = "screwdriver.png",
 	on_use = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, 1)
+		screwdriver_handler(itemstack, user, pointed_thing, ROTATE_FACE)
 		return itemstack
 	end,
 	on_place = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, 3)
+		screwdriver_handler(itemstack, user, pointed_thing, ROTATE_AXIS)
 		return itemstack
 	end,
 })
