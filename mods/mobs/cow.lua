@@ -35,7 +35,7 @@ mobs:register_mob("mobs:cow", {
 	},
 	-- right-click cow with empty bucket to get milk, then feed 8 wheat to replenish milk
 	on_rightclick = function(self, clicker)
-		tool = clicker:get_wielded_item()
+		local tool = clicker:get_wielded_item()
 		if tool:get_name() == "bucket:bucket_empty" then
 			if self.milked then
 				do return end

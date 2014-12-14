@@ -1,5 +1,7 @@
 mobs = {}
 mobs.mod = "redo"
+mobs.protected = 0 -- Set to 1 if you do not wish mobs to spawn in protected areas (default: 0)
+
 function mobs:register_mob(name, def)
 	minetest.register_entity(name, {
 		name = name,
@@ -793,6 +795,11 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 				return
 			end
 			
+			-- Check if protected area using bogus name so mobs will not spawn
+			if mobs.protected == 1 and minetest.is_protected(pos, "-") then
+				return
+			end
+
 			pos.y = pos.y+1
 
 			if not minetest.get_node_light(pos)
