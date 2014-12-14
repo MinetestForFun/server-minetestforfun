@@ -42,7 +42,7 @@ local function define_contents()
 end
 
 
-local function find_grond(a,list)
+local function find_ground(a,list)
 	for _,nam in ipairs(list) do			
 		if a == nam then
 			return true
@@ -52,14 +52,26 @@ local function find_grond(a,list)
 end
 
 
+local function fix_light(minp, maxp)
+	local manip = minetest.get_voxel_manip()
+	local emerged_pos1, emerged_pos2 = manip:read_from_map(minp, maxp)
+	local area = VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
+	local nodes = manip:get_data()
+
+	manip:set_data(nodes)
+	manip:write_to_map()
+	manip:update_map()
+end
+
+local data, area
 function riesenpilz_circle(nam, pos, radius, chance)
-	for i = -radius, radius, 1 do
-		for j = -radius, radius, 1 do
-			if math.floor(	math.sqrt(i^2+j^2)	+0.5) == radius
-			and data[area:index(pos.x+i, pos.y, pos.z+j)] == c.air
-			and pr:next(1,chance) == 1
-			and data[area:index(pos.x+i, pos.y-1, pos.z+j)] == c.ground then
-				data[area:index(pos.x+i, pos.y, pos.z+j)] = nam
+	for _,p in pairs(vector.circle(radius)) do
+		if pr:next(1,chance) == 1 then
+			local p = vector.add(pos, p)
+			local p_p = area:indexp(p)
+			if data[p_p] == c.air
+			and data[area:index(p.x, p.y-1, p.z)] == c.ground then
+				data[p_p] = nam
 			end
 		end
 	end
@@ -91,12 +103,28 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 
 	local x0,z0,x1,z1 = minp.x,minp.z,maxp.x,maxp.z	-- Assume X and Z lengths are equal
-	--local env = minetest|.env	--Should make things a bit faster.
-	local perlin1 = minetest.get_perlin(51,3, 0.5, perlin_scale)	--Get map specific perlin
+	local env = minetest.env	--Should make things a bit faster.
+	local perlin1 = env:get_perlin(51,3, 0.5, perlin_scale)	--Get map specific perlin
+
+	if not riesenpilz.always_generate then
+		local biome_allowed
+		for x = x0, x1, 16 do
+			for z = z0, z1, 16 do
+				if perlin1:get2d({x=x, y=z}) > nosmooth_rarity then
+					biome_allowed = true
+					break
+				end
+			end
+		end
+		if not biome_allowed then
+			return
+		end
+	end
 
 	--[[if not (perlin1:get2d({x=x0, y=z0}) > 0.53) and not (perlin1:get2d({x=x1, y=z1}) > 0.53)
 	and not (perlin1:get2d({x=x0, y=z1}) > 0.53) and not (perlin1:get2d({x=x1, y=z0}) > 0.53)
-	and not (perlin1:get2d({x=(x1-x0)/2, y=(z1-z0)/2}) > 0.53) then]]
+	and not (perlin1:get2d({x=(x1-x0)/2, y=(z1-z0)/2}) > 0.53) then
+
 	if not riesenpilz.always_generate
 	and not ( perlin1:get2d( {x=x0, y=z0} ) > nosmooth_rarity ) 					--top left
 	and not ( perlin1:get2d( { x = x0 + ( (x1-x0)/2), y=z0 } ) > nosmooth_rarity )--top middle
@@ -108,7 +136,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	and not (perlin1:get2d({x=(x1-x0)/2, y=(z1-z0)/2}) > nosmooth_rarity) 			--middle
 	and not (perlin1:get2d({x=x0, y=z1+((z1-z0)/2)}) > nosmooth_rarity) then		--bottom middle
 		return
-	end
+	end]]
 
 	local t1 = os.clock()
 	riesenpilz.inform("tries to generate a giant mushroom biome at: x=["..minp.x.."; "..maxp.x.."]; y=["..minp.y.."; "..maxp.y.."]; z=["..minp.z.."; "..maxp.z.."]", 2)
@@ -137,9 +165,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 		--[[remove usual stuff
-		local trees = minetest.find_nodes_in_area(minp, maxp, USUAL_STUFF)
+		local trees = env:find_nodes_in_area(minp, maxp, USUAL_STUFF)
 		for i,v in pairs(trees) do
-			minetest.remove_node(v)
+			env:remove_node(v)
 		end]]
 
 
@@ -184,7 +212,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local ground_y = nil --Definition des Bodens:
 --				for y=maxp.y,0,-1 do
 				for y=maxp.y,1,-1 do
-					if find_grond(data[area:index(x, y, z)], c.GROUND) then
+					if find_ground(data[area:index(x, y, z)], c.GROUND) then
 						ground_y = y
 						break
 					end
@@ -221,15 +249,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					elseif pr:next(1,5000) == 1 then
 						riesenpilz_circle(c.riesenpilz_glowshroom, boden, 3, 3)
 					--[[elseif pr:next(1,80) == 1 then
-						minetest.add_node(boden, {name="riesenpilz:brown"})
+						env:add_node(boden, {name="riesenpilz:brown"})
 					elseif pr:next(1,90) == 1 then
-						minetest.add_node(boden, {name="riesenpilz:red"})
+						env:add_node(boden, {name="riesenpilz:red"})
 					elseif pr:next(1,100) == 1 then
-						minetest.add_node(boden, {name="riesenpilz:fly_agaric"})
+						env:add_node(boden, {name="riesenpilz:fly_agaric"})
 					elseif pr:next(1,4000) == 1 then
-						minetest.add_node(boden, {name="riesenpilz:lavashroom"})
+						env:add_node(boden, {name="riesenpilz:lavashroom"})
 					elseif pr:next(1,5000) == 1 then
-						minetest.add_node(boden, {name="riesenpilz:glowshroom"})]]
+						env:add_node(boden, {name="riesenpilz:glowshroom"})]]
 					elseif pr:next(1,380) == 1 then
 						tab[num] = {1, boden}
 						num = num+1
@@ -251,10 +279,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 	vm:set_data(data)
-	vm:update_liquids()
 	vm:write_to_map()
 	riesenpilz.inform("ground finished", 2, t1)
+
 	local t2 = os.clock()
+	local single_map_update = #tab > 3
+	if single_map_update then
+		riesenpilz.vm_update = false
+	end
 	for _,v in pairs(tab) do
 		local p = v[2]
 		local m = v[1]
@@ -270,13 +302,18 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			riesenpilz_parasol(p)
 		end
 	end
+	if single_map_update then
+		riesenpilz.vm_update = true
+		fix_light(minp, maxp)
+	end
 	riesenpilz.inform("giant shrooms generated", 2, t2)
+
 	riesenpilz.inform("done", 1, t1)
 end)
 --[[	if maxp.y < -10 then
 		local x0,z0,x1,z1 = minp.x,minp.z,maxp.x,maxp.z	-- Assume X and Z lengths are equal
-		local env = minetest.|env	--Should make things a bit faster.
-		local perlin1 = minetest.get_perlin(11,3, 0.5, 200)	--Get map specific perlin
+		local env = minetest.env	--Should make things a bit faster.
+		local perlin1 = env:get_perlin(11,3, 0.5, 200)	--Get map specific perlin
 
 		--[if not (perlin1:get2d({x=x0, y=z0}) > 0.53) and not (perlin1:get2d({x=x1, y=z1}) > 0.53)
 		and not (perlin1:get2d({x=x0, y=z1}) > 0.53) and not (perlin1:get2d({x=x1, y=z0}) > 0.53)
@@ -303,12 +340,12 @@ end)
 				for y=minp.y,maxp.y,1 do
 					local pos = {x=x, y=y, z=z}
 
-					if minetest.get_node(pos).name == "air"
-					and minetest.get_node({x=x, y=y-1, z=z}).name == "default:stone"
+					if env:get_node(pos).name == "air"
+					and env:get_node({x=x, y=y-1, z=z}).name == "default:stone"
 					and pr:next(1,40) == 33
-					and minetest.find_node_near(pos, 4, "group:igniter")
-					and not minetest.find_node_near(pos, 3, "group:igniter") then
-						minetest.add_node(pos, {name="riesenpilz:lavashroom"})
+					and env:find_node_near(pos, 4, "group:igniter")
+					and not env:find_node_near(pos, 3, "group:igniter") then
+						env:add_node(pos, {name="riesenpilz:lavashroom"})
 					end
 				end
 			end

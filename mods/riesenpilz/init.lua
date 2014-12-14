@@ -13,13 +13,16 @@ local function r_area(manip, width, height, pos)
 	return VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
 end
 
+riesenpilz.vm_update = true
 local function set_vm_data(manip, nodes, pos, t1, name)
 	manip:set_data(nodes)
 	manip:write_to_map()
 	riesenpilz.inform("a "..name.." mushroom grew at ("..pos.x.."|"..pos.y.."|"..pos.z..")", 3, t1)
-	local t1 = os.clock()
-	manip:update_map()
-	riesenpilz.inform("map updated", 3, t1)
+	if riesenpilz.vm_update then
+		local t1 = os.clock()
+		manip:update_map()
+		riesenpilz.inform("map updated", 3, t1)
+	end
 end
 
 --Growing Functions
@@ -371,14 +374,175 @@ minetest.register_node(":default:apple", {
 --Mushroom Nodes
 
 
-local function pilz(name, desc, b, burntime)
-	burntime = burntime or 1
+local mushrooms_list = {
+	["brown"] = {
+		description = "brown mushroom",
+		box = {
+			{-0.15, -0.2, -0.15, 0.15, -0.1, 0.15},
+			{-0.2, -0.3, -0.2, 0.2, -0.2, 0.2},
+			{-0.05, -0.5, -0.05, 0.05, -0.3, 0.05}
+		},
+		growing = {
+			r = {min=3, max=4},
+			grounds = {soil=1, crumbly=3},
+			neighbours = {"default:tree"},
+			light = {min=1, max=7},
+			interval = 100,
+			chance = 18,
+		},
+	},
+	["red"] = {
+		description = "red mushroom",
+		box = {
+			{-1/16, -8/16, -1/16, 1/16, -6/16, 1/16},
+			{-3/16, -6/16, -3/16, 3/16, -5/16, 3/16},
+			{-4/16, -5/16, -4/16, 4/16, -4/16, 4/16},
+			{-3/16, -4/16, -3/16, 3/16, -3/16, 3/16},
+			{-2/16, -3/16, -2/16, 2/16, -2/16, 2/16}
+		},
+		growing = {
+			r = {min=4, max=5},
+			grounds = {soil=2},
+			neighbours = {"default:water_flowing"},
+			light = {min=4, max=13},
+			interval = 50,
+			chance = 30,
+		},
+	},
+	["fly_agaric"] = {
+		description = "fly agaric",
+		box = {
+			{-0.05, -0.5, -0.05, 0.05, 1/20, 0.05},
+			{-3/20, -6/20, -3/20, 3/20, 0, 3/20},
+			{-4/20, -2/20, -4/20, 4/20, -4/20, 4/20}
+		},
+		growing = {
+			r = 4,
+			grounds = {soil=1, crumbly=3},
+			neighbours = {"default:pinetree"},
+			light = {min=2, max=10},
+			interval = 101,
+			chance = 30,
+		},
+	},
+	["lavashroom"] = {
+		description = "Lavashroom",
+		box = {
+			{-1/16, -8/16, -1/16, 1/16, -6/16, 1/16},
+			{-2/16, -6/16, -2/16, 2/16,     0, 2/16},
+			{-3/16, -5/16, -3/16, 3/16, -1/16, 3/16},
+			{-4/16, -4/16, -4/16, 4/16, -2/16, 4/16}
+		},
+		growing = {
+			r = {min=5, max=6},
+			grounds = {cracky=3},
+			neighbours = {"default:lava_source"},
+			light = {min=10, max=14},
+			interval = 1010,
+			chance = 60,
+		},
+	},
+	["glowshroom"] = {
+		description = "Glowshroom",
+		box = {
+			{-1/16, -8/16, -1/16, 1/16, -1/16, 1/16},
+			{-2/16, -3/16, -2/16, 2/16, -2/16, 2/16},
+			{-3/16, -5/16, -3/16, 3/16, -3/16, 3/16},
+			{-3/16, -7/16, -3/16, -2/16, -5/16, -2/16},
+			{3/16, -7/16, -3/16, 2/16, -5/16, -2/16},
+			{-3/16, -7/16, 3/16, -2/16, -5/16, 2/16},
+			{3/16, -7/16, 3/16, 2/16, -5/16, 2/16}
+		},
+		growing = {
+			r = 3,
+			grounds = {soil=1, crumbly=3},
+			neighbours = {"default:stone"},
+			light = 0,
+			interval = 710,
+			chance = 320,
+		},
+	},
+	["nether_shroom"] = {
+		description = "Nether mushroom",
+		box = {
+			{-1/16, -8/16, -1/16, 1/16, -2/16, 1/16},
+			{-2/16, -6/16, -2/16, 2/16, -5/16, 2/16},
+			{-3/16, -2/16, -3/16, 3/16,     0, 3/16},
+			{-4/16, -1/16, -4/16, 4/16,  1/16,-2/16},
+			{-4/16, -1/16,  2/16, 4/16,  1/16, 4/16},
+			{-4/16, -1/16, -2/16,-2/16,  1/16, 2/16},
+			{ 2/16, -1/16, -2/16, 4/16,  1/16, 2/16}
+		},
+		burntime = 6,
+	},
+	["parasol"] = {
+		description = "white parasol mushroom",
+		box = {
+			{-1/16, -8/16, -1/16, 1/16,  0, 1/16},
+			{-2/16, -6/16, -2/16, 2/16, -5/16, 2/16},
+			{-5/16, -4/16, -5/16, 5/16, -3/16, 5/16},
+			{-4/16, -3/16, -4/16, 4/16, -2/16, 4/16},
+			{-3/16, -2/16, -3/16, 3/16, -1/16, 3/16}
+		},
+		growing = {
+			r = {min=3, max=5},
+			grounds = {soil=1, crumbly=3},
+			neighbours = {"default:pinetree"},
+			light = {min=1, max=11},
+			interval = 51,
+			chance = 36,
+		},
+	},
+	["red45"] = {
+		description = "45 red mushroom",
+		box = {
+			{-1/16, -0.5, -1/16, 1/16, 1/8, 1/16},
+			{-3/16, 1/8, -3/16, 3/16, 1/4, 3/16},
+			{-5/16, -1/4, -5/16, -1/16, 1/8, -1/16},
+			{1/16, -1/4, -5/16, 5/16, 1/8, -1/16},
+			{-5/16, -1/4, 1/16, -1/16, 1/8, 5/16},
+			{1/16, -1/4, 1/16, 5/16, 1/8, 5/16}
+		},
+		growing = {
+			r = {min=3, max=4},
+			grounds = {soil=2},
+			neighbours = {"default:water_source"},
+			light = {min=2, max=7},
+			interval = 1000,
+			chance = 180,
+		},
+	},
+	["brown45"] = {
+		description = "45 brown mushroom",
+		box = {
+			{-1/16, -0.5, -1/16, 1/16, 1/16, 1/16},
+			{-3/8, 1/8, -7/16, 3/8, 1/4, 7/16},
+			{-7/16, 1/8, -3/8, 7/16, 1/4, 3/8},
+			{-3/8, 1/4, -3/8, 3/8, 5/16, 3/8},
+			{-3/8, 1/16, -3/8, 3/8, 1/8, 3/8}
+		},
+		growing = {
+			r = {min=2, max=3},
+			grounds = {tree=1},
+			neighbours = {"default:water_flowing"},
+			light = {min=7, max=11},
+			interval = 100,
+			chance = 20,
+		},
+	},
+}
+
+local abm_allowed = true
+local disallowed_ps = {}
+for name,i in pairs(mushrooms_list) do
+	local burntime = i.burntime or 1
 	local box = {
 		type = "fixed",
-		fixed = b
+		fixed = i.box
 	}
-	minetest.register_node("riesenpilz:"..name, {
-		description = desc,
+	local nd = "riesenpilz:"..name
+	minetest.register_node(nd, {
+		description = i.description,
 		tiles = {"riesenpilz_"..name.."_top.png", "riesenpilz_"..name.."_bottom.png", "riesenpilz_"..name.."_side.png"},
 		inventory_image = "riesenpilz_"..name.."_side.png",
 		walkable = false,
@@ -391,106 +555,150 @@ local function pilz(name, desc, b, burntime)
 		selection_box = box,
 		furnace_burntime = burntime
 	})
+
+	local g = i.growing
+
+	if g then
+		local grounds = g.grounds
+		local nds = {}
+		for n in pairs(grounds) do
+			table.insert(nds, "group:"..n)
+		end
+
+		local nbs = table.copy(g.neighbours)
+		table.insert(nbs, "air")
+
+		local rmin, rmax, lmin, lmax
+
+		local r = g.r
+		if type(r) == "table" then
+			rmin = r.min
+			rmax = r.max
+		else
+			rmin = r or 3
+			rmax = rmin
+		end
+
+		local l = g.light
+		if type(l) == "table" then
+			lmin = l.min
+			lmax = l.max
+		else
+			lmin = l or 3
+			lmax = lmin
+		end
+
+		minetest.register_abm({
+			nodenames = nds,
+			neighbors = g.neighbours,
+			interval = g.interval,
+			chance = g.chance,
+			action = function(pos, node)
+				if not abm_allowed then
+					return
+				end
+
+			-- don't try to spawn them on the same positions again
+				for _,p in pairs(disallowed_ps) do
+					if vector.equals(p, pos) then
+						return
+					end
+				end
+
+			-- don't spawn mushroom circles next to other ones
+				if minetest.find_node_near(pos, rmax, nd) then
+					return
+				end
+
+			-- spawn them around the right nodes
+				local data = minetest.registered_nodes[node.name]
+				if not data
+				or not data.groups then
+					return
+				end
+				local groups = data.groups
+				for n,i in pairs(grounds) do
+					if groups[n] ~= i then
+						return
+					end
+				end
+
+			-- find their neighbours
+				for _,n in pairs(nbs) do
+					if not minetest.find_node_near(pos, rmin, n) then
+						return
+					end
+				end
+
+			-- should disallow lag
+				abm_allowed = false
+				minetest.after(2, function() abm_allowed = true end)
+				table.insert(disallowed_ps, pos)
+
+			-- witch circles
+				local ps = {}
+				for _,p in pairs(vector.circle(math.random(rmin, rmax))) do
+					local p = vector.add(pos, p)
+
+				-- currently 3 is used here, approved by its use in the mapgen
+					if math.random(3) == 1 then
+
+					-- don't only use the current y for them
+						for y = 1,-1,-1 do
+							local pos = {x=p.x, y=p.y+y, z=p.z}
+							if minetest.get_node(pos).name ~= "air" then
+								break
+							end
+							local f = minetest.get_node({x=p.x, y=p.y+y-1, z=p.z}).name
+							if f ~= "air" then
+
+							-- they grown on walkable, cubic nodes
+								local data = minetest.registered_nodes[f]
+								if data
+								and data.walkable
+								and (not data.drawtype
+									or data.drawtype == "normal"
+								) then
+
+								-- they also need specific light strengths
+									local light = minetest.get_node_light(pos, 0.5)
+									if light >= lmin
+									and light <= lmax then
+										table.insert(ps, pos)
+									end
+								end
+								break
+							end
+						end
+					end
+				end
+				if not ps[1] then
+					return
+				end
+
+			-- place them
+				for _,p in pairs(ps) do
+					minetest.set_node(p, {name=nd})
+				end
+				print("[riesenpilz] "..nd.." mushrooms grew at "..minetest.pos_to_string(pos))
+			end
+		})
+	end
 end
 
-local BOX = {
-	RED = {
-		{-1/16, -8/16, -1/16, 1/16, -6/16, 1/16},
-		{-3/16, -6/16, -3/16, 3/16, -5/16, 3/16},
-		{-4/16, -5/16, -4/16, 4/16, -4/16, 4/16},
-		{-3/16, -4/16, -3/16, 3/16, -3/16, 3/16},
-		{-2/16, -3/16, -2/16, 2/16, -2/16, 2/16}
-	},
-	BROWN = {
-		{-0.15, -0.2, -0.15, 0.15, -0.1, 0.15},
-		{-0.2, -0.3, -0.2, 0.2, -0.2, 0.2},
-		{-0.05, -0.5, -0.05, 0.05, -0.3, 0.05}
-	},
-	FLY_AGARIC = {
-		{-0.05, -0.5, -0.05, 0.05, 1/20, 0.05},
-		{-3/20, -6/20, -3/20, 3/20, 0, 3/20},
-		{-4/20, -2/20, -4/20, 4/20, -4/20, 4/20}
-	},
-	LAVASHROOM = {
-		{-1/16, -8/16, -1/16, 1/16, -6/16, 1/16},
-		{-2/16, -6/16, -2/16, 2/16,     0, 2/16},
-		{-3/16, -5/16, -3/16, 3/16, -1/16, 3/16},
-		{-4/16, -4/16, -4/16, 4/16, -2/16, 4/16}
-	},
-	GLOWSHROOM = {
-		{-1/16, -8/16, -1/16, 1/16, -1/16, 1/16},
-		{-2/16, -3/16, -2/16, 2/16, -2/16, 2/16},
-		{-3/16, -5/16, -3/16, 3/16, -3/16, 3/16},
-		{-3/16, -7/16, -3/16, -2/16, -5/16, -2/16},
-		{3/16, -7/16, -3/16, 2/16, -5/16, -2/16},
-		{-3/16, -7/16, 3/16, -2/16, -5/16, 2/16},
-		{3/16, -7/16, 3/16, 2/16, -5/16, 2/16}
-	},
-	NETHER_SHROOM = {
-		{-1/16, -8/16, -1/16, 1/16, -2/16, 1/16},
-		{-2/16, -6/16, -2/16, 2/16, -5/16, 2/16},
-		{-3/16, -2/16, -3/16, 3/16,     0, 3/16},
-		{-4/16, -1/16, -4/16, 4/16,  1/16,-2/16},
-		{-4/16, -1/16,  2/16, 4/16,  1/16, 4/16},
-		{-4/16, -1/16, -2/16,-2/16,  1/16, 2/16},
-		{ 2/16, -1/16, -2/16, 4/16,  1/16, 2/16}
-	},
-	PARASOL = {
-		{-1/16, -8/16, -1/16, 1/16,  0, 1/16},
-		{-2/16, -6/16, -2/16, 2/16, -5/16, 2/16},
-		{-5/16, -4/16, -5/16, 5/16, -3/16, 5/16},
-		{-4/16, -3/16, -4/16, 4/16, -2/16, 4/16},
-		{-3/16, -2/16, -3/16, 3/16, -1/16, 3/16}
-	},
-	RED45 = {
-		{-1/16, -0.5, -1/16, 1/16, 1/8, 1/16},
-		{-3/16, 1/8, -3/16, 3/16, 1/4, 3/16},
-		{-5/16, -1/4, -5/16, -1/16, 1/8, -1/16},
-		{1/16, -1/4, -5/16, 5/16, 1/8, -1/16},
-		{-5/16, -1/4, 1/16, -1/16, 1/8, 5/16},
-		{1/16, -1/4, 1/16, 5/16, 1/8, 5/16}
-	},
-	BROWN45 = {
-		{-1/16, -0.5, -1/16, 1/16, 1/16, 1/16},
-		{-3/8, 1/8, -7/16, 3/8, 1/4, 7/16},
-		{-7/16, 1/8, -3/8, 7/16, 1/4, 3/8},
-		{-3/8, 1/4, -3/8, 3/8, 5/16, 3/8},
-		{-3/8, 1/16, -3/8, 3/8, 1/8, 3/8}
-	},
-}
-
-
-local mushrooms_list = {
-	{"brown", "Brown Mushroom", BOX.BROWN},
-	{"red", "Red Mushroom", BOX.RED},
-	{"fly_agaric", "Fly Agaric", BOX.FLY_AGARIC},
-	{"lavashroom", "Lavashroom", BOX.LAVASHROOM},
-	{"glowshroom", "Glowshroom", BOX.GLOWSHROOM},
-	{"nether_shroom", "Nether Mushroom", BOX.NETHER_SHROOM, 6},
-	{"parasol", "Parasol Mushroom", BOX.PARASOL},
-	{"red45", "45 Brown Mushroom", BOX.RED45},
-	{"brown45", "45 Red Mushroom", BOX.BROWN45},
-}
-
-for _,i in ipairs(mushrooms_list) do
-	pilz(i[1], i[2], i[3], i[4])
-end
+-- disallow abms when the server is lagging
+minetest.register_globalstep(function(dtime)
+	if dtime > 0.5
+	and abm_allowed then
+		abm_allowed = false
+		minetest.after(2, function() abm_allowed = true end)
+		--minetest.chat_send_all(dtime)
+	end
+end)
 
 
 
 --Mushroom Blocks
-
-
-local function pilznode(name, desc, textures, sapling)
-minetest.register_node("riesenpilz:"..name, {
-	description = desc,
-	tiles = textures,
-	groups = {oddly_breakable_by_hand=3},
-	drop = {max_items = 1,
-		items = {{items = {"riesenpilz:"..sapling},rarity = 20,},
-				{items = {"riesenpilz:"..name},rarity = 1,}}},
-})
-end
 
 
 local r = "riesenpilz_"
@@ -499,34 +707,42 @@ local s = "stem_"
 local rh = r..h
 local rs = r..s
 
-local GS = "Giant Mushroom "
-local GSH = GS.."Head "
-local GSS = GS.."Stem "
+local GS = "giant mushroom "
+local GSH = GS.."head "
+local GSS = GS.."stem "
 
 local pilznode_list = {
-	{"stem", GSS.."Beige", {rs.."top.png", rs.."top.png", "riesenpilz_stem.png"}, "stem"},
-	{s.."brown", GSS.."Brown", {rs.."top.png", rs.."top.png", rs.."brown.png"}, s.."brown"},
-	{s.."blue", GSS.."Blue", {rs.."top.png",rs.."top.png",rs.."blue.png"}, s.."blue"},
-	{"lamellas", "Giant Mushroom Lamella", {"riesenpilz_lamellas.png"}, "lamellas"},
-	{h.."red", GSH.."Red", {"riesenpilz_head.png", "riesenpilz_lamellas.png", "riesenpilz_head.png"}, "red"},
-	{h.."orange", GSH.."Orange", {rh.."orange.png"}, "lavashroom"},
-	{h.."yellow", GSH.."Yellow", {rh.."yellow.png"}, "lavashroom"},
-	{h.."brown", GSH.."Brown", {r.."brown_top.png", r.."lamellas.png", r.."brown_top.png"}, "brown"},
-	{h.."brown_full", GSH.."Full Brown", {r.."brown_top.png"},"brown"},
-	{h.."blue_bright", GSH.."Blue Bright", {rh.."blue_bright.png"},"glowshroom"},
-	{h.."blue", GSH.."Blue", {rh.."blue.png"},"glowshroom"},
-	{h.."white", GSH.."White", {rh.."white.png"},"parasol"},
-	{h.."binge", GSH.."Binge", {rh.."binge.png", rh.."white.png", rh.."binge.png"},"parasol"},
-	{h.."brown_bright", GSH.."Brown Bright", {rh.."brown_bright.png", rh.."white.png", rh.."brown_bright.png"},"parasol"},
+	{"stem", GSS.."beige", {rs.."top.png", rs.."top.png", "riesenpilz_stem.png"}, "stem"},
+	{s.."brown", GSS.."brown", {rs.."top.png", rs.."top.png", rs.."brown.png"}, s.."brown"},
+	{s.."blue", GSS.."blue", {rs.."top.png",rs.."top.png",rs.."blue.png"}, s.."blue"},
+	{"lamellas", "giant mushroom lamella", {"riesenpilz_lamellas.png"}, "lamellas"},
+	{h.."red", GSH.."red", {"riesenpilz_head.png", "riesenpilz_lamellas.png", "riesenpilz_head.png"}, "red"},
+	{h.."orange", GSH.."orange", {rh.."orange.png"}, "lavashroom"},
+	{h.."yellow", GSH.."yellow", {rh.."yellow.png"}, "lavashroom"},
+	{h.."brown", GSH.."brown", {r.."brown_top.png", r.."lamellas.png", r.."brown_top.png"}, "brown"},
+	{h.."brown_full", GSH.."full brown", {r.."brown_top.png"},"brown"},
+	{h.."blue_bright", GSH.."blue bright", {rh.."blue_bright.png"},"glowshroom"},
+	{h.."blue", GSH.."blue", {rh.."blue.png"},"glowshroom"},
+	{h.."white", GSH.."white", {rh.."white.png"},"parasol"},
+	{h.."binge", GSH.."binge", {rh.."binge.png", rh.."white.png", rh.."binge.png"},"parasol"},
+	{h.."brown_bright", GSH.."brown bright", {rh.."brown_bright.png", rh.."white.png", rh.."brown_bright.png"},"parasol"},
 }
 
 for _,i in ipairs(pilznode_list) do
-	pilznode(i[1], i[2], i[3], i[4])
+	local name, desc, textures, sapling = unpack(i)
+	minetest.register_node("riesenpilz:"..name, {
+		description = desc,
+		tiles = textures,
+		groups = {oddly_breakable_by_hand=3},
+		drop = {max_items = 1,
+			items = {{items = {"riesenpilz:"..sapling},rarity = 20,},
+					{items = {"riesenpilz:"..name},rarity = 1,}}},
+	})
 end
 
 
 minetest.register_node("riesenpilz:head_red_side", {
-	description = "Giant Mushroom Head Side",
+	description = "giant mushroom head red side",
 	tiles = {"riesenpilz_head.png",	"riesenpilz_lamellas.png",	"riesenpilz_head.png",
 					"riesenpilz_head.png",	"riesenpilz_head.png",	"riesenpilz_lamellas.png"},
 	paramtype2 = "facedir",
@@ -537,7 +753,7 @@ minetest.register_node("riesenpilz:head_red_side", {
 })
 
 minetest.register_node("riesenpilz:ground", {
-	description = "Grass?",
+	description = "dirt with rotten grass",
 	tiles = {"riesenpilz_ground_top.png","default_dirt.png","default_dirt.png^riesenpilz_ground_side.png"},
 	groups = {crumbly=3},
 	sounds = default.node_sound_dirt_defaults(),
@@ -580,7 +796,7 @@ c = {
 
 
 minetest.register_tool("riesenpilz:growingtool", {
-	description = "Growingtool",
+	description = "growingtool",
 	inventory_image = "riesenpilz_growingtool.png",
 })
 
