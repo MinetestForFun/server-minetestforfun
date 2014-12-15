@@ -57,7 +57,7 @@ minetest.register_node(":default:leaves", {
 	},
 })	
 -- remplace jungleleaves
-minetest.register_node(":default:jungleleaves", {
+minetest.register_node(":moretrees:jungletree_leaves_green", {
 	description = "Leaves",
 	drawtype = "nodebox",
 	visual_scale = 1.3,
@@ -70,13 +70,13 @@ minetest.register_node(":default:jungleleaves", {
 		items = {
 			{
 				-- player will get sapling with 1/40 chance
-				items = {'default:junglesapling'},
+				items = {'moretrees:jungletree_sapling'},
 				rarity = 40,
 			},
 			{
 				-- player will get leaves only if he get no saplings,
 				-- this is because max_items is 1
-				items = {'default:jungleleaves'},
+				items = {'moretrees:jungletree_leaves_green'},
 			}
 		}
 	},
