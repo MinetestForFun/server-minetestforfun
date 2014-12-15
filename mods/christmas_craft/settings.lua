@@ -25,6 +25,7 @@ minetest.register_node(":default:leaves", {
 	visual_scale = 1.3,
 	tiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"},
 	paramtype = "light",
+	walkable = false,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -61,6 +62,7 @@ minetest.register_node(":default:jungleleaves", {
 	visual_scale = 1.3,
 	tiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"},
 	paramtype = "light",
+	walkable = false,
 	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
@@ -91,10 +93,6 @@ minetest.register_node(":default:jungleleaves", {
 		},
 	},
 })
-
-
-
-
 
 print (" ---- Overrider christmas_craft [OK] ---- ")
 
