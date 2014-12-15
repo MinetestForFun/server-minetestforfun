@@ -98,16 +98,6 @@ if minetest.get_modpath("animalmaterials") ~= nil then
 	overwrite("animalmaterials:fish_clownfish", 2)
 end
 
-if minetest.get_modpath("fishing") ~= nil then
-	overwrite("fishing:fish_raw", 2)
-	overwrite("fishing:fish_cooked", 5)
-	overwrite("fishing:sushi", 6)
-	overwrite("fishing:shark", 4)
-	overwrite("fishing:shark_cooked", 8)
-	overwrite("fishing:pike", 4)
-	overwrite("fishing:pike_cooked", 8)
-end
-
 if minetest.get_modpath("glooptest") ~= nil then
 	overwrite("glooptest:kalite_lump", 1)
 end
@@ -256,7 +246,7 @@ if minetest.get_modpath("ethereal") then
   	overwrite("ethereal:bucket_cactus", 2, "bucket:bucket_empty")
    end
    overwrite("ethereal:fish_raw", 2)
-   overwrite("ethereal:fish_cooked", 5)
+   overwrite("ethereal:fish_cooked", 4)
    overwrite("ethereal:seaweed", 1)
    overwrite("ethereal:yellowleaves", 1, "", nil, 1)
    overwrite("ethereal:sashimi", 4)
@@ -305,7 +295,7 @@ if minetest.get_modpath("mobs") ~= nil then
 	overwrite("mobs:rat_cooked", 5)
 	overwrite("mobs:honey", 2)
 	overwrite("mobs:pork_raw", 4)
-	overwrite("mobs:pork_cooked", 8)
+	overwrite("mobs:pork_cooked", 7)
 	overwrite("mobs:chicken_raw", 2)
 	overwrite("mobs:chicken_cooked", 4)
 	overwrite("mobs:egg", 1)
@@ -315,6 +305,15 @@ if minetest.get_modpath("mobs") ~= nil then
 	end
 end
 
+if minetest.get_modpath("fishing") ~= nil then
+	overwrite("fishing:fish_raw", 2)
+	overwrite("fishing:fish_cooked", 4)
+	overwrite("fishing:sushi", 6)
+	overwrite("fishing:shark", 2)
+	overwrite("fishing:shark_cooked", 6)
+	overwrite("fishing:pike", 2)
+	overwrite("fishing:pike_cooked", 6)
+end
 --- mes modifs /fin ---
 
 if minetest.get_modpath("kpgmobs") ~= nil then

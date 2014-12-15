@@ -25,3 +25,6 @@ minetest.register_alias("torches:wand", "default:torch")
 -- Remove copper_rail from moreores => utilisation des rail_copper du mod carts
 minetest.register_alias("moreores:copper_rail", "carts:rail_copper")
 
+-- Old fishing mod to the new fishing mod
+minetest.register_alias("fishing:fish", "fishing:fish_cooked")
+minetest.register_alias("fishing:worm", "fishing:bait_worm")

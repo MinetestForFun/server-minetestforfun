@@ -1,0 +1,4 @@
+These sounds are used for the Mod for Minetest; Fishing - Mossmanikin's version.
+The included sounds are http://creativecommons.org/licenses/by-nc-sa/3.0/ 
+
+--"fishing_bobber1" & "fishing_bobber2" sampled from "01260 water swimming splashing 1.wav", Attribution Noncommercial License, Robinhood76, http://www.freesound.org/people/Robinhood76/sounds/79657/
