@@ -305,7 +305,7 @@ doors:register_door("doors:door_wood", {
 })
 
 minetest.register_craft({
-	output = "doors:door_wood 3",
+	output = "doors:door_wood",
 	recipe = {
 		{"group:wood", "group:wood"},
 		{"group:wood", "group:wood"},
@@ -325,7 +325,7 @@ doors:register_door("doors:door_steel", {
 })
 
 minetest.register_craft({
-	output = "doors:door_steel 3",
+	output = "doors:door_steel",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot"},
 		{"default:steel_ingot", "default:steel_ingot"},
@@ -344,7 +344,7 @@ doors:register_door("doors:door_glass", {
 })
 
 minetest.register_craft({
-	output = "doors:door_glass 3",
+	output = "doors:door_glass",
 	recipe = {
 		{"default:glass", "default:glass"},
 		{"default:glass", "default:glass"},
@@ -363,7 +363,7 @@ doors:register_door("doors:door_obsidian_glass", {
 })
 
 minetest.register_craft({
-	output = "doors:door_obsidian_glass 3",
+	output = "doors:door_obsidian_glass",
 	recipe = {
 		{"default:obsidian_glass", "default:obsidian_glass"},
 		{"default:obsidian_glass", "default:obsidian_glass"},
@@ -449,7 +449,7 @@ minetest.register_node("doors:trapdoor_open", {
 })
 
 minetest.register_craft({
-	output = "doors:trapdoor 6",
+	output = "doors:trapdoor 3",
 	recipe = {
 		{"group:wood", "group:wood", "group:wood"},
 		{"group:wood", "group:wood", "group:wood"},
