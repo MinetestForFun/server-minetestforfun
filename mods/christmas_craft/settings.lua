@@ -57,7 +57,7 @@ minetest.register_node(":default:leaves", {
 	},
 })	
 -- remplace jungleleaves
-minetest.register_node(":moretrees:jungletree_leaves_green", {
+minetest.register_node(":default:jungletree_leaves", {
 	description = "Leaves",
 	drawtype = "nodebox",
 	visual_scale = 1.3,
