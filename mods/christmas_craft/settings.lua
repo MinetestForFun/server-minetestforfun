@@ -18,6 +18,7 @@ minetest.register_node(":default:dirt_with_grass", {
 })
 end)
 
+-- remplace leaves (normal)
 minetest.register_node(":default:leaves", {
 	description = "Leaves",
 	drawtype = "nodebox",
@@ -29,9 +30,9 @@ minetest.register_node(":default:leaves", {
 		max_items = 1,
 		items = {
 			{
-				-- player will get sapling with 1/20 chance
+				-- player will get sapling with 1/40 chance
 				items = {'default:sapling'},
-				rarity = 20,
+				rarity = 40,
 			},
 			{
 				-- player will get leaves only if he get no saplings,
@@ -53,7 +54,42 @@ minetest.register_node(":default:leaves", {
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, 
 		},
 	},
-	
+-- remplace jungleleaves
+minetest.register_node(":default:jungleleaves", {
+	description = "Leaves",
+	drawtype = "nodebox",
+	visual_scale = 1.3,
+	tiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"},
+	paramtype = "light",
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				-- player will get sapling with 1/40 chance
+				items = {'default:junglesapling'},
+				rarity = 40,
+			},
+			{
+				-- player will get leaves only if he get no saplings,
+				-- this is because max_items is 1
+				items = {'default:jungleleaves'},
+			}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+		node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, 
+		},
+	},
 })
 
 
