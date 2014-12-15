@@ -260,8 +260,8 @@ minetest.register_ore({
 	clust_scarcity = 17 * 17 * 17,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	height_min     = -255,
-	height_max     = -128,
+	height_min     = -512,
+	height_max     = -256,
 	flags          = "absheight",
 })
 
@@ -273,7 +273,7 @@ minetest.register_ore({
 	clust_num_ores = 4,
 	clust_size     = 3,
 	height_min     = -30000,
-	height_max     = -256,
+	height_max     = -512,
 	flags          = "absheight",
 })
 
@@ -337,10 +337,10 @@ minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "default:stone_with_diamond",
 	wherein        = "default:stone",
-	clust_scarcity = 60 * 60 * 60,
+	clust_scarcity = 30 * 30 * 30,
 	clust_num_ores = 64,
 	clust_size     = 5,
-	height_max     = -5,
+	height_max     = -1024,
 	height_min     = -30000,
 })
 
