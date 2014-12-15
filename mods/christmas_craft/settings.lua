@@ -8,15 +8,15 @@ minetest.register_node(":default:dirt_with_grass", {
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1},
 	drop = {
-		max_items = 2, items = {
+		max_items = 3, items = {
 			{items = {'default:dirt'},	rarity = 0,},
-			{items = {'christmas_craft:snowball'},	rarity = 0,},	
+			{items = {'christmas_craft:snowball'},	rarity = 0,},
+			{items = {'snow:snowball_entity'},	rarity = 2,},
 		}},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.4},
 	}),
 })
-end)
 
 -- remplace leaves (normal)
 minetest.register_node(":default:leaves", {
@@ -93,6 +93,7 @@ minetest.register_node(":default:jungleleaves", {
 		},
 	},
 })
+end)
 
 print (" ---- Overrider christmas_craft [OK] ---- ")
 
