@@ -683,7 +683,8 @@ minetest.register_node("christmas_craft:silver_baubles", {
 --		wall_side = {-0.5, -0.3, -0.1, -0.5+0.3, 0.3, 0.1},
 --	}
 
-minetest.register_node(":default:stick", {
+--OMG pourquoi override le stick normal !!!
+--[[minetest.register_node(":default:stick", {
 	description = "stick",
 	drawtype = "torchlike",
 	--tiles = {"default_torch_on_floor.png", "default_torch_on_ceiling.png", "default_torch.png"},
@@ -702,6 +703,7 @@ minetest.register_node(":default:stick", {
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 })
+--]]
 
 -- complex node  -- 
 

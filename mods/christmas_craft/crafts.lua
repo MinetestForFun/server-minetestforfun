@@ -201,7 +201,7 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "shapeless",
 	output = 'christmas_craft:wish_list',
-	recipe = {'default:stick','default:mese_crystal','default:paper','dye:black'},
+	recipe = {'group:stick','default:mese_crystal','default:paper','dye:black'},
 })
 
 -- present box --

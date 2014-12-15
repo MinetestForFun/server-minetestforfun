@@ -55,6 +55,7 @@ minetest.register_node(":default:leaves", {
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, 
 		},
 	},
+})	
 -- remplace jungleleaves
 minetest.register_node(":default:jungleleaves", {
 	description = "Leaves",
