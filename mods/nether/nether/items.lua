@@ -366,6 +366,14 @@ minetest.register_node("nether:apple", {
 		if nether_port(user, vector.round(user:getpos())) then
 			return itemstack
 		end
+		
+		local p_hunger = tonumber(hud.hunger[user:get_player_name()])
+		if not p_hunger then return end
+		p_hunger = p_hunger+9
+		if p_hunger > 30 then p_hunger = 30 end
+		hud.hunger[user:get_player_name()] = p_hunger
+		hud.set_hunger(user)
+		
 		local amount = math.random(4, 6)
 		inv:add_item("main", {name="nether:blood_extracted", count=math.floor(amount/3)})
 		user:set_hp(user:get_hp()-amount)

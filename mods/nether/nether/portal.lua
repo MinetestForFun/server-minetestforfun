@@ -534,7 +534,13 @@ function nether_port(player, pos)
 	minetest.sound_play("nether_teleporter", {pos=pos})
 	if pos.y < nether.start then
 		player_from_nether(player)
-		player:moveto({x=pos.x, y=100, z=pos.z})
+		local pos_togo = {x = 0, y = 35, z = -7}
+		if minetest.setting_getbool("static_spawnpoint") ~= nil then
+			local stsp_conf = minetest.setting_get("static_spawnpoint")
+			pos_togo = {x = stsp_conf:split(",")[1],y = stsp_conf:split(",")[2],z = stsp_conf:split(",")[3]}
+		end
+		table.foreach(pos_togo,print)
+		player:moveto(pos_togo)
 	else
 		player:moveto({x=pos.x, y=portal_target+math.random(4), z=pos.z})
 		player_to_nether(player, true)
