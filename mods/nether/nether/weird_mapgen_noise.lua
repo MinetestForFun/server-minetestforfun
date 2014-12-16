@@ -64,7 +64,7 @@ minetest.register_node("ac:wmg", {
 	description = "wmg",
 	tiles = {"ac_block.png"},
 	groups = {snappy=1,bendy=2,cracky=1},
-	sounds = default_stone_sounds,
+	sounds = default.node_sound_stone_defaults(),
 	on_construct = function(pos)
 		local minp = vector.chunkcorner(pos)
 		for _,p in ipairs(weird_noise(minp, pymg, 20, 8, 4)) do

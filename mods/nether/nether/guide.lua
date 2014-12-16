@@ -4,23 +4,19 @@ local cube = minetest.inventorycube
 local guide_infos = {
 	{
 		description = "mushroom",
-		{"text", "You can find the nether mushroom on the ground of the nether and on netherrack"..
-			 "soil, it can be dug by hand."},
+		{"text", "You can find the nether mushroom on the ground of the nether and on netherrack soil, it can be dug by hand."},
 		{"y", -0.3},
 		{"image", {1, 1, "riesenpilz_nether_shroom_side.png"}},
 		{"y", 0.2},
-		{"text", "If you drop it without holding aux1 (the fast key), you can split it"..
-			 "into its stem and head:"},
+		{"text", "If you drop it without holding aux1 (the fast key), you can split it into its stem and head:"},
 		{"image", {1, 1, "nether_shroom_top.png", 1}},
 		{"image", {1, 1, "nether_shroom_stem.png"}},
 		{"y", 0.2},
 		{"text", "You can get more mushrooms by using a netherrack soil:\n"..
 			"1. search a dark place and, if necessary, place netherrack with air about it\n"..
 			"2. right click with cooked blood onto the netherrack to make it soiled\n"..
-			"3. right click onto the netherrack soil with a nether mushroom"..
-			"head to add some spores\n"..
-			"4. dig the mushroom which grew after some time to make place for"..
-			"another one"},
+			"3. right click onto the netherrack soil with a nether mushroom head to add some spores\n"..
+			"4. dig the mushroom which grew after some time to make place for another one"},
 		{"image", {1, 1, "riesenpilz_nether_shroom_side.png", 6, 0.12}},
 		{"y", 1},
 		{"image", {1, 1, "nether_netherrack.png^nether_netherrack_soil.png", 1.8}},
@@ -32,8 +28,7 @@ local guide_infos = {
 	},
 	{
 		description = "tools",
-		{"text", "You can craft 5 types of tools in the nether, which (except the mushroom pick)"..
-			 "require sticks to be crafted:"},
+		{"text", "You can craft 5 types of tools in the nether, which (except the mushroom pick) require sticks to be crafted:"},
 		{"y", 0.4},
 		{"image", {1, 1, "nether_pick_mushroom.png"}},
 		{"text", "strength: 1\n"..
@@ -62,13 +57,11 @@ local guide_infos = {
 		{"image", {1, 1, "nether_sword_white.png", 3}},
 		{"image", {1, 1, "nether_pick_white.png"}},
 		{"text", "strength: 3\n"..
-			"The siwtonic tools can be crafted with the"..
-			"siwtonic ore."},
+			"The siwtonic tools can be crafted with the siwtonic ore."},
 	},
 	{
 		description = "blood structures",
-		{"text", "You can find blood structures on the ground and dig their nodes"..
-			 "even with the bare hand."},
+		{"text", "You can find blood structures on the ground and dig their nodes even with the bare hand."},
 		{"y", 0.2},
 		{"text", "One contains 4 kinds of blocks:"},
 		{"image", {1, 1, cube("nether_blood.png"), 1}},
@@ -82,28 +75,23 @@ local guide_infos = {
 		{"text", "You can craft the stem to 4 blood wood:"},
 		{"image", {1, 1, cube("nether_wood.png")}},
 		{"y", 0.2},
-		{"text", "The 4 blood nodes can be cooked and, except blood wood,"..
-			 "their blood can be extracted."},
+		{"text", "The 4 blood nodes can be cooked and, except blood wood, their blood can be extracted."},
 	},
 	{
 		description = "fruit",
-		{"text", "You can find the nether fruit at blood structures and dig"..
-			 "it even with the bare hand."},
+		{"text", "You can find the nether fruit at blood structures and dig it even with the bare hand."},
 		{"y", 0.05},
 		{"image", {1, 1, "nether_fruit.png"}},
 		{"text", "You can eat it to get a bit blood because of its acid effect:"},
 		{"image", {1, 1, "nether_blood_extracted.png"}},
 		{"y", 0.2},
-		{"text", "If you eat it at the right place inside a portal, you teleport"..
-			 "instead of getting blood."},
+		{"text", "If you eat it at the right place inside a portal, you teleport instead of getting blood."},
 		{"y", 0.2},
-		{"text", "If you drop without holding aux1 (the fast key), you can split"..
-			 "it into its fruit and leaf:"},
+		{"text", "If you drop it without holding aux1 (the fast key), you can split it into its fruit and leaf:"},
 		{"image", {1, 1, "nether_fruit_leaf.png", 1}},
 		{"image", {1, 1, "nether_fruit_no_leaf.png"}},
 		{"y", 0.2},
-		{"text", "9 fruit leaves can be crafted to a fruit leaves block and the"..
-			 "fruit without leaf can be used for crafting a nether pearl."},
+		{"text", "9 fruit leaves can be crafted to a fruit leaves block and the fruit without leaf can be used for crafting a nether pearl."},
 		{"y", 0.2},
 		{"image", {1, 1, cube("nether_fruit_leaves.png")}},
 		{"text", "fruit leaves block"},
@@ -111,8 +99,7 @@ local guide_infos = {
 	{
 		description = "cooking",
 		{"text", "To get a furnace you need to dig at least 8 netherrack bricks.\n"..
-			"They can be found at pyramid like constructions and require at"..
-			"least a strength 1 nether pick to be dug.\n"..
+			"They can be found at pyramid like constructions and require at least a strength 1 nether pick to be dug.\n"..
 			"For crafting the furnace, use the netherrack bricks like cobble:"},
 		{"y", 0.2},
 		{"image", {0.5, 0.5, cube("nether_netherrack_brick.png"), 0.5}},
@@ -136,7 +123,7 @@ local guide_infos = {
 			2.9}},
 		{"image", {1, 1, cube("nether_wood_cooked.png"), 4.3}},
 		{"y", 1},
-		{"text", "cooked blood stem,cooked blood,cooked blood head,cooked blood wood,"},
+		{"text", "cooked blood stem, cooked blood, cooked blood head, cooked blood wood,"},
 		{"y", 0.2},
 		{"image", {1, 1, "nether_hotbed.png", 0.3}},
 		{"image", {1, 1, "nether_pearl.png", 2}},
@@ -160,8 +147,7 @@ local guide_infos = {
 		{"image", {0.5, 0.5, cube("nether_netherrack_brick.png"), 1}},
 		{"image", {0.5, 0.5, cube("nether_netherrack_brick.png")}},
 		{"y", 0.2},
-		{"text", "You can extract blood from the blood nodes you get from the blood"..
-			 "structure.\n"..
+		{"text", "You can extract blood from the blood nodes you get from the blood structure.\n"..
 			"You can also get blood with a nether fruit."},
 		{"y", 0.2},
 		{"text", "So you can use it:\n"..
@@ -183,8 +169,7 @@ local guide_infos = {
 		{"image", {1, 1, "nether_blood.png", 0.82, -0.12}},
 		{"image", {1, 1, "nether_blood_empty.png", 3.82, -0.12}},
 		{"y", 1.2},
-		{"text", "The nether blood stem extracted can be crafted to nether wood,"..
-			 "which can be crafted to nether sticks."},
+		{"text", "The empty blood stem can be crafted to empty nether wood, which can be crafted to nether sticks."},
 	},
 	{
 		description = "ores",
@@ -192,23 +177,19 @@ local guide_infos = {
 		{"y", 0.4},
 		{"image", {1, 1, cube("nether_netherrack_black.png"), 4}},
 		{"image", {1, 1, cube("nether_netherrack.png")}},
-		{"text", "The red netherrack is generated like stone and the black"..
-			 "netherrack is generated like gravel.\n"..
+		{"text", "The red netherrack is generated like stone and the black netherrack is generated like gravel.\n"..
 			"Both require at least a strength 2 nether pick to be dug."},
 		{"y", 0.2},
 		{"image", {1, 1, cube("nether_white.png"), 4}},
 		{"image", {1, 1, cube("nether_netherrack_blue.png")}},
-		{"text", "The blue netherrack is generated like diamond ore and the"..
-			 "siwtonic ore is generated like mese blocks.\n"..
+		{"text", "The blue netherrack is generated like diamond ore and the siwtonic ore is generated like mese blocks.\n"..
 			"Both require at least a strength 3 nether pick to be dug."},
 		{"y", 0.2},
 		{"image", {1, 1, cube("nether_netherrack_tiled.png"), 4}},
 		{"image", {1, 1, cube("glow_stone.png")}},
-		{"text", "The glow stone can be used for lighting and the tiled netherrack"..
-			 "is generated like coal ore.\n"..
-			 "Glow stone requires at least a strength 1 pick to be dug.\n"..
-			 "Tiled netherrack requires at least a strength 2 nether pick to"..
-			 "be dug."},
+		{"text", "The glow stone can be used for lighting and the tiled netherrack is generated like coal ore.\n"..
+			"Glow stone requires at least a strength 1 pick to be dug.\n"..
+			"Tiled netherrack requires at least a strength 2 nether pick to be dug."},
 	},
 	{
 		description = "vines",
@@ -216,8 +197,7 @@ local guide_infos = {
 			"They can be dug by hand and drop nether children."},
 		{"image", {1, 1, "nether_vine.png"}},
 		{"y", 0.2},
-		{"text", "To let a nether child grow to a blood structure, place it at"..
-			 "a dark place onto a blood structure head node."},
+		{"text", "To let a nether child grow to a blood structure, place it at a dark place onto a blood structure head node."},
 		{"image", {1, 1, "nether_sapling.png"}},
 		{"y", -0.11},
 		{"image", {1, 1, "nether_blood.png^nether_blood_side.png"}},
@@ -227,15 +207,13 @@ local guide_infos = {
 		{"text", "The nether pearl can be thrown for teleporting.\n"..
 			"So cou can get one:"},
 		{"y", 0.4},
-		{"text", "At first you need to craft 2 mushroom heads and 1 nether fruit"..
-			 "without leaf together:"},
+		{"text", "At first you need to craft 2 mushroom heads and 1 nether fruit without leaf together:"},
 		{"image", {1, 1, "nether_shroom_top.png"}},
 		{"image", {1, 1, "nether_fim.png", 3}},
 		{"image", {1, 1, "nether_fruit_no_leaf.png"}},
 		{"image", {1, 1, "nether_shroom_top.png"}},
 		{"y", 0.2},
-		{"text", "Then you need to put the result into the furnance to cook it"..
-			 "to a nether pearl:"},
+		{"text", "Then you need to put the result into the furnance to cook it to a nether pearl:"},
 		{"image", {1, 1, "nether_pearl.png"}},
 	},
 	{
@@ -256,21 +234,19 @@ local guide_infos = {
 		{"y", 0.4},
 		{"text", "A nether portal requires following nodes:"},
 		{"y", 0.05},
-		{"text", "26 nether wood\n"..
+		{"text", "21 empty nether wooden planks\n"..
 			"12 blue netherrack bricks\n"..
-			"16 black netherrack\n"..
+			"12 black netherrack\n"..
 			"8 red netherrack\n"..
-			"8 cooked nether blood\n"..
+			"8 cooked nether wood\n"..
 			"4 nether fruits\n"..
 			"2 siwtonic blocks"},
 		{"y", 0.2},
 		{"text", "It should look approximately like this one:"},
 		{"image", {5.625, 6, "nether_teleporter.png", 0, -1.5}},
 		{"y", 5.5},
-		{"text", "You can activate it by standing in the middle on a siwtonic"..
-			 "block and eating a nether fruit.\n"..
-			"Don't forget to take enough stuff with you to be able to build"..
-			"a portal back."},
+		{"text", "You can activate it by standing in the middle on a siwtonic block and eating a nether fruit.\n"..
+			"Don't forget to take enough stuff with you to be able to build a portal back."},
 	},
 	{
 		description = "nether forest",
@@ -283,13 +259,11 @@ local guide_infos = {
 		{"image", {1, 1, "nether_grass_small.png"}},
 		{"y", 0.2},
 		{"text", "The nether forest grass can be used to get paper.\n"..
-			"Just dig it, put the grass into the furnace and craft paper"..
-			 "out of the dried grass.\n"..
+			"Just dig it, put the grass into the furnace and craft paper out of the dried grass.\n"..
 			"The recipe is similar to the one of crafting paper with papyrus."},
 		{"y", 0.2},
 		{"image", {1, 1, cube("nether_tree_top.png", "nether_tree.png", "nether_tree.png")}},
-		{"text", "Nether trunks can be found at nether trees, you can craft"..
-			 "nether wood out of them."},
+		{"text", "Nether trunks can be found at nether trees, you can craft nether wood out of them."},
 		{"y", 0.2},
 		{"image", {1, 1, "nether_glowflower.png"}},
 		{"text", "Currently this flower can be used for lighting and decoration."},

@@ -16,7 +16,7 @@ table.icontains = table.icontains or function(t, v)
 	return false
 end
 
-players_in_nether = {}
+local players_in_nether = {}
 local file = io.open(minetest.get_worldpath()..'/nether_players', "r")
 if file then
 	local contents = file:read('*all')
@@ -36,6 +36,19 @@ local function save_nether_players()
 	io.close(f)
 end
 
+local update_background
+if damage_enabled then
+	function update_background(player, down)
+		if down then
+			player:set_sky({r=15, g=0, b=0}, "plain")
+		else
+			player:set_sky(nil, "regular")
+		end
+	end
+else
+	function update_background()end
+end
+
 local function player_to_nether(player, safe)
 	local pname = player:get_player_name()
 	if table.icontains(players_in_nether, pname) then
@@ -47,7 +60,7 @@ local function player_to_nether(player, safe)
 		minetest.chat_send_player(pname, "For any reason you arrived here. Type /nether_help to find out things like craft recipes.")
 		player:set_hp(0)
 	end
-	player:set_sky({r=15, g=0, b=0}, "plain")
+	update_background(player, true)
 end
 
 local function player_from_nether(player)
@@ -62,7 +75,7 @@ local function player_from_nether(player)
 	if changes then
 		save_nether_players()
 	end
-	player:set_sky(nil, "regular")
+	update_background(player)
 end
 
 
@@ -77,7 +90,6 @@ local function player_exists(name)
 end
 
 -- Chatcommands (edited) written by sss
---[[
 minetest.register_chatcommand("to_hell", {
 	params = "",
 	description = "Send someone to hell",
@@ -134,7 +146,7 @@ minetest.register_chatcommand("from_hell", {
 		return true
 	end
 })
---]]
+
 minetest.register_on_respawnplayer(function(player)
 	local pname = player:get_player_name()
 	if not table.icontains(players_in_nether, pname) then
@@ -159,13 +171,13 @@ local function update_players()
 		if table.icontains(players_in_nether, pname) then
 			if ppos.y > nether.start then
 				player:moveto({x=ppos.x, y=portal_target, z=ppos.z})
-				player:set_sky({r=15, g=0, b=0}, "plain")
+				update_background(player, true)
 				--[[minetest.kick_player(pname, "\n1. Maybe you were not allowed to teleport out of the nether."..
 					"\n2. Maybe the server lagged."..
 					"\n3. please rejoin")]]
 			end
 		elseif ppos.y < nether.start then
-			player:set_sky(nil, "regular")
+			update_background(player)
 			player:moveto({x=ppos.x, y=20, z=ppos.z})
 			--[[minetest.kick_player(pname, "\n1. Maybe you were not allowed to teleport to the nether."..
 				"\n2. Maybe the server lagged."..
@@ -187,7 +199,7 @@ end)
 minetest.register_on_joinplayer(function(player)
 	minetest.after(0, function(player)
 		if player:getpos().y < nether.start then
-			player:set_sky({r=15, g=0, b=0}, "plain")
+			update_background(player, true)
 		end
 	end, player)
 end)
@@ -208,7 +220,7 @@ end
 minetest.register_abm({
 	nodenames = {"nether:portal"},
 	interval = 1,
-		chance = 2,
+	chance = 2,
 	action = function(pos, node)
 		if not abm_allowed then
 			return
@@ -524,9 +536,10 @@ function nether_port(player, pos)
 		player_from_nether(player)
 		local pos_togo = {x = 0, y = 35, z = -7}
 		if minetest.setting_getbool("static_spawnpoint") ~= nil then
-			stsp_conf = minetest.setting_get("static_spawnpoint")
+			local stsp_conf = minetest.setting_get("static_spawnpoint")
 			pos_togo = {x = stsp_conf:split(",")[1],y = stsp_conf:split(",")[2],z = stsp_conf:split(",")[3]}
 		end
+		table.foreach(pos_togo,print)
 		player:moveto(pos_togo)
 	else
 		player:moveto({x=pos.x, y=portal_target+math.random(4), z=pos.z})

@@ -11,7 +11,9 @@
 -- godkiller447 (ideas)
 -- If I didn't list you, please let me know!
 
-nether = nether or {}
+if not rawget(_G, "nether") then
+	nether = {}
+end
 
 --== EDITABLE OPTIONS ==--
 
