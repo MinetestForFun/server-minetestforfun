@@ -1,7 +1,5 @@
 -- mods/default/nodes.lua
 
-gui_slots = "listcolors[#606060AA;#808080;#101010;#202020;#FFF]"
-
 minetest.register_node("default:stone", {
 	description = "Stone",
 	tiles = {"default_stone.png"},
@@ -581,7 +579,7 @@ minetest.register_node("default:papyrus", {
 
 default.bookshelf_formspec =
 	"size[8,7;]" ..
-	gui_slots ..
+	default.gui_slots ..
 	"list[context;books;0, 0.3;8,2;]" ..
 	"list[current_player;main;0,2.85;8,4;]" ..
 	default.get_hotbar_bg(0, 2.85) ..
@@ -1189,7 +1187,7 @@ minetest.register_node("default:sign_wall", {
 
 default.chest_formspec =
 	"size[8,9]" ..
-	gui_slots ..
+	default.gui_slots ..
 	"list[current_name;main;0,0.3;8,4;]" ..
 	"list[current_player;main;0,4.85;8,4;]" ..
 	default.get_hotbar_bg(0, 4.85) ..
@@ -1199,7 +1197,7 @@ function default.get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," .. pos.z
 	local formspec =
 		"size[8,9]" ..
-		gui_slots ..
+		default.gui_slots ..
 		"list[nodemeta:".. spos .. ";main;0,0.3;8,4;]" ..
 		"list[current_player;main;0,4.85;8,4;]" ..
 		default.get_hotbar_bg(0, 4.85) ..
@@ -1569,7 +1567,7 @@ minetest.register_abm({
 			meta:set_string("infotext","Furnace active: " .. percent .. " % (owned by "..meta:get_string("owner") .. ")")
 			swap_node(pos,"default:furnace_locked_active")
 			meta:set_string("formspec",
-				"invsize[8,8.5;]" .. gui_slots ..
+				"invsize[8,8.5;]" .. default.gui_slots ..
 				"image[2.75,1.5;1,1;default_furnace_fire_bg.png^[lowpart:" ..
 				(100-percent)..":default_furnace_fire_fg.png]" ..
 		        "image[3.75,1.5;1,1;gui_furnace_arrow_bg.png^[lowpart:" ..
