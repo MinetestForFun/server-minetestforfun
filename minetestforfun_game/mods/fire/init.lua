@@ -1,4 +1,5 @@
 -- minetest/fire/init.lua
+fire = {}
 
 minetest.register_node("fire:basic_flame", {
 	description = "Fire",

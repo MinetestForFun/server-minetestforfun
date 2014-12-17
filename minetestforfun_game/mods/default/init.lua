@@ -11,8 +11,9 @@ LAVA_VISC = 3     -- Slower movement in lava.
 LIGHT_MAX = 14    -- 15 is reserved for sunlight.
 
 -- GUI related stuff:
-
-gui_slots = "listcolors[#606060AA;#808080;#101010;#202020;#FFF]"
+default.gui_bg = "bgcolor[#080808BB;true]"
+default.gui_bg_img = "background[5,5;1,1;gui_formbg.png;true]"
+default.gui_slots = "listcolors[#606060AA;#808080;#101010;#202020;#FFF]"
 
 function default.get_hotbar_bg(x,y)
 	local out = ""
@@ -22,8 +23,8 @@ function default.get_hotbar_bg(x,y)
 	return out
 end
 
-gui_suvival_form = "size[8,8.5]"..
-			gui_slots ..
+default.gui_suvival_form = "size[8,8.5]"..
+			default.gui_slots ..
 			"list[current_player;main;         0,    4.25; 8, 4;  ]" ..
 			"list[current_player;craft;        1.75, 0.5;  3, 3;  ]" ..
 			"list[current_player;craftpreview; 5.75, 1.5;  1, 1;  ]" ..
