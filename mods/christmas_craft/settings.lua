@@ -58,7 +58,7 @@ minetest.register_node(":default:leaves", {
 })	
 -- remplace jungleleaves
 minetest.register_node(":default:jungleleaves", {
-	description = "Leaves",
+	description = "Jungle Leaves",
 	drawtype = "nodebox",
 	visual_scale = 1.3,
 	tiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"},
