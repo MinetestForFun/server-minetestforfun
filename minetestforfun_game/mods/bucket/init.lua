@@ -120,7 +120,6 @@ minetest.register_craftitem(":bucket:bucket_empty", {
 		local liquiddef = bucket.liquids[node.name]
 		if liquiddef ~= nil and liquiddef.itemname ~= nil and
 			node.name == liquiddef.source then
-				minetest.setting_getbool("liquid_finite"))) then
 			if check_protection(pointed_thing.under,
 					user:get_player_name(),
 					"take ".. node.name) then
