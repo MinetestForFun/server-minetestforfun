@@ -1,6 +1,11 @@
 
 -- Dungeon Master (This one spits out fireballs at you)
 
+-- Node which cannot be destroyed by DungeonMasters' fireballs
+local excluded = {"nether:netherrack","default:obsidian_glass","maptools:cobble",
+			"maptools:sand", "maptools:desert_sand"
+	}
+
 mobs:register_mob("mobs:dungeon_master", {
 	type = "monster",
 	hp_min = 50,
@@ -102,7 +107,13 @@ mobs:register_arrow("mobs:fireball", {
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
 					local n = minetest.get_node(p).name
-					if p.y < -19600 and n ~= "nether:netherrack" and n:split(":")[1] == "nether" then
+					local including = minetest.registered_nodes[n].groups["unbreakable"] ~= nil
+					for _,i in ipairs(excluded) do
+						if i == n then including = false end
+					end
+					
+					--if p.y < -19600 and including and n:split(":")[1] == "nether" then
+					if including then
 						return
 					end
 					if n ~= "default:obsidian" and n ~= "ethereal:obsidian_brick" then	

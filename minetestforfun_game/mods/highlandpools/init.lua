@@ -86,7 +86,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			elseif c_node == c_watsour then
 				break
 			elseif c_node == c_grass then
-				yasurf = y + 1
+				yasurf = y --+ 1
 				break
 			end
 		end
@@ -160,36 +160,48 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								local viw = area:index(x - 1, yasurf, z)
 								local vin = area:index(x, yasurf, z + 1)
 								local vis = area:index(x, yasurf, z - 1)
+								local vied = area:index(x + 1, yasurf-1, z)
+								local viwd = area:index(x - 1, yasurf-1, z)
+								local vind = area:index(x, yasurf-1, z + 1)
+								local visd = area:index(x, yasurf-1, z - 1)
 								if data[vie] == c_tree then
 									highlandpools_remtree(x + 1, yasurf, z, area, data)
+									print("w at ".. x+1 ..","..yasurf..","..z)
 									data[vie] = c_watsour
 								elseif data[vie] == c_air
 								or data[vie] == c_apple
 								or data[vie] == c_leaves then
+									print("w at ".. x+1 ..","..yasurf..","..z)
 									data[vie] = c_watsour
 								end
 								if data[viw] == c_tree then
 									highlandpools_remtree(x - 1, yasurf, z, area, data)
+									print("w at ".. x-1 ..","..yasurf..","..z)
 									data[viw] = c_watsour
 								elseif data[viw] == c_air
 								or data[viw] == c_apple
 								or data[viw] == c_leaves then
+									print("w at ".. x-1 ..","..yasurf..","..z)
 									data[viw] = c_watsour
 								end
 								if data[vin] == c_tree then
 									highlandpools_remtree(x, yasurf, z + 1, area, data)
+									print("w at "..x..","..yasurf..","..z+1)
 									data[vin] = c_watsour
 								elseif data[vin] == c_air
 								or data[vin] == c_apple
 								or data[vin] == c_leaves then
+									print("w at "..x..","..yasurf..","..z+1)
 									data[vin] = c_watsour
 								end
 								if data[vis] == c_tree then
 									highlandpools_remtree(x, yasurf, z - 1, area, data)
-									data[vis] = c_watsour
+									print("w at "..x..","..yasurf..","..z-1)
+									data[visd] = c_watsour
 								elseif data[vis] == c_air
 								or data[vis] == c_apple
 								or data[vis] == c_leaves then
+									print("w at "..x..","..yasurf..","..z-1)
 									data[vis] = c_watsour
 								end
 							end
