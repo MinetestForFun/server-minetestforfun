@@ -14,6 +14,17 @@ highlandpools = {}
 
 -- Functions
 
+minetest.register_abm({
+	nodenames = {"default:grass_1","default:grass_2","default:grass_3","default:grass_4",
+				 "default:grass_5","default:grass_6","default:grass_7","default:grass_8",
+				 "cavestuff:pebble_2","group:flowers"},
+	interval = 1,
+	chance = 1,
+	action = function(pos)
+		minetest.remove_node(pos)
+	end,
+})
+
 function highlandpools_remtree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_apple = minetest.get_content_id("default:apple")
