@@ -107,13 +107,14 @@ mobs:register_arrow("mobs:fireball", {
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
 					local n = minetest.get_node(p).name
-					local including = minetest.registered_nodes[n].groups["unbreakable"] ~= nil
+					local excluding = minetest.registered_nodes[n].groups["unbreakable"] ~= nil
+						or n:split(":")[1] == "nether"
 					for _,i in ipairs(excluded) do
-						if i == n then including = false end
+						if i == n then including = true end
 					end
 					
 					--if p.y < -19600 and including and n:split(":")[1] == "nether" then
-					if including then
+					if excluding then
 						return
 					end
 					if n ~= "default:obsidian" and n ~= "ethereal:obsidian_brick" then	
