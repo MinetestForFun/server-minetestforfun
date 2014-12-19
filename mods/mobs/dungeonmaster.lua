@@ -110,7 +110,7 @@ mobs:register_arrow("mobs:fireball", {
 					local excluding = minetest.registered_nodes[n].groups["unbreakable"] ~= nil
 						or n:split(":")[1] == "nether"
 					for _,i in ipairs(excluded) do
-						if i == n then including = true end
+						if i == n then excluding = true end
 					end
 					
 					--if p.y < -19600 and including and n:split(":")[1] == "nether" then
