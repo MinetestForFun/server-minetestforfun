@@ -45,15 +45,19 @@ minetest.register_abm({
 		end
 
 		-- check if there is water nearby and change soil accordingly
-		if minetest.find_node_near(pos, 3, {"group:water"}) and
-			minetest.find_node_near(pos, 3, {"ignore"}) then
+		if minetest.find_node_near(pos, 3, {"group:water"}) then
 			if node.name == "farming:soil" then
 				minetest.set_node(pos, {name="farming:soil_wet"})
 			end
-		elseif node.name == "farming:soil_wet" then
-			minetest.set_node(pos, {name="farming:soil"})
-		elseif node.name == "farming:soil" then
-			minetest.set_node(pos, {name="default:dirt"})
+		else
+			-- Don't turn wet soil into dry soil or dry soil into dirt
+			-- if there are unloaded blocks nearby because they could be water.
+			if minetest.find_node_near(pos, 3, {"ignore"}) then return end
+			if node.name == "farming:soil_wet" then
+				minetest.set_node(pos, {name="farming:soil"})
+			else -- [obviously] node.name == "farming:soil" 
+				minetest.set_node(pos, {name="default:dirt"})
+			end
 		end
 	end,
 })
