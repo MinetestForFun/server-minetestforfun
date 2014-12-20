@@ -21,7 +21,10 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos)
-		minetest.remove_node(pos)
+		if minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z}).name == "default:water_source"
+			or minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z}).name == "default:water_flowing" then
+			minetest.remove_node(pos)
+		end
 	end,
 })
 
