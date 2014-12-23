@@ -38,7 +38,7 @@ minetest.register_tool("throwing:bow_wood", {
 	on_use = function(itemstack, user, pointed_thing)
 		if throwing_shoot_arrow(itemstack, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
-				itemstack:add_wear(65535/30)
+				itemstack:add_wear(65535/25)
 			end
 		end
 		return itemstack
@@ -62,7 +62,7 @@ minetest.register_tool("throwing:bow_stone", {
 	on_use = function(itemstack, user, pointed_thing)
 		if throwing_shoot_arrow(item, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
-				itemstack:add_wear(65535/90)
+				itemstack:add_wear(65535/75)
 			end
 		end
 		return itemstack
@@ -111,7 +111,7 @@ minetest.register_tool("throwing:bow_bronze", {
 	on_use = function(itemstack, user, pointed_thing)
 		if throwing_shoot_arrow(item, user, pointed_thing) then
 			if not minetest.setting_getbool("creative_mode") then
-				itemstack:add_wear(65535/220)
+				itemstack:add_wear(65535/250)
 			end
 		end
 		return itemstack
