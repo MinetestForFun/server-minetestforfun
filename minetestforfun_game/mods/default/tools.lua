@@ -351,24 +351,24 @@ minetest.register_tool("default:sword_wood", {
 	description = "Wooden Sword",
 	inventory_image = "default_tool_woodsword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.9,
+		full_punch_interval = 1,
 		max_drop_level = 0,
 		groupcaps = {
 			snappy = {times = {[2] = 1.4, [3] = 0.2}, uses = 20, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 3},
+		damage_groups = {fleshy = 2},
 	}
 })
 minetest.register_tool("default:sword_stone", {
 	description = "Stone Sword",
 	inventory_image = "default_tool_stonesword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.9,
+		full_punch_interval = 1,
 		max_drop_level = 0,
 		groupcaps = {
-			snappy = {times = {[2] = 1.2, [3] = 0.175}, uses = 20, maxlevel = 1},
+			snappy = {times = {[2] = 1.2, [3] = 0.175}, uses = 25, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 4},
+		damage_groups = {fleshy = 3},
 	}
 })
 minetest.register_tool("default:sword_steel", {
@@ -380,7 +380,7 @@ minetest.register_tool("default:sword_steel", {
 		groupcaps = {
 			snappy = {times = {[1] = 2.2, [2] = 1.2, [3] = 0.15}, uses = 30, maxlevel = 2},
 		},
-		damage_groups = {fleshy = 5},
+		damage_groups = {fleshy = 4},
 	}
 })
 minetest.register_tool("default:sword_bronze", {
@@ -390,7 +390,7 @@ minetest.register_tool("default:sword_bronze", {
 		full_punch_interval = 0.9,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = {times = {[1] = 2.2, [2] = 1.2, [3] = 0.15}, uses = 40, maxlevel = 2},
+			snappy = {times = {[1] = 2.2, [2] = 1.2, [3] = 0.15}, uses = 35, maxlevel = 2},
 		},
 		damage_groups = {fleshy = 5},
 	}
@@ -399,34 +399,34 @@ minetest.register_tool("default:sword_gold", {
 	description = "Golden Sword",
 	inventory_image = "default_tool_goldsword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.9,
+		full_punch_interval = 0.8,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 5, maxlevel = 3},
+			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 10, maxlevel = 3},
 		},
-		damage_groups = {fleshy = 6},
+		damage_groups = {fleshy = 5},
 	}
 })
 minetest.register_tool("default:sword_diamond", {
 	description = "Diamond Sword",
 	inventory_image = "default_tool_diamondsword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.9,
+		full_punch_interval = 0.6,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 25, maxlevel = 3},
+			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 30, maxlevel = 3},
 		},
-		damage_groups = {fleshy = 6},
+		damage_groups = {fleshy = 7},
 	}
 })
 minetest.register_tool("default:sword_nyan", {
 	description = "Nyan Sword",
 	inventory_image = "default_tool_nyansword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.9,
+		full_punch_interval = 0.7,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 75, maxlevel = 3},
+			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 40, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 6},
 	}
@@ -435,10 +435,10 @@ minetest.register_tool("default:sword_mese", {
 	description = "Mese Sword",
 	inventory_image = "default_tool_mesesword.png",
 	tool_capabilities = {
-		full_punch_interval = 0.675,
+		full_punch_interval = 0.7,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = {times = {[1] = 1.5, [2] = 0.7, [3] = 0.1}, uses = 15, maxlevel = 3},
+			snappy = {times = {[1] = 1.5, [2] = 0.7, [3] = 0.1}, uses = 20, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 6},
 	}
