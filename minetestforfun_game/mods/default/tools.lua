@@ -351,7 +351,7 @@ minetest.register_tool("default:sword_wood", {
 	description = "Wooden Sword",
 	inventory_image = "default_tool_woodsword.png",
 	tool_capabilities = {
-		full_punch_interval = 1,
+		full_punch_interval = 1.0,
 		max_drop_level = 0,
 		groupcaps = {
 			snappy = {times = {[2] = 1.4, [3] = 0.2}, uses = 20, maxlevel = 1},
@@ -363,7 +363,7 @@ minetest.register_tool("default:sword_stone", {
 	description = "Stone Sword",
 	inventory_image = "default_tool_stonesword.png",
 	tool_capabilities = {
-		full_punch_interval = 1,
+		full_punch_interval = 1.0,
 		max_drop_level = 0,
 		groupcaps = {
 			snappy = {times = {[2] = 1.2, [3] = 0.175}, uses = 25, maxlevel = 1},

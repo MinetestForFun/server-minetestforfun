@@ -250,11 +250,11 @@ local oredefs = {
 			sword = {
 				fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
 				snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
-				choppy = {times = {[3] = 0.80}, uses = 100, maxlevel= 0}
+				choppy = {times = {[3] = 0.80}, uses = 40, maxlevel= 0}
 			}
 		},
-		full_punch_interval = 1.0,
-		damage_groups = {fleshy = 6},
+		full_punch_interval = 0.8,
+		damage_groups = {fleshy = 5},
 	},
 	tin = {
 		desc = "Tin",
@@ -296,7 +296,7 @@ local oredefs = {
 				choppy = {times = {[3] = 0.65}, uses = 200, maxlevel= 0}
 			}
 		},
-		full_punch_interval = 0.45,
+		full_punch_interval = 0.5,
 		damage_groups = {fleshy = 9},
 	}
 }
