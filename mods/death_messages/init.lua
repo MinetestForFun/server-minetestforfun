@@ -34,7 +34,16 @@ messages.fire = {
 	" a ete trop pres du feu.",
 	" vient de se faire rotir.",
 	" a ete carbonise.",
-	" c'est prit pour torch man. (des quatres fantastiques)"
+	" s'est prit pour torch man. (des quatres fantastiques)"
+}
+
+-- Burning death messages
+messages.acid = {
+	" a desormais des parties en moins.",
+	" a decouvert que l'acide c'est fun.",
+	" a mis sa tete la ou elle a fondu.",
+	" a decouvert que son corps dans l'acide, c'est comme du sucre dans de l'eau.",
+	" a cru qu'il se baignait dans du jus de pomme."
 }
 
 -- Other death messages
@@ -56,6 +65,9 @@ if RANDOM_MESSAGES == true then
 		-- Death by lava
 		if node.groups.lava ~= nil then
 			minetest.chat_send_all(player_name ..  messages.lava[math.random(1,#messages.lava)] )
+		-- Death by acid
+		elseif node.groups.acid ~= nil then
+			minetest.chat_send_all(player_name ..  messages.acid[math.random(1,#messages.acid)] )
 		-- Death by drowning
 		elseif player:get_breath() == 0 then
 			minetest.chat_send_all(player_name ..  messages.water[math.random(1,#messages.water)] )
@@ -68,7 +80,7 @@ if RANDOM_MESSAGES == true then
 		end
 
 	end)
-
+	
 else
 	minetest.register_on_dieplayer(function(player)
 		local player_name = player:get_player_name()
