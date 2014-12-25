@@ -50,7 +50,7 @@ mobs:register_mob("mobs:oerkki", {
 		speed_run = 15,
 	},
 	sounds = {
-		random = {"mobs_oerkki_random01", "mobs_oerkki_random02"},
+		random = "mobs_oerkki",
 		attack = "mobs_oerkki_attack",
 	},
 	jump = true,

@@ -48,7 +48,7 @@ mobs:register_mob("mobs:dirt_monster", {
 		punch_end = 63,
 	},
 	sounds = {
-		random = {"mobs_dirtmonster_random01", "mobs_dirtmonster_random02"},
+		random = "mobs_dirtmonster",
 	},
 	jump = true,
 	step = 1,

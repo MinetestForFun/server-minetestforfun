@@ -54,7 +54,7 @@ mobs:register_mob("mobs:lava_flan", {
 		punch_end = 28,
 	},
 	sounds = {
-		random = {"mobs_lavaflan_random01", "mobs_lavaflan_random02"},
+		random = "mobs_lavaflan",
 	},
 	jump = true,
 	step = 2,

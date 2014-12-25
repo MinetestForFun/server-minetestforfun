@@ -66,7 +66,7 @@ mobs:register_mob("mobs:mese_monster", {
 		punch_end = 38, -- 63
 	},
 	sounds = {
-		random = {"mobs_mesemonster_random01", "mobs_mesemonster_random02"},
+		random = "mobs_mesemonster",
 	},
 	jump = true,
 	step = 1,
