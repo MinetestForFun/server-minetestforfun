@@ -174,7 +174,7 @@ function mobs:register_mob(name, def)
 		end,
 		
 		on_step = function(self, dtime)
-			
+local yaw = 0			
 			if self.type == "monster" and minetest.setting_getbool("only_peaceful_mobs") then
 				self.object:remove()
 			end
@@ -196,7 +196,7 @@ function mobs:register_mob(name, def)
 
 			-- drop egg
 			if self.animaltype == "clucky" then
-				if math.random(1, 1500) < 2
+				if math.random(1, 3000) <= 1
 				and minetest.get_node(self.object:getpos()).name == "air"
 				and self.state == "stand" then
 					minetest.set_node(self.object:getpos(), {name="mobs:egg"})
@@ -458,7 +458,7 @@ function mobs:register_mob(name, def)
 					self.set_animation(self, "walk")
 				end
 			elseif self.state == "walk" then
-				if math.random(1, 100) < 31 then
+				if math.random(1, 100) <= 30 then
 					self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/180*math.pi))
 				end
 				if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
@@ -468,7 +468,7 @@ function mobs:register_mob(name, def)
 				end
 				self:set_animation("walk")
 				self.set_velocity(self, self.walk_velocity)
-				if math.random(1, 100) < 31 then
+				if math.random(1, 100) <= 30 then
 					self.set_velocity(self, 0)
 					self.state = "stand"
 					self:set_animation("stand")
@@ -534,7 +534,7 @@ function mobs:register_mob(name, def)
 								full_punch_interval=1.0,
 								damage_groups = {fleshy=self.damage}
 							}, vec)
-							if self.attack.player:get_hp() < 1 then
+							if self.attack.player:get_hp() <= 0 then
 								self.state = "stand"
 								self:set_animation("stand")
 							end
@@ -576,7 +576,7 @@ function mobs:register_mob(name, def)
 				self.object:setyaw(yaw)
 				self.set_velocity(self, 0)
 				
-				if self.timer > self.shoot_interval and math.random(1, 100) < 61 then
+				if self.timer > self.shoot_interval and math.random(1, 100) <= 60 then
 					self.timer = 0
 
 					self:set_animation("punch")
@@ -629,7 +629,7 @@ function mobs:register_mob(name, def)
 					self.object:set_properties(tmp.textures)
 				end]]
 			end
-			if self.lifetimer < 1 and not self.tamed and self.type ~= "npc" then
+			if self.lifetimer <= 0 and not self.tamed and self.type ~= "npc" then
 				self.object:remove()
 			end
 		end,
@@ -794,21 +794,22 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 			if not mobs.spawning_mobs[name] then
 				return
 			end
-			
+
 			-- Check if protected area using bogus name so mobs will not spawn
 			if mobs.protected == 1 and minetest.is_protected(pos, "-") then
 				return
 			end
 
 			pos.y = pos.y+1
-
-			if not minetest.get_node_light(pos)
-			or minetest.get_node_light(pos) > max_light
-			or minetest.get_node_light(pos) < min_light then
-		--print ("LIGHT", name)
+			if not minetest.get_node_light(pos) then
 				return
 			end
-
+			if minetest.get_node_light(pos) > max_light then
+				return
+			end
+			if minetest.get_node_light(pos) < min_light then
+				return
+			end
 			if pos.y > max_height then
 				return
 			end
@@ -867,7 +868,8 @@ function mobs:register_arrow(name, def)
 		on_step = function(self, dtime)
 			local pos = self.object:getpos()
 			--if minetest.get_node(self.object:getpos()).name ~= "air" then
-			if minetest.registered_nodes[minetest.get_node(self.object:getpos()).name].walkable then
+			local node = minetest.get_node(self.object:getpos()).name
+			if minetest.registered_nodes[node].walkable then
 				self.hit_node(self, pos, node)
 				self.object:remove()
 				return

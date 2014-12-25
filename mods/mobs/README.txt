@@ -25,7 +25,8 @@ This mod contains the following additions:
 
 Changelog:
 
-0.7 - mob.protected switch added to api.lua, when set to 1 mobs no longer spawn in protected areas, also bug fixes
+0.8 - Added sounds to monster mobs (thanks Cyberpangolin for the sfx) and also chicken sound
+0.7 - mobs.protected switch added to api.lua, when set to 1 mobs no longer spawn in protected areas, also bug fixes
 0.6 - Api now supports multi-textured mobs, e.g oerkki, dungeon master, rats and chickens have random skins when spawning (sheep fix TODO), also new Honey block
 0.5 - Mobs now float in water, die from falling, and some code improvements
 0.4 - Dungeon Masters and Mese Monsters have much better aim due to shoot_offset, also they can both shoot through nodes that aren't walkable (flowers, grass etc) plus new sheep sound :)

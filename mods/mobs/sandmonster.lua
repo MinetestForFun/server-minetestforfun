@@ -48,6 +48,9 @@ mobs:register_mob("mobs:sand_monster", {
 		punch_start = 74,
 		punch_end = 105,
 	},
+	sounds = {
+		random = {"mobs_sandmonster_random01", "mobs_sandmonster_random02"},
+	},
 	jump = true,
 	step = 1,
 	blood_texture = "mobs_blood.png",

@@ -12,8 +12,8 @@ minetest.register_alias("zmobs:lava_orb", "mobs:lava_orb")
 
 mobs:register_mob("mobs:lava_flan", {
 	type = "monster",
-	hp_min = 15,
-	hp_max = 30,
+	hp_min = 20,
+	hp_max = 35,
 	collisionbox = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5},
 	visual = "mesh",
 	mesh = "zmobs_lava_flan.x",
@@ -52,6 +52,9 @@ mobs:register_mob("mobs:lava_flan", {
 		run_end = 28,
 		punch_start = 20,
 		punch_end = 28,
+	},
+	sounds = {
+		random = {"mobs_lavaflan_random01", "mobs_lavaflan_random02"},
 	},
 	jump = true,
 	step = 2,

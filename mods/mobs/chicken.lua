@@ -18,9 +18,9 @@ mobs:register_mob("mobs:chicken", {
 		texture_2 = {"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png",
 					"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png",
 					"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png"},
-},
---textures = {"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png",
--- "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png"},
+	},
+	--textures = {"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png",
+	--			"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png"},
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	armor = 200,
@@ -46,22 +46,10 @@ mobs:register_mob("mobs:chicken", {
 			clicker:get_inventory():add_item("main", "mobs:chicken")
 			self.object:remove()
 		end
--- A VOIR POUR RENDRE TAMED/APPRIVOISABLE
---		if item:get_name() == "farming:wheat" then
---			if not minetest.setting_getbool("creative_mode") then
---				item:take_item()
---				clicker:set_wielded_item(item)
---			end
---			self.food = (self.food or 0) + 1
---			if self.food >= 4 then
---					self.food = 0
---					self.tamed = true
---				end
---			end
---			return
---		end
-
 	end,
+	sounds = {
+		random = "mobs_chicken",
+	},
 	jump = true,
 	step = 1,
 	blood_texture = "mobs_blood.png",
@@ -78,7 +66,7 @@ minetest.register_craftitem("mobs:chicken", {
 	
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
-			minetest.add_entity(pointed_thing.above, "mobs:chicken")
+			minetest.env:add_entity(pointed_thing.above, "mobs:chicken")
 			itemstack:take_item()
 		end
 		return itemstack
@@ -127,7 +115,7 @@ minetest.register_craft({
 -- Chicken (raw and cooked)
 
 minetest.register_craftitem("mobs:chicken_raw", {
-	description = "Raw Chicken",
+description = "Raw Chicken",
 	inventory_image = "mobs_chicken_raw.png",
 	on_use = minetest.item_eat(2),
 })

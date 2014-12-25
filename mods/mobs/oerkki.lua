@@ -49,6 +49,10 @@ mobs:register_mob("mobs:oerkki", {
 		speed_normal = 15,
 		speed_run = 15,
 	},
+	sounds = {
+		random = {"mobs_oerkki_random01", "mobs_oerkki_random02"},
+		attack = "mobs_oerkki_attack",
+	},
 	jump = true,
 	step = 1,
 	blood_texture = "mobs_blood.png",

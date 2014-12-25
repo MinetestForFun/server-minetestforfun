@@ -12,7 +12,7 @@ mobs:register_mob("mobs:bee", {
 	available_textures = {
 		total = 1,
 		texture_1 = {"mobs_bee.png"},
-		},
+	},
 	makes_footstep_sound = false,
 	walk_velocity = 1,
 	armor = 200,
@@ -34,7 +34,9 @@ mobs:register_mob("mobs:bee", {
 		walk_start = 35,
 		walk_end = 65,
 	},
-	
+	sounds = {
+		random = "mobs_bee_random01",
+	},
 	on_rightclick = function(self, clicker)
 		if clicker:is_player() and clicker:get_inventory() then
 			clicker:get_inventory():add_item("main", "mobs:bee")
@@ -53,7 +55,7 @@ minetest.register_craftitem("mobs:bee", {
 	
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
-			minetest.add_entity(pointed_thing.above, "mobs:bee")
+			minetest.env:add_entity(pointed_thing.above, "mobs:bee")
 			itemstack:take_item()
 		end
 		return itemstack
@@ -92,7 +94,7 @@ minetest.register_node("mobs:beehive", {
 	after_place_node = function(pos, placer, itemstack)
 		if placer:is_player() then
 			minetest.set_node(pos, {name="mobs:beehive", param2=1})
-			minetest.add_entity(pos, "mobs:bee")
+			minetest.env:add_entity(pos, "mobs:bee")
 		end
 	end,
 	
@@ -107,22 +109,24 @@ minetest.register_craft({
 
 -- Honey Block
 minetest.register_node("mobs:honey_block", {
-description = "Honey Block",
-tiles = {"mobs_honey_block.png"},
-groups = {snappy=3,flammable=2},
-sounds = default.node_sound_dirt_defaults(),
+	description = "Honey Block",
+	tiles = {"mobs_honey_block.png"},
+	groups = {snappy=3,flammable=2},
+	sounds = default.node_sound_dirt_defaults(),
 })
+
 minetest.register_craft({
-output = "mobs:honey_block",
-recipe = {
-{"mobs:honey", "mobs:honey", "mobs:honey"},
-{"mobs:honey", "mobs:honey", "mobs:honey"},
-{"mobs:honey", "mobs:honey", "mobs:honey"},
-}
+	output = "mobs:honey_block",
+	recipe = {
+		{"mobs:honey", "mobs:honey", "mobs:honey"},
+		{"mobs:honey", "mobs:honey", "mobs:honey"},
+		{"mobs:honey", "mobs:honey", "mobs:honey"},
+	}
 })
+
 minetest.register_craft({
-output = "mobs:honey 9",
-recipe = {
-{"mobs:honey_block"},
-}
+	output = "mobs:honey 9",
+	recipe = {
+		{"mobs:honey_block"},
+	}
 })

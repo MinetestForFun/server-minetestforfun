@@ -25,6 +25,9 @@ mobs:register_mob("mobs:rat", {
 jump = true,
 step = 1,
 passive = true,
+	sounds = {
+		random = {"mobs_rat_random01", "mobs_rat_random02"},
+	},
 	
 	on_rightclick = function(self, clicker)
 		if clicker:is_player() and clicker:get_inventory() then
@@ -43,7 +46,7 @@ minetest.register_craftitem("mobs:rat", {
 	
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.above then
-			minetest.add_entity(pointed_thing.above, "mobs:rat")
+			minetest.env:add_entity(pointed_thing.above, "mobs:rat")
 			itemstack:take_item()
 		end
 		return itemstack

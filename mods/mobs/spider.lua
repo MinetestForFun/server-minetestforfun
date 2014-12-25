@@ -57,20 +57,16 @@ mobs:register_mob("mobs:spider", {
 		punch_start = 50,
 		punch_end = 90,
 	},
---	jump = true,
---	sounds = {},
---	step = 1,
---})
---	},
-	jump = true,
-		step = 1,
-	blood_texture = "mobs_blood.png",
 	sounds = {
+		random = {"mobs_spider_random01", "mobs_spider_random02"},
 		war_cry = "mobs_eerie",
 		death = "mobs_howl",
 		attack = "mobs_oerkki_attack",
 	},
-
+	jump = true,
+	sounds = {},
+	step = 1,
+	blood_texture = "mobs_blood.png",
 })
 mobs:register_spawn("mobs:spider", {"default:junglegrass", "default:jungleleaves", "default:jungletree"}, 20, -10, 7000, 1, 31000)
 

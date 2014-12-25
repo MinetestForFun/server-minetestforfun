@@ -57,6 +57,10 @@ mobs:register_mob("mobs:tree_monster", {
 		punch_start = 48,
 		punch_end = 62,
 	},
+	sounds = {
+		random = {"mobs_treemonster_random01", "mobs_treemonster_random01"},
+	},
+	step = 0.5,
 	jump = true,
 	step = 1,
 	blood_texture = "default_wood.png",

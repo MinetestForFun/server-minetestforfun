@@ -74,6 +74,9 @@ mobs:register_mob("mobs:dungeon_master", {
 		speed_normal = 15,
 		speed_run = 15,
 	},
+	sounds = {
+		random = {"mobs_dungeonmaster_random01", "mobs_dungeonmaster_random02.ogg", "mobs_dungeonmaster_random03.ogg"},
+	},
 	jump = true,
 	step = 0.5,
 	shoot_offset = 0,
@@ -106,11 +109,11 @@ mobs:register_arrow("mobs:fireball", {
 			for dy=-1,1 do
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-					local n = minetest.get_node(p).name
+					local n = minetest.env:get_node(p).name
 					local excluding = minetest.registered_nodes[n].groups["unbreakable"] ~= nil
 						or n:split(":")[1] == "nether"
 					for _,i in ipairs(excluded) do
-						if i == n then excluding = true end
+						if i == n then including = true end
 					end
 					
 					--if p.y < -19600 and including and n:split(":")[1] == "nether" then
@@ -119,9 +122,9 @@ mobs:register_arrow("mobs:fireball", {
 					end
 					if n ~= "default:obsidian" and n ~= "ethereal:obsidian_brick" then	
 					if minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30 then
-						minetest.set_node(p, {name="fire:basic_flame"})
+						minetest.env:set_node(p, {name="fire:basic_flame"})
 					else
-						minetest.set_node(p, {name="air"})
+						minetest.env:set_node(p, {name="air"})
 					end
 					end
 				end
