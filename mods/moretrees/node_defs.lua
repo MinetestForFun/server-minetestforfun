@@ -30,12 +30,10 @@ local dirs2 = { 12, 9, 18, 7, 12 }
 local dirs3 = { 14, 11, 16, 5, 14 }
 
 local moretrees_new_leaves_drawtype = "allfaces_optional"
-local moretrees_new_leaves_extension = ".png"
 local moretrees_plantlike_leaves_visual_scale = 1
 
 if moretrees.plantlike_leaves then 
 	moretrees_new_leaves_drawtype = "plantlike"
-	moretrees_new_leaves_extension = "_plantlike.png"
 	moretrees_plantlike_leaves_visual_scale = 1.189
 end
 
@@ -50,8 +48,7 @@ if moretrees.plantlike_leaves then
 	minetest.override_item("default:leaves", {
 		inventory_image = minetest.inventorycube("default_leaves.png"),
 		drawtype = "plantlike",
-		visual_scale = 1.189,
-		tiles = { "default_leaves_plantlike.png" }
+		visual_scale = 1.189
 	})
 else
 	minetest.override_item("default:leaves", {
@@ -70,8 +67,7 @@ if moretrees.plantlike_leaves then
 	minetest.override_item("default:jungleleaves", {
 		inventory_image = minetest.inventorycube("default_jungleleaves.png"),
 		drawtype = "plantlike",
-		visual_scale = 1.189,
-		tiles = { "default_jungleleaves_plantlike.png" }
+		visual_scale = 1.189
 	})
 else
 	minetest.override_item("default:jungleleaves", {
@@ -169,7 +165,7 @@ for i in ipairs(moretrees.treelist) do
 			drawtype = moretrees_new_leaves_drawtype,
 			waving = moretrees_new_leaves_waving,
 			visual_scale = moretrees_plantlike_leaves_visual_scale,
-			tiles = { "moretrees_"..treename.."_leaves"..moretrees_new_leaves_extension },
+			tiles = { "moretrees_"..treename.."_leaves.png" },
 			inventory_image = moretrees_leaves_inventory_image,
 			paramtype = "light",
 			groups = {snappy=3, flammable=2, leaves=1, moretrees_leaves=1},
@@ -314,7 +310,7 @@ for color = 1, 3 do
 		drawtype = moretrees_new_leaves_drawtype,
 		waving = moretrees_new_leaves_waving,
 		visual_scale = moretrees_plantlike_leaves_visual_scale,
-		tiles = {"moretrees_jungletree_leaves_"..jungleleaves[color]..moretrees_new_leaves_extension},
+		tiles = {"moretrees_jungletree_leaves_"..jungleleaves[color]..".png"},
 		inventory_image = moretrees_leaves_inventory_image,
 		paramtype = "light",
 		groups = {snappy=3, flammable=2, leaves=1, moretrees_leaves=1},
@@ -342,7 +338,7 @@ minetest.register_node("moretrees:fir_leaves_bright", {
 	waving = moretrees_new_leaves_waving,
 	visual_scale = moretrees_plantlike_leaves_visual_scale,
 	description = S("Douglas Fir Leaves (Bright)"),
-	tiles = { "moretrees_fir_leaves_bright"..moretrees_new_leaves_extension },
+	tiles = { "moretrees_fir_leaves_bright.png" },
 	inventory_image = moretrees_leaves_inventory_image,
 	paramtype = "light",
 	groups = {snappy=3, flammable=2, leaves=1, moretrees_leaves=1 },
