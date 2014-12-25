@@ -58,7 +58,7 @@ mobs:register_mob("mobs:tree_monster", {
 		punch_end = 62,
 	},
 	sounds = {
-		random = {"mobs_treemonster_random01", "mobs_treemonster_random01"},
+		random = "mobs_treemonster",
 	},
 	step = 0.5,
 	jump = true,

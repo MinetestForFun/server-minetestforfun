@@ -11,6 +11,9 @@ dofile(minetest.get_modpath("mobs").."/sheep.lua")
 dofile(minetest.get_modpath("mobs").."/warthog.lua")
 dofile(minetest.get_modpath("mobs").."/bee.lua")
 
+-- Animals/Kittens from Jordach BFD subgame
+dofile(minetest.get_modpath("mobs").."/kitten.lua")
+
 -- Monsters
 
 dofile(minetest.get_modpath("mobs").."/dirtmonster.lua")

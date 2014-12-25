@@ -49,7 +49,7 @@ mobs:register_mob("mobs:sand_monster", {
 		punch_end = 105,
 	},
 	sounds = {
-		random = {"mobs_sandmonster_random01", "mobs_sandmonster_random02"},
+		random = "mobs_sandmonster",
 	},
 	jump = true,
 	step = 1,

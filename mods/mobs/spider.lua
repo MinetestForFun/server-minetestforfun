@@ -58,7 +58,7 @@ mobs:register_mob("mobs:spider", {
 		punch_end = 90,
 	},
 	sounds = {
-		random = {"mobs_spider_random01", "mobs_spider_random02"},
+		random = "mobs_spider",
 		war_cry = "mobs_eerie",
 		death = "mobs_howl",
 		attack = "mobs_oerkki_attack",

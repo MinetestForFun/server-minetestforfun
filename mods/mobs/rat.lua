@@ -26,7 +26,7 @@ jump = true,
 step = 1,
 passive = true,
 	sounds = {
-		random = {"mobs_rat_random01", "mobs_rat_random02"},
+		random = "mobs_rat",
 	},
 	
 	on_rightclick = function(self, clicker)
