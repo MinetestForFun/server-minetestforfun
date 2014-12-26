@@ -12,9 +12,9 @@ random_messages = {}
 random_messages.messages = {} --This table contains all messages.
 
 function random_messages.initialize() --Set the interval in minetest.conf.
-	minetest.setting_set("random_messages_interval",120)
+	minetest.setting_set("random_messages_interval",1800)
 	minetest.setting_save();
-	return 120 
+	return 1800 
 end
 
 function random_messages.set_interval() --Read the interval from minetest.conf(set it if it doesn'st exist)

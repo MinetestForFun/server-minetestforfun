@@ -37,10 +37,10 @@ mobs:register_mob("mobs:pumba", {
 	},
 	follow = "farming:wheat",
 	view_range = 8,
-jump = true,
-step = 1,
-passive = true,
-blood_texture = "mobs_blood.png",
+	jump = true,
+	step = 1,
+	passive = true,
+	blood_texture = "mobs_blood.png",
 
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
