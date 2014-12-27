@@ -135,11 +135,10 @@ minetest.register_craftitem(":bucket:bucket_empty", {
 			-- Stacked buckets: add a filled bucket, replace stack.
 			local inv = user:get_inventory()
 			if inv:room_for_item("main", liquiddef.itemname) then
-				minetest.add_node(pointed_thing.under, {name="air"})
-				--count = count - 1
-				--itemstack:set_count(count)
-				return ItemStack(liquiddef.itemname)
-				--inv:add_item("main", bucket_liquid)
+				count = count - 1
+				itemstack:set_count(count)
+				inv:add_item("main", liquiddef.itemname)
+				return ItemStack(itemstack)
 			else
 				minetest.chat_send_player(user:get_player_name(), "Your inventory is full.")
 			end
