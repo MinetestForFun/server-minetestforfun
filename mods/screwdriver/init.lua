@@ -77,6 +77,12 @@ minetest.register_craft({
 		{"default:steel_ingot"},
 		{"group:stick"}
 	}
+minetest.register_craft({
+	output = "screwdriver:screwdriver_perfect",
+	recipe = {
+		{"moreoress:mithril_ingot"},
+		{"group:stick"}
+	}
 })
 
 minetest.register_alias("screwdriver:screwdriver1", "screwdriver:screwdriver")
