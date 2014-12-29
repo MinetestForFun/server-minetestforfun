@@ -9,6 +9,7 @@ end
 local ROTATE_FACE = 1
 local ROTATE_AXIS = 2
 local USES = 200
+local USES_perfect = 10000
 
 -- Handles rotation
 local function screwdriver_handler(itemstack, user, pointed_thing, mode)
@@ -49,7 +50,9 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	node.param2 = n
 	minetest.swap_node(pos, node)
 
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.setting_getbool("creative_mode") and minetest.register_tool("screwdriver:screwdriver_perfect") then
+		itemstack:add_wear(65535 / (USES_perfect - 1))
+	elseif not minetest.setting_getbool("creative_mode")
 		itemstack:add_wear(65535 / (USES - 1))
 	end
 
