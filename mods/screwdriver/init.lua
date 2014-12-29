@@ -56,10 +56,23 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	return itemstack
 end
 
--- Screwdriver
+-- Screwdriver (en steel à 200 utilisation)
 minetest.register_tool("screwdriver:screwdriver", {
 	description = "Screwdriver (left-click rotates face, right-click rotates axis)",
 	inventory_image = "screwdriver.png",
+	on_use = function(itemstack, user, pointed_thing)
+		screwdriver_handler(itemstack, user, pointed_thing, ROTATE_FACE)
+		return itemstack
+	end,
+	on_place = function(itemstack, user, pointed_thing)
+		screwdriver_handler(itemstack, user, pointed_thing, ROTATE_AXIS)
+		return itemstack
+	end,
+}
+-- Perfect Screwdriver (en mithril à 10 000 utilisations)
+minetest.register_tool("screwdriver:screwdriver_perfect", {
+	description = "Perfect Screwdriver (left-click rotates face, right-click rotates axis)",
+	inventory_image = "screwdriver_perfect.png",
 	on_use = function(itemstack, user, pointed_thing)
 		screwdriver_handler(itemstack, user, pointed_thing, ROTATE_FACE)
 		return itemstack
