@@ -50,9 +50,9 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	node.param2 = n
 	minetest.swap_node(pos, node)
 
-	if not minetest.setting_getbool("creative_mode") and minetest.register_tool("screwdriver:screwdriver_perfect") then
+	if not minetest.setting_getbool("creative_mode") and minetest.registered_tools["screwdriver:screwdriver_perfect"] then
 		itemstack:add_wear(65535 / (USES_perfect - 1))
-	elseif not minetest.setting_getbool("creative_mode")
+	elseif not minetest.setting_getbool("creative_mode") then
 		itemstack:add_wear(65535 / (USES - 1))
 	end
 
@@ -71,7 +71,8 @@ minetest.register_tool("screwdriver:screwdriver", {
 		screwdriver_handler(itemstack, user, pointed_thing, ROTATE_AXIS)
 		return itemstack
 	end,
-}
+})
+
 -- Perfect Screwdriver (en mithril à 10 000 utilisations)
 minetest.register_tool("screwdriver:screwdriver_perfect", {
 	description = "Perfect Screwdriver (left-click rotates face, right-click rotates axis)",
@@ -93,6 +94,8 @@ minetest.register_craft({
 		{"default:steel_ingot"},
 		{"group:stick"}
 	}
+})
+
 minetest.register_craft({
 	output = "screwdriver:screwdriver_perfect",
 	recipe = {
