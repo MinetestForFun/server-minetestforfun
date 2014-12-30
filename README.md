@@ -18,7 +18,7 @@ minetestforfun_game sous-jeu et mods
 
 Vous pouvez trouver ici le sous-jeu et les mods du serveur MinetestForFun.
 
-Si vous voulez nous aider, n'héitez pas et jetez un coup d'oeil à notre ToDoList [ici](https://docs.google.com/document/d/1OBEXTXPZlgmmo3DqdZa3fTr3Se424isHOOEpQOmIJDc/edit#).
+Si vous voulez nous aider, n'hésitez pas et jetez un coup d'oeil à notre ToDoList [ici](https://docs.google.com/document/d/1OBEXTXPZlgmmo3DqdZa3fTr3Se424isHOOEpQOmIJDc/edit#).
 
 Contributeurs
 ===================
