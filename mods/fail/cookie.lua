@@ -18,7 +18,6 @@ else
 	repeat
 		local line = pntf:read()
 		if line == nil or line == "" then break end
-		--print(line)
 		data.cookies[line:split(" ")[1]] = line:split(" ")[2]+0
 	until 1 == 0 -- Ok, not the best way to create a loop..
 end
@@ -50,6 +49,22 @@ minetest.register_chatcommand("cookie", {
 			core.chat_send_player(name,"  - help : show this help")
 			core.chat_send_player(name,"  - view | view <playername> : View player's CooKies amount") 
 			return
+		elseif param == "settings" then
+			if not minetest.get_player_privs(name)["server"] then
+				core.chat_send_player(name,"You're not allowed to perform this command. (Missing privilege : server)")
+				return
+			end
+			
+			core.chat_send_player(name,"=== FP_DEBUG_LINES SENT ===")
+			local send_admin = function(msg)
+				core.chat_send_player(name,msg)
+			end
+			
+			table.foreach(data,print)
+			print(io.open(minetest.get_worldpath().."/players/Lymkwi") ~= nil)
+			print(data.is_player_available("Lymkwi"))
+			
+			return
 		elseif param == "view" then
 			if param2 == "" or param2 == nil then
 				local owncookies = 0
@@ -74,8 +89,8 @@ minetest.register_chatcommand("cookie", {
 					core.chat_send_player(name,"-CK- Congratulation, you failed. Don't try to cook for yourself, don't be selfish :p")
 				else
 					minetest.log("action",name.."cooked himself a CooKie")
-					core.chat_send_player(name,"-CK- You failed: It appears the name you entered is yours")
-					core.chat_send_player(name,"Don't try to cook yourself CooKies, share them :p")
+					data.send_func(name,"-CK- You failed: It appears the name you entered is yours")
+					data.send_func(name,"Don't try to cook yourself CooKies, share them :p")
 				end
 				return false
 			end
@@ -85,7 +100,7 @@ minetest.register_chatcommand("cookie", {
 				return false
 			end
 
-			if not minetest.get_player_by_name(param) then
+			if not data.is_player_available(param) then
 				core.chat_send_player(name,"-CK- You failed: Sorry, "..param.." isn't online.")
 				return false
 			end
@@ -112,7 +127,7 @@ minetest.register_chatcommand("cookie", {
 			minetest.log("action","[FailPoints] "..name.." has given a CooKie to "..param)
 			minetest.log("action","[FailPoints] "..param.." now own "..data.cookies[param].."CKs")
 			minetest.log("action","[FailPoints] "..name.." now own "..(data.cookies[name] or 0).."CKs")
-			core.chat_send_player(param,"Congratulations "..param..", you get a CooKie.")
+			data.send_func(param,"Congratulations "..param..", you get a CooKie.")
 			core.chat_send_player(name,"CooKie sent.")
 		end
 	end
