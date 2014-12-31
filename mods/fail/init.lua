@@ -18,7 +18,7 @@ data = {}
 
 data.fp_file = minetest.get_worldpath().."/failpoints"
 data.failpoints = {}
-data.fp_version = 0.0 -- It looks like a face, you see?
+data.fp_version = 0.1
 
 -- fp_create priv to create failpoints
 minetest.register_privilege("fp_create","Is able to create FailPoints and give them to anybody else")
@@ -107,8 +107,6 @@ minetest.register_chatcommand("fail", {
 			end
 			
 			table.foreach(data,print)
-			print(io.open(minetest.get_worldpath().."/players/Lymkwi") ~= nil)
-			print(data.is_player_available("Lymkwi"))
 			
 			return
 		elseif param == "view" then
@@ -173,7 +171,16 @@ minetest.register_chatcommand("fail", {
 			minetest.log("action","[FailPoints] "..name.." has given a failpoint to "..param)
 			minetest.log("action","[FailPoints] "..param.." now own "..data.failpoints[param].."FPs")
 			minetest.log("action","[FailPoints] "..name.." now own "..(data.failpoints[name] or 0).."FPs")
-			data.send_func(param,"Congratulations "..param..", you win a failpoint.")
+			local message_reason = "."
+			if param2 ~= "" then
+				local m_table = paramlist
+				table.remove(m_table,1)
+				message_reason = " because "
+				for _,k in ipairs(m_table) do
+					message_reason = message_reason..k.." "
+				end
+			end
+			data.send_func(param,"Congratulations "..param..", you win a failpoint" .. message_reason)
 			core.chat_send_player(name,"FP sent.")
 		end
 	end

@@ -61,8 +61,6 @@ minetest.register_chatcommand("cookie", {
 			end
 			
 			table.foreach(data,print)
-			print(io.open(minetest.get_worldpath().."/players/Lymkwi") ~= nil)
-			print(data.is_player_available("Lymkwi"))
 			
 			return
 		elseif param == "view" then
@@ -127,7 +125,15 @@ minetest.register_chatcommand("cookie", {
 			minetest.log("action","[FailPoints] "..name.." has given a CooKie to "..param)
 			minetest.log("action","[FailPoints] "..param.." now own "..data.cookies[param].."CKs")
 			minetest.log("action","[FailPoints] "..name.." now own "..(data.cookies[name] or 0).."CKs")
-			data.send_func(param,"Congratulations "..param..", you get a CooKie.")
+			local message_reason = "."
+			if param2 ~= "" then
+				local m_table = paramlist
+				table.remove(m_table,1)
+				message_reason = " because "
+				for _,k in ipairs(m_table) do
+					message_reason = message_reason..k.." "
+				end
+			enddata.send_func(param,"Congratulations "..param..", you get a CooKie" .. message_reason)
 			core.chat_send_player(name,"CooKie sent.")
 		end
 	end
