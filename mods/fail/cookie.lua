@@ -133,7 +133,8 @@ minetest.register_chatcommand("cookie", {
 				for _,k in ipairs(m_table) do
 					message_reason = message_reason..k.." "
 				end
-			enddata.send_func(param,"Congratulations "..param..", you get a CooKie" .. message_reason)
+			end
+			data.send_func(param,"Congratulations "..param..", you get a CooKie" .. message_reason)
 			core.chat_send_player(name,"CooKie sent.")
 		end
 	end
