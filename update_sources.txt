@@ -5,6 +5,7 @@ Here are listed all the git remote repositories for the server :
 # MFF_Game
 http://github.com/minetest/minetest
 http://gitorious.org/calinou/carbone
+https://github.com/Jordach/big_freaking_dig (some elements)
 
 # Mods
 http://github.com/stujones11/minetest-3d_armor.git
@@ -15,4 +16,9 @@ http://github.com/rubenwardy/awards.git
 bedrock is already in carbone original game
 http://github.com/BlockMen/beds.git
 http://github.com/LeMagnesium/beginners_chest.git
+https://github.com/Jeija/minetest-mod-mesecons
+https://github.com/HybridDog/minetest-nether
+https://github.com/HybridDog/riesenpilz --nether dependence
+https://github.com/HybridDog/vector_extras --nether dependence
+
 ======= TO CONTINUE =======
