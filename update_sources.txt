@@ -1,0 +1,18 @@
+Sources file
+============
+
+Here are listed all the git remote repositories for the server :
+# MFF_Game
+http://github.com/minetest/minetest
+http://gitorious.org/calinou/carbone
+
+# Mods
+http://github.com/stujones11/minetest-3d_armor.git
+http://github.com/Neuromancer56/MinetestAmbiance.git
+http://github.com/ShadowNinja/areas.git
+http://github.com/bitbucket.org/ardrido/arrow_signs.git
+http://github.com/rubenwardy/awards.git
+bedrock is already in carbone original game
+http://github.com/BlockMen/beds.git
+http://github.com/LeMagnesium/beginners_chest.git
+======= TO CONTINUE =======
