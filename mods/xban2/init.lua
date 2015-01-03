@@ -170,10 +170,19 @@ end)
 
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
+	local e = xban.find_entry(name)
 	local ip = minetest.get_player_ip(name)
-	local e = xban.find_entry(name) or xban.find_entry(ip, true)
+	if not e then
+		if ip then
+			e = xban.find_entry(ip, true)
+		else
+			return
+		end
+	end
 	e.names[name] = true
-	e.names[ip] = true
+	if ip then
+		e.names[ip] = true
+	end
 	e.last_seen = os.time()
 end)
 
