@@ -116,12 +116,12 @@ minetest.override_item("default:chest_locked", {
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, tubedevice = 1, tubedevice_receiver = 1},
 	tube = {
 		insert_object = function(pos, node, stack, direction)
-			local meta = minetest.env:get_meta(pos)
+			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			return inv:add_item("main", stack)
 		end,
 		can_insert = function(pos, node, stack, direction)
-			local meta = minetest.env:get_meta(pos)
+			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			return inv:room_for_item("main", stack)
 		end,
