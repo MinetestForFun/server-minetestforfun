@@ -9,9 +9,9 @@ https://github.com/Jordach/big_freaking_dig (some elements)
 
 # Mods
 http://github.com/stujones11/minetest-3d_armor.git
-http://github.com/Neuromancer56/MinetestAmbiance.git
+http://github.com/Neuromancer56/MinetestAmbiance.git <= ERROR 404
 http://github.com/ShadowNinja/areas.git
-http://github.com/bitbucket.org/ardrido/arrow_signs.git
+http://bitbucket.org/ardrido/arrow_signs.git
 http://github.com/rubenwardy/awards.git
 bedrock is already in carbone original game
 http://github.com/BlockMen/beds.git
@@ -56,7 +56,7 @@ http://github.com/PilzAdam/item_drop.git
 http://github.com/Gael-de-Sailly/mapfix.git
 http://gitorious.org/calinou/maptools.git
 [Markers]
-https://github.com/Jeija/minetest-mod-mesecons
+https://github.com/Jeija/minetest-mod-mesecons.git
 [Mobs]
 [Money]
 [More_Chests]
@@ -71,7 +71,7 @@ https://github.com/HybridDog/minetest-nether
 [Paintings]
 http://github.com/VanessaE/pipeworks.git
 http://github.com/VanessaE/plantlife_modpack.git
-http://github.com/Ombridride/player_inactive.git
+http://github.com/Ombridride/minetest-player_inactive.git
 [PlayerPlus]
 [Quarts (by 4EverGreen?)]
 http://github.com/arsdragonfly/random_messages.git
