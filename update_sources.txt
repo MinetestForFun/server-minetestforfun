@@ -16,9 +16,87 @@ http://github.com/rubenwardy/awards.git
 bedrock is already in carbone original game
 http://github.com/BlockMen/beds.git
 http://github.com/LeMagnesium/beginners_chest.git
+https://github.com/rabbibob/BobBlocks.git
+https://forum.minetest.net/viewtopic.php?id=5429 <= Is this our one? \ need to be replaced by a git repository
+https://github.com/PilzAdam/builtin_item  <= Semble inactif/abandonné
+  OU https://github.com/HybridDog/builtin_item <= Semble actif
+https://forum.minetest.net/viewtopic.php?f=9&t=10525 <= DEVRAIT être remplacé par un dépot git / mort
+https://github.com/SmallJoker/boost_cart <= Celui qu'on utilise?
+# CHESTTOOLS : ?
+https://github.com/rubenwardy/chatplus
+https://bitbucket.org/kingarthursteam/christmas_craft.git <= Is it this?
+[ColoredWood]
+[ColorMachine]
+[ColouredStoneBricks]
+[Columnia]
+[Darkage]
+[Death_messages]
+[DropOnDie]
+[Factions]
+http://github.com/LeMagnesium/fail.git
+[Farming-Redo]
+[Fences]
+[Fishing]
+[Food]
+[FramedGlass]
+[Future_ban]
+[Gauges]
+[Glow]
+http://github.com/VanessaE/homedecor.git
+[HUD]
+[Intweak]
+http://github.com/kaeza/minetest-irc.git
+[IRC_Commands]
+http://github.com/PilzAdam/item_drop.git
+[Jumping]
+[Lantern]
+[Lavalamp]
+[Lavatemple]
+[Locked_Sign]
+http://github.com/Gael-de-Sailly/mapfix.git
+http://gitorious.org/calinou/maptools.git
+[Markers]
 https://github.com/Jeija/minetest-mod-mesecons
+[Mobs]
+[Money]
+[More_Chests]
+http://gitorious.org/calinou/moreblocks.git
+http://gitorious.org/calinou/moreores.git
+http://github.com/VanessaE/moretrees.git
+[MultiTest]
+[Name_Restriction]
+https://github.com/SmallJoker/names_per_ip
 https://github.com/HybridDog/minetest-nether
+[New]
+[Paintings]
+http://github.com/VanessaE/pipeworks.git
+http://github.com/VanessaE/plantlife_modpack.git
+http://github.com/Ombridride/player_inactive.git
+[PlayerPlus]
+[Quarts (by 4EverGreen?)]
+http://github.com/arsdragonfly/random_messages.git
 https://github.com/HybridDog/riesenpilz --nether dependence
+http://github.com/TenPlus1/screwdriver.git => Maintenant dans mt_game, on le garde?
+  => Modifié pour :
+    - Tournevis infini
+[Sea]
+[Snow]
+[SnowDrift]
+[Spawn]
+[Sponge] => by davedevils?
+[Sprint]
+  => Modifié pour :
+    - Customisation
+    - Changement de l'interval pour déclencher le sprint
+    - Changement de la touche de sprint
+[Stained_Glass]
+[Throwing]
+[U_Skins]
+[Unified_Inventory]
+[UnifiedDyes]
 https://github.com/HybridDog/vector_extras --nether dependence
+[WhoIsOn]
+[Wiki]
+http://github.com/kaeza/minetest-xban2.git
 
-======= TO CONTINUE =======
+======= TO CHECK =======
