@@ -1,4 +1,3 @@
-
 print (" ---- mods override is Loading! ---- ")
 
 -- leaves -- 
@@ -21,9 +20,7 @@ print (" ---- mods override is Loading! ---- ")
 
  -- why are u overwriting that? its just the normal 4 season leaves.
 
- 
  -- grass --
-
 minetest.register_node(":4seasons:grass_winter", {
 	description = "Dirt with snow",
 	tiles = {"4seasons_snow.png", "default_dirt.png", "default_dirt.png^4seasons_grass_w_snow_side.png"},
