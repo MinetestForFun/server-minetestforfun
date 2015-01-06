@@ -18,9 +18,9 @@ http://github.com/BlockMen/beds.git
 http://github.com/LeMagnesium/beginners_chest.git
 https://github.com/rabbibob/BobBlocks.git
 https://forum.minetest.net/viewtopic.php?id=5429 <= Is this our one? \ need to be replaced by a git repository
-https://github.com/PilzAdam/builtin_item  <= Semble inactif/abandonnÈ
+https://github.com/PilzAdam/builtin_item  <= Semble inactif/abandonn√©
   OU https://github.com/HybridDog/builtin_item <= Semble actif
-https://forum.minetest.net/viewtopic.php?f=9&t=10525 <= DEVRAIT Ítre remplacÈ par un dÈpot git / mort
+https://forum.minetest.net/viewtopic.php?f=9&t=10525 <= DEVRAIT √™tre remplac√© par un d√©pot git / mort
 https://github.com/SmallJoker/boost_cart <= Celui qu'on utilise?
 # CHESTTOOLS : ?
 https://github.com/rubenwardy/chatplus
@@ -37,7 +37,7 @@ http://github.com/LeMagnesium/fail.git
 [Farming-Redo]
 [Fences]
 [Fishing]
-[Food]
+https://github.com/rubenwardy/food
 [FramedGlass]
 [Future_ban]
 [Gauges]
@@ -77,7 +77,7 @@ http://github.com/Ombridride/minetest-player_inactive.git
 http://github.com/arsdragonfly/random_messages.git
 https://github.com/HybridDog/riesenpilz --nether dependence
 http://github.com/TenPlus1/screwdriver.git => Maintenant dans mt_game, on le garde?
-  => ModifiÈ pour :
+  => Modifi√© pour :
     - Tournevis infini
 [Sea]
 [Snow]
@@ -85,9 +85,9 @@ http://github.com/TenPlus1/screwdriver.git => Maintenant dans mt_game, on le gar
 [Spawn]
 [Sponge] => by davedevils?
 [Sprint]
-  => ModifiÈ pour :
+  => Modifi√© pour :
     - Customisation
-    - Changement de l'interval pour dÈclencher le sprint
+    - Changement de l'interval pour d√©clencher le sprint
     - Changement de la touche de sprint
 [Stained_Glass]
 [Throwing]
