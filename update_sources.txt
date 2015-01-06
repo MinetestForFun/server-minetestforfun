@@ -25,17 +25,20 @@ https://github.com/SmallJoker/boost_cart <= Celui qu'on utilise?
 # CHESTTOOLS : ?
 https://github.com/rubenwardy/chatplus
 https://bitbucket.org/kingarthursteam/christmas_craft.git <= Is it this?
-[ColoredWood]
-[ColorMachine]
-[ColouredStoneBricks]
-[Columnia]
-[Darkage]
-[Death_messages]
-[DropOnDie]
-[Factions]
+https://github.com/VanessaE/coloredwood.git
+https://github.com/Sokomine/colormachine.git
+https://github.com/CraigyDavi/colouredstonebricks.git
+https://github.com/Glunggi/columnia.git
+https://github.com/adrido/darkage.git
+  OU
+  https://github.com/MasterGollum/darkage.git ????
+https://github.com/4Evergreen4/death_messages.git
+https://github.com/minermoder27/minetest-dropondie.git
+https://github.com/sapier/factions.git
 http://github.com/LeMagnesium/fail.git
-[Farming-Redo]
-[Fences]
+https://github.com/tenplus1/farming.git
+  => Modifié pour : ????????
+https://forum.minetest.net/viewtopic.php?t=5016 <= Should be replaced by a git repository
 [Fishing]
 https://github.com/rubenwardy/food
 [FramedGlass]
