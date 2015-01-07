@@ -39,15 +39,16 @@ http://github.com/LeMagnesium/fail.git
 https://github.com/tenplus1/farming.git
   => Modifié pour : ????????
 https://forum.minetest.net/viewtopic.php?t=5016 <= Should be replaced by a git repository
-[Fishing]
-https://github.com/rubenwardy/food
-[FramedGlass]
-[Future_ban]
-[Gauges]
-[Glow]
+https://github.com/Mossmanikin/fishing.git <= Est-ce lui?
+https://github.com/rubenwardy/food.git
+https://github.com/minetest-technic/framedglass.git
+https://github.com/VanessaE/future_ban.git
+Gauges déjà présent dans carbone original
+https://github.com/bdjnk/glow.git
 http://github.com/VanessaE/homedecor.git
-[HUD]
-[Intweak]
+https://github.com/BlockMen/hud.git
+	OU https://github.com/mgl512/hud.git <= ??
+https://forum.minetest.net/viewtopic.php?id=5694 <= he has a problem with git or what?
 http://github.com/kaeza/minetest-irc.git
 [IRC_Commands]
 http://github.com/PilzAdam/item_drop.git
