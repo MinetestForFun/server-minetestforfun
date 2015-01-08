@@ -1,7 +1,9 @@
 Chatplus
 --------
 
-License: CC-BY-SA to Rubenwardy
+License: GPL 3.0 or later.
+
+Created by rubenwardy.
 
 Commands
 ========

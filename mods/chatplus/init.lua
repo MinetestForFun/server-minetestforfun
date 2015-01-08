@@ -4,12 +4,12 @@
 -- =========
 
 chatplus = {
-	log_file = minetest.get_worldpath().."/chat_log.txt",
+	log_file = minetest.get_worldpath().."/chatplus-log.txt",
 	_defsettings = {
-		log = false, -- Set to true to log chat in a file found in the world directory.
+		log = true,
 		use_gui = true,
 		distance = 0,
-		badwords = "" -- Words not allowed to be said in chat, separated by commas. Uncomment the code near the end to make this work.
+		badwords = ""
 	}
 }
 
@@ -32,7 +32,7 @@ function chatplus.setting(name)
 	elseif chatplus._defsettings[name]~= nil then
 		return chatplus._defsettings[name]
 	else
-		minetest.log("[chatplus] Setting chatplus_"..name.." not found.")
+		minetest.log("[Chatplus] Setting chatplus_"..name.." not found!")
 		return nil
 	end	
 end
@@ -42,14 +42,14 @@ function chatplus.load()
 	if chatplus.setting("log") then
 		chatplus.log_handle = io.open(chatplus.log_file,"a+")
 		if not chatplus.log_handle then
-			minetest.log("error","Unable to open chatplus log file: "..chatplus.log_file)
+			minetest.log("error","Unable to open chat plus log file: "..chatplus.log_file)
 		else
-			minetest.log("action","Logging chatplus to: "..chatplus.log_file)
+			minetest.log("action","Logging chat plus to: "..chatplus.log_file)
 		end	
 	end
 	
 	-- Load player data
-	minetest.log("[chatplus] Loading data.")
+	minetest.log("[Chatplus] Loading data")
 	local file = io.open(minetest.get_worldpath().."/chatplus.txt", "r")
 	if file then
 		local table = minetest.deserialize(file:read("*all"))
@@ -62,7 +62,7 @@ function chatplus.load()
 end
 
 function chatplus.save()
-	minetest.log("[chatplus] Saving data.")
+	minetest.log("[Chatplus] Saving data")
 	
 	local file = io.open(minetest.get_worldpath().."/chatplus.txt", "w")
 	if file then
@@ -77,7 +77,7 @@ function chatplus.clean_players()
 		return
 	end
 
-	minetest.log("[chatplus] Cleaning player lists.")
+	minetest.log("[Chatplus] Cleaning player lists")
 	for key,value in pairs(chatplus.players) do
 		if value.messages then
 			value.inbox = value.messages
@@ -88,12 +88,12 @@ function chatplus.clean_players()
 			(not value.inbox or #value.inbox==0) and
 			(not value.ignore or #value.ignore==0)
 		) then
-			minetest.log("Deleting blank player "..key..".")
+			minetest.log("Deleting blank player "..key)
 			value[key] = nil
 		end
 	end
 	chatplus.save()
-	minetest.log("[chatplus] Cleaning complete.")
+	minetest.log("[Chatplus] Clean complete")
 end
 
 function chatplus.poke(name,player)
@@ -139,15 +139,13 @@ function chatplus.send(from,msg)
 	-- Log chat message
 	if chatplus.log_handle ~= nil then
 		chatplus.log_handle:write(
-			os.date("%Y-%m-%d, %I:%M%p")..
-			" | <"..from.."> "..
+			os.date("%Y/%m/%d %I:%M%p")..
+			" <"..from.."> "..
 			msg..
 			"\r\n"
 		)
 		chatplus.log_handle:flush()
 	end
-	
-	minetest.log("action", "<"..from.."> "..msg)
 	
 	-- Loop through senders
 	for key,value in pairs(chatplus.loggedin) do
@@ -175,19 +173,19 @@ minetest.register_on_joinplayer(function(player)
 	local _player = chatplus.poke(player:get_player_name(),player)
 
 	if chatplus.log_handle ~= nil then
-		chatplus.log_handle:write(os.date("%Y-%m-%d, %I:%M%p").." O "..player:get_player_name().." joined the game.\r\n")
+		chatplus.log_handle:write(os.date("%d/%m/%Y %I:%M%p").." "..player:get_player_name().." joined\r\n")
 		chatplus.log_handle:flush()
 	end
 
-	-- Inbox stuff.
+	-- inbox stuff!
 	if _player.inbox and #_player.inbox>0 then
-		minetest.after(10,minetest.chat_send_player,player:get_player_name(),"("..#_player.inbox..") You have mail! Type /inbox to view them.")	
+		minetest.after(10,minetest.chat_send_player,player:get_player_name(),"("..#_player.inbox..") You have mail! Type /inbox to recieve")	
 	end
 end)
 minetest.register_on_leaveplayer(function(player)
 	chatplus.poke(player:get_player_name(),"end")
 	if chatplus.log_handle ~= nil then
-		chatplus.log_handle:write(os.date("%Y-%m-%d, %I:%M%p").." X "..player:get_player_name().." left the game.\r\n")
+		chatplus.log_handle:write(os.date("%d/%m/%Y %I:%M%p").." "..player:get_player_name().." disconnected\r\n")
 		chatplus.log_handle:flush()
 	end
 end)
@@ -204,23 +202,23 @@ chatplus.register_handler(function(from,to,msg)
 end)
 
 minetest.register_chatcommand("ignore", {
-	params = "<name>",
-	description = "Ignore a player",
+	params = "name",
+	description = "ignore: Ignore a player",
 	func = function(name, param)
 		chatplus.poke(name)
 		if not chatplus.players[name].ignore[param]==true then
 			chatplus.players[name].ignore[param]=true
-			minetest.chat_send_player(name,param.." has been ignored.")
+			minetest.chat_send_player(name,param.." has been ignored")
 			chatplus.save()
 		else
-			minetest.chat_send_player(name,param.." is already ignored.")
+			minetest.chat_send_player(name,"Player "..param.." is already ignored.")
 		end
 	end
 })
 
 minetest.register_chatcommand("unignore", {
-	params = "<name>",
-	description = "Stop ignoring a player",
+	params = "name",
+	description = "unignore: Unignore a player",
 	func = function(name, param)
 		chatplus.poke(name)
 		if chatplus.players[name].ignore[param]==true then
@@ -228,7 +226,7 @@ minetest.register_chatcommand("unignore", {
 			minetest.chat_send_player(name,param.." has been unignored")
 			chatplus.save()
 		else
-			minetest.chat_send_player(name,param.." is already unignored.")
+			minetest.chat_send_player(name,"Player "..param.." is already unignored.")
 		end
 	end
 })
@@ -242,20 +240,22 @@ function chatplus.showInbox(name,forcetest)
 	local player = chatplus.players[name]
 
 	if not player.inbox or #player.inbox==0 then
-		minetest.chat_send_player(name,"Your inbox is empty.")
+		minetest.chat_send_player(name,"Your inbox is empty!")
 		return false
 	end
 	local setting = chatplus.setting("use_gui")
 	if (setting == true or setting == "true" or setting == "1") and not forcetest then
-		local fs = "size[10,5]textlist[0,0;9.75,5;inbox;"
+		minetest.chat_send_player(name,"Showing your inbox to you.")
+		local fs = "size[10,8]textarea[0.25,0.25;10.15,8;inbox;You have " .. #player.inbox .. " messages in your inbox:;"
+
 		for i=1,#player.inbox do
-			if i > 1 then
-				fs = fs .. ","
-			end
 			fs = fs .. minetest.formspec_escape(player.inbox[i])
+			fs = fs .. "\n"
 		end
+
 		fs = fs .. "]"
-		print(fs)
+		fs = fs .. "button[0,7.25;2,1;clear;Clear Inbox]"
+		fs = fs .. "button_exit[8.1,7.25;2,1;close;Close]"
 		minetest.show_formspec(name, "chatplus:inbox", fs)
 	else
 		minetest.chat_send_player(name,"("..#player.inbox..") You have mail:")
@@ -268,15 +268,25 @@ function chatplus.showInbox(name,forcetest)
 	return true
 end
 
+minetest.register_on_player_receive_fields(function(player,formname,fields)
+	if fields.clear then
+		local name = player:get_player_name()
+		chatplus.poke(name).inbox = {}
+		chatplus.save()
+		minetest.chat_send_player(name,"Inbox cleared!")
+		chatplus.showInbox(name)
+	end
+end)
+
 minetest.register_chatcommand("inbox", {
-	params = "[clear]",
-	description = "Shows your inbox",
+	params = "clear?",
+	description = "inbox: print the items in your inbox",
 	func = function(name, param)
 		if param == "clear" then
 			local player = chatplus.poke(name)
 			player.inbox = {}
 			chatplus.save()
-			minetest.chat_send_player(name,"Inbox cleared.")
+			minetest.chat_send_player(name,"Inbox cleared")
 		elseif param == "text" or param == "txt" or param == "t" then
 			chatplus.showInbox(name,true)
 		else
@@ -286,34 +296,31 @@ minetest.register_chatcommand("inbox", {
 })
 
 minetest.register_chatcommand("mail", {
-	params = "<name> <message>",
-	description = "Add a message to a player's inbox",
+	params = "name msg",
+	description = "mail: add a message to a player's inbox",
 	func = function(name, param)
 		chatplus.poke(name)
 		local to, msg = string.match(param, "([%a%d_]+) (.+)")
 		
 		if not to or not msg then
-			minetest.chat_send_player(name,"Usage: /mail <player> <message>",false)
+			minetest.chat_send_player(name,"mail: <playername> <msg>",false)
 			return
 		end
 
-		--[[
-		minetest.log("To: "..to..", From: "..name..", Message: "..msg)
+		minetest.log("To: "..to..", From: "..name..", MSG: "..msg)
 		if chatplus.log_handle ~= nil then
-			chatplus.log_handle:write(os.date("%Y-%m-%d, %I:%M%p").." @ To: "..to..", From: "..name..", Message: "..msg)
+			chatplus.log_handle:write(os.date("%d/%m/%Y %I:%M%p").." To: "..to..", From: "..name..", MSG: "..msg)
 			chatplus.log_handle:flush()
 		end
-		--]]
 		if chatplus.players[to] then
-			table.insert(chatplus.players[to].inbox,os.date("%Y-%m-%d, %I:%M%p").." | <"..name.."> "..msg)
-			minetest.chat_send_player(name,"Message sent.")
+			table.insert(chatplus.players[to].inbox,os.date("%d/%m").." <"..name..">: "..msg)
+			minetest.chat_send_player(name,"Message sent")
 			chatplus.save()
 		else
-			minetest.chat_send_player(name,to.." does not exist.")
+			minetest.chat_send_player(name,"Player "..to.." does not exist")
 		end
 	end,
 })
-
 
 minetest.register_globalstep(function(dtime)
 	chatplus.count = chatplus.count + dtime
@@ -351,7 +358,7 @@ minetest.register_globalstep(function(dtime)
 						hud_elem_type = "text",
 						name = "MailText",
 						position = {x=0.55, y=0.52},
-						text=#value.inbox.." /inbox",
+						text=#value.inbox,
 						scale = {x=1,y=1},
 						alignment = {x=0.5, y=0.5},
 					})					
@@ -362,8 +369,6 @@ minetest.register_globalstep(function(dtime)
 	end
 end)
 
-
---[[
 chatplus.register_handler(function(from,to,msg)
 	if chatplus.setting("distance") <= 0 then
 		return nil
@@ -385,21 +390,14 @@ chatplus.register_handler(function(from,to,msg)
 	end
 	return nil
 end)
---]]
 
---[[
 chatplus.register_handler(function(from,to,msg)
 	local words = chatplus.setting("badwords"):split(",")
 	for _,v in pairs(words) do
 		if (v:trim()~="") and ( msg:find(v:trim(), 1, true) ~= nil ) then
-			minetest.chat_send_player(from, "Swearing is not allowed.")
+			minetest.chat_send_player(from, "Swearing is banned")
 			return false
 		end
 	end
 	return nil
 end)
---]]
-
-if minetest.setting_getbool("log_mods") then
-	minetest.log("action", "Carbone: [chatplus] loaded.")
-end
