@@ -239,7 +239,7 @@ minetest.register_abm({
 			minsize = 0.4,
 			maxsize = 3,
 			collisiondetection = true,
-			texture = "nether_portal_particle.png",
+			texture = "nether_portal_particle.png^[transform"..math.random(0,7),
 		})
 		for _,obj in pairs(minetest.get_objects_inside_radius(pos, 1)) do
 			if obj:is_player() then

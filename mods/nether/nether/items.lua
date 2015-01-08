@@ -597,9 +597,10 @@ minetest.register_node("nether:torch", {
 	sounds = default.node_sound_defaults(),
 })
 
+local invisible = "nether_transparent.png"
 minetest.register_node("nether:portal", {
 	description = "Nether Portal Essence",
-	tiles = {"nether_transparent.png", "nether_transparent.png", "nether_transparent.png", "nether_transparent.png", "nether_portal_stuff.png"},
+	tiles = {invisible, invisible, invisible, invisible, "nether_portal_stuff.png"}
 	inventory_image = "nether_portal_stuff.png",
 	wield_image = "nether_portal_stuff.png",
 	light_source = LIGHT_MAX - 2,
@@ -611,6 +612,7 @@ minetest.register_node("nether:portal", {
 	pointable = false,
 	buildable_to = false,
 	drop = "",
+	can_dig = function() return false end,
 	groups = {not_in_creative_inventory=1},
 	post_effect_color = {a=200, r=50, g=0, b=60},--{a=180, r=128, g=0, b=128}
 	drawtype = "nodebox",

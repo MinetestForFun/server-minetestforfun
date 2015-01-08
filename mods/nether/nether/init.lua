@@ -113,6 +113,7 @@ end
 local path = minetest.get_modpath("nether")
 dofile(path.."/weird_mapgen_noise.lua")
 dofile(path.."/items.lua")
+dofile(path.."/furnace.lua")
 dofile(path.."/pearl.lua")
 
 local function table_contains(t, v)
@@ -877,10 +878,9 @@ minetest.register_abm({
 	interval = 864,
 	chance = 100,
 	action = function(pos)
-		local under = {x=pos.x, y=pos.y-1, z=pos.z}
 		if minetest.get_node({x=pos.x, y=pos.y+2, z=pos.z}).name == "air"
 		and minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" then
-			local udata = minetest.registered_nodes[minetest.get_node(under).name]
+			local udata = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name]
 			if udata
 			and udata.groups
 			and udata.groups.nether_dirt then
@@ -901,7 +901,7 @@ minetest.register_abm({
 			return
 		end
 		pos.y = pos.y+1
-		if minetest.get_node_light(pos) > 7 then --mushrooms grow at dark places
+		if (minetest.get_node_light(pos) or 16) > 7 then --mushrooms grow at dark places
 			return
 		end
 		if minetest.get_node(pos).name == "air" then
