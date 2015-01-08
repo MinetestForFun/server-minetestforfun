@@ -26,7 +26,7 @@ ARMOR_LEVEL_MULTIPLIER = 1
 
 -- You can use this to increase or decrease overall armor healing,
 -- eg: ARMOR_HEAL_MULTIPLIER = 0 will disable healing altogether.
-ARMOR_HEAL_MULTIPLIER = 0.5
+ARMOR_HEAL_MULTIPLIER = 1
 
 -- You can also use this file to execute arbitary lua code
 -- eg: Dumb the armor down if using Simple Mobs
