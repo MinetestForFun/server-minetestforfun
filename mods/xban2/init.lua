@@ -193,13 +193,10 @@ minetest.register_chatcommand("xban", {
 	func = function(name, params)
 		local plname, reason = params:match("(%S+)%s+(.+)")
 		if not (plname and reason) then
-			minetest.chat_send_player(name,
-			  "Usage: /xban <player> <reason>")
-			return
+			return false, "Usage: /xban <player> <reason>"
 		end
 		xban.ban_player(plname, name, nil, reason)
-		minetest.chat_send_player(name,
-		  ("Banned %s."):format(plname))
+		return true, ("Banned %s."):format(plname)
 	end,
 })
 
@@ -210,21 +207,15 @@ minetest.register_chatcommand("xtempban", {
 	func = function(name, params)
 		local plname, time, reason = params:match("(%S+)%s+(%S+)%s+(.+)")
 		if not (plname and time and reason) then
-			minetest.chat_send_player(name,
-			  "Usage: /xtempban <player> <time> <reason>")
-			return
+			return false, "Usage: /xtempban <player> <time> <reason>"
 		end
 		time = parse_time(time)
 		if time < 60 then
-			minetest.chat_send_player(name,
-			  "You must ban for at least 60 seconds.")
-			return
+			return false, "You must ban for at least 60 seconds."
 		end
 		local expires = os.time() + time
 		xban.ban_player(plname, name, expires, reason)
-		minetest.chat_send_player(name,
-		  ("Banned %s until %s."):format(
-		  plname, os.date("%c", expires)))
+		return true, ("Banned %s until %s."):format(plname, os.date("%c", expires))
 	end,
 })
 
@@ -240,8 +231,7 @@ minetest.register_chatcommand("xunban", {
 			return
 		end
 		local ok, e = xban.unban_player(plname, name)
-		minetest.chat_send_player(name,
-		  ("Unbanned %s."):format(plname))
+		return ok, ok and ("Unbanned %s."):format(plname) or e
 	end,
 })
 
@@ -252,9 +242,7 @@ minetest.register_chatcommand("xban_record", {
 	func = function(name, params)
 		local plname = params:match("%S+")
 		if not plname then
-			minetest.chat_send_player(name,
-			  "Usage: /xban_record <player_or_ip>")
-			return
+			return false, "Usage: /xban_record <player_or_ip>"
 		end
 		local record, last_pos = xban.get_record(plname)
 		if not record then
@@ -268,6 +256,7 @@ minetest.register_chatcommand("xban_record", {
 		if last_pos then
 			minetest.chat_send_player(name, "[xban] "..last_pos)
 		end
+		return true, "Record listed."
 	end,
 })
 
