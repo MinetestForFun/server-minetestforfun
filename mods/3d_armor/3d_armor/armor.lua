@@ -48,7 +48,7 @@ if minetest.get_modpath("inventory_plus") then
 		.."label[5,1;Level: armor_level]"
 		.."label[5,1.5;Heal:  armor_heal]"
 		.."list[current_player;main;0,4.5;8,4;]"
-+elseif minetest.get_modpath("unified_inventory") then
+elseif minetest.get_modpath("unified_inventory") then
 	inv_mod = "unified_inventory"
 	unified_inventory.register_button("armor", {
 		type = "image",

@@ -600,7 +600,7 @@ minetest.register_node("nether:torch", {
 local invisible = "nether_transparent.png"
 minetest.register_node("nether:portal", {
 	description = "Nether Portal Essence",
-	tiles = {invisible, invisible, invisible, invisible, "nether_portal_stuff.png"}
+	tiles = {invisible, invisible, invisible, invisible, "nether_portal_stuff.png"},
 	inventory_image = "nether_portal_stuff.png",
 	wield_image = "nether_portal_stuff.png",
 	light_source = LIGHT_MAX - 2,
