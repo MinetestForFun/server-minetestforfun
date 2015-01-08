@@ -2,7 +2,7 @@
 minetest.register_chatcommand("protect", {
 	params = "<AreaName>",
 	description = "Protect your own area",
-	privs = {[areas.self_protection_privilege]=true},
+	privs = {[areas.config.self_protection_privilege]=true}
 	func = function(name, param)
 		if param == "" then
 			return false, "Invalid usage, see /help protect."
@@ -143,6 +143,7 @@ minetest.register_chatcommand("rename_area", {
 minetest.register_chatcommand("find_areas", {
 	params = "<regexp>",
 	description = "Find areas using a Lua regular expression",
+	privs = areas.adminPrivs,
 	func = function(name, param)
 		if param == "" then
 			return false, "A regular expression is required."
@@ -156,14 +157,14 @@ minetest.register_chatcommand("find_areas", {
 			return false, "Invalid regular expression."
 		end
 
-		local matches = {}
-		for id, area in pairs(areas.areas) do
-			if areas:isAreaOwner(id, name) and
-			   areas:toString(id):find(param) then
-				table.insert(matches, areas:toString(id))
+ 		local matches = {}
+ 		for id, area in pairs(areas.areas) do
+			local str = areas:toString(id)
+			if str:find(param) then
+				table.insert(matches, str)
 			end
 		end
-		if #matches > 1 then
+		if #matches > 0 then
 			return true, table.concat(matches, "\n")
 		else
 			return true, "No matches found."
@@ -238,12 +239,11 @@ minetest.register_chatcommand("change_owner", {
 	description = "Change the owner of an area using it's ID",
 	func = function(name, param)
 		local id, newOwner = param:match("^(%d+)%s(%S+)$")
-
 		if not id then
 			return false, "Invalid usage, see"
 					.." /help change_owner."
 		end
-		
+
 		if not areas:player_exists(newOwner) then
 			return false, "The player \""..newOwner
 					.."\" does not exist."
@@ -269,7 +269,6 @@ minetest.register_chatcommand("area_open", {
 	description = "Toggle an area open (anyone can interact) or closed",
 	func = function(name, param)
 		local id = tonumber(param)
-
 		if not id then
 			return false, "Invalid usage, see /help area_open."
 		end
@@ -286,3 +285,29 @@ minetest.register_chatcommand("area_open", {
 	end
 })
 
+minetest.register_chatcommand("move_area", {
+	params = "<ID>",
+	description = "Move (or resize) an area to the current positions.",
+	privs = areas.adminPrivs,
+	func = function(name, param)
+		local id = tonumber(param)
+		if not id then
+			return false, "Invalid usage, see /help move_area."
+		end
+
+		local area = areas.areas[id]
+		if not area then
+			return false, "Area does not exist."
+		end
+
+		local pos1, pos2 = areas:getPos(name)
+		if not pos1 then
+			return false, "You need to select an area first."
+		end
+
+		area.pos1 = pos1
+		area.pos2 = pos2
+		areas:save()
+		return true, "Area successfully moved."
+	end,
+})
