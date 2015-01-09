@@ -15,7 +15,7 @@ minetest.register_tool("3d_armor:helmet_wood", {
 minetest.register_tool("3d_armor:helmet_cactus", {
 	description = "Cactuc Helmet",
 	inventory_image = "3d_armor_inv_helmet_cactus.png",
-	groups = {armor_head=5, armor_heal=0, armor_use=1000},
+	groups = {armor_head=6, armor_heal=0, armor_use=1000},
 	wear = 0,
 })
 
@@ -68,7 +68,7 @@ minetest.register_tool("3d_armor:chestplate_wood", {
 minetest.register_tool("3d_armor:chestplate_cactus", {
 	description = "Cactus Chestplate",
 	inventory_image = "3d_armor_inv_chestplate_cactus.png",
-	groups = {armor_torso=10, armor_heal=0, armor_use=1000},
+	groups = {armor_torso=9, armor_heal=0, armor_use=1000},
 	wear = 0,
 })
 
@@ -121,7 +121,7 @@ minetest.register_tool("3d_armor:leggings_wood", {
 minetest.register_tool("3d_armor:leggings_cactus", {
 	description = "Cactus Leggings",
 	inventory_image = "3d_armor_inv_leggings_cactus.png",
-	groups = {armor_legs=5, armor_heal=0, armor_use=1000},
+	groups = {armor_legs=9, armor_heal=0, armor_use=1000},
 	wear = 0,
 })
 
@@ -174,7 +174,7 @@ minetest.register_tool("3d_armor:boots_wood", {
 minetest.register_tool("3d_armor:boots_cactus", {
 	description = "Cactus Boots",
 	inventory_image = "3d_armor_inv_boots_cactus.png",
-	groups = {armor_feet=5, armor_heal=0, armor_use=2000},
+	groups = {armor_feet=6, armor_heal=0, armor_use=1000},
 	wear = 0,
 })
 
