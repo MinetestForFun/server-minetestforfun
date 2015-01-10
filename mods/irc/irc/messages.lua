@@ -198,7 +198,3 @@ function msgs.mode(target, modes)
 	return irc.Message({command="MODE", args={target, unpack(mt)}})
 end
 
-function msgs.cap(cmd, ...)
-	return irc.Message({command="CAP", args={cmd, ...}})
-end
-

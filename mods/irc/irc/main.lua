@@ -11,14 +11,11 @@ local meta_preconnect = {}
 function meta_preconnect.__index(o, k)
 	local v = rawget(meta_preconnect, k)
 
-	if v == nil and meta[k] then
+	if not v and meta[k] then
 		error(("field '%s' is not accessible before connecting"):format(k), 2)
 	end
 	return v
 end
-
-meta.connected = true
-meta_preconnect.connected = false
 
 function irc.new(data)
 	local o = {
@@ -32,9 +29,6 @@ function irc.new(data)
 		messageQueue = {};
 		lastThought = 0;
 		recentMessages = 0;
-		availableCapabilities = {};
-		wantedCapabilities = {};
-		capabilities = {};
 	}
 	assert(irc.checkNick(o.nick), "Erroneous nickname passed to irc.new")
 	return setmetatable(o, meta_preconnect)
@@ -63,9 +57,8 @@ function meta:invoke(name, ...)
 	local hooks = self.hooks[name]
 	if hooks then
 		for id, f in pairs(hooks) do
-			local ret = f(...)
-			if ret then
-				return ret
+			if f(...) then
+				return true
 			end
 		end
 	end
@@ -116,7 +109,10 @@ function meta_preconnect:connect(_host, _port)
 	self.socket = s
 	setmetatable(self, meta)
 
-	self:invoke("PreRegister")
+	self:queue(irc.Message({command="CAP", args={"REQ", "multi-prefix"}}))
+
+	self:invoke("PreRegister", self)
+	self:queue(irc.Message({command="CAP", args={"END"}}))
 
 	if password then
 		self:queue(irc.Message({command="PASS", args={password}}))
@@ -146,7 +142,7 @@ end
 
 function meta:shutdown()
 	self.socket:close()
-	setmetatable(self, meta_preconnect)
+	setmetatable(self, nil)
 end
 
 local function getline(self, errlevel)
