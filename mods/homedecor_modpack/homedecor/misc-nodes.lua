@@ -82,125 +82,74 @@ minetest.register_node('homedecor:rug_large', {
                         },
 	})
 
-local flower_pot_model = {
-	type = "fixed",
-	fixed = {
-		{-0.1875, -0.5, -0.1875, 0.1875, -0.3125, 0.1875},
-		{-0.25, -0.5, -0.0625, 0.25, -0.3125, 0.0625},
-		{-0.0625, -0.5, -0.25, 0.0625, -0.25, 0.25},
-		{-0.25, -0.3125, -0.25, 0.25, -0.125, 0.25},
-		{-0.125, -0.3125, -0.3125, 0.125, -0.125, 0.3125},
-		{-0.3125, -0.3125, -0.125, 0.3125, -0.125, 0.125},
-		{-0.3125, -0.125, -0.25, 0.3125, 0.0625, 0.25},
-		{-0.125, -0.125, -0.375, 0.125, 0.0625, 0.375},
-		{-0.375, -0.125, -0.125, 0.375, 0.0625, 0.125},
-		{-0.25, -0.125, -0.3125, 0.25, 0.0625, 0.3125},
-		{-0.4375, 0.0625, -0.1875, 0.4375, 0.25, 0.1875},
-		{-0.1875, 0.0625, -0.4375, 0.1875, 0.25, 0.4375},
-		{-0.3125, 0.0625, -0.375, 0.3125, 0.25, 0.375},
-		{-0.375, 0.0625, -0.3125, 0.375, 0.25, 0.3125},
-		{-0.1875, 0.25, -0.5, 0.1875, 0.5, 0.5},
-		{-0.5, 0.25, -0.1875, 0.5, 0.5, 0.1875},
-		{-0.4375, 0.25, -0.3125, 0.4375, 0.5, 0.3125},
-		{-0.3125, 0.25, -0.4375, 0.3125, 0.5, 0.4375},
-		{-0.375, 0.25, -0.375, 0.375, 0.5, 0.375},
-	}
-}
-
 minetest.register_node('homedecor:flower_pot_terracotta', {
-	drawtype = "nodebox",
 	description = S("Terracotta Flower Pot"),
-	tiles = { 'homedecor_flower_pot_terracotta_top.png',
-			'homedecor_flower_pot_terracotta_bottom.png',
-			'homedecor_flower_pot_terracotta_sides.png',
-			'homedecor_flower_pot_terracotta_sides.png',
-			'homedecor_flower_pot_terracotta_sides.png',
-			'homedecor_flower_pot_terracotta_sides.png'},
+	drawtype = "mesh",
+	mesh = "homedecor_flowerpot.obj",
+	tiles = { "homedecor_flower_pot_terracotta.png" },
 	sunlight_propagates = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = true,
 	groups = { snappy = 3 },
-	node_box = flower_pot_model,
 	sounds = default.node_sound_leaves_defaults(),
 })
 
 minetest.register_node('homedecor:flower_pot_black', {
-	drawtype = "nodebox",
 	description = S("Black Plastic Flower Pot"),
-	tiles = { 'homedecor_flower_pot_black_top.png',
-			'homedecor_flower_pot_black_bottom.png',
-			'homedecor_flower_pot_black_sides.png',
-			'homedecor_flower_pot_black_sides.png',
-			'homedecor_flower_pot_black_sides.png',
-			'homedecor_flower_pot_black_sides.png'},
+	drawtype = "mesh",
+	mesh = "homedecor_flowerpot.obj",
+	tiles = { "homedecor_flower_pot_black.png" },
 	sunlight_propagates = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = true,
 	groups = { snappy = 3 },
-	node_box = flower_pot_model,
 	sounds = default.node_sound_leaves_defaults(),
 })
 
 minetest.register_node('homedecor:flower_pot_green', {
-	drawtype = "nodebox",
 	description = S("Green Plastic Flower Pot"),
-	tiles = { 'homedecor_flower_pot_green_top.png',
-			'homedecor_flower_pot_green_bottom.png',
-			'homedecor_flower_pot_green_sides.png',
-			'homedecor_flower_pot_green_sides.png',
-			'homedecor_flower_pot_green_sides.png',
-			'homedecor_flower_pot_green_sides.png'},
+	drawtype = "mesh",
+	mesh = "homedecor_flowerpot.obj",
+	tiles = { "homedecor_flower_pot_green.png" },
 	sunlight_propagates = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = true,
 	groups = { snappy = 3 },
-	node_box = flower_pot_model,
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- cylinder-shaped objects courtesy Jeija
-
-local cylbox = {}
-local detail = 50
-local sehne
-local size = 0.2
-
-for i = 1, detail-1 do
-        sehne = math.sqrt(0.25 - (((i/detail)-0.5)^2))
-        cylbox[i]={((i/detail)-0.5)*size, -0.5, -sehne*size, ((i/detail)+(1/detail)-0.5)*size, 0.5, sehne*size}
-end
-
 minetest.register_node("homedecor:pole_brass", {
     description = S("Brass Pole"),
-    drawtype = "nodebox",
+    drawtype = "mesh",
+	mesh = "homedecor_round_pole.obj",
     tiles = {"homedecor_tile_brass2.png"},
-    inventory_image = "homedecor_pole_brass2.png",
-    wield_image = "homedecor_pole_brass2.png",
+    inventory_image = "homedecor_pole_brass_inv.png",
+    wield_image = "homedecor_pole_brass_inv.png",
     paramtype = "light",
 	paramtype2 = "facedir",
     is_ground_content = true,
     selection_box = {
             type = "fixed",
-            fixed = {-size/2, -0.5, -size/2, size/2, 0.5, size/2},
+            fixed = { -0.125, -0.5, -0.125, 0.125, 0.5, 0.125 },
+    },
+    collision_box = {
+            type = "fixed",
+            fixed = { -0.125, -0.5, -0.125, 0.125, 0.5, 0.125 },
     },
     groups = {snappy=3},
     sounds = default.node_sound_wood_defaults(),
 	walkable = true,
-	node_box = {
-		type = "fixed",
-		fixed = cylbox,
-	}
 })
 	
 minetest.register_node("homedecor:pole_wrought_iron", {
     description = S("Wrought Iron Pole"),
     drawtype = "nodebox",
     tiles = {"homedecor_tile_wrought_iron2.png"},
-    inventory_image = "homedecor_pole_wrought_iron.png",
-    wield_image = "homedecor_pole_wrought_iron.png",
+    inventory_image = "homedecor_pole_wrought_iron_inv.png",
+    wield_image = "homedecor_pole_wrought_iron_inv.png",
     paramtype = "light",
 	paramtype2 = "facedir",
     is_ground_content = true,
@@ -419,7 +368,7 @@ minetest.register_node("homedecor:dvd_cd_cabinet", {
 	paramtype2 = "facedir",
 	tiles = {
 		"homedecor_dvdcd_cabinet_top.png",
-		"homedecor_dvdcd_cabinet_bottom.png",
+		"homedecor_dvdcd_cabinet_top.png",
 		"homedecor_dvdcd_cabinet_sides.png",
 		"homedecor_dvdcd_cabinet_sides.png^[transformFX",
 		"homedecor_dvdcd_cabinet_back.png",
@@ -450,11 +399,11 @@ minetest.register_node('homedecor:filing_cabinet', {
 	drawtype = "nodebox",
 	description = S("Filing Cabinet"),
 	tiles = {
-		'homedecor_filing_cabinet_top.png',
+		'forniture_wood.png',
 		'homedecor_filing_cabinet_bottom.png',
-		'homedecor_filing_cabinet_sides.png',
-		'homedecor_filing_cabinet_sides.png^[transformFX',
-		'homedecor_filing_cabinet_back.png',
+		'forniture_wood.png',
+		'forniture_wood.png',
+		'forniture_wood.png',
 		'homedecor_filing_cabinet_front.png'
 	},
 	sunlight_propagates = false,
@@ -598,15 +547,13 @@ minetest.register_node("homedecor:dishwasher_granite", {
 	groups = { snappy = 3 },
 })
 
--- doghouse and pool table, models contributed by jp
-
 minetest.register_node("homedecor:doghouse_base", {
 	tiles = {
 		"homedecor_doghouse_base_top.png",
 		"homedecor_doghouse_base_bottom.png",
 		"homedecor_doghouse_base_side.png",
 		"homedecor_doghouse_base_side.png",
-		"homedecor_doghouse_base_back.png",
+		"homedecor_doghouse_base_side.png",
 		"homedecor_doghouse_base_front.png"
 	},
 	description = "Doghouse",
@@ -653,7 +600,7 @@ minetest.register_node("homedecor:doghouse_roof", {
 		"homedecor_doghouse_roof_bottom.png",
 		"homedecor_doghouse_roof_side.png",
 		"homedecor_doghouse_roof_side.png",
-		"homedecor_doghouse_roof_back.png",
+		"homedecor_doghouse_roof_front.png",
 		"homedecor_doghouse_roof_front.png"
 	},
 	drawtype = "nodebox",
@@ -698,9 +645,9 @@ minetest.register_node("homedecor:pool_table", {
 		"homedecor_pool_table_top1.png",
 		"homedecor_pool_table_bottom1.png",
 		"homedecor_pool_table_sides1.png",
-		"homedecor_pool_table_sides2.png",
+		"homedecor_pool_table_sides1.png^[transformFX",
 		"homedecor_pool_table_end1.png",
-		"homedecor_pool_table_end2.png"
+		"homedecor_pool_table_end1.png"
 	},
 	description = "Pool Table",
 	inventory_image = "homedecor_pool_table_inv.png",
@@ -756,12 +703,12 @@ minetest.register_node("homedecor:pool_table", {
 
 minetest.register_node("homedecor:pool_table_2", {
 	tiles = {
-		"homedecor_pool_table_top2.png",
-		"homedecor_pool_table_bottom2.png",
-		"homedecor_pool_table_sides3.png",
-		"homedecor_pool_table_sides4.png",
-		"homedecor_pool_table_end3.png",
-		"homedecor_pool_table_end4.png"
+		"homedecor_pool_table_top1.png^[transformR180",
+		"homedecor_pool_table_bottom1.png",
+		"homedecor_pool_table_sides1.png^[transformFX",
+		"homedecor_pool_table_sides1.png",
+		"homedecor_pool_table_end1.png",
+		"homedecor_pool_table_end1.png"
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -953,7 +900,7 @@ minetest.register_node("homedecor:well_top", {
 })
 
 minetest.register_node("homedecor:coatrack_wallmount", {
-	tiles = { "homedecor_coatrack_wood.png" },
+	tiles = { "forniture_wood.png" },
 	inventory_image = "homedecor_coatrack_wallmount_inv.png",
 	description = "Coatrack (wallmounted)",
 	drawtype = "nodebox",
@@ -977,7 +924,7 @@ minetest.register_node("homedecor:coatrack_wallmount", {
 })
 
 minetest.register_node("homedecor:coat_tree", {
-	tiles = { "homedecor_coatrack_wood.png" },
+	tiles = { "forniture_wood.png" },
 	inventory_image = "homedecor_coatrack_inv.png",
 	description = "Coat tree",
 	drawtype = "nodebox",
@@ -1053,7 +1000,7 @@ minetest.register_node("homedecor:kitchen_faucet", {
 minetest.register_node("homedecor:cutlery_set", {
 	tiles = {
 		"homedecor_cutlery_set_top.png",
-		"homedecor_cutlery_set_bottom.png",
+		"homedecor_cutlery_set_sides.png",
 		"homedecor_cutlery_set_sides.png"
 	},
 	inventory_image = "homedecor_cutlery_set_inv.png",
@@ -1096,48 +1043,90 @@ minetest.register_node("homedecor:cutlery_set", {
 	}
 })
 
+local bottle_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -0.125, -0.5, -0.125, 0.125, 0, 0.125}
+	}
+}
+
 minetest.register_node("homedecor:bottle_brown", {
-	tiles = {
-		"homedecor_bottle_brown_top.png",
-		"homedecor_bottle_brown_sides.png"
-	},
+	tiles = { "homedecor_bottle_brown.png" },
 	inventory_image = "homedecor_bottle_brown_inv.png",
 	description = "Brown bottle",
-	drawtype = "nodebox",
+	drawtype = "mesh",
+	mesh = "homedecor_bottle.obj",
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
-	use_texture_alpha = true,
 	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.032, -0.50, -0.11, 0.032, -0.3, -0.046}, -- NodeBox1
-			{-0.016, -0.30, -0.094, 0.016, -0.2, -0.062}, -- NodeBox2
-		}
-	}
+	collision_box = bottle_cbox,
+	selection_box = bottle_cbox
 })
 
 minetest.register_node("homedecor:bottle_green", {
-	tiles = {
-		"homedecor_bottle_green_top.png",
-		"homedecor_bottle_green_sides.png"
-	},
+	tiles = { "homedecor_bottle_green.png" },
 	inventory_image = "homedecor_bottle_green_inv.png",
 	description = "Green bottle",
-	drawtype = "nodebox",
+	drawtype = "mesh",
+	mesh = "homedecor_bottle.obj",
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
-	use_texture_alpha = true,
 	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.032, -0.50, -0.11, 0.032, -0.3, -0.046}, -- NodeBox1
-			{-0.016, -0.30, -0.094, 0.016, -0.2, -0.062}, -- NodeBox2
-		}
+	collision_box = bottle_cbox,
+	selection_box = bottle_cbox
+})
+
+-- 4-bottle sets
+
+local fbottle_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -0.375, -0.5, -0.3125, 0.375, 0, 0.3125 }
 	}
+}
+
+minetest.register_node("homedecor:4_bottles_brown", {
+	tiles = { "homedecor_bottle_brown.png" },
+	inventory_image = "homedecor_4_bottles_brown_inv.png",
+	description = "Four brown bottles",
+	drawtype = "mesh",
+	mesh = "homedecor_4_bottles.obj",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	groups = {snappy=3},
+	collision_box = fbottle_cbox,
+	selection_box = fbottle_cbox
+})
+
+minetest.register_node("homedecor:4_bottles_green", {
+	tiles = { "homedecor_bottle_green.png" },
+	inventory_image = "homedecor_4_bottles_green_inv.png",
+	description = "Four green bottles",
+	drawtype = "mesh",
+	mesh = "homedecor_4_bottles.obj",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	groups = {snappy=3},
+	collision_box = fbottle_cbox,
+	selection_box = fbottle_cbox
+})
+
+minetest.register_node("homedecor:4_bottles_multi", {
+	tiles = { "homedecor_4_bottles_multi.png" },
+	inventory_image = "homedecor_4_bottles_multi_inv.png",
+	description = "Four misc brown/green bottles",
+	drawtype = "mesh",
+	mesh = "homedecor_4_bottles_multi.obj",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	groups = {snappy=3},
+	collision_box = fbottle_cbox,
+	selection_box = fbottle_cbox
 })
 
 minetest.register_node("homedecor:coffee_maker", {
@@ -1145,7 +1134,7 @@ minetest.register_node("homedecor:coffee_maker", {
 		"homedecor_coffeemaker_top.png",
 		"homedecor_coffeemaker_bottom.png",
 		"homedecor_coffeemaker_right.png",
-		"homedecor_coffeemaker_left.png",
+		"homedecor_coffeemaker_right.png^[transformFX",
 		"homedecor_coffeemaker_back.png",
 		"homedecor_coffeemaker_front.png"
 	},
@@ -1182,12 +1171,49 @@ minetest.register_node("homedecor:coffee_maker", {
 	}
 })
 
+local fdir_to_steampos = {
+	x = { 0.15,   0.275, -0.15,  -0.275 },
+	z = { 0.275, -0.15,  -0.275,  0.15  }
+}
+
+minetest.register_abm({
+	nodenames = "homedecor:coffee_maker",
+	interval = 2,
+	chance = 1,
+	action = function(pos, node)
+		local fdir = node.param2
+		if fdir and fdir < 4 then
+
+			local steamx = fdir_to_steampos.x[fdir + 1]
+			local steamz = fdir_to_steampos.z[fdir + 1]
+
+			minetest.add_particlespawner({
+				amount = 1,
+				time = 1,
+				minpos = {x=pos.x - steamx, y=pos.y - 0.35, z=pos.z - steamz},
+				maxpos = {x=pos.x - steamx, y=pos.y - 0.35, z=pos.z - steamz},
+				minvel = {x=-0.003, y=0.01, z=-0.003},
+				maxvel = {x=0.003, y=0.01, z=-0.003},
+				minacc = {x=0.0,y=-0.0,z=-0.0},
+				maxacc = {x=0.0,y=0.003,z=-0.0},
+				minexptime = 2,
+				maxexptime = 5,
+				minsize = 1,
+				maxsize = 1.2,
+				collisiondetection = false,
+				texture = "homedecor_steam.png",
+			})
+		end
+	end
+})
+
 minetest.register_node("homedecor:dartboard", {
 	description = "Dartboard",
-	drawtype = "signlike",
-	tiles = {"homedecor_dartboard.png"},
-	inventory_image = "homedecor_dartboard.png",
-	wield_image = "homedecor_dartboard.png",
+	drawtype = "mesh",
+	mesh = "homedecor_dartboard.obj",
+	tiles = { "homedecor_dartboard.png" },
+	inventory_image = "homedecor_dartboard_inv.png",
+	wield_image = "homedecor_dartboard_inv.png",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
@@ -1282,7 +1308,7 @@ minetest.register_node("homedecor:piano_right", {
 minetest.register_node("homedecor:toaster", {
         description = "Toaster",
 	tiles = {
-		"homedecor_toaster_top.png",
+		"homedecor_toaster_sides.png",
 		"homedecor_toaster_sides.png",
 		"homedecor_toaster_sides.png",
 		"homedecor_toaster_sides.png",
@@ -1395,7 +1421,7 @@ minetest.register_node("homedecor:sportbench", {
 	tiles = {
 		"homedecor_sportbench_top.png",
 		"wool_black.png",
-		"homedecor_sportbench_right.png", 
+		"homedecor_sportbench_left.png^[transformFX", 
 		"homedecor_sportbench_left.png",
 		"homedecor_sportbench_bottom.png",
 		"homedecor_sportbench_front.png"
@@ -1492,31 +1518,22 @@ minetest.register_node("homedecor:copper_pans", {
 })
 
 minetest.register_node("homedecor:paper_towel", {
-	tiles = {
-		"homedecor_paper_towel_sides.png",
-		"homedecor_paper_towel_sides.png",
-		"homedecor_paper_towel_ends.png",
-		"homedecor_paper_towel_ends.png",
-		"homedecor_paper_towel_sides.png",
-		"homedecor_paper_towel_sides.png"
-	},
+	drawtype = "mesh",
+	mesh = "homedecor_paper_towel.obj",
+	tiles = { "homedecor_paper_towel.png" },
 	inventory_image = "homedecor_paper_towel_inv.png",
 	description = "Paper towels",
-	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	node_box = {
+	groups = { snappy=3 },
+	selection_box = { 
 		type = "fixed",
-		fixed = {
-			{-0.4375, 0.1875, 0.4375, -0.375, 0.375, 0.5}, -- NodeBox1
-			{0.375, 0.1875, 0.4375, 0.4375, 0.375, 0.5}, -- NodeBox2
-			{-0.4375, 0.25, 0.1875, -0.375, 0.3125, 0.5}, -- NodeBox3
-			{0.375, 0.25, 0.1875, 0.4375, 0.3125, 0.5}, -- NodeBox4
-			{-0.375, 0.125, 0.125, 0.375, 0.4375, 0.3125}, -- NodeBox5
-			{-0.375, 0.1875, 0.0625, 0.375, 0.375, 0.375}, -- NodeBox6
-		}
+		fixed = { -0.4375, 0.125, 0.0625, 0.4375, 0.4375, 0.5 }
 	},
-	groups = { snappy=3 }
+	collision_box = {
+		type = "fixed",
+		fixed = { -0.4375, 0.125, 0.0625, 0.4375, 0.4375, 0.5 }
+	}
 })
 
 minetest.register_node("homedecor:stonepath", {
@@ -1624,7 +1641,7 @@ minetest.register_node("homedecor:beer_tap", {
 		"homedecor_beertap_front.png",
 		"homedecor_beertap_front.png",
 		"homedecor_beertap_right.png",
-		"homedecor_beertap_left.png",
+		"homedecor_beertap_right.png^[transformFX",
 		"homedecor_beertap_front.png",
 		"homedecor_beertap_front.png"
 	},
@@ -1675,8 +1692,8 @@ minetest.register_node("homedecor:beer_mug", {
 		"homedecor_beer_top.png",
 		"homedecor_beer_bottom.png",
 		"homedecor_beer_right.png",
-		"homedecor_beer_left.png",
-		"homedecor_beer_back.png",
+		"homedecor_beer_right.png^[transformFX",
+		"homedecor_beer_front.png^[transformFX",
 		"homedecor_beer_front.png"
 	},
 	inventory_image = "homedecor_beer_inv.png",
@@ -1785,8 +1802,8 @@ minetest.register_node("homedecor:swing", {
 	description = "Tree's swing",
 	tiles = {
 		"homedecor_swing_top.png",
-		"homedecor_swing_bottom.png",
-		"homedecor_swing_sides.png"
+		"homedecor_swing_top.png^[transformR180",
+		"homedecor_swing_top.png"
 	},
 	inventory_image = "homedecor_swing_inv.png",
 	drawtype = "nodebox",
@@ -1893,9 +1910,9 @@ minetest.register_node("homedecor:book_"..color, {
 		"homedecor_book_"..color.."_top.png",
 		"homedecor_book_"..color.."_bottom.png",
 		"homedecor_book_right.png",
-		"homedecor_book_"..color.."_left.png",
+		"homedecor_book_"..color.."_bottom.png",
 		"homedecor_book_back.png",
-		"homedecor_book_front.png"
+		"homedecor_book_back.png^[transformFX"
 	},
 	inventory_image = "homedecor_book_"..color.."_inv.png",
 	drawtype = "nodebox",
@@ -1959,3 +1976,42 @@ minetest.register_node("homedecor:calendar", {
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),
 })
+
+local globe_cbox = {
+	type = "fixed",
+	fixed = { -0.4, -0.5, -0.3, 0.3, 0.3, 0.3 }
+}
+
+minetest.register_node("homedecor:desk_globe", {
+	description = "Desk globe",
+	drawtype = "mesh",
+	mesh = "homedecor_desk_globe.obj",
+	tiles = {"homedecor_desk_globe.png"},
+	inventory_image = "homedecor_desk_globe_inv.png",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	selection_box = globe_cbox,
+	collision_box = globe_cbox,
+	groups = {choppy=2},
+	sounds = default.node_sound_defaults(),
+})
+
+local wine_cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, -0.25, 0.5, 0.5, 0.5 }
+}
+
+minetest.register_node("homedecor:wine_rack", {
+	description = "Wine Rack",
+	drawtype = "mesh",
+	mesh = "homedecor_wine_rack.obj",
+	tiles = {"homedecor_wine_rack.png"},
+	inventory_image = "homedecor_wine_rack_inv.png",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {choppy=2},
+	selection_box = wine_cbox,
+	collision_box = wine_cbox,
+	sounds = default.node_sound_defaults(),
+})
+

@@ -7,14 +7,20 @@ minetest.register_node("homedecor:cobweb_corner", {
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
+	liquid_viscosity = 8,
+        liquidtype = "source",
+        liquid_alternative_flowing = "homedecor:cobweb_corner",
+        liquid_alternative_source = "homedecor:cobweb_corner",
+        liquid_renewable = false,
+        liquid_range = 0,
 	walkable = false,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
 	},
 	visual_scale = 1.4,
-	groups = { snappy = 3 },
-    after_place_node = function(pos, placer, itemstack, pointed_thing)
+	groups = { snappy = 3, liquid=3 },
+        after_place_node = function(pos, placer, itemstack, pointed_thing)
 		homedecor.rotate_cobweb(pos)
 	end
 })
@@ -27,6 +33,12 @@ minetest.register_node("homedecor:cobweb_centered", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
+	liquid_viscosity = 8,
+        liquidtype = "source",
+        liquid_alternative_flowing = "homedecor:cobweb_centered",
+        liquid_alternative_source = "homedecor:cobweb_centered",
+        liquid_renewable = false,
+        liquid_range = 0,
 	walkable = false,
 	selection_box = {
 		type = "fixed",
@@ -36,7 +48,7 @@ minetest.register_node("homedecor:cobweb_centered", {
 		type = "fixed",
 		fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0 }
 	},
-	groups = { snappy = 3, not_in_creative_inventory = 1 },
+	groups = { snappy = 3, liquid=3, not_in_creative_inventory = 1 },
 	drop = "homedecor:cobweb_corner"
 })
 
@@ -48,6 +60,12 @@ minetest.register_node("homedecor:cobweb_flat", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
+	liquid_viscosity = 8,
+        liquidtype = "source",
+        liquid_alternative_flowing = "homedecor:cobweb_flat",
+        liquid_alternative_source = "homedecor:cobweb_flat",
+        liquid_renewable = false,
+        liquid_range = 0,
 	walkable = false,
 	selection_box = {
 		type = "fixed",
@@ -57,7 +75,7 @@ minetest.register_node("homedecor:cobweb_flat", {
 		type = "fixed",
 		fixed = { -0.5, -0.5, 0.495, 0.5, 0.5, 0.495 }
 	},
-	groups = { snappy = 3, not_in_creative_inventory = 1 },
+	groups = { snappy = 3, liquid=3, not_in_creative_inventory = 1 },
 	drop = "homedecor:cobweb_corner"
 })
 
@@ -69,13 +87,19 @@ minetest.register_node("homedecor:cobweb_plantlike", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
+	liquid_viscosity = 8,
+        liquidtype = "source",
+        liquid_alternative_flowing = "homedecor:cobweb_plantlike",
+        liquid_alternative_source = "homedecor:cobweb_plantlike",
+        liquid_renewable = false,
+        liquid_range = 0,
 	walkable = false,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
 	},
 	visual_scale = 1.189,
-	groups = { snappy = 3, not_in_creative_inventory = 1 },
+	groups = { snappy = 3, liquid=3, not_in_creative_inventory = 1 },
 	drop = "homedecor:cobweb_corner"
 })
 

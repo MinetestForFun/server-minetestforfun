@@ -1,3 +1,5 @@
+local cp = nil
+
 -- FLAME TYPES
 
 -- SMOKEY FIRE (TRIGGERS SMOKE ABM)

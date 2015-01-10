@@ -5,12 +5,11 @@
 -- This file defines some items in order to not have to depend on other mods.
 
 -- Boilerplate to support localized strings if intllib mod is installed.
-local S;
-if (minetest.get_modpath("intllib")) then
-    dofile(minetest.get_modpath("intllib").."/intllib.lua");
-    S = intllib.Getter(minetest.get_current_modname());
+local S
+if minetest.get_modpath("intllib") then
+	S = intllib.Getter()
 else
-    S = function ( s ) return s; end
+	S = function(s) return s end
 end
 
 if (not minetest.get_modpath("homedecor")) then

@@ -1,14 +1,8 @@
 minetest.register_node("homedecor:analog_clock_plastic", {
 	description = "Analog clock (plastic)",
-	drawtype = "nodebox",
-	tiles = {
-		"homedecor_analog_clock_plastic_edges.png",
-		"homedecor_analog_clock_plastic_edges.png",
-		"homedecor_analog_clock_plastic_edges.png",
-		"homedecor_analog_clock_plastic_edges.png",
-		"homedecor_analog_clock_plastic_back.png",
-		"homedecor_analog_clock_plastic_front.png"
-	},
+	drawtype = "mesh",
+	mesh = "homedecor_analog_clock.obj",
+	tiles = { "homedecor_analog_clock_plastic.png" },
 	inventory_image = "homedecor_analog_clock_plastic_inv.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -31,15 +25,9 @@ minetest.register_node("homedecor:analog_clock_plastic", {
 
 minetest.register_node("homedecor:analog_clock_wood", {
 	description = "Analog clock (wood)",
-	drawtype = "nodebox",
-	tiles = {
-		"homedecor_analog_clock_wood_edges.png",
-		"homedecor_analog_clock_wood_edges.png",
-		"homedecor_analog_clock_wood_edges.png",
-		"homedecor_analog_clock_wood_edges.png",
-		"homedecor_analog_clock_wood_back.png",
-		"homedecor_analog_clock_wood_front.png"
-	},
+	drawtype = "mesh",
+	mesh = "homedecor_analog_clock.obj",
+	tiles = { "homedecor_analog_clock_wood.png" },
 	inventory_image = "homedecor_analog_clock_wood_inv.png",
 	paramtype = "light",
 	paramtype2 = "facedir",

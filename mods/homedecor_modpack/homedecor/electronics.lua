@@ -50,7 +50,7 @@ minetest.register_node('homedecor:stereo', {
 	description = S("Stereo Receiver"),
 	tiles = { 'homedecor_stereo_top.png',
 			'homedecor_stereo_bottom.png',
-			'homedecor_stereo_right.png',
+			'homedecor_stereo_left.png^[transformFX',
 			'homedecor_stereo_left.png',
 			'homedecor_stereo_back.png',
 			'homedecor_stereo_front.png'},
@@ -84,7 +84,7 @@ minetest.register_node('homedecor:television', {
 	description = S("Small CRT Television"),
 	tiles = { 'homedecor_television_top.png',
 		  'homedecor_television_bottom.png',
-		  'homedecor_television_right.png',
+		  'homedecor_television_left.png^[transformFX',
 		  'homedecor_television_left.png',
 		  'homedecor_television_back.png',
 		   { name="homedecor_television_front_animated.png",
@@ -132,8 +132,8 @@ minetest.register_node("homedecor:dvd_vcr", {
 
 minetest.register_node("homedecor:telephone", {
 	tiles = {
-		"homedecor_telephone_top.png",
-		"homedecor_telephone_bottom.png",
+		"homedecor_telephone_sides.png^[transformR180",
+		"homedecor_telephone_sides.png",
 		"homedecor_telephone_sides.png",
 		"homedecor_telephone_sides.png",
 		"homedecor_telephone_sides.png",

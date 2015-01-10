@@ -1,5 +1,19 @@
 -- This file adds fences of various types
 
+local signs_modpath = minetest.get_modpath("signs_lib")
+
+local sign_post_model = {
+	type = "fixed",
+	fixed = {
+			{-0.4375, -0.25, -0.1875, 0.4375, 0.375, -0.125},
+			{-0.125, -0.5, -0.125, 0.125, 0.5, 0.125},
+	}
+}
+
+if signs_modpath then
+	sign_post_model = signs_lib.sign_post_model.nodebox
+end
+
 local S = homedecor.gettext
 
 minetest.register_node("homedecor:fence_brass", {
@@ -7,7 +21,6 @@ minetest.register_node("homedecor:fence_brass", {
 	drawtype = "fencelike",
 	tiles = {"homedecor_tile_brass.png"},
 	inventory_image = "homedecor_fence_brass.png",
-	wield_image = "homedecor_pole_brass.png",
 	paramtype = "light",
 	selection_box = {
 	        type = "fixed",
@@ -23,7 +36,6 @@ minetest.register_node("homedecor:fence_wrought_iron", {
 	drawtype = "fencelike",
 	tiles = {"homedecor_tile_wrought_iron.png"},
 	inventory_image = "homedecor_fence_wrought_iron.png",
-	wield_image = "homedecor_pole_wrought_iron.png",
 	paramtype = "light",
 	selection_box = {
 	        type = "fixed",
@@ -50,7 +62,7 @@ minetest.register_node("homedecor:fence_brass_with_sign", {
 	wield_image = "homedecor_sign_brass_post.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	node_box = signs_lib.sign_post_model.nodebox,
+	node_box = sign_post_model,
 	groups = {snappy=3,not_in_creative_inventory=1},
 	sounds = default.node_sound_wood_defaults(),
 	walkable = true,
@@ -78,7 +90,7 @@ minetest.register_node("homedecor:fence_wrought_iron_with_sign", {
 	wield_image = "homedecor_sign_wrought_iron_post.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	node_box = signs_lib.sign_post_model.nodebox,
+	node_box = sign_post_model,
 	groups = {snappy=3,not_in_creative_inventory=1},
 	sounds = default.node_sound_wood_defaults(),
 	walkable = true,
@@ -380,11 +392,11 @@ minetest.register_node("homedecor:fence_chainlink_corner", {
 	description = S("Chainlink Fence Corner"),
 	tiles = {
 		"homedecor_fence_chainlink_corner_top.png",
-		"homedecor_fence_chainlink_corner_bottom.png",
-		"homedecor_fence_chainlink_corner_left.png",
-		"homedecor_fence_chainlink_corner_right.png",
+		"homedecor_fence_chainlink_corner_top.png",
 		"homedecor_fence_chainlink_corner_front.png",
-		"homedecor_fence_chainlink_corner_back.png",
+		"homedecor_fence_chainlink_corner_front.png",
+		"homedecor_fence_chainlink_corner_front.png",
+		"homedecor_fence_chainlink_corner_front.png",
 	},
 	paramtype = "light",
 	is_ground_content = true,
@@ -494,5 +506,8 @@ minetest.register_node("homedecor:fence_wrought_iron_2_corner", {
 	},
 })
 
-signs_lib.register_fence_with_sign("homedecor:fence_brass", "homedecor:fence_brass_with_sign")
-signs_lib.register_fence_with_sign("homedecor:fence_wrought_iron", "homedecor:fence_wrought_iron_with_sign")
+if signs_modpath then
+	signs_lib.register_fence_with_sign("homedecor:fence_brass", "homedecor:fence_brass_with_sign")
+	signs_lib.register_fence_with_sign("homedecor:fence_wrought_iron", "homedecor:fence_wrought_iron_with_sign")
+end
+

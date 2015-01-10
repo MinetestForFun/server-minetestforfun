@@ -365,14 +365,14 @@ homedecor.register_furnace("homedecor:oven_steel", {
 homedecor.register_furnace("homedecor:microwave_oven", {
 	description = S("Microwave Oven"),
 	tiles = {
-		"homedecor_microwave_top.png", "homedecor_microwave_bottom.png",
-		"homedecor_microwave_right.png", "homedecor_microwave_left.png",
-		"homedecor_microwave_back.png", "homedecor_microwave_front.png"
+		"homedecor_microwave_top.png", "homedecor_microwave_top.png^[transformR180",
+		"homedecor_microwave_top.png^[transformR270", "homedecor_microwave_top.png^[transformR90",
+		"homedecor_microwave_top.png^[transformR180", "homedecor_microwave_front.png"
 	},
 	tiles_active = {
-		"homedecor_microwave_top.png", "homedecor_microwave_bottom.png",
-		"homedecor_microwave_right.png", "homedecor_microwave_left.png",
-		"homedecor_microwave_back.png", "homedecor_microwave_front_active.png"
+		"homedecor_microwave_top.png", "homedecor_microwave_top.png^[transformR180",
+		"homedecor_microwave_top.png^[transformR270", "homedecor_microwave_top.png^[transformR90",
+		"homedecor_microwave_top.png^[transformR180", "homedecor_microwave_front_active.png"
 	},
 	output_slots = 2,
 	output_width = 2,

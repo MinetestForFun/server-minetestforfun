@@ -9,7 +9,7 @@ minetest.register_node("homedecor:power_outlet", {
 		"homedecor_outlet_edges.png",
 		"homedecor_outlet_edges.png",
 		"homedecor_outlet_back.png",
-		"homedecor_outlet_front.png"
+		"homedecor_outlet_edges.png"
 	},
 	inventory_image = "homedecor_outlet_inv.png",
 	node_box = {

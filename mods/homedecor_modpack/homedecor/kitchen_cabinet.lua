@@ -125,12 +125,9 @@ minetest.register_node('homedecor:kitchen_cabinet_half', {
 
 minetest.register_node('homedecor:kitchen_cabinet_with_sink', {
 	description = S("Kitchen Cabinet with sink"),
-	tiles = { 'homedecor_kitchen_cabinet_sinktop.png',
-			'homedecor_kitchen_cabinet_bottom.png',
-			'homedecor_kitchen_cabinet_sides.png',
-			'homedecor_kitchen_cabinet_sides.png',
-			'homedecor_kitchen_cabinet_sides.png',
-			'homedecor_kitchen_cabinet_front.png'},
+	drawtype = "mesh",
+	mesh = "homedecor_kitchen_sink.obj",
+	tiles = { "homedecor_kitchen_sink.png" },
 	sunlight_propagates = false,
 	paramtype = "light",
 	paramtype2 = "facedir",

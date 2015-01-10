@@ -46,14 +46,14 @@ minetest.register_craft({
 	}
 })
 
---[[minetest.register_craft({
+minetest.register_craft({
 	output = "lrfurn:endtable",
 	recipe = {
 		{"", "", "", },
 		{"group:wood_slab", "group:wood_slab", "", },
 		{"group:stick", "group:stick", "", }
 	}
-})]] -- Uncomment if further declaration of a group:wood_slab
+})
 
 if minetest.setting_get("log_mods") then
 	minetest.log("action", "endtable loaded")

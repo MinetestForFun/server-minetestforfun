@@ -157,7 +157,7 @@ for i in ipairs(sides) do
 		local nodeboxes_top =	homedecor.door_models[j][5]
 		local nodeboxes_bottom =	homedecor.door_models[j][6]
 		local texalpha = false
-		if doorname == "exterior_fancy" then
+		if doorname == "exterior_fancy" or "woodglass" or "woodglass2" then
 			texalpha = true
 		end
 
@@ -237,8 +237,8 @@ for i in ipairs(sides) do
 			description = doordesc.." "..S("(%s-opening)"):format(side),
 			drawtype = "nodebox",
 			tiles = tiles_lower,
-			inventory_image = "homedecor_door_"..doorname.."_"..side.."_inv.png",
-			wield_image = "homedecor_door_"..doorname.."_"..side.."_inv.png",
+			inventory_image = "homedecor_door_"..doorname.."_left_inv.png",
+			wield_image = "homedecor_door_"..doorname.."_left_inv.png",
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = dgroups,
@@ -579,14 +579,26 @@ minetest.register_node("homedecor:japanese_wall_top", {
 	description = "Japanese wall (top)",
 	drawtype = "nodebox",
 	paramtype = "light",
-    paramtype2 = "facedir",
-	use_texture_alpha = true,
-    groups = {snappy=3},
+        paramtype2 = "facedir",
+        groups = {snappy=3},
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox1
+			{-0.5, -0.5, 0.03125, 0.5, 0.5, 0.03125}, -- NodeBox1
+			{-0.5, -0.5, 0, -0.469, 0.5, 0.0625}, -- NodeBox2
+			{0.469, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox3
+			{-0.5, -0.5, 0, 0.5, -0.46875, 0.0625}, -- NodeBox4
+			{-0.5, 0.219, 0, 0.5, 0.5, 0.0625}, -- NodeBox5
+			{-0.031, -0.5, 0, 0.031, 0.5, 0.0625}, -- NodeBox6
+			{-0.5, -0.031, 0, 0.5, 0.03125, 0.0625}, -- NodeBox7
+			{-0.281, -0.5, 0, -0.219, 0.5, 0.0625}, -- NodeBox8
+			{0.219, -0.5, 0, 0.281, 0.5, 0.0625}, -- NodeBox9
+			{-0.5, -0.281, 0, 0.5, -0.21875, 0.0625}, -- NodeBox10
 		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, 
 	}
 })
 
@@ -602,14 +614,27 @@ minetest.register_node("homedecor:japanese_wall_middle", {
 	description = "Japanese wall",
 	drawtype = "nodebox",
 	paramtype = "light",
-    paramtype2 = "facedir",
-	use_texture_alpha = true,
-    groups = {snappy=3},
+        paramtype2 = "facedir",
+        groups = {snappy=3},
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox1
+			{-0.5, -0.5, 0.03125, 0.5, 0.5, 0.03125}, -- NodeBox1
+			{-0.5, -0.5, 0, -0.469, 0.5, 0.0625}, -- NodeBox2
+			{0.469, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox3
+			{-0.5, -0.5, 0, 0.5, -0.46875, 0.0625}, -- NodeBox4
+			{-0.5, 0.469, 0, 0.5, 0.5, 0.0625}, -- NodeBox5
+			{-0.031, -0.5, 0, 0.031, 0.5, 0.0625}, -- NodeBox6
+			{-0.5, -0.031, 0, 0.5, 0.03125, 0.0625}, -- NodeBox7
+			{-0.281, -0.5, 0, -0.219, 0.5, 0.0625}, -- NodeBox8
+			{0.219, -0.5, 0, 0.281, 0.5, 0.0625}, -- NodeBox9
+			{-0.5, -0.281, 0, 0.5, -0.21875, 0.0625}, -- NodeBox10
+			{-0.5, 0.219, 0, 0.5, 0.28125, 0.0625}, -- NodeBox11
 		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, 
 	}
 })
 
@@ -625,14 +650,26 @@ minetest.register_node("homedecor:japanese_wall_bottom", {
 	description = "Japanese wall (bottom)",
 	drawtype = "nodebox",
 	paramtype = "light",
-    paramtype2 = "facedir",
-	use_texture_alpha = true,
-    groups = {snappy=3},
+        paramtype2 = "facedir",
+        groups = {snappy=3},
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox1
+			{-0.5, -0.5, 0.03125, 0.5, 0.5, 0.03125}, -- NodeBox1
+			{-0.5, -0.5, 0, -0.469, 0.5, 0.0625}, -- NodeBox2
+			{0.469, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox3
+			{-0.5, -0.5, 0, 0.5, -0.21875, 0.0625}, -- NodeBox4
+			{-0.5, 0.469, 0, 0.5, 0.5, 0.0625}, -- NodeBox5
+			{-0.031, -0.5, 0, 0.031, 0.5, 0.0625}, -- NodeBox6
+			{-0.5, -0.031, 0, 0.5, 0.03125, 0.0625}, -- NodeBox7
+			{-0.281, -0.5, 0, -0.219, 0.5, 0.0625}, -- NodeBox8
+			{0.219, -0.5, 0, 0.281, 0.5, 0.0625}, -- NodeBox9
+			{-0.5, 0.219, 0, 0.5, 0.28125, 0.0625}, -- NodeBox11
 		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, 
 	}
 })
 
@@ -648,7 +685,7 @@ minetest.register_node("homedecor:tatami_mat", {
 	description = "Japanese tatami",
 	drawtype = "nodebox",
 	paramtype = "light",
-    groups = {snappy=3},
+        groups = {snappy=3},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -668,14 +705,21 @@ minetest.register_node("homedecor:jpn_door_bottom", {
 		"homedecor_japanese_door_bottom.png"
 	},
 	drawtype = "nodebox",
-        use_texture_alpha = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { snappy = 3 },
 	node_box = {
 		type = "fixed",
 		fixed = {			
-			{-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox1
+			{-0.5, -0.5, 0.03125, 0.5, 0.5, 0.03125}, -- NodeBox1
+			{-0.5, -0.5, 0, -0.44, 0.5, 0.0625}, -- NodeBox2
+			{0.44, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox3
+			{-0.5, -0.5, 0, 0.5, -0.4065, 0.0625}, -- NodeBox4
+			{-0.5, 0.469, 0, 0.5, 0.5, 0.0625}, -- NodeBox5
+			{-0.5, 0.1565, 0, 0.5, 0.21875, 0.0625}, -- NodeBox6
+			{-0.5, -0.185, 0, 0.5, -0.125, 0.0625}, -- NodeBox7
+			{-0.2185, -0.5, 0, -0.1565, 0.5, 0.0625}, -- NodeBox8
+			{0.1565, -0.5, 0, 0.2185, 0.5, 0.0625}, -- NodeBox9
 		}
 	},
 	selection_box = {
@@ -719,14 +763,21 @@ minetest.register_node("homedecor:jpn_door_top", {
 		"homedecor_japanese_door_top.png"
 	},
 	drawtype = "nodebox",
-	use_texture_alpha = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	node_box = {
 		type = "fixed",
 		fixed = {			
-			{-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox1
+			{-0.5, -0.5, 0.03125, 0.5, 0.5, 0.03125}, -- NodeBox1
+			{-0.5, -0.5, 0, -0.44, 0.5, 0.0625}, -- NodeBox2
+			{0.44, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox3
+			{-0.5, -0.5, 0, 0.5, -0.469, 0.0625}, -- NodeBox4
+			{-0.5, 0.4065, 0, 0.5, 0.5, 0.0625}, -- NodeBox5
+			{-0.5, 0.1255, 0, 0.5, 0.1875, 0.0625}, -- NodeBox6
+			{-0.5, -0.2185, 0, 0.5, -0.1565, 0.0625}, -- NodeBox7
+			{-0.2185, -0.5, 0, -0.1565, 0.5, 0.0625}, -- NodeBox8
+			{0.1565, -0.5, 0, 0.2185, 0.5, 0.0625}, -- NodeBox9
 		}
 	},
 	selection_box = {
@@ -744,14 +795,21 @@ minetest.register_node("homedecor:jpn_door_bottom_open", {
 		"homedecor_japanese_door_bottom.png"
 	},
 	drawtype = "nodebox",
-	use_texture_alpha = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	node_box = {
 		type = "fixed",
 		fixed = {			
-			{-1.5, -0.5, -0.0625, -0.5, 0.5, 0}, -- NodeBox1
+			{-1.5, -0.5, -0.03125, -0.5, 0.5, -0.03125}, -- NodeBox1
+			{-1.5, -0.5, -0.0625, -1.44, 0.5, 0}, -- NodeBox2
+			{-0.5625, -0.5, -0.0625, -0.5, 0.5, 0}, -- NodeBox3
+			{-1.5, -0.5, -0.0625, -0.5, -0.40625, 0}, -- NodeBox4
+			{-1.5, 0.469, -0.0625, -0.5, 0.5, 0}, -- NodeBox5
+			{-1.5, 0.1565, -0.0625, -0.5, 0.21875, 0}, -- NodeBox6
+			{-1.5, -0.1865, -0.0625, -0.5, -0.125, 0}, -- NodeBox7
+			{-1.21875, -0.5, -0.0625, -1.1565, 0.5, 0}, -- NodeBox8
+			{-0.84375, -0.5, -0.0625, -0.7815, 0.5, 0}, -- NodeBox9
 		}
 	},
 	selection_box = {
@@ -781,14 +839,21 @@ minetest.register_node("homedecor:jpn_door_top_open", {
 		"homedecor_japanese_door_top.png"
 	},
 	drawtype = "nodebox",
-        use_texture_alpha = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	node_box = {
 		type = "fixed",
 		fixed = {			
-			{-1.5, -0.5, -0.0625, -0.5, 0.5, 0}, -- NodeBox1
+			{-1.5, -0.5, -0.03125, -0.5, 0.5, -0.03125}, -- NodeBox1
+			{-1.5, -0.5, -0.0625, -1.44, 0.5, 0}, -- NodeBox2
+			{-0.5625, -0.5, -0.0625, -0.5, 0.5, 0}, -- NodeBox3
+			{-1.5, -0.5, -0.0625, -0.5, -0.469, 0}, -- NodeBox4
+			{-1.5, 0.4065, -0.0625, -0.5, 0.5, 0}, -- NodeBox5
+			{-1.5, 0.1253, -0.0625, -0.5, 0.1875, 0}, -- NodeBox6
+			{-1.5, -0.2185, -0.0625, -0.5, -0.15625, 0}, -- NodeBox7
+			{-1.21875, -0.5, -0.0625, -1.1565, 0.5, 0}, -- NodeBox8
+			{-0.84375, -0.5, -0.0625, -0.7815, 0.5, 0}, -- NodeBox9
 		}
 	},
 	selection_box = {
