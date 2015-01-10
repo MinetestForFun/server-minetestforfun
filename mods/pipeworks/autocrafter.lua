@@ -9,7 +9,9 @@ local function make_inventory_cache(invlist)
 end
 
 local function autocraft(inventory, pos)
+	if not inventory then return end
 	local recipe = inventory:get_list("recipe")
+	if not recipe then return end
 	local recipe_last
 	local result
 	local new
