@@ -819,6 +819,8 @@ minetest.register_chatcommand("/hide", {
 	end),
 })
 
+local check_set -- Actual garbage for an unknown global variable
+
 minetest.register_chatcommand("/suppress", {
 	params = "<node>",
 	description = "Suppress all <node> in the current WorldEdit region non-destructively",
