@@ -52,21 +52,22 @@ for i in ipairs(chaircolors) do
 	local color = "_"..chaircolors[i][1]
 	local color2 = chaircolors[i][1]
 	local name = S(chaircolors[i][2])
-
-	if chaircolors[i][1] == "" then 
-		color = ""
-	end
-
-	minetest.register_node("homedecor:chair"..color, {
-	    description = S("Kitchen chair (%s)"):format(name),
-		tiles = { 
+	local chairtiles = { 
 			"forniture_kitchen_chair_top"..color..".png",
 			"forniture_wood.png",
 			"forniture_kitchen_chair_sides"..color..".png",
 			"forniture_kitchen_chair_sides"..color..".png^[transformFX",
 			"forniture_kitchen_chair_back"..color..".png",
 			"forniture_kitchen_chair_front"..color..".png",
-		 },
+	}
+	if chaircolors[i][1] == "" then 
+		color = ""
+		chairtiles = { "forniture_wood.png" }
+	end
+
+	minetest.register_node("homedecor:chair"..color, {
+	    description = S("Kitchen chair (%s)"):format(name),
+		tiles = chairtiles,
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -133,53 +134,22 @@ end
 
 minetest.register_node(":homedecor:openframe_bookshelf", {
 	description = "Bookshelf (open-frame)",
-	drawtype = "nodebox",
+	drawtype = "mesh",
+	mesh = "homedecor_openframe_bookshelf.obj",
+	tiles = { "homedecor_openframe_bookshelf.png" },
 	is_ground_content = false,
 	groups = {choppy=3,oddly_breakable_by_hand=2,flammable=3},
 	sounds = default.node_sound_wood_defaults(),
-	tiles = {
-		"3dbookshelf_openframe_top.png",
-		"3dbookshelf_openframe_bottom.png",
-		"3dbookshelf_openframe_right.png",
-		"3dbookshelf_openframe_left.png",
-		"3dbookshelf_openframe_back.png",
-		"3dbookshelf_openframe_front.png"
-
-	},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	selection_box = {
 		type = "fixed",
 		fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0.5 }
 	},
-	node_box = {
+	collision_box = {
 		type = "fixed",
-		fixed = {
-			{-0.4375, -0.5, 0, -0.375, 0.5, 0.5},
-			{0.375, -0.5, 0, 0.4375, 0.5, 0.5},
-			{-0.5, -0.5, 0, 0.5, -0.4375, 0.5},
-			{-0.5, 0, 0, 0.5, 0.0625, 0.5},
-			{-0.375, 0.0625, 0.176, -0.25, 0.5, 0.5},
-			{-0.25, 0.0625, 0.253, -0.1875, 0.4375, 0.5},
-			{-0.1875, 0.0625, 0.227, -0.125, 0.5, 0.5},
-			{-0.125, 0.0625, 0.176, 0, 0.4375, 0.5},
-			{0, 0.0625, 0.232, 0.0625, 0.375, 0.5},
-			{0.0625, 0.0625, 0.130, 0.1875, 0.5, 0.5},
-			{0.1875, 0.0625, 0.217, 0.25, 0.4375, 0.5},
-			{0.25, 0.0625, 0.166, 0.3125, 0.5, 0.5},
-			{0.3125, 0.0625, 0.242, 0.375, 0.4375, 0.5},
-			{-0.375, -0.4375, 0.191, -0.3125, -0.0625, 0.5},
-			{-0.3125, -0.4375, 0.191, -0.1875, -0.125, 0.5},
-			{-0.1875, -0.4375, 0.227, -0.125, -0.0625, 0.5},
-			{-0.125, -0.4375, 0.0737, 0, -0.0625, 0.5},
-			{0, -0.4375, 0.145, 0.0625, -0.125, 0.5},
-			{0.0625, -0.4375, 0.212, 0.125, -0.1875, 0.5},
-			{0.125, -0.4375, 0.207, 0.1875, -0.125, 0.5},
-			{0.1875, -0.4375, 0.176, 0.25, -0.125, 0.5},
-			{0.25, -0.4375, 0.258, 0.3125, -0.1875, 0.5},
-			{0.3125, -0.4375, 0.130, 0.375, -0.0625, 0.5}
-		}
-	}
+		fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0.5 }
+	},
 })
 
 local bedcolors = {
@@ -281,10 +251,8 @@ for _, color in ipairs(bedcolors) do
 				{-0.5,     -0.5,     -0.5,     -0.375,  0.1875,   -0.4375},  --  NodeBox1
 				{0.375,    -0.5,     -0.5,     0.5,     0.1875,   -0.4375},  --  NodeBox2
 				{-0.5,     0,        -0.5,     0.5,     0.125,    -0.4375},  --  NodeBox3
-				{-0.5,     -0.375,   -0.5,     0.5,     -0.125,   -0.4375},  --  NodeBox4
 				{-0.5,  -0.375,   -0.5,     0.5,  -0.125,   0.5},      --  NodeBox5
-				{0.375,    -0.375,   -0.5,     0.4375,  -0.125,   0.5},      --  NodeBox6
-				{-0.4375,   -0.3125,  -0.4375,  0.4375,   -0.0625,  0.5},      --  NodeBox7
+				{-0.4375,   -0.3125,  -0.4375,  0.4375,   -0.0625,  0.5},      --  NodeBox6
 			}
 		},
 		selection_box = {
@@ -330,10 +298,8 @@ for _, color in ipairs(bedcolors) do
 				{-0.5,     -0.5,     -0.5,     -0.375,  0.5,   -0.4375},  --  NodeBox1
 				{0.375,    -0.5,     -0.5,     0.5,     0.5,   -0.4375},  --  NodeBox2
 				{-0.5,     0,        -0.5,     0.5,     0.125,    -0.4375},  --  NodeBox3
-				{-0.5,     -0.375,   -0.5,     0.5,     -0.125,   -0.4375},  --  NodeBox4
-				{-0.5,  -0.375,   -0.5,     0.5,  -0.125,   0.5},      --  NodeBox5
-				{0.375,    -0.375,   -0.5,     0.4375,  -0.125,   0.5},      --  NodeBox6
-				{-0.4375,   -0.3125,  -0.4375,  0.4375,   -0.0625,  0.5},      --  NodeBox7
+				{-0.5,  -0.375,   -0.5,     0.5,  -0.125,   0.5},      --  NodeBox4
+				{-0.4375,   -0.3125,  -0.4375,  0.4375,   -0.0625,  0.5},      --  NodeBox5
 			}
 		},
 		selection_box = {
@@ -356,11 +322,11 @@ end
 
 minetest.register_node("homedecor:wardrobe_top", {
 	tiles = {
-		"homedecor_wardrobe_top.png",
-		"homedecor_wardrobe_bottom.png",
-		"homedecor_wardrobe_sides1.png",
-		"homedecor_wardrobe_sides1.png^[transformFX",
-		"homedecor_wardrobe_back1.png",
+		"forniture_wood.png",
+		"forniture_wood.png",
+		"forniture_wood.png^[transformR90",
+		"forniture_wood.png^[transformR270",
+		"forniture_wood.png^[transformR90",
 		"homedecor_wardrobe_frontt.png"
 	},
 	drawtype = "nodebox",
@@ -383,11 +349,11 @@ minetest.register_node("homedecor:wardrobe_top", {
 
 minetest.register_node("homedecor:wardrobe_bottom", {
 	tiles = {
-		"homedecor_wardrobe_top.png",
-		"homedecor_wardrobe_bottom.png",
-		"homedecor_wardrobe_sides2.png",
-		"homedecor_wardrobe_sides2.png^[transformFX",
-		"homedecor_wardrobe_back2.png",
+		"forniture_wood.png",
+		"forniture_wood.png^[transformR180",
+		"forniture_wood.png^[transformR90",
+		"forniture_wood.png^[transformR270",
+		"forniture_wood.png^[transformR90",
 		"homedecor_wardrobe_frontb.png"
 	},
 	inventory_image = "homedecor_wardrobe_inv.png",
@@ -461,7 +427,7 @@ minetest.register_node("homedecor:simple_bench", {
 		"homedecor_generic_wood.png",
 		"homedecor_generic_wood.png",
 		"homedecor_bench_large_2_left_back.png",
-		"homedecor_bench_large_2_left_front.png"
+		"homedecor_bench_large_2_left_back.png^[transformFX"
 	},
 	description = "Simple Bench",
 	drawtype = "nodebox",
@@ -526,12 +492,12 @@ minetest.register_node("homedecor:bench_large_1_left", {
 
 minetest.register_node("homedecor:bench_large_1_right", {
 	tiles = {
-		"homedecor_bench_large_1_right_top.png",
-		"homedecor_bench_large_1_right_bottom.png",
+		"homedecor_bench_large_1_left_top.png^[transformFX",
+		"homedecor_bench_large_1_left_bottom.png^[transformFX",
 		"homedecor_bench_large_1_ends.png^[transformFX",
 		"homedecor_bench_large_1_ends.png",
-		"homedecor_bench_large_1_right_back.png",
-		"homedecor_bench_large_1_right_front.png"
+		"homedecor_bench_large_1_left_back.png^[transformFX",
+		"homedecor_bench_large_1_left_front.png^[transformFX"
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -564,7 +530,7 @@ minetest.register_node("homedecor:bench_large_2_left", {
 		"homedecor_generic_wood.png",
 		"homedecor_generic_wood.png",
 		"homedecor_bench_large_2_left_back.png",
-		"homedecor_bench_large_2_left_front.png"
+		"homedecor_bench_large_2_left_back.png^[transformFX"
 	},
 	inventory_image = "homedecor_bench_large_2_inv.png",
 	drawtype = "nodebox",
@@ -617,7 +583,7 @@ minetest.register_node("homedecor:bench_large_2_right", {
 		"homedecor_generic_wood.png",
 		"homedecor_generic_wood.png",
 		"homedecor_bench_large_2_right_back.png",
-		"homedecor_bench_large_2_right_front.png"
+		"homedecor_bench_large_2_right_back.png^[transformFX"
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -653,10 +619,10 @@ minetest.register_node("homedecor:bench_large_2_right", {
 minetest.register_node("homedecor:deckchair_head", {
 	tiles = {
 		"homedecor_deckchair_top_c1.png",
-		"homedecor_deckchair_bottom.png",
+		"homedecor_deckchair_sides.png",
 		"homedecor_deckchair_sides.png",
 		"homedecor_deckchair_sides.png^[transformFX",
-		"homedecor_deckchair_back.png",
+		"homedecor_deckchair_sides.png",
 		"homedecor_deckchair_front.png"
 	},
 	drawtype = "nodebox",
@@ -691,7 +657,7 @@ minetest.register_node("homedecor:deckchair_head", {
 minetest.register_node("homedecor:deckchair_foot", {
 	tiles = {
 		"homedecor_deckchair_top_c2.png",
-		"homedecor_deckchair_bottom.png",
+		"homedecor_deckchair_sides.png",
 		"homedecor_deckchair_sides.png",
 		"homedecor_deckchair_sides.png^[transformFX",
 		"homedecor_deckchair_front.png"

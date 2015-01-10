@@ -14,10 +14,10 @@ signs_lib.wall_sign_model = {
 		fixed = {-0.4375, -0.25, 0.4375, 0.4375, 0.375, 0.5}
 	},
 	textpos = {
-		{delta = {x =  0,     y = 0.07, z =  0.436}, yaw = 0},
-		{delta = {x =  0.436, y = 0.07, z =  0    }, yaw = math.pi / -2},
-		{delta = {x =  0,     y = 0.07, z = -0.436}, yaw = math.pi},
-		{delta = {x = -0.436, y = 0.07, z =  0    }, yaw = math.pi / 2},
+		{delta = {x =  0,     y = 0.07, z =  0.43  }, yaw = 0},
+		{delta = {x =  0.43,  y = 0.07, z =  0     }, yaw = math.pi / -2},
+		{delta = {x =  0,     y = 0.07, z = -0.43  }, yaw = math.pi},
+		{delta = {x = -0.43,  y = 0.07, z =  0     }, yaw = math.pi / 2},
 	}
 }
 
@@ -69,12 +69,12 @@ signs_lib.sign_post_model = {
 	}
 }
 
+-- Boilerplate to support localized strings if intllib mod is installed.
 local S
-if signs_lib.intllib_modpath then
-    dofile(signs_lib.intllib_modpath.."/intllib.lua")
-    S = intllib.Getter(minetest.get_current_modname())
+if minetest.get_modpath("intllib") then
+	S = intllib.Getter()
 else
-    S = function ( s ) return s end
+	S = function(s) return s end
 end
 signs_lib.gettext = S
 
@@ -179,9 +179,7 @@ local CHARDB_FILE = minetest.get_worldpath().."/signs_lib_chardb"
 -- helper functions to trim sign text input/output
 
 local function trim_input(text)
-	local txt_len = string.len(text)
-	text_trimmed = string.sub(text, 1, math.min(MAX_INPUT_CHARS, txt_len))
-	return text_trimmed
+	return text:sub(1, math.min(MAX_INPUT_CHARS, text:len()))
 end
 
 -- Returns true if any file differs from cached one.
@@ -630,8 +628,7 @@ function signs_lib.receive_fields(pos, formname, fields, sender, lock)
 			sender:get_player_name())
 		return
 	end
-	lockstr = ""
-	if lock then lockstr = "locked " end
+	local lockstr = lock and "locked " or ""
 	if fields and fields.text and fields.ok then
 		minetest.log("action", S("%s wrote \"%s\" to "..lockstr.."sign at %s"):format(
 			(sender:get_player_name() or ""),

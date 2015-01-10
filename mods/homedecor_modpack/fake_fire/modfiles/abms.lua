@@ -22,13 +22,13 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos, node)
-		if minetest.find_node_near(pos, 1, {"default:water_source",
+		if minetest.env:find_node_near(pos, 1, {"default:water_source",
 		"default:water_flowing","default:lava_source",
 		"default:lava_flowing"}) then
 		minetest.sound_play("fire_extinguish",
 		{gain = 1.0, max_hear_distance = 20,})
 		node.name = "air"
-		minetest.set_node(pos, node)
+		minetest.env:set_node(pos, node)
 		end
 	end
 })
@@ -62,22 +62,22 @@ minetest.register_abm({
                 minetest.get_node({x=pos.x, y=pos.y+2.0, z=pos.z}).name == "air"
              then
 		local image_number = math.random(4)
-		minetest.add_particlespawner(
-			8, --particles amount
-			1, --time
-			{x=pos.x-0.25, y=pos.y+0.4, z=pos.z-0.25}, --min. smoke position
-			{x=pos.x+0.25, y=pos.y+8, z=pos.z+0.25}, --max. smoke position
-			{x=-0.2, y=0.3, z=-0.2}, --min. particle velocity
-			{x=0.2, y=1, z=0.2}, --max. particle velocity
-			{x=0,y=0,z=0}, --min. particle acceleration
-			{x=0,y=0,z=0}, --max. particle acceleration
-			0.5, --min. time particle expiration
-			3, --max. time particle expiration
-			2, --min. particle size
-			10, --max. particle size
-			false, --collision detection
-			"smoke_particle_"..image_number..".png" --textures
-		)
+		minetest.add_particlespawner({
+			amount = 8,
+			time = 1,
+			minpos = {x=pos.x-0.25, y=pos.y+0.4, z=pos.z-0.25},
+			maxpos = {x=pos.x+0.25, y=pos.y+8, z=pos.z+0.25},
+			minvel = {x=-0.2, y=0.3, z=-0.2},
+			maxvel = {x=0.2, y=1, z=0.2},
+			minacc = {x=0,y=0,z=0},
+			maxacc = {x=0,y=0,z=0},
+			minexptime = 0.5,
+			maxexptime = 3,
+			minsize = 2,
+			maxsize = 10,
+			collisiondetection = false,
+			texture = "smoke_particle_"..image_number..".png",
+		})
 	     end
 	end
 })

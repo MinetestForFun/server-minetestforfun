@@ -41,9 +41,9 @@ minetest.register_node("homedecor:refrigerator_steel_bottom", {
 	tiles = {
 		"default_steel_block.png",
 		"homedecor_refrigerator_steel_bottom.png",
-		"homedecor_refrigerator_steel_sides2.png",
-		"homedecor_refrigerator_steel_sides2.png^[transformFX",
-		"homedecor_refrigerator_steel_back2.png",
+		"homedecor_refrigerator_steel_sides1.png",
+		"homedecor_refrigerator_steel_sides1.png^[transformFX",
+		"homedecor_refrigerator_steel_back1.png",
 		"homedecor_refrigerator_steel_front2.png"
 	},
 	inventory_image = "homedecor_refrigerator_steel_inv.png",
@@ -159,9 +159,9 @@ minetest.register_node("homedecor:refrigerator_white_bottom", {
 	tiles = {
 		"default_steel_block.png",
 		"homedecor_refrigerator_white_bottom.png",
-		"homedecor_refrigerator_white_sides2.png",
-		"homedecor_refrigerator_white_sides2.png^[transformFX",
-		"homedecor_refrigerator_white_back2.png",
+		"homedecor_refrigerator_white_sides1.png",
+		"homedecor_refrigerator_white_sides1.png^[transformFX",
+		"homedecor_refrigerator_white_back1.png",
 		"homedecor_refrigerator_white_front2.png"
 	},
 	inventory_image = "homedecor_refrigerator_white_inv.png",
