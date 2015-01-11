@@ -17,7 +17,7 @@ local SETCHA = 0.1 -- 0 to 1. Snow settling chance
 local FLAKES = 1 -- Snowfall heaviness. Try 1 on slower computers
 local DROPS = 2 -- Rainfall heaviness. Reduce on slower computers
 local SNOW = true -- Snowfall below temperature threshold
-local SETTLE = true -- Snow collects on ground within 32 nodes of player
+local SETTLE = false -- Snow collects on ground within 32 nodes of player
 local RAIN = false -- Rain above humidity threshold
 local THOVER = false -- Instead use a temperature and humidity system with
 			-- snow in overlap of cold and humid areas, else rain in humid areas
