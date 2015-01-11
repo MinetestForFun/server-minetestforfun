@@ -264,7 +264,7 @@ local snow_nodes = {
 	"snow_brick",
 	"snow_cobble",
 }
-
+local drop = nil
 for _, name in pairs(snow_nodes) do
 	local nodename = "snow:"..name
 	local ndef = minetest.registered_nodes[nodename]

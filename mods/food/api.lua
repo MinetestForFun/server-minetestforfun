@@ -8,7 +8,7 @@
 
 -- Boilerplate to support localized strings if intllib mod is installed.
 S = 0
-if (intllib) then
+if (minetest.get_modpath("intllib")) then
 	dofile(minetest.get_modpath("intllib").."/intllib.lua")
 	S = intllib.Getter(minetest.get_current_modname())
 else
@@ -41,7 +41,7 @@ function food.support(group, item)
 	if idx <= 1 then
 		error("[Food Error] food.support - error in item name ('" .. item .. "')")
 	end
-	mod = string.sub(item, 1, idx - 1)
+	local mod = string.sub(item, 1, idx - 1)
 
 	if not minetest.get_modpath(mod) then
 		if food.debug then
@@ -60,7 +60,7 @@ function food.support(group, item)
 	food.disable(group)
 
 	-- Add group
-	g = {}
+	local g = {}
 	if data.groups then
 		for k, v in pairs(data.groups) do
 			g[k] = v

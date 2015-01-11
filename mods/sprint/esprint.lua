@@ -11,7 +11,8 @@ local players = {}
 local staminaHud = {}
 
 minetest.register_on_joinplayer(function(player)
-	playerName = player:get_player_name()
+	local playerName = player:get_player_name()
+	print("playename: " ..playerName)
 	players[playerName] = {
 		sprinting = false,
 		timeOut = 0, 
@@ -30,7 +31,7 @@ minetest.register_on_joinplayer(function(player)
 	}
 end)
 minetest.register_on_leaveplayer(function(player)
-	playerName = player:get_player_name()
+	local playerName = player:get_player_name()
 	players[playerName] = nil
 end)
 minetest.register_globalstep(function(dtime)
