@@ -48,7 +48,7 @@ local function loadConfig(path)
   		io.close(file)
 		for line in io.lines(path) do
 			if line:sub(1,1) ~= "#" then
-				i, v = line:match("^(%S*) = (%S*)")
+				local i, v = line:match("^(%S*) = (%S*)")
 				if i and v then
 					if v == "true" then v = true end
 					if v == "false" then v = false end

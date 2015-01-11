@@ -1,5 +1,6 @@
 local S -- Load translation library if intllib is installed:
-if intllib then
+if (minetest.get_modpath("intllib")) then
+	dofile(minetest.get_modpath("intllib").."/intllib.lua")
 	S = intllib.Getter(minetest.get_current_modname())
 else
 	S = function(s) return s end

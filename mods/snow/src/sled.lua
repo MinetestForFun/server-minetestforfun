@@ -68,7 +68,7 @@ local sled = {
 	visual = "mesh",
 	mesh = "sled.x",
 	textures = {"sled.png"},
-	HUD,
+	HUD = nil,
 	
 	driver = nil,
 	sliding = false,
