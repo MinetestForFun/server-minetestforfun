@@ -104,6 +104,9 @@ function irc:connect()
 		return
 	end
 
+	print("== This is a debug line, please check for it ==")
+	print(self.config.NSPASS)
+	print("=== DEBUG FINISHED ===")
 	if self.config.NSPass then
 		self:say("NickServ", "IDENTIFY "..self.config.NSPass)
 	end
