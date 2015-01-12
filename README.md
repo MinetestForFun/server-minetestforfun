@@ -7,11 +7,18 @@ If you want help us, don't hesitate and take a look at our ToDoList [here](https
 
 Contributors
 ===================
-- Ombridride______Server hoster, reposity owner.
-- LeMagnesium_____Debugging, mod maintenance.
-- mgl512__________Helper for debugging, who leaves useful comments.
-- Ataron__________Occasionnal debogger, texture fixer.
-- Gael-de-Sailly__Kittens carer, and debogger.
+- Ombridride
+  > Server hoster, reposity owner.
+- LeMagnesium
+  > Debugging, mod maintenance.
+- mgl512
+  > Helper for debugging, who leaves useful comments.
+- Ataron
+  > Occasionnal debogger, texture fixer.
+- Gael-de-Sailly
+  > Kittens carer, and debogger.
+- crabman77(/guillaume)
+  > Global variables annihilator
 
 
 minetestforfun_game sous-jeu et mods
@@ -23,8 +30,15 @@ Si vous voulez nous aider, n'hésitez pas et jetez un coup d'oeil à notre ToDoL
 
 Contributeurs
 ===================
-- Ombridride______Hébergeur du serveur, possesseur du dépôt.
-- LeMagnesium_____Deboggueur, entretient des mods.
-- mgl512__________Aide au déboggage, laisse aussi des commentaires très utiles.
-- Ataron__________Déboggueur occasionnel.
-- Gael-de-Sailly__Soigneur et deboggueur de chatons.
+- Ombridride
+  > Hébergeur du serveur, possesseur du dépôt.
+- LeMagnesium
+  > Deboggueur, entretient des mods.
+- mgl512
+  > Aide au déboggage, laisse aussi des commentaires très utiles.
+- Ataron
+  > Déboggueur occasionnel.
+- Gael-de-Sailly
+  > Soigneur et deboggueur de chatons.
+- crabman77(/guillaume)
+  > Annihilateur de variables globales
