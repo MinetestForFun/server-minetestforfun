@@ -43,7 +43,7 @@ function mobs:register_mob(name, def)
 		fov = def.fov or 120,
 		passive = def.passive or false,
 		recovery_time = def.recovery_time or 0.5,
-		knock_back = def.knock_back or 3,
+		knock_back = def.knock_back or 1, --knock_back = def.knock_back or 3,
 		blood_offset = def.blood_offset or 0,
 		blood_amount = def.blood_amount or 5, -- 15
 		blood_texture = def.blood_texture or "mobs_blood.png",
