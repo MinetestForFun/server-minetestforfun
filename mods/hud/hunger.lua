@@ -357,7 +357,7 @@ function hud.handle_node_actions(pos, oldnode, player, ext)
 	end
 	local name = player:get_player_name()
 	local exhaus = hud.exhaustion[name]
-	if not exhaus then return end
+	if exhaus == nil then return end
 	local new = HUD_HUNGER_EXHAUST_PLACE
 	-- placenode event
 	if not ext then
