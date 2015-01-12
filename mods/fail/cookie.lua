@@ -43,21 +43,21 @@ minetest.register_chatcommand("cookie", {
 		local param = paramlist[1]
 		local param2 = paramlist[2]
 		if param == "help" or param == nil then
-			core.chat_send_player(name,"CooKie recipe's help :")
-			core.chat_send_player(name,"/cookie <subcommand> | <playername>")
-			core.chat_send_player(name,"Available subcommands :")
-			core.chat_send_player(name,"  - help : show this help")
-			core.chat_send_player(name,"  - view | view <playername> : View player's CooKies amount") 
+			minetest.chat_send_player(name,"CooKie recipe's help :")
+			minetest.chat_send_player(name,"/cookie <subcommand> | <playername>")
+			minetest.chat_send_player(name,"Available subcommands :")
+			minetest.chat_send_player(name,"  - help : show this help")
+			minetest.chat_send_player(name,"  - view | view <playername> : View player's CooKies amount") 
 			return
 		elseif param == "settings" then
 			if not minetest.get_player_privs(name)["server"] then
-				core.chat_send_player(name,"You're not allowed to perform this command. (Missing privilege : server)")
+				minetest.chat_send_player(name,"You're not allowed to perform this command. (Missing privilege : server)")
 				return
 			end
 			
-			core.chat_send_player(name,"=== FP_DEBUG_LINES SENT ===")
+			minetest.chat_send_player(name,"=== FP_DEBUG_LINES SENT ===")
 			local send_admin = function(msg)
-				core.chat_send_player(name,msg)
+				minetest.chat_send_player(name,msg)
 			end
 			
 			table.foreach(data,print)
@@ -69,14 +69,14 @@ minetest.register_chatcommand("cookie", {
 				if data.cookies[name] then
 					owncookies = data.cookies[name]
 				end
-				core.chat_send_player(name,"-CK- You own "..owncookies.." CooKies.")
+				minetest.chat_send_player(name,"-CK- You own "..owncookies.." CooKies.")
 				return true
 			end
 			
 			if data.cookies[param2] ~= nil and data.cookies[param2] > 0 then
-				core.chat_send_player(name,"-CK- Player "..param2.." owns "..data.cookies[param2].." CooKies.")
+				minetest.chat_send_player(name,"-CK- Player "..param2.." owns "..data.cookies[param2].." CooKies.")
 			else
-				core.chat_send_player(name,"-CK- Player "..param2.." doesn't seem to own any CooKie.")
+				minetest.chat_send_player(name,"-CK- Player "..param2.." doesn't seem to own any CooKie.")
 			end
 		else
 		
@@ -84,7 +84,7 @@ minetest.register_chatcommand("cookie", {
 			if name == param then
 				if minetest.get_player_privs(name)["baker"] == true then
 					minetest.log("error",name.." tried to create a CooKie by giving to himself")
-					core.chat_send_player(name,"-CK- Congratulation, you failed. Don't try to cook for yourself, don't be selfish :p")
+					minetest.chat_send_player(name,"-CK- Congratulation, you failed. Don't try to cook for yourself, don't be selfish :p")
 				else
 					minetest.log("action",name.."cooked himself a CooKie")
 					data.send_func(name,"-CK- You failed: It appears the name you entered is yours")
@@ -99,14 +99,14 @@ minetest.register_chatcommand("cookie", {
 			end
 
 			if not data.is_player_available(param) then
-				core.chat_send_player(name,"-CK- You failed: Sorry, "..param.." isn't online.")
+				minetest.chat_send_player(name,"-CK- You failed: Sorry, "..param.." isn't online.")
 				return false
 			end
 		
 			-- Take, or not, cookies from name's account to give them to param
 			if minetest.get_player_privs(name)["baker"] ~= true then
 				if data.cookies[name] == nil or data.failpoints[name] == 0 then
-					core.chat_send_player(name,"You failed: You don't have enough CooKies.. Cook some!")
+					minetest.chat_send_player(name,"You failed: You don't have enough CooKies.. Cook some!")
 					return false
 				elseif data.cookies[name] > 0 then
 					data.cookies[name] = data.cookies[name] -1
@@ -135,7 +135,7 @@ minetest.register_chatcommand("cookie", {
 				end
 			end
 			data.send_func(param,"Congratulations "..param..", you get a CooKie" .. message_reason)
-			core.chat_send_player(name,"CooKie sent.")
+			minetest.chat_send_player(name,"CooKie sent.")
 		end
 	end
 })

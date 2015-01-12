@@ -37,16 +37,16 @@ end
 
 -- Configuration application
 
-data.send_func = function(name, msg) core.chat_send_player(name, msg) end
+data.send_func = function(name, msg) minetest.chat_send_player(name, msg) end
 
 if data.PUB_MSG then
-	data.send_func = function (name, msg) core.chat_send_all(msg) end
+	data.send_func = function (name, msg) minetest.chat_send_all(msg) end
 end
 
 data.is_player_available = minetest.get_player_by_name
 
 if data.STRICT_PLAYER_CHECK == false then
-	print("REDEF!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	
 	data.is_player_available = function (name)
 		return (io.open(minetest.get_worldpath().."/players/"..name) ~= nil)
 	end
@@ -85,25 +85,25 @@ minetest.register_chatcommand("fail", {
 		local param = paramlist[1]
 		local param2 = paramlist[2]
 		if param == "version" then
-			core.chat_send_player(name,"-FP- Fail mod version: "..data.fp_version)
+			minetest.chat_send_player(name,"-FP- Fail mod version: "..data.fp_version)
 			return true
 		elseif param == "help" or param == nil then
-			core.chat_send_player(name,"Failpoints available help :")
-			core.chat_send_player(name,"/fail <subcommand> | <playername>")
-			core.chat_send_player(name,"Available subcommands :")
-			core.chat_send_player(name,"  - help : show this help")
-			core.chat_send_player(name,"  - version : show actual fail version")
-			core.chat_send_player(name,"  - view | view <playername> : View player's failpoints amount") 
+			minetest.chat_send_player(name,"Failpoints available help :")
+			minetest.chat_send_player(name,"/fail <subcommand> | <playername>")
+			minetest.chat_send_player(name,"Available subcommands :")
+			minetest.chat_send_player(name,"  - help : show this help")
+			minetest.chat_send_player(name,"  - version : show actual fail version")
+			minetest.chat_send_player(name,"  - view | view <playername> : View player's failpoints amount") 
 			return
 		elseif param == "settings" then
 			if not minetest.get_player_privs(name)["server"] then
-				core.chat_send_player(name,"You're not allowed to perform this command. (Missing privilege : server)")
+				minetest.chat_send_player(name,"You're not allowed to perform this command. (Missing privilege : server)")
 				return
 			end
 			
-			core.chat_send_player(name,"=== FP_DEBUG_LINES SENT ===")
+			minetest.chat_send_player(name,"=== FP_DEBUG_LINES SENT ===")
 			local send_admin = function(msg)
-				core.chat_send_player(name,msg)
+				minetest.chat_send_player(name,msg)
 			end
 			
 			table.foreach(data,print)
@@ -115,14 +115,14 @@ minetest.register_chatcommand("fail", {
 				if data.failpoints[name] then
 					ownfail = data.failpoints[name]
 				end
-				core.chat_send_player(name,"-FP- You own "..ownfail.." FailPoints.")
+				minetest.chat_send_player(name,"-FP- You own "..ownfail.." FailPoints.")
 				return true
 			end
 			
 			if data.failpoints[param2] ~= nil and data.failpoints[param2] > 0 then
-				core.chat_send_player(name,"-FP- Player "..param2.." owns "..data.failpoints[param2].." FailPoints.")
+				minetest.chat_send_player(name,"-FP- Player "..param2.." owns "..data.failpoints[param2].." FailPoints.")
 			else
-				core.chat_send_player(name,"-FP- Player "..param2.." doesn't seem to own any FailPoint.")
+				minetest.chat_send_player(name,"-FP- Player "..param2.." doesn't seem to own any FailPoint.")
 			end
 		else
 		
@@ -145,14 +145,14 @@ minetest.register_chatcommand("fail", {
 			end
 
 			if not data.is_player_available(param) then
-				core.chat_send_player(name,"-FP- You failed: Sorry, "..param.." isn't online.")
+				minetest.chat_send_player(name,"-FP- You failed: Sorry, "..param.." isn't online.")
 				return false
 			end
 		
 			-- Take, or not, failpoints from name's account to give them to param
 			if minetest.get_player_privs(name)["fp_create"] ~= true then
 				if data.failpoints[name] == nil or data.failpoints[name] == 0 then
-					core.chat_send_player(name,"You failed: You don't have enough failpoints..")
+					minetest.chat_send_player(name,"You failed: You don't have enough failpoints..")
 					return false
 				elseif data.failpoints[name] > 0 then
 					data.failpoints[name] = data.failpoints[name] -1
@@ -181,7 +181,7 @@ minetest.register_chatcommand("fail", {
 				end
 			end
 			data.send_func(param,"Congratulations "..param..", you win a failpoint" .. message_reason)
-			core.chat_send_player(name,"FP sent.")
+			minetest.chat_send_player(name,"FP sent.")
 		end
 	end
 })
