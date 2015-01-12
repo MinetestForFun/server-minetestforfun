@@ -950,7 +950,7 @@ minetest.register_tool("nether:sword_netherrack", {
 	description = "Netherrack Sword",
 	inventory_image = "nether_sword_netherrack.png",
 	tool_capabilities = {
-		full_punch_interval = 1.0,
+		full_punch_interval = 0.9,
 		max_drop_level=0,
 		groupcaps={
 			snappy={times={[2]=1.3, [3]=0.38}, uses=40, maxlevel=1},
@@ -963,7 +963,7 @@ minetest.register_tool("nether:sword_netherrack_blue", {
 	description = "Blue Netherrack Sword",
 	inventory_image = "nether_sword_netherrack_blue.png",
 	tool_capabilities = {
-		full_punch_interval = 0.8,
+		full_punch_interval = 0.7,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.1, [3]=0.33}, uses=40, maxlevel=2},
@@ -977,7 +977,7 @@ minetest.register_tool("nether:sword_white", {
 	inventory_image = "nether_sword_white.png",
 	wield_image = "nether_sword_white.png^[transformR90",
 	tool_capabilities = {
-		full_punch_interval = 0.7,
+		full_punch_interval = 0.6,
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=1.7, [2]=0.8, [3]=0.2}, uses=100, maxlevel=3},
