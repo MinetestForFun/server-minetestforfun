@@ -368,6 +368,7 @@ function hud.handle_node_actions(pos, oldnode, player, ext)
 		new = HUD_HUNGER_EXHAUST_MOVE
 	end
 	if exhaus == nil then return end
+	print("zerobin")
 	print(exhaus) -- If exhaus goes through the condition
 	exhaus = exhaus + new
 	if exhaus > HUD_HUNGER_EXHAUST_LVL then
