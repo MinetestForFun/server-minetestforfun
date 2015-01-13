@@ -352,7 +352,7 @@ end
 
 -- player-action based hunger changes
 function hud.handle_node_actions(pos, oldnode, player, ext)
-	if not player or not player:is_player() then
+	--[[if not player or not player:is_player() then
 		return
 	end
 	local name = player:get_player_name()
@@ -379,7 +379,7 @@ function hud.handle_node_actions(pos, oldnode, player, ext)
 		hud.hunger[name] = h
 		hud.set_hunger(player)
 	end
-	hud.exhaustion[name] = exhaus
+	hud.exhaustion[name] = exhaus]]
 end
 
 minetest.register_on_placenode(hud.handle_node_actions)
