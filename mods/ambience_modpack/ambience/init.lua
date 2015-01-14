@@ -236,15 +236,15 @@ local is_daytime = function()
 end
 
 local nodes_in_range = function(pos, search_distance, node_name)
-	minp = {x=pos.x-search_distance,y=pos.y-search_distance, z=pos.z-search_distance}
-	maxp = {x=pos.x+search_distance,y=pos.y+search_distance, z=pos.z+search_distance}
-	nodes = minetest.find_nodes_in_area(minp, maxp, node_name)
+	local minp = {x=pos.x-search_distance,y=pos.y-search_distance, z=pos.z-search_distance}
+	local maxp = {x=pos.x+search_distance,y=pos.y+search_distance, z=pos.z+search_distance}
+	local nodes = minetest.find_nodes_in_area(minp, maxp, node_name)
 	--minetest.chat_send_all("Found (" .. node_name .. ": " .. #nodes .. ")")
 	return #nodes
 end
 
 local nodes_in_coords = function(minp, maxp, node_name)
-	nodes = minetest.find_nodes_in_area(minp, maxp, node_name)
+	local nodes = minetest.find_nodes_in_area(minp, maxp, node_name)
 	--minetest.chat_send_all("Found (" .. node_name .. ": " .. #nodes .. ")")
 	return #nodes
 end
@@ -394,11 +394,11 @@ local get_ambience = function(player)
 --	minetest.chat_send_all("n3uf:" ..node_3_under_feet)
 --	
 	local air_or_ignore = {air=true,ignore=true}
-	minp = {x=pos.x-3,y=pos.y-4, z=pos.z-3}
-	maxp = {x=pos.x+3,y=pos.y-1, z=pos.z+3}
+	local minp = {x=pos.x-3,y=pos.y-4, z=pos.z-3}
+	local maxp = {x=pos.x+3,y=pos.y-1, z=pos.z+3}
 	local air_under_player = nodes_in_coords(minp, maxp, "air")
 	local ignore_under_player = nodes_in_coords(minp, maxp, "ignore")
-	air_plus_ignore_under = air_under_player + ignore_under_player
+	local air_plus_ignore_under = air_under_player + ignore_under_player
 --	minetest.chat_send_all("airUnder:" ..air_under_player)
 --	minetest.chat_send_all("ignoreUnder:" ..ignore_under_player)
 --	minetest.chat_send_all("a+i:" ..air_plus_ignore_under)
@@ -448,7 +448,7 @@ local get_ambience = function(player)
 	end
 	
 	
-	desert_in_range = (nodes_in_range(pos, 6, "default:desert_sand")+nodes_in_range(pos, 6, "default:desert_stone"))
+	local desert_in_range = (nodes_in_range(pos, 6, "default:desert_sand")+nodes_in_range(pos, 6, "default:desert_stone"))
 	--minetest.chat_send_all("desertcount: " .. desert_in_range .. ",".. pos.y )
 	if  desert_in_range >250 then
 		if music then
