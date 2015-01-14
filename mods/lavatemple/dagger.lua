@@ -3,13 +3,13 @@
 minetest.register_globalstep(function(dtime)
 	local players  = minetest.get_connected_players()
 	for i,player in ipairs(players) do
-		target = lavatemple.mapgen_data.pos;
+		local target = lavatemple.mapgen_data.pos;
 		if not target then return end
-		pos = player:getpos()
-		dir = player:get_look_yaw()
+		local pos = player:getpos()
+		local dir = player:get_look_yaw()
 		local angle_north = math.deg(math.atan2(target.x - pos.x, target.z - pos.z))
 		if angle_north < 0 then angle_north = angle_north + 360 end
-		angle_dir = 90 - math.deg(dir)
+		local angle_dir = 90 - math.deg(dir)
 		local angle_relative = (angle_north - angle_dir) % 360
 		local compass_image = math.floor((angle_relative/30) + 0.5)%12
 

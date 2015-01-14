@@ -29,7 +29,7 @@ minetest.register_entity(":__builtin:falling_node", {
 			item_texture = minetest.registered_items[itemname].inventory_image
 			item_type = minetest.registered_items[itemname].type
 		end
-		prop = {
+		local prop = {
 			is_visible = true,
 			textures = {node.name},
 		}
