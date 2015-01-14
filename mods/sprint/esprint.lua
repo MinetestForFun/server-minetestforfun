@@ -12,7 +12,6 @@ local staminaHud = {}
 
 minetest.register_on_joinplayer(function(player)
 	local playerName = player:get_player_name()
-	print("playename: " ..playerName)
 	players[playerName] = {
 		sprinting = false,
 		timeOut = 0, 
