@@ -30,7 +30,7 @@ minetest.register_entity(":__builtin:item", {
 			item_texture = minetest.registered_items[itemname].inventory_image
 			item_type = minetest.registered_items[itemname].type
 		end
-		prop = {
+		local prop = {
 			is_visible = true,
 			visual = "sprite",
 			textures = {"unknown_item.png"}

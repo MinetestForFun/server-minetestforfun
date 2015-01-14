@@ -1,6 +1,6 @@
 
 function spawn_falling_node(p, node, owners)
-	obj = minetest.add_entity(p, "__builtin:falling_node")
+	local obj = minetest.add_entity(p, "__builtin:falling_node")
 	obj:get_luaentity():set_node(node)
 	obj:get_luaentity():set_owner(owners)
 end
@@ -52,10 +52,10 @@ end
 --
 
 function nodeupdate_single(p, delay)
-	n = minetest.get_node(p)
+	local n = minetest.get_node(p)
 	if minetest.get_item_group(n.name, "falling_node") ~= 0 then
-		p_bottom = {x=p.x, y=p.y-1, z=p.z}
-		n_bottom = minetest.get_node(p_bottom)
+		local p_bottom = {x=p.x, y=p.y-1, z=p.z}
+		local n_bottom = minetest.get_node(p_bottom)
 		-- Note: walkable is in the node definition, not in item groups
 		if minetest.registered_nodes[n_bottom.name] and
 				(minetest.get_item_group(n.name, "float") == 0 or
