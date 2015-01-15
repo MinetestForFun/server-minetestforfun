@@ -51,6 +51,7 @@ function pipeworks.fix_image_names(table, replacement)
 end
 
 function pipeworks.add_node_box(t, b)
+	if not t or not b then return end
 	for i in ipairs(b)
 		do table.insert(t, b[i])
 	end

@@ -8,13 +8,7 @@ local pipes_full_nodenames = {}
 local vti = {4, 3, 2, 1, 6, 5}
 local cconnects = {{}, {1}, {1, 2}, {1, 3}, {1, 3, 5}, {1, 2, 3}, {1, 2, 3, 5}, {1, 2, 3, 4}, {1, 2, 3, 4, 5}, {1, 2, 3, 4, 5, 6}}
 for index, connects in ipairs(cconnects) do
-	local outboxes = {}
 	local outsel = {}
-	local outimgs = {}
-	
-	for i = 1, 6 do
-		outimgs[vti[i]] = "pipeworks_plain.png"
-	end
 	
 	local jx = 0
 	local jy = 0
@@ -27,24 +21,12 @@ for index, connects in ipairs(cconnects) do
 		else
 			jz = jz + 1
 		end
-		pipeworks.add_node_box(outboxes, pipeworks.pipe_boxes[v])
 		table.insert(outsel, pipeworks.pipe_selectboxes[v])
-		outimgs[vti[v]] = "pipeworks_pipe_end.png"
 	end
 
 	if #connects == 1 then
 		local v = connects[1]
 		v = v-1 + 2*(v%2) -- Opposite side
-		outimgs[vti[v]] = "^pipeworks_plain.png"
-	end
-
-	if #connects >= 2 then
-		pipeworks.add_node_box(outboxes, pipeworks.pipe_bendsphere)
-	end
-	
-	if jx == 2 and jy ~= 2 and jz ~= 2 then
-		outimgs[5] = pipeworks.liquid_texture.."^pipeworks_windowed_XXXXX.png"
-		outimgs[6] = outimgs[5]
 	end
 	
 	local pgroups = {snappy = 3, pipe = 1, not_in_creative_inventory = 1}
@@ -57,24 +39,37 @@ for index, connects in ipairs(cconnects) do
 		image = "pipeworks_pipe_inv.png"
 	end
 	
-	--table.insert(pipeworks.tubenodes, name.."_"..tname)
-	
+	local outimg_e = { "pipeworks_pipe_plain.png" }
+	local outimg_l = { "pipeworks_pipe_plain.png" }
+
+	if index == 3 then 
+		outimg_e = { "pipeworks_pipe_3_empty.png" }
+		outimg_l = { "pipeworks_pipe_3_loaded.png" }
+	end
+
+	local mesh = "pipeworks_pipe_"..index..".obj"
+
+	if index == 1 then
+		mesh = "pipeworks_pipe_3.obj"
+	end
+
 	minetest.register_node("pipeworks:pipe_"..index.."_empty", {
 		description = pipedesc,
-		drawtype = "nodebox",
-		tiles = pipeworks.fix_image_names(outimgs, "_empty"),
+		drawtype = "mesh",
+		mesh = mesh,
+		tiles = outimg_e,
 		sunlight_propagates = true,
 		inventory_image = image,
 		wield_image = image,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		selection_box = {
-	             	type = "fixed",
+			type = "fixed",
 			fixed = outsel
 		},
-		node_box = {
+		collision_box = {
 			type = "fixed",
-			fixed = outboxes
+			fixed = outsel
 		},
 		groups = pgroups,
 		sounds = default.node_sound_wood_defaults(),
@@ -92,18 +87,19 @@ for index, connects in ipairs(cconnects) do
 
 	minetest.register_node("pipeworks:pipe_"..index.."_loaded", {
 		description = pipedesc,
-		drawtype = "nodebox",
-		tiles = pipeworks.fix_image_names(outimgs, "_loaded"),
+		drawtype = "mesh",
+		mesh = mesh,
+		tiles = outimg_l,
 		sunlight_propagates = true,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		selection_box = {
-	             	type = "fixed",
+			type = "fixed",
 			fixed = outsel
 		},
-		node_box = {
+		collision_box = {
 			type = "fixed",
-			fixed = outboxes
+			fixed = outsel
 		},
 		groups = pgroups,
 		sounds = default.node_sound_wood_defaults(),
