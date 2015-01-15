@@ -252,14 +252,14 @@ end
 local atleast_nodes_in_grid = function(pos, search_distance, height, node_name, threshold)
 	counter = counter +1
 --	minetest.chat_send_all("counter: (" .. counter .. ")")
-	minp = {x=pos.x-search_distance,y=height, z=pos.z+20}
-	maxp = {x=pos.x+search_distance,y=height, z=pos.z+20}
-	nodes = minetest.find_nodes_in_area(minp, maxp, node_name)
+	local minp = {x=pos.x-search_distance,y=height, z=pos.z+20}
+	local maxp = {x=pos.x+search_distance,y=height, z=pos.z+20}
+	local nodes = minetest.find_nodes_in_area(minp, maxp, node_name)
 --	minetest.chat_send_all("z+Found (" .. node_name .. ": " .. #nodes .. ")")
 	if #nodes >= threshold then
 		return true
 	end
-	totalnodes = #nodes
+	local totalnodes = #nodes
 	minp = {x=pos.x-search_distance,y=height, z=pos.z-20}
 	maxp = {x=pos.x+search_distance,y=height, z=pos.z-20}
 	nodes = minetest.find_nodes_in_area(minp, maxp, node_name)
