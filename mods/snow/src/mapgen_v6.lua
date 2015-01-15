@@ -106,7 +106,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local plain = biome == 2 -- spawns not much
 	local alpine = biome == 3 -- rocky terrain
 	-- Water biomes
-	biome2 = pr:next(1, 5)
+	local biome2 = pr:next(1, 5)
 	local cool = biome == 1  -- only spawns ice on edge of water
 	local icebergs = biome == 2
 	local icesheet = biome == 3
