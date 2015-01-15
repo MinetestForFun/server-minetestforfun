@@ -127,7 +127,7 @@ minetest.register_entity("clams:whiteshell", {
 				self.phase = 0
 			end
 			self.object:setsprite({x=0, y=self.phase})
-			phasearmor = {
+			local phasearmor = {
 				[0]={fleshy=0},
 				[1]={fleshy=30},
 				[2]={fleshy=70}
