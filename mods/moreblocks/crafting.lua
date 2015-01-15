@@ -1,9 +1,4 @@
---[[
-More Blocks: crafting recipes
-
-Copyright (c) 2011-2015 Calinou and contributors.
-Licensed under the zlib license. See LICENSE.md for more information.
---]]
+-- Crafting
 
 minetest.register_craft({
 	output = "default:stick",
