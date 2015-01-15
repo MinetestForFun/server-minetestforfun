@@ -1,4 +1,9 @@
--- Aliases
+--[[
+Map Tools: alias definitions
+
+Copyright (c) 2012-2015 Calinou and contributors.
+Licensed under the zlib license. See LICENSE.md for more information.
+--]]
 
 minetest.register_alias("adminpick", "maptools:pick_admin")
 minetest.register_alias("adminpickaxe", "maptools:pick_admin")
@@ -68,8 +73,6 @@ minetest.register_alias("fakefire", "maptools:fake_fire")
 minetest.register_alias("fake_fire", "maptools:fake_fire")
 minetest.register_alias("ffire", "maptools:fake_fire")
 minetest.register_alias("igniter", "maptools:igniter")
-
--- Unbreakable block aliases
 
 minetest.register_alias("stone_u", "maptools:stone")
 minetest.register_alias("tree_u", "maptools:tree")
