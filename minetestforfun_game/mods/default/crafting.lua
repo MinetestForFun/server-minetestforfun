@@ -630,7 +630,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "maptools:superapple",
 	type = "shapeless",
-	recipe = {"default:apple", "default:mese_crystal_fragment", "default:mese_crystal_fragment"},
+	recipe = {"default:apple", "default:mese", "default:mese"},
 })
 
 minetest.register_craft({
