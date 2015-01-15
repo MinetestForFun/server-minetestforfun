@@ -1,3 +1,10 @@
+--[[
+More Blocks: Stairs+
+
+Copyright (c) 2011-2015 Calinou and contributors.
+Licensed under the zlib license. See LICENSE.md for more information.
+--]]
+
 -- Nodes will be called <modname>:{stair,slab,panel,micro}_<subname>
 
 local modpath = minetest.get_modpath("moreblocks").. "/stairsplus"
@@ -18,6 +25,7 @@ function stairsplus:register_all(modname, subname, recipeitem, fields)
 	end
 	self:register_stair(modname, subname, recipeitem, fields)
 	self:register_slab (modname, subname, recipeitem, fields)
+	self:register_slope(modname, subname, recipeitem, fields)
 	self:register_panel(modname, subname, recipeitem, fields)
 	self:register_micro(modname, subname, recipeitem, fields)
 	-- self:register_6dfacedir_conversion(modname, subname) -- Not needed as of Q3 2013, uncomment to fix old maps.
@@ -36,8 +44,9 @@ end
 
 -- dofile(modpath.. "/aliases.lua") -- Not needed as of Q2 2013, uncomment to fix old maps.
 -- dofile(modpath.. "/conversion.lua") -- Not needed as of Q2 2013, uncomment to fix old maps.
-dofile(modpath.. "/stairs.lua")
-dofile(modpath.. "/slabs.lua")
-dofile(modpath.. "/panels.lua")
-dofile(modpath.. "/microblocks.lua")
-dofile(modpath.. "/registrations.lua")
+dofile(modpath .. "/stairs.lua")
+dofile(modpath .. "/slabs.lua")
+dofile(modpath .. "/slopes.lua")
+dofile(modpath .. "/panels.lua")
+dofile(modpath .. "/microblocks.lua")
+dofile(modpath .. "/registrations.lua")
