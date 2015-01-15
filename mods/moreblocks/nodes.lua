@@ -1,11 +1,4 @@
---[[
-More Blocks: node definitions
-
-Copyright (c) 2011-2015 Calinou and contributors.
-Licensed under the zlib license. See LICENSE.md for more information.
---]]
-
-local S = moreblocks.intllib
+local S = moreblocks.gettext
 
 local sound_wood = default.node_sound_wood_defaults()
 local sound_stone = default.node_sound_stone_defaults()
@@ -121,11 +114,6 @@ local nodes = {
 	["tar"] = {
 		description = S("Tar"),
 		groups = {cracky = 2},
-		sounds = sound_stone,
-	},
-	["cobble_compressed"] = {
-		description = S("Compressed Cobblestone"),
-		groups = {cracky = 1},
 		sounds = sound_stone,
 	},
 	["plankstone"] = {

@@ -1,12 +1,4 @@
---[[
-More Blocks: circular saw
-
-Copyright (c) 2011-2015 Calinou and contributors.
-Licensed under the zlib license. See LICENSE.md for more information.
---]]
-
-local S = moreblocks.intllib
-
+local S = moreblocks.gettext
 circular_saw = {}
 
 circular_saw.known_stairs = setmetatable({}, {
