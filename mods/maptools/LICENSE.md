@@ -1,8 +1,9 @@
-+---- zlib/libpng license ----+
+zlib license
+============
 
-Copyright (c) 2013 Calinou
+Copyright (c) 2012-2015 Calinou and contributors
 
-This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
+**This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.**
 
 Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
 
