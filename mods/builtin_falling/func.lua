@@ -169,7 +169,7 @@ function add_protected_bukket_liquid(nameofbukket,liquidsourcename)
 				return
 			end
 			-- Check if pointing to a buildable node
-			n = minetest.get_node(pointed_thing.under)
+			local n = minetest.get_node(pointed_thing.under)
 			
 			if is_protected_area(pointed_thing.under, 7 ,user:get_player_name()) then
 				minetest.chat_send_player(user:get_player_name(),"You cant place here - Too short of a protected area.")
