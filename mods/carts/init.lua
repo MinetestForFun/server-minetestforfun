@@ -543,6 +543,9 @@ function cart:on_step(dtime)
       self.yawtarget=newyaw  -- Set new target.
       -- minetest.log("action", "--Cart yawtarget set "..self.yawtarget)
     end
+    if self.driver:get_look_yaw() == nil then
+        return
+    end
     local playeryaw=self.driver:get_look_yaw()-1.57
     if playeryaw<0 then playeryaw=playeryaw+(math.pi*2) end
     if self.yawtarget and playeryaw ~= self.yawtarget  then
