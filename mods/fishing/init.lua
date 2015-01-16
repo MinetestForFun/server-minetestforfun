@@ -26,6 +26,15 @@ local mname		= "fishing"
 
 -----------------------------------------------------------------------------------------------
 
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if (minetest.get_modpath("intllib")) then
+  dofile(minetest.get_modpath("intllib").."/intllib.lua")
+  S = intllib.Getter(minetest.get_current_modname())
+else
+  S = function ( s ) return s end
+end
+
 dofile(minetest.get_modpath("fishing").."/settings.txt")
 dofile(minetest.get_modpath("fishing").."/bobber.lua")
 dofile(minetest.get_modpath("fishing").."/bobber_shark.lua")
@@ -45,7 +54,7 @@ end
 
 minetest.register_tool("fishing:pole", {
 
-	description = "Fishing Pole",
+	description = S("Fishing Pole"),
 	groups = {},
 	inventory_image = "fishing_pole.png",
 	wield_image = "fishing_pole.png^[transformFXR270",
@@ -117,7 +126,7 @@ minetest.register_tool("fishing:pole", {
 
 if SIMPLE_DECO_FISHING_POLE == true then
 minetest.register_node("fishing:pole_deco", {
-	description = "Fishing Pole",
+	description = S("Fishing Pole"),
 	inventory_image = "fishing_pole.png",
 	wield_image = "fishing_pole.png^[transformFXR270",
 	drawtype = "nodebox",
@@ -159,7 +168,7 @@ minetest.register_node("fishing:pole_deco", {
 
 else
 minetest.register_node("fishing:pole_deco", {
-	description = "Fishing Pole",
+	description = S("Fishing Pole"),
 	inventory_image = "fishing_pole.png",
 	wield_image = "fishing_pole.png^[transformFXR270",
 	drawtype = "nodebox",
@@ -229,7 +238,7 @@ end
 if NEW_WORM_SOURCE == false then
 
 minetest.register_node(":default:dirt", {
-	description = "Dirt",
+	description = S("Dirt"),
 	tiles = {"default_dirt.png"},
 	is_ground_content = true,
 	groups = {crumbly=3},
@@ -310,28 +319,28 @@ end
 
 -- didn't change the hoes, just here because hoe_on_use is local
 minetest.register_tool(":farming:hoe_wood", {
-	description = "Wooden Hoe",
+	description = S("Wooden Hoe"),
 	inventory_image = "farming_tool_woodhoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		return hoe_on_use(itemstack, user, pointed_thing, 30)
 	end,
 })
 minetest.register_tool(":farming:hoe_stone", {
-	description = "Stone Hoe",
+	description = S("Stone Hoe"),
 	inventory_image = "farming_tool_stonehoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		return hoe_on_use(itemstack, user, pointed_thing, 90)
 	end,
 })
 minetest.register_tool(":farming:hoe_steel", {
-	description = "Steel Hoe",
+	description = S("Steel Hoe"),
 	inventory_image = "farming_tool_steelhoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		return hoe_on_use(itemstack, user, pointed_thing, 200)
 	end,
 })
 minetest.register_tool(":farming:hoe_bronze", {
-	description = "Bronze Hoe",
+	description = S("Bronze Hoe"),
 	inventory_image = "farming_tool_bronzehoe.png",
 	on_use = function(itemstack, user, pointed_thing)
 		return hoe_on_use(itemstack, user, pointed_thing, 220)

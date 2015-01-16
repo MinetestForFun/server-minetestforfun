@@ -1,0 +1,56 @@
+# Template
+
+### bobber.lua ###
+You caught a Fish. = 
+You caught a Clownfish. = 
+You caught a Blue white fish. = 
+You caught a Twig. = 
+You caught a Rat. = 
+You caught some Seaweed. = 
+You caught a Green Kelp. = 
+You caught a String. = 
+You caught an old Fishing Pole. = 
+You caught some very old Boots. = 
+You caught a Waterlily. = 
+You didn't catch anything. = 
+The bait is still there. = 
+Your fish escaped. = 
+
+### bobber_shark.lua ###
+You caught small Shark. = 
+You caught a Northern Pike. = 
+You didn't catch any fish. = 
+
+### crafting.lua ###
+### fishes.lua ###
+Fish = 
+Roasted Fish =
+Sushi (Hoso Maki) =
+Shark =
+Roasted Shark =
+Northern Pike =
+Roasted Northern Pike =
+
+### init.lua ###
+Fishing Pole =
+Dirt =
+Wooden Hoe =
+Stone Hoe =
+Steel Hoe =
+Bronze Hoe =
+
+### trophies.lua ###
+Fish Trophy =
+Northern Pike Trophy =
+Shark Trophy =
+Clownfish Trophy =
+Blue white fish Trophy =
+Trophy =
+This Huge Fish was caught by the Famous Angler %s ! = 
+This Huge Northern Pike was caught by the Famous Angler %s ! = 
+This Huge Shark was caught by the Famous Angler %s ! = 
+This Huge Clownfish was caught by the Famous Angler %s ! = 
+This Huge Blue white fish was caught by the Famous Angler %s ! = 
+
+### worms.lua ###
+Worm =
