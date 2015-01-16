@@ -552,7 +552,7 @@ function cart:on_step(dtime)
       elseif diff<(-math.pi) then
 	diff=diff+(2*math.pi)
       end
-      yawdir=cart_func:get_sign(diff)
+      local yawdir=cart_func:get_sign(diff)
       local step=self.YAW_STEP
       if math.abs(diff)<=self.YAW_STEP then
       step=diff
