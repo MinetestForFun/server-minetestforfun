@@ -5,6 +5,15 @@
 -- Supports:				animal_clownfish, animal_fish_blue_white
 -----------------------------------------------------------------------------------------------
 
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if (minetest.get_modpath("intllib")) then
+  dofile(minetest.get_modpath("intllib").."/intllib.lua")
+  S = intllib.Getter(minetest.get_current_modname())
+else
+  S = function ( s ) return s end
+end
+
 local TRoPHY = {
 --	  MoD						 iTeM				 NaMe				iCoN
     {"fishing",  				"fish_raw",			"Fish",				"fishing_fish.png"},
@@ -27,7 +36,7 @@ for i in pairs(TRoPHY) do
 	local 	NaMe = 			TRoPHY[i][3]
 	local 	iCoN = 			TRoPHY[i][4]
 	minetest.register_node("fishing:trophy_"..iTeM, {
-		description = NaMe.." Trophy",
+		description = S(NaMe.." Trophy"),
 		inventory_image = "default_chest_top.png^"..iCoN.."^fishing_trophy_label.png",
 		drawtype = "nodebox",
 		tiles = {
@@ -58,9 +67,8 @@ for i in pairs(TRoPHY) do
 		sounds = default.node_sound_wood_defaults(),
 		after_place_node = function(pos, placer)
 			local meta = minetest.get_meta(pos)
-			meta:set_string("owner", placer:get_player_name() or "")
-			meta:set_string("infotext", "This Huge "..NaMe.." was caught by the Famous Angler "..
-				meta:get_string("owner").."!")
+			meta:set_string("owner",  placer:get_player_name() or "")
+			meta:set_string("infotext",  S("This Huge "..NaMe.." was caught by the Famous Angler %s !"):format((placer:get_player_name() or "")))
 		end,
 		on_construct = function(pos)
 			local meta = minetest.get_meta(pos)

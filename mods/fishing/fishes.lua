@@ -3,11 +3,20 @@
 -- License (code & textures): 	WTFPL
 -----------------------------------------------------------------------------------------------
 
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if (minetest.get_modpath("intllib")) then
+  dofile(minetest.get_modpath("intllib").."/intllib.lua")
+  S = intllib.Getter(minetest.get_current_modname())
+else
+  S = function ( s ) return s end
+end
+
 -----------------------------------------------------------------------------------------------
 -- Fish
 -----------------------------------------------------------------------------------------------
 minetest.register_craftitem("fishing:fish_raw", {
-	description = "Fish",
+	description = S("Fish"),
     groups = {},
     inventory_image = "fishing_fish.png",
 	 on_use = minetest.item_eat(2),
@@ -16,7 +25,7 @@ minetest.register_craftitem("fishing:fish_raw", {
 	-- Roasted Fish
 	-----------------------------------------------------
 	minetest.register_craftitem("fishing:fish", {
-		description = "Roasted Fish",
+		description = S("Roasted Fish"),
 		groups = {},
 		inventory_image = "fishing_fish_cooked.png",
 		on_use = minetest.item_eat(4),
@@ -25,7 +34,7 @@ minetest.register_craftitem("fishing:fish_raw", {
 	-- Sushi
 	-----------------------------------------------------
 	minetest.register_craftitem("fishing:sushi", {
-		description = "Sushi (Hoso Maki)",
+		description = S("Sushi (Hoso Maki)"),
 		groups = {},
 		inventory_image = "fishing_sushi.png",
 		on_use = minetest.item_eat(6),
@@ -35,7 +44,7 @@ minetest.register_craftitem("fishing:fish_raw", {
 -- Whatthef... it's a freakin' Shark!
 -----------------------------------------------------------------------------------------------
 minetest.register_craftitem("fishing:shark", {
-	description = "Shark",
+	description = S("Shark"),
     groups = {},
     inventory_image = "fishing_shark.png",
 	 on_use = minetest.item_eat(2),
@@ -44,7 +53,7 @@ minetest.register_craftitem("fishing:shark", {
 	-- Roasted Shark
 	-----------------------------------------------------
 	minetest.register_craftitem("fishing:shark_cooked", {
-		description = "Roasted Shark",
+		description = S("Roasted Shark"),
 		groups = {},
 		inventory_image = "fishing_shark_cooked.png",
 		on_use = minetest.item_eat(6),
@@ -54,7 +63,7 @@ minetest.register_craftitem("fishing:shark", {
 -- Pike
 -----------------------------------------------------------------------------------------------
 minetest.register_craftitem("fishing:pike", {
-	description = "Northern Pike",
+	description = S("Northern Pike"),
     groups = {},
     inventory_image = "fishing_pike.png",
 	 on_use = minetest.item_eat(2),
@@ -63,7 +72,7 @@ minetest.register_craftitem("fishing:pike", {
 	-- Roasted Pike
 	-----------------------------------------------------
 	minetest.register_craftitem("fishing:pike_cooked", {
-		description = "Roasted Northern Pike",
+		description = S("Roasted Northern Pike"),
 		groups = {},
 		inventory_image = "fishing_pike_cooked.png",
 		on_use = minetest.item_eat(6),

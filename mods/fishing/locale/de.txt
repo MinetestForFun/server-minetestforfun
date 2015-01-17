@@ -1,0 +1,56 @@
+# Translation by Xanthin
+
+### bobber.lua ###
+You caught a Fish. = Du hast einen Fisch gefangen.
+You caught a Clownfish. = Du hast einen Clownfisch gefangen.
+You caught a Blue white fish. = Du hast einen blau-weissen Fisch gefangen.
+You caught a Twig. = Du hast einen Zweig gefangen.
+You caught a Rat. = Du hast eine Ratte gefangen.
+You caught some Seaweed. = Du hast etwas Seetang gefangen.
+You caught a Green Kelp. = Du hast etwas gruenen Kelp gefangen.
+You caught a String. = Du hast eine Schnur gefangen.
+You caught an old Fishing Pole. = Du hast eine alte Angelrute gefangen.
+You caught some very old Boots. = Du hast ein Paar sehr alte Schuhe gefangen.
+You caught a Waterlily. = Du hast eine Seerose gefangen.
+You didn't catch anything. = Du hast nichts gefangen.
+The bait is still there. = Der Koeder ist noch vorhanden.
+Your fish escaped. = Dein Fisch ist entkommen.
+
+### bobber_shark.lua ###
+You caught a small Shark. = Du hast einen kleinen Hai gefangen.
+You caught a Northern Pike. = Du hast einen Hecht gefangen.
+You didn't catch any fish. = Du hast keinen Fisch gefangen.
+
+### crafting.lua ###
+### fishes.lua ###
+Fish = Fisch
+Roasted Fish = Gebratener Fisch
+Sushi (Hoso Maki) = Sushi (Hoso Maki)
+Shark = Hai
+Roasted Shark = Gebratener Hai
+Northern Pike = Hecht
+Roasted Northern Pike = Gebratener Hecht
+
+### init.lua ###
+Fishing Pole = Angelrute
+Dirt = Erde
+Wooden Hoe = Holzhacke
+Stone Hoe = Steinhacke
+Steel Hoe = Stahlhacke
+Bronze Hoe = Bronzehacke
+
+### trophies.lua ###
+Fish Trophy = Fisch-Trophaee
+Northern Pike Trophy = Hecht-Trophaee
+Shark Trophy = Hai-Trophaee
+Clownfish Trophy = Clownfisch-Trophaee
+Blue white fish Trophy = Blau-weisser-Fisch-Trophaee
+Trophy = Trophaee
+This Huge Fish was caught by the Famous Angler %s ! = Dieser riesige Fisch wurde vom beruehmten Angler %s gefangen!
+This Huge Northern Pike was caught by the Famous Angler %s ! = Dieser riesige Hecht wurde vom beruehmten Angler %s gefangen!
+This Huge Shark was caught by the Famous Angler %s ! = Dieser riesige Hai wurde vom beruehmten Angler %s gefangen!
+This Huge Clownfish was caught by the Famous Angler %s ! = Dieser riesige Clownfisch wurde vom beruehmten Angler %s gefangen!
+This Huge Blue white fish was caught by the Famous Angler %s ! = Dieser riesige blau-weisse Fisch wurde vom beruehmten Angler %s gefangen!
+
+### worms.lua ###
+Worm = Wurm

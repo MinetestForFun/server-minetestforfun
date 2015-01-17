@@ -3,6 +3,15 @@
 -- License (code & textures): 	WTFPL
 -----------------------------------------------------------------------------------------------
 
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if (minetest.get_modpath("intllib")) then
+  dofile(minetest.get_modpath("intllib").."/intllib.lua")
+  S = intllib.Getter(minetest.get_current_modname())
+else
+  S = function ( s ) return s end
+end
+
 -- Here's what you can catch if you use a fish as bait
 local CaTCH_BiG = {
 --	  MoD 						 iTeM				WeaR		 MeSSaGe ("You caught "..)	GeTBaiTBack		NRMiN  	CHaNCe (../120)
@@ -54,7 +63,7 @@ local FISHING_BOBBER_ENTITY_SHARK={
 --	DESTROY BOBBER WHEN PUNCHING IT
 	on_punch = function (self, puncher, time_from_last_punch, tool_capabilities, dir)
 		local player = puncher:get_player_name()
-		if MESSAGES == true then minetest.chat_send_player(player, "Your fish escaped.", false) end -- fish escaped
+		if MESSAGES == true then minetest.chat_send_player(player, S("Your fish escaped."), false) end -- fish escaped
 		minetest.sound_play("fishing_bobber1", {
 			pos = self.object:getpos(),
 			gain = 0.5,
@@ -79,12 +88,12 @@ local FISHING_BOBBER_ENTITY_SHARK={
 						minetest.add_node({x=pos.x, y=pos.y, z=pos.z}, {name="air"})
 						if inv:room_for_item("main", {name=DRoP, count=1, wear=0, metadata=""}) then
 							inv:add_item("main", {name=DRoP, count=1, wear=0, metadata=""})
-							if MESSAGES == true then say(player, "You caught "..MeSSaGe, false) end -- caught Plant				
+							if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught Plant				
 						end
 						if not minetest.setting_getbool("creative_mode") then
 							if inv:room_for_item("main", {name="fishing:fish_raw", count=1, wear=0, metadata=""}) then
 								inv:add_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""})
-								if MESSAGES == true then say(player, "The bait is still there.", false) end -- bait still there
+								if MESSAGES == true then say(player, S("The bait is still there."), false) end -- bait still there
 							end
 						end
 					end
@@ -93,7 +102,7 @@ local FISHING_BOBBER_ENTITY_SHARK={
 			--elseif minetest.get_node(pos).name == "air" then
 			if self.object:get_hp() <= 300 then
 				if math.random(1, 100) < SHARK_CHANCE then
-					local 	chance = 		math.random(1, 5) -- ><((((บ>
+					local 	chance = 		math.random(1, 5) -- ><((((ยบ>
 					for i in pairs(CaTCH_BiG) do
 						local 	MoD = 			CaTCH_BiG[i][1]
 						local 	iTeM = 			CaTCH_BiG[i][2]
@@ -107,13 +116,13 @@ local FISHING_BOBBER_ENTITY_SHARK={
 							if minetest.get_modpath(MoD) ~= nil then
 								if inv:room_for_item("main", {name=MoD..":"..iTeM, count=1, wear=WeaR, metadata=""}) then
 									inv:add_item("main", {name=MoD..":"..iTeM, count=1, wear=WeaR, metadata=""})
-									if MESSAGES == true then say(player, "You caught "..MeSSaGe, false) end -- caught somethin'					
+									if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught somethin'					
 								end
 								if not minetest.setting_getbool("creative_mode") then
 									if GeTBaiTBack == true then
 										if inv:room_for_item("main", {name="fishing:fish_raw", count=1, wear=0, metadata=""}) then
 											inv:add_item("main", {name="fishing:fish_raw", count=1, wear=0, metadata=""})
-											if MESSAGES == true then say(player, "The bait is still there.", false) end -- bait still there?
+											if MESSAGES == true then say(player, S("The bait is still there."), false) end -- bait still there?
 										end
 									end
 								end
@@ -121,23 +130,23 @@ local FISHING_BOBBER_ENTITY_SHARK={
 						end
 					end
 				else --if math.random(1, 100) > FISH_CHANCE then
-					if MESSAGES == true then say(player, "Your fish escaped.", false) end -- fish escaped
+					if MESSAGES == true then say(player, S("Your fish escaped."), false) end -- fish escaped
 				end
 			end
 			if self.object:get_hp() > 300 and minetest.get_node(pos).name == "air" then 
-				if MESSAGES == true then say(player, "You didn't catch any fish.", false) end -- fish escaped
+				if MESSAGES == true then say(player, S("You didn't catch any fish."), false) end -- fish escaped
 				if not minetest.setting_getbool("creative_mode") then
 					if math.random(1, 3) == 1 then
 						if inv:room_for_item("main", {name="fishing:fish_raw", count=1, wear=0, metadata=""}) then
 							inv:add_item("main", {name="fishing:fish_raw", count=1, wear=0, metadata=""})
-							if MESSAGES == true then say(player, "The bait is still there.", false) end -- bait still there
+							if MESSAGES == true then say(player, S("The bait is still there."), false) end -- bait still there
 						end	
 					end
 				end
 			end
 			--end
 		else 
-			if MESSAGES == true then say(player, "Your fish escaped.", false) end -- fish escaped		
+			if MESSAGES == true then say(player, S("Your fish escaped."), false) end -- fish escaped		
 		end
 		minetest.sound_play("fishing_bobber1", {
 			pos = self.object:getpos(),

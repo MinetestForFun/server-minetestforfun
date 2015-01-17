@@ -26,6 +26,12 @@ minetest.register_chatcommand("future_ban", {
             minetest.chat_send_player(name, "Future ban list: " .. dump(future_ban_list))
             return
         end
+        for _,n in ipairs(future_ban_list) do
+            if n == param then
+                minetest.chat_send_player(name, param .. " is already in future ban list.")
+                return
+            end
+        end
         if not minetest.get_player_by_name(param) then
             table.insert(future_ban_list, param)
             minetest.chat_send_player(name, param .. " to future ban list added.")
@@ -35,8 +41,8 @@ minetest.register_chatcommand("future_ban", {
         end
         if not minetest.ban_player(param) then
             table.insert(future_ban_list, param)
-            minetest.chat_send_player(name, desc .. " to future ban list added.")
-            minetest.log("action", name .. " added " .. desc .. " to future ban list.")
+            minetest.chat_send_player(name, param .. " to future ban list added.")
+            minetest.log("action", name .. " added " .. param .. " to future ban list.")
             save_file()
         else
             local desc = minetest.get_ban_description(param)

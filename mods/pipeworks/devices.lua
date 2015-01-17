@@ -39,7 +39,6 @@ local pipes_devicelist = {
 
 local states = { "on", "off" }
 local dgroups = ""
-local pumpboxes = {}
 
 for s in ipairs(states) do
 
@@ -49,32 +48,13 @@ for s in ipairs(states) do
 		dgroups = {snappy=3, pipe=1, not_in_creative_inventory=1}
 	end
 
-	pumpboxes = {}
-
-	pipeworks.add_node_box(pumpboxes, pipeworks.pipe_pumpbody)
-	pipeworks.add_node_box(pumpboxes, pipeworks.pipe_topstub)
-
 	minetest.register_node("pipeworks:pump_"..states[s], {
 		description = "Pump/Intake Module",
-		drawtype = "nodebox",
-		tiles = {
-			"pipeworks_pump_top.png",
-			"pipeworks_pump_bottom.png",
-			"pipeworks_pump_sides.png",
-			"pipeworks_pump_sides.png",
-			"pipeworks_pump_sides.png",
-			"pipeworks_pump_"..states[s]..".png"
-		},
+		drawtype = "mesh",
+		mesh = "pipeworks_pump.obj",
+		tiles = { "pipeworks_pump_"..states[s]..".png" },
 		paramtype = "light",
 		paramtype2 = "facedir",
-		selection_box = {
-	             	type = "fixed",
-			fixed = { -0.5, -0.5, -0.5, 0.5, 0.5, 0.5 }
-		},
-		node_box = {
-			type = "fixed",
-			fixed = pumpboxes
-		},
 		groups = dgroups,
 		sounds = default.node_sound_wood_defaults(),
 		walkable = true,
@@ -99,29 +79,11 @@ for s in ipairs(states) do
 		end
 	})
 	
-	local valveboxes = {}
-	pipeworks.add_node_box(valveboxes, pipeworks.pipe_leftstub)
-	pipeworks.add_node_box(valveboxes, pipeworks.pipe_valvebody)
-	if states[s] == "off" then 
-		pipeworks.add_node_box(valveboxes, pipeworks.pipe_valvehandle_off)
-	else
-		pipeworks.add_node_box(valveboxes, pipeworks.pipe_valvehandle_on)
-	end
-	pipeworks.add_node_box(valveboxes, pipeworks.pipe_rightstub)
-	local tilex = "pipeworks_valvebody_ends.png"
-	local tilez = "pipeworks_valvebody_sides.png"
-
 	minetest.register_node("pipeworks:valve_"..states[s].."_empty", {
 		description = "Valve",
-		drawtype = "nodebox",
-		tiles = {
-			"pipeworks_valvebody_top_"..states[s]..".png",
-			"pipeworks_valvebody_bottom.png",
-			tilex,
-			tilex,
-			tilez,
-			tilez,
-		},
+		drawtype = "mesh",
+		mesh = "pipeworks_valve_"..states[s]..".obj",
+		tiles = { "pipeworks_valve.png" },
 		sunlight_propagates = true,
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -129,9 +91,9 @@ for s in ipairs(states) do
 	             	type = "fixed",
 			fixed = { -8/16, -4/16, -5/16, 8/16, 5/16, 5/16 }
 		},
-		node_box = {
-			type = "fixed",
-			fixed = valveboxes
+		collision_box = {
+	             	type = "fixed",
+			fixed = { -8/16, -4/16, -5/16, 8/16, 5/16, 5/16 }
 		},
 		groups = dgroups,
 		sounds = default.node_sound_wood_defaults(),
@@ -158,23 +120,11 @@ for s in ipairs(states) do
 	})
 end
 
-local valveboxes = {}
-pipeworks.add_node_box(valveboxes, pipeworks.pipe_leftstub)
-pipeworks.add_node_box(valveboxes, pipeworks.pipe_valvebody)
-pipeworks.add_node_box(valveboxes, pipeworks.pipe_rightstub)
-pipeworks.add_node_box(valveboxes, pipeworks.pipe_valvehandle_on)
-
 minetest.register_node("pipeworks:valve_on_loaded", {
 	description = "Valve",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_valvebody_top_on.png",
-		"pipeworks_valvebody_bottom.png",
-		"pipeworks_valvebody_ends.png",
-		"pipeworks_valvebody_ends.png",
-		"pipeworks_valvebody_sides.png",
-		"pipeworks_valvebody_sides.png",
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_valve_on.obj",
+	tiles = { "pipeworks_valve.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -182,9 +132,9 @@ minetest.register_node("pipeworks:valve_on_loaded", {
              	type = "fixed",
 		fixed = { -8/16, -4/16, -5/16, 8/16, 5/16, 5/16 }
 	},
-	node_box = {
-		type = "fixed",
-		fixed = valveboxes
+	collision_box = {
+             	type = "fixed",
+		fixed = { -8/16, -4/16, -5/16, 8/16, 5/16, 5/16 }
 	},
 	groups = {snappy=3, pipe=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_wood_defaults(),
@@ -237,28 +187,11 @@ minetest.register_node("pipeworks:grating", {
 
 -- outlet spigot
 
-	local spigotboxes = {}
-	pipeworks.add_node_box(spigotboxes, pipeworks.pipe_backstub)
-	pipeworks.add_node_box(spigotboxes, pipeworks.spigot_bottomstub)
-	pipeworks.add_node_box(spigotboxes, pipeworks.pipe_bendsphere)
-
-	local spigotboxes_pouring = {}
-	pipeworks.add_node_box(spigotboxes_pouring, pipeworks.spigot_stream)
-	pipeworks.add_node_box(spigotboxes_pouring, pipeworks.pipe_backstub)
-	pipeworks.add_node_box(spigotboxes_pouring, pipeworks.spigot_bottomstub)
-	pipeworks.add_node_box(spigotboxes_pouring, pipeworks.pipe_bendsphere)
-
 minetest.register_node("pipeworks:spigot", {
 	description = "Spigot outlet",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_spigot_sides.png",
-		"pipeworks_pipe_end_empty.png",
-		"pipeworks_spigot_sides.png",
-		"pipeworks_spigot_sides.png",
-		"pipeworks_pipe_end_empty.png",
-		"pipeworks_spigot_sides.png"
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_spigot.obj",
+	tiles = { "pipeworks_spigot_off.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -271,11 +204,11 @@ minetest.register_node("pipeworks:spigot", {
 	after_dig_node = function(pos)
 		pipeworks.scan_for_pipe_objects(pos)
 	end,
-	node_box = {
-		type = "fixed",
-		fixed = spigotboxes,
-	},
 	selection_box = {
+		type = "fixed",
+		fixed = { -2/16, -6/16, -2/16, 2/16, 2/16, 8/16 }
+	},
+	collision_box = {
 		type = "fixed",
 		fixed = { -2/16, -6/16, -2/16, 2/16, 2/16, 8/16 }
 	}
@@ -283,43 +216,9 @@ minetest.register_node("pipeworks:spigot", {
 
 minetest.register_node("pipeworks:spigot_pouring", {
 	description = "Spigot outlet",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_spigot_sides.png",
-		"default_water.png^pipeworks_spigot_bottom2.png",
-		{ name = "default_water_flowing_animated.png^pipeworks_spigot_sides2.png",
-			animation = {
-				type = "vertical_frames",
-				aspect_w=16,
-				aspect_h=16,
-				length=0.8
-			}
-		},
-		{ name = "default_water_flowing_animated.png^pipeworks_spigot_sides2.png",
-			animation = {
-				type = "vertical_frames",
-				aspect_w=16,
-				aspect_h=16,
-				length=0.8
-			}
-		},
-		{ name = "default_water_flowing_animated.png^pipeworks_spigot_sides2.png",
-			animation = {
-				type = "vertical_frames",
-				aspect_w=16,
-				aspect_h=16,
-				length=0.8
-			}
-		},
-		{ name = "default_water_flowing_animated.png^pipeworks_spigot_sides2.png",
-			animation = {
-				type = "vertical_frames",
-				aspect_w=16,
-				aspect_h=16,
-				length=0.8
-			}
-		},
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_spigot_pouring.obj",
+	tiles = { "pipeworks_spigot_pouring.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -332,11 +231,11 @@ minetest.register_node("pipeworks:spigot_pouring", {
 	after_dig_node = function(pos)
 		pipeworks.scan_for_pipe_objects(pos)
 	end,
-	node_box = {
-		type = "fixed",
-		fixed = spigotboxes_pouring,
-	},
 	selection_box = {
+		type = "fixed",
+		fixed = { -2/16, -6/16, -2/16, 2/16, 2/16, 8/16 }
+	},
+	collision_box = {
 		type = "fixed",
 		fixed = { -2/16, -6/16, -2/16, 2/16, 2/16, 8/16 }
 	},
@@ -346,22 +245,19 @@ minetest.register_node("pipeworks:spigot_pouring", {
 -- sealed pipe entry/exit (horizontal pipe passing through a metal
 -- wall, for use in places where walls should look like they're airtight)
 
-local airtightboxes = {}
-pipeworks.add_node_box(airtightboxes, pipeworks.pipe_frontstub)
-pipeworks.add_node_box(airtightboxes, pipeworks.pipe_backstub)
-pipeworks.add_node_box(airtightboxes, pipeworks.entry_panel)
+local panel_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -2/16, -2/16, -8/16, 2/16, 2/16, 8/16 },
+		{ -8/16, -8/16, -1/16, 8/16, 8/16, 1/16 }
+	}
+}
 
 minetest.register_node("pipeworks:entry_panel_empty", {
 	description = "Airtight Pipe entry/exit",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_pipe_end_empty.png",
-		"pipeworks_pipe_end_empty.png"
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_entry_panel.obj",
+	tiles = { "pipeworks_entry_panel.png" },
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {snappy=3, pipe=1},
@@ -373,17 +269,8 @@ minetest.register_node("pipeworks:entry_panel_empty", {
 	after_dig_node = function(pos)
 		pipeworks.scan_for_pipe_objects(pos)
 	end,
-	node_box = {
-		type = "fixed",
-		fixed = airtightboxes,
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{ -2/16, -2/16, -8/16, 2/16, 2/16, 8/16 },
-			{ -8/16, -8/16, -1/16, 8/16, 8/16, 1/16 }
-		}
-	},
+	selection_box = panel_cbox,
+	collision_box = panel_cbox,
 	on_place = function(itemstack, placer, pointed_thing)
 		if not pipeworks.node_is_owned(pointed_thing.under, placer) 
 		   and not pipeworks.node_is_owned(pointed_thing.above, placer) then
@@ -439,15 +326,9 @@ minetest.register_node("pipeworks:entry_panel_empty", {
 
 minetest.register_node("pipeworks:entry_panel_loaded", {
 	description = "Airtight Pipe entry/exit",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_pipe_end_empty.png",
-		"pipeworks_pipe_end_empty.png"
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_entry_panel.obj",
+	tiles = { "pipeworks_entry_panel.png" },
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {snappy=3, pipe=1, not_in_creative_inventory=1},
@@ -459,36 +340,16 @@ minetest.register_node("pipeworks:entry_panel_loaded", {
 	after_dig_node = function(pos)
 		pipeworks.scan_for_pipe_objects(pos)
 	end,
-	node_box = {
-		type = "fixed",
-		fixed = airtightboxes,
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{ -2/16, -2/16, -8/16, 2/16, 2/16, 8/16 },
-			{ -8/16, -8/16, -1/16, 8/16, 8/16, 1/16 }
-		}
-	},
+	selection_box = panel_cbox,
+	collision_box = panel_cbox,
 	drop = "pipeworks:entry_panel_empty"
 })
 
-local sensorboxes = {}
-pipeworks.add_node_box(sensorboxes, pipeworks.pipe_leftstub)
-pipeworks.add_node_box(sensorboxes, pipeworks.pipe_sensorbody)
-pipeworks.add_node_box(sensorboxes, pipeworks.pipe_rightstub)
-
 minetest.register_node("pipeworks:flow_sensor_empty", {
 	description = "Flow Sensor",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_windowed_empty.png",
-		"pipeworks_windowed_empty.png"
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_flow_sensor.obj",
+	tiles = { "pipeworks_flow_sensor_off.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -506,14 +367,18 @@ minetest.register_node("pipeworks:flow_sensor_empty", {
 			mesecon.receptor_off(pos, rules) 
 		end
 	end,
-	node_box = {
-		type = "fixed",
-		fixed = sensorboxes,
-	},
 	selection_box = {
 		type = "fixed",
 		fixed = {
 			{ -8/16, -2/16, -2/16, 8/16, 2/16, 2/16 },
+			{ -4/16, -3/16, -3/16, 4/16, 3/16, 3/16 },
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{ -8/16, -2/16, -2/16, 8/16, 2/16, 2/16 },
+			{ -4/16, -3/16, -3/16, 4/16, 3/16, 3/16 },
 		}
 	},
 	mesecons = pipereceptor_off
@@ -521,15 +386,9 @@ minetest.register_node("pipeworks:flow_sensor_empty", {
 
 minetest.register_node("pipeworks:flow_sensor_loaded", {
 	description = "Flow sensor (on)",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_plain.png",
-		"pipeworks_sensor_sides_on.png",
-		"pipeworks_sensor_sides_on.png"
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_flow_sensor.obj",
+	tiles = { "pipeworks_flow_sensor_on.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -547,14 +406,18 @@ minetest.register_node("pipeworks:flow_sensor_loaded", {
 			mesecon.receptor_on(pos, rules) 
 		end
 	end,
-	node_box = {
-		type = "fixed",
-		fixed = sensorboxes,
-	},
 	selection_box = {
 		type = "fixed",
 		fixed = {
 			{ -8/16, -2/16, -2/16, 8/16, 2/16, 2/16 },
+			{ -4/16, -3/16, -3/16, 4/16, 3/16, 3/16 },
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{ -8/16, -2/16, -2/16, 8/16, 2/16, 2/16 },
+			{ -4/16, -3/16, -3/16, 4/16, 3/16, 3/16 },
 		}
 	},
 	drop = "pipeworks:flow_sensor_empty",
@@ -631,12 +494,9 @@ end
 
 minetest.register_node("pipeworks:fountainhead", {
 	description = "Fountainhead",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_fountainhead_top.png",
-		"pipeworks_pipe_end.png",
-		"pipeworks_plain.png",
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_fountainhead.obj",
+	tiles = { "pipeworks_fountainhead.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
 	groups = {snappy=3, pipe=1},
@@ -653,11 +513,11 @@ minetest.register_node("pipeworks:fountainhead", {
 			mesecon.receptor_on(pos, rules) 
 		end
 	end,
-	node_box = {
-		type = "fixed",
-		fixed = pipeworks.fountainhead_model ,
-	},
 	selection_box = {
+		type = "fixed",
+		fixed = { -2/16, -8/16, -2/16, 2/16, 8/16, 2/16 }
+	},
+	collision_box = {
 		type = "fixed",
 		fixed = { -2/16, -8/16, -2/16, 2/16, 8/16, 2/16 }
 	},
@@ -665,12 +525,9 @@ minetest.register_node("pipeworks:fountainhead", {
 
 minetest.register_node("pipeworks:fountainhead_pouring", {
 	description = "Fountainhead",
-	drawtype = "nodebox",
-	tiles = {
-		"pipeworks_fountainhead_top.png",
-		"pipeworks_pipe_end.png",
-		"pipeworks_plain.png",
-	},
+	drawtype = "mesh",
+	mesh = "pipeworks_fountainhead.obj",
+	tiles = { "pipeworks_fountainhead.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
 	groups = {snappy=3, pipe=1, not_in_creative_inventory=1},
@@ -687,13 +544,13 @@ minetest.register_node("pipeworks:fountainhead_pouring", {
 			mesecon.receptor_on(pos, rules) 
 		end
 	end,
-	node_box = {
-		type = "fixed",
-		fixed = pipeworks.fountainhead_model,
-	},
 	selection_box = {
 		type = "fixed",
-		fixed = { -2/16, -8/16, -2/16, 2/16, 8/16, 2/16 },
+		fixed = { -2/16, -8/16, -2/16, 2/16, 8/16, 2/16 }
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = { -2/16, -8/16, -2/16, 2/16, 8/16, 2/16 }
 	},
 	drop = "pipeworks:fountainhead"
 })

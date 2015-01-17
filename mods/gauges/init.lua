@@ -19,8 +19,8 @@ function hp_bar:on_step(dtime)
 		self.object:remove()
 		return
 	end
-	hp = wielder:get_hp()
-	breath = wielder:get_breath()
+	local hp = wielder:get_hp()
+	local breath = wielder:get_breath()
 	self.object:set_properties({textures = {"health_" .. tostring(hp) .. ".png^breath_" .. tostring(breath) .. ".png"}})
 end
 

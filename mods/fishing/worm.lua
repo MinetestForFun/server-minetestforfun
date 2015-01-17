@@ -6,11 +6,21 @@
 -- Looked at code from:		my_mobs
 -- Dependencies: 			default
 -----------------------------------------------------------------------------------------------
+
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if (minetest.get_modpath("intllib")) then
+  dofile(minetest.get_modpath("intllib").."/intllib.lua")
+  S = intllib.Getter(minetest.get_current_modname())
+else
+  S = function ( s ) return s end
+end
+
 -----------------------------------------------------------------------------------------------
 -- WORM ITEM
 -----------------------------------------------------------------------------------------------
 minetest.register_craftitem("fishing:bait_worm", {
-	description = "Worm",
+	description = S("Worm"),
     groups = { fishing_bait=1 },
     inventory_image = "fishing_worm.png",
 	on_use = minetest.item_eat(1),
