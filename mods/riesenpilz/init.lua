@@ -680,7 +680,7 @@ for name,i in pairs(mushrooms_list) do
 				for _,p in pairs(ps) do
 					minetest.set_node(p, {name=nd})
 				end
-				print("[riesenpilz] "..nd.." mushrooms grew at "..minetest.pos_to_string(pos))
+				minetest.log("info", "[riesenpilz] "..nd.." mushrooms grew at "..minetest.pos_to_string(pos))
 			end
 		})
 	end
