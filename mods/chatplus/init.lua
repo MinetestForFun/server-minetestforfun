@@ -16,7 +16,7 @@ chatplus = {
 function chatplus.init()
 	chatplus.load()
 	chatplus.clean_players()
-	
+
 	if not chatplus.players then
 		chatplus.players = {}
 	end
@@ -34,7 +34,7 @@ function chatplus.setting(name)
 	else
 		minetest.log("[Chatplus] Setting chatplus_"..name.." not found!")
 		return nil
-	end	
+	end
 end
 
 function chatplus.load()
@@ -45,9 +45,9 @@ function chatplus.load()
 			minetest.log("error","Unable to open chat plus log file: "..chatplus.log_file)
 		else
 			minetest.log("action","Logging chat plus to: "..chatplus.log_file)
-		end	
+		end
 	end
-	
+
 	-- Load player data
 	minetest.log("[Chatplus] Loading data")
 	local file = io.open(minetest.get_worldpath().."/chatplus.txt", "r")
@@ -58,12 +58,12 @@ function chatplus.load()
 			chatplus.players = table
 			return
 		end
-	end	
+	end
 end
 
 function chatplus.save()
 	minetest.log("[Chatplus] Saving data")
-	
+
 	local file = io.open(minetest.get_worldpath().."/chatplus.txt", "w")
 	if file then
 		file:write(minetest.serialize(chatplus.players))
@@ -81,9 +81,9 @@ function chatplus.clean_players()
 	for key,value in pairs(chatplus.players) do
 		if value.messages then
 			value.inbox = value.messages
-			value.messages = nil			
+			value.messages = nil
 		end
-		
+
 		if (
 			(not value.inbox or #value.inbox==0) and
 			(not value.ignore or #value.ignore==0)
@@ -107,23 +107,23 @@ function chatplus.poke(name,player)
 	end
 	check(name,"ignore")
 	check(name,"inbox")
-	
+
 	chatplus.players[name].enabled = true
-	
+
 	if player then
 		if player=="end" then
 			chatplus.players[name].enabled = false
 			chatplus.loggedin[name] = nil
 		else
 			if not chatplus.loggedin[name] then
-				chatplus.loggedin[name] = {}				
+				chatplus.loggedin[name] = {}
 			end
 			chatplus.loggedin[name].player = player
 		end
 	end
-	
+
 	chatplus.save()
-	
+
 	return chatplus.players[name]
 end
 
@@ -135,7 +135,11 @@ function chatplus.register_handler(func,place)
 	end
 end
 
-function chatplus.send(from,msg)
+function chatplus.send(from, msg)
+	if msg:sub(1, 1) == "/" then
+		return false
+	end
+
 	-- Log chat message
 	if chatplus.log_handle ~= nil then
 		chatplus.log_handle:write(
@@ -146,14 +150,14 @@ function chatplus.send(from,msg)
 		)
 		chatplus.log_handle:flush()
 	end
-	
+
 	-- Loop through senders
 	for key,value in pairs(chatplus.loggedin) do
 		local res = nil
 		for i=1,#chatplus._handlers do
 			if chatplus._handlers[i] then
 				res = chatplus._handlers[i](from,key,msg)
-				
+
 				if res ~= nil then
 					break
 				end
@@ -179,7 +183,7 @@ minetest.register_on_joinplayer(function(player)
 
 	-- inbox stuff!
 	if _player.inbox and #_player.inbox>0 then
-		minetest.after(10,minetest.chat_send_player,player:get_player_name(),"("..#_player.inbox..") You have mail! Type /inbox to recieve")	
+		minetest.after(10,minetest.chat_send_player,player:get_player_name(),"("..#_player.inbox..") You have mail! Type /inbox to recieve")
 	end
 end)
 minetest.register_on_leaveplayer(function(player)
@@ -301,7 +305,7 @@ minetest.register_chatcommand("mail", {
 	func = function(name, param)
 		chatplus.poke(name)
 		local to, msg = string.match(param, "([%a%d_]+) (.+)")
-		
+
 		if not to or not msg then
 			minetest.chat_send_player(name,"mail: <playername> <msg>",false)
 			return
@@ -336,7 +340,7 @@ minetest.register_globalstep(function(dtime)
 				value.inbox and
 				chatplus.loggedin[key].player.hud_add and
 				chatplus.loggedin[key].lastcount ~= #value.inbox
-			) then				
+			) then
 				if chatplus.loggedin[key].msgicon then
 					chatplus.loggedin[key].player:hud_remove(chatplus.loggedin[key].msgicon)
 				end
@@ -361,7 +365,7 @@ minetest.register_globalstep(function(dtime)
 						text=#value.inbox,
 						scale = {x=1,y=1},
 						alignment = {x=0.5, y=0.5},
-					})					
+					})
 				end
 				chatplus.loggedin[key].lastcount = #value.inbox
 			end
