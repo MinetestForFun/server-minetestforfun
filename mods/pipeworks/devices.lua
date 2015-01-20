@@ -191,7 +191,7 @@ minetest.register_node("pipeworks:spigot", {
 	description = "Spigot outlet",
 	drawtype = "mesh",
 	mesh = "pipeworks_spigot.obj",
-	tiles = { "pipeworks_spigot_off.png" },
+	tiles = { "pipeworks_spigot.png" },
 	sunlight_propagates = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -218,7 +218,18 @@ minetest.register_node("pipeworks:spigot_pouring", {
 	description = "Spigot outlet",
 	drawtype = "mesh",
 	mesh = "pipeworks_spigot_pouring.obj",
-	tiles = { "pipeworks_spigot_pouring.png" },
+	tiles = {
+		{
+			name = "default_water_flowing_animated.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 0.8,
+			},
+		},
+		{ name = "pipeworks_spigot.png" }
+	},
 	sunlight_propagates = true,
 	paramtype = "light",
 	paramtype2 = "facedir",
