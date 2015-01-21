@@ -237,6 +237,7 @@ local oredefs = {
 			pick = {
 				cracky = {times = {[1] = 3.0, [2] = 1.20, [3] = 0.70}, uses = 90, maxlevel= 2}
 				damage_groups = {fleshy = 3},
+				full_punch_interval = 0.8,
 			},
 			hoe = {
 				uses = 300
@@ -244,20 +245,22 @@ local oredefs = {
 			shovel = {
 				crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1}
 				damage_groups = {fleshy = 3},
+				full_punch_interval = 0.8,
 			},
 			axe = {
 				choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel= 1},
 				fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel= 1}
 				damage_groups = {fleshy = 3},
+				full_punch_interval = 0.8,
 			},
 			sword = {
 				fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
 				snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
 				choppy = {times = {[3] = 0.80}, uses = 40, maxlevel= 0}
 				damage_groups = {fleshy = 5},
+				full_punch_interval = 0.85,
 			}
 		},
-		full_punch_interval = 0.8,
 	},
 	tin = {
 		desc = "Tin",

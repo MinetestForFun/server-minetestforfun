@@ -79,7 +79,7 @@ minetest.register_tool("default:pick_gold", {
 		full_punch_interval = 1.2,
 		max_drop_level = 3,
 		groupcaps = {
-			cracky = {times = {[1] = 2.8, [2] = 1.15, [3] = 0.65}, uses = 10, maxlevel = 3},
+			cracky = {times = {[1] = 2.8, [2] = 1.15, [3] = 0.65}, uses = 15, maxlevel = 3},
 			crumbly = {times = {[1] = 2.0, [2] = 0.9, [3] = 0.36}, uses = 5, maxlevel = 2},
 		},
 		damage_groups = {fleshy = 4},
@@ -118,8 +118,8 @@ minetest.register_tool("default:pick_mese", {
 		full_punch_interval = 0.9,
 		max_drop_level = 3,
 		groupcaps = {
-			cracky = {times = {[1] = 2.6, [2] = 1.1, [3] = 0.6}, uses = 15, maxlevel = 3},
-			crumbly = {times = {[1] = 1.65, [2] = 0.6, [3] = 0.32}, uses = 15, maxlevel = 3},
+			cracky = {times = {[1] = 2.6, [2] = 1.1, [3] = 0.6}, uses = 20, maxlevel = 3},
+			crumbly = {times = {[1] = 1.65, [2] = 0.6, [3] = 0.32}, uses = 20, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 4},
 	},
