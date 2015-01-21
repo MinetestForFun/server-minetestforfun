@@ -28,9 +28,9 @@ minetest.register_tool("default:pick_wood", {
 		full_punch_interval = 1.2,
 		max_drop_level = 0,
 		groupcaps = {
-			cracky = {times = {[1] = 6.5, [2] = 2.0, [3] = 1.2}, uses = 20, maxlevel = 1},
+			cracky = {[3] = 1.2}, uses = 20, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 3},
+		damage_groups = {fleshy = 1},
 	},
 })
 minetest.register_tool("default:pick_stone", {
@@ -40,10 +40,10 @@ minetest.register_tool("default:pick_stone", {
 		full_punch_interval = 1.2,
 		max_drop_level = 0,
 		groupcaps = {
-			cracky = {times = {[1] = 5.5, [2] = 1.6, [3] = 0.9}, uses = 20, maxlevel = 1},
+			cracky = {times = {[2] = 1.6, [3] = 1}, uses = 20, maxlevel = 1},
 			crumbly = {times = {[1] = 2.6, [2] = 1.4, [3] = 0.44}, uses = 20, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 3},
+		damage_groups = {fleshy = 2},
 	},
 })
 minetest.register_tool("default:pick_steel", {
@@ -53,10 +53,10 @@ minetest.register_tool("default:pick_steel", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			cracky = {times = {[1] = 4.0, [2] = 1.3, [3] = 0.85}, uses = 20, maxlevel = 2},
+			cracky = {times = {[1] = 4.0, [2] = 1.4, [3] = 0.8}, uses = 25, maxlevel = 2},
 			crumbly = {times = {[1] = 2.4, [2] = 1.2, [3] = 0.39}, uses = 20, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 4},
+		damage_groups = {fleshy = 3},
 	},
 })
 minetest.register_tool("default:pick_bronze", {
@@ -66,10 +66,10 @@ minetest.register_tool("default:pick_bronze", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			cracky = {times = {[1] = 4.0, [2] = 1.3, [3] = 0.85}, uses = 30, maxlevel = 2},
+			cracky = {times = {[1] = 4.0, [2] = 1.4, [3] = 0.8}, uses = 30, maxlevel = 2},
 			crumbly = {times = {[1] = 2.4, [2] = 1.2, [3] = 0.39}, uses = 30, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 4},
+		damage_groups = {fleshy = 3},
 	},
 })
 minetest.register_tool("default:pick_gold", {
@@ -79,36 +79,36 @@ minetest.register_tool("default:pick_gold", {
 		full_punch_interval = 1.2,
 		max_drop_level = 3,
 		groupcaps = {
-			cracky = {times = {[1] = 2.4, [2] = 1.0, [3] = 0.65}, uses = 5, maxlevel = 3},
+			cracky = {times = {[1] = 2.8, [2] = 1.15, [3] = 0.65}, uses = 10, maxlevel = 3},
 			crumbly = {times = {[1] = 2.0, [2] = 0.9, [3] = 0.36}, uses = 5, maxlevel = 2},
 		},
-		damage_groups = {fleshy = 5},
+		damage_groups = {fleshy = 4},
 	},
 })
 minetest.register_tool("default:pick_diamond", {
 	description = "Diamond Pickaxe",
 	inventory_image = "default_tool_diamondpick.png",
 	tool_capabilities = {
-		full_punch_interval = 1.2,
+		full_punch_interval = 0.8,
 		max_drop_level = 3,
 		groupcaps = {
-			cracky = {times = {[1] = 2.4, [2] = 1.0, [3] = 0.65}, uses = 25, maxlevel = 3},
+			cracky = {times = {[1] = 2.0, [2] = 1.0, [3] = 0.5}, uses = 30, maxlevel = 3},
 			crumbly = {times = {[1] = 2.0, [2] = 0.9, [3] = 0.36}, uses = 25, maxlevel = 2},
 		},
-		damage_groups = {fleshy = 5},
+		damage_groups = {fleshy = 4},
 	},
 })
 minetest.register_tool("default:pick_nyan", {
 	description = "Nyan Pickaxe",
 	inventory_image = "default_tool_nyanpick.png",
 	tool_capabilities = {
-		full_punch_interval = 1.2,
+		full_punch_interval = 0.9,
 		max_drop_level = 3,
 		groupcaps = {
-			cracky = {times = {[1] = 2.4, [2] = 1.0, [3] = 0.65}, uses = 75, maxlevel = 3},
+			cracky = {times = {[1] = 2.6, [2] = 1.1, [3] = 0.6}, uses = 60, maxlevel = 3},
 			crumbly = {times = {[1] = 2.0, [2] = 0.9, [3] = 0.36}, uses = 75, maxlevel = 2},
 		},
-		damage_groups = {fleshy = 5},
+		damage_groups = {fleshy = 4},
 	},
 })
 minetest.register_tool("default:pick_mese", {
@@ -118,10 +118,10 @@ minetest.register_tool("default:pick_mese", {
 		full_punch_interval = 0.9,
 		max_drop_level = 3,
 		groupcaps = {
-			cracky = {times = {[1] = 1.8, [2] = 0.75, [3] = 0.45}, uses = 15, maxlevel = 3},
+			cracky = {times = {[1] = 2.6, [2] = 1.1, [3] = 0.6}, uses = 15, maxlevel = 3},
 			crumbly = {times = {[1] = 1.65, [2] = 0.6, [3] = 0.32}, uses = 15, maxlevel = 3},
 		},
-		damage_groups = {fleshy = 5},
+		damage_groups = {fleshy = 4},
 	},
 })
 
