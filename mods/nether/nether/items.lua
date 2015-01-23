@@ -803,8 +803,8 @@ minetest.register_tool("nether:pick_mushroom", {
 	tool_capabilities = {
 		max_drop_level=0,
 		groupcaps={
-			cracky = {times={[3]=3}, uses=1, maxlevel=1},
-			nether = {times={[3]=3}, uses=1, maxlevel=1},
+			cracky = {times={[3]=3}, uses=5, maxlevel=1},
+			nether = {times={[3]=3}, uses=5, maxlevel=1},
 		},
 	},
 })
@@ -817,7 +817,7 @@ minetest.register_tool("nether:pick_wood", {
 		max_drop_level=0,
 		groupcaps={
 			cracky = {times={[3]=1.6}, uses=10, maxlevel=1},
-			nether = {times={[2]=6, [3]=1.6}, uses=10, maxlevel=1},
+			nether = {times={[3]=1.6}, uses=10, maxlevel=1},
 		},
 		damage_groups = {fleshy=2},
 	},
@@ -827,11 +827,11 @@ minetest.register_tool("nether:pick_netherrack", {
 	description = "Netherrack Pickaxe",
 	inventory_image = "nether_pick_netherrack.png",
 	tool_capabilities = {
-		full_punch_interval = 1.3,
+		full_punch_interval = 1.2,
 		max_drop_level=0,
 		groupcaps={
 			cracky = {times={[2]=2.0, [3]=1.20}, uses=20, maxlevel=1},
-			nether = {times={[1]=16, [2]=2, [3]=1.20}, uses=20, maxlevel=1},
+			nether = {times={[2]=2.0, [3]=1.20}, uses=20, maxlevel=1},
 		},
 		damage_groups = {fleshy=3},
 	},
@@ -841,7 +841,7 @@ minetest.register_tool("nether:pick_netherrack_blue", {
 	description = "Blue Netherrack Pickaxe",
 	inventory_image = "nether_pick_netherrack_blue.png",
 	tool_capabilities = {
-		full_punch_interval = 1.0,
+		full_punch_interval = 0.8,
 		max_drop_level=1,
 		groupcaps={
 			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=30, maxlevel=2},
@@ -855,11 +855,11 @@ minetest.register_tool("nether:pick_white", {
 	description = "Siwtonic Pickaxe",
 	inventory_image = "nether_pick_white.png",
 	tool_capabilities = {
-		full_punch_interval = 0.9,
+		full_punch_interval = 0.5,
 		max_drop_level=3,
 		groupcaps={
-			cracky = {times={[1]=1, [2]=0.8, [3]=0.3}, uses=180, maxlevel=3},
-			nether = {times={[1]=1, [2]=0.5, [3]=0.3}, uses=180, maxlevel=3},
+			cracky = {times={[1]=1.75, [2]=0.85, [3]=0.40}, uses=125, maxlevel=3},
+			nether = {times={[1]=1, [2]=0.5, [3]=0.3}, uses=125, maxlevel=3},
 		},
 		damage_groups = {fleshy=5},
 	},
@@ -982,7 +982,7 @@ minetest.register_tool("nether:sword_white", {
 		groupcaps={
 			snappy={times={[1]=1.7, [2]=0.8, [3]=0.2}, uses=100, maxlevel=3},
 		},
-		damage_groups = {fleshy=8},
+		damage_groups = {fleshy=9},
 	},
 })
 
