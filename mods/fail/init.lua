@@ -9,6 +9,8 @@
 
     "Congratulation, you win a failpoint."
 
+License GPLv2
+
 ]]--
 
 -- The FailPoint mod by Mg.
@@ -18,7 +20,7 @@ data = {}
 
 data.fp_file = minetest.get_worldpath().."/failpoints"
 data.failpoints = {}
-data.fp_version = 0.1
+data.fp_version = 0.2
 
 -- fp_create priv to create failpoints
 minetest.register_privilege("fp_create","Is able to create FailPoints and give them to anybody else")
@@ -102,10 +104,17 @@ minetest.register_chatcommand("fail", {
 			end
 			
 			minetest.chat_send_player(name,"=== FP_DEBUG_LINES SENT ===")
+			print("=== FP_DEBUG_LINES ===")
 			local send_admin = function(msg)
 				minetest.chat_send_player(name,msg)
 			end
 			
+			send_admin("FP File")
+			if pntf ~= nil then
+				send_admin("Found")
+			else
+				send_admin("Missing!")
+			end
 			table.foreach(data,print)
 			
 			return
@@ -172,7 +181,7 @@ minetest.register_chatcommand("fail", {
 			minetest.log("action","[FailPoints] "..param.." now own "..data.failpoints[param].."FPs")
 			minetest.log("action","[FailPoints] "..name.." now own "..(data.failpoints[name] or 0).."FPs")
 			local message_reason = "."
-			if param2 ~= "" then
+			if param2 ~= nil then
 				local m_table = paramlist
 				table.remove(m_table,1)
 				message_reason = " because "
@@ -181,6 +190,11 @@ minetest.register_chatcommand("fail", {
 				end
 			end
 			data.send_func(param,"Congratulations "..param..", you win a failpoint" .. message_reason)
+			minetest.sound_play({
+				name = "failpoint",
+				to_player = param,
+				gain = 1.0
+			})
 			minetest.chat_send_player(name,"FP sent.")
 		end
 	end

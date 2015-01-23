@@ -55,11 +55,18 @@ minetest.register_chatcommand("cookie", {
 				return
 			end
 			
-			minetest.chat_send_player(name,"=== FP_DEBUG_LINES SENT ===")
+			minetest.chat_send_player(name,"=== CK_DEBUG_LINES SENT ===")
+			print("=== CK_DEBUG_LINES ===")
 			local send_admin = function(msg)
 				minetest.chat_send_player(name,msg)
 			end
 			
+			send_admin("CK File")
+			if pntf ~= nil then
+				send_admin("Found")
+			else
+				send_admin("Missing!")
+			end
 			table.foreach(data,print)
 			
 			return
@@ -125,8 +132,13 @@ minetest.register_chatcommand("cookie", {
 			minetest.log("action","[FailPoints] "..name.." has given a CooKie to "..param)
 			minetest.log("action","[FailPoints] "..param.." now own "..data.cookies[param].."CKs")
 			minetest.log("action","[FailPoints] "..name.." now own "..(data.cookies[name] or 0).."CKs")
+			minetest.sound_play({
+				name = "cookie",
+				to_player = param,
+				gain = 0.1
+			})
 			local message_reason = "."
-			if param2 ~= "" then
+			if param2 ~= nil then
 				local m_table = paramlist
 				table.remove(m_table,1)
 				message_reason = " because "
