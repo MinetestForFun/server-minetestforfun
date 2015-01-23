@@ -30,4 +30,4 @@ minetest.register_alias("fishing:fish_cooked", "fishing:fish")
 minetest.register_alias("fishing:worm", "fishing:bait_worm")
 
 -- Old itemframes mod to the new itemframesv(2) mod
-minetest.register_alias("itemframes:pedestral", "itemframes:pedestral_cobble")
+minetest.register_alias("itemframes:pedestal", "itemframes:pedestal_cobble")
