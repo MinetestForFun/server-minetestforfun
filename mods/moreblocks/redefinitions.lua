@@ -1,3 +1,10 @@
+--[[
+More Blocks: redefinitions of default stuff
+
+Copyright (c) 2011-2015 Calinou and contributors.
+Licensed under the zlib license. See LICENSE.md for more information.
+--]]
+
 -- Redefinitions of some default crafting recipes:
 
 minetest.register_craft({
@@ -67,6 +74,11 @@ minetest.override_item("default:dry_shrub", {
 })
 
 minetest.override_item("default:papyrus", {
+	paramtype = "light",
+	sunlight_propagates = true,
+})
+
+minetest.override_item("default:fence_wood", {
 	paramtype = "light",
 	sunlight_propagates = true,
 })

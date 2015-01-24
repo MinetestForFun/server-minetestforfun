@@ -1,10 +1,11 @@
-local S -- Load translation library if intllib is installed:
-if (minetest.get_modpath("intllib")) then
-	dofile(minetest.get_modpath("intllib").."/intllib.lua")
-	S = intllib.Getter(minetest.get_current_modname())
-else
-	S = function(s) return s end
-end
+--[[
+More Blocks: panel definitions
+
+Copyright (c) 2011-2015 Calinou and contributors.
+Licensed under the zlib license. See LICENSE.md for more information.
+--]]
+
+local S = moreblocks.intllib
 
 -- Node will be called <modname>:panel_<subname>
 

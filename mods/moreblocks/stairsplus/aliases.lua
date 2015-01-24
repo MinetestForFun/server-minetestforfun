@@ -1,3 +1,9 @@
+--[[
+More Blocks: alias definitions
+
+Copyright (c) 2011-2015 Calinou and contributors.
+Licensed under the zlib license. See LICENSE.md for more information.
+--]]
 
 local function register_stairsplus_alias(modname, origname, newname)
 	minetest.register_alias(modname.. ":slab_" ..origname, "moreblocks:slab_" ..newname)
@@ -33,12 +39,14 @@ end
 
 register_stairsplus_alias("stairsplus", "stone", "stone")
 register_stairsplus_alias("stairsplus", "wood", "wood")
+register_stairsplus_alias("stairsplus", "pinewood", "pinewood")
 register_stairsplus_alias("stairsplus", "cobble", "cobble")
 register_stairsplus_alias("stairsplus", "brick", "brick")
 register_stairsplus_alias("stairsplus", "sandstone", "sandstone")
 register_stairsplus_alias("stairsplus", "glass", "glass")
 register_stairsplus_alias("stairsplus", "tree", "tree")
 register_stairsplus_alias("stairsplus", "jungletree", "jungletree")
+register_stairsplus_alias("stairsplus", "pinetree", "pinetree")
 register_stairsplus_alias("stairsplus", "desert_stone", "desert_stone")
 register_stairsplus_alias("stairsplus", "steelblock", "steelblock")
 register_stairsplus_alias("stairsplus", "mossycobble", "mossycobble")
