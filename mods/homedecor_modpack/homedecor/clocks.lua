@@ -1,12 +1,9 @@
-minetest.register_node("homedecor:analog_clock_plastic", {
+homedecor.register("analog_clock_plastic", {
 	description = "Analog clock (plastic)",
-	drawtype = "mesh",
 	mesh = "homedecor_analog_clock.obj",
 	tiles = { "homedecor_analog_clock_plastic.png" },
 	inventory_image = "homedecor_analog_clock_plastic_inv.png",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	node_box = {
+	collision_box = {
 		type = "fixed",
 		fixed = {
 			{ -8/32, -3/32, 15/32, 8/32, 3/32, 16/32 },
@@ -23,15 +20,12 @@ minetest.register_node("homedecor:analog_clock_plastic", {
 	groups = {snappy=3},
 })
 
-minetest.register_node("homedecor:analog_clock_wood", {
+homedecor.register("analog_clock_wood", {
 	description = "Analog clock (wood)",
-	drawtype = "mesh",
 	mesh = "homedecor_analog_clock.obj",
 	tiles = { "homedecor_analog_clock_wood.png" },
 	inventory_image = "homedecor_analog_clock_wood_inv.png",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	node_box = {
+	collision_box = {
 		type = "fixed",
 		fixed = {
 			{ -8/32, -3/32, 15/32, 8/32, 3/32, 16/32 },
@@ -48,9 +42,8 @@ minetest.register_node("homedecor:analog_clock_wood", {
 	groups = {snappy=3},
 })
 
-minetest.register_node("homedecor:digital_clock", {
+homedecor.register("digital_clock", {
 	description = "Digital clock",
-	drawtype = "nodebox",
 	tiles = {
 		"homedecor_digital_clock_edges.png",
 		"homedecor_digital_clock_edges.png",
@@ -60,8 +53,6 @@ minetest.register_node("homedecor:digital_clock", {
 		"homedecor_digital_clock_front.png"
 	},
 	inventory_image = "homedecor_digital_clock_inv.png",
-	paramtype = "light",
-	paramtype2 = "facedir",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -71,9 +62,8 @@ minetest.register_node("homedecor:digital_clock", {
 	groups = {snappy=3},
 })
 
-minetest.register_node("homedecor:alarm_clock", {
+homedecor.register("alarm_clock", {
 	description = "Alarm clock",
-	drawtype = "nodebox",
 	tiles = {
 		"homedecor_alarm_clock_top.png",
 		"homedecor_alarm_clock_bottom.png",
@@ -83,8 +73,6 @@ minetest.register_node("homedecor:alarm_clock", {
 		"homedecor_alarm_clock_front.png"
 	},
 	inventory_image = "homedecor_alarm_clock_inv.png",
-	paramtype = "light",
-	paramtype2 = "facedir",
 	node_box = {
 		type = "fixed",
 		fixed = {

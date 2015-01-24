@@ -60,10 +60,7 @@ homedecor.register_inner_corner = function(modname, subname, groups, slope_image
 		paramtype = "light",
 		paramtype2 = "facedir",
 		walkable = true,
-		selection_box = {
-			type = "fixed",
-			fixed = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
-		},
+		selection_box = { type = "regular" },
 		collision_box = icorner_cbox,
 		groups = groups,
 		on_place = minetest.rotate_node
@@ -180,20 +177,20 @@ minetest.register_craft( {
 })
 
 minetest.register_craft({
-    type = "fuel",
-    recipe = "homedecor:shingle_inner_corner_wood",
-    burntime = 30,
+	type = "fuel",
+	recipe = "homedecor:shingle_inner_corner_wood",
+	burntime = 30,
 })
 
 minetest.register_craft({
-    type = "fuel",
-    recipe = "homedecor:shingle_outer_corner_wood",
-    burntime = 30,
+	type = "fuel",
+	recipe = "homedecor:shingle_outer_corner_wood",
+	burntime = 30,
 })
 
 minetest.register_craft({
-    type = "fuel",
-    recipe = "homedecor:shingle_side_wood",
+	type = "fuel",
+	recipe = "homedecor:shingle_side_wood",
 	burntime = 30,
 })
 

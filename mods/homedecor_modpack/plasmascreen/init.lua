@@ -209,7 +209,7 @@ minetest.register_node("plasmascreen:screen5", {
 				fixed = {-1.5050, -0.3125, 0.3700, 1.5050, 1.5050, 0.5050}
 	},
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2},
-	    
+
 after_place_node = function(pos,placer,itemstack)
 	local param2 = minetest.get_node(pos).param2
 	local p = {x=pos.x, y=pos.y, z=pos.z}
@@ -359,7 +359,7 @@ after_place_node = function(pos,placer,itemstack)
 		end
 		end
 	end,
-		
+
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		if oldnode.param2 == 0 then
 			pos.x = pos.x-1

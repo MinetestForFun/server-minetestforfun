@@ -1,6 +1,6 @@
 local sofas_list = {
 	{ "Red Sofa", "red"},
-	{ "Orange Sofa", "orange"},	
+	{ "Orange Sofa", "orange"},
 	{ "Yellow Sofa", "yellow"},
 	{ "Green Sofa", "green"},
 	{ "Blue Sofa", "blue"},
@@ -29,13 +29,13 @@ for i in ipairs(sofas_list) do
 						--legs
 						{-0.4375, -0.5, -0.4375, -0.375, -0.375, -0.375},
 						{0.375, -0.5, -0.4375, 0.4375, -0.375, -0.375},
-						
+
 						--base/cushion
 						{-0.5, -0.375, -0.5, 0.5, 0, 0.5},
-						
+
 						--back
 						{-0.5, 0, -0.5, -0.3125, 0.5, 0.5},
-						
+
 						--arm
 						{-0.3125, 0, -0.5, 0.5, 0.25, -0.3125},
 					}
@@ -64,7 +64,7 @@ for i in ipairs(sofas_list) do
 				minetest.set_node(pos, node)
 			end
 		end,
-			
+
 		on_destruct = function(pos)
 			local node = minetest.get_node(pos)
 			local param2 = node.param2
@@ -80,10 +80,10 @@ for i in ipairs(sofas_list) do
 			if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).name == "lrfurn:sofa_left_"..colour ) then
 				if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2 ) then
 					minetest.remove_node(pos)
-				end	
+				end
 			end
 		end,
-		
+
 		on_rightclick = function(pos, node, clicker)
 			if not clicker:is_player() then
 				return
@@ -93,7 +93,7 @@ for i in ipairs(sofas_list) do
 			clicker:set_hp(20)
 		end
 	})
-	
+
 	minetest.register_node("lrfurn:sofa_left_"..colour, {
 		drawtype = "nodebox",
 		tiles = {"lrfurn_sofa_left_top_"..colour..".png", "lrfurn_coffeetable_back.png",  "lrfurn_sofa_left_front_"..colour..".png",  "lrfurn_sofa_back_"..colour..".png",  "lrfurn_sofa_left_side_"..colour..".png",  "lrfurn_sofa_right_side_"..colour..".png"},
@@ -107,13 +107,13 @@ for i in ipairs(sofas_list) do
 						--legs
 						{-0.4375, -0.5, 0.375, -0.375, -0.375, 0.4375},
 						{0.375, -0.5, 0.375, 0.4375, -0.375, 0.4375},
-						
+
 						--base/cushion
 						{-0.5, -0.375, -0.5, 0.5, 0, 0.5},
-						
+
 						--back
 						{-0.5, 0, -0.5, -0.3125, 0.5, 0.5},
-						
+
 						--arm
 						{-0.3125, 0, 0.3125, 0.5, 0.25, 0.5},
 					}
@@ -125,7 +125,7 @@ for i in ipairs(sofas_list) do
 					}
 		},
 	})
-	
+
 	minetest.register_alias("lrfurn:sofa_"..colour, "lrfurn:sofa_right_"..colour)
 
 	minetest.register_craft({

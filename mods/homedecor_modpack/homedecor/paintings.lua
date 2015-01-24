@@ -1,9 +1,8 @@
 --Various kinds of paintings
 
 for i = 1,20 do
-	minetest.register_node("homedecor:painting_"..i, {
+	homedecor.register("painting_"..i, {
 		description = "Decorative painting #"..i,
-		drawtype = "nodebox",
 		tiles = {
 			"homedecor_painting_edges.png",
 			"homedecor_painting_edges.png",
@@ -12,8 +11,6 @@ for i = 1,20 do
 			"homedecor_painting_back.png",
 			"homedecor_painting"..i..".png"
 		},
-		paramtype = "light",
-		paramtype2 = "facedir",
 		node_box = {
 			type = "fixed",
 			fixed = {

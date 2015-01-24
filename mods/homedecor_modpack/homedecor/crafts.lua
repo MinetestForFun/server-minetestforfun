@@ -406,7 +406,7 @@ minetest.register_craft( {
 
 minetest.register_craft( {
         output = "homedecor:glass_table_large_b 2",
-        recipe = { 
+        recipe = {
 		{ "homedecor:glass_table_small_square", "homedecor:glass_table_small_square" },
 	}
 })
@@ -424,14 +424,14 @@ minetest.register_craft( {
 
 minetest.register_craft( {
         output = "homedecor:wood_table_small_square_b 2",
-        recipe = { 
+        recipe = {
 		{ "homedecor:wood_table_small_round","homedecor:wood_table_small_round" },
 	}
 })
 
 minetest.register_craft( {
         output = "homedecor:wood_table_large_b 2",
-        recipe = { 
+        recipe = {
 		{ "homedecor:wood_table_small_square", "homedecor:wood_table_small_square" },
 	}
 })
@@ -495,7 +495,7 @@ minetest.register_craft({
 
 minetest.register_craft( {
         output = "homedecor:skylight 4",
-        recipe = { 
+        recipe = {
 		{ "homedecor:glass_table_large", "homedecor:glass_table_large" },
 		{ "homedecor:glass_table_large", "homedecor:glass_table_large" },
         },
@@ -1842,7 +1842,7 @@ minetest.register_craft( {
 	},
 })
 
--- woodglass door 
+-- woodglass door
 
 minetest.register_craft( {
 	output = "homedecor:door_woodglass_bottom_left",
@@ -2134,6 +2134,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+    output = "homedecor:cardboard_box_big 2",
+    recipe = {
+		{ "default:paper", "", "default:paper" },
+		{ "default:paper", "", "default:paper" },
+		{ "default:paper", "default:paper", "default:paper" },
+    },
+})
+
+minetest.register_craft({
     output = "homedecor:desk",
     recipe = {
 		{ "stairs:slab_wood", "stairs:slab_wood", "stairs:slab_wood" },
@@ -2370,7 +2379,7 @@ minetest.register_craft( {
 
 -- bathroom/kitchen tiles
 
-local color_pairings = { 
+local color_pairings = {
 	{ "grey",		"white",		"1" },
 	{ "dark_grey",	"white",		"2" },
 	{ "black",		"white",		"3" },
@@ -2879,7 +2888,10 @@ minetest.register_craft({
 local bookcolors = {
 	"red",
 	"green",
-	"blue"
+	"blue",
+	"violet",
+	"grey",
+	"brown"
 }
 
 for _, color in ipairs(bookcolors) do
@@ -2917,7 +2929,7 @@ minetest.register_craft({
 		"homedecor:bottle_brown",
 		"homedecor:bottle_brown",
 		"homedecor:bottle_brown",
-		"homedecor:bottle_brown" 
+		"homedecor:bottle_brown"
 	},
 })
 
@@ -2928,7 +2940,7 @@ minetest.register_craft({
 		"homedecor:bottle_green",
 		"homedecor:bottle_green",
 		"homedecor:bottle_green",
-		"homedecor:bottle_green" 
+		"homedecor:bottle_green"
 	},
 })
 

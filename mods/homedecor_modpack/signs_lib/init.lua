@@ -382,7 +382,7 @@ local function make_line_texture(line, lineno)
 					else
 						maxw = math_max(width, maxw)
 					end
-					if #chars < MAX_INPUT_CHARS then 
+					if #chars < MAX_INPUT_CHARS then
 						table.insert(chars, {
 							off=ch_offs,
 							tex=FONT_FMT_SIMPLE:format(c:byte()),

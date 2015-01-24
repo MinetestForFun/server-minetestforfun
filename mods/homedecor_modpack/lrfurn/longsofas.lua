@@ -1,6 +1,6 @@
 local longsofas_list = {
 	{ "Red Long Sofa", "red"},
-	{ "Orange Long Sofa", "orange"},	
+	{ "Orange Long Sofa", "orange"},
 	{ "Yellow Long Sofa", "yellow"},
 	{ "Green Long Sofa", "green"},
 	{ "Blue Long Sofa", "blue"},
@@ -29,13 +29,13 @@ for i in ipairs(longsofas_list) do
 						--legs
 						{-0.4375, -0.5, -0.4375, -0.375, -0.375, -0.375},
 						{0.375, -0.5, -0.4375, 0.4375, -0.375, -0.375},
-						
+
 						--base/cushion
 						{-0.5, -0.375, -0.5, 0.5, 0, 0.5},
-						
+
 						--back
 						{-0.5, 0, -0.5, -0.3125, 0.5, 0.5},
-						
+
 						--arm
 						{-0.3125, 0, -0.5, 0.5, 0.25, -0.3125},
 					}
@@ -77,7 +77,7 @@ for i in ipairs(longsofas_list) do
 				end
 			end
 		end,
-			
+
 		on_destruct = function(pos)
 			local node = minetest.get_node(pos)
 			local param2 = node.param2
@@ -105,12 +105,12 @@ for i in ipairs(longsofas_list) do
 					if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).name == "lrfurn:longsofa_left_"..colour ) then
 						if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2 ) then
 							minetest.remove_node(pos)
-						end	
+						end
 					end
-				end	
+				end
 			end
 		end,
-		
+
 		on_rightclick = function(pos, node, clicker)
 			if not clicker:is_player() then
 				return
@@ -134,10 +134,10 @@ for i in ipairs(longsofas_list) do
 						--legs
 						{-0.4375, -0.5, -0.03125, -0.375, -0.375, 0.03125},
 						{0.375, -0.5, -0.03125, 0.4375, -0.375, 0.03125},
-						
+
 						--base/cushion
 						{-0.5, -0.375, -0.5, 0.5, 0, 0.5},
-						
+
 						--back
 						{-0.5, 0, -0.5, -0.3125, 0.5, 0.5},
 					}
@@ -149,7 +149,7 @@ for i in ipairs(longsofas_list) do
 					}
 		},
 	})
-	
+
 	minetest.register_node("lrfurn:longsofa_left_"..colour, {
 		drawtype = "nodebox",
 		tiles = {"lrfurn_sofa_left_top_"..colour..".png", "lrfurn_coffeetable_back.png",  "lrfurn_sofa_left_front_"..colour..".png",  "lrfurn_sofa_back_"..colour..".png",  "lrfurn_sofa_left_side_"..colour..".png",  "lrfurn_sofa_right_side_"..colour..".png"},
@@ -163,13 +163,13 @@ for i in ipairs(longsofas_list) do
 						--legs
 						{-0.4375, -0.5, 0.375, -0.375, -0.375, 0.4375},
 						{0.375, -0.5, 0.375, 0.4375, -0.375, 0.4375},
-						
+
 						--base/cushion
 						{-0.5, -0.375, -0.5, 0.5, 0, 0.5},
-						
+
 						--back
 						{-0.5, 0, -0.5, -0.3125, 0.5, 0.5},
-						
+
 						--arm
 						{-0.3125, 0, 0.3125, 0.5, 0.25, 0.5},
 					}
@@ -181,9 +181,9 @@ for i in ipairs(longsofas_list) do
 					}
 		},
 	})
-	
+
 	minetest.register_alias("lrfurn:longsofa_"..colour, "lrfurn:longsofa_right_"..colour)
-	
+
 	minetest.register_craft({
 		output = "lrfurn:longsofa_"..colour,
 		recipe = {

@@ -20,8 +20,7 @@ for i in ipairs(shutters) do
 	local name = shutters[i][1]
 	local desc = shutters[i][2]
 
-minetest.register_node("homedecor:shutter_"..name, {
-	drawtype = "mesh",
+homedecor.register("shutter_"..name, {
 	mesh = "homedecor_window_shutter.obj",
 	tiles = { "homedecor_window_shutter_"..name..".png" },
 	description = S("Wooden Shutter ("..desc..")"),

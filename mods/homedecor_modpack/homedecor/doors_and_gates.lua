@@ -20,12 +20,7 @@ local function countSolids(pos,node,level)
     local solids = 0
     for x = -1, 1 do
         for z = -1, 1 do
-            local y = 0
-            if node.param2 == 5 then 
-                y = -level 
-            else
-                y =  level
-            end
+            local y = (node.param2 == 5) and -level or level
             -- special cases when x == z == 0
             if x == 0 and z == 0 then
                 if level == 1 then
@@ -76,12 +71,7 @@ local function calculateClosed(pos)
                     return true
                 end
             end
-            local x
-            if direction == 1 then
-                x = 1
-            else
-                x = -1
-            end
+            local x = (direction == 1) and 1 or -1
             if isSolid(pos,{x,0,-1}) and not isSolid(pos,{x,0,0}) and isSolid(pos,{x,0,1}) then
                 if string.find(node.name,'_bottom_') then
                     return calculateClosed({x=pos.x,y=pos.y+1,z=pos.z})
@@ -89,9 +79,9 @@ local function calculateClosed(pos)
                     return true
                 end
             end
-            return false            
+            return false
         else
-            -- direction == 3 or 4                
+            -- direction == 3 or 4
             if isSolid(pos,{-1,0,0}) and isSolid(pos,{1,0,0}) then
                 if string.find(node.name,'_bottom_') then
                     return calculateClosed({x=pos.x,y=pos.y+1,z=pos.z})
@@ -99,12 +89,7 @@ local function calculateClosed(pos)
                     return true
                 end
             end
-            local z
-            if direction == 3 then
-                z = 1
-            else
-                z = -1
-            end
+            local z = (direction == 3) and 1 or -1
             if isSolid(pos,{-1,0,z}) and not isSolid(pos,{0,0,z}) and isSolid(pos,{1,0,z}) then
                 if string.find(node.name,'_bottom_') then
                     return calculateClosed({x=pos.x,y=pos.y+1,z=pos.z})
@@ -122,11 +107,7 @@ end
 local function getClosed(pos)
     local isClosed = minetest.get_meta(pos):get_string('closed')
     if isClosed=='' then
-        if calculateClosed(pos) then
-            return true
-        else
-            return false
-        end
+	return calculateClosed(pos)
     else
         isClosed = tonumber(isClosed)
         -- may be closed or open (1 or 0)
@@ -135,13 +116,8 @@ local function getClosed(pos)
 end
 
 local function addDoorNode(pos,def,isClosed)
-    if isClosed then
-        isClosed = 1
-    else
-        isClosed = 0
-    end
-    minetest.add_node(pos, def)
-    minetest.get_meta(pos):set_int('closed',isClosed)
+    minetest.set_node(pos, def)
+    minetest.get_meta(pos):set_int('closed', isClosed and 1 or 0)
 end
 
 local sides = {"left", "right"}
@@ -210,7 +186,6 @@ for i in ipairs(sides) do
 			paramtype2 = "facedir",
 			groups = {snappy=3, not_in_creative_inventory=1},
 			sounds = default.node_sound_wood_defaults(),
-			walkable = true,
 			use_texture_alpha = texalpha,
 			selection_box = selectboxes_top,
 			node_box = {
@@ -229,7 +204,7 @@ for i in ipairs(sides) do
 		})
 
 		local dgroups = {snappy=3, not_in_creative_inventory=1}
-		if side == "left" then 
+		if side == "left" then
 			dgroups = {snappy=3}
 		end
 
@@ -243,7 +218,6 @@ for i in ipairs(sides) do
 			paramtype2 = "facedir",
 			groups = dgroups,
 			sounds = default.node_sound_wood_defaults(),
-			walkable = true,
 			use_texture_alpha = texalpha,
 			selection_box = selectboxes_bottom,
 			node_box = {
@@ -256,9 +230,12 @@ for i in ipairs(sides) do
 				end
 			end,
 			on_place = function(itemstack, placer, pointed_thing)
-				local keys=placer:get_player_control()
-				homedecor.place_door(itemstack, placer, pointed_thing, doorname, keys["sneak"])
-				return itemstack
+				return homedecor.stack_wing(itemstack, placer, pointed_thing,
+					"homedecor:door_"..doorname.."_bottom_left", "homedecor:door_"..doorname.."_top_left",
+					"homedecor:door_"..doorname.."_bottom_right", "homedecor:door_"..doorname.."_top_right")
+			end,
+			on_construct = function(pos)
+				minetest.get_meta(pos):set_int("closed", 1)
 			end,
 			on_rightclick = function(pos, node, clicker)
 				homedecor.flip_door(pos, node, clicker, doorname, side)
@@ -319,7 +296,7 @@ local gate_models_open = {
 	{{ 0.498, -0.5, -0.5, 0.498, 0.5, 0.5 }},
 
 	{{ 0.498, -0.5, -0.5, 0.498, 0.5, 0.5 }},
-	
+
 	{{  6/16, -8/16, -8/16,  8/16,  8/16, -6/16 },	-- left post
 	 {  6/16, -8/16,  6/16,  8/16,  8/16,  8/16 }, 	-- right post
 	 { 13/32,  7/16, -8/16, 15/32,  8/16,  8/16 },	-- top piece
@@ -350,10 +327,8 @@ for i in ipairs(gates_list) do
 			"homedecor_gate_"..gate.."_front.png"
 		},
 		paramtype = "light",
-		is_ground_content = true,
 		groups = {snappy=3},
 		sounds = default.node_sound_wood_defaults(),
-		walkable = true,
 		paramtype2 = "facedir",
 		selection_box = {
 			type = "fixed",
@@ -410,78 +385,6 @@ minetest.register_alias("homedecor:fence_picket_gate_closed",       "homedecor:g
 minetest.register_alias("homedecor:fence_picket_gate_white_open",   "homedecor:gate_picket_white_open")
 minetest.register_alias("homedecor:fence_picket_gate_white_closed", "homedecor:gate_picket_white_closed")
 
------ helper functions
-
-function homedecor.place_door(itemstack, placer, pointed_thing, name, forceright)
-
-	local pointed = pointed_thing.under
-	local pnode = minetest.get_node(pointed)
-	local pname = pnode.name
-	local rnodedef = minetest.registered_nodes[pname]
-
-	if rnodedef then
-
-		if rnodedef.on_rightclick then
-			rnodedef.on_rightclick(pointed_thing.under, pnode, placer, itemstack)
-			return
-		end
-
-		local pos1 = nil
-		local pos2 = nil
-
-		if rnodedef["buildable_to"] then
-			pos1 = pointed
-			pos2 = {x=pointed.x, y=pointed.y+1, z=pointed.z}
-		else
-			pos1 = pointed_thing.above
-			pos2 = {x=pointed_thing.above.x, y=pointed_thing.above.y+1, z=pointed_thing.above.z}
-		end
-
-		local node_bottom = minetest.get_node(pos1)
-		local node_top = minetest.get_node(pos2)
-
-		if minetest.is_protected(pos1, placer:get_player_name()) then
-			minetest.record_protection_violation(pos1,
-					placer:get_player_name())
-			return
-		end
-
-		if minetest.is_protected(pos2, placer:get_player_name()) then
-			minetest.record_protection_violation(pos2,
-					placer:get_player_name())
-			return
-		end
-
-		if not homedecor.get_nodedef_field(node_bottom.name, "buildable_to") 
-		    or not homedecor.get_nodedef_field(node_top.name, "buildable_to") then
-			minetest.chat_send_player( placer:get_player_name(), S('Not enough space above that spot to place a door!') )
-		else
-			local fdir = minetest.dir_to_facedir(placer:get_look_dir())
-			local p_tests = {
-				{x=pos1.x-1, y=pos1.y, z=pos1.z},
-				{x=pos1.x, y=pos1.y, z=pos1.z+1},
-				{x=pos1.x+1, y=pos1.y, z=pos1.z},
-				{x=pos1.x, y=pos1.y, z=pos1.z-1},
-			}
-			print("fdir="..fdir)
-			local testnode = minetest.get_node(p_tests[fdir+1])
-			local side = "left"
-
-			if string.find(testnode.name, "homedecor:door_"..name.."_bottom_left") or forceright then
-				side = "right"
-			end
-
-            local def = { name = "homedecor:door_"..name.."_bottom_"..side, param2=fdir}
-            addDoorNode(pos1, def, true)
-			minetest.add_node(pos2, { name = "homedecor:door_"..name.."_top_"..side, param2=fdir})
-			if not homedecor.expect_infinite_stacks then
-				itemstack:take_item()
-				return itemstack
-			end
-		end
-	end
-end
-
 -- to open a door, you switch left for right and subtract from param2, or vice versa right for left
 -- that is to say open "right" doors become left door nodes, and open left doors right door nodes.
 -- also adjusting param2 so the node is at 90 degrees.
@@ -507,12 +410,7 @@ function homedecor.flip_door(pos, node, player, name, side, isClosed)
 		nfdir=ofdir + 1
 		if nfdir > 3 then nfdir = 0 end
 	end
-    local sound;
-    if isClosed then
-        sound = 'close'
-    else
-        sound = 'open'
-    end
+	local sound = isClosed and 'close' or 'open'
 	minetest.sound_play("homedecor_door_"..sound, {
 		pos=pos,
         max_hear_distance = 5,
@@ -598,7 +496,7 @@ minetest.register_node("homedecor:japanese_wall_top", {
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, 
+		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625},
 	}
 })
 
@@ -634,7 +532,7 @@ minetest.register_node("homedecor:japanese_wall_middle", {
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, 
+		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625},
 	}
 })
 
@@ -669,7 +567,7 @@ minetest.register_node("homedecor:japanese_wall_bottom", {
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625}, 
+		fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625},
 	}
 })
 
@@ -694,7 +592,7 @@ minetest.register_node("homedecor:tatami_mat", {
 	}
 })
 
-minetest.register_node("homedecor:jpn_door_bottom", {
+homedecor.register("jpn_door_bottom", {
 	description = "Japanese-style door",
 	inventory_image = "homedecor_jpn_door_inv.png",
 	tiles = {
@@ -704,13 +602,10 @@ minetest.register_node("homedecor:jpn_door_bottom", {
                 "homedecor_japanese_wall_edges.png",
 		"homedecor_japanese_door_bottom.png"
 	},
-	drawtype = "nodebox",
-	paramtype = "light",
-	paramtype2 = "facedir",
 	groups = { snappy = 3 },
 	node_box = {
 		type = "fixed",
-		fixed = {			
+		fixed = {
 			{-0.5, -0.5, 0.03125, 0.5, 0.5, 0.03125}, -- NodeBox1
 			{-0.5, -0.5, 0, -0.44, 0.5, 0.0625}, -- NodeBox2
 			{0.44, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox3
@@ -724,29 +619,9 @@ minetest.register_node("homedecor:jpn_door_bottom", {
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, 0, 0.5, 1.5, 0.0625}, 
+		fixed = {-0.5, -0.5, 0, 0.5, 1.5, 0.0625},
 	},
-	on_place = function(itemstack, placer, pointed_thing)
-
-		local pointed = pointed_thing.under
-		local pnode = minetest.get_node(pointed)
-		local pname = pnode.name
-		local rnodedef = minetest.registered_nodes[pname]
-
-		if rnodedef.on_rightclick then
-			rnodedef.on_rightclick(pointed, pnode, placer)
-			return
-		end
-
-		return homedecor.stack_vertically(itemstack, placer, pointed_thing,
-			"homedecor:jpn_door_bottom", "homedecor:jpn_door_top")
-	end,
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
-		local pos2 = { x = pos.x, y=pos.y + 1, z = pos.z }
-		if minetest.get_node(pos2).name == "homedecor:jpn_door_top" then
-			minetest.remove_node(pos2)
-		end
-	end,
+	expand = { top = "homedecor:jpn_door_top" },
 	on_rightclick = function(pos, node, clicker)
 		fdir = minetest.get_node(pos).param2
 		minetest.set_node(pos, {name = "homedecor:jpn_door_bottom_open", param2 = fdir})
@@ -768,7 +643,7 @@ minetest.register_node("homedecor:jpn_door_top", {
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	node_box = {
 		type = "fixed",
-		fixed = {			
+		fixed = {
 			{-0.5, -0.5, 0.03125, 0.5, 0.5, 0.03125}, -- NodeBox1
 			{-0.5, -0.5, 0, -0.44, 0.5, 0.0625}, -- NodeBox2
 			{0.44, -0.5, 0, 0.5, 0.5, 0.0625}, -- NodeBox3
@@ -780,10 +655,7 @@ minetest.register_node("homedecor:jpn_door_top", {
 			{0.1565, -0.5, 0, 0.2185, 0.5, 0.0625}, -- NodeBox9
 		}
 	},
-	selection_box = {
-		type = "fixed",
-		fixed = { 0, 0, 0, 0, 0, 0 },
-	},
+	selection_box = homedecor.nodebox.null,
 })
 
 minetest.register_node("homedecor:jpn_door_bottom_open", {
@@ -800,7 +672,7 @@ minetest.register_node("homedecor:jpn_door_bottom_open", {
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	node_box = {
 		type = "fixed",
-		fixed = {			
+		fixed = {
 			{-1.5, -0.5, -0.03125, -0.5, 0.5, -0.03125}, -- NodeBox1
 			{-1.5, -0.5, -0.0625, -1.44, 0.5, 0}, -- NodeBox2
 			{-0.5625, -0.5, -0.0625, -0.5, 0.5, 0}, -- NodeBox3
@@ -844,7 +716,7 @@ minetest.register_node("homedecor:jpn_door_top_open", {
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	node_box = {
 		type = "fixed",
-		fixed = {			
+		fixed = {
 			{-1.5, -0.5, -0.03125, -0.5, 0.5, -0.03125}, -- NodeBox1
 			{-1.5, -0.5, -0.0625, -1.44, 0.5, 0}, -- NodeBox2
 			{-0.5625, -0.5, -0.0625, -0.5, 0.5, 0}, -- NodeBox3
@@ -856,10 +728,7 @@ minetest.register_node("homedecor:jpn_door_top_open", {
 			{-0.84375, -0.5, -0.0625, -0.7815, 0.5, 0}, -- NodeBox9
 		}
 	},
-	selection_box = {
-		type = "fixed",
-		fixed = { 0, 0, 0, 0, 0, 0 },
-	},
+	selection_box = homedecor.nodebox.null,
 })
 
 

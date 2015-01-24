@@ -263,13 +263,13 @@ function homedecor.register_furnace(name, furnacedef)
 			local srclist = inv:get_list("src")
 			local cooked = nil
 			local aftercooked
-			
+
 			if srclist then
 				cooked, aftercooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
 			end
-			
+
 			local was_active = false
-			
+
 			if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
 				was_active = true
 				meta:set_float("fuel_time", meta:get_float("fuel_time") + 1)
@@ -306,7 +306,7 @@ function homedecor.register_furnace(name, furnacedef)
 			local cooked = nil
 			local fuellist = inv:get_list("fuel")
 			local srclist = inv:get_list("src")
-			
+
 			if srclist then
 				cooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
 			end
@@ -345,45 +345,3 @@ function homedecor.register_furnace(name, furnacedef)
 	})
 
 end
-
-homedecor.register_furnace("homedecor:oven", {
-	description = S("Oven"),
-	tile_format = "homedecor_oven_%s%s.png",
-	output_slots = 4,
-	output_width = 2,
-	cook_speed = 1.25,
-})
-
-homedecor.register_furnace("homedecor:oven_steel", {
-	description = S("Oven (stainless steel)"),
-	tile_format = "homedecor_oven_steel_%s%s.png",
-	output_slots = 4,
-	output_width = 2,
-	cook_speed = 1.25,
-})
-
-homedecor.register_furnace("homedecor:microwave_oven", {
-	description = S("Microwave Oven"),
-	tiles = {
-		"homedecor_microwave_top.png", "homedecor_microwave_top.png^[transformR180",
-		"homedecor_microwave_top.png^[transformR270", "homedecor_microwave_top.png^[transformR90",
-		"homedecor_microwave_top.png^[transformR180", "homedecor_microwave_front.png"
-	},
-	tiles_active = {
-		"homedecor_microwave_top.png", "homedecor_microwave_top.png^[transformR180",
-		"homedecor_microwave_top.png^[transformR270", "homedecor_microwave_top.png^[transformR90",
-		"homedecor_microwave_top.png^[transformR180", "homedecor_microwave_front_active.png"
-	},
-	output_slots = 2,
-	output_width = 2,
-	cook_speed = 1.5,
-	extra_nodedef_fields = {
-		drawtype = "nodebox",
-		paramtype = "light",
-		--paramtype2 = "facedir", -- Not needed, set by register_furnace
-		node_box = {
-			type = "fixed",
-			fixed = { { -0.5, -0.5, -0.125, 0.5, 0.125, 0.5 } },
-		},
-	},
-})

@@ -10,13 +10,9 @@ minetest.register_node("homedecor:skylight", {
 	inventory_image = "homedecor_skylight_inv.png",
 	paramtype = "light",
 	sunlight_propagates = true,
-	walkable = true,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, -0.4, 0.5 }
-	}
+	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
 minetest.register_node("homedecor:skylight_frosted", {
@@ -28,13 +24,9 @@ minetest.register_node("homedecor:skylight_frosted", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	use_texture_alpha = true,
-	walkable = true,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, -0.4, 0.5 }
-	}
+	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
 minetest.register_node("homedecor:shingles_wood", {
@@ -44,14 +36,10 @@ minetest.register_node("homedecor:shingles_wood", {
 	wield_image = "homedecor_shingles_wood.png",
 	inventory_image = "homedecor_shingles_wood_inv.png",
 	paramtype = "light",
-	sunlight_propagates = false,
 	walkable = false,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, -0.4, 0.5 }
-	}
+	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
 minetest.register_node("homedecor:shingles_asphalt", {
@@ -61,14 +49,10 @@ minetest.register_node("homedecor:shingles_asphalt", {
 	wield_image = "homedecor_shingles_asphalt.png",
 	inventory_image = "homedecor_shingles_asphalt_inv.png",
 	paramtype = "light",
-	sunlight_propagates = false,
 	walkable = false,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, -0.4, 0.5 }
-	}
+	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
 minetest.register_node("homedecor:shingles_terracotta", {
@@ -78,13 +62,9 @@ minetest.register_node("homedecor:shingles_terracotta", {
 	wield_image = "homedecor_shingles_terracotta.png",
 	inventory_image = "homedecor_shingles_terracotta_inv.png",
 	paramtype = "light",
-	sunlight_propagates = false,
 	walkable = false,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, -0.4, 0.5 }
-	}
+	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 

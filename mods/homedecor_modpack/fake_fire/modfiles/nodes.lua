@@ -1,193 +1,91 @@
 local cp = nil
 
--- FLAME TYPES
+local function register_fake_fire(name, def)
+	assert(name, "local registration called without name")
+	assert(def, "local registration called without node definition")
 
--- SMOKEY FIRE (TRIGGERS SMOKE ABM)
-minetest.register_node("fake_fire:fake_fire", {
-    description = "Smokey, Fake Fire",
-	tiles = {
-		{name="fake_fire_animated.png", animation={type="vertical_frames",
-		aspect_w=16, aspect_h=16, length=1.5}},
-		},
-	is_ground_content = true,
-   	inventory_image = 'fake_fire.png',
-	wield_image = {
-		{name="fake_fire_animated.png", animation={type="vertical_frames",
-		aspect_w=16, aspect_h=16, length=1.5}},
-		},
-	drawtype = "plantlike",
-	 -- Waving wasn't an option when this mod was written. ~ LazyJ, 2014_03_13
-	waving = 1,
-	light_source = 14,
+	-- make sure shared definitions are set
+	def.is_ground_content = true
+	def.inventory_image = def.inventory_image or name.. ".png"
+	def.drawtype = "plantlike"
+	def.waving = 1 -- Waving wasn't an option when this mod was written. ~ LazyJ, 2014_03_13
+	def.light_source = def.lightsource or 14
 	-- Adding sunlight_propagtes and leaving comments as a future reference.
 	-- If true, sunlight will go infinitely through this (no shadow is cast).
 	-- Because fire produces light it should be "true" so fire *doesn't* have
 	-- a shadow. 
-	sunlight_propagates = true,
+	def.sunlight_propagates = true
 	-- damage_per_second = 2*0.5, -- It's *fake* fire. PvP on our server has
 	-- been disabled for a reason. I don't want griefers lighting players on
 	-- fire or trapping them in blazes. ~ LazyJ, 2014_0_13
-	--groups = {dig_immediate=3,attached_node=1},
-	groups = {
-				oddly_breakable_by_hand=3, dig_immediate=2, attached_node=1,
-				not_in_creative_inventory=1
-			},
-	paramtype = "light",
-	walkable = false,
-	drop = "",  -- So fire won't return to the inventory. ~ LazyJ
-	sounds = minetest.sound_play("fire_small", {pos=cp, loop=true}),
-	on_punch = function (pos,node,puncher)
+
+	def.groups = def.groups or {
+		oddly_breakable_by_hand=3, dig_immediate=2,
+		attached_node=1, not_in_creative_inventory=1
+	}
+	def.paramtype = "light"
+	def.walkable = false
+	def.drop = ""  -- So fire won't return to the inventory. ~ LazyJ
+	def.sounds = def.sounds or minetest.sound_play("fire_small", {pos=cp, loop=true})
+	def.buildable_to = true
+
+	local swap_on_punch = def.swap_on_punch
+	def.on_punch = def.on_punch or function (pos, node, puncher)
 		-- A max_hear_distance of 20 may freak some players out by the "hiss"
 		-- so I reduced it to 5.
-		minetest.sound_play("fire_extinguish", {pos = pos, gain = 1.0,
-		max_hear_distance = 5,})
-		-- This swaps the smoky version with the smokeless version. ~ LazyJ
-		minetest.set_node(pos, {name = "fake_fire:smokeless_fire"})
+		minetest.sound_play("fire_extinguish", {pos = pos, gain = 1.0, max_hear_distance = 5,})
+		-- swap the node on_punch if def.swap_on_punch is set
+		if swap_on_punch then
+			minetest.set_node(pos, {name = swap_on_punch})
+		end
 	end
-})
 
+	-- no need to add these to the global registration table
+	def.swap_on_punch = nil
+	def.smoking = nil
+	minetest.register_node("fake_fire:" .. name, def)
+end
 
-
--- SMOKELESS FIRE (DOES NOT TRIGGER SMOKE ABM)
-minetest.register_node("fake_fire:smokeless_fire", {
-    description = "Smokeless, Fake Fire",
+-- FLAME TYPES
+register_fake_fire("fake_fire", {
+	description = "Smokey, Fake Fire",
 	tiles = {
 		{name="fake_fire_animated.png", animation={type="vertical_frames",
 		aspect_w=16, aspect_h=16, length=1.5}},
-		},
-	is_ground_content = true,
-   	inventory_image = 'fake_fire.png',
-	wield_image = {
+	},
+	swap_on_punch = "fake_fire:smokeless_fire",
+})
+
+register_fake_fire("smokeless_fire", {
+	description = "Smokeless, Fake Fire",
+	tiles = {
 		{name="fake_fire_animated.png", animation={type="vertical_frames",
 		aspect_w=16, aspect_h=16, length=1.5}},
-		},
-	drawtype = "plantlike",
-	 -- Waving wasn't an option when this mod was written. ~ LazyJ, 2014_03_13
-	waving = 1,
-	light_source = 14,
-		-- Adding sunlight_propagtes and leaving comments as a future reference.
-	-- If true, sunlight will go infinitely through this (no shadow is cast).
-	-- Because fire produces light it should be "true" so fire *doesn't* have
-	-- a shadow. 
-	sunlight_propagates = true,
-	-- damage_per_second = 2*0.5, -- It's *fake* fire. PvP on our server has
-	-- been disabled for a reason. I don't want griefers lighting players on
-	-- fire or trapping them in blazes. ~ LazyJ, 2014_0_13
-	--groups = {dig_immediate=3,attached_node=1},
-	groups = {
-				oddly_breakable_by_hand=3, dig_immediate=2, attached_node=1,
-				not_in_creative_inventory=1
-			},
-	paramtype = "light",
-	walkable = false,
-	drop = "",  -- So fire won't return to the inventory. ~ LazyJ
-	sounds = minetest.sound_play("fire_small", {pos=cp, loop=true}),
-	on_punch = function (pos,node,puncher)
-		-- A max_hear_distance of 20 may freak some players out by the "hiss"
-		-- so I reduced it to 5.
-		minetest.sound_play("fire_extinguish", {pos = pos, gain = 1.0,
-		max_hear_distance = 5,})
-		-- This swaps the smokeless version with the smoky version. ~ LazyJ
-		minetest.set_node(pos, {name = "fake_fire:fake_fire"})
-	end
+	},
+	inventory_image = 'fake_fire.png',
+	swap_on_punch = "fake_fire:fake_fire",
 })
 
-
-
--- SMOKEY ICE FIRE (TRIGGERS SMOKE ABM)
-minetest.register_node("fake_fire:ice_fire", {
-    description = "Smoky, Fake, Ice Fire",
+register_fake_fire("ice_fire", {
+	description = "Smoky, Fake, Ice Fire",
 	tiles = {
 		{name="ice_fire_animated.png", animation={type="vertical_frames",
 		aspect_w=16, aspect_h=16, length=1.5}},
-		},
-	is_ground_content = true,
-   	inventory_image = 'ice_fire.png',
-	wield_image = {
-		{name="ice_fire_animated.png", animation={type="vertical_frames",
-		aspect_w=16, aspect_h=16, length=1.5}},
-		},
-	drawtype = "plantlike",
-	 -- Waving wasn't an option when this mod was written. ~ LazyJ, 2014_03_13
-	waving = 1,
-	light_source = 14,
-		-- Adding sunlight_propagtes and leaving comments as a future reference.
-	-- If true, sunlight will go infinitely through this (no shadow is cast).
-	-- Because fire produces light it should be "true" so fire *doesn't* have
-	-- a shadow. 
-	sunlight_propagates = true,
-	-- damage_per_second = 2*0.5, -- It's *fake* fire. PvP on our server has
-	-- been disabled for a reason. I don't want griefers lighting players on
-	-- fire or trapping them in blazes. ~ LazyJ, 2014_0_13
-	--groups = {dig_immediate=3,attached_node=1},
-	groups = {
-				oddly_breakable_by_hand=3, dig_immediate=2, attached_node=1,
-				not_in_creative_inventory=1
-			},
-	paramtype = "light",
-	walkable = false,
-	drop = "",  -- So fire won't return to the inventory. ~ LazyJ
-	sounds = minetest.sound_play("fire_small", {pos=cp, loop=true}),
-	on_punch = function (pos,node,puncher)
-		-- A max_hear_distance of 20 may freak some players out by the "hiss"
-		-- so I reduced it to 5.
-		minetest.sound_play("fire_extinguish", {pos = pos, gain = 1.0,
-		max_hear_distance = 5,})
-		-- This swaps the smoky version with the smokeless version. ~ LazyJ
-		minetest.set_node(pos, {name = "fake_fire:smokeless_ice_fire"})
-	end
+	},
+	swap_on_punch = "fake_fire:smokeless_ice_fire",
 })
 
-
-
--- SMOKELESS ICE FIRE (DOES NOT TRIGGER SMOKE ABM)
-minetest.register_node("fake_fire:smokeless_ice_fire", {
-    description = "Smokeless, Fake, Ice Fire",
+register_fake_fire("smokeless_ice_fire", {
+	description = "Smokeless, Fake, Ice Fire",
 	tiles = {
 		{name="ice_fire_animated.png", animation={type="vertical_frames",
 		aspect_w=16, aspect_h=16, length=1.5}},
-		},
-	is_ground_content = true,
+	},
    	inventory_image = 'ice_fire.png',
-	wield_image = {
-		{name="ice_fire_animated.png", animation={type="vertical_frames",
-		aspect_w=16, aspect_h=16, length=1.5}},
-		},
-	drawtype = "plantlike",
-	 -- Waving wasn't an option when this mod was written. ~ LazyJ, 2014_03_13
-	waving = 1,
-	light_source = 14,
-		-- Adding sunlight_propagtes and leaving comments as a future reference.
-	-- If true, sunlight will go infinitely through this (no shadow is cast).
-	-- Because fire produces light it should be "true" so fire *doesn't* have
-	-- a shadow. 
-	sunlight_propagates = true,
-	-- damage_per_second = 2*0.5, -- It's *fake* fire. PvP on our server has
-	-- been disabled for a reason. I don't want griefers lighting players on
-	-- fire or trapping them in blazes. ~ LazyJ, 2014_0_13
-	--groups = {dig_immediate=3,attached_node=1},
-	groups = {
-				oddly_breakable_by_hand=3, dig_immediate=2, attached_node=1,
-				not_in_creative_inventory=1
-			},
-	paramtype = "light",
-	walkable = false,
-	drop = "",  -- So fire won't return to the inventory. ~ LazyJ
-	sounds = minetest.sound_play("fire_small", {pos=cp, loop=true}),
-	on_punch = function (pos,node,puncher)
-		-- A max_hear_distance of 20 may freak some players out by the "hiss"
-		-- so I reduced it to 5.
-		minetest.sound_play("fire_extinguish", {pos = pos, gain = 1.0,
-		max_hear_distance = 5,})
-		-- This swaps the smokeless version with the smoky version. ~ LazyJ
-		minetest.set_node(pos, {name = "fake_fire:ice_fire"})
-	end
+	swap_on_punch = "fake_fire:ice_fire",
 })
-
-
 
 -- FLINT and STEEL
-
 minetest.register_tool("fake_fire:flint_and_steel", {
 	description = "Flint and steel",
 	inventory_image = "flint_and_steel.png",

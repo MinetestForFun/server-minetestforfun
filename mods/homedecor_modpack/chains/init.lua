@@ -107,7 +107,7 @@ minetest.register_craft({
 	output = 'chains:chain_top',
 	recipe = {
 		{'default:steel_ingot'},
-		{'glooptest:chainlink'},	
+		{'glooptest:chainlink'},
 	},
 })
 
@@ -135,7 +135,7 @@ minetest.register_craft({
 	output = 'chains:chain_top_brass',
 	recipe = {
 		{'technic:brass_ingot'},
-		{'homedecor:chainlink_brass'},	
+		{'homedecor:chainlink_brass'},
 	},
 })
 

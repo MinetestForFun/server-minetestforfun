@@ -2,8 +2,7 @@
 
 local S = homedecor.gettext
 
-minetest.register_node('homedecor:air_conditioner', {
-	drawtype = "nodebox",
+homedecor.register("air_conditioner", {
 	description = S("Air Conditioner"),
 	tiles = { 'homedecor_ac_tb.png',
 		  'homedecor_ac_tb.png',
@@ -11,10 +10,6 @@ minetest.register_node('homedecor:air_conditioner', {
 		  'homedecor_ac_sides.png',
 		  'homedecor_ac_back.png',
 		  'homedecor_ac_front.png'},
-	sunlight_propagates = false,
-	paramtype = "light",
-	paramtype2 = "facedir",
-	walkable = true,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
 	node_box = {
@@ -24,25 +19,22 @@ minetest.register_node('homedecor:air_conditioner', {
 			{-0.5, 0.125, -0.5, 0.5, 0.5, 0.5 },
 		}
 	},
-	selection_box = { -0.5, -0.5, -0.5, 0.5, 0.5, 0.5 }
+	selection_box = { type="regular" },
 })
 
 -- fans
 
 minetest.register_entity("homedecor:mesh_desk_fan", {
-    collisionbox = { 0, 0, 0, 0, 0, 0 },
-    visual = "mesh",
+	collisionbox = homedecor.nodebox.null,
+	visual = "mesh",
 	mesh = "homedecor_desk_fan.b3d",
-    textures = {"homedecor_desk_fan_uv.png"},
+	textures = {"homedecor_desk_fan_uv.png"},
 	visual_size = {x=10, y=10},
 })
 
-minetest.register_node("homedecor:desk_fan", {
+homedecor.register("desk_fan", {
 	description = "Desk Fan",
-	drawtype = "nodebox",
-	paramtype2 = "facedir",
 	legacy_facedir_simple = true,
-	paramtype = "light",
 	groups = {oddly_breakable_by_hand=2},
 	node_box = {
 		type = "fixed",
@@ -53,12 +45,7 @@ minetest.register_node("homedecor:desk_fan", {
 	tiles = {"homedecor_desk_fan_body.png"},
 	inventory_image = "homedecor_desk_fan_inv.png",
 	wield_image = "homedecor_desk_fan_inv.png",
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-		}
-	},
+	selection_box = { type = "regular" },
 	on_construct = function(pos)
 		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
 		local meta = minetest.get_meta(pos)
@@ -88,7 +75,7 @@ minetest.register_node("homedecor:desk_fan", {
 			speedy_meta:set_string("active", "no")
 			print (speedy_meta:get_string("active"))
 		end
-		
+
 		if entity_anim[1] == nil then
 			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "homedecor:mesh_desk_fan") --+(0.0625*10)
 			local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
@@ -117,9 +104,8 @@ minetest.register_node("homedecor:desk_fan", {
 
 -- ceiling fan
 
-minetest.register_node('homedecor:ceiling_fan', {
+homedecor.register("ceiling_fan", {
 	description = S("Ceiling Fan"),
-	drawtype = "nodebox",
 	tiles = {
 		{	name="homedecor_ceiling_fan_top.png",
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=0.5} },
@@ -135,10 +121,6 @@ minetest.register_node('homedecor:ceiling_fan', {
 			{ -0.0625, 0.375, -0.0625, 0.0625, 0.5, 0.0625 }
 		}
 	},
-	sunlight_propagates = false,
-	paramtype = "light",
-	paramtype2 = "facedir",
-	walkable = true,
 	groups = { snappy = 3 },
 	light_source = LIGHT_MAX-1,
 	sounds = default.node_sound_wood_defaults(),
@@ -146,8 +128,7 @@ minetest.register_node('homedecor:ceiling_fan', {
 
 -- heating devices
 
-minetest.register_node('homedecor:space_heater', {
-	drawtype = "nodebox",
+homedecor.register("space_heater", {
 	description = S("Space heater"),
 	tiles = { 'homedecor_heater_tb.png',
 		  'homedecor_heater_tb.png',
@@ -158,9 +139,6 @@ minetest.register_node('homedecor:space_heater', {
 	},
 	inventory_image = "homedecor_heater_inv.png",
 	sunlight_propagates = true,
-	paramtype = "light",
-	paramtype2 = "facedir",
-	walkable = true,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
 	node_box = {
@@ -175,14 +153,11 @@ minetest.register_node('homedecor:space_heater', {
 	}
 })
 
-minetest.register_node("homedecor:radiator", {
+homedecor.register("radiator", {
 	tiles = { "homedecor_white_metal.png" },
 	inventory_image = "homedecor_radiator_inv.png",
 	description = "Radiator heater",
-	drawtype = "nodebox",
-	paramtype = "light",
-        paramtype2 = "facedir",
-        groups = {snappy=3},
+	groups = {snappy=3},
 	node_box = {
 		type = "fixed",
 		fixed = {
