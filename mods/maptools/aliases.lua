@@ -74,8 +74,6 @@ minetest.register_alias("fake_fire", "maptools:fake_fire")
 minetest.register_alias("ffire", "maptools:fake_fire")
 minetest.register_alias("igniter", "maptools:igniter")
 
--- Unbreakable block aliases
-
 minetest.register_alias("stone_u", "maptools:stone")
 minetest.register_alias("tree_u", "maptools:tree")
 minetest.register_alias("cobble_u", "maptools:cobble")
