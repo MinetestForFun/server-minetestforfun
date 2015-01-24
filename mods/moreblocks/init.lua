@@ -31,4 +31,3 @@ dofile(modpath .. "/aliases.lua")
 if minetest.setting_getbool("log_mods") then
 	minetest.log("action", S("[moreblocks] loaded."))
 end
-
