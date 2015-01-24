@@ -411,7 +411,6 @@ minetest.register_node("maptools:igniter", {
 minetest.register_node("maptools:superapple", {
 	description = S("Super Apple"),
 	range = 12,
-<<<<<<< HEAD
 	stack_max = 99,
 	drawtype = "nodebox",
 	visual_scale = 1.0,
@@ -442,21 +441,4 @@ minetest.register_node("maptools:superapple", {
 			minetest.set_node(pos, {name = "maptools:superapple", param2= 1})
 		end
 	end,
-=======
-	stack_max = 10000,
-	drawtype = "plantlike",
-	visual_scale = 1.0,
-	tiles = {"maptools_superapple.png"},
-	inventory_image = "maptools_superapple.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
-	},
-	walkable = false,
-	groups = {fleshy=3, dig_immediate=3, not_in_creative_inventory = maptools.creative},
-	on_use = minetest.item_eat(20),
-	sounds = default.node_sound_defaults(),
->>>>>>> Maptool's update
 })
