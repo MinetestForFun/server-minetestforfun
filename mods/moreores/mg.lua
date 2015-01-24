@@ -1,3 +1,10 @@
+--[[
+More Ores: `mg` mod support
+
+Copyright (c) 2011-2015 Calinou and contributors.
+Licensed under the zlib license. See LICENSE.md for more information.
+--]]
+
 mg.register_ore({
 	name = "moreores:mineral_tin",
 	wherein = "default:stone",
