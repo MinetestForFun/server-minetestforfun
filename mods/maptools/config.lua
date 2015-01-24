@@ -26,8 +26,4 @@ local function setting(settingtype, name, default)
 end
 
 -- Show Map Tools stuff in creative inventory (1 or 0):
-<<<<<<< HEAD
 setting("integer", "hide_from_creative_inventory", 0)
-=======
-setting("integer", "hide_from_creative_inventory", 1)
->>>>>>> Maptool's update

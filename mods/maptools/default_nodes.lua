@@ -360,7 +360,7 @@ minetest.register_node("maptools:diamondblock", {
 	description = S("Unbreakable Diamond Block"),
 	range = 12,
 	stack_max = 10000,
-	tiles = {"default_steel_block.png"},
+	tiles = {"default_diamond_block.png"},
 	drop = "",
 	groups = {unbreakable = 1, not_in_creative_inventory = maptools.creative},
 	sounds = default.node_sound_stone_defaults(),
