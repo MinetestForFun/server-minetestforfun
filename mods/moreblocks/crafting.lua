@@ -440,9 +440,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "moreblocks:cobble_compressed",
 	recipe = {
-		{"default:cobble", "default:cobble", "default:cobble"},
-		{"default:cobble", "default:cobble", "default:cobble"},
-		{"default:cobble", "default:cobble", "default:cobble"},
+		{"default:cobble"},
+		{"default:cobble"},
 	}
 })
 
