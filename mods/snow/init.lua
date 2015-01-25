@@ -128,6 +128,7 @@ snow.is_uneven = function(pos)
 		local found
 		local foundx
 		local foundy
+		local foundz
 		for x=-1,1 do
 		for z=-1,1 do
 			local node = get_node({x=pos.x+x,y=pos.y,z=pos.z+z})

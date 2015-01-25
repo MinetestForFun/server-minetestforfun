@@ -66,7 +66,7 @@ end
 	
 	--Christmas easter egg
 	minetest.register_on_mapgen_init( function()
-		if minetest.get_modpath("skins") ~= nil then
+		if skins then
 			skins.add("character_snow_man")
 		end
 	end

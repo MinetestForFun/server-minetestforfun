@@ -1,5 +1,10 @@
 CHANGELOG:
 ------------
+
+Version 3.2
+
+	Update compatibility to the latest minetest.
+	
 Version 0.3.1
 
 	Paramat's rewrite of mapgenv6.lua: bugfixes, use noisemaps for big speed increase
