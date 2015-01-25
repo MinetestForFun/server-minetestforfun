@@ -142,7 +142,13 @@ minetest.register_chatcommand("from_hell", {
 		end
 		minetest.chat_send_player(pname, "You are free now")
 		player_from_nether(player)
-		player:moveto({x=pos.x, y=100, z=pos.z})
+		local pos_togo = {x = 0, y = 35, z = -7}
+		if minetest.setting_getbool("static_spawnpoint") ~= nil then
+			local stsp_conf = minetest.setting_get("static_spawnpoint")
+			pos_togo = {x = stsp_conf:split(",")[1],y = stsp_conf:split(",")[2],z = stsp_conf:split(",")[3]}
+		end
+		table.foreach(pos_togo,print)
+		player:moveto(pos_togo)
 		return true
 	end
 })
