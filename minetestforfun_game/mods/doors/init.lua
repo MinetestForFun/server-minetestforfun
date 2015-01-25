@@ -384,7 +384,7 @@ local function punch(pos)
 	local me = minetest.get_node(pos)
 	local tmp_node
 	local tmp_node2
-	oben = {x = pos.x, y = pos.y+1, z = pos.z}
+	local oben = {x = pos.x, y = pos.y+1, z = pos.z}
 		if state == 1 then
 			state = 0
 			minetest.sound_play("door_close", {pos = pos, gain = 0.175, max_hear_distance = 16})

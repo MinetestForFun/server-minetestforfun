@@ -8,7 +8,7 @@
 	Mod ßý Mg, based on an idea of MinetestForFun/Darcidride
 ]]--
 
-chests = {
+local chests = {
   [1] = {
     position = {x = 5, y = 40, z = -1},
     interval_max = 3600,
@@ -53,7 +53,7 @@ minetest.register_globalstep(function(dtime)
 		
 		if chests[i].position.x and chests[i].position.y and chests[i].position.z and chests[i].interval_timer >= chests[i].interval_max then
 			chests[i].interval_timer = 0
-			node = minetest.get_node(chests[i].position)
+			local node = minetest.get_node(chests[i].position)
 			if node.name ~= "ignore" then
 				if node.name ~= "default:chest" then
 					if node.name == "air" then
@@ -65,8 +65,8 @@ minetest.register_globalstep(function(dtime)
 					end
 				end
 
-				meta = minetest.get_meta(chests[i].position)
-				inv = meta:get_inventory()
+				local meta = minetest.get_meta(chests[i].position)
+				local inv = meta:get_inventory()
 				inv:set_list("main", chests[i].stuff)
 
 				minetest.log("action","[b_chest]["..i.."] Chest reloaded at "..chests[i].position.x..", "..chests[i].position.y..", "..chests[i].position.z)

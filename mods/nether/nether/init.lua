@@ -163,8 +163,8 @@ end
 local function fix_light(minp, maxp)
 	local manip = minetest.get_voxel_manip()
 	local emerged_pos1, emerged_pos2 = manip:read_from_map(minp, maxp)
-	area = VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
-	nodes = manip:get_data()
+	local area = VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
+	local nodes = manip:get_data()
 
 	manip:set_data(nodes)
 	manip:write_to_map()
@@ -389,7 +389,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local test3 = math.abs(pmap3[count])
 
 			local t = math.floor(test*3+0.5)
-
+			local h = 0
 			if test2 < 0 then
 				h = math.floor(test2*3+0.5)-1
 			else
