@@ -1,14 +1,7 @@
 -- This file supplies poison ivy for the plantlife modpack
 -- Last revision:  2013-01-24
 
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if (minetest.get_modpath("intllib")) then
-  dofile(minetest.get_modpath("intllib").."/intllib.lua")
-  S = intllib.Getter(minetest.get_current_modname())
-else
-  S = function ( s ) return s end
-end
+local S = plantslib.intllib
 
 local SPAWN_DELAY = 1000
 local SPAWN_CHANCE = 200

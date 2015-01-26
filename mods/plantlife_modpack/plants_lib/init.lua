@@ -26,17 +26,17 @@ plantslib.actionslist_aircheck = {}
 plantslib.actionslist_no_aircheck = {}
 
 plantslib.modpath = minetest.get_modpath("plants_lib")
-plantslib.intllib_modpath = minetest.get_modpath("intllib")
 
 plantslib.total_no_aircheck_calls = 0
 
+-- Boilerplate to support localized strings if intllib mod is installed.
 local S
-if plantslib.intllib_modpath then
-    dofile(plantslib.intllib_modpath.."/intllib.lua")
-    S = intllib.Getter(minetest.get_current_modname())
+if minetest.get_modpath("intllib") then
+	S = intllib.Getter()
 else
-    S = function ( s ) return s end
+	S = function(s) return s end
 end
+plantslib.intllib = S
 
 local DEBUG = false --... except if you want to spam the console with debugging info :-)
 
