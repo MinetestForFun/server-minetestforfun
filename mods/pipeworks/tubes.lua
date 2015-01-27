@@ -249,6 +249,12 @@ if pipeworks.enable_mese_tube then
 				end
 			end
 		end
+		local buttons_formspec = ""
+		for i = 0, 5 do
+			buttons_formspec = buttons_formspec .. fs_helpers.cycling_button(meta,
+				"image_button[7,"..(i)..";1,1", "l"..(i+1).."s",
+				{{text="",texture="pipeworks_button_off.png"}, {text="",texture="pipeworks_button_on.png"}})
+		end
 		meta:set_string("formspec",
 			"size[8,11]"..
 			"list[current_name;line1;1,0;6,1;]"..
@@ -263,43 +269,37 @@ if pipeworks.enable_mese_tube then
 			"image[0,3;1,1;pipeworks_yellow.png]"..
 			"image[0,4;1,1;pipeworks_blue.png]"..
 			"image[0,5;1,1;pipeworks_red.png]"..
-			fs_helpers.cycling_button(meta, "button[7,0;1,1", "l1s", {"Off", "On"})..
-			fs_helpers.cycling_button(meta, "button[7,1;1,1", "l2s", {"Off", "On"})..
-			fs_helpers.cycling_button(meta, "button[7,2;1,1", "l3s", {"Off", "On"})..
-			fs_helpers.cycling_button(meta, "button[7,3;1,1", "l4s", {"Off", "On"})..
-			fs_helpers.cycling_button(meta, "button[7,4;1,1", "l5s", {"Off", "On"})..
-			fs_helpers.cycling_button(meta, "button[7,5;1,1", "l6s", {"Off", "On"})..
+			buttons_formspec..
 			"list[current_player;main;0,7;8,4;]")
 	end
 	pipeworks.register_tube("pipeworks:mese_tube", "Sorting Pneumatic Tube Segment", mese_plain_textures, mese_noctr_textures,
 				mese_end_textures, mese_short_texture, mese_inv_texture,
 				{tube = {can_go = function(pos, node, velocity, stack)
-						 local tbl = {}
+						 local tbl, tbln = {}, 0
+						 local found, foundn = {}, 0
 						 local meta = minetest.get_meta(pos)
 						 local inv = meta:get_inventory()
-						 local found = false
 						 local name = stack:get_name()
 						 for i, vect in ipairs(pipeworks.meseadjlist) do
-							 if meta:get_int("l"..tostring(i).."s") == 1 then
-								 for _, st in ipairs(inv:get_list("line"..tostring(i))) do
-									 if st:get_name() == name then
-										 found = true
-										 table.insert(tbl, vect)
-										 break
+							 if meta:get_int("l"..i.."s") == 1 then
+								 local invname = "line"..i
+								 local is_empty = true
+								 for _, st in ipairs(inv:get_list(invname)) do
+									 if not st:is_empty() then
+										 is_empty = false
+										 if st:get_name() == name then
+											 foundn = foundn + 1
+											 found[foundn] = vect
+										 end
 									 end
+								 end
+								 if is_empty then
+									 tbln = tbln + 1
+									 tbl[tbln] = vect
 								 end
 							 end
 						 end
-						 if found == false then
-							 for i, vect in ipairs(pipeworks.meseadjlist) do
-								 if meta:get_int("l"..tostring(i).."s") == 1 then
-									 if inv:is_empty("line"..tostring(i)) then
-										 table.insert(tbl, vect)
-									 end
-								 end
-							 end
-						 end
-						 return tbl
+						 return (foundn > 0) and found or tbl
 					end},
 				 on_construct = function(pos)
 					 local meta = minetest.get_meta(pos)

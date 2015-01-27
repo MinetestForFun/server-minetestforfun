@@ -126,9 +126,18 @@ end
 function fs_helpers.cycling_button(meta, base, meta_name, values)
 	local current_value = meta:get_int(meta_name)
 	local new_value = (current_value + 1) % (#values)
-	local text = values[current_value + 1]
+	local val = values[current_value + 1]
+	local text
+	local texture_name = nil
+	--when we get a table, we know the caller wants an image_button
+	if type(val) == "table" then
+		text = val["text"]
+		texture_name = val["texture"]
+	else
+		text = val
+	end
 	local field = "fs_helpers_cycling:"..new_value..":"..meta_name
-	return base..";"..field..";"..minetest.formspec_escape(text).."]"
+	return base..";"..(texture_name and texture_name..";" or "")..field..";"..minetest.formspec_escape(text).."]"
 end
 
 ---------
