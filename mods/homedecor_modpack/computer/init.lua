@@ -31,7 +31,6 @@ computer.register = function ( name, def )
 			end
 			node.name = OFFSTATE;
 			minetest.set_node(pos, node);
-			nodeupdate(pos);
 		end;
 	});
 	minetest.register_node(OFFSTATE, {
@@ -56,7 +55,6 @@ computer.register = function ( name, def )
 			end
 			node.name = ONSTATE;
 			minetest.set_node(pos, node);
-			nodeupdate(pos);
 		end;
 		drop = ONSTATE;
 	});

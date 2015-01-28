@@ -349,7 +349,6 @@ local function reg_lamp(suffix, nxt, tilesuffix, light, color)
 		on_punch = function(pos, node, puncher)
 			node.name = "homedecor:table_lamp"..lampcolor.."_"..repl[suffix]
 			minetest.set_node(pos, node)
-			nodeupdate(pos)
 		end,
 	})
 
@@ -370,7 +369,6 @@ local function reg_lamp(suffix, nxt, tilesuffix, light, color)
 		on_punch = function(pos, node, puncher)
 			node.name = "homedecor:standing_lamp"..lampcolor.."_"..repl[suffix]
 			minetest.set_node(pos, node)
-			nodeupdate(pos)
 		end,
 		expand = { top="air" },
 	})

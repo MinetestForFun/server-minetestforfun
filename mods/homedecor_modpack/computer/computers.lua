@@ -152,7 +152,6 @@ minetest.register_node("computer:monitor_on", {
 	on_rightclick = function ( pos, node, clicker, itemstack)
 		node.name = "computer:monitor";
 		minetest.set_node(pos, node);
-		nodeupdate(pos)
 	end
 })
 
@@ -286,7 +285,6 @@ minetest.register_node("computer:monitor", {
 	on_rightclick = function ( pos, node, clicker, itemstack)
 		node.name = "computer:monitor_on";
 		minetest.set_node(pos, node);
-		nodeupdate(pos)
 	end
 })
 
@@ -343,7 +341,6 @@ minetest.register_node("computer:tower_on", {
 	on_rightclick = function ( pos, node, clicker, itemstack)
 		node.name = "computer:tower";
 		minetest.set_node(pos, node);
-		nodeupdate(pos)
 	end
 })
 
@@ -375,7 +372,6 @@ minetest.register_node("computer:tower", {
 	on_rightclick = function ( pos, node, clicker, itemstack)
 		node.name = "computer:tower_on";
 		minetest.set_node(pos, node);
-		nodeupdate(pos)
 	end
 })
 
@@ -436,7 +432,6 @@ minetest.register_node("computer:server", {
 	on_rightclick = function ( pos, node, clicker, itemstack)
 		node.name = "computer:server_on";
 		minetest.set_node(pos, node);
-		nodeupdate(pos)
 	end,
 	on_place = function(itemstack, placer, pointed_thing)
 		local pos = pointed_thing.above
@@ -478,6 +473,5 @@ minetest.register_node("computer:server_on", {
 	on_rightclick = function ( pos, node, clicker, itemstack)
 		node.name = "computer:server";
 		minetest.set_node(pos, node);
-		nodeupdate(pos)
 	end
 })

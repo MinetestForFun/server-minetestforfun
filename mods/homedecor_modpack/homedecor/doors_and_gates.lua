@@ -623,7 +623,7 @@ homedecor.register("jpn_door_bottom", {
 	},
 	expand = { top = "homedecor:jpn_door_top" },
 	on_rightclick = function(pos, node, clicker)
-		fdir = minetest.get_node(pos).param2
+		local fdir = minetest.get_node(pos).param2
 		minetest.set_node(pos, {name = "homedecor:jpn_door_bottom_open", param2 = fdir})
 		minetest.set_node({x = pos.x, y=pos.y + 1, z = pos.z}, {name = "homedecor:jpn_door_top_open", param2 = fdir})
 	end
@@ -689,7 +689,7 @@ minetest.register_node("homedecor:jpn_door_bottom_open", {
 		fixed = {-1.5, -0.5, -0.0625, 0.5, 1.5, 0},
 	},
 	on_rightclick = function(pos, node, clicker)
-		fdir = minetest.get_node(pos).param2
+		local fdir = minetest.get_node(pos).param2
 		minetest.set_node(pos, {name = "homedecor:jpn_door_bottom", param2 = fdir})
 		minetest.set_node({x = pos.x, y=pos.y + 1, z = pos.z}, {name = "homedecor:jpn_door_top", param2 = fdir})
 	end,

@@ -111,13 +111,11 @@ function homedecor.register(name, def)
 	if expand then
 		def.on_place = def.on_place or function(itemstack, placer, pointed_thing)
 			if expand.top then
-				homedecor.stack_vertically(itemstack, placer, pointed_thing, itemstack:get_name(), expand.top)
-			end
-			if expand.right then
-				homedecor.stack_sideways(itemstack, placer, pointed_thing, itemstack:get_name(), expand.right, true)
-			end
-			if expand.forward then
-				homedecor.stack_sideways(itemstack, placer, pointed_thing, itemstack:get_name(), expand.forward, false)
+				return homedecor.stack_vertically(itemstack, placer, pointed_thing, itemstack:get_name(), expand.top)
+			elseif expand.right then
+				return homedecor.stack_sideways(itemstack, placer, pointed_thing, itemstack:get_name(), expand.right, true)
+			elseif expand.forward then
+				return homedecor.stack_sideways(itemstack, placer, pointed_thing, itemstack:get_name(), expand.forward, false)
 			end
 		end
 		def.after_dig_node = def.after_dig_node or function(pos, oldnode, oldmetadata, digger)

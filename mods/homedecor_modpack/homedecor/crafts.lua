@@ -2747,6 +2747,24 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "homedecor:office_chair_basic",
+	recipe = {
+		{ "", "", "wool:black" },
+		{ "", "wool:black", "default:steel_ingot" },
+		{ "group:stick", "homedecor:pole_wrought_iron", "group:stick" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:office_chair_upscale",
+	recipe = {
+		{ "dye:black", "building_blocks:sticks", "group:wool" },
+		{ "homedecor:plastic_sheeting", "group:wool", "default:steel_ingot" },
+		{ "building_blocks:sticks", "homedecor:pole_wrought_iron", "building_blocks:sticks" }
+	},
+})
+
+minetest.register_craft({
 	output = "homedecor:wall_shelf 2",
 	recipe = {
 		{ "homedecor:wood_table_small_square", "homedecor:curtainrod_wood", "homedecor:curtainrod_wood" },

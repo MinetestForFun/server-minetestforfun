@@ -498,36 +498,20 @@ homedecor.register("pool_table_2", {
 	selection_box = homedecor.nodebox.null,
 })
 
+local trash_cbox = {
+	type = "fixed",
+	fixed = { -0.25, -0.5, -0.25, 0.25, 0.125, 0.25 }
+}
+
 homedecor.register("trash_can", {
-	tiles = {
-		"homedecor_trashcan_tb.png",
-		"homedecor_trashcan_tb.png",
-		"homedecor_trashcan_sides.png",
-		"homedecor_trashcan_sides.png",
-		"homedecor_trashcan_sides.png",
-		"homedecor_trashcan_sides.png"
-	},
-	inventory_image = "homedecor_trashcan_inv.png",
+	drawtype = "mesh",
+	mesh = "homedecor_trash_can.obj",
+	tiles = { "homedecor_trash_can.png" },
+	inventory_image = "homedecor_trash_can_inv.png",
 	description = "Trash Can",
         groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.25, -0.5, -0.125, -0.1875, 0.125, 0.125}, -- NodeBox1
-			{0.1875, -0.5, -0.125, 0.25, 0.125, 0.125}, -- NodeBox2
-			{-0.125, -0.5, -0.25, 0.125, 0.125, -0.1875}, -- NodeBox3
-			{-0.125, -0.5, 0.1875, 0.125, 0.125, 0.25}, -- NodeBox4
-			{-0.1875, -0.5, 0.125, -0.125, 0.125, 0.1875}, -- NodeBox5
-			{-0.1875, -0.5, -0.1875, -0.125, 0.125, -0.125}, -- NodeBox6
-			{0.125, -0.5, -0.1875, 0.1875, 0.125, -0.125}, -- NodeBox7
-			{0.125, -0.5, 0.125, 0.1875, 0.125, 0.1875}, -- NodeBox8
-			{-0.1875, -0.5, -0.1875, 0.1875, -0.4375, 0.1875}, -- NodeBox9
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.25, -0.5, -0.25, 0.25, 0.125, 0.25 }
-	}
+	selection_box = trash_cbox,
+	collision_box = trash_cbox,
 })
 
 homedecor.register("well_base", {
@@ -667,47 +651,23 @@ homedecor.register("coat_tree", {
 	},
 })
 
+local cutlery_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -5/16, -8/16, -6/16, 5/16, -7/16, 2/16 },
+		{ -2/16, -8/16,  2/16, 2/16, -4/16, 6/16 }
+	}
+}
+
 homedecor.register("cutlery_set", {
-	tiles = {
-		"homedecor_cutlery_set_top.png",
-		"homedecor_cutlery_set_sides.png",
-		"homedecor_cutlery_set_sides.png"
-	},
+	drawtype = "mesh",
+	mesh = "homedecor_cutlery_set.obj",
+	tiles = { "homedecor_cutlery_set.png"	},
 	inventory_image = "homedecor_cutlery_set_inv.png",
 	description = "Cutlery set",
 	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.125, -0.5, -0.4375, 0.125, -0.49, -0.1875}, -- NodeBox1
-			{0.035, -0.5, -0.12, 0.042, -0.375, -0.036}, -- NodeBox2
-			{-0.042, -0.5, -0.12, -0.035, -0.375, -0.036}, -- NodeBox3
-			{-0.042, -0.5, -0.12, 0.042, -0.375, -0.112}, -- NodeBox4
-			{-0.042, -0.5, -0.044, 0.042, -0.375, -0.036}, -- NodeBox5
-			{-0.042, -0.40, -0.12, 0.042, -0.5, -0.036}, -- NodeBox6
-			{-0.22, -0.5, -0.45, -0.205, -0.49, -0.245}, -- NodeBox7
-			{-0.23, -0.5, -0.245, -0.195, -0.49, -0.24}, -- NodeBox8
-			{-0.23, -0.5, -0.24, -0.225, -0.49, -0.1875}, -- NodeBox9
-			{-0.22, -0.5, -0.24, -0.215, -0.49, -0.1875}, -- NodeBox10
-			{-0.21, -0.5, -0.24, -0.205, -0.49, -0.1875}, -- NodeBox11
-			{-0.2, -0.5, -0.24, -0.195, -0.49, -0.1875}, -- NodeBox12
-			{0.205, -0.5, -0.45, 0.22, -0.49, -0.3125}, -- NodeBox13
-			{0.193, -0.5, -0.3125, 0.22, -0.49, -0.185839}, -- NodeBox14
-			{0.2, -0.5, -0.322, 0.22, -0.49, -0.175}, -- NodeBox15
-			{-0.1095, -0.5, -0.1875, 0.1095, -0.48, -0.172}, -- NodeBox16
-			{-0.1095, -0.5, -0.453, 0.1095, -0.48, -0.4375}, -- NodeBox17
-			{-0.14, -0.5, -0.422, -0.125, -0.48, -0.203}, -- NodeBox18
-			{0.125, -0.5, -0.422, 0.14, -0.48, -0.203}, -- NodeBox19
-			{-0.125, -0.5, -0.203, -0.1095, -0.48, -0.1875}, -- NodeBox20
-			{0.1095, -0.5, -0.203, 0.125, -0.48, -0.1875}, -- NodeBox21
-			{-0.125, -0.5, -0.4375, -0.1095, -0.48, -0.422}, -- NodeBox22
-			{0.1095, -0.5, -0.4375, 0.125, -0.48, -0.422}, -- NodeBox23
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.25, -0.5, -0.5, 0.25, -0.375, 0 }
-	}
+	selection_box = cutlery_cbox,
+	collision_box = cutlery_cbox
 })
 
 local bottle_cbox = {
@@ -1090,33 +1050,21 @@ homedecor.register("beer_tap", {
 	end
 })
 
+local beer_cbox = {
+	type = "fixed",
+	fixed = { -5/32, -8/16, -9/32 , 7/32, -2/16, 1/32 }
+}
+
 homedecor.register("beer_mug", {
 	description = "Beer mug",
-	tiles = {
-		"homedecor_beer_top.png",
-		"homedecor_beer_bottom.png",
-		"homedecor_beer_right.png",
-		"homedecor_beer_right.png^[transformFX",
-		"homedecor_beer_front.png^[transformFX",
-		"homedecor_beer_front.png"
-	},
-	inventory_image = "homedecor_beer_inv.png",
-	use_texture_alpha = true,
+	drawtype = "mesh",
+	mesh = "homedecor_beer_mug.obj",
+	tiles = { "homedecor_beer_mug.png" },
+	inventory_image = "homedecor_beer_mug_inv.png",
 	groups = { snappy=3, oddly_breakable_by_hand=3 },
 	sounds = default.node_sound_glass_defaults(),
-	node_box = {
-		type = "fixed",
-		fixed = {
-                	{-0.125, -0.5, -0.25, 0.0625, -0.25, -0.0625}, -- NodeBox1
-			{0.0625, -0.3125, -0.18, 0.135, -0.285, -0.14}, -- NodeBox2
-			{0.1, -0.465, -0.18, 0.135, -0.285, -0.14}, -- NodeBox3
-			{0.0625, -0.465, -0.18, 0.135, -0.4375, -0.14}, -- NodeBox4
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.125, -0.5, -0.25, 0.135, -0.25, -0.0625 }
-	}
+	selection_box = beer_cbox,
+	collision_box = beer_cbox
 })
 
 homedecor.register("tool_cabinet_bottom", {
