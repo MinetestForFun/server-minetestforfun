@@ -65,7 +65,7 @@ dofile(minetest.get_modpath("snow").."/src/util.lua")
 dofile(minetest.get_modpath("snow").."/src/nodes.lua")
 dofile(minetest.get_modpath("snow").."/src/mapgen.lua")
 dofile(minetest.get_modpath("snow").."/src/sled.lua")
-dofile(minetest.get_modpath("snow").."/src/falling_snow.lua")
+-- dofile(minetest.get_modpath("snow").."/src/falling_snow.lua")
 
 
 
