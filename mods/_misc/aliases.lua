@@ -29,5 +29,5 @@ minetest.register_alias("moreores:copper_rail", "carts:rail_copper")
 minetest.register_alias("fishing:fish_cooked", "fishing:fish")
 minetest.register_alias("fishing:worm", "fishing:bait_worm")
 
--- Old itemframes mod to the new itemframesv(2) mod
+-- Old itemframes mod to the new itemframes(v2) mod
 minetest.register_alias("itemframes:pedestal", "itemframes:pedestal_cobble")
