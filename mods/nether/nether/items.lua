@@ -803,7 +803,7 @@ minetest.register_tool("nether:pick_mushroom", {
 	tool_capabilities = {
 		max_drop_level=0,
 		groupcaps={
-			cracky = {times={[3]=3}, uses=5, maxlevel=1},
+			cracky = {times={[3]=3.0}, uses=5, maxlevel=1},
 			nether = {times={[3]=3}, uses=5, maxlevel=1},
 		},
 	},
@@ -816,8 +816,8 @@ minetest.register_tool("nether:pick_wood", {
 		full_punch_interval = 1.2,
 		max_drop_level=0,
 		groupcaps={
-			cracky = {times={[3]=1.6}, uses=10, maxlevel=1},
-			nether = {times={[3]=1.6}, uses=10, maxlevel=1},
+			cracky = {times={[3]=1.60}, uses=10, maxlevel=1},
+			nether = {times={[3]=1.60}, uses=10, maxlevel=1},
 		},
 		damage_groups = {fleshy=2},
 	},
@@ -830,8 +830,8 @@ minetest.register_tool("nether:pick_netherrack", {
 		full_punch_interval = 1.2,
 		max_drop_level=0,
 		groupcaps={
-			cracky = {times={[2]=2.0, [3]=1.20}, uses=20, maxlevel=1},
-			nether = {times={[2]=2.0, [3]=1.20}, uses=20, maxlevel=1},
+			cracky = {times={[2]=2.00, [3]=1.20}, uses=20, maxlevel=1},
+			nether = {times={[2]=2.00, [3]=1.20}, uses=20, maxlevel=1},
 		},
 		damage_groups = {fleshy=3},
 	},

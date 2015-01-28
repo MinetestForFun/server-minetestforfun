@@ -290,7 +290,7 @@ local oredefs = {
 			},
 		tools = {
 			pick = {
-				cracky = {times = {[1] = 1.5, [2] = 0.8, [3] = 0.35}, uses = 200, maxlevel= 3},
+				cracky = {times = {[1] = 1.50, [2] = 0.80, [3] = 0.35}, uses = 200, maxlevel= 3},
 				damage_groups = {fleshy = 5},
 			},
 			hoe = {
