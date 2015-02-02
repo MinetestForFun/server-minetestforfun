@@ -11,7 +11,7 @@ local update_bobtrap = function (pos, node)
         elseif node.name == 'bobblocks:trap_spike_major' then nodename = 'bobblocks:trap_spike_major_set'
         elseif node.name == 'bobblocks:trap_spike_major_set' then nodename = 'bobblocks:trap_spike_major'
     end
-    minetest.env:add_node(pos, {name = nodename})
+    minetest.add_node(pos, {name = nodename})
 end
 
 -- Punch Traps    
@@ -35,7 +35,7 @@ minetest.register_abm(
     interval = 1.0,
     chance = 1,
     action = function(pos, node, active_object_count, active_object_count_wider)
-    local objs = minetest.env:get_objects_inside_radius(pos, 1)
+    local objs = minetest.get_objects_inside_radius(pos, 1)
         for k, obj in pairs(objs) do
         
         update_bobtrap(pos, node)
@@ -49,7 +49,7 @@ minetest.register_abm(
     interval = 1.0,
     chance = 1,
     action = function(pos, node, active_object_count, active_object_count_wider)
-    local objs = minetest.env:get_objects_inside_radius(pos, 1)
+    local objs = minetest.get_objects_inside_radius(pos, 1)
         for k, obj in pairs(objs) do
         
         update_bobtrap(pos, node)
@@ -158,7 +158,7 @@ minetest.register_abm(
     interval = 1.0,
     chance = 1,
     action = function(pos, node, active_object_count, active_object_count_wider)
-    local objs = minetest.env:get_objects_inside_radius(pos, 1)
+    local objs = minetest.get_objects_inside_radius(pos, 1)
         for k, obj in pairs(objs) do
         obj:set_hp(obj:get_hp()-1)
         minetest.sound_play("bobblocks_trap_fall",
@@ -172,7 +172,7 @@ minetest.register_abm(
     interval = 1.0,
     chance = 1,
     action = function(pos, node, active_object_count, active_object_count_wider)
-    local objs = minetest.env:get_objects_inside_radius(pos, 1)
+    local objs = minetest.get_objects_inside_radius(pos, 1)
         for k, obj in pairs(objs) do
             obj:set_hp(obj:get_hp()-100)
         minetest.sound_play("bobblocks_trap_fall",

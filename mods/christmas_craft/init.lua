@@ -714,7 +714,7 @@ snowball_VELOCITY=19
 --Shoot snowball.
 local snow_shoot_snowball=function (item, player, pointed_thing)
 	local playerpos=player:getpos()
-	local obj=minetest.env:add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, "christmas_craft:snowball_entity")
+	local obj=minetestadd_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, "christmas_craft:snowball_entity")
 	local dir=player:get_look_dir()
 	obj:setvelocity({x=dir.x*snowball_VELOCITY, y=dir.y*snowball_VELOCITY, z=dir.z*snowball_VELOCITY})
 	obj:setacceleration({x=dir.x*-3, y=-snowball_GRAVITY, z=dir.z*-3})
@@ -742,7 +742,7 @@ snow_snowball_ENTITY={
 snow_snowball_ENTITY.on_step = function(self, dtime)
 	self.timer=self.timer+dtime
 	local pos = self.object:getpos()
-	local node = minetest.env:get_node(pos)
+	local node = minetest.get_node(pos)
 	
 	--Become item when hitting a node.
 	if self.lastpos.x~=nil then --If there is no lastpos for some reason.

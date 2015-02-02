@@ -41,7 +41,7 @@ local update_bobblock = function (pos, node)
     elseif node.name == 'bobblocks:whitepole_off' then nodename = 'bobblocks:whitepole'
     elseif node.name == 'bobblocks:whitepole' then nodename = 'bobblocks:whitepole_off' 
     end
-    minetest.env:add_node(pos, {name = nodename})
+    minetest.add_node(pos, {name = nodename})
     minetest.sound_play("bobblocks_glassblock",
 	{pos = pos, gain = 1.0, max_hear_distance = 32,})
 end

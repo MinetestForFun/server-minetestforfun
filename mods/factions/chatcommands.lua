@@ -361,7 +361,7 @@ function factions_chat.allfactions_chathandler(playername,parameter)
 	  
 	  for faction,value in pairs(factions.get_factions(player)) do
 		  for name,value in pairs(factions.dynamic_data.membertable[faction]) do
-			  local object_to_check = mientest.env:get_player_by_name(name)
+			  local object_to_check = minetest.get_player_by_name(name)
 			  
 			  if object_to_check ~= nil then
 				  recipients[name] = true
@@ -413,7 +413,7 @@ function factions_chat.chathandler(playername,parameter)
 	  if faction ~= nil and valid_faction and
 	      factions.dynamic_data.membertable[faction] ~= nil then
 		  for name,value in pairs(factions.dynamic_data.membertable[faction]) do
-			  local object_to_check = mientest.env:get_player_by_name(name)
+			  local object_to_check = minetest.get_player_by_name(name)
 			  factions_chat.show_help(playername)
 			  if object_to_check ~= nil and
 				  name ~= playername then
