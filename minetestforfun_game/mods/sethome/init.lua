@@ -1,6 +1,8 @@
 local homes_file = {["real"] = minetest.get_worldpath() .. "/realhomes",
 					 ["nether"] = minetest.get_worldpath() .. "/netherhomes"}
 local homepos = {["real"] = {}, ["nether"] = {}}
+local timers = {}
+local HOME_INTERVAL = 30*60
 
 local function loadhomes()
     for key,_ in pairs(homes_file) do
@@ -42,9 +44,20 @@ minetest.register_chatcommand("home", {
 		if player:getpos().y < -19600 then
 			p_status = "nether"
 		end
-        if homepos[p_status][player:get_player_name()] then
+        if homepos[p_status][name] then
+            if timers[name] ~= nil then
+				local timer_player = os.difftime(os.time(),timers[name])
+				if timer_player < HOME_INTERVAL then -- less than x minutes
+					minetest.chat_send_player(name, "Please retry later, you used home last time less than ".. HOME_INTERVAL .." seconds ago.")
+					minetest.chat_send_player(name, "Retry in: ".. HOME_INTERVAL-timer_player .." seconds.")
+					minetest.log("action","Player ".. name .." tried to teleport home within forbidden interval.")
+					return
+				end
+			end
             player:setpos(homepos[p_status][player:get_player_name()])
             minetest.chat_send_player(name, "Teleported to home!")
+            minetest.log("action","Player ".. name .." teleported to home. Last teleportation allowed in ".. HOME_INTERVAL .." seconds.")
+            timers[name] = os.time()
         else
             minetest.chat_send_player(name, "Set a home using /sethome")
         end
