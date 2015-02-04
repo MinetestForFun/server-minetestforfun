@@ -21,7 +21,7 @@ local chests = {
   },
   [2] = {
     position = {x = 34, y = 20, z = 101},
-    interval_max = 2400,
+    interval_max = 600,
     stuff = {
 		[1] = "3d_armor:steel_chest",
 		[2] = "throwing:bow_stone",
