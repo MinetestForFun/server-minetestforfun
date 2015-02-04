@@ -23,11 +23,94 @@ local chests = {
     position = {x = 34, y = 20, z = 101},
     interval_max = 2400,
     stuff = {
-	[1] = "3d_armor:steel_chest",
-	[2] = "throwing:bow_stone",
-	[3] = "default:sword_stone",
-	[4] = "farming:carrot 3",
-	[32] = ""
+		[1] = "3d_armor:steel_chest",
+		[2] = "throwing:bow_stone",
+		[3] = "default:sword_stone",
+		[4] = "farming:carrot 3",
+		[32] = ""
+    }
+  },
+   [3] = {
+    position = {x = -36, y = 503, z = -14},
+    interval_max = 5*60,
+    stuff = {
+		[1] = "default:apple 10",
+		[32] = ""
+    }
+  },
+  [4] = {
+    position = {x = -44, y = 503, z = -27},
+    interval_max = 5*60,
+    stuff = {
+		[1] = "default:apple 10",
+		[32] = ""
+    }
+  },
+  [5] = {
+    position = {x = 22, y = 504, z = -28},
+    interval_max = 30*60,
+    stuff = {
+		[1] = "3d_armor:diamond_chest",
+		[2] = "default:sword_diamond",
+		[3] = "default:apple 10",
+		[4] = "colormachine:colormachine",
+		[32] = ""
+    }
+  },
+  [6] = {
+    position = {x = -12, y = 589, z = -16},
+    interval_max = 30*60,
+    stuff = {
+		[1] = "maptools:gold_coin",
+		[2] = "default:mese",
+		[3] = "3d_armor:boots_mithril",
+		[4] = "maptools:superapple 5",
+		[32] = ""
+    }
+  },
+  [7] = {
+    position = {x = 6, y = 593, z = -26},
+    interval_max = 5*60,
+    stuff = {
+		[1] = "default:apple 10",
+		[32] = ""
+    }
+  },
+  [8] = {
+    position = {x = 13, y = 281, z = -26},
+    interval_max = 30*60,
+    stuff = {
+		[1] = "default:obsidianbrick",
+		[2] = "default:nyancat 5",
+		[3] = "maptools:gold_coin 5",
+		[4] = "default:axe_nyan",
+		[5] = "maptools:superapple 10",
+		[32] = ""
+    }
+  },
+  [9] = {
+    position = {x = 25, y = 550, z = -8},
+    interval_max = 5*60,
+    stuff = {
+		[1] = "default:apple 10",
+		[32] = ""
+    }
+  },
+  [10] = {
+    position = {x = 32, y = 550, z = 5},
+    interval_max = 5*60,
+    stuff = {
+		[1] = "default:apple 20",
+		[2] = "maptools:superapple 10",
+		[32] = ""
+    }
+  },
+  [11] = {
+    position = {x = 65, y = 505, z = 64},
+    interval_max = 5*60,
+    stuff = {
+		[1] = "homedecor:trophy",
+		[32] = ""
     }
   }
 }
