@@ -352,7 +352,7 @@ end
 
 -- player-action based hunger changes
 function hud.handle_node_actions(pos, oldnode, player, ext)
-	--[[if not player or not player:is_player() then
+	if not player or not player:is_player() then
 		return
 	end
 	local name = player:get_player_name()
@@ -368,9 +368,7 @@ function hud.handle_node_actions(pos, oldnode, player, ext)
 		new = HUD_HUNGER_EXHAUST_MOVE
 	end
 	if exhaus == nil then return end
-	print("zerobin")
-	print(exhaus) -- If exhaus goes through the condition
-	exhaus = exhaus + new
+	exhaus = (exhaus or 0) + new
 	if exhaus > HUD_HUNGER_EXHAUST_LVL then
 		exhaus = 0
 		local h = tonumber(hud.hunger[name])
