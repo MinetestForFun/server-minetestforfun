@@ -38,11 +38,14 @@ minetest.register_entity("itemframes:item",{
 		return ""
 	end,
 })
+
+
 local facedir = {}
 facedir[0] = {x=0,y=0,z=1}
 facedir[1] = {x=1,y=0,z=0}
 facedir[2] = {x=0,y=0,z=-1}
 facedir[3] = {x=-1,y=0,z=0}
+
 local remove_item = function(pos, node)
 	local objs = nil
 	if node.name == "itemframes:frame" then
@@ -58,6 +61,7 @@ local remove_item = function(pos, node)
 		end
 	end
 end
+
 local update_item = function(pos, node)
 	remove_item(pos, node)
 	local meta = minetest.get_meta(pos)
@@ -130,9 +134,11 @@ minetest.register_node("itemframes:frame",{
 		end
 	end,
 	can_dig = function(pos,player)
+
 		local meta = minetest.get_meta(pos)
 		return player:get_player_name() == meta:get_string("owner")
 	end,
+	after_destruct = remove_item,
 })
 
 minetest.register_craft({
@@ -181,9 +187,11 @@ function itemframes.register_pedestal(subname, recipeitem, groups, images, descr
 		end
 	end,
 	can_dig = function(pos,player)
+
 		local meta = minetest.get_meta(pos)
 		return player:get_player_name() == meta:get_string("owner")
 	end,
+	after_destruct = remove_item,
 })
 
 minetest.register_craft({

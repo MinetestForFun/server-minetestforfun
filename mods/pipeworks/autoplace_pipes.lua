@@ -9,7 +9,7 @@ local function autoroute_pipes(pos)
 	local nsurround = pipeworks.scan_pipe_surroundings(pos)
 
 	if nsurround == 0 then nsurround = 9 end
-	minetest.add_node(pos, {name = "pipeworks:pipe_"..tube_table[nsurround]..state,
+	minetest.swap_node(pos, {name = "pipeworks:pipe_"..tube_table[nsurround]..state,
 				param2 = tube_table_facedirs[nsurround]})
 end
 

@@ -5,12 +5,7 @@
 -- This file defines some items in order to not have to depend on other mods.
 
 -- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local S = rawget(_G, "intllib") and intllib.Getter() or function(s) return s end
 
 if (not minetest.get_modpath("homedecor")) then
 

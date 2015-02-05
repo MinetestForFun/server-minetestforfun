@@ -16,4 +16,5 @@ pipeworks.enable_crossing_tube = true
 pipeworks.enable_sand_tube = true
 pipeworks.enable_mese_sand_tube = true
 pipeworks.enable_one_way_tube = true
+pipeworks.enable_priority_tube = true
 pipeworks.enable_cyclic_mode = true

@@ -16,15 +16,9 @@ homedecor.debug = 0
 homedecor.detail_level = 16
 
 homedecor.modpath = minetest.get_modpath("homedecor")
-homedecor.intllib_modpath = minetest.get_modpath("intllib")
 
 -- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local S = rawget(_G, "intllib") and intllib.Getter() or function(s) return s end
 homedecor.gettext = S
 
 -- debug

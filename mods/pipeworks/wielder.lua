@@ -90,7 +90,10 @@ local function wielder_on(data, wielder_pos, wielder_node)
 		setpos = delay(),
 		set_hp = delay(),
 		set_properties = delay(),
-		set_wielded_item = function(self, item) inv:set_stack(wield_inv_name, wieldindex, item) end,
+		set_wielded_item = function(self, item)
+			wieldstack = item
+			inv:set_stack(wield_inv_name, wieldindex, item)
+		end,
 		set_animation = delay(),
 		set_attach = delay(),
 		set_detach = delay(),
@@ -317,13 +320,14 @@ if pipeworks.enable_node_breaker then
 			local oldwieldstack = ItemStack(wieldstack)
 			local on_use = (minetest.registered_items[wieldstack:get_name()] or {}).on_use
 			if on_use then
-				virtplayer:set_wielded_item(on_use(wieldstack, virtplayer, pointed_thing) or wieldstack)
+				wieldstack = on_use(wieldstack, virtplayer, pointed_thing) or wieldstack
+				virtplayer:set_wielded_item(wieldstack)
 			else
 				local under_node = minetest.get_node(pointed_thing.under)
 				local on_dig = (minetest.registered_nodes[under_node.name] or {on_dig=minetest.node_dig}).on_dig
 				on_dig(pointed_thing.under, under_node, virtplayer)
+				wieldstack = virtplayer:get_wielded_item()
 			end
-			wieldstack = virtplayer:get_wielded_item()
 			local wieldname = wieldstack:get_name()
 			if wieldname == oldwieldstack:get_name() then
 				-- don't mechanically wear out tool

@@ -51,12 +51,21 @@ end
 
 --wrapper around minetest.register_node that sets sane defaults and interprets some specialized settings
 function homedecor.register(name, def)
-	def.paramtype = def.paramtype or "light"
-	def.paramtype2 = def.paramtype2 or "facedir"
-
 	def.drawtype = def.drawtype
 			or (def.mesh and "mesh")
 			or (def.node_box and "nodebox")
+
+	def.paramtype = def.paramtype or "light"
+
+	-- avoid facedir for some drawtypes as they might be used internally for something else
+	-- even if undocumented
+	if not (def.drawtype == "glasslike_framed"
+		or def.drawtype == "raillike"
+		or def.drawtype == "plantlike"
+		or def.drawtype == "firelike") then
+
+		def.paramtype2 = def.paramtype2 or "facedir"
+	end
 
 	local infotext = def.infotext
 	--def.infotext = nil -- currently used to set locked refrigerator infotexts

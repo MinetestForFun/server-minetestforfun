@@ -338,6 +338,7 @@ local function reg_lamp(suffix, nxt, tilesuffix, light, color)
 		description = S("Table Lamp "..colordesc),
 		mesh = "homedecor_table_lamp.obj",
 		tiles = { "homedecor_table_standing_lamp"..lampcolor.."_"..suffix..".png" },
+		inventory_image = "homedecor_table_lamp"..lampcolor.."_inv.png",
 		walkable = false,
 		light_source = light,
 		selection_box = tlamp_cbox,

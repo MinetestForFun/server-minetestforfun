@@ -3,10 +3,16 @@
 -- PilzAdam's original text-on-signs mod and rewritten by Vanessa Ezekowitz
 -- and Diego Martinez
 
+-- textpos = {
+--		{ delta = {entity position for 0° yaw}, exact yaw expression }
+--		{ delta = {entity position for 180° yaw}, exact yaw expression }
+--		{ delta = {entity position for 270° yaw}, exact yaw expression }
+--		{ delta = {entity position for 90° yaw}, exact yaw expression }
+-- }
+
 signs_lib = {}
 
 signs_lib.modpath = minetest.get_modpath("signs_lib")
-signs_lib.intllib_modpath = minetest.get_modpath("intllib")
 
 signs_lib.wall_sign_model = {
 	nodebox = {
@@ -30,10 +36,10 @@ signs_lib.yard_sign_model = {
 		}
 	},
 	textpos = {
-		{delta = {x =  0,      y = 0.07, z = -0.063}, yaw = 0},
-		{delta = {x = -0.063,  y = 0.07, z =  0    }, yaw = math.pi / -2},
-		{delta = {x =  0,      y = 0.07, z =  0.063}, yaw = math.pi},
-		{delta = {x =  0.063,  y = 0.07, z =  0    }, yaw = math.pi / 2},
+		{delta = {x =  0,      y = 0.07, z = -0.068}, yaw = 0},
+		{delta = {x = -0.068,  y = 0.07, z =  0    }, yaw = math.pi / -2},
+		{delta = {x =  0,      y = 0.07, z =  0.068}, yaw = math.pi},
+		{delta = {x =  0.068,  y = 0.07, z =  0    }, yaw = math.pi / 2},
 	}
 }
 
@@ -70,12 +76,7 @@ signs_lib.sign_post_model = {
 }
 
 -- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local S = rawget(_G, "intllib") and intllib.Getter() or function(s) return s end
 signs_lib.gettext = S
 
 -- the list of standard sign nodes
