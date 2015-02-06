@@ -4,7 +4,7 @@ home.homes_file = {["real"] = minetest.get_worldpath() .. "/realhomes",
 					 ["nether"] = minetest.get_worldpath() .. "/netherhomes"}
 home.homepos = {["real"] = {}, ["nether"] = {}}
 home.timers = {}
-home.HOME_INTERVAL = 30*60
+home.HOME_INTERVAL = 20*60
 
 home.sethome = function(name)
     local player = minetest.env:get_player_by_name(name)
