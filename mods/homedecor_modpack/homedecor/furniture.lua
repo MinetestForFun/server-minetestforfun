@@ -71,7 +71,7 @@ local function sit_exec(pos, node, clicker) -- don't move these functions inside
 	return end
 	sit(pos, node, clicker)
 	clicker:setpos(pos)
-	default.player_set_animation(clicker, "sit", 30)
+	-- default.player_set_animation(clicker, "sit", 30)
 end
 
 local chaircolors = {
