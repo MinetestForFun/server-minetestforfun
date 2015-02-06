@@ -6,6 +6,9 @@ else
 	S = function(s) return s end
 end
 
+local timers = {}
+local HOME_INTERVAL = 30*60
+
 minetest.register_privilege("creative", {
 	description = "Can use the creative inventory",
 	give_to_singleplayer = false,
@@ -44,15 +47,9 @@ unified_inventory.register_button("home_gui_set", {
 	image = "ui_sethome_icon.png",
 	tooltip = S("Set home position"),
 	action = function(player)
-		local player_name = player:get_player_name()
-		unified_inventory.set_home(player, player:getpos())
-		local home = unified_inventory.home_pos[player_name]
-		if home ~= nil then
-			minetest.sound_play("dingdong",
+		minetest.sound_play("dingdong",
 					{to_player=player_name, gain = 1.0})
-			minetest.chat_send_player(player_name,
-				S("Home position set to: %s"):format(minetest.pos_to_string(home)))
-		end
+		home.sethome(player:get_player_name())
 	end,
 })
 
@@ -61,9 +58,10 @@ unified_inventory.register_button("home_gui_go", {
 	image = "ui_gohome_icon.png",
 	tooltip = S("Go home"),
 	action = function(player)
-		minetest.sound_play("teleport",
+		if home.tohome(player:get_player_name()) == true then
+			minetest.sound_play("teleport",
 				{to_player=player:get_player_name(), gain = 1.0})
-		unified_inventory.go_home(player)
+		end
 	end,
 })
 
