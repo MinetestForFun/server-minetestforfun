@@ -36,26 +36,26 @@ end
 function meta:sendChat(target, msg)
 	-- Split the message into segments if it includes newlines.
 	for line in msg:gmatch("([^\r\n]+)") do
-		self:queue(msgs.privmsg(verify(target, 3), line))
+		self:queue(irc.msgs.privmsg(verify(target, 3), line))
 	end
 end
 
 function meta:sendNotice(target, msg)
 	-- Split the message into segments if it includes newlines.
 	for line in msg:gmatch("([^\r\n]+)") do
-		self:queue(msgs.notice(verify(target, 3), line))
+		self:queue(irc.msgs.notice(verify(target, 3), line))
 	end
 end
 
 function meta:join(channel, key)
-	self:queue(msgs.join(
+	self:queue(irc.msgs.join(
 			verify(channel, 3),
 			key and verify(key, 3) or nil))
 end
 
 function meta:part(channel, reason)
 	channel = verify(channel, 3)
-	self:queue(msgs.part(channel, reason))
+	self:queue(irc.msgs.part(channel, reason))
 	if self.track_users then
 		self.channels[channel] = nil
 	end
@@ -85,8 +85,6 @@ function meta:setMode(t)
 		mode = table.concat{mode, "-", verify(rem, 3)}
 	end
 
-	self:queue(msgs.mode(verify(target, 3), mode))
+	self:queue(irc.msgs.mode(verify(target, 3), mode))
 end
-
-return meta
 

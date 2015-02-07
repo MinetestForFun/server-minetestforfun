@@ -1,11 +1,12 @@
+local irc = require("irc.main")
 
--- Module table
-local m = {}
+irc.msgs = {}
+local msgs = irc.msgs
 
 local msg_meta = {}
 msg_meta.__index = msg_meta
 
-local function Message(opts)
+function irc.Message(opts)
 	opts = opts or {}
 	setmetatable(opts, msg_meta)
 	if opts.raw then
@@ -13,8 +14,6 @@ local function Message(opts)
 	end
 	return opts
 end
-
-m.Message = Message
 
 local tag_escapes = {
 	[";"] = "\\:",
@@ -117,91 +116,85 @@ function msg_meta:fromRFC1459(line)
 	end
 end
 
-function m.privmsg(to, text)
-	return Message({command="PRIVMSG", args={to, text}})
+function msgs.privmsg(to, text)
+	return irc.Message({command="PRIVMSG", args={to, text}})
 end
 
-function m.notice(to, text)
-	return Message({command="NOTICE", args={to, text}})
+function msgs.notice(to, text)
+	return irc.Message({command="NOTICE", args={to, text}})
 end
 
-function m.action(to, text)
-	return Message({command="PRIVMSG", args={to, ("\x01ACTION %s\x01"):format(text)}})
+function msgs.action(to, text)
+	return irc.Message({command="PRIVMSG", args={to, ("\x01ACTION %s\x01"):format(text)}})
 end
 
-function m.ctcp(command, to, args)
+function msgs.ctcp(command, to, args)
 	s = "\x01"..command
 	if args then
 		s = ' '..args
 	end
 	s = s..'\x01'
-	return Message({command="PRIVMSG", args={to, s}})
+	return irc.Message({command="PRIVMSG", args={to, s}})
 end
 
-function m.kick(channel, target, reason)
-	return Message({command="KICK", args={channel, target, reason}})
+function msgs.kick(channel, target, reason)
+	return irc.Message({command="KICK", args={channel, target, reason}})
 end
 
-function m.join(channel, key)
-	return Message({command="JOIN", args={channel, key}})
+function msgs.join(channel, key)
+	return irc.Message({command="JOIN", args={channel, key}})
 end
 
-function m.part(channel, reason)
-	return Message({command="PART", args={channel, reason}})
+function msgs.part(channel, reason)
+	return irc.Message({command="PART", args={channel, reason}})
 end
 
-function m.quit(reason)
-	return Message({command="QUIT", args={reason}})
+function msgs.quit(reason)
+	return irc.Message({command="QUIT", args={reason}})
 end
 
-function m.kill(target, reason)
-	return Message({command="KILL", args={target, reason}})
+function msgs.kill(target, reason)
+	return irc.Message({command="KILL", args={target, reason}})
 end
 
-function m.kline(time, mask, reason, operreason)
+function msgs.kline(time, mask, reason, operreason)
 	local args = nil
 	if time then
 		args = {time, mask, reason..'|'..operreason}
 	else
 		args = {mask, reason..'|'..operreason}
 	end
-	return Message({command="KLINE", args=args})
+	return irc.Message({command="KLINE", args=args})
 end
 
-function m.whois(nick, server)
+function msgs.whois(nick, server)
 	local args = nil
 	if server then
 		args = {server, nick}
 	else
 		args = {nick}
 	end
-	return Message({command="WHOIS", args=args})
+	return irc.Message({command="WHOIS", args=args})
 end
 
-function m.topic(channel, text)
-	return Message({command="TOPIC", args={channel, text}})
+function msgs.topic(channel, text)
+	return irc.Message({command="TOPIC", args={channel, text}})
 end
 
-function m.invite(channel, target)
-	return Message({command="INVITE", args={channel, target}})
+function msgs.invite(channel, target)
+	return irc.Message({command="INVITE", args={channel, target}})
 end
 
-function m.nick(nick)
-	return Message({command="NICK", args={nick}})
+function msgs.nick(nick)
+	return irc.Message({command="NICK", args={nick}})
 end
 
-function m.mode(target, modes)
+function msgs.mode(target, modes)
 	-- We have to split the modes parameter because the mode string and
 	-- each parameter are seperate arguments (The first command is incorrect)
 	--   MODE foo :+ov Nick1 Nick2
 	--   MODE foo +ov Nick1 Nick2
-	local mt = util.split(modes)
-	return Message({command="MODE", args={target, unpack(mt)}})
+	local mt = irc.split(modes)
+	return irc.Message({command="MODE", args={target, unpack(mt)}})
 end
-
-function m.cap(cmd, ...)
-	return Message({command="CAP", args={cmd, ...}})
-end
-
-return m
 

@@ -1,7 +1,7 @@
 --- LuaIRC is a low-level IRC library for Lua.
 -- All functions raise Lua exceptions on error.
 --
--- Use <code>new</code> to create a new Connection object.<br/>
+-- Use <code>new</code> to create a new IRC object.<br/>
 -- Example:<br/><br/>
 --<code>
 --require "irc"<br/>
@@ -24,12 +24,11 @@
 
 module "irc"
 
---- Create a new Connection object. Use <code>irc:connect</code> to connect to a server.
+--- Create a new IRC object. Use <code>irc:connect</code> to connect to a server.
 -- @param user Table with fields <code>nick</code>, <code>username</code> and <code>realname</code>.
 -- The <code>nick</code> field is required.
 --
--- @return Returns a new Connection object.
--- @see Connection
+-- @return Returns a new <code>irc</code> object.
 function new(user)
 
 --- Hook a function to an event.
@@ -47,10 +46,10 @@ function irc:unhook(name, id)
 --- Connect <code>irc</code> to an IRC server.
 -- @param host Host address.
 -- @param port Server port. [default 6667]
-function irc:connect(host, port)
+function irc:connect(server, port)
 
 -- @param table Table of connection details
--- @see ConnectOptions
+-- @see Connection
 function irc:connect(table)
 
 --- Disconnect <code>irc</code> from the server.
@@ -117,26 +116,16 @@ function irc:handle(msg)
 function irc:shutdown()
 
 --- Table with connection information.
--- @name ConnectOptions
--- @class table
--- @field host Server host name.
--- @field port Server port. [defaults to <code>6667</code>]
--- @field timeout Connect timeout. [defaults to <code>30</code>]
--- @field password Server password.
--- @field secure Boolean to enable TLS connection, pass a params table (described, [luasec]) to control
+-- <ul>
+-- <li><code>host</code> - Server host name.</li>
+-- <li><code>port</code> - Server port. [defaults to <code>6667</code>]</li>
+-- <li><code>timeout</code> - Connect timeout. [defaults to <code>30</code>]</li>
+-- <li><code>password</code> - Server password.</li>
+-- <li><code>secure</code> - Boolean to enable TLS connection, pass a params table (described, [luasec]) to control</li>
+-- </ul>
 -- [luasec]: http://www.inf.puc-rio.br/~brunoos/luasec/reference.html
-
---- Class representing a connection.
 -- @name Connection
 -- @class table
--- @field authed Boolean indicating whether the connection has completed registration.
--- @field connected Whether the connection is currently connected.
--- @field motd The server's message of the day.  Can be nil.
--- @field nick The current nickname.
--- @field realname The real name sent to the server.
--- @field username The username/ident sent to the server.
--- @field socket Raw socket used by the library.
--- @field supports What the server claims to support in it's ISUPPORT message.
 
 --- Class representing an IRC message.
 -- @name Message
@@ -156,8 +145,8 @@ function irc:shutdown()
 --- List of hooks you can use with irc:hook.
 -- The parameter list describes the parameters passed to the callback function.
 -- <ul>
--- <li><code>PreRegister()</code> - Usefull for requesting capabilities.</li>
--- <li><code>OnRaw(line)</code> - Any non false/nil return value assumes line handled and will not be further processed.</li>
+-- <li><code>PreRegister(connection)</code>Useful for CAP commands and SASL.</li>
+-- <li><code>OnRaw(line) - (any non false/nil return value assumes line handled and will not be further processed)</code></li>
 -- <li><code>OnSend(line)</code></li>
 -- <li><code>OnDisconnect(message, errorOccurred)</code></li>
 -- <li><code>OnChat(user, channel, message)</code></li>
@@ -173,10 +162,7 @@ function irc:shutdown()
 -- <li><code>OnUserMode(modes)</code></li>
 -- <li><code>OnChannelMode(user, channel, modes)</code></li>
 -- <li><code>OnModeChange(user, target, modes, ...)</code>* ('...' contains mode options such as banmasks)</li>
--- <li><code>OnCapabilityList(caps)</code></li>
--- <li><code>OnCapabilityAvailable(cap, value)</code> Called only when a capability becomes available or changes.</li>
--- <li><code>OnCapabilitySet(cap, enabled)</code>*</li>
--- <li><code>DoX(msg)</code>* - 'X' is any IRC command or numeric with the first letter capitalized (eg, DoPing and Do001)</li>
+-- <li><code>DoX(msg)</code>'X' is any IRC command or numeric with the first letter capitalized (eg, DoPing and Do001)</li>
 -- </ul>
 -- * Event also invoked for yourself.
 -- † Channel passed only when user tracking is enabled

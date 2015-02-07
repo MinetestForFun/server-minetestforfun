@@ -1,8 +1,7 @@
-[![Build Status](https://travis-ci.org/JakobOvrum/LuaIRC.svg?branch=master)](https://travis-ci.org/JakobOvrum/LuaIRC)
 LuaIRC
 ============
 
-IRC client library for Lua.
+IRC library for Lua.
 
 Dependencies
 -------------
