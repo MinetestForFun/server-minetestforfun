@@ -590,6 +590,8 @@ minetest.register_node("default:bookshelf", {
 			else
 				return 0
 			end
+		else
+			return 0
 		end
 	end,
 
