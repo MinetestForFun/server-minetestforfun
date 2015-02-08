@@ -77,7 +77,7 @@ local chests = {
     }
   },
   [8] = {
-    position = {x = 13, y = 281, z = -26},
+    position = {x = 13, y = 581, z = -26},
     interval_max = 30*60,
     stuff = {
 		[1] = "default:obsidianbrick",
