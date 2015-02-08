@@ -89,3 +89,12 @@ minetest.register_node("sponge:sponge_wet", {
 	stack_max = 99,
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3},
 })
+
+minetest.register_craft({
+output = "sponge:sponge",
+recipe = {
+{"", "dye:black", ""},
+{"", "wool:white", ""},
+{"", "farming:wheat", ""},
+},
+})
