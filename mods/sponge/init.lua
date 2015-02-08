@@ -7,7 +7,7 @@ minetest.register_node("sponge:sponge", {
 	pointable = true,
 	diggable = true,
 	buildable_to = false,
-	stack_max = 64,
+	stack_max = 99,
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3},
 	   	on_place = function(itemstack, placer, pointed_thing)
 		local pn = placer:get_player_name()
