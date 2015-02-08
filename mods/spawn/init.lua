@@ -1,5 +1,5 @@
 local timers = {}
-local SPAWN_INTERVAL = 10*60
+local SPAWN_INTERVAL = 5*60
 
 
 minetest.register_on_chat_message(function(name, message, playername, player)
