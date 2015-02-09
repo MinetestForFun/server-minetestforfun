@@ -584,12 +584,9 @@ minetest.register_node("default:bookshelf", {
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		local to_stack = inv:get_stack(listname, index)
-		if listname == "books" and to_stack:is_empty() then
-			if stack:get_name() == "default:book" then
-				return 1
-			else
-				return 0
-			end
+		if listname == "books" and to_stack:is_empty()
+				and minetest.get_item_group(stack:get_name(), "book") ~= 0 then
+			return 1
 		else
 			return 0
 		end
