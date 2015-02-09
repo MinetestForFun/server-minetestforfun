@@ -326,7 +326,7 @@ end
 -- a surface during the initial map read stage.
 
 function plantslib:generate_block_with_air_checking(dtime)
-
+	if dtime > 0.2 then return end -- don't attempt to populate if lag is too high
 	if #plantslib.blocklist_aircheck > 0 then
 
 		local minp =		plantslib.blocklist_aircheck[1][1]
@@ -376,7 +376,7 @@ end
 -- checking for air during the initial map read stage.
 
 function plantslib:generate_block_no_aircheck(dtime)
-
+	if dtime > 0.2 then return end
 	if #plantslib.blocklist_no_aircheck > 0 then
 
 		local minp =		plantslib.blocklist_no_aircheck[1][1]

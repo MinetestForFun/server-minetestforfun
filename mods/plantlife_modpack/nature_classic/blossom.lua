@@ -1,21 +1,4 @@
--- Blossom
-
-local BLOSSOM_NODE = "nature:blossom"
-local BLOSSOM_LEAVES = "default:leaves"
-local BLOSSOM_TEXTURES = { "default_leaves.png^nature_blossom.png" }
-
-if minetest.get_modpath("moretrees") then
-	BLOSSOM_NODE = "moretrees:apple_blossoms"
-	BLOSSOM_LEAVES = "moretrees:apple_tree_leaves"
-	BLOSSOM_TEXTURES = { "moretrees_apple_tree_leaves.png^nature_blossom.png" }
-	minetest.register_alias("nature:blossom", "default:leaves")
-end
-
-local BLOSSOM_CHANCE = 15
-local BLOSSOM_DELAY = 3600
-
-local APPLE_CHANCE = 10
-local APPLE_SPREAD = 2
+-- Blossoms and such
 
 local function spawn_apple_under(pos)
     local below = {
@@ -28,10 +11,10 @@ local function spawn_apple_under(pos)
     end
 end
 
-minetest.register_node(":"..BLOSSOM_NODE, {
+minetest.register_node(":"..nature.blossom_node, {
     description = "Apple blossoms",
     drawtype = "allfaces_optional",
-    tiles = BLOSSOM_TEXTURES,
+    tiles = nature.blossom_textures,
     paramtype = "light",
     groups = { snappy = 3, leafdecay = 3, flammable = 2 },
     sounds = default.node_sound_leaves_defaults(),
@@ -40,42 +23,42 @@ minetest.register_node(":"..BLOSSOM_NODE, {
 
 minetest.register_craft({
     type = "fuel",
-    recipe = BLOSSOM_NODE,
+    recipe = nature.blossom_node,
     burntime = 2,
 })
 
--- Blossoming
+-- these ABMs can get heavy, so just enqueue the nodes
+
+-- Adding Blossoms
 minetest.register_abm({
-    nodenames = { BLOSSOM_LEAVES },
-    interval = BLOSSOM_DELAY,
-    chance = BLOSSOM_CHANCE,
+    nodenames = { nature.blossom_leaves },
+    interval = nature.blossom_delay,
+    chance = nature.blossom_chance,
 
     action = function(pos, node, active_object_count, active_object_count_wider)
-		if nature:is_near_water(pos) then
-			nature:grow_node(pos, BLOSSOM_NODE)
-		end
+			nature.enqueue_node(pos, node, true)
     end
 })
 
--- Removing blossom
+-- Removing blossoms
 minetest.register_abm({
-    nodenames = { BLOSSOM_NODE },
-    interval = BLOSSOM_DELAY,
-    chance = BLOSSOM_CHANCE,
+    nodenames = { nature.blossom_node },
+    interval = nature.blossom_delay,
+    chance = nature.blossom_chance,
 
     action = function(pos, node, active_object_count, active_object_count_wider)
-		nature:grow_node(pos, BLOSSOM_LEAVES)
+			nature.enqueue_node(pos, node, false)
     end
 })
 
 -- Spawning apples
 minetest.register_abm({
-    nodenames = { BLOSSOM_NODE },
-    interval = BLOSSOM_DELAY,
-    chance = APPLE_CHANCE,
+    nodenames = { nature.blossom_node },
+    interval = nature.blossom_delay,
+    chance = nature.apple_chance,
 
     action = function(pos, node, active_object_count, active_object_count_wider)
-		if not minetest.find_node_near(pos, APPLE_SPREAD, { "default:apple" }) then
+		if nature.dtime < 0.2 and not minetest.find_node_near(pos, nature.apple_spread, { "default:apple" }) then
 			spawn_apple_under(pos)
 		end
     end
