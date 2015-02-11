@@ -779,21 +779,29 @@ minetest.register_chatcommand("svol", {
 	description = "set volume of sounds, default 1 normal volume.",
 	privs = {server=true},
 	func = function(name, param)
-		SOUNDVOLUME = param
+		if param == "" or tonumber(param) == nil then
+			minetest.chat_send_player(name, "Sound volume not set, param is not an numeric value.")
+			return
+		end
+		SOUNDVOLUME = tonumber(param)
 	--	local player = minetest.get_player_by_name(name)
 	--	ambiences = get_ambience(player)
 	--	stop_sound({}, player)
-		minetest.chat_send_player(name, "Sound volume set.")
+		minetest.chat_send_player(name, "Sound volume set to " .. param .. ".")
 	end,		})
 minetest.register_chatcommand("mvol", {
 	params = "<mvol>",
 	description = "set volume of music, default 1 normal volume.",
 	privs = {server=true},
 	func = function(name, param)
-		MUSICVOLUME = param
+		if param == "" or tonumber(param) == nil then
+			minetest.chat_send_player(name, "Music volume not set, param is not an numeric value")
+			return
+		end
+		MUSICVOLUME = tonumber(param)
 	--	local player = minetest.get_player_by_name(name)
 	--	stop_sound({}, player)
 	--	ambiences = get_ambience(player)	
-		minetest.chat_send_player(name, "Music volume set.")
+		minetest.chat_send_player(name, "Music volume set to " .. param .. ".")
 	end,		})	
 
