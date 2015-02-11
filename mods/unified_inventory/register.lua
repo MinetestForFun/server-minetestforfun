@@ -48,7 +48,7 @@ unified_inventory.register_button("home_gui_set", {
 	tooltip = S("Set home position"),
 	action = function(player)
 		minetest.sound_play("dingdong",
-					{to_player=player_name, gain = 1.0})
+					{to_player=player:get_player_name(), gain = 1.0})
 		home.sethome(player:get_player_name())
 	end,
 })

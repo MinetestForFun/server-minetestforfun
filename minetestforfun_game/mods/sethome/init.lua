@@ -15,7 +15,7 @@ home.sethome = function(name)
 	end
     home.homepos[p_status][player:get_player_name()] = pos
     minetest.chat_send_player(name, "Home set!")
-    changed = true
+    local CHANGED = true
     if changed then
     	local output = io.open(home.homes_file[p_status], "w")
         for i, v in pairs(home.homepos[p_status]) do
