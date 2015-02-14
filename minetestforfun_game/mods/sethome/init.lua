@@ -3,8 +3,8 @@ home = {}
 home.homes_file = {["real"] = minetest.get_worldpath() .. "/realhomes",
 					 ["nether"] = minetest.get_worldpath() .. "/netherhomes"}
 home.homepos = {["real"] = {}, ["nether"] = {}}
-home.g_timers = {{["real"] = {}, ["nether"] = {}}}
-home.s_timers = {{["real"] = {}, ["nether"] = {}}}
+home.g_timers = {["real"] = {}, ["nether"] = {}}
+home.s_timers = {["real"] = {}, ["nether"] = {}}
 
 home.GET_HOME_INTERVAL = 20*60
 home.SET_HOME_INTERVAL = 20*60
