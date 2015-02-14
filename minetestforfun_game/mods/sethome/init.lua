@@ -30,9 +30,10 @@ home.sethome = function(name)
 		home.homepos[p_status][player:get_player_name()] = pos
 		minetest.chat_send_player(name, "Home set!")
 		local output = io.open(home.homes_file[p_status], "w")
-		for i, v in pairs(home.homepos[p_status]) do
-			output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
-		end
+		--for i, v in pairs(home.homepos[p_status]) do
+		--	output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
+		--end
+		output:write(minetest.serialize(home.homepos[p_status]))
 		io.close(output)
 		return true
 	end
@@ -74,16 +75,24 @@ local function loadhomes()
     for key,_ in pairs(home.homes_file) do
 		local input = io.open(home.homes_file[key], "r")
 		if input then
-			repeat
-				local x = input:read("*n")
-				if x == nil then
-					break
-				end
-				local y = input:read("*n")
-				local z = input:read("*n")
-				local name = input:read("*l")
-				home.homepos[key][name:sub(2)] = {x = x, y = y, z = z}
-			until input:read(0) == nil
+			-- Old format handler
+			local line = input:read()
+			input:seek("set",0)
+			if line == nil then return end
+			if not line:match("return {") then
+				repeat
+					local x = input:read("*n")
+					if x == nil then
+						break
+					end
+					local y = input:read("*n")
+					local z = input:read("*n")
+					local name = input:read("*l")
+					home.homepos[key][name:sub(2)] = {x = x, y = y, z = z}
+				until input:read(0) == nil
+			else
+				home.homepos[key] = minetest.deserialize(input:read())
+			end
 			io.close(input)
 		else
 			home.homepos[key] = {}
@@ -106,3 +115,5 @@ minetest.register_chatcommand("sethome", {
     privs = {home=true},
     func = home.sethome,
 })
+
+minetest.log("action","[sethome] Loaded.")
