@@ -3,8 +3,9 @@ home = {}
 home.homes_file = {["real"] = minetest.get_worldpath() .. "/realhomes",
 					 ["nether"] = minetest.get_worldpath() .. "/netherhomes"}
 home.homepos = {["real"] = {}, ["nether"] = {}}
-home.g_timers = {}
-home.s_timers = {}
+home.g_timers = {{["real"] = {}, ["nether"] = {}}}
+home.s_timers = {{["real"] = {}, ["nether"] = {}}}
+
 home.GET_HOME_INTERVAL = 20*60
 home.SET_HOME_INTERVAL = 20*60
 
@@ -15,8 +16,8 @@ home.sethome = function(name)
 	if pos.y < -19600 then
 		p_status = "nether"
 	end
-	if home.s_timers[name] ~= nil then
-		local timer_player = os.difftime(os.time(),home.s_timers[name])
+	if home.s_timers[p_status][name] ~= nil then
+		local timer_player = os.difftime(os.time(),home.s_timers[p_status][name])
 		if timer_player < home.SET_HOME_INTERVAL then -- less than x minutes
 			minetest.chat_send_player(name, "Please retry later, you used sethome last time less than ".. home.SET_HOME_INTERVAL .." seconds ago.")
 			minetest.chat_send_player(name, "Retry in: ".. home.SET_HOME_INTERVAL-timer_player .." seconds.")
@@ -25,7 +26,7 @@ home.sethome = function(name)
 		end
 	end
 	if home.homepos[p_status][player:get_player_name()] ~= pos then
-		home.s_timers[name] = os.time()
+		home.s_timers[p_status][name] = os.time()
 		home.homepos[p_status][player:get_player_name()] = pos
 		minetest.chat_send_player(name, "Home set!")
 		local output = io.open(home.homes_file[p_status], "w")
@@ -49,8 +50,8 @@ home.tohome = function(name)
 		p_status = "nether"
 	end
 	if home.homepos[p_status][name] then
-		if home.g_timers[name] ~= nil then
-			local timer_player = os.difftime(os.time(),home.g_timers[name])
+		if home.g_timers[p_status][name] ~= nil then
+			local timer_player = os.difftime(os.time(),home.g_timers[p_status][name])
 			if timer_player < home.GET_HOME_INTERVAL then -- less than x minutes
 				minetest.chat_send_player(name, "Please retry later, you used home last time less than ".. home.GET_HOME_INTERVAL .." seconds ago.")
 				minetest.chat_send_player(name, "Retry in: ".. home.GET_HOME_INTERVAL-timer_player .." seconds.")
@@ -61,7 +62,7 @@ home.tohome = function(name)
         player:setpos(home.homepos[p_status][player:get_player_name()])
         minetest.chat_send_player(name, "Teleported to home!")
         minetest.log("action","Player ".. name .." teleported to home. Last teleportation allowed in ".. home.GET_HOME_INTERVAL .." seconds.")
-        home.g_timers[name] = os.time()
+        home.g_timers[p_status][name] = os.time()
         return true
     else
 		minetest.chat_send_player(name, "Set a home using /sethome")
