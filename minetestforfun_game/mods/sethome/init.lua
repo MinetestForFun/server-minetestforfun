@@ -30,9 +30,6 @@ home.sethome = function(name)
 		home.homepos[p_status][player:get_player_name()] = pos
 		minetest.chat_send_player(name, "Home set!")
 		local output = io.open(home.homes_file[p_status], "w")
-		--for i, v in pairs(home.homepos[p_status]) do
-		--	output:write(v.x.." "..v.y.." "..v.z.." "..i.."\n")
-		--end
 		output:write(minetest.serialize(home.homepos[p_status]))
 		io.close(output)
 		return true
