@@ -37,6 +37,7 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 	if minetest.setting_getbool("creative_mode") then return end
 	local pn = puncher:get_player_name()
 	tools[pn] = puncher:get_wielded_item():get_name()
+	if minetest.registred_items[tools[pn]] == nil then return end
 	ttyp[pn] = minetest.registered_items[tools[pn]].type
 	local left = puncher:get_wielded_item():get_wear() + 65535/65--)
 	local tab = minetest.registered_tools[tools[pn]]
