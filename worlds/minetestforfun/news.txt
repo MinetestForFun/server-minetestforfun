@@ -5,6 +5,17 @@ MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
 ---08/02/2015---
+MAJ de "minetestforfun_game/mods/default/nodes.lua" (bugfix sur l'étagère de livre/bookshelf)
+MAJ de "plantlife_modpack" (bugfix, encore plus de meshe, "blossom" ré-écrit)
+MAJ de "ambience_modpack" (bugfix pouvant entrainer un crash du serveur)
+MAJ de "minetestforfun_game/mods/sethome" (retrait de variables globales)
+MAJ de "unified_inventory" (retrait de variables globales)
+MAJ de "minetestforfun_game/mods/sethome" (debug et ajout du timer de 5 minutes)
+MAJ de "minetestforfun_game/mods/sethome" (ajout d'un timer séparé pour le nether et la surface)
+MAJ de "intweak" (ajout d'une sécurité)
+MAJ de "throwing" (les flêches de base ou "arrow" ce craft maintenant par 8 et non par 16, cependant elles ce stack mainteannt jusqu'à 200, ça fait des beaux carquois !)
+
+---08/02/2015---
 MAJ de "sponge" (craft reccipe ajouté, ce stack maintenant à 99)
 MAJ de "spawn" (la commande /spawn à maintenant un timer de 5 minutes)
 MAJ de "beginners_chest" (ajsutement de la position d'un coffre)
@@ -37,7 +48,7 @@ MAJ de "homedecor" (encore plus de meshe et suppression de variables globales)
 MAJ de "moreblocks" (ajout d'une recette de fabrication pour la "compressed cobble")
 MAJ de "snow" (suppression de son code qui faisait tomber de la neige)
 MAJ de "snowdrift" (réactivation de ce mod)
-MAJ de "plantlife" (encore plus de meshe, dont les cailloux)
+MAJ de "plantlife_modpack" (encore plus de meshe, dont les cailloux)
 
 ---23/01/2015--- (Remerciements : crabman et Mg)
 MAJ de "maptools" (bugfix)
@@ -228,7 +239,7 @@ MAJ hardware du serveur (ajout d'un core supplémentaire alloué au serveur, cec
 MAJ de "sprint" (replacement du hud, le mode "E" avait vu son placement oublié)
 MAJ de "minetest.conf" (optimisation pour moins de lag)
 MAJ de "sprint" (modification du texte affiché lorsque vous n'avez plus d'endurance)
-MAJ de "plantlife/mushroom" (les potions "Healthy Brown Mushroom Essence" ne redonneront maintenant que 2.5 coeurs de vie aulieu d'auparavant 5 coeurs instantannément, ce qui était du même niveau que la "Golden carrot" avec des composants pas rare, cultivable et avec un craft facile, donc nerf pour le bon équilibrage du serveur)
+MAJ de "plantlife_modpack/mushroom" (les potions "Healthy Brown Mushroom Essence" ne redonneront maintenant que 2.5 coeurs de vie aulieu d'auparavant 5 coeurs instantannément, ce qui était du même niveau que la "Golden carrot" avec des composants pas rare, cultivable et avec un craft facile, donc nerf pour le bon équilibrage du serveur)
 Suppression du "Mese_monster" dans le "Nether"
 Ajout du "Dungeon_master" dans le "Nether"
 MAJ de "mobs" (petite réduction de la fréquence d’apparition des "Mese_monster" qui avait été augmenté exprès pour augmenter la difficulté dans le nether)
