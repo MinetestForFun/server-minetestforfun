@@ -1,6 +1,7 @@
 minetest.register_craftitem("throwing:arrow", {
 	description = "Arrow",
 	inventory_image = "throwing_arrow.png",
+	stack_max = 200,
 })
 
 minetest.register_node("throwing:arrow_box", {
