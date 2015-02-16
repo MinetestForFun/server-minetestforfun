@@ -4,7 +4,10 @@ News de FR - MinetestForFun (Survival - PvP) :
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
----08/02/2015---
+---09/02/2015--- (Remerciements : Mg)
+MAJ de "homedecor_modpack" (hotfix de l'usebug des diverses chaises/bancs, encore plus de meshe, divers meubles ce stack maintenant par 99)
+
+---08/02/2015--- (Remerciements : Mg, Crabman77, Gael-de-Sailly)
 MAJ de "minetestforfun_game/mods/default/nodes.lua" (bugfix sur l'étagère de livre/bookshelf)
 MAJ de "plantlife_modpack" (bugfix, encore plus de meshe, "blossom" ré-écrit)
 MAJ de "ambience_modpack" (bugfix pouvant entrainer un crash du serveur)
@@ -15,7 +18,7 @@ MAJ de "minetestforfun_game/mods/sethome" (ajout d'un timer séparé pour le net
 MAJ de "intweak" (ajout d'une sécurité)
 MAJ de "throwing" (les flêches de base ou "arrow" ce craft maintenant par 8 et non par 16, cependant elles ce stack mainteannt jusqu'à 200, ça fait des beaux carquois !)
 
----08/02/2015---
+---08/02/2015--- (Remerciements : Mg, Ataron)
 MAJ de "sponge" (craft reccipe ajouté, ce stack maintenant à 99)
 MAJ de "spawn" (la commande /spawn à maintenant un timer de 5 minutes)
 MAJ de "beginners_chest" (ajsutement de la position d'un coffre)
@@ -27,7 +30,7 @@ MAJ de "beginners_chest" (ajout de coffres avec butin régénèré au bout d'un 
 MAJ de "bobblocks" (suppression de variables globales)
 MAJ de "christmas_craft" (suppression de variables globales)
 MAJ de "factions" (suppression de variables globales)
-MAJ de "homedecor" (encore plus de meshe, et de nouvelles textures dans le craft grid sont disponibles)
+MAJ de "homedecor_modpack" (encore plus de meshe, et de nouvelles textures dans le craft grid sont disponibles)
 MAJ de "hud" (bugfix des crashs dû à la consommation du compteur de faim quand un joueur creuse)
 MAJ de "MFF_game\sethome" (un temps de rechargement est maintenant appliqué à votre /home, celui-ci est de 30 minutes)
 MAJ de "unified_inventory" (fusion du bouton /home et /sethome de l'interface avec le mod "MFF_game\sethome")
@@ -36,7 +39,7 @@ MAJ de "pipeworks" (réorganisation du code, bugfixs)
 Rétrogradage de "mesecons" (Rétrogradage => Ajout des meshnodes, de nouveaux sons, et de nombreux bugfixs)
 Rétrogradage de "irc" (Rétrogradage => Utilisation des dernières bibliothèques IRC)
 MAJ de "MFF_game\sethome" (le temps de recharge est diminué à 20 minutes)
-MAJ de "homedecor" (hotfix temporaire pour que les joueurs ne s'envolent plus si assis sur un élément du modpack)
+MAJ de "homedecor_modpack" (hotfix temporaire pour que les joueurs ne s'envolent plus si assis sur un élément du modpack)
 
 ---29/01/2015---
 MAJ de "mff_game/tools et moreore et nether" (unification des pioches, ENFIN !)
