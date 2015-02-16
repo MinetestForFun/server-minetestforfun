@@ -100,6 +100,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	-- Choose biomes
 	local pr = PseudoRandom(seed+57)
 	local biome
+	local biome2
 	-- Land biomes
 	biome = pr:next(1, 5)
 	local snowy = biome == 1 -- spawns alot of snow
