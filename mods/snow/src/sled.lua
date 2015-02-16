@@ -62,6 +62,9 @@ end
 -- Sled entity
 --
 
+local HUD
+-- FIXME: FIND WHAT IS HUD FOR
+
 local sled = {
 	physical = false,
 	collisionbox = {-0.6,-0.25,-0.6, 0.6,0.3,0.6},

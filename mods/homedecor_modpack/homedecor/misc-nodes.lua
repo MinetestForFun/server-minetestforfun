@@ -1313,10 +1313,11 @@ homedecor.register("book_"..color, {
 				"button_exit[2.5,7.5;3,1;save;Save]"
 		else
 			formspec = "size[8,8]"..default.gui_bg..
-			"button_exit[7,0.25;1,0.5;close;x]"..
+			"button_exit[7,0.25;1,0.5;close;X]"..
 			default.gui_bg_img..
-				"label[1,0.5;"..minetest.formspec_escape(title).."]"..
-				"label[0.5,1.5;"..minetest.formspec_escape(text).."]"
+				"label[0.5,0.5;by "..owner.."]"..
+				"label[0.5,0;"..minetest.formspec_escape(title).."]"..
+				"textarea[0.5,1.5;7.5,7;;"..minetest.formspec_escape(text)..";]"
 		end
 		minetest.show_formspec(user:get_player_name(), BOOK_FORMNAME, formspec)
 	end,

@@ -1,0 +1,635 @@
+News de FR - MinetestForFun (Survival - PvP) :
+
+---Bientôt---
+MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
+MAJ de "irc" (utilisation des dernières bibliothèques IRC)
+
+---08/02/2015---
+MAJ de "minetestforfun_game/mods/default/nodes.lua" (bugfix sur l'étagère de livre/bookshelf)
+MAJ de "plantlife_modpack" (bugfix, encore plus de meshe, "blossom" ré-écrit)
+MAJ de "ambience_modpack" (bugfix pouvant entrainer un crash du serveur)
+MAJ de "minetestforfun_game/mods/sethome" (retrait de variables globales)
+MAJ de "unified_inventory" (retrait de variables globales)
+MAJ de "minetestforfun_game/mods/sethome" (debug et ajout du timer de 5 minutes)
+MAJ de "minetestforfun_game/mods/sethome" (ajout d'un timer séparé pour le nether et la surface)
+MAJ de "intweak" (ajout d'une sécurité)
+MAJ de "throwing" (les flêches de base ou "arrow" ce craft maintenant par 8 et non par 16, cependant elles ce stack mainteannt jusqu'à 200, ça fait des beaux carquois !)
+
+---08/02/2015---
+MAJ de "sponge" (craft reccipe ajouté, ce stack maintenant à 99)
+MAJ de "spawn" (la commande /spawn à maintenant un timer de 5 minutes)
+MAJ de "beginners_chest" (ajsutement de la position d'un coffre)
+MAJ de "minetestforfun_game/mods/default/nodes.lua" (bugfix sur bookshelf)
+MAJ de "minetestforfun_game/mods/default/textures/moon.png" (nouvelle texture pour la lune, si vous n'utilisez pas de texture_pack, ou si votre texture_pack n'inclut pas de texture pour la lune, vous la verrez)
+
+---06/02/2015---
+MAJ de "beginners_chest" (ajout de coffres avec butin régénèré au bout d'un certain temps)
+MAJ de "bobblocks" (suppression de variables globales)
+MAJ de "christmas_craft" (suppression de variables globales)
+MAJ de "factions" (suppression de variables globales)
+MAJ de "homedecor" (encore plus de meshe, et de nouvelles textures dans le craft grid sont disponibles)
+MAJ de "hud" (bugfix des crashs dû à la consommation du compteur de faim quand un joueur creuse)
+MAJ de "MFF_game\sethome" (un temps de rechargement est maintenant appliqué à votre /home, celui-ci est de 30 minutes)
+MAJ de "unified_inventory" (fusion du bouton /home et /sethome de l'interface avec le mod "MFF_game\sethome")
+MAJ de "mesecons" (Ajout des meshnodes, de nouveaux sons, et de nombreux bugfixs)
+MAJ de "pipeworks" (réorganisation du code, bugfixs)
+Rétrogradage de "mesecons" (Rétrogradage => Ajout des meshnodes, de nouveaux sons, et de nombreux bugfixs)
+Rétrogradage de "irc" (Rétrogradage => Utilisation des dernières bibliothèques IRC)
+MAJ de "MFF_game\sethome" (le temps de recharge est diminué à 20 minutes)
+MAJ de "homedecor" (hotfix temporaire pour que les joueurs ne s'envolent plus si assis sur un élément du modpack)
+
+---29/01/2015---
+MAJ de "mff_game/tools et moreore et nether" (unification des pioches, ENFIN !)
+MAJ de "homedecor" (bugfix pedestals v2, de nouveaux actifs sur le serveur)
+Augmentation du nombre maximum de joueur en ligne à 100 (le serveur en est maintenant capable car devient bien stable)
+
+---28/01/2015---
+MAJ de "homedecor" (encore plus de meshe et suppression de variables globales)
+MAJ de "moreblocks" (ajout d'une recette de fabrication pour la "compressed cobble")
+MAJ de "snow" (suppression de son code qui faisait tomber de la neige)
+MAJ de "snowdrift" (réactivation de ce mod)
+MAJ de "plantlife_modpack" (encore plus de meshe, dont les cailloux)
+
+---23/01/2015--- (Remerciements : crabman et Mg)
+MAJ de "maptools" (bugfix)
+MAJ de "homedecor" (simplification et réparation du rack à vin, et ajout de sa texture en meshe)
+MAJ de "riesenpilz" (modification de la texture)
+MAJ de "homedecor" (bugfix sur les itenframes s'ils sont cassés ou world-édités)
+MAJ de "chatlog" (les commandes échoués n'apparaîtront plus dans le chat, visible de tous)
+MAJ de "carts" (bugfix pouvant entrainer un crash du servuer)
+MAJ de "la plupart des mods" (résolution des variables globales) 
+MAJ de "misc/noshout_messages" (debug, s'affiche correctement désormais)
+MAJ de "future_ban" (bugfix)
+MAJ de "pipeworks" (toutes les textures sont maintenant en meshe)
+MAJ de "itemframes" (nouveaux pedestals pour y exposer des objets)
+Suppression du mod "fishing" (ancien, tiré principalement de la map "ethereal")
+Ajout du mod "fishing" (nouveau, réel gameplay lié à la pêche, trophés, divers poissons donnant plus ou moins de vie, etc...)
+=> Mise à niveau de la version de Minetest vers 0.4.11 (dernière Core-MAJ)
+MAJ de "maptools" (ré-ajout des crafts dans le listing de l’inventaire)
+MAJ de "fails" (ajouts des sons)
+MAJ de "irc" (bugfix)
+MAJ de "3d_armor" (ajout de la texture pour les bottes de l’armure d’admin)
+
+---18/01/2015---
+Désactivation de "snowdrift" (le mod qui fait tomber de la neige, n'est pas stable, entrain trop de lag)
+
+---12/01/2015---
+MAJ de "snowdrift" (modification des paramètres pour éviter les lags)
+MAJ de "mobs" (réduction du knockback/recule des monstres quand ils sont touchés, ceci augmentate la difficulté - auparavant les monstres reculaient de 3 cases, maintenant ils ne reculeront que d’une case)
+MAJ de "hud" (hotfix suite à un crash répétitif)
+MAJ de "fail" (désactivation temporaire, en attente d'un bugfix)
+MAJ de "fail" (bigfix)
+MAJ de "nether" (les épées du nether deviennent plus puissantes)
+
+---11/01/2015---
+MAJ de "mesecons" (bugfix)
+MAJ de "pipeworks" (bugfix)
+MAJ de "3d_armor" (ajout de l'armure en cactus(verte), entre l'armure en wood et l'armure en steel, voir le tableau sur le site pour plus de détails, et ajout de l'armure admin(violette))
+MAJ de "areas" (bugfix)
+MAJ de "pipeworks" (bugfix, entrainait un crash)
+MAJ de "chatplus" (bugfix)
+MAJ de "homedecor_modpack" (trop d'ajout/modifications à citer...)
+MAJ de "xban2" (bugfix)
+
+---05/01/2015---
+MAJ de "mesecons" (bugfix)
+MAJ de "pipeworks" (bugfix)
+MAJ de "mobs" (réduction du taux d’apparition des chats)
+MAJ de "mobs" (le régime alimentaire du kitten/chat change, les chats sont sauvages et préfèrent maintenant manger des rats)
+MAJ de "christmas_craft" (la neige disparaît, vous pouvez tout de même continuer à crafter les décorations)
+
+---01/01/2015---
+MAJ de "fail" (ajout de message lors de gain/perte de failpoint/cookies)
+MAJ de "minetestforfun_game/crafting" (ajout du cube "Compressed Cobblestone", craftable avec 9 cobblestone, la texture est intéressante - provenant de Carbone)
+MAJ de "minetestforfun_game/nodes" (ajout du groupe "acid" au liquide acide - sera pratique à l'avenir)
+MAJ de "mobs" (debug des kittens, ils sont maintenant fonctionnels - Merci à Gael-de-Sailly pour son travail)
+
+---30/12/2014---
+Ajout du mod "fail" (permettant le don de "failpoints" et de "cookies" - créé par Mg/LeMagnesium)
+MAJ de "more_chest" (Ajustement des textures des coffres pour correspondre aux nouvelles textures du coffre)
+MAJ de "screwdriver" (le screwdriver fait en steel revient à ces valeurs initial soit 200 utilisations, il était accidentellement à 10 utilisations auparavant... Nous lui ajoutons une amélioration : le "Perfect Screwdriver", un screwdriver fait de mithril avec sa propre texture permettant 10 000 utilisations !)
+
+---27/12/2014---
+MAJ de "minetestforfun_game/bucket" (bugfix, quand vous prendrez un liquide vous ne perdrez plus de seaux)
+MAJ de "random_messages" (interval fixé à 30 minutes, et fixé correctement dans le minetest.conf)
+MAJ de "maptools" (les blocs de diamants unbreakable ont désormais la bonne texture)
+
+---25/12/2014---
+MAJ de "minetestforfun_game/furnace" (ré-écriture intégral du furnace/four)
+MAJ de "minetestforfun_game/flowers" (nouvelle texture et hitbox)
+MAJ de "minetestforfun_game" (bugfix de fire/doors)
+MAJ de "minetestforfun_game/dye" (amélioration du code)
+Ajout de "minetestforfun_game/crafting" (Ajout des obsidian_brick, de nouvelles briques d'une noirceures et résistances à toutes épreuves !)
+MAJ de "screwdriver" (code amélioré/nettoyé)
+MAJ de "sea/seareck" (les coffres des épaves de bateaux contiennent maintenant 2 fois plus de ressources, le pillage n’a jamais été aussi rentable !)
+Ajout du mod "future_ban" (au cas ou un bannissement avec "xban2" ne fonctionne pas)
+MAJ de "minetestforfun/doors" (retraits de facilités liées à Carbone, par exemple pour la porte en bois mettre les composants dans la grille de craft vous en donnait 3, vous n'en aurez plus qu'une maintenant)
+MAJ de "minetestforfun/functions" (retraits de facilités liées à Carbone, les cactus et papyrus poussent moins vite)
+MAJ de "moreores" (retraits de facilités liées à Carbone, difficulté accrue de trouver du "gold" et du "mithril")
+MAJ de "minetestforfun/mapgen" (retraits de facilités liées à Carbone, difficulté accrue de trouver du "mese")
+MAJ de "minetestforfun/mapgen" (retraits de facilités liées à Carbone, difficulté accrue de trouver du "diamond")
+MAJ de "mobs(redo)" (amélioration de l'API, ajout de 2 à 3 sons par monstre, petit augmentation des points de vie du lava_flan)
+MAJ de "moretrees" (bugfix)
+Ajout du mod "random_messages" (permet l'affichage d'un message d'astuce une fois par heure, visible par tout le monde)
+MAJ de "maptools" (ré-ajout de la texture 3D des super_apple)
+MAJ de "mobs" (amélioration du code des sons, et ajout des chats/kittens !!! Ils sont apprivoisables si vous leurs donnez 4 poissons crus, ils sont aussi attirés par le poisson cru que vous tenez en main)
+
+---23/12/2014---
+Unification des sword/épées et des throwing/arcs (si vous désirez voir les différentes valeurs de dommages/durabilité/rapidité, je vous invite à aller sur le site à la section - Liste des "mod", des tableaux détaillés y sont visible)
+MAJ de "death_messages" (ajout de différents messages lorsque vous mourrez dans l'acide)
+
+---21/12/2014---
+MAJ de "u_skins" (ajout d'une apparence de père noel fait par JAPP)
+
+---20/12/2014---
+MAJ de "farming" (amélioration du système d'humidification d'eau)
+
+---18/12/2014---
+MAJ de "mobs" (le "Dungeon_Master" ne détruit maintenant plus les cubes "unbreakable")
+MAJ de "highlandpools" (la génération de l'eau à été amélioré)
+MAJ de "sea/searecks" (petit fix)
+MAJ de "highlandpools" (l'eau générée par ce mod remplace les nodes de "grass", "flower" et "pebble")
+
+---16/12/2014---
+MAJ de "christmas_craft" (les blocs de "Leaves" et "Jungle Leaves" portent maintenant un nom correcte permettant de les identifier aisément - auparavant les deux s'appellaient "Leaves")
+
+---15/12/2014---
+MAJ de "christmas_craft" (ajout des "jungletree" enneigés et les branches sont maintenant transparentes et il est impossible de marcher dessus)
+MAJ de "christmas_craft" (la "dirt_with_grass" drop également des boules de neiges provenant du mod snow, celle ci permettent de crafter diverses décorations de ce mod, attention ces boules de neiges ont un comportement différent, et ne permettant pas d’infliger des dégâts lors des batailles de boules de neiges !)
+MAJ de "mobs(redo)" (Les monstres qui spawnent normalement sur la "dirt_with_grass" et les "jungle_leaves" spawnent maintenant correctement sur la texture modifiée du mod "christmas_craft")
+MAJ de "christmas_craft" (bugfixs)
+MAJ de "plantlife_modpack" (bigfixs)
+
+---14/12/2014---
+MAJ de "misc/uncraft_wool" (bugfix du craft de "cotton" qui nécessite maintenance 9 wool, auparavant 4)
+Ré-application de toutes les modifications du 8/11/2014 !
+Ajout du mod "christmas_craft" (le serveur est plongé dans la neige ! Vous pouvez fabriquer diverses décorations de noel, dont des bonhommes de neiges :D)
+Ajout de "minetestforfun_game/nodes.lua" (Ajout des pinetrees, disponible dans les zones nouvellement générées uniquement - vous pouvez en ramener pour en cultiver près de chez vous aussi)
+MAJ de "mobs(redo)" (ajout d'un option pour désactiver le spawn de mobs dans des zones protégés, option désactivé pour l'instant)
+MAJ de "plantlife_modpack" (diverses améliorations)
+
+---13/12/2014---
+MAJ de "sprint" (petit bugfix ayant entrainé un crash)
+MAJ de "farming(redo)" (bugfix du craft de "cotton" qui nécessite maintenance 9 wool, auparavant 4)
+MAJ de « plantlife_modpack" (il n’existe plus qu’un "sugar"/sucre, celui de farming(redo), les recettes utilisent celui de "plantlife_modpack/bushes" sont donc toujours réalisables)
+
+---08/12/2014---
+MAJ de "minetestforfun_game/default" (ajout d'un lune et d'un soleil rond avec pixels, modifications des textures de "grass" et jungleleaves, retour sur de l'eau plus claire et opaque)
+MAJ de "minetestforfun_game/default" (retrait de la génération "in-dev" de minerais)
+MAJ de "minetestforfun_game/default" (les "jungleleaves" sont maintenant dessinées en "allfaces_optional" ce qui signifie que selon les paramètres côté client elle seront dessinés différemment)
+MAJ de "sprint" (le son d'essoufflement a été réduit de 10 décibels)
+MAJ de "minetestforfun_game/default" (modification de la vue des couleurs quand vous êtes immergés dans l'eau)
+MAJ de "maptools" (les "Super Apple" sont maintenant correctement en 3D et fonctionnelles)
+
+
+---07/12/2014---
+MAJ de "minetestforfun_game/bucket" (ajout de l'acid_bucket)
+MAJ de "hud" (de nombreuses modifications, dont une unification de la faim, l'ajout de nombreuses nourritures, ainsi que quelque petites modifications sur les potions à base de mushroom)
+MAJ de "sprint" (Ajout d'un son d'essoufflement quand le sprint ce termine, retrait du texte qui prévient du fait que l'endurance est vide)
+MAJ de "sprint" (Ajout des dégâts de cactus quand vous êtes trop proche de ceux-ci, attention si vous vous collez longuement les dégâts sont impressionnants)
+MAJ de "moretrees" (il est maintenant impossible de marcher sur les feuilles de palmiers)
+MAJ de "mesecons" (divers bugfixs)
+
+---01/12/2014---
+MAJ de "mobs" (les poulets/chicken sont maintenant apprivoisablent, ils leur faut 4 blé/wheat pour l'être)
+MAJ de "farming" (réduction de la taille de la "selectionbox" du cocoa)
+MAJ de "farming" (unification des valeurs de faim terminée)
+MAJ de "hud/hunger" (unification des valeurs de faim terminée)
+
+---30/11/2014---
+MAJ de "u_skins" (suppression des skins inappropriés pour un serveur JcJ, ils avaient été remis suite à une erreur de manipulation)
+MAJ de "mobs" (nouvelle texture pour le dirt_monster, le phacochère, l'oerkki)
+EVENEMENT => Venez voter pour la prochaine texture du Dungeon Master ! (section EVENEMENT du site, ou directement à cette adresse : http://minetest.qbuissondebon.info/index.php/news/evenements)
+
+---29/11/2014---
+MAJ de "mesecons" (nombreux bugfix)
+MAJ de "minetestforfun_game" (nouvelles textures - bucket, effet d'eau, eau, default_character, ladder, grass, flowers, vessels, cotton, wheat, etc...)
+MAJ de "mobs" (nouvelles textures - sheep, cow, chicken)
+Ajout du mod mapfix (permet de retirer les zones d'ombres bug grâce à la commande "/mapfix <rayon>" (rayon est limité à 50 pour les joueurs), merci d'effectuer cette commande si vous voyez des zones d'ombres bug, merci également à Gael-De-Sailly pour ce mod !)
+MAJ de "minetestforfun_game" (nouvelles textures - doors by Esteban, pullé mais pas encore pushé sur le github de minetest_game)
+MAJ de "money" (suppression du privilège "money" et de la commande "/money" qui va avec, inutile sur le serveur puisque nous utilisons les "xxx_coins" pour les transactions)
+MAJ de "minetestforfun_game/node.lua" (les blocs ce cassant à la main ne drop plus de "xxx_coins", en contrepartie les minerais ce cassant avec des outils ont vu leurs drop de "xxx_coins" augmenter d'environ 50%)
+
+---28/11/2014---
+MAJ de "maptools" (test pour mettre les "super_apple" en 3D comme les "default:apple")
+Désactivation du mod "builtinfalling" (trop de problème avec les liquides dans les zones protégés)
+
+---26/11/2014---
+MAJ de "coloredwood" (les planches en bois colorées apparaissent maintenant dans le guide de craft de l'inventaire)
+
+---24/11/2014---
+Ajout du mod "bobblocks" (fonctionne avec le mod "mesecons", permet de faire d'inonbrable choses supplémentaire, à noter que le bloc de soins c'est vu nerfer et ne redonne que 2.5 coeurs de vie instantannément quand utilisé)
+MAJ de "mesecons" (nombreux bugfix)
+
+---23/11/2014---
+MAJ de "mesecons" (pas loin d'une dizaine de bugfix)
+MAJ de "homedecor_modpack" (bugfix, mais surtout, introduction de certaines nodes en meshe)
+MAJ de "u_skins" (ajout de tooltips/bulle d'informations au survol de la souris d'un skin)
+MAJ de "homedecor_modpack"  (suppression des craft avec "group:wood_slab" à l'intérieur, ne servant à rien puisque inutilisé à l'heure actuel, cela permettra d'avoir moins de recettes avec des "unknow nodes" nous obligeant à appuyer sur le bouton "alternate")
+MAJ de "maptools" (les "super_apple" ne ce stackeront maintenant que par 99, auparavant 10 000)
+
+---22/11/2014---
+Ajout du mod "pipeworks" (permet l'utilisation de tuyaux, de certains outils logiques, de "crafter" ou encore de nombreux outils permettant une automatisation de certaines tâches)
+MAJ de "mesecons" (pas loin d'une quinzaine de bugfix)
+
+---21/11/2014---
+MAJ de "MTsatellite" (ajout des pixels de couleur pour le mod nether, auparavant ignorés car non configurés)
+MAJ de "sprint" (il faut utiliser la touche "E" pour sprinter désormais, si vous faite un clique gauche ou droit pendant le sprint, celui ci s'arrête et vous avez une seconde de pénalité pendant laquelle vous ne pouvez sprinter)
+MAJ hardware du serveur (ajout d'un core supplémentaire alloué au serveur, ceci pour empêcher les freezes dû à MTsatellite car celui-ci monopolisait une fois par heure et pendant 2 minutes 100% de l'unique core alloué au serveur, cela n'arrivera plus maintenant)
+MAJ de "sprint" (replacement du hud, le mode "E" avait vu son placement oublié)
+MAJ de "minetest.conf" (optimisation pour moins de lag)
+MAJ de "sprint" (modification du texte affiché lorsque vous n'avez plus d'endurance)
+MAJ de "plantlife_modpack/mushroom" (les potions "Healthy Brown Mushroom Essence" ne redonneront maintenant que 2.5 coeurs de vie aulieu d'auparavant 5 coeurs instantannément, ce qui était du même niveau que la "Golden carrot" avec des composants pas rare, cultivable et avec un craft facile, donc nerf pour le bon équilibrage du serveur)
+Suppression du "Mese_monster" dans le "Nether"
+Ajout du "Dungeon_master" dans le "Nether"
+MAJ de "mobs" (petite réduction de la fréquence d’apparition des "Mese_monster" qui avait été augmenté exprès pour augmenter la difficulté dans le nether)
+MAJ de "mobs" (bugfix des dégâts du "Dungeon_master", en effet, celui ci ne faisait que 4 coeurs de dégâts, il en fait maintenant 6.5 coeurs, le bug était similaire à celui du "Mese_monster", corrigé il y a de cela quelques temps)
+
+---18/11/2014---
+MAJ de "sethome" (désormais fonctionnel dans sa totalité ! Vous pouvez donc avoir un "home" dans le nether et un à la surface)
+MAJ de "minetestforfun_game" (acid_source/eau empoisonné, fait maintenant 1.5 coeur de dégâts par seconde, auparavant 1 coeur de dégâts par seconde)
+
+---16/11/2014---
+MAJ de "itemframes" (son activation avait été oublié, c'est maintenant fait)
+MAJ de "sprint" (code plus propre, modification graphique pour plus de clarté)
+MAJ de "mesecons" (passage d'une version allégée çe une version complète du mod, attention à ne pas faire de de boucle rapide et infini, s'il vous plait !)
+MAJ de "sethome" (remise à son état initial en attendant que le code soit adapté à deux sethome un nether/un surface sans problème)
+MAJ de "snowdrift" (nous avions interdit l'apparition de biome neigeux dans le nether, mais avions oublié les tempêtes de neige, la neige ne tombera plus dans le nether)
+MAJ de "beginner_chest" (le beginner_chest_01 correspondant à celui du spawn ce recharge maintenant toute les heures, le beginner_chest_02 correspondant à celui dans la jungle rejoignant le spawn au "Quartier de la Vie" ce recharge maintenant toute les 40 minutes)
+MAJ de "coloredwood" (divers craft faisable maintenant avec des objets du même "group")
+
+---15/11/2014---
+MAJ de "itemframe" (Suppression de la version Carbone, ajout de la version de VanessaE provenant de "homedecor_modpack" étant plus à jour et corrigeant entre autre un bugfix qui faisait crasher le serveur, et une auto-regénération des objets framed si un clearobjects est effectué)
+MAJ de "snowdrift" (réduction de la durée d’une tempête de 30 minutes à 4 minutes, toujours pour réduire le lag côté client qu’entraine ce mod)
+
+---14/11/2014---
+MAJ de "beginners_chest" (un nouveau coffre pour les débutants a été posé le long du chemin traversant la forêt depuis le spawn jusqu'au "Quartier de la Vie")
+MAJ de "farming(redo)" (ajout des "Blueberries" et du craft "Blueberry Muffin, "ajout des "Jack 'O Lantern", amélioration du code de façon général)
+MAJ de "rules.lua" et "irc.lua" (les fenêtre restent de la meême taille, cependant la fenêtre interne contenant le texte est agrandit, pour correspondre à celle de news, plus agréable à lire car plus grande)
+MAJ de "minetestforfun_game" (suppression des doublons de minerais de "tin" et "silver" et transformation de ceux déjà générés en bloc de "cobblestone", suppression aussi des doublons d'outils craftable uniquement avec ces ressources)
+MAJ de "sprint" (Ajout d'une interface graphique, nous gardons le message vous alertant que vous n'avez plus d'endurance pour l'instant, changement de l'icone stamina.png, agrandissement de celui ci de 16x16 à 24x24, positionnement de la stamina au dessus de l'armure du hud)
+MAJ de "moreores" (modifications de nombreuses textures, les plus belles textures de default ont été fusionné avec les plus belles textures de moreores)
+Et enfin, la plus grosse des MAJ -> Migration de la Base de données de SQLite3 à Redis !
+SQLite3 est sans aucun oute le plus mauvais choix pour la maintient d'un serveur de jeu, Redis est énormément plus rapide, vraiment plus fiable, et nous permet de passer sur une système de Mapping totalement différent, j'ai nommé : MTSatellite ! Ce mapper interactif, vous montrera instantannément vos modifications sur le serveur, vous pouvez accèder à tout moment à la carte du monde "en directe" depuis la section "Carte du monde" de notre site !
+
+---12/11/2014---
+MAJ de "noshout_messages" (le message si vous n'avez pas encore faire /irc s'affichera en français et en anglais)
+MAJ de "rules" (les règles sont maintenant dépourvues d'accents pour que tous les clients puissent lire les règles sans messages d'erreur)
+MAJ de "darkage" (ajout de plusieurs "craft recipe" pour "ors/ors_brick", "slate/slate_brick" et "basalt/basalt_brick")
+MAJ de "noshout_messages" (une petite modificaition pour la traduction anglaise)
+MAJ de "areas" (ajout du privilège "megabuilder" permettant à certains joueurs ayant prouvés leurs valeurs d'avoir un nombre illimité d'areas et sans limite de dimension)
+MAJ des privilèges de "JAPP" et "Cyberpangolin" (ils gagnent le privilèges "megabuilder")
+MAJ de "mobs" (le mesemonster inflige maintenant, par flêches en mese, 3 coeurs de dégats pour les personnages sans armure, et 2 coeurs de dégâts pour les personnages tout en armure de mithril)
+MAJ de "rules.lua" et "init.lua" (ajout d'un background, comme ce qui avait été fait pour le mod "news")
+MAJ de "mobs" (révision des monstres, la plupart ont plus de vie et/ou de la vie plus stable, ils drop désormais tous des copper/silver coins, certains monstres ont plus d'armures, et les monstres tirant à distance vise maintenant PRECISEMENT les joueurs)
+MAJ de "mobs" (les stone_monster apparaissent maintenant dans la nether_forest)
+Ajout du mod "sprint" (appuyez deux fois sur votre touche avancer avec 0.5sec d'intervalle pour lancer le sprint, celui ci durera 10secondes - il s'arrêtera immédiatement si vous appuyez sur le bouton gauche ou droit de votre souris - le délai écoulé, le sprint s'arrêtera et un message vous indiquera que vous êtes essouflé dans le chat, vous pouvez re-sprinter à tout moment, meme si votre "stamina" n'est pas au maximum mais le sprint durera tout simplement moins longtemps)(Bonus sur sprint : le sprint dur 10secondes, quand vous sprintez, vous courrez 35% plus vite, et sautez 10% plus loin)
+
+
+---10/11/2014---
+MAJ de "_misc/irc.init" (finalisation du mod, les nouveaux joueurs doivent taper "/irc" pour pouvoir communiquer avec les autres joueurs, les anciens joueurs n’ont pas besoin de faire cela cependant, nous vous conseillons fortement de faire cette commande pour vous informer des règles de l’irc) 
+
+---09/11/2014---
+Ajout du mod "coloredwood" (bois/barrière de toute les couleurs, grâce au colorants, compatible avec la colormachine)
+MAJ d’une 20ène de mods et de "minetestforfun_game" (corrections des "minettes.env" obsolètes dans le dossier /mods et dans le dossier /default)
+MAJ de "sethome" (TOTALEMENT FONCTIONNEL, deux /sethome sont disponibles, un en surface et un dans le nether, enjoy !)
+MAJ de "builtin_falling" (upgrade vers 0.4 et minettes.env)
+MAJ de "_misc" (background pour news et irc_rules, irc_rules totalement fonctionnel)
+
+---08/11/2014---
+MAJ de "sethome" (enfin fonctionnel à 100%, un home au nether, et un en surface)
+MAJ de "builtin_falling" (optimisation, prend en compte l’eau et la lave, mais lentement, pour l’instant)
+Ajout du mod "irc_rules" (les nouveaux joueurs doivent accepter les règles de ce mod pour avoir le privilège "shout", en tapant /irc)
+
+---06/11/2014---
+MAJ de "minetestforfun_game" (casser une brique ne nous retourne plus 9 "clay_brick" mais le cube de brique en lui même)
+
+---05/11/2014---
+MAJ de "mobs" (meilleur API, ils peuvent maintenant nager et subissent des dégâts de chute, voir meurt si tombe de trop haut)
+MAJ de "irc" (mise en place en cours)
+
+---04/11/2014---
+MAJ de "arrow_signs" (ces panneaux sont maintenant craftables, ils ne l'étaient pas avant)
+
+---03/11/2014---
+Supression du mod "painting" (auparavant désactivé, allège le serveur)
+Supression du mod "player_notes" (auparavant désactivé, allège le serveur)
+Maj de "minetestforfun_game" (nouvelle texture pour la glace/ice)
+Nettoyage général du code et des fichiers temporaires trainant sur le serveur
+
+---02/11/2014---
+MAJ de "beginners_chest" (résolution d'une boucle entrainant un fichier debug.txt de 50-100Mo/jours)
+MAJ de "areas" (fix d'un bug qui faisait crash le serveur)
+MAJ de "flowers_plus" (fix d'un bug qui faisait crash le serveur)
+MAJ de "beginners_chest" (le temps entre deux régénération du contenu du coffre est maintenant corrigé et de deux heures)
+Recompilation du serveur sur la branche "master" (ou -dev) (ce qui signifique le serveur est à jour par rapport à la dernière version de dévelloppement et non la dernière version stable comme auparavant), vous ne verrez concrètement que des améliorations dans ce changement
+Ajout du mod "builtin_falling" (permet aux objets tombant au sol de ne pas tomber dans les zones protégés)
+MAJ de "sea" (toute les nodes gravel/sand ont été modifiés pour corespondre à "builtin_falling")
+MAJ de "minetestforfun_game" (default/nodes.lua à été modifié pour corespondre à "builtin_falling")
+
+---01/11/2014---
+MAJ de "sethome" (un point pour définir sa maison est maintenant disponible dans le nether, ce qui signifie qu'il vous est possible d'avoir une maison dans le nether, et une autre dans le monde normal, à la surface)
+MAJ de "factions" (bugfix, ne fera plus crasher le serveur)
+MAJ de "u_skin" (les "skins" des joueurs s'actualiseront maintenant toute les 2 minutes aulieu d'auparavant toute les 6 minutes)
+MAJ de "mobs" (les dungeon_master et les mese_monster tireront plus précisément sur les joueurs)
+MAJ de "minetestforfun_game" (suppression de farming, créant certain conflits au démarrage du serveur)
+MAJ de "lavatemple" (modification des dépendances pour mieux correspondre au serveur avec des mods modifiés, le "temple de lave" ce génèrera donc bien désormais sur le serveur)
+MAJ de "homedecor_modpack" (suppression de "itemframes" qui était de toute manière écrasé par notre mod "itemframes" provenant de Carbone et non de "homedecor_modpack")
+MAJ de "sethome" (bugfix du crash de cette après midi)
+Ajout du mod "beginners_chest" (rajoute un coffre caché au spawn point contenant : des bottes en steel, une épée en stone, une pioche en stone. Ce coffre est réinitialisé toutes les 2 heures)
+
+---31/10/2014---
+MAJ de "areas" (correction d'un crash dans certaines conditions)
+MAJ de "factions" (correction d'un crash dans certaines conditions)
+
+---30/10/2014---
+MAJ de "snowdrift" (la neige n'apparaîtra plus dans le nether)
+MAJ de "farming" (le blé avait un soucis et ne poussait que si proche d'une torche, il poussera maintenant à la lumière du soleil)
+MAJ du "motd" (ajout de l'IRC du serveur)
+MAJ de "faction" (tous les nouveaux joueurs et tous les joueurs existants ont désormais le privilège "faction_user" leurs permettant d'utiliser les fonctions du mod faction)
+
+---29/10/2014---
+MAJ de "nether" (les fruits du nether donneront maintenant correctement 4.5 pain de faim, tout en vous infligeant toujours 3 coeurs de dégâts que vous récupèrerez au bout d'un certain temps)
+MAJ de "sea" (les bâteaux générés sous l'eau seront désormais en bois ou pierre, et les coffres voient leur contenance correctement ajustés)
+Ajout du mod "sponge" (ajout d'une ponge craftable, comme dans minecr**t celle ci absorbe l'eau, 64 cubes d'eau pour être précis, l'éponge peut etre sêché en étant mise dans le four)
+
+---28/10/2014---
+MAJ de "dropondie" (ré-ajout d'une portion de code pour le bugfix des items qui ce restaure quand vous mourrez et les re-ramassez)
+MAJ de "minetestforfun_game"(nettoyage du code des tree/jungletree, des doors et des trapdoors par Calinou)
+MAJ de "snowdrift" (la quantité et fréquence de la neige entrainait du lag coté client, la quantité de neige à été divisé par deux, et la fréquence par trois pour y remédier)
+Ajout du mod "highlandpools" (des lacs et rivières ce formeront désormais parfois au dessus du niveau de l'eau dans les nouvelles régions générées) 
+MAJ de "maptools" (ajustement esthétique du code)
+MAJ de "minetestforfun_game" (certains minerais rare, à savoir, les gold coin, le mese et le diamant, luisent/brillent désormais dans le noir)
+MAJ de "nether" (les comandes "/to_hell" et "/from_hell" ont été supprimés)
+MAJ de "misc" (chatcommand.lua => les commandes "/home" et "/sethome" en doublons ont été supprimées, en effet, un bug permettait d'avoir deux "/home" et "/sethome")
+MAJ de "mobs" (ajouts de "copper_coin" et "silver_coin" en drop des monstres, le "lava_flan"
+saute deux nodes maintenant aulieu d’auparavant une demi, ce monstre devient donc plus
+dangereux, plus surprendre et enfin, ajout du "mese_monster" dans le nether)
+MAJ de "nether" (quand vous revenez par le portail de retour - du nether à la surface - le spawn point est maintenant statique, dans le bâtiment de départ)
+MAJ de "dropondie" (le contenu des sacs ce vide à la mort d'un joueur, les joueurs garderont cependant leurs sacs)
+
+---27/10/2014---
+MAJ de "snow" (un bug avait fait crashé le serveur, il est maintenant résolu)
+MAJ de "minetest.conf" (vous ne pouvez désormais voir les pseudos des joueurs vous entourant uniquement s'ils sont à moins de 50 blocs de vous)
+
+---24/10/2014---
+MAJ de "mobs" (les sandmonsters apparaîtront maintenant environ 50% plus souvent)
+Ajout du mod "uncraft_woll" (permet de recycler une "woll" pour en récupérer les "cotton", attention une "woll" coute 4 "cotton" et vous n'en récupèrerez que 3 deplus, si vous avez utilisez du colorant sur votre "woll" il n'est pas récupéré)
+MAJ de "snow" (la neige ce génèrera maintenant à une hauteur minimum de 15 cubes)
+MAJ de "minetestforfun_game" (modification du post processing sur l'eau, de la lave, des jungle_leaves, celon Carbone)
+MAJ de "minetestforfun_game" (ajout d'informations sur le serveur dans la console)
+Suppression du mod "reserved" (et ajout en natif dans "minetestforfun_game")
+MAJ de "flowers" (ajout d'une nouvelle fleur)
+MAJ de "mobs" (stone_monster et tree_monster ont plus d'armures, mese_monster et oerkki peuvent maintenant au dessus d'un bloc)
+MAJ de "mobs" (tous les monstres hostiles sont plus rapide sauf le dungeon_master qui ne change pas, et tous les monstres vous repèrent de plus loin)
+MAJ de "mobs" (le sand_mosnter, dirt_monster et l'oerkki ont maintenant une armure de 90 aulieu de 100 auparavant, c'est à dire que désormais leur armure réduit les dégâts qu'ils subissent de 1, ils subiront un peu moins de dégâts en général, mais surtout ne seront plus tuable à main nue)
+MAJ de "mobs" (les monstres pacifique chicken, warthog/phacochère, et sheep; peuvent maintenant être plus facilement et de plus loin attiré par le "wheat"/"blé")
+MAJ de "minetestforfun_game" (ralentissement de la vitesse de la lave, effet post processing, modification légère du MEZE (et non MESE), celui ci vous tuera au bout de 3 secondes si vous le piochez)
+
+---21/10/2014---
+MAJ de "homedecor_modpack" (ajouts de décorations)
+Suppression du mod "angled_walls" (pas utilisé, la node box de sélection est pas fabuleuse, les textures ne sont pas celle du dernier minetest_game, etc...)
+
+---19/10/2014---
+MAJ de "bucket" (ils sont de nouveaux cumulable jusqu'à 99)
+MAJ de "mobs" (les monstres souterrains apparaîtront maintenant plus souvent)
+MAJ de "minetestforfun_game" (les textures des blocs et lingots de steel et silver étaient inversés, ils correspondent maintenant bien à la bonne texture)
+MAJ de "moreblocks" (bugfix d'un commit de Carbone)
+MAJ de "torches" (torches de Carbone, nouvelle nodebox pour la sélection de la torche, plus pratique)
+MAJ de "minetestforfun_game" (ajout de "Brick Fence", ajout de Carbone)
+MAJ de "name_restrictions" (version original de ShadowNinja retravaillé et modifié par Calinou et moi même)
+
+---17/10/2014---
+MAJ de "u_skin" (ajout du skin de JAPP nommé Pumpkin_Man, ce skin a pour ID 1000)
+MAJ de "player_inactive" (le statut "inactif" est désormais correctement retiré quand les joueurs bougent)
+MAJ de "fire" (le feu est maintenant inoffensif, ce qui empechera de cramer tout le serveur par inadvertance ! :D)
+MAJ de "static_spawn_point" (petit réhaussement pour éviter un bug connu de Minetest, il sera en "5,36,-8" maintenant)
+
+---14/10/2014---
+Supression du mod "boost_cart" et "carts" (de Krock et Pilzadam)
+Ajout du mod "carts" (provenant de Carbone, ce mod fusionne les possibilités des mods précédemment supprimés tout en les améliorants et ENLEVE l'obligation de mesetorch à coté de "rail_booster" !)
+Ajout du mod "inactive_player" (kick les joueurs après 1 heure d'inactivité sur le serveur, sera sujet à ajustement celon les retours des joueurs)
+Supression du mod "u_skins" (vieux plus maintenu livré avec le mod "unified_inventory")
+Ajout du mod "u_skins" (maintenu par Krock, bugfix, petits ajouts comme le bouton début et fin sur l'interface des pages de skins)
+Ajout d'un modèle dans WorldEdit de portail de retour pour le mod "nether" (au cas ou quelqu'un ce perd et n'arrive pas à remonter)
+
+---12/10/2014---
+MAJ de "hud" (la faim ce consume 20% plus lentement, ce qui semble être un juste milieu entre <ce nourrir tout le temps> et <jamais>)
+MAJ de "egg" (bugfix, sera comestible désormais)
+Ajout du mod "boost_cart" (meilleur performance pour cart, posibilité de faire des bifurcations et de changer de direction)
+MAJ de "Aliases" (pour supprimer les "copper_rail" de "moreores" et les remplacer par celles de "boost_cart")
+MAJ de "dropondie" (petites retouches de code mineures)
+Suppression de "torches" (beaucoup trop de problèmes avec. Les torches utilisées de base par Carbone ont été ré-ajoutés, vous devrez certainement reposer la plupart de vos torches déjà posés car celle ci seront "déformés", courage !)
+MAJ de "minetestforfun_game" (les clients en 0.4.9 minimum peuvent maintenant ce connecter !)
+
+---11/10/2014---
+CRASH REPORT => La musique "Shrill" du mod "ambience" faisait crasher le serveur (quand un joueur l'écoutait), celle-ci à été définitivement supprimé, le serveur ne crash désormais plus !
+MAJ de "Aliases" (les doublons de "tin_lump" et "silver_lump" ne devraient plus exister)
+MAJ de "sea" (résolution de bugs mineurs)
+MAJ de "u_skins" (les skins trop petit, diforme, invisible ont été retirés)
+MAJ de "ambience" (trois des quatres musiques ajoutés ont vu leurs volumes augmenter légèrement)
+MAJ de "hud" (les "egg" ce mangent désormais cru pour redonner 1/2 de santé et faim, vous pouvez aussi en faire une homelette et regagner 1 de santé et de faim)
+MAJ de "hud" (réhaussement des valeurs nutritive de la "golden carrot" => 5 de santé et 3 de faim instantannément, moins puissante que la super_apple car moins dur à obtenir)
+MAJ de "minetestforfun_game" (une nouvelle texture par défaut pour l'eau remplace l'ancienne, cette nouvelle texture est tirée du subgame "Carbone", elle est plus légère, plus opaque, et plus claire, elle permet donc de mieux voir sous l'eau quand l'on est hors de l'eau)
+
+
+---10/10/2014---
+MAJ de "nether" (TOTALEMENT FONCTIONNEL => !!! ATTENTION, si vous y allez, vous ne pourrez ressortir du nether à moins de créer un portail de retour ce qui vous prendra plus d'une heure (seul) !!!)
+MAJ de "hud" (la faim ce consume deux fois plus vite, sauf quand vous ne faite rien - pour éviter les morts par AFK)
+MAJ de "dropondie" (le bug qui faisait que les objets étaient réparer si vous mourriez puis ramassiez vos objets n'existe plus)
+MAJ de "hud" (nouveau design pour la hotbar/hotbar_selected)
+MAJ de "username_filter" (interdiction des pseudonymes ressemblant à "admin")
+MAJ de "hud" (viande de porc et porc cru mainteannt avec les bonnes valeurs de santé/faim, légère ment au dessus de la viande cru/cuite normal)
+MAJ de "ambience_modpack" (ajouts de 4 musiques, proposé par Calinou)
+MAJ de "minetest_game" (de nombreuses textures ont été ajoutés => bloc de terre avec herbe, tous les blocs fait avec des lingots, les coffres, etc...)
+MAJ de "ambience_modpack" (mise à niveaux de divers sons)
+MAJ de "3d_armor" (toutes les valeurs d'armures ont été modifiés pour être plus linéaire et plus cohérente avec la rareté des minerais utilisé pour les fabriquer - tableau des valeurs d'armures disponible depuis le topic du forum dédié au serveur)
+
+---09/10/2014---
+MAJ de mobs (nouveau son pour les moutons)
+MAJ de "nether" (travail toujours en cours sur ce mod - désactivé pour le moment)
+
+---08/10/2014---
+MAJ de "item_drop" (rayon de ramassage augmenter pour permettre un ramassage d'objet un peu moins contraignant)
+Suppression de "testclock" (trop instable, trop lent, et rajoute du lag)
+
+---06/10/2014---
+MAJ de la BDD de skin de "u_skins" (29 pages de skins supplémentaire, soit 39pages au total maintenant)
+Le mod "nether" rencontre des soucis, le mod sera réparé sous peu
+MAJ du mod "ambience" (baisse de nouveau de certains sons, de -10 a -25db, surotut les sons d'oiseaux sont touchés)
+
+---05/10/2014---
+MAJ de nether (suppression de la version de PilzAdam pour celle de HybridDog, plus stable, prennant moins de ressources, et créant un réel monde alternatif, venez vite le découvrir ! :))
+MAJ de moretrees (les nouvelles zones générés apparaîssent avec les arbres, pas de sapling comme avant)
+MAJ de 3d_armor (ajout de la gestion des skins avec cape)
+MAJ de "item_drop" (récupération de celui de Carbone maintenu, et modification de celui ci pour correspondre à celui de Pilzadam, deplus, le rayon de ramassage automatique a été réduit, il faut vraiment marcher sur l'objet pour le récupérer désormais)
+MAJ de "hud" (1.4 => la faim s'enleve très doucement si vous ne faite rien, et selon vos actions elle pourra descendre vite. Autrement dit : plus de mort de faim après AFK !)
+
+
+---30/09/2014---
+Re-positionnement de toute l'interface (barres de statut, zone de texte du mod Area, horloge)
+
+---29/09/2014---
+OUVERTURE OFFICIEL DU SERVEUR ! L'EQUIPE DE MINETESTFORFUN VOUS SOUHAITE A TOUS LA BIENVENUE !
+MAJ de "snow" (modification de la texture de la glace pour une bien plus esthétique)
+Modification des paramètres de performance du serveur (les zones nouvellement découvertes par un joueur s'afficheront désormais plus vite)
+MAJ de "bone" (les os et la poussière d'os sont maintenant compatible avec "farming_redo")
+
+
+---27/09/2014---
+MAJ de "give_initial_stuff" (les nouveaux joueurs apparaissent maintenant avec 1 axe_wood, 10 torch, 2 sapling et 5 apple)
+MAJ de "item_drop" (remplacement de celui de Carbone par celui de PilzAdam, ils vous faudra désormais ramassez tous les objets par terre, si vous les voulez dans votre inventaire)
+MAJ de "awards" (ajout de l'api pour donner des objets en récompense de succès realisés)
+MAJ de "awards" (Ajout de récompenses, presque chaque award a une recompense => des wooden planks, des haches en mese, des pioches en mese, des diamands, des superapple, etc...)
+MAJ de 3d_armor (supports et ajouts divers, et surtout, baisse de la valeur de l'armure, encore une fois)
+MAJ de "minetest" (nouvelles textures, bugfixes)
+
+---26/09/2014---
+MAJ de "farming (redo)" (découverte d'un bug avec maptools, et résolution de ce bug)
+MAJ de "maptools" et "hud" (pour l'ajouts des "superapple", seul aliment du jeu redonnant INSTANTANNEMENT toute votre vie ! Trouvable rarement au sommet de certains arbres, peuvent aussi ce crafter avec pour recette : (apple, mese crystal fragment, mese crystal fragment), les "superapple" sont facilement reconnaissable grâce à leur couleur jaune, et elles ce stacks à l'infini)
+MAJ de "superapple" (la recette n'est plus secrète, elle apparaît dans la liste de craft de votre inventaire)
+
+---24/09/2014---
+Modification du message de bienvenu/motd (nouvelle adresse de la page dédiée à Minetest)
+Re-génération du monde (n'aura plus jamais lieu)
+
+---22/09/2014---
+MAJ de "homedecor_modpack" (ajout de nouvelles décorations, correction de bugs)
+MAJ de "snow" (correction de bugs)
+MAJ de "fishing" (la pêche est désormais totalement fonctionnelle !)
+
+---19/09/2014---
+Suppression du mod "farming_plus", remplacé par le mod "farming (redo)" (mod maintenu, meilleur stabilité, plus de possibilitées)
+MAJ du noyau du jeu Minetest vers la dernière version, on se rapproche de la version 0.4.11 :)
+Changement de nom "string" => "cotton"
+Suppression du mod enchanting (trop long à mettre en place et trop dur à comprendre pour les débutants dans sa forme actuelle)
+Sprint désactivé temporairement
+MAJ de "homedecor_modpack"
+MAJ de "snow"
+MAJ de "food" (support de "farming (redo)" ajouté)
+MAJ de "colormachine"
+MAJ de "snowdrift" (ajout de la pluie et modification de divers paramètres)
+
+---16/09/2014---
+Ajout du mod "chest" (permet de fusionner deux coffres côte à côte, pour obtenir un coffre avec la contenance des deux fusionnés)
+MAJ de "mobs" (résolutions de bugs divers, surtout avec le mob spider)
+
+---11/09/2014---
+MAJ de "darkage" (nouveaux blocs/minerais, nouvelles décorations)
+MaJ de "news" (les news apparaissent maintenant 5 secondes après votre connexion, vous permettant de cliquer sur les boîtes de dialogues lors de votre connexion, ce qui résolu le bug de l'impossibilité de résurrection si vous avez quitté le serveur en étant mort)
+MAJ de "mobs" (ajout des abeilles, des nids d'abeilles, nouveau code, ajout de plusieurs sons)
+MAJ de "mobs" (la vie, la vitesse, l'armure, les dégâts et les drops, ainsi que la possibilité de les apprivoisés à été ajouté)
+MAJ de "homedecor_modpack" (ajout de nouvelles décorations)
+Suppression de "vines"
+MAJ de "plantlife_modpack" (incorporation du mod vines)
+MAJ de "moretrees" (correction de bugs)
+MAJ de "snow" (version de Calinou simplifié et maintenu)
+Ajout du mod "angled_walls" (permet de joindre deux angles qui sont côte à côte, nécessite un craft particulier)
+
+---09/09/2014---
+Suppression du mod "farming_plus" et ajout du mod "farming_redo"
+Ajout du mod "colormachine" (permet de faciliter la fabrication de colorants, son craft est désormais fortement recommandé pour les "crafts" disposant de colorants)
+Ajout du mod "playerplus" (ce tenir trop proche d'un cactus vous inflige des dégâts, vous vous déplacez 30% moins vite sur de la neige, et vous vous déplacez 30% plus vite sur de la glace)
+MAJ de "sea"
+MAJ de "plantlife_modpack"
+MAJ de "homedecor_modpack"
+La valeure d'armure des armures c'est vu réduite, en effet, les combats avec les meilleurs armes et armures duraient trop longtemps (environ 20 coups d'épée pour tuer son adversaire, ce qui est bien trop), il est à prendre en compte, que les monstres profiteront de votre armure réduite !
+
+---03/09/2014---
+Ajout du mod "torches" (remplace les torches par défaut, ce sont de nouvelles torches avec une "vrai" flamme qui bouge si vous avez activé "particles" dans vos réglages, pour les placer au plafond, il vous faudra utiliser le screwdriver, trés ressemblante aux torches de minec**ft)
+Ajout du mod "darkage" (décorations médievales de châteaux principalement)
+
+---02/09/2014---
+MAJ des sons (bruits réduit quand vous "creusez" des bloques de sand/leaves)
+Nouvelle "default" animation lors du cassage d'un bloque (avec plus de FPS)
+Ajout du mod "craft obsidian" (à partir d'un "lava_bucket")
+MAJ farming (bugs fix)
+MAJ de MinetestForFun_game (nouveaux craft : les "dry shrub"/buisson sec du désert, ce transforme en stick 1 pour 1, le "clay" ce stack maintenant par 200, les "empty_bucket" ce groupe par 100, les "stick" ce groupe par 1000, les "torch" ce craft par 5)
+MAJ de screwdriver (avec un clique gauche la texture ce tourne, tandis qu'avec un clique droit le cube ce tourne) 
+
+---01/09/2014---
+Ajout du mod "Framed_glass" (extraction de technic, ajout notamment de "framed_steel_glass" colorés)
+MAJ de "sprint" (un clique gauche ou droit pendant un sprint entraine une annulation de celui-ci)
+
+---31/08/2014---
+MAJ de "homedecor_modpack"
+Ajout du mod "Nether" (créer un portail relié à un autre portail dans les tréfonds de Minetest, Attention Zone dangereuse ! Faire une sorte de "porte" avec vos cubes d'obsidians puis activez le portail en faisant un clique droit avec un "mese_crystal" en main)
+MAJ des poulets/chickens (ils peuvent etre attirés avec des graines de ble/seed_wheat en main puis mis en enclos)
+MAJ des vaches/cows (ils peuvent etre attires avec du ble/wheat en main puis mis en enclos)
+Ajout des monstres phacochère (sa seule utilité est de mourir, la viande de phacochère peut être cuite. Ils peuvent aussi être attirés avec du ble/wheat en main, puis mis en enclos) et, oerkki (monstre apparaissant dans les grottes, lançant des projectiles à distance, presque aussi dangereux que les dungeon master)
+MAJ du mod "spidermob" (25% de chance de droper 1 à 2 "raw_meat" à la mort d'une araignée)
+Traduction du mod "death_messages" en français (+ corrections mineures)
+Ajout du mod "reserved" (permet de réserver deux slots joueurs pour les administrateurs du serveur)
+Suppression du mod "bones" du jeux minetest_game et Ajout du mod "dropondie" (désormais, lorsque vous mourrez tous les objets que vous possédez sur vous sont déposés au sol un à un, si un autre joueur marche dessus, il les récupère)
+Ajout du mod "lavatemple" (ajoute un temple de lave entre -50 et -500, ajouts de monstres dans la lave qui drop des "lava_orb" pour fabriquer une lava_dagger. Celle-ci brille quand elle pointe la direction du temple)
+Divers ajustements sur les monstres (saute plus haut pour certain, ajustement de points de vies pour d'autres, ajouts d'animations de sangs, ajout du knockback pour l'araignée)
+MAJ de "spidermob" (modification api.ini, meilleur intelligence artificielle, et drop des objets au sol désormais)
+
+---29/08/2014---
+MAJ de "maptools"
+
+---28/08/2014---
+Ajout du mod "player_notes" (tapez /notes pour vous créer vos propres notes personnelles en jeux, par exemple un rappel, ou une position sur la carte à retourner voir pour ces richesses)
+Ajout du mod "more_chests"=>
+- wifi (tous les coffres en wifi sont unis et ont la même contenance, utilisation personnel)
+- shared (ajouter les joueurs autorisés à avoir accès à ce coffre)
+- secret (personne ne peut voir à l'interieur sauf vous, un locked chest amélioré en soit, puisque celui ci ne permet pas de cacher sa contenance)
+- dropbox (tout le monde peut poser des choses dedans, mais uniquement le detenteur du coffre peut les retirer)
+- cobble (un coffre en pierre qui n'a pas de texte d'infos, facilement dissimulable, il a la texture d'un cube de cobbletone)
+Ajout du mod "wiki" (crafter le meuble, palcez le, puis faite un clique droit dessus pour accéder au wiki en jeux du serveur)
+Ajout du privilège "wiki" (uniquement ceux disposant de ce privilège peuvent créer et modifier des pages du wiki)
+Ajout par défaut du privilège "player_notes" pour que tous les joueurs y est accès
+Ajout du mod "spidermob" (extraction du mob "spider" de "lottmobs"), ces statistiques ont été revus à la hausse, l'araignée apparaît de jour comme de nuit, dans la jungle (sur les blocs junglegrass/jungletree/jungleleaves, ATTENTION à l'image des monster_tree, elles apparaîtront parfois dans les arbres et vous sauteront dessus !) et à 50% de chance une fois tué de dropper 1 à 3 "string"
+MAJ général de tous les monstres du serveur, ils ont desormais plus de vie et un facteur aléatoire réduit pour certain (un monstre qui peut spawn à 3hp comme à 20, ne me semble pas être équilibré)
+MAJ de l'action de ce nourrir, la vie donnée par un aliment ne sera plus restauré instantannément, mais petit à petit dans le temps (limite la durée des combats JCJ quasi-infini et augmente la difficultée de survivre en JCE)
+Ajout du mod "intweak" (un bruit ce produit lorsque vos outils/armes ce brisent)
+Ajout du mod ("notice" => "/notice <name> <msg>" pour envoyer un message privée à une personne et lui afficher dans une fenêtre, permet de facilement capter l'attention d'un joueur (utilisable uniquement par les joueurs ayant le privilege "notice", pour l'instant seul les administrateurs Darcidride et quentin, peuvent l'utiliser))
+Ajout du mod "testclock" (permet l'affichage de l'heure en jeux au dessus de la barre d'armure et de respiration sous l'eau)
+Ajout du mod "sprint" (permet de sprinter, double appuie rapide sur votre touche "Avancer", "Z" pour moi, et vous vous deplacerez 35% plus vite)
+Ajout du mod "invsee" (permet aux administrateurs de voir l'inventaire des joueurs)
+Ajout du mod "multitest" (décorations, blocs, combustible => Regardez les recettes dans votre inventaire)
+
+---27/08/2014---
+Modification du mod "ambience" (les sons bluejay et craw, à la base amplifiés, ce sont vu baissés d'environ 15 decibels pour un meilleur plaisir auditif, et non un casse-oreille désagréable)
+
+---26/08/2014---
+MAJ de "homedecor_modpack"
+
+---25/08/2014---
+MAJ de "homedecor_modpack"
+
+---24/08/2014---
+Ajouts des mods/commandes suivantes :
+/seen <player_name> (voir de quand date la dernière connexion d'un joueur)
+/rules (permet d'accepter le règlement et d'acquérir le droit de construire et d'intéragir avec le serveur)
+/news (pour voir les news du serveur dans une fenêtre, s'affiche aussi à la connexion sur le serveur)
+/spawn (téléporte au point de départ du serveur, dans le bâtiment "board-rules")
+Ajout d'une hache en bois pour les nouveaux joueurs (le pack pour débutant contient donc désormais une pioche et hache en bois, 2 sapling, 10 pommes, 10 torches)
+Ajout de "arrow_signs" (permet de poser des panneaux flêchés)
+Ajout d'un message à la connexion d'un nouveau joueur dans le chat
+Ajout d'un message pour les nouveaux joueurs leur demandant de lire et d'accepter les règles, si le joueur refuse les règles il est éjecté du serveur, si le joueur accepte les règles il gagne le privilège "interact" (qui permet de construire et d'intéragir dans le serveur)
+Ajout d'un message quand un joueur n'ayant pas encore accepté les règles du serveur tente de détruire un bloc (pour lui rappeler qu'il n'a pas le droit "interact" et qu'il lui faut accepter les règles du serveur pour avoir ce droit)
+
+---23/08/2014---
+Ajout de "death_messages" (ajoute un message aléatoire dans le chat à la mort d'un joueur, le message est choisit selon le type de mort depuis un registre aléatoire) => traduit en français depuis Craig-Server
+Ajout de "colouredstonebricks" (regardez votre liste de craft depuis votre inventaire)
+MAJ de "plantlife_modpack"
+MAJ de "homedecor_modpack"
+Mise en place du filtrage des identifiants de connexion (que des chiffres interdit, interdiction de plus de 18 caractères sinon minetest bug, interdiction caractère particuliers, interdiction de ce connecter en guest, de ne pas mettre d'identifiant, etc...)
+
+---22/08/2014---
+Création des règles du serveur et écriture sur des pancartes dans la zone de départ
+Ajout du mod "enchanting" (permet d'enchanter ces outils pour en augmenter la durabilite, efficacite, etc...)
+
+---21/08/2014---
+Définition du "static_spawn_point" pour que tous les joueurs "spawn" au même endroit à leurs première connexion
+Construction d'un bâtiment d'ou atterissent tous les nouveaux joueurs et protection de la zone par l'administrateur (Darcidride)
+
+---20/08/2014---
+Mise en place d'une sauvegarde automatique de la carte du monde en 2D le lundi à 3H (du matin)
+Mise en place d'une sauvegarde automatique des données critique du serveur le lundi à 4H (du matin)
+MAJ de "plantlife_modpack"
+MAJ de "beds"
+
+---19/08/2014---
+Ajout du mod "factions" (permet de créer des groupes de joueurs, ou plus communément appeles guildes)

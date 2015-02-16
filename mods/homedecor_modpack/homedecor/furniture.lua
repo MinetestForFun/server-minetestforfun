@@ -64,14 +64,15 @@ local function sit(pos, node, clicker)
 end
 
 local function sit_exec(pos, node, clicker) -- don't move these functions inside sit()
-	if not clicker or not clicker:is_player()
+	--[[if not clicker or not clicker:is_player()
 		or clicker:get_player_control().up == true or clicker:get_player_control().down == true
 		or clicker:get_player_control().left == true or clicker:get_player_control().right == true
 		or clicker:get_player_control().jump == true then  -- make sure that the player is immobile.
 	return end
 	sit(pos, node, clicker)
 	clicker:setpos(pos)
-	-- default.player_set_animation(clicker, "sit", 30)
+	default.player_set_animation(clicker, "sit", 30)
+	]]
 end
 
 local chaircolors = {

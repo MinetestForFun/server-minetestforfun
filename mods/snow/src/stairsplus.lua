@@ -271,6 +271,9 @@ for _, name in pairs(snow_nodes) do
 	local groups = {}
 	for k, v in pairs(ndef.groups) do groups[k] = v end
 
+	local drop
+	-- FIXME: FIND WHAT IS DROP SUPPOSED TO BE FROM AND FOR WHAT IT IS HERE
+
 	stairsplus:register_all("moreblocks", name, nodename, {
 		description = ndef.description,
 		drop = drop,

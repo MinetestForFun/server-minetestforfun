@@ -1,76 +1,84 @@
-print("[Chains] v1.2")
+print("[Chains] v1.3")
 
--- wrought iron items
+local chains_sbox = {
+	type = "fixed",
+	fixed = { -0.1, -0.625, -0.1, 0.1, 0.5, 0.1 }
+}
+
+local topchains_sbox = {
+	type = "fixed",
+	fixed = {
+		{ -0.25, 0.35, -0.25, 0.25, 0.5, 0.25 },
+		{ -0.1, -0.625, -0.1, 0.1, 0.4, 0.1 }
+	}
+}
 
 minetest.register_node("chains:chain", {
 	description = "Hanging chain (wrought iron)",
+	drawtype = "mesh",
+	mesh = "chains.obj",
+	tiles = {"wrought_iron.png"},
 	walkable = false,
 	climbable = true,
 	sunlight_propagates = true,
 	paramtype = "light",
-	drops = "",
-	tiles = { "chains_chain.png" },
-	inventory_image = "chains_chain.png",
-	drawtype = "plantlike",
+	inventory_image = "chain_wrought_iron_inv.png",
 	groups = {cracky=3},
-	sounds =  default.node_sound_stone_defaults(),
+	selection_box = chains_sbox,
+})
+
+minetest.register_node("chains:chain_brass", {
+	description = "Hanging chain (brass)",
+	drawtype = "mesh",
+	mesh = "chains.obj",
+	tiles = {"brass.png"},
+	walkable = false,
+	climbable = true,
+	sunlight_propagates = true,
+	paramtype = "light",
+	inventory_image = "chain_brass_inv.png",
+	groups = {cracky=3},
+	selection_box = chains_sbox,
 })
 
 minetest.register_node("chains:chain_top", {
 	description = "Hanging chain (ceiling mount, wrought iron)",
+	drawtype = "mesh",
+	mesh = "top_chains.obj",
+	tiles = {"wrought_iron.png"},
 	walkable = false,
 	climbable = true,
 	sunlight_propagates = true,
 	paramtype = "light",
-	drops = "",
-	tiles = { "chains_chain_top.png" },
-	inventory_image = "chains_chain_top_inv.png",
-	drawtype = "plantlike",
+	inventory_image = "top_chain_wrought_iron_inv.png",
 	groups = {cracky=3},
-	sounds =  default.node_sound_stone_defaults(),
+	selection_box = topchains_sbox,
+})
+
+minetest.register_node("chains:chain_top_brass", {
+	description = "Hanging chain (ceiling mount, brass)",
+	drawtype = "mesh",
+	mesh = "top_chains.obj",
+	tiles = {"brass.png"},
+	walkable = false,
+	climbable = true,
+	sunlight_propagates = true,
+	paramtype = "light",
+	inventory_image = "top_chain_brass_inv.png",
+	groups = {cracky=3},
+	selection_box = topchains_sbox,
 })
 
 minetest.register_node("chains:chandelier", {
 	description = "Chandelier (wrought iron)",
 	paramtype = "light",
-	walkable = false,
 	light_source = LIGHT_MAX-2,
+	walkable = false,
 	climbable = true,
 	sunlight_propagates = true,
 	paramtype = "light",
-	drops = "",
 	tiles = { {name="chains_chandelier.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}},
 	inventory_image = "chains_chandelier_inv.png",
-	drawtype = "plantlike",
-	groups = {cracky=3},
-	sounds =  default.node_sound_stone_defaults(),
-})
-
--- brass-based items
-
-minetest.register_node("chains:chain_brass", {
-	description = "Hanging chain (brass)",
-	walkable = false,
-	climbable = true,
-	sunlight_propagates = true,
-	paramtype = "light",
-	drops = "",
-	tiles = { "chains_chain_brass.png" },
-	inventory_image = "chains_chain_brass.png",
-	drawtype = "plantlike",
-	groups = {cracky=3},
-	sounds =  default.node_sound_stone_defaults(),
-})
-
-minetest.register_node("chains:chain_top_brass", {
-	description = "Hanging chain (ceiling mount, brass)",
-	walkable = false,
-	climbable = true,
-	sunlight_propagates = true,
-	paramtype = "light",
-	drops = "",
-	tiles = { "chains_chain_top_brass.png" },
-	inventory_image = "chains_chain_top_brass_inv.png",
 	drawtype = "plantlike",
 	groups = {cracky=3},
 	sounds =  default.node_sound_stone_defaults(),
@@ -79,12 +87,11 @@ minetest.register_node("chains:chain_top_brass", {
 minetest.register_node("chains:chandelier_brass", {
 	description = "Chandelier (brass)",
 	paramtype = "light",
-	walkable = false,
 	light_source = LIGHT_MAX-2,
+	walkable = false,
 	climbable = true,
 	sunlight_propagates = true,
 	paramtype = "light",
-	drops = "",
 	tiles = { {name="chains_chandelier_brass.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}},
 	inventory_image = "chains_chandelier_brass_inv.png",
 	drawtype = "plantlike",
@@ -147,4 +154,3 @@ minetest.register_craft({
 		{'technic:brass_ingot', 'technic:brass_ingot', 'technic:brass_ingot'},
 	}
 })
-

@@ -1,6 +1,7 @@
 minetest.register_craftitem("throwing:arrow", {
 	description = "Arrow",
 	inventory_image = "throwing_arrow.png",
+	stack_max = 200,
 })
 
 minetest.register_node("throwing:arrow_box", {
@@ -84,14 +85,14 @@ end
 minetest.register_entity("throwing:arrow_entity", THROWING_ARROW_ENTITY)
 
 minetest.register_craft({
-	output = "throwing:arrow 16",
+	output = "throwing:arrow 8",
 	recipe = {
 		{"default:stick", "default:stick", "group:ingot"},
 	}
 })
 
 minetest.register_craft({
-	output = "throwing:arrow 16",
+	output = "throwing:arrow 8",
 	recipe = {
 		{"group:ingot", "default:stick", "default:stick"},
 	}
