@@ -18,7 +18,7 @@ Contributors
 - Gael-de-Sailly
   > Kittens carer, and debogger.
 - crabman77(/guillaume)
-  > Global variables annihilator
+  > Global variables annihilator.
 
 
 minetestforfun_game sous-jeu et mods
@@ -41,4 +41,4 @@ Contributeurs
 - Gael-de-Sailly
   > Soigneur et deboggueur de chatons.
 - crabman77(/guillaume)
-  > Annihilateur de variables globales
+  > Annihilateur de variables globales.
