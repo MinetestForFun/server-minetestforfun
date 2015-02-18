@@ -10,7 +10,7 @@ home.GET_HOME_INTERVAL = 20*60
 home.SET_HOME_INTERVAL = 20*60
 
 home.sethome = function(name)
-	local player = minetest.env:get_player_by_name(name)
+	local player = minetest.get_player_by_name(name)
 	local pos = player:getpos()
 	local p_status = "real"
 	if pos.y < -19600 then
@@ -40,7 +40,7 @@ home.sethome = function(name)
 end
 
 home.tohome = function(name)
-    local player = minetest.env:get_player_by_name(name)
+    local player = minetest.get_player_by_name(name)
     if player == nil then
         -- just a check to prevent the server crashing
         return false
