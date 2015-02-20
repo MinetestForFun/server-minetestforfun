@@ -210,6 +210,24 @@ itemframes.register_pedestal("wood", "default:wood",
 	"Wooden Pedestal",
 	default.node_sound_wood_defaults()
 )
+itemframes.register_pedestal("junglewood", "default:junglewood",
+	{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3,pedestal=1},
+	{"default_junglewood.png"},
+	"Jungle wood Pedestal",
+	default.node_sound_wood_defaults()
+)
+itemframes.register_pedestal("obsidian", "default:obsidian",
+	{cracky=1,level=2,pedestal=1},
+	{"default_obsidian.png"},
+	"Obsidian Pedestal",
+	default.node_sound_stone_defaults()
+)
+itemframes.register_pedestal("obsidian", "default:obsidian",
+	{not_in_creative_inventory=1,pedestal=1},
+	{"default_cloud.png"},
+	"Cloud Pedestal",
+	default.node_sound_defaults()
+)
 itemframes.register_pedestal("stone", "default:stone",
 	{cracky=3,pedestal=1},
 	{"default_stone.png"},
