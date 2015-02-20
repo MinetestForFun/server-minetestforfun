@@ -2,7 +2,6 @@ minetest.log("action","[mod soundset] Loading...")
 
 sounds = {}
 sounds.file = minetest.get_worldpath() .. "/sounds_config.txt"
-sounds.gaindefault = { ["music"] = 50, ["ambience"] = 50, ["mobs"] = 50, ["other"] = 50 }
 sounds.gainplayers = {}
 
 
@@ -36,8 +35,8 @@ sounds.set_sound = function(name, param)
 	end
 	
 	if sounds.gainplayers[name][param_name] == value then
-		minetest.chat_send_player(name, "ambience " .. param_name .. " already set to " .. value)
-		minetest.log("action", name ..", ambience " .. param_name .. "  already set to " .. value)
+		minetest.chat_send_player(name, "volume " .. param_name .. " already set to " .. value)
+		minetest.log("action", name ..", volume " .. param_name .. "  already set to " .. value)
 		return
 	end
 		
@@ -107,7 +106,7 @@ minetest.register_chatcommand("getsound", {
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	if sounds.gainplayers[name] == nil then
-		sounds.gainplayers[name] = sounds.gaindefault
+		sounds.gainplayers[name] = { ["music"] = 50, ["ambience"] = 50, ["mobs"] = 50, ["other"] = 50 }
 	end
 end)
 minetest.log("action","[mod soundset] Loaded")
