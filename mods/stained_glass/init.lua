@@ -142,8 +142,8 @@ for h = 1, 12 do
 
 				minetest.register_node("stained_glass:" .. (h) .. "_" .. (b) .. "_" .. (s), {
 				description = "Stained Glass - " .. bright .. hues .. sat,
-				drawtype = "glasslike",
-				tiles = {"stained_glass_" .. bright .. hues .. sat .. ".png"},
+				drawtype = "glasslike_framed_optional",
+				tiles = {"stained_glass_" .. bright .. hues .. sat .. ".png", "stained_glass_" .. bright .. hues .. sat .. "_detail.png"},
 				paramtype = "light",
 				sunlight_propagates = true,
 				use_texture_alpha = true,
@@ -185,8 +185,8 @@ for h = 1, 12 do
 
 				minetest.register_node("stained_glass:" .. (h) .. "_8_", {
 				description = "Stained Glass - light_" .. hues,
-				drawtype = "glasslike",
-				tiles = {"stained_glass_light_" .. hues .. ".png"},
+				drawtype = "glasslike_framed_optional",
+				tiles = {"stained_glass_light_" .. hues .. ".png", "stained_glass_light_" .. hues .. "_detail.png"},
 				paramtype = "light",
 				sunlight_propagates = true,
 				use_texture_alpha = true,
@@ -229,8 +229,8 @@ for h = 1, 12 do
 
 				minetest.register_node("stained_glass:" .. (h) .. "_9", {
 				description = "Stained Glass - pastel_" .. hues,
-				drawtype = "glasslike",
-				tiles = {"stained_glass_pastel_" .. hues .. ".png"},
+				drawtype = "glasslike_framed_optional",
+				tiles = {"stained_glass_pastel_" .. hues .. ".png", "stained_glass_pastel_" .. hues .. "_detail.png"},
 				paramtype = "light",
 				sunlight_propagates = true,
 				use_texture_alpha = true,
@@ -274,8 +274,8 @@ for h = 1, 12 do
 
 				minetest.register_node("stained_glass:" .. (h) .. "_91", {
 				description = "Stained Glass - faint_" .. hues,
-				drawtype = "glasslike",
-				tiles = {"stained_glass_faint_" .. hues .. ".png"},
+				drawtype = "glasslike_framed_optional",
+				tiles = {"stained_glass_faint_" .. hues .. ".png", "stained_glass_faint_" .. hues .. "_detail.png"},
 				paramtype = "light",
 				sunlight_propagates = true,
 				use_texture_alpha = true,
