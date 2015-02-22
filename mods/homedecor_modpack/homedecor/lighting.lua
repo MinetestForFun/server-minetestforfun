@@ -186,7 +186,7 @@ homedecor.register("glowlight_small_cube_white", {
 
 homedecor.register("plasma_lamp", {
 	description = "Plasma Lamp",
-	drawtype = "glasslike_framed",
+	drawtype = "glasslike_framed_optional",
 	tiles = {"homedecor_gold_block.png","homedecor_glass_face_clean.png"},
 	special_tiles = {
 		{

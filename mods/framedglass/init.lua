@@ -38,7 +38,7 @@ minetest.register_craft({
 
 minetest.register_node("framedglass:wooden_framed_glass", {
 	description = "Wooden-framed Glass",
-	drawtype = "glasslike_framed",
+	drawtype = "glasslike_framed_optional",
 	tiles = {"framedglass_wooden_frame.png","framedglass_glass_face_streaks.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -48,7 +48,7 @@ minetest.register_node("framedglass:wooden_framed_glass", {
 
 minetest.register_node("framedglass:steel_framed_glass", {
 	description = "Steel-framed Glass",
-	drawtype = "glasslike_framed",
+	drawtype = "glasslike_framed_optional",
 	tiles = {"framedglass_steel_frame.png","framedglass_glass_face_streaks.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -58,7 +58,7 @@ minetest.register_node("framedglass:steel_framed_glass", {
 
 minetest.register_node("framedglass:wooden_framed_obsidian_glass", {
 	description = "Wooden-framed Obsidian Glass",
-	drawtype = "glasslike_framed",
+	drawtype = "glasslike_framed_optional",
 	tiles = {"framedglass_wooden_frame.png","framedglass_glass_face_clean.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -68,7 +68,7 @@ minetest.register_node("framedglass:wooden_framed_obsidian_glass", {
 
 minetest.register_node("framedglass:steel_framed_obsidian_glass", {
 	description = "Steel-framed Obsidian Glass",
-	drawtype = "glasslike_framed",
+	drawtype = "glasslike_framed_optional",
 	tiles = {"framedglass_steel_frame.png","framedglass_glass_face_clean.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -80,7 +80,7 @@ function add_coloured_framedglass(name, desc, dye, texture)
 	minetest.register_node( "framedglass:steel_framed_obsidian_glass"..name, {
 		description = "Steel-framed "..desc.." Obsidian Glass",
 		tiles = {"framedglass_steel_frame.png",texture},
-		drawtype = "glasslike_framed",
+		drawtype = "glasslike_framed_optional",
 		paramtype = "light",
 		sunlight_propagates = true,
 		is_ground_content = true,

@@ -622,7 +622,7 @@ minetest.register_node("default:bookshelf", {
 
 minetest.register_node("default:glass", {
 	description = "Glass",
-	drawtype = "glasslike_framed",
+	drawtype = "glasslike_framed_optional",
 	tiles = {"default_glass_frame.png", "default_glass_detail.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -1425,7 +1425,7 @@ minetest.register_node("default:diamondblock", {
 
 minetest.register_node("default:obsidian_glass", {
 	description = "Obsidian Glass",
-	drawtype = "glasslike_framed",
+	drawtype = "glasslike_framed_optional",
 	tiles = {"default_obsidian_glass_frame.png", "default_obsidian_glass_detail.png"},
 	paramtype = "light",
 	is_ground_content = false,
