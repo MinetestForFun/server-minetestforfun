@@ -4,6 +4,19 @@ News de FR - MinetestForFun (Survival - PvP) :
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
+---22/02/2015--- (Remerciements : Crabman77, Mg, Gael-de-Sailly)
+MAJ de "random_messages" (encore plus de conseils et astuces)
+MAJ de "homedecor_modpack/lrfurn" (Suppression du regain de vie quand l'on s'assoie sur un canapé, pour mieux correspondre à la difficultée du serveur)
+MAJ de "minetestforfun_game/mods/sethome" (Suppression de variables globales, optimisation du code, suppression d'anciennes lignes commentées)
+MAJ de "ambience_modpack" (ajustement pour le mod "soundset" de crabman)
+Ajout du mod "soundset" (vous permet de définir vos propres VOLUMES dans diverses catégories music/ambience/mobs/other, les valeurs a attribuer aux catégorie peuvent aller de 0 à 100, par défaut la valeure est à 50, ce qui signifie un volume à 100% - voici une commande type pour vous montrer comment utiliser ce nouveau mod : /setsound <music|ambience|mobs|other> <number>)
+MAJ de "homedecor_modpack/itemframes" (Ajout de divers piédestals/pedestals en JungleWood et Obsidian, mais aussi en "cloud" dont la recette est tenue secrète après des générations et des générations d'administrateurs !)
+MAJ de "moreblocks" (suppression de codes maintenant inutile)
+MAJ de "minetestforfun_game/mods/default/nodes.lua" (permet maintenant d'utiliser le drawtype glasslike_framed_optional)
+MAJ de "framedglass" (permet maintenant d'utiliser le drawtype glasslike_framed_optional)
+MAJ de "stained_glass" (permet maintenant d'utiliser le drawtype glasslike_framed_optional)
+MAJ de "mobs" (ENFIN ! Résolution du spawn bien trop nombreux de chats/kittens)
+
 ---09/02/2015--- (Remerciements : Mg)
 MAJ de "homedecor_modpack" (hotfix de l'usebug des diverses chaises/bancs, encore plus de meshe, divers meubles ce stack maintenant par 99)
 
