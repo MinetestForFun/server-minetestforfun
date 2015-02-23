@@ -63,4 +63,4 @@ mobs:register_mob("mobs:stone_monster", {
 	step = 1,
 	blood_texture = "mobs_blood.png",
 })
-mobs:register_spawn("mobs:stone_monster", {"default:stone", "nether:dirt_top"}, 3, -1, 5000, 1, 0)
+mobs:register_spawn("mobs:stone_monster", {"default:stone", "nether:dirt_top"}, 3, -1, 5000, 2, -5)
