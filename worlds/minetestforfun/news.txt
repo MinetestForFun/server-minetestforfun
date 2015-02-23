@@ -4,6 +4,14 @@ News de FR - MinetestForFun (Survival - PvP) :
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
+---23/02/2015--- (Remerciements : Mg)
+MAJ de "homedecor_modpack" (corrections des piédestals/pedestals et suppression des sofas/canapés qui restauraient toute la santé, vous pouvez aussi écrire sur les livres depuis la dernière MAJ, les poser, les ouvrirs et les lires)
+MAJ de "mobs" (les Dungeon Master et les Mese Monster n'ont plus peur de la lumière - ils apparaîssent même si l'endroit est lumineux)
+MAJ de "mobs" (les Stone Monster et les Oerkki ce liguent contre vous et peuvent maintenant apparaître par deux)
+MAJ de "mobs" (diminution de 10% de la fréquence d'apparition des Sand Monster, et les chickens apparaîtront maintenant un peu plus souvent - dans des zones un peu moins lumineuses)
+MAJ de "mobs" (Les Lava Flan apparaîssent maintenant en surface, toujours à la condition d'avoir des sources de laves et n'ont plus peur de la lumière)
+MAJ de "mobs" (les Stone Monster apparaîssent maintenant à partir de -5, les Oerkki à partir de -10, les Mese Monster à partir de -25, , les Dungeon Master à partir de -100)
+
 ---22/02/2015--- (Remerciements : Crabman77, Mg, Gael-de-Sailly)
 MAJ de "random_messages" (encore plus de conseils et astuces)
 MAJ de "homedecor_modpack/lrfurn" (Suppression du regain de vie quand l'on s'assoie sur un canapé, pour mieux correspondre à la difficultée du serveur)
