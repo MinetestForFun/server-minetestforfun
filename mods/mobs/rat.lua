@@ -36,7 +36,7 @@ passive = true,
 		end
 	end,
 })
-mobs:register_spawn("mobs:rat", {"default:stone"}, 20, -1, 7000, 1, 31000)
+mobs:register_spawn("mobs:rat", {"default:stone"}, 20, -1, 7000, 2, 31000)
 
 -- Can Right-click Rat to Pick Up
 
