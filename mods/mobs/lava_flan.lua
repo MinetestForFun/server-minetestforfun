@@ -60,4 +60,4 @@ mobs:register_mob("mobs:lava_flan", {
 	step = 2,
 	blood_texture = "fire_basic_flame.png",
 })
-mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 15, -1, 1000, 3, 0)
+mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 20, -1, 1000, 3, 31000)
