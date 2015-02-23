@@ -82,7 +82,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	shoot_offset = 0,
 	blood_texture = "mobs_blood.png",
 })
-mobs:register_spawn("mobs:dungeon_master", {"default:stone, nether:netherrack"}, 2, -1, 6000, 1, -70)
+mobs:register_spawn("mobs:dungeon_master", {"default:stone, nether:netherrack"}, 20, -1, 6000, 1, -100)
 
 -- Fireball (weapon)
 
