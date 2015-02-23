@@ -55,4 +55,4 @@ mobs:register_mob("mobs:sand_monster", {
 	step = 1,
 	blood_texture = "mobs_blood.png",
 })
-mobs:register_spawn("mobs:sand_monster", {"default:desert_sand", "default:sand"}, 20, -1, 4500, 1, 31000)
+mobs:register_spawn("mobs:sand_monster", {"default:desert_sand", "default:sand"}, 20, -1, 5000, 1, 31000)
