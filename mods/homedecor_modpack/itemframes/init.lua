@@ -222,8 +222,8 @@ itemframes.register_pedestal("obsidian", "default:obsidian",
 	"Obsidian Pedestal",
 	default.node_sound_stone_defaults()
 )
-itemframes.register_pedestal("obsidian", "default:obsidian",
-	{not_in_creative_inventory=1,pedestal=1},
+itemframes.register_pedestal("cloud", "default:cloud",
+	{cracky=3,not_in_creative_inventory=1,pedestal=1},
 	{"default_cloud.png"},
 	"Cloud Pedestal",
 	default.node_sound_defaults()
