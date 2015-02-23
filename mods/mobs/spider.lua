@@ -68,7 +68,7 @@ mobs:register_mob("mobs:spider", {
 	step = 1,
 	blood_texture = "mobs_blood.png",
 })
-mobs:register_spawn("mobs:spider", {"default:junglegrass", "default:jungleleaves", "default:jungletree"}, 20, -10, 7000, 1, 31000)
+mobs:register_spawn("mobs:spider", {"default:junglegrass", "default:jungleleaves", "default:jungletree"}, 20, -1, 7000, 1, 31000)
 
 -- Ethereal crystal spike compatibility
 
