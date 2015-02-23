@@ -158,7 +158,6 @@ for i in ipairs(chaircolors) do
 			on_rightclick = function(pos, node, clicker)
 				pos.y = pos.y-0.1 -- player's sit position.
 				sit_exec(pos, node, clicker)
-				clicker:set_hp(20)
 			end,
 		})
 
