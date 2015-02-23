@@ -54,7 +54,7 @@ local kitten_nodes = {
 
 
 
-mobs:register_spawn("mobs:kitten", {"default:dirt_with_grass"}, 15, 0, 12000, 1, 31000)
+mobs:register_spawn("mobs:kitten", {"default:dirt_with_grass"}, 30, 0, 12000, 1, 31000)
 
 mobs:register_mob("mobs:kitten", {
 	type = "animal",
