@@ -29,7 +29,7 @@ minetest.register_craft({
 		{"default:stick",	"",					"moreblocks:rope"},
 	}
 })
-
+if minetest.get_modpath("ropes") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
@@ -38,7 +38,7 @@ minetest.register_craft({
 		{"default:stick",	"",					"ropes:rope"   	},
 	}
 })
-
+end
 
 -----------------------------------------------------------------------------------------------
 -- Roasted Fish
