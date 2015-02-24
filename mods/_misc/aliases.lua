@@ -31,3 +31,6 @@ minetest.register_alias("fishing:worm", "fishing:bait_worm")
 
 -- Old itemframes mod to the new itemframes(v2) mod
 minetest.register_alias("itemframes:pedestal", "itemframes:pedestal_cobble")
+
+-- Remove "moreores:copper_rail" for "carts:copper_rail"
+minetest.register_alias("moreores:copper_rail", "carts:rail_copper")

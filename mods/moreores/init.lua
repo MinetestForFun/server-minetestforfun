@@ -320,6 +320,7 @@ for orename,def in pairs(oredefs) do
 	add_ore(modname, def.description, orename, def)
 end
 
+--[[
 -- Copper rail (special node):
 minetest.register_craft({
 	output = "moreores:copper_rail 16",
@@ -342,6 +343,7 @@ minetest.register_craft( {
 	}
 })
 
+--[[
 -- Unique node:
 minetest.register_node("moreores:copper_rail", {
 	description = S("Copper Rail"),
@@ -369,6 +371,7 @@ minetest.register_node("moreores:copper_rail", {
 		},
 	},
 })
+--]]
 
 -- mg support:
 if minetest.get_modpath("mg") then
