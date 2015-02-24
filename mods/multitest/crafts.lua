@@ -111,6 +111,7 @@ minetest.register_craft({
     },
 })
 
+--[[ maintenant dans farming redo
 minetest.register_craft({
         output = "multitest:hayblock 4",
         recipe = {
@@ -119,6 +120,7 @@ minetest.register_craft({
         {"farming:wheat", "farming:wheat", "farming:wheat"},
     },
 })
+--]]
 
 minetest.register_craft({
         output = "multitest:checkered_floor",
