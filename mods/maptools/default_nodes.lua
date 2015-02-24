@@ -390,7 +390,7 @@ minetest.register_node("maptools:desert_sand_soil_wet", {
 
 -- Fence:
 
-minetest.register_node("default:fence_wood", {
+minetest.register_node(":default:fence_wood", {
 	description = S("Unbreakable Wooden Fence"),
 	range = 12,
 	stack_max = 10000,
@@ -401,7 +401,7 @@ minetest.register_node("default:fence_wood", {
 })
 
 -- carts:
-minetest.register_node("carts:rail_copper", {
+minetest.register_node(":carts:rail_copper", {
 	description = "Unbreakable Copper Rail",
 	drawtype = "raillike",
 	tiles = {"carts_rail_copper.png", "carts_rail_copper_curved.png", "carts_rail_copper_t_junction.png", "carts_rail_copper_crossing.png"},
@@ -436,7 +436,7 @@ minetest.register_node("carts:rail_copper", {
 	},
 })
 
-minetest.register_node("carts:rail_power", {
+minetest.register_node(":carts:rail_power", {
 	description = "Unbreakable Powered Rail",
 	drawtype = "raillike",
 	tiles = {"carts_rail_pwr.png", "carts_rail_curved_pwr.png", "carts_rail_t_junction_pwr.png", "carts_rail_crossing_pwr.png"},

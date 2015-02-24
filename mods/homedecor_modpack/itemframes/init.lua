@@ -1,4 +1,5 @@
 local tmp = {}
+local itemframes = {}
 
 minetest.register_entity("itemframes:item",{
 	hp_max = 1,
