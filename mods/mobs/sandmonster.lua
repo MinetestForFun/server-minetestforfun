@@ -35,6 +35,7 @@ mobs:register_mob("mobs:sand_monster", {
 	water_damage = 3,
 	lava_damage = 1,
 	light_damage = 0,
+	on_rightclick = nil,
 	attack_type = "dogfight",
 	animation = {
 		speed_normal = 15,
