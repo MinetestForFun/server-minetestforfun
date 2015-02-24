@@ -90,7 +90,7 @@ for i in ipairs(lilies_list) do
 			if place_pos and not minetest.is_protected(place_pos, placer:get_player_name()) then
 
 			local nodename = "default:cobble" -- if this block appears, something went....wrong :-)
-					if place_pos == nil  then return itemstack end -- pour éviter crash avec nénuphare
+
 				if not keys["sneak"] then
 					local node = minetest.get_node(pt.under)
 					local waterlily = math.random(1,8)

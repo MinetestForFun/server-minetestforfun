@@ -1,0 +1,11 @@
+-- used to remove the old vine nodes. This gives room for the new nodes
+minetest.register_alias( 'vines:root', 'air' )
+minetest.register_alias( 'vines:root_rotten', 'air' )
+minetest.register_alias( 'vines:vine', 'air' )
+minetest.register_alias( 'vines:vine_rotten', 'air' )
+minetest.register_alias( 'vines:side', 'air' )
+minetest.register_alias( 'vines:side_rotten', 'air' )
+minetest.register_alias( 'vines:jungle', 'air' )
+minetest.register_alias( 'vines:jungle_rotten', 'air' )
+minetest.register_alias( 'vines:willow', 'air' )
+minetest.register_alias( 'vines:willow_rotten', 'air' )

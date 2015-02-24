@@ -483,7 +483,7 @@ function plantslib:spawn_on_surfaces(sd,sp,sr,sc,ss,sa)
 				  and pos.y >= biome.min_elevation
 				  and pos.y <= biome.max_elevation
 				  then
-					local walldir = plantslib:find_adjacent_wall(p_top, biome.verticals_list)
+					local walldir = plantslib:find_adjacent_wall(p_top, biome.verticals_list, biome.choose_random_wall)
 					if biome.alt_wallnode and walldir then
 						if n_top.name == "air" then
 							minetest.set_node(p_top, { name = biome.alt_wallnode, param2 = walldir })
@@ -555,7 +555,7 @@ function plantslib:grow_plants(opts)
 			local root_node = minetest.get_node({x=pos.x, y=pos.y-options.height_limit, z=pos.z})
 			local walldir = nil
 			if options.need_wall and options.verticals_list then
-				walldir = plantslib:find_adjacent_wall(p_top, options.verticals_list)
+				walldir = plantslib:find_adjacent_wall(p_top, options.verticals_list, options.choose_random_wall)
 			end
 			if n_top.name == "air" and (not options.need_wall or (options.need_wall and walldir))
 			  then
@@ -612,12 +612,24 @@ end
 -- function to decide if a node has a wall that's in verticals_list{}
 -- returns wall direction of valid node, or nil if invalid.
 
-function plantslib:find_adjacent_wall(pos, verticals)
+function plantslib:find_adjacent_wall(pos, verticals, randomflag)
 	local verts = dump(verticals)
-	if string.find(verts, minetest.get_node({ x=pos.x-1, y=pos.y, z=pos.z   }).name) then return 3 end
-	if string.find(verts, minetest.get_node({ x=pos.x+1, y=pos.y, z=pos.z   }).name) then return 2 end
-	if string.find(verts, minetest.get_node({ x=pos.x  , y=pos.y, z=pos.z-1 }).name) then return 5 end
-	if string.find(verts, minetest.get_node({ x=pos.x  , y=pos.y, z=pos.z+1 }).name) then return 4 end
+	if randomflag then
+		local walltab = {}
+		
+		if string.find(verts, minetest.get_node({ x=pos.x-1, y=pos.y, z=pos.z   }).name) then walltab[#walltab + 1] = 3 end
+		if string.find(verts, minetest.get_node({ x=pos.x+1, y=pos.y, z=pos.z   }).name) then walltab[#walltab + 1] = 2 end
+		if string.find(verts, minetest.get_node({ x=pos.x  , y=pos.y, z=pos.z-1 }).name) then walltab[#walltab + 1] = 5 end
+		if string.find(verts, minetest.get_node({ x=pos.x  , y=pos.y, z=pos.z+1 }).name) then walltab[#walltab + 1] = 4 end
+
+		if #walltab > 0 then return walltab[math.random(1, #walltab)] end
+
+	else
+		if string.find(verts, minetest.get_node({ x=pos.x-1, y=pos.y, z=pos.z   }).name) then return 3 end
+		if string.find(verts, minetest.get_node({ x=pos.x+1, y=pos.y, z=pos.z   }).name) then return 2 end
+		if string.find(verts, minetest.get_node({ x=pos.x  , y=pos.y, z=pos.z-1 }).name) then return 5 end
+		if string.find(verts, minetest.get_node({ x=pos.x  , y=pos.y, z=pos.z+1 }).name) then return 4 end
+	end
 	return nil
 end
 

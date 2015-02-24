@@ -43,10 +43,7 @@ end
 
 function nature:grow_node(pos, nodename)
     if pos ~= nil then
-        if not minetest.get_node_light(pos, nil) or not nature.minimum_growth_light then return end
-	-- FIXME: WARN VANESSAE, OR MAYBE IT IS A MISSING CONFIGURATION'S PARAMETER
-
-	local light_enough = minetest.get_node_light(pos, nil)
+        local light_enough = (minetest.get_node_light(pos, nil) or 0)
                 >= nature.minimum_growth_light 
 
         if is_not_young(pos) and light_enough then

@@ -29,7 +29,9 @@ for i in pairs(NoDe) do
 		buildable_to = true,
 		node_box = {type = "fixed", fixed = flat_stick},
 		groups = {
-			dig_immediate=3, -- almost literally immediate, like just picking up
+			choppy=2,
+			oddly_breakable_by_hand=2,
+			flammable=3,
 			attached_node=1,
 			not_in_creative_inventory=iNV
 		},
@@ -67,7 +69,7 @@ minetest.register_node("trunks:moss", {
 	walkable = false,
 	node_box = {type = "fixed", fixed = flat_moss},
 	selection_box = {type = "fixed", fixed = flat_stick},--{type = "wallmounted"},
-	groups = {dig_immediate=2--[[,attached_node=1]]}, -- falling moss is too annoying
+	groups = {snappy = 3, flammable = 3 },
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -86,7 +88,7 @@ minetest.register_node("trunks:moss_fungus", {
 	walkable = false,
 	node_box = {type = "fixed", fixed = flat_moss},
 	selection_box = {type = "fixed", fixed = flat_stick},--{type = "wallmounted"},
-	groups = {dig_immediate=2--[[,attached_node=1]]}, -- falling moss is too annoying
+	groups = {snappy = 3, flammable = 3 },
 	sounds = default.node_sound_leaves_defaults(),
 })
 

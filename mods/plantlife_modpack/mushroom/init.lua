@@ -8,11 +8,11 @@ mushroom = {}
 
 minetest.register_node("mushroom:brown",{
 	description = "Brown Mushroom",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "plantlife_mushroom.obj",
+	tiles = {"mushroom_brown_3d.png"},
 	sunlight_propagates = true,
-	tiles = {"mushroom_brown.png"},
-	inventory_image = "mushroom_brown.png",
-	wield_image = "mushroom_brown.png",
+	inventory_image = "mushroom_brown_inv.png",
 	groups = {oddly_breakable_by_hand=3,attached_node=1},
 	paramtype = "light",
 	walkable = false,
@@ -26,11 +26,11 @@ minetest.register_node("mushroom:brown",{
 
 minetest.register_node("mushroom:red",{
 	description = "Red Mushroom",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "plantlife_mushroom.obj",
+	tiles = {"mushroom_red_3d.png"},
 	sunlight_propagates = true,
-	tiles = {"mushroom_red.png"},
-	inventory_image = "mushroom_red.png",
-	wield_image = "mushroom_red.png",
+	inventory_image = "mushroom_red_inv.png",
 	groups = {oddly_breakable_by_hand=3,attached_node=1},
 	paramtype = "light",
 	walkable = false,
@@ -78,12 +78,12 @@ minetest.register_node("mushroom:spore_red",{
 
 minetest.register_node("mushroom:brown_natural",{
 	description = "Brown Mushroom (Naturally Spawned)",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "plantlife_mushroom.obj",
+	tiles = {"mushroom_brown_3d.png"},
 	sunlight_propagates = true,
-	tiles = {"mushroom_brown.png"},
-	inventory_image = "mushroom_brown.png",
-	wield_image = "mushroom_brown.png",
-	groups = {oddly_breakable_by_hand=3},
+	inventory_image = "mushroom_brown_inv.png",
+	groups = {oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	paramtype = "light",
 	walkable = false,
 	selection_box = {
@@ -95,12 +95,12 @@ minetest.register_node("mushroom:brown_natural",{
 
 minetest.register_node("mushroom:red_natural",{
 	description = "Red Mushroom (Naturally Spawned)",
-	drawtype = "plantlike",
+	drawtype = "mesh",
+	mesh = "plantlife_mushroom.obj",
+	tiles = {"mushroom_red_3d.png"},
 	sunlight_propagates = true,
-	tiles = {"mushroom_red.png"},
-	inventory_image = "mushroom_red.png",
-	wield_image = "mushroom_red.png",
-	groups = {oddly_breakable_by_hand=3},
+	inventory_image = "mushroom_red_inv.png",
+	groups = {oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	paramtype = "light",
 	walkable = false,
 	selection_box = {
