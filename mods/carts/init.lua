@@ -632,6 +632,17 @@ minetest.register_node(":default:rail", {
 		fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	groups = {bendy = 2, snappy = 1, dig_immediate = 2, rail = 1, connect_to_raillike = 1},
+	mesecons = {
+		effector = {
+			action_off = function(pos, node)
+				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+			end,
+
+			action_on = function(pos, node)
+				minetest.get_meta(pos):set_string("cart_acceleration", "0")
+			end,
+		},
+	},
 })
 
 minetest.register_node("carts:rail_copper", {
