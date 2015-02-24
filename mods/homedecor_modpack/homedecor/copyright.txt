@@ -11,4 +11,6 @@ Licenses:
 	http://freesound.org/people/j1987/sounds/106116/
 * For the doorbell sound, CC0 by guitarguy1985 on freesound.org
 	http://freesound.org/people/guitarguy1985/sounds/69384/
+* For the book sound, Public Domain by mckinneysound's on http://www.freesfx.co.uk/
+	http://www.freesfx.co.uk/sfx/book?p=3
 * For all images and everything else, WTFPL.

@@ -391,3 +391,23 @@ for _, color in ipairs(lamp_colors) do
 	reg_lamp("hi",   "max",  "h",   11,  color )
 	reg_lamp("max",  "off",  "x",   14,  color )
 end
+
+local dlamp_cbox = {
+	type = "fixed",
+	fixed = { -0.2, -0.5, -0.15, 0.32, 0.12, 0.15 },
+}
+
+local dlamp_colors = { "red","blue","green","violet" }
+
+for _, color in ipairs(dlamp_colors) do 
+	homedecor.register("desk_lamp_"..color, {
+		description = S("Desk Lamp ("..color..")"),
+		mesh = "homedecor_desk_lamp.obj",
+		tiles = {"homedecor_desk_lamp_"..color..".png"},
+		inventory_image = "homedecor_desk_lamp_inv_"..color..".png",
+		wield_image = "homedecor_desk_lamp_inv_"..color..".png",
+		selection_box = dlamp_cbox,
+		collision_box = dlamp_cbox,
+		groups = {snappy=3},
+	})
+end

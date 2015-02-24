@@ -1244,24 +1244,12 @@ for c in ipairs(bookcolors) do
 
 homedecor.register("book_"..color, {
 	description = S("Book (%s)"):format(color_d),
-	tiles = {
-		"homedecor_book_"..color.."_top.png",
-		"homedecor_book_"..color.."_bottom.png",
-		"homedecor_book_open_sides.png",
-		"homedecor_book_"..color.."_bottom.png",
-		"homedecor_book_open_sides.png",
-		"homedecor_book_open_sides.png"
-	},
+	mesh = "homedecor_book.obj",
+	tiles = { "homedecor_book_"..color..".png" },
 	inventory_image = "homedecor_book_"..color.."_inv.png",
 	wield_image = "homedecor_book_"..color.."_inv.png",
 	groups = { snappy=3, oddly_breakable_by_hand=3, book=1 },
 	stack_max = 1,
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0, -0.5, -0.375, 0.3125, -0.4375, 0.0625},
-		}
-	},
 	on_rightclick = function(pos, node, clicker)
 		local fdir = node.param2
 		minetest.swap_node(pos, { name = "homedecor:book_open_"..color, param2 = fdir })
@@ -1321,30 +1309,39 @@ homedecor.register("book_"..color, {
 		end
 		minetest.show_formspec(user:get_player_name(), BOOK_FORMNAME, formspec)
 	end,
+	selection_box = {
+            type = "fixed",
+			fixed = {-0.2, -0.5, -0.25, 0.2, -0.35, 0.25}
+	},
+	collision_box = {
+            type = "fixed",
+			fixed = {-0.15, -0.5, -0.25, 0.15, -0.35, 0.25}
+	},
 })
 
 homedecor.register("book_open_"..color, {
-	tiles = {
-		"homedecor_book_open_top.png",
-		"homedecor_book_open_"..color.."_bottom.png",
-		"homedecor_book_open_sides.png",
-		"homedecor_book_open_sides.png",
-		"homedecor_book_open_sides.png",
-		"homedecor_book_open_sides.png"
-	},
+	mesh = "homedecor_book_open.obj",
+	tiles = { "homedecor_book_open_"..color..".png" },
 	groups = { snappy=3, oddly_breakable_by_hand=3, not_in_creative_inventory=1 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.3125, -0.5, -0.375, 0.3125, -0.47, 0.0625}, -- NodeBox1
-		}
-	},
 	drop = "homedecor:book_"..color,
 	on_dig = book_dig,
 	on_rightclick = function(pos, node, clicker)
 		local fdir = node.param2
 		minetest.swap_node(pos, { name = "homedecor:book_"..color, param2 = fdir })
+		minetest.sound_play("homedecor_book_close", {
+			pos=pos,
+			max_hear_distance = 3,
+			gain = 2,
+			})
 	end,
+	selection_box = {
+            type = "fixed",
+			fixed = {-0.35, -0.5, -0.25, 0.35, -0.4, 0.25}
+	},
+	collision_box = {
+            type = "fixed",
+			fixed = {-0.35, -0.5, -0.25, 0.35, -0.4, 0.25}
+	},
 })
 
 end
@@ -1362,6 +1359,8 @@ minetest.register_on_player_receive_fields(function(player, form_name, fields)
 		fields.title, fields.text, player:get_player_name()
 	stack:set_metadata(minetest.serialize(data))
 	player:set_wielded_item(stack)
+	minetest.log("action", player:get_player_name().." has written in a book (title: \""..fields.title.."\"): \""..fields.text..
+		"\" at location: "..minetest.pos_to_string(player:getpos()))
 end)
 
 homedecor.register("calendar", {
@@ -1409,3 +1408,21 @@ homedecor.register("wine_rack", {
 	sounds = default.node_sound_defaults(),
 })
 
+local pframe_cbox = {
+	type = "fixed",
+	fixed = { -0.18, -0.5, -0.08, 0.18, -0.08, 0.18 }
+}
+local n = { 1, 2 }
+
+for _, i in ipairs(n) do
+	homedecor.register("picture_frame"..i, {
+		description = S("Picture Frame"),
+		mesh = "homedecor_picture_frame.obj",
+		tiles = { "homedecor_picture_frame"..i..".png" },
+		inventory_image = "homedecor_picture_frame"..i.."_inv.png",
+		wield_image = "homedecor_picture_frame"..i.."_inv.png",
+		groups = {snappy = 3},
+		selection_box = pframe_cbox,
+		collision_box = pframe_cbox,
+	})
+end
