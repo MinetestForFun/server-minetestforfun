@@ -387,3 +387,86 @@ minetest.register_node("maptools:desert_sand_soil_wet", {
 	groups = {unbreakable = 1, not_in_creative_inventory = maptools.creative, soil = 3, wet = 1, desert = 1},
 	sounds = default.node_sound_sand_defaults(),
 })
+
+-- Fence:
+
+minetest.register_node("default:fence_wood", {
+	description = S("Unbreakable Wooden Fence"),
+	range = 12,
+	stack_max = 10000,
+	tiles = {"default_fence.png"},
+	drop = "",
+	groups = {unbreakable = 1, not_in_creative_inventory = maptools.creative},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+-- carts:
+minetest.register_node("carts:rail_copper", {
+	description = "Unbreakable Copper Rail",
+	drawtype = "raillike",
+	tiles = {"carts_rail_copper.png", "carts_rail_copper_curved.png", "carts_rail_copper_t_junction.png", "carts_rail_copper_crossing.png"},
+	inventory_image = "carts_rail_copper.png",
+	wield_image = "carts_rail_copper.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	is_ground_content = true,
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+	},
+	groups = {rail = 1, connect_to_raillike = 1, unbreakable = 1, not_in_creative_inventory = maptools.creative},
+
+	after_place_node = function(pos, placer, itemstack)
+		if not mesecon then
+			minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+		end
+	end,
+
+	mesecons = {
+		effector = {
+			action_off = function(pos, node)
+				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+			end,
+
+			action_on = function(pos, node)
+				minetest.get_meta(pos):set_string("cart_acceleration", "0")
+			end,
+		},
+	},
+})
+
+minetest.register_node("carts:rail_power", {
+	description = "Unbreakable Powered Rail",
+	drawtype = "raillike",
+	tiles = {"carts_rail_pwr.png", "carts_rail_curved_pwr.png", "carts_rail_t_junction_pwr.png", "carts_rail_crossing_pwr.png"},
+	inventory_image = "carts_rail_pwr.png",
+	wield_image = "carts_rail_pwr.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	is_ground_content = true,
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+	},
+	groups = {rail = 1, connect_to_raillike = 1, unbreakable = 1, not_in_creative_inventory = maptools.creative},
+
+	after_place_node = function(pos, placer, itemstack)
+		if not mesecon then
+			minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+		end
+	end,
+
+	mesecons = {
+		effector = {
+			action_off = function(pos, node)
+				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+			end,
+
+			action_on = function(pos, node)
+				minetest.get_meta(pos):set_string("cart_acceleration", "0")
+			end,
+		},
+	},
+})
