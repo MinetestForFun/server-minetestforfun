@@ -15,27 +15,27 @@
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",					"default:stick"	},
-		{"", 				"default:stick",	"farming:string"},
-		{"default:stick",	"",					"farming:string"},
+		{"", 				"",					"group:stick"	},
+		{"", 				"group:stick",	"farming:string"},
+		{"group:stick",	"",					"farming:string"},
 	}
 })
 
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",					"default:stick"  },
-		{"", 				"default:stick",	"moreblocks:rope"},
-		{"default:stick",	"",					"moreblocks:rope"},
+		{"", 				"",					"group:stick"  },
+		{"", 				"group:stick",	"moreblocks:rope"},
+		{"group:stick",	"",					"moreblocks:rope"},
 	}
 })
 if minetest.get_modpath("ropes") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",					"default:stick"	},
-		{"", 				"default:stick",	"ropes:rope"   	},
-		{"default:stick",	"",					"ropes:rope"   	},
+		{"", 				"",					"group:stick"	},
+		{"", 				"group:stick",	"ropes:rope"   	},
+		{"group:stick",	"",					"ropes:rope"   	},
 	}
 })
 end
