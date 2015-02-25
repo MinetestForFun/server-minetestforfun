@@ -35,6 +35,32 @@ minetest.register_craftitem("farming:wheat", {
 	inventory_image = "farming_wheat.png",
 })
 
+-- Straw
+
+minetest.register_node("farming:straw", {
+	description = "Straw",
+	tiles = {"farming_straw.png"},
+	is_ground_content = false,
+	groups = {snappy=3, flammable=4},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_craft({
+	output = "farming:straw 3",
+	recipe = {
+		{"farming:wheat", "farming:wheat", "farming:wheat"},
+		{"farming:wheat", "farming:wheat", "farming:wheat"},
+		{"farming:wheat", "farming:wheat", "farming:wheat"},
+	}
+})
+
+minetest.register_craft({
+	output = "farming:wheat 3",
+	recipe = {
+		{"farming:straw"},
+	}
+})
+
 -- flour
 
 minetest.register_craftitem("farming:flour", {

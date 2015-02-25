@@ -1,28 +1,41 @@
-Minetest Farming Redo Mod
+Farming Redo Mod
 by TenPlus1
 
-based on
+https://forum.minetest.net/viewtopic.php?id=9019
 
-Minetest 0.4 mod: farming
-=========================
+Farming Redo is a simplified version of the built-in farming mod in minetest and comes with wheat, cotton, carrot, cucumber, potato and tomato to start out with which spawn throughout the map... new foods need only be planted on tilled soil so no seeds are required, original wheat and cotton will require seeds which are found inside normal and jungle grass...
 
-License of source code:
------------------------
-Copyright (C) 2012-2013 PilzAdam
+This mod works by adding your new plant to the {growing=1} group and numbering the stages from _1 to as many stages as you like, but the underscore MUST be used only once in the node name to separate plant from stage number e.g.
 
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-                    Version 2, December 2004
+"farming:cotton_1"      through to   "farming:cotton_8"
+"farming:wheat_1"       through to   "farming:wheat_8"
+"farming:cucumber_4"    through to   "farming:cucumber_4"
 
- Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+Changelog:
 
- Everyone is permitted to copy and distribute verbatim or modified
- copies of this license document, and changing it is allowed as long
- as the name is changed.
-
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
-
-  0. You just DO WHAT THE FUCK YOU WANT TO. 
+1.11 - Added Straw Bale, streamlined growing abm a little, fixed melon rotation bug with screwdriver
+1.10 - Added Blueberry Bush and Blueberry Muffins, also Pumpkin/Melon easier to pick up, added check for unloaded map
+1.09 - Corn now uses single nodes instead of 1 ontop of the other, Ethanol recipe is more expensive (requires 5 corn) and some code cleanup.
+1.08 - Added Farming Plus compatibility, plus can be removed and no more missing nodes
+1.07 - Added Rhubarb and Rhubarb Pie
+1.06 - register_hoe and register_plant added for compatibility with default farming mod, although any plants registered will use farming redo to grow
+1.05 - Added Raspberry Bushels and Raspberry Smoothie
+1.04 - Added Donuts... normal, chocolate and apple... and a few code cleanups and now compatible with jungletree's from MoreTrees mod
+1.03 - Bug fixes and more compatibility as drop-in replacement for built-in farming mod
+1.02 - Added farming.mod string to help other mods identify which farming mod is running, if it returns "redo" then you're using this one, "" empty is built-in mod
+1.01 - Crafting coffee or ethanol returns empty bucket/bottle, also Cocoa spawns a little rarer
+1.0 - Added Cocoa which randomly grows on jungle tree's, pods give cocoa beans which can be used to farm more pods on a jungle trunk or make Cookies which have been added (or other treats)
+0.9 - Added Pumpkin, Jack 'O Lantern, Pumpkin Slice and Sugar
+(a huge thanks to painterly.net for allowing me to use their textures)
+0.8 - Added Watermelon and Melon Slice
+0.7 - Added Coffee, Coffee Beans, Drinking Cup, Cold and Hot Cup of Coffee
+0.6 - Added Corn, Corn on the Cob... Also reworked Abm
+0.5 - Added Carrot, Cucumber, Potato (and Baked Potato), Tomato
+0.4 - Checks for Protection, also performance changes
+0.3 - Added Diamond and Mese hoe
+0.2 - Fixed check for wet soil
+0.1 - Fixed growing bug
+0.0 - Initial release
 
 License of media (textures):
 ----------------------------

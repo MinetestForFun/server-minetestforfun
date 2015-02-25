@@ -57,21 +57,7 @@ mobs:register_mob("mobs:chicken", {
 })
 
 mobs:register_spawn("mobs:chicken", {"default:dirt_with_grass"}, 20, 0, 9000, 1, 31000)
-
--- Chicken (right-click chicken to place in inventory)
-
-minetest.register_craftitem("mobs:chicken", {
-	description = "Chicken",
-	inventory_image = "mobs_chicken_inv.png",
-	
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "mobs:chicken")
-			itemstack:take_item()
-		end
-		return itemstack
-	end,
-})
+mobs:register_egg("mobs:chicken", "Chicken", "mobs_chicken_inv.png", 0)
 
 -- Egg (can be fried in furnace)
 

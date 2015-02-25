@@ -4,7 +4,7 @@
 minetest.register_node("farming:pumpkin", {
 	description = "Pumpkin",
 	tiles = {"farming_pumpkin_top.png", "farming_pumpkin_top.png", "farming_pumpkin_side.png"},
-	groups = {snappy=3,flammable=2,plant=1},
+	groups = {choppy=1,oddly_breakable_by_hand=1,flammable=2,plant=1},
 	drop = {
 		items = {
 			{items = {'farming:pumpkin_slice 9'},rarity=1},
@@ -43,7 +43,7 @@ minetest.register_node("farming:jackolantern", {
 	description = "Jack 'O Lantern",
 	tiles = {"farming_pumpkin_top.png", "farming_pumpkin_top.png", "farming_pumpkin_side.png", "farming_pumpkin_side.png", "farming_pumpkin_side.png", "farming_pumpkin_face_off.png"},
 	paramtype2 = "facedir",
-	groups = {snappy=3,flammable=2},
+	groups = {choppy=1,oddly_breakable_by_hand=1,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher)
 		node.name = "farming:jackolantern_on"
@@ -56,7 +56,7 @@ minetest.register_node("farming:jackolantern_on", {
 	tiles = {"farming_pumpkin_top.png", "farming_pumpkin_top.png", "farming_pumpkin_side.png", "farming_pumpkin_side.png", "farming_pumpkin_side.png", "farming_pumpkin_face_on.png"},
 	light_source = 14,
 	paramtype2 = "facedir",
-	groups = {snappy=3,flammable=2},
+	groups = {choppy=1,oddly_breakable_by_hand=1,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	drop = "farming:jackolantern",
 	on_punch = function(pos, node, puncher)
