@@ -48,19 +48,7 @@ step = 1,
 passive = true,
 })
 mobs:register_spawn("mobs:bee", {"default:dirt_with_grass"}, 20, 4, 7500, 1, 31000)
-
-minetest.register_craftitem("mobs:bee", {
-	description = "bee",
-	inventory_image = "mobs_bee_inv.png",
-	
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.above then
-			minetest.env:add_entity(pointed_thing.above, "mobs:bee")
-			itemstack:take_item()
-		end
-		return itemstack
-	end,
-})
+mobs:register_egg("mobs:bee", "Bee", "mobs_bee_inv.png", 0)
 
 -- Honey
 

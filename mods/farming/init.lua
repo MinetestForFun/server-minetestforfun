@@ -1,5 +1,5 @@
 --[[
-	Minetest Farming Redo Mod 1.10 (4th November 2014)
+	Minetest Farming Redo Mod 1.11 (20th Jan 2015)
 	by TenPlus1
 ]]
 
@@ -72,24 +72,24 @@ end
 minetest.register_abm({
 	nodenames = {"group:growing"},
 	neighbors = {"farming:soil_wet", "default:jungletree"},
-	interval = 60,
+	interval = 80,
 	chance = 2,
 
 	action = function(pos, node)
 
 		-- get node type (e.g. farming:wheat_1)
-
-		local data = nil
-		data = string.split(node.name, '_', 2)
-		local plant = data[1].."_"
-		local numb = data[2]
+		local plant = node.name:split("_")[1].."_"
+		local numb = node.name:split("_")[2]
 
 		-- check if fully grown
 		if not minetest.registered_nodes[plant..(numb + 1)] then return end
 		
 		-- Check for Cocoa Pod
-		if plant == "farming:cocoa_" and minetest.find_node_near(pos, 1, {"default:jungletree"}) then
-		
+		if plant == "farming:cocoa_"
+		and minetest.find_node_near(pos, 1, {"default:jungletree", "moretrees:jungletree_leaves_green"}) then
+
+			if minetest.get_node_light(pos) < 13 then return end
+
 		else
 		
 			-- check if on wet soil

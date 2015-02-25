@@ -148,7 +148,7 @@ minetest.register_abm({
 		else return
 		end
 		
-		if minetest.get_node(pos).name == "air" and minetest.get_node_light(pos) > 11 then
+		if minetest.get_node(pos).name == "air" and minetest.get_node_light(pos) > 12 then
 --			print ("COCOA", pos.x, pos.y, pos.z)
 			minetest.set_node(pos,{name="farming:cocoa_"..tostring(math.random(1,3))})
 		end

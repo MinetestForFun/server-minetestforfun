@@ -41,6 +41,7 @@ minetest.register_node("multitest:blackstone_brick", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+--[[ maintenant dans farming redo
 minetest.register_node("multitest:hayblock", {
 	description = "Hay Bale",
 	tiles = {"multitest_hayblock_top.png", "multitest_hayblock_top.png", "multitest_hayblock.png"},
@@ -49,6 +50,7 @@ minetest.register_node("multitest:hayblock", {
 	sounds = default.node_sound_sand_defaults(),
 	on_place = minetest.rotate_node
 })
+--]]
 
 minetest.register_node("multitest:checkered_floor", {
     description = "Checkered Floor",

@@ -52,7 +52,7 @@ mobs:register_mob("mobs:sheep", {
 			self.food = (self.food or 0) + 1
 			if self.food >= 8 then
 				self.food = 0
-				self.naked = false
+				self.gotten = false -- can be shaved again
 				self.tamed = true
 				self.object:set_properties({
 					textures = {"mobs_sheep.png"},
@@ -62,8 +62,8 @@ mobs:register_mob("mobs:sheep", {
 			end
 		return
 		end
-		if clicker:get_inventory() and not self.naked then
-			self.naked = true
+		if clicker:get_inventory() and not self.gotten then
+			self.gotten = true -- shaved
 			if minetest.registered_items["wool:white"] then
 				clicker:get_inventory():add_item("main", ItemStack("wool:white "..math.random(1,3)))
 			end
@@ -71,7 +71,9 @@ mobs:register_mob("mobs:sheep", {
 				textures = {"mobs_sheep_shaved.png"},
 				mesh = "mobs_sheep_shaved.x",
 			})
+		else print ("shaved already!")
 		end
 	end,
 })
 mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 9000, 1, 31000)
+mobs:register_egg("mobs:sheep", "Sheep", "wool_white.png", 1)

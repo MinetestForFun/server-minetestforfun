@@ -1,6 +1,9 @@
 -= MOBS-MOD for MINETEST =-
 by PilzAdam, KrupnovPavel, Zeg9 and TenPlus1
 
+
+https://forum.minetest.net/viewtopic.php?f=9&t=9917
+
 This mod contains the following additions:
 
 - Giant Spiders (found in desert caves, drop string when killed)
@@ -25,6 +28,8 @@ This mod contains the following additions:
 
 Changelog:
 
+1.0 - more work on Api so that certain mobs can float in water while some sink like a brick :)
+0.9 - Spawn eggs added for all mobs (admin only, cannot be placed in protected areas)...  Api tweaked
 0.8 - Added sounds to monster mobs (thanks Cyberpangolin for the sfx) and also chicken sound
 0.7 - mobs.protected switch added to api.lua, when set to 1 mobs no longer spawn in protected areas, also bug fixes
 0.6 - Api now supports multi-textured mobs, e.g oerkki, dungeon master, rats and chickens have random skins when spawning (sheep fix TODO), also new Honey block

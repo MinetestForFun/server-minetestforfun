@@ -1,4 +1,4 @@
-Modpack - 3d Armor [0.4.1]
+Modpack - 3d Armor [0.4.3]
 ==========================
 
 [mod] Visible Player Armor [3d_armor]
@@ -15,7 +15,8 @@ Armor takes damage when a player is hurt, however, many armor items offer a 'sta
 percentage chance of restoring the lost health points. Overall armor level is boosted by 10%
 when wearing a full matching set (helmet, chestplate, leggings and boots of the same material)
 
-Compatible with player skins [skins] by Zeg9 and Player Textures [player_textures] by PilzAdam.
+Compatible with player skins [skins] by Zeg9 and Player Textures [player_textures] by PilzAdam
+and [simple_skins] by TenPlus1.
 
 Armor can be configured by adding a file called armor.conf in 3d_armor mod or world directory.
 see armor.conf.example for all available options.

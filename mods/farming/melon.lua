@@ -125,7 +125,7 @@ minetest.register_node("farming:melon_7", {
 -- Last stage of Melon growth doesnnot have growing=1 so abm never has to check these
 
 minetest.register_node("farming:melon_8", {
-	drawtype = "nodebox",
+	--drawtype = "nodebox",
 	description = "Melon",
 	tiles = {"farming_melon_top.png", "farming_melon_top.png", "farming_melon_side.png"},
 	paramtype = "light",
@@ -136,6 +136,6 @@ minetest.register_node("farming:melon_8", {
 			{items = {'farming:melon_slice 9'},rarity=1},
 		}
 	},
-	groups = {snappy=3,flammable=2,plant=1},
+	groups = {snappy=1,oddly_breakable_by_hand=1,flammable=2,plant=1},
 	sounds = default.node_sound_wood_defaults(),
 })

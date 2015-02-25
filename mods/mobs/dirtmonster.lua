@@ -56,3 +56,4 @@ mobs:register_mob("mobs:dirt_monster", {
 	blood_texture = "default_dirt.png",
 })
 mobs:register_spawn("mobs:dirt_monster", {"default:dirt_with_grass"}, 3, -1, 8500, 1, 31000)
+mobs:register_egg("mobs:dirt_monster", "Dirt Monster", "default_dirt.png", 1)

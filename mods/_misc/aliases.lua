@@ -34,3 +34,6 @@ minetest.register_alias("itemframes:pedestal", "itemframes:pedestal_cobble")
 
 -- Remove "moreores:copper_rail" for "carts:copper_rail"
 minetest.register_alias("moreores:copper_rail", "carts:rail_copper")
+
+-- Remove "multitest:hayblock" because farming redo include it now
+minetest.register_alias("multitest:hayblock", "farming:straw")

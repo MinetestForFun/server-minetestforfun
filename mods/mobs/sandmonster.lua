@@ -9,7 +9,7 @@ mobs:register_mob("mobs:sand_monster", {
 	visual = "mesh",
 	mesh = "mobs_sand_monster.x",
 	--textures = {"mobs_sand_monster.png"},
-		available_textures = {
+	available_textures = {
 		total = 1,
 		texture_1 = {"mobs_sand_monster.png"},
 	},
@@ -55,5 +55,7 @@ mobs:register_mob("mobs:sand_monster", {
 	jump = true,
 	step = 1,
 	blood_texture = "mobs_blood.png",
+	floats = 0,
 })
 mobs:register_spawn("mobs:sand_monster", {"default:desert_sand", "default:sand"}, 20, -1, 5000, 1, 31000)
+mobs:register_egg("mobs:sand_monster", "Sand Monster", "default_desert_sand.png", 1)

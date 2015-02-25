@@ -62,5 +62,7 @@ mobs:register_mob("mobs:stone_monster", {
 	jump = true,
 	step = 1,
 	blood_texture = "mobs_blood.png",
+	floats = 0,
 })
 mobs:register_spawn("mobs:stone_monster", {"default:stone", "nether:dirt_top"}, 3, -1, 5000, 2, -5)
+mobs:register_egg("mobs:stone_monster", "Stone Monster", "default_stone.png", 1)
