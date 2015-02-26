@@ -7,11 +7,11 @@ If you want help us, don't hesitate and take a look at our ToDoList [here](https
 
 Contributors
 ===================
-- Ombridride
+- Ombridride - Darcidride - MinetestForFun
   > Server hoster, reposity owner.
-- LeMagnesium
+- LeMagnesium - Mg
   > Debugging, mod maintenance and global variables annihilator.
-- crabman77(/guillaume)
+- crabman77 - crabman - guillaume
   > Debugging, mod maintenance and global variables annihilator.
 - mgl512
   > Helper for debugging, who leaves useful comments.
@@ -29,11 +29,11 @@ Si vous voulez nous aider, n'hésitez pas et jetez un coup d'oeil à notre ToDoL
 
 Contributeurs
 ===================
-- Ombridride
+- Ombridride - Darcidride - MinetestForFun
   > Hébergeur du serveur, possesseur du dépôt.
-- LeMagnesium
+- LeMagnesium - Mg
   > Deboggueur, entretien des mods et annihilateur de variables globales.
-- crabman77(/guillaume)
+- crabman77 - crabman - guillaume
   > Deboggueur, entretien des mods et annihilateur de variables globales.
 - mgl512
   > Aide au déboggage, laisse aussi des commentaires très utiles.
