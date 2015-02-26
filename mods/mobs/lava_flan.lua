@@ -61,5 +61,5 @@ mobs:register_mob("mobs:lava_flan", {
 	floats = 0,
 	blood_texture = "fire_basic_flame.png",
 })
-mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 20, -1, 1000, 3, 31000)
+mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 20, -1, 2000, 2, 31000)
 mobs:register_egg("mobs:lava_flan", "Lava Flan", "default_lava.png", 1)
