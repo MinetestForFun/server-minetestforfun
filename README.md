@@ -10,16 +10,15 @@ Contributors
 - Ombridride
   > Server hoster, reposity owner.
 - LeMagnesium
-  > Debugging, mod maintenance.
+  > Debugging, mod maintenance and global variables annihilator.
+- crabman77(/guillaume)
+  > Debugging, mod maintenance and global variables annihilator.
 - mgl512
   > Helper for debugging, who leaves useful comments.
 - Ataron
   > Occasionnal debogger, texture fixer.
 - Gael-de-Sailly
   > Kittens carer, and debogger.
-- crabman77(/guillaume)
-  > Global variables annihilator.
-
 
 minetestforfun_game sous-jeu et mods
 ===================
@@ -33,12 +32,13 @@ Contributeurs
 - Ombridride
   > Hébergeur du serveur, possesseur du dépôt.
 - LeMagnesium
-  > Deboggueur, entretient des mods.
+  > Deboggueur, entretien des mods et annihilateur de variables globales.
+- crabman77(/guillaume)
+  > Deboggueur, entretien des mods et annihilateur de variables globales.
 - mgl512
   > Aide au déboggage, laisse aussi des commentaires très utiles.
 - Ataron
   > Déboggueur occasionnel.
 - Gael-de-Sailly
   > Soigneur et deboggueur de chatons.
-- crabman77(/guillaume)
-  > Annihilateur de variables globales.
+
