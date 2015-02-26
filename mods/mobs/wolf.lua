@@ -55,4 +55,4 @@ mobs:register_mob("mobs:wolf", {
 	step = 1,
 	blood_texture = "mobs_blood.png",
 })
-mobs:register_spawn("mobs:wolf", {"default:dirt_with_grass"}, 3, -1, 12000, 2, 31000)
+mobs:register_spawn("mobs:wolf", {"default:dirt_with_grass"}, 3, -1, 20000, 2, 31000)
