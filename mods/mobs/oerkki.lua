@@ -57,5 +57,5 @@ mobs:register_mob("mobs:oerkki", {
 	step = 1,
 	blood_texture = "mobs_blood.png",
 })
-mobs:register_spawn("mobs:oerkki", {"default:stone"}, 2, -1, 6000, 2, -10)
+mobs:register_spawn("mobs:oerkki", {"default:stone"}, 2, -1, 6000, 1, -10)
 mobs:register_egg("mobs:oerkki", "Oerkki", "default_obsidian.png", 1)
