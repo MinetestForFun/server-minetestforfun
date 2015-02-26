@@ -8,9 +8,9 @@ mobs:register_mob("mobs:cow", {
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	--textures = {"mobs_cow.png"},
 	available_textures = {
-		total = 2,
+		total = 1, -- à mettre à 2 quand "mobs_cow_brown.png" sera compatible
 		texture_1 = {"mobs_cow.png"},
-		texture_2 = {"mobs_cow_brown.png"},
+		--texture_2 = {"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
 	},
 	visual = "mesh",
 	mesh = "mobs_cow.x",
