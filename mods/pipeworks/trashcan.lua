@@ -32,12 +32,8 @@ minetest.register_node("pipeworks:trashcan", {
 		meta:set_string("infotext", "Trash Can")
 		meta:get_inventory():set_size("trash", 1)
 	end, 
-	after_place_node = function(pos)
-		pipeworks.scan_for_tube_objects(pos)
-	end,
-	after_dig_node = function(pos)
-		pipeworks.scan_for_tube_objects(pos)
-	end,
+	after_place_node = pipeworks.after_place,
+	after_dig_node = pipeworks.after_dig,
 	on_metadata_inventory_put = function(pos, listname, index, stack, player)
 		minetest.get_meta(pos):get_inventory():set_stack(listname, index, ItemStack(""))
 	end,

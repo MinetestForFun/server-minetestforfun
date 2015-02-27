@@ -103,21 +103,13 @@ function pipeworks.scan_for_tube_objects(pos)
 	end
 end
 
-minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack)
-	if minetest.registered_items[newnode.name]
-	  and minetest.registered_items[newnode.name].tube
-	  and minetest.registered_items[newnode.name].tube.connect_sides then
-		pipeworks.scan_for_tube_objects(pos)
-	end
-end)
+function pipeworks.after_place(pos)
+	pipeworks.scan_for_tube_objects(pos)
+end
 
-minetest.register_on_dignode(function(pos, oldnode, digger)
-	if minetest.registered_items[oldnode.name]
-	  and minetest.registered_items[oldnode.name].tube
-	  and minetest.registered_items[oldnode.name].tube.connect_sides then
-		pipeworks.scan_for_tube_objects(pos)
-	end
-end)
+function pipeworks.after_dig(pos)
+	pipeworks.scan_for_tube_objects(pos)
+end
 
 if minetest.get_modpath("mesecons_mvps") then
 	mesecon.register_on_mvps_move(function(moved_nodes)

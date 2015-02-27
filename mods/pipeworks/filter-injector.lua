@@ -177,7 +177,9 @@ for _, data in ipairs({
 		end,
 		after_place_node = function (pos, placer)
 			minetest.get_meta(pos):set_string("owner", placer:get_player_name())
+			pipeworks.after_place(pos)
 		end,
+		after_dig_node = pipeworks.after_dig,
 		on_receive_fields = function(pos, formname, fields, sender)
 			fs_helpers.on_receive_fields(pos, fields)
 			local meta = minetest.get_meta(pos)

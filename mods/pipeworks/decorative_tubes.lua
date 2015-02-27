@@ -22,6 +22,8 @@ minetest.register_node("pipeworks:steel_block_embedded_tube", {
 			return vector.equals(dir, direction) or vector.equals(vector.multiply(dir, -1), direction)
 		end,
 	},
+	after_place_node = pipeworks.after_place,
+	after_dig_node = pipeworks.after_dig,
 })
 
 minetest.register_craft( {
@@ -67,6 +69,8 @@ minetest.register_node("pipeworks:steel_pane_embedded_tube", {
 			return vector.equals(dir, direction) or vector.equals(vector.multiply(dir, -1), direction)
 		end,
 	},
+	after_place_node = pipeworks.after_place,
+	after_dig_node = pipeworks.after_dig,
 })
 
 minetest.register_craft( {

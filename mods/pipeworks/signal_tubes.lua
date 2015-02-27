@@ -86,7 +86,7 @@ if pipeworks.enable_conductor_tube then
 			description = "Conducting Pneumatic Tube Segment on (you hacker you)",
 			inventory_image = "pipeworks_conductor_tube_inv.png",
 			short = "pipeworks_conductor_tube_short.png",
-			plain_textures = { "pipeworks_conductor_tube_on_plain.png" },
+			plain = { "pipeworks_conductor_tube_on_plain.png" },
 			noctr = { "pipeworks_conductor_tube_on_noctr.png" },
 			ends = { "pipeworks_conductor_tube_on_end.png" },
 			node_def = {

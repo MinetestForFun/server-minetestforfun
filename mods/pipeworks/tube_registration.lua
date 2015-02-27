@@ -106,18 +106,8 @@ local register_one_tube = function(name, tname, dropname, desc, plain, noctrs, e
 			connect_sides = {front = 1, back = 1, left = 1, right = 1, top = 1, bottom = 1},
 			priority = 50
 		},
-		--[[after_place_node = function(pos)
-			pipeworks.scan_for_tube_objects(pos)
-			if minetest.registered_nodes[rname].after_place_node_ then
-				minetest.registered_nodes[rname].after_place_node_(pos)
-			end
-		end,
-		after_dig_node = function(pos)
-			pipeworks.scan_for_tube_objects(pos)
-			if minetest.registered_nodes[rname].after_dig_node_ then
-				minetest.registered_nodes[rname].after_dig_node_(pos)
-			end
-		end]]
+		after_place_node = pipeworks.after_place,
+		after_dig_node = pipeworks.after_dig
 	}
 	if style == "6d" then
 		nodedef.paramtype2 = "facedir"
@@ -196,12 +186,7 @@ local register_all_tubes = function(name, desc, plain, noctrs, ends, short, inv,
 				paramtype = "light",
 				sunlight_propagates = true,
 				description = "Pneumatic tube segment (legacy)",
-				--[[after_place_node = function(pos)
-					pipeworks.scan_for_tube_objects(pos)
-					if minetest.registered_nodes[name.."_1"].after_place_node_ then
-						minetest.registered_nodes[name.."_1"].after_place_node_(pos)
-					end
-				end,]]
+				after_place_node = pipeworks.after_place,
 				groups = {not_in_creative_inventory = 1, tube_to_update = 1, tube = 1},
 				tube = {connect_sides = {front = 1, back = 1, left = 1, right = 1, top = 1, bottom = 1}},
 				drop = name.."_1",

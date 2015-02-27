@@ -33,6 +33,8 @@ minetest.override_item("default:furnace", {
 		input_inventory = "dst",
 		connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
 	},
+	after_place_node = pipeworks.after_place,
+	after_dig_node = pipeworks.after_dig
 })
 
 minetest.override_item("default:furnace_active", {
@@ -76,6 +78,8 @@ minetest.override_item("default:furnace_active", {
 		input_inventory = "dst",
 		connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
 	},
+	after_place_node = pipeworks.after_place,
+	after_dig_node = pipeworks.after_dig
 })
 
 minetest.override_item("default:chest", {
@@ -102,6 +106,8 @@ minetest.override_item("default:chest", {
 		input_inventory = "main",
 		connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
 	},
+	after_place_node = pipeworks.after_place,
+	after_dig_node = pipeworks.after_dig
 })
 
 minetest.override_item("default:chest_locked", {
@@ -127,4 +133,13 @@ minetest.override_item("default:chest_locked", {
 		end,
 		connect_sides = {left = 1, right = 1, back = 1, front = 1, bottom = 1, top = 1}
 	},
+	after_place_node = function (pos, placer)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("owner", placer:get_player_name() or "")
+		meta:set_string("infotext", "Locked Chest (owned by "..
+		meta:get_string("owner")..")")
+		pipeworks.after_place(pos)
+	end,
+	after_dig_node = pipeworks.after_dig
 })
+

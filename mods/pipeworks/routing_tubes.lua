@@ -105,6 +105,8 @@ if pipeworks.enable_one_way_tube then
 			end,
 			priority = 75 -- Higher than normal tubes, but lower than receivers
 		},
+		after_place_node = pipeworks.after_place,
+		after_dig_node = pipeworks.after_dig,
 	})
 	minetest.register_craft({
 		output = "pipeworks:one_way_tube 2",
