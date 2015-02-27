@@ -97,8 +97,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'building_blocks:sticks',
 	recipe = {
-		{'group:stick', 'group:stick'},
-		{'group:stick', 'group:stick'},
+		{'group:stick', '', 'group:stick'},
+		{'', 'group:stick', ''}
+		{'group:stick', '', 'group:stick'},
 	}
 })
 
