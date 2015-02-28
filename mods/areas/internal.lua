@@ -140,8 +140,7 @@ function areas:canPlayerAddArea(pos1, pos2, name)
 		end
 	end
 	if count >= self.self_protection_max_areas 
-	   and minetest.get_player_privs(name)["megabuilder"] == 
-false then
+	   and minetest.get_player_privs(name)["megabuilder"] == false then
 		return false, "You have reached the maximum amount of"
 				.." areas that you are allowed to  protect."
 	end
