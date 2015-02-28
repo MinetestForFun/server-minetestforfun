@@ -245,9 +245,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "darkage:reinforced_wood",
 	recipe = {
-		{"group:stick","","group:stick"},
-		{"","default:wood",""},
-		{"group:stick","","group:stick"},
+		{"group:stick","group:wood","group:stick"},
+		{"group:wood","group:wood","group:wood"},
+		{"group:stick","group:wood","group:stick"},
 	}
 })
 
