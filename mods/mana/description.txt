@@ -1,0 +1,1 @@
+Adds a mana attribute to players, can be used as energy source for magical items, etc.

@@ -57,7 +57,6 @@ load_mod_mesecons = true
 load_mod_mesecons_alias = true
 load_mod_mesecons_button = true
 load_mod_mesecons_commandblock = true
-load_mod_mesecons_compatibility = true
 load_mod_mesecons_delayer = true
 load_mod_mesecons_extrawires = true
 load_mod_mesecons_hydroturbine = true
