@@ -1,0 +1,1 @@
+Adds the “Mirror of Returning”, a magical item which teleports the user to a previously set location.
