@@ -101,3 +101,12 @@ minetest.register_tool("returnmirror:mirror_active", {
 })
 
 minetest.register_alias("returnmirror:mirror_inactive", "returnmirror:returnmirror")
+
+minetest.register_craft({
+	output = "returnmirror:mirror_inactive",
+	recipe = {
+		{"default:diamondblock","default:nyancat","default:diamondblock"},
+		{"default:nyancat","doors:door_obsidian_glass","default:nyancat"},
+		{"default:diamondblock","default:nyancat","default:diamondblock"},
+	},
+})
