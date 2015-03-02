@@ -62,16 +62,11 @@ mobs:register_mob("mobs:cow", {
 	end,
 
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 30,
-		walk_start = 35,
-		walk_end = 65,
-		run_start = 105,
-		run_end = 135,
-		punch_start = 70,
-		punch_end = 100,
+		speed_normal = 15,		speed_run = 15,
+		stand_start = 0,		stand_end = 30,
+		walk_start = 35,		walk_end = 65,
+		run_start = 105,		run_end = 135,
+		punch_start = 70,		punch_end = 100,
 	},
 
 	jump = true,

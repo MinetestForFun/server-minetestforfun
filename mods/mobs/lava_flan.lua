@@ -55,6 +55,8 @@ mobs:register_mob("mobs:lava_flan", {
 	},
 	sounds = {
 		random = "mobs_lavaflan",
+		war_cry = "mobs_lavaflan",
+		death = nil,
 	},
 	jump = true,
 	step = 2,

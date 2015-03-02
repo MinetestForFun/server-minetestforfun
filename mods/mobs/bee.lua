@@ -82,7 +82,7 @@ minetest.register_node("mobs:beehive", {
 	after_place_node = function(pos, placer, itemstack)
 		if placer:is_player() then
 			minetest.set_node(pos, {name="mobs:beehive", param2=1})
-			minetest.env:add_entity(pos, "mobs:bee")
+			minetest.add_entity(pos, "mobs:bee")
 		end
 	end,
 	

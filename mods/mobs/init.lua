@@ -1,4 +1,4 @@
--- Mob Api (20th Feb 2015)
+-- Mob Api
 
 dofile(minetest.get_modpath("mobs").."/api.lua")
 
