@@ -107,15 +107,15 @@ for s in ipairs(states) do
 	drop = "pipeworks:valve_off_empty",
 		mesecons = {effector = {
 			action_on = function (pos, node)
-				minetest.add_node(pos,{name="pipeworks:valve_on_empty", param2 = node.param2}) 
+				minetest.swap_node(pos,{name="pipeworks:valve_on_empty", param2 = node.param2}) 
 			end,
 			action_off = function (pos, node)
-				minetest.add_node(pos,{name="pipeworks:valve_off_empty", param2 = node.param2}) 
+				minetest.swap_node(pos,{name="pipeworks:valve_off_empty", param2 = node.param2}) 
 			end
 		}},
 		on_punch = function(pos, node, puncher)
 			local fdir = minetest.get_node(pos).param2
-			minetest.add_node(pos, { name = "pipeworks:valve_"..states[3-s].."_empty", param2 = fdir })
+			minetest.swap_node(pos, { name = "pipeworks:valve_"..states[3-s].."_empty", param2 = fdir })
 		end
 	})
 end
@@ -148,15 +148,15 @@ minetest.register_node("pipeworks:valve_on_loaded", {
 	drop = "pipeworks:valve_off_empty",
 	mesecons = {effector = {
 		action_on = function (pos, node)
-			minetest.add_node(pos,{name="pipeworks:valve_on_empty", param2 = node.param2}) 
+			minetest.swap_node(pos,{name="pipeworks:valve_on_empty", param2 = node.param2}) 
 		end,
 		action_off = function (pos, node)
-			minetest.add_node(pos,{name="pipeworks:valve_off_empty", param2 = node.param2}) 
+			minetest.swap_node(pos,{name="pipeworks:valve_off_empty", param2 = node.param2}) 
 		end
 	}},
 	on_punch = function(pos, node, puncher)
 		local fdir = minetest.get_node(pos).param2
-		minetest.add_node(pos, { name = "pipeworks:valve_off_empty", param2 = fdir })
+		minetest.swap_node(pos, { name = "pipeworks:valve_off_empty", param2 = fdir })
 	end
 })
 
@@ -241,6 +241,11 @@ minetest.register_node("pipeworks:spigot_pouring", {
 	end,
 	after_dig_node = function(pos)
 		pipeworks.scan_for_pipe_objects(pos)
+		local pos_below = {x = pos.x, y = pos.y-1, z = pos.z}
+		local below_node = minetest.get_node(pos_below)
+		if below_node.name == "default:water_source" then
+			minetest.set_node(pos_below, { name = "air" })
+		end
 	end,
 	selection_box = {
 		type = "fixed",
@@ -264,7 +269,7 @@ local panel_cbox = {
 	}
 }
 
-minetest.register_node("pipeworks:entry_panel_empty", {
+minetest.register_node("pipeworks:entry_panel", {
 	description = "Airtight Pipe entry/exit",
 	drawtype = "mesh",
 	mesh = "pipeworks_entry_panel.obj",
@@ -320,7 +325,7 @@ minetest.register_node("pipeworks:entry_panel_empty", {
 
 				if not minetest.registered_nodes[minetest.get_node(pos1).name]["buildable_to"] then return end
 
-				minetest.add_node(pos1, {name = "pipeworks:entry_panel_empty", param2 = fdir })
+				minetest.add_node(pos1, {name = "pipeworks:entry_panel", param2 = fdir })
 				pipeworks.scan_for_pipe_objects(pos1)
 
 				if not pipeworks.expect_infinite_stacks then
@@ -335,26 +340,10 @@ minetest.register_node("pipeworks:entry_panel_empty", {
 	end
 })
 
-minetest.register_node("pipeworks:entry_panel_loaded", {
-	description = "Airtight Pipe entry/exit",
-	drawtype = "mesh",
-	mesh = "pipeworks_entry_panel.obj",
-	tiles = { "pipeworks_entry_panel.png" },
-	paramtype = "light",
-	paramtype2 = "facedir",
-	groups = {snappy=3, pipe=1, not_in_creative_inventory=1},
-	sounds = default.node_sound_wood_defaults(),
-	walkable = true,
-	after_place_node = function(pos)
-		pipeworks.scan_for_pipe_objects(pos)
-	end,
-	after_dig_node = function(pos)
-		pipeworks.scan_for_pipe_objects(pos)
-	end,
-	selection_box = panel_cbox,
-	collision_box = panel_cbox,
-	drop = "pipeworks:entry_panel_empty"
-})
+local sensorboxes = {}
+pipeworks.add_node_box(sensorboxes, pipeworks.pipe_leftstub)
+pipeworks.add_node_box(sensorboxes, pipeworks.pipe_sensorbody)
+pipeworks.add_node_box(sensorboxes, pipeworks.pipe_rightstub)
 
 minetest.register_node("pipeworks:flow_sensor_empty", {
 	description = "Flow Sensor",
@@ -518,6 +507,11 @@ minetest.register_node("pipeworks:fountainhead", {
 	end,
 	after_dig_node = function(pos)
 		pipeworks.scan_for_pipe_objects(pos)
+		local pos_above = {x = pos.x, y = pos.y+1, z = pos.z}
+		local node_above = minetest.get_node(pos_above)
+		if node_above.name == "default:water_source" then
+			minetest.set_node(pos_above, { name = "air" })
+		end
 	end,
 	on_construct = function(pos)
 		if mesecon then
@@ -534,37 +528,10 @@ minetest.register_node("pipeworks:fountainhead", {
 	},
 })
 
-minetest.register_node("pipeworks:fountainhead_pouring", {
-	description = "Fountainhead",
-	drawtype = "mesh",
-	mesh = "pipeworks_fountainhead.obj",
-	tiles = { "pipeworks_fountainhead.png" },
-	sunlight_propagates = true,
-	paramtype = "light",
-	groups = {snappy=3, pipe=1, not_in_creative_inventory=1},
-	sounds = default.node_sound_wood_defaults(),
-	walkable = true,
-	after_place_node = function(pos)
-		pipeworks.scan_for_pipe_objects(pos)
-	end,
-	after_dig_node = function(pos)
-		pipeworks.scan_for_pipe_objects(pos)
-	end,
-	on_construct = function(pos)
-		if mesecon then
-			mesecon.receptor_on(pos, rules) 
-		end
-	end,
-	selection_box = {
-		type = "fixed",
-		fixed = { -2/16, -8/16, -2/16, 2/16, 8/16, 2/16 }
-	},
-	collision_box = {
-		type = "fixed",
-		fixed = { -2/16, -8/16, -2/16, 2/16, 8/16, 2/16 }
-	},
-	drop = "pipeworks:fountainhead"
-})
+-- compatibility
 
 minetest.register_alias("pipeworks:valve_off_loaded", "pipeworks:valve_off_empty")
+minetest.register_alias("pipeworks:fountainhead_pouring", "pipeworks:fountainhead")
 
+minetest.register_alias("pipeworks:entry_panel_empty", "pipeworks:entry_panel")
+minetest.register_alias("pipeworks:entry_panel_loaded", "pipeworks:entry_panel")

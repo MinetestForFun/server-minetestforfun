@@ -2,9 +2,6 @@
 
 local REGISTER_COMPATIBILITY = true
 
-local pipes_empty_nodenames = {}
-local pipes_full_nodenames = {}
-
 local vti = {4, 3, 2, 1, 6, 5}
 local cconnects = {{}, {1}, {1, 2}, {1, 3}, {1, 3, 5}, {1, 2, 3}, {1, 2, 3, 5}, {1, 2, 3, 4}, {1, 2, 3, 4, 5}, {1, 2, 3, 4, 5, 6}}
 for index, connects in ipairs(cconnects) do
@@ -113,11 +110,9 @@ for index, connects in ipairs(cconnects) do
 		end
 	})
 	
-	table.insert(pipes_empty_nodenames, "pipeworks:pipe_"..index.."_empty")
-	table.insert(pipes_full_nodenames,  "pipeworks:pipe_"..index.."_loaded")
+	table.insert(pipeworks.pipe_nodenames, "pipeworks:pipe_"..index.."_empty")
+	table.insert(pipeworks.pipe_nodenames,  "pipeworks:pipe_"..index.."_loaded")
 end
-
-
 
 if REGISTER_COMPATIBILITY then
 	local cempty = "pipeworks:pipe_compatibility_empty"
@@ -174,49 +169,4 @@ if REGISTER_COMPATIBILITY then
 		end
 	})
 end
-
-table.insert(pipes_empty_nodenames,"pipeworks:valve_on_empty")
-table.insert(pipes_empty_nodenames,"pipeworks:valve_off_empty")
-table.insert(pipes_empty_nodenames,"pipeworks:entry_panel_empty")
-table.insert(pipes_empty_nodenames,"pipeworks:flow_sensor_empty")
-
-table.insert(pipes_full_nodenames,"pipeworks:valve_on_loaded")
-table.insert(pipes_full_nodenames,"pipeworks:entry_panel_loaded")
-table.insert(pipes_full_nodenames,"pipeworks:flow_sensor_loaded")
-
-minetest.register_abm({
-	nodenames = pipes_empty_nodenames,
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		pipeworks.check_for_inflows(pos,node)
-	end
-})
-
-minetest.register_abm({
-	nodenames = pipes_full_nodenames,
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		pipeworks.check_sources(pos,node)
-	end
-})
-
-minetest.register_abm({
-	nodenames = {"pipeworks:spigot","pipeworks:spigot_pouring"},
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider) 
-		pipeworks.spigot_check(pos,node)
-	end
-})
-
-minetest.register_abm({
-	nodenames = {"pipeworks:fountainhead","pipeworks:fountainhead_pouring"},
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider) 
-		pipeworks.fountainhead_check(pos,node)
-	end
-})
 
