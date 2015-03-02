@@ -17,6 +17,16 @@ temp = nil
 exemptions[minetest.setting_get("name")] = true
 exemptions["singleplayer"] = true
 
+local disallowed_names = {}
+local file = io.open(minetest.get_worldpath("name_restrictions") .. "/forbidden_names.txt", "r")
+if file then
+	for line in file:lines() do
+		local low_line = line:lower()
+		disallowed_names[low_line] = true
+	end
+	file:close()
+end
+
 ---------------------
 -- Simple matching --
 ---------------------
@@ -40,6 +50,9 @@ minetest.register_on_prejoinplayer(function(name, ip)
 		if lname:find(re) then
 			return reason
 		end
+	end
+	if disallowed_names[lname] then
+		return "Sorry. This name is forbidden."
 	end
 end)
 

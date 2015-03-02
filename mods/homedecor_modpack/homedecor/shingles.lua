@@ -1,5 +1,3 @@
--- Various kidns of shingles
-
 local S = homedecor.gettext
 
 minetest.register_node("homedecor:skylight", {
@@ -29,42 +27,19 @@ minetest.register_node("homedecor:skylight_frosted", {
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
-minetest.register_node("homedecor:shingles_wood", {
-	description = S("Wood Shingles"),
+local materials = {"asphalt", "terracotta", "wood"}
+
+for _, s in ipairs(materials) do
+minetest.register_node("homedecor:shingles_"..s, {
+	description = S("Shingles ("..s..")"),
 	drawtype = "raillike",
-	tiles = { "homedecor_shingles_wood.png" },
-	wield_image = "homedecor_shingles_wood.png",
-	inventory_image = "homedecor_shingles_wood_inv.png",
+	tiles = { "homedecor_shingles_"..s..".png" },
+	wield_image = "homedecor_shingles_"..s..".png",
+	inventory_image = "homedecor_shingles_"..s.."_inv.png",
 	paramtype = "light",
 	walkable = false,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })
-
-minetest.register_node("homedecor:shingles_asphalt", {
-	description = S("Asphalt Shingles"),
-	drawtype = "raillike",
-	tiles = { "homedecor_shingles_asphalt.png" },
-	wield_image = "homedecor_shingles_asphalt.png",
-	inventory_image = "homedecor_shingles_asphalt_inv.png",
-	paramtype = "light",
-	walkable = false,
-	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = homedecor.nodebox.slab_y(0.1),
-})
-
-minetest.register_node("homedecor:shingles_terracotta", {
-	description = S("Terracotta Shingles"),
-	drawtype = "raillike",
-	tiles = { "homedecor_shingles_terracotta.png" },
-	wield_image = "homedecor_shingles_terracotta.png",
-	inventory_image = "homedecor_shingles_terracotta_inv.png",
-	paramtype = "light",
-	walkable = false,
-	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = homedecor.nodebox.slab_y(0.1),
-})
-
+end

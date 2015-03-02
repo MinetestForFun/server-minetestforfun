@@ -70,17 +70,15 @@ local glowlight_nodebox = {
 	},
 }
 
--- Yellow
-
-homedecor.register("glowlight_half_yellow", {
-	description = S("Yellow Glowlight (thick)"),
+homedecor.register("glowlight_half_"..color, {
+	description = S("Thick Glowlight ("..color..")"),
 	tiles = {
-		'homedecor_glowlight_yellow_top.png',
-		'homedecor_glowlight_yellow_bottom.png',
-		'homedecor_glowlight_thick_yellow_sides.png',
-		'homedecor_glowlight_thick_yellow_sides.png',
-		'homedecor_glowlight_thick_yellow_sides.png',
-		'homedecor_glowlight_thick_yellow_sides.png'
+		"homedecor_glowlight_"..color.."_top.png",
+		"homedecor_glowlight_"..color.."_bottom.png",
+		"homedecor_glowlight_thick_"..color.."_sides.png",
+		"homedecor_glowlight_thick_"..color.."_sides.png",
+		"homedecor_glowlight_thick_"..color.."_sides.png",
+		"homedecor_glowlight_thick_"..color.."_sides.png"
 	},
 	selection_box = glowlight_nodebox.half,
 	node_box = glowlight_nodebox.half,
@@ -90,53 +88,15 @@ homedecor.register("glowlight_half_yellow", {
 	on_place = minetest.rotate_node
 })
 
-homedecor.register("glowlight_quarter_yellow", {
-	description = S("Yellow Glowlight (thin)"),
+homedecor.register("glowlight_quarter_"..color, {
+	description = S("Thin Glowlight ("..color..")"),
 	tiles = {
-		'homedecor_glowlight_yellow_top.png',
-		'homedecor_glowlight_yellow_bottom.png',
-		'homedecor_glowlight_thin_yellow_sides.png',
-		'homedecor_glowlight_thin_yellow_sides.png',
-		'homedecor_glowlight_thin_yellow_sides.png',
-		'homedecor_glowlight_thin_yellow_sides.png'
-	},
-	selection_box = glowlight_nodebox.quarter,
-	node_box = glowlight_nodebox.quarter,
-	groups = { snappy = 3 },
-	light_source = LIGHT_MAX-1,
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
--- White
-
-homedecor.register("glowlight_half_white", {
-	description = S("White Glowlight (thick)"),
-	tiles = {
-		'homedecor_glowlight_white_top.png',
-		'homedecor_glowlight_white_bottom.png',
-		'homedecor_glowlight_thick_white_sides.png',
-		'homedecor_glowlight_thick_white_sides.png',
-		'homedecor_glowlight_thick_white_sides.png',
-		'homedecor_glowlight_thick_white_sides.png'
-	},
-	selection_box = glowlight_nodebox.half,
-	node_box = glowlight_nodebox.half,
-	groups = { snappy = 3 },
-	light_source = LIGHT_MAX,
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
-homedecor.register("glowlight_quarter_white", {
-	description = S("White Glowlight (thin)"),
-	tiles = {
-		'homedecor_glowlight_white_top.png',
-		'homedecor_glowlight_white_bottom.png',
-		'homedecor_glowlight_thin_white_sides.png',
-		'homedecor_glowlight_thin_white_sides.png',
-		'homedecor_glowlight_thin_white_sides.png',
-		'homedecor_glowlight_thin_white_sides.png'
+		"homedecor_glowlight_"..color.."_top.png",
+		"homedecor_glowlight_"..color.."_bottom.png",
+		"homedecor_glowlight_thin_"..color.."_sides.png",
+		"homedecor_glowlight_thin_"..color.."_sides.png",
+		"homedecor_glowlight_thin_"..color.."_sides.png",
+		"homedecor_glowlight_thin_"..color.."_sides.png"
 	},
 	selection_box = glowlight_nodebox.quarter,
 	node_box = glowlight_nodebox.quarter,
@@ -148,15 +108,15 @@ homedecor.register("glowlight_quarter_white", {
 
 -- Glowlight "cubes"
 
-homedecor.register("glowlight_small_cube_yellow", {
-	description = S("Yellow Glowlight (small cube)"),
+homedecor.register("glowlight_small_cube_"..color, {
+	description = S("Small Glowlight Cube ("..color..")"),
 	tiles = {
-		'homedecor_glowlight_cube_yellow_tb.png',
-		'homedecor_glowlight_cube_yellow_tb.png',
-		'homedecor_glowlight_cube_yellow_sides.png',
-		'homedecor_glowlight_cube_yellow_sides.png',
-		'homedecor_glowlight_cube_yellow_sides.png',
-		'homedecor_glowlight_cube_yellow_sides.png'
+		"homedecor_glowlight_cube_"..color.."_tb.png",
+		"homedecor_glowlight_cube_"..color.."_tb.png",
+		"homedecor_glowlight_cube_"..color.."_sides.png",
+		"homedecor_glowlight_cube_"..color.."_sides.png",
+		"homedecor_glowlight_cube_"..color.."_sides.png",
+		"homedecor_glowlight_cube_"..color.."_sides.png"
 	},
 	selection_box = glowlight_nodebox.small_cube,
 	node_box = glowlight_nodebox.small_cube,
@@ -166,23 +126,7 @@ homedecor.register("glowlight_small_cube_yellow", {
 	on_place = minetest.rotate_node
 })
 
-homedecor.register("glowlight_small_cube_white", {
-	description = S("White Glowlight (small cube)"),
-	tiles = {
-		'homedecor_glowlight_cube_white_tb.png',
-		'homedecor_glowlight_cube_white_tb.png',
-		'homedecor_glowlight_cube_white_sides.png',
-		'homedecor_glowlight_cube_white_sides.png',
-		'homedecor_glowlight_cube_white_sides.png',
-		'homedecor_glowlight_cube_white_sides.png'
-	},
-	selection_box = glowlight_nodebox.small_cube,
-	node_box = glowlight_nodebox.small_cube,
-	groups = { snappy = 3 },
-	light_source = LIGHT_MAX-1,
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
+end
 
 homedecor.register("plasma_lamp", {
 	description = "Plasma Lamp",
@@ -267,21 +211,40 @@ homedecor.register("oil_lamp", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
-homedecor.register("wall_lantern", {
-	description = S("Wall lantern"),
-	drawtype = "plantlike",
-	tiles = { 'homedecor_wall_lantern.png' },
-	inventory_image = 'homedecor_wall_lantern.png',
-	sunlight_propagates = true,
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.3, -0.5, -0.3, 0.3, 0.5, 0.3 },
-		}
-	},
-	groups = { snappy = 3 },
-	light_source = LIGHT_MAX-4,
-	sounds = default.node_sound_wood_defaults(),
+local gl_cbox = {
+	type = "fixed",
+	fixed = { -0.25, -0.5, -0.25, 0.25, 0.45, 0.25 },
+}
+
+minetest.register_alias("homedecor:wall_lantern", "homedecor:ground_lantern")
+
+homedecor.register("ground_lantern", {
+	description = S("Ground Lantern"),
+	mesh = "homedecor_ground_lantern.obj",
+	tiles = {"homedecor_ground_lantern.png"},
+	inventory_image = "homedecor_ground_lantern_inv.png",
+	wield_image = "homedecor_ground_lantern_inv.png",
+	groups = {snappy=3},
+	light_source = 11,
+	selection_box = gl_cbox,
+	collision_box = gl_cbox
+})
+
+local hl_cbox = {
+	type = "fixed",
+	fixed = { -0.25, -0.4, -0.2, 0.25, 0.5, 0.5 },
+}
+
+homedecor.register("hanging_lantern", {
+	description = S("Hanging Lantern"),
+	mesh = "homedecor_hanging_lantern.obj",
+	tiles = {"homedecor_hanging_lantern.png"},
+	inventory_image = "homedecor_hanging_lantern_inv.png",
+	wield_image = "homedecor_hanging_lantern_inv.png",
+	groups = {snappy=3},
+	light_source = 11,
+	selection_box = hl_cbox,
+	collision_box = hl_cbox
 })
 
 homedecor.register("lattice_lantern_large", {

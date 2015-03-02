@@ -1281,7 +1281,7 @@ minetest.register_craft({
 -- Wrought-iron wall latern
 
 minetest.register_craft({
-	output = "homedecor:wall_lantern 4",
+	output = "homedecor:ground_lantern",
 	recipe = {
 		{ "default:iron_lump", "default:iron_lump", "default:iron_lump" },
 		{ "default:iron_lump", "default:torch", "default:iron_lump" },
@@ -1361,6 +1361,15 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+		output = "homedecor:glowlight_half_yellow",
+		type = "shapeless",
+		recipe = {
+		"homedecor:glowlight_quarter_yellow",
+		"homedecor:glowlight_quarter_yellow"
+	}
+})
+
 -- white
 
 minetest.register_craft({
@@ -1427,6 +1436,17 @@ minetest.register_craft({
 		{"homedecor:glowlight_small_cube_white","homedecor:glowlight_small_cube_white"}
 	}
 })
+
+minetest.register_craft({
+		output = "homedecor:glowlight_half_white",
+		type = "shapeless",
+		recipe = {
+		"homedecor:glowlight_quarter_white",
+		"homedecor:glowlight_quarter_white"
+	}
+})
+
+----
 
 minetest.register_craft({
     output = "homedecor:plasma_lamp",
@@ -3009,6 +3029,15 @@ for _, color in ipairs(dlamp_colors) do
 		},
 	})
 end
+
+minetest.register_craft({
+	output = "homedecor:hanging_lantern 2",
+	recipe = {
+		{ "default:iron_lump", "default:iron_lump", "" },
+		{ "default:iron_lump", "homedecor:lattice_lantern_large", "" },
+		{ "default:iron_lump", "", "" },
+	},
+})
 
 if (minetest.get_modpath("technic") and minetest.get_modpath("dye") and minetest.get_modpath("bees")) then
 	technic.register_separating_recipe({ input = {"bees:wax 1"}, output = {"homedecor:oil_extract 2","dye:yellow 1"} })

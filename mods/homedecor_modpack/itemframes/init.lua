@@ -67,23 +67,24 @@ local update_item = function(pos, node)
 	if meta:get_string("item") ~= "" then
 		if node.name == "itemframes:frame" then
 			local posad = facedir[node.param2]
-				if not posad then return end
-					pos.x = pos.x + posad.x*6.5/16
-					pos.y = pos.y + posad.y*6.5/16
-					pos.z = pos.z + posad.z*6.5/16
-				elseif minetest.get_item_group(node.name, "group:pedestal") then
-					pos.y = pos.y + 12/16+.33
-				end
-				tmp.nodename = node.name
-				tmp.texture = ItemStack(meta:get_string("item")):get_name()
-				local e = minetest.add_entity(pos,"itemframes:item")
-				if node.name == "itemframes:frame" then
-					local yaw = math.pi*2 - node.param2 * math.pi/2
-					e:setyaw(yaw)
-				end
-			end
+			if not posad then return end
+				pos.x = pos.x + posad.x*6.5/16
+				pos.y = pos.y + posad.y*6.5/16
+				pos.z = pos.z + posad.z*6.5/16
+			elseif minetest.get_item_group(node.name, "group:pedestal") then
+				pos.y = pos.y + 12/16+.33
 		end
-	local drop_item = function(pos, node)
+		tmp.nodename = node.name
+		tmp.texture = ItemStack(meta:get_string("item")):get_name()
+		local e = minetest.add_entity(pos,"itemframes:item")
+		if node.name == "itemframes:frame" then
+			local yaw = math.pi*2 - node.param2 * math.pi/2
+			e:setyaw(yaw)
+		end
+	end
+end
+
+local drop_item = function(pos, node)
 	local meta = minetest.get_meta(pos)
 	if meta:get_string("item") ~= "" then
 		if node.name == "itemframes:frame" then
@@ -117,13 +118,13 @@ minetest.register_node("itemframes:frame",{
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack)
 		if not itemstack then return end
-			local meta = minetest.get_meta(pos)
-			if clicker:get_player_name() == meta:get_string("owner") then
-				drop_item(pos,node)
-				local s = itemstack:take_item()
-				meta:set_string("item",s:to_string())
-				update_item(pos,node)
-			end
+		local meta = minetest.get_meta(pos)
+		if clicker:get_player_name() == meta:get_string("owner") then
+			drop_item(pos,node)
+			local s = itemstack:take_item()
+			meta:set_string("item",s:to_string())
+			update_item(pos,node)
+		end
 		return itemstack
 	end,
 	on_punch = function(pos,node,puncher)
@@ -140,14 +141,6 @@ minetest.register_node("itemframes:frame",{
 	after_destruct = remove_item,
 })
 
-minetest.register_craft({
-	output = 'itemframes:frame',
-	recipe = {
-		{'group:stick', 'group:stick', 'group:stick'},
-		{'group:stick', 'default:paper', 'group:stick'},
-		{'group:stick', 'group:stick', 'group:stick'},
-	}
-})
 
 function itemframes.register_pedestal(subname, recipeitem, groups, images, description, sounds)
 	minetest.register_node("itemframes:pedestal_" .. subname, {
@@ -160,9 +153,12 @@ function itemframes.register_pedestal(subname, recipeitem, groups, images, descr
 		{-0.25, -6/16, -0.25, 0.25, 11/16, 0.25}, -- pillar
 		{-7/16, 11/16, -7/16, 7/16, 12/16, 7/16}, -- top plate
 	}},
+	--selection_box = { type = "fixed", fixed = {-7/16, -0.5, -7/16, 7/16, 12/16, 7/16} },
 	groups = groups,
 	sounds = sounds,
 	paramtype = "light",
+	groups = { cracky=3 },
+	sounds = default.node_sound_defaults(),
 	after_place_node = function(pos, placer, itemstack)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner",placer:get_player_name())
@@ -292,6 +288,26 @@ minetest.register_abm({
 		update_item(pos, node)
 	end
 })
+
+-- crafts
+
+minetest.register_craft({
+	output = 'itemframes:frame',
+	recipe = {
+		{'default:stick', 'default:stick', 'default:stick'},
+		{'default:stick', 'default:paper', 'default:stick'},
+		{'default:stick', 'default:stick', 'default:stick'},
+	}
+})
+minetest.register_craft({
+	output = 'itemframes:pedestal',
+	recipe = {
+		{'default:stone', 'default:stone', 'default:stone'},
+		{'', 'default:stone', ''},
+		{'default:stone', 'default:stone', 'default:stone'},
+	}
+})
+
 
 -- homedecor/itemframes -> itemframes::stone
 -- minetest.register_alias("itemframes:pedestal","itemframes:pedestal_stone")
