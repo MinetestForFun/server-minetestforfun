@@ -12,12 +12,11 @@ food.module("wheat", function()
 		inventory_image = "food_wheat.png", 
 		groups = {food_wheat=1}
 	})
-
 	food.craft({
-		output = "food:wheat", 
+		output = "food:potato", 
 		recipe = {
-			{"default:dry_shrub"}, 
-		}
+			{"farming:wheat"}
+		}, 
 	})
 end, true)
 
@@ -34,13 +33,6 @@ food.module("flour", function()
 			{"group:food_wheat"}
 		}
 	})
-	food.craft({
-		output = "food:flour", 
-		recipe = {
-			{"default:sand"}, 
-			{"default:sand"}
-		}
-	})
 end, true)
 
 food.module("potato", function()
@@ -52,10 +44,8 @@ food.module("potato", function()
 	food.craft({
 		output = "food:potato", 
 		recipe = {
-			{"default:dirt"}, 
-			{"default:apple"}
-
-		}
+			{"farming:potato"}
+		}, 
 	})
 end, true)
 
@@ -68,10 +58,8 @@ food.module("tomato", function()
 	food.craft({
 		output = "food:tomato", 
 		recipe = {
-			{"", "default:desert_sand", ""}, 
-			{"default:desert_sand", "", "default:desert_sand"}, 
-			{"", "default:desert_sand", ""}
-		}
+			{"farming:tomato"}
+		}, 
 	})
 end, true)
 
@@ -85,8 +73,8 @@ food.module("carrot", function()
 	food.craft({
 		output = "food:carrot", 
 		recipe = {
-			{"default:apple", "default:apple", "default:apple"}, 
-		}
+			{"farming:carrot"}
+		}, 
 	})
 end, true)
 
@@ -101,10 +89,8 @@ food.module("milk", function()
 	food.craft({
 		output = "food:milk", 
 		recipe = {
-			{"default:sand"}, 
-			{"bucket:bucket_water"}
+			{"mobs:bucket_milk"}
 		}, 
-		replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}}, 
 	})
 end, true)
 
@@ -117,9 +103,7 @@ food.module("egg", function()
 	food.craft({
 		output = "food:egg", 
 		recipe = {
-			{"", "default:sand", ""}, 
-			{"default:sand", "", "default:sand"}, 
-			{"", "default:sand", ""}
+			{"mobs:egg"}
 		}
 	})
 end, true)
@@ -133,9 +117,7 @@ food.module("cocoa", function()
 	food.craft({
 		output = "food:cocoa", 
 		recipe = {
-			{"", "default:apple", ""}, 
-			{"default:apple", "", "default:apple"}, 
-			{"", "default:apple", ""}
+			{"farming:cocoa_beans"}
 		}
 	})
 end, true)
@@ -164,8 +146,7 @@ food.module("meat", function()
 		food.craft({
 			output = "food:meat_raw", 
 			recipe = {
-				{"default:apple"}, 
-				{"default:dirt"}
+				{"mobs:meat_raw"}
 			}
 		})
 	end
