@@ -126,8 +126,6 @@ homedecor.register("glowlight_small_cube_"..color, {
 	on_place = minetest.rotate_node
 })
 
-end
-
 homedecor.register("plasma_lamp", {
 	description = "Plasma Lamp",
 	drawtype = "glasslike_framed_optional",
