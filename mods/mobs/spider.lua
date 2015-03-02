@@ -100,11 +100,3 @@ minetest.register_node("mobs:cobweb", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_craft({
-	output = "mobs:cobweb",
-	recipe = {
-		{"farming:string", "", "farming:string"},
-		{"", "farming:string", ""},
-		{"farming:string", "", "farming:string"},
-	}
-})
