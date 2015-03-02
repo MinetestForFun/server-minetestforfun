@@ -13,7 +13,7 @@ food.module("wheat", function()
 		groups = {food_wheat=1}
 	})
 	food.craft({
-		output = "food:potato", 
+		output = "farming:wheat", 
 		recipe = {
 			{"farming:wheat"}
 		}, 
