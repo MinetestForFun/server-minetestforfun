@@ -1,6 +1,5 @@
 vines.register_vine = function( name, defs, biome )
-  --different properties for bottom and side vines.
-  local selection_box
+  local biome = biome
   local groups = { vines=1, snappy=3, flammable=2 }
 
   local vine_name_end = 'vines:'..name..'_end'
@@ -19,6 +18,7 @@ vines.register_vine = function( name, defs, biome )
   local selection_box = { type = "wallmounted", }
   local drawtype = 'signlike'
   if ( not biome.spawn_on_side ) then
+    --different properties for bottom and side vines.
     selection_box = { type = "fixed", fixed = { -0.4, -1/2, -0.4, 0.4, 1/2, 0.4 }, }
     drawtype = 'plantlike'
   end

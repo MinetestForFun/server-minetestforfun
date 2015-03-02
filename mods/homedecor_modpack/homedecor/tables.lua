@@ -157,27 +157,15 @@ homedecor.register("utility_table_top", {
 
 -- Various kinds of table legs
 
-homedecor.register("table_legs_brass", {
-	description = S("Brass Table Legs"),
-	drawtype = "plantlike",
-	tiles = {"homedecor_table_legs_brass.png"},
-	inventory_image = "homedecor_table_legs_brass.png",
-	wield_image = "homedecor_table_legs_brass.png",
-	walkable = false,
-	groups = {snappy=3},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.37, -0.5, -0.37, 0.37, 0.5, 0.37 }
-	},
-})
+local materials = {"brass", "wrought_iron"}
 
-homedecor.register("table_legs_wrought_iron", {
-	description = S("Wrought Iron Table Legs"),
+for _, t in ipairs(materials) do
+homedecor.register("table_legs_"..t, {
+	description = S("Table Legs ("..t..")"),
 	drawtype = "plantlike",
-	tiles = {"homedecor_table_legs_wrought_iron.png"},
-	inventory_image = "homedecor_table_legs_wrought_iron.png",
-	wield_image = "homedecor_table_legs_wrought_iron.png",
+	tiles = {"homedecor_table_legs_"..t..".png"},
+	inventory_image = "homedecor_table_legs_"..t..".png",
+	wield_image = "homedecor_table_legs_"..t..".png",
 	walkable = false,
 	groups = {snappy=3},
 	sounds = default.node_sound_leaves_defaults(),
@@ -186,6 +174,7 @@ homedecor.register("table_legs_wrought_iron", {
 		fixed = { -0.37, -0.5, -0.37, 0.37, 0.5, 0.37 }
 	},
 })
+end
 
 homedecor.register("utility_table_legs", {
 	description = S("Legs for Utility Table"),

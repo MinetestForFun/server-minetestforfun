@@ -1,5 +1,3 @@
--- Various misc. nodes
-
 local S = homedecor.gettext
 
 homedecor.register("ceiling_paint", {
@@ -12,12 +10,7 @@ homedecor.register("ceiling_paint", {
 	walkable = false,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
-        selection_box = {
-			type = "wallmounted",
-                         --wall_top = <default>
-                         --wall_bottom = <default>
-                         --wall_side = <default>
-                        },
+        selection_box = { type = "wallmounted" },
 })
 
 homedecor.register("ceiling_tile", {
@@ -30,75 +23,38 @@ homedecor.register("ceiling_tile", {
 	walkable = false,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
-        selection_box = {
-			type = "wallmounted",
-                         --wall_top = <default>
-                         --wall_bottom = <default>
-                         --wall_side = <default>
-                        },
+        selection_box = { type = "wallmounted" },
 })
 
-homedecor.register("rug_small", {
-	description = S("Small Throw Rug"),
+local rug_sizes = {"small", "large"}
+
+for _, s in ipairs(rug_sizes) do
+homedecor.register("rug_"..s, {
+	description = S("Throw Rug ("..s..")"),
 	drawtype = 'signlike',
-	tiles = { 'homedecor_rug_small.png' },
-	wield_image = 'homedecor_rug_small.png',
-	inventory_image = 'homedecor_rug_small.png',
+	tiles = {"homedecor_rug_"..s..".png"},
+	wield_image = "homedecor_rug_"..s..".png",
+	inventory_image = "homedecor_rug_"..s..".png",
 	sunlight_propagates = true,
 	paramtype2 = "wallmounted",
 	walkable = false,
-	groups = { snappy = 3 },
+	groups = {snappy = 3},
 	sounds = default.node_sound_leaves_defaults(),
-        selection_box = {
-			type = "wallmounted",
-                         --wall_top = <default>
-                         --wall_bottom = <default>
-                         --wall_side = <default>
-                        },
+        selection_box = { type = "wallmounted" },
 })
+end
 
-homedecor.register("rug_large", {
-	description = S("Large Area Rug"),
-	drawtype = 'signlike',
-	tiles = { 'homedecor_rug_large.png' },
-	wield_image = 'homedecor_rug_large.png',
-	inventory_image = 'homedecor_rug_large.png',
-	sunlight_propagates = true,
-	paramtype2 = "wallmounted",
-	walkable = false,
-	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
-        selection_box = {
-			type = "wallmounted",
-                         --wall_top = <default>
-                         --wall_bottom = <default>
-                         --wall_side = <default>
-                        },
-	})
+local pot_colors = {"black", "green", "terracotta"}
 
-homedecor.register("flower_pot_terracotta", {
-	description = S("Terracotta Flower Pot"),
+for _, p in ipairs(pot_colors) do
+homedecor.register("flower_pot_"..p, {
+	description = S("Flower Pot ("..p..")"),
 	mesh = "homedecor_flowerpot.obj",
-	tiles = { "homedecor_flower_pot_terracotta.png" },
-	groups = { snappy = 3, potting_soil=1},
-	sounds = default.node_sound_leaves_defaults(),
-})
-
-homedecor.register("flower_pot_black", {
-	description = S("Black Plastic Flower Pot"),
-	mesh = "homedecor_flowerpot.obj",
-	tiles = { "homedecor_flower_pot_black.png" },
+	tiles = { "homedecor_flower_pot_"..p..".png" },
 	groups = { snappy = 3, potting_soil=1 },
 	sounds = default.node_sound_leaves_defaults(),
 })
-
-homedecor.register("flower_pot_green", {
-	description = S("Green Plastic Flower Pot"),
-	mesh = "homedecor_flowerpot.obj",
-	tiles = { "homedecor_flower_pot_green.png" },
-	groups = { snappy = 3, potting_soil=1 },
-	sounds = default.node_sound_leaves_defaults(),
-})
+end
 
 homedecor.register("pole_brass", {
     description = S("Brass Pole"),
@@ -677,21 +633,21 @@ local bottle_cbox = {
 	}
 }
 
-homedecor.register("bottle_brown", {
-	tiles = { "homedecor_bottle_brown.png" },
-	inventory_image = "homedecor_bottle_brown_inv.png",
-	description = "Brown bottle",
-	mesh = "homedecor_bottle.obj",
-	sunlight_propagates = true,
-	groups = {snappy=3},
-	collision_box = bottle_cbox,
-	selection_box = bottle_cbox
-})
+local fbottle_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -0.375, -0.5, -0.3125, 0.375, 0, 0.3125 }
+	}
+}
 
-homedecor.register("bottle_green", {
-	tiles = { "homedecor_bottle_green.png" },
-	inventory_image = "homedecor_bottle_green_inv.png",
-	description = "Green bottle",
+local bottle_colors = {"brown", "green"}
+
+for _, b in ipairs(bottle_colors) do
+
+homedecor.register("bottle_"..b, {
+	tiles = { "homedecor_bottle_"..b..".png" },
+	inventory_image = "homedecor_bottle_"..b.."_inv.png",
+	description = "Bottle ("..b..")",
 	mesh = "homedecor_bottle.obj",
 	sunlight_propagates = true,
 	groups = {snappy=3},
@@ -701,17 +657,10 @@ homedecor.register("bottle_green", {
 
 -- 4-bottle sets
 
-local fbottle_cbox = {
-	type = "fixed",
-	fixed = {
-		{ -0.375, -0.5, -0.3125, 0.375, 0, 0.3125 }
-	}
-}
-
-homedecor.register("4_bottles_brown", {
-	tiles = { "homedecor_bottle_brown.png" },
-	inventory_image = "homedecor_4_bottles_brown_inv.png",
-	description = "Four brown bottles",
+homedecor.register("4_bottles_"..b, {
+	tiles = { "homedecor_bottle_"..b..".png" },
+	inventory_image = "homedecor_4_bottles_"..b.."_inv.png",
+	description = "Four "..b.." bottles",
 	mesh = "homedecor_4_bottles.obj",
 	sunlight_propagates = true,
 	groups = {snappy=3},
@@ -719,16 +668,7 @@ homedecor.register("4_bottles_brown", {
 	selection_box = fbottle_cbox
 })
 
-homedecor.register("4_bottles_green", {
-	tiles = { "homedecor_bottle_green.png" },
-	inventory_image = "homedecor_4_bottles_green_inv.png",
-	description = "Four green bottles",
-	mesh = "homedecor_4_bottles.obj",
-	sunlight_propagates = true,
-	groups = {snappy=3},
-	collision_box = fbottle_cbox,
-	selection_box = fbottle_cbox
-})
+end
 
 homedecor.register("4_bottles_multi", {
 	tiles = { "homedecor_4_bottles_multi.png" },

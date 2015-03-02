@@ -22,7 +22,7 @@ minetest.register_craftitem("mushroom:brown_essence",{
 	description = "Healthy Brown Mushroom Essence",
 	inventory_image = "mushroom_essence.png",
 	wield_image = "mushroom_essence.png",
-	on_use = minetest.item_eat(5),
+	on_use = minetest.item_eat(5), --notre modif de gain de faim
 })
 
 minetest.register_craftitem("mushroom:poison",{

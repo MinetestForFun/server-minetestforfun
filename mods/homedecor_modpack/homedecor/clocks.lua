@@ -1,46 +1,32 @@
-homedecor.register("analog_clock_plastic", {
-	description = "Analog clock (plastic)",
-	mesh = "homedecor_analog_clock.obj",
-	tiles = { "homedecor_analog_clock_plastic.png" },
-	inventory_image = "homedecor_analog_clock_plastic_inv.png",
-	collision_box = {
-		type = "fixed",
-		fixed = {
-			{ -8/32, -3/32, 15/32, 8/32, 3/32, 16/32 },
-			{ -7/32, -5/32, 15/32, 7/32, 5/32, 16/32 },
-			{ -6/32, -6/32, 15/32, 6/32, 6/32, 16/32 },
-			{ -5/32, -7/32, 15/32, 5/32, 7/32, 16/32 },
-			{ -3/32, -8/32, 15/32, 3/32, 8/32, 16/32 }
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -8/32, -8/32, 15/32, 8/32, 8/32, 16/32 }
-	},
-	groups = {snappy=3},
-})
+local clock_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -8/32, -3/32, 14/32, 8/32, 3/32, 16/32 },
+		{ -7/32, -5/32, 14/32, 7/32, 5/32, 16/32 },
+		{ -6/32, -6/32, 14/32, 6/32, 6/32, 16/32 },
+		{ -5/32, -7/32, 14/32, 5/32, 7/32, 16/32 },
+		{ -3/32, -8/32, 14/32, 3/32, 8/32, 16/32 }
+	}
+}
 
-homedecor.register("analog_clock_wood", {
-	description = "Analog clock (wood)",
-	mesh = "homedecor_analog_clock.obj",
-	tiles = { "homedecor_analog_clock_wood.png" },
-	inventory_image = "homedecor_analog_clock_wood_inv.png",
-	collision_box = {
-		type = "fixed",
-		fixed = {
-			{ -8/32, -3/32, 15/32, 8/32, 3/32, 16/32 },
-			{ -7/32, -5/32, 15/32, 7/32, 5/32, 16/32 },
-			{ -6/32, -6/32, 15/32, 6/32, 6/32, 16/32 },
-			{ -5/32, -7/32, 15/32, 5/32, 7/32, 16/32 },
-			{ -3/32, -8/32, 15/32, 3/32, 8/32, 16/32 }
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -8/32, -8/32, 15/32, 8/32, 8/32, 16/32 }
-	},
-	groups = {snappy=3},
-})
+local clock_sbox = {
+	type = "fixed",
+	fixed = { -8/32, -8/32, 14/32, 8/32, 8/32, 16/32 }
+}
+
+local materials = {"plastic", "wood"}
+
+for _, m in ipairs(materials) do
+	homedecor.register("analog_clock_"..m, {
+		description = "Analog clock ("..m..")",
+		mesh = "homedecor_analog_clock.obj",
+		tiles = { "homedecor_analog_clock_"..m..".png" },
+		inventory_image = "homedecor_analog_clock_"..m.."_inv.png",
+		collision_box = clock_cbox,
+		selection_box = clock_sbox,
+		groups = {snappy=3},
+	})
+end
 
 homedecor.register("digital_clock", {
 	description = "Digital clock",

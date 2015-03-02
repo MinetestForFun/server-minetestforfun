@@ -377,25 +377,13 @@ homedecor.register("dishwasher", {
 	groups = { snappy = 3 },
 })
 
-homedecor.register("dishwasher_wood", {
-	description = "Dishwasher",
-	tiles = {
-		"homedecor_kitchen_cabinet_top.png",
-		"homedecor_dishwasher_bottom.png",
-		"homedecor_dishwasher_sides.png",
-		"homedecor_dishwasher_sides.png^[transformFX",
-		"homedecor_dishwasher_back.png",
-		"homedecor_dishwasher_front.png"
-	},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	groups = { snappy = 3 },
-})
+local materials = {"granite", "marble", "steel", "wood"}
 
-homedecor.register("dishwasher_steel", {
-	description = "Dishwasher",
+for _, m in ipairs(materials) do
+homedecor.register("dishwasher_"..m, {
+	description = "Dishwasher ("..m..")",
 	tiles = {
-		"homedecor_kitchen_cabinet_top_steel.png",
+		"homedecor_kitchen_cabinet_top_"..m..".png",
 		"homedecor_dishwasher_bottom.png",
 		"homedecor_dishwasher_sides.png",
 		"homedecor_dishwasher_sides.png^[transformFX",
@@ -406,33 +394,4 @@ homedecor.register("dishwasher_steel", {
 	paramtype2 = "facedir",
 	groups = { snappy = 3 },
 })
-
-homedecor.register("dishwasher_marble", {
-	description = "Dishwasher",
-	tiles = {
-		"homedecor_kitchen_cabinet_top_marble.png",
-		"homedecor_dishwasher_bottom.png",
-		"homedecor_dishwasher_sides.png",
-		"homedecor_dishwasher_sides.png^[transformFX",
-		"homedecor_dishwasher_back.png",
-		"homedecor_dishwasher_front.png"
-	},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	groups = { snappy = 3 },
-})
-
-homedecor.register("dishwasher_granite", {
-	description = "Dishwasher",
-	tiles = {
-		"homedecor_kitchen_cabinet_top_granite.png",
-		"homedecor_dishwasher_bottom.png",
-		"homedecor_dishwasher_sides.png",
-		"homedecor_dishwasher_sides.png^[transformFX",
-		"homedecor_dishwasher_back.png",
-		"homedecor_dishwasher_front.png"
-	},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	groups = { snappy = 3 },
-})
+end

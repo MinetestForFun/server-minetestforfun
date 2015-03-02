@@ -15,22 +15,15 @@ if signs_modpath then
 end
 
 local S = homedecor.gettext
+local materials = {"brass", "wrought_iron"}
 
-homedecor.register("fence_brass", {
-	description = S("Brass Fence/railing"),
-	drawtype = "fencelike",
-	tiles = {"homedecor_tile_brass.png"},
-	inventory_image = "homedecor_fence_brass.png",
-	selection_box = homedecor.nodebox.bar_y(1/7),
-	groups = {snappy=3},
-	sounds = default.node_sound_wood_defaults(),
-})
+for _, m in ipairs(materials) do
 
-homedecor.register("fence_wrought_iron", {
-	description = S("Wrought Iron Fence/railing"),
+homedecor.register("fence_"..m, {
+	description = S("Fence/railing ("..m..")"),
 	drawtype = "fencelike",
-	tiles = {"homedecor_tile_wrought_iron.png"},
-	inventory_image = "homedecor_fence_wrought_iron.png",
+	tiles = {"homedecor_tile_"..m..".png"},
+	inventory_image = "homedecor_fence_"..m..".png",
 	selection_box = homedecor.nodebox.bar_y(1/7),
 	groups = {snappy=3},
 	sounds = default.node_sound_wood_defaults(),
@@ -38,17 +31,17 @@ homedecor.register("fence_wrought_iron", {
 
 -- brass/wrought iron with signs:
 
-homedecor.register("fence_brass_with_sign", {
-	description = S("Brass Fence/railing with sign"),
+homedecor.register("fence_"..m.."_with_sign", {
+	description = S("Fence/railing with sign ("..m..")"),
 	tiles = {
-		"homedecor_sign_brass_post_top.png",
-		"homedecor_sign_brass_post_bottom.png",
-		"homedecor_sign_brass_post_side.png",
-		"homedecor_sign_brass_post_side.png",
-		"homedecor_sign_brass_post_back.png",
-		"homedecor_sign_brass_post_front.png",
+		"homedecor_sign_"..m.."_post_top.png",
+		"homedecor_sign_"..m.."_post_bottom.png",
+		"homedecor_sign_"..m.."_post_side.png",
+		"homedecor_sign_"..m.."_post_side.png",
+		"homedecor_sign_"..m.."_post_back.png",
+		"homedecor_sign_"..m.."_post_front.png",
 	},
-	wield_image = "homedecor_sign_brass_post.png",
+	wield_image = "homedecor_sign_"..m.."_post.png",
 	node_box = sign_post_model,
 	groups = {snappy=3,not_in_creative_inventory=1},
 	sounds = default.node_sound_wood_defaults(),
@@ -57,34 +50,12 @@ homedecor.register("fence_brass_with_sign", {
 		max_items = 2,
 		items = {
 			{ items = { "default:sign_wall" }},
-			{ items = { "homedecor:fence_brass" }},
+			{ items = { "homedecor:fence_"..m }},
 		},
 	},
 })
 
-homedecor.register("fence_wrought_iron_with_sign", {
-	description = S("Wrought Iron Fence/railing with sign"),
-		tiles = {
-		"homedecor_sign_wrought_iron_post_top.png",
-		"homedecor_sign_wrought_iron_post_bottom.png",
-		"homedecor_sign_wrought_iron_post_side.png",
-		"homedecor_sign_wrought_iron_post_side.png",
-		"homedecor_sign_wrought_iron_post_back.png",
-		"homedecor_sign_wrought_iron_post_front.png",
-	},
-	wield_image = "homedecor_sign_wrought_iron_post.png",
-	node_box = sign_post_model,
-	groups = {snappy=3,not_in_creative_inventory=1},
-	sounds = default.node_sound_wood_defaults(),
-	sunlight_propagates = true,
-	drop = {
-		max_items = 2,
-		items = {
-			{ items = { "default:sign_wall" }},
-			{ items = { "homedecor:fence_wrought_iron" }},
-		},
-	},
-})
+end
 
 -- other types of fences
 
