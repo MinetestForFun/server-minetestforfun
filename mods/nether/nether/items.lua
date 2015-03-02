@@ -817,7 +817,7 @@ minetest.register_tool("nether:pick_wood", {
 		max_drop_level=0,
 		groupcaps={
 			cracky = {times={[3]=1.60}, uses=10, maxlevel=1},
-			nether = {times={[3]=1.60}, uses=10, maxlevel=1},
+			nether = {times={[2]=6, [3]=1.60}, uses=10, maxlevel=1},
 		},
 		damage_groups = {fleshy=2},
 	},
@@ -831,7 +831,7 @@ minetest.register_tool("nether:pick_netherrack", {
 		max_drop_level=0,
 		groupcaps={
 			cracky = {times={[2]=2.00, [3]=1.20}, uses=20, maxlevel=1},
-			nether = {times={[2]=2.00, [3]=1.20}, uses=20, maxlevel=1},
+			nether = {times={[1]=16, [2]=2.00, [3]=1.20}, uses=20, maxlevel=1},
 		},
 		damage_groups = {fleshy=3},
 	},
