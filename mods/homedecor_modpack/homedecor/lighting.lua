@@ -59,7 +59,6 @@ for i in ipairs(colors) do
 			minetest.add_node(pos, {name = "homedecor:glowlight_small_cube_"..color, param2 = 20})
 		end,
 	})
-end
 
 local glowlight_nodebox = {
 	half = homedecor.nodebox.slab_y(1/2),
@@ -126,9 +125,11 @@ homedecor.register("glowlight_small_cube_"..color, {
 	on_place = minetest.rotate_node
 })
 
+end
+
 homedecor.register("plasma_lamp", {
 	description = "Plasma Lamp",
-	drawtype = "glasslike_framed_optional",
+	drawtype = "glasslike_framed",
 	tiles = {"homedecor_gold_block.png","homedecor_glass_face_clean.png"},
 	special_tiles = {
 		{
