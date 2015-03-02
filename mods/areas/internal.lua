@@ -1,4 +1,3 @@
-
 -- Mega_builder privilege
 minetest.register_privilege("megabuilder","Can protect an infinite amount of areas.")
 
@@ -13,7 +12,7 @@ function areas:save()
 		minetest.log("error", "[areas] Failed to serialize area data!")
 		return
 	end
-	local file, err = io.open(self.filename, "w")
+	local file, err = io.open(self.config.filename, "w")
 	if err then
 		return err
 	end
@@ -23,7 +22,7 @@ end
 
 -- Load the areas table from the save file
 function areas:load()
-	local file, err = io.open(self.filename, "r")
+	local file, err = io.open(self.config.filename, "r")
 	if err then
 		self.areas = self.areas or {}
 		return err
@@ -55,12 +54,12 @@ end
 -- Remove a area, and optionally it's children recursively.
 -- If a area is deleted non-recursively the children will
 -- have the removed area's parent as their new parent.
-function areas:remove(id, recurse, secondrun)
+function areas:remove(id, recurse)
 	if recurse then
 		-- Recursively find child entries and remove them
 		local cids = self:getChildren(id)
 		for _, cid in pairs(cids) do
-			self:remove(cid, true, true)
+			self:remove(cid, true)
 		end
 	else
 		-- Update parents
@@ -112,23 +111,26 @@ end
 -- Also checks the size of the area and if the user already
 -- has more than max_areas.
 function areas:canPlayerAddArea(pos1, pos2, name)
-	if minetest.check_player_privs(name, self.adminPrivs) then
-		--return true
+	local privs = minetest.get_player_privs(name)
+	if privs.areas then
+		return true
 	end
 
 	-- Check self protection privilege, if it is enabled,
 	-- and if the area is too big.
-	--[[if (not self.self_protection) or 
-	   (not minetest.check_player_privs(name,
-	   		{[areas.self_protection_privilege]=true})) then
+	if not self.config.self_protection or
+			not privs[areas.config.self_protection_privilege] then
 		return false, "Self protection is disabled or you do not have"
 				.." the necessary privilege."
-	end]]--
+	end
 
-	if ((pos2.x - pos1.x) > self.self_protection_max_size.x or
-	   (pos2.y - pos1.y) > self.self_protection_max_size.y or
-	   (pos2.z - pos1.z) > self.self_protection_max_size.z)
-	   and minetest.get_player_privs(name)["megabuilder"] == false then
+	local max_size = privs.areas_high_limit and
+			self.config.self_protection_max_size_high or
+			self.config.self_protection_max_size
+	if
+			(pos2.x - pos1.x) > max_size.x or
+			(pos2.y - pos1.y) > max_size.y or
+			(pos2.z - pos1.z) > max_size.z then
 		return false, "Area is too big."
 	end
 
@@ -139,8 +141,10 @@ function areas:canPlayerAddArea(pos1, pos2, name)
 			count = count + 1
 		end
 	end
-	if count >= self.self_protection_max_areas 
-	   and minetest.get_player_privs(name)["megabuilder"] == false then
+	local max_areas = privs.areas_high_limit and
+			self.config.self_protection_max_areas_high or
+			self.config.self_protection_max_areas
+	if count >= max_areas and minetest.get_player_privs(name)["megabuilder"] == false then
 		return false, "You have reached the maximum amount of"
 				.." areas that you are allowed to  protect."
 	end
@@ -149,7 +153,7 @@ function areas:canPlayerAddArea(pos1, pos2, name)
 	local can, id = self:canInteractInArea(pos1, pos2, name)
 	if not can then
 		local area = self.areas[id]
-		return false, ("The area intersects with %s [%u] owned by %s.")
+		return false, ("The area intersects with %s [%u] (%s).")
 				:format(area.name, id, area.owner)
 	end
 

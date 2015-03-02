@@ -1,4 +1,3 @@
----
 
 -- Returns a list of areas that include the provided position
 function areas:getAreasAtPos(pos)
@@ -72,7 +71,7 @@ function areas:canInteractInArea(pos1, pos2, name, allow_open)
 			end
 		end
 	end
-	-- Then check for intersecting (non-owned) areas
+	-- Then check for intersecting (non-owned) areas.
 	for id, area in pairs(self.areas) do
 		local p1, p2 = area.pos1, area.pos2
 		if (p1.x <= pos2.x and p2.x >= pos1.x) and
