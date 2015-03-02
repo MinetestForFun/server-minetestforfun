@@ -1,7 +1,5 @@
 minetest.register_privilege("worldedit", "Can use WorldEdit commands")
 
---wip: fold the hollow stuff into the main functions and add a hollow flag at the end, then add the compatibility stuff
-
 worldedit.set_pos = {}
 worldedit.inspect = {}
 
@@ -13,7 +11,7 @@ if minetest.place_schematic then
 end
 
 dofile(minetest.get_modpath("worldedit_commands") .. "/mark.lua")
-dofile(minetest.get_modpath("worldedit_commands") .. "/safe.lua")
+dofile(minetest.get_modpath("worldedit_commands") .. "/safe.lua"); safe_region = safe_region or function(callback) return callback end
 
 local get_position = function(name) --position 1 retrieval function for when not using `safe_region`
 	local pos1 = worldedit.pos1[name]
@@ -279,6 +277,21 @@ minetest.register_chatcommand("/volume", {
 	end,
 })
 
+minetest.register_chatcommand("/deleteblocks", {
+	params = "",
+	description = "remove all MapBlocks (16x16x16) containing the selected area from the map",
+	privs = {worldedit=true},
+	func = safe_region(function(name, param)
+		local pos1, pos2 = worldedit.pos1[name], worldedit.pos2[name]
+		local success = minetest.delete_area(pos1, pos2)
+		if success then
+			worldedit.player_notify(name, "Area deleted.")
+		else
+			worldedit.player_notify(name, "There was an error during deletion of the area.")
+		end
+	end),
+})
+
 minetest.register_chatcommand("/set", {
 	params = "<node>",
 	description = "Set the current WorldEdit region to <node>",
@@ -340,10 +353,11 @@ minetest.register_chatcommand("/replace", {
 	description = "Replace all instances of <search node> with <replace node> in the current WorldEdit region",
 	privs = {worldedit=true},
 	func = safe_region(function(name, param)
-		local found, _, searchnode, replacenode = param:find("^([^%s]+)%s+(.+)$")
-		local newsearchnode = worldedit.normalize_nodename(searchnode)
-		local newreplacenode = worldedit.normalize_nodename(replacenode)
-		local count = worldedit.replace(worldedit.pos1[name], worldedit.pos2[name], newsearchnode, newreplacenode)
+		local found, _, search_node, replace_node = param:find("^([^%s]+)%s+(.+)$")
+		local norm_search_node = worldedit.normalize_nodename(search_node)
+		local norm_replace_node = worldedit.normalize_nodename(replace_node)
+		local count = worldedit.replace(worldedit.pos1[name], worldedit.pos2[name],
+				norm_search_node, norm_replace_node)
 		worldedit.player_notify(name, count .. " nodes replaced")
 	end, check_replace),
 })
@@ -353,10 +367,11 @@ minetest.register_chatcommand("/replaceinverse", {
 	description = "Replace all nodes other than <search node> with <replace node> in the current WorldEdit region",
 	privs = {worldedit=true},
 	func = safe_region(function(name, param)
-		local found, _, searchnode, replacenode = param:find("^([^%s]+)%s+(.+)$")
-		local newsearchnode = worldedit.normalize_nodename(searchnode)
-		local newreplacenode = worldedit.normalize_nodename(replacenode)
-		local count = worldedit.replaceinverse(worldedit.pos1[name], worldedit.pos2[name], searchnode, replacenode)
+		local found, _, search_node, replace_node = param:find("^([^%s]+)%s+(.+)$")
+		local norm_search_node = worldedit.normalize_nodename(search_node)
+		local norm_replace_node = worldedit.normalize_nodename(replace_node)
+		local count = worldedit.replace(worldedit.pos1[name], worldedit.pos2[name],
+				norm_search_node, norm_replace_node, true)
 		worldedit.player_notify(name, count .. " nodes replaced")
 	end, check_replace),
 })
@@ -383,7 +398,7 @@ minetest.register_chatcommand("/hollowsphere", {
 	func = safe_region(function(name, param)
 		local found, _, radius, nodename = param:find("^(%d+)%s+(.+)$")
 		local node = get_node(name, nodename)
-		local count = worldedit.hollow_sphere(worldedit.pos1[name], tonumber(radius), node)
+		local count = worldedit.sphere(worldedit.pos1[name], tonumber(radius), node, true)
 		worldedit.player_notify(name, count .. " nodes added")
 	end, check_sphere),
 })
@@ -422,7 +437,7 @@ minetest.register_chatcommand("/hollowdome", {
 	func = safe_region(function(name, param)
 		local found, _, radius, nodename = param:find("^(%d+)%s+(.+)$")
 		local node = get_node(name, nodename)
-		local count = worldedit.hollow_dome(worldedit.pos1[name], tonumber(radius), node)
+		local count = worldedit.dome(worldedit.pos1[name], tonumber(radius), node, true)
 		worldedit.player_notify(name, count .. " nodes added")
 	end, check_dome),
 })
@@ -466,7 +481,7 @@ minetest.register_chatcommand("/hollowcylinder", {
 			length = length * sign
 		end
 		local node = get_node(name, nodename)
-		local count = worldedit.hollow_cylinder(worldedit.pos1[name], axis, length, tonumber(radius), node)
+		local count = worldedit.cylinder(worldedit.pos1[name], axis, length, tonumber(radius), node, true)
 		worldedit.player_notify(name, count .. " nodes added")
 	end, check_cylinder),
 })
@@ -616,6 +631,7 @@ minetest.register_chatcommand("/stack", {
 		local found, _, axis, repetitions = param:find("^([xyz%?])%s+([+-]?%d+)$")
 		if found == nil then
 			worldedit.player_notify(name, "invalid usage: " .. param)
+			return
 		end
 		local count = check_region(name, param)
 		if count then return (tonumber(repetitions) + 1) * count end
@@ -640,7 +656,7 @@ minetest.register_chatcommand("/stack2", {
 		end
 		repetitions = tonumber(repetitions)
 
-		local x, y, z = incs:match("([+-]?%d+) ([+-]%d+) ([+-]%d+)")
+		local x, y, z = incs:match("([+-]?%d+) ([+-]?%d+) ([+-]?%d+)")
 		if x == nil then
 			worldedit.player_notify(name, "invalid increments: " .. param)
 			return
@@ -819,8 +835,6 @@ minetest.register_chatcommand("/hide", {
 	end),
 })
 
-local check_set -- Actual garbage for an unknown global variable
-
 minetest.register_chatcommand("/suppress", {
 	params = "<node>",
 	description = "Suppress all <node> in the current WorldEdit region non-destructively",
@@ -829,7 +843,7 @@ minetest.register_chatcommand("/suppress", {
 		local node = get_node(name, param)
 		local count = worldedit.suppress(worldedit.pos1[name], worldedit.pos2[name], node)
 		worldedit.player_notify(name, count .. " nodes suppressed")
-	end, check_set),
+	end, check_region),
 })
 
 minetest.register_chatcommand("/highlight", {
@@ -840,7 +854,7 @@ minetest.register_chatcommand("/highlight", {
 		local node = get_node(name, param)
 		local count = worldedit.highlight(worldedit.pos1[name], worldedit.pos2[name], node)
 		worldedit.player_notify(name, count .. " nodes highlighted")
-	end, check_set),
+	end, check_region),
 })
 
 minetest.register_chatcommand("/restore", {
@@ -912,9 +926,12 @@ minetest.register_chatcommand("/allocate", {
 		local value = file:read("*a")
 		file:close()
 
-		if worldedit.valueversion(value) == 0 then --unknown version
-			worldedit.player_notify(name, "invalid file: file is invalid or created with newer version of WorldEdit")
+		local version = worldedit.read_header(value)
+		if version == 0 then
+			worldedit.player_notify(name, "File is invalid!")
 			return
+		elseif version > worldedit.LATEST_SERIALIZATION_VERSION then
+			worldedit.player_notify(name, "File was created with newer version of WorldEdit!")
 		end
 		local nodepos1, nodepos2, count = worldedit.allocate(pos, value)
 
@@ -964,8 +981,12 @@ minetest.register_chatcommand("/load", {
 		local value = file:read("*a")
 		file:close()
 
-		if worldedit.valueversion(value) == 0 then --unknown version
-			worldedit.player_notify(name, "invalid file: file is invalid or created with newer version of WorldEdit")
+		local version = worldedit.read_header(value)
+		if version == 0 then
+			worldedit.player_notify(name, "File is invalid!")
+			return
+		elseif version > worldedit.LATEST_SERIALIZATION_VERSION then
+			worldedit.player_notify(name, "File was created with newer version of WorldEdit!")
 			return
 		end
 
@@ -1108,7 +1129,7 @@ minetest.register_chatcommand("/clearobjects", {
 	description = "Clears all objects within the WorldEdit region",
 	privs = {worldedit=true},
 	func = safe_region(function(name, param)
-		local count = worldedit.clearobjects(worldedit.pos1[name], worldedit.pos2[name])
+		local count = worldedit.clear_objects(worldedit.pos1[name], worldedit.pos2[name])
 		worldedit.player_notify(name, count .. " objects cleared")
 	end),
 })
