@@ -90,6 +90,10 @@ Chat commands
  * /area\_pos2 \[X,Y,Z|X Y Z\]
 	Sets area position two to your position or the one supplied.
 
+ * `/area_open <ID>` -- Sets the area open, anyone can interact.
+	
+ * `/area_openfarming <ID>` -- Sets the area openfarming, anyone can interact only farming mod.
+
 License
 -------
 Copyright (C) 2013 ShadowNinja

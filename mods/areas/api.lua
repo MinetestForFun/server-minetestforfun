@@ -25,6 +25,13 @@ function areas:canInteract(pos, name)
 	for _, area in pairs(self:getAreasAtPos(pos)) do
 		if area.owner == name or area.open then
 			return true
+		elseif area.openfarming then
+			-- if area is openfarming and node is in group plant, action is authorized
+			local node = minetest.get_node(pos).name
+			if minetest.registered_nodes[node] and minetest.get_item_group(node, "plant") == 1 then
+				return true
+			end
+			return false
 		else
 			owned = true
 		end

@@ -10,7 +10,7 @@ minetest.register_globalstep(function(dtime)
 		for id, area in pairs(areas:getAreasAtPos(pos)) do
 			table.insert(areaStrings, ("%s [%u] (%s%s)")
 					:format(area.name, id, area.owner,
-					area.open and ":open" or ""))
+					area.open and ":open" or area.openfarming and ":open to farming" or ""))
 		end
 		local areaString = "Areas:"
 		if #areaStrings > 0 then

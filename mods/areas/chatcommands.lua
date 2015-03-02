@@ -285,6 +285,29 @@ minetest.register_chatcommand("area_open", {
 	end
 })
 
+
+minetest.register_chatcommand("area_openfarming", {
+	params = "<ID>",
+	description = "Toggle an area open (anyone can interact farming) or closed",
+	func = function(name, param)
+		local id = tonumber(param)
+		if not id then
+			return false, "Invalid usage, see /help area_openfarming."
+		end
+
+		if not areas:isAreaOwner(id, name) then
+			return false, "Area "..id.." does not exist"
+					.." or is not owned by you."
+		end
+		local openfarming = not areas.areas[id].openfarming
+		-- Save false as nil to avoid inflating the DB.
+		areas.areas[id].openfarming = openfarming or nil
+		areas:save()
+		return true, ("Area %s to farming."):format(openfarming and "opened" or "closed")
+	end
+})
+
+
 minetest.register_chatcommand("move_area", {
 	params = "<ID>",
 	description = "Move (or resize) an area to the current positions.",
