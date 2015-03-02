@@ -45,6 +45,12 @@ minetest.register_tool("returnmirror:mirror_inactive", {
 	end,
 })
 
+minetest.register_craftitem("returnmirror:mirror_glass", {
+	description = "Mirror glass",
+	inventory_image = "returnmirror_mirror_glass.png",
+	wield_image = "returnmirror_mirror_glass.png",
+})
+
 minetest.register_tool("returnmirror:mirror_active", {
 	description = "Mirror of Returning",
 	stack_max = 1,
@@ -103,10 +109,19 @@ minetest.register_tool("returnmirror:mirror_active", {
 minetest.register_alias("returnmirror:mirror_inactive", "returnmirror:returnmirror")
 
 minetest.register_craft({
+	output = "returnmirror:mirror_glass",
+	recipe = {
+		{"default:diamondblock","default:mese","default:diamondblock"},
+		{"default:mese","doors:door_obsidian_glass","default:mese"},
+		{"default:diamondblock","default:mese","default:diamondblock"},
+	},
+})
+
+minetest.register_craft({
 	output = "returnmirror:mirror_inactive",
 	recipe = {
-		{"default:diamondblock","default:nyancat","default:diamondblock"},
-		{"default:nyancat","doors:door_obsidian_glass","default:nyancat"},
-		{"default:diamondblock","default:nyancat","default:diamondblock"},
+		{"default:diamondblock", "default:nyancat", "default:diamondblock"},
+		{"default:nyancat", "returnmirror:mirror_glass", "default:nyancat"},
+		{"default:diamondblock", "default:nyancat", "default:diamondblock"},
 	},
 })
