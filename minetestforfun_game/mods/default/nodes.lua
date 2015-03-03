@@ -1326,6 +1326,7 @@ minetest.register_node("default:mossycobble", {
 	description = "Mossy Cobblestone",
 	tiles = {"default_mossycobble.png"},
 	is_ground_content = true,
+	groups = {cracky=3, stone=1},
 	drop = {
 		items = {
 			{items = {"default:mossycobble"}},
