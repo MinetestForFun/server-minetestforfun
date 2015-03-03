@@ -523,13 +523,14 @@ minetest.register_node(":carts:rail_copper", {
 	},
 })
 
-minetest.register_node(":carts:rail_power", {
+minetest.register_node("maptools:unbreakable_rail_power", {
 	description = "Unbreakable Powered Rail",
 	drawtype = "raillike",
 	tiles = {"carts_rail_pwr.png", "carts_rail_curved_pwr.png", "carts_rail_t_junction_pwr.png", "carts_rail_crossing_pwr.png"},
 	inventory_image = "carts_rail_pwr.png",
 	wield_image = "carts_rail_pwr.png",
 	paramtype = "light",
+	stack_max = 10000,
 	sunlight_propagates = true,
 	is_ground_content = true,
 	walkable = false,
