@@ -10,7 +10,7 @@ minetest.register_node("lantern:lantern", {
 	tiles = {"lantern_tb.png","lantern_tb.png","lantern.png","lantern.png","lantern.png","lantern.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	light_source = LIGHT_MAX-1,
+	light_source = default.LIGHT_MAX-1,
 	paramtype2 = "wallmounted",
 	walkable = false,
 	groups = {snappy = 2, cracky = 2, dig_immediate = 3},
@@ -48,7 +48,7 @@ minetest.register_node("lantern:candle", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
-	light_source = LIGHT_MAX - 1,
+	light_source = default.LIGHT_MAX - 1,
 	groups = {dig_immediate = 3, attached_node = 1},
 	sounds = default.node_sound_defaults(),
 	selection_box = {
@@ -63,7 +63,7 @@ minetest.register_node("lantern:lamp", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = true,
-	light_source = LIGHT_MAX - 1,
+	light_source = default.LIGHT_MAX - 1,
 	groups = {snappy = 2, cracky = 2, oddly_breakable_by_hand = 3},
 	sounds = default.node_sound_glass_defaults(),
 })
@@ -179,7 +179,7 @@ minetest.register_node("lantern:lamp1", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = true,
-	light_source = LIGHT_MAX - 1,
+	light_source = default.LIGHT_MAX - 1,
 	groups = {snappy = 2, cracky = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
@@ -202,7 +202,7 @@ minetest.register_node("lantern:lamp2", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = true,
-	light_source = LIGHT_MAX - 1,
+	light_source = default.LIGHT_MAX - 1,
 	groups = {snappy = 2, cracky = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
@@ -225,7 +225,7 @@ minetest.register_node("lantern:lamp3", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = true,
-	light_source = LIGHT_MAX - 1,
+	light_source = default.LIGHT_MAX - 1,
 	groups = {snappy = 2, cracky = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
@@ -248,7 +248,7 @@ minetest.register_node("lantern:lamp4", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = true,
-	light_source = LIGHT_MAX - 1,
+	light_source = default.LIGHT_MAX - 1,
 	groups = {snappy = 2, cracky = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {

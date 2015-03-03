@@ -178,7 +178,7 @@ homedecor.register("fishtank_lighted", {
 		"homedecor_fishtank_back_lighted.png",
 		"homedecor_fishtank_front_lighted.png"
 	},
-	light_source = LIGHT_MAX-4,
+	light_source = default.LIGHT_MAX-4,
 	node_box = {
 		type = "fixed",
 		fixed = {

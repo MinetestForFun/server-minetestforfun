@@ -209,7 +209,7 @@ minetest.register_node("snow:star", {
 minetest.register_node("snow:star_lit", {
 	description = "Star Lighted",
 	drawtype = "plantlike",
-	light_source = LIGHT_MAX,
+	light_source = default.LIGHT_MAX - 1,
 	tiles = {"snow_star_lit.png"},
 	wield_image = "snow_star.png",
 	paramtype = "light",

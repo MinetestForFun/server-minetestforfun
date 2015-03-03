@@ -3,12 +3,12 @@
 
 default = {} -- Definitions made by this mod are usable by all mods.
 
--- The API documentation in here was moved into doc/lua_api.txt.
+-- The API documentation in here was moved into game_api.txt
 
-WATER_ALPHA = 160
-WATER_VISC = 1
-LAVA_VISC = 3     -- Slower movement in lava.
-LIGHT_MAX = 14    -- 15 is reserved for sunlight.
+-- Definitions made by this mod that other mods can use too
+default = {}
+
+default.LIGHT_MAX = 14
 
 -- GUI related stuff:
 default.gui_bg = "bgcolor[#080808BB;true]"
