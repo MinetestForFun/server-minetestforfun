@@ -13,13 +13,12 @@ package.path =
 -- The build of Lua that Minetest comes with only looks for libraries under
 -- /usr/local/share and /usr/local/lib but LuaSocket is often installed under
 -- /usr/share and /usr/lib.
-if not rawget(_G,"jit") and package.config:sub(1, 1) == "/" then
+if not jit and package.config:sub(1, 1) == "/" then
 	package.path = package.path..
 			";/usr/share/lua/5.1/?.lua"..
 			";/usr/share/lua/5.1/?/init.lua"
-   	package.cpath = package.cpath..
- --			";/usr/lib/lua/5.1/?.so"
-			";/usr/lib/x86_64-linux-gnu/lua/5.1/?.so"
+	package.cpath = package.cpath..
+			";/usr/lib/lua/5.1/?.so"
 end
 
 irc = {
@@ -104,9 +103,6 @@ function irc:connect()
 		return
 	end
 
-	print("== This is a debug line, please check for it ==")
-	print(self.config.NSPass)
-	print("=== DEBUG FINISHED ===")
 	if self.config.NSPass then
 		self:say("NickServ", "IDENTIFY "..self.config.NSPass)
 	end
