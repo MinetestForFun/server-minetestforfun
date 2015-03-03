@@ -164,20 +164,31 @@ minetest.register_node("darkage:stone_brick", {
 })
 
 -- Other Blocks
-minetest.register_node("darkage:straw", {
-	description = "Straw",
-	tiles = {"darkage_straw.png"},
-	groups = {snappy=3, flammable=2},
-	sounds = default.node_sound_leaves_defaults(),
-})
+--if not farming:straw
+if minetest.get_modpath("farming") == nil then
+	minetest.register_node("darkage:straw", {
+		description = "Straw",
+		tiles = {"darkage_straw.png"},
+		groups = {snappy=3, flammable=2},
+		sounds = default.node_sound_leaves_defaults(),
+	})
 
-minetest.register_node("darkage:straw_bale", {
-	description = "Straw Bale",
-	tiles = {"darkage_straw_bale.png"},
-	drop = "darkage:straw 4",
-	groups = {snappy=2, flammable=2},
-	sounds = default.node_sound_leaves_defaults(),
-})
+	minetest.register_node("darkage:straw_bale", {
+		description = "Straw Bale",
+		tiles = {"darkage_straw_bale.png"},
+		drop = "darkage:straw 4",
+		groups = {snappy=2, flammable=2},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+else
+	minetest.register_node("darkage:straw_bale", {
+		description = "Straw Bale",
+		tiles = {"darkage_straw_bale.png"},
+		drop = "farming:straw 4",
+		groups = {snappy=2, flammable=2},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+end
 
 minetest.register_node("darkage:slate_tile", {
 	description = "Slate Tile",

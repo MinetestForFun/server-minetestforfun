@@ -90,30 +90,56 @@ minetest.register_craft({
 -- Cobble
 
 -- Other Blocks
+--if not farming:straw
+if minetest.get_modpath("farming") == nil then
 
-minetest.register_craft({
-	output = "darkage:straw 2",
-	recipe = {
-	{"default:dry_shrub","default:dry_shrub"},
+	minetest.register_craft({
+		output = "darkage:straw 2",
+		recipe = {
 		{"default:dry_shrub","default:dry_shrub"},
-	}
-})
+			{"default:dry_shrub","default:dry_shrub"},
+		}
+	})
+	
+	minetest.register_craft({
+		output = "darkage:straw 2",
+		recipe = {
+			{"darkage:dry_leaves","darkage:dry_leaves"},
+			{"darkage:dry_leaves","darkage:dry_leaves"},
+		}
+	})
 
-minetest.register_craft({
-	output = "darkage:straw 2",
-	recipe = {
-		{"darkage:dry_leaves","darkage:dry_leaves"},
-		{"darkage:dry_leaves","darkage:dry_leaves"},
-	}
-})
-
-minetest.register_craft({
-	output = "darkage:straw_bale",
-	recipe = {
-		{"darkage:straw","darkage:straw"},
-		{"darkage:straw","darkage:straw"},
-	}
-})
+	minetest.register_craft({
+		output = "darkage:straw_bale",
+		recipe = {
+			{"darkage:straw","darkage:straw"},
+			{"darkage:straw","darkage:straw"},
+		}
+	})
+	minetest.register_craft({
+		output = "darkage:adobe 4",
+		recipe = {
+			{"default:sand","default:sand"},
+			{"default:clay_lump","darkage:straw"},
+		}
+	})
+else
+	minetest.register_craft({
+		output = "darkage:straw_bale",
+		recipe = {
+			{"farming:straw","farming:straw"},
+			{"farming:straw","farming:straw"},
+		}
+	})
+	
+	minetest.register_craft({
+		output = "darkage:adobe 4",
+		recipe = {
+			{"default:sand","default:sand"},
+			{"default:clay_lump","farming:straw"},
+		}
+	})
+end
 
 minetest.register_craft({
 	output = "darkage:slate_tile 4",
@@ -148,14 +174,6 @@ minetest.register_craft({
 		{"group:stick","","group:stick"},
 		{"","darkage:chalk",""},
 		{"group:stick","","group:stick"},
-	}
-})
-
-minetest.register_craft({
-	output = "darkage:adobe 4",
-	recipe = {
-		{"default:sand","default:sand"},
-		{"default:clay_lump","darkage:straw"},
 	}
 })
 

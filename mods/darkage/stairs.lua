@@ -95,7 +95,8 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+	--if not farming:straw
+	if minetest.get_modpath("farming") == nil then
 	stairsplus:register_all("darkage", "straw", "darkage:straw", {
 		description = "Straw",
 		tiles = {"darkage_straw.png"},
@@ -103,6 +104,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
+	end
 	
 	stairsplus:register_all("darkage", "straw_bale", "darkage:straw_bale", {
 		description = "Straw Bale",
@@ -267,7 +269,8 @@ elseif stairs then
 		"Basalt Cobble Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+		--if not farming:straw
+	if minetest.get_modpath("farming") == nil then
 	stairs.register_stair_and_slab("straw", "darkage:straw",
 		{snappy=3, flammable=2},
 		{"darkage_straw.png"},
@@ -275,7 +278,7 @@ elseif stairs then
 		"Straw Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+	end
 	stairs.register_stair_and_slab("straw_bale", "darkage:straw_bale",
 		{snappy=2, flammable=2},
 		{"darkage_straw_bale.png"},
