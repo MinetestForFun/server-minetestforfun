@@ -488,6 +488,36 @@ minetest.register_node(":fences:fence_wood", {
 
 
 -- carts:
+
+minetest.register_node(":maptools:unbreakable_rail", {
+	description = "Unbreakable Rail",
+	drawtype = "raillike",
+	tiles = {"default_rail.png", "default_rail_curved.png", "default_rail_t_junction.png", "default_rail_crossing.png"},
+	inventory_image = "default_rail.png",
+	wield_image = "default_rail.png",
+	paramtype = "light",
+	stack_max = 10000,
+	sunlight_propagates = true,
+	is_ground_content = true,
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+	},
+	groups = {snappy = 1, rail = 1, connect_to_raillike = 1, unbreakable = 1, not_in_creative_inventory = maptools.creative},
+	mesecons = {
+		effector = {
+			action_off = function(pos, node)
+				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+			end,
+
+			action_on = function(pos, node)
+				minetest.get_meta(pos):set_string("cart_acceleration", "0")
+			end,
+		},
+	},
+})
+
 minetest.register_node(":maptools:unbreakable_rail_copper", {
 	description = "Unbreakable Copper Rail",
 	drawtype = "raillike",
@@ -495,6 +525,7 @@ minetest.register_node(":maptools:unbreakable_rail_copper", {
 	inventory_image = "carts_rail_copper.png",
 	wield_image = "carts_rail_copper.png",
 	paramtype = "light",
+	stack_max = 10000,
 	sunlight_propagates = true,
 	is_ground_content = true,
 	walkable = false,
