@@ -894,12 +894,12 @@ minetest.register_node("default:lava_flowing", {
 	tiles = {"default_lava.png"},
 	special_tiles = {
 		{
-			image = "default_lava_flowing_animated.png",
+			name = "default_lava_flowing_animated.png",
 			backface_culling = false,
 			animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 1.5}
 		},
 		{
-			image = "default_lava_flowing_animated.png",
+			name = "default_lava_flowing_animated.png",
 			backface_culling = true,
 			animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 1.5}
 		},
