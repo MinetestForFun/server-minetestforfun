@@ -44,7 +44,7 @@ mobs:register_mob("mobs:mese_monster", {
 		min = 2,
 		max = 5,},
 		{name = "returnmirror:mirror_inactive",
-		chance = 20,
+		chance = 50,
 		min = 1,
 		max = 1,},
 	},
