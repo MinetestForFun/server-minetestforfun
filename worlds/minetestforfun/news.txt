@@ -4,7 +4,6 @@ News de FR - MinetestForFun (Survival - PvP)
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
-
 ---04/03/2015--- (Remerciements : Crabman77, Mg)
 MAJ de "mobs" (bugfix des loups)
 MAJ de "MFF_game" (nouvelle texture de feu pour le four/furnace, ajout de Obsidian/Obsidian brick stairs & slabs, bugfix/amélioration mgv5/mgv7, crashfix)
@@ -18,6 +17,7 @@ MAJ de "MFF_game" (encore de nouvelles textures, coffres, cafctus, bricks, etc..
 Ajout du mod "shutdown" (affiche des rappels aux joueurs disant que le serveur va reboot le lundi, jeudi, et samedi à 2h55)
 MAJ de "returnmirror" (nouvelle texture pour le composant "returnmirror:glass")
 MAJ de "_misc/aliases.lua" (transforme l'ancienne straw du mod darkage, en nouvelle straw du mod farming)
+MAJ de "darkage" (les straw_bale sont maintenant destructible à la main)
 
 ---03/03/2015--- (Remerciements : Gael-de-Sailly, Mg, Crabman77)
 MAJ de "mobs" (ajout des loups, apparîssent de nuit, en petite meute, sont faibles individuellement - le taux de spawn des Dirt Monster à été réduit pour laisser de la place aux meutes de loups)
