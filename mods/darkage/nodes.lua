@@ -177,7 +177,7 @@ if minetest.get_modpath("farming") == nil then
 		description = "Straw Bale",
 		tiles = {"darkage_straw_bale.png"},
 		drop = "darkage:straw 4",
-		groups = {snappy=2, flammable=2},
+		groups = {snappy=3, flammable=2},
 		sounds = default.node_sound_leaves_defaults(),
 	})
 else
@@ -185,7 +185,7 @@ else
 		description = "Straw Bale",
 		tiles = {"darkage_straw_bale.png"},
 		drop = "farming:straw 4",
-		groups = {snappy=2, flammable=2},
+		groups = {snappy=3, flammable=2},
 		sounds = default.node_sound_leaves_defaults(),
 	})
 end
