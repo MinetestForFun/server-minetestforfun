@@ -1555,7 +1555,7 @@ minetest.register_node("default:grass_1", {
 	description = "Grass",
 	drawtype = "plantlike",
 	tiles = {"default_grass_1.png"},
-	inventory_image = "default_grass_3.png", -- Use a bigger inventory image.
+	inventory_image = "default_grass_3.png", -- Use texture of a taller grass stage in inventory
 	wield_image = "default_grass_3.png",
 	paramtype = "light",
 	walkable = false,

@@ -390,15 +390,102 @@ minetest.register_node("maptools:desert_sand_soil_wet", {
 
 -- Fence:
 
-minetest.register_node(":default:fence_wood", {
+local function dockable(nodename)
+    if nodename == "default:wood" or nodename == "default:brick" or nodename == "default:cobble" or nodename == "default:dirt" or nodename == "default:sandstone" or nodename == "default:stone" or string.find(nodename, "fences:fence_wood") or string.find(nodename, "fences:fencegate") then
+        return true
+    end
+end
+local function find_dock(pos, second)
+	if pos == nil then
+		return false
+	end
+
+	local h1 = minetest.get_node({x=pos.x+1, y=pos.y, z=pos.z})
+	local v1 = minetest.get_node({x=pos.x-1, y=pos.y, z=pos.z})
+	local r1 = minetest.get_node({x=pos.x, y=pos.y, z=pos.z+1})
+	local l1 = minetest.get_node({x=pos.x, y=pos.y, z=pos.z-1})
+	local code = 0
+	if dockable(l1.name) then
+		code = code+1
+		if second < 2 then
+			minetest.punch_node({x=pos.x, y=pos.y, z=pos.z-1})
+		end
+	end
+	if dockable(r1.name) then
+		code = code+2
+		if second < 2 then
+			minetest.punch_node({x=pos.x, y=pos.y, z=pos.z+1})
+		end
+	end
+	if dockable(v1.name) then
+		code = code+11
+		if second < 2 then
+			minetest.punch_node({x=pos.x-1, y=pos.y, z=pos.z})
+		end
+	end
+	if dockable(h1.name) then
+		code = code+21
+		if second < 2 then
+			minetest.punch_node({x=pos.x+1, y=pos.y, z=pos.z})
+		end
+	end
+		local me = minetest.get_node(pos)
+		if code > 0 then
+			local tmp_name = "fences:fence_wood_"..code
+			--minetest.chat_send_all(tmp_name)
+			local tmp_node = {name=tmp_name, param1=me.param1, param2=me.param2}
+			if second > 0 then
+				local tmp_node = {name=tmp_name, param1=me.param1, param2=me.param2}
+				minetest.set_node(pos, tmp_node)			
+			end
+		elseif code == 0 then
+			if second == 2 then
+				local tmp_node = {name="fences:fence_wood", param1=me.param1, param2=me.param2}
+				minetest.set_node(pos, tmp_node)			
+			end
+		end
+	
+end
+
+
+local p0 = {-2/16, -1/2, -2/16, 2/16, 1/2, 2/16}
+local p1 = {-2/16, 1/2, -2/16, -2/16, 1/2+8/16, -2/16}
+local p2 = {-2/16, 1/2, 2/16, -2/16, 1/2+8/16, 2/16}
+local p3 = {0, 0, 0, 0, 0, 0}
+local p4 = {2/16, 1/2, -2/16, 2/16, 1/2+8/16, -2/16}
+local p5 = {2/16, 1/2, 2/16, 2/16, 1/2+8/16, 2/16}
+
+
+minetest.register_node(":fences:fence_wood", {
 	description = S("Unbreakable Wooden Fence"),
 	range = 12,
 	stack_max = 10000,
-	tiles = {"default_fence.png"},
-	drop = "",
+	tiles = {"default_wood.png"},
+	inventory_image = "default_wood.png",
+	wield_image = "default_wood.png",
+	paramtype = "light",
 	groups = {unbreakable = 1, not_in_creative_inventory = maptools.creative},
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_wood_defaults(),
+	drop = "",
+	sunlight_propagates = true,
+	drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+		fixed = {p0,p1,p2,p3,p4,p5,}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-2/16, -1/2, -2/16, 2/16, 1/2, 2/16},
+	},
+	on_construct = function(pos)
+		find_dock(pos, 1)
+	end,
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		find_dock(pos, -1)
+	end
 })
+
+
 
 -- carts:
 minetest.register_node(":carts:rail_copper", {
