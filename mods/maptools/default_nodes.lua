@@ -488,7 +488,7 @@ minetest.register_node(":fences:fence_wood", {
 
 
 -- carts:
-minetest.register_node(":carts:rail_copper", {
+minetest.register_node(":maptools:unbreakable_rail_copper", {
 	description = "Unbreakable Copper Rail",
 	drawtype = "raillike",
 	tiles = {"carts_rail_copper.png", "carts_rail_copper_curved.png", "carts_rail_copper_t_junction.png", "carts_rail_copper_crossing.png"},
