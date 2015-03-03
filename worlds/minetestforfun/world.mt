@@ -35,7 +35,6 @@ load_mod_stained_glass = true
 load_mod_lavalamp = true
 load_mod_lantern = true
 load_mod_money = true
-load_mod_beds = true
 load_mod_throwing = true
 load_mod_3d_armor = true
 load_mod_shields = true

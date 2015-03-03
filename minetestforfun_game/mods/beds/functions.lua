@@ -1,16 +1,8 @@
-beds = {}
-beds.player = {}
-beds.pos = {}
-beds.spawn = {}
-
-local is_sp = minetest.is_singleplayer() or false
 local player_in_bed = 0
-local form = 	"size[8,15;true]"..
-		"bgcolor[#080808BB; true]"..
-		"button_exit[2,12;4,0.75;leave;Leave Bed]"
+local is_sp = minetest.is_singleplayer()
 
 
--- help functions
+-- helper functions
 
 local function get_look_yaw(pos)
 	local n = minetest.get_node(pos)
@@ -24,7 +16,6 @@ local function get_look_yaw(pos)
 		return 6.28, n.param2
 	end
 end
-
 
 local function check_in_beds(players)
 	local in_bed = beds.player
@@ -42,7 +33,7 @@ local function check_in_beds(players)
 	return true
 end
 
-local function lay_down(player, pos, bed_pos, state)
+local function lay_down(player, pos, bed_pos, state, skip)
 	local name = player:get_player_name()
 	local hud_flags = player:hud_get_flags()
 
@@ -56,6 +47,10 @@ local function lay_down(player, pos, bed_pos, state)
 		if beds.player[name] ~= nil then
 			beds.player[name] = nil
 			player_in_bed = player_in_bed - 1
+		end
+		-- skip here to prevent sending player specific changes (used for leaving players)
+		if skip then
+			return
 		end
 		if p then 
 			player:setpos(p)
@@ -97,10 +92,10 @@ local function update_formspecs(finished)
 	local is_majority = (ges/2) < player_in_bed
 
 	if finished then
-		form_n = form ..
+		form_n = beds.formspec ..
 			"label[2.7,11; Good morning.]"
 	else
-		form_n = form ..
+		form_n = beds.formspec ..
 			"label[2.2,11;"..tostring(player_in_bed).." of "..tostring(ges).." players are in bed]"	
 		if is_majority then
 			form_n = form_n ..
@@ -152,7 +147,7 @@ function beds.on_rightclick(pos, player)
 		update_formspecs(false)
 	end
 
-	-- skip the night and let all stand up
+	-- skip the night and let all players stand up
 	if check_in_beds() then
 		minetest.after(2, function()
 			beds.skip_night()
@@ -182,7 +177,7 @@ end)
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
-	lay_down(player, nil, nil, false)
+	lay_down(player, nil, nil, false, true)
 	beds.player[name] = nil
 	if check_in_beds() then
 		minetest.after(2, function()
@@ -208,8 +203,3 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		beds.kick_players()
 	end
 end)
-
-
--- nodes and respawn function
-dofile(minetest.get_modpath("beds").."/nodes.lua")
-dofile(minetest.get_modpath("beds").."/spawns.lua")

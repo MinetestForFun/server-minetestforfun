@@ -1,8 +1,8 @@
 Minetest mod "Beds"
 ===================
-by BlockMen (c) 2014
+by BlockMen (c) 2014-2015
 
-Version: 1.1
+Version: 1.1.1
 
 About
 ~~~~~
@@ -34,7 +34,7 @@ Notice: You can use any color of wood or wool, mixing different is also possible
 
 License of source code, textures: WTFPL
 ---------------------------------------
-(c) Copyright BlockMen (2014)
+(c) Copyright BlockMen (2014-2015)
 
 
 
