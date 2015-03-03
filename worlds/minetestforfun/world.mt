@@ -8,7 +8,10 @@ load_mod_moreblocks = true
 load_mod_unifieddyes = true
 load_mod_homedecor = true
 load_mod_coloredwood = true
+
+load_mod_soundset = true
 load_mod_ambience = true
+
 load_mod_building_blocks = true
 load_mod_computer = true
 load_mod_fake_fire = true
@@ -57,6 +60,7 @@ load_mod_mesecons = true
 load_mod_mesecons_alias = true
 load_mod_mesecons_button = true
 load_mod_mesecons_commandblock = true
+load_mod_mesecons_compatibility = true
 load_mod_mesecons_delayer = true
 load_mod_mesecons_extrawires = true
 load_mod_mesecons_hydroturbine = true
@@ -153,9 +157,12 @@ load_mod_food = true
 load_mod_fishing = true
 load_mod_hud = true
 load_mod_sprint = true
+load_mod_mana = true
+load_mod_returnmirror = true
 load_mod_playerplus = false
 
 load_mod_xban2 = true
+load_mod_inventorycheck = true
 load_mod_name_restrictions = true
 load_mod_whoison = true
 load_mod_player_inactive = true
