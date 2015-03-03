@@ -10,7 +10,7 @@ mobs:register_mob("mobs:wolf", {
 	--textures = {"mobs_wolf.png"},
 	available_textures = {
 		total = 1,
-		texture_1 = {"mobs_dirt_monster.png"},
+		texture_1 = {"mobs_wolf.png"},
 	},
 	--visual_size = {x=1, y=1},
 	makes_footstep_sound = true,
