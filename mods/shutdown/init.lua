@@ -26,13 +26,17 @@ minetest.register_globalstep(function(dtime)
 	if jour ~= 1 and jour~= 4 and jour ~= 6 then return end
 	
 	if heure == "2" and minute == "25" then        --modifier ici à  vos besoin
-		minetest.chat_send_all("Arret du serveur pour sauvegarde dans 30min --- Veuillez vous deconnecter.")
+		minetest.chat_send_all("Rappel, arret du serveur pour sauvegarde dans 30min.")
+		minetest.chat_send_all("Attention, server will shutdown in 30 minutes for backup.")
 	elseif heure == "2" and minute == "40" then         --modifier ici à  vos besoin
-		minetest.chat_send_all("Arret du serveur pour sauvegarde dans 15min --- Veuillez vous deconnecter.")
+		minetest.chat_send_all("Rappel, arret du serveur pour sauvegarde dans 15min.")
+		minetest.chat_send_all("Attention, server will shutdown in 15 minutes for backup.")
 	elseif heure == "2" and minute == "50" then         --modifier ici à  vos besoin
-		minetest.chat_send_all("Arret du serveur pour sauvegarde dans 5min --- Veuillez vous deconnecter.")
+		minetest.chat_send_all("Rappel, arret du serveur pour sauvegarde dans 5min --- Veuillez vous deconnecter!!!")
+		minetest.chat_send_all("Attention, server will shutdown in 5 minutes for backup --- Please logout!!!")
 	elseif heure == "2" and minute == "54" then           --modifier ici à  vos besoin
 		minetest.chat_send_all("=== ARRET DU SERVEUR ===")
+		minetest.chat_send_all("=== SERVER SHUTTING DOWN ===")
 	end
 
 end)
