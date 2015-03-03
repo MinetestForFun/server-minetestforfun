@@ -23,7 +23,7 @@ function default.get_hotbar_bg(x,y)
 	return out
 end
 
-default.gui_suvival_form = "size[8,8.5]"..
+default.gui_survival_form = "size[8,8.5]"..
 			default.gui_slots ..
 			"list[current_player;main;         0,    4.25; 8, 4;  ]" ..
 			"list[current_player;craft;        1.75, 0.5;  3, 3;  ]" ..
@@ -43,6 +43,7 @@ dofile(minetest.get_modpath("default").."/mapgen.lua")
 dofile(minetest.get_modpath("default").."/player.lua")
 dofile(minetest.get_modpath("default").."/trees.lua")
 dofile(minetest.get_modpath("default").."/aliases.lua")
+dofile(minetest.get_modpath("default").."/legacy.lua")
 
 -- Code below by Casimir.
 
