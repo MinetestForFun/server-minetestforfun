@@ -37,3 +37,9 @@ minetest.register_alias("moreores:copper_rail", "carts:rail_copper")
 
 -- Remove "multitest:hayblock" because farming redo include it now
 minetest.register_alias("multitest:hayblock", "farming:straw")
+
+-- Remove "darkage:stair_straw", "darkage:straw", "darkage:straw_bale" and "darkage:adobe"
+minetest.register_alias("darkage:stair_straw", "farming:straw")
+minetest.register_alias("darkage:straw", "farming:straw")
+minetest.register_alias("darkage:straw_bale", "farming:straw")
+minetest.register_alias("darkage:adobe", "farming:straw")
