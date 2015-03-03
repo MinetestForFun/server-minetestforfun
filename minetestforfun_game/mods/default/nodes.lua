@@ -1382,7 +1382,6 @@ minetest.register_node("default:mese", {
 	groups = {cracky = 1, level = 2, fall_damage_add_percent = -75},
 	sounds = default.node_sound_wood_defaults(), -- Intended.
 })
-minetest.register_alias("default:mese_block", "default:mese")
 
 local function die_later(digger)
 	digger:set_hp(0)
@@ -1694,7 +1693,6 @@ minetest.register_node("default:snow", {
 		end
 	end,
 })
-minetest.register_alias("snow", "default:snow")
 
 minetest.register_node("default:snowblock", {
 	description = "Snow Block",
