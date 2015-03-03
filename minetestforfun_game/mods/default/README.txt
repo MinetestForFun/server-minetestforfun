@@ -1,4 +1,3 @@
-
 Minetest 0.4 mod: default
 ==========================
 
@@ -24,13 +23,6 @@ Everything not listed in here:
 Copyright (C) 2010-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
 
 Cisoun's WTFPL texture pack:
-  default_chest_front.png
-  default_chest_lock.png
-  default_chest_side.png
-  default_chest_top.png
-  default_dirt.png
-  default_grass.png
-  default_grass_side.png
   default_jungletree.png
   default_jungletree_top.png
   default_lava.png
@@ -41,7 +33,7 @@ Cisoun's WTFPL texture pack:
   default_tree.png
   default_tree_top.png
   default_water.png
- 
+
 Cisoun's conifers mod (WTFPL):
   default_pine_needles.png
 
@@ -72,12 +64,12 @@ VanessaE (WTFPL):
   default_sand.png
   default_sandstone_brick.png
 
-Calinou (CC BY-SA 3.0):
-  crack_anylength.png
+Calinou (CC BY-SA):
   default_brick.png
   default_papyrus.png
   default_copper_lump.png
   default_mineral_copper.png
+  default_glass_detail.png
 
 MirceaKitsune (WTFPL):
   character.x
@@ -91,7 +83,6 @@ PilzAdam (WTFPL):
   default_junglewood.png
   default_obsidian_glass.png
   default_obsidian_shard.png
-  default_mossycobble.png
   default_gold_lump.png
   default_mineral_gold.png
   default_snowball.png
@@ -127,7 +118,6 @@ brunob.santos (CC BY-SA 4.0):
 BlockMen (CC BY-SA 3.0):
   default_stone_brick.png
   default_wood.png
-  default_cobble.png
   default_clay_brick.png
   default_tool_steelsword.png
   default_bronze_ingot.png
@@ -141,9 +131,24 @@ BlockMen (CC BY-SA 3.0):
   default_book.png
   default_paper.png
   default_stick.png
+  default_chest_front.png
+  default_chest_lock.png
+  default_chest_side.png
+  default_chest_top.png
   bubble.png
   heart.png
   gui_*.png
+
+Neuromancer (CC BY-SA 2.0):
+  default_cobble.png, based on texture by Brane praefect
+  default_mossycobble.png, based on texture by Brane praefect
+Neuromancer (CC BY-SA 3.0):
+  default_dirt.png
+  default_furnace_*.png
+
+Philipbenr (CC BY-SA 3.0):
+  default_grass.png
+  default_grass_side.png
 
 Glass breaking sounds (CC BY 3.0):
   1: http://www.freesound.org/people/cmusounddesign/sounds/71947/
