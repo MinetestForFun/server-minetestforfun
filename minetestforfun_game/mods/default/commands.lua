@@ -10,7 +10,7 @@ minetest.register_craftitem("default:infotool", {
     on_use = function(_, user, pt)
 	if pt.type ~= "node" then return end
 	local nn = minetest.get_node(pt.under).name
-	if type(minetest.registered_items[nn].tiles[1]) ~= "string" then return end
+	if minetest.registered_items[nn] == nil or type(minetest.registered_items[nn].tiles[1]) ~= "string" then return end
 	local def = minetest.registered_nodes[nn]
 	if not def then return end
 	
