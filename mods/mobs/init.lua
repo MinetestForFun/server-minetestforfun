@@ -22,6 +22,7 @@ dofile(minetest.get_modpath("mobs").."/oerkki.lua")
 dofile(minetest.get_modpath("mobs").."/sandmonster.lua")
 dofile(minetest.get_modpath("mobs").."/stonemonster.lua")
 dofile(minetest.get_modpath("mobs").."/treemonster.lua")
+dofile(minetest.get_modpath("mobs").."/wolf.lua")
 
 -- Zmobs by Zeg9
 

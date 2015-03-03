@@ -2,7 +2,7 @@
 
 mobs:register_mob("mobs:wolf", {
 	type = "monster",
-	hp_max = 15,
+	hp_min = 15,
 	hp_max = 20,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
