@@ -1,0 +1,5 @@
+# Turkish translation by mahmutelmas06
+
+someone = birisi
+Sorry, %s owns that spot. = Üzgünüm, buranın sahibi %s.
+[Plantlife Library] Loaded = [Plantlife Library] yüklendi

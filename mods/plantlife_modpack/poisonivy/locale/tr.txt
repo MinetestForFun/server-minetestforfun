@@ -1,0 +1,7 @@
+# Turkish translation by mahmutelmas06
+
+Poison ivy (seedling) = Sarmaşık (Fidan)
+Poison ivy (sproutling) = Sarmaşık (Filiz) 
+Poison ivy (climbing plant) = Sarmaşık (Dolanan)  
+
+[Poison Ivy] Loaded. = Sarmaşık yüklendi

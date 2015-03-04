@@ -1,0 +1,14 @@
+# Turkish translation
+# mahmutelmas06@hotmail.com
+
+Waterlily = Nilüfer
+Seaweed = Deniz yosunu
+Potted Rose = Saksı gülü 
+Potted Tulip = Saksı lalesi
+Potted Yellow Dandelion = Sarı hindiba
+Potted White Dandelion = Beyaz hindiba
+Potted Blue Geranium = Mavi hindiba
+Potted Viola = Saksı Menekşesi
+Flower Pot = Saksı
+
+[Flowers] Loaded. = [Flowers] yüklendi.
