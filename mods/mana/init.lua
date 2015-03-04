@@ -172,6 +172,7 @@ do
 		if(string ~= nil) then
 			local savetable = minetest.deserialize(string)
 			mana.playerlist = savetable.playerlist
+			if mana.playerlist == nil then mana.playerlist = {} end
 			minetest.debug("[mana] mana.mt successfully read.")
 		end
 	end
@@ -292,6 +293,7 @@ else
 	function mana.hud_update(playername)
 		local player = minetest.get_player_by_name(playername)
 		player:hud_change(mana.playerlist[playername].hudid, "number", mana.get(playername))
+		player:hud_change(mana.playerlist[playername].hudid, "text", mana.manastring(playername))
 	end
 	
 	function mana.hud_remove(playername)
