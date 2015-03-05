@@ -40,7 +40,7 @@ http://github.com/LeMagnesium/fail.git
 https://github.com/tenplus1/farming.git
   => Modifié pour : light pour que certaines plantes poussent
 https://forum.minetest.net/viewtopic.php?t=5016 <= Should be replaced by a git repository
-https://github.com/Mossmanikin/fishing.git <= Est-ce lui?
+https://github.com/Mossmanikin/fishing.git
 https://github.com/rubenwardy/food.git
 https://github.com/minetest-technic/framedglass.git
 https://github.com/VanessaE/future_ban.git => pas activé
@@ -54,11 +54,11 @@ https://forum.minetest.net/viewtopic.php?id=5694 <= he has a problem with git or
 http://github.com/kaeza/minetest-irc.git
 [IRC_Commands]
 http://github.com/PilzAdam/item_drop.git
-[Jumping]
-[Lantern]
+https://gitorious.org/calinou/carbone/source/3d917e25bc7ac44a657020497c7f2ebfbd7209a1:mods/jumping (from carbone)
+[Lantern] => homedecor_modpack ?
 [Lavalamp]
 [Lavatemple]
-[Locked_Sign]
+[Locked_Sign] => homedecor_modpack ?
 http://github.com/Gael-de-Sailly/mapfix.git
 http://gitorious.org/calinou/maptools.git
   => Modifié pour : unbreakable rail/rail_power/fence
