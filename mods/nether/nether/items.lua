@@ -432,7 +432,7 @@ minetest.register_node("nether:vine", {
 
 for n,i in pairs({"small", "middle", "big"}) do
 	minetest.register_node("nether:grass_"..i, {
-		description = "Nehter Grass",
+		description = "Nether Grass",
 		drawtype = "plantlike",
 		waving = 1,
 		tiles = {"nether_grass_"..i..".png"},
@@ -487,7 +487,7 @@ minetest.register_node("nether:tree_sapling", {
 })
 
 minetest.register_node("nether:tree", {
-	description = "Nehter Trunk",
+	description = "Nether Trunk",
 	tiles = {"nether_tree_top.png", "nether_tree_top.png", "nether_tree.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -497,7 +497,7 @@ minetest.register_node("nether:tree", {
 })
 
 minetest.register_node("nether:tree_corner", {
-	description = "Nehter Trunk Corner",
+	description = "Nether Trunk Corner",
 	tiles = {"nether_tree.png^[transformR180", "nether_tree_top.png", "nether_tree_corner.png^[transformFY",
 		"nether_tree_corner.png^[transformR180", "nether_tree.png", "nether_tree_top.png"},
 	paramtype2 = "facedir",
@@ -578,14 +578,24 @@ minetest.register_node("nether:dirt_bottom", {
 minetest.register_node("nether:torch", {
 	description = "Nether Torch",
 	drawtype = "torchlike",
-	tiles = {"nether_torch_on_floor.png", "nether_torch_on_ceiling.png", "nether_torch.png"},
+	tiles = {"nether_torch_on_floor.png", "nether_torch_on_ceiling.png",
+		{
+			name = "nether_torch.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 2.0,
+			},
+		},
+	},
 	inventory_image = "nether_torch_on_floor.png",
 	wield_image = "nether_torch_on_floor.png",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	walkable = false,
-	light_source = LIGHT_MAX-1,
+	light_source = 13,
 	selection_box = {
 		type = "wallmounted",
 		wall_top = {-0.1, 0.5-0.6, -0.1, 0.1, 0.5, 0.1},
@@ -603,7 +613,7 @@ minetest.register_node("nether:portal", {
 	tiles = {invisible, invisible, invisible, invisible, "nether_portal_stuff.png"},
 	inventory_image = "nether_portal_stuff.png",
 	wield_image = "nether_portal_stuff.png",
-	light_source = LIGHT_MAX - 2,
+	light_source = 12,
 	paramtype = "light",
 	sunlight_propagates = true,
 	use_texture_alpha = true,
@@ -627,12 +637,12 @@ minetest.register_node("nether:portal", {
 
 
 minetest.register_craftitem("nether:grass", {
-	description = "Nehter Grass",
+	description = "Nether Grass",
 	inventory_image = "nether_grass.png",
 })
 
 minetest.register_craftitem("nether:grass_dried", {
-	description = "Dried Nehter Grass",
+	description = "Dried Nether Grass",
 	inventory_image = "nether_grass_dried.png",
 	furnace_burntime = 1,
 })

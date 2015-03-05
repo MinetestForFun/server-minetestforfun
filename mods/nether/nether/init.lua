@@ -356,7 +356,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	--local perlin2 = minetest.get_perlin(133,3, 0.5, 10)
 	--local perlin3 = minetest.get_perlin(112,3, 0.5, 5)
 
-	local side_length = maxp.x - minp.x + 1
+	local side_length = maxp.x - minp.x - 1	-- maybe mistake here
 	local map_lengths_xyz = {x=side_length, y=side_length, z=side_length}
 
 	local pmap1 = minetest.get_perlin_map(perlins[1], map_lengths_xyz):get2dMap_flat(minp)
@@ -389,7 +389,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local test3 = math.abs(pmap3[count])
 
 			local t = math.floor(test*3+0.5)
-			local h = 0
+
 			if test2 < 0 then
 				h = math.floor(test2*3+0.5)-1
 			else
