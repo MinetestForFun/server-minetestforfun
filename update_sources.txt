@@ -11,21 +11,21 @@ https://github.com/Jordach/big_freaking_dig (some elements)
 http://github.com/stujones11/minetest-3d_armor.git
 http://github.com/Neuromancer56/MinetestAmbiance.git <= ERROR 404
 http://github.com/ShadowNinja/areas.git
+  => Modifié pour : ajout de megabuilder et openfarming
 http://bitbucket.org/ardrido/arrow_signs.git
 http://github.com/rubenwardy/awards.git
+  => Modifié pour : ajout de divers awards
 bedrock is already in carbone original game
-http://github.com/BlockMen/beds.git
 http://github.com/LeMagnesium/beginners_chest.git
 https://github.com/rabbibob/BobBlocks.git
 https://forum.minetest.net/viewtopic.php?id=5429 <= Is this our one? \ need to be replaced by a git repository
 https://github.com/PilzAdam/builtin_item  <= Semble inactif/abandonné
   OU https://github.com/HybridDog/builtin_item <= Semble actif
 https://forum.minetest.net/viewtopic.php?f=9&t=10525 <= DEVRAIT être remplacé par un dépot git / mort
-https://github.com/SmallJoker/boost_cart <= Celui qu'on utilise?
 # CHESTTOOLS : ?
-https://github.com/rubenwardy/chatplus
 https://bitbucket.org/kingarthursteam/christmas_craft.git <= Is it this?
 https://github.com/VanessaE/coloredwood.git
+  => Modifié pour : que les objets s'affiche dans la grille de craft
 https://github.com/Sokomine/colormachine.git
 https://github.com/CraigyDavi/colouredstonebricks.git
 https://github.com/Glunggi/columnia.git
@@ -34,20 +34,22 @@ https://github.com/adrido/darkage.git
   https://github.com/MasterGollum/darkage.git ????
 https://github.com/4Evergreen4/death_messages.git
 https://github.com/minermoder27/minetest-dropondie.git
+  => Modifié pour : Drop des sacs lors de le mort d'un joueur
 https://github.com/sapier/factions.git
 http://github.com/LeMagnesium/fail.git
 https://github.com/tenplus1/farming.git
-  => Modifié pour : ????????
+  => Modifié pour : light pour que certaines plantes poussent
 https://forum.minetest.net/viewtopic.php?t=5016 <= Should be replaced by a git repository
 https://github.com/Mossmanikin/fishing.git <= Est-ce lui?
 https://github.com/rubenwardy/food.git
 https://github.com/minetest-technic/framedglass.git
-https://github.com/VanessaE/future_ban.git
+https://github.com/VanessaE/future_ban.git => pas activé
 Gauges déjà présent dans carbone original
 https://github.com/bdjnk/glow.git
 http://github.com/VanessaE/homedecor.git
 https://github.com/BlockMen/hud.git
 	OU https://github.com/mgl512/hud.git <= ??
+  => Modifié pour : fichier de conf pour la position, valeur de hunger/health des aliments
 https://forum.minetest.net/viewtopic.php?id=5694 <= he has a problem with git or what?
 http://github.com/kaeza/minetest-irc.git
 [IRC_Commands]
@@ -59,48 +61,49 @@ http://github.com/PilzAdam/item_drop.git
 [Locked_Sign]
 http://github.com/Gael-de-Sailly/mapfix.git
 http://gitorious.org/calinou/maptools.git
-[Markers]
+  => Modifié pour : unbreakable rail/rail_power/fence
+https://github.com/Sokomine/markers
+  => Modifié pour : ajout de megabuilder
 https://github.com/Jeija/minetest-mod-mesecons.git
-[Mobs]
+https://github.com/tenplus1/mobs
+  => Modifié pour : mélange entre paramêtre propre au serveur, mobs redo(principalement) et mobs carbone
 [Money]
-[More_Chests]
+https://github.com/Megaf/more_chests
 http://gitorious.org/calinou/moreblocks.git
 http://gitorious.org/calinou/moreores.git
 http://github.com/VanessaE/moretrees.git
-[MultiTest]
-[Name_Restriction]
+https://forum.minetest.net/viewtopic.php?f=11&t=9334&hilit=MultiTest (pas de github)
+[Name_Restriction] => m'a été donné par VanessaE en pastebin
+  => Modifié pour : tableau de nom interdit
 https://github.com/SmallJoker/names_per_ip
 https://github.com/HybridDog/minetest-nether
 [New]
-[Paintings]
+https://gitorious.org/calinou/carbone/source/3d917e25bc7ac44a657020497c7f2ebfbd7209a1:mods/paintings (from carbone)
 http://github.com/VanessaE/pipeworks.git
 http://github.com/VanessaE/plantlife_modpack.git
+  => Modifié pour : palmtree avec branche non walkable, crashfix (nénuphare sur door)
 http://github.com/Ombridride/minetest-player_inactive.git
-[PlayerPlus]
+[PlayerPlus] => désactivé ou supprimé depuis longtemps ?
 [Quarts (by 4EverGreen?)]
 http://github.com/arsdragonfly/random_messages.git
 https://github.com/HybridDog/riesenpilz --nether dependence
-http://github.com/TenPlus1/screwdriver.git => Maintenant dans mt_game, on le garde?
-  => Modifié pour :
-    - Tournevis infini
-[Sea]
-[Snow]
-[SnowDrift]
-[Spawn]
-[Sponge] => by davedevils?
-[Sprint]
-  => Modifié pour :
-    - Customisation
-    - Changement de l'interval pour déclencher le sprint
-    - Changement de la touche de sprint
+http://github.com/TenPlus1/screwdriver.git
+  => Modifié pour : screwdriver infini et valeur du screwdriver normal
+
+https://forum.minetest.net/viewtopic.php?f=11&t=4627&hilit=Sea (pas de github...)
+https://github.com/Splizard/minetest-mod-snow/
+  => Modifié pour : paramétrage minimal pour la tombé de neige
+https://github.com/GunshipPenguin/sprint
+[Sponge] => by davedevils, given it to me in a .zip...
+https://github.com/GunshipPenguin/sprint
+  => Modifié pour : arrêt quand un clique est effectué, dégât des cactus dans la boucle du check position
 [Stained_Glass]
-[Throwing]
-[U_Skins]
-[Unified_Inventory]
-[UnifiedDyes]
+https://github.com/PilzAdam/throwing
+https://github.com/SmallJoker/minetest-u_skinsdb/
+https://github.com/minetest-technic/unified_inventory
+https://github.com/VanessaE/unifieddyes
 https://github.com/HybridDog/vector_extras --nether dependence
 [WhoIsOn]
-[Wiki]
 http://github.com/kaeza/minetest-xban2.git
 
 ======= TO CHECK =======
