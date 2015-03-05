@@ -29,7 +29,7 @@ local function sit(pos, node, clicker)
 	end
 end
 
-local function sit_exec(pos, node, clicker) -- don't move these functions inside sit()
+function homedecor.sit_exec(pos, node, clicker) -- don't move these functions inside sit()
 	--[[if not clicker or not clicker:is_player()
 		or clicker:get_player_control().up == true or clicker:get_player_control().down == true
 		or clicker:get_player_control().left == true or clicker:get_player_control().right == true
@@ -122,7 +122,7 @@ for i in ipairs(chaircolors) do
 		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 		on_rightclick = function(pos, node, clicker)
 			pos.y = pos.y-0 -- player's sit position.
-			sit_exec(pos, node, clicker)
+			homedecor.sit_exec(pos, node, clicker)
 		end,
 	})
 
@@ -155,7 +155,7 @@ for i in ipairs(chaircolors) do
 			groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 			on_rightclick = function(pos, node, clicker)
 				pos.y = pos.y-0.1 -- player's sit position.
-				sit_exec(pos, node, clicker)
+				homedecor.sit_exec(pos, node, clicker)
 			end,
 		})
 
@@ -404,7 +404,7 @@ homedecor.register("simple_bench", {
 	},
 	on_rightclick = function(pos, node, clicker)
 		pos.y = pos.y-0 -- player's sit position.
-		sit_exec(pos, node, clicker)
+		homedecor.sit_exec(pos, node, clicker)
 	end,
 })
 
@@ -439,7 +439,7 @@ homedecor.register("bench_large_1_left", {
 	expand = { right="homedecor:bench_large_1_right" },
 	on_rightclick = function(pos, node, clicker)
 		pos.y = pos.y-0 -- player's sit position.
-		sit_exec(pos, node, clicker)
+		homedecor.sit_exec(pos, node, clicker)
 	end,
 })
 
@@ -509,7 +509,7 @@ homedecor.register("bench_large_2_left", {
 	expand = { right="homedecor:bench_large_2_right" },
 	on_rightclick = function(pos, node, clicker)
 		pos.y = pos.y-0 -- player's sit position.
-		sit_exec(pos, node, clicker)
+		homedecor.sit_exec(pos, node, clicker)
 	end,
 })
 
@@ -705,7 +705,7 @@ homedecor.register("office_chair_"..c, {
 	expand = { top = "air" },
 	on_rightclick = function(pos, node, clicker)
 		pos.y = pos.y+0.14 -- player's sit position.
-		sit_exec(pos, node, clicker)
+		homedecor.sit_exec(pos, node, clicker)
 	end,
 })
 
