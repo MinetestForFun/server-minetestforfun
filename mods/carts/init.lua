@@ -596,7 +596,6 @@ minetest.register_craftitem("carts:cart", {
 			return itemstack
 		elseif cart_func:is_rail(pointed_thing.above) then
 			minetest.add_entity(pointed_thing.above, "carts:cart")
-      minetest.log("action", "carts:cart placed at " .. pos_to_string(self.object:getpos()) .. ".")
 			if not minetest.setting_getbool("creative_mode") then
 				itemstack:take_item()
 			end
