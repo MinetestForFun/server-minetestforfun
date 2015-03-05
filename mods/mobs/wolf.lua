@@ -49,7 +49,7 @@ mobs:register_mob("mobs:wolf", {
 		punch_end = 63,
 	},
 	sounds = {
-		random = "mobs_dirtmonster",
+		random = "mobs_wolf",
 	},
 	jump = true,
 	step = 1,
