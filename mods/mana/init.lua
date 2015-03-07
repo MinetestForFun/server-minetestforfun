@@ -278,13 +278,13 @@ else
 		local player = minetest.get_player_by_name(playername)
 		local id = player:hud_add({
 			hud_elem_type = "text",
-			position = { x = 0.5, y=0.9 },
+			position = {x=0.5,y=1},
 			text = mana.manastring(playername),
 			scale = { x = 0, y = 0 },
-			alignment = { x = 6.96, y = -14},
+			alignment = { x = -0.5, y = 0},
 			direction = 1,
 			number = 0xFFFFFF,
-			offset = { x = -200, y = 15}
+			offset = {x=145, y=-174}
 		})
 		mana.playerlist[playername].hudid = id
 		return id
