@@ -40,9 +40,8 @@ minetest.register_globalstep(function(dtime)
 	--Loop through all connected players
 	for playerName,playerInfo in pairs(players) do
 		local player = minetest.get_player_by_name(playerName)
-		if not player then return end
-		local pos = player:getpos()
 		if player ~= nil then
+			local pos = player:getpos()
 			-- From playerplus : 
 			-- am I near a cactus?
 			pos.y = pos.y + 0.1
