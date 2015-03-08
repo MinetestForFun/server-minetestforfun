@@ -384,6 +384,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 			count = count+1
 
+			if not pmap1[count] then
+				pmap1[count] = 0
+			end
+			if not pmap2[count] then
+				pmap2[count] = 0
+			end
+
 			local test = pmap1[count]+1
 			local test2 = pmap2[count]
 			local test3 = math.abs(pmap3[count])
