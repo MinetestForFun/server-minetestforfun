@@ -60,7 +60,7 @@ mobs:register_mob("mobs:pumba", {
 	end,
 	
 })
-mobs:register_spawn("mobs:pumba", {"default:dirt_with_grass", "default:dirt"}, 20, 8, 9000, 1, 31000)
+mobs:register_spawn("mobs:pumba", {"default:dirt_with_grass", "default:dirt"}, 20, 8, 10000, 1, 31000)
 mobs:register_egg("mobs:pumba", "Warthog", "wool_pink.png", 1)
 
 -- Porkchops
