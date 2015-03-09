@@ -77,7 +77,7 @@ mobs:register_mob("mobs:mese_monster", {
 	shoot_offset = 2,
 	blood_texture = "default_mese_crystal_fragment.png",
 })
-mobs:register_spawn("mobs:mese_monster", {"default:stone", }, 20, -1, 5000, 1, -25)
+mobs:register_spawn("mobs:mese_monster", {"default:stone", }, 20, -1, 6000, 1, -25)
 mobs:register_egg("mobs:mese_monster", "Mese Monster", "default_mese_block.png", 1)
 
 -- Mese Monster Crystal Shards (weapon)
