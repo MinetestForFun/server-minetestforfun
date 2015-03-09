@@ -53,9 +53,7 @@ local counter=0--*****************
 --local SOUNDVOLUME = 1
 --local MUSICVOLUME = 1
 local sound_vol = 1
-local last_x_pos = 0
-local last_y_pos = 0
-local last_z_pos = 0
+local players_pos = {}
 local node_under_feet
 local node_at_upper_body
 local node_at_lower_body
@@ -313,20 +311,21 @@ local get_ambience = function(player)
 	local standing_in_water = false
 	local pos = player:getpos()
 	get_immediate_nodes(pos)
-
-	if last_x_pos ~=pos.x or last_z_pos ~=pos.z then 
+	local player_name = player:get_player_name()
+	if player_name == nil or players_pos[player_name] == nil then return end
+	if players_pos[player_name]["last_x_pos"] ~=pos.x or players_pos[player_name]["last_z_pos"] ~=pos.z then
 		player_is_moving_horiz = true 
 	end
-	if pos.y > last_y_pos+.5   then 
-		player_is_climbing = true 
+	if pos.y > players_pos[player_name]["last_y_pos"]+.5   then
+		player_is_climbing = true
 	end
-	if pos.y < last_y_pos-.5  then 
+	if pos.y < players_pos[player_name]["last_y_pos"]-.5  then
 		player_is_descending = true 
 	end
 	
-	last_x_pos =pos.x
-	last_z_pos =pos.z	
-	last_y_pos =pos.y
+	players_pos[player_name]["last_x_pos"] = pos.x
+	players_pos[player_name]["last_z_pos"] = pos.z
+	players_pos[player_name]["last_y_pos"] = pos.y
 	
 	if string.find(node_at_upper_body, "default:water") then
 		if music then
@@ -772,6 +771,20 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 	end
+end)
+
+
+minetest.register_on_joinplayer(function(player)
+	local player_name = player:get_player_name()
+	local pos = player:getpos()
+	players_pos[player_name] = {}
+	players_pos[player_name]["last_x_pos"] = pos.x
+	players_pos[player_name]["last_z_pos"] = pos.z
+	players_pos[player_name]["last_y_pos"] = pos.y
+end)
+minetest.register_on_leaveplayer(function(player)
+	local player_name = player:get_player_name()
+	players_pos[player_name] = nil
 end)
 
 --[[
