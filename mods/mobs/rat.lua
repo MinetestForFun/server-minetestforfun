@@ -36,7 +36,7 @@ passive = true,
 		end
 	end,
 })
-mobs:register_spawn("mobs:rat", {"default:stone"}, 20, -1, 7000, 1, 31000)
+mobs:register_spawn("mobs:rat", {"default:stone"}, 20, -1, 9000, 1, 31000)
 mobs:register_egg("mobs:rat", "Rat", "mobs_rat_inventory.png", 0)
 	
 -- Cooked Rat, yummy!
