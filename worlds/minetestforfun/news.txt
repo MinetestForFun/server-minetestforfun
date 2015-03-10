@@ -4,6 +4,12 @@ News de FR - MinetestForFun (Survival - PvP)
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
+---10/03/2015--- (Remerciements : Crabman77)
+MAJ de "mobs" (diminution du spawn de 20-25% des Mese Monster et Dungeon Master pour équilibrer le span dû à leur spawn proche de lumières, -30% de rats en caves, les Tree Monster spawnent maintenant sur les "Beech Tree" et ne spawnent plus sur les "Jungle Tree" pour ne pas surcharger le nombre de monstres dans les Jungles, -10% de spawn de phacochère/pumba, les loups spawnent maintenant seuls - sera peut etre modifié dans un avenir proche -)
+MAJ de "ambiance_modpack" (amélioration du code pour la détection de la position du joueur)
+MAJ de "fishing" (debug total du mod et amélioration du code, tout devrait maintenant fonctionner !)
+
+
 ---09/03/2015--- (Remerciements : Crabman77, Mg)
 MAJ de "nether" (divers bugfix, amélioration de performances et recettes moins strictes)
 MAJ de "homedecor_modpack" (crashfix quand l'on s'assoie)
