@@ -172,18 +172,21 @@ local FISHING_BOBBER_ENTITY_SHARK={
 		if math.random(1, 4) == 1 then
 			self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/2880*math.pi))
 		end
+		local remove_entity = true
 		for _,player in pairs(minetest.get_connected_players()) do
 			local s = self.object:getpos()
 			local p = player:getpos()
 			local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
-			if dist > self.view_range then
-				minetest.sound_play("fishing_bobber1", {
-					pos = self.object:getpos(),
-					gain = 0.5,
-				})
-				self.object:remove()
+			if dist < self.view_range then
+				remove_entity = false
+				break
 			end
-		end	
+		end
+		if remove_entity then
+			-- make sound and remove bobber
+			minetest.sound_play("fishing_bobber1", {pos = self.object:getpos(),gain = 0.5,})
+			self.object:remove()
+		end
 		local do_env_damage = function(self)
 			self.object:set_hp(self.object:get_hp()-self.water_damage)
 			if self.object:get_hp() == 600 then

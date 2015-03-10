@@ -63,15 +63,6 @@ minetest.register_entity("fishing:bait_worm_entity", {
 	on_step = function(self, dtime)
 		local pos = self.object:getpos()
 		local n = minetest.env:get_node({x=pos.x,y=pos.y-0.3,z=pos.z})
-		-- despawn when no player in range
-		for _,player in pairs(minetest.get_connected_players()) do
-			local s = self.object:getpos()
-			local p = player:getpos()
-			local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
-			if dist > self.view_range then
-				self.object:remove()
-			end
-		end	
 		-- move in world
 		local look_whats_up = function(self)
 			self.object:set_hp(self.object:get_hp()-self.damage_over_time) -- creature is getting older
