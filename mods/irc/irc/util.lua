@@ -1,25 +1,8 @@
-local irc = require("irc.main")
 
-function irc.parseNick(conn, nick)
-	local access = {}
-	irc.updatePrefixModes(conn)
-	local namestart = 1
-	for i = 1, #nick - 1 do
-		local c = nick:sub(i, i)
-		if conn.prefixmode[c] then
-			access[conn.prefixmode[c]] = true
-		else
-			namestart = i
-			break
-		end
-	end
-	access.op = access.o
-	access.voice = access.v
-	local name = nick:sub(namestart)
-	return access, name
-end
+-- Module table
+local m = {}
 
-function irc.updatePrefixModes(conn)
+function m.updatePrefixModes(conn)
 	if conn.prefixmode and conn.modeprefix then
 		return
 	end
@@ -39,8 +22,27 @@ function irc.updatePrefixModes(conn)
 	end
 end
 
+function m.parseNick(conn, nick)
+	local access = {}
+	m.updatePrefixModes(conn)
+	local namestart = 1
+	for i = 1, #nick - 1 do
+		local c = nick:sub(i, i)
+		if conn.prefixmode[c] then
+			access[conn.prefixmode[c]] = true
+		else
+			namestart = i
+			break
+		end
+	end
+	access.op = access.o
+	access.voice = access.v
+	local name = nick:sub(namestart)
+	return access, name
+end
+
 -- mIRC markup scheme (de-facto standard)
-irc.color = {
+m.color = {
 	black = 1,
 	blue = 2,
 	green = 3,
@@ -60,28 +62,28 @@ irc.color = {
 }
 
 local colByte = string.char(3)
-setmetatable(irc.color, {__call = function(_, text, colornum)
+setmetatable(m.color, {__call = function(_, text, colornum)
 	colornum = (type(colornum) == "string" and
-			assert(irc.color[colornum], "Invalid color '"..colornum.."'") or
+			assert(color[colornum], "Invalid color '"..colornum.."'") or
 			colornum)
 	return table.concat{colByte, tostring(colornum), text, colByte}
 end})
 
 local boldByte = string.char(2)
-function irc.bold(text)
+function m.bold(text)
 	return boldByte..text..boldByte
 end
 
 local underlineByte = string.char(31)
-function irc.underline(text)
+function m.underline(text)
 	return underlineByte..text..underlineByte
 end
 
-function irc.checkNick(nick)
+function m.checkNick(nick)
 	return nick:find("^[a-zA-Z_%-%[|%]%^{|}`][a-zA-Z0-9_%-%[|%]%^{|}`]*$") ~= nil
 end
 
-function irc.defaultNickGenerator(nick)
+function m.defaultNickGenerator(nick)
 	-- LuaBot -> LuaCot -> LuaCou -> ...
 	-- We change a random character rather than appending to the
 	-- nickname as otherwise the new nick could exceed the ircd's
@@ -100,17 +102,19 @@ function irc.defaultNickGenerator(nick)
 	return nick
 end
 
-function irc.capitalize(text)
+function m.capitalize(text)
   -- Converts first character to upercase and the rest to lowercase.
   -- "PING" -> "Ping" | "hello" -> "Hello" | "123" -> "123"
   return text:sub(1, 1):upper()..text:sub(2):lower()
 end
 
-function irc.split(str, sep)
+function m.split(str, sep)
 	local t = {}
 	for s in str:gmatch("%S+") do
 		table.insert(t, s)
 	end
 	return t
 end
+
+return m
 

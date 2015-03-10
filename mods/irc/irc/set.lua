@@ -1,4 +1,4 @@
-local select = require "socket".select
+local select = require("socket").select
 
 local m = {}
 local set = {}
