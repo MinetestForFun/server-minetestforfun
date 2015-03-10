@@ -158,7 +158,7 @@ minetest.register_node("fishing:pole_deco", {
 	sounds = default.node_sound_wood_defaults(),
 	on_dig = function(pos, node, digger)
 		if digger:is_player() and digger:get_inventory() then
-			local meta = minetest.env:get_meta(pos)
+			local meta = minetest.get_meta(pos)
 			local wear_out = meta:get_int("wear")
 			digger:get_inventory():add_item("main", {name="fishing:pole", count=1, wear=wear_out, metadata=""})
 		end

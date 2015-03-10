@@ -26,12 +26,12 @@ minetest.register_craftitem("fishing:bait_worm", {
 	on_use = minetest.item_eat(1),
 	on_place = function(itemstack, placer, pointed_thing)
 		local pt = pointed_thing
-		minetest.env:add_entity({x=pt.under.x, y=pt.under.y+0.6, z=pt.under.z}, "fishing:bait_worm_entity")
+		minetest.add_entity({x=pt.under.x, y=pt.under.y+0.6, z=pt.under.z}, "fishing:bait_worm_entity")
 		itemstack:take_item()
 		return itemstack
 	end,
 	on_drop = function(itemstack, dropper, pos)
-		minetest.env:add_entity({x = pos.x, y = pos.y, z = pos.z}, "fishing:bait_worm_entity")
+		minetest.add_entity({x = pos.x, y = pos.y, z = pos.z}, "fishing:bait_worm_entity")
 		itemstack:take_item()
 		return itemstack
 	end,
@@ -62,7 +62,7 @@ minetest.register_entity("fishing:bait_worm_entity", {
 	-- AI :D
 	on_step = function(self, dtime)
 		local pos = self.object:getpos()
-		local n = minetest.env:get_node({x=pos.x,y=pos.y-0.3,z=pos.z})
+		local n = minetest.get_node({x=pos.x,y=pos.y-0.3,z=pos.z})
 		-- move in world
 		local look_whats_up = function(self)
 			self.object:set_hp(self.object:get_hp()-self.damage_over_time) -- creature is getting older
@@ -80,7 +80,7 @@ minetest.register_entity("fishing:bait_worm_entity", {
 				self.object:set_hp(self.object:get_hp()-37)
 			
 			elseif minetest.get_item_group(n.name, "soil") ~= 0 then
-				if minetest.get_item_group(minetest.env:get_node({x=pos.x,y=pos.y-0.1,z=pos.z}).name, "soil") == 0 and self.object:get_hp() > 200 then
+				if minetest.get_item_group(minetest.get_node({x=pos.x,y=pos.y-0.1,z=pos.z}).name, "soil") == 0 and self.object:get_hp() > 200 then
 					self.object:set_hp(199)
 				elseif self.object:get_hp() > 200 then -- leave dirt to see whats going on
 					self.object:moveto({x=pos.x+(0.001*(math.random(-2, 2))),y=pos.y+0.003,z=pos.z+(0.001*(math.random(-2, 2)))})
@@ -91,15 +91,15 @@ minetest.register_entity("fishing:bait_worm_entity", {
 				end
 			else -- check if there's dirt anywhere (not finished)
 				local check_group = minetest.get_item_group
-				local goal_01 = check_group(minetest.env:get_node({x = pos.x + 1, y = pos.y-0.4, z = pos.z	  }).name, "soil")
-				local goal_02 = check_group(minetest.env:get_node({x = pos.x, 	  y = pos.y-0.4, z = pos.z + 1}).name, "soil")
-				local goal_03 = check_group(minetest.env:get_node({x = pos.x - 1, y = pos.y-0.4, z = pos.z	  }).name, "soil")
-				local goal_04 = check_group(minetest.env:get_node({x = pos.x, 	  y = pos.y-0.4, z = pos.z - 1}).name, "soil")
+				local goal_01 = check_group(minetest.get_node({x = pos.x + 1, y = pos.y-0.4, z = pos.z	  }).name, "soil")
+				local goal_02 = check_group(minetest.get_node({x = pos.x, 	  y = pos.y-0.4, z = pos.z + 1}).name, "soil")
+				local goal_03 = check_group(minetest.get_node({x = pos.x - 1, y = pos.y-0.4, z = pos.z	  }).name, "soil")
+				local goal_04 = check_group(minetest.get_node({x = pos.x, 	  y = pos.y-0.4, z = pos.z - 1}).name, "soil")
 				
-				local goal_1a = check_group(minetest.env:get_node({x = pos.x + 1, y = pos.y+0.6, z = pos.z	  }).name, "soil")
-				local goal_2a = check_group(minetest.env:get_node({x = pos.x, 	  y = pos.y+0.6, z = pos.z + 1}).name, "soil")
-				local goal_3a = check_group(minetest.env:get_node({x = pos.x - 1, y = pos.y+0.6, z = pos.z	  }).name, "soil")
-				local goal_4a = check_group(minetest.env:get_node({x = pos.x, 	  y = pos.y+0.6, z = pos.z - 1}).name, "soil")
+				local goal_1a = check_group(minetest.get_node({x = pos.x + 1, y = pos.y+0.6, z = pos.z	  }).name, "soil")
+				local goal_2a = check_group(minetest.get_node({x = pos.x, 	  y = pos.y+0.6, z = pos.z + 1}).name, "soil")
+				local goal_3a = check_group(minetest.get_node({x = pos.x - 1, y = pos.y+0.6, z = pos.z	  }).name, "soil")
+				local goal_4a = check_group(minetest.get_node({x = pos.x, 	  y = pos.y+0.6, z = pos.z - 1}).name, "soil")
 				-- if there's dirt nearby, go there
 				if     goal_01 ~= 0 or goal_1a ~= 0 then
 					self.object:moveto({x=pos.x+0.002,y=pos.y,z=pos.z+(0.001*(math.random(-2, 2)))})	

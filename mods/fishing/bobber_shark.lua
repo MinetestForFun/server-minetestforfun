@@ -158,7 +158,7 @@ local FISHING_BOBBER_ENTITY_SHARK={
 	on_step = function(self, dtime)
 		local pos = self.object:getpos()
 		if BOBBER_CHECK_RADIUS > 0 then
-			local objs = minetest.env:get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, BOBBER_CHECK_RADIUS)
+			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, BOBBER_CHECK_RADIUS)
 			for k, obj in pairs(objs) do
 				if obj:get_luaentity() ~= nil then
 					if obj:get_luaentity().name == "fishing:bobber_entity_shark" then
