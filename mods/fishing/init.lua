@@ -80,7 +80,7 @@ minetest.register_tool("fishing:pole", {
 					
 					if WEAR_OUT == true 
 					and not minetest.setting_getbool("creative_mode") then
-						return rod_wear(itemstack, user, pointed_thing, 30)	
+						return rod_wear(itemstack, user, pointed_thing, 1500)	
 					else
 						return {name="fishing:pole", count=1, wear=0, metadata=""}
 					end
@@ -97,7 +97,7 @@ minetest.register_tool("fishing:pole", {
 					
 					if WEAR_OUT == true 
 					and not minetest.setting_getbool("creative_mode") then
-						return rod_wear(itemstack, user, pointed_thing, 30)	
+						return rod_wear(itemstack, user, pointed_thing, 1500)	
 					else
 						return {name="fishing:pole", count=1, wear=0, metadata=""}
 					end
@@ -153,7 +153,7 @@ minetest.register_tool("fishing:pole_perfect", {
 					
 					if WEAR_OUT == true 
 					and not minetest.setting_getbool("creative_mode") then
-						return rod_wear(itemstack, user, pointed_thing, 30)	
+						return rod_wear(itemstack, user, pointed_thing, 1500)	
 					else
 						return {name="fishing:pole_perfect", count=1, wear=0, metadata=""}
 					end
@@ -170,7 +170,7 @@ minetest.register_tool("fishing:pole_perfect", {
 					
 					if WEAR_OUT == true 
 					and not minetest.setting_getbool("creative_mode") then
-						return rod_wear(itemstack, user, pointed_thing, 30)	
+						return rod_wear(itemstack, user, pointed_thing, 1500)	
 					else
 						return {name="fishing:pole_perfect", count=1, wear=0, metadata=""}
 					end
