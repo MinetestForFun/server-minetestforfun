@@ -131,7 +131,7 @@ minetest.register_tool("fishing:pole_perfect", {
 	description = S("Perfect Fishing Pole"),
 	groups = {},
 	inventory_image = "fishing_pole_perfect.png",
-	wield_image = "fishing_pole.png^[transformFXR270",
+	wield_image = "fishing_pole_perfect.png^[transformFXR270",
 	stack_max = 1,
 	liquids_pointable = true,
 	on_use = function (itemstack, user, pointed_thing)
