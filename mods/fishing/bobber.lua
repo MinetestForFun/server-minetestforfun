@@ -35,8 +35,8 @@ local CaTCH = {
 	{"3d_armor",				"helmet_diamond",			BooTSWear,		"a very old Helmet.",		true,			118,		1}, 	-- 119
 	{"shields",					"shield_enhanced_cactus",	BooTSWear,		"some very old .",			true,			119,		1}, 	-- 120
 	{"default",					"sword_nyan",				BooTSWear,		"a very old Sword.",		true,			120,		1}, 	-- 121
---	nom mod						nom item					durabilité 		message dans le chat		106/120 chance 						-- fin 121
---															de l'objet 									de récup worms
+--	nom mod						nom item					durabilité 		message dans le chat		106/120 de chance 					-- fin 121
+--															de l'objet 									de récupérer le worm
 }
 minetest.register_alias("flowers_plus:seaweed", "flowers:seaweed") -- exception
 
