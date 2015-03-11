@@ -1,5 +1,5 @@
 minetest.register_node("homedecor:cobweb_corner", {
-	description = "Cobweb",
+	description = "Cobweb Corner (only decorative)", --Description changé pour évitez conflit avec "Spider Cobweb" du mod "mobs"
 	drawtype = "torchlike",
 	tiles = { "homedecor_cobweb_torchlike.png" },
 	inventory_image = "homedecor_cobweb_inv.png",
