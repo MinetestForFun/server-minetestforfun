@@ -11,31 +11,46 @@
 -----------------------------------------------------------------------------------------------
 -- Fishing Pole
 -----------------------------------------------------------------------------------------------
--- mc style
+-- Wooden Fishing Pole
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",					"group:stick"	},
-		{"", 				"group:stick",	"farming:string"},
-		{"group:stick",	"",					"farming:string"},
+		{"", 				"",			"group:stick"	},
+		{"", 				"group:stick",		"farming:string"},
+		{"group:stick",			"",			"farming:string"},
 	}
 })
 
+if minetest.get_modpath("moreblocks") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",					"group:stick"  },
-		{"", 				"group:stick",	"moreblocks:rope"},
-		{"group:stick",	"",					"moreblocks:rope"},
+		{"", 				"",			"group:stick"		},
+		{"", 				"group:stick",		"moreblocks:rope"	},
+		{"group:stick",			"",			"moreblocks:rope"	},
 	}
 })
+end
+
 if minetest.get_modpath("ropes") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",					"group:stick"	},
-		{"", 				"group:stick",	"ropes:rope"   	},
-		{"group:stick",	"",					"ropes:rope"   	},
+		{"", 				"",			"group:stick"	},
+		{"", 				"group:stick",		"ropes:rope"   	},
+		{"group:stick",			"",			"ropes:rope"   	},
+	}
+})
+end
+
+-- Mithril Fishing Pole
+if minetest.get_modpath("moreore") ~= nil then
+minetest.register_craft({
+	output = "fishing:pole_perfect",
+	recipe = { 
+		{"", 				"",				"moreoress:mithril_ingot"	},
+		{"", 				"moreoress:mithril_ingot",	"mobs:spider_cobweb"		},
+		{"moreoress:mithril_ingot",	"",				"mobs:spider_cobweb"		},
 	}
 })
 end
@@ -64,13 +79,13 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "shapeless",
 	output = "fishing:sushi",
-	recipe = {"fishing:fish_raw","farming:seed_wheat","flowers:seaweed"},
+	recipe = {"fishing:fish_raw",	"farming:seed_wheat",	"flowers:seaweed"	},
 })
 
 minetest.register_craft({
 	type = "shapeless",
 	output = "fishing:sushi",
-	recipe = {"fishing:fish_raw","farming:seed_wheat","seaplants:kelpgreen"},
+	recipe = {"fishing:fish_raw",	"farming:seed_wheat",	"seaplants:kelpgreen"	},
 		
 })
 
