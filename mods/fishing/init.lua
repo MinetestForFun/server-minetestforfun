@@ -52,11 +52,85 @@ local function rod_wear(itemstack, user, pointed_thing, uses)
 	return itemstack
 end
 
+--Canne à pêche normal
 minetest.register_tool("fishing:pole", {
 
 	description = S("Fishing Pole"),
 	groups = {},
 	inventory_image = "fishing_pole.png",
+	wield_image = "fishing_pole.png^[transformFXR270",
+	stack_max = 1,
+	liquids_pointable = true,
+	on_use = function (itemstack, user, pointed_thing)
+		if pointed_thing and pointed_thing.under then
+			local pt = pointed_thing
+			local node = minetest.get_node(pt.under)
+			if string.find(node.name, "default:water") then
+				local player = user:get_player_name()
+				local inv = user:get_inventory()
+				if inv:get_stack("main", user:get_wield_index()+1):get_name() == "fishing:bait_worm" then
+					if not minetest.setting_getbool("creative_mode") then
+						inv:remove_item("main", "fishing:bait_worm")
+					end
+					minetest.sound_play("fishing_bobber2", {
+						pos = pt.under,
+						gain = 0.5,
+					})
+					minetest.add_entity({interval = 1,x=pt.under.x, y=pt.under.y+(45/64), z=pt.under.z}, "fishing:bobber_entity")
+					
+					if WEAR_OUT == true 
+					and not minetest.setting_getbool("creative_mode") then
+						return rod_wear(itemstack, user, pointed_thing, 30)	
+					else
+						return {name="fishing:pole", count=1, wear=0, metadata=""}
+					end
+				end
+				if inv:get_stack("main", user:get_wield_index()+1):get_name() == "fishing:fish_raw" then
+					if not minetest.setting_getbool("creative_mode") then
+						inv:remove_item("main", "fishing:fish_raw")
+					end
+					minetest.sound_play("fishing_bobber2", {
+						pos = pt.under,
+						gain = 0.5,
+					})
+					minetest.add_entity({interval = 1,x=pt.under.x, y=pt.under.y+(45/64), z=pt.under.z}, "fishing:bobber_entity_shark")
+					
+					if WEAR_OUT == true 
+					and not minetest.setting_getbool("creative_mode") then
+						return rod_wear(itemstack, user, pointed_thing, 30)	
+					else
+						return {name="fishing:pole", count=1, wear=0, metadata=""}
+					end
+				end
+			end
+		end
+		return nil
+	end,
+	on_place = function(itemstack, placer, pointed_thing)
+		local pt = pointed_thing
+		if minetest.get_node(pt.under).name~="default:water_source" and minetest.get_node(pt.under).name~="default:water_flowing" then
+			local wear = itemstack:get_wear()
+			--print (wear)
+			local direction = minetest.dir_to_facedir(placer:get_look_dir())
+			--local meta1 = minetest.get_meta(pt.under)
+			local meta = minetest.get_meta(pt.above)
+			minetest.set_node(pt.above, {name="fishing:pole_deco", param2=direction})
+			--meta1:set_int("wear", wear)
+			meta:set_int("wear", wear)
+			if not minetest.setting_getbool("creative_mode") then
+				itemstack:take_item()
+			end
+		end
+		return itemstack
+	end,
+})
+
+--Canne à pêche normal
+minetest.register_tool("fishing:pole_perfect", {
+
+	description = S("Perfect Fishing Pole"),
+	groups = {},
+	inventory_image = "fishing_pole_perfect.png",
 	wield_image = "fishing_pole.png^[transformFXR270",
 	stack_max = 1,
 	liquids_pointable = true,
