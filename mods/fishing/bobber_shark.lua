@@ -75,7 +75,7 @@ local FISHING_BOBBER_ENTITY_SHARK={
 		local item = clicker:get_wielded_item()
 		local player = clicker:get_player_name()
 		local say = minetest.chat_send_player
-		if item:get_name() == "fishing:pole" then
+		if item:get_name() == "fishing:pole" or "fishing:pole_perfect" then
 			local inv = clicker:get_inventory()
 			local pos = self.object:getpos()
 			-- catch visible plant
