@@ -125,7 +125,7 @@ minetest.register_tool("fishing:pole", {
 	end,
 })
 
---Canne à pêche normal
+--Canne à pêche parfaite
 minetest.register_tool("fishing:pole_perfect", {
 
 	description = S("Perfect Fishing Pole"),
@@ -155,7 +155,7 @@ minetest.register_tool("fishing:pole_perfect", {
 					and not minetest.setting_getbool("creative_mode") then
 						return rod_wear(itemstack, user, pointed_thing, 30)	
 					else
-						return {name="fishing:pole", count=1, wear=0, metadata=""}
+						return {name="fishing:pole_perfect", count=1, wear=0, metadata=""}
 					end
 				end
 				if inv:get_stack("main", user:get_wield_index()+1):get_name() == "fishing:fish_raw" then
@@ -172,7 +172,7 @@ minetest.register_tool("fishing:pole_perfect", {
 					and not minetest.setting_getbool("creative_mode") then
 						return rod_wear(itemstack, user, pointed_thing, 30)	
 					else
-						return {name="fishing:pole", count=1, wear=0, metadata=""}
+						return {name="fishing:pole_perfect", count=1, wear=0, metadata=""}
 					end
 				end
 			end
