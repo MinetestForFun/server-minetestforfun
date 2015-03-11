@@ -78,9 +78,9 @@ if not minetest.get_modpath("ethereal") then
 	minetest.register_alias("ethereal:crystal_spike", "default:sandstone")
 end
 
--- Cobweb
+-- Spider Cobweb
 
-minetest.register_node("mobs:cobweb", {
+minetest.register_node("mobs:spider_cobweb", {
 	description = "Spider Cobweb", --Description changé pour éviter conflit avec homedecor_modpack
 	drawtype = "plantlike",
 	visual_scale = 1.1,
@@ -90,8 +90,8 @@ minetest.register_node("mobs:cobweb", {
 	sunlight_propagates = true,
 	liquid_viscosity = 11,
 	liquidtype = "source",
-	liquid_alternative_flowing = "mobs:cobweb",
-	liquid_alternative_source = "mobs:cobweb",
+	liquid_alternative_flowing = "mobs:spider_cobweb",
+	liquid_alternative_source = "mobs:spider_cobweb",
 	liquid_renewable = false,
 	liquid_range = 0,
 	walkable = false,
@@ -100,3 +100,12 @@ minetest.register_node("mobs:cobweb", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
+-- Spider Cobweb craft
+minetest.register_craft( {
+	output = "mobs:spider_cobweb",
+	recipe = {
+		{ "farming:string", 	"", 			"farming:string" 	},
+		{ "", 			"farming:string", 	"" 			},
+		{ "farming:string", 	"", 			"farming:string" 	}
+	},
+})
