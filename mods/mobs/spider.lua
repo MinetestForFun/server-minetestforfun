@@ -81,7 +81,7 @@ end
 -- Cobweb
 
 minetest.register_node("mobs:cobweb", {
-	description = "Cobweb",
+	description = "Spider Cobweb", --Description changé pour éviter conflit avec homedecor_modpack
 	drawtype = "plantlike",
 	visual_scale = 1.1,
 	tiles = {"mobs_cobweb.png"},
