@@ -4,11 +4,16 @@ News de FR - MinetestForFun (Survival - PvP)
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
+---xx/03/2015--- (Remerciements : xxx)
+MAJ de "homedecor_modpack" ("CobWeb" devient "CobWeb (decorative)" pour évitez les conflits, la recette change aussi en "cotton" en croix verticale/horizontale)
+MAJ de "mobs" ("CobWeb" devient "Spider CobWeb" pour évitez les conflits, recette ajouté en croix diagonale)
+MAJ de "fishing" (Ajout de la "Canne à pêche parfaite/Perfect Fishing Pole", 50 fois plus résistante que son homologue en bois, avec sa propre texture d'un bleuté "mithril" !)
+MAJ de "fishing" (redéfinition des chances d'attraper un poisson à 66% et, d'attraper un requin à 33%. Le 1% restant correspondant à une pêche infructueuse)
+
 ---10/03/2015--- (Remerciements : Crabman77)
 MAJ de "mobs" (diminution du spawn de 20-25% des Mese Monster et Dungeon Master pour équilibrer le span dû à leur spawn proche de lumières, -30% de rats en caves, les Tree Monster spawnent maintenant sur les "Beech Tree" et ne spawnent plus sur les "Jungle Tree" pour ne pas surcharger le nombre de monstres dans les Jungles, -10% de spawn de phacochère/pumba, les loups spawnent maintenant seuls - sera peut etre modifié dans un avenir proche -)
 MAJ de "ambiance_modpack" (amélioration du code pour la détection de la position du joueur)
 MAJ de "fishing" (debug total du mod et amélioration du code, tout devrait maintenant fonctionner !)
-
 
 ---09/03/2015--- (Remerciements : Crabman77, Mg)
 MAJ de "nether" (divers bugfix, amélioration de performances et recettes moins strictes)
