@@ -2541,9 +2541,9 @@ minetest.register_craft( {
 minetest.register_craft( {
         output = "homedecor:cobweb_corner 5",
         recipe = {
-			{ "farming:string", "", "farming:string" },
-			{ "", "farming:string", "" },
-			{ "farming:string", "", "farming:string" }
+			{ "", 			"farming:string", 	"" 			},
+			{ "farming:string", 	"farming:string", 	"farming:string" 	}, -- craft changé pour éviter conflit avec le "Spider Cobweb" du mod "mobs"
+			{ "", 			"farming:string", 	"" 			}
         },
 })
 
