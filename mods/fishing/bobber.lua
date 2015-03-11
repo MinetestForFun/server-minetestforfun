@@ -18,20 +18,25 @@ local PoLeWeaR = (65535/(30-(math.random(15, 29))))
 local BooTSWear = (2000*(math.random(20, 29)))
 -- Here's what you can catch
 local CaTCH = {
---	  MoD 						 iTeM				WeaR		 MeSSaGe ("You caught "..)	GeTBaiTBack		NRMiN  	CHaNCe (../120)
-    {"fishing",  				"fish_raw",			0,			"a Fish.",					false,			1,		60},
-	{"animal_clownfish",		"clownfish",		0,			"a Clownfish.",				false,			61,		10},
-	{"animal_fish_blue_white",	"fish_blue_white",	0,			"a Blue white fish.",		false,			71,		10},
-	{"default",					"stick",			0,			"a Twig.",					true,			81,		2},
-	{"mobs",					"rat",				0,			"a Rat.",					false,			83,		1},
-    {"animal_rat",				"rat",				0,			"a Rat.",					false,			84,		1},
-	{"",						"rat",				0,			"a Rat.",					false,			85,		1},
-	{"flowers_plus",			"seaweed",			0,			"some Seaweed.",			true,			86,		20},
-	{"seaplants",				"kelpgreen",		0,			"a Green Kelp.",			true,			106,	10},
-	{"farming",					"string",			0,			"a String.",				true,			116,	2},
-	{"fishing",					"pole",				PoLeWeaR,	"an old Fishing Pole.",		true,			118,	2},
-	{"3d_armor",				"boots_wood",		BooTSWear,	"some very old Boots.",		true,			120,	1},
-	{"trunks",					"twig_1",			0,			"a Twig.",					true,			121,	2},
+--	 MoD 						iTeM						WeaR			MeSSaGe ("You caught "..)	GeTBaiTBack		NRMiN  		CHaNCe (../120)
+    {"fishing",  				"fish_raw",					0,				"a Fish.",					false,			1,			80}, 	-- début 1
+	{"animal_clownfish",		"clownfish",				0,				"a Clownfish.",				false,			81,			15}, 	-- 96
+	{"animal_fish_blue_white",	"fish_blue_white",			0,				"a Blue white fish.",		false,			96,			10}, 	-- 106
+	{"flowers_plus",			"seaweed",					0,				"some Seaweed.",			true,			106,		2},		-- 108
+	{"farming",					"string",					0,				"a String.",				true,			108,		2}, 	-- 110
+	{"trunks",					"twig_1",					0,				"a Twig.",					true,			110,		1}, 	-- 111
+	{"mobs",					"rat",						0,				"a Rat.",					false,			111,		1},  	-- 112
+	{"default",					"stick",					0,				"a Twig.",					true,			112,		1}, 	-- 113
+	{"seaplants",				"kelpgreen",				0,				"a Green Kelp.",			true,			113,		1}, 	-- 114
+	{"fishing",					"pole",						PoLeWeaR,		"an old Fishing Pole.",		true,			114,		1}, 	-- 115
+	{"3d_armor",				"boots_steel",				BooTSWear,		"some very old Boots.",		true,			115,		1}, 	-- 116
+	{"3d_armor",				"leggings_gold",			BooTSWear,		"some very old Leggings.",	true,			116,		1}, 	-- 117
+	{"3d_armor",				"chestplate_bronze",		BooTSWear,		"some very old .",			true,			117,		1}, 	-- 118
+	{"3d_armor",				"helmet_diamond",			BooTSWear,		"a very old Helmet.",		true,			118,		1}, 	-- 119
+	{"shields",					"shield_enhanced_cactus",	BooTSWear,		"some very old .",			true,			119,		1}, 	-- 120
+	{"default",					"sword_nyan",				BooTSWear,		"a very old Sword.",		true,			120,		1}, 	-- 121
+--	nom mod						nom item					durabilité 		message dans le chat		106/120 chance 						-- fin 121
+--															de l'objet 									de récup worms
 }
 minetest.register_alias("flowers_plus:seaweed", "flowers:seaweed") -- exception
 
