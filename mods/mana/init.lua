@@ -284,7 +284,7 @@ else
 			alignment = { x = -0.5, y = 0},
 			direction = 1,
 			number = 0xFFFFFF,
-			offset = {x=145, y=-174}
+			offset = {x=220, y=-165}
 		})
 		mana.playerlist[playername].hudid = id
 		return id
