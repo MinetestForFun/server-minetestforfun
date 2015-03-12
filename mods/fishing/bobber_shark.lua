@@ -12,6 +12,8 @@ else
   S = function ( s ) return s end
 end
 
+local PoLeWeaR = (65535/(30-(math.random(15, 29))))
+local BooTSWear = (2000*(math.random(20, 29)))
 -- Here's what you can catch if you use a fish as bait
 local CaTCH_BiG = {
 --	 MoD 						iTeM						WeaR			MeSSaGe ("You caught "..)	GeTBaiTBack		NRMiN  		CHaNCe (../120)

@@ -187,7 +187,7 @@ minetest.register_tool("fishing:pole_perfect", {
 			local direction = minetest.dir_to_facedir(placer:get_look_dir())
 			--local meta1 = minetest.get_meta(pt.under)
 			local meta = minetest.get_meta(pt.above)
-			minetest.set_node(pt.above, {name="fishing:pole_deco", param2=direction})
+			minetest.set_node(pt.above, {name="fishing:pole_perfect_deco", param2=direction})
 			--meta1:set_int("wear", wear)
 			meta:set_int("wear", wear)
 			if not minetest.setting_getbool("creative_mode") then
@@ -199,111 +199,219 @@ minetest.register_tool("fishing:pole_perfect", {
 })
 
 if SIMPLE_DECO_FISHING_POLE == true then
-minetest.register_node("fishing:pole_deco", {
-	description = S("Fishing Pole"),
-	inventory_image = "fishing_pole.png",
-	wield_image = "fishing_pole.png^[transformFXR270",
-	drawtype = "nodebox",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	tiles = {
-		"fishing_pole_simple.png",
-		"fishing_pole_simple.png",
-		"fishing_pole_simple.png",
-		"fishing_pole_simple.png^[transformFX",
-	},
-	groups = {
-		snappy=3,
-		flammable=2,
-		not_in_creative_inventory=1
-	},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ 0     , -1/2   ,  0     , 0      ,  1/2   ,  1   },
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-1/16  , -1/2   ,  0     , 1/16   ,  1/2   ,  1   },
-		}
-	},
-	sounds = default.node_sound_wood_defaults(),
-	on_dig = function(pos, node, digger)
-		if digger:is_player() and digger:get_inventory() then
-			local meta = minetest.get_meta(pos)
-			local wear_out = meta:get_int("wear")
-			digger:get_inventory():add_item("main", {name="fishing:pole", count=1, wear=wear_out, metadata=""})
-		end
-		minetest.remove_node(pos)
-	end,
-})
+	--Canne à pêche deco
+	minetest.register_node("fishing:pole_deco", {
+		description = S("Fishing Pole"),
+		inventory_image = "fishing_pole.png",
+		wield_image = "fishing_pole.png^[transformFXR270",
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		tiles = {
+			"fishing_pole_simple.png",
+			"fishing_pole_simple.png",
+			"fishing_pole_simple.png",
+			"fishing_pole_simple.png^[transformFX",
+		},
+		groups = {
+			snappy=3,
+			flammable=2,
+			not_in_creative_inventory=1
+		},
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{ 0     , -1/2   ,  0     , 0      ,  1/2   ,  1   },
+			}
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-1/16  , -1/2   ,  0     , 1/16   ,  1/2   ,  1   },
+			}
+		},
+		sounds = default.node_sound_wood_defaults(),
+		on_dig = function(pos, node, digger)
+			if digger:is_player() and digger:get_inventory() then
+				local meta = minetest.get_meta(pos)
+				local wear_out = meta:get_int("wear")
+				digger:get_inventory():add_item("main", {name="fishing:pole", count=1, wear=wear_out, metadata=""})
+			end
+			minetest.remove_node(pos)
+		end,
+	})
+	
+	--Canne à pêche parfaite deco
+	minetest.register_node("fishing:pole_perfect_deco", {
+		description = S("Perfect Fishing Pole"),
+		inventory_image = "fishing_pole_perfect.png",
+		wield_image = "fishing_pole_perfect.png^[transformFXR270",
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		tiles = {
+			"fishing_pole_perfect_simple.png",
+			"fishing_pole_perfect_simple.png",
+			"fishing_pole_perfect_simple.png",
+			"fishing_pole_perfect_simple.png^[transformFX",
+		},
+		groups = {
+			snappy=3,
+			flammable=2,
+			not_in_creative_inventory=1
+		},
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{ 0     , -1/2   ,  0     , 0      ,  1/2   ,  1   },
+			}
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-1/16  , -1/2   ,  0     , 1/16   ,  1/2   ,  1   },
+			}
+		},
+		sounds = default.node_sound_wood_defaults(),
+		on_dig = function(pos, node, digger)
+			if digger:is_player() and digger:get_inventory() then
+				local meta = minetest.get_meta(pos)
+				local wear_out = meta:get_int("wear")
+				digger:get_inventory():add_item("main", {name="fishing:pole_perfect", count=1, wear=wear_out, metadata=""})
+			end
+			minetest.remove_node(pos)
+		end,
+	})
+
 
 else
-minetest.register_node("fishing:pole_deco", {
-	description = S("Fishing Pole"),
-	inventory_image = "fishing_pole.png",
-	wield_image = "fishing_pole.png^[transformFXR270",
-	drawtype = "nodebox",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	tiles = {
-		"fishing_pole_top.png",
-		"fishing_pole_bottom.png",
-		"fishing_pole_deco.png", -- right
-		"fishing_pole_deco.png^[transformFX", -- left
-		"fishing_pole_back.png",
-		"fishing_pole_front.png"
-	},
-	node_box = {
-		type = "fixed",
---			{ left	, bottom , front  ,  right ,  top   ,  back  }
-		fixed = {
-			{-1/32  , -1/16  , 14/16  , 1/32   ,  6/16  , 15/16},
-			{-1/32  , -3/16  , 13/16  , 1/32   , -1/16  , 14/16},
-			{-1/32  , -4/16  , 12/16  , 1/32   , -3/16  , 13/16},
-			{-1/32  , -5/16  , 11/16  , 1/32   , -4/16  , 12/16},
-			{-1/32  , -6/16  ,  9/16  , 1/32   , -5/16  , 11/16},
-			{-1/32  , -5/16  ,  9/16  , 1/32   , -4/16  , 10/16},
-			-- stick
-			{-1/32  ,  6/16  , 12/16  , 1/32   ,  7/16  , 15/16}, -- top
-			{-1/32  ,  5/16  , 11/16  , 1/32   ,  7/16  , 12/16},
-			{-1/32  ,  5/16  , 10/16  , 1/32   ,  6/16  , 11/16},
-			{-1/32  ,  4/16  ,  9/16  , 1/32   ,  6/16  , 10/16},
-			{-1/32  ,  3/16  ,  8/16  , 1/32   ,  5/16  ,  9/16},
-			{-1/32  ,  2/16  ,  7/16  , 1/32   ,  4/16  ,  8/16},
-			{-1/32  ,  1/16  ,  6/16  , 1/32   ,  3/16  ,  7/16},
-			{-1/32  ,  0     ,  5/16  , 1/32   ,  2/16  ,  6/16},
-			{-1/32  , -2/16  ,  4/16  , 1/32   ,  1/16  ,  5/16},
-			{-1/32  , -3/16  ,  3/16  , 1/32   ,  0     ,  4/16},
-			{-1/32  , -5/16  ,  2/16  , 1/32   , -1/16  ,  3/16},
-			{-1/32  , -7/16  ,  1/16  , 1/32   , -3/16  ,  2/16},
-			{-1/32  , -1/2   ,  0     , 1/32   , -5/16  ,  1/16}, -- bottom
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-1/16  , -1/2   ,  0     , 1/16   ,  1/2   ,  1   },
-		}
-	},
-	groups = {
-		snappy=3,
-		flammable=2,
-		not_in_creative_inventory=1
-	},
-	sounds = default.node_sound_wood_defaults(),
-	on_dig = function(pos, node, digger)
-		if digger:is_player() and digger:get_inventory() then
-			local meta = minetest.get_meta(pos)
-			local wear_out = meta:get_int("wear")
-			digger:get_inventory():add_item("main", {name="fishing:pole", count=1, wear=wear_out, metadata=""})
-		end
-		minetest.remove_node(pos)
-	end,
-})
-
+	--Canne à pêche deco
+	minetest.register_node("fishing:pole_deco", {
+		description = S("Fishing Pole"),
+		inventory_image = "fishing_pole.png",
+		wield_image = "fishing_pole.png^[transformFXR270",
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		tiles = {
+			"fishing_pole_top.png",
+			"fishing_pole_bottom.png",
+			"fishing_pole_deco.png", -- right
+			"fishing_pole_deco.png^[transformFX", -- left
+			"fishing_pole_back.png",
+			"fishing_pole_front.png"
+		},
+		node_box = {
+			type = "fixed",
+	--			{ left	, bottom , front  ,  right ,  top   ,  back  }
+			fixed = {
+				{-1/32  , -1/16  , 14/16  , 1/32   ,  6/16  , 15/16},
+				{-1/32  , -3/16  , 13/16  , 1/32   , -1/16  , 14/16},
+				{-1/32  , -4/16  , 12/16  , 1/32   , -3/16  , 13/16},
+				{-1/32  , -5/16  , 11/16  , 1/32   , -4/16  , 12/16},
+				{-1/32  , -6/16  ,  9/16  , 1/32   , -5/16  , 11/16},
+				{-1/32  , -5/16  ,  9/16  , 1/32   , -4/16  , 10/16},
+				-- stick
+				{-1/32  ,  6/16  , 12/16  , 1/32   ,  7/16  , 15/16}, -- top
+				{-1/32  ,  5/16  , 11/16  , 1/32   ,  7/16  , 12/16},
+				{-1/32  ,  5/16  , 10/16  , 1/32   ,  6/16  , 11/16},
+				{-1/32  ,  4/16  ,  9/16  , 1/32   ,  6/16  , 10/16},
+				{-1/32  ,  3/16  ,  8/16  , 1/32   ,  5/16  ,  9/16},
+				{-1/32  ,  2/16  ,  7/16  , 1/32   ,  4/16  ,  8/16},
+				{-1/32  ,  1/16  ,  6/16  , 1/32   ,  3/16  ,  7/16},
+				{-1/32  ,  0     ,  5/16  , 1/32   ,  2/16  ,  6/16},
+				{-1/32  , -2/16  ,  4/16  , 1/32   ,  1/16  ,  5/16},
+				{-1/32  , -3/16  ,  3/16  , 1/32   ,  0     ,  4/16},
+				{-1/32  , -5/16  ,  2/16  , 1/32   , -1/16  ,  3/16},
+				{-1/32  , -7/16  ,  1/16  , 1/32   , -3/16  ,  2/16},
+				{-1/32  , -1/2   ,  0     , 1/32   , -5/16  ,  1/16}, -- bottom
+			}
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-1/16  , -1/2   ,  0     , 1/16   ,  1/2   ,  1   },
+			}
+		},
+		groups = {
+			snappy=3,
+			flammable=2,
+			not_in_creative_inventory=1
+		},
+		sounds = default.node_sound_wood_defaults(),
+		on_dig = function(pos, node, digger)
+			if digger:is_player() and digger:get_inventory() then
+				local meta = minetest.get_meta(pos)
+				local wear_out = meta:get_int("wear")
+				digger:get_inventory():add_item("main", {name="fishing:pole", count=1, wear=wear_out, metadata=""})
+			end
+			minetest.remove_node(pos)
+		end,
+	})
+	
+	--Canne à pêche parfaite deco
+	minetest.register_node("fishing:pole_perfect_deco", {
+		description = S("Fishing Pole"),
+		inventory_image = "fishing_pole_perfect.png",
+		wield_image = "fishing_pole_perfect.png^[transformFXR270",
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		tiles = {
+			"fishing_pole_perfect_top.png",
+			"fishing_pole_perfect_bottom.png",
+			"fishing_pole_perfect_deco.png", -- right
+			"fishing_pole_perfect_deco.png^[transformFX", -- left
+			"fishing_pole_perfect_back.png",
+			"fishing_pole_perfect_front.png"
+		},
+		node_box = {
+			type = "fixed",
+	--			{ left	, bottom , front  ,  right ,  top   ,  back  }
+			fixed = {
+				{-1/32  , -1/16  , 14/16  , 1/32   ,  6/16  , 15/16},
+				{-1/32  , -3/16  , 13/16  , 1/32   , -1/16  , 14/16},
+				{-1/32  , -4/16  , 12/16  , 1/32   , -3/16  , 13/16},
+				{-1/32  , -5/16  , 11/16  , 1/32   , -4/16  , 12/16},
+				{-1/32  , -6/16  ,  9/16  , 1/32   , -5/16  , 11/16},
+				{-1/32  , -5/16  ,  9/16  , 1/32   , -4/16  , 10/16},
+				-- stick
+				{-1/32  ,  6/16  , 12/16  , 1/32   ,  7/16  , 15/16}, -- top
+				{-1/32  ,  5/16  , 11/16  , 1/32   ,  7/16  , 12/16},
+				{-1/32  ,  5/16  , 10/16  , 1/32   ,  6/16  , 11/16},
+				{-1/32  ,  4/16  ,  9/16  , 1/32   ,  6/16  , 10/16},
+				{-1/32  ,  3/16  ,  8/16  , 1/32   ,  5/16  ,  9/16},
+				{-1/32  ,  2/16  ,  7/16  , 1/32   ,  4/16  ,  8/16},
+				{-1/32  ,  1/16  ,  6/16  , 1/32   ,  3/16  ,  7/16},
+				{-1/32  ,  0     ,  5/16  , 1/32   ,  2/16  ,  6/16},
+				{-1/32  , -2/16  ,  4/16  , 1/32   ,  1/16  ,  5/16},
+				{-1/32  , -3/16  ,  3/16  , 1/32   ,  0     ,  4/16},
+				{-1/32  , -5/16  ,  2/16  , 1/32   , -1/16  ,  3/16},
+				{-1/32  , -7/16  ,  1/16  , 1/32   , -3/16  ,  2/16},
+				{-1/32  , -1/2   ,  0     , 1/32   , -5/16  ,  1/16}, -- bottom
+			}
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-1/16  , -1/2   ,  0     , 1/16   ,  1/2   ,  1   },
+			}
+		},
+		groups = {
+			snappy=3,
+			flammable=2,
+			not_in_creative_inventory=1
+		},
+		sounds = default.node_sound_wood_defaults(),
+		on_dig = function(pos, node, digger)
+			if digger:is_player() and digger:get_inventory() then
+				local meta = minetest.get_meta(pos)
+				local wear_out = meta:get_int("wear")
+				digger:get_inventory():add_item("main", {name="fishing:pole_perfect", count=1, wear=wear_out, metadata=""})
+			end
+			minetest.remove_node(pos)
+		end,
+	})
 end
 -----------------------------------------------------------------------------------------------
 -- GETTING WORMS
@@ -311,115 +419,115 @@ end
 -- get worms from digging in dirt:
 if NEW_WORM_SOURCE == false then
 
-minetest.register_node(":default:dirt", {
-	description = S("Dirt"),
-	tiles = {"default_dirt.png"},
-	is_ground_content = true,
-	groups = {crumbly=3},
-	sounds = default.node_sound_dirt_defaults(),
- 	after_dig_node = function (pos, oldnode, oldmetadata, digger)
- 		if math.random(1, 100) < WORM_CHANCE then
-			local tool_in_use = digger:get_wielded_item():get_name()
-			if tool_in_use == "" or tool_in_use == "default:dirt" then
-				if WORM_IS_MOB == true then
-					minetest.add_entity({x = pos.x, y = pos.y+0.4, z = pos.z}, "fishing:bait_worm_entity")
-				else
-					local inv = digger:get_inventory()
-					if inv:room_for_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""}) then
-						inv:add_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""})
+	minetest.register_node(":default:dirt", {
+		description = S("Dirt"),
+		tiles = {"default_dirt.png"},
+		is_ground_content = true,
+		groups = {crumbly=3},
+		sounds = default.node_sound_dirt_defaults(),
+	 	after_dig_node = function (pos, oldnode, oldmetadata, digger)
+		 		if math.random(1, 100) < WORM_CHANCE then
+				local tool_in_use = digger:get_wielded_item():get_name()
+				if tool_in_use == "" or tool_in_use == "default:dirt" then
+					if WORM_IS_MOB == true then
+						minetest.add_entity({x = pos.x, y = pos.y+0.4, z = pos.z}, "fishing:bait_worm_entity")
+					else
+						local inv = digger:get_inventory()
+						if inv:room_for_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""}) then
+							inv:add_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""})
+						end
 					end
-				end
- 			end
- 		end
- 	end,
-})
+	 			end
+	 		end
+	 	end,
+	})
 
 else
--- get worms from digging with hoes:
+	-- get worms from digging with hoes:
 
--- turns nodes with group soil=1 into soil
-local function hoe_on_use(itemstack, user, pointed_thing, uses)
-	local pt = pointed_thing
-	-- check if pointing at a node
-	if not pt then
-		return
-	end
-	if pt.type ~= "node" then
-		return
-	end
+	-- turns nodes with group soil=1 into soil
+	local function hoe_on_use(itemstack, user, pointed_thing, uses)
+		local pt = pointed_thing
+		-- check if pointing at a node
+		if not pt then
+			return
+		end
+		if pt.type ~= "node" then
+				return
+		end
+		
+		local under = minetest.get_node(pt.under)
+		local p = {x=pt.under.x, y=pt.under.y+1, z=pt.under.z}
+		local above = minetest.get_node(p)
+		
+		-- return if any of the nodes is not registered
+		if not minetest.registered_nodes[under.name] then
+			return
+			end
+		if not minetest.registered_nodes[above.name] then
+			return
+		end
+		
+		-- check if the node above the pointed thing is air
+		if above.name ~= "air" then
+			return
+		end
 	
-	local under = minetest.get_node(pt.under)
-	local p = {x=pt.under.x, y=pt.under.y+1, z=pt.under.z}
-	local above = minetest.get_node(p)
-	
-	-- return if any of the nodes is not registered
-	if not minetest.registered_nodes[under.name] then
-		return
-	end
-	if not minetest.registered_nodes[above.name] then
-		return
-	end
-	
-	-- check if the node above the pointed thing is air
-	if above.name ~= "air" then
-		return
-	end
-	
-	-- check if pointing at dirt
-	if minetest.get_item_group(under.name, "soil") ~= 1 then
-		return
-	end
-	
-	-- turn the node into soil, play sound, get worm and wear out item
-	minetest.set_node(pt.under, {name="farming:soil"})
-	minetest.sound_play("default_dig_crumbly", {
-		pos = pt.under,
-		gain = 0.5,
-	})
-	
-	if math.random(1, 100) < WORM_CHANCE then
-		if WORM_IS_MOB == true then
-			minetest.add_entity({x=pt.under.x, y=pt.under.y+0.4, z=pt.under.z}, "fishing:bait_worm_entity")
-		else
-			local inv = user:get_inventory()
-			if inv:room_for_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""}) then
-				inv:add_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""})
+		-- check if pointing at dirt
+		if minetest.get_item_group(under.name, "soil") ~= 1 then
+			return
+		end
+		
+		-- turn the node into soil, play sound, get worm and wear out item
+		minetest.set_node(pt.under, {name="farming:soil"})
+		minetest.sound_play("default_dig_crumbly", {
+			pos = pt.under,
+			gain = 0.5,
+		})
+		
+		if math.random(1, 100) < WORM_CHANCE then
+			if WORM_IS_MOB == true then
+				minetest.add_entity({x=pt.under.x, y=pt.under.y+0.4, z=pt.under.z}, "fishing:bait_worm_entity")
+			else
+				local inv = user:get_inventory()
+				if inv:room_for_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""}) then
+					inv:add_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""})
+				end
 			end
 		end
+		itemstack:add_wear(65535/(uses-1))
+		return itemstack
 	end
-	itemstack:add_wear(65535/(uses-1))
-	return itemstack
-end
 
--- didn't change the hoes, just here because hoe_on_use is local
-minetest.register_tool(":farming:hoe_wood", {
-	description = S("Wooden Hoe"),
-	inventory_image = "farming_tool_woodhoe.png",
-	on_use = function(itemstack, user, pointed_thing)
-		return hoe_on_use(itemstack, user, pointed_thing, 30)
-	end,
-})
-minetest.register_tool(":farming:hoe_stone", {
-	description = S("Stone Hoe"),
-	inventory_image = "farming_tool_stonehoe.png",
-	on_use = function(itemstack, user, pointed_thing)
-		return hoe_on_use(itemstack, user, pointed_thing, 90)
-	end,
-})
-minetest.register_tool(":farming:hoe_steel", {
-	description = S("Steel Hoe"),
-	inventory_image = "farming_tool_steelhoe.png",
-	on_use = function(itemstack, user, pointed_thing)
-		return hoe_on_use(itemstack, user, pointed_thing, 200)
-	end,
-})
-minetest.register_tool(":farming:hoe_bronze", {
-	description = S("Bronze Hoe"),
-	inventory_image = "farming_tool_bronzehoe.png",
-	on_use = function(itemstack, user, pointed_thing)
-		return hoe_on_use(itemstack, user, pointed_thing, 220)
-	end,
-})
+	-- didn't change the hoes, just here because hoe_on_use is local
+	minetest.register_tool(":farming:hoe_wood", {
+		description = S("Wooden Hoe"),
+		inventory_image = "farming_tool_woodhoe.png",
+		on_use = function(itemstack, user, pointed_thing)
+			return hoe_on_use(itemstack, user, pointed_thing, 30)
+		end,
+	})
+	minetest.register_tool(":farming:hoe_stone", {
+		description = S("Stone Hoe"),
+		inventory_image = "farming_tool_stonehoe.png",
+		on_use = function(itemstack, user, pointed_thing)
+			return hoe_on_use(itemstack, user, pointed_thing, 90)
+		end,
+	})
+	minetest.register_tool(":farming:hoe_steel", {
+		description = S("Steel Hoe"),
+		inventory_image = "farming_tool_steelhoe.png",
+		on_use = function(itemstack, user, pointed_thing)
+			return hoe_on_use(itemstack, user, pointed_thing, 200)
+		end,
+	})
+	minetest.register_tool(":farming:hoe_bronze", {
+		description = S("Bronze Hoe"),
+		inventory_image = "farming_tool_bronzehoe.png",
+		on_use = function(itemstack, user, pointed_thing)
+			return hoe_on_use(itemstack, user, pointed_thing, 220)
+		end,
+	})
 
 end
 -----------------------------------------------------------------------------------------------
