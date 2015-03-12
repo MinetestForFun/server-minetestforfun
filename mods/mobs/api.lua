@@ -452,7 +452,110 @@ function mobs:register_mob(name, def)
 					self.state = "stand"
 					self:set_animation("stand")
 				end
-
+			elseif self.state == "attack" and self.attack_type == "kamicaze" then
+				if not self.attack.player or not self.attack.player:is_player() then
+					self.state = "stand"
+					self:set_animation("stand")
+					self.timer = 0
+					self.blinktimer = 0
+					return
+				end
+				local s = self.object:getpos()
+				local p = self.attack.player:getpos()
+				local dist = ((p.x - s.x) ^ 2 + (p.y - s.y) ^ 2 + (p.z - s.z) ^ 2) ^ 0.5
+				if dist > self.view_range or self.attack.player:get_hp() <= 0 then
+					self.state = "stand"
+					self.v_start = false
+					self.set_velocity(self, 0)
+					self.timer = 0
+					self.blinktimer = 0
+					self.attack = {player = nil, dist = nil}
+					self:set_animation("stand")
+					return
+				else
+					self:set_animation("walk")
+					self.attack.dist = dist
+				end
+				
+				local vec = {x = p.x -s.x, y = p.y -s.y, z = p.z -s.z}
+				local yaw = math.atan(vec.z/vec.x)+math.pi/2
+				if self.drawtype == "side" then
+					yaw = yaw+(math.pi/2)
+				end
+				if p.x > s.x then
+					yaw = yaw+math.pi
+				end
+				self.object:setyaw(yaw)
+				if self.attack.dist > 3 then
+					if not self.v_start then
+						self.v_start = true
+						self.set_velocity(self, self.run_velocity)
+						self.timer = 0
+						 self.blinktimer = 0
+					else
+					     self.timer = 0
+						 self.blinktimer = 0
+						if self.get_velocity(self) <= 1.58 and self.object:getvelocity().y == 0 then
+							local v = self.object:getvelocity()
+							v.y = 5
+							self.object:setvelocity(v)
+						end
+						self.set_velocity(self, self.run_velocity)
+					end
+					self:set_animation("run")
+				else
+					self.set_velocity(self, 0)
+					self.timer = self.timer + dtime
+					self.blinktimer = self.blinktimer + dtime
+						if self.blinktimer > 0.2 then
+							self.blinktimer = self.blinktimer - 0.2
+							if self.blinkstatus then
+								self.object:settexturemod("")
+							else
+								self.object:settexturemod("^[brighten")
+							end
+							self.blinkstatus = not self.blinkstatus
+						end
+						if self.timer > 3 then
+							local pos = self.object:getpos()
+							pos.x = math.floor(pos.x+0.5)
+							pos.y = math.floor(pos.y+0.5)
+							pos.z = math.floor(pos.z+0.5)
+							do_tnt_physics(pos, 3)
+							local meta = minetest.get_meta(pos)
+							minetest.sound_play("tnt_explode", {pos = pos,gain = 1.0,max_hear_distance = 16,})
+							if minetest.get_node(pos).name == "default:water_source" or minetest.get_node(pos).name == "default:water_flowing" or minetest.is_protected(pos, "tnt") then
+								self.object:remove()
+								return
+							end
+							for x=-3,3 do
+								for y=-3,3 do
+									for z=-3,3 do
+										if x*x+y*y+z*z <= 3 * 3 + 3 then
+											local np={x=pos.x+x,y=pos.y+y,z=pos.z+z}
+											local n = minetest.get_node(np)
+											if n.name ~= "air" and n.name ~= "default:obsidian" and n.name ~= "default:bedrock" and n.name ~= "protector:protect" then
+												activate_if_tnt(n.name, np, pos, 3)
+												minetest.remove_node(np)
+												nodeupdate(np)
+												if n.name ~= "tnt:tnt" and math.random() > 0.9 then
+													local drop = minetest.get_node_drops(n.name, "")
+													for _,item in ipairs(drop) do
+														if type(item) == "string" then
+															if math.random(1,100) > 40 then
+															local obj = minetest.add_item(np, item)
+															end
+														end
+													end
+												end
+											end
+										end
+									end
+								end
+								self.object:remove()
+							end
+						end
+				end
 			elseif self.state == "attack" and self.attack_type == "dogfight" then
 
 				if not self.attack.player or not self.attack.player:getpos() then
