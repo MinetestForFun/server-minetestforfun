@@ -41,15 +41,33 @@ mobs:register_mob("mobs:chicken", {
 	},
 	follow = "farming:wheat",
 	view_range = 8,	
-		on_rightclick = function(self, clicker)
-		if clicker:is_player() and clicker:get_inventory() then
-			clicker:get_inventory():add_item("main", "mobs:chicken")
-			self.object:remove()
-		end
-	end,
+
 	sounds = {
 		random = "mobs_chicken",
 	},
+	on_rightclick = function(self, clicker)
+		local tool = clicker:get_wielded_item()
+		if tool:get_name() == "farming:wheat"  then
+			if not minetest.setting_getbool("creative_mode") then
+				tool:take_item(1)
+				clicker:set_wielded_item(tool)
+			end
+			self.food = (self.food or 0) + 1
+			if self.food >= 4 then
+				-- I dont know what do you want she make
+				self.food = 0 
+				self.tamed = true
+				minetest.sound_play("mobs_chicken", {object = self.object,gain = 1.0,max_hear_distance = 32,loop = false,})
+			end
+			return tool
+		else
+			if clicker:is_player() and clicker:get_inventory() then
+				clicker:get_inventory():add_item("main", "mobs:chicken")
+				self.object:remove()
+			end
+		end
+		
+	end,
 	jump = true,
 	step = 1,
 	blood_texture = "mobs_blood.png",
