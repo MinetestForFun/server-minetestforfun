@@ -506,7 +506,7 @@ function mobs:register_mob(name, def)
 				else
 					self.set_velocity(self, 0)
 					self.timer = self.timer + dtime
-					self.blinktimer = self.blinktimer + dtime
+					self.blinktimer = (self.blinktimer + dtime) or nil
 						if self.blinktimer > 0.2 then
 							self.blinktimer = self.blinktimer - 0.2
 							if self.blinkstatus then
