@@ -4,7 +4,7 @@ dofile(minetest.get_modpath("builtin_falling") .. "/func.lua") -- Not EDIT THAT
 --
 
 -- Protect in realtime the lava flowing (can be slow)
-PROTECT_LAVA_REALTIME = 1 -- 0 for OFF , 1 for ON
+PROTECT_LAVA_REALTIME = 0 -- 0 for OFF , 1 for ON
 -- Protect in realtime the water flowing (can be very slow, because some water in this world :p)
 PROTECT_WATER_REALTIME = 0 -- 0 for OFF , 1 for ON
 
