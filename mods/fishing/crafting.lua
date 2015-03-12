@@ -15,9 +15,9 @@
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",			"group:stick"	},
+		{"", 				"",					"group:stick"	},
 		{"", 				"group:stick",		"farming:string"},
-		{"group:stick",			"",			"farming:string"},
+		{"group:stick",		"",					"farming:string"},
 	}
 })
 
@@ -25,9 +25,9 @@ if minetest.get_modpath("moreblocks") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",			"group:stick"		},
+		{"", 				"",					"group:stick"		},
 		{"", 				"group:stick",		"moreblocks:rope"	},
-		{"group:stick",			"",			"moreblocks:rope"	},
+		{"group:stick",		"",					"moreblocks:rope"	},
 	}
 })
 end
@@ -36,21 +36,21 @@ if minetest.get_modpath("ropes") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole",
 	recipe = { 
-		{"", 				"",			"group:stick"	},
+		{"", 				"",					"group:stick"	},
 		{"", 				"group:stick",		"ropes:rope"   	},
-		{"group:stick",			"",			"ropes:rope"   	},
+		{"group:stick",		"",					"ropes:rope"   	},
 	}
 })
 end
 
 -- Mithril Fishing Pole
-if minetest.get_modpath("moreore") ~= nil then
+if minetest.get_modpath("moreores") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole_perfect",
 	recipe = { 
-		{"", 				"",				"moreoress:mithril_ingot"	},
-		{"", 				"moreoress:mithril_ingot",	"mobs:spider_cobweb"		},
-		{"moreoress:mithril_ingot",	"",				"mobs:spider_cobweb"		},
+		{"", 							"",							"moreores:mithril_ingot"	},
+		{"", 							"moreores:mithril_ingot",	"mobs:spider_cobweb"		},
+		{"moreores:mithril_ingot",		"",							"mobs:spider_cobweb"		},
 	}
 })
 end
