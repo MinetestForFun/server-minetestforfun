@@ -351,7 +351,7 @@ else
 	
 	--Canne à pêche parfaite deco
 	minetest.register_node("fishing:pole_perfect_deco", {
-		description = S("Fishing Pole"),
+		description = S("Perfect Fishing Pole"),
 		inventory_image = "fishing_pole_perfect.png",
 		wield_image = "fishing_pole_perfect.png^[transformFXR270",
 		drawtype = "nodebox",
