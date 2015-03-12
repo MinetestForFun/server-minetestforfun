@@ -33,6 +33,10 @@ dofile(minetest.get_modpath("mobs").."/mese_monster.lua")
 
 dofile(minetest.get_modpath("mobs").."/spider.lua")
 
+-- Creeper (fast impl by davedevils)
+
+dofile(minetest.get_modpath("mobs").."/creeper.lua")
+
 -- Meat & Cooked Meat
 
 minetest.register_craftitem("mobs:meat_raw", {
