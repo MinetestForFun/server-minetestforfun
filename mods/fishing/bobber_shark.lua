@@ -14,9 +14,20 @@ end
 
 -- Here's what you can catch if you use a fish as bait
 local CaTCH_BiG = {
---	  MoD 						 iTeM				WeaR		 MeSSaGe ("You caught "..)	GeTBaiTBack		NRMiN  	CHaNCe (../120)
-    {"fishing",  				"shark",			0,			"a small Shark.",			false,			1,		2},
-	{"fishing",  				"pike",				0,			"a Northern Pike.",			false,			3,		3}
+--	 MoD 						iTeM						WeaR			MeSSaGe ("You caught "..)	GeTBaiTBack		NRMiN  		CHaNCe (../120)
+    {"fishing",  				"shark",					0,				"a small Shark.",			false,			1,			55},	-- 1 début
+	{"fishing",  				"pike",						0,				"a Northern Pike.",			false,			56,			55},	-- 110
+	{"3d_armor",				"helmet_diamond",			BooTSWear,		"a very old Helmet.",		true,			111,		2}, 	-- 112
+	{"shields",					"shield_enhanced_cactus",	BooTSWear,		"a very old Shield.",		true,			113,		2}, 	-- 114
+	{"shields",					"shield_enhanced_cactus",	BooTSWear,		"a very old Shield.",		true,			115,		1}, 	-- 115
+	{"default",					"sword_bronze",				BooTSWear,		"a very old Sword.",		true,			116,		1}, 	-- 116
+	{"default",					"sword_mese",				BooTSWear,		"a very old Sword.",		true,			117,		1}, 	-- 117
+	{"default",					"sword_nyan",				BooTSWear,		"a very old Sword.",		true,			118,		1}, 	-- 118
+	{"maptools",				"gold_coin",				0,				"a Gold Coin.",				true,			119,		1}, 	-- 119
+	{"default",					"diamondblock",				0,				"a Diamond Block.",			true,			120,		1}, 	-- 120
+	{"default",					"nyancat",					0,				"a Nyan Cat.",				true,			121,		1}, 	-- 121
+--	nom mod						nom item					durabilité 		message dans le chat		106/120 de chance 					-- fin 121
+--															de l'objet 									de récupérer le worm
 }
 
 local PLaNTS = {

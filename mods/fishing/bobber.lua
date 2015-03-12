@@ -31,10 +31,7 @@ local CaTCH = {
 	{"fishing",					"pole",						PoLeWeaR,		"an old Fishing Pole.",		true,			114,		1}, 	-- 115
 	{"3d_armor",				"boots_steel",				BooTSWear,		"some very old Boots.",		true,			115,		1}, 	-- 116
 	{"3d_armor",				"leggings_gold",			BooTSWear,		"some very old Leggings.",	true,			116,		1}, 	-- 117
-	{"3d_armor",				"chestplate_bronze",		BooTSWear,		"some very old .",			true,			117,		1}, 	-- 118
-	{"3d_armor",				"helmet_diamond",			BooTSWear,		"a very old Helmet.",		true,			118,		1}, 	-- 119
-	{"shields",					"shield_enhanced_cactus",	BooTSWear,		"some very old .",			true,			119,		1}, 	-- 120
-	{"default",					"sword_nyan",				BooTSWear,		"a very old Sword.",		true,			120,		1}, 	-- 121
+	{"3d_armor",				"chestplate_bronze",		BooTSWear,		"a very old ChestPlate.",	true,			117,		4}, 	-- 118
 --	nom mod						nom item					durabilité 		message dans le chat		106/120 de chance 					-- fin 121
 --															de l'objet 									de récupérer le worm
 }
