@@ -9,7 +9,7 @@ mobs:register_mob("mobs:creeper", {
 	--textures = {"mobs_tree_monster.png"},
 	available_textures = {
 		total = 1,
-		texture_1 = {"mobs_tree_monster.png"},
+		texture_1 = {"mobs_creeper.png"},
 	},
 	visual_size = {x=4.5,y=4.5},
 	makes_footstep_sound = true,
@@ -58,7 +58,6 @@ mobs:register_mob("mobs:creeper", {
 	sounds = {
 		random = "mobs_treemonster",
 	},
-	step = 0.5,
 	jump = true,
 	step = 1,
 	blood_texture = "default_wood.png",
