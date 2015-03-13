@@ -14,8 +14,8 @@ mobs:register_mob("mobs:creeper", {
 	visual_size = {x=4.5,y=4.5},
 	makes_footstep_sound = true,
 	view_range = 16,
-	walk_velocity = 0.2,
-	run_velocity = 0.9,
+	walk_velocity = 2,
+	run_velocity = 4,
 	damage = 0,
 	drops = {
 		{name = "default:torch",
