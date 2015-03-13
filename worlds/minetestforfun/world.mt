@@ -110,8 +110,6 @@ load_mod_arrow_signs = true
 load_mod_death_messages = true
 load_mod_colouredstonebricks = true
 load_mod_chains = true
-load_mod_mobs = true
-load_mod_lavatemple = true
 load_mod_wiki = true
 load_mod_intweak = true
 load_mod_notice = true
@@ -125,6 +123,10 @@ load_mod_bone = true
 load_mod_carts = true
 load_mod_dropondie = true
 load_mod_sponge = true
+
+load_mod_mobs = true
+load_mod_tsm_pyramids = true
+load_mod_lavatemple = true
 
 load_mod_christmas_craft = true
 load_mod_noairblocks = true
