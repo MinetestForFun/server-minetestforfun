@@ -8,7 +8,7 @@ snow = {
 	smooth_biomes = true,
 	christmas_content = true,
 	smooth_snow = true,
-	min_height = 3,
+	min_height = 50,
 }
 
 --Config documentation.
