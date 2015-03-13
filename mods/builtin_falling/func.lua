@@ -115,7 +115,7 @@ end
 minetest.register_on_dignode(on_dignode)
 
 --
--- Rewirte of all item you need
+-- Rewrite of all item you need
 --
 function add_falling_protect_item(named)
 	minetest.override_item(named, {
@@ -158,7 +158,7 @@ function is_protected_area(p, zone, name)
 end
 
 --
--- rewirte of bukket
+-- rewrite of bucket
 --
 
 function add_protected_bukket_liquid(nameofbukket,liquidsourcename)
@@ -171,8 +171,8 @@ function add_protected_bukket_liquid(nameofbukket,liquidsourcename)
 			-- Check if pointing to a buildable node
 			local n = minetest.get_node(pointed_thing.under)
 			
-			if is_protected_area(pointed_thing.under, 7 ,user:get_player_name()) then
-				minetest.chat_send_player(user:get_player_name(),"You cant place here - Too short of a protected area.")
+			if is_protected_area(pointed_thing.under, 4 ,user:get_player_name()) then
+				minetest.chat_send_player(user:get_player_name(),"You can't place here - Too short of a protected area. (less than or equal to 4 blocks)")
 				if minetest.is_protected(pointed_thing.under,user:get_player_name()) then
 					minetest.log("action", user:get_player_name().. " try use "..nameofbukket.." at protected pos ".. minetest.pos_to_string(pointed_thing.under))
 				end
