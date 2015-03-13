@@ -29,7 +29,7 @@ minetest.register_tool( "markers:land_title_register",
        local name = placer:get_player_name();
 
        -- the position is what we're actually looking for
-       local pos  = minetest.get_pointed_thing_position( pointed_thing, 0 ); --under );
+       local pos  = minetest.get_pointed_thing_position( pointed_thing, false ); -- not above
        
        if( not( pos ) or not( pos.x )) then
           minetest.chat_send_player( name, "Position not found.");
@@ -50,7 +50,7 @@ minetest.register_tool( "markers:land_title_register",
        end
        local name = placer:get_player_name();
 
-       local pos  = minetest.get_pointed_thing_position( pointed_thing, under );
+       local pos  = minetest.get_pointed_thing_position( pointed_thing, false ); -- not above
        
        if( not( pos ) or not( pos.x )) then
           minetest.chat_send_player( name, "Position not found.");
