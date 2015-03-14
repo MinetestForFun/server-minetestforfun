@@ -126,7 +126,7 @@ minetest.register_node("bobblocks:trap_spike_major_set", {
 -- Crafting
 
 minetest.register_craft({
-	output = 'bobblocks:trap_spike',
+	output = 'bobblocks:trap_spike 3',
 	recipe = {
 		{'', 'default:obsidian_shard', ''},
 		{'', 'default:steel_ingot', ''},
