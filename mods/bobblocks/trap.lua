@@ -128,18 +128,16 @@ minetest.register_node("bobblocks:trap_spike_major_set", {
 minetest.register_craft({
 	output = 'bobblocks:trap_spike',
 	recipe = {
-		{'', '', ''},
-		{'', 'default:cobble', ''},
-		{'default:cobble', 'default:apple', 'default:cobble'},
+		{'', 'default:obsidian_shard', ''},
+		{'', 'default:steel_ingot', ''},
 	}
 })
 
 minetest.register_craft({
 	output = 'bobblocks:trap_spike_major',
 	recipe = {
-		{'', 'default:cobble', ''},
-		{'', 'default:apple', ''},
-		{'default:cobble', 'default:apple', 'default:cobble'},
+		{'default:obsidian_shard', 'default:obsidian_shard', 'default:obsidian_shard'},
+		{'', 'default:steel_ingot', ''},
 	}
 })
 
