@@ -99,7 +99,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "screwdriver:screwdriver_perfect",
 	recipe = {
-		{"moreoress:mithril_ingot"},
+		{"moreores:mithril_ingot"},
 		{"group:stick"}
 	}
 })
