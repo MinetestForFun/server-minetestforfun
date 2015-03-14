@@ -1,0 +1,5 @@
+treasurer.register_treasure("doors:door_wood",0.01,2,{1,2},nil,"building_block")
+treasurer.register_treasure("doors:door_glass",0.009,2.5,{1,2},nil,"building_block")
+treasurer.register_treasure("doors:door_obsidian_glass",0.008,2.75,1,nil,"building_block")
+treasurer.register_treasure("doors:door_steel",0.007,3,nil,nil,"building_block")
+treasurer.register_treasure("doors:trapdoor",0.01,2,{1,4},nil,"building_block")
