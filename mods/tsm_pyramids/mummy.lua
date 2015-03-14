@@ -367,7 +367,7 @@ minetest.register_node("tsm_pyramids:spawner_mummy", {
 	tiles = {"tsm_pyramids_spawner.png"},
 	is_ground_content = true,
 	drawtype = "allfaces",--_optional",
-	groups = {cracky=1,level=1},
+	groups = {unbreakable=1},
 	drop = "",
 	on_construct = function(pos)
 		pos.y = pos.y - 0.28
