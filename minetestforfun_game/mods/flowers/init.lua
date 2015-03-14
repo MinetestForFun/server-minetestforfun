@@ -40,7 +40,7 @@ end
 add_simple_flower("dandelion_yellow", "Yellow Dandelion", "flowers_dandelion_yellow", "color_yellow")
 add_simple_flower("geranium", "Blue Geranium", "flowers_geranium", "color_blue")
 add_simple_flower("rose", "Rose", "flowers_rose", "color_red") 
-add_simple_flower("tulip", "Orange Tulip", "flower_tulip", "color_orange")
+add_simple_flower("tulip", "Orange Tulip", "flowers_tulip", "color_orange")
 
 ---------------------------------------------
 ----------------- OLD SYSTEM ----------------
