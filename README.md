@@ -19,6 +19,8 @@ Contributors
   > Occasionnal debogger, texture fixer.
 - Gael-de-Sailly
   > Kittens carer, and debogger.
+- davedevils
+  > Gardener, creepers' father and chickens' friend
 
 minetestforfun_game sous-jeu et mods
 ===================
@@ -41,4 +43,5 @@ Contributeurs
   > Déboggueur occasionnel.
 - Gael-de-Sailly
   > Soigneur et deboggueur de chatons.
-
+- davedevils
+  > Jardinier, père des creeper et ami des poulets
