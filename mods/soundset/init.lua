@@ -85,14 +85,14 @@ load_sounds_config()
 minetest.register_chatcommand("setsound", {
 	params = "<music|ambience|mobs|other> <number>",
 	 description = "set volume sound <music|ambience|mobs|other>",
-	privs = {},
+	privs = {interact=true},
 	func = sounds.set_sound,
 })
 
 minetest.register_chatcommand("getsound", {
 	params = "",
 	 description = "print volume sound <music|ambience|mobs|other>",
-	privs = {},
+	privs = {interact=true},
 	func = function(name, param)
 		local conf = ""
 		for k, v in pairs(sounds.gainplayers[name]) do
