@@ -185,7 +185,7 @@ markers.marker_placed = function( pos, placer, itemstack )
       end
 
       -- make sure the list does not grow too large
-      if( n > markers.MAX_MARKERS and minetest.get_player_privs(name)["megabuilder"] == false) then
+      if( n > markers.MAX_MARKERS and minetest.get_player_privs(name)["megabuilder"] ~= true) then
          table.remove( markers.positions[ name ], 1 );
       end
    end
@@ -366,7 +366,7 @@ markers.get_marker_formspec = function(player, pos, error_msg)
                * (math.abs( coords[1].z - coords[2].z )+1);
 
     -- check if area is too large
-    if( markers.MAX_SIZE < size and minetest.get_player_privs(name)["megabuilder"] == false) then
+    if( markers.MAX_SIZE < size and minetest.get_player_privs(name)["megabuilder"] ~= true) then
        return formspec_info.."Error: You can only protect\nareas of up to "..tostring( markers.MAX_SIZE ).."m^2.\n"..
                              "Your marked area is "..tostring( size ).." m^2 large.]";
     end
@@ -456,19 +456,19 @@ markers.marker_on_receive_fields = function(pos, formname, fields, sender)
    local add_depth  = tonumber( fields['add_depth']  );
 
    local error_msg = '';
-   if(     not( add_height ) or add_height < 0 or (add_height > markers.MAX_HEIGHT and minetest.get_player_privs(name)["megabuilder"] == false)) then
+   if(     not( add_height ) or add_height < 0 or (add_height > markers.MAX_HEIGHT and minetest.get_player_privs(name)["megabuilder"] ~= true)) then
       minetest.chat_send_player( name, 'Please enter a number between 0 and '..tostring( markers.MAX_HEIGHT )..
 		' in the field where the height of your area is requested. Your area will stretch that many blocks '..
 		'up into the sky from the position of this marker onward.');
       error_msg = 'The height value\nhas to be larger than 0\nand smaller than '..tostring( markers.MAX_HEIGHT );
      
-   elseif( not( add_depth  ) or add_depth  < 0 or (add_depth  > markers.MAX_HEIGHT and minetest.get_player_privs(name)["megabuilder"] == false)) then
+   elseif( not( add_depth  ) or add_depth  < 0 or (add_depth  > markers.MAX_HEIGHT and minetest.get_player_privs(name)["megabuilder"] ~= true)) then
       minetest.chat_send_player( name, 'Please enter a number between 0 and '..tostring( markers.MAX_HEIGHT )..
 		' in the field where the depth of your area is requested. Your area will stretch that many blocks '..
 		'into the ground from the position of this marker onward.');
       error_msg = 'The depth value\nhas to be larger than 0\nand smaller than '..tostring( markers.MAX_HEIGHT );
 
-   elseif( add_height + add_depth > markers.MAX_HEIGHT ) and minetest.get_player_privs(name)["megabuilder"] == false then
+   elseif( add_height + add_depth > markers.MAX_HEIGHT ) and minetest.get_player_privs(name)["megabuilder"] ~= true then
       minetest.chat_send_player( name,  'Sorry, your area exceeds the height limit. Height and depth added have to '..
 		'be smaller than '..tostring( markers.MAX_HEIGHT )..'.');
       error_msg = 'height + depth has to\nbe smaller than '..tostring( markers.MAX_HEIGHT )..'.'
