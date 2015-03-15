@@ -144,7 +144,7 @@ function areas:canPlayerAddArea(pos1, pos2, name)
 	local max_areas = privs.areas_high_limit and
 			self.config.self_protection_max_areas_high or
 			self.config.self_protection_max_areas
-	if count >= max_areas and minetest.get_player_privs(name)["megabuilder"] == false then
+	if count >= max_areas and minetest.get_player_privs(name)["megabuilder"] ~= true then
 		return false, "You have reached the maximum amount of"
 				.." areas that you are allowed to  protect."
 	end
