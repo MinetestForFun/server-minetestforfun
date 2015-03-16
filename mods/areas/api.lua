@@ -1,4 +1,11 @@
 
+--plants to place in openfarming
+local plants = { ["farming:blueberries"]=1, ["farming:muffin_blueberry"]=1, ["farming:carrot"]=1, ["farming:carrot_gold"]=1, ["farming:cocoa_beans"]=1, ["farming:cookie"]=1, ["farming:chocolate_dark"]=1, ["farming:coffee_beans"]=1, ["farming:corn"]=1, ["farming:corn_cob"]=1, ["farming:bottle_ethanol"]=1, ["farming:cotton"]=1, ["farming:cucumber"]=1, ["farming:donut"]=1, ["farming:donut_chocolate"]=1, ["farming:donut_apple"]=1, ["farming:melon_slice"]=1, ["farming:potato"]=1, ["farming:baked_potato"]=1, ["farming:pumpkin_slice"]=1, ["farming:pumpkin_bread"]=1, ["farming:pumpkin_dough"]=1, ["farming:raspberries"]=1, ["farming:smoothie_raspberry"]=1, ["farming:rhubarb"]=1, ["farming:rhubarb_pie"]=1, ["farming:sugar"]=1, ["farming:tomato"]=1, ["farming:wheat"]=1, ["farming:seed_cotton"]=1, ["farming:seed_wheat"]=1, ["default:papyrus"]=1 }
+
+--tools to dig in openfarming
+local in_hand = { ["hand"]=1, ["vines:shears"]=1, ["multitest:shears"]=1 , ["multitest:wood_shears"]=1,["multitest:stone_shears"]=1 }
+
+
 -- Returns a list of areas that include the provided position
 function areas:getAreasAtPos(pos)
 	local a = {}
@@ -25,12 +32,25 @@ function areas:canInteract(pos, name)
 		if area.owner == name or area.open then
 			return true
 		elseif area.openfarming then
-			-- if area is openfarming and node is in group plant, action is authorized
+			-- if area is openfarming
 			local node = minetest.get_node(pos).name
-			if minetest.registered_nodes[node] and minetest.get_item_group(node, "plant") == 1 then
+			if not minetest.registered_nodes[node] then return false end
+			local player = minetest.get_player_by_name(name)
+			if not player then return false end
+			local wstack = player:get_wielded_item():get_name()
+			if wstack == "" then wstack = "hand" end
+			
+			--on_place
+			if node == "air" and plants[wstack] ~= nil then
 				return true
 			end
-			return false
+			
+			--on_dig
+			if minetest.get_item_group(node, "plant") == 1 and in_hand[wstack] ~= nil then
+				return true
+			end
+			
+			owned = true
 		else
 			owned = true
 		end
