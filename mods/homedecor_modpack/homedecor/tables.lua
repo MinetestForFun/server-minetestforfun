@@ -110,7 +110,7 @@ minetest.register_abm({
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		local newnode = string.sub(node.name, 1, -3) -- strip the "_s" from the name
 		local fdir = node.param2 or 0
-		minetest.add_node(pos, {name = newnode, param2 = dirs2[fdir+1]})
+		minetest.set_node(pos, {name = newnode, param2 = dirs2[fdir+1]})
 	end
 })
 

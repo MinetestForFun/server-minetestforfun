@@ -72,7 +72,7 @@ minetest.register_node("chains:chain_top_brass", {
 minetest.register_node("chains:chandelier", {
 	description = "Chandelier (wrought iron)",
 	paramtype = "light",
-	light_source = default.LIGHT_MAX-2,
+	light_source = LIGHT_MAX-2,
 	walkable = false,
 	climbable = true,
 	sunlight_propagates = true,
@@ -87,7 +87,7 @@ minetest.register_node("chains:chandelier", {
 minetest.register_node("chains:chandelier_brass", {
 	description = "Chandelier (brass)",
 	paramtype = "light",
-	light_source = default.LIGHT_MAX-2,
+	light_source = LIGHT_MAX-2,
 	walkable = false,
 	climbable = true,
 	sunlight_propagates = true,

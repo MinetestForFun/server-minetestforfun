@@ -417,7 +417,7 @@ function homedecor.flip_door(pos, node, player, name, side, isClosed)
 		gain = 2,
 	})
     -- XXX: does the top half have to remember open/closed too?
-	minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, { name =  "homedecor:door_"..name.."_top_"..rside, param2=nfdir})
+	minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, { name =  "homedecor:door_"..name.."_top_"..rside, param2=nfdir})
 
     addDoorNode(pos,{ name = "homedecor:door_"..name.."_bottom_"..rside, param2=nfdir },isClosed)
 end

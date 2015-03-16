@@ -2544,7 +2544,7 @@ minetest.register_craft( {
 			{ "", 			"farming:string", 	"" 			},
 			{ "farming:string", 	"farming:string", 	"farming:string" 	}, -- craft changé pour éviter conflit avec le "Spider Cobweb" du mod "mobs"
 			{ "", 			"farming:string", 	"" 			}
-        },
+        }, -- MODIFICATION MADE FOR MFF ^
 })
 
 minetest.register_craft( {

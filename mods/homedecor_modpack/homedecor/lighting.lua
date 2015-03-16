@@ -16,7 +16,7 @@ for i in ipairs(colors) do
 		interval = 1,
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
-			minetest.add_node(pos, {name = "homedecor:glowlight_quarter_"..color, param2 = 20})
+			minetest.set_node(pos, {name = "homedecor:glowlight_quarter_"..color, param2 = 20})
 		end,
 	})
 
@@ -25,7 +25,7 @@ for i in ipairs(colors) do
 		interval = 1,
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
-			minetest.add_node(pos, {name = "homedecor:glowlight_half_"..color, param2 = 20})
+			minetest.set_node(pos, {name = "homedecor:glowlight_half_"..color, param2 = 20})
 		end,
 	})
 
@@ -36,7 +36,7 @@ for i in ipairs(colors) do
 		action = function(pos, node, active_object_count, active_object_count_wider)
 			local fdir = node.param2 or 0
 			local nfdir = dirs2[fdir+1]
-			minetest.add_node(pos, {name = "homedecor:glowlight_quarter_"..color, param2 = nfdir})
+			minetest.set_node(pos, {name = "homedecor:glowlight_quarter_"..color, param2 = nfdir})
 		end,
 	})
 
@@ -47,7 +47,7 @@ for i in ipairs(colors) do
 		action = function(pos, node, active_object_count, active_object_count_wider)
 			local fdir = node.param2 or 0
 			local nfdir = dirs2[fdir+1]
-			minetest.add_node(pos, {name = "homedecor:glowlight_half_"..color, param2 = nfdir})
+			minetest.set_node(pos, {name = "homedecor:glowlight_half_"..color, param2 = nfdir})
 		end,
 	})
 
@@ -56,7 +56,7 @@ for i in ipairs(colors) do
 		interval = 1,
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
-			minetest.add_node(pos, {name = "homedecor:glowlight_small_cube_"..color, param2 = 20})
+			minetest.set_node(pos, {name = "homedecor:glowlight_small_cube_"..color, param2 = 20})
 		end,
 	})
 
@@ -82,7 +82,7 @@ homedecor.register("glowlight_half_"..color, {
 	selection_box = glowlight_nodebox.half,
 	node_box = glowlight_nodebox.half,
 	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX,
+	light_source = LIGHT_MAX,
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -100,7 +100,7 @@ homedecor.register("glowlight_quarter_"..color, {
 	selection_box = glowlight_nodebox.quarter,
 	node_box = glowlight_nodebox.quarter,
 	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX-1,
+	light_source = LIGHT_MAX-1,
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -120,7 +120,7 @@ homedecor.register("glowlight_small_cube_"..color, {
 	selection_box = glowlight_nodebox.small_cube,
 	node_box = glowlight_nodebox.small_cube,
 	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX-1,
+	light_source = LIGHT_MAX-1,
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -138,7 +138,7 @@ homedecor.register("plasma_lamp", {
 		}
 	},
 --	use_texture_alpha = true,
-	light_source = default.LIGHT_MAX - 1,
+	light_source = LIGHT_MAX - 1,
 	sunlight_propagates = true,
 	groups = {cracky=3,oddly_breakable_by_hand=3},
 	sounds = default.node_sound_glass_defaults(),
@@ -170,7 +170,7 @@ homedecor.register("candle", {
 	},
 	sunlight_propagates = true,
 	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX-4,
+	light_source = LIGHT_MAX-4,
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -190,7 +190,7 @@ homedecor.register("candle_thin", {
 	sunlight_propagates = true,
 	walkable = false,
 	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX-4,
+	light_source = LIGHT_MAX-4,
 })
 
 homedecor.register("oil_lamp", {
@@ -206,7 +206,7 @@ homedecor.register("oil_lamp", {
 		}
 	},
 	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX-4,
+	light_source = LIGHT_MAX-4,
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -250,7 +250,7 @@ homedecor.register("lattice_lantern_large", {
 	description = S("Lattice lantern (large)"),
 	tiles = { 'homedecor_lattice_lantern_large.png' },
 	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX - 1,
+	light_source = LIGHT_MAX,
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -270,7 +270,7 @@ homedecor.register("lattice_lantern_small", {
 		fixed = { -0.25, -0.5, -0.25, 0.25, 0, 0.25 }
 	},
 	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX-1,
+	light_source = LIGHT_MAX-1,
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })

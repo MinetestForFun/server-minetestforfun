@@ -50,6 +50,8 @@ end
 -- leave the last argument nil if it's one 2m high node
 function homedecor.stack_vertically(itemstack, placer, pointed_thing, node1, node2)
 	local pos, def = select_node(pointed_thing)
+	if not def then return end -- rare corner case, but happened in #205
+
 	if def.on_rightclick then
 		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
 	end
@@ -69,6 +71,8 @@ local fdir_to_left = {
 }
 function homedecor.stack_wing(itemstack, placer, pointed_thing, node1, node2, node1_right, node2_right)
 	local pos, def = select_node(pointed_thing)
+	if not def then return end -- rare corner case, but happened in #205
+
 	if def.on_rightclick then
 		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
 	end
@@ -102,6 +106,8 @@ homedecor.fdir_to_fwd = {
 
 function homedecor.stack_sideways(itemstack, placer, pointed_thing, node1, node2, dir)
 	local pos, def = select_node(pointed_thing)
+	if not def then return end -- rare corner case, but happened in #205
+
 	if def.on_rightclick then
 		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
 	end

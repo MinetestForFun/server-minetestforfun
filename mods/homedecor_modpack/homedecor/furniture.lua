@@ -1,6 +1,6 @@
 local S = homedecor.gettext
 
-local function sit(pos, node, clicker)
+function homedecor.sit(pos, node, clicker)
 	local name = clicker:get_player_name()
 	local meta = minetest:get_meta(pos)
 	local param2 = node.param2
@@ -35,10 +35,10 @@ function homedecor.sit_exec(pos, node, clicker) -- don't move these functions in
 		or clicker:get_player_control().left == true or clicker:get_player_control().right == true
 		or clicker:get_player_control().jump == true then  -- make sure that the player is immobile.
 	return end
-	sit(pos, node, clicker)
+	homedecor.sit(pos, node, clicker)
 	clicker:setpos(pos)
 	default.player_set_animation(clicker, "sit", 30)
-	]]
+	]] -- MODIFICATION MODE FOR MFF ^
 end
 
 local table_colors = { "", "mahogany", "white" }
@@ -362,7 +362,7 @@ homedecor.register("wardrobe_bottom", {
 	},
 	inventory_image = "homedecor_wardrobe_inv.png",
 	description = "Wardrobe",
-		groups = {snappy=3},
+	groups = {snappy=3},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -381,232 +381,6 @@ homedecor.register("wardrobe_bottom", {
 	inventory = {
 		size=24,
 	},
-})
-
-homedecor.register("simple_bench", {
-	tiles = {
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_bench_large_2_left_back.png",
-		"homedecor_bench_large_2_left_back.png^[transformFX"
-	},
-	description = "Simple Bench",
-	groups = {snappy=3},
-	node_box = {
-	type = "fixed",
-	fixed = {
-			{-0.5, -0.15, 0,  0.5,  -0.05, 0.4},
-			{-0.4, -0.5,  0.1, -0.3, -0.15, 0.3},
-			{ 0.3, -0.5,  0.1,  0.4, -0.15, 0.3},
-			}
-	},
-	on_rightclick = function(pos, node, clicker)
-		pos.y = pos.y-0 -- player's sit position.
-		homedecor.sit_exec(pos, node, clicker)
-	end,
-})
-
-homedecor.register("bench_large_1_left", {
-	description = "Garden Bench (style 1)",
-	tiles = {
-		"homedecor_bench_large_1_left_top.png",
-		"homedecor_bench_large_1_left_bottom.png",
-		"homedecor_bench_large_1_ends.png^[transformFX",
-		"homedecor_bench_large_1_ends.png",
-		"homedecor_bench_large_1_left_back.png",
-		"homedecor_bench_large_1_left_front.png"
-	},
-	inventory_image = "homedecor_bench_large_1_inv.png",
-	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, 0.25, 0.375, 0.5, 0.4375, 0.4375}, -- NodeBox1
-			{-0.5, 0, 0.375, 0.5, 0.1875, 0.4375}, -- NodeBox2
-			{-0.5, -0.125, 0.115, 0.5, -0.0625, 0.35}, -- NodeBox3
-			{-0.5, -0.125, -0.0872, 0.5, -0.0625, 0.079}, -- NodeBox4
-			{-0.3125, -0.5, 0.4375, -0.25, 0.375, 0.5}, -- NodeBox5
-			{-0.3125, -0.25, -0.0625, -0.25, -0.125, 0.4375}, -- NodeBox6
-			{-0.3125, -0.5, -0.0625, -0.25, -0.25, 0}, -- NodeBox7
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.09375, 1.5, 0.5, 0.5 }
-	},
-	expand = { right="homedecor:bench_large_1_right" },
-	on_rightclick = function(pos, node, clicker)
-		pos.y = pos.y-0 -- player's sit position.
-		homedecor.sit_exec(pos, node, clicker)
-	end,
-})
-
-homedecor.register("bench_large_1_right", {
-	tiles = {
-		"homedecor_bench_large_1_left_top.png^[transformFX",
-		"homedecor_bench_large_1_left_bottom.png^[transformFX",
-		"homedecor_bench_large_1_ends.png^[transformFX",
-		"homedecor_bench_large_1_ends.png",
-		"homedecor_bench_large_1_left_back.png^[transformFX",
-		"homedecor_bench_large_1_left_front.png^[transformFX"
-	},
-	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, 0.25, 0.375, 0.5, 0.4375, 0.4375}, -- NodeBox1
-			{-0.5, 0, 0.375, 0.5, 0.1875, 0.4375}, -- NodeBox2
-			{-0.5, -0.125, 0.115, 0.5, -0.0625, 0.35}, -- NodeBox3
-			{-0.5, -0.125, -0.0872, 0.5, -0.0625, 0.079}, -- NodeBox4
-			{0.25, -0.5, 0.4375, 0.3125, 0.375, 0.5}, -- NodeBox5
-			{0.25, -0.25, -0.0625, 0.3125, -0.125, 0.5}, -- NodeBox6
-			{0.25, -0.5, -0.0625, 0.3125, -0.25, 0}, -- NodeBox7
-		}
-	},
-	selection_box = homedecor.nodebox.null,
-})
-
-
-homedecor.register("bench_large_2_left", {
-	description = "Garden Bench (style 2)",
-	tiles = {
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_bench_large_2_left_back.png",
-		"homedecor_bench_large_2_left_back.png^[transformFX"
-	},
-	inventory_image = "homedecor_bench_large_2_inv.png",
-	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, 0.375, -0.375, 0.5, 0.5}, -- NodeBox1
-			{-0.375, 0.3125, 0.4375, 0.5, 0.4375, 0.5}, -- NodeBox2
-			{-0.375, -0.0625, 0.4375, 0.5, 0.0625, 0.5}, -- NodeBox3
-			{-0.3125, 0.0625, 0.45, -0.25, 0.3125, 0.48}, -- NodeBox4
-			{-0.1875, 0.0625, 0.45, -0.125, 0.3125, 0.48}, -- NodeBox5
-			{-0.0625, 0.0625, 0.45, 0, 0.3125, 0.48}, -- NodeBox6
-			{0.0625, 0.0625, 0.45, 0.125, 0.3125, 0.48}, -- NodeBox7
-			{0.1875, 0.0625, 0.45, 0.25, 0.3125, 0.48}, -- NodeBox8
-			{0.3125, 0.0625, 0.45, 0.375, 0.3125, 0.48}, -- NodeBox9
-			{0.4375, 0.0625, 0.45, 0.5, 0.3125, 0.48}, -- NodeBox10
-			{-0.5, 0.0625, -0.145362, -0.375, 0.125, 0.375}, -- NodeBox11
-			{-0.5, -0.5, -0.0625, -0.375, 0.0625, 0.0625}, -- NodeBox12
-			{-0.4375, -0.125, -0.0625, 0.5, -0.0911603, 0.4375}, -- NodeBox13
-			{-0.4375, -0.4375, 0.0625, -0.375, -0.3125, 0.375}, -- NodeBox14
-			{-0.375, -0.342324, 0.25, 0.5, -0.4375, 0.1875}, -- NodeBox15
-			{-0.5, -0.25, -0.0290173, 0.5, -0.125, 0.0125346}, -- NodeBox16
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.15625, 1.5, 0.5, 0.5 }
-	},
-	expand = { right="homedecor:bench_large_2_right" },
-	on_rightclick = function(pos, node, clicker)
-		pos.y = pos.y-0 -- player's sit position.
-		homedecor.sit_exec(pos, node, clicker)
-	end,
-})
-
-homedecor.register("bench_large_2_right", {
-	tiles = {
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_generic_wood.png",
-		"homedecor_bench_large_2_right_back.png",
-		"homedecor_bench_large_2_right_back.png^[transformFX"
-	},
-	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.375, -0.5, 0.375, 0.5, 0.5, 0.5}, -- NodeBox1
-			{-0.5, 0.3125, 0.4375, 0.375, 0.4375, 0.5}, -- NodeBox2
-			{-0.5, -0.0625, 0.4375, 0.375, 0.0625, 0.5}, -- NodeBox3
-			{-0.5, 0.0625, 0.45, -0.4375, 0.3125, 0.48}, -- NodeBox4
-			{-0.375, 0.0625, 0.45, -0.3125, 0.3125, 0.48}, -- NodeBox5
-			{-0.25, 0.0625, 0.45, -0.1875, 0.3125, 0.48}, -- NodeBox6
-			{-0.125, 0.0625, 0.45, -0.0625, 0.3125, 0.48}, -- NodeBox7
-			{0, 0.0625, 0.45, 0.0625, 0.3125, 0.48}, -- NodeBox8
-			{0.125, 0.0625, 0.45, 0.1875, 0.3125, 0.48}, -- NodeBox9
-			{0.25, 0.0625, 0.45, 0.3125, 0.3125, 0.48}, -- NodeBox10
-			{0.375, 0.0625, -0.145362, 0.5, 0.125, 0.375}, -- NodeBox11
-			{0.375, -0.5, -0.0625, 0.5, 0.125, 0.0625}, -- NodeBox12
-			{0.375, -0.4375, 0.0625, 0.4375, -0.3125, 0.375}, -- NodeBox13
-			{-0.5, -0.4375, 0.1875, 0.375, -0.342324, 0.25}, -- NodeBox14
-			{-0.5, -0.125, -0.0625, 0.4375, -0.0911603, 0.4375}, -- NodeBox15
-			{-0.5, -0.25, -0.0290173, 0.5, -0.125, 0.0125346}, -- NodeBox16
-		}
-	},
-	selection_box = homedecor.nodebox.null,
-})
-
-homedecor.register("deckchair_head", {
-	tiles = {
-		"homedecor_deckchair_top_c1.png",
-		"homedecor_deckchair_sides.png",
-		"homedecor_deckchair_sides.png",
-		"homedecor_deckchair_sides.png^[transformFX",
-		"homedecor_deckchair_sides.png",
-		"homedecor_deckchair_front.png"
-	},
-	groups = { snappy = 3, not_in_creative_inventory = 1 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.375, -0.3125, -0.0625, 0.375, -0.25, 0}, -- NodeBox1
-			{-0.375, -0.25, 0, 0.375, -0.1875, 0.0625}, -- NodeBox2
-			{-0.375, -0.1875, 0.0625, 0.375, -0.125, 0.125}, -- NodeBox3
-			{-0.375, -0.125, 0.125, 0.375, -0.0625, 0.1875}, -- NodeBox4
-			{-0.375, -0.0625, 0.1875, 0.375, 0, 0.25}, -- NodeBox5
-			{-0.375, 0, 0.25, 0.375, 0.0625, 0.3125}, -- NodeBox6
-			{-0.375, 0.0625, 0.3125, 0.375, 0.125, 0.375}, -- NodeBox7
-			{-0.375, 0.125, 0.375, 0.375, 0.1875, 0.4375}, -- NodeBox8
-			{-0.375, 0.1875, 0.4375, 0.375, 0.25, 0.5}, -- NodeBox9
-			{-0.375, -0.375, -0.5, 0.375, -0.3125, 0.0625}, -- NodeBox10
-			{0.3125, -0.1875, -0.5, 0.4375, -0.1575, 0.0625}, -- NodeBox11
-			{-0.4375, -0.1875, -0.5, -0.3125, -0.1575, 0.0625}, -- NodeBox12
-			{0.3125, -0.5, 0, 0.375, -0.25, 0.0625}, -- NodeBox13
-			{-0.375, -0.5, 0, -0.3125, -0.25, 0.0625}, -- NodeBox14
-		}
-	},
-	selection_box = homedecor.nodebox.null
-})
-
-homedecor.register("deckchair_foot", {
-	tiles = {
-		"homedecor_deckchair_top_c2.png",
-		"homedecor_deckchair_sides.png",
-		"homedecor_deckchair_sides.png",
-		"homedecor_deckchair_sides.png^[transformFX",
-		"homedecor_deckchair_front.png"
-	},
-	description = "Deck chair",
-	inventory_image = "homedecor_deckchair_inv.png",
-	groups = { snappy = 3 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.375, -0.375, -0.5, 0.375, -0.3125, 0.5}, -- NodeBox1
-			{0.3125, -0.5, -0.5, 0.375, -0.375, -0.4375}, -- NodeBox2
-			{-0.375, -0.5, -0.5, -0.3125, -0.375, -0.4375}, -- NodeBox3
-			{0.3125, -0.1875, 0.3, 0.4375, -0.1575, 0.5}, -- NodeBox4
-			{-0.4375, -0.1875, 0.3, -0.3125, -0.1575, 0.5}, -- NodeBox5
-			{-0.365, -0.3125, 0.32, -0.3225, -0.1875, 0.4375}, -- NodeBox6
-			{0.3225, -0.3125, 0.32, 0.365, -0.1875, 0.4375}, -- NodeBox7
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.45, -0.5, -0.5, 0.45, 0.35, 1.5 }
-	},
-	expand = { forward="homedecor:deckchair_head" },
 })
 
 homedecor.register("wall_shelf", {

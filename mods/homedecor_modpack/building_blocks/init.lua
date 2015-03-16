@@ -100,7 +100,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 		{'', 'group:stick', ''},
 		{'group:stick', '', 'group:stick'},
-	}
+	} -- MODIFICATION MADE FOR MFF ^
 })
 
 minetest.register_craft({
