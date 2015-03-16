@@ -30,7 +30,7 @@ returnmirror.mana_check = function(player, cost)
 end
 
 minetest.register_tool("returnmirror:mirror_inactive", {
-	description = "Mirror of Returning",
+	description = "Mirror of Returning/Portal mirror",
 	inventory_image = "returnmirror_mirror_inactive.png",
 	wield_image = "returnmirror_mirror_inactive.png",
 	tool_capabilities = {},
@@ -52,7 +52,7 @@ minetest.register_craftitem("returnmirror:mirror_glass", {
 })
 
 minetest.register_tool("returnmirror:mirror_active", {
-	description = "Mirror of Returning",
+	description = "Mirror of Returning/Portal mirror",
 	stack_max = 1,
 	inventory_image = "returnmirror_mirror_active.png",
 	wield_image = "returnmirror_mirror_active.png",
