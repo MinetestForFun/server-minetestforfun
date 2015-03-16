@@ -1,9 +1,23 @@
 
 --plants to place in openfarming
-local plants = { ["farming:blueberries"]=1, ["farming:muffin_blueberry"]=1, ["farming:carrot"]=1, ["farming:carrot_gold"]=1, ["farming:cocoa_beans"]=1, ["farming:cookie"]=1, ["farming:chocolate_dark"]=1, ["farming:coffee_beans"]=1, ["farming:corn"]=1, ["farming:corn_cob"]=1, ["farming:bottle_ethanol"]=1, ["farming:cotton"]=1, ["farming:cucumber"]=1, ["farming:donut"]=1, ["farming:donut_chocolate"]=1, ["farming:donut_apple"]=1, ["farming:melon_slice"]=1, ["farming:potato"]=1, ["farming:baked_potato"]=1, ["farming:pumpkin_slice"]=1, ["farming:pumpkin_bread"]=1, ["farming:pumpkin_dough"]=1, ["farming:raspberries"]=1, ["farming:smoothie_raspberry"]=1, ["farming:rhubarb"]=1, ["farming:rhubarb_pie"]=1, ["farming:sugar"]=1, ["farming:tomato"]=1, ["farming:wheat"]=1, ["farming:seed_cotton"]=1, ["farming:seed_wheat"]=1, ["default:papyrus"]=1 }
+local plants = { ["farming:blueberries"]=1, ["farming:muffin_blueberry"]=1, ["farming:carrot"]=1, ["farming:carrot_gold"]=1, ["farming:cocoa_beans"]=1,
+				 ["farming:cookie"]=1, ["farming:chocolate_dark"]=1, ["farming:coffee_beans"]=1, ["farming:corn"]=1, ["farming:corn_cob"]=1,
+				 ["farming:bottle_ethanol"]=1, ["farming:cotton"]=1, ["farming:cucumber"]=1, ["farming:donut"]=1, ["farming:donut_chocolate"]=1,
+				 ["farming:donut_apple"]=1, ["farming:melon_slice"]=1, ["farming:potato"]=1, ["farming:baked_potato"]=1, ["farming:pumpkin_slice"]=1,
+				 ["farming:pumpkin_bread"]=1, ["farming:pumpkin_dough"]=1, ["farming:raspberries"]=1, ["farming:smoothie_raspberry"]=1, ["farming:rhubarb"]=1,
+				 ["farming:rhubarb_pie"]=1, ["farming:sugar"]=1, ["farming:tomato"]=1, ["farming:wheat"]=1, ["farming:seed_cotton"]=1, ["farming:seed_wheat"]=1,
+				 ["default:papyrus"]=1 
+				}
 
 --tools to dig in openfarming
-local in_hand = { ["hand"]=1, ["vines:shears"]=1, ["multitest:shears"]=1 , ["multitest:wood_shears"]=1,["multitest:stone_shears"]=1 }
+local in_hand = { ["hand"]=1, ["vines:shears"]=1, ["multitest:shears"]=1 , ["multitest:wood_shears"]=1, ["multitest:stone_shears"]=1,
+				  ["default:sword_bronze"]=1, ["default:sword_diamond"]=1, ["default:sword_gold"]=1, ["default:sword_mese"]=1, ["default:sword_nyan"]=1,
+				  ["default:sword_steel"]=1, ["default:sword_stone"]=1, ["default:sword_wood"]=1, ["moreores:sword_mithril"]=1, ["moreores:sword_silver"]=1,
+				  ["nether:sword_netherrack"]=1, ["nether:sword_netherrack_blue"]=1, ["nether:sword_white"]=1,
+				  ["default:axe_bronze"]=1, ["default:axe_diamond"]=1, ["default:axe_gold"]=1, ["default:axe_mese"]=1, ["default:axe_nyan"]=1,
+				  ["default:axe_steel"]=1, ["default:axe_stone"]=1, ["default:axe_wood"]=1, ["moreores:axe_mithril"]=1, ["moreores:axe_silver"]=1,
+				  ["nether:axe_netherrack"]=1, ["nether:axe_netherrack_blue"]=1, ["nether:axe_white"]=1
+				}
 
 
 -- Returns a list of areas that include the provided position
