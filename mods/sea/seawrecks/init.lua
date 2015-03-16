@@ -950,7 +950,7 @@ local yp = {x = pos.x, y = pos.y + 8, z = pos.z}
 		pos.y = pos.y - 7
 		pos.x = pos.x +16
 		pos.z = pos.z +3
-		minetest.add_node(pos, {name = "seawrecks:ubootchest"})
+		minetest.set_node(pos, {name = "seawrecks:ubootchest"})
 
 	else
 		return

@@ -125,3 +125,5 @@ minetest.register_craft({
 		{"default:diamondblock", "default:nyancat", "default:diamondblock"},
 	},
 })
+
+minetest.register_alias("returnmirror:portal","returnmirror:mirror_inactive")
