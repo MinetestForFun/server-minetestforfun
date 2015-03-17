@@ -165,6 +165,7 @@ local function fix_light(minp, maxp)
 	local emerged_pos1, emerged_pos2 = manip:read_from_map(minp, maxp)
 	local area = VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
 	local nodes = manip:get_data()
+	-- MODIFICATION MADE FOR MFF ^
 
 	manip:set_data(nodes)
 	manip:write_to_map()
@@ -383,13 +384,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		for x=minp.x, maxp.x do
 
 			count = count+1
-
-			if not pmap1[count] then
-				pmap1[count] = 0
-			end
-			if not pmap2[count] then
-				pmap2[count] = 0
-			end
 
 			local test = pmap1[count]+1
 			local test2 = pmap2[count]

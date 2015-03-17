@@ -25,6 +25,7 @@ local function set_vm_data(manip, nodes, pos, t1, name)
 	end
 end
 
+
 --Growing Functions
 
 local c
@@ -40,19 +41,19 @@ function riesenpilz_hybridpilz(pos)
 	local br = breite+1
 	local height = breite+2
 
-	for i = 0, height, 1 do
+	for i = 0, height do
 		nodes[area:index(pos.x, pos.y+i, pos.z)] = c.stem
 	end
 
-	for l = -br+1, br, 1 do
+	for l = -br+1, br do
 		for k = -1, 1, 2 do
 			nodes[area:index(pos.x+br*k, pos.y+height, pos.z-l*k)] = c.head_red
 			nodes[area:index(pos.x+l*k, pos.y+height, pos.z+br*k)] = c.head_red
 		end
 	end
 
-	for k = -breite, breite, 1 do
-		for l = -breite, breite, 1 do
+	for k = -breite, breite do
+		for l = -breite, breite do
 			nodes[area:index(pos.x+l, pos.y+height+1, pos.z+k)] = c.head_red
 			nodes[area:index(pos.x+l, pos.y+height, pos.z+k)] = c.lamellas
 		end
@@ -78,12 +79,12 @@ function riesenpilz_brauner_minecraftpilz(pos)
 		nodes[i] = c.stem
 	end
 
-	for l = -br, br, 1 do
+	for l = -br, br do
 		for k = -breite, breite, breite*2 do
 			nodes[area:index(pos.x+k, pos.y+height+1, pos.z+l)] = c.head_brown
 			nodes[area:index(pos.x+l, pos.y+height+1, pos.z+k)] = c.head_brown
 		end
-		for k = -br, br, 1 do
+		for k = -br, br do
 			nodes[area:index(pos.x+l, pos.y+height+1, pos.z+k)] = c.head_brown
 		end
 	end
@@ -102,17 +103,17 @@ function riesenpilz_minecraft_fliegenpilz(pos)
 
 	local height = 3
 
-	for i = 0, height, 1 do
+	for i = 0, height do
 		nodes[area:index(pos.x, pos.y+i, pos.z)] = c.stem
 	end
 
-	for j = -1, 1, 1 do
-		for k = -1, 1, 1 do
+	for j = -1, 1 do
+		for k = -1, 1 do
 			nodes[area:index(pos.x+j, pos.y+height+1, pos.z+k)] = c.head_red
 		end
-		for l = 1, height, 1 do
+		for l = 1, height do
 			local y = pos.y+l
-			for _,p in ipairs({
+			for _,p in pairs({
 				{area:index(pos.x+j, y, pos.z+2), 0},
 				{area:index(pos.x+j, y, pos.z-2), 2},
 				{area:index(pos.x+2, y, pos.z+j), 1},
@@ -153,13 +154,13 @@ function riesenpilz_lavashroom(pos)
 	for i = -1, 1, 2 do
 		local o = 2*i
 
-		for n = 0, height, 1 do
+		for n = 0, height do
 			nodes[area:index(pos.x+i, pos.y+n, pos.z)] = c.stem_brown
 			nodes[area:index(pos.x, pos.y+n, pos.z+i)] = c.stem_brown
 		end
 
-		for l = -1, 1, 1 do
-			for k = 2, 3, 1 do
+		for l = -1, 1 do
+			for k = 2, 3 do
 				nodes[area:index(pos.x+k*i, pos.y+height+2, pos.z+l)] = c.head_brown_full
 				nodes[area:index(pos.x+l, pos.y+height+2, pos.z+k*i)] = c.head_brown_full
 			end
@@ -168,8 +169,8 @@ function riesenpilz_lavashroom(pos)
 		end
 
 		for m = -1, 1, 2 do
-			for k = 2, 3, 1 do
-				for j = 2, 3, 1 do
+			for k = 2, 3 do
+				for j = 2, 3 do
 					nodes[area:index(pos.x+j*i, pos.y+height+2, pos.z+k*m)] = ran_node(c.head_yellow, c.head_orange, 7)
 				end
 			end
@@ -177,13 +178,13 @@ function riesenpilz_lavashroom(pos)
 			nodes[area:index(pos.x+m*2, pos.y+height+1, pos.z+o)] = c.head_brown_full
 		end
 
-		for l = -3+1, 3, 1 do
+		for l = -3+1, 3 do
 			nodes[area:index(pos.x+3*i, pos.y+height+5, pos.z-l*i)] = ran_node(c.head_yellow, c.head_orange, 5)
 			nodes[area:index(pos.x+l*i, pos.y+height+5, pos.z+3*i)] = ran_node(c.head_yellow, c.head_orange, 5)
 		end
 
-		for j = 0, 1, 1 do
-			for l = -3, 3, 1 do
+		for j = 0, 1 do
+			for l = -3, 3 do
 				nodes[area:index(pos.x+i*4, pos.y+height+3+j, pos.z+l)] = ran_node(c.head_yellow, c.head_orange, 6)
 				nodes[area:index(pos.x+l, pos.y+height+3+j, pos.z+i*4)] = ran_node(c.head_yellow, c.head_orange, 6)
 			end
@@ -191,8 +192,8 @@ function riesenpilz_lavashroom(pos)
 
 	end
 
-	for k = -2, 2, 1 do
-		for l = -2, 2, 1 do
+	for k = -2, 2 do
+		for l = -2, 2 do
 			nodes[area:index(pos.x+k, pos.y+height+6, pos.z+l)] = ran_node(c.head_yellow, c.head_orange, 4)
 		end
 	end
@@ -211,29 +212,29 @@ function riesenpilz_glowshroom(pos)
 	local height = 2+math.random(MAX_SIZE)
 	local br = 2
 
-	for i = 0, height, 1 do
+	for i = 0, height do
 		nodes[area:index(pos.x, pos.y+i, pos.z)] = c.stem_blue
 	end
 
 	for i = -1, 1, 2 do
 
 		for k = -br, br, 2*br do
-			for l = 2, height, 1 do
+			for l = 2, height do
 				nodes[area:index(pos.x+i*br, pos.y+l, pos.z+k)] = c.head_blue
 			end
 			nodes[area:index(pos.x+i*br, pos.y+1, pos.z+k)] = c.head_blue_bright
 		end
 
-		for l = -br+1, br, 1 do
+		for l = -br+1, br do
 			nodes[area:index(pos.x+i*br, pos.y+height, pos.z-l*i)] = c.head_blue
 			nodes[area:index(pos.x+l*i, pos.y+height, pos.z+br*i)] = c.head_blue
 		end
 
 	end
 
-	for l = 0, br, 1 do
-		for i = -br+l, br-l, 1 do
-			for k = -br+l, br-l, 1 do
+	for l = 0, br do
+		for i = -br+l, br-l do
+			for k = -br+l, br-l do
 				nodes[area:index(pos.x+i, pos.y+height+1+l, pos.z+k)] = c.head_blue
 			end
 		end
@@ -262,7 +263,7 @@ function riesenpilz_parasol(pos)
 		nodes[i] = c.stem
 	end
 
-	for _,j in ipairs({
+	for _,j in pairs({
 		{bhead2, 0, c.head_brown_bright},
 		{bhead1, -1, c.head_binge}
 	}) do
@@ -301,20 +302,20 @@ function riesenpilz_apple(pos)
 	local a = size*2
 	local b = size-1
 
-	for l = -b, b, 1 do
-		for j = 1, a-1, 1 do
+	for l = -b, b do
+		for j = 1, a-1 do
 			for k = -size, size, a do
 				nodes[area:index(pos.x+k, pos.y+j, pos.z+l)] = c.red
 				nodes[area:index(pos.x+l, pos.y+j, pos.z+k)] = c.red
 			end
 		end
-		for i = -b, b, 1 do
+		for i = -b, b do
 			nodes[area:index(pos.x+i, pos.y, pos.z+l)] = c.red
 			nodes[area:index(pos.x+i, pos.y+a, pos.z+l)] = c.red
 		end
 	end
 
-	for i = a+1, a+b, 1 do
+	for i = a+1, a+b do
 		nodes[area:index(pos.x, pos.y+i, pos.z)] = c.tree
 	end
 
@@ -340,16 +341,9 @@ end
 --3D apple [3apple]
 
 
-local tmp = minetest.registered_nodes["default:apple"]
-minetest.register_node(":default:apple", {
-	description = tmp.description,
+minetest.override_item("default:apple", {
 	drawtype = "nodebox",
-	visual_scale = tmp.visual_scale,
 	tiles = {"3apple_apple_top.png","3apple_apple_bottom.png","3apple_apple.png"},
-	inventory_image = tmp.inventory_image,
-	sunlight_propagates = tmp.sunlight_propagates,
-	walkable = tmp.walkable,
-	paramtype = tmp.paramtype,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -363,10 +357,6 @@ minetest.register_node(":default:apple", {
 			{-1.5/16,	1/16,	.5/16,	0.5/16,		1.2/16,	2.5/16},
 		}
 	},
-	groups = tmp.groups,
-	on_use = tmp.on_use,
-	sounds = tmp.sounds,
-	after_place_node = tmp.after_place_node,
 })
 
 
@@ -701,45 +691,141 @@ end)
 --Mushroom Blocks
 
 
-local r = "riesenpilz_"
-local h = "head_"
-local s = "stem_"
-local rh = r..h
-local rs = r..s
-
-local GS = "giant mushroom "
-local GSH = GS.."head "
-local GSS = GS.."stem "
-
 local pilznode_list = {
-	{"stem", GSS.."beige", {rs.."top.png", rs.."top.png", "riesenpilz_stem.png"}, "stem"},
-	{s.."brown", GSS.."brown", {rs.."top.png", rs.."top.png", rs.."brown.png"}, s.."brown"},
-	{s.."blue", GSS.."blue", {rs.."top.png",rs.."top.png",rs.."blue.png"}, s.."blue"},
-	{"lamellas", "giant mushroom lamella", {"riesenpilz_lamellas.png"}, "lamellas"},
-	{h.."red", GSH.."red", {"riesenpilz_head.png", "riesenpilz_lamellas.png", "riesenpilz_head.png"}, "red"},
-	{h.."orange", GSH.."orange", {rh.."orange.png"}, "lavashroom"},
-	{h.."yellow", GSH.."yellow", {rh.."yellow.png"}, "lavashroom"},
-	{h.."brown", GSH.."brown", {r.."brown_top.png", r.."lamellas.png", r.."brown_top.png"}, "brown"},
-	{h.."brown_full", GSH.."full brown", {r.."brown_top.png"},"brown"},
-	{h.."blue_bright", GSH.."blue bright", {rh.."blue_bright.png"},"glowshroom"},
-	{h.."blue", GSH.."blue", {rh.."blue.png"},"glowshroom"},
-	{h.."white", GSH.."white", {rh.."white.png"},"parasol"},
-	{h.."binge", GSH.."binge", {rh.."binge.png", rh.."white.png", rh.."binge.png"},"parasol"},
-	{h.."brown_bright", GSH.."brown bright", {rh.."brown_bright.png", rh.."white.png", rh.."brown_bright.png"},"parasol"},
+	{
+		typ = "stem",
+		description = "white",
+		textures = {"stem_top.png", "stem_top.png", "stem_white.png"},
+	},
+	{
+		typ = "stem",
+		name = "brown",
+		textures = {"stem_top.png", "stem_top.png", "stem_brown.png"},
+	},
+	{
+		typ = "stem",
+		name = "blue",
+		textures = {"stem_top.png","stem_top.png","stem_blue.png"},
+	},
+	{
+		name = "lamellas",
+		description = "giant mushroom lamella",
+		textures = "lamellas.png",
+		sapling = "lamellas"
+	},
+	{
+		typ = "head",
+		name = "red",
+		textures = {"head.png", "lamellas.png", "head.png"},
+		sapling = "red"
+	},
+	{
+		typ = "head",
+		name = "orange",
+		textures = "head_orange.png",
+		sapling = "lavashroom"
+	},
+	{
+		typ = "head",
+		name = "yellow",
+		textures = "head_yellow.png",
+		sapling = "lavashroom"
+	},
+	{
+		typ = "head",
+		name = "brown",
+		textures = {"brown_top.png", "lamellas.png", "brown_top.png"},
+		sapling = "brown"
+	},
+	{
+		typ = "head",
+		name = "brown_full",
+		description = "full brown",
+		textures = "brown_top.png",
+		sapling = "brown"
+	},
+	{
+		typ = "head",
+		name = "blue_bright",
+		description = "blue bright",
+		textures = "head_blue_bright.png",
+		sapling = "glowshroom"
+	},
+	{
+		typ = "head",
+		name = "blue",
+		textures = "head_blue.png",
+		sapling = "glowshroom"
+	},
+	{
+		typ = "head",
+		name = "white",
+		textures = "head_white.png",
+		sapling = "parasol"
+	},
+	{
+		typ = "head",
+		name = "binge",
+		textures = {"head_binge.png", "head_white.png", "head_binge.png"},
+		sapling = "parasol"
+	},
+	{
+		typ = "head",
+		name = "brown_bright",
+		description = "brown bright",
+		textures = {"head_brown_bright.png", "head_white.png", "head_brown_bright.png"},
+		sapling = "parasol"
+	},
 }
 
-for _,i in ipairs(pilznode_list) do
-	local name, desc, textures, sapling = unpack(i)
-	minetest.register_node("riesenpilz:"..name, {
-		description = desc,
+local head_sounds = default.node_sound_wood_defaults({
+	footstep = {name="riesenpilz_head", gain=0.1},
+	place = {name="default_place_node", gain=0.5},
+	dig = {name="riesenpilz_head", gain=0.2},
+	dug = {name="riesenpilz_stem", gain=0.1}
+})
+
+for _,i in pairs(pilznode_list) do
+	-- fill missing stuff
+	local textures = i.textures
+	i.description = i.description or i.name
+	if type(textures) == "string" then
+		textures = {textures}
+	end
+	for i = 1,#textures do
+		textures[i] = "riesenpilz_"..textures[i]
+	end
+	local nodename = "riesenpilz:"
+	local desctiption,sounds = "giant mushroom "
+	if i.typ == "stem" then
+		desctiption = desctiption.."stem "..i.description
+		nodename = nodename.."stem"..((i.name and "_"..i.name) or "")
+		sounds = default.node_sound_wood_defaults({
+			footstep = {name="riesenpilz_stem", gain=0.2},
+			place = {name="default_place_node", gain=0.5},
+			dig = {name="riesenpilz_stem", gain=0.4},
+			dug = {name="default_wood_footstep", gain=0.3}
+		})
+	elseif i.typ == "head" then
+		desctiption = desctiption.."head "..i.description
+		nodename = nodename.."head_"..i.name
+		sounds = head_sounds
+	else
+		nodename = nodename..i.name
+		desctiption = desctiption..i.description
+	end
+	local drop = i.sapling and {max_items = 1, items = {
+		{items = {"riesenpilz:"..i.sapling}, rarity = 20},
+		{items = {nodename}, rarity = 1}
+	}}
+	minetest.register_node(nodename, {
+		description = desctiption,
 		tiles = textures,
 		groups = {oddly_breakable_by_hand=3},
-		drop = {max_items = 1,
-			items = {{items = {"riesenpilz:"..sapling},rarity = 20,},
-					{items = {"riesenpilz:"..name},rarity = 1,}}},
+		drop = drop,
+		sounds = sounds,
 	})
 end
-
 
 minetest.register_node("riesenpilz:head_red_side", {
 	description = "giant mushroom head red side",
@@ -749,8 +835,11 @@ minetest.register_node("riesenpilz:head_red_side", {
 	groups = {oddly_breakable_by_hand=3},
 	drop = {max_items = 1,
 		items = {{items = {"riesenpilz:fly_agaric"},rarity = 20,},
-				{items = {"riesenpilz:head_red"},rarity = 1,}}},
+		{items = {"riesenpilz:head_red"},rarity = 1,}}},
+	sounds = head_sounds
 })
+
+
 
 minetest.register_node("riesenpilz:ground", {
 	description = "dirt with rotten grass",

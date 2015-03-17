@@ -1,7 +1,7 @@
 local load_time_start = os.clock()
 
 function vector.pos_to_string(pos)
-	return "("..pos.x.."|"..pos.y.."|"..pos.z..")"
+	return "{x="..pos.x.."; y="..pos.y.."; z="..pos.z.."}"
 end
 
 local r_corr = 0.25 --remove a bit more nodes (if shooting diagonal) to let it look like a hole (sth like antialiasing)
@@ -190,7 +190,7 @@ function vector.threeline(x, y, z)
 		return line
 	end
 	if x ~= math.floor(x) then
-		print("[vector_extras] INFO: The position used for vector.threeline isn't round.")
+		minetest.log("error", "[vector_extras] INFO: The position used for vector.threeline isn't round.")
 	end
 	local two_line = vector.twoline(x, y)
 	line = {}
@@ -241,7 +241,7 @@ function vector.sun_dir(time)
 end
 
 function vector.inside(pos, minp, maxp)
-	for _,i in ipairs({"x", "y", "z"}) do
+	for _,i in pairs({"x", "y", "z"}) do
 		if pos[i] < minp[i]
 		or pos[i] > maxp[i] then
 			return false
@@ -304,7 +304,7 @@ function vector.explosion_table(r)
 		end
 	end
 	explosion_tables[r] = tab
-	print(string.format("[vector_extras] table created after ca. %.2fs", os.clock() - t1))
+	minetest.log("info", string.format("[vector_extras] table created after ca. %.2fs", os.clock() - t1))
 	return tab
 end
 
@@ -327,7 +327,7 @@ function vector.circle(r)
 		end
 	end
 	circle_tables[r] = tab
-	print(string.format("[vector_extras] table created after ca. %.2fs", os.clock() - t1))
+	minetest.log("info", string.format("[vector_extras] table created after ca. %.2fs", os.clock() - t1))
 	return tab
 end
 
@@ -369,7 +369,7 @@ function vector.ring(r)
 		end
 	end
 	ring_tables[r] = tab2
-	print(string.format("[vector_extras] table created after ca. %.2fs", os.clock() - t1))
+	minetest.log("info", string.format("[vector_extras] table created after ca. %.2fs", os.clock() - t1))
 	return tab2
 end
 
@@ -379,4 +379,4 @@ end
 
 dofile(minetest.get_modpath("vector_extras").."/vector_meta.lua")
 
-print(string.format("[vector_extras] loaded after ca. %.2fs", os.clock() - load_time_start))
+minetest.log("info", string.format("[vector_extras] loaded after ca. %.2fs", os.clock() - load_time_start))
