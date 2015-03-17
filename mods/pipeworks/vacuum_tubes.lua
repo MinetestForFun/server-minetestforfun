@@ -47,6 +47,7 @@ if pipeworks.enable_mese_sand_tube then
 					meta:set_string("infotext", "Adjustable Vacuuming Pneumatic Tube Segment")
 				end,
 				on_receive_fields = function(pos,formname,fields,sender)
+					if not pipeworks.may_configure(pos, sender) then return end
 					local meta = minetest.get_meta(pos)
 					local dist = tonumber(fields.dist)
 					if dist then

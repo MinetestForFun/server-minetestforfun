@@ -230,27 +230,18 @@ local function register_wielder(data)
 				pipeworks.scan_for_tube_objects(pos)
 			end,
 			on_punch = data.fixup_node,
-			allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-				local meta = minetest.get_meta(pos)
-				if player:get_player_name() ~= meta:get_string("owner") and meta:get_string("owner") ~= "" then
-					return 0
-				end
-				return count
-			end,
 			allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-				local meta = minetest.get_meta(pos)
-				if player:get_player_name() ~= meta:get_string("owner") and meta:get_string("owner") ~= "" then
-					return 0
-				end
+				if not pipeworks.may_configure(pos, player) then return 0 end
 				return stack:get_count()
 			end,
 			allow_metadata_inventory_take = function(pos, listname, index, stack, player)
-				local meta = minetest.get_meta(pos)
-				if player:get_player_name() ~= meta:get_string("owner") and meta:get_string("owner") ~= "" then
-					return 0
-				end
+				if not pipeworks.may_configure(pos, player) then return 0 end
 				return stack:get_count()
 			end,
+			allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+				if not pipeworks.may_configure(pos, player) then return 0 end
+				return count
+			end
 		})
 	end
 end

@@ -91,6 +91,7 @@ if pipeworks.enable_mese_tube then
 				end,
 				on_punch = update_formspec,
 				on_receive_fields = function(pos, formname, fields, sender)
+					if not pipeworks.may_configure(pos, sender) then return end
 					fs_helpers.on_receive_fields(pos, fields)
 					update_formspec(pos)
 				end,
@@ -99,6 +100,7 @@ if pipeworks.enable_mese_tube then
 					return true
 				end,
 				allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+					if not pipeworks.may_configure(pos, player) then return 0 end
 					update_formspec(pos) -- For old tubes
 					local inv = minetest.get_meta(pos):get_inventory()
 					local stack_copy = ItemStack(stack)
@@ -107,12 +109,14 @@ if pipeworks.enable_mese_tube then
 					return 0
 				end,
 				allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+					if not pipeworks.may_configure(pos, player) then return 0 end
 					update_formspec(pos) -- For old tubes
 					local inv = minetest.get_meta(pos):get_inventory()
 					inv:set_stack(listname, index, ItemStack(""))
 					return 0
 				end,
 				allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+					if not pipeworks.may_configure(pos, player) then return 0 end
 					update_formspec(pos) -- For old tubes
 					local inv = minetest.get_meta(pos):get_inventory()
 					inv:set_stack(from_list, from_index, ItemStack(""))

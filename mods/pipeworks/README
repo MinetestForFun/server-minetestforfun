@@ -1,7 +1,7 @@
 This mod uses nodeboxes to supply a complete set of 3D pipes and tubes, 
 along devices that work with them.
 
-See http://vanessae.github.io/pipeworks/ for detailed information about usage of this mod.
+See https://github.com/VanessaE/pipeworks/wiki/ for detailed information about usage of this mod.
 
 Unlike the previous version of this mod, these pipes are rounded, and when 
 placed, they'll automatically join together as needed.  Pipes can go vertically 

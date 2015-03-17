@@ -57,6 +57,17 @@ function pipeworks.add_node_box(t, b)
 	end
 end
 
+function pipeworks.may_configure(pos, player)
+	local name = player:get_player_name()
+	local meta = minetest.get_meta(pos)
+	local owner = meta:get_string("owner")
+
+	if owner ~= "" then -- wielders and filters
+		return owner == name
+	end
+	return not minetest.is_protected(pos, name)
+end
+
 function pipeworks.node_is_owned(pos, placer)
 	local ownername = false
 	if type(IsPlayerNodeOwner) == "function" then					-- node_ownership mod

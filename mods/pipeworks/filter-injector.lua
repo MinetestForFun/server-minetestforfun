@@ -181,11 +181,24 @@ for _, data in ipairs({
 		end,
 		after_dig_node = pipeworks.after_dig,
 		on_receive_fields = function(pos, formname, fields, sender)
+			if not pipeworks.may_configure(pos, sender) then return end
 			fs_helpers.on_receive_fields(pos, fields)
 			local meta = minetest.get_meta(pos)
 			meta:set_int("slotseq_index", 1)
 			set_filter_formspec(data, meta)
 			set_filter_infotext(data, meta)
+		end,
+		allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+			if not pipeworks.may_configure(pos, player) then return 0 end
+			return stack:get_count()
+		end,
+		allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+			if not pipeworks.may_configure(pos, player) then return 0 end
+			return stack:get_count()
+		end,
+		allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+			if not pipeworks.may_configure(pos, player) then return 0 end
+			return count
 		end,
 		can_dig = function(pos, player)
 			local meta = minetest.get_meta(pos)

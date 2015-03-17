@@ -567,4 +567,5 @@ minetest.register_node("pipeworks:fountainhead_pouring", {
 })
 
 minetest.register_alias("pipeworks:valve_off_loaded", "pipeworks:valve_off_empty")
+minetest.register_alias("pipeworks:entry_panel", "pipeworks:entry_panel_empty")
 
