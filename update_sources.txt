@@ -102,7 +102,7 @@ https://github.com/PilzAdam/throwing
 https://github.com/SmallJoker/minetest-u_skinsdb/
 https://github.com/minetest-technic/unified_inventory
 https://github.com/VanessaE/unifieddyes
-https://github.com/HybridDog/vector_extras --nether dependence
+https://github.com/HybridDog/vector_extras --nether dependence, with riesenpilz
 [WhoIsOn]
 http://github.com/kaeza/minetest-xban2.git
 
