@@ -24,6 +24,7 @@ mobs:register_mob("mobs:bunny", {
 	-- speed and jump
 	walk_velocity = 1,
 	jump = true,
+	step = 0.5,
 	-- drops meat when deat
 	drops = {
 		{name = "mobs:meat_raw",
@@ -41,7 +42,7 @@ mobs:register_mob("mobs:bunny", {
 	},
 	-- follows carrot from farming redo
 	follow = "farming:carrot",
-	view_range = 5,	
+	view_range = 8,	
 	-- right click to pick up rabbit
 	on_rightclick = function(self, clicker)
 
