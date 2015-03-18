@@ -90,7 +90,7 @@ minetest.register_abm({
 		if plant == "farming:cocoa_"
 		and minetest.find_node_near(pos, 1, {"default:jungletree", "moretrees:jungletree_leaves_green"}) then
 
-			if minetest.get_node_light(pos) < 13 then return end
+			if minetest.get_node_light(pos) <= 11 then return end
 
 		else
 		
