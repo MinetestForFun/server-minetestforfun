@@ -205,7 +205,9 @@ end)
 
 minetest.register_on_leaveplayer(function(player)
 	local playername = player:get_player_name()
-	mana.hud_remove(playername)
+	if minetest.get_modpath("hudbars") == nil then
+		player:hud_remove(mana.playerlist[playername].hudid)
+	end
 	mana.playerlist[playername] = nil
 end)
 
@@ -294,11 +296,6 @@ else
 		local player = minetest.get_player_by_name(playername)
 		player:hud_change(mana.playerlist[playername].hudid, "number", mana.get(playername))
 		player:hud_change(mana.playerlist[playername].hudid, "text", mana.manastring(playername))
-	end
-	
-	function mana.hud_remove(playername)
-		local player = minetest.get_player_by_name(playername)
-		player:hud_remove(mana.playerlist[playername].hudid)
 	end
 end
 
