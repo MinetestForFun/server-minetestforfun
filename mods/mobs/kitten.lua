@@ -104,7 +104,7 @@ mobs:register_mob("mobs:kitten", {
 
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
-		if item:get_name() == "mobs:rat" then
+		if item:get_name() == "fishing:fish_raw" then
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)

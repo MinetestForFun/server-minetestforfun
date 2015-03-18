@@ -14,7 +14,7 @@ mobs:register_mob("mobs:wolf", {
 	},
 	--visual_size = {x=1, y=1},
 	makes_footstep_sound = true,
-	view_range = 20,
+	view_range = 16,
 	walk_velocity = 3,
 	run_velocity = 5,
 	damage = 4,

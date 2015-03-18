@@ -33,6 +33,9 @@ dofile(minetest.get_modpath("mobs").."/mese_monster.lua")
 
 dofile(minetest.get_modpath("mobs").."/spider.lua")
 
+-- NPC
+dofile(minetest.get_modpath("mobs").."/npc.lua")
+
 -- Creeper (fast impl by davedevils)
 
 dofile(minetest.get_modpath("mobs").."/creeper.lua")

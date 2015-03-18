@@ -1,85 +1,74 @@
 
--- Glowtest Spider
+-- Spider by fishyWET (borrowed from Lord of the Test [game])
 
 mobs:register_mob("mobs:spider", {
+	-- animal, monster, npc, barbarian
 	type = "monster",
-	hp_min = 30,
-	hp_max = 35,
+	-- agressive, does 4 damage to player when hit
+	passive = false,
+	attack_type = "dogfight",
+	damage = 4,
+	-- health & armor
+	hp_min = 30, hp_max = 40, armor = 100,
+	-- textures and model
 	collisionbox = {-0.9, -0.01, -0.7, 0.7, 0.6, 0.7},
-	--textures = {"mobs_spider.png"},
+	visual = "mesh",
+	mesh = "mobs_spider.x",
+	drawtype = "front",
 	available_textures = {
 		total = 1,
 		texture_1 = {"mobs_spider.png"},
 	},
 	visual_size = {x=7,y=7},
-	visual = "mesh",
-	mesh = "mobs_spider.x",
+	-- sounds
 	makes_footstep_sound = true,
-	view_range = 15,
-	walk_velocity = 1,
-	run_velocity = 3,
-    armor = 100,
-	damage = 4,
-	drops = {
-		{name = "farming:string",
-		chance = 2,
-		min = 2,
-		max = 3,},
-		{name = "mobs:meat_raw",
-		chance = 4,
-		min = 1,
-		max = 2,},
-		{name = "ethereal:crystal_spike",
-		chance = 15,
-		min = 1,
-		max = 2,},
-		{name = "maptools:copper_coin",
-		chance = 2,
-		min = 2,
-		max = 6,},
-	},
-    light_resistant = true,
-	drawtype = "front",
-	water_damage = 5,
-	lava_damage = 5,
-	light_damage = 0,
-	on_rightclick = nil,
-	attack_type = "dogfight",
-	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 1,
-		stand_end = 1,
-		walk_start = 20,
-		walk_end = 40,
-		run_start = 20,
-		run_end = 40,
-		punch_start = 50,
-		punch_end = 90,
-	},
 	sounds = {
 		random = "mobs_spider",
 		war_cry = "mobs_eerie",
 		death = "mobs_howl",
-		attack = "mobs_oerkki_attack",
+		attack = "mobs_spider",
 	},
+	-- speed and jump, sinks in water
+	walk_velocity = 1,
+	run_velocity = 3,
 	jump = true,
-	sounds = {},
 	step = 1,
-	blood_texture = "mobs_blood.png",
+	view_range = 16,
 	floats = 0,
+	-- drops string with a chance of sandstone or crystal spike if Ethereal installed
+    drops = {
+		{name = "farming:string",
+		chance = 2, min = 2, max = 3,},
+		{name = "mobs:meat_raw",
+		chance = 4, min = 1, max = 2,},
+		{name = "maptools:copper_coin",
+		chance = 2, min = 2, max = 6,},
+	},
+	-- damaged by
+	water_damage = 5,
+	lava_damage = 5,
+	light_damage = 0,
+	-- model animation
+	animation = {
+		speed_normal = 15,		speed_run = 15,
+		stand_start = 1,		stand_end = 1,
+		walk_start = 20,		walk_end = 40,
+		run_start = 20,			run_end = 40,
+		punch_start = 50,		punch_end = 90,
+	},
+blood_texture = "mobs_blood.png",
 })
-mobs:register_spawn("mobs:spider", {"default:junglegrass", "default:jungleleaves", "default:jungletree"}, 20, -1, 8000, 1, 31000)
+-- spawn on desert stone/crystal dirt, between 0 and 5 light, 1 in 7000 chance, 1 in area up to 71 in height
+mobs:register_spawn("mobs:spider", {"default:jungleleaves", "default:jungletree"}, 20, -1, 8000, 1, 31000)
+-- register spawn egg
 mobs:register_egg("mobs:spider", "Spider", "mobs_cobweb.png", 1)
 
 -- Ethereal crystal spike compatibility
-
 if not minetest.get_modpath("ethereal") then
 	minetest.register_alias("ethereal:crystal_spike", "default:sandstone")
 end
 
 -- Spider Cobweb
-
 minetest.register_node("mobs:spider_cobweb", {
 	description = "Spider Cobweb", --Description changé pour éviter conflit avec homedecor_modpack
 	drawtype = "plantlike",

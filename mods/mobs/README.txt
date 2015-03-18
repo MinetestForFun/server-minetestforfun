@@ -28,6 +28,10 @@ This mod contains the following additions:
 
 Changelog:
 
+beta- Npc mob added, kills monsters, attacks player when punched, right click with food to heal or gold lump for drop
+1.04- Added mating for sheep, cows and hogs...  feed animals to make horny and hope for a baby which is half size, will grow up quick though :)
+1.03- Added mob drop/replace feature so that chickens can drop eggs, cow/sheep can eat grass/wheat etc.
+1.02- Sheared sheep are remembered and spawn shaven, Warthogs will attack when threatened, Api additions
 1.01- Mobs that suffer fall damage or die in water/lava/sunlight will now drop items
 1.0 - more work on Api so that certain mobs can float in water while some sink like a brick :)
 0.9 - Spawn eggs added for all mobs (admin only, cannot be placed in protected areas)...  Api tweaked
