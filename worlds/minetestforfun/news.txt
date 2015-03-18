@@ -3,7 +3,7 @@ News de FR - MinetestForFun (Survival - PvP)
 ---Bientôt---
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
-MAJ de "mobs" (les NPCs sont attirés par les diamants, peuvent regagner de la vie si vous les nourrissez avec du "farming:bread" ou "mobs:meat", si vous donner un lingots d'or vous aurez le droit à un objet aléatoire en échange)
+MAJ de "mobs" (les PNJs/NPCs sont attirés par les diamants, peuvent regagner de la vie si vous les nourrissez avec du "farming:bread" ou "mobs:meat", si vous donner un lingots d'or vous aurez le droit à un objet aléatoire en échange)
 
 ---18/03/2015--- (Remerciements : crabman, Mg, davedevils)
 MAJ de "builtin_falling" (remis en service après reconfiguration)
@@ -30,6 +30,7 @@ MAJ de "farming" (petites ajustements)
 MAJ de "mesecons" (petites ajustements)
 MAJ de "mana" (correction d'un bug lors de l'utilisation des hudbars)
 MAJ de "mobs" (les vaches et moutons mangent l'herbe, les bébés animaux suivent leur mère, les phacochères suivent les pommes et les châtons les poissons)
+MAJ de "mobs" (ajout des lapins/bunnies, ils sont attirés par les carottes/carrots et sont apprivoisable si vous les nourrissez avec 4 carottes/carrots, amélioration et bugfix de l'api, les poulets sont maintenant attirés et apprivoisable avec des graines de blé/wheat seed)
 
 ---12/03/2015--- (Remerciements : Mg, crabman)
 MAJ de "homedecor_modpack" ("CobWeb" devient "CobWeb (decorative)" pour évitez les conflits, la recette change aussi en "cotton" en croix verticale/horizontale)
