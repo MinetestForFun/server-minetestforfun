@@ -82,6 +82,14 @@ elseif minetest.get_modpath("unified_inventory") then
 	})
 end
 
+if minetest.get_modpath("skins") then
+	skin_mod = "skins"
+elseif minetest.get_modpath("simple_skins") then
+	skin_mod = "simple_skins"
+elseif minetest.get_modpath("u_skins") then
+	skin_mod = "u_skins"
+end
+
 armor.def = {
 	state = 0,
 	count = 0,
@@ -124,7 +132,7 @@ armor.set_player_armor = function(self, player)
 	local textures = {}
 	local physics_o = {speed=1,gravity=1,jump=1}
 	local material = {type=nil, count=1}
-	local preview = armor:get_player_skin(name).."_preview.png"
+	local preview = armor:get_preview(name) or "character_preview.png"
 	for _,v in ipairs(self.elements) do
 		elements[v] = false
 	end
@@ -257,12 +265,18 @@ end
 
 armor.get_player_skin = function(self, name)
 	local skin = nil
-	if skin_mod == "skins" then
+	if skin_mod == "skins" or skin_mod == "simple_skins" then
 		skin = skins.skins[name]
 	elseif skin_mod == "u_skins" then
 		skin = u_skins.u_skins[name]
 	end
 	return skin or armor.default_skin
+end
+
+armor.get_preview = function(self, name)
+	if skin_mod == "skins" then
+		return armor:get_player_skin(name).."_preview.png"
+	end
 end
 
 armor.get_armor_formspec = function(self, name)
@@ -417,20 +431,17 @@ minetest.register_on_joinplayer(function(player)
 		wielditem = "3d_armor_trans.png",
 		preview = armor.default_skin.."_preview.png",
 	}
-	if minetest.get_modpath("skins") then
-		skin_mod = "skins"
+	if skin_mod == "skins" then
 		local skin = skins.skins[name]
 		if skin and skins.get_type(skin) == skins.type.MODEL then
 			armor.textures[name].skin = skin..".png"
 		end
-	elseif minetest.get_modpath("simple_skins") then
-		skin_mod = "skins"
+	elseif skin_mod == "simple_skins" then
 		local skin = skins.skins[name]
 		if skin then
 		    armor.textures[name].skin = skin..".png"
 		end
-	elseif minetest.get_modpath("u_skins") then
-		skin_mod = "u_skins"
+	elseif skin_mod == "u_skins" then
 		local skin = u_skins.u_skins[name]
 		if skin and u_skins.get_type(skin) == u_skins.type.MODEL then
 			armor.textures[name].skin = skin..".png"
@@ -462,6 +473,8 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 			local drop = {}
 			local player_inv = player:get_inventory()
 			local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
+			if not armor_inv then return end
+			-- MODIFICATION MADE FOR MFF ^
 			for i=1, player_inv:get_size("armor") do
 				local stack = armor_inv:get_stack("armor", i)
 				if stack:get_count() > 0 then
