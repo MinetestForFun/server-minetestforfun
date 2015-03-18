@@ -958,7 +958,6 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 			-- spawn mob half block higher
 			pos.y = pos.y - 0.5
 			minetest.add_entity(pos, name)
-
 		end
 	})
 end
