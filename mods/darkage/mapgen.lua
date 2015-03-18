@@ -212,6 +212,7 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 end
 
 minetest.register_on_generated(function(minp, maxp, seed)
+if minp.y < -19600 then return end
 print("DARKAGE: Generate stratus");
 generate_claylike("darkage:mud", minp, maxp, seed+1, 4, 0, 2, 0)
 generate_claylike("darkage:silt", minp, maxp, seed+2, 4, -1, 1, 1)
