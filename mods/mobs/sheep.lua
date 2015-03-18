@@ -19,6 +19,9 @@ mobs:register_mob("mobs:sheep", {
 	},
 	blood_texture = "mobs_blood.png",
 	visual_size = {x=1,y=1},
+	-- specific texture and mesh for gotten
+	gotten_texture = {"mobs_sheep_shaved.png"},
+	gotten_mesh = "mobs_sheep_shaved.x",
 	-- sounds
 	makes_footstep_sound = true,
 	sounds = {

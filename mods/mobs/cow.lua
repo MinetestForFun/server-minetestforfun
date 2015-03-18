@@ -88,7 +88,6 @@ mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 0, 10000, 1, 31
 mobs:register_egg("mobs:cow", "Cow", "default_grass.png", 1)
 
 -- Bucket of Milk
-
 minetest.register_craftitem("mobs:bucket_milk", {
 	description = "Bucket of Milk",
 	inventory_image = "mobs_bucket_milk.png",
@@ -97,7 +96,6 @@ minetest.register_craftitem("mobs:bucket_milk", {
 })
 
 -- Cheese Wedge
-
 minetest.register_craftitem("mobs:cheese", {
 	description = "Cheese",
 	inventory_image = "mobs_cheese.png",
@@ -113,7 +111,6 @@ minetest.register_craft({
 })
 
 -- Cheese Block
-
 minetest.register_node("mobs:cheeseblock", {
 	description = "Cheese Block",
 	tiles = {"mobs_cheeseblock.png"},

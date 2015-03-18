@@ -45,9 +45,6 @@ mobs:register_mob("mobs:bee", {
 		walk_start = 35,
 		walk_end = 65,
 	},
-	sounds = {
-		random = "mobs_bee",
-	},
 	-- right click to pick up bee
 	on_rightclick = function(self, clicker)
 		if clicker:is_player() and clicker:get_inventory() then
@@ -56,7 +53,6 @@ mobs:register_mob("mobs:bee", {
 		end
 	end,
 })
-
 -- spawn on group:flowers between 4 and 20 light, 1 in 5000 chance, 1 bee in area up to 31000 in height
 mobs:register_spawn("mobs:bee", {"default:dirt_with_grass"}, 20, 4, 7500, 1, 31000)
 

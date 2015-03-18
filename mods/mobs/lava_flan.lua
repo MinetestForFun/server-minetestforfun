@@ -41,7 +41,6 @@ mobs:register_mob("mobs:lava_flan", {
 		chance = 15, min = 1, max = 1,},
 	},
 	-- damaged by
-	light_resistant = true,
 	water_damage = 5,
 	lava_damage = 0,
 	light_damage = 0,

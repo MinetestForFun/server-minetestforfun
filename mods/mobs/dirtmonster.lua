@@ -44,7 +44,6 @@ mobs:register_mob("mobs:dirt_monster", {
 		max = 8,},
 	},
 	-- damaged by
-	light_resistant = false,
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 2,

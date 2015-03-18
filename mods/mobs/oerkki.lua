@@ -42,7 +42,6 @@ mobs:register_mob("mobs:oerkki", {
 		chance = 2, min = 2, max = 3,},
 	},
 	-- damaged by
-	light_resistant = true,
 	water_damage = 1,
 	lava_damage = 1,
 	light_damage = 0,

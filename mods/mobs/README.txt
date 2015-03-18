@@ -29,6 +29,7 @@ This mod contains the following additions:
 Changelog:
 
 beta- Npc mob added, kills monsters, attacks player when punched, right click with food to heal or gold lump for drop
+1.05- Added ExeterDad's bunny's which can be picked up and tamed with 4 carrots from farming redo or farming_plus
 1.04- Added mating for sheep, cows and hogs...  feed animals to make horny and hope for a baby which is half size, will grow up quick though :)
 1.03- Added mob drop/replace feature so that chickens can drop eggs, cow/sheep can eat grass/wheat etc.
 1.02- Sheared sheep are remembered and spawn shaven, Warthogs will attack when threatened, Api additions

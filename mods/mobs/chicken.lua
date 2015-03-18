@@ -22,6 +22,10 @@ mobs:register_mob("mobs:chicken", {
 					"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png",
 					"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png"},
 	},
+	child_texture = {
+		{"mobs_chick.png", "mobs_chick.png", "mobs_chick.png", "mobs_chick.png",
+		"mobs_chick.png", "mobs_chick.png", "mobs_chick.png", "mobs_chick.png", "mobs_chick.png"},
+	},
 	blood_texture = "mobs_blood.png",
 	-- sounds
 	makes_footstep_sound = true,
@@ -52,7 +56,7 @@ mobs:register_mob("mobs:chicken", {
 		walk_end = 40,
 	},
 	-- follows wheat
-	follow = "farming:wheat", view_range = 8,
+	follow = "farming:seed_wheat", view_range = 8,
 	-- replace air with egg (lay)
 	replace_rate = 1000,
 	replace_what = {"air"},
@@ -60,7 +64,8 @@ mobs:register_mob("mobs:chicken", {
 	-- right click to pick up chicken
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()
-		if tool:get_name() == "farming:wheat"  then
+
+		if tool:get_name() == "farming:seed_wheat" then -- and self.gotten then
 			if not minetest.setting_getbool("creative_mode") then
 				tool:take_item(1)
 				clicker:set_wielded_item(tool)
