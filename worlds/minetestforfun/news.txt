@@ -4,6 +4,32 @@ News de FR - MinetestForFun (Survival - PvP)
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
+---18/03/2015--- (Remerciements : crabman, Mg, davedevils)
+MaJ de "builtin_falling" (mod remis en service après reconfiguration)
+MaJ de "mobs" (ajout du mob creeper ainsi que sa texture, semblable à un tree monster vert)
+MaJ de "mobs" (modification du poulet pour que l'on puisse le domestiquer avec 4 wheat)
+MaJ de "markers"
+Ajout du mod "tsm_pyramids" (génère des pyramides dans les déserts, pleines de pièges, de mommies et de récompenses)
+MaJ de "flowers"
+MaJ de "snow" (la neige ne tombe plus qu'au dessus de 50 blocs d'altitude)
+Ajout du mod "forceload" (permet une fois posés par les admins de maintenir une chunck chargée même si personne n'y est)
+MaJ de "screwdriver" (craft du tournevis parfait bogué qui fonctionne maintenant)
+MaJ de "bobblocks" (nouvelle recette pour les Trap Spikes et Trap Spikes Major)
+MaJ de "areas" (ajout d'une sécurité complémentaire à l'OpenFarming, privilège mégabuilder fixé, les haches et épées peuvent casser des plantes dans des zones OpenFarming)
+MaJ de "returnmirror" (ajout d'un alias pour `returnmirror:mirror_inactive`, vers `returnmirror:portal` et changement de description)
+MaJ de "homedecor"
+MaJ de "pipeworks"
+MaJ de "nether" (correction du bug causant un crash à la génération du terrain)
+Ajout du mod "treasurer" complémentaire à "tsm_pyramids"
+MaJ de "sprint" (rendu compatible avec les hudbars bientôt ajoutées)
+MaJ de "random_messages" (signalement de l'existence d'une version officielle de Minetest pour Android)
+MaJ de "3d_armor" (meilleur prise en compte des mods de skin)
+MaJ de "moretrees" (textures optimisées)
+MaJ de "farming"
+MaJ de "mesecons"
+MaJ de "mana" (correction d'un bug lors de l'utilisation des hudbars)
+MaJ de "mobs" (ajout d'un système de stats, les vaches et moutons mangent l'herbe, les bébés animaux suivent leur mère, les nps vont vers les diamants et son soignés avec des lingots d'or, les phacochères suivent les pommes et les châtons les poissons)
+
 ---12/03/2015--- (Remerciements : xxx)
 MAJ de "homedecor_modpack" ("CobWeb" devient "CobWeb (decorative)" pour évitez les conflits, la recette change aussi en "cotton" en croix verticale/horizontale)
 MAJ de "mobs" ("CobWeb" devient "Spider CobWeb" pour évitez les conflits, recette ajouté en croix diagonale)
