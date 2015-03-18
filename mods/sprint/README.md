@@ -6,6 +6,14 @@ allow him/her to jump 10% higher. Also adds a stamina bar that goes
 down when the player sprints and goes up when he/she isn't 
 sprinting.
 
+This mod is compatible with the HUD bars [hudbars] mod, but does
+not depend on it. In this care, a green HUD bar will be displayed,
+also showing a number.
+If this mod is not present, a standard statbar with 0-20
+“half-arrows” is shown, which is a bit more coarse than the HUD
+bar version.
+
+
 Licence: CC0 (see COPYING file)
 
 ---

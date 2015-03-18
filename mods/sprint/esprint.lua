@@ -12,12 +12,17 @@ local staminaHud = {}
 
 minetest.register_on_joinplayer(function(player)
 	local playerName = player:get_player_name()
+
 	players[playerName] = {
 		sprinting = false,
 		timeOut = 0, 
 		stamina = SPRINT_STAMINA, 
 		epressed = false, 
-		hud = player:hud_add({
+	}
+	if SPRINT_HUDBARS_USED then
+		hb.init_hudbar(player, "sprint")
+	else
+		players[playerName].hud = player:hud_add({
 			hud_elem_type = "statbar",
 			position = {x=0.5,y=1},
 			size = {x=24, y=24},
@@ -26,67 +31,73 @@ minetest.register_on_joinplayer(function(player)
 			alignment = {x=0,y=1},
 			offset = {x=-320, y=-186},
 			}
-		),
-	}
+		)
+	end
 end)
 minetest.register_on_leaveplayer(function(player)
 	local playerName = player:get_player_name()
 	players[playerName] = nil
 end)
+
+local gameTime = 0
 minetest.register_globalstep(function(dtime)
 	--Get the gametime
-	local gameTime = minetest.get_gametime()
+	gameTime = gameTime + dtime
 
 	--Loop through all connected players
 	for playerName,playerInfo in pairs(players) do
 		local player = minetest.get_player_by_name(playerName)
 		if player ~= nil then
-			local pos = player:getpos()
-			-- From playerplus : 
-			-- am I near a cactus?
-			pos.y = pos.y + 0.1
-			local near = minetest.find_node_near(pos, 1, "default:cactus")
-			if near then
-				pos = near
-				
-				-- am I touching the cactus? if so it hurts
-				for _,player in ipairs(minetest.get_objects_inside_radius(pos, 1.0)) do
-					if player:get_hp() > 0 then
-						player:set_hp(player:get_hp()-1)
-					end
-				end
-			end
-			
+			--no sprint if stand (if in keybinding setting menu, checkbox ["Use" = climb down] is checked , climb down use sprint)
 			--Check if they are pressing the e key
-			players[playerName]["epressed"] = player:get_player_control()["aux1"]
-			
+			local pressed  = player:get_player_control()["aux1"]
+			if pressed and (player:get_player_control()["up"] or player:get_player_control()["down"] or player:get_player_control()["left"] or player:get_player_control()["right"]) then
+				players[playerName]["epressed"] = true
+			else
+				players[playerName]["epressed"] = false
+			end
 			--Stop sprinting if the player is pressing the LMB or RMB
 			if player:get_player_control()["LMB"] or player:get_player_control()["RMB"] then
 				setSprinting(playerName, false)
 				playerInfo["timeOut"] = 3
 			end
 			
-			--If the player is sprinting, create particles behind him/her 
-			if playerInfo["sprinting"] == true and gameTime % 0.1 == 0 then
-				local numParticles = math.random(1, 2)
-				local playerPos = player:getpos()
-				local playerNode = minetest.get_node({x=playerPos["x"], y=playerPos["y"]-1, z=playerPos["z"]})
-				if playerNode["name"] ~= "air" then
-					for i=1, numParticles, 1 do
-						minetest.add_particle({
-							pos = {x=playerPos["x"]+math.random(-1,1)*math.random()/2,y=playerPos["y"]+0.1,z=playerPos["z"]+math.random(-1,1)*math.random()/2},
-							vel = {x=0, y=5, z=0},
-							acc = {x=0, y=-13, z=0},
-							expirationtime = math.random(),
-							size = math.random()+0.5,
-							collisiondetection = true,
-							vertical = false,
-							texture = "default_dirt.png",
-						})
+			
+			if gameTime > 0.4 then
+				gameTime = 0
+				local pos = player:getpos()
+				-- From playerplus : 
+				-- am I near a cactus?
+				pos.y = pos.y + 0.1
+				local near = minetest.find_node_near(pos, 1, "default:cactus")
+				if near then
+					if player:get_hp() > 0 then
+						player:set_hp(player:get_hp()-1)
+					end
+				end
+			
+				--If the player is sprinting, create particles behind him/her 
+				if playerInfo["sprinting"] == true then
+					local numParticles = math.random(1, 2)
+					local playerPos = player:getpos()
+					local playerNode = minetest.get_node({x=playerPos["x"], y=playerPos["y"]-1, z=playerPos["z"]})
+					if playerNode["name"] ~= "air" then
+						for i=1, numParticles, 1 do
+							minetest.add_particle({
+								pos = {x=playerPos["x"]+math.random(-1,1)*math.random()/2,y=playerPos["y"]+0.1,z=playerPos["z"]+math.random(-1,1)*math.random()/2},
+								vel = {x=0, y=5, z=0},
+								acc = {x=0, y=-13, z=0},
+								expirationtime = math.random(),
+								size = math.random()+0.5,
+								collisiondetection = true,
+								vertical = false,
+								texture = "sprint_particle.png",
+							})
+						end
 					end
 				end
 			end
-
+			
 			--Adjust player states
 			if players[playerName]["epressed"] == true and playerInfo["timeOut"] == 0 then --Stopped
 				setSprinting(playerName, true)
@@ -116,10 +127,19 @@ minetest.register_globalstep(function(dtime)
 			if playerInfo["sprinting"] == false and playerInfo["stamina"] < SPRINT_STAMINA then
 				playerInfo["stamina"] = playerInfo["stamina"] + dtime
 			end
+			-- Cap stamina at SPRINT_STAMINA
+			if playerInfo["stamina"] > SPRINT_STAMINA then
+				playerInfo["stamina"] = SPRINT_STAMINA
+			end
 			
 			--Update the players's hud sprint stamina bar
-			local numBars = (playerInfo["stamina"]/SPRINT_STAMINA)*20
-			player:hud_change(playerInfo["hud"], "number", numBars)
+
+			if SPRINT_HUDBARS_USED then
+				hb.change_hudbar(player, "sprint", playerInfo["stamina"])
+			else
+				local numBars = (playerInfo["stamina"]/SPRINT_STAMINA)*20
+				player:hud_change(playerInfo["hud"], "number", numBars)
+			end
 		end
 	end
 end)

@@ -11,13 +11,18 @@ local players = {}
 local staminaHud = {}
 
 minetest.register_on_joinplayer(function(player)
-	playerName = player:get_player_name()
+	local playerName = player:get_player_name()
 	players[playerName] = {
 		state = 0, 
 		timeOut = 0, 
 		stamina = SPRINT_STAMINA, 
 		moving = false, 
-		hud = player:hud_add({
+	}
+
+	if SPRINT_HUDBARS_USED then
+		hb.init_hudbar(player, "sprint")
+	else
+		players[playerName].hud = player:hud_add({
 			hud_elem_type = "statbar",
 			position = {x=0.5,y=1},
 			size = {x=24, y=24},
@@ -26,11 +31,11 @@ minetest.register_on_joinplayer(function(player)
 			alignment = {x=0,y=1},
 			offset = {x=-320, y=-186},
 			}
-		),
-	}
+		)
+	end
 end)
 minetest.register_on_leaveplayer(function(player)
-	playerName = player:get_player_name()
+	local playerName = player:get_player_name()
 	players[playerName] = nil
 end)
 minetest.register_globalstep(function(dtime)
@@ -82,7 +87,7 @@ minetest.register_globalstep(function(dtime)
 							size = math.random()+0.5,
 							collisiondetection = true,
 							vertical = false,
-							texture = "default_dirt.png",
+							texture = "sprint_particle.png",
 						})
 					end
 				end
@@ -112,10 +117,19 @@ minetest.register_globalstep(function(dtime)
 			elseif playerInfo["state"] ~= 3 and playerInfo["stamina"] < SPRINT_STAMINA then
 				playerInfo["stamina"] = playerInfo["stamina"] + dtime
 			end
+			-- Cap stamina at SPRINT_STAMINA
+			if playerInfo["stamina"] > SPRINT_STAMINA then
+				playerInfo["stamina"] = SPRINT_STAMINA
+			end
 			
 			--Update the players's hud sprint stamina bar
-			local numBars = (playerInfo["stamina"]/SPRINT_STAMINA)*20
-			player:hud_change(playerInfo["hud"], "number", numBars)
+
+			if SPRINT_HUDBARS_USED then
+				hb.change_hudbar(player, "sprint", playerInfo["stamina"])
+			else
+				local numBars = (playerInfo["stamina"]/SPRINT_STAMINA)*20
+				player:hud_change(playerInfo["hud"], "number", numBars)
+			end
 		end
 	end
 end)
