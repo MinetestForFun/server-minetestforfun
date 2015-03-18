@@ -13,6 +13,7 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 Changelog:
 
+1.12 - Player cannot place seeds in protected area, also growing speeds changed to match defaults
 1.11 - Added Straw Bale, streamlined growing abm a little, fixed melon rotation bug with screwdriver
 1.10 - Added Blueberry Bush and Blueberry Muffins, also Pumpkin/Melon easier to pick up, added check for unloaded map
 1.09 - Corn now uses single nodes instead of 1 ontop of the other, Ethanol recipe is more expensive (requires 5 corn) and some code cleanup.

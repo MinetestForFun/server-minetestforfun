@@ -1,5 +1,5 @@
 --[[
-	Minetest Farming Redo Mod 1.11 (20th Jan 2015)
+	Minetest Farming Redo Mod 1.12 (1st March 2015)
 	by TenPlus1
 ]]
 
@@ -60,11 +60,13 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	end
 
 	-- add the node and remove 1 item from the itemstack
-	minetest.add_node(pt.above, {name=plantname})
-	if not minetest.setting_getbool("creative_mode") then
-		itemstack:take_item()
+	if not minetest.is_protected(pt.above, placer:get_player_name()) then
+		minetest.add_node(pt.above, {name=plantname})
+		if not minetest.setting_getbool("creative_mode") then
+			itemstack:take_item()
+		end
+		return itemstack
 	end
-	return itemstack
 end
 
 -- Single ABM Handles Growing of All Plants
@@ -98,7 +100,7 @@ minetest.register_abm({
 			pos.y = pos.y+1
 		
 			-- check light
-			if minetest.get_node_light(pos) <= 11 then return end
+			if minetest.get_node_light(pos) < 13 then return end
 		
 		end
 		

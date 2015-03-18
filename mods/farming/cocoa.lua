@@ -93,6 +93,7 @@ minetest.register_node("farming:cocoa_1", {
 		}
 	},
 	selection_box = {type = "fixed",fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27},},
+	-- MODIFICATION MADE FOR MFF ^
 	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,growing=1},
 	sounds = default.node_sound_leaves_defaults(),
 })

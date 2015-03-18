@@ -1,7 +1,6 @@
 
 -- Hoe registration function
 
--- Register new hoes
 farming.register_hoe = function(name, def)
 	-- Check for : prefix (register new hoes in your mod's namespace)
 	if name:sub(1,1) ~= ":" then
