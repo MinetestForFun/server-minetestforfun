@@ -3,34 +3,35 @@ News de FR - MinetestForFun (Survival - PvP)
 ---Bientôt---
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
+MAJ de "mobs" (les NPCs sont attirés par les diamants, peuvent regagner de la vie si vous les nourrissez avec du "farming:bread" ou "mobs:meat", si vous donner un lingots d'or vous aurez le droit à un objet aléatoire en échange)
 
 ---18/03/2015--- (Remerciements : crabman, Mg, davedevils)
-MaJ de "builtin_falling" (mod remis en service après reconfiguration)
-MaJ de "mobs" (ajout du mob creeper ainsi que sa texture, semblable à un tree monster vert)
-MaJ de "mobs" (modification du poulet pour que l'on puisse le domestiquer avec 4 wheat)
-MaJ de "markers"
+MAJ de "builtin_falling" (remis en service après reconfiguration)
+MAJ de "mobs" (ajout du monstre "Creeper" ainsi que sa texture, semblable à un tree monster vert)
+MAJ de "mobs" (modification du poulet/chicken pour que l'on puisse le domestiquer avec 4 wheat)
+MAJ de "markers" (bugfix principalement)
 Ajout du mod "tsm_pyramids" (génère des pyramides dans les déserts, pleines de pièges, de mommies et de récompenses)
-MaJ de "flowers"
-MaJ de "snow" (la neige ne tombe plus qu'au dessus de 50 blocs d'altitude)
+MAJ de "flowers" (optimisation du code)
+MAJ de "snow" (la neige ne tombe plus qu'au dessus de 50 blocs d'altitude)
 Ajout du mod "forceload" (permet une fois posés par les admins de maintenir une chunck chargée même si personne n'y est)
-MaJ de "screwdriver" (craft du tournevis parfait bogué qui fonctionne maintenant)
-MaJ de "bobblocks" (nouvelle recette pour les Trap Spikes et Trap Spikes Major)
-MaJ de "areas" (ajout d'une sécurité complémentaire à l'OpenFarming, privilège mégabuilder fixé, les haches et épées peuvent casser des plantes dans des zones OpenFarming)
-MaJ de "returnmirror" (ajout d'un alias pour `returnmirror:mirror_inactive`, vers `returnmirror:portal` et changement de description)
-MaJ de "homedecor"
-MaJ de "pipeworks"
-MaJ de "nether" (correction du bug causant un crash à la génération du terrain)
-Ajout du mod "treasurer" complémentaire à "tsm_pyramids"
-MaJ de "sprint" (rendu compatible avec les hudbars bientôt ajoutées)
-MaJ de "random_messages" (signalement de l'existence d'une version officielle de Minetest pour Android)
-MaJ de "3d_armor" (meilleur prise en compte des mods de skin)
-MaJ de "moretrees" (textures optimisées)
-MaJ de "farming"
-MaJ de "mesecons"
-MaJ de "mana" (correction d'un bug lors de l'utilisation des hudbars)
-MaJ de "mobs" (ajout d'un système de stats, les vaches et moutons mangent l'herbe, les bébés animaux suivent leur mère, les nps vont vers les diamants et son soignés avec des lingots d'or, les phacochères suivent les pommes et les châtons les poissons)
+MAJ de "screwdriver" (craft du tournevis parfait bogué qui fonctionne maintenant)
+MAJ de "bobblocks" (nouvelle recette pour les Trap Spikes et Trap Spikes Major)
+MAJ de "areas" (ajout d'une sécurité complémentaire à l'OpenFarming, privilège mégabuilder fixé, les haches et épées peuvent casser des plantes dans des zones OpenFarming)
+MAJ de "returnmirror" (ajout d'un alias pour `returnmirror:mirror_inactive`, vers `returnmirror:portal` et changement de description)
+MAJ de "homedecor" (bugfix, ajouts de textures, plus de meshenode)
+MAJ de "pipeworks" (bugfix, amélioration du code)
+MAJ de "nether" (correction du bug causant un crash à la génération du terrain)
+Ajout du mod "treasurer" complémentaire à "tsm_pyramids" (permet la gestion des coffres)
+MAJ de "sprint" (rendu compatible avec les hudbars, bientôt ajoutées)
+MAJ de "random_messages" (signalement de l'existence d'une version officielle de Minetest pour Android)
+MAJ de "3d_armor" (meilleur prise en compte des mods de skin)
+MAJ de "moretrees" (textures optimisées)
+MAJ de "farming" (petites ajustements)
+MAJ de "mesecons" (petites ajustements)
+MAJ de "mana" (correction d'un bug lors de l'utilisation des hudbars)
+MAJ de "mobs" (les vaches et moutons mangent l'herbe, les bébés animaux suivent leur mère, les phacochères suivent les pommes et les châtons les poissons)
 
----12/03/2015--- (Remerciements : xxx)
+---12/03/2015--- (Remerciements : Mg, crabman)
 MAJ de "homedecor_modpack" ("CobWeb" devient "CobWeb (decorative)" pour évitez les conflits, la recette change aussi en "cotton" en croix verticale/horizontale)
 MAJ de "mobs" ("CobWeb" devient "Spider CobWeb" pour évitez les conflits, recette ajouté en croix diagonale)
 MAJ de "fishing" (ajout de la "Canne à pêche parfaite/Perfect Fishing Pole", 50 fois plus résistante que son homologue en bois, avec sa propre texture d'un bleuté "mithril" !)
@@ -449,7 +450,7 @@ MAJ de "arrow_signs" (ces panneaux sont maintenant craftables, ils ne l'étaient
 ---03/11/2014---
 Supression du mod "painting" (auparavant désactivé, allège le serveur)
 Supression du mod "player_notes" (auparavant désactivé, allège le serveur)
-Maj de "minetestforfun_game" (nouvelle texture pour la glace/ice)
+MAJ de "minetestforfun_game" (nouvelle texture pour la glace/ice)
 Nettoyage général du code et des fichiers temporaires trainant sur le serveur
 
 ---02/11/2014---
@@ -651,7 +652,7 @@ MAJ de "mobs" (résolutions de bugs divers, surtout avec le mob spider)
 
 ---11/09/2014---
 MAJ de "darkage" (nouveaux blocs/minerais, nouvelles décorations)
-MaJ de "news" (les news apparaissent maintenant 5 secondes après votre connexion, vous permettant de cliquer sur les boîtes de dialogues lors de votre connexion, ce qui résolu le bug de l'impossibilité de résurrection si vous avez quitté le serveur en étant mort)
+MAJ de "news" (les news apparaissent maintenant 5 secondes après votre connexion, vous permettant de cliquer sur les boîtes de dialogues lors de votre connexion, ce qui résolu le bug de l'impossibilité de résurrection si vous avez quitté le serveur en étant mort)
 MAJ de "mobs" (ajout des abeilles, des nids d'abeilles, nouveau code, ajout de plusieurs sons)
 MAJ de "mobs" (la vie, la vitesse, l'armure, les dégâts et les drops, ainsi que la possibilité de les apprivoisés à été ajouté)
 MAJ de "homedecor_modpack" (ajout de nouvelles décorations)
