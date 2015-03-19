@@ -114,7 +114,6 @@ load_mod_bobblocks = true
 load_mod_pipeworks = true
 
 load_mod_factions = true
-load_mod_wiki = true
 load_mod_intweak = true
 
 load_mod_screwdriver = true

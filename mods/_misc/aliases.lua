@@ -53,3 +53,6 @@ minetest.register_alias("darkage:stair_straw", "farming:straw")
 minetest.register_alias("darkage:straw", "farming:straw")
 minetest.register_alias("darkage:straw_bale", "farming:straw")
 minetest.register_alias("darkage:adobe", "farming:straw")
+
+-- Remove "wiki:wiki"
+minetest.register_alias("wiki:wiki", "default:bookshelf")
