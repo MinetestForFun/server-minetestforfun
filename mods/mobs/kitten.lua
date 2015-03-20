@@ -1,65 +1,14 @@
-local kitten_nodes = {
-"wool:black",
-"wool:blue",
-"wool:brown",
-"wool:cyan",
-"wool:dark_green",
-"wool:dark_grey",
-"wool:green",
-"wool:grey",
-"wool:magenta",
-"wool:orange",
-"wool:pink",
-"wool:red",
-"wool:violet",
-"wool:white",
-"wool:yellow",
-"carpet:black",
-"carpet:blue",
-"carpet:brown",
-"carpet:cyan",
-"carpet:dark_green",
-"carpet:dark_grey",
-"carpet:green",
-"carpet:grey",
-"carpet:magenta",
-"carpet:orange",
-"carpet:pink",
-"carpet:red",
-"carpet:violet",
-"carpet:white",
-"carpet:yellow",
-"deco:furnace_active",
-"beds:bed_bottom",
-"beds:bed_top",
-"beds:bed_top_red",
-"beds:bed_top_orange",
-"beds:bed_top_yellow",
-"beds:bed_top_green",
-"beds:bed_top_blue",
-"beds:bed_top_violet",
-"beds:bed_top_black",
-"beds:bed_top_grey",
-"beds:bed_top_white",
-"beds:bed_bottom_red",
-"beds:bed_bottom_orange",
-"beds:bed_bottom_yellow",
-"beds:bed_bottom_green",
-"beds:bed_bottom_blue",
-"beds:bed_bottom_violet",
-"beds:bed_bottom_black",
-"beds:bed_bottom_grey",
-"beds:bed_bottom_white",
-}
 
-
-
-mobs:register_spawn("mobs:kitten", {"default:dirt_with_grass"}, 20, 0, 12000, 1, 31000)
+-- Kitten by Jordach / BFD
 
 mobs:register_mob("mobs:kitten", {
+	-- animal, monster, npc
 	type = "animal",
-	hp_min = 5,
-	hp_max = 10,
+	-- is it aggressive
+	passive = true,
+	-- health & armor
+	hp_min = 5, hp_max = 10, armor = 200,
+	-- textures and model
 	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
 	visual_size = {x=0.5, y=0.5},
@@ -71,40 +20,38 @@ mobs:register_mob("mobs:kitten", {
 		texture_3 = {"mobs_kitten_ginger.png"},
 		texture_4 = {"mobs_kitten_sandy.png"},
 	},
+	blood_texture = "mobs_blood.png",
+	-- sounds
 	makes_footstep_sound = false,
-	view_range = 16,
+	sounds = {
+		random = "mobs_kitten",
+	},
+	-- speed and jump
 	walk_velocity = 0.6,
+	jump = false,
+	--	drops sometimes coins
 	drops = {
 		{name = "maptools:copper_coin",
 		chance = 10,
 		min = 1,
 		max = 1,},
 	},
+	-- damaged by
 	water_damage = 1,
 	lava_damage = 5,
-	on_rightclick = nil,
-	armor = 200,
-	sounds = {
-		random = "mobs_kitten",
-	},
+	-- model animation
 	animation = {
-		stand_start = 97,
-		stand_end = 192,
-		walk_start = 0,
-		walk_end = 96,
 		speed_normal = 42,
+		stand_start = 97,		stand_end = 192,
+		walk_start = 0,			walk_end = 96,
 	},
-
+	-- follows rat
 	follow = "mobs:rat",
 	view_range = 8,
---	jump = true,
---	step = 0.5,
-	passive = true,
-	blood_texture = "mobs_blood.png",
-
+	-- feed with raw fish to tame or right click to pick up
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
-		if item:get_name() == "fishing:fish_raw" then
+		if item:get_name() == "fishing:fish_raw" or item:get_name() == "ethereal:fish_raw" then
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
@@ -117,5 +64,12 @@ mobs:register_mob("mobs:kitten", {
 			end
 			return
 		end
+		if clicker:is_player() and clicker:get_inventory() then
+			clicker:get_inventory():add_item("main", "mobs:kitten")
+			self.object:remove()
+		end
 	end
 })
+
+mobs:register_spawn("mobs:kitten", {"default:dirt_with_grass"}, 20, 0, 12000, 1, 31000)
+mobs:register_egg("mobs:kitten", "Kitten", "mobs_kitten_inv.png", 0)

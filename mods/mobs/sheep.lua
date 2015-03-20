@@ -75,16 +75,18 @@ mobs:register_mob("mobs:sheep", {
 			end
 		return
 		end
-		if clicker:get_inventory() and not self.gotten and self.child == false then
+		-- need shears to get wool from sheep
+		if clicker:get_inventory() and item:get_name() == "mobs:shears" and not self.gotten and self.child == false then
 			self.gotten = true -- shaved
 			if minetest.registered_items["wool:white"] then
 				clicker:get_inventory():add_item("main", ItemStack("wool:white "..math.random(1,3)))
+				item:add_wear(65535/100)
+				clicker:set_wielded_item(item)
 			end
 			self.object:set_properties({
 				textures = {"mobs_sheep_shaved.png"},
 				mesh = "mobs_sheep_shaved.x",
 			})
-		else print ("shaved already!")
 		end
 	end,
 })
@@ -92,3 +94,25 @@ mobs:register_mob("mobs:sheep", {
 mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 9000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:sheep", "Sheep", "wool_white.png", 1)
+
+-- shears tool (right click sheep to shear)
+minetest.register_tool("mobs:shears", {
+	description = "Steel Shears (right-click sheep to shear)",
+	inventory_image = "mobs_shears.png",
+	tool_capabilities = {
+		full_punch_interval = 1,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=30, maxlevel=2},
+		},
+		damage_groups = {fleshy=0},
+	}
+})
+
+minetest.register_craft({
+	output = 'mobs:shears',
+	recipe = {
+		{'', 'default:steel_ingot', ''},
+		{'', 'group:stick', 'default:steel_ingot'},
+	}
+})

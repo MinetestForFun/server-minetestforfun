@@ -38,7 +38,7 @@ mobs:register_mob("mobs:spider", {
 	-- drops string with a chance of sandstone or crystal spike if Ethereal installed
     drops = {
 		{name = "farming:string",
-		chance = 2, min = 2, max = 3,},
+		chance = 2, min = 1, max = 3,},
 		{name = "mobs:meat_raw",
 		chance = 4, min = 1, max = 2,},
 		{name = "maptools:copper_coin",
@@ -89,7 +89,7 @@ minetest.register_node("mobs:spider_cobweb", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Spider Cobweb craft
+-- Spider Cobweb craft (MFF : indentation modifié)
 minetest.register_craft( {
 	output = "mobs:spider_cobweb",
 	recipe = {

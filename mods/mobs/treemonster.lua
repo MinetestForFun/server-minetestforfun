@@ -4,10 +4,10 @@
 mobs:register_mob("mobs:tree_monster", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- aggressive, deals 6 damage to player when hit
+	-- aggressive, deals 8 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 6,
+	damage = 8,
 	-- health & armor
 	hp_min = 40, hp_max = 50, armor = 80,
 	-- textures and model
@@ -41,9 +41,7 @@ mobs:register_mob("mobs:tree_monster", {
 		{name = "default:apple",
 		chance = 2, min = 1, max = 3,},
 		{name = "maptools:silver_coin",
-		chance = 2,
-		min = 1,
-		max = 1,},
+		chance = 2, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

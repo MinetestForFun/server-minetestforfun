@@ -43,7 +43,11 @@ mobs:register_mob("mobs:bunny", {
 	},
 	-- follows carrot from farming redo
 	follow = "farming:carrot",
-	view_range = 8,	
+	view_range = 8,
+	-- eat carrots
+	replace_rate = 80,
+	replace_what = {"farming:carrot_7", "farming:carrot_8", "farming_plus:carrot"},
+	replace_with = "air",
 	-- right click to pick up rabbit
 	on_rightclick = function(self, clicker)
 
@@ -68,4 +72,4 @@ mobs:register_mob("mobs:bunny", {
 })
 
 mobs:register_spawn("mobs:bunny", {"default:dirt_with_grass"}, 20, 8, 12000, 1, 31000)
-mobs:register_egg("mobs:bunny", "bunny", "mobs_bunny_inv.png", 0)
+mobs:register_egg("mobs:bunny", "Bunny", "mobs_bunny_inv.png", 0)

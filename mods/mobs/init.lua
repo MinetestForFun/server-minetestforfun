@@ -2,7 +2,7 @@
 
 dofile(minetest.get_modpath("mobs").."/api.lua")
 
--- Animals inc. Krupnovpavel's warthog/bee, JKmurray's chicken, ExeterDad's bunny
+-- Animals inc. Krupnovpavel's warthog/bee, JKmurray's chicken, ExeterDad's bunny, Jordach/BFD's kitten
 
 dofile(minetest.get_modpath("mobs").."/chicken.lua")
 dofile(minetest.get_modpath("mobs").."/cow.lua")
@@ -11,8 +11,6 @@ dofile(minetest.get_modpath("mobs").."/sheep.lua")
 dofile(minetest.get_modpath("mobs").."/warthog.lua")
 dofile(minetest.get_modpath("mobs").."/bee.lua")
 dofile(minetest.get_modpath("mobs").."/bunny.lua")
-
--- Animals/Kittens from Jordach BFD subgame
 dofile(minetest.get_modpath("mobs").."/kitten.lua")
 
 -- Monsters
@@ -38,7 +36,6 @@ dofile(minetest.get_modpath("mobs").."/spider.lua")
 dofile(minetest.get_modpath("mobs").."/npc.lua")
 
 -- Creeper (fast impl by davedevils)
-
 dofile(minetest.get_modpath("mobs").."/creeper.lua")
 
 -- Meat & Cooked Meat

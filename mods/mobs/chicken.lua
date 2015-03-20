@@ -72,10 +72,11 @@ mobs:register_mob("mobs:chicken", {
 			end
 			self.food = (self.food or 0) + 1
 			if self.food >= 4 then
-				-- I dont know what do you want she make
-				self.food = 0 
+				self.food = 0
+				if self.child == false then self.horny = true end
+				self.gotten = false -- reset
 				self.tamed = true
-				minetest.sound_play("mobs_chicken", {object = self.object,gain = 1.0,max_hear_distance = 32,loop = false,})
+				minetest.sound_play("mobs_chicken", {object = self.object,gain = 1.0,max_hear_distance = 16,loop = false,})
 			end
 			return tool
 		else
