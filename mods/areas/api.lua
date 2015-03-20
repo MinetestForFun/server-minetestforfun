@@ -6,7 +6,7 @@ local plants = { ["farming:blueberries"]=1, ["farming:carrot"]=1, ["farming:coff
 				}
 
 --tools to dig in openfarming
-local in_hand = { ["hand"]=1, ["vines:shears"]=1, ["multitest:shears"]=1 , ["multitest:wood_shears"]=1, ["multitest:stone_shears"]=1,
+local in_hand = { ["hand"]=1, ["mobs:shears"]=1,
 				  ["default:sword_bronze"]=1, ["default:sword_diamond"]=1, ["default:sword_gold"]=1, ["default:sword_mese"]=1, ["default:sword_nyan"]=1,
 				  ["default:sword_steel"]=1, ["default:sword_stone"]=1, ["default:sword_wood"]=1, ["moreores:sword_mithril"]=1, ["moreores:sword_silver"]=1,
 				  ["nether:sword_netherrack"]=1, ["nether:sword_netherrack_blue"]=1, ["nether:sword_white"]=1,
