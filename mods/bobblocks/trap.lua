@@ -123,6 +123,18 @@ minetest.register_node("bobblocks:trap_spike_major_set", {
 })
 
 
+minetest.register_node("bobblocks:spike_major_reverse", {
+	description = "Trap Spike Major Reverse",
+    drawtype = "plantlike",
+    visual_scale = 1,
+	tile_images = {"bobblocks_majorspike_reverse.png"},
+	inventory_image = ("bobblocks_majorspike_reverse.png"),
+    paramtype = "light",
+    walkable = false,
+	sunlight_propagates = true,
+    groups = {cracky=2,melty=2},
+})
+
 -- Crafting
 
 minetest.register_craft({
@@ -147,6 +159,14 @@ minetest.register_craft({
 		{'', '', ''},
 		{'', 'default:dirt', ''},
 		{'', 'default:stick', ''},
+	}
+})
+
+minetest.register_craft({
+	output = 'bobblocks:spike_major_reverse',
+	recipe = {
+		{'', 'default:steel_ingot', ''},
+		{'default:obsidian_shard', 'default:obsidian_shard', 'default:obsidian_shard'},
 	}
 })
 
@@ -178,4 +198,20 @@ minetest.register_abm(
         end
     end,
 
+})
+
+minetest.register_abm(
+	{nodenames = {"bobblocks:spike_major_reverse"},
+	interval = 1.0,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		pos.y = pos.y-1.2
+		local objs = minetest.get_objects_inside_radius(pos, 1)
+		for k, obj in pairs(objs) do
+			obj:set_hp(obj:get_hp()-100)
+			minetest.sound_play("bobblocks_trap_fall",
+			{pos = pos, gain = 1.0, max_hear_distance = 3,})            
+		end
+	end,
+ 
 })
