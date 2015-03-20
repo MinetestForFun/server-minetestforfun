@@ -1,4 +1,4 @@
-minetest.register_craft({
+--[[minetest.register_craft({
     output = "multitest:shears",
     recipe = {
         {"default:steel_ingot", "", "default:steel_ingot"},
@@ -23,7 +23,7 @@ minetest.register_craft({
         {"", "default:wood", ""},
         {"multitest:handle_grip", "", "multitest:handle_grip"}
     }
-})
+})]]--
 
 minetest.register_craft({
         output = "multitest:rubber_raw 4",

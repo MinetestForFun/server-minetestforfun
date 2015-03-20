@@ -13,7 +13,7 @@ dofile(minetest.get_modpath("multitest").."/craftitems.lua")
 dofile(minetest.get_modpath("multitest").."/nodes.lua")
 dofile(minetest.get_modpath("multitest").."/fuel.lua")
 
-minetest.register_tool("multitest:shears", {
+--[[minetest.register_tool("multitest:shears", {
     description = "Shears",
     inventory_image = "multitest_shears.png",
     tool_capabilities = {
@@ -44,7 +44,7 @@ minetest.register_tool("multitest:stone_shears", {
             crumbly={times={[1]=4.00, [2]=3.00, [3]=1.50}, uses=50, maxlevel=1}
         }
     }
-})
+})]]--
 
 minetest.register_tool("multitest:scraper", {
     description = "Scraper",

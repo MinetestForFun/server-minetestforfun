@@ -1,4 +1,4 @@
-minetest.register_tool("vines:shears", {
+--[[minetest.register_tool("vines:shears", {
   description = "Shears",
   inventory_image = "vines_shears.png",
   wield_image = "vines_shears.png",
@@ -12,4 +12,4 @@ minetest.register_tool("vines:shears", {
       wool={times={[3]=0.2}, maxwear=0.05, maxlevel=3}
     }
   },
-})
+})]]
