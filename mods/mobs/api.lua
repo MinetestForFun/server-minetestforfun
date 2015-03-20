@@ -819,7 +819,7 @@ function mobs:register_mob(name, def)
 		get_staticdata = function(self)
 			-- select random texture, set model
 			if not self.base_texture then
-				self.base_texture = def.textures[math.random(1,#def.textures)]
+				self.base_texture = def.available_textures["texture_"..math.random(1,def.available_textures["total"])]
 				self.base_mesh = def.mesh
 			end
 			-- set texture, model and size
