@@ -1012,7 +1012,7 @@ function do_tnt_physics(tnt_np,tntr)
                 obj:setvelocity({x=(p.x - tnt_np.x) + (tntr / 4) + v.x, y=(p.y - tnt_np.y) + (tntr / 2) + v.y, z=(p.z - tnt_np.z) + (tntr / 4) + v.z})
             else
                 if obj:get_player_name() ~= nil then
-                    obj:set_hp(obj:get_hp() - 8) -- lost of 8 life level
+                    obj:set_hp(obj:get_hp() - 16) -- loose 16 life points when detonate
                 end
             end
     end
