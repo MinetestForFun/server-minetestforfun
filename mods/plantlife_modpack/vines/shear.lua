@@ -1,5 +1,5 @@
---[[minetest.register_tool("vines:shears", {
-  description = "Shears",
+[[minetest.register_tool("vines:shears", {
+  description = "Shears for Vines",
   inventory_image = "vines_shears.png",
   wield_image = "vines_shears.png",
   stack_max = 1,
