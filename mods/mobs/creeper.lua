@@ -63,4 +63,4 @@ mobs:register_mob("mobs:creeper", {
 	blood_texture = "default_wood.png",
 })
 mobs:register_spawn("mobs:creeper", {"default:dirt_with_grass"}, 20, 8, 9000, 1, 31000)
-mobs:register_egg("mobs:creeper", "Creeper", "default_tree_top.png", 1)
+mobs:register_egg("mobs:creeper", "Creeper", "mobs_creeper_inv.png", 1)
