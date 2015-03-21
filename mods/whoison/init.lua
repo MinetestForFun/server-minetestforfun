@@ -110,9 +110,7 @@ minetest.register_chatcommand("timeonline",{
 			minetest.chat_send_player(name,"Usage is /timeonline <name>")
 		end
 	end
-}
-)
-
+})
 
 function breakdowntime(t)
 	local eng = {"Seconds","Minutes","Hours","Days","Weeks","Months","Years"}
