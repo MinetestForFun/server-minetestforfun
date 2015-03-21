@@ -190,7 +190,7 @@ minetest.register_node("maptools:sandstone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("maptools:sandstone_brick", {
+minetest.register_node("maptools:sandstonebrick", {
 	description = S("Unbreakable Sandstone Brick"),
 	range = 12,
 	stack_max = 10000,
@@ -199,6 +199,8 @@ minetest.register_node("maptools:sandstone_brick", {
 	groups = {unbreakable = 1, not_in_creative_inventory = maptools.creative},
 	sounds = default.node_sound_stone_defaults(),
 })
+-- Compatibility for change made there ^
+minetest.register_alias("maptools:sandstone_brick","maptools:sandstonebrick")
 
 minetest.register_node("maptools:desert_stone", {
 	description = S("Unbreakable Desert Stone"),
