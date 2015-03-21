@@ -5,7 +5,7 @@ MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 MAJ de "mobs" (les PNJs/NPCs sont attirés par les diamants, peuvent regagner de la vie si vous les nourrissez avec du "farming:bread" ou "mobs:meat", si vous donner un lingots d'or vous aurez le droit à un objet aléatoire en échange)
 
----18/03/2015--- (Remerciements : crabman, Mg, davedevils)
+---xx/03/2015--- (Remerciements : crabman, Mg, davedevils)
 MAJ de "builtin_falling" (remis en service après reconfiguration)
 MAJ de "mobs" (ajout du monstre "Creeper" ainsi que sa texture, semblable à un tree monster vert)
 MAJ de "mobs" (modification du poulet/chicken pour que l'on puisse le domestiquer avec 4 wheat)
