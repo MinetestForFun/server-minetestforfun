@@ -18,7 +18,7 @@ local chest_stuff = {
 function pyramids.fill_chest(pos)
 	minetest.after(2, function()
 		local n = minetest.get_node(pos)
-		if n and n.name and n.name == "default:chest" then
+		if n and n.name and n.name == "maptools:chest" then
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			inv:set_size("main", 8*4)

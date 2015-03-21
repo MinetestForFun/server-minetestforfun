@@ -589,3 +589,17 @@ minetest.register_node("maptools:unbreakable_rail_power", {
 		},
 	},
 })
+
+local chestdef = minetest.registered_nodes["default:chest"]
+
+minetest.register_node("maptools:chest",{
+	description = "Chest",
+	tiles = chestdef.tiles,
+	stack_max = 1000,
+	paramtype2 = "facedir",
+	on_construct = chestdef.on_construct,
+	on_metadata_inventory_move = chestdef.on_metadata_inventory_move,
+	on_metadata_inventory_put  = chestdef.on_metadata_inventory_put,
+	on_metadata_inventory_take = chestdef.on_metadata_inventory_take,
+	groups = {unbreakable = 1},
+})
