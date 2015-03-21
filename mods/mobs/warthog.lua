@@ -31,7 +31,6 @@ mobs:register_mob("mobs:pumba", {
 	walk_velocity = 2,
 	run_velocity = 3,
 	jump = true,
-	step = 1,
 	-- follows apple
 	follow = "default:apple",
 	view_range = 8,

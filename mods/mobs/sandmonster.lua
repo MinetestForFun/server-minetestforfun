@@ -31,7 +31,6 @@ mobs:register_mob("mobs:sand_monster", {
 	run_velocity = 5,
 	view_range = 16,
 	jump = true,
-	step = 1,
 	floats = 0,
 	-- drops desert sand when dead
 	drops = {

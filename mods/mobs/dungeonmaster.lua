@@ -40,8 +40,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	-- speed and jump
 	walk_velocity = 1,
 	run_velocity = 2,
-	jump = true,
-	step = 0.5,
+	jump = false,
 	view_range = 16,
 	-- drops mese or diamond when dead
 	drops = {

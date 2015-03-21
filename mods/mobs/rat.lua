@@ -7,7 +7,7 @@ mobs:register_mob("mobs:rat", {
 	-- not aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 1, hp_max = 4, armor = 200,
+	hp_min = 2, hp_max = 4, armor = 200,
 	-- textures and model
 	collisionbox = {-0.2, -0.01, -0.2, 0.2, 0.2, 0.2},
 	visual = "mesh",
@@ -18,6 +18,7 @@ mobs:register_mob("mobs:rat", {
 		texture_1 = {"mobs_rat.png"},
 		texture_2 = {"mobs_rat_brown.png"},
 	},
+	blood_texture = "mobs_blood.png",
 	-- sounds
 	makes_footstep_sound = false,
 	sounds = {
@@ -26,7 +27,6 @@ mobs:register_mob("mobs:rat", {
 	-- speed and jump
 	walk_velocity = 1,
 	jump = true,
-	step = 1,
 	-- no drops
 	drops = {},
 	-- damaged by

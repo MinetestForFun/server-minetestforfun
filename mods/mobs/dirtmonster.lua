@@ -31,7 +31,6 @@ mobs:register_mob("mobs:dirt_monster", {
 	walk_velocity = 3,
 	run_velocity = 5,
 	jump = true,
-	step = 1,
 	-- drops dirt and coins when dead
 	drops = {
 		{name = "default:dirt",

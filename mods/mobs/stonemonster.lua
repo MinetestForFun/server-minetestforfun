@@ -30,7 +30,6 @@ mobs:register_mob("mobs:stone_monster", {
 	walk_velocity = 2,
 	run_velocity = 4,
 	jump = true,
-	step = 1,
 	floats = 0,
 	view_range = 16,
 	-- chance of dropping torch, iron, lump and coins

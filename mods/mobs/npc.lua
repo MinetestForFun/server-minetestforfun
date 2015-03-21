@@ -6,9 +6,9 @@ mobs.npc_drops = { "default:pick_steel", "mobs:meat", "default:sword_steel", "de
 mobs:register_mob("mobs:npc", {
 	-- animal, monster, npc
 	type = "npc",
-	-- aggressive, deals 3 damage to player/monster when hit
+	-- aggressive, deals 4 damage to player/monster when hit
 	passive = false,
-	damage = 3,
+	damage = 4,
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health & armor

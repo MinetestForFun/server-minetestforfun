@@ -7,7 +7,7 @@ mobs:register_mob("mobs:bunny", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 1, hp_max = 4, armor = 200, 
+	hp_min = 3, hp_max = 6, armor = 200, 
 	-- textures and model
 	collisionbox = {-0.268, -0.5, -0.268,  0.268, 0.167, 0.268},
 	visual = "mesh",
@@ -25,7 +25,6 @@ mobs:register_mob("mobs:bunny", {
 	-- speed and jump
 	walk_velocity = 1,
 	jump = true,
-	step = 0.5,
 	-- drops meat when deat
 	drops = {
 		{name = "mobs:meat_raw",

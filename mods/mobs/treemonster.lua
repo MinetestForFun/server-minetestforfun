@@ -30,7 +30,6 @@ mobs:register_mob("mobs:tree_monster", {
 	walk_velocity = 0.5,
 	run_velocity = 2.5,
 	jump = true,
-	step = 0.5,
 	view_range = 16,
 	-- drops saplings or apple
 	drops = {

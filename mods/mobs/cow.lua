@@ -4,10 +4,10 @@
 mobs:register_mob("mobs:cow", {
 	-- animal, monster, npc, barbarian
 	type = "animal",
-	-- aggressive, does 6 damage to player when threatened
+	-- aggressive, does 5 damage to player when threatened
 	passive = false,
 	attack_type = "dogfight",
-	damage = 6,
+	damage = 5,
 	-- health & armor
 	hp_min = 20, hp_max = 30, armor = 200,
 	-- textures and model
@@ -30,8 +30,7 @@ mobs:register_mob("mobs:cow", {
 	-- speed and jump
 	walk_velocity = 1,
 	run_velocity = 2,
-	jump = true,
-	step = 0.5,
+	jump = false,
 	-- drops raw meat when dead
 	drops = {
 		{name = "mobs:meat_raw",

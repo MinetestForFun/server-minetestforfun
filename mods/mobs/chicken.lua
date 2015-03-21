@@ -1,4 +1,3 @@
-
 -- Chicken by JK Murray
 
 mobs:register_mob("mobs:chicken", {
@@ -7,7 +6,7 @@ mobs:register_mob("mobs:chicken", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 5, hp_max = 10, armor = 200,
+	hp_min = 4, hp_max = 8, armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
@@ -35,7 +34,6 @@ mobs:register_mob("mobs:chicken", {
 	-- speed and jump
 	walk_velocity = 1,
 	jump = true,
-	step = 1,
 	-- drops raw chicken when dead
 	drops = {
 		{name = "mobs:chicken_raw",

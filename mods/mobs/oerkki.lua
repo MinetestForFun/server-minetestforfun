@@ -33,7 +33,6 @@ mobs:register_mob("mobs:oerkki", {
 	run_velocity = 4,
 	view_range = 16,
 	jump = true,
-	step = 1,
 	-- chance of dropping obsidian and coins
 	drops = {
 		{name = "default:obsidian",

@@ -20,6 +20,7 @@ mobs:register_mob("mobs:spider", {
 		texture_1 = {"mobs_spider.png"},
 	},
 	visual_size = {x=7,y=7},
+	blood_texture = "mobs_blood.png",
 	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
@@ -32,7 +33,6 @@ mobs:register_mob("mobs:spider", {
 	walk_velocity = 1,
 	run_velocity = 3,
 	jump = true,
-	step = 1,
 	view_range = 16,
 	floats = 0,
 	-- drops string with a chance of sandstone or crystal spike if Ethereal installed
@@ -56,7 +56,6 @@ mobs:register_mob("mobs:spider", {
 		run_start = 20,			run_end = 40,
 		punch_start = 50,		punch_end = 90,
 	},
-blood_texture = "mobs_blood.png",
 })
 -- spawn on desert stone/crystal dirt, between 0 and 5 light, 1 in 7000 chance, 1 in area up to 71 in height
 mobs:register_spawn("mobs:spider", {"default:jungleleaves", "default:jungletree"}, 20, -1, 8000, 1, 31000)

@@ -30,7 +30,6 @@ mobs:register_mob("mobs:sheep", {
 	-- speed and jump
 	walk_velocity = 1,
 	jump = true,
-	step = 1,
 	-- drops raw meat when dead
 	drops = {
 		{name = "mobs:meat_raw",
