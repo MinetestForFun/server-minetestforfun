@@ -79,9 +79,9 @@ local function make_entrance(pos)
 	for iz=0,6,1 do
 		minetest.remove_node({x=gang.x+1,y=gang.y+iy,z=gang.z+iz})
 		if iz >=3 and iy == 3 then
-			minetest.set_node({x=gang.x,y=gang.y+iy+1,z=gang.z+iz}, {name="maptools:sandstonebrick"})
-			minetest.set_node({x=gang.x+1,y=gang.y+iy+1,z=gang.z+iz}, {name="maptools:sandstonebrick"})
-			minetest.set_node({x=gang.x+2,y=gang.y+iy+1,z=gang.z+iz}, {name="maptools:sandstonebrick"})
+			minetest.set_node({x=gang.x,y=gang.y+iy+1,z=gang.z+iz}, {name="maptools:sandstone_brick"})
+			minetest.set_node({x=gang.x+1,y=gang.y+iy+1,z=gang.z+iz}, {name="maptools:sandstone_brick"})
+			minetest.set_node({x=gang.x+2,y=gang.y+iy+1,z=gang.z+iz}, {name="maptools:sandstone_brick"})
 		end
 	end
  end
@@ -93,7 +93,7 @@ local function make(pos)
 	for ix=iy,22-iy,1 do
 		for iz=iy,22-iy,1 do
 		if iy <1 then underground({x=pos.x+ix,y=pos.y,z=pos.z+iz}) end
-		 minetest.set_node({x=pos.x+ix,y=pos.y+iy,z=pos.z+iz}, {name="maptools:sandstonebrick"})
+		 minetest.set_node({x=pos.x+ix,y=pos.y+iy,z=pos.z+iz}, {name="maptools:sandstone_brick"})
 		for yy=1,10-iy,1 do
 		local n = minetest.get_node({x=pos.x+ix,y=pos.y+iy+yy,z=pos.z+iz})
 		 if n and n.name and n.name == "default:desert_stone" then minetest.set_node({x=pos.x+ix,y=pos.y+iy+yy,z=pos.z+iz},{name="default:desert_sand"}) end
@@ -169,7 +169,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 		p2.y = p2.y - 3
 		if p2.y < 0 then p2.y = 0 end
-		if minetest.find_node_near(p2, 25, {"default:water_source"}) ~= nil or minetest.find_node_near(p2, 22, {"default:dirt_with_grass"}) ~= nil or minetest.find_node_near(p2, 52, {"maptools:sandstonebrick"}) ~= nil then return end
+		if minetest.find_node_near(p2, 25, {"default:water_source"}) ~= nil or minetest.find_node_near(p2, 22, {"default:dirt_with_grass"}) ~= nil or minetest.find_node_near(p2, 52, {"maptools:sandstone_brick"}) ~= nil then return end
 	
 		if math.random(0,10) > 7 then return end	
 		minetest.after(0.8,make,p2)
