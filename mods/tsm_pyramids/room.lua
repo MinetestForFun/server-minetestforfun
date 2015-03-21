@@ -1,3 +1,7 @@
+pyramids.saved_chests = {}
+pyramids.timer = 0
+pyramids.max_time = 30*60
+
 local room = {"a","a","a","a","a","a","a","a","a",
 	"a","c","a","c","a","c","a","c","a",
 	"a","s","a","s","a","s","a","s","a",
@@ -29,6 +33,39 @@ code["a"] = "air"
 code["l"] = "lava_source"
 code["t"] = "trap"
 
+function loadchests()
+	local file = io.open(minetest.get_worldpath().."/pyramids_chests.txt","r")
+	if not file or file:read() == nil then return end
+	file:seek("set",0)
+	pyramids.saved_chests = minetest.deserialize(file:read())
+	io.close(file)
+	minetest.log("action","[tsm_pyramids] Chest loaded")
+end
+
+function savechests()
+	local file = io.open(minetest.get_worldpath().."/pyramids_chests.txt","w")
+	if not file then return end -- should not happen
+	file:write(minetest.serialize(pyramids.saved_chests))
+	io.close(file)
+	minetest.log("action","[tsm_pyramids] Chests saved")
+end
+
+loadchests()
+minetest.register_on_shutdown(function()
+	savechests()
+end)
+
+minetest.register_globalstep(function(dtime)
+	pyramids.timer = pyramids.timer + dtime
+	table.foreach(pyramids.saved_chests,print)
+	if pyramids.timer < pyramids.max_time then return end
+	pyramids.timer = 0
+	for _,k in ipairs(pyramids.saved_chests) do
+		pyramids.fill_chest(k)
+	end
+	minetest.log("action","[tsm_pyramids] Chests reloaded")
+end)
+
 local function replace(str,iy)
 	local out = "default:"
 	if iy < 4 and str == "c" then str = "a" end
@@ -59,7 +96,11 @@ function pyramids.make_room(pos)
 				if ix < 3 then p2 = 1 else p2 = 3 end
 				pyramids.fill_chest({x=loch.x+ix,y=loch.y-iy,z=loch.z+iz})
 			end
-			minetest.set_node({x=loch.x+ix,y=loch.y-iy,z=loch.z+iz}, {name=replace(n_str,iy), param2=p2})
+			node_name = replace(n_str,iy)
+			minetest.set_node({x=loch.x+ix,y=loch.y-iy,z=loch.z+iz}, {name=node_name, param2=p2})
+			if node_name == "maptools:chest" then
+				table.insert(pyramids.saved_chests,1,{x=loch.x+ix,y=loch.y-iy,z=loch.z+iz})
+			end
 		end
 	end
  end
