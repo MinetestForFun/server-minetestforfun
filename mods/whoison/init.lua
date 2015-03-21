@@ -93,10 +93,9 @@ minetest.register_chatcommand("seen",{
 			minetest.chat_send_player(name,"Usage is /seen <name>")
 		end
 	end
-}
-)
+})
 
-minetest.register_chatcommand("timeonline","played"{
+minetest.register_chatcommand("timeonline"{
 	param = "<name>",
 	description = "Shows the cumulative time a player has been online",
 	func = function (name, param)
