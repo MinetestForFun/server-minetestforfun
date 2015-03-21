@@ -123,7 +123,8 @@ load_mod_sponge = true
 
 load_mod_mobs = true
 load_mod_tsm_pyramids = true
-load_mod_trmp_minetest_game = true
+load_mod_trm_pyramids = true
+load_mod_treasurer = true
 load_mod_lavatemple = true
 
 load_mod_beginners_chest = true
