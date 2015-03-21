@@ -46,7 +46,9 @@ minetest.register_craft({
 	additional_wear = -0.15, -- Tool repair buff (15% bonus instead of 2%).
 })
 
--- Redefinitions of some default nodes:
+-- Redefinitions of some default nodes
+-- ===================================
+
 -- Let there be light. This makes some nodes let light pass through:
 minetest.override_item("default:ladder", {
 	paramtype = "light",
