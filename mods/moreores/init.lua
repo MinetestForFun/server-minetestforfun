@@ -176,31 +176,31 @@ local function add_ore(modname, description, mineral_name, oredef)
 			inventory_image = toolimg_base .. tool_name .. ".png",
 			tool_capabilities = {
 				max_drop_level = 3,
-				groupcaps = tooldef
+				groupcaps = tooldef.groupcaps
 			}
 		}
 		
 		if tool_name == "sword" then
-			tdef.full_punch_interval = oredef.full_punch_interval
-			tdef.damage_groups = oredef.damage_group
+			tdef.tool_capabilities.full_punch_interval = tooldef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = tooldef.damage_groups
 			tdef.description = S("%s Sword"):format(S(description))
 		end
 	
 		if tool_name == "pick" then
-			tdef.full_punch_interval = oredef.full_punch_interval
-			tdef.damage_groups = oredef.damage_group
+			tdef.tool_capabilities.full_punch_interval = tooldef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = tooldef.damage_groups
 			tdef.description = S("%s Pickaxe"):format(S(description))
 		end
 		  
 		if tool_name == "axe" then
-			tdef.full_punch_interval = oredef.full_punch_interval
-			tdef.damage_groups = oredef.damage_group
+			tdef.tool_capabilities.full_punch_interval = tooldef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = tooldef.damage_groups
 			tdef.description = S("%s Axe"):format(S(description))
 		end
 
 		if tool_name == "shovel" then
-			tdef.full_punch_interval = oredef.full_punch_interval
-			tdef.damage_groups = oredef.damage_group
+			tdef.tool_capabilities.full_punch_interval = tooldef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = tooldef.damage_groups
 			tdef.description = S("%s Shovel"):format(S(description))
 		end
 		
@@ -212,7 +212,6 @@ local function add_ore(modname, description, mineral_name, oredef)
 				return hoe_on_use(itemstack, user, pointed_thing, uses)
 			end
 		end
-
 		local fulltool_name = tool_base .. tool_name .. tool_post
 		minetest.register_tool(fulltool_name, tdef)
 		minetest.register_alias(tool_name .. tool_post, fulltool_name)
@@ -240,7 +239,9 @@ local oredefs = {
 			},
 		tools = {
 			pick = {
-				cracky = {times = {[1] = 3.0, [2] = 1.20, [3] = 0.70}, uses = 90, maxlevel= 2},
+				groupcaps = {
+					cracky = {times = {[1] = 3.0, [2] = 1.20, [3] = 0.70}, uses = 90, maxlevel= 2}
+				},
 				damage_groups = {fleshy = 3},
 				full_punch_interval = 0.8,
 			},
@@ -248,20 +249,26 @@ local oredefs = {
 				uses = 300
 			},
 			shovel = {
-				crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1},
+				groupcaps = {
+					crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1}
+				},
 				damage_groups = {fleshy = 3},
 				full_punch_interval = 0.8,
 			},
 			axe = {
-				choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel= 1},
-				fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel= 1},
+				groupcaps = {
+					choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel= 1},
+					fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel= 1}
+				},
 				damage_groups = {fleshy = 3},
 				full_punch_interval = 0.8,
 			},
 			sword = {
-				fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
-				snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
-				choppy = {times = {[3] = 0.80}, uses = 40, maxlevel= 0},
+				groupcaps = {
+					fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
+					snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
+					choppy = {times = {[3] = 0.80}, uses = 40, maxlevel= 0}
+				},
 				damage_groups = {fleshy = 5},
 				full_punch_interval = 0.85,
 			}
@@ -289,29 +296,40 @@ local oredefs = {
 			},
 		tools = {
 			pick = {
-				cracky = {times = {[1] = 1.50, [2] = 0.80, [3] = 0.35}, uses = 200, maxlevel= 3},
+				groupcaps = {
+					cracky = {times = {[1] = 1.50, [2] = 0.80, [3] = 0.35}, uses = 200, maxlevel= 3}
+				},
 				damage_groups = {fleshy = 5},
+				full_punch_interval = 0.5,
 			},
 			hoe = {
 				uses = 1000
 			},
 			shovel = {
-				crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel= 1},
+				groupcaps = {
+					crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel= 1}
+				},
 				damage_groups = {fleshy = 5},
+				full_punch_interval = 0.5,
 			},
 			axe = {
-				choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel= 1},
-				fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel= 1},
+				groupcaps = {
+					choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel= 1},
+					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel= 1}
+				},
 				damage_groups = {fleshy = 5},
+				full_punch_interval = 0.5,
 			},
 			sword = {
-				fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel= 1},
-				snappy = {times = {[2] = 0.70, [3] = 0.25}, uses = 200, maxlevel= 1},
-				choppy = {times = {[3] = 0.65}, uses = 200, maxlevel= 0},
+				groupcaps = {
+					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel= 1},
+					snappy = {times = {[2] = 0.70, [3] = 0.25}, uses = 200, maxlevel= 1},
+					choppy = {times = {[3] = 0.65}, uses = 200, maxlevel= 0}
+				},
 				damage_groups = {fleshy = 9},
+				full_punch_interval = 0.5,
 			}
 		},
-		full_punch_interval = 0.5,
 	}
 }
 
