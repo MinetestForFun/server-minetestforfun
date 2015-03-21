@@ -610,7 +610,7 @@ function mobs:register_mob(name, def)
 												--activate_if_tnt(n.name, np, pos, 3) -- Pas de module TNT sur le serveur donc inutile
 												minetest.remove_node(np)
 												nodeupdate(np)
-												if n.name ~= "tnt:tnt" and math.random() > 0.9 then
+											--[[	if n.name ~= "tnt:tnt" and math.random() > 0.9 then
 													local drop = minetest.get_node_drops(n.name, "")
 													for _,item in ipairs(drop) do
 														if type(item) == "string" then
@@ -619,7 +619,7 @@ function mobs:register_mob(name, def)
 															end
 														end
 													end
-												end
+												end ]]
 											end
 										end
 									end

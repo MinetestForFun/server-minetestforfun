@@ -25,7 +25,7 @@ function pyramids.fill_chest(pos)
 			if math.random(1,10) < 7 then return end
 			local stacks = {}
 			if minetest.get_modpath("treasurer") ~= nil then
-				stacks = treasurer.select_random_treasures(3,7,9,{"minetool", "food", "crafting_component"})
+				stacks = treasurer.select_random_treasures()
 			else
 				for i=0,2,1 do
 					local stuff = chest_stuff[math.random(1,#chest_stuff)]
