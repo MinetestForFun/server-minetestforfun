@@ -8,7 +8,7 @@ minetest.register_node("seawrecks:woodship", {
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_sand_defaults(),
 	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
+		if not pointed_thing.type == "node" then
 			return itemstack
 		end
 		local pn = placer:get_player_name()
@@ -20,7 +20,7 @@ minetest.register_node("seawrecks:woodship", {
 		meta:set_string("owner", pn)
 		nodeupdate(pointed_thing.above)
 		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
+			itemstack:take_item()
 		end
 		return itemstack
 	end
@@ -95,19 +95,19 @@ minetest.register_node("seawrecks:ubootchest", {
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		
-		local kind_of_price = math.floor(math.random()*2)
-    local amount_of_price = math.floor(math.random()*20)+1
-    local ingot_price = {"default:steel_ingot","default:copper_ingot","default:gold_ingot","moreores:tin_ingot","moreores:silver_ingot"}
-    local price_group = {"",""}
-    local choosen_ingot = math.floor(math.random()*10)+1
-    price_group[1] = ingot_price[choosen_ingot].." "..amount_of_price
-    if (kind_of_price == 0) then -- Ingots AND mese
-      price_group[2] = "default:mese_crystal "..math.floor(math.random()*6)+1
-    elseif (kind_of_price == 1) then -- Ingots AND diamond
-      price_group[2] = "default:diamond "..math.floor(math.random()*4)+1
-    else
-      price_group[2] = ""
-    end
+		local kind_of_price = math.random(0,2)
+		local amount_of_price = math.random(1, 20)
+		local ingot_price = {"default:steel_ingot","default:copper_ingot","default:gold_ingot","moreores:tin_ingot","moreores:silver_ingot"}
+		local price_group = {"",""}
+		local choosen_ingot = math.random(1, #ingot_price)
+		price_group[1] = ingot_price[choosen_ingot].." "..amount_of_price
+		if (kind_of_price == 0) then -- Ingots AND mese
+			price_group[2] = "default:mese_crystal "..math.random(1, 7)
+		elseif (kind_of_price == 1) then -- Ingots AND diamond
+			price_group[2] = "default:diamond "..math.random(1,5)
+		else
+			price_group[2] = ""
+		end
  
 		meta:set_string("formspec",
 			"size[8,9]"..
