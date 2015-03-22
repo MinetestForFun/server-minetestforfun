@@ -1,10 +1,7 @@
 
 -- Npc by TenPlus1
 
-mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:apple", "default:sapling", "default:junglesapling"
-					"shields:shield_enhanced_wood", "3d_armor:chestplate_cactus", "3d_armor:boots_bronze",
-					"default:sword_steel", "default:sword_gold", "default:pick_steel", "default:shovel_steel",
-					"default:bronze_ingot", "bucket:bucket_water" }
+mobs.npc_drops = { "farming:meat", "farming:donut", "farming:bread", "default:apple", "default:sapling", "default:junglesapling", "shields:shield_enhanced_wood", "3d_armor:chestplate_cactus", "3d_armor:boots_bronze", "default:sword_steel", "default:sword_gold", "default:pick_steel", "default:shovel_steel", "default:bronze_ingot", "bucket:bucket_water" }
 
 mobs:register_mob("mobs:npc", {
 	-- animal, monster, npc
