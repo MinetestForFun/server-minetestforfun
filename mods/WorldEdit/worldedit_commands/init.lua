@@ -802,6 +802,10 @@ minetest.register_chatcommand("/orient", {
 		worldedit.player_notify(name, count .. " nodes oriented")
 	end,
 	function(name, param)
+		if param == nil then
+			minetest.log("error","No parameters given to /orient WE's command!")
+			return
+		end
 		local found, _, angle = param:find("^([+-]?%d+)$")
 		if found == nil then
 			worldedit.player_notify(name, "invalid usage: " .. param)
