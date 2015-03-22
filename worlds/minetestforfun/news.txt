@@ -3,8 +3,8 @@ News de FR - MinetestForFun (Survival - PvP)
 ---Bientôt---
 MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
 MAJ de "irc" (utilisation des dernières bibliothèques IRC)
-MAJ de "mobs" (les PNJs/NPCs sont attirés par les diamants, peuvent regagner de la vie si vous les nourrissez avec du "farming:bread" ou "mobs:meat", si vous donner un lingots d'or vous aurez le droit à un objet aléatoire en échange)
 MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé de cette façon maintenant : "/played <pseudo>")
+MAJ de "mobs" (ajout des chèvres/goats)
 
 ---21/03/2015--- (Remerciements : Crabman, Ataron, Mg, davedevils)
 MAJ de "builtin_falling" (remis en service après reconfiguration)
@@ -51,6 +51,7 @@ MAJ de "moreores" (petites modifications, bugfix des dégâts des outils fait en
 MAJ de "moreblocks" (petites modifications)
 MAJ de "mobs" (ajout d'une texture pour l'egg des creepers, suppresion du jump step - devenu inutile -, petits ajustements de vie et de dégâts de certains monstres, début de l'organisation du code du creeper et du wolf)
 Ajout de "trm_pyramids" (permet l'ajout des coffres et de leurs contenu dans les pyramides)
+MAJ de "mobs" (les PNJs/NPCs sont attirés par les diamants, peuvent regagner de la vie si vous les nourrissez avec du "farming:bread" ou "mobs:meat", si vous donner un lingots d'or vous aurez le droit à un objet aléatoire en échange)
 
 ---12/03/2015--- (Remerciements : Mg, Crabman77)
 MAJ de "homedecor_modpack" ("CobWeb" devient "CobWeb (decorative)" pour évitez les conflits, la recette change aussi en "cotton" en croix verticale/horizontale)
