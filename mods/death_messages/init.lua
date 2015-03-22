@@ -15,7 +15,7 @@ messages.lava = {
 	" pensait que la lave etait cool.",
 	" s'est sentit oblige de toucher la lave.",
 	" est tombe dans la lave.",
-	" est mort dans de la lave.",
+	" est mort(e) dans de la lave.",
 	" ne savait pas que la lave etait vraiment chaude."
 }
 
@@ -37,7 +37,7 @@ messages.fire = {
 	" s'est prit pour torch man. (des quatres fantastiques)"
 }
 
--- Burning death messages
+-- Acid death messages
 messages.acid = {
 	" a desormais des parties en moins.",
 	" a decouvert que l'acide c'est fun.",
@@ -49,7 +49,7 @@ messages.acid = {
 -- Other death messages
 messages.other = {
 	" a fait quelque chose qui lui a ete fatale.",
-	" est mort.",
+	" est mort(e).",
 	" n'est plus de ce monde.",
 	" a rejoint le paradis des mineurs.",
 	" a perdu la vie."
