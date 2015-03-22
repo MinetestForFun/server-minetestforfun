@@ -33,9 +33,9 @@ mobs:register_mob("mobs:tree_monster", {
 	view_range = 16,
 	-- drops saplings or apple
 	drops = {
-		{name = "ethereal:tree_sapling",
+		{name = "default:sapling",
 		chance = 3, min = 1, max = 2},
-		{name = "ethereal:jungle_tree_sapling",
+		{name = "default:junglesapling",
 		chance = 3, min = 1, max = 2},
 		{name = "default:apple",
 		chance = 2, min = 1, max = 3,},

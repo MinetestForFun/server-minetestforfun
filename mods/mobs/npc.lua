@@ -1,7 +1,10 @@
 
 -- Npc by TenPlus1
 
-mobs.npc_drops = { "default:pick_steel", "mobs:meat", "default:sword_steel", "default:shovel_steel", "farming:bread", "bucket:bucket_water" }
+mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:apple", "default:sapling", "default:junglesapling"
+					"shields:shield_enhanced_wood", "3d_armor:chestplate_cactus", "3d_armor:boots_bronze",
+					"default:sword_steel", "default:sword_gold", "default:pick_steel", "default:shovel_steel",
+					"default:bronze_ingot", "bucket:bucket_water" }
 
 mobs:register_mob("mobs:npc", {
 	-- animal, monster, npc
@@ -38,6 +41,8 @@ mobs:register_mob("mobs:npc", {
 		chance = 2, min = 1, max = 2},
 		{name = "default:axe_stone",
 		chance = 3, min = 1, max = 1},
+		{name = "maptools:copper_coin",
+		chance = 2, min = 2, max = 4,},
 	},
 	-- damaged by
 	water_damage = 0,
@@ -54,7 +59,7 @@ mobs:register_mob("mobs:npc", {
 		run_start = 168,		run_end = 187,
 		punch_start = 200,		punch_end = 219,
 	},
-	-- right clicking with cooked meat will give npc more health
+	-- right clicking with "cooked meat" or "bread" will give npc more health
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "mobs:meat" or item:get_name() == "farming:bread" then
@@ -77,7 +82,7 @@ mobs:register_mob("mobs:npc", {
 		end
 	end,
 })
--- spawning disabled for now
---mobs:register_spawn("mobs:npc", {"default:dirt_with_grass"}, 20, 0, 7000, 1, 31000)
+-- spawning enable for now
+mobs:register_spawn("mobs:npc", {"default:dirt_with_grass"}, 20, -1, 21000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:npc", "Npc", "default_brick.png", 1)
