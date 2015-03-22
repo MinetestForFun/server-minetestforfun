@@ -57,7 +57,6 @@ end)
 
 minetest.register_globalstep(function(dtime)
 	pyramids.timer = pyramids.timer + dtime
-	table.foreach(pyramids.saved_chests,print)
 	if pyramids.timer < pyramids.max_time then return end
 	pyramids.timer = 0
 	for _,k in ipairs(pyramids.saved_chests) do
