@@ -606,8 +606,27 @@ function mobs:register_mob(name, def)
 										if x*x+y*y+z*z <= 3 * 3 + 3 then
 											local np={x=pos.x+x,y=pos.y+y,z=pos.z+z}
 											local n = minetest.get_node(np)
-											if n.name ~= "air" and n.name ~= "default:obsidian" and n.name ~= "default:bedrock" and minetest.get_item_group(n.name, "unbreakable") ~= 1 and next(areas:getAreasAtPos(np)) == nil then
+											if n.name ~= "air" and n.name ~= "doors:door_steel_b_1" and n.name ~= "doors:door_steel_t_1"
+												and n.name ~= "doors:door_steel_b_2" and n.name ~= "doors:door_steel_t_2"
+												and n.name ~= "default:chest_locked" and n.name ~= "default:obsidian" and n.name ~= "default:bedrock"
+												and minetest.get_item_group(n.name, "unbreakable") ~= 1 and next(areas:getAreasAtPos(np)) == nil then
 												--activate_if_tnt(n.name, np, pos, 3) -- Pas de module TNT sur le serveur donc inutile
+												if n.name == "default:chest" then
+													meta = minetest.get_meta(np)
+													inv  = meta:get_inventory()
+													for i = 1,32 do
+														m_stack = inv:get_stack("main",i)
+														obj = minetest.add_item(pos,m_stack)
+														if obj then
+															obj:setvelocity({x=math.random(-1,1), y=5, z=math.random(-1,1)})
+														end
+													end
+												end
+												if n.name == "doors:door_wood_b_1" then
+													minetest.remove_node({x=np.x,y=np.y+1,z=np.z})
+												elseif n.name == "doors:door_wood_t_1" then
+													minetest.remove_node({x=np.x,y=np.y-1,z=np.z})
+												end
 												minetest.remove_node(np)
 												nodeupdate(np)
 											--[[	if n.name ~= "tnt:tnt" and math.random() > 0.9 then
