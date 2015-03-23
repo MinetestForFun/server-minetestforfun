@@ -606,7 +606,7 @@ function mobs:register_mob(name, def)
 										if x*x+y*y+z*z <= 3 * 3 + 3 then
 											local np={x=pos.x+x,y=pos.y+y,z=pos.z+z}
 											local n = minetest.get_node(np)
-											if n.name ~= "air" and n.name ~= "default:obsidian" and n.name ~= "default:bedrock" and n.name ~= "protector:protect" then
+											if n.name ~= "air" and n.name ~= "default:obsidian" and n.name ~= "default:bedrock" and minetest.get_item_group(n.name, "unbreakable") ~= 1 and next(areas:getAreasAtPos(np)) == nil then
 												--activate_if_tnt(n.name, np, pos, 3) -- Pas de module TNT sur le serveur donc inutile
 												minetest.remove_node(np)
 												nodeupdate(np)
@@ -946,7 +946,7 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 
 			-- are we spawning inside a solid node?
 			local nod = minetest.get_node_or_nil(pos)
-			if not nod or minetest.registered_nodes[nod.name].walkable == true then return end
+			if not nod or not minetest.registered_nodes[nod] or minetest.registered_nodes[nod.name].walkable == true then return end
 			pos.y = pos.y + 1
 			nod = minetest.get_node_or_nil(pos)
 			if not nod or minetest.registered_nodes[nod.name].walkable == true then return end
