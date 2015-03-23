@@ -714,7 +714,7 @@ snowball_VELOCITY=19
 --Shoot snowball.
 local snow_shoot_snowball=function (item, player, pointed_thing)
 	local playerpos=player:getpos()
-	local obj=minetestadd_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, "christmas_craft:snowball_entity")
+	local obj=minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, "christmas_craft:snowball_entity")
 	local dir=player:get_look_dir()
 	obj:setvelocity({x=dir.x*snowball_VELOCITY, y=dir.y*snowball_VELOCITY, z=dir.z*snowball_VELOCITY})
 	obj:setacceleration({x=dir.x*-3, y=-snowball_GRAVITY, z=dir.z*-3})
