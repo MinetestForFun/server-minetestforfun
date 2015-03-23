@@ -618,7 +618,7 @@ function mobs:register_mob(name, def)
 														m_stack = inv:get_stack("main",i)
 														obj = minetest.add_item(pos,m_stack)
 														if obj then
-															obj:setvelocity({x=math.random(-1,1), y=5, z=math.random(-1,1)})
+															obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
 														end
 													end
 												end

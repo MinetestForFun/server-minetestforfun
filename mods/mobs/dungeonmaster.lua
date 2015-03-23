@@ -2,9 +2,7 @@
 -- Dungeon Master by PilzAdam
 
 -- Node which cannot be destroyed by DungeonMasters' fireballs
-local excluded = {"nether:netherrack","default:obsidian_glass","maptools:cobble",
-			"maptools:sand", "maptools:desert_sand"
-	}
+local excluded = {"nether:netherrack","default:obsidian_glass","doors:door_steel_b_1","doors:door_steel_t_1","doors:door_steel_b_2","doors:door_steel_t_2","default:chest_locked"}
 
 mobs:register_mob("mobs:dungeon_master", {
 	-- animal, monster, npc, barbarian
@@ -98,24 +96,36 @@ mobs:register_arrow("mobs:fireball", {
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
 					local n = minetest.get_node(p).name
-					local excluding = minetest.registered_nodes[n].groups["unbreakable"] ~= nil
+					local excluding = minetest.get_item_group(n.name, "unbreakable") == 1
 						or n:split(":")[1] == "nether"
+						or next(areas:getAreasAtPos(p)) ~= nil
 					for _,i in ipairs(excluded) do
-						if i == n then including = true end
+						if i == n then excluding = true end
 					end
-					
 					--if p.y < -19600 and including and n:split(":")[1] == "nether" then
 					if excluding then
 						return
 					end
-					if n ~= "default:obsidian"
-					and n ~= "default:obsidianbrick"
-					and not n:find("protector:") then	
+					if n == "default:chest" then
+						meta = minetest.get_meta(p)
+						inv  = meta:get_inventory()
+						for i = 1,32 do
+							m_stack = inv:get_stack("main",i)
+							obj = minetest.add_item(pos,m_stack)
+							if obj then
+								obj:setvelocity({x=math.random(-2,1), y=7, z=math.random(-2,1)})
+							end
+						end
+					end
 					if minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30 then
 						minetest.set_node(p, {name="fire:basic_flame"})
 					else
 						minetest.set_node(p, {name="air"})
 					end
+					if n == "doors:door_wood_b_1" then
+						minetest.remove_node({x=p.x,y=p.y+1,z=p.z})
+					elseif n == "doors:door_wood_t_1" then
+						minetest.remove_node({x=p.x,y=p.y-1,z=p.z})
 					end
 				end
 			end
