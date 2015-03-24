@@ -2,7 +2,7 @@
 -- Dungeon Master by PilzAdam
 
 -- Node which cannot be destroyed by DungeonMasters' fireballs
-local excluded = {"nether:netherrack","default:obsidian_glass","doors:door_steel_b_1","doors:door_steel_t_1","doors:door_steel_b_2","doors:door_steel_t_2","default:chest_locked"}
+local excluded = {"nether:netherrack","default:obsidian_glass","default:obsidian","default:bedrock", "doors:door_steel_b_1", "doors:door_steel_t_1", "doors:door_steel_b_2", "doors:door_steel_t_2","default:chest_locked"}
 
 mobs:register_mob("mobs:dungeon_master", {
 	-- animal, monster, npc, barbarian
@@ -96,7 +96,7 @@ mobs:register_arrow("mobs:fireball", {
 				for dz=-1,1 do
 					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
 					local n = minetest.get_node(p).name
-					local excluding = minetest.get_item_group(n.name, "unbreakable") == 1
+					local excluding = minetest.get_item_group(n, "unbreakable") == 1
 						or n:split(":")[1] == "nether"
 						or next(areas:getAreasAtPos(p)) ~= nil
 					for _,i in ipairs(excluded) do
