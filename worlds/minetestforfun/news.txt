@@ -7,7 +7,7 @@ MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé d
 MAJ de "mobs" (ajout des chèvres/goats)
 
 ---21/03/2015--- (Remerciements : Mg, Crabman, Ataron)
-MAJ de "mobs" (modification des objets aléatoire échangé par les NPCs, ils spawnent aussi maintenant 3 fois moins souvent, )
+MAJ de "mobs" (modification des objets aléatoire échangé par les NPCs, ils spawnent aussi maintenant 3 fois moins souvent)
 MAJ de "death_messages" (modification pour inclure le féminin dans certaines phrases)
 MAJ de "worldedit" (crashfix avec l'orientation)
 MAJ de "sea/searecks" (crashfix à cause d'un nombre aléatoire)
@@ -58,7 +58,7 @@ MAJ de "moreores" (petites modifications, bugfix des dégâts des outils fait en
 MAJ de "moreblocks" (petites modifications)
 MAJ de "mobs" (ajout d'une texture pour l'egg des creepers, suppresion du jump step - devenu inutile -, petits ajustements de vie et de dégâts de certains monstres, début de l'organisation du code du creeper et du wolf)
 Ajout de "trm_pyramids" (permet l'ajout des coffres et de leurs contenu dans les pyramides)
-MAJ de "mobs" (les PNJs/NPCs sont attirés par les diamants, peuvent regagner de la vie si vous les nourrissez avec du pain/"farming:bread" ou de la viande/"mobs:meat", si vous donner une pépite d'or vous aurez le droit à un objet aléatoire en échange)
+MAJ de "mobs" (les PNJs/NPCs sont attirés par les diamants, peuvent regagner de la vie si vous les nourrissez avec du pain/"farming:bread" ou de la viande/"mobs:meat", si vous donner une pépite d'or/"gold lump" vous aurez le droit à un objet aléatoire en échange)
 
 ---12/03/2015--- (Remerciements : Mg, Crabman77)
 MAJ de "homedecor_modpack" ("CobWeb" devient "CobWeb (decorative)" pour évitez les conflits, la recette change aussi en "cotton" en croix verticale/horizontale)
