@@ -5,7 +5,7 @@ for i=1,3 do
 		description = "Sandstone with "..img[i],
 		tiles = {"default_sandstone.png^tsm_pyramids_"..img[i]..".png"},
 		is_ground_content = true,
-		groups = {crumbly=2,cracky=3},
+		groups = {unbreakable=1},
 		sounds = default.node_sound_stone_defaults(),
 	})
 end

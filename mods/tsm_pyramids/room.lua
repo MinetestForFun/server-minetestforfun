@@ -71,7 +71,7 @@ local function replace(str,iy)
 	if iy == 0 and str == "s" then out = "tsm_pyramids:" str = "sun" end
 	if iy == 3 and str == "s" then out = "tsm_pyramids:" str = "men" end
 	if str == "a" then out = "" end
-	if str == "c" then out = "maptools:" end
+	if str == "c" or str == "s" or str == "b" then out = "maptools:" end
 	return out..code[str]
 end
 
