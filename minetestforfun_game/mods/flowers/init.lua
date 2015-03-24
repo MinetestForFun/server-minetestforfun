@@ -16,7 +16,7 @@ minetest.register_alias("flowers:flower_viola", "flowers:viola")
 --- Fleur Simple (une case) ---
 -------------------------------
 
-local function add_simple_flower(name, desc, image, color)
+local function add_simple_flower(name, desc, image, color, f_groups)
 	minetest.register_node("flowers:"..name.."", {
 		description = desc,
 		drawtype = "plantlike",
@@ -27,7 +27,7 @@ local function add_simple_flower(name, desc, image, color)
 		paramtype = "light",
 		walkable = false,
 		stack_max = 99,
-		groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color=1},
+		groups = f_groups,
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
 			type = "fixed",
@@ -37,10 +37,10 @@ local function add_simple_flower(name, desc, image, color)
 end
 
 
-add_simple_flower("dandelion_yellow", "Yellow Dandelion", "flowers_dandelion_yellow", "color_yellow")
-add_simple_flower("geranium", "Blue Geranium", "flowers_geranium", "color_blue")
-add_simple_flower("rose", "Rose", "flowers_rose", "color_red") 
-add_simple_flower("tulip", "Orange Tulip", "flowers_tulip", "color_orange")
+add_simple_flower("dandelion_yellow", "Yellow Dandelion", "flowers_dandelion_yellow", "color_yellow",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_yellow=1})
+add_simple_flower("geranium", "Blue Geranium", "flowers_geranium", "color_blue",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_blue=1})
+add_simple_flower("rose", "Rose", "flowers_rose", "color_red",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_red=1}) 
+add_simple_flower("tulip", "Orange Tulip", "flowers_tulip", "color_orange",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_orange=1})
 
 ---------------------------------------------
 ----------------- OLD SYSTEM ----------------
