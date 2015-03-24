@@ -6,6 +6,8 @@ function minetest.pos_to_string(pos)
 	return _pts(pos)
 end
 
+local elapsed_time = 0
+
 -- Makes sure that force load areas are handled correctly
 function ForceloadManager(filetoopen, hide_file_errors)
 	local blocks = {}
@@ -141,7 +143,7 @@ minetest.register_craft({
 	}
 })
 
-local elapsed_time = 0
+
 local count = 0
 minetest.register_globalstep(function(dtime)
 	count = count + dtime
