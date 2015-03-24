@@ -26,7 +26,7 @@ local function add_simple_flower(name, desc, image, color)
 		sunlight_propagates = true,
 		paramtype = "light",
 		walkable = false,
-		stack_max = 64,
+		stack_max = 99,
 		groups = {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color=1},
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
