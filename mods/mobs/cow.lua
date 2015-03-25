@@ -35,6 +35,8 @@ mobs:register_mob("mobs:cow", {
 	drops = {
 		{name = "mobs:meat_raw",
 		chance = 1, min = 5, max = 10},
+		{name = "mobs:leather",
+		chance = 1, min = 0, max = 3},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -86,6 +88,11 @@ mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 0, 10000, 1, 31
 -- register spawn egg
 mobs:register_egg("mobs:cow", "Cow", "default_grass.png", 1)
 
+-- Leather
+minetest.register_craftitem("mobs:leather", {
+	description = "Leather",
+	inventory_image = "mobs_leather.png",
+})
 -- Bucket of Milk
 minetest.register_craftitem("mobs:bucket_milk", {
 	description = "Bucket of Milk",

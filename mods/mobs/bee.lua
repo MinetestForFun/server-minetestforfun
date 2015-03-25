@@ -46,7 +46,7 @@ mobs:register_mob("mobs:bee", {
 	},
 	-- right click to pick up bee
 	on_rightclick = function(self, clicker)
-		if clicker:is_player() and clicker:get_inventory() then
+		if clicker:is_player() and clicker:get_inventory() and clicker:get_inventory():room_for_item("main", "mobs:bee") then
 			clicker:get_inventory():add_item("main", "mobs:bee")
 			self.object:remove()
 		end

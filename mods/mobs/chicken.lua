@@ -10,7 +10,7 @@ mobs:register_mob("mobs:chicken", {
 	-- textures and model
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
-	mesh = "chicken.x",
+	mesh = "mobs_chicken.x",
 	drawtype = "front",
 	available_textures = {
 		total = 2,
@@ -78,7 +78,7 @@ mobs:register_mob("mobs:chicken", {
 			end
 			return tool
 		else
-			if clicker:is_player() and clicker:get_inventory() then
+			if clicker:is_player() and clicker:get_inventory() and clicker:get_inventory():room_for_item("main", "mobs:chicken") then
 				clicker:get_inventory():add_item("main", "mobs:chicken")
 				self.object:remove()
 			end

@@ -63,7 +63,7 @@ mobs:register_mob("mobs:bunny", {
 			end
 			return
 		end
-		if clicker:is_player() and clicker:get_inventory() then
+		if clicker:is_player() and clicker:get_inventory() and clicker:get_inventory():room_for_item("main", "mobs:bunny") then
 			clicker:get_inventory():add_item("main", "mobs:bunny")
 			self.object:remove()
 		end

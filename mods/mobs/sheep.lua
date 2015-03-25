@@ -33,7 +33,9 @@ mobs:register_mob("mobs:sheep", {
 	-- drops raw meat when dead
 	drops = {
 		{name = "mobs:meat_raw",
-		chance = 1, min = 2, max = 3,},
+		chance = 1, min = 2, max = 3},
+		{name = "wool:white",
+		chance = 1, min = 1, max = 1},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -61,6 +63,9 @@ mobs:register_mob("mobs:sheep", {
 				clicker:set_wielded_item(item)
 			end
 			self.food = (self.food or 0) + 1
+			if self.child == true then
+				self.hornytimer = self.hornytimer + 10
+			end
 			if self.food >= 8 then
 				self.food = 0
 				if self.child == false then self.horny = true end
@@ -75,10 +80,16 @@ mobs:register_mob("mobs:sheep", {
 		return
 		end
 		-- need shears to get wool from sheep
-		if clicker:get_inventory() and item:get_name() == "mobs:shears" and not self.gotten and self.child == false then
+		local inv = clicker:get_inventory()		
+		if inv and item:get_name() == "mobs:shears" and not self.gotten and self.child == false then
 			self.gotten = true -- shaved
 			if minetest.registered_items["wool:white"] then
-				clicker:get_inventory():add_item("main", ItemStack("wool:white "..math.random(1,3)))
+				local pos = self.object:getpos()
+				pos.y = pos.y + 0.5
+				local obj = minetest.add_item(pos, ItemStack("wool:white "..math.random(1,3)))
+				if obj then
+					obj:setvelocity({x=math.random(-1,1), y=5, z=math.random(-1,1)})
+				end
 				item:add_wear(65535/100)
 				clicker:set_wielded_item(item)
 			end

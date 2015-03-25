@@ -446,7 +446,7 @@ function mobs:register_mob(name, def)
 							--print ("spawned baby:",self.name)
 							local mob = minetest.add_entity(pos, self.name)
 							local ent2 = mob:get_luaentity()
-							local texture = self.base_texture
+							local textures = self.base_texture
 							if def.child_texture then
 								print ("child texture detected")
 								textures = def.child_texture[1]
