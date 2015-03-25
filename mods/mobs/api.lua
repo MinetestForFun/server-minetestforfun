@@ -593,7 +593,7 @@ function mobs:register_mob(name, def)
 							pos.x = math.floor(pos.x+0.5)
 							pos.y = math.floor(pos.y+0.5)
 							pos.z = math.floor(pos.z+0.5)
-							do_tnt_physics(pos, 3) -- on applique le principe le la tnt
+							do_tnt_physics(pos, 3, self) -- on applique le principe le la tnt
 							local meta = minetest.get_meta(pos)
 							minetest.sound_play("tnt_explode", {pos = pos,gain = 1.0,max_hear_distance = 16,})
 							if minetest.get_node(pos).name == "default:water_source" or minetest.get_node(pos).name == "default:water_flowing" or minetest.is_protected(pos, "tnt") then
@@ -1021,7 +1021,7 @@ function check_for_death(self)
 	end
 end
 
-function do_tnt_physics(tnt_np,tntr)
+function do_tnt_physics(tnt_np,tntr,entity)
     local objs = minetest.get_objects_inside_radius(tnt_np, tntr)
     for k, obj in pairs(objs) do
         local oname = obj:get_entity_name()
@@ -1031,7 +1031,11 @@ function do_tnt_physics(tnt_np,tntr)
                 obj:setvelocity({x=(p.x - tnt_np.x) + (tntr / 4) + v.x, y=(p.y - tnt_np.y) + (tntr / 2) + v.y, z=(p.z - tnt_np.z) + (tntr / 4) + v.z})
             else
                 if obj:get_player_name() ~= nil then
-                    obj:set_hp(obj:get_hp() - 16) -- loose 16 life points when detonate
+					if entity.object ~= nil then
+						obj:punch(entity.object, 1.0,  {full_punch_interval=1.0,damage_groups = {fleshy=entity.damage}})
+					else
+						obj:set_hp(obj:get_hp() - 21)
+					end
                 end
             end
     end

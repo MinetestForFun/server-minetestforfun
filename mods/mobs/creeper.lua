@@ -7,7 +7,7 @@ mobs:register_mob("mobs:creeper", {
 	-- agressive, does 4 damage to player when hit
 	passive = false,
 	attack_type = "kamicaze",
-	damage = 0,
+	damage = 21,
 	-- health & armor
 	hp_min = 40, hp_max = 50, armor = 90,
 	-- textures and model
