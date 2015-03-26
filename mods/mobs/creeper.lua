@@ -4,12 +4,12 @@
 mobs:register_mob("mobs:creeper", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- agressive, does 4 damage to player when hit
+	-- agressive, does 21 damage to player when explode
 	passive = false,
 	attack_type = "kamicaze",
 	damage = 21,
 	-- health & armor
-	hp_min = 40, hp_max = 50, armor = 90,
+	hp_min = 30, hp_max = 40, armor = 90,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
