@@ -60,10 +60,10 @@ end
 
 function mummy_update_visuals_def(self)
 	--local name = get_player_name()
-	visual = default_model_def
+	-- visual = default_model_def
 	npc_anim = 0 -- Animation will be set further below immediately
 	--npc_sneak[name] = false
-	prop = {
+	local prop = {
 		mesh = mummy_mesh,
 		textures = mummy_texture,
 		--visual_size = {x=1, y=1, z=1},
@@ -257,8 +257,8 @@ MUMMY_DEF.on_step = function(self, dtime)
 		for  _,object in ipairs(minetest.env:get_objects_inside_radius(self.object:getpos(), 4)) do
 			if object:is_player() then
 				self.yawwer = false
-				NPC = self.object:getpos()
-				PLAYER = object:getpos()
+				local NPC = self.object:getpos()
+				local PLAYER = object:getpos()
 				self.vec = {x=PLAYER.x-NPC.x, y=PLAYER.y-NPC.y, z=PLAYER.z-NPC.z}
 				self.yaw = math.atan(self.vec.z/self.vec.x)+math.pi^2
 				if PLAYER.x > NPC.x then
@@ -396,7 +396,7 @@ if not minetest.setting_getbool("only_peaceful_mobs") then
 				if obj:is_player() then
 					player_near = true
 				else
-					if obj:get_luaentity().mob_name == "mummy" then mobs = mobs + 1 end
+					if obj:get_luaentity() and obj:get_luaentity().mob_name == "mummy" then mobs = mobs + 1 end
 				end
 			end
 		end
