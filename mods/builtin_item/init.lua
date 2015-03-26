@@ -106,7 +106,7 @@ minetest.register_entity(":__builtin:item", {
 			self.object:setacceleration({x = 0, y = -10, z = 0})
 		end
 		--]]
-		
+		if not minetest.registered_nodes[name] then return end
 		if minetest.registered_nodes[name].liquidtype == "flowing" then
 			local get_flowing_dir = function(self)
 				local pos = self.object:getpos()
