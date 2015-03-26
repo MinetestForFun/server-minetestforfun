@@ -7,7 +7,7 @@ mobs:register_mob("mobs:stone_monster", {
 	-- aggressive, deals 5 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 5,
+	damage = 8,
 	-- health & armor
 	hp_min = 30, hp_max = 35, armor = 60,
 	-- textures and model

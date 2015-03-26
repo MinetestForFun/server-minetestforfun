@@ -7,7 +7,7 @@ mobs:register_mob("mobs:pumba", {
 	-- aggressive, deals 4 damage to player when threatened
 	passive = false,
 	attack_type = "dogfight",
-	damage = 4,
+	damage = 5,
 	-- health & armor
 	hp_min = 15, hp_max = 20, armor = 200,
 	-- textures and model

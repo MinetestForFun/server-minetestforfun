@@ -7,7 +7,7 @@ mobs:register_mob("mobs:oerkki", {
 	-- aggressive, deals 5 damage when player hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 5,
+	damage = 7,
 	-- health & armor
 	hp_min = 40, hp_max = 50, armor = 90,
 	-- textures and model

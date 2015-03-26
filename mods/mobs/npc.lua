@@ -11,7 +11,7 @@ mobs:register_mob("mobs:npc", {
 	type = "npc",
 	-- aggressive, deals 4 damage to player/monster when hit
 	passive = false,
-	damage = 4,
+	damage = 6,
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health & armor

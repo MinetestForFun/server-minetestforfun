@@ -7,7 +7,7 @@ mobs:register_mob("mobs:lava_flan", {
 	-- aggressive, deals 3 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 3,
+	damage = 1,
 	-- health and armor
 	hp_min = 20, hp_max = 35, armor = 80,
 	-- textures and model
