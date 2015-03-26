@@ -964,7 +964,7 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 
 			-- are we spawning inside a solid node?
 			local nod = minetest.get_node_or_nil(pos)
-			if not nod or not minetest.registered_nodes[nod] or minetest.registered_nodes[nod.name].walkable == true then return end
+			if not nod or not minetest.registered_nodes[nod.name] or minetest.registered_nodes[nod.name].walkable == true then return end
 			pos.y = pos.y + 1
 			nod = minetest.get_node_or_nil(pos)
 			if not nod or minetest.registered_nodes[nod.name].walkable == true then return end
