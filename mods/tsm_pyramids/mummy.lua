@@ -392,10 +392,12 @@ if not minetest.setting_getbool("only_peaceful_mobs") then
 		local player_near = false
 		local mobs = 0
 		for  _,obj in ipairs(minetest.env:get_objects_inside_radius(pos, spawner_range)) do
-			if obj:is_player() then
-				player_near = true 
-			else
-				if obj:get_luaentity().mob_name == "mummy" then mobs = mobs + 1 end
+			if obj then
+				if obj:is_player() then
+					player_near = true
+				else
+					if obj:get_luaentity().mob_name == "mummy" then mobs = mobs + 1 end
+				end
 			end
 		end
 		if player_near then
