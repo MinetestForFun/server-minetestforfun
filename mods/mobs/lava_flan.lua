@@ -4,7 +4,7 @@
 mobs:register_mob("mobs:lava_flan", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- aggressive, deals 3 damage to player when hit
+	-- aggressive, deals 5 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
 	damage = 5,
@@ -32,7 +32,7 @@ mobs:register_mob("mobs:lava_flan", {
 	walk_velocity = 0.5,
 	run_velocity = 2,
 	jump = true,
-	-- step = 2, (ça aurait été pas mal, voir comment faire pour le remettre comme ça ?) 
+	-- step = 2, (c'était pas mal, voir comment faire pour le remettre comme ça ?) 
 	view_range = 16,
 	floats = 0,
 	-- chance of dropping lava orb when dead

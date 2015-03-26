@@ -4,7 +4,7 @@
 mobs:register_mob("mobs:oerkki", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- aggressive, deals 5 damage when player hit
+	-- aggressive, deals 7 damage when player hit
 	passive = false,
 	attack_type = "dogfight",
 	damage = 7,

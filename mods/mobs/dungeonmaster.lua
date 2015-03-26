@@ -7,7 +7,7 @@ local excluded = {"nether:netherrack","default:obsidian_glass","default:obsidian
 mobs:register_mob("mobs:dungeon_master", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- aggressive, shoots fireballs at player
+	-- aggressive, shoots fireballs at player, deal 13 damages
 	passive = false,
 	damage = 13,
 	attack_type = "shoot",

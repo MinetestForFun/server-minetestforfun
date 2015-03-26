@@ -1,4 +1,4 @@
- -- Mobs Api (15th March 2015)
+ -- Mobs Api (24th March 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -341,76 +341,23 @@ function mobs:register_mob(name, def)
 					end
 				end
 			end
-			
-			if self.following and self.following:is_player() and self.following:get_wielded_item():get_name() ~= self.follow then
-				self.following = nil
-				self.v_start = false
-			end
 
-			if self.following then
-
-                local s = self.object:getpos()
-                local p
-                if self.following.is_player and self.following:is_player() then
-					p = self.following:getpos()
-				elseif self.following.object then
-					p = self.following.object:getpos()
-                end
-
-				if p then
-					local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
-					if dist > self.view_range then
-						self.following = nil
-						self.v_start = false
-					else
-						local vec = {x=p.x-s.x, y=p.y-s.y, z=p.z-s.z}
-						local yaw = math.atan(vec.z/vec.x)+math.pi/2
-						if self.drawtype == "side" then
-							yaw = yaw+(math.pi/2)
-						end
-						if p.x > s.x then
-							yaw = yaw+math.pi
-						end
-						self.object:setyaw(yaw)
-						if dist > 2 then
-							if not self.v_start then
-								self.v_start = true
-								self.set_velocity(self, self.walk_velocity)
-							else
-								if self.jump and self.get_velocity(self) <= 1.5 and self.object:getvelocity().y == 0 then
-									local v = self.object:getvelocity()
-									v.y = 6
-									self.object:setvelocity(v)
-								end
-								self.set_velocity(self, self.walk_velocity)
-							end
-							self:set_animation("walk")
-						else
-							self.v_start = false
-							self.set_velocity(self, 0)
-							self:set_animation("stand")
-						end
-						return
-					end
-				end
-			end
-
-			-- horny animal can mate for 40 seconds, afterwards horny animal cannot mate again for 60 seconds
-			if self.horny == true and self.hornytimer < 100 and self.child == false then
+			-- horny animal can mate for 40 seconds, afterwards horny animal cannot mate again for 200 seconds
+			if self.horny == true and self.hornytimer < 240 and self.child == false then
 				self.hornytimer = self.hornytimer + 1
 				if self.hornytimer <= 40 then
 					effect(self.object:getpos(), 4, "heart.png")
 				end
-				if self.hornytimer >= 100 then
+				if self.hornytimer >= 240 then
 					self.hornytimer = 0
 					self.horny = false
 				end
 			end
 
-			-- if animal is child take 120 seconds before growing into adult
+			-- if animal is child take 240 seconds before growing into adult
 			if self.child == true then
 				self.hornytimer = self.hornytimer + 1
-				if self.hornytimer > 120 then
+				if self.hornytimer > 240 then
 					self.child = false
 					self.hornytimer = 0
 					self.object:set_properties({
@@ -460,6 +407,59 @@ function mobs:register_mob(name, def)
 						end)
 						num = 0
 						break
+					end
+				end
+			end
+
+			if self.following and self.following:is_player() and self.following:get_wielded_item():get_name() ~= self.follow then
+				self.following = nil
+				self.v_start = false
+			end
+
+			if self.following then
+
+                local s = self.object:getpos()
+                local p
+                if self.following.is_player and self.following:is_player() then
+					p = self.following:getpos()
+				elseif self.following.object then
+					p = self.following.object:getpos()
+                end
+
+				if p then
+					local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
+					if dist > self.view_range then
+						self.following = nil
+						self.v_start = false
+					else
+						local vec = {x=p.x-s.x, y=p.y-s.y, z=p.z-s.z}
+						local yaw = math.atan(vec.z/vec.x)+math.pi/2
+						if self.drawtype == "side" then
+							yaw = yaw+(math.pi/2)
+						end
+						if p.x > s.x then
+							yaw = yaw+math.pi
+						end
+						self.object:setyaw(yaw)
+						if dist > 2 then
+							if not self.v_start then
+								self.v_start = true
+								self.set_velocity(self, self.walk_velocity)
+							else
+								if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then -- 0.5 was 1.5
+									local v = self.object:getvelocity()
+									v.y = 6
+									self.object:setvelocity(v)
+								end
+								self.set_velocity(self, self.walk_velocity)
+							end
+							self:set_animation("walk")
+						else
+							self.v_start = false
+							self.set_velocity(self, 0)
+							self:set_animation("stand")
+						end
+						return
 					end
 				end
 			end
@@ -825,14 +825,13 @@ function mobs:register_mob(name, def)
 					end
 				end
 			end
-
+			-- quick fix for dog so it doesn't revert back to wolf
+			if self.type == "monster" and self.tamed == true then
+				self.type = "npc"
+			end
 			if self.lifetimer <= 0 and not self.tamed and self.type ~= "npc" then
 				self.object:remove()
 			end
-			
-			-- Internal check to see if player damage is still enabled
-			damage_enabled = minetest.setting_getbool("enable_damage")
-
 		end,
 
 		get_staticdata = function(self)

@@ -4,7 +4,7 @@
 mobs:register_mob("mobs:pumba", {
 	-- animal, monster, npc, barbarian
 	type = "animal",
-	-- aggressive, deals 4 damage to player when threatened
+	-- aggressive, deals 5 damage to player when threatened
 	passive = false,
 	attack_type = "dogfight",
 	damage = 5,

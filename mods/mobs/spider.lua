@@ -4,7 +4,7 @@
 mobs:register_mob("mobs:spider", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- agressive, does 4 damage to player when hit
+	-- agressive, does 6 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
 	damage = 6,

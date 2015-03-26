@@ -4,7 +4,7 @@
 mobs:register_mob("mobs:stone_monster", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- aggressive, deals 5 damage to player when hit
+	-- aggressive, deals 8 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
 	damage = 8,

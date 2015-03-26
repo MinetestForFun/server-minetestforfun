@@ -4,7 +4,7 @@
 mobs:register_mob("mobs:mese_monster", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- agressive, deals 3 damage to player when hit
+	-- agressive, deals 9 damage to player when hit
 	passive = false,
 	damage = 9,
 	attack_type = "shoot",
@@ -78,7 +78,7 @@ mobs:register_arrow("mobs:mese_arrow", {
 
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=7},
+			damage_groups = {fleshy=9},
 		}, 0)
 	end,
 	

@@ -4,7 +4,7 @@
 mobs:register_mob("mobs:sand_monster", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- aggressive, deals 3 damage to player when hit
+	-- aggressive, deals 5 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
 	damage = 5,

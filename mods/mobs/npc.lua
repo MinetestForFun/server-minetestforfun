@@ -9,7 +9,7 @@ mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:a
 mobs:register_mob("mobs:npc", {
 	-- animal, monster, npc
 	type = "npc",
-	-- aggressive, deals 4 damage to player/monster when hit
+	-- aggressive, deals 6 damage to player/monster when hit
 	passive = false,
 	damage = 6,
 	attack_type = "dogfight",

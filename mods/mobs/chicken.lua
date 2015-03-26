@@ -1,3 +1,4 @@
+
 -- Chicken by JK Murray
 
 mobs:register_mob("mobs:chicken", {
@@ -138,7 +139,7 @@ description = "Raw Chicken",
 minetest.register_craftitem("mobs:chicken_cooked", {
 description = "Cooked Chicken",
 	inventory_image = "mobs_chicken_cooked.png",
-	on_use = minetest.item_eat(4),
+	on_use = minetest.item_eat(4), -- Modif MFF
 })
 
 minetest.register_craft({
