@@ -75,7 +75,8 @@ minetest.register_on_shutdown(function()
 		if v ~= 0 then
 			pntf:write(i.." "..v.."\n")
 		end
-	end
+    end
+    io.close(pntf)
 end)
 
 minetest.register_chatcommand("fail", {
