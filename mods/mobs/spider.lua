@@ -58,7 +58,7 @@ mobs:register_mob("mobs:spider", {
 	},
 })
 -- spawn on desert stone/crystal dirt, between 0 and 5 light, 1 in 7000 chance, 1 in area up to 71 in height
-mobs:register_spawn("mobs:spider", {"default:jungleleaves", "default:jungletree"}, 20, -1, 8000, 1, 31000)
+mobs:register_spawn("mobs:spider", {"default:jungleleaves", "default:jungletree"}, 20, -1, 9000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:spider", "Spider", "mobs_cobweb.png", 1)
 

@@ -57,6 +57,6 @@ mobs:register_mob("mobs:stone_monster", {
 	},
 })
 -- spawns on stone between -1 and 5 light, 1 in 5500 chance, 1 in area below -5
-mobs:register_spawn("mobs:stone_monster", {"default:stone", "nether:dirt_top"}, 5, -1, 5500, 1, -5)
+mobs:register_spawn("mobs:stone_monster", {"default:stone", "nether:dirt_top"}, 5, -1, 7000, 1, -5)
 -- register spawn egg
 mobs:register_egg("mobs:stone_monster", "Stone Monster", "default_stone.png", 1)

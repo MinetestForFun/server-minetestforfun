@@ -70,5 +70,5 @@ mobs:register_mob("mobs:bunny", {
 	end, 
 })
 
-mobs:register_spawn("mobs:bunny", {"default:dirt_with_grass"}, 20, 8, 12000, 1, 31000)
+mobs:register_spawn("mobs:bunny", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 31000)
 mobs:register_egg("mobs:bunny", "Bunny", "mobs_bunny_inv.png", 0)

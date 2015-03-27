@@ -61,4 +61,4 @@ mobs:register_mob("mobs:wolf", {
 	},
 	jump = true,
 })
-mobs:register_spawn("mobs:wolf", {"default:dirt_with_grass"}, 3, -1, 10000, 1, 31000)
+mobs:register_spawn("mobs:wolf", {"default:dirt_with_grass"}, 3, -1, 9500, 1, 31000)

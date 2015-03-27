@@ -61,7 +61,7 @@ mobs:register_mob("mobs:mese_monster", {
 	},
 })
 -- spawn on stone between 20 and -1 light, 1 in 6000 chance, 1 in area below -25
-mobs:register_spawn("mobs:mese_monster", {"default:stone", }, 20, -1, 6000, 1, -25)
+mobs:register_spawn("mobs:mese_monster", {"default:stone", }, 20, -1, 7000, 1, -25)
 -- register spawn egg
 mobs:register_egg("mobs:mese_monster", "Mese Monster", "default_mese_block.png", 1)
 

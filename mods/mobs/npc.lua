@@ -83,6 +83,6 @@ mobs:register_mob("mobs:npc", {
 	end,
 })
 -- spawning enable for now
-mobs:register_spawn("mobs:npc", {"default:dirt_with_grass"}, 20, -1, 21000, 1, 31000)
+mobs:register_spawn("mobs:npc", {"default:dirt_with_grass"}, 20, -1, 20000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:npc", "Npc", "default_brick.png", 1)

@@ -54,7 +54,7 @@ mobs:register_mob("mobs:lava_flan", {
 	},
 })
 -- spawns in lava between -1 and 20 light, 1 in 2000 chance, 2 in area below 31000 in height
-mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 20, -1, 2000, 2, 31000)
+mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 20, -1, 2500, 2, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:lava_flan", "Lava Flan", "default_lava.png", 1)
 
