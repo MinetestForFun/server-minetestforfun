@@ -22,6 +22,7 @@ function pyramids.fill_chest(pos)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			inv:set_size("main", 8*4)
+			inv:set_list("main",{[1] = "", [32] = ""})
 			if math.random(1,10) < 7 then return end
 			local stacks = {}
 			if minetest.get_modpath("treasurer") ~= nil then
