@@ -20,7 +20,7 @@ mobs:register_mob("mobs:sand_monster", {
 		texture_1 = {"mobs_sand_monster.png"},
 	},
 	visual_size = {x=8,y=8},
-	blood_texture = "mobs_blood.png",
+	blood_texture = "default_sand.png",
 	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
