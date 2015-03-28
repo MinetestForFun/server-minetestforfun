@@ -6,6 +6,12 @@ MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé de cette façon maintenant : "/played <pseudo>")
 MAJ de "mobs" (ajout des chèvres/goats)
 
+---28/03/2015--- (Remerciements : Mg, Crabman)
+MAJ de "tsm_pyramids" (crashfix)
+MAJ de "fail" (petite améliortion du code)
+MAJ de "soundset" (ajout d'un menu dans l'inventaire pour modifier graphiquement le volume de la musique et des sons d'ambiances du serveur) 
+MAJ de "mobs" (Le taux de spawn de la plupart des monstres à été ajusté, les valeurs suivantes sont approximatives : "Lava Flan -13%, Sand Monster -50%, Spider -13%, Creeper -33%, Mese Monster -15%, Stone Monster -29%, Oerkki -7%, Dungeon Master +18%, Rat +11%, Bee -33%, Kiten +15%, Bunny +15%, Chicken +10%, Sheep -5%, Warthog -10%, NPC -5%". Des suites de ces valeurs, il y a autant de chance de trouver tous les animaux passif à la surface exception pour les NPCs qui sont deux fois plus rare. Aussi, Vous avez une chance égal en Cavernes de tomber contre Oerkki, Stone Monster, Mese Monster et Dungeon Master. Enfin, Vous vous ferez agresser un peu moins souvent dans la jungle.)
+
 ---26/03/2015--- (Remerciements : Ataron, Crabman, Mg)
 MAJ de "minetestforfun_game/mods/flowers/" (stack maximum remis à 99, fix du bug avec les colorants/dyes)
 MAJ de "random_messages" (correction de fautes)
