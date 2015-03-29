@@ -1,57 +1,34 @@
 local S = homedecor.gettext
 dofile(homedecor.modpath.."/furniture.lua")
 
+local bbq_cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, -0.3125, 0.5, 0.53125, 0.3125 }
+}
+
 homedecor.register("barbecue", {
 	description = "Barbecue",
+	mesh = "homedecor_barbecue.obj",
 	tiles = {
-		{name="homedecor_barbecue_top.png", animation={type="vertical_frames",
-		aspect_w=16, aspect_h=16, length=2}},
 		"forniture_black_metal.png",
+		{	name="homedecor_embers.png",
+			animation={
+				type="vertical_frames",
+				aspect_w=16,
+				aspect_h=16,
+				length=2
+			}
+		},
+		"homedecor_barbecue_meat.png",
 	},
 	groups = { snappy=3 },
 	light_source = 9,
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, 0.25, -0.4375, 0.0625, 0.3125}, -- NodeBox1
-			{0.4375, -0.5, 0.25, 0.5, 0.0625, 0.3125}, -- NodeBox2
-			{-0.5, -0.5, -0.3125, -0.4375, 0.0625, -0.25}, -- NodeBox3
-			{0.4375, -0.5, -0.3125, 0.5, 0.0625, -0.25}, -- NodeBox4
-			{-0.5, 0.0625, -0.3125, 0.5, 0.375, 0.3125}, -- NodeBox5
-			{-0.375, 0.5, -0.25, -0.313, 0.5, 0.251}, -- NodeBox6
-			{-0.25, 0.5, -0.25, -0.188, 0.5, 0.251}, -- NodeBox7
-			{-0.125, 0.5, -0.25, -0.063, 0.5, 0.251}, -- NodeBox8
-			{0, 0.5, -0.25, 0.062, 0.5, 0.251}, -- NodeBox9
-			{0.125, 0.5, -0.25, 0.187, 0.5, 0.251}, -- NodeBox10
-			{0.25, 0.5, -0.25, 0.312, 0.5, 0.251}, -- NodeBox11
-			{0.375, 0.5, -0.25, 0.437, 0.5, 0.251}, -- NodeBox12
-			{-0.5, 0.375, 0.251, 0.5, 0.5, 0.3125}, -- NodeBox13
-			{-0.5, 0.0625, -0.3125, 0.5, 0.5, -0.25}, -- NodeBox14
-			{-0.5, 0.0625, -0.3125, -0.438, 0.5, 0.3125}, -- NodeBox15
-			{0.4375, 0.0625, -0.3125, 0.5, 0.5, 0.3125}, -- NodeBox16
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.3125, 0.5, 0.625, 0.3125 }
-        },
-	expand = { top="homedecor:barbecue_meat" },
+	selection_box = bbq_cbox,
+	collision_box = bbq_cbox,
+	expand = { top="air" },
 })
 
-homedecor.register("barbecue_meat", {
-	tiles = {
-		"homedecor_barbecue_meat.png",
-	},
-	groups = { snappy=3, not_in_creative_inventory=1 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.25, -0.5, -0.125, -0.0625, -0.4375, 0.125}, -- NodeBox1
-			{0.125, -0.5, -0.125, 0.3125, -0.4375, 0.125}, -- NodeBox2
-		}
-	},
-	selection_box = homedecor.nodebox.null
-})
+minetest.register_alias("homedecor:barbecue_meat", "air")
 
 homedecor.register("bench_large_1_left", {
 	description = "Garden Bench (style 1)",
@@ -254,77 +231,23 @@ homedecor.register("deckchair_foot", {
 	expand = { forward="homedecor:deckchair_head" },
 })
 
-homedecor.register("doghouse_base", {
+homedecor.register("doghouse", {
+	mesh = "homedecor_doghouse.obj",
 	tiles = {
-		"homedecor_doghouse_base_top.png",
-		"homedecor_doghouse_base_bottom.png",
-		"homedecor_doghouse_base_side.png",
-		"homedecor_doghouse_base_side.png",
-		"homedecor_doghouse_base_side.png",
-		"homedecor_doghouse_base_front.png"
+		"homedecor_shingles_terracotta.png",
+		"default_wood.png",
+		"building_blocks_towel.png"
 	},
 	description = "Doghouse",
 	inventory_image = "homedecor_doghouse_inv.png",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0.3125, -0.5, -0.4375, 0.4375, -0.3125, -0.3125}, -- NodeBox1
-			{0.3125, -0.5, 0.3125, 0.4375, -0.3125, 0.4375}, -- NodeBox2
-			{-0.4375, -0.5, 0.3125, -0.3125, -0.3125, 0.4375}, -- NodeBox3
-			{-0.4375, -0.5, -0.4375, -0.3125, -0.3125, -0.3125}, -- NodeBox4
-			{-0.4375, -0.3125, -0.4375, -0.375, 0.5, 0.4375}, -- NodeBox5
-			{-0.4375, 0.3125, -0.375, 0.4375, 0.5, -0.3125}, -- NodeBox6
-			{-0.4375, -0.3125, -0.4375, 0.4375, -0.25, 0.4375}, -- NodeBox7
-			{-0.375, -0.3125, -0.375, -0.1875, 0.4375, -0.3125}, -- NodeBox8
-			{0.1875, -0.3125, -0.375, 0.4375, 0.5, -0.3125}, -- NodeBox9
-			{0.375, -0.25, -0.4375, 0.4375, 0.5, 0.4375}, -- NodeBox10
-			{-0.4375, -0.3125, 0.375, 0.4375, 0.5, 0.4375}, -- NodeBox11
-		}
-	},
 	selection_box = homedecor.nodebox.slab_y(1.5),
+	collision_box = homedecor.nodebox.slab_y(1.5),
 	groups = {snappy=3},
-	expand = { top="homedecor:doghouse_roof" },
+	expand = { top="air" },
 })
 
-homedecor.register("doghouse_roof", {
-	tiles = {
-		"homedecor_doghouse_roof_top.png",
-		"homedecor_doghouse_roof_bottom.png",
-		"homedecor_doghouse_roof_side.png",
-		"homedecor_doghouse_roof_side.png",
-		"homedecor_doghouse_roof_front.png",
-		"homedecor_doghouse_roof_front.png"
-	},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, -0.4375, -0.4375, 0.5}, -- NodeBox17
-			{-0.4375, -0.4375, -0.5, -0.375, -0.375, 0.5}, -- NodeBox18
-			{-0.375, -0.375, -0.5, -0.3125, -0.3125, 0.5}, -- NodeBox19
-			{-0.3125, -0.3125, -0.5, -0.25, -0.25, 0.5}, -- NodeBox20
-			{-0.25, -0.25, -0.5, -0.1875, -0.1875, 0.5}, -- NodeBox21
-			{-0.1875, -0.1875, -0.5, -0.125, -0.125, 0.5}, -- NodeBox22
-			{-0.125, -0.125, -0.5, -0.0625, -0.0625, 0.5}, -- NodeBox23
-			{-0.0625, -0.0625, -0.5, 0.0625, 0, 0.5}, -- NodeBox24
-			{0.0625, -0.125, -0.5, 0.125, -0.0625, 0.5}, -- NodeBox25
-			{0.125, -0.1875, -0.5, 0.1875, -0.125, 0.5}, -- NodeBox26
-			{0.1875, -0.25, -0.5, 0.25, -0.1875, 0.5}, -- NodeBox27
-			{0.25, -0.3125, -0.5, 0.3125, -0.25, 0.5}, -- NodeBox28
-			{0.3125, -0.375, -0.5, 0.375, -0.3125, 0.5}, -- NodeBox29
-			{0.375, -0.4375, -0.5, 0.4375, -0.375, 0.5}, -- NodeBox30
-			{0.4375, -0.5, -0.5, 0.5, -0.4375, 0.5}, -- NodeBox31
-			{-0.4375, -0.5, -0.375, 0.4375, -0.4375, 0.4375}, -- NodeBox32
-			{-0.375, -0.4375, -0.375, 0.375, -0.375, 0.4375}, -- NodeBox33
-			{-0.3125, -0.375, -0.375, 0.3125, -0.3125, 0.4375}, -- NodeBox34
-			{-0.25, -0.3125, -0.375, 0.25, -0.25, 0.4375}, -- NodeBox35
-			{-0.1875, -0.25, -0.375, 0.1875, -0.1875, 0.4375}, -- NodeBox36
-			{-0.125, -0.1875, -0.375, 0.125, -0.125, 0.4375}, -- NodeBox37
-			{0.0625, -0.125, -0.375, -0.0625, -0.0625, 0.4375}, -- NodeBox38
-		}
-	},
-	selection_box = homedecor.nodebox.null,
-	groups = {snappy=3, not_in_creative_inventory=1},
-})
+minetest.register_alias("homedecor:doghouse_roof", "air")
+minetest.register_alias("homedecor:doghouse_base", "homedecor:doghouse")
 
 homedecor.register("simple_bench", {
 	tiles = {
@@ -464,97 +387,24 @@ homedecor.register("swing_rope", {
 	selection_box = homedecor.nodebox.null
 })
 
-homedecor.register("well_base", {
+homedecor.register("well", {
+	mesh = "homedecor_well.obj",
 	tiles = {
-		"homedecor_well_base_top.png",
-		"default_cobble.png"
+		"homedecor_rope_texture.png",
+		"forniture_metal.png",
+		"default_water.png",
+		"default_cobble.png",
+		"default_wood.png",
+		"homedecor_shingles_wood.png"
 	},
 	inventory_image = "homedecor_well_inv.png",
 	description = "Water well",
 	groups = { snappy = 3 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.3125, -0.5, -0.4375, 0.3125, 0.5, -0.3125}, -- NodeBox1
-			{0.3125, -0.5, -0.3125, 0.4375, 0.5, 0.3125}, -- NodeBox2
-			{-0.4375, -0.5, -0.3125, -0.3125, 0.5, 0.3125}, -- NodeBox3
-			{-0.3125, -0.5, 0.3125, 0.3125, 0.5, 0.4375}, -- NodeBox4
-			{0.25, -0.5, -0.375, 0.375, 0.5, -0.25}, -- NodeBox5
-			{0.25, -0.5, 0.25, 0.375, 0.5, 0.375}, -- NodeBox6
-			{-0.375, -0.5, -0.375, -0.25, 0.5, -0.25}, -- NodeBox7
-			{-0.375, -0.5, 0.25, -0.25, 0.5, 0.375}, -- NodeBox8
-			{-0.3125, -0.5, -0.5, 0.3125, -0.3125, -0.4375}, -- NodeBox9
-			{0.4375, -0.5, -0.3125, 0.5, -0.3125, 0.3125}, -- NodeBox10
-			{-0.3125, -0.5, 0.4375, 0.3125, -0.3125, 0.5}, -- NodeBox11
-			{-0.5, -0.5, -0.3125, -0.4375, -0.3125, 0.3125}, -- NodeBox12
-			{0.3125, -0.5, -0.4375, 0.4375, -0.3125, -0.3125}, -- NodeBox13
-			{0.3125, -0.5, 0.3125, 0.4375, -0.3125, 0.4375}, -- NodeBox14
-			{-0.4375, -0.5, 0.3125, -0.3125, -0.3125, 0.4375}, -- NodeBox15
-			{-0.4375, -0.5, -0.4375, -0.3125, -0.3125, -0.3125}, -- NodeBox16
-			{-0.3125, -0.5, -0.3125, 0.3125, 0, 0.3125}, -- NodeBox17
-		}
-	},
 	selection_box = homedecor.nodebox.slab_y(2),
-	expand = { top="homedecor:well_top" },
+	collision_box = homedecor.nodebox.slab_y(2),
+	expand = { top="air" },
 })
 
-homedecor.register("well_top", {
-	tiles = {
-		"homedecor_well_roof_top.png",
-		"homedecor_well_roof_wood.png",
-		"homedecor_well_roof_side3.png",
-		"homedecor_well_roof_side3.png",
-		"homedecor_well_roof_side2.png",
-		"homedecor_well_roof_side1.png"
-	},
-	groups = { snappy = 3 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.0625, -0.5, 0.375, 0.0625, 0.4375, 0.4375}, -- NodeBox1
-			{-0.0625, -0.5, -0.4375, 0.0625, 0.4375, -0.375}, -- NodeBox2
-			{-0.125, 0.375, -0.5, 0.125, 0.4375, 0.5}, -- NodeBox3
-			{0.125, 0.3125, -0.5, 0.1875, 0.375, 0.5}, -- NodeBox4
-			{-0.1875, 0.3125, -0.5, -0.125, 0.375, 0.5}, -- NodeBox5
-			{0.1875, 0.25, -0.5, 0.25, 0.3125, 0.5}, -- NodeBox6
-			{-0.25, 0.25, -0.5, -0.1875, 0.3125, 0.5}, -- NodeBox7
-			{0.25, 0.1875, -0.5, 0.3125, 0.25, 0.5}, -- NodeBox8
-			{-0.3125, 0.1875, -0.5, -0.25, 0.25, 0.5}, -- NodeBox9
-			{0.3125, 0.125, -0.5, 0.375, 0.1875, 0.5}, -- NodeBox10
-			{-0.375, 0.125, -0.5, -0.3125, 0.1875, 0.5}, -- NodeBox11
-			{0.375, 0.0625, -0.5, 0.4375, 0.125, 0.5}, -- NodeBox12
-			{-0.375, 0.0625, -0.5, -0.4375, 0.125, 0.5}, -- NodeBox13
-			{0.4375, 0, -0.5, 0.5, 0.0625, 0.5}, -- NodeBox14
-			{-0.5, 0, -0.5, -0.4375, 0.0625, 0.5}, -- NodeBox15
-			{-0.0625, 0.4375, -0.5, 0.0625, 0.5, 0.5}, -- NodeBox16
-			{-0.125, 0.125, -0.4375, 0.125, 0.1875, -0.375}, -- NodeBox17
-			{0.125, 0.1875, -0.4375, 0.1875, 0.25, -0.375}, -- NodeBox18
-			{-0.1875, 0.1875, -0.4375, -0.125, 0.25, -0.375}, -- NodeBox19
-			{-0.125, 0.125, 0.375, 0.125, 0.1875, 0.4375}, -- NodeBox20
-			{0.125, 0.1875, 0.375, 0.1875, 0.25, 0.4375}, -- NodeBox21
-			{-0.1875, 0.1875, 0.375, -0.125, 0.25, 0.4375}, -- NodeBox22
-			{-0.0165975, -0.159751, -0.375, 0.0165974, -0.125, 0.375}, -- NodeBox23
-			{-0.00414942, -0.465, -0.008299, 0.008299, -0.159751, 0.004149}, -- NodeBox24
-			{-0.0625, -0.0625, -0.5, 0.0625, 0, -0.4646}, -- NodeBox25
-			{0.0625, -0.125, -0.5, 0.125, -0.0625, -0.4646}, -- NodeBox26
-			{0.125, -0.25, -0.5, 0.1875, -0.125, -0.4646}, -- NodeBox27
-			{0.0625, -0.3125, -0.5, 0.125, -0.25, -0.4646}, -- NodeBox28
-			{-0.0625, -0.375, -0.5, 0.0625, -0.3125, -0.4646}, -- NodeBox29
-			{-0.0625, -0.3125, -0.5, -0.125, -0.25, -0.4646}, -- NodeBox30
-			{-0.1875, -0.25, -0.5, -0.125, -0.125, -0.4646}, -- NodeBox31
-			{-0.125, -0.125, -0.5, -0.0625, -0.0625, -0.4646}, -- NodeBox32
-			{-0.016598, -0.3125, -0.48, 0.020747, -0.0625, -0.49}, -- NodeBox33
-			{-0.125, -0.209544, -0.48, 0.125, -0.172199, -0.49}, -- NodeBox34
-			{-0.0165975, -0.200, -0.477178, 0.020747, -0.175349, -0.435685}, -- NodeBox35
-			{0.1, -0.75, -0.125, 0.125, -0.5, 0.125}, -- NodeBox36
-			{-0.125, -0.75, -0.125, -0.1, -0.5, 0.125}, -- NodeBox37
-			{-0.125, -0.75, -0.125, 0.125, -0.729253, 0.125}, -- NodeBox38
-			{-0.125, -0.75, -0.125, 0.125, -0.5, -0.1}, -- NodeBox39
-			{-0.125, -0.75, 0.1, 0.125, -0.5, 0.125}, -- NodeBox40
-			{-0.0165975,-0.465, -0.125, 0.0165974, -0.451245, 0.125}, -- NodeBox41
-			{-0.0165975, -0.51, 0.112033, 0.0165974, -0.46, 0.125}, -- NodeBox42
-			{-0.0165975, -0.51, -0.125, 0.0165974, -0.46, -0.112033}, -- NodeBox43
-		}
-	},
-	selection_box = homedecor.nodebox.null,
-})
+minetest.register_alias("homedecor:well_top", "air")
+minetest.register_alias("homedecor:well_base", "homedecor:well")
+

@@ -93,27 +93,19 @@ homedecor.register("copper_pans", {
 	on_place = minetest.rotate_node
 })
 
+local kf_cbox = {
+	type = "fixed",
+	fixed = { -2/16, -8/16, 1/16, 2/16, -1/16, 8/16 }
+}
+
 homedecor.register("kitchen_faucet", {
+	mesh = "homedecor_kitchen_faucet.obj",
 	tiles = { "homedecor_bright_metal.png" },
 	inventory_image = "homedecor_kitchen_faucet_inv.png",
 	description = "Kitchen Faucet",
-        groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{0, -0.5, 0.375, 0.0625, -0.1875, 0.4375}, -- NodeBox1
-			{0, -0.1875, 0.35, 0.0625, -0.15, 0.4375}, -- NodeBox2
-			{0, -0.15, 0.32, 0.0625, -0.11, 0.41}, -- NodeBox3
-			{0.007, -0.12, 0.17, 0.055, -0.11, 0.1285}, -- NodeBox4
-			{0, -0.11, 0.125, 0.0625, -0.07, 0.37}, -- NodeBox5
-			{-0.05, -0.48, 0.385, 0.115, -0.455, 0.43}, -- NodeBox6
-			{-0.05, -0.49, 0.395, 0.115, -0.445, 0.42}, -- NodeBox7
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.055, -0.5, 0.125, 0.12, -0.065, 0.4375 }
-	},
+	groups = {snappy=3},
+	selection_box = kf_cbox,
+	collision_box = kf_cbox,
 })
 
 homedecor.register("paper_towel", {

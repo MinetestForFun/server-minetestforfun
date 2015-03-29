@@ -141,31 +141,46 @@ homedecor.register("shower_tray", {
 		type = "fixed",
 		fixed = { -0.5, -0.5, -0.5, 0.5, -0.4, 0.5 },
 	},
-	groups = {cracky=2,},
+	groups = {cracky=2},
 	sounds = default.node_sound_stone_defaults(),
 })
 
 --Shower Head
+local sh_cbox = {
+	type = "fixed",
+	fixed = { -0.2, -0.4, -0.1, 0.2, 0.1, 0.5 }
+}
+
 homedecor.register("shower_head", {
-	description = S("Shower Head"),
-	tiles = { "forniture_metal.png" },
-	inventory_image="3dforniture_inv_shower_head.png",
-	sunlight_propagates = true,
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.10, -0.50,  0.10,  0.10, -0.40,  0.30, },
-			{ -0.05, -0.40,  0.15,  0.05, -0.30,  0.25, },
-			{ -0.05, -0.35,  0.25,  0.05, -0.30,  0.50, },
-			{ -0.10, -0.40,  0.49,  0.10, -0.25,  0.50, },
-		},
+	drawtype = "mesh",
+	mesh = "homedecor_shower_head.obj",
+	tiles = { "homedecor_shower_head.png" },
+	inventory_image = "homedecor_shower_head_inv.png",
+	description = "Shower Head",
+	groups = {snappy=3},
+	selection_box = sh_cbox,
+	collision_box = sh_cbox,
+})
+
+local bs_cbox = {
+	type = "fixed",
+	fixed = { -8/16, -8/16, 1/16, 8/16, 8/16, 8/16 }
+}
+
+homedecor.register("bathroom_set", {
+	drawtype = "mesh",
+	mesh = "homedecor_bathroom_set.obj",
+	tiles = {
+		"homedecor_bathroom_set_mirror.png",
+		"homedecor_bathroom_set_tray.png",
+		"homedecor_bathroom_set_toothbrush.png",
+		"homedecor_bathroom_set_cup.png",
+		"homedecor_bathroom_set_toothpaste.png",
 	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.1, -0.5, 0.1, 0.1, -0.25, 0.5 },
-	},
-	groups = {cracky=2,},
-	sounds = default.node_sound_stone_defaults(),
+	description = "Bathroom sundries set",
+	groups = {snappy=3},
+	selection_box = bs_cbox,
+	collision_box = bs_cbox,
 })
 
 minetest.register_alias("3dforniture:toilet", "homedecor:toilet")

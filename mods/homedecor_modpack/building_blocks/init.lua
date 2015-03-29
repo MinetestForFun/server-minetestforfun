@@ -570,3 +570,39 @@ minetest.register_craft({
 	}
 })
 
+if not minetest.get_modpath("technic") then 
+	minetest.register_node( ":technic:granite", {
+		    description = "Granite",
+		    tiles = { "technic_granite.png" },
+		    is_ground_content = true,
+		    groups = {cracky=1},
+		    sounds = default.node_sound_stone_defaults(),
+	}) 
+
+	minetest.register_craft({
+		output = "technic:granite 9",
+		recipe = {
+			{ "building_blocks:Tar", "building_blocks:Marble", "building_blocks:Tar" },
+			{ "building_blocks:Marble", "building_blocks:Tar", "building_blocks:Marble" },
+			{ "building_blocks:Tar", "building_blocks:Marble", "building_blocks:Tar" }
+		},
+	})
+
+	if minetest.get_modpath("moreblocks") then
+		stairsplus:register_all("technic", "granite", "technic:granite", {
+				description="Granite",
+				groups={cracky=1, not_in_creative_inventory=1},
+				tiles={"technic_granite.png"},
+		})
+
+		minetest.register_craft({
+			output = "technic:granite 9",
+			recipe = {
+				{ "moreblocks:tar", "building_blocks:Marble", "moreblocks:tar" },
+				{ "building_blocks:Marble", "moreblocks:tar", "building_blocks:Marble" },
+				{ "moreblocks:tar", "building_blocks:Marble", "moreblocks:tar" }
+			},
+		})
+	end
+end
+

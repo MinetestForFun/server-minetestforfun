@@ -4,34 +4,47 @@ local S = homedecor.gettext
 
 homedecor.register("speaker", {
 	description = S("Large Stereo Speaker"),
-	tiles = { 'homedecor_speaker_top.png',
-			'homedecor_speaker_bottom.png',
-			'homedecor_speaker_right.png',
-			'homedecor_speaker_left.png',
-			'homedecor_speaker_back.png',
-			'homedecor_speaker_front.png'},
+	mesh="homedecor_speaker_large.obj",
+	tiles = {
+		"homedecor_speaker_sides.png",
+		"homedecor_speaker_front.png"
+	},
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
+	on_punch = function(pos, node, puncher, pointed_thing)
+		minetest.set_node(pos, {name = "homedecor:speaker_open", param2 = node.param2})
+	end
 })
+
+homedecor.register("speaker_open", {
+	description = S("Large Stereo Speaker, open front"),
+	mesh="homedecor_speaker_large_open.obj",
+	tiles = {
+		"homedecor_speaker_sides.png",
+		"homedecor_speaker_driver.png",
+		"homedecor_speaker_open_front.png",
+	},
+	groups = { snappy = 3 },
+	sounds = default.node_sound_leaves_defaults(),
+	on_punch = function(pos, node, puncher, pointed_thing)
+		minetest.set_node(pos, {name = "homedecor:speaker", param2 = node.param2})
+	end
+})
+
+local spk_cbox = {
+	type = "fixed",
+	fixed = { -3/16, -8/16, 1/16, 3/16, -2/16, 7/16 }
+}
 
 homedecor.register("speaker_small", {
 	description = S("Small Surround Speaker"),
+	mesh="homedecor_speaker_small.obj",
 	tiles = {
-		'homedecor_speaker_top.png',
-		'homedecor_speaker_bottom.png',
-		'homedecor_speaker_right.png',
-		'homedecor_speaker_left.png',
-		'homedecor_speaker_back.png',
-		'homedecor_speaker_front.png'
+		"homedecor_speaker_sides.png",
+		"homedecor_speaker_front.png"
 	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.2, -0.5, 0, 0.2, 0, 0.4 }
-	},
-	node_box = {
-		type = "fixed",
-		fixed = { -0.2, -0.5, 0, 0.2, 0, 0.4 }
-	},
+	selection_box = spk_cbox,
+	collision_box = spk_cbox,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
 })

@@ -65,78 +65,42 @@ homedecor.register("window_plain", {
 		},
 })
 
+local wb1_cbox = {
+	type = "fixed",
+	fixed = { -8/16, -8/16, 5/16, 8/16, 8/16, 8/16 },
+}
+
 homedecor.register("blinds_thick", {
 	description = "Window Blinds (thick)",
-	tiles = { "homedecor_windowblinds.png" },
+	mesh = "homedecor_windowblind_thick.obj",
+	tiles = {
+		"homedecor_windowblind_strings.png",
+		"homedecor_windowblinds.png"
+	},
 	walkable = false,
 	groups = {snappy=3},
 	sounds = default.node_sound_wood_defaults(),
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.527123, 0.375, 0.3125, 0.523585, 0.5, 0.5}, -- NodeBox1
-			{-0.5, 0.304245, 0.3125, 0.5, 0.3125, 0.5}, -- NodeBox2
-			{-0.5, 0.244104, 0.3125, 0.5, 0.25, 0.5}, -- NodeBox3
-			{-0.5, 0.180424, 0.3125, 0.5, 0.1875, 0.5}, -- NodeBox4
-			{-0.5, 0.116745, 0.3125, 0.5, 0.125, 0.5}, -- NodeBox5
-			{-0.5, 0.0566037, 0.3125, 0.5, 0.0625, 0.5}, -- NodeBox6
-			{-0.5, -0.00707551, 0.3125, 0.5, 0, 0.5}, -- NodeBox7
-			{-0.5, -0.0707547, 0.3125, 0.5, -0.0625, 0.5}, -- NodeBox8
-			{-0.5, -0.130896, 0.3125, 0.5, -0.125, 0.5}, -- NodeBox9
-			{-0.5, -0.194576, 0.3125, 0.5, -0.1875, 0.5}, -- NodeBox10
-			{-0.5, -0.258255, 0.3125, 0.5, -0.25, 0.5}, -- NodeBox11
-			{-0.5, -0.318396, 0.3125, 0.5, -0.3125, 0.5}, -- NodeBox12
-			{-0.5, -0.5, 0.3125, 0.5, -0.4375, 0.5}, -- NodeBox13
-			{-0.5, -0.378538, 0.3125, 0.5, -0.375, 0.5}, -- NodeBox14
-			{-0.375, -0.5, 0.367925, -0.367925, 0.4375, 0.445755}, -- NodeBox15
-			{0.367924, -0.5, 0.367925, 0.375, 0.5, 0.445755}, -- NodeBox16
-			{0.375, 0.375, 0.25, 0.4375, 0.4375, 0.3125}, -- NodeBox17
-			{0.396226, -0.325, 0.268868, 0.417453, 0.375, 0.290094}, -- NodeBox18
-			},
-		},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.527123, -0.5, 0.25, 0.523585, 0.5, 0.5}
-			},
-		},
+	selection_box = wb1_cbox,
+	collision_box = wb1_cbox,
 })
+
+local wb2_cbox = {
+	type = "fixed",
+	fixed = { -8/16, -8/16, 6/16, 8/16, 8/16, 8/16 },
+}
 
 homedecor.register("blinds_thin", {
 	description = "Window Blinds (thin)",
-	tiles = { "homedecor_windowblinds.png" },
+	mesh = "homedecor_windowblind_thin.obj",
+	tiles = {
+		"homedecor_windowblind_strings.png",
+		"homedecor_windowblinds.png"
+	},
 	walkable = false,
 	groups = {snappy=3},
 	sounds = default.node_sound_wood_defaults(),
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.52, 0.375, 0.4375, 0.52, 0.5, 0.5}, -- NodeBox1
-			{-0.5, 0.304245, 0.4375, 0.5, 0.3125, 0.5}, -- NodeBox2
-			{-0.5, 0.244104, 0.4375, 0.5, 0.25, 0.5}, -- NodeBox3
-			{-0.5, 0.180424, 0.43755, 0.5, 0.1875, 0.5}, -- NodeBox4
-			{-0.5, 0.116745, 0.4375, 0.5, 0.125, 0.5}, -- NodeBox5
-			{-0.5, 0.0566037, 0.4375, 0.5, 0.0625, 0.5}, -- NodeBox6
-			{-0.5, -0.00707551, 0.4375, 0.5, 0, 0.5}, -- NodeBox7
-			{-0.5, -0.0707547, 0.4375, 0.5, -0.0625, 0.5}, -- NodeBox8
-			{-0.5, -0.130896, 0.4375, 0.5, -0.125, 0.5}, -- NodeBox9
-			{-0.5, -0.194576, 0.4375, 0.5, -0.1875, 0.5}, -- NodeBox10
-			{-0.5, -0.258255, 0.4375, 0.5, -0.25, 0.5}, -- NodeBox11
-			{-0.5, -0.318396, 0.4375, 0.5, -0.3125, 0.5}, -- NodeBox12
-			{-0.5, -0.5, 0.4375, 0.5, -0.4375, 0.5}, -- NodeBox13
-			{-0.5, -0.378538, 0.4375, 0.5, -0.375, 0.5}, -- NodeBox14
-			{-0.375, -0.49, 0.4575, -0.367925, 0.4375, 0.48}, -- NodeBox15
-			{0.367924, -0.49, 0.4575, 0.375, 0.5, 0.48}, -- NodeBox16
-			{0.375, 0.375, 0.375, 0.4375, 0.4375, 0.4375}, -- NodeBox17
-			{0.396226, -0.325, 0.4, 0.417453, 0.375, 0.42}, -- NodeBox18
-			},
-		},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.52, -0.5, 0.375, 0.52, 0.5, 0.5}
-			},
-		},
+	selection_box = wb2_cbox,
+	collision_box = wb2_cbox,
 })
 
 local curtaincolors = {

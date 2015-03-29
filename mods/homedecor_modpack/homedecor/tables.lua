@@ -192,57 +192,28 @@ homedecor.register("utility_table_legs", {
 	},
 })
 
+local desk_cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, -0.5, 1.5, 0.5, 0.5 }
+}
+
 homedecor.register("desk", {
 	description = "Desk",
+	mesh = "homedecor_desk.obj",
 	tiles = {
-		"forniture_wood.png",
-		"forniture_wood.png",
-		"forniture_wood.png",
-		"forniture_wood.png",
-		"forniture_wood.png",
-		"homedecor_desk_front_l.png"
+		"homedecor_desk_drawers.png",
+		"forniture_black_metal.png",
+		"forniture_wood.png"
 	},
 	inventory_image = "homedecor_desk_inv.png",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.4375, 0.375, 0.5, 0.5},
-			{-0.5, 0.4375, -0.4375, 0.5, 0.5, 0.5},
-			{-0.4375, -0.4375, -0.5, 0.3125, -0.0625, -0.4375},
-			{-0.4375, 0, -0.5, 0.3125, 0.375, 0.5},
-			{0.3125, -0.375, 0.4375, 0.5, 0.25, 0.5},
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 1.5, 0.5, 0.5 }
-	},
+	selection_box = desk_cbox,
+	collision_box = desk_cbox,
 	groups = { snappy = 3 },
-	expand = {
-		right="homedecor:desk_r"
+	expand = { right="air" },
+	inventory = {
+		size=24,
 	},
 })
 
-homedecor.register("desk_r", {
-	tiles = {
-		"forniture_wood.png",
-		"forniture_wood.png",
-		"forniture_wood.png",
-		"forniture_wood.png",
-		"homedecor_desk_back_r.png",
-		"homedecor_desk_front_r.png"
-	},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, 0.4375, -0.4375, 0.5, 0.5, 0.5},
-			{0.375, -0.5, -0.4375, 0.5, 0.5, 0.5},
-			{-0.5, 0.3125, -0.4375, 0.5, 0.375, 0.5},
-			{-0.5, 0.3125, -0.4375, -0.4375, 0.5, 0.5},
-			{-0.5, -0.375, 0.4375, 0.4375, 0.25, 0.5},
-		}
-	},
-	selection_box = homedecor.nodebox.null,
-	groups = { snappy = 3, not_in_creative_inventory=1 }
-})
+minetest.register_alias("homedecor:desk_r", "air")
 

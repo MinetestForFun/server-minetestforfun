@@ -90,7 +90,7 @@ minetest.register_craftitem("homedecor:steel_wire", {
 
 minetest.register_craftitem("homedecor:speaker_driver", {
 	description = S("Speaker driver"),
-	inventory_image = "homedecor_speaker_driver.png"
+	inventory_image = "homedecor_speaker_driver_inv.png"
 })
 
 minetest.register_craftitem("homedecor:fan_blades", {
@@ -1165,7 +1165,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "homedecor:refrigerator_steel_bottom",
+	output = "homedecor:refrigerator_steel",
 	recipe = {
 		{"default:steel_ingot", "homedecor:glowlight_small_cube_white", "default:steel_ingot", },
 		{"default:steel_ingot", "default:copperblock", "default:steel_ingot", },
@@ -1175,9 +1175,9 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "shapeless",
-	output = "homedecor:refrigerator_white_bottom",
+	output = "homedecor:refrigerator_white",
 	recipe = {
-		"homedecor:refrigerator_steel_bottom",
+		"homedecor:refrigerator_steel",
 		"dye:white",
 		"dye:white",
 		"dye:white",
@@ -2447,7 +2447,7 @@ minetest.register_craft( {
 -- doghouse
 
 minetest.register_craft( {
-        output = "homedecor:doghouse_base",
+        output = "homedecor:doghouse",
         recipe = {
 			{"homedecor:shingles_terracotta", "homedecor:shingles_terracotta", "homedecor:shingles_terracotta"},
 			{"group:wood", "", "group:wood"},
@@ -2516,8 +2516,8 @@ minetest.register_craft( {
         output = "homedecor:pool_table",
         recipe = {
 			{ "wool:dark_green", "wool:dark_green", "wool:dark_green" },
-			{ "group:wood", "group:wood", "group:wood" },
-			{ "group:stick", "", "group:stick" }
+			{ "building_blocks:hardwood", "building_blocks:hardwood", "building_blocks:hardwood" },
+			{ "building_blocks:slab_hardwood", "", "building_blocks:slab_hardwood" }
         },
 })
 
@@ -2548,7 +2548,7 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-        output = "homedecor:well_base",
+        output = "homedecor:well",
         recipe = {
 			{ "homedecor:shingles_wood", "homedecor:shingles_wood", "homedecor:shingles_wood" },
 			{ "group:wood", "group:stick", "group:wood" },
@@ -2741,11 +2741,11 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "homedecor:piano_left",
+	output = "homedecor:piano",
 	recipe = {
 		{ "", "homedecor:steel_wire", "building_blocks:hardwood" },
 		{ "homedecor:plastic_strips", "homedecor:steel_wire", "building_blocks:hardwood" },
-		{ "building_blocks:hardwood", "default:steelblock", "building_blocks:hardwood" }
+		{ "technic:brass_ingot", "default:steelblock", "building_blocks:hardwood" }
 	},
 })
 
@@ -3039,6 +3039,34 @@ minetest.register_craft({
 	},
 })
 
+minetest.register_craft({
+	output = "homedecor:desk_globe",
+	recipe = {
+		{ "group:stick", "homedecor:plastic_sheeting", "dye:green" },
+		{ "group:stick", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+		{ "group:stick", "stairs:slab_wood", "dye:blue" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:desk_globe",
+	recipe = {
+		{ "group:stick", "homedecor:plastic_sheeting", "dye:green" },
+		{ "group:stick", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+		{ "group:stick", "moreblocks:slab_wood", "dye:blue" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:tool_cabinet_bottom",
+	recipe = {
+		{ "homedecor:motor", "default:axe_steel", "default:pick_steel" },
+		{ "default:steel_ingot", "homedecor:drawer_small", "default:steel_ingot" },
+		{ "default:steel_ingot", "homedecor:drawer_small", "default:steel_ingot" }
+	},
+})
+
 if (minetest.get_modpath("technic") and minetest.get_modpath("dye") and minetest.get_modpath("bees")) then
 	technic.register_separating_recipe({ input = {"bees:wax 1"}, output = {"homedecor:oil_extract 2","dye:yellow 1"} })
 end
+

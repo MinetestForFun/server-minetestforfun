@@ -2,57 +2,17 @@
 
 local S = homedecor.gettext
 
--- nodebox models
-
-local fridge_model_bottom = {
-	type = "fixed",
-	fixed = {
-		{0, -0.4375, -0.4375, 0.5, 0.5, 0.5}, -- NodeBox1
-		{-0.5, -0.5, -0.42, 0.5, 0.5, 0.5}, -- NodeBox2
-		{-0.5, -0.4375, -0.4375, -0.0625, 0.5, 0.5}, -- NodeBox3
-		{0, 0.25, -0.5, 0.0625, 0.3125, -0.4375}, -- NodeBox4
-		{-0.125, 0.25, -0.5, -0.0625, 0.3125, -0.4375}, -- NodeBox5
-		{0, 0.25, -0.5, 0.0625, 0.5, -0.473029}, -- NodeBox6
-		{-0.125, 0.25, -0.5, -0.0625, 0.5, -0.473029}, -- NodeBox7
-	}
-}
-
-local fridge_model_top = {
-	type = "fixed",
-	fixed = {
-		{0, -0.5, -0.4375, 0.5, 0.5, 0.5}, -- NodeBox1
-		{-0.0625, -0.5, -0.42, 0, 0.5, 0.5}, -- NodeBox2
-		{-0.5, -0.5, -0.4375, -0.0625, -0.4375, 0.5}, -- NodeBox3
-		{-0.5, -0.5, -0.4375, -0.4375, 0.5, 0.5}, -- NodeBox4
-		{-0.5, -0.1875, -0.4375, -0.0625, 0.5, 0.5}, -- NodeBox5
-		{-0.4375, -0.4375, -0.125, -0.0625, -0.1875, 0.5}, -- NodeBox6
-		{-0.125, -0.4375, -0.4375, -0.0625, -0.1875, -0.125}, -- NodeBox7
-		{-0.3125, -0.3125, -0.307054, -0.25, -0.1875, -0.286307}, -- NodeBox8
-		{-0.125, 0, -0.5, -0.0625, 0.0625, -0.4375}, -- NodeBox9
-		{0, 0, -0.5, 0.0625, 0.0625, -0.4375}, -- NodeBox10
-		{0, -0.5, -0.5, 0.0625, 0.0625, -0.473029}, -- NodeBox11
-		{-0.125, -0.5, -0.5, -0.0625, 0.0625, -0.473029}, -- NodeBox12
-	}
-}
-
 -- steel-textured fridge
-homedecor.register("refrigerator_steel_bottom", {
-	tiles = {
-		"default_steel_block.png",
-		"homedecor_refrigerator_steel_bottom.png",
-		"homedecor_refrigerator_steel_sides1.png",
-		"homedecor_refrigerator_steel_sides1.png^[transformFX",
-		"homedecor_refrigerator_steel_back1.png",
-		"homedecor_refrigerator_steel_front2.png"
-	},
+
+homedecor.register("refrigerator_steel", {
+	mesh = "homedecor_refrigerator.obj",
+	tiles = { "homedecor_refrigerator_steel.png" },
 	inventory_image = "homedecor_refrigerator_steel_inv.png",
 	description = S("Refrigerator (stainless steel)"),
 	groups = {snappy=3},
-	node_box = fridge_model_bottom,
 	selection_box = homedecor.nodebox.slab_y(2),
-	expand = {
-		top="homedecor:refrigerator_steel_top"
-	},
+	collision_box = homedecor.nodebox.slab_y(2),
+	expand = { top="air" },
 	infotext=S("Refrigerator"),
 	inventory = {
 		size=50,
@@ -60,39 +20,17 @@ homedecor.register("refrigerator_steel_bottom", {
 	},
 })
 
-homedecor.register("refrigerator_steel_top", {
-	tiles = {
-		"homedecor_refrigerator_steel_top.png",
-		"default_steel_block.png",
-		"homedecor_refrigerator_steel_sides1.png",
-		"homedecor_refrigerator_steel_sides1.png^[transformFX",
-		"homedecor_refrigerator_steel_back1.png",
-		"homedecor_refrigerator_steel_front1.png"
-	},
-	groups = {snappy=3},
-	node_box = fridge_model_top,
-	selection_box = homedecor.nodebox.null,
-})
-
 -- white, enameled fridge
 
-homedecor.register("refrigerator_white_bottom", {
-	tiles = {
-		"default_steel_block.png",
-		"homedecor_refrigerator_white_bottom.png",
-		"homedecor_refrigerator_white_sides1.png",
-		"homedecor_refrigerator_white_sides1.png^[transformFX",
-		"homedecor_refrigerator_white_back1.png",
-		"homedecor_refrigerator_white_front2.png"
-	},
+homedecor.register("refrigerator_white", {
+	mesh = "homedecor_refrigerator.obj",
+	tiles = { "homedecor_refrigerator_white.png" },
 	inventory_image = "homedecor_refrigerator_white_inv.png",
 	description = S("Refrigerator"),
 	groups = {snappy=3},
-	node_box = fridge_model_bottom,
 	selection_box = homedecor.nodebox.slab_y(2),
-	expand = {
-		top="homedecor:refrigerator_white_top"
-	},
+	collision_box = homedecor.nodebox.slab_y(2),
+	expand = { top="air" },
 	infotext=S("Refrigerator"),
 	inventory = {
 		size=50,
@@ -100,71 +38,20 @@ homedecor.register("refrigerator_white_bottom", {
 	},
 })
 
-homedecor.register("refrigerator_white_top", {
-	tiles = {
-		"homedecor_refrigerator_white_top.png",
-		"default_steel_block.png",
-		"homedecor_refrigerator_white_sides1.png",
-		"homedecor_refrigerator_white_sides1.png^[transformFX",
-		"homedecor_refrigerator_white_back1.png",
-		"homedecor_refrigerator_white_front1.png"
-	},
-	groups = {snappy=3},
-	node_box = fridge_model_top,
-	selection_box = homedecor.nodebox.null,
-})
+minetest.register_alias("homedecor:refrigerator_white_bottom", "homedecor:refrigerator_white")
+minetest.register_alias("homedecor:refrigerator_white_top", "air")
 
--- convert the old single-node fridges to the new two-node models
+minetest.register_alias("homedecor:refrigerator_steel_bottom", "homedecor:refrigerator_steel")
+minetest.register_alias("homedecor:refrigerator_steel_top", "air")
 
-minetest.register_abm({
-	nodenames = { "homedecor:refrigerator" },
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local fdir = node.param2
-		local p_top = { x=pos.x, y=pos.y+1, z=pos.z }
-		minetest.swap_node(pos, { name = "homedecor:refrigerator_white_bottom", param2 = fdir })
-		minetest.set_node(p_top, { name = "homedecor:refrigerator_white_top", param2 = fdir })
-	end
-})
+minetest.register_alias("homedecor:refrigerator_white_bottom_locked", "homedecor:refrigerator_white_locked")
+minetest.register_alias("homedecor:refrigerator_white_top_locked", "air")
 
-minetest.register_abm({
-	nodenames = { "homedecor:refrigerator_locked" },
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local fdir = node.param2
-		local p_top = { x=pos.x, y=pos.y+1, z=pos.z }
-		minetest.swap_node(pos, { name = "homedecor:refrigerator_white_bottom_locked", param2 = fdir })
-		minetest.set_node(p_top, { name = "homedecor:refrigerator_white_top", param2 = fdir })
-	end
-})
-
-minetest.register_abm({
-	nodenames = { "homedecor:refrigerator_steel" },
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local fdir = node.param2
-		local p_top = { x=pos.x, y=pos.y+1, z=pos.z }
-		minetest.swap_node(pos, { name = "homedecor:refrigerator_steel_bottom", param2 = fdir })
-		minetest.set_node(p_top, { name = "homedecor:refrigerator_steel_top", param2 = fdir })
-	end
-})
-
-minetest.register_abm({
-	nodenames = { "homedecor:refrigerator_steel_locked" },
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local fdir = node.param2
-		local p_top = { x=pos.x, y=pos.y+1, z=pos.z }
-		minetest.swap_node(pos, { name = "homedecor:refrigerator_steel_bottom_locked", param2 = fdir })
-		minetest.set_node(p_top, { name = "homedecor:refrigerator_steel_top", param2 = fdir })
-	end
-})
+minetest.register_alias("homedecor:refrigerator_steel_bottom_locked", "homedecor:refrigerator_steel_locked")
+minetest.register_alias("homedecor:refrigerator_steel_top_locked", "air")
 
 -- kitchen "furnaces"
+
 homedecor.register_furnace("homedecor:oven", {
 	description = S("Oven"),
 	tile_format = "homedecor_oven_%s%s.png",
