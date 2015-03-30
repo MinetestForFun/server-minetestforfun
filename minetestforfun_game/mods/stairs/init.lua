@@ -309,3 +309,13 @@ stairs.register_stair_and_slab("obsidianbrick", "default:obsidianbrick",
 		"Obsidian Brick Stair",
 		"Obsidian Brick Slab",
 		default.node_sound_stone_defaults())
+
+-- From BFD:
+
+stairs.register_stair_and_slab("cherry_wood", "default:cherry_plank",
+		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{"default_wood_cherry_planks.png"},
+		"Cherry Plank Stair",
+		"Cherry Plank Slab",
+		"Cherry Plank Corner Stair",
+		default.node_sound_wood_defaults())

@@ -711,6 +711,15 @@ minetest.register_craft({ -- Tool repair (combine 2 tools of the same type in th
 	type = "toolrepair", additional_wear = -0.15,
 })
 
+-- From BFD:
+
+minetest.register_craft({
+	output = 'default:cherry_plank 6',
+	recipe = {
+		{'default:cherry_log'},
+	}
+})
+
 -- Cooking recipes:
 
 minetest.register_craft({

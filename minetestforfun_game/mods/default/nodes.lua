@@ -1760,6 +1760,95 @@ minetest.register_node("default:pinewood", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+-- From BFD: Cherry tree
+
+minetest.register_node("default:cherry_tree", {
+	description = "Cherry Log",
+	tiles = {"default_cherry_top.png", "default_cherry_top.png", "default_cherry_tree.png"},
+	is_ground_content = false,
+	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	sounds = default.node_sound_wood_defaults(),
+	drop = "default:cherry_log"
+})
+
+minetest.register_node("default:cherry_log", {
+	description = "Cherry Log",
+	tiles = {"default_cherry_top.png", "default_cherry_top.png", "default_cherry_tree.png"},
+	paramtype2 = "facedir",
+	is_ground_content = false,
+	groups = {choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node,
+})
+
+minetest.register_node("default:cherry_sapling", {
+	description = "Cherry Sapling",
+	waving = 1,
+	visual_scale = 1.0,
+	inventory_image = "default_cherry_sapling.png",
+	wield_image = "default_cherry_sapling.png",
+	drawtype = "plantlike",
+	paramtype = "light",
+	tiles = {"default_cherry_sapling.png"},
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
+	},
+	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_node("default:cherry_blossom_leaves", {
+	description = "Cherry Blossom Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"default_cherry_blossom_leaves.png"},
+	paramtype = "light",
+	waving = 1,
+	is_ground_content = false,
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				items = {'default:cherry_sapling'},
+				rarity = 32,
+			},
+			{
+				items = {'default:cherry_blossom_leaves'},
+			}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random grass node
+		local stack = ItemStack("default:cherry_leaves_deco")
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("default:cherry_blossom_leaves".." "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+minetest.register_node("default:cherry_leaves_deco", {
+	description = "Cherry Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"default_cherry_blossom_leaves.png"},
+	paramtype = "light",
+	waving=1,
+	is_ground_content = false,
+	groups = {snappy=3, flammable=2, leaves=1},
+	sounds = default.node_sound_leaves_defaults(),
+	drop = {'default:cherry_blossom_leaves'},
+})
+
+minetest.register_node("default:cherry_plank", {
+	description = "Cherry Planks",
+	tiles = {"default_wood_cherry_planks.png"},
+	sounds = default.node_sound_wood_defaults(),
+	groups = {oddly_breakable_by_hand=1, flammable=1, choppy=3, wood=1},
+})
+
 if minetest.setting_getbool("xray") then
 	-- Nodes to make partially see-through:
 	minetest.override_item("default:stone_with_coal",    {tiles = {"default_mineral_coal.png"}})

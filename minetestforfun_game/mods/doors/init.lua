@@ -350,6 +350,26 @@ minetest.register_craft({
 	}
 })
 
+-- From BFD: Cherry planks doors
+
+doors.register_door("doors:door_cherry", {
+	description = "Cherry Door",
+	inventory_image = "door_wood_cherry.png",
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	tiles_bottom = {"door_wood_cherry_b.png", "default_wood_cherry_planks.png"},
+	tiles_top = {"door_wood_cherry_a.png", "default_wood_cherry_planks.png"},
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
+})
+
+minetest.register_craft({
+	output = "doors:door_cherry",
+	recipe = {
+		{"default:cherry_plank", "default:cherry_plank"},
+		{"default:cherry_plank", "default:cherry_plank"},
+		{"default:cherry_plank", "default:cherry_plank"}
+	}
+})
 
 ----trapdoor----
 
