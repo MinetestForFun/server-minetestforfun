@@ -278,24 +278,34 @@ else
 	
 	function mana.hud_add(playername)
 		local player = minetest.get_player_by_name(playername)
-		local id = player:hud_add({
-			hud_elem_type = "text",
+		player:hud_add({
+			hud_elem_type = "statbar",
 			position = {x=0.5,y=1},
-			text = mana.manastring(playername),
-			scale = { x = 0, y = 0 },
-			alignment = { x = -0.5, y = 0},
-			direction = 1,
-			number = 0xFFFFFF,
-			offset = {x=220, y=-165}
-		})
+			size = {x=24, y=24},
+			text = "mana_icon_bg_empty.png",
+			number = 20,
+			alignment = {x=-1,y=-1},
+			offset = {x=80, y=-186},
+			}
+		)
+		local id = player:hud_add({
+			hud_elem_type = "statbar",
+			position = {x=0.5,y=1},
+			size = {x=24, y=24},
+			text = "mana_icon_violet.png",
+			number = mana.get(playername)/10,
+			alignment = {x=-1,y=-1},
+			offset = {x=80, y=-186},
+			}
+		)
+
 		mana.playerlist[playername].hudid = id
 		return id
 	end
 	
 	function mana.hud_update(playername)
 		local player = minetest.get_player_by_name(playername)
-		player:hud_change(mana.playerlist[playername].hudid, "number", mana.get(playername))
-		player:hud_change(mana.playerlist[playername].hudid, "text", mana.manastring(playername))
+		player:hud_change(mana.playerlist[playername].hudid, "number", mana.get(playername)/10)
 	end
 end
 
