@@ -149,6 +149,7 @@ dofile(homedecor.modpath.."/climate-control.lua")
 dofile(homedecor.modpath.."/cobweb.lua")
 dofile(homedecor.modpath.."/books.lua")
 dofile(homedecor.modpath.."/exterior.lua")
+dofile(homedecor.modpath.."/trash_cans.lua")
 
 dofile(homedecor.modpath.."/handlers/locked.lua")
 

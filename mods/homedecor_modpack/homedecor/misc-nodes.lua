@@ -318,22 +318,6 @@ homedecor.register("pool_table", {
 
 minetest.register_alias("homedecor:pool_table_2", "air")
 
-local trash_cbox = {
-	type = "fixed",
-	fixed = { -0.25, -0.5, -0.25, 0.25, 0.125, 0.25 }
-}
-
-homedecor.register("trash_can", {
-	drawtype = "mesh",
-	mesh = "homedecor_trash_can.obj",
-	tiles = { "homedecor_trash_can.png" },
-	inventory_image = "homedecor_trash_can_inv.png",
-	description = "Trash Can",
-        groups = {snappy=3},
-	selection_box = trash_cbox,
-	collision_box = trash_cbox,
-})
-
 homedecor.register("coatrack_wallmount", {
 	tiles = { "forniture_wood.png" },
 	inventory_image = "homedecor_coatrack_wallmount_inv.png",
@@ -639,67 +623,28 @@ homedecor.register("beer_mug", {
 	collision_box = beer_cbox
 })
 
-homedecor.register("tool_cabinet_bottom", {
+homedecor.register("tool_cabinet", {
 	description = "Metal tool cabinet and work table",
+	mesh = "homedecor_tool_cabinet.obj",
 	tiles = {
-		"homedecor_tool_cabinet_bottom_top.png",
-		"homedecor_tool_cabinet_bottom_sides.png",
-		"homedecor_tool_cabinet_bottom_sides.png",
-		"homedecor_tool_cabinet_bottom_sides.png",
-		"homedecor_tool_cabinet_bottom_sides.png",
-		"homedecor_tool_cabinet_bottom_front.png"
+		"homedecor_red_metal.png",
+		"homedecor_tool_cabinet_drawers.png",
+		"homedecor_green_metal.png",
+		"forniture_metal.png",
+		"homedecor_bright_metal.png",
+		"homedecor_tool_cabinet_misc.png",
 	},
 	inventory_image = "homedecor_tool_cabinet_inv.png",
 	groups = { snappy=3 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, 0.4375, -0.4375, -0.375, 0.5}, -- NodeBox1
-			{-0.5, -0.5, -0.5, -0.4375, -0.375, -0.4375}, -- NodeBox2
-			{0.4375, -0.5, 0.4375, 0.5, -0.375, 0.5}, -- NodeBox3
-			{0.4375, -0.5, -0.5, 0.5, -0.375, -0.4375}, -- NodeBox4
-			{-0.5, -0.375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox5
-		}
-	},
 	selection_box = homedecor.nodebox.slab_y(2),
-	expand = { top="homedecor:tool_cabinet_top" },
+	expand = { top="air" },
 	inventory = {
 		size=24,
 	}
 })
 
-homedecor.register("tool_cabinet_top", {
-	tiles = {
-		"homedecor_tool_cabinet_top_top.png",
-		"homedecor_tool_cabinet_top_bottom.png",
-		"homedecor_tool_cabinet_top_right.png",
-		"homedecor_tool_cabinet_top_left.png",
-		"homedecor_tool_cabinet_top_back.png",
-		"homedecor_tool_cabinet_top_front.png"
-	},
-	groups = { snappy=3, not_in_creative_inventory=1 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.1875, -0.5, 0.4375, 0.5, 0.5, 0.5}, -- NodeBox1
-			{-0.5, -0.5, -0.4375, -0.1875, -0.4375, 0.125}, -- NodeBox2
-			{-0.375, -0.4375, 0, -0.3125, 0.1875, 0.0625}, -- NodeBox3
-			{-0.4375, -0.1875, -0.375, -0.25, 0.125, 0.125}, -- NodeBox4
-			{-0.25, -0.0625, -0.3125, -0.22, 0.3125, -0.2825}, -- NodeBox5
-			{-0.375, -0.1875, -0.25, -0.3125, -0.218, -0.3125}, -- NodeBox6
-			{-0.35, -0.32, -0.285, -0.3375, -0.218, -0.2725}, -- NodeBox7
-			{0, -0.3125, 0.375, 0.0625, 0.1875, 0.4375}, -- NodeBox8
-			{0.125, 0.1875, 0.375, 0.1875, 0.25, 0.4375}, -- NodeBox9
-			{-0.0625, 0.1875, 0.375, 0.125, 0.3125, 0.4375}, -- NodeBox10
-			{0.343, -0.125, 0.42, 0.375, 0.125, 0.4375}, -- NodeBox11
-			{0.3125, 0.095, 0.42, 0.343, 0.1575, 0.4375}, -- NodeBox12
-			{0.375, 0.095, 0.42, 0.405, 0.1575, 0.4375}, -- NodeBox13
-			{0.3125, -0.155, 0.42, 0.343, -0.093, 0.4375}, -- NodeBox14
-			{0.375, -0.155, 0.42, 0.405, -0.093, 0.4375}, -- NodeBox15
-		}
-	},
-	selection_box = homedecor.nodebox.null
-})
+minetest.register_alias("homedecor:tool_cabinet_bottom", "homedecor:tool_cabinet")
+minetest.register_alias("homedecor:tool_cabinet_top", "air")
 
 homedecor.register("calendar", {
 	description = "Calendar",

@@ -148,7 +148,7 @@ homedecor.register("shower_tray", {
 --Shower Head
 local sh_cbox = {
 	type = "fixed",
-	fixed = { -0.2, -0.4, -0.1, 0.2, 0.1, 0.5 }
+	fixed = { -0.2, -0.4, -0.05, 0.2, 0.1, 0.5 }
 }
 
 homedecor.register("shower_head", {
@@ -177,6 +177,7 @@ homedecor.register("bathroom_set", {
 		"homedecor_bathroom_set_cup.png",
 		"homedecor_bathroom_set_toothpaste.png",
 	},
+	inventory_image = "homedecor_bathroom_set_inv.png",
 	description = "Bathroom sundries set",
 	groups = {snappy=3},
 	selection_box = bs_cbox,

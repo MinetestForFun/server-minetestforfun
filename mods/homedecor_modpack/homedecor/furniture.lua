@@ -210,16 +210,16 @@ local function bed_extension(pos, color)
 
 	local fdir = thisnode.param2
 
-	if string.find(topnode.name, "homedecor:bed_.*_foot$") then
+	if string.find(topnode.name, "homedecor:bed_.*_regular$") then
 		if fdir == topnode.param2 then
-			local newnode = string.gsub(thisnode.name, "_foot", "_footext")
+			local newnode = string.gsub(thisnode.name, "_regular", "_extended")
 			minetest.set_node(pos, { name = newnode, param2 = fdir})
 		end
 	end
 
-	if string.find(bottomnode.name, "homedecor:bed_.*_foot$") then
+	if string.find(bottomnode.name, "homedecor:bed_.*_regular$") then
 		if fdir == bottomnode.param2 then
-			local newnode = string.gsub(bottomnode.name, "_foot", "_footext")
+			local newnode = string.gsub(bottomnode.name, "_regular", "_extended")
 			minetest.set_node({x=pos.x, y=pos.y-1.0, z=pos.z}, { name = newnode, param2 = fdir})
 		end
 	end
@@ -228,160 +228,98 @@ end
 local function unextend_bed(pos, color)
 	local bottomnode = minetest.get_node({x=pos.x, y=pos.y-1.0, z=pos.z})
 	local fdir = bottomnode.param2
-	if  string.find(bottomnode.name, "homedecor:bed_.*_footext$") then
-		local newnode = string.gsub(bottomnode.name, "_footext", "_foot")
+	if  string.find(bottomnode.name, "homedecor:bed_.*_extended$") then
+		local newnode = string.gsub(bottomnode.name, "_extended", "_regular")
 		minetest.set_node({x=pos.x, y=pos.y-1.0, z=pos.z}, { name = newnode, param2 = fdir})
 	end
 end
 
+local bed_cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, -0.5, 0.5, 0.5, 1.5 }
+}
+
 for _, color in ipairs(bedcolors) do
-
-	homedecor.register("bed_"..color.."_head", {
+	local color2=color
+	if color == "darkgrey" then
+		color2 = "dark_grey"
+	end
+	homedecor.register("bed_"..color.."_regular", {
+		mesh = "homedecor_bed_regular.obj",
 		tiles = {
-			"homedecor_bed_"..color.."_top1.png",
-			"homedecor_bed_bottom1.png",
-			"homedecor_bed_"..color.."_side1.png",
-			"homedecor_bed_"..color.."_side1.png^[transformFX",
-			"homedecor_bed_head1.png",
-			"homedecor_bed_"..color.."_head2.png"
-		},
-		groups = {snappy=3, not_in_creative_inventory=1},
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.5,     -0.5,     0.4375,   -0.375,  0.5,      0.5},      --  NodeBox1
-				{0.375,    -0.5,     0.4375,   0.5,     0.5,      0.5},      --  NodeBox2
-				{-0.5,     0.25,     0.4375,   0.5,     0.4375,   0.5},      --  NodeBox3
-				{-0.5,     -0.0625,        0.4375,   0.5,     0.1875,   0.5},      --  NodeBox4
-				{-0.5,  -0.375,   -0.5,     0.5,  -0.125,   0.5},      --  NodeBox5
-				{0.375,    -0.375,   -0.5,     0.4375,  -0.125,   0.5},      --  NodeBox6
-				{-0.4375,   -0.3125,  -0.5,     0.4375,   -0.0625,  0.4375},   --  NodeBox7
-				{-0.3125,  -0.125,   0.0625,   0.3125,  0.0625,   0.4375},   --  NodeBox8
-			}
-		},
-		selection_box = homedecor.nodebox.null
-	})
-
-	homedecor.register("bed_"..color.."_foot", {
-		tiles = {
-			"homedecor_bed_"..color.."_top2.png",
-			"homedecor_bed_bottom2.png",
-			"homedecor_bed_"..color.."_side2.png",
-			"homedecor_bed_"..color.."_side2.png^[transformFX",
-			"homedecor_bed_foot2.png",
-			"homedecor_bed_"..color.."_foot1.png"
+			"homedecor_bed_frame.png",
+			"default_wood.png",
+			"wool_white.png",
+			"wool_"..color2..".png",
+			"homedecor_bed_bottom.png",
+			"wool_"..color2..".png^[brighten", -- pillow
 		},
 		inventory_image = "homedecor_bed_"..color.."_inv.png",
 		description = S("Bed (%s)"):format(color),
 		groups = {snappy=3},
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.5,     -0.5,     -0.5,     -0.375,  0.1875,   -0.4375},  --  NodeBox1
-				{0.375,    -0.5,     -0.5,     0.5,     0.1875,   -0.4375},  --  NodeBox2
-				{-0.5,     0,        -0.5,     0.5,     0.125,    -0.4375},  --  NodeBox3
-				{-0.5,  -0.375,   -0.5,     0.5,  -0.125,   0.5},      --  NodeBox4
-				{-0.4375,   -0.3125,  -0.4375,  0.4375,   -0.0625,  0.5},      --  NodeBox5
-			}
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = { -0.5, -0.5, -0.5, 0.5, 0.5, 1.5 }
-		},
+		selection_box = bed_cbox,
+		collision_box = bed_cbox,
 		on_construct = function(pos)
 			bed_extension(pos, color)
 		end,
-		expand = { forward = "homedecor:bed_"..color.."_head" },
+		expand = { forward = "air" },
 		after_unexpand = function(pos)
 			unextend_bed(pos, color)
 		end,
 	})
 
-	homedecor.register("bed_"..color.."_footext", {
+	homedecor.register("bed_"..color.."_extended", {
+		mesh = "homedecor_bed_extended.obj",
 		tiles = {
-			"homedecor_bed_"..color.."_top2.png",
-			"homedecor_bed_bottom2.png",
-			"homedecor_bed_"..color.."_side2ext.png",
-			"homedecor_bed_"..color.."_side2ext.png^[transformFX",
-			"homedecor_bed_foot2ext.png",
-			"homedecor_bed_"..color.."_foot1ext.png"
+			"homedecor_bed_frame.png",
+			"default_wood.png",
+			"wool_white.png",
+			"wool_"..color2..".png",
+			"homedecor_bed_bottom.png",
+			"wool_"..color2..".png^[brighten",
 		},
 		groups = {snappy=3, not_in_creative_inventory=1},
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.5,     -0.5,     -0.5,     -0.375,  0.5,   -0.4375},  --  NodeBox1
-				{0.375,    -0.5,     -0.5,     0.5,     0.5,   -0.4375},  --  NodeBox2
-				{-0.5,     0,        -0.5,     0.5,     0.125,    -0.4375},  --  NodeBox3
-				{-0.5,  -0.375,   -0.5,     0.5,  -0.125,   0.5},      --  NodeBox4
-				{-0.4375,   -0.3125,  -0.4375,  0.4375,   -0.0625,  0.5},      --  NodeBox5
-			}
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = { -0.5, -0.5, -0.5, 0.5, 0.5, 1.5 }
-		},
-		expand = { forward = "homedecor:bed_"..color.."_head" },
+		selection_box = bed_cbox,
+		collision_box = bed_cbox,
+		expand = { forward = "air" },
 		after_unexpand = function(pos)
 			unextend_bed(pos, color)
 		end,
-		drop = "homedecor:bed_"..color.."_foot"
+		drop = "homedecor:bed_"..color.."_regular"
 	})
+
+	minetest.register_alias("homedecor:bed_"..color.."_foot",    "homedecor:bed_"..color.."_regular")
+	minetest.register_alias("homedecor:bed_"..color.."_footext", "homedecor:bed_"..color.."_extended")
+	minetest.register_alias("homedecor:bed_"..color.."_head",    "air")
 
 end
 
-homedecor.register("wardrobe_top", {
-	tiles = {
-		"forniture_wood.png",
-		"forniture_wood.png",
-		"forniture_wood.png^[transformR90",
-		"forniture_wood.png^[transformR270",
-		"forniture_wood.png^[transformR90",
-		"homedecor_wardrobe_frontt.png"
-	},
-	groups = {snappy=3, not_in_creative_inventory=1},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5,     -0.5,   -0.4375,  0.5,      0.5,      0.5},      --  NodeBox1
-			{0.0625,   -0.4375,  -0.5,     0.4375,   0.4375,   -0.4375},  --  NodeBox2
-			{-0.4375,  -0.4375,  -0.5,     -0.0625,  0.4375,   -0.4375},  --  NodeBox3
-		}
-	},
-	selection_box = homedecor.nodebox.null,
-})
+local wd_cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, -0.5, 0.5, 1.5, 0.5 }
+}
 
 homedecor.register("wardrobe_bottom", {
+	mesh = "homedecor_bedroom_wardrobe.obj",
 	tiles = {
 		"forniture_wood.png",
-		"forniture_wood.png^[transformR180",
-		"forniture_wood.png^[transformR90",
-		"forniture_wood.png^[transformR270",
-		"forniture_wood.png^[transformR90",
-		"homedecor_wardrobe_frontb.png"
+		"homedecor_wardrobe_drawers.png",
+		"homedecor_wardrobe_doors.png"
 	},
 	inventory_image = "homedecor_wardrobe_inv.png",
 	description = "Wardrobe",
 	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5,     -0.5,     -0.4375,  0.5,  0.5,      0.5},      --  NodeBox1
-			{-0.4375,  -0.375,   -0.5,     0.4375,   -0.125,   -0.4375},  --  NodeBox2
-			{-0.4375,  -0.0625,  -0.5,     0.4375,   0.1875,   -0.4375},  --  NodeBox3
-			{-0.4375,  0.25,     -0.5,     0.4375,   0.5,      -0.4375},  --  NodeBox4
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, 1.5, 0.5 }
-	},
-	expand = { top="homedecor:wardrobe_top" },
+	selection_box = wd_cbox,
+	collision_box = wd_cbox,
+	expand = { top="air" },
 	infotext = S("Wardrobe cabinet"),
 	inventory = {
 		size=24,
 	},
 })
+
+minetest.register_alias("homedecor:wardrobe_bottom", "homedecor:wardrobe")
+minetest.register_alias("homedecor:wardrobe_top", "air")
 
 homedecor.register("wall_shelf", {
 	description = "Wall Shelf",

@@ -246,6 +246,23 @@ homedecor.register("hanging_lantern", {
 	collision_box = hl_cbox
 })
 
+local cl_cbox = {
+	type = "fixed",
+	fixed = { -0.35, -0.45, -0.35, 0.35, 0.5, 0.35 }
+}
+
+homedecor.register("ceiling_lantern", {
+	drawtype = "mesh",
+	mesh = "homedecor_ceiling_lantern.obj",
+	tiles = { "homedecor_ceiling_lantern.png" },
+	inventory_image = "homedecor_ceiling_lantern_inv.png",
+	description = "Ceiling Lantern",
+	groups = {snappy=3},	
+	light_source = 11,
+	selection_box = cl_cbox,
+	collision_box = cl_cbox,
+})
+
 homedecor.register("lattice_lantern_large", {
 	description = S("Lattice lantern (large)"),
 	tiles = { 'homedecor_lattice_lantern_large.png' },

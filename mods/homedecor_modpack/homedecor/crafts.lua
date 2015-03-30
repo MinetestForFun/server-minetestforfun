@@ -3040,6 +3040,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "homedecor:ceiling_lantern 2",
+	recipe = {
+		{ "default:iron_lump", "default:iron_lump", "default:iron_lump" },
+		{ "default:iron_lump", "homedecor:lattice_lantern_large", "default:iron_lump" },
+		{ "", "default:iron_lump", "" },
+	},
+})
+
+minetest.register_craft({
 	output = "homedecor:desk_globe",
 	recipe = {
 		{ "group:stick", "homedecor:plastic_sheeting", "dye:green" },
@@ -3063,6 +3072,24 @@ minetest.register_craft({
 		{ "homedecor:motor", "default:axe_steel", "default:pick_steel" },
 		{ "default:steel_ingot", "homedecor:drawer_small", "default:steel_ingot" },
 		{ "default:steel_ingot", "homedecor:drawer_small", "default:steel_ingot" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:bathroom_set",
+	recipe = {
+		{ "", "homedecor:glass_table_small_round", "" },
+		{ "homedecor:plastic_sheeting", "homedecor:glass_table_small_round", "homedecor:plastic_sheeting" },
+		{ "group:stick", "homedecor:plastic_sheeting", "group:stick" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:trash_can_green",
+	recipe = {
+		{ "homedecor:plastic_sheeting", "", "homedecor:plastic_sheeting" },
+		{ "homedecor:plastic_sheeting", "dye:green", "homedecor:plastic_sheeting" },
+		{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
 	},
 })
 
