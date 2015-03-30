@@ -1,3 +1,9 @@
+local time = tonumber(minetest.setting_get("remove_items"))
+if not time then
+	time = 600
+end
+
+
 minetest.register_entity(":__builtin:item", {
 	initial_properties = {
 		hp_max = 1,
@@ -79,10 +85,6 @@ minetest.register_entity(":__builtin:item", {
 	end,
 	
 	on_step = function(self, dtime)
-		local time = tonumber(minetest.setting_get("remove_items"))
-		if not time then
-			time = 600
-		end
 		if not self.timer then
 			self.timer = 0
 		end
