@@ -30,9 +30,10 @@ mobs:register_mob("mobs:npc", {
 	makes_footstep_sound = true,
 	sounds = {},
 	-- speed and jump
-	walk_velocity = 1,
-	run_velocity = 2,
+	walk_velocity = 1.5,
+	run_velocity = 2.5,
 	jump = true,
+	step = 1,
 	-- drops wood and chance of apples when dead
 	drops = {
 		{name = "default:wood",
