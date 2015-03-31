@@ -36,7 +36,6 @@ MAJ de "mobs" (les bébés aniamux grandissent plus vite, les moutons laissent t
 MAJ de "builtin_item" (crashfix)
 MAJ de "tsm_pyramids" (les mommies sont plus intelligentes, suppression d'une variable globale)
 
-
 ---21/03/2015--- (Remerciements : Mg, Crabman, Ataron)
 MAJ de "mobs" (modification des objets aléatoire échangé par les NPCs, ils spawnent aussi maintenant 3 fois moins souvent)
 MAJ de "death_messages" (modification pour inclure le féminin dans certaines phrases)
