@@ -283,8 +283,9 @@ minetest.register_node("pipeworks:entry_panel_empty", {
 	selection_box = panel_cbox,
 	collision_box = panel_cbox,
 	on_place = function(itemstack, placer, pointed_thing)
-		if not pipeworks.node_is_owned(pointed_thing.under, placer) 
-		   and not pipeworks.node_is_owned(pointed_thing.above, placer) then
+		local playername = placer:get_player_name()
+		if not minetest.is_protected(pointed_thing.under, playername) 
+		   and not minetest.is_protected(pointed_thing.above, playername) then
 			local node = minetest.get_node(pointed_thing.under)
 
 			if not minetest.registered_nodes[node.name]
