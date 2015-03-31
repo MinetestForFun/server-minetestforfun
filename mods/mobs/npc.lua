@@ -65,12 +65,14 @@ mobs:register_mob("mobs:npc", {
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "mobs:meat" or item:get_name() == "farming:bread" then
 			local hp = self.object:get_hp()
-			if hp + 4 > self.hp_max then return end
+			if hp >= self.hp_max then return end
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
-			self.object:set_hp(hp+4)
+			local n = hp + 4
+			if n > self.hp_max then n = self.hp_max end
+			self.object:set_hp(n)	
 		-- right clicking with gold lump drops random item from mobs.npc_drops
 		elseif item:get_name() == "default:gold_lump" then
 			if not minetest.setting_getbool("creative_mode") then
