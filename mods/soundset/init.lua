@@ -23,7 +23,6 @@ local function load_sounds_config()
 		sounds.gainplayers = minetest.deserialize(file:read("*all"))
 		file:close()
 	end
-	print("type: "..tostring(type(sounds.gainplayers)))
 	if sounds.gainplayers == nil or type(sounds.gainplayers) ~= "table" then
 		sounds.gainplayers = {}
 	end
@@ -108,6 +107,7 @@ end
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname == "soundset:settings" then
 		local name = player:get_player_name()
+		if not name then return end
 		local fmusic = sounds.tmp[name]["music"]
 		local fambience = sounds.tmp[name]["ambience"]
 		if fields["abort"] == "Ok" then
@@ -168,6 +168,7 @@ if (minetest.get_modpath("unified_inventory")) then
 		tooltip = "sounds menu ",
 		action = function(player)
 			local name = player:get_player_name()
+			if not name then return end
 			on_show_settings(name, sounds.gainplayers[name]["music"], sounds.gainplayers[name]["ambience"])
 		end,
 	})
@@ -178,6 +179,7 @@ minetest.register_chatcommand("soundset", {
 	description = "Display volume menu formspec",
 	privs = {interact=true},
 	func = function(name, param)
+		if not name then return end
 		on_show_settings(name, sounds.gainplayers[name]["music"], sounds.gainplayers[name]["ambience"])
 	end
 })	
