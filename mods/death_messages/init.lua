@@ -12,7 +12,7 @@ local messages = {}
 
 -- Fill this table with sounds
 local sounds   = {
-	[1] = "death_messages_death_1.ogg",
+	[1] = "death_messages_death_1",
 }
 
 -- Lava death messages
@@ -83,7 +83,7 @@ if RANDOM_MESSAGES == true then
 		else
 			minetest.chat_send_all(player_name ..  messages.other[math.random(1,#messages.other)] )
 		end
-		minetest.sound_play({name = sounds[math.random(1,#messages.other)],gain=0.5*sounds.get_gain(player:get_player_name(),"other")})
+		minetest.sound_play({name = sounds[math.random(1,#sounds)],gain=0.5*soundset.get_gain(player:get_player_name(),"other")})
 	end)
 	
 else
@@ -106,7 +106,7 @@ else
 		else
 			minetest.chat_send_all(player_name .. " died.")
 		end
-		minetest.sound_play({name = sounds[math.random(1,#messages.other)],gain=0.5*sounds.get_gain(player:get_player_name(),"other")})
+		minetest.sound_play({name = sounds[math.random(1,#sounds)],gain=0.5*soundset.get_gain(player:get_player_name(),"other")})
 	end)
 end
 
