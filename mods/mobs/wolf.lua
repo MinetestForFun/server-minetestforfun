@@ -15,20 +15,22 @@ mobs:register_mob("mobs:wolf", {
 	visual = "mesh",
 	mesh = "mobs_wolf.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_wolf.png"},
+	textures = {
+		{"mobs_wolf.png"},
 	},
 	--visual_size = {x=1,y=1}, --Quel valeur lui mettre ?
 	blood_texture = "mobs_blood.png",
-
-		--	Continuer d'organiser le code à partir d'ici --
-
+	-- sounds
 	makes_footstep_sound = true,
-	view_range = 16,
+	sounds = {
+		random = "mobs_wolf",
+	},
+	-- speed and jump
 	walk_velocity = 3,
 	run_velocity = 5,
-	damage = 4,
+	jump = true,
+	view_range = 16,
+	-- drops mese or diamond when dead
 	drops = {
 		{name = "mobs:meat_raw",
 		chance = 1,
@@ -39,26 +41,19 @@ mobs:register_mob("mobs:wolf", {
 		min = 1,
 		max = 4,},
 	},
-	light_resistant = false,
+	-- damaged by
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 2,
-	on_rightclick = nil,
+	-- model animation
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63,
+		stand_start = 0,		stand_end = 14,
+		walk_start = 15,		walk_end = 38,
+		run_start = 40,			run_end = 63,
+		punch_start = 40,		punch_end = 63,
+		speed_normal = 15,		speed_run = 15,
+
 	},
-	sounds = {
-		random = "mobs_wolf",
-	},
-	jump = true,
 })
 mobs:register_spawn("mobs:wolf", {"default:dirt_with_grass"}, 3, -1, 9500, 1, 31000)
+mobs:register_egg("mobs:wolf", "Wolf", "mobs_wolf_inv.png", 1)

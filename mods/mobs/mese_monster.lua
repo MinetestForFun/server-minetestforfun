@@ -17,9 +17,8 @@ mobs:register_mob("mobs:mese_monster", {
 	collisionbox = {-0.5, -1.5, -0.5, 0.5, 0.5, 0.5},
 	visual = "mesh",
 	mesh = "zmobs_mese_monster.x",
-	available_textures = {
-		total = 1,
-		texture_1 = {"zmobs_mese_monster.png"},
+	textures = {
+		{"zmobs_mese_monster.png"},
 	},
 	visual_size = {x=1, y=1},
 	drawtype = "front",
@@ -60,7 +59,7 @@ mobs:register_mob("mobs:mese_monster", {
 		punch_start = 15,		punch_end = 38, -- was 40 & 63
 	},
 })
--- spawn on stone between 20 and -1 light, 1 in 6000 chance, 1 in area below -25
+-- spawn on stone between 20 and -1 light, 1 in 7000 chance, 1 in area below -25
 mobs:register_spawn("mobs:mese_monster", {"default:stone", }, 20, -1, 7000, 1, -25)
 -- register spawn egg
 mobs:register_egg("mobs:mese_monster", "Mese Monster", "default_mese_block.png", 1)

@@ -15,9 +15,8 @@ mobs:register_mob("mobs:pumba", {
 	visual = "mesh",
 	mesh = "mobs_pumba.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_pumba.png"},
+	textures = {
+		{"mobs_pumba.png"},
 	},
 	visual_size = {x=1,y=1},
 	blood_texture = "mobs_blood.png",

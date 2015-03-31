@@ -15,9 +15,8 @@ mobs:register_mob("mobs:lava_flan", {
 	visual = "mesh",
 	mesh = "zmobs_lava_flan.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"zmobs_lava_flan.png"},
+	textures = {
+		{"zmobs_lava_flan.png"},
 	},
 	blood_texture = "fire_basic_flame.png",
 	visual_size = {x=1, y=1},
@@ -53,8 +52,8 @@ mobs:register_mob("mobs:lava_flan", {
 		punch_start = 20,		punch_end = 28,
 	},
 })
--- spawns in lava between -1 and 20 light, 1 in 2000 chance, 2 in area below 31000 in height
-mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 20, -1, 2500, 2, 31000)
+-- spawns in lava between -1 and 20 light, 1 in 2000 chance, 3 in area below 31000 in height
+mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 20, -1, 2500, 3, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:lava_flan", "Lava Flan", "default_lava.png", 1)
 

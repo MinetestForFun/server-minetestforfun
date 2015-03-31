@@ -1,5 +1,5 @@
 
--- Spider by fishyWET (borrowed from Lord of the Test [game])
+-- Spider by AspireMint (fishyWET (CC-BY-SA 3.0 license for texture)
 
 mobs:register_mob("mobs:spider", {
 	-- animal, monster, npc, barbarian
@@ -15,9 +15,8 @@ mobs:register_mob("mobs:spider", {
 	visual = "mesh",
 	mesh = "mobs_spider.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_spider.png"},
+	textures = {
+		{"mobs_spider.png"},
 	},
 	visual_size = {x=7,y=7},
 	blood_texture = "mobs_blood.png",
@@ -27,7 +26,7 @@ mobs:register_mob("mobs:spider", {
 		random = "mobs_spider",
 		war_cry = "mobs_eerie",
 		death = "mobs_howl",
-		attack = "mobs_spider",
+		attack = "mobs_spider_attack",
 	},
 	-- speed and jump, sinks in water
 	walk_velocity = 1,
@@ -57,7 +56,7 @@ mobs:register_mob("mobs:spider", {
 		punch_start = 50,		punch_end = 90,
 	},
 })
--- spawn on desert stone/crystal dirt, between 0 and 5 light, 1 in 7000 chance, 1 in area up to 71 in height
+-- spawn on desert stone/crystal dirt, between 0 and 5 light, 1 in 9000 chance, 1 in area up to 31000 in height
 mobs:register_spawn("mobs:spider", {"default:jungleleaves", "default:jungletree"}, 20, -1, 9000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:spider", "Spider", "mobs_cobweb.png", 1)
@@ -78,8 +77,8 @@ minetest.register_node("mobs:spider_cobweb", {
 	sunlight_propagates = true,
 	liquid_viscosity = 11,
 	liquidtype = "source",
-	liquid_alternative_flowing = "mobs:spider_cobweb",
-	liquid_alternative_source = "mobs:spider_cobweb",
+	liquid_alternative_flowing = "mobs:spider_cobweb", --Modif MFF
+	liquid_alternative_source = "mobs:spider_cobweb",  --Modif MFF
 	liquid_renewable = false,
 	liquid_range = 0,
 	walkable = false,

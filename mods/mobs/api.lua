@@ -1,4 +1,4 @@
- -- Mobs Api (24th March 2015)
+ -- Mobs Api (29th March 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -41,16 +41,13 @@ function mobs:register_mob(name, def)
 		animation = def.animation,
 		follow = def.follow or "",
 		jump = def.jump or true,
-		exp_min = def.exp_min or 0,
-		exp_max = def.exp_max or 0,
 		walk_chance = def.walk_chance or 50,
 		attacks_monsters = def.attacks_monsters or false,
 		group_attack = def.group_attack or false,
 		--fov = def.fov or 120,
 		passive = def.passive or false,
 		recovery_time = def.recovery_time or 0.5,
-		knock_back = def.knock_back or 1, --default value is "or 3",
-		blood_offset = def.blood_offset or 0,
+		knock_back = def.knock_back or 1, --Modif MFF, default value is "or 3",
 		blood_amount = def.blood_amount or 5,
 		blood_texture = def.blood_texture or "mobs_blood.png",
 		shoot_offset = def.shoot_offset or 0,
@@ -88,6 +85,7 @@ function mobs:register_mob(name, def)
 		end,
 		
 		set_velocity = function(self, v)
+			if not v then v = 0 end -- added
 			local yaw = self.object:getyaw()
 			if self.drawtype == "side" then
 				yaw = yaw+(math.pi/2)
@@ -208,8 +206,7 @@ function mobs:register_mob(name, def)
 			if self.fall_damage == 1 and self.object:getvelocity().y == 0 then
 				local d = self.old_y - self.object:getpos().y
 				if d > 5 then
-					local damage = math.floor(d - 5)
-					self.object:set_hp(self.object:get_hp()-damage)
+					self.object:set_hp(self.object:get_hp() - math.floor(d - 5))
 					check_for_death(self)
 				end
 				self.old_y = self.object:getpos().y
@@ -241,12 +238,12 @@ function mobs:register_mob(name, def)
 
 				local pos = self.object:getpos()
 				local n = minetest.get_node(pos)
-				local lit = minetest.get_node_light(pos) or 0
 				local tod = minetest.get_timeofday()
+				pos.y = pos.y + (self.collisionbox[2] + self.collisionbox[5]) / 2
 
 				if self.light_damage and self.light_damage ~= 0
 				and pos.y > 0
-				and lit > 10 -- direct sunlight (was 4)
+				and (minetest.get_node_light(pos) or 0) > 10 -- direct sunlight (was 4)
 				and tod > 0.2 and tod < 0.8 then
 					self.object:set_hp(self.object:get_hp()-self.light_damage)
 					effect(pos, 5, "tnt_smoke.png")
@@ -279,17 +276,17 @@ function mobs:register_mob(name, def)
 			if self.type == "monster" and damage_enabled and self.state ~= "attack" then
 
 				local s = self.object:getpos()
-				local inradius = minetest.get_objects_inside_radius(s,self.view_range)
 				local player = nil
 				local type = nil
+				local obj = nil
 
-				for _,oir in ipairs(inradius) do
+				for _,oir in ipairs(minetest.get_objects_inside_radius(s,self.view_range)) do
 
 					if oir:is_player() then
 						player = oir
 						type = "player"
 					else
-						local obj = oir:get_luaentity()
+						obj = oir:get_luaentity()
 						if obj then
 							player = obj.object
 							type = obj.type
@@ -316,28 +313,16 @@ function mobs:register_mob(name, def)
 			-- NPC FIND A MONSTER TO ATTACK
 			if self.type == "npc" and self.attacks_monsters and self.state ~= "attack" then
 				local s = self.object:getpos()
-				local inradius = minetest.get_objects_inside_radius(s,self.view_range)
-				for _, oir in pairs(inradius) do
-					local obj = oir:get_luaentity()
+				local obj = nil
+				local p, dist
+				for _, oir in pairs(minetest.get_objects_inside_radius(s,self.view_range)) do
+					obj = oir:get_luaentity()
 					if obj and obj.type == "monster" then
 						-- attack monster
-						local p = obj.object:getpos()
-						local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
+						p = obj.object:getpos()
+						dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
 						self.do_attack(self,obj.object,dist)
 						break
-					end
-				end
-			end
-
-			if self.follow ~= "" and not self.following then
-				for _,player in pairs(minetest.get_connected_players()) do
-					local s = self.object:getpos()
-					local p = player:getpos()
-					local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
-					if self.view_range and dist < self.view_range then
-						self.following = player ; self.following_player = true
-						break
-					else self.following_player = nil
 					end
 				end
 			end
@@ -345,9 +330,6 @@ function mobs:register_mob(name, def)
 			-- horny animal can mate for 40 seconds, afterwards horny animal cannot mate again for 200 seconds
 			if self.horny == true and self.hornytimer < 240 and self.child == false then
 				self.hornytimer = self.hornytimer + 1
-				if self.hornytimer <= 40 then
-					effect(self.object:getpos(), 4, "heart.png")
-				end
 				if self.hornytimer >= 240 then
 					self.hornytimer = 0
 					self.horny = false
@@ -364,6 +346,7 @@ function mobs:register_mob(name, def)
 						textures = self.base_texture,
 						mesh = self.base_mesh,
 						visual_size = {x=self.visual_size.x,y=self.visual_size.y},
+						collisionbox = self.collisionbox,
 					})
 				end
 			end
@@ -371,15 +354,16 @@ function mobs:register_mob(name, def)
 			-- if animal is horny, find another same animal who is horny and mate
 			if self.horny == true and self.hornytimer <= 40 then
 				local pos = self.object:getpos()
+				effect(pos, 4, "heart.png")
 				local ents = minetest.get_objects_inside_radius(pos, self.view_range)
 				local num = 0
+				local ent = nil
 				for i,obj in ipairs(ents) do
 
-					local ent = obj:get_luaentity()
+					ent = obj:get_luaentity()
 					if ent and ent.name == self.name and ent.horny == true and ent.hornytimer <= 40 then num = num + 1 end
 
 					if num > 1 then
-						--print("2 horny "..name)
 						self.following = ent
 						ent.following = self
 						self.horny = false
@@ -388,22 +372,22 @@ function mobs:register_mob(name, def)
 						ent.horny = false
 						ent.following = nil
 						ent.hornytimer = 0
-
 						minetest.after(7, function(dtime)
-							--print ("spawned baby:",self.name)
 							local mob = minetest.add_entity(pos, self.name)
 							local ent2 = mob:get_luaentity()
 							local textures = self.base_texture
 							if def.child_texture then
-								print ("child texture detected")
 								textures = def.child_texture[1]
 							end
 							mob:set_properties({
 								textures = textures,
 								visual_size = {x=self.visual_size.x/2,y=self.visual_size.y/2},
+								collisionbox = {self.collisionbox[1]/2, self.collisionbox[2]/2, self.collisionbox[3]/2,
+												self.collisionbox[4]/2, self.collisionbox[5]/2, self.collisionbox[6]/2},
 							})
 							ent2.child = true
 							ent2.tamed = true
+							ent2.following = ent -- follow mother
 						end)
 						num = 0
 						break
@@ -411,7 +395,21 @@ function mobs:register_mob(name, def)
 				end
 			end
 
-			if self.following and self.following:is_player() and self.following:get_wielded_item():get_name() ~= self.follow then
+			if self.follow ~= "" and not self.following then
+				local s, p, dist
+				for _,player in pairs(minetest.get_connected_players()) do
+					s = self.object:getpos()
+					p = player:getpos()
+					dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
+					if self.view_range and dist < self.view_range then
+						self.following = player
+						break
+					end
+				end
+			end
+
+			--if self.following and self.following:is_player() and self.following:get_wielded_item():get_name() ~= self.follow then
+			if self.following and self.following.is_player and self.following:get_wielded_item():get_name() ~= self.follow then
 				self.following = nil
 				self.v_start = false
 			end
@@ -446,9 +444,9 @@ function mobs:register_mob(name, def)
 								self.v_start = true
 								self.set_velocity(self, self.walk_velocity)
 							else
-								if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then -- 0.5 was 1.5
+								if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
 									local v = self.object:getvelocity()
-									v.y = 6
+									v.y = 6.5 -- 6 (in older api.lua version)
 									self.object:setvelocity(v)
 								end
 								self.set_velocity(self, self.walk_velocity)
@@ -837,13 +835,14 @@ function mobs:register_mob(name, def)
 		get_staticdata = function(self)
 			-- select random texture, set model
 			if not self.base_texture then
-				self.base_texture = def.available_textures["texture_"..math.random(1,def.available_textures["total"])]
+				self.base_texture = def.textures[math.random(1,#def.textures)]
 				self.base_mesh = def.mesh
 			end
 			-- set texture, model and size
 			local textures = self.base_texture
 			local mesh = self.base_mesh
 			local vis_size = self.visual_size
+			local colbox = self.collisionbox
 			-- specific texture if gotten
 			if self.gotten == true and def.gotten_texture then
 				textures = def.gotten_texture
@@ -858,6 +857,8 @@ function mobs:register_mob(name, def)
 				if def.child_texture then
 					textures = def.child_texture[1]
 				end
+				colbox = {self.collisionbox[1]/2, self.collisionbox[2]/2, self.collisionbox[3]/2,
+						self.collisionbox[4]/2, self.collisionbox[5]/2, self.collisionbox[6]/2}
 			end
 			-- remember settings
 			local tmp = {
@@ -871,6 +872,7 @@ function mobs:register_mob(name, def)
 				textures = textures,
 				visual_size = vis_size,
 				base_texture = self.base_texture,
+				collisionbox = colbox,
 			}
 			self.object:set_properties(tmp)
 			return minetest.serialize(tmp)
@@ -879,14 +881,13 @@ function mobs:register_mob(name, def)
 		on_punch = function(self, hitter, tflp, tool_capabilities, dir)
 
 			process_weapon(hitter,tflp,tool_capabilities)
-			local pos = self.object:getpos()
 			check_for_death(self)
 
 			--blood_particles
+			local pos = self.object:getpos()
+			pos.y = pos.y + (self.collisionbox[2] + self.collisionbox[5]) / 2
 			if self.blood_amount > 0 and pos then
-				local p = pos
-				p.y = p.y + self.blood_offset
-				effect(p, self.blood_amount, self.blood_texture)
+				effect(pos, self.blood_amount, self.blood_texture)
 			end
 
 			-- knock back effect, adapted from blockmen's pyramids mod
@@ -913,10 +914,10 @@ function mobs:register_mob(name, def)
 				if self.state ~= "attack" then
 					self.do_attack(self,hitter,1)
 				end
-				-- alert other NPCs to the attack
-				local inradius = minetest.get_objects_inside_radius(hitter:getpos(),5)
-				for _, oir in pairs(inradius) do
-					local obj = oir:get_luaentity()
+				-- alert others to the attack
+				local obj = nil
+				for _, oir in pairs(minetest.get_objects_inside_radius(hitter:getpos(),5)) do
+					obj = oir:get_luaentity()
 					if obj then
 						if obj.group_attack == true and obj.state ~= "attack" then
 							obj.do_attack(obj,hitter,1)
@@ -1006,10 +1007,10 @@ function check_for_death(self)
 	local pos = self.object:getpos()
 	pos.y = pos.y + 0.5 -- drop items half a block higher
 	self.object:remove()
+	local obj = nil
 	for _,drop in ipairs(self.drops) do
 		if math.random(1, drop.chance) == 1 then
-			local d = ItemStack(drop.name.." "..math.random(drop.min, drop.max))
-			local obj = minetest.add_item(pos, d)
+			obj = minetest.add_item(pos, ItemStack(drop.name.." "..math.random(drop.min, drop.max)))
 			if obj then
 				obj:setvelocity({x=math.random(-1,1), y=5, z=math.random(-1,1)})
 			end
@@ -1079,13 +1080,6 @@ local weapon = player:get_wielded_item()
 		weapon:add_wear(wear)
 		player:set_wielded_item(weapon)
 	end
-	
---	if weapon:get_definition().sounds ~= nil then
---		local s = math.random(0,#weapon:get_definition().sounds)
---		minetest.sound_play(weapon:get_definition().sounds[s], {object=player,})
---	else
---		minetest.sound_play("default_sword_wood", {object = player,})
---	end
 end
 
 -- Spawn Egg

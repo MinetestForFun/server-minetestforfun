@@ -15,9 +15,8 @@ mobs:register_mob("mobs:stone_monster", {
 	visual = "mesh",
 	mesh = "mobs_stone_monster.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_stone_monster.png"},
+	textures = {
+		{"mobs_stone_monster.png"},
 	},
 	visual_size = {x=3, y=2.6},
 	blood_texture = "mobs_blood.png",
@@ -25,6 +24,7 @@ mobs:register_mob("mobs:stone_monster", {
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_stonemonster",
+		attack = "mobs_stonemonster_attack",
 	},
 	-- speed and jump, sinks in water
 	walk_velocity = 2,
@@ -32,7 +32,7 @@ mobs:register_mob("mobs:stone_monster", {
 	jump = true,
 	floats = 0,
 	view_range = 16,
-	-- chance of dropping torch, iron, lump and coins
+	-- chance of dropping torch, iron lump, coal lump and/or silver coins
 	drops = {
 		{name = "default:torch",
 		chance = 10, min = 3, max = 5,},
@@ -56,7 +56,7 @@ mobs:register_mob("mobs:stone_monster", {
 		punch_start = 40,		punch_end = 63,
 	},
 })
--- spawns on stone between -1 and 5 light, 1 in 5500 chance, 1 in area below -5
+-- spawns on stone between -1 and 5 light, 1 in 7000 chance, 1 in area below -5
 mobs:register_spawn("mobs:stone_monster", {"default:stone", "nether:dirt_top"}, 5, -1, 7000, 1, -5)
 -- register spawn egg
 mobs:register_egg("mobs:stone_monster", "Stone Monster", "default_stone.png", 1)

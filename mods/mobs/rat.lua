@@ -13,10 +13,9 @@ mobs:register_mob("mobs:rat", {
 	visual = "mesh",
 	mesh = "mobs_rat.x",
 	drawtype = "front",
-	available_textures = {
-		total = 2,
-		texture_1 = {"mobs_rat.png"},
-		texture_2 = {"mobs_rat_brown.png"},
+	textures = {
+		{"mobs_rat.png"},
+		{"mobs_rat_brown.png"},
 	},
 	blood_texture = "mobs_blood.png",
 	-- sounds

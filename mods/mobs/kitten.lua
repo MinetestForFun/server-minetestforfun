@@ -13,12 +13,11 @@ mobs:register_mob("mobs:kitten", {
 	visual = "mesh",
 	visual_size = {x=0.5, y=0.5},
 	mesh = "mobs_kitten.b3d",
-	available_textures = {
-		total = 4,
-		texture_1 = {"mobs_kitten_striped.png"},
-		texture_2 = {"mobs_kitten_splotchy.png"},
-		texture_3 = {"mobs_kitten_ginger.png"},
-		texture_4 = {"mobs_kitten_sandy.png"},
+	textures = {
+		{"mobs_kitten_striped.png"},
+		{"mobs_kitten_splotchy.png"},
+		{"mobs_kitten_ginger.png"},
+		{"mobs_kitten_sandy.png"},
 	},
 	blood_texture = "mobs_blood.png",
 	-- sounds
@@ -29,12 +28,12 @@ mobs:register_mob("mobs:kitten", {
 	-- speed and jump
 	walk_velocity = 0.6,
 	jump = false,
-	--	drops sometimes coins
+	--	drops string and coins
 	drops = {
 		{name = "maptools:copper_coin",
-		chance = 10,
-		min = 1,
-		max = 1,},
+		chance = 10, min = 1, max = 1,},
+		{name = "farming:string",
+		chance = 2, min = 1, max = 1},
 	},
 	-- damaged by
 	water_damage = 1,

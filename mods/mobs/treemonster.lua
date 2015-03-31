@@ -15,9 +15,8 @@ mobs:register_mob("mobs:tree_monster", {
 	visual = "mesh",
 	mesh = "mobs_tree_monster.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_tree_monster.png"},
+	textures = {
+		{"mobs_tree_monster.png"},
 	},
 	visual_size = {x=4.5,y=4.5},
 	blood_texture = "default_wood.png",
@@ -31,7 +30,7 @@ mobs:register_mob("mobs:tree_monster", {
 	run_velocity = 2.5,
 	jump = true,
 	view_range = 16,
-	-- drops saplings or apple
+	-- drops saplings, junglesapling, apple and/or silver coins
 	drops = {
 		{name = "default:sapling",
 		chance = 3, min = 1, max = 2},
@@ -56,7 +55,7 @@ mobs:register_mob("mobs:tree_monster", {
 		punch_start = 48,		punch_end = 62,
 	},
 })
--- spawn on leaves and beech_leaves, between 0 and 5 light, 1 in 7000 chance, 1 in area up to 31000 in height
+-- spawn on leaves and beech_leaves, between 0 and 5 light, 1 in 8000 chance, 1 in area up to 31000 in height
 mobs:register_spawn("mobs:tree_monster", {"default:leaves", "moretrees:beech_leaves"}, 3, -1, 8000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:tree_monster", "Tree Monster", "default_tree_top.png", 1)

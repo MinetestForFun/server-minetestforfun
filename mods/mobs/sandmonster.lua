@@ -15,9 +15,8 @@ mobs:register_mob("mobs:sand_monster", {
 	visual = "mesh",
 	mesh = "mobs_sand_monster.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_sand_monster.png"},
+	textures = {
+		{"mobs_sand_monster.png"},
 	},
 	visual_size = {x=8,y=8},
 	blood_texture = "default_sand.png",
@@ -52,7 +51,7 @@ mobs:register_mob("mobs:sand_monster", {
 		punch_start = 74,		punch_end = 105,
 	},
 })
--- spawns on desert sand between -1 and 20 light, 1 in 5000 chance, 1 sand monster in area up to 31000 in height
+-- spawns on desert sand between -1 and 20 light, 1 in 7500 chance, 1 sand monster in area up to 31000 in height
 mobs:register_spawn("mobs:sand_monster", {"default:desert_sand", "default:sand"}, 20, -1, 7500, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:sand_monster", "Sand Monster", "default_desert_sand.png", 1)

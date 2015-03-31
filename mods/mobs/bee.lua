@@ -13,9 +13,8 @@ mobs:register_mob("mobs:bee", {
 	visual = "mesh",
 	mesh = "mobs_bee.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_bee.png"},
+	textures = {
+		{"mobs_bee.png"},
 	},
 	-- sounds
 	makes_footstep_sound = false,
@@ -52,8 +51,8 @@ mobs:register_mob("mobs:bee", {
 		end
 	end,
 })
--- spawn on group:flowers between 4 and 20 light, 1 in 10000 chance, 1 bee in area up to 31000 in height
-mobs:register_spawn("mobs:bee", {"default:dirt_with_grass"}, 20, 4, 10000, 1, 31000)
+-- spawn on group:flowers between 4 and 20 light, 1 in 5000 chance, 1 bee in area up to 31000 in height
+mobs:register_spawn("mobs:bee", {"group:flower"}, 20, 4, 5000, 1, 31000)
 
 -- register spawn egg
 mobs:register_egg("mobs:bee", "Bee", "mobs_bee_inv.png", 0)

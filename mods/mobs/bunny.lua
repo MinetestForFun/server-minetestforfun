@@ -13,11 +13,10 @@ mobs:register_mob("mobs:bunny", {
 	visual = "mesh",
 	mesh = "mobs_bunny.b3d",
 	drawtype = "front",
-	available_textures = {
-		total = 3,
-		texture_1 = {"mobs_bunny_grey.png"},
-		texture_2 = {"mobs_bunny_brown.png"},
-		texture_3 = {"mobs_bunny_white.png"},
+	textures = {
+		{"mobs_bunny_grey.png"},
+		{"mobs_bunny_brown.png"},
+		{"mobs_bunny_white.png"},
 	},
 	-- sounds
 	sounds = {},

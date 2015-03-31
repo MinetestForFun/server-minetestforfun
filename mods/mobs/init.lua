@@ -24,10 +24,10 @@ dofile(minetest.get_modpath("mobs").."/treemonster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/wolf.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/lava_flan.lua") -- Zeg9
 dofile(minetest.get_modpath("mobs").."/mese_monster.lua") -- Zeg9
-dofile(minetest.get_modpath("mobs").."/spider.lua") -- https://forum.minetest.net/viewtopic.php?pid=127538
+dofile(minetest.get_modpath("mobs").."/spider.lua") -- AspireMint
 
 -- NPC
-dofile(minetest.get_modpath("mobs").."/npc.lua")
+dofile(minetest.get_modpath("mobs").."/npc.lua") -- TenPlus1
 
 -- Creeper (fast impl by davedevils)
 dofile(minetest.get_modpath("mobs").."/creeper.lua")

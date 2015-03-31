@@ -15,19 +15,22 @@ mobs:register_mob("mobs:creeper", {
 	visual = "mesh",
 	mesh = "mobs_tree_monster.x",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_creeper.png"},
+	textures = {
+		{"mobs_creeper.png"},
 	},
 	visual_size = {x=4.5,y=4.5},
 	blood_texture = "mobs_creeper_inv.png",
-
-		--	Continuer d'organiser le code à partir d'ici --
-
+	-- sounds
 	makes_footstep_sound = true,
-	view_range = 16,
+	sounds = {
+		random = "mobs_treemonster",
+	},
+	-- speed and jump
 	walk_velocity = 2,
 	run_velocity = 4,
+	jump = true,
+	view_range = 16,
+	-- drops mese or diamond when dead
 	drops = {
 		{name = "default:torch",
 		chance = 10,
@@ -46,27 +49,18 @@ mobs:register_mob("mobs:creeper", {
 		min = 2,
 		max = 3,},
 	},
-	light_resistant = true,
-	water_damage = 0,
+	-- damaged by
+	water_damage = 2,
 	lava_damage = 15,
 	light_damage = 0,
-	disable_fall_damage = false,
+	-- model animation
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 24,
-		walk_start = 25,
-		walk_end = 47,
-		run_start = 48,
-		run_end = 62,
-		punch_start = 48,
-		punch_end = 62,
+		stand_start = 0,		stand_end = 24,
+		walk_start = 25,		walk_end = 47,	
+		run_start = 48,			run_end = 62,
+		punch_start = 48,		punch_end = 62,
+		speed_normal = 15,		speed_run = 15,
 	},
-	sounds = {
-		random = "mobs_treemonster",
-	},
-	jump = true,
 })
 mobs:register_spawn("mobs:creeper", {"default:dirt_with_grass"}, 20, 8, 12000, 1, 31000)
 mobs:register_egg("mobs:creeper", "Creeper", "mobs_creeper_inv.png", 1)

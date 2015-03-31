@@ -21,9 +21,8 @@ mobs:register_mob("mobs:npc", {
 	visual = "mesh",
 	mesh = "character.b3d",
 	drawtype = "front",
-	available_textures = {
-		total = 1,
-		texture_1 = {"mobs_npc.png"},
+	textures = {
+		{"mobs_npc.png"},
 	},
 	visual_size = {x=1, y=1},
 	-- sounds
@@ -33,7 +32,6 @@ mobs:register_mob("mobs:npc", {
 	walk_velocity = 1.5,
 	run_velocity = 2.5,
 	jump = true,
-	step = 1,
 	-- drops wood and chance of apples when dead
 	drops = {
 		{name = "default:wood",
@@ -65,14 +63,12 @@ mobs:register_mob("mobs:npc", {
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "mobs:meat" or item:get_name() == "farming:bread" then
 			local hp = self.object:get_hp()
-			if hp >= self.hp_max then return end
+			if hp + 4 > self.hp_max then return end
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
-			local n = hp + 4
-			if n > self.hp_max then n = self.hp_max end
-			self.object:set_hp(n)	
+			self.object:set_hp(hp+4)
 		-- right clicking with gold lump drops random item from mobs.npc_drops
 		elseif item:get_name() == "default:gold_lump" then
 			if not minetest.setting_getbool("creative_mode") then

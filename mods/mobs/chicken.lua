@@ -13,14 +13,11 @@ mobs:register_mob("mobs:chicken", {
 	visual = "mesh",
 	mesh = "mobs_chicken.x",
 	drawtype = "front",
-	available_textures = {
-		total = 2,
-		texture_1 = {"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png",
-					"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png",
-					"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png"},
-		texture_2 = {"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png",
-					"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png",
-					"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png"},
+	textures = {
+		{"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png",
+		"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png"},
+		{"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png",
+		"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png"},
 	},
 	child_texture = {
 		{"mobs_chick.png", "mobs_chick.png", "mobs_chick.png", "mobs_chick.png",
@@ -57,7 +54,7 @@ mobs:register_mob("mobs:chicken", {
 	-- follows wheat
 	follow = "farming:seed_wheat", view_range = 8,
 	-- replace air with egg (lay)
-	replace_rate = 1000,
+	replace_rate = 2000,
 	replace_what = {"air"},
 	replace_with = "mobs:egg",
 	-- right click to pick up chicken
@@ -70,7 +67,10 @@ mobs:register_mob("mobs:chicken", {
 				clicker:set_wielded_item(tool)
 			end
 			self.food = (self.food or 0) + 1
-			if self.food >= 4 then
+			if self.child == true then
+				self.hornytimer = self.hornytimer + 10
+			end
+			if self.food >= 8 then
 				self.food = 0
 				if self.child == false then self.horny = true end
 				self.gotten = false -- reset
@@ -86,6 +86,12 @@ mobs:register_mob("mobs:chicken", {
 		end
 	end,
 
+		if clicker:is_player() and clicker:get_inventory() and self.child == false
+		and clicker:get_inventory():room_for_item("main", "mobs:chicken") then
+			clicker:get_inventory():add_item("main", "mobs:chicken")
+			self.object:remove()
+		end
+	end,
 })
 -- spawn on default or bamboo grass between 8 and 20 light, 1 in 9000 change, 1 chicken in area up to 31000 in height
 mobs:register_spawn("mobs:chicken", {"default:dirt_with_grass"}, 20, 0, 10000, 1, 31000)
