@@ -1,36 +1,36 @@
 minetest.log("action","[mod soundset] Loading...")
 
-sounds = {}
-sounds.file = minetest.get_worldpath() .. "/sounds_config.txt"
-sounds.gainplayers = {}
-sounds.tmp = {}
+soundset = {}
+soundset.file = minetest.get_worldpath() .. "/sounds_config.txt"
+soundset.gainplayers = {}
+soundset.tmp = {}
 
 
 local function save_sounds_config()
-	local input = io.open(sounds.file, "w")
+	local input = io.open(soundset.file, "w")
 	if input then
-		input:write(minetest.serialize(sounds.gainplayers))
+		input:write(minetest.serialize(soundset.gainplayers))
 		input:close()
 	else
-		minetest.log("action","echec d'ouverture (mode:w) de " .. sounds.file)
+		minetest.log("action","echec d'ouverture (mode:w) de " .. soundset.file)
 	end
 end
 
 
 local function load_sounds_config()
-	local file = io.open(sounds.file, "r")
+	local file = io.open(soundset.file, "r")
 	if file then
-		sounds.gainplayers = minetest.deserialize(file:read("*all"))
+		soundset.gainplayers = minetest.deserialize(file:read("*all"))
 		file:close()
 	end
-	if sounds.gainplayers == nil or type(sounds.gainplayers) ~= "table" then
-		sounds.gainplayers = {}
+	if soundset.gainplayers == nil or type(soundset.gainplayers) ~= "table" then
+		soundset.gainplayers = {}
 	end
 end
 
 load_sounds_config()
 
-sounds.set_sound = function(name, param)
+soundset.set_sound = function(name, param)
 	if param == "" then
 		minetest.chat_send_player(name, "/setsound <music|ambience|mobs|other> <number>")
 		return
@@ -57,22 +57,22 @@ sounds.set_sound = function(name, param)
 		value = 100
 	end
 	
-	if sounds.gainplayers[name][param_name] == value then
+	if soundset.gainplayers[name][param_name] == value then
 		minetest.chat_send_player(name, "volume " .. param_name .. " already set to " .. value)
 		return
 	end
 		
-	sounds.gainplayers[name][param_name] = value
+	soundset.gainplayers[name][param_name] = value
 	minetest.chat_send_player(name, "sound " .. param_name .. " set to " .. value)
 	save_sounds_config()
 end
 
 
-sounds.get_gain = function(name, sound_type)
+soundset.get_gain = function(name, sound_type)
 	if name == nil or name == "" then
 		return 1
 	end
-	local gain = sounds.gainplayers[name][sound_type]
+	local gain = soundset.gainplayers[name][sound_type]
 	if gain == nil then
 		return 1
 	end
@@ -90,17 +90,22 @@ local formspec = "size[6,6]"..
 				"image_button[1.6,2;1,1;soundset_dec.png;vambience;-]"..
 				"label[2.7,2.2;%s]"..
 				"image_button[3.5,2;1,1;soundset_inc.png;vambience;+]"..
+				"label[0,3.2;OTHER]"..
+				"image_button[1.6,3;1,1;soundset_dec.png;vother;-]"..
+				"label[2.7,3.2;%s]"..
+				"image_button[3.5,3;1,1;soundset_inc.png;vother;+]"..
 				"button_exit[0.5,5.2;1.5,1;abort;Abort]"..
 				"button_exit[4,5.2;1.5,1;abort;Ok]"
 
 
-local on_show_settings = function(name, music, ambience)
-	if not sounds.tmp[name] then
-		sounds.tmp[name] = {}
+local on_show_settings = function(name, music, ambience, other)
+	if not soundset.tmp[name] then
+		soundset.tmp[name] = {}
 	end
-	sounds.tmp[name]["music"] = music
-	sounds.tmp[name]["ambience"] = ambience
-	minetest.show_formspec( name, "soundset:settings", string.format(formspec, tostring(music), tostring(ambience) ))
+	soundset.tmp[name]["music"] = music
+	soundset.tmp[name]["ambience"] = ambience
+	soundset.tmp[name]["other"] = other
+	minetest.show_formspec( name, "soundset:settings", string.format(formspec, tostring(music), tostring(ambience), tostring(other) ))
 end
 
 
@@ -108,18 +113,20 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname == "soundset:settings" then
 		local name = player:get_player_name()
 		if not name then return end
-		local fmusic = sounds.tmp[name]["music"]
-		local fambience = sounds.tmp[name]["ambience"]
+		local fmusic = soundset.tmp[name]["music"]
+		local fambience = soundset.tmp[name]["ambience"]
+		local fother = soundset.tmp[name]["other"]
 		if fields["abort"] == "Ok" then
-			if sounds.gainplayers[name]["music"] ~= fmusic or sounds.gainplayers[name]["ambience"] ~= fambience then
-				sounds.gainplayers[name]["music"] = fmusic
-				sounds.gainplayers[name]["ambience"] = fambience
+			if soundset.gainplayers[name]["music"] ~= fmusic or soundset.gainplayers[name]["ambience"] ~= fambience or soundset.gainplayers[name]["other"] ~= fother then
+				soundset.gainplayers[name]["music"] = fmusic
+				soundset.gainplayers[name]["ambience"] = fambience
+				soundset.gainplayers[name]["other"] = fother
 				save_sounds_config()
 			end
-			sounds.tmp[name] = nil
+			soundset.tmp[name] = nil
 			return
 		elseif fields["abort"] == "Abort" then
-			sounds.tmp[name] = nil
+			soundset.tmp[name] = nil
 			return
 		elseif fields["vmusic"] == "+" then
 			if fmusic < 100 then
@@ -149,14 +156,28 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 					fambience = 0
 				end
 			end
+		elseif fields["vother"] == "+" then
+			if fother < 100 then
+				fother = fother +5
+				if fother > 100 then
+					fother = 100
+				end
+			end
+		elseif fields["vother"] == "-" then
+			if fother > 0 then
+				fother = fother -5
+				if fother < 0 then
+					fother = 0
+				end
+			end
 		elseif fields["quit"] == "true" then
-			sounds.tmp[name] = nil
+			soundset.tmp[name] = nil
 			return
 		else
 			return
 		end
 
-		on_show_settings(name, fmusic, fambience)
+		on_show_settings(name, fmusic, fambience, fother)
 	end
 end)
 
@@ -169,7 +190,7 @@ if (minetest.get_modpath("unified_inventory")) then
 		action = function(player)
 			local name = player:get_player_name()
 			if not name then return end
-			on_show_settings(name, sounds.gainplayers[name]["music"], sounds.gainplayers[name]["ambience"])
+			on_show_settings(name, soundset.gainplayers[name]["music"], soundset.gainplayers[name]["ambience"], soundset.gainplayers[name]["other"])
 		end,
 	})
 end
@@ -180,7 +201,7 @@ minetest.register_chatcommand("soundset", {
 	privs = {interact=true},
 	func = function(name, param)
 		if not name then return end
-		on_show_settings(name, sounds.gainplayers[name]["music"], sounds.gainplayers[name]["ambience"])
+		on_show_settings(name, soundset.gainplayers[name]["music"], soundset.gainplayers[name]["ambience"], soundset.gainplayers[name]["other"])
 	end
 })	
 
@@ -190,7 +211,7 @@ minetest.register_chatcommand("soundsets", {
 	params = "<music|ambience|mobs|other> <number>",
 	description = "Set volume sound <music|ambience|mobs|other>",
 	privs = {interact=true},
-	func = sounds.set_sound,
+	func = soundset.set_sound,
 })
 
 minetest.register_chatcommand("soundsetg", {
@@ -199,7 +220,7 @@ minetest.register_chatcommand("soundsetg", {
 	privs = {interact=true},
 	func = function(name, param)
 		local conf = ""
-		for k, v in pairs(sounds.gainplayers[name]) do
+		for k, v in pairs(soundset.gainplayers[name]) do
 			conf = conf .. " " .. k .. ":" .. v
 		end
 		minetest.chat_send_player(name, "sounds conf " .. conf)
@@ -209,8 +230,8 @@ minetest.register_chatcommand("soundsetg", {
 
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
-	if sounds.gainplayers[name] == nil then
-		sounds.gainplayers[name] = { ["music"] = 50, ["ambience"] = 50, ["mobs"] = 50, ["other"] = 50 }
+	if soundset.gainplayers[name] == nil then
+		soundset.gainplayers[name] = { ["music"] = 50, ["ambience"] = 50, ["mobs"] = 50, ["other"] = 50 }
 	end
 end)
 
