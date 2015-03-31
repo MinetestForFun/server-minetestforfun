@@ -83,9 +83,6 @@ mobs:register_mob("mobs:chicken", {
 				clicker:get_inventory():add_item("main", "mobs:chicken")
 				self.object:remove()
 			end
-		end
-	end,
-
 		if clicker:is_player() and clicker:get_inventory() and self.child == false
 		and clicker:get_inventory():room_for_item("main", "mobs:chicken") then
 			clicker:get_inventory():add_item("main", "mobs:chicken")
