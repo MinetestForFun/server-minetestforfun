@@ -756,7 +756,7 @@ minetest.register_globalstep(function(dtime)
 --				end
 				if ambience.on_start ~= nil and played_on_start == false then
 					played_on_start = true
-					minetest.sound_play(ambience.on_start, {to_player=player:get_player_name(),gain=0.5*soundset.get_gain(player:get_player_name(), "ambience"))
+					minetest.sound_play(ambience.on_start, {to_player=player:get_player_name(),gain=0.5*soundset.get_gain(player:get_player_name(), "ambience")})
 				end
 			--	minetest.chat_send_all("ambience: " ..ambience )
 			--	if ambience.on_start ~= nil and played_on_start_flying == false then
