@@ -354,10 +354,10 @@ minetest.register_craft({
 
 doors.register_door("doors:door_cherry", {
 	description = "Cherry Door",
-	inventory_image = "door_wood_cherry.png",
+	inventory_image = "doors_wood_cherry.png",
 	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
-	tiles_bottom = {"door_wood_cherry_b.png", "default_wood_cherry_planks.png"},
-	tiles_top = {"door_wood_cherry_a.png", "default_wood_cherry_planks.png"},
+	tiles_bottom = {"doors_wood_cherry_b.png", "default_wood_cherry_planks.png"},
+	tiles_top = {"doors_wood_cherry_a.png", "default_wood_cherry_planks.png"},
 	sounds = default.node_sound_wood_defaults(),
 	sunlight = false,
 })
@@ -444,5 +444,25 @@ minetest.register_craft({
 		{'group:wood', 'group:wood', 'group:wood'},
 		{'group:wood', 'group:wood', 'group:wood'},
 		{'', '', ''},
+	}
+})
+
+doors.register_trapdoor("doors:trapdoor_cherry", {
+	description = "Cherry tree trapdoor",
+	inventory_image = "doors_trapdoor_cherry.png",
+	wields_images = "doors_trapdoor_cherry.png",
+	tile_front = "doors_trapdoor_cherry.png",
+	tile_side = "default_wood_cherry_planks.png",
+	groups = {snappy=1, choppy=2, oddly_breakable_by_hand=2, flammable=2, door=1},
+	sounds = default.node_sound_wood_defaults(),
+	sound_open = "doors_door_open",
+	sound_close = "doors_door_close"
+})
+
+minetest.register_craft({
+	output = 'doors:trapdoor_cherry 2',
+	recipe = {
+		{'default:cherry_plank', 'default:cherry_plank', 'default:cherry_plank'},
+		{'default:cherry_plank', 'default:cherry_plank', 'default:cherry_plank'},
 	}
 })
