@@ -29,8 +29,8 @@ mobs:register_mob("mobs:npc", {
 	makes_footstep_sound = true,
 	sounds = {},
 	-- speed and jump
-	walk_velocity = 1.5,
-	run_velocity = 2.5,
+	walk_velocity = 2,
+	run_velocity = 3,
 	jump = true,
 	-- drops wood and chance of apples when dead
 	drops = {
@@ -50,6 +50,9 @@ mobs:register_mob("mobs:npc", {
 	-- follow diamond
 	follow = "default:diamond",
 	view_range = 16,
+	-- set owner and order
+	owner = "",
+	order = "follow",
 	-- model animation
 	animation = {
 		speed_normal = 30,		speed_run = 30,
@@ -78,6 +81,16 @@ mobs:register_mob("mobs:npc", {
 			local pos = self.object:getpos()
 			pos.y = pos.y + 0.5
 			minetest.add_item(pos, {name = mobs.npc_drops[math.random(1,#mobs.npc_drops)]})
+		else
+			if self.owner == "" then
+				self.owner = clicker:get_player_name()
+			else
+				if self.order == "follow" then
+					self.order = "stand"
+				else
+					self.order = "follow"
+				end
+			end
 		end
 	end,
 })

@@ -1,4 +1,4 @@
- -- Mobs Api (29th March 2015)
+-- Mobs Api (2nd April 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -12,6 +12,10 @@ local peaceful_only = minetest.setting_getbool("only_peaceful_mobs")
 function mobs:register_mob(name, def)
 	minetest.register_entity(name, {
 		name = name,
+
+		owner = def.owner,
+		order = def.order or "",
+
 		hp_min = def.hp_min or 5,
 		hp_max = def.hp_max or 10,
 		physical = true,
@@ -20,7 +24,7 @@ function mobs:register_mob(name, def)
 		visual_size = def.visual_size or {x=1, y=1},
 		mesh = def.mesh,
 		makes_footstep_sound = def.makes_footstep_sound,
-		view_range = def.view_range,
+		view_range = def.view_range or 5,
 		walk_velocity = def.walk_velocity,
 		run_velocity = def.run_velocity,
 		damage = def.damage,
@@ -395,34 +399,43 @@ function mobs:register_mob(name, def)
 				end
 			end
 
-			if self.follow ~= "" and not self.following then
+			if (self.follow ~= "" or self.order == "follow") and not self.following and self.state ~= "attack" then
 				local s, p, dist
 				for _,player in pairs(minetest.get_connected_players()) do
 					s = self.object:getpos()
 					p = player:getpos()
 					dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
-					if self.view_range and dist < self.view_range then
+					if dist < self.view_range then
 						self.following = player
 						break
 					end
 				end
 			end
 
-			--if self.following and self.following:is_player() and self.following:get_wielded_item():get_name() ~= self.follow then
-			if self.following and self.following.is_player and self.following:get_wielded_item():get_name() ~= self.follow then
-				self.following = nil
-				self.v_start = false
+			if self.type == "npc" and self.order == "follow" and self.state ~= "attack" then
+				-- npc stop following player if not owner
+				if self.following and self.type == "npc" and self.owner and self.owner ~= self.following:get_player_name() then
+					self.following = nil
+					self.v_start = false
+				end
+			else
+				-- stop following player if not holding specific item
+				if self.following and self.following.is_player and self.following:get_wielded_item():get_name() ~= self.follow then
+					self.following = nil
+					self.v_start = false
+				end
 			end
 
 			if self.following then
 
-                local s = self.object:getpos()
-                local p
-                if self.following.is_player and self.following:is_player() then
+				local s = self.object:getpos()
+				local p
+
+				if self.following.is_player and self.following:is_player() then
 					p = self.following:getpos()
 				elseif self.following.object then
 					p = self.following.object:getpos()
-                end
+				end
 
 				if p then
 					local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
@@ -439,7 +452,9 @@ function mobs:register_mob(name, def)
 							yaw = yaw+math.pi
 						end
 						self.object:setyaw(yaw)
-						if dist > 2 then
+
+						-- anyone but standing npc's can move along
+						if dist > 2 and self.order ~= "stand" then
 							if not self.v_start then
 								self.v_start = true
 								self.set_velocity(self, self.walk_velocity)
@@ -456,6 +471,7 @@ function mobs:register_mob(name, def)
 							self.v_start = false
 							self.set_velocity(self, 0)
 							self:set_animation("stand")
+
 						end
 						return
 					end
@@ -499,10 +515,17 @@ function mobs:register_mob(name, def)
 				self.set_velocity(self, 0)
 				self.set_animation(self, "stand")
 
-				if math.random(1, 100) <= self.walk_chance then
-					self.set_velocity(self, self.walk_velocity)
-					self.state = "walk"
-					self.set_animation(self, "walk")
+				-- npc's ordered to stand stay standing
+				if self.type == "npc" and self.order == "stand" then
+					self.set_velocity(self, 0)
+					self.state = "stand"
+					self:set_animation("stand")
+				else
+					if math.random(1, 100) <= self.walk_chance then
+						self.set_velocity(self, self.walk_velocity)
+						self.state = "walk"
+						self.set_animation(self, "walk")
+					end
 				end
 
 			elseif self.state == "walk" then
@@ -965,10 +988,12 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 
 			-- are we spawning inside a solid node?
 			local nod = minetest.get_node_or_nil(pos)
-			if not nod or not minetest.registered_nodes[nod.name] or minetest.registered_nodes[nod.name].walkable == true then return end
+			if not nod or not minetest.registered_nodes[nod.name]
+			or minetest.registered_nodes[nod.name].walkable == true then return end
 			pos.y = pos.y + 1
 			nod = minetest.get_node_or_nil(pos)
-			if not nod or minetest.registered_nodes[nod.name].walkable == true then return end
+			if not nod or not minetest.registered_nodes[nod.name]
+			or minetest.registered_nodes[nod.name].walkable == true then return end
 
 			if minetest.setting_getbool("display_mob_spawn") then
 				minetest.chat_send_all("[mobs] Add "..name.." at "..minetest.pos_to_string(pos))
@@ -987,8 +1012,8 @@ function effect(pos, amount, texture)
 	minetest.add_particlespawner({
 		amount = amount,
 		time = 0.25,
-		minpos = {x=pos.x-0.2, y=pos.y-0.2, z=pos.z-0.2},
-		maxpos = {x=pos.x+0.2, y=pos.y+0.2, z=pos.z+0.2},
+		minpos = pos,
+		maxpos = pos,
 		minvel = {x=-0, y=-2, z=-0},
 		maxvel = {x=2,  y=2,  z=2},
 		minacc = {x=-4, y=-4, z=-4},
