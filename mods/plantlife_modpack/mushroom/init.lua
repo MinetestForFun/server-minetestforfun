@@ -39,7 +39,7 @@ minetest.register_node("mushroom:red",{
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0, 0.3}
 	},
-    drop = "mushroom:red",
+	drop = "mushroom:red",
 })
 
 minetest.register_node("mushroom:spore_brown",{
@@ -107,7 +107,7 @@ minetest.register_node("mushroom:red_natural",{
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0, 0.3}
 	},
-    drop = "mushroom:red",
+	drop = "mushroom:red",
 })
 
 -- Spore Growing ABMs
@@ -121,7 +121,7 @@ minetest.register_abm({
 		local soil = minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z})
 		if (soil.name == "farming:soil_wet" or string.find(soil.name, "homedecor:flower_pot_"))
 			and minetest.get_node_light(pos, nil) < 8 then
-	 			minetest.add_node({x=pos.x,y=pos.y,z=pos.z}, {name="mushroom:brown"})
+	 			minetest.set_node({x=pos.x,y=pos.y,z=pos.z}, {name="mushroom:brown"})
 		end
 	end
 })
@@ -135,7 +135,7 @@ minetest.register_abm({
 		local soil = minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z})
 		if (soil.name == "farming:soil_wet" or string.find(soil.name, "homedecor:flower_pot_"))
 			and minetest.get_node_light(pos, nil) < 8 then
-	 			minetest.add_node({x=pos.x,y=pos.y,z=pos.z}, {name="mushroom:red"})
+	 			minetest.set_node({x=pos.x,y=pos.y,z=pos.z}, {name="mushroom:red"})
 		end
 	end
 })
@@ -179,9 +179,9 @@ minetest.register_abm({
 			and minetest.find_node_near(pos, 1, trees_list)
 			and minetest.find_node_near(pos, 3, "default:water_source") then
 			if math.random(0, 1) == 0 then
-				minetest.add_node(top_pos, {name="mushroom:brown_natural"})
+				minetest.set_node(top_pos, {name="mushroom:brown_natural"})
 			else
-				minetest.add_node(top_pos, {name="mushroom:red_natural"})
+				minetest.set_node(top_pos, {name="mushroom:red_natural"})
 			end
 		end
 	end
@@ -197,9 +197,9 @@ minetest.register_abm({
 		if minetest.get_node(top_pos).name == "air" and minetest.get_node_light(top_pos, nil) < 8 
 			and minetest.find_node_near(pos, 1, {"default:water_source"}) then
 			if math.random(0,1) == 0 then
-				minetest.add_node(top_pos, {name="mushroom:brown_natural"})
+				minetest.set_node(top_pos, {name="mushroom:brown_natural"})
 			else
-				minetest.add_node(top_pos, {name="mushroom:red_natural"})
+				minetest.set_node(top_pos, {name="mushroom:red_natural"})
 			end
 		end
 	end
@@ -230,7 +230,7 @@ minetest.register_abm({
 			    or newsoil.name == "default:dirt"
 			    or string.match(newsoil.name, woodsoil_str)) 
 			  and minetest.find_node_near(newpos, 3, "default:water_source") then
-				minetest.add_node(newpos, {name=node.name})
+				minetest.set_node(newpos, {name=node.name})
 			end		
 		end
 	end
@@ -259,4 +259,3 @@ dofile(minetest.get_modpath("mushroom").."/crafting.lua")
 dofile(minetest.get_modpath("mushroom").."/compat.lua")
 
 print("[Mushrooms] loaded.")
-

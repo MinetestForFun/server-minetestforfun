@@ -12,6 +12,8 @@ local lilies_max_count = 320
 local lilies_rarity = 33
 local seaweed_max_count = 320
 local seaweed_rarity = 33
+local sunflowers_max_count = 10
+local sunflowers_rarity = 25
 
 -- register the various rotations of waterlilies
 
@@ -267,6 +269,36 @@ for i in ipairs(flowers_list) do
 	minetest.register_alias("flowers:flower_"..flower.."_pot", "flowers:potted_"..flower)
 end
 
+local box = {
+	type="fixed",
+	fixed = { { -0.2, -0.5, -0.2, 0.2, 0.5, 0.2 } },
+}
+
+minetest.register_node(":flowers:sunflower", {
+	description = "Sunflower",
+	drawtype = "mesh",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	inventory_image = "flowers_sunflower_inv.png",
+	mesh = "flowers_sunflower.obj",
+	tiles = { "flowers_sunflower.png" },
+	walkable = false,
+	buildable_to = true,
+	is_ground_content = true,
+	groups = { dig_immediate=3, flora=1, flammable=3 },
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = box,
+	collision_box = box,
+})
+
+minetest.override_item("flowers:sunflower", {drop = {
+	max_items = 1,
+	items = {
+		{items = {"farming:seed_wheat"}, rarity = 8},
+		{items = {"flowers:sunflower"}},
+	}
+}})
+
 local extra_aliases = {
 	"waterlily",
 	"waterlily_225",
@@ -381,6 +413,20 @@ plantslib:register_generate_plant({
   },
   flowers_plus.grow_seaweed
 )
+
+plantslib:register_generate_plant({
+	surface = {"default:dirt_with_grass"},
+	avoid_nodes = { "flowers:sunflower" },
+	max_count = sunflowers_max_count,
+	rarity = sunflowers_rarity,
+	min_elevation = 0,
+	plantlife_limit = -0.9,
+	temp_max = 0.53,
+	random_facedir = {0,3},
+  },
+  "flowers:sunflower"
+)
+
 -- spawn ABM registrations
 
 plantslib:spawn_on_surfaces({
@@ -446,6 +492,21 @@ plantslib:spawn_on_surfaces({
 	facedir = 1
 })
 
+plantslib:spawn_on_surfaces({
+	spawn_delay = SPAWN_DELAY*2,
+	spawn_plants = {"flowers:sunflower"},
+	spawn_chance = SPAWN_CHANCE*2,
+	spawn_surfaces = {"default:dirt_with_grass"},
+	avoid_nodes = {"group:flower"},
+	seed_diff = flowers_seed_diff,
+	light_min = 11,
+	light_max = 14,
+	min_elevation = 0,
+	plantlife_limit = -0.9,
+	temp_max = 0.53,
+	random_facedir = {0,3}
+})
+
 -- crafting recipes!
 
 minetest.register_craftitem(":flowers:flower_pot", {
@@ -472,5 +533,6 @@ minetest.register_alias("flowers:flower_cotton_pot", "flowers:potted_dandelion_w
 minetest.register_alias("flowers:potted_cotton_plant", "flowers:potted_dandelion_white")
 minetest.register_alias("flowers:cotton", "farming:string")
 minetest.register_alias("flowers:cotton_wad", "farming:string")
+minetest.register_alias("sunflower:sunflower", "flowers:sunflower")
 
 print(S("[Flowers] Loaded."))
