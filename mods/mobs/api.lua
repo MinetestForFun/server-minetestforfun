@@ -627,17 +627,20 @@ function mobs:register_mob(name, def)
 										if x*x+y*y+z*z <= 3 * 3 + 3 then
 											local np={x=pos.x+x,y=pos.y+y,z=pos.z+z}
 											local n = minetest.get_node(np)
-											if n.name ~= "air" and n.name ~= "doors:door_steel_b_1" and n.name ~= "doors:door_steel_t_1"
-												and n.name ~= "doors:door_steel_b_2" and n.name ~= "doors:door_steel_t_2"
-												and n.name ~= "default:chest_locked" and n.name ~= "default:obsidian" and n.name ~= "default:bedrock"
+											if n.name ~= "air" and n.name ~= "doors:door_steel_b_1" and n.name ~= "doors:door_steel_t_1" 
+												and n.name ~= "doors:door_steel_b_2" and n.name ~= "doors:door_steel_t_2" 
+												and n.name ~= "default:chest_locked" and n.name ~= "default:obsidian"  and n.name ~= "default:obsidian_cooled" 
+												and n.name ~= "default:obsidianbrick" and n.name ~= "default:bedrock" 
+												and n.name ~= "more_chests:cobble" and n.name ~= "more_chests:shared" and n.name ~= "more_chests:secret" 
+												and n.name ~= "more_chests:dropbox" and n.name ~= "chesttools:shared_chest" 
 												and minetest.get_item_group(n.name, "unbreakable") ~= 1 and next(areas:getAreasAtPos(np)) == nil then
 												--activate_if_tnt(n.name, np, pos, 3) -- Pas de module TNT sur le serveur donc inutile
 												if n.name == "default:chest" then
 													meta = minetest.get_meta(np)
-													inv  = meta:get_inventory()
+													local inv  = meta:get_inventory()
 													for i = 1,32 do
-														m_stack = inv:get_stack("main",i)
-														obj = minetest.add_item(pos,m_stack)
+														local m_stack = inv:get_stack("main",i)
+														local obj = minetest.add_item(pos,m_stack)
 														if obj then
 															obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
 														end
