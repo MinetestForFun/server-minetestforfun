@@ -21,6 +21,8 @@ Contributors
   > Kittens carer, and debogger.
 - davedevils
   > Gardener, creepers' father and chickens' friend
+- Obani
+  > Sound engineer
 
 minetestforfun_game sous-jeu et mods
 ===================
@@ -45,3 +47,5 @@ Contributeurs
   > Soigneur et deboggueur de chatons.
 - davedevils
   > Jardinier, père des creeper et ami des poulets
+- Obani
+  > Ingénieur du son
