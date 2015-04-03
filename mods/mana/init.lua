@@ -208,7 +208,7 @@ minetest.register_on_leaveplayer(function(player)
 	if minetest.get_modpath("hudbars") == nil then
 		player:hud_remove(mana.playerlist[playername].hudid)
 	end
-	mana.playerlist[playername] = nil
+	--mana.playerlist[playername] = nil --uncomment to reset mana at deco/reco
 end)
 
 minetest.register_on_shutdown(function()
