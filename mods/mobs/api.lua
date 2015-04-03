@@ -461,7 +461,7 @@ function mobs:register_mob(name, def)
 							else
 								if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
 									local v = self.object:getvelocity()
-									v.y = 6.5 -- 6 (in older api.lua version)
+									v.y = 7 -- 6/6.5 (in older api.lua version)
 									self.object:setvelocity(v)
 								end
 								self.set_velocity(self, self.walk_velocity)
