@@ -293,7 +293,7 @@ if minetest.get_modpath("mobs") ~= nil then
 	overwrite("mobs:meat_raw", 3)
 	overwrite("mobs:meat", 5)
 	overwrite("mobs:rat_cooked", 5)
-	overwrite("mobs:honey", 2)
+	overwrite("mobs:honey", 6)
 	overwrite("mobs:pork_raw", 4)
 	overwrite("mobs:pork_cooked", 7)
 	overwrite("mobs:chicken_raw", 2)

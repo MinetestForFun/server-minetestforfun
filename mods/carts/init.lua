@@ -635,6 +635,7 @@ minetest.register_node(":default:rail", {
 		effector = {
 			action_off = function(pos, node)
 				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+				minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
 			end,
 
 			action_on = function(pos, node)
@@ -698,9 +699,8 @@ minetest.register_node("carts:rail_power", {
 	groups = {bendy = 2, snappy = 1, dig_immediate = 2, rail = 1, connect_to_raillike = 1},
 
 	after_place_node = function(pos, placer, itemstack)
-		if not mesecon then
-			minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
-		end
+		minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+		minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
 	end,
 
 	mesecons = {
@@ -736,7 +736,8 @@ minetest.register_node("carts:rail_power_invisible", {
 	groups = {unbreakable = 1, rail = 1, connect_to_raillike = 1, not_in_creative_inventory = 1},
 
 	after_place_node = function(pos, placer, itemstack)
-	  minetest.get_meta(pos):set_string("cart_acceleration", "10")
+		minetest.get_meta(pos):set_string("cart_acceleration", "10")
+		minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
 	end,
 })
 
@@ -757,9 +758,8 @@ minetest.register_node("carts:rail_brake", {
 	groups = {bendy = 2, snappy = 1, dig_immediate = 2, rail = 1, connect_to_raillike = 1},
 
 	after_place_node = function(pos, placer, itemstack)
-		if not mesecon then
-			minetest.get_meta(pos):set_string("cart_acceleration", "-0.2")
-		end
+		minetest.get_meta(pos):set_string("cart_acceleration", "-0.2")
+		minetest.get_meta(pos):set_string("cart_touring_velocity", cart.TARGET_TOUR_V)
 	end,
 
 	mesecons = {
@@ -795,7 +795,8 @@ minetest.register_node("carts:rail_brake_invisible", {
 	groups = {bendy = 2, snappy = 1, dig_immediate = 2, rail = 1, connect_to_raillike = 1, not_in_creative_inventory = 1},
 
 	after_place_node = function(pos, placer, itemstack)
-			minetest.get_meta(pos):set_string("cart_acceleration", "-10")
+		minetest.get_meta(pos):set_string("cart_acceleration", "-10")
+		minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
 	end,
 })
 
@@ -873,3 +874,13 @@ minetest.register_alias("carts:tourrail", "carts:rail_tour")
 if minetest.setting_getbool("log_mods") then
 	minetest.log("action", "Carbone: [carts] loaded.")
 end
+
+-- temporary
+minetest.register_abm({
+	nodes = {"group:rail"},
+	func = function(pos)
+		local name = minetest.get_node(pos).name
+		minetest.remove_node(pos)
+		minetest.place_node(pos,{name = name})
+	end
+})
