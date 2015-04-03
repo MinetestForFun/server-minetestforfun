@@ -65,7 +65,7 @@ local function sound_play_all(dead)
 	for _, p in ipairs(minetest.get_connected_players()) do
 		local player_name = p:get_player_name()
 		if player_name and player_name ~= dead then
-			minetest.sound_play({name="death_messages_people_1", to_player=player_name, gain=0.5*soundset.get_gain(player_name,"other")})
+			minetest.sound_play("death_messages_people_1",{to_player=player_name, gain=0.5*soundset.get_gain(player_name,"other")})
 		end
 	end
 end
@@ -93,7 +93,7 @@ if RANDOM_MESSAGES == true then
 		else
 			minetest.chat_send_all(player_name ..  messages.other[math.random(1,#messages.other)] )
 		end
-		minetest.sound_play({name = sounds[math.random(1,#sounds)],to_player=player:get_player_name(),gain=0.5*soundset.get_gain(player:get_player_name(),"other")})
+		minetest.sound_play(sounds[math.random(1,#sounds)],{to_player=player:get_player_name(),gain=0.5*soundset.get_gain(player:get_player_name(),"other")})
 		sound_play_all(player:get_player_name())
 	end)
 	
@@ -117,7 +117,7 @@ else
 		else
 			minetest.chat_send_all(player_name .. " died.")
 		end
-		minetest.sound_play({name = sounds[math.random(1,#sounds)],to_player=player:get_player_name(),gain=0.5*soundset.get_gain(player:get_player_name(),"other")})
+		minetest.sound_play(sounds[math.random(1,#sounds)],{to_player=player:get_player_name(),gain=0.5*soundset.get_gain(player:get_player_name(),"other")})
 		sound_play_all(player:get_player_name())
 	end)
 end
