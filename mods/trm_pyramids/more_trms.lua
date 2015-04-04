@@ -85,4 +85,135 @@ treasurer.register_treasure("moreblocks:iron_check", 0.02, {1,3})
 treasurer.register_treasure("stained_glass:2_9", 0.02, {1,4})
 treasurer.register_treasure("stained_glass:7_5_6", 0.02, {1,4})
 
+light:
+-- Is a light source.
+-- Preciousness is based on the brightness. For the maximum brightness (before sun brightness), preciousness should be 3.
+
+"moreblocks:super_glow_glass" 				--rare
+"moreblocks:glow_glass" 					--rare
+"glow:lamp" 								--uncommun
+"glow:stone" 								--uncommun
+"bobblocks:blueblock" 						--uncommun
+"bobblocks:bluepole" 						--uncommun
+"bobblocks:greenblock" 						--uncommun
+"bobblocks:greenpole" 						--uncommun
+"bobblocks:greyblock" 						--uncommun
+"bobblocks:greypole" 						--uncommun
+"bobblocks:indigoblock" 					--uncommun
+"bobblocks:indigopole" 						--uncommun
+"bobblocks:orangeblock" 					--uncommun
+"bobblocks:orangepole" 						--uncommun
+"bobblocks:redblock" 						--uncommun
+"bobblocks:redpole" 						--uncommun
+"bobblocks:whiteblock" 						--uncommun
+"bobblocks:whitepole" 						--uncommun
+"bobblocks:yellowblock" 					--uncommun
+"bobblocks:yellowpole" 						--uncommun
+"building_blocks:fireplace" 				--uncommun
+"sealamps:lantern" 							--uncommun
+"sealamps:torch" 							--uncommun
+"default:torch" 							--commun
+"homedecor:torch_wall" 						--commun
+"chains:chandelier" 						--commun
+"homedecor:standing_lamp_off" 				--commun
+"homedecor:table_lamp_off" 					--commun
+"homedecor:glowlight_half_white" 			--commun
+"homedecor:glowlight_half_yellow" 			--commun
+"homedecor:glowlight_quarter_white" 		--commun
+"homedecor:glowlight_quarter_yellow" 		--commun
+"homedecor:glowlight_small_cube_white" 		--commun
+"homedecor:glowlight_small_cube_yellow" 	--commun
+"homedecor:lattice_lantern_large" 			--commun
+"homedecor:lattice_lantern_small" 			--commun
+"homedecor:hanging_lantern" 				--commun
+"homedecor:ground_lantern" 					--commun
+"homedecor:celling_lantern" 				--commun
+"homedecor:oil_lamp" 						--commun
+"homedecor:candle_thin" 					--commun
+"homedecor:candle" 							--commun
+"lantern:candle" 							--commun
+"lavalamp:red" 								--commun
+"lavalamp:orange" 							--commun
+"lavalamp:green" 							--commun
+"lavalamp:blue" 							--commun
+"lavalamp:violet" 							--commun
+"lavalamp:yellow" 							--commun
+"christmas_craft:christmas_lights" 			--commun
+
+building_block:
+-- A block for buildings. Includes stairs, slabs, fences and similar things.
+-- Excludes all natural blocks.
+-- Preciousness should be roughly based on the “cost” to craft the block.
+
+"nether:white" 								--siwtonic
+"default:diamondblock" 						--rare
+"default:mese" 								--rare
+"default:goldblock" 						--rare
+"default:silverblock" 						--rare
+"default:bronzeblock" 						--rare
+"default:copperblock" 						--rare
+"default:steelblock" 						--rare
+"default:tinblock" 							--rare
+"building_blocks:grate" 					--uncommon
+"moreblocks:iron_stone_bricks" 				--uncommon
+"default:coalblock" 						--uncommon
+"moreblocks:coal_stone_bricks" 				--uncommon
+"moreblocks:all_faces_jungle_tree" 			--uncommon
+"moreblocks:all_faces_tree" 				--uncommon
+"building_blocks:marble" 					--uncommon
+"building_blocks:hardwood" 					--uncommon
+"darkage:ors_brick" 						--uncommon
+"darkage:marble" 							--uncommon
+"darkage:gneiss_cobble" 					--uncommon
+"darkage:gneiss_brick" 						--uncommon
+"darkage:gneiss" 							--uncommon
+"darkage:basalt_cobble" 					--uncommon
+"colouredstonebricks:grey" 					--commun
+"colouredstonebricks:red" 					--commun
+"colouredstonebricks:dark_blue" 			--commun
+"colouredstonebricks:pink" 					--commun
+"colouredstonebricks:orange" 				--commun
+"colouredstonebricks:black" 				--commun
+"moreblocks:grey_brick" 					--commun
+"moreblocks:cactus_brick" 					--commun
+"default:brick" 							--commun
+"moreblocks:stone_tile" 					--commun
+"building_blocks:tar" 						--commun
+"christmas_craft:snowman" 					--commun
+"default:snowblock" 						--commun
+"default:mossycobble" 						--commun
+"default:cobble" 							--commun
+"default:sandstonebrick" 					--commun
+"default:desert_sand" 						--commun
+"default:sand" 								--commun
+"default:dirt" 								--commun
+
+seed:
+-- Seeds and saplings.
+-- Preciousness is based on the percieved “usefulness” of what can grow from the seed.
+"farming_seed_wheat"						--commun
+"farming:seed_cotton"						--commun
+
+transport_vehicle
+-- A vehicle to transport players and stuff, i.e. a cart or a boat.
+-- Preciousness is hard to determine, maybe speed?
+"carts:cart"								--uncommun
+"boats:boat"								--commun
+
+transport_structure
+-- A fixed structure which is neccessary for a transport vehicle to operate, i.e. rails.
+-- Preciousness is hard to dertermine …
+"carts:rail_power"							--uncommon
+"carts:rail_brake"							--uncommon
+"homedecor:fence_brass"						--commun
+"homedecor:fence_wrought_iron"				--commun
+"carts:rail_copper"							--commun
+"default:rail"								--commun
+
+ladder
+-- A ladder.
+"default:ladder"							--commun
+
+default:
+-- This is the group your treasure get assigned to if you don’t specify a group.
 
