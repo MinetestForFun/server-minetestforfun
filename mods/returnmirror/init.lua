@@ -39,7 +39,7 @@ minetest.register_tool("returnmirror:mirror_inactive", {
 			local pos = placer:getpos()
 			local newitem = ItemStack("returnmirror:mirror_active")
 			newitem:set_metadata(minetest.pos_to_string(pos))
-			minetest.sound_play( {name="returnmirror_set", gain=1}, {pos=pos, max_hear_distance=12})
+			minetest.sound_play({name="returnmirror_set", gain=1*soundset.get_gain(placer:get_player_name(),"other")}, {pos=pos, max_hear_distance=12})
 			return newitem
 		end
 	end,
