@@ -16,15 +16,16 @@ minetest.register_node("fire:basic_flame", {
 	buildable_to = true,
 	damage_per_second = 4,
 	
-	on_construct = function(pos, placer)
+--[[	on_construct = function(pos, placer)
 		fire.on_flame_add_at(pos)
 	end,
 	
 	on_destruct = function(pos, oldnode, oldmetadata, digger)
 		fire.on_flame_remove_at(pos)
-	end,
+	end,]]
 })
 
+--[[
 fire.D = 6
 -- key: position hash of low corner of area
 -- value: {handle=sound handle, name=sound name}
@@ -183,3 +184,4 @@ minetest.register_abm({
 	end,
 })
 
+]]--
