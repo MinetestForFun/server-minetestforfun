@@ -5,7 +5,7 @@ local drop = function(pos, itemstack)
 
    if obj then
 
-   obj:setvelocity({x=math.random(-1,1), y=5, z=math.random(-1,1)})
+   obj:setvelocity({x=math.random(-2.5,2.5), y=7, z=math.random(-2.5,2.5)})
 
    local remi = minetest.setting_get("remove_items")
 
