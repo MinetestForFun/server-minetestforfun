@@ -8,7 +8,7 @@ mobs:register_mob("tsm_pyramids:mummy", {
 	attack_type = "dogfight",
 	damage = 5,
 	-- health & armor
-	hp_min = 15, hp_max = 20, armor = 90,
+	hp_min = 15, hp_max = 20, armor = 80,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
@@ -25,8 +25,8 @@ mobs:register_mob("tsm_pyramids:mummy", {
 		random = "mummy",
 	},
 	-- speed and jump, sinks in water
-	walk_velocity = 3,
-	run_velocity = 5,
+	walk_velocity = 0.25, -- A tester si assez lent / trop lent, valeur actuel = moitié moins que les Tree Monster
+	run_velocity = 0.5,
 	view_range = 16,
 	jump = true,
 	floats = 0,
@@ -38,9 +38,9 @@ mobs:register_mob("tsm_pyramids:mummy", {
 		chance = 2, min = 2, max = 4,},
 	},
 	-- damaged by
-	water_damage = 3,
-	lava_damage = 1,
-	light_damage = 0,
+	water_damage = 0,
+	lava_damage = 4,
+	light_damage = 8,
 	-- model animation
 	animation = {
 		speed_normal = 15,		speed_run = 15,
@@ -51,12 +51,11 @@ mobs:register_mob("tsm_pyramids:mummy", {
 		sit_start = 81,			sit_end = 160,
 		lay_start = 162,		lay_end = 166,
 		mine_start = 74,		mine_end = 105,
-		walk_mine_start = 74,	walk_mine_end = 105,
+		walk_mine_start = 74,		walk_mine_end = 105,
 	},
 })
 
---spawn-egg/spawner
-
+-- spawner (spawn in pyramids, near the spawner)
 if not minetest.setting_getbool("only_peaceful_mobs") then
  minetest.register_abm({
 	nodenames = {"tsm_pyramids:spawner_mummy"},
@@ -114,6 +113,7 @@ minetest.register_node("tsm_pyramids:spawner_mummy", {
 	end
 })
 
+-- register spawn egg
 minetest.register_craftitem("tsm_pyramids:spawn_egg", {
 	description = "Mummy spawn-egg",
 	inventory_image = "tsm_pyramids_mummy_egg.png",
