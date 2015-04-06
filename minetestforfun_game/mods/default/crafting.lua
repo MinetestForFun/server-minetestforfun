@@ -634,6 +634,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:ladder_obsidian 4",
+	recipe = {
+		{"default:obsidianbrick", "", "default:obsidianbrick"},
+		{"default:obsidianbrick", "default:obsidianbrick", "default:obsidianbrick"},
+		{"default:obsidianbrick", "", "default:obsidianbrick"}
+	}
+})
+
+minetest.register_craft({
 	output = "maptools:superapple",
 	type = "shapeless",
 	recipe = {"default:apple", "default:mese", "default:mese"},

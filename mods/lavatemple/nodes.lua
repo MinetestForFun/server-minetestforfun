@@ -18,17 +18,24 @@ stairs.register_stair_and_slab(
 
 minetest.register_node("lavatemple:ladder", {
 	description = "Darkbrick Ladder",
-	drawtype = "signlike",
-	tiles = {"lavatemple_ladder_obsidian.png"},
-	inventory_image = "lavatemple_ladder_obsidian.png",
-	wield_image = "lavatemple_ladder_obsidian.png",
+	drawtype = "nodebox",
+	tiles = {"lavatemple_ladder.png"},
+	inventory_image = "lavatemple_ladder_inv.png",
+	wield_image = "lavatemple_ladder_inv.png",
 	paramtype = "light",
+	sunlight_propagates = true,
 	paramtype2 = "wallmounted",
-	walkable = false,
 	climbable = true,
+	walkable = true,	
+	node_box = {
+		type = "wallmounted",
+		wall_top    = {-0.375, 0.4375, -0.5, 0.375, 0.5, 0.5},
+		wall_bottom = {-0.375, -0.5, -0.5, 0.375, -0.4375, 0.5},
+		wall_side   = {-0.5, -0.5, -0.375, -0.4375, 0.5, 0.375},
+	},
 	selection_box = {type = "wallmounted"},
-	groups = {dark=1, cracky=1},
 	legacy_wallmounted = true,
+	groups = {dark=1, cracky = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
 
