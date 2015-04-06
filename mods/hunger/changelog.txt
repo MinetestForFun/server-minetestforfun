@@ -1,0 +1,6 @@
+1.0
+---
+- Partly rewritten (based on Better HUD hunger mechanics)
+- Added API to register food
+- Added eating sounds
+- Hungerbar image changes when poisend
