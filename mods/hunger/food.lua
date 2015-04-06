@@ -4,6 +4,7 @@ register_food("default:apple", 2)
 
 if minetest.get_modpath("farming") ~= nil then
 	register_food("farming:bread", 4)
+	register_food("farming:rhubarb_pie", 6)
 end
 
 if minetest.get_modpath("maptools") then
