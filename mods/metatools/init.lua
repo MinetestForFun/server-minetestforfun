@@ -5,8 +5,19 @@
 metatools = {}
 meta_info = {}
 
-metatools.handle_meta = function(name,value,username)
-
+metatools.actualize_metalist = function(name)
+	-- We need to actualize the tables
+	local counter = 1
+	meta_info[name]["pointer"] = minetest.get_meta(meta_info[name]["node"]):to_table()
+	while (counter < meta_info[name]["stratum"]+1) do
+		for k,v in pairs(meta_info[name]["pointer"]) do
+			if k == meta_info[name]["pathname"][counter] then
+				counter = counter + 1
+				meta_info[name]["pointer"] = v
+				break
+			end
+		end
+	end
 end
 
 metatools.get_metalist = function(meta,username)
@@ -58,7 +69,7 @@ minetest.register_chatcommand("meta", {
 			minetest.chat_send_player(name,"  show : show fields at node/depth")
 			minetest.chat_send_player(name,"  enter name : enter in field name at node/depth")
 			minetest.chat_send_player(name,"  quit name : quit field name at node/depth")
-			--minetest.chat_send_player(name,"  set name value : set field name to value at node/depth")
+			minetest.chat_send_player(name,"  set name value : set field name to value at node/depth")
 			minetest.chat_send_player(name,"  close : close the current node")
 
 		elseif paramlist[1] == "open" then
@@ -103,8 +114,8 @@ minetest.register_chatcommand("meta", {
 			meta_info[name]["node"] = position
 			meta_info[name]["stratum"] = 0
 			meta_info[name]["pointer"] = minetest.get_meta(position):to_table()
-			meta_info[name]["path"] = {}
-			meta_info[name]["path"][0] = meta_info[name]["pointer"]
+			meta_info[name]["pathname"] = {}
+			meta_info[name]["pathname"][0] = "Node"
 
 			minetest.log("action","[metatools] Player "..name.." opened node "..minetest.get_node(position).name.." at pos "..paramlist[2])
 			return true
@@ -117,10 +128,7 @@ minetest.register_chatcommand("meta", {
 
 			minetest.chat_send_player(name,"- meta::close - You closed node "..minetest.get_node(meta_info[name]["node"]).name.." at position "..minetest.pos_to_string(meta_info[name]["node"]))
 			minetest.log("action","[metatools] Player "..name.." closed his node "..minetest.get_node(meta_info[name]["node"]).name.." at pos "..minetest.pos_to_string(meta_info[name]["node"]))
-			meta_info[name]["node"] = nil
-			meta_info[name]["stratum"] = nil
-			meta_info[name]["pointer"] = nil
-			meta_info[name]["path"] = nil
+			meta_info[name] = nil
 			return true
 
 		elseif paramlist[1] == "show" then
@@ -143,7 +151,6 @@ minetest.register_chatcommand("meta", {
 					minetest.chat_send_player(name,key.." => <userdata>")
 				end
 			end
-			minetest.chat_send_player(name,#metalist .. " items shown")
 			minetest.log("action","[metatools] Player "..name.." saw datas of node "..minetest.get_node(meta_info[name]["node"]).name.." at pos "..position.." with stratum "..meta_info[name]["stratum"])
 
 		elseif paramlist[1] == "enter" then
@@ -164,8 +171,9 @@ minetest.register_chatcommand("meta", {
 				if key == paramlist[2] and (type(value) == "table") then
 					minetest.chat_send_player(name,"- meta::enter - Entering stratum "..meta_info[name]["stratum"]+1 .. " through "..paramlist[2])
 					meta_info[name]["pointer"] = value
-					meta_info[name]["path"][meta_info[name]["stratum"]+1] = value
+					meta_info[name]["pathname"][meta_info[name]["stratum"]+1] = paramlist[2]
 					meta_info[name]["stratum"] = meta_info[name]["stratum"]+1
+					metatools.actualize_metalist(name)
 					minetest.log("action","[metatools] Player "..name.." entered stratum "..meta_info[name]["stratum"].." of node "..minetest.get_node(meta_info[name]["node"]).name.." at pos "..minetest.pos_to_string(meta_info[name]["node"]))
 					return true
 				end
@@ -189,26 +197,25 @@ minetest.register_chatcommand("meta", {
 			end
 
 			meta_info[name]["stratum"] = meta_info[name]["stratum"] - 1
-			meta_info[name]["pointer"] = meta_info[name]["path"][meta_info[name]["stratum"]]
-			meta_info[name]["path"][meta_info[name]["stratum"] + 1] = nil
+			meta_info[name]["pathname"][meta_info[name]["stratum"] + 1] = nil
+			metatools.actualize_metalist(name)
 
 			minetest.chat_send_player(name,"- meta::quit -  Stratum "..meta_info[name]["stratum"] + 1 .." quitted. Actual stratum is "..meta_info[name]["stratum"])
 			minetest.log("action","[metatools] Player "..name.." quited stratum "..meta_info[name]["stratum"]+1 .." of node "..minetest.get_node(meta_info[name]["node"]).name.." at pos "..minetest.pos_to_string(meta_info[name]["node"]))
 			return true
 
---[[		elseif paramlist[1] == "set" then
+		elseif paramlist[1] == "set" then
 			if not meta_info[name] or not meta_info[name]["node"] then
 				minetest.chat_send_player(name,"- meta::set - You have no node open, use /meta open (x,y,z) to open one")
 				minetest.log("action","[metatools] Player "..name.." failed setting value : no node opened")
 				return false
 			end
 
-			if not paramlist[2] or tonumber(paramlist[2]) == nil then
-				minetest.chat_send_player(name,"- meta::set - You must provide a number of index for the value you want to set")
-				minetest.log("action","[metatools] Player "..name.." failed setting value : no index given")
+			if not paramlist[2] then
+				minetest.chat_send_player(name,"- meta::set - You must provide a variable name for the value you want to set")
+				minetest.log("action","[metatools] Player "..name.." failed setting value : no variable name given")
 				return false
 			end
-			paramlist[2] = tonumber(paramlist[2])
 
 			if not paramlist[3] then
 				minetest.chat_send_player(name,"- meta::set - You must provide a value for the variable you want to set")
@@ -217,29 +224,30 @@ minetest.register_chatcommand("meta", {
 			end
 
 			local i = 4
-			while (i < #paramlist) do
-				paramlist[3] = paramlist[3] .. " " .. paramlist[i]
-				paramlist[i] = nil
+			while (true) do
+				if paramlist[i] ~= nil then
+					paramlist[3] = paramlist[3] .. " " .. paramlist[i]
+				else
+					break
+				end
 				i = i + 1
 			end
 
-			local metalist = meta_info[name]["pointer"]
-			local keyring = 0
-			for key,value in pairs(metalist) do
-				print(keyring .."==".. paramlist[2])
-				if keyring == paramlist[2] and type(value) ~= "table" and type(value) ~= "userdata" then
-					minetest.chat_send_player(name,"- meta::set - Set variable "..key .. " with value "..paramlist[3])
-					value = paramlist[3]
-					minetest.log("action","[metatools] Player "..name .. " set variable ".. paramlist[2] .. " to " .. paramlist[3] .. " at stratum "..meta_info[name]["stratum"]+1 .." of node "..minetest.get_node(meta_info[name]["node"]).name.." at pos "..minetest.pos_to_string(meta_info[name]["node"]))
-					VoxelManip():update_map()
-					return true
+			local meta = minetest.get_meta(meta_info[name]["node"])
+			if tonumber(paramlist[3]) ~= nil then
+				if tonumber(paramlist[3]) % 1 == 0 then
+					meta:set_int(paramlist[2],tonumber(paramlist[3]))
+				else
+					meta:set_float(paramlist[2],tonumber(paramlist[3]))
 				end
-				keyring = keyring + 1
+			elseif type(paramlist[3]) == "string" then
+				meta:set_string(paramlist[2],paramlist[3])
 			end
 
-			minetest.chat_send_player(name,"- meta::set - Variable at "..paramlist[2] .." not found")
-			minetest.log("action","[metatools] Player "..name.." failed setting variable ".. paramlist[2] .." to value ".. paramlist[3] .." in stratum "..meta_info[name]["stratum"].." of node "..minetest.get_node(meta_info[name]["node"]).name.." at pos "..minetest.pos_to_string(meta_info[name]["node"]))
-			return false]]
+			minetest.chat_send_player(name,"- meta::set - Variable set")
+			minetest.log("action","[metatools] Player " .. name .. " set variable " .. paramlist[2] .. " to value " .. paramlist[3] .. " in stratum " .. meta_info[name]["stratum"] .. " of node " .. minetest.get_node(meta_info[name]["node"]).name .. " at pos " .. minetest.pos_to_string(meta_info[name]["node"]))
+			metatools.actualize_metalist(name)
+			return true
 		else
 			minetest.chat_send_player(name,"- meta - Subcommand " .. paramlist[1] .. " not known. Type /meta help for help")
 			return false
