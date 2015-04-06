@@ -24,7 +24,7 @@ minetest.register_craftitem("lavatemple:teleport_orb", {
 minetest.register_craft({
 	output = "lavatemple:ladder 4",
 	recipe = {
-		{"default:obsidianbrick", "", "default:obsidianbrick"},
+		{"default:obsidianbrick", "dye:red", "default:obsidianbrick"},
 		{"default:obsidianbrick", "default:obsidianbrick", "default:obsidianbrick"},
 		{"default:obsidianbrick", "", "default:obsidianbrick"}
 	}

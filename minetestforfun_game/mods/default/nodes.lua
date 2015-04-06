@@ -742,6 +742,27 @@ minetest.register_node("default:ladder", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+minetest.register_node("default:ladder_obsidian", {
+	description = "Ladder Obsidian",
+	drawtype = "nodebox",
+	tiles = {"default_ladder_obsidian.png"},
+	inventory_image = "default_ladder_obsidian_inv.png",
+	wield_image = "default_ladder_obsidian_inv.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	paramtype2 = "wallmounted",
+	climbable = true,
+	node_box = {
+		type = "wallmounted",
+		wall_top    = {-0.375, 0.4375, -0.5, 0.375, 0.5, 0.5},
+		wall_bottom = {-0.375, -0.5, -0.5, 0.375, -0.4375, 0.5},
+		wall_side   = {-0.5, -0.5, -0.375, -0.4375, 0.5, 0.375},
+	},
+	selection_box = {type = "wallmounted"},
+	groups = {cracky = 1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
 minetest.register_node("default:wood", {
 	description = "Wooden Planks",
 	tiles = {"default_wood.png"},
