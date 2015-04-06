@@ -129,7 +129,7 @@ end
 
 homedecor.register("plasma_lamp", {
 	description = "Plasma Lamp",
-	drawtype = "glasslike_framed_optional",
+	drawtype = "glasslike_framed",
 	tiles = {"homedecor_gold_block.png","homedecor_glass_face_clean.png"},
 	special_tiles = {
 		{

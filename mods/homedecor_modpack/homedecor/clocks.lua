@@ -67,3 +67,29 @@ homedecor.register("alarm_clock", {
 	},
 	groups = {snappy=3},
 })
+
+local gf_cbox = {
+	type = "fixed",
+	fixed = { -7/16, -8/16, -7/16, 7/16, 24/16, 7/16 }
+}
+
+homedecor.register("grandfather_clock", {
+	description = "Grandfather Clock",
+	mesh = "homedecor_grandfather_clock.obj",
+	tiles = {
+		"homedecor_grandfather_clock_wood.png",
+		"homedecor_tile_brass2.png",
+		"homedecor_grandfather_clock_face.png",
+		"homedecor_grandfather_clock_face_edge.png"
+	},
+	inventory_image = "homedecor_grandfather_clock_inv.png",
+	groups = { snappy = 3 },
+	selection_box = gf_cbox,
+	collision_box = gf_cbox,
+	expand = { top="air" },
+})
+
+minetest.register_alias("homedecor:grandfather_clock_bottom", "homedecor:grandfather_clock")
+minetest.register_alias("homedecor:grandfather_clock_top", "air")
+
+

@@ -59,10 +59,12 @@ homedecor.register("bench_large_1_left", {
 		fixed = { -0.5, -0.5, -0.09375, 1.5, 0.5, 0.5 }
 	},
 	expand = { right="homedecor:bench_large_1_right" },
+	--[[
 	on_rightclick = function(pos, node, clicker)
 		pos.y = pos.y-0 -- player's sit position.
 		homedecor.sit_exec(pos, node, clicker)
 	end,
+	--]]
 })
 
 homedecor.register("bench_large_1_right", {
@@ -129,10 +131,12 @@ homedecor.register("bench_large_2_left", {
 		fixed = { -0.5, -0.5, -0.15625, 1.5, 0.5, 0.5 }
 	},
 	expand = { right="homedecor:bench_large_2_right" },
+	--[[
 	on_rightclick = function(pos, node, clicker)
 		pos.y = pos.y-0 -- player's sit position.
 		homedecor.sit_exec(pos, node, clicker)
 	end,
+	--]]
 })
 
 homedecor.register("bench_large_2_right", {
@@ -268,10 +272,12 @@ homedecor.register("simple_bench", {
 			{ 0.3, -0.5,  0.1,  0.4, -0.15, 0.3},
 			}
 	},
+	--[[
 	on_rightclick = function(pos, node, clicker)
 		pos.y = pos.y-0 -- player's sit position.
 		homedecor.sit_exec(pos, node, clicker)
 	end,
+	--]]
 })
 
 homedecor.register("stonepath", {

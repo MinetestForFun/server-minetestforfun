@@ -1,5 +1,8 @@
 local S = homedecor.gettext
 
+-- Sitting functions disabled for now because of buggyness.
+
+--[[
 function homedecor.sit(pos, node, clicker)
 	local name = clicker:get_player_name()
 	local meta = minetest:get_meta(pos)
@@ -30,7 +33,7 @@ function homedecor.sit(pos, node, clicker)
 end
 
 function homedecor.sit_exec(pos, node, clicker) -- don't move these functions inside sit()
-	--[[if not clicker or not clicker:is_player()
+	if not clicker or not clicker:is_player()
 		or clicker:get_player_control().up == true or clicker:get_player_control().down == true
 		or clicker:get_player_control().left == true or clicker:get_player_control().right == true
 		or clicker:get_player_control().jump == true then  -- make sure that the player is immobile.
@@ -38,8 +41,8 @@ function homedecor.sit_exec(pos, node, clicker) -- don't move these functions in
 	homedecor.sit(pos, node, clicker)
 	clicker:setpos(pos)
 	default.player_set_animation(clicker, "sit", 30)
-	]] -- MODIFICATION MODE FOR MFF ^
 end
+--]]
 
 local table_colors = { "", "mahogany", "white" }
 
@@ -120,43 +123,32 @@ for i in ipairs(chaircolors) do
 			fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
 		},
 		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
+		--[[
 		on_rightclick = function(pos, node, clicker)
 			pos.y = pos.y-0 -- player's sit position.
 			homedecor.sit_exec(pos, node, clicker)
 		end,
+		--]]
 	})
 
 	if color ~= "" then
 		homedecor.register("armchair"..color, {
 			description = S("Armchair (%s)"):format(name),
-			tiles = { "forniture_armchair_top"..color..".png" },
+			mesh = "forniture_armchair.obj",
+			tiles = {
+				"wool"..color..".png",
+				"wool_dark_grey.png",
+				"default_wood.png"
+			},
 			sunlight_propagates = true,
-			node_box = {
-			type = "fixed",
-			fixed = {
-				{ -0.50, -0.50, -0.45, -0.30,  0.05,  0.30 },
-				{ -0.45, -0.50, -0.50, -0.35,  0.05, -0.45 },
-				{ -0.45,  0.05, -0.45, -0.35,  0.10,  0.15 },
-				{  0.30, -0.50, -0.45,  0.50,  0.05,  0.30 },
-				{  0.35, -0.50, -0.50,  0.45,  0.05, -0.45 },
-				{  0.35,  0.05, -0.45,  0.45,  0.10,  0.15 },
-				{ -0.50, -0.50,  0.30,  0.50,  0.45,  0.50 },
-				{ -0.45,  0.45,  0.35,  0.45,  0.50,  0.45 },
-				{ -0.30, -0.45, -0.35,  0.30, -0.10,  0.30 },
-				{ -0.30, -0.45, -0.40,  0.30, -0.15, -0.35 },
-				{ -0.50,  0.05,  0.15, -0.30,  0.45,  0.30 },
-				{ -0.45,  0.10,  0.10, -0.35,  0.45,  0.15 },
-				{ -0.45,  0.45,  0.15, -0.35,  0.50,  0.35 },
-				{  0.30,  0.05,  0.15,  0.50,  0.45,  0.30 },
-				{  0.35,  0.10,  0.10,  0.45,  0.45,  0.15 },
-				{  0.35,  0.45,  0.15,  0.45,  0.50,  0.35 },
-			},
-			},
 			groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
+			--[[
 			on_rightclick = function(pos, node, clicker)
 				pos.y = pos.y-0.1 -- player's sit position.
 				homedecor.sit_exec(pos, node, clicker)
+				clicker:set_hp(20)
 			end,
+			--]]
 		})
 
 		minetest.register_craft({
@@ -336,56 +328,6 @@ homedecor.register("wall_shelf", {
 	}
 })
 
-homedecor.register("grandfather_clock_bottom", {
-	description = "Grandfather Clock",
-	tiles = {
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_bottom.png"
-	},
-	inventory_image = "homedecor_grandfather_clock_inv.png",
-	groups = { snappy = 3 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4, -0.5, -0.4, -0.3125, 0.5, 0.4}, -- NodeBox1
-			{-0.3125, -0.4375, -0.3125, 0.3125, 0.5, 0.4}, -- NodeBox2
-			{0.3125, -0.5, -0.4, 0.4, 0.5, 0.4}, -- NodeBox3
-			{-0.3125, -0.5, -0.4, 0.3125, -0.405, 0.4}, -- NodeBox4
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.4, -0.5, -0.4, 0.4, 1.5, 0.4 }
-	},
-	expand = { top="homedecor:grandfather_clock_top" },
-})
-
-homedecor.register("grandfather_clock_top", {
-	tiles = {
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_sides.png",
-		"homedecor_grandfather_clock_top.png"
-	},
-	groups = { snappy = 3, not_in_creative_inventory=1 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4, -0.5, -0.4, -0.3125, 0.5, 0.4}, -- NodeBox1
-			{-0.3125, -0.1875, -0.4, 0.3125, 0.5, 0.4}, -- NodeBox2
-			{0.3125, -0.5, -0.4, 0.4, 0.5, 0.4}, -- NodeBox3
-			{-0.3125, -0.5, -0.3125, 0.3125, 0.5, 0.4}, -- NodeBox4
-		}
-	},
-	selection_box = homedecor.nodebox.null,
-})
-
 local ofchairs_sbox = {
 		type = "fixed",
 		fixed = { -8/16, -8/16, -8/16, 8/16, 29/32, 8/16 }
@@ -415,10 +357,12 @@ homedecor.register("office_chair_"..c, {
 	selection_box = ofchairs_sbox,
 	collision_box = ofchairs_cbox,
 	expand = { top = "air" },
+	--[[
 	on_rightclick = function(pos, node, clicker)
 		pos.y = pos.y+0.14 -- player's sit position.
 		homedecor.sit_exec(pos, node, clicker)
 	end,
+	--]]
 })
 
 end

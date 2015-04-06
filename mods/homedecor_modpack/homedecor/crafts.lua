@@ -3049,6 +3049,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "homedecor:wall_lamp 2",
+	recipe = {
+		{ "", "homedecor:lattice_lantern_large", "" },
+		{ "default:iron_lump", "group:stick", "" },
+		{ "default:iron_lump", "group:stick", "" },
+	},
+})
+
+minetest.register_craft({
 	output = "homedecor:desk_globe",
 	recipe = {
 		{ "group:stick", "homedecor:plastic_sheeting", "dye:green" },

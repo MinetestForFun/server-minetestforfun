@@ -120,41 +120,23 @@ homedecor.register("dvd_vcr", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+local tel_cbox = {
+	type = "fixed",
+	fixed = { -0.25, -0.5, -0.1875, 0.25, -0.21, 0.15 }
+}
+
 homedecor.register("telephone", {
+	mesh = "homedecor_telephone.obj",
 	tiles = {
-		"homedecor_telephone_sides.png^[transformR180",
-		"homedecor_telephone_sides.png",
-		"homedecor_telephone_sides.png",
-		"homedecor_telephone_sides.png",
-		"homedecor_telephone_sides.png",
-		"homedecor_telephone_sides.png"
+		"homedecor_telephone_dial.png",
+		"homedecor_telephone_base.png",
+		"homedecor_telephone_handset.png",
+		"homedecor_telephone_cord.png",
 	},
 	inventory_image = "homedecor_telephone_inv.png",
 	description = "Telephone",
 	groups = {snappy=3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.1875,     -0.5,       -0.1875,     0.1875,     -0.4375,    0.15},      --  NodeBox1
-			{-0.125,      -0.5,       -0.130,      0.125,      -0.3675,     0.15},      --  NodeBox2
-			{-0.175,   -0.4375,  -0.175,   0.175,   -0.42,  0.15},    --  NodeBox3
-			{-0.16,   -0.42,       -0.16,   0.16,   -0.4025,  0.15},      --  NodeBox4
-			{-0.145,   -0.4025,  -0.145,   0.145,   -0.385,  0.15},    --  NodeBox5
-			{-0.11,   -0.385,  -0.115,   0.11,   -0.35,  0.15},    --  NodeBox6
-			{-0.095,  -0.5,       -0.1,  0.095,  -0.3325,  0.15},      --  NodeBox7
-			{-0.075,  -0.345,  0.15,    0.075,   -0.32,  -0.075},  --  NodeBox8
-			{0.04,   -0.375,     0.0125,           0.0625,     -0.23,  0.11},       --  NodeBox9
-			{-0.0625,     -0.375,     0.0125,           -0.04,  -0.23,  0.11},       --  NodeBox10
-			{-0.2075,   -0.25,      0.0375,   0.2075,   -0.21,    0.0875},   --  NodeBox11
-			{0.125,       -0.3,    0,           0.25,       -0.25,      0.125},       --  NodeBox12
-			{-0.25,       -0.3,    0,           -0.125,     -0.25,      0.125},       --  NodeBox13
-			{0.125,    -0.275,  0.017,   0.23,   -0.225,   0.11},    --  NodeBox14
-			{-0.23,   -0.275,  0.017,   -0.125,  -0.225,   0.11},    --  NodeBox15
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.25, -0.5, -0.1875, 0.25, -0.21, 0.15 }
-	}
+	selection_box = tel_cbox,
+	collision_box = tel_cbox,
 })
 

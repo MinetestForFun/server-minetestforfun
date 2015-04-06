@@ -51,7 +51,7 @@ homedecor.register("chains", {
 	description = S("Chains"),
 	mesh = "forniture_chains.obj",
 	tiles = { "forniture_black_metal.png" },
-	inventory_image="3dforniture_inv_chains.png",
+	inventory_image="forniture_chains_inv.png",
 	sunlight_propagates = true,
 	selection_box = chain_cbox,
 	collision_box = chain_cbox,
@@ -60,11 +60,10 @@ homedecor.register("chains", {
 
 homedecor.register("torch_wall", {
 	description = S("Wall Torch"),
+	mesh = "forniture_torch.obj",
 	tiles = {
-		"forniture_torch_wall_s.png",
-		"forniture_torch_wall_i.png",
 		{
-			name="forniture_torch_wall_anim.png",
+			name="forniture_torch_flame.png",
 			animation={
 				type="vertical_frames",
 				aspect_w=40,
@@ -72,22 +71,11 @@ homedecor.register("torch_wall", {
 				length=1.0,
 			},
 		},
+		"forniture_black_metal.png",
+		"forniture_metal.png",
+		"forniture_coal.png",
 	},
-	inventory_image="3dforniture_inv_torch_wall.png",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.05, -0.45,  0.45,  0.05, -0.35,  0.50, },
-			{ -0.05, -0.35,  0.40,  0.05, -0.25,  0.50, },
-			{ -0.05, -0.25,  0.35,  0.05, -0.15,  0.45, },
-			{ -0.05, -0.15,  0.30,  0.05, -0.05,  0.40, },
-			{ -0.05, -0.05,  0.25,  0.05,  0.00,  0.35, },
-			{ -0.10,  0.00,  0.20,  0.10,  0.05,  0.40, },
-			{ -0.15,  0.05,  0.15,  0.15,  0.15,  0.45, },
-			{ -0.10,  0.15,  0.20,  0.10,  0.25,  0.40, },
-			{ -0.05,  0.25,  0.25,  0.05,  0.35,  0.35, },
-		},
-	},
+	inventory_image="forniture_torch_inv.png",
 	sunlight_propagates = true,
 	walkable = false,
 	light_source = 14,
@@ -96,6 +84,22 @@ homedecor.register("torch_wall", {
 		fixed = { -0.15, -0.45, 0.15, 0.15,0.35, 0.5 },
 	},
 	groups = {cracky=2},
+})
+
+local wl_cbox = {
+	type = "fixed",
+	fixed = { -0.2, -0.5, 0, 0.2, 0.5, 0.5 },
+}
+
+homedecor.register("wall_lamp", {
+	description = S("Wall Lamp"),
+	mesh = "homedecor_wall_lamp.obj",
+	tiles = {"homedecor_wall_lamp.png"},
+	inventory_image = "homedecor_wall_lamp_inv.png",
+	groups = {snappy=3},
+	light_source = 11,
+	selection_box = wl_cbox,
+	collision_box = wl_cbox
 })
 
 minetest.register_alias("3dforniture:bars", "homedecor:bars")

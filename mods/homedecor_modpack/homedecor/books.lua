@@ -30,7 +30,7 @@ for c in ipairs(bookcolors) do
 	end
 
 homedecor.register("book_"..color, {
-	description = S("Book (%s)"):format(color_d),
+	description = S("Writable Book (%s)"):format(color_d),
 	mesh = "homedecor_book.obj",
 	tiles = { "homedecor_book_"..color..".png" },
 	inventory_image = "homedecor_book_"..color.."_inv.png",

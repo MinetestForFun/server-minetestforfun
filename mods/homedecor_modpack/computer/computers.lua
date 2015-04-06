@@ -12,20 +12,44 @@ computer.register("computer:shefriendSOO", {
 });
 
 -- Some generic laptop
-computer.register("computer:vanio", {
-	description = "Pony Vanio";
-	tiles_off = { front=true; top=true; left=true; right=true; back=true; };
-	node_box = computer.pixelnodebox(32, {
-		-- X   Y   Z   W   H   L
-		{  0,  0,  4, 32,  3, 24 },   -- Keyboard
-		{  0,  3, 25, 32, 21,  3 },   -- Screen
-	});
-	node_box_off = computer.pixelnodebox(32, {
-		-- X   Y   Z   W   H   L
-		{  0,  0,  4, 32,  3, 24 },   -- Keyboard
-		{  0,  3,  4, 32,  3, 24 },   -- Screen
-	});
-});
+minetest.register_node("computer:vanio", {
+	drawtype = "mesh",
+	mesh = "computer_laptop.obj",
+	description = "Pony Vanio",
+	tiles = {"computer_laptop.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	light_source = 4,
+	groups = {snappy=3},
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.35, -0.5, -0.35, 0.35, 0.05, 0.35},
+	},
+	on_rightclick = function (pos, node, clicker, itemstack)
+		node.name = "computer:vanio_off"
+		minetest.set_node(pos, node)
+	end
+})
+
+minetest.register_node("computer:vanio_off", {
+	drawtype = "mesh",
+	mesh = "computer_laptop_closed.obj",
+	tiles = {"computer_laptop.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {snappy=3, not_in_creative_inventory=1},
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.35, -0.5, -0.35, 0.35, -0.4, 0.25},
+	},
+	drop = "computer:vanio",
+	on_rightclick = function (pos, node, clicker, itemstack)
+		node.name = "computer:vanio"
+		minetest.set_node(pos, node)
+	end
+})
 
 -- Sony PlayStation lookalike
 computer.register("computer:slaystation", {

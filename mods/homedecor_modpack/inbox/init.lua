@@ -14,21 +14,24 @@ minetest.register_craft({
 	}
 })
 
+local mb_cbox = {
+	type = "fixed",
+	fixed = { -5/16, -8/16, -8/16, 5/16, 2/16, 8/16 }
+}
+
 minetest.register_node("inbox:empty", {
 	paramtype = "light",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-4/12, -6/12, -6/12, 4/12, 0/12, 6/12},
-			{-3/12, 0/12, -6/12, 3/12, 2/12, 6/12},
-			{3/12, 0/12, -4/12, 4/12, 5/12, -2/12},
-			{3/12, 3/12, -2/12, 4/12, 5/12, 0/12}
-		}
-	},
+	drawtype = "mesh",
+	mesh = "inbox_mailbox.obj",
 	description = "Mailbox",
-	tiles = {"inbox_top.png", "inbox_bottom.png", "inbox_east.png",
-		"inbox_west.png", "inbox_back.png", "inbox_front.png"},
+	tiles = {
+		"inbox_red_metal.png",
+		"inbox_white_metal.png",
+		"inbox_grey_metal.png",
+	},
+	inventory_image = "mailbox_inv.png",
+	selection_box = mb_cbox,
+	collision_box = mb_cbox,
 	paramtype2 = "facedir",
 	groups = {choppy=2,oddly_breakable_by_hand=2},
 	sounds = default.node_sound_wood_defaults(),

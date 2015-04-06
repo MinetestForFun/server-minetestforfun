@@ -30,30 +30,21 @@ for i in ipairs(bathroom_tile_colors) do
 	})
 end
 
+local tr_cbox = {
+	type = "fixed",
+	fixed = { -0.375, -0.3125, 0.25, 0.375, 0.375, 0.5 }
+}
+
 homedecor.register("towel_rod", {
 	description = "Towel rod with towel",
+	mesh = "homedecor_towel_rod.obj",
 	tiles = {
-		"homedecor_towel_rod_top.png",
-		"homedecor_towel_rod_bottom.png",
-		"homedecor_towel_rod_sides.png",
-		"homedecor_towel_rod_sides.png^[transformFX",
-		"homedecor_towel_rod_fb.png",
-		"homedecor_towel_rod_fb.png"
+		"homedecor_generic_terrycloth.png",
+		"default_wood.png",
 	},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.375, 0.1875, 0.25, -0.3125, 0.375, 0.5},
-			{ 0.3125, 0.1875, 0.25, 0.375, 0.375, 0.5},
-			{-0.3125, 0.25, 0.3125, 0.3125, 0.375, 0.375},
-			{-0.3125, 0, 0.375, 0.3125, 0.34375, 0.4375},
-			{-0.3125, -0.3125, 0.25, 0.3125, 0.34375, 0.3125},
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.375, -0.3125, 0.25, 0.375, 0.375, 0.5 }
-	},
+	inventory_image = "homedecor_towel_rod_inv.png",
+	selection_box = tr_cbox,
+	collision_box = tr_cbox,
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3},
 	sounds = default.node_sound_defaults(),
 })
