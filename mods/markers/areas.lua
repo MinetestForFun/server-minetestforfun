@@ -1,6 +1,15 @@
 
 -- TODO: offer teleport button?
 
+-- Temporary compatibility function - see minetest PR#1180
+if not vector.interpolate then
+    vector.interpolate = function(pos1, pos2)
+	return {x = pos1.x + (pos2.x - pos1.x) * factor,
+		y = pos1.y + (pos2.y - pos1.y) * factor,
+		z = pos1.z + (pos2.z - pos1.z) * factor}
+    end
+end
+
 -- taken from mobf
 local COLOR_RED   = "#FF0000";
 local COLOR_GREEN = "#00FF00";
@@ -28,10 +37,11 @@ end
 
 
 
+-- ppos: current player (or marker stone) position - used for sorting the list
 -- mode: can be pos, player, all, subarea, main_areas
 -- mode_data: content depends on mode
 -- selected: display information about the area the player single-clicked on
-markers.get_area_list_formspec = function( player, mode, pos, mode_data, selected )
+markers.get_area_list_formspec = function(ppos, player, mode, pos, mode_data, selected )
 
 
    local id_list = {};
@@ -100,7 +110,13 @@ markers.get_area_list_formspec = function( player, mode, pos, mode_data, selecte
          table.insert( id_list, id );
       end
    end
-   
+
+   -- Sort the list of areas so the nearest comes first
+   local nearsorter = function(a, b)
+        return vector.distance(vector.interpolate(areas.areas[a].pos1, areas.areas[a].pos2, 0.5), ppos) <
+		vector.distance(vector.interpolate(areas.areas[b].pos1, areas.areas[b].pos2, 0.5), ppos)
+   end
+   table.sort(id_list, nearsorter)
 
    local formspec = 'size[10,9]';
 
@@ -448,6 +464,7 @@ end
 markers.form_input_handler_areas = function( player, formname, fields)
 
    local pname = player:get_player_name();
+   local ppos = player:getpos()
 
    if( formname ~= "markers:info"
       or not( player )
@@ -646,7 +663,7 @@ markers.form_input_handler_areas = function( player, formname, fields)
          areas:remove( menu_data.selected, false ); -- no recursive delete
          areas:save();
          -- show the list of areas owned by the previous owner
-         formspec = markers.get_area_list_formspec( player, 'player',   menu_data.pos, old_owner, nil );
+         formspec = markers.get_area_list_formspec(ppos, player, 'player',   menu_data.pos, old_owner, nil );
       end
 
    
@@ -663,24 +680,24 @@ markers.form_input_handler_areas = function( player, formname, fields)
           and menu_data.selected
           and areas.areas[ menu_data.selected ] ) then
 
-      formspec = markers.get_area_list_formspec( player, 'player',   menu_data.pos, areas.areas[ menu_data.selected ].owner, nil );
+      formspec = markers.get_area_list_formspec(ppos, player, 'player',   menu_data.pos, areas.areas[ menu_data.selected ].owner, nil );
 
 
    elseif( fields.list_subareas
           and menu_data.selected
           and areas.areas[ menu_data.selected ] ) then
 
-      formspec = markers.get_area_list_formspec( player, 'subareas', menu_data.pos, menu_data.selected, nil );
+      formspec = markers.get_area_list_formspec(ppos, player, 'subareas', menu_data.pos, menu_data.selected, nil );
 
 
    elseif( fields.list_main_areas ) then
 
-      formspec = markers.get_area_list_formspec( player, 'main_areas', menu_data.pos, nil, nil );
+      formspec = markers.get_area_list_formspec(ppos, player, 'main_areas', menu_data.pos, nil, nil );
           
    elseif( fields.list_areas_at
           and menu_data.pos ) then
 
-      formspec = markers.get_area_list_formspec( player, 'pos',      menu_data.pos, menu_data.pos, nil );
+      formspec = markers.get_area_list_formspec(ppos, player, 'pos',      menu_data.pos, menu_data.pos, nil );
 
 
    elseif( fields.markers_area_list_selection
@@ -703,7 +720,7 @@ markers.form_input_handler_areas = function( player, formname, fields)
       else
 
          -- on single click, just show the position of that particular area
-         formspec = markers.get_area_list_formspec( player, menu_data.mode, menu_data.pos, menu_data.mode_data, selected );
+         formspec = markers.get_area_list_formspec(ppos, player, menu_data.mode, menu_data.pos, menu_data.mode_data, selected );
       end
 
    else
@@ -721,6 +738,7 @@ end
 markers.show_marker_stone_formspec = function( player, pos )
 
    local pname       = player:get_player_name();
+   local ppos = pos
 
    -- this table stores the list the player may have selected from; at the beginning, there is no list 
    if( not( markers.menu_data_by_player[ pname ]  )) then
@@ -825,7 +843,7 @@ markers.show_marker_stone_formspec = function( player, pos )
       -- find out which of the candidates he is intrested in; we list them all
       else
 
-        formspec = markers.get_area_list_formspec( player, 'pos', pos, pos, nil );
+        formspec = markers.get_area_list_formspec(ppos, player, 'pos', pos, pos, nil );
       end
    end
 

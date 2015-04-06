@@ -9,8 +9,8 @@ markers = {}
 markers.positions = {}
 
 -- store the positions of that many markers for each player (until server restart)
-markers.MAX_MARKERS  = 10;
- 
+markers.MAX_MARKERS  = 50;
+
 -- the protection against digging of the marker by other players expires after this time
 markers.EXPIRE_AFTER = 60*60*24;
 
@@ -79,11 +79,11 @@ end
 
 
 markers.marker_placed = function( pos, placer, itemstack )
- 
+
    if( not( pos ) or not( placer )) then
       return;
    end
- 
+
    local meta = minetest.get_meta( pos );
    local name = placer:get_player_name();
 
@@ -99,7 +99,7 @@ markers.marker_placed = function( pos, placer, itemstack )
    if( not( markers.positions[ name ] ) or #markers.positions[name]<1) then
       markers.positions[ name ] = {};
       markers.positions[ name ][ 1 ] = pos;
- 
+
       minetest.chat_send_player( name,
 		'First marker set to position '..
 		minetest.pos_to_string( markers.positions[ name ][ 1 ] )..
@@ -136,52 +136,12 @@ markers.marker_placed = function( pos, placer, itemstack )
                tostring(math.abs(dz))..
               '. Area: '..tostring( area )..' m^2. Volume: '..tostring( volume )..' m^3.');
       end
-     
+
       -- this marker is aligned to the last one
       if( d > 0 ) then
          minetest.chat_send_player( name, 'Marker placed at '..minetest.pos_to_string( pos )..
 				'. Relative to the marker you placed before, this one is '..
  				tostring( d )..' m '..dir_name..'.');
-      end
-
-      -- do the last 4 markers placed form an area?
-      if( #markers.positions[ name ] > 3 ) then
-         local count_x_coord = {};
-         local count_z_coord = {};
-         local anz_x_coord   = 0;
-         local anz_z_coord   = 0;
-         local check_failed  = 0;
-         for i=0,3 do
-
-            local v = markers.positions[ name ][ n-i ].x;
-
-            if( not( count_x_coord[ v ] )) then
-               count_x_coord[       v ] = 1;
-               anz_x_coord = anz_x_coord + 1;
-            elseif(  count_x_coord[ v ] == 2 ) then               
-               check_failed = 1;
-            else
-               count_x_coord[       v ] = count_x_coord[ v ] + 1;
-            end
-
-            v = markers.positions[ name ][ n-i ].z;
-            if( not( count_z_coord[ v ] )) then
-               count_z_coord[       v ] = 1;
-               anz_z_coord = anz_z_coord + 1;
-            elseif(  count_z_coord[ v ] == 2 ) then               
-               check_failed = 1;
-            else
-               count_z_coord[       v ] = count_z_coord[ v ] + 1;
-            end
-         end
-
-         if(     anz_x_coord == 2 
-            and  anz_z_coord == 2
-            and check_failed == 0 ) then
-               
-            minetest.chat_send_player( name, 'The last four markers you placed form a rectangle. '..
-                   'Right-click on this marker here in order to protect the area.');
-         end
       end
 
       -- make sure the list does not grow too large
@@ -193,7 +153,7 @@ end
 
 
 
-markers.marker_can_dig = function(pos,player) 
+markers.marker_can_dig = function(pos,player)
 
    if( not( pos ) or not( player )) then
       return true;
@@ -201,12 +161,12 @@ markers.marker_can_dig = function(pos,player)
 
    local meta  = minetest.get_meta( pos );
    local owner = meta:get_string( 'owner' );
-   local time  = meta:get_string( 'time' ); 
+   local time  = meta:get_string( 'time' );
 
    -- can the marker be removed?
-   if( not( owner ) 
+   if( not( owner )
        or owner==''
-       or not( time ) 
+       or not( time )
        or time==''
        or (os.time() - tonumber( time )) > markers.EXPIRE_AFTER ) then
 
@@ -215,7 +175,7 @@ markers.marker_can_dig = function(pos,player)
    -- marker whose data got lost anyway
    elseif( not( markers.positions[ owner ] )
             or #markers.positions[ owner ] < 1 ) then
-   
+
      return true;
 
    -- marker owned by someone else and still in use
@@ -228,7 +188,7 @@ markers.marker_can_dig = function(pos,player)
       return false;
 
    end
-  
+
    return true;
 end
 
@@ -242,7 +202,7 @@ markers.marker_after_dig_node = function(pos, oldnode, oldmetadata, digger)
    end
 
    local owner = oldmetadata['fields']['owner'];
-   if( not( owner ) 
+   if( not( owner )
        or owner==''
        or not( markers.positions[ owner ] )
        or     #markers.positions[ owner ] < 1 ) then
@@ -253,7 +213,7 @@ markers.marker_after_dig_node = function(pos, oldnode, oldmetadata, digger)
    -- remove the markers position from our table of stored positions
    local found = 0;
    for i,v in ipairs( markers.positions[ owner ] ) do
-      if(   v.x == pos.x 
+      if(   v.x == pos.x
         and v.y == pos.y
         and v.z == pos.z ) then
          found = i;
@@ -266,7 +226,32 @@ markers.marker_after_dig_node = function(pos, oldnode, oldmetadata, digger)
 end
 
 
-
+--this function returns a min_pos and max_pos that are the corners
+--of a box that contains ALL of the players active markers.
+markers.get_box_from_markers = function(name)
+  if (not name) or (not (markers.positions[ name ][ 1 ] )) then
+	  return {x=0,y=0,z=0},{x=1,y=1,z=1}
+	end
+  local min_pos={}
+	min_pos.x = markers.positions[ name ][ 1 ].x
+	min_pos.y = markers.positions[ name ][ 1 ].y
+	min_pos.z = markers.positions[ name ][ 1 ].z
+	local max_pos={}
+	max_pos.x = markers.positions[ name ][ 1 ].x
+	max_pos.y = markers.positions[ name ][ 1 ].y
+	max_pos.z = markers.positions[ name ][ 1 ].z
+	for i,p in ipairs( markers.positions[ name ] ) do
+	  if p.x < min_pos.x then min_pos.x = p.x end
+		if p.x > max_pos.x then max_pos.x = p.x end
+		if p.y < min_pos.y then min_pos.y = p.y end
+		if p.y > max_pos.y then max_pos.y = p.y end
+		if p.z < min_pos.z then min_pos.z = p.z end
+		if p.z > max_pos.z then max_pos.z = p.z end
+	end
+	--print("getbox: min_pos.x="..min_pos.x.." y="..min_pos.y.." z="..min_pos.z)
+	--print("      : max_pos.x="..max_pos.x.." y="..max_pos.y.." z="..max_pos.z)
+  return min_pos, max_pos
+end --get_box_from_markers
 
 
 
@@ -291,69 +276,19 @@ markers.get_marker_formspec = function(player, pos, error_msg)
 
    local n = #markers.positions[ name ];
 
-   if(    markers.positions[ name ][ n ].x ~= pos.x
-      or  markers.positions[ name ][ n ].y ~= pos.y
-      or  markers.positions[ name ][ n ].z ~= pos.z ) then
-
-      return formspec_info.."Please use the marker\nyou placed last\n"..
-                 "for accessing this menu.\nYou can find said marker at\n"..
-                 minetest.pos_to_string( markers.positions[ name ][ n ] )..'.]';
-   end
-
-   if( n < 4 ) then
-      return formspec_info.."Please place 4 markers\n - one in each corner\n of your area - first.]";
+	 if ( n < 2 ) then
+	   return formspec_info.."Please place 2 or more markers\n - at least one in each corner\n of your area first]";
    end
 
 
-   local coords_raw = meta:get_string( 'coords' );
-   local coords      = {};
-   if( coords_raw ~= nil and coords_raw ~= '' ) then
-      coords = minetest.deserialize( coords_raw );
-   end
-   
+	 local coords={}
+	 coords[1],coords[2] = markers.get_box_from_markers(name)
 
-   local opposite = n;
-   -- the last 4 markers placed ought to form the area
-   if( true or #coords ~= 2 ) then -- TODO
-  
-
-      for i=1,3 do
-
-         -- if both coordinates are diffrent, then this may be the opposite marker
-         if(   ( markers.positions[ name ][ n-i ].x ~=  
-                 markers.positions[ name ][ n   ].x )
-           and ( markers.positions[ name ][ n-i ].z ~=  
-                 markers.positions[ name ][ n   ].z )) then 
-
-             opposite = n-i;
-             coords = { markers.positions[ name ][ n   ],
-                        markers.positions[ name ][ n-i ] };
-         end
-      end
-
-      -- check if they fit
-      for i=1,3 do
-
-         if(not( ((n-i) == opposite )
-             or not(markers.positions[ name ][ n-i ] )
-	     or not( coords ) or not( coords[1]) or not( coords[2])
-	     or not(markers.positions[ name ] )
-	     or not(markers.positions[ name ][ n-i ] )
-             or  ( markers.positions[ name ][ n-i ].x == coords[ 1 ].x
-               and markers.positions[ name ][ n-i ].z == coords[ 2 ].z )
-             or  ( markers.positions[ name ][ n-i ].x == coords[ 2 ].x
-               and markers.positions[ name ][ n-i ].z == coords[ 1 ].z ))) then
-
-            return formspec_info.."Error: The last 4 markers\nyou placed do not form\na rectangle.]";
-         end
-
-      end
-
-      -- save data     
+   -- save data
       meta:set_string( 'coords', minetest.serialize( coords ) );
-   end
+
    if( not( coords ) or #coords < 2 or not( coords[1] ) or not( coords[2] )) then
-      return formspec_info.."Error: The last 4 markers\nyou placed do not form\na rectangle.]";
+      return formspec_info.."Error in markers.]";
    end
 
    -- the coordinates are set; we may present an input form now
@@ -362,7 +297,7 @@ markers.get_marker_formspec = function(player, pos, error_msg)
     local area = markers.get_area_by_pos1_pos2( coords[1], coords[2] );
 
 
-    local size = (math.abs( coords[1].x - coords[2].x )+1) 
+    local size = (math.abs( coords[1].x - coords[2].x )+1)
                * (math.abs( coords[1].z - coords[2].z )+1);
 
     -- check if area is too large
@@ -384,7 +319,7 @@ markers.get_marker_formspec = function(player, pos, error_msg)
                     'label[0.5,0.0;Error: ]'..
                     'textarea[5.0,0;4,1.5;info;;'..error_msg..']';
     end
-      
+
     if( area and area['id'] ) then
        formspec =   formspec..
                     'label[0.5,2.0;This is area number ]'..
@@ -402,15 +337,15 @@ markers.get_marker_formspec = function(player, pos, error_msg)
                     'label[0.5,3.0;Your area ought to go..]'..
                     'label[0.5,3.5;this many blocks up:]'..
                     'field[5.0,4.0;1,0.5;add_height;;40]'..
-                    'label[6.0,3.5;(relative to this marker)]'..
+                    'label[6.0,3.5;(above '..coords[2].y..' )]'..
 
                     'label[0.5,4.0;and this many blocks down:]'..
                     'field[5.0,4.5;1,0.5;add_depth;;10]'..
-                    'label[6.0,4.0;(relative to this marker)]'..
+                    'label[6.0,4.0;(below '..coords[1].y..' )]'..
 
                     'label[0.5,4.5;The area shall be named]'..
                     'field[5.0,5.0;6,0.5;set_area_name;;please enter a name]'..
-     
+
                     "button_exit[2,6.0;2,0.5;abort;Abort]"..
                     -- code the position in the "Buy area" field
                     "button_exit[6,6.0;2,0.5;"..minetest.pos_to_string(pos)..";Buy area]";
@@ -461,7 +396,7 @@ markers.marker_on_receive_fields = function(pos, formname, fields, sender)
 		' in the field where the height of your area is requested. Your area will stretch that many blocks '..
 		'up into the sky from the position of this marker onward.');
       error_msg = 'The height value\nhas to be larger than 0\nand smaller than '..tostring( markers.MAX_HEIGHT );
-     
+
    elseif( not( add_depth  ) or add_depth  < 0 or (add_depth  > markers.MAX_HEIGHT and minetest.get_player_privs(name)["megabuilder"] ~= true)) then
       minetest.chat_send_player( name, 'Please enter a number between 0 and '..tostring( markers.MAX_HEIGHT )..
 		' in the field where the depth of your area is requested. Your area will stretch that many blocks '..
@@ -481,7 +416,7 @@ markers.marker_on_receive_fields = function(pos, formname, fields, sender)
    else
       error_msg = nil;
    end
- 
+
 
    if( error_msg ~= nil ) then
       minetest.show_formspec( name, "markers:mark", markers.get_marker_formspec(sender, pos, error_msg));
@@ -493,8 +428,8 @@ markers.marker_on_receive_fields = function(pos, formname, fields, sender)
    local pos1 = coords[1];
    local pos2 = coords[2];
    -- apply height values from the formspeck
-   pos1.y = pos.y + add_height;
-   pos2.y = pos.y - add_depth;
+   pos1.y = pos1.y - add_depth;
+   pos2.y = pos2.y + add_height;
 
    pos1, pos2 = areas:sortPos( pos1, pos2 );
 
@@ -552,7 +487,7 @@ markers.form_input_handler = function( player, formname, fields)
       if( res ) then
          return true;
       end
-  
+
       -- TODO
 --      minetest.chat_send_player('singleplayer','MARKERS:INFO WITH '..minetest.serialize( fields ));
 
@@ -561,7 +496,7 @@ markers.form_input_handler = function( player, formname, fields)
 --      minetest.chat_send_player('singleplayer','YOU CALLED '..tostring( formname )..' WITH '..minetest.serialize( fields ));
 
    end
-   
+
    return false;
 
 end
@@ -589,9 +524,9 @@ minetest.register_node("markers:mark", {
         after_place_node = function(pos, placer, itemstack)
            markers.marker_placed( pos, placer, itemstack );
         end,
-  
+
         -- the node is digged immediately, so we may as well do all the work in can_dig (any wrong digs are not that critical)
-        can_dig = function(pos,player) 
+        can_dig = function(pos,player)
            return markers.marker_can_dig( pos, player );
         end,
 
