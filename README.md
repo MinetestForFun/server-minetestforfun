@@ -5,10 +5,7 @@ You can find here the subgame and the mods of the server MinetestForFun.
 
 If you want help us, don't hesitate and take a look at our ToDoList [here](https://lite5.framapad.org/p/r.446ce575dd27b3c3e8a8efb34f28ac2d).
 
-Contributorsjfiytviytfiytftfc
-
-
-jkhvhgctyrdc
+Contributors
 ===================
 - Ombridride - Darcidride - MinetestForFun
   > Server hoster, reposity owner.
