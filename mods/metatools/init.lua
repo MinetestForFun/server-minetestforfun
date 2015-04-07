@@ -36,6 +36,7 @@ minetest.register_craftitem("metatools:stick",{
 	on_use = function(itemstack, user, pointed_thing)
 		local username = user:get_player_name()
 		local nodepos  = pointed_thing.under
+		if not nodepos or not minetest.get_node(nodepos) then return end
 		local nodename = minetest.get_node(nodepos).name
 		local node	   = minetest.registered_nodes[nodename]
 		local meta	   = minetest.get_meta(nodepos)
