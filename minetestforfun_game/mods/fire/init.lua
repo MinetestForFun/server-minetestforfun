@@ -16,16 +16,16 @@ minetest.register_node("fire:basic_flame", {
 	buildable_to = true,
 	damage_per_second = 4,
 	
---[[	on_construct = function(pos, placer)
+	on_construct = function(pos, placer)
 		fire.on_flame_add_at(pos)
 	end,
 	
 	on_destruct = function(pos, oldnode, oldmetadata, digger)
 		fire.on_flame_remove_at(pos)
-	end,]]
+	end,
 })
 
---[[
+
 fire.D = 6
 -- key: position hash of low corner of area
 -- value: {handle=sound handle, name=sound name}
@@ -102,7 +102,7 @@ function fire.flame_should_extinguish(pos)
 	return (#ps ~= 0)
 end
 
--- Ignite neighboring nodes
+--[[-- Ignite neighboring nodes
 minetest.register_abm({
 	nodenames = {"group:flammable"},
 	neighbors = {"group:igniter"},
@@ -144,7 +144,7 @@ minetest.register_abm({
 			end
 		end
 	end,
-})
+})]]
 
 -- Remove flammable nodes and flame
 minetest.register_abm({
@@ -183,5 +183,3 @@ minetest.register_abm({
 		end
 	end,
 })
-
-]]--
