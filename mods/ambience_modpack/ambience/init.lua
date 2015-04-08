@@ -80,7 +80,7 @@ local night_frequent = {
 local day = {
 	handler = {},
 	frequency = day_frequency,
-	{name="Best Cardinal Bird", length=4, gain=day_volume},
+	{name="Best_Cardinal_Bird", length=4, gain=day_volume},
 	{name="craw", length=3, gain=day_volume},
 	{name="bluejay", length=18, gain=day_volume},
 	{name="ComboWind", length=17,  gain=day_volume}
@@ -92,7 +92,7 @@ local day_frequent = {
 	{name="robin2", length=16, gain=day_frequent_volume},
 	{name="birdsongnl", length=13, gain=day_frequent_volume},
 	{name="bird", length=30, gain=day_frequent_volume},
-	{name="Best Cardinal Bird", length=4, gain=day_frequent_volume},
+	{name="Best_Cardinal_Bird", length=4, gain=day_frequent_volume},
 	{name="craw", length=3, gain=day_frequent_volume},
 	{name="bluejay", length=18, gain=day_frequent_volume},
 	{name="ComboWind", length=17,  gain=day_frequent_volume*3}
