@@ -20,9 +20,9 @@ Contributors
 - Gael-de-Sailly
   > Kittens carer, and debogger.
 - davedevils
-  > Gardener, creepers' father and chickens' friend
+  > Gardener, creepers' father and chickens' friend.
 - Obani
-  > Sound engineer
+  > Audio bit king.
 
 minetestforfun_game sous-jeu et mods
 ===================
@@ -46,6 +46,6 @@ Contributeurs
 - Gael-de-Sailly
   > Soigneur et deboggueur de chatons.
 - davedevils
-  > Jardinier, père des creeper et ami des poulets
+  > Jardinier, père des creeper et ami des poulets.
 - Obani
-  > Ingénieur du son
+  > Roi du bit audio.
