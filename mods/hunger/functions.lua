@@ -169,11 +169,6 @@ function hunger.register_food(name, hunger_change, replace_with_item, poisen, he
 	food[name].poisen = poisen		-- time its poisening
 	food[name].healing = heal		-- amount of HP
 	food[name].sound = sound		-- special sound that is played when eating
-	-- copied overwrite
-	local def = minetest.registered_items[name]
-	if not def then return end
-	def.on_use = hunger.item_eat(hunger_change, replace_with_item, poisen, heal, sound)
-	minetest.registered_items[name] = def 
 end
 
 -- Poison player
