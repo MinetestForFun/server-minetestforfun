@@ -22,7 +22,7 @@ Contributors
 - davedevils
   > Gardener, creepers' father and chickens' friend
 - Obani
-  > Audio bit king
+  > Sound engineer
 
 minetestforfun_game sous-jeu et mods
 ===================
@@ -48,4 +48,4 @@ Contributeurs
 - davedevils
   > Jardinier, père des creeper et ami des poulets
 - Obani
-  > Roi du bit audio
+  > Ingénieur du son
