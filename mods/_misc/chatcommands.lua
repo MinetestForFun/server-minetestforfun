@@ -20,6 +20,7 @@
 -- /rollback_check
 -- /rollback
 -- /status
+-- /itemdb
 
 minetest.register_chatcommand("time", {
 	params = "<0...24000>",
@@ -67,6 +68,30 @@ minetest.register_chatcommand("ban", {
 		minetest.log("action", name .. " bans " .. desc .. ".")
 		return true, "Banned " .. desc .. "."
 	end,
+})
+
+minetest.register_chatcommand("itemdb", {
+	params = "",
+	description = "Give itemstring of wielded item",
+	privs = {},
+	func = function(name)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false end
+		local item   = player:get_wielded_item()
+
+		if item:get_name() == "" then
+			minetest.chat_send_player(name,"You're handling nothing.")
+			return true
+		else
+			if not minetest.registered_items[item:get_name()] then
+				minetest.chat_send_player(name,"You are handling an unknown item (known before as " .. item:get_name() ..").")
+				return true
+			else
+				minetest.chat_send_player(name,"You are handling a " .. minetest.registered_items[item:get_name()].description .. " also known as " .. item:get_name() .. ".")
+				return true
+			end
+		end
+	end
 })
 
 -- /unban
