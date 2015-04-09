@@ -6,6 +6,8 @@ mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:a
 					"default:sword_steel", "default:sword_gold", "default:pick_steel", "default:shovel_steel", 
 					"default:bronze_ingot", "bucket:bucket_water" }
 
+mobs.npc_max_hp = 20
+
 mobs:register_mob("mobs:npc", {
 	-- animal, monster, npc
 	type = "npc",
@@ -15,7 +17,7 @@ mobs:register_mob("mobs:npc", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health & armor
-	hp_min = 20, hp_max = 20, armor = 100,
+	hp_min = mobs.npc_max_hp, hp_max = mobs.npc_max_hp, armor = 100,
 	-- textures and model
 	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
 	visual = "mesh",
@@ -66,7 +68,7 @@ mobs:register_mob("mobs:npc", {
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "mobs:meat" or item:get_name() == "farming:bread" then
 			local hp = self.object:get_hp()
-			if hp + 4 > self.hp_max then return end
+			if hp + 4 > mobs.npc_max_hp then return end
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
