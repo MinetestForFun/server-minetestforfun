@@ -171,7 +171,7 @@ function mobs:register_mob(name, def)
 			end
 			
 			self.lifetimer = self.lifetimer - dtime
-			if self.lifetimer <= 0 and not self.tamed then
+			if self.lifetimer <= 0 and not self.tamed and self.type ~= "npc" then
 				local player_count = 0
 				for _,obj in ipairs(minetest.get_objects_inside_radius(self.object:getpos(), 10)) do
 					if obj:is_player() then
@@ -798,7 +798,6 @@ function mobs:register_mob(name, def)
 					obj:setvelocity(vec)
 				end
 			end
-
 		end,
 
 		on_activate = function(self, staticdata, dtime_s)
@@ -812,7 +811,9 @@ function mobs:register_mob(name, def)
 			if self.type == "monster" and peaceful_only then
 				self.object:remove()
 			end
-			self.lifetimer = 600 - dtime_s
+			if self.type ~= "npc" then
+				self.lifetimer = 600 - dtime_s
+			end
 			if staticdata then
 				local tmp = minetest.deserialize(staticdata)
 				if tmp then
@@ -852,7 +853,7 @@ function mobs:register_mob(name, def)
 			if self.type == "monster" and self.tamed == true then
 				self.type = "npc"
 			end
-			if self.lifetimer <= 0 and not self.tamed then
+			if self.lifetimer <= 0 and not self.tamed and self.type ~= "npc" then
 				self.object:remove()
 			end
 		end,
