@@ -83,7 +83,9 @@ mobs:register_mob("mobs:npc", {
 			local pos = self.object:getpos()
 			pos.y = pos.y + 0.5
 			minetest.add_item(pos, {name = mobs.npc_drops[math.random(1,#mobs.npc_drops)]})
-		else
+		elseif item:get_name() == "default:diamond" then
+			self.diamond_count = (self.diamond_count or 0) + 1
+			if self.diamond_count < 4 then return end
 			if self.owner == "" then
 				self.owner = clicker:get_player_name()
 			else
