@@ -8,7 +8,7 @@
 # Warning: any file in .previews/ and u_skins/textures might be deleted without asking.
 PNGCRUSH=true
 IMAGEMAGICK=true
-cd previews
+cd .previews
 rm ../u_skins/textures/mff_*_preview*.png # Remove all previous previews
 blender -b mff_skin_previews.blend --python-text "Generate previews" > /dev/null
 if $IMAGEMAGICK
