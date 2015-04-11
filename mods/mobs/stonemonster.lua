@@ -46,7 +46,7 @@ mobs:register_mob("mobs:stone_monster", {
 	},
 	-- damaged by
 	water_damage = 0,
-	lava_damage = 0
+	lava_damage = 0,
 	light_damage = 0,
 	-- model animation
 	animation = {
