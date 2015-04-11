@@ -12,7 +12,9 @@ mobs:register_mob("mobs:mese_monster", {
 	arrow = "mobs:mese_arrow",
 	shoot_offset = 2,
 	-- health & armor
-	hp_min = 30, hp_max = 40, armor = 80,
+	hp_min = 30,
+	hp_max = 40,
+	armor = 80,
 	-- textures and model
 	collisionbox = {-0.5, -1.5, -0.5, 0.5, 0.5, 0.5},
 	visual = "mesh",
@@ -21,10 +23,9 @@ mobs:register_mob("mobs:mese_monster", {
 		{"zmobs_mese_monster.png"},
 	},
 	visual_size = {x=1, y=1},
-	drawtype = "front",
 	blood_texture = "default_mese_crystal_fragment.png",
 	-- sounds
-	makes_footstep_sound = true,
+	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_mesemonster",
 	},
@@ -33,6 +34,7 @@ mobs:register_mob("mobs:mese_monster", {
 	walk_velocity = 0.5,
 	run_velocity = 2,
 	jump = true,
+	jump_height = 8,
 	fall_damage = 0,
 	fall_speed = -6,
 	-- drops mese when dead
@@ -64,28 +66,32 @@ mobs:register_spawn("mobs:mese_monster", {"default:stone", }, 20, -1, 7000, 1, -
 -- register spawn egg
 mobs:register_egg("mobs:mese_monster", "Mese Monster", "default_mese_block.png", 1)
 
--- Mese Monster Crystal Shards (weapon)
+-- mese arrow (weapon)
 mobs:register_arrow("mobs:mese_arrow", {
 	visual = "sprite",
 	visual_size = {x=.5, y=.5},
 	textures = {"default_mese_crystal_fragment.png"},
-	velocity = 5,
-	
-	hit_player = function(self, player)
-		local s = self.object:getpos()
-		local p = player:getpos()
+	velocity = 6,
 
+	hit_player = function(self, player)
+		player:punch(self.object, 1.0,  {
+			full_punch_interval=1.0,
+			damage_groups = {fleshy=1},
+		}, 0)
+	end,
+
+	hit_mob = function(self, player)
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
 			damage_groups = {fleshy=9},
 		}, 0)
 	end,
-	
+
 	hit_node = function(self, pos, node)
 	end
 })
 
--- 9 mese crystal fragments = 1 mese crystal
+-- 9x mese crystal fragments = 1x mese crystal
 minetest.register_craft({
 	output = "default:mese_crystal",
 	recipe = {

@@ -9,12 +9,13 @@ mobs:register_mob("mobs:sand_monster", {
 	attack_type = "dogfight",
 	damage = 5,
 	-- health & armor
-	hp_min = 15, hp_max = 20, armor = 90,
+	hp_min = 15,
+	hp_max = 20,
+	armor = 90,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_sand_monster.x",
-	drawtype = "front",
 	textures = {
 		{"mobs_sand_monster.png"},
 	},
@@ -40,7 +41,7 @@ mobs:register_mob("mobs:sand_monster", {
 	},
 	-- damaged by
 	water_damage = 3,
-	lava_damage = 1,
+	lava_damage = 4,
 	light_damage = 0,
 	-- model animation
 	animation = {

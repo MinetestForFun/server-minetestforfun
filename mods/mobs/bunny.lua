@@ -7,12 +7,13 @@ mobs:register_mob("mobs:bunny", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 3, hp_max = 6, armor = 200, 
+	hp_min = 3,
+	hp_max = 6,
+	armor = 200, 
 	-- textures and model
 	collisionbox = {-0.268, -0.5, -0.268,  0.268, 0.167, 0.268},
 	visual = "mesh",
 	mesh = "mobs_bunny.b3d",
-	drawtype = "front",
 	textures = {
 		{"mobs_bunny_grey.png"},
 		{"mobs_bunny_brown.png"},
@@ -31,7 +32,7 @@ mobs:register_mob("mobs:bunny", {
 	},
 	-- damaged by
 	water_damage = 1,
-	lava_damage = 1,
+	lava_damage = 4,
 	light_damage = 0,
 	-- model animation
 	animation = {
@@ -48,9 +49,9 @@ mobs:register_mob("mobs:bunny", {
 	replace_with = "air",
 	-- right click to pick up rabbit
 	on_rightclick = function(self, clicker)
-
 		local item = clicker:get_wielded_item()
-		if item:get_name() == "farming_plus:carrot_item" or item:get_name() == "farming:carrot" then
+		if item:get_name() == "farming_plus:carrot_item"
+		or item:get_name() == "farming:carrot" then
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
@@ -62,7 +63,11 @@ mobs:register_mob("mobs:bunny", {
 			end
 			return
 		end
-		if clicker:is_player() and clicker:get_inventory() and clicker:get_inventory():room_for_item("main", "mobs:bunny") then
+
+		if clicker:is_player()
+		and clicker:get_inventory()
+		and self.child == false
+		and clicker:get_inventory():room_for_item("main", "mobs:bunny") then
 			clicker:get_inventory():add_item("main", "mobs:bunny")
 			self.object:remove()
 		end

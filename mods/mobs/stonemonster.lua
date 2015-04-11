@@ -9,12 +9,13 @@ mobs:register_mob("mobs:stone_monster", {
 	attack_type = "dogfight",
 	damage = 8,
 	-- health & armor
-	hp_min = 30, hp_max = 35, armor = 60,
+	hp_min = 30,
+	hp_max = 35,
+	armor = 60,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_stone_monster.x",
-	drawtype = "front",
 	textures = {
 		{"mobs_stone_monster.png"},
 	},
@@ -45,7 +46,7 @@ mobs:register_mob("mobs:stone_monster", {
 	},
 	-- damaged by
 	water_damage = 0,
-	lava_damage = 0,
+	lava_damage = 0
 	light_damage = 0,
 	-- model animation
 	animation = {

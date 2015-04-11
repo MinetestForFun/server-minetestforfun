@@ -9,23 +9,23 @@ mobs:register_mob("mobs:lava_flan", {
 	attack_type = "dogfight",
 	damage = 5,
 	-- health and armor
-	hp_min = 20, hp_max = 35, armor = 80,
+	hp_min = 20,
+	hp_max = 35,
+	armor = 80,
 	-- textures and model
 	collisionbox = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5},
 	visual = "mesh",
 	mesh = "zmobs_lava_flan.x",
-	drawtype = "front",
 	textures = {
 		{"zmobs_lava_flan.png"},
 	},
 	blood_texture = "fire_basic_flame.png",
 	visual_size = {x=1, y=1},
 	-- sounds
-	makes_footstep_sound = true,
+	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_lavaflan",
 		war_cry = "mobs_lavaflan",
-		death = nil,
 	},
 	-- speed and jump, sinks in water
 	walk_velocity = 0.5,
@@ -51,15 +51,19 @@ mobs:register_mob("mobs:lava_flan", {
 		run_start = 20,			run_end = 28,
 		punch_start = 20,		punch_end = 28,
 	},
+	on_die = function(self, pos)
+		minetest.set_node(pos, {name="fire:basic_flame"})
+	end,
 })
 -- spawns in lava between -1 and 20 light, 1 in 2000 chance, 3 in area below 31000 in height
 mobs:register_spawn("mobs:lava_flan", {"default:lava_source"}, 20, -1, 2500, 3, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:lava_flan", "Lava Flan", "default_lava.png", 1)
 
--- Lava Orb
+-- lava orb
 minetest.register_craftitem("mobs:lava_orb", {
 	description = "Lava orb",
 	inventory_image = "zmobs_lava_orb.png",
 })
+
 minetest.register_alias("zmobs:lava_orb", "mobs:lava_orb")

@@ -7,12 +7,13 @@ mobs:register_mob("mobs:sheep", {
 	-- not aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 10, hp_max = 15, armor = 200,
+	hp_min = 10,
+	hp_max = 15,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
 	mesh = "mobs_sheep.x",
-	drawtype = "front",
 	textures = {
 		{"mobs_sheep.png"},
 	},
@@ -61,13 +62,16 @@ mobs:register_mob("mobs:sheep", {
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
-			self.food = (self.food or 0) + 1
 			if self.child == true then
 				self.hornytimer = self.hornytimer + 10
+				return
 			end
+			self.food = (self.food or 0) + 1
 			if self.food >= 8 then
 				self.food = 0
-				if self.child == false then self.horny = true end
+				if self.hornytimer == 0 then
+					self.horny = true
+				end
 				self.gotten = false -- can be shaved again
 				self.tamed = true
 				self.object:set_properties({
@@ -76,11 +80,12 @@ mobs:register_mob("mobs:sheep", {
 				})
 				minetest.sound_play("mobs_sheep", {object = self.object,gain = 1.0,max_hear_distance = 32,loop = false,})
 			end
-		return
+			return
 		end
-		-- need shears to get wool from sheep
-		local inv = clicker:get_inventory()		
-		if inv and item:get_name() == "mobs:shears" and not self.gotten and self.child == false then
+
+		if item:get_name() == "mobs:shears"
+		and self.gotten == false
+		and self.child == false then
 			self.gotten = true -- shaved
 			if minetest.registered_items["wool:white"] then
 				local pos = self.object:getpos()
@@ -89,13 +94,25 @@ mobs:register_mob("mobs:sheep", {
 				if obj then
 					obj:setvelocity({x=math.random(-1,1), y=5, z=math.random(-1,1)})
 				end
-				item:add_wear(65535/100)
+				item:add_wear(650) -- 100 uses
 				clicker:set_wielded_item(item)
 			end
 			self.object:set_properties({
 				textures = {"mobs_sheep_shaved.png"},
 				mesh = "mobs_sheep_shaved.x",
 			})
+		end
+
+		if item:get_name() == "mobs:magic_lasso"
+		and clicker:is_player()
+		and clicker:get_inventory()
+		and self.child == false
+		and clicker:get_inventory():room_for_item("main", "mobs:sheep") then
+			clicker:get_inventory():add_item("main", "mobs:sheep")
+			self.object:remove()
+			item:add_wear(3000) -- 22 uses
+			print ("wear", item:get_wear())
+			clicker:set_wielded_item(item)
 		end
 	end,
 })
@@ -104,7 +121,7 @@ mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 
 -- register spawn egg
 mobs:register_egg("mobs:sheep", "Sheep", "wool_white.png", 1)
 
--- shears tool (right click sheep to shear)
+-- shears (right click sheep to shear wool)
 minetest.register_tool("mobs:shears", {
 	description = "Steel Shears (right-click sheep to shear)",
 	inventory_image = "mobs_shears.png",

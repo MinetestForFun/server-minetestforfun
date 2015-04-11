@@ -7,12 +7,13 @@ mobs:register_mob("mobs:chicken", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 4, hp_max = 8, armor = 200,
+	hp_min = 4,
+	hp_max = 8,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
 	mesh = "mobs_chicken.x",
-	drawtype = "front",
 	textures = {
 		{"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png",
 		"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png"},
@@ -52,7 +53,8 @@ mobs:register_mob("mobs:chicken", {
 		walk_end = 40,
 	},
 	-- follows wheat
-	follow = "farming:seed_wheat", view_range = 8,
+	follow = "farming:seed_wheat",
+	view_range = 8,
 	-- replace air with egg (lay)
 	replace_rate = 2000,
 	replace_what = {"air"},
@@ -60,43 +62,42 @@ mobs:register_mob("mobs:chicken", {
 	-- right click to pick up chicken
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()
-
-		if tool:get_name() == "farming:seed_wheat" then -- and self.gotten then
+		if tool:get_name() == "farming:seed_wheat" then
 			if not minetest.setting_getbool("creative_mode") then
 				tool:take_item(1)
 				clicker:set_wielded_item(tool)
 			end
-			self.food = (self.food or 0) + 1
 			if self.child == true then
 				self.hornytimer = self.hornytimer + 10
+				return
 			end
+			self.food = (self.food or 0) + 1
 			if self.food >= 8 then
 				self.food = 0
-				if self.child == false then self.horny = true end
-				self.gotten = false -- reset
+				if self.hornytimer == 0 then
+					self.horny = true
+				end
 				self.tamed = true
 				minetest.sound_play("mobs_chicken", {object = self.object,gain = 1.0,max_hear_distance = 16,loop = false,})
 			end
-			return tool
-		else
-			if clicker:is_player() and clicker:get_inventory() and clicker:get_inventory():room_for_item("main", "mobs:chicken") then
-				clicker:get_inventory():add_item("main", "mobs:chicken")
-				self.object:remove()
-			end
+			return
 		end
-		if clicker:is_player() and clicker:get_inventory() and self.child == false
+
+		if clicker:is_player()
+		and clicker:get_inventory()
+		and self.child == false
 		and clicker:get_inventory():room_for_item("main", "mobs:chicken") then
 			clicker:get_inventory():add_item("main", "mobs:chicken")
 			self.object:remove()
 		end
 	end,
 })
--- spawn on default or bamboo grass between 8 and 20 light, 1 in 9000 change, 1 chicken in area up to 31000 in height
+-- spawn on default or bamboo grass between 8 and 20 light, 1 in 10000 change, 1 chicken in area up to 31000 in height
 mobs:register_spawn("mobs:chicken", {"default:dirt_with_grass"}, 20, 0, 10000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:chicken", "Chicken", "mobs_chicken_inv.png", 0)
 
--- Egg
+-- egg
 minetest.register_node("mobs:egg", {
 	description = "Chicken Egg",
 	tiles = {"mobs_chicken_egg.png"},
@@ -120,7 +121,7 @@ minetest.register_node("mobs:egg", {
 	end
 })
 
--- Fried egg
+-- fried egg
 minetest.register_craftitem("mobs:chicken_egg_fried", {
 description = "Fried Egg",
 	inventory_image = "mobs_chicken_egg_fried.png",
@@ -133,7 +134,7 @@ minetest.register_craft({
 	output = "mobs:chicken_egg_fried",
 })
 
--- Chicken (raw and cooked)
+-- chicken (raw and cooked)
 minetest.register_craftitem("mobs:chicken_raw", {
 description = "Raw Chicken",
 	inventory_image = "mobs_chicken_raw.png",

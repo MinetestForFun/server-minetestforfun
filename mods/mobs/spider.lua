@@ -9,12 +9,13 @@ mobs:register_mob("mobs:spider", {
 	attack_type = "dogfight",
 	damage = 6,
 	-- health & armor
-	hp_min = 30, hp_max = 40, armor = 100,
+	hp_min = 30,
+	hp_max = 40,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.9, -0.01, -0.7, 0.7, 0.6, 0.7},
 	visual = "mesh",
 	mesh = "mobs_spider.x",
-	drawtype = "front",
 	textures = {
 		{"mobs_spider.png"},
 	},
@@ -61,12 +62,12 @@ mobs:register_spawn("mobs:spider", {"default:jungleleaves", "default:jungletree"
 -- register spawn egg
 mobs:register_egg("mobs:spider", "Spider", "mobs_cobweb.png", 1)
 
--- Ethereal crystal spike compatibility
+-- ethereal crystal spike compatibility
 if not minetest.get_modpath("ethereal") then
 	minetest.register_alias("ethereal:crystal_spike", "default:sandstone")
 end
 
--- Spider Cobweb
+-- spider cobweb
 minetest.register_node("mobs:spider_cobweb", {
 	description = "Spider Cobweb", --Description changé pour éviter conflit avec homedecor_modpack
 	drawtype = "plantlike",
@@ -87,7 +88,7 @@ minetest.register_node("mobs:spider_cobweb", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Spider Cobweb craft (MFF : indentation modifié)
+-- spider cobweb craft (MFF : indentation modifié)
 minetest.register_craft( {
 	output = "mobs:spider_cobweb",
 	recipe = {

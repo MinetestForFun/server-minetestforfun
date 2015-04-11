@@ -9,12 +9,13 @@ mobs:register_mob("mobs:tree_monster", {
 	attack_type = "dogfight",
 	damage = 9,
 	-- health & armor
-	hp_min = 40, hp_max = 50, armor = 80,
+	hp_min = 40,
+	hp_max = 50,
+	armor = 80,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_tree_monster.x",
-	drawtype = "front",
 	textures = {
 		{"mobs_tree_monster.png"},
 	},
@@ -60,7 +61,7 @@ mobs:register_spawn("mobs:tree_monster", {"default:leaves", "moretrees:beech_lea
 -- register spawn egg
 mobs:register_egg("mobs:tree_monster", "Tree Monster", "default_tree_top.png", 1)
 
--- Ethereal sapling compatibility
+-- ethereal sapling compatibility
 if not minetest.get_modpath("ethereal") then
 	minetest.register_alias("ethereal:tree_sapling", "default:sapling")
 	minetest.register_alias("ethereal:jungle_tree_sapling", "default:junglesapling")

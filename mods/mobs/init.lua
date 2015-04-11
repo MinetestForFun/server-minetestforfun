@@ -53,6 +53,22 @@ minetest.register_craft({
 	cooktime = 5,
 })
 
+-- Golden Lasso
+
+minetest.register_tool("mobs:magic_lasso", {
+	description = "Magic Lasso (right-click animal to put in inventory)",
+	inventory_image = "mobs_magic_lasso.png",
+})
+
+minetest.register_craft({
+	output = "mobs:magic_lasso",
+	recipe = {
+		{"farming:string", "default:gold_lump", "farming:string"},
+		{"default:gold_lump", "default:diamondblock", "default:gold_lump"},
+		{"farming:string", "default:gold_lump", "farming:string"},
+	}
+})
+
 if minetest.setting_get("log_mods") then
 	minetest.log("action", "mobs loaded")
 end

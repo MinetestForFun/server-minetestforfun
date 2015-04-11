@@ -7,7 +7,9 @@ mobs:register_mob("mobs:kitten", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 4, hp_max = 8, armor = 200,
+	hp_min = 4,
+	hp_max = 8,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
@@ -50,7 +52,8 @@ mobs:register_mob("mobs:kitten", {
 	-- feed with raw fish to tame or right click to pick up
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
-		if item:get_name() == "fishing:fish_raw" or item:get_name() == "ethereal:fish_raw" then
+		if item:get_name() == "fishing:fish_raw"
+		or item:get_name() == "ethereal:fish_raw" then
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
@@ -63,11 +66,15 @@ mobs:register_mob("mobs:kitten", {
 			end
 			return
 		end
-		if clicker:is_player() and clicker:get_inventory() and clicker:get_inventory():room_for_item("main", "mobs:kitten") then
+
+		if clicker:is_player()
+		and clicker:get_inventory()
+		and self.child == false
+		and clicker:get_inventory():room_for_item("main", "mobs:kitten") then
 			clicker:get_inventory():add_item("main", "mobs:kitten")
 			self.object:remove()
 		end
-	end
+	end,
 })
 
 mobs:register_spawn("mobs:kitten", {"default:dirt_with_grass"}, 20, 0, 10000, 1, 31000)

@@ -9,12 +9,13 @@ mobs:register_mob("mobs:oerkki", {
 	attack_type = "dogfight",
 	damage = 7,
 	-- health & armor
-	hp_min = 40, hp_max = 50, armor = 90,
+	hp_min = 40,
+	hp_max = 50,
+	armor = 90,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_oerkki.x",
-	drawtype = "front",
 	textures = {
 		{"mobs_oerkki.png"},
 		{"mobs_oerkki2.png"},
@@ -40,8 +41,8 @@ mobs:register_mob("mobs:oerkki", {
 		chance = 2, min = 2, max = 3,},
 	},
 	-- damaged by
-	water_damage = 1,
-	lava_damage = 1,
+	water_damage = 2,
+	lava_damage = 2,
 	light_damage = 1,
 	-- model animation
 	animation = {

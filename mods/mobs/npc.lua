@@ -17,12 +17,13 @@ mobs:register_mob("mobs:npc", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health & armor
-	hp_min = mobs.npc_max_hp, hp_max = mobs.npc_max_hp, armor = 100,
+	hp_min = 20,
+	hp_max = 20,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
 	visual = "mesh",
 	mesh = "character.b3d",
-	drawtype = "front",
 	textures = {
 		{"mobs_npc.png"},
 	},
@@ -66,14 +67,17 @@ mobs:register_mob("mobs:npc", {
 	-- right clicking with "cooked meat" or "bread" will give npc more health
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
-		if item:get_name() == "mobs:meat" or item:get_name() == "farming:bread" then
+		if item:get_name() == "mobs:meat"
+		or item:get_name() == "farming:bread" then
 			local hp = self.object:get_hp()
-			if hp + 4 > mobs.npc_max_hp then return end
+			if hp + 4 > self.hp_max then
+				return
+			end
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
-			self.object:set_hp(hp+4)
+			self.object:set_hp(hp + 4)
 		-- right clicking with gold lump drops random item from mobs.npc_drops
 		elseif item:get_name() == "default:gold_lump" then
 			if not minetest.setting_getbool("creative_mode") then

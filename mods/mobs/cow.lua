@@ -9,15 +9,16 @@ mobs:register_mob("mobs:cow", {
 	attack_type = "dogfight",
 	damage = 5,
 	-- health & armor
-	hp_min = 20, hp_max = 30, armor = 200,
+	hp_min = 20,
+	hp_max = 30,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
 	mesh = "mobs_cow.x",
-	drawtype = "front",
 	textures = {
 		{"mobs_cow.png"},
-		{"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
+		--{"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
 	},
 	blood_texture = "mobs_blood.png",
 	visual_size = {x=1,y=1},
@@ -58,8 +59,11 @@ mobs:register_mob("mobs:cow", {
 	-- right-click cow with empty bucket to get milk, then feed 8 wheat to replenish milk
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()
-		if tool:get_name() == "bucket:bucket_empty" and self.child == false then
-			if self.gotten then return end
+		if tool:get_name() == "bucket:bucket_empty" then
+			if self.gotten == true
+			or self.child == true then
+				return
+			end
 			local inv = clicker:get_inventory()
 			inv:remove_item("main", "bucket:bucket_empty")
 			-- if room add bucket of milk to inventory, otherwise drop as item
@@ -72,25 +76,39 @@ mobs:register_mob("mobs:cow", {
 			end
 			self.gotten = true -- milked
 		end
-		if tool:get_name() == "farming:wheat" then -- and self.gotten then
+
+		if tool:get_name() == "farming:wheat" then
 			if not minetest.setting_getbool("creative_mode") then
 				tool:take_item(1)
 				clicker:set_wielded_item(tool)
 			end
-			self.food = (self.food or 0) + 1
 			if self.child == true then
 				self.hornytimer = self.hornytimer + 10
+				return
 			end
+			self.food = (self.food or 0) + 1
 			if self.food >= 8 then
 				self.food = 0
-				if self.child == false then self.horny = true end
+				if self.hornytimer == 0 then
+					self.horny = true
+				end
 				self.gotten = false -- ready to be milked again
 				self.tamed = true
 				minetest.sound_play("mobs_cow", {object = self.object,gain = 1.0,max_hear_distance = 32,loop = false,})
 			end
-			return tool
+			return
 		end
-		
+
+		if tool:get_name() == "mobs:magic_lasso"
+		and clicker:is_player()
+		and clicker:get_inventory()
+		and self.child == false
+		and clicker:get_inventory():room_for_item("main", "mobs:cow") then
+			clicker:get_inventory():add_item("main", "mobs:cow")
+			self.object:remove()
+			tool:add_wear(3000) -- 22 uses
+			clicker:set_wielded_item(tool)
+		end
 	end,
 })
 -- spawn on default;green;prairie grass between 0 and 20 light, 1 in 11000 chance, 1 cow in area up to 31000 in height
@@ -98,13 +116,13 @@ mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 0, 10000, 1, 31
 -- register spawn egg
 mobs:register_egg("mobs:cow", "Cow", "default_grass.png", 1)
 
--- Leather
+-- leather
 minetest.register_craftitem("mobs:leather", {
 	description = "Leather",
 	inventory_image = "mobs_leather.png",
 })
 
--- Bucket of Milk
+-- bucket of milk
 minetest.register_craftitem("mobs:bucket_milk", {
 	description = "Bucket of Milk",
 	inventory_image = "mobs_bucket_milk.png",
@@ -112,7 +130,7 @@ minetest.register_craftitem("mobs:bucket_milk", {
 	on_use = minetest.item_eat(8, 'bucket:bucket_empty'),
 })
 
--- Cheese Wedge
+-- cheese wedge
 minetest.register_craftitem("mobs:cheese", {
 	description = "Cheese",
 	inventory_image = "mobs_cheese.png",
@@ -127,7 +145,7 @@ minetest.register_craft({
 	replacements = {{ "mobs:bucket_milk", "bucket:bucket_empty"}}
 })
 
--- Cheese Block
+-- cheese block
 minetest.register_node("mobs:cheeseblock", {
 	description = "Cheese Block",
 	tiles = {"mobs_cheeseblock.png"},
