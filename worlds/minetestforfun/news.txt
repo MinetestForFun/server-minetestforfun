@@ -6,6 +6,50 @@ MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé de cette façon maintenant : "/played <pseudo>")
 MAJ de "mobs" (ajout des chèvres/goats)
 
+---12/04/2015---
+MaJ de "mobs" (Nouveaux objets nécessaires pour appater les npcs, npcs qui disparaissent après 10 minutes si non apprivoisés)
+MaJ de "homedecor" (Remplacement des items inconnus dans certains crafts)
+MaJ de "mesecons" (Ajout de modèles manquants)
+MaJ de "soundset"
+MaJ de "death_messages" (Inclusions de sons spéciaux lors de la mort)
+MaJ de "ambiance" (Ajout de sons dans la liste de ceux modifiables avec soundset)
+MaJ de "plantlife_modpack" (Ajout des tournesols)
+MaJ de "irc"
+MaJ de "mobs" (Moins de nodes cassés par les creeper - même si ils sont peu nombreux)
+MaJ de "mana"
+Maj de "returnmirror"
+Maj de "trm_pyramids" (Beacoup de nouveaux items ajoutés dans la liste des lots)
+MaJ de "fire"
+MaJ de "areas" (Le nombre d'areas par defaut est maintenant 10)
+Ajout du mod "metatools" (Permet aux admins de manipuler des données de nodes)
+MaJ de "markers"
+MaJ de "hud" (Section hunger ajouté dans le nouveau mod du même nom)
+Ajout du mod "hunger"
+MaJ de "lavatemple" (Ajout d'un craft pour les lavatemple's ladder, ainsi que d'une obsidian ladder)
+MaJ de "tsm_pyramids" (Les mommies possèdent les propriétés des sand monsters, y compris vitesse et aggressivité)
+MaJ de "maptools" (Textures manquantes)
+MaJ de "ambiance" (Compression des sons, plus rapides à charger à la connexion)
+MaJ de "bobblocks" (Compression des sons, plus rapides à charger à la connexion)
+MaJ de "builtin_item" (Compression des sons, plus rapides à charger à la connexion)
+MaJ de "christmas_craft" (Compression des sons, plus rapides à charger à la connexion)
+MaJ de "death_messages" (Compression des sons ajoutés, signalés plus haut)
+MaJ de "fail" (Compression de sons et suppression d'autres inutiles)
+MaJ de "intweak" (Compression de sons)
+MaJ de "item_drop" (Compression de sons)
+MaJ de "lavatemple" (Compression de sons)
+MaJ de "mobs" (Compression de sons)
+MaJ de "multitest" (Compression de sons)
+MaJ de "returnmirror" (Compression de sons)
+MaJ de "throwing" (Compression de sons)
+MaJ de "tsm_pyramids" (Compression de sons)
+MaJ de "unified_inventory" (Compression de sons)
+MaJ de "_misc" (Ajout d'une commande itemdb qui donne l'itemstring de l'item tenu en main)
+MaJ de "u_skins" (Ajout d'un modèle pour visualiser le modèle en 3d)
+MaJ de "beds" (Nouveaux beds en mesh par jp)
+MaJ de "item_drop" (Optimisation du système de suppression)
+MaJ de "mobs" (Ajout des mobs slimes, les verts spawnant dans l'acide et les rouges dans la lave à la place du lavaflan)
+MaJ de "mobs" (Suppression des lavaflan)
+
 ---31/03/2015--- (Remerciements : Crabman, Mg)
 MAJ de "3d_armor" (bugfix des valeurs des armures, maintenant correctes)
 MAJ de "mobs" (les Sand Monsters ont maintenant une texture de sang semblable à du sable giclant à chaque coup reçu)
