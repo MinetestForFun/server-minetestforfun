@@ -1,0 +1,173 @@
+
+-- Lava Slimes by TomasJLuis & TenPlus1
+
+-- sounds
+local lava_sounds = {
+	damage = "mobs_slimes_damage",
+	death = "mobs_slimes_death",
+	jump = "mobs_slimes_jump",
+	attack = "mobs_slimes_attack",
+}
+
+-- lava slime textures
+local lava_textures = {"mobs_lava_slime_sides.png", "mobs_lava_slime_sides.png", "mobs_lava_slime_sides.png", "mobs_lava_slime_sides.png", "mobs_lava_slime_front.png", "mobs_lava_slime_sides.png"}
+
+-- register small lava slime
+mobs:register_mob("mobs:lavasmall", {
+	-- animal, monster, npc, barbarian
+	type = "monster",
+	-- aggressive, deals 2 damage to player when hit
+	passive = false,
+	damage = 2,
+	attack_type = "dogfight",
+	attacks_monsters = true,
+	-- health and armor
+	hp_min = 2,	hp_max = 4,
+	armor = 100,
+	-- textures and model
+	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
+	visual = "cube",
+	textures = { lava_textures },
+	blood_texture = "mobs_lava_slime_blood.png",
+	visual_size = {x = 0.5, y = 0.5},
+	-- sounds a bit here, but mainly define in the beginning 
+	makes_footstep_sound = false,
+	sounds = lava_sounds,
+	-- speed and jump, sinks in water
+	walk_velocity = 2,
+	run_velocity = 2,
+	walk_chance = 0,
+	jump = true,
+	jump_chance = 30,
+	jump_height = 6,
+	replace_rate = 20,
+	footstep = "fire:basic_flame",
+	view_range = 16,
+	floats = 1,
+	-- chance of dropping coins
+	drops = {
+		{name = "maptools:copper_coin",
+		chance = 2, min = 1, max = 1,},
+	},
+	-- damaged by
+	water_damage = 10,
+	lava_damage = 0,
+	light_damage = 0,
+	-- model animation
+	-- no model animation
+})
+mobs:register_egg("mobs:lavasmall", "Small Lava Slime", "mobs_lava_slime_egg.png", 1)
+
+-- register medium lava slime
+mobs:register_mob("mobs:lavamedium", {
+	-- animal, monster, npc, barbarian
+	type = "monster",
+	-- aggressive, deals 4 damage to player when hit
+	passive = false,
+	damage = 4,
+	attack_type = "dogfight",
+	attacks_monsters = true,
+	-- health and armor
+	hp_min = 4,	hp_max = 8,
+	armor = 90,
+	-- textures and model
+	collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+	visual = "cube",
+	textures = { lava_textures },
+	blood_texture = "mobs_lava_slime_blood.png",
+	visual_size = {x = 1, y = 1},
+	-- sounds a bit here, but mainly define in the beginning 
+	makes_footstep_sound = false,
+	sounds = lava_sounds,
+	-- speed and jump, sinks in water
+	walk_velocity = 2,
+	run_velocity = 2,
+	walk_chance = 0,
+	jump = true,
+	jump_chance = 30,
+	jump_height = 6,
+	replace_rate = 20,
+	footstep = "fire:basic_flame",
+	view_range = 16,
+	floats = 1,
+	-- chance of dropping coins
+	drops = {
+		{name = "maptools:copper_coin",
+		chance = 2, min = 1, max = 1,},
+	},
+	-- damaged by
+	water_damage = 10,
+	lava_damage = 0,
+	light_damage = 0,
+	-- model animation
+	-- no model animation
+	-- do things when die
+	on_die = function(self, pos)
+		local num = math.random(2, 4)
+		for i=1,num do
+			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:lavasmall")
+		end
+	end,
+})
+mobs:register_egg("mobs:lavamedium", "Medium Lava Slime", "mobs_lava_slime_egg.png", 1)
+
+-- register big lava slime
+mobs:register_mob("mobs:lavabig", {
+	-- animal, monster, npc, barbarian
+	type = "monster",
+	-- aggressive, deals 6 damage to player when hit
+	passive = false,
+	damage = 6,
+	attack_type = "dogfight",
+	attacks_monsters = true,
+	-- health and armor
+	hp_min = 16, hp_max = 32,
+	armor = 90,
+	-- textures and model
+	collisionbox = {-1, -1, -1, 1, 1, 1},
+	visual = "cube",
+	textures = { lava_textures },
+	blood_texture = "mobs_lava_slime_blood.png",
+	visual_size = {x = 2, y = 2},
+	-- sounds a bit here, but mainly define in the beginning 
+	makes_footstep_sound = false,
+	sounds = lava_sounds,
+	-- speed and jump, sinks in water
+	walk_velocity = 2,
+	run_velocity = 2,
+	walk_chance = 0,
+	jump = true,
+	jump_chance = 30,
+	jump_height = 6,
+	replace_rate = 20,
+	replace_offset = -1,
+	footstep = "fire:basic_flame",
+	view_range = 16,
+	floats = 1,
+	-- chance of dropping coins
+	drops = {
+		{name = "mobs:lava_orb",
+		chance = 15, min = 1, max = 1,},
+		{name = "maptools:silver_coin",
+		chance = 2, min = 1, max = 1,},
+	},
+	-- damaged by
+	water_damage = 10,
+	lava_damage = 0,
+	light_damage = 0,
+	-- model animation
+	-- no model animation
+	-- do things when die
+	on_die = function(self, pos)
+		local num = math.random(1, 2)
+		for i=1,num do
+			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:lavamedium")
+		end
+	end,
+})
+mobs:register_egg("mobs:lavabig", "Big Lava Slime", "mobs_lava_slime_egg.png", 1)
+
+--mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
+mobs:spawn_specific("mobs:lavabig", {"default:lava_source"},{"default:lava_flowing"}, 20, -1, 30, 4000, 1, -32000, 32000)
+mobs:spawn_specific("mobs:lavamedium", {"default:lava_source"},{"default:lava_flowing"}, 20, -1, 30, 4000, 2, -32000, 32000)
+--mobs:spawn_specific("mobs:lavasmall", {"default:lava_source"},{"default:lava_flowing"}, 4, 20, 30, 15000, 8, -32000, -64)
