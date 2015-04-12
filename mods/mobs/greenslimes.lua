@@ -2,14 +2,14 @@
 
 -- sounds
 local green_sounds = {
-	damage = "slimes_damage",
-	death = "slimes_death",
-	jump = "slimes_jump",
-	attack = "slimes_attack",
+	damage = "mobs_slimes_damage",
+	death = "mobs_slimes_death",
+	jump = "mobs_slimes_jump",
+	attack = "mobs_slimes_attack",
 }
 
 -- green slime textures
-local green_textures = {"green_slime_sides.png", "green_slime_sides.png", "green_slime_sides.png", "green_slime_sides.png", "green_slime_front.png", "green_slime_sides.png"}
+local green_textures = {"mobs_green_slime_sides.png", "mobs_green_slime_sides.png", "mobs_green_slime_sides.png", "mobs_green_slime_sides.png", "mobs_green_slime_front.png", "mobs_green_slime_sides.png"}
 
 -- register small green slime
 mobs:register_mob("mobs:greensmall", {
@@ -19,7 +19,7 @@ mobs:register_mob("mobs:greensmall", {
 	visual = "cube",
 	visual_size = {x = 0.5, y = 0.5},
 	textures = { green_textures },
-	blood_texture = "green_slime_blood.png",
+	blood_texture = "mobs_green_slime_blood.png",
 	makes_footstep_sound = false,
 	sounds = green_sounds,
 	attack_type = "dogfight",
@@ -41,7 +41,7 @@ mobs:register_mob("mobs:greensmall", {
 	lava_damage = 10,
 	light_damage = 0,
 })
-mobs:register_egg("mobs:greensmall", "Small Green Slime", "green_slime_egg.png", 1)
+mobs:register_egg("mobs:greensmall", "Small Green Slime", "mobs_green_slime_egg.png", 1)
 
 -- register medium green slime
 mobs:register_mob("mobs:greenmedium", {
@@ -51,7 +51,7 @@ mobs:register_mob("mobs:greenmedium", {
 	visual = "cube",
 	visual_size = {x = 1, y = 1},
 	textures = { green_textures },
-	blood_texture = "green_slime_blood.png",
+	blood_texture = "mobs_green_slime_blood.png",
 	makes_footstep_sound = false,
 	sounds = green_sounds,
 	attack_type = "dogfight",
@@ -68,7 +68,7 @@ mobs:register_mob("mobs:greenmedium", {
 	on_die = function(self, pos)
 		local num = math.random(2, 4)
 		for i=1,num do
-			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:greensmall")
+			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "slimes:greensmall")
 		end
 	end,
 	drawtype = "front",
@@ -76,7 +76,7 @@ mobs:register_mob("mobs:greenmedium", {
 	lava_damage = 10,
 	light_damage = 0,
 })
-mobs:register_egg("mobs:greenmedium", "Medium Green Slime", "green_slime_egg.png", 1)
+mobs:register_egg("mobs:greenmedium", "Medium Green Slime", "mobs_green_slime_egg.png", 1)
 
 -- register big green slime
 mobs:register_mob("mobs:greenbig", {
@@ -86,7 +86,7 @@ mobs:register_mob("mobs:greenbig", {
 	visual = "cube",
 	visual_size = {x = 2, y = 2},
 	textures = { green_textures },
-	blood_texture = "green_slime_blood.png",
+	blood_texture = "mobs_green_slime_blood.png",
 	makes_footstep_sound = false,
 	sounds = green_sounds,
 	attack_type = "dogfight",
@@ -103,7 +103,7 @@ mobs:register_mob("mobs:greenbig", {
 	on_die = function(self, pos)
 		local num = math.random(1, 2)
 		for i=1,num do
-			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:greenmedium")
+			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "slimes:greenmedium")
 		end
 	end,
 	drawtype = "front",
