@@ -14,103 +14,153 @@ local green_textures = {"mobs_green_slime_sides.png", "mobs_green_slime_sides.pn
 
 -- register small green slime
 mobs:register_mob("mobs:greensmall", {
+	-- animal, monster, npc, barbarian
 	type = "monster",
-	hp_min = 1,	hp_max = 2,
-	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
-	visual = "cube",
-	visual_size = {x = 0.5, y = 0.5},
-	textures = { green_textures },
-	blood_texture = "mobs_green_slime_blood.png",
-	makes_footstep_sound = false,
-	sounds = green_sounds,
+	-- aggressive, deals 2 damage to player when hit
+	passive = false,
+	damage = 2,
 	attack_type = "dogfight",
 	attacks_monsters = true,
-	damage = 1,
-	passive = false,
+	-- health and armor
+	hp_min = 2, hp_max = 4,
+	armor = 100,
+	-- textures and model
+	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
+	visual = "cube",
+	textures = { green_textures },
+	blood_texture = "mobs_green_slime_blood.png",
+	visual_size = {x = 0.5, y = 0.5},
+	-- sounds a bit here, but mainly define in the beginning 
+	makes_footstep_sound = false,
+	sounds = green_sounds,
+	-- speed and jump, sinks in water
 	walk_velocity = 2,
 	run_velocity = 2,
 	walk_chance = 0,
+	jump = true,
 	jump_chance = 30,
 	jump_height = 6,
-	armor = 100,
-	view_range = 15,
+	view_range = 16,
+	floats = 1,
+	-- chance of dropping glue and coins
 	drops = {
-		{name = "mesecons_materials:glue", chance = 4, min = 1, max = 2},
+		{name = "mesecons_materials:glue",
+		chance = 4, min = 1, max = 2},
+		{name = "maptools:copper_coin",
+		chance = 2, min = 1, max = 1},
 	},
-	drawtype = "front",
+	-- damaged by
 	water_damage = 0,
 	lava_damage = 10,
 	light_damage = 0,
+	-- model animation
+	-- no model animation
 })
 mobs:register_egg("mobs:greensmall", "Small Green Slime", "mobs_green_slime_egg.png", 1)
 
 -- register medium green slime
 mobs:register_mob("mobs:greenmedium", {
+	-- animal, monster, npc, barbarian
 	type = "monster",
-	hp_min = 3,	hp_max = 4,
-	collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-	visual = "cube",
-	visual_size = {x = 1, y = 1},
-	textures = { green_textures },
-	blood_texture = "mobs_green_slime_blood.png",
-	makes_footstep_sound = false,
-	sounds = green_sounds,
+	-- aggressive, deals 4 damage to player when hit
+	passive = false,
+	damage = 4,
 	attack_type = "dogfight",
 	attacks_monsters = true,
-	damage = 1,
-	passive = false,
+	-- health and armor
+	hp_min = 4, hp_max = 8,
+	armor = 90,
+	-- textures and model
+	collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+	visual = "cube",
+	textures = { green_textures },
+	blood_texture = "mobs_green_slime_blood.png",
+	visual_size = {x = 1, y = 1},
+	-- sounds a bit here, but mainly define in the beginning 
+	makes_footstep_sound = false,
+	sounds = green_sounds,
+	-- speed and jump, sinks in water
 	walk_velocity = 2,
 	run_velocity = 2,
 	walk_chance = 0,
+	jump = true,
 	jump_chance = 30,
 	jump_height = 6,
-	armor = 100,
-	view_range = 15,
+	view_range = 16,
+	floats = 1,
+	-- chance of dropping glue and coins
+	drops = {
+		{name = "mesecons_materials:glue",
+		chance = 4, min = 1, max = 2},
+		{name = "maptools:copper_coin",
+		chance = 2, min = 1, max = 1},
+	},
+	-- damaged by
+	water_damage = 0,
+	lava_damage = 10,
+	light_damage = 0,
+	-- model animation
+	-- no model animation
+	-- do things when die
 	on_die = function(self, pos)
 		local num = math.random(2, 4)
 		for i=1,num do
 			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:greensmall")
 		end
 	end,
-	drawtype = "front",
-	water_damage = 0,
-	lava_damage = 10,
-	light_damage = 0,
 })
 mobs:register_egg("mobs:greenmedium", "Medium Green Slime", "mobs_green_slime_egg.png", 1)
 
 -- register big green slime
 mobs:register_mob("mobs:greenbig", {
+	-- animal, monster, npc, barbarian
 	type = "monster",
-	hp_min = 5,	hp_max = 6,
-	collisionbox = {-1, -1, -1, 1, 1, 1},
-	visual = "cube",
-	visual_size = {x = 2, y = 2},
-	textures = { green_textures },
-	blood_texture = "mobs_green_slime_blood.png",
-	makes_footstep_sound = false,
-	sounds = green_sounds,
+	-- aggressive, deals 6 damage to player when hit
+	passive = false,
+	damage = 6,
 	attack_type = "dogfight",
 	attacks_monsters = true,
-	damage = 2,
-	passive = false,
+	-- health and armor
+	hp_min = 16, hp_max = 32,
+	armor = 90,
+	-- textures and model
+	collisionbox = {-1, -1, -1, 1, 1, 1},
+	visual = "cube",
+	textures = { green_textures },
+	blood_texture = "mobs_green_slime_blood.png",
+	visual_size = {x = 2, y = 2},
+	-- sounds a bit here, but mainly define in the beginning 
+	makes_footstep_sound = false,
+	sounds = green_sounds,
+	-- speed and jump, sinks in water
 	walk_velocity = 2,
 	run_velocity = 2,
 	walk_chance = 0,
+	jump = true,
 	jump_chance = 30,
 	jump_height = 6,
-	armor = 100,
-	view_range = 15,
+	view_range = 16,
+	floats = 1,
+	-- chance of dropping glue and coins
+	drops = {
+		{name = "mesecons_materials:glue",
+		chance = 4, min = 1, max = 2},
+		{name = "maptools:copper_coin",
+		chance = 2, min = 1, max = 1},
+	},
+	-- damaged by
+	water_damage = 0,
+	lava_damage = 10,
+	light_damage = 0,
+	-- model animation
+	-- no model animation
+	-- do things when die
 	on_die = function(self, pos)
 		local num = math.random(1, 2)
 		for i=1,num do
 			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:greenmedium")
 		end
 	end,
-	drawtype = "front",
-	water_damage = 0,
-	lava_damage = 10,
-	light_damage = 0,
 })
 mobs:register_egg("mobs:greenbig", "Big Green Slime", "mobs_green_slime_egg.png", 1)
 
