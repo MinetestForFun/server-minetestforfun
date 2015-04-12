@@ -88,7 +88,7 @@ mobs:register_mob("mobs:npc", {
 			pos.y = pos.y + 0.5
 			minetest.add_item(pos, {name = mobs.npc_drops[math.random(1,#mobs.npc_drops)]})
 		elseif item:get_name() == "default:diamond" then
-			self.diamond_count = (self.diamond_count or 0)
+			self.diamond_count = (self.diamond_count or 0) + 1
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
