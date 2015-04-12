@@ -111,14 +111,13 @@ mobs:register_mob("slimes:greenbig", {
 	lava_damage = 10,
 	light_damage = 0,
 })
-mobs:register_egg("slimes:greenbig", "Big Green Slime", "green_slime_egg.png", 1)
+mobs:register_egg("mobs:greenbig", "Big Green Slime", "mobs_green_slime_egg.png", 1)
 
 --mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
-mobs:spawn_specific("slimes:greenbig", {"default:junglegrass"},{"air","default:junglegrass"}, 4, 20, 30, 5000, 8, 0, 32000)
-mobs:spawn_specific("slimes:greenmedium", {"default:junglegrass"},{"air","default:junglegrass"}, 4, 20, 30, 10000, 8, 0, 32000)
-mobs:spawn_specific("slimes:greensmall", {"default:junglegrass"},{"air","default:junglegrass"}, 4, 4, 30, 15000, 8, 0, 32000)
+mobs:spawn_specific("mobs:greenbig", {"default:acid_source"},{"default:acid_flowing"}, 20, -1, 30, 4000, 1, -32000, 32000)
+mobs:spawn_specific("mobs:greenmedium", {"default:acid_source"},{"default:acid_flowing"}, 20, -1, 30, 4000, 2, -32000, 32000)
+--mobs:spawn_specific("mobs:greensmall", {"default:acid_source"},{"default:acid_flowing"}, 20, -1, 30, 10000, 2, -32000, 32000)
 
 --mobs:register_spawn(name, nodes, max_light, min_light, chance, active_object_count, max_height)
-mobs:register_spawn("slimes:greenmedium", {"default:mossycobble"}, 20, 4, 10000, 8, 32000)
-mobs:register_spawn("slimes:greensmall", {"default:mossycobble"}, 20, 4, 10000, 8, 32000)
-
+--mobs:register_spawn("mobs:greenmedium", {"default:mossycobble"}, 20, 4, 10000, 8, 32000)
+--mobs:register_spawn("mobs:greensmall", {"default:mossycobble"}, 20, 4, 10000, 8, 32000)
