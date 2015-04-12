@@ -90,7 +90,7 @@ lifetimer = def.lifetimer or 600,
 		end,
 		
 		set_velocity = function(self, v)
-			if not v then v = 0 end -- added
+			if not v then v = 0 end
 			if def.drawtype and def.drawtype == "side" then self.rotate = 1.5 end
 			local yaw = self.object:getyaw() + self.rotate
 			local x = math.sin(yaw) * -v
@@ -272,12 +272,22 @@ lifetimer = def.lifetimer or 600,
 				local nod = minetest.get_node(pos)
 				if not nod or not minetest.registered_nodes[nod.name]
 				or minetest.registered_nodes[nod.name].walkable == false then return end
-				local v = self.object:getvelocity()
-				v.y = self.jump_height
-				if self.following then v.y = v.y + 1 end
-				self.object:setvelocity(v)
-				if self.sounds.jump then
-					minetest.sound_play(self.sounds.jump, {object = self.object})
+
+				if self.direction then
+					local nod = minetest.get_node_or_nil({x=pos.x + self.direction.x,y=pos.y+1,z=pos.z + self.direction.z})
+					if nod and nod.name and (nod.name ~= "air"  or self.walk_chance == 0) then
+						local def = minetest.registered_items[nod.name]
+						if (def and def.walkable and not nod.name:find("fence")) or self.walk_chance == 0 then
+							local v = self.object:getvelocity()
+							v.y = self.jump_height + 1
+							v.x = v.x * 2.2
+							v.z = v.z * 2.2
+							self.object:setvelocity(v)
+							if self.sounds.jump then
+								minetest.sound_play(self.sounds.jump, {object = self.object})
+							end
+						end
+					end
 				end
 			end
 			
@@ -458,6 +468,7 @@ lifetimer = def.lifetimer or 600,
 						if dist > 2 and self.order ~= "stand" then
 							if (self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0)
 							or (self.object:getvelocity().y == 0 and self.jump_chance > 0) then
+								self.direction = {x = math.sin(yaw)*-1, y = -20, z = math.cos(yaw)}
 								do_jump(self)
 							end
 							self.set_velocity(self, self.walk_velocity)
@@ -521,6 +532,7 @@ lifetimer = def.lifetimer or 600,
 
 					-- jumping mobs only
 					if self.jump_chance ~= 0 and math.random(1, 100) <= self.jump_chance then
+						self.direction = {x=0, y=0, z=0}
 						do_jump(self)
 						self.set_velocity(self, self.walk_velocity)
 					end
@@ -532,6 +544,7 @@ lifetimer = def.lifetimer or 600,
 					self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/180*math.pi))
 				end
 				if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
+					self.direction = {x = math.sin(yaw)*-1, y = -20, z = math.cos(yaw)}
 					do_jump(self)
 				end
 
@@ -542,7 +555,8 @@ lifetimer = def.lifetimer or 600,
 					self.state = "stand"
 					self:set_animation("stand")
 				end
-			elseif self.state == "attack" and self.attack_type == "kamicaze" then --Modif MFF, attack type Creeper
+-- Modif MFF "attack type kamicaze" des creepers /DEBUT
+			elseif self.state == "attack" and self.attack_type == "kamicaze" then 
 				if not self.attack.player or not self.attack.player:is_player() then
 					self.state = "stand"
 					self:set_animation("stand")
@@ -668,6 +682,7 @@ lifetimer = def.lifetimer or 600,
 							end
 						end
 				end
+-- Modif MFF "attack type kamicaze" des creepers /FIN
 			elseif self.state == "attack" and self.attack_type == "dogfight" then
 
 				if not self.attack.player or not self.attack.player:getpos() then
@@ -699,6 +714,7 @@ lifetimer = def.lifetimer or 600,
 					-- jump attack
 					if (self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0)
 					or (self.object:getvelocity().y == 0 and self.jump_chance > 0) then
+						self.direction = {x = math.sin(yaw)*-1, y = -20, z = math.cos(yaw)}
 						do_jump(self)
 					end
 					self.set_velocity(self, self.run_velocity)
@@ -795,14 +811,12 @@ lifetimer = def.lifetimer or 600,
 			if self.type == "monster" and peaceful_only then
 				self.object:remove()
 			end
---			if self.type ~= "npc" then
---				self.lifetimer = self.lifetimer - dtime_s
---			end
+
 			if staticdata then
 				local tmp = minetest.deserialize(staticdata)
 				if tmp then
 					if tmp.lifetimer then
-						self.lifetimer = tmp.lifetimer --  - dtime_s
+						self.lifetimer = tmp.lifetimer
 					end
 					if tmp.tamed then
 						self.tamed = tmp.tamed
@@ -837,9 +851,6 @@ lifetimer = def.lifetimer or 600,
 			if self.type == "monster" and self.tamed == true then
 				self.type = "npc"
 			end
---			if self.lifetimer <= 0 and not self.tamed and self.type ~= "npc" then
---				self.object:remove()
---			end
 		end,
 
 		get_staticdata = function(self)
@@ -930,23 +941,20 @@ lifetimer = def.lifetimer or 600,
 					end
 				end
 			end
-
 		end,
-		
 	})
 end
 
 mobs.spawning_mobs = {}
 
 function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
-	mobs.spawning_mobs[name] = true	
+	mobs.spawning_mobs[name] = true
 	minetest.register_abm({
 		nodenames = nodes,
 		neighbors = neighbors,
 		interval = interval,
 		chance = chance,
 		action = function(pos, node, _, active_object_count_wider)
-
 			-- do not spawn if too many active in area
 			if active_object_count_wider > active_object_count
 			or not mobs.spawning_mobs[name] 
