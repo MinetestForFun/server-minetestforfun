@@ -68,7 +68,7 @@ mobs:register_mob("mobs:greenmedium", {
 	on_die = function(self, pos)
 		local num = math.random(2, 4)
 		for i=1,num do
-			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "slimes:greensmall")
+			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:greensmall")
 		end
 	end,
 	drawtype = "front",
@@ -103,7 +103,7 @@ mobs:register_mob("mobs:greenbig", {
 	on_die = function(self, pos)
 		local num = math.random(1, 2)
 		for i=1,num do
-			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "slimes:greenmedium")
+			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:greenmedium")
 		end
 	end,
 	drawtype = "front",
