@@ -33,7 +33,7 @@ mobs:register_mob("mobs:lava_flan", {
 	jump = true,
 	-- step = 2, (c'était pas mal, voir comment faire pour le remettre comme ça ?) 
 	view_range = 16,
-	floats = 0,
+	floats = 1,
 	-- chance of dropping lava orb when dead
 	drops = {
 		{name = "mobs:lava_orb",
@@ -51,6 +51,7 @@ mobs:register_mob("mobs:lava_flan", {
 		run_start = 20,			run_end = 28,
 		punch_start = 20,		punch_end = 28,
 	},
+	-- do things when die
 	on_die = function(self, pos)
 		minetest.set_node(pos, {name="fire:basic_flame"})
 	end,
