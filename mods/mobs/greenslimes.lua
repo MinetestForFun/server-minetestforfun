@@ -12,7 +12,7 @@ local green_sounds = {
 local green_textures = {"green_slime_sides.png", "green_slime_sides.png", "green_slime_sides.png", "green_slime_sides.png", "green_slime_front.png", "green_slime_sides.png"}
 
 -- register small green slime
-mobs:register_mob("slimes:greensmall", {
+mobs:register_mob("mobs:greensmall", {
 	type = "monster",
 	hp_min = 1,	hp_max = 2,
 	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
@@ -41,10 +41,10 @@ mobs:register_mob("slimes:greensmall", {
 	lava_damage = 10,
 	light_damage = 0,
 })
-mobs:register_egg("slimes:greensmall", "Small Green Slime", "green_slime_egg.png", 1)
+mobs:register_egg("mobs:greensmall", "Small Green Slime", "green_slime_egg.png", 1)
 
 -- register medium green slime
-mobs:register_mob("slimes:greenmedium", {
+mobs:register_mob("mobs:greenmedium", {
 	type = "monster",
 	hp_min = 3,	hp_max = 4,
 	collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
@@ -68,7 +68,7 @@ mobs:register_mob("slimes:greenmedium", {
 	on_die = function(self, pos)
 		local num = math.random(2, 4)
 		for i=1,num do
-			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "slimes:greensmall")
+			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:greensmall")
 		end
 	end,
 	drawtype = "front",
@@ -76,10 +76,10 @@ mobs:register_mob("slimes:greenmedium", {
 	lava_damage = 10,
 	light_damage = 0,
 })
-mobs:register_egg("slimes:greenmedium", "Medium Green Slime", "green_slime_egg.png", 1)
+mobs:register_egg("mobs:greenmedium", "Medium Green Slime", "green_slime_egg.png", 1)
 
 -- register big green slime
-mobs:register_mob("slimes:greenbig", {
+mobs:register_mob("mobs:greenbig", {
 	type = "monster",
 	hp_min = 5,	hp_max = 6,
 	collisionbox = {-1, -1, -1, 1, 1, 1},
@@ -103,7 +103,7 @@ mobs:register_mob("slimes:greenbig", {
 	on_die = function(self, pos)
 		local num = math.random(1, 2)
 		for i=1,num do
-			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "slimes:greenmedium")
+			minetest.add_entity({x=pos.x + math.random(-2, 2), y=pos.y + 1, z=pos.z + (math.random(-2, 2))}, "mobs:greenmedium")
 		end
 	end,
 	drawtype = "front",

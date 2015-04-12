@@ -29,8 +29,8 @@ dofile(minetest.get_modpath("mobs").."/spider.lua") -- AspireMint
 -- Migration to Mobs Redo API by TenPlus1
 
 -- load mod files
-dofile(minetest.get_modpath("slimes").."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
-dofile(minetest.get_modpath("slimes").."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
+dofile(minetest.get_modpath("mobs").."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
+dofile(minetest.get_modpath("mobs").."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 
 -- cannot find mesecons?, craft glue instead
 if not minetest.get_modpath("mesecons_materials") then
