@@ -22,7 +22,7 @@ mobs:register_mob("mobs:lavasmall", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health and armor
-	hp_min = 2,	hp_max = 4,
+	hp_min = 2, hp_max = 4,
 	armor = 100,
 	-- textures and model
 	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
@@ -47,7 +47,7 @@ mobs:register_mob("mobs:lavasmall", {
 	-- chance of dropping coins
 	drops = {
 		{name = "maptools:copper_coin",
-		chance = 2, min = 1, max = 1,},
+		chance = 2, min = 1, max = 1},
 	},
 	-- damaged by
 	water_damage = 10,
