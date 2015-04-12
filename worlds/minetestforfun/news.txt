@@ -50,6 +50,7 @@ MAJ de "beds" (Nouveaux beds en mesh par jp)
 MAJ de "item_drop" (Optimisation du système de suppression)
 MAJ de "mobs" (Ajout des mobs Slimes, les Green Slimes spawnent dans l'acide et les Lava Slimes dans la lave à la place du Lava Flan)
 MAJ de "mobs" (Suppression des Lava Flans)
+MAJ de "mobs" (bugfix des sauts des animaux proches des barrières/fences, ajout d'une texture pour le Golden Lasso, objet qui permet de ramasser dans son inventaire les animaux trop gros pour les ramasser a la main, comme les Moutons/Sheeps par exemple)
 
 ---31/03/2015--- (Remerciements : Crabman, Mg)
 MAJ de "3d_armor" (bugfix des valeurs des armures, maintenant correctes)
