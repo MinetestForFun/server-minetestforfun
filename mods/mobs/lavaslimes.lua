@@ -22,7 +22,7 @@ mobs:register_mob("mobs:lavasmall", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health and armor
-	hp_min = 2, hp_max = 4,
+	hp_min = 4, hp_max = 8,
 	armor = 100,
 	-- textures and model
 	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
@@ -34,8 +34,8 @@ mobs:register_mob("mobs:lavasmall", {
 	makes_footstep_sound = false,
 	sounds = lava_sounds,
 	-- speed and jump, sinks in water
-	walk_velocity = 2,
-	run_velocity = 2,
+	walk_velocity = 4,
+	run_velocity = 4,
 	walk_chance = 0,
 	jump = true,
 	jump_chance = 30,
@@ -68,7 +68,7 @@ mobs:register_mob("mobs:lavamedium", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health and armor
-	hp_min = 4,	hp_max = 8,
+	hp_min = 16, hp_max = 32,
 	armor = 90,
 	-- textures and model
 	collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
@@ -80,8 +80,8 @@ mobs:register_mob("mobs:lavamedium", {
 	makes_footstep_sound = false,
 	sounds = lava_sounds,
 	-- speed and jump, sinks in water
-	walk_velocity = 2,
-	run_velocity = 2,
+	walk_velocity = 3,
+	run_velocity = 3,
 	walk_chance = 0,
 	jump = true,
 	jump_chance = 30,
@@ -121,7 +121,7 @@ mobs:register_mob("mobs:lavabig", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health and armor
-	hp_min = 16, hp_max = 32,
+	hp_min = 32, hp_max = 64,
 	armor = 90,
 	-- textures and model
 	collisionbox = {-1, -1, -1, 1, 1, 1},
@@ -133,8 +133,8 @@ mobs:register_mob("mobs:lavabig", {
 	makes_footstep_sound = false,
 	sounds = lava_sounds,
 	-- speed and jump, sinks in water
-	walk_velocity = 2,
-	run_velocity = 2,
+	walk_velocity = 2.5,
+	run_velocity = 2.5,
 	walk_chance = 0,
 	jump = true,
 	jump_chance = 30,
