@@ -94,7 +94,6 @@ mobs:register_mob("mobs:npc", {
 				clicker:set_wielded_item(item)
 			end
 			if self.diamond_count < 4 then return end
-
 			if self.owner == "" then
 				self.owner = clicker:get_player_name()
 			else
