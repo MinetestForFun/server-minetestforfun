@@ -25,13 +25,10 @@ dofile(minetest.get_modpath("mobs").."/wolf.lua") -- PilzAdam
 --dofile(minetest.get_modpath("mobs").."/lava_flan.lua") -- Zeg9 --Remplaced by Lava Slime
 dofile(minetest.get_modpath("mobs").."/mese_monster.lua") -- Zeg9
 dofile(minetest.get_modpath("mobs").."/spider.lua") -- AspireMint
-
--- Migration to Mobs Redo API by TenPlus1
-
--- load mod files
 dofile(minetest.get_modpath("mobs").."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 dofile(minetest.get_modpath("mobs").."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 
+-- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead
 if not minetest.get_modpath("mesecons_materials") then
 	minetest.register_craftitem(":mesecons_materials:glue", {
@@ -41,6 +38,7 @@ if not minetest.get_modpath("mesecons_materials") then
 end
 
 if minetest.setting_get("log_mods") then minetest.log("action", "Slimes loaded") end
+-- end slimes mobs compatibility changes
 
 -- NPC
 dofile(minetest.get_modpath("mobs").."/npc.lua") -- TenPlus1
