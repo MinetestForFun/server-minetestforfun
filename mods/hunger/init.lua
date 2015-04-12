@@ -8,14 +8,14 @@ HUNGER_MOVE_TICK = 0.5		-- time in seconds after the movement is checked
 HUNGER_EXHAUST_DIG = 3		-- exhaustion increased this value after digged node
 HUNGER_EXHAUST_PLACE = 1	-- exhaustion increased this value after placed
 HUNGER_EXHAUST_MOVE = 0.3	-- exhaustion increased this value if player movement detected
-HUNGER_EXHAUST_LVL = 60		-- at what exhaustion player saturation gets lowered
+HUNGER_EXHAUST_LVL = 100	-- at what exhaustion player saturation gets lowered -- change here for more slower/faster saturation
 
 HUNGER_HEAL = 1			-- number of HP player gets healed after HUNGER_HEALTH_TICK
 HUNGER_HEAL_LVL = 15		-- lower level of saturation needed to get healed
 HUNGER_STARVE = 1		-- number of HP player gets damaged by hunger after HUNGER_HEALTH_TICK
-HUNGER_STARVE_LVL = 3		-- level of staturation that causes starving
+HUNGER_STARVE_LVL = 2		-- level of staturation that causes starving
 
-HUNGER_MAX = 30			-- maximum level of saturation
+HUNGER_MAX = 20			-- maximum level of saturation
 
 
 local modpath = minetest.get_modpath("hunger")
