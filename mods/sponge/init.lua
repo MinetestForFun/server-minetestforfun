@@ -1,5 +1,5 @@
 minetest.register_node("sponge:sponge", {
-	description = "Sponge",
+	description = "Sponge Dry",
 	drawtype = "normal",
 	tiles = {"sponge_sponge.png"},
 	paramtype = 'light',
@@ -89,6 +89,22 @@ minetest.register_node("sponge:sponge_wet", {
 	stack_max = 99,
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3},
 })
+
+--Cooking the sponge wet to be a sponge dry (Back to the future sponge !) :D
+minetest.register_craft({
+	type = "cooking", output = "sponge:sponge", recipe = "sponge:sponge_wet",
+})
+
+-- Juste une proposition d'autre craft (comme c'est jaune et que ça a des trou)
+--minetest.register_craft({
+--output = "sponge:sponge",
+--recipe = {
+--{"", "dye:yellow", ""},
+--{"dye:yellow", "", "dye:yellow"},
+--{"dye:yellow", "dye:yellow", "dye:yellow"},
+--},
+--})
+
 
 minetest.register_craft({
 output = "sponge:sponge",
