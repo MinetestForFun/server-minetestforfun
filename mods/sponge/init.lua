@@ -90,7 +90,7 @@ minetest.register_node("sponge:sponge_wet", {
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3},
 })
 
--- Sponge wet back to Sponge Dry if cooked in a furnace
+-- Sponge wet back to Sponge Dry if coocked in a furnace
 minetest.register_craft({
 	type = "cooking", output = "sponge:sponge", recipe = "sponge:sponge_wet",
 })
