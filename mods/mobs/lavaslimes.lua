@@ -171,3 +171,11 @@ mobs:register_egg("mobs:lavabig", "Big Lava Slime", "mobs_lava_slime_egg.png", 1
 mobs:spawn_specific("mobs:lavabig", {"default:lava_source"},{"default:lava_flowing"}, 20, -1, 30, 4000, 1, -32000, 32000)
 mobs:spawn_specific("mobs:lavamedium", {"default:lava_source"},{"default:lava_flowing"}, 20, -1, 30, 4000, 2, -32000, 32000)
 --mobs:spawn_specific("mobs:lavasmall", {"default:lava_source"},{"default:lava_flowing"}, 20, -1, 30, 10s000, 2, -32000, 32000)
+
+-- lava orb
+minetest.register_craftitem("mobs:lava_orb", {
+	description = "Lava orb",
+	inventory_image = "zmobs_lava_orb.png",
+})
+
+minetest.register_alias("zmobs:lava_orb", "mobs:lava_orb")
