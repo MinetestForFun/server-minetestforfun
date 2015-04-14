@@ -3,7 +3,7 @@
 
 -- Temporary compatibility function - see minetest PR#1180
 if not vector.interpolate then
-    vector.interpolate = function(pos1, pos2)
+    vector.interpolate = function(pos1, pos2, factor)
 	return {x = pos1.x + (pos2.x - pos1.x) * factor,
 		y = pos1.y + (pos2.y - pos1.y) * factor,
 		z = pos1.z + (pos2.z - pos1.z) * factor}
