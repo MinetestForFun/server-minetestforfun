@@ -217,6 +217,7 @@ local music = {
 	{name="StrangelyBeautifulShort", length=3*60+.5, gain=music_volume*.7},
 	{name="Loneliness", length=3*60+51, gain=music_volume*.9},
 	{name="AvalonShort", length=2*60+58, gain=music_volume*1.4},
+	{name="Interlude", length=2*60+15, gain=music_volume*1.6},
 	--{name="mtest", length=4*60+33, gain=music_volume},
 	--{name="echos", length=2*60+26, gain=music_volume},
 	--{name="FoamOfTheSea", length=1*60+50, gain=music_volume},
