@@ -14,7 +14,7 @@ minetest.register_craftitem("mesecons_materials:fiber", {
 minetest.register_craft({
 	output = "mesecons_materials:glue 2",
 	type = "cooking",
-	recipe = "default:sapling",
+	recipe = "group:sapling",
 	cooktime = 2
 })
 
@@ -35,7 +35,7 @@ minetest.register_craftitem("mesecons_materials:silicon", {
 minetest.register_craft({
 	output = "mesecons_materials:silicon 4",
 	recipe = {
-		{"default:sand", "default:sand"},
-		{"default:sand", "default:steel_ingot"},
+		{"group:sand", "group:sand"},
+		{"group:sand", "default:steel_ingot"},
 	}
 })
