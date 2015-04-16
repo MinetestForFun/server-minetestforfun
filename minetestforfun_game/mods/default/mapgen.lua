@@ -513,18 +513,6 @@ function default.register_ores()
 		height_max     = 64,
 	})
 
-	-- Ice pools in stone:
-
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "default:ice",
-		wherein        = "default:stone",
-		clust_scarcity = 32 * 32 * 32,
-		clust_num_ores = 200,
-		clust_size     = 6,
-		height_min     = -30000,
-		height_max     = 64,
-	})
 end
 
 function default.generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, chunk_size, ore_per_chunk, height_min, height_max)
