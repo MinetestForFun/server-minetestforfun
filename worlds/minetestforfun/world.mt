@@ -19,6 +19,7 @@ load_mod_worldedit_gui = true
 load_mod_worldedit_infinity = true
 load_mod_worldedit_limited = true
 load_mod_worldedit_shortcommands = true
+load_mod_metatools = true
 
 load_mod_bushes_classic = true
 load_mod_flowers_plus = true
@@ -130,6 +131,7 @@ load_mod_lavatemple = true
 load_mod_beginners_chest = true
 load_mod_forceload = true
 load_mod_more_chests = true
+load_mod_connected_chests = true
 load_mod_chesttools = true
 
 load_mod_farming = true
@@ -190,7 +192,4 @@ load_mod_textures = false
 load_mod_minetest-minetestforfun-server-master = false
 load_mod_mesecons_doors = false
 load_mod_minetestforfun_game = false
-load_mod_snowdrift = false
-
-load_mod_metatools = true
-load_mod_connected_chests = true
+load_mod_snowdrift = falsewor
