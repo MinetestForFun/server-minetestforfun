@@ -77,15 +77,17 @@ homedecor.register("grandfather_clock", {
 	description = "Grandfather Clock",
 	mesh = "homedecor_grandfather_clock.obj",
 	tiles = {
-		"homedecor_grandfather_clock_wood.png",
-		"homedecor_tile_brass2.png",
+		"default_glass.png",
 		"homedecor_grandfather_clock_face.png",
-		"homedecor_grandfather_clock_face_edge.png"
+		"homedecor_grandfather_clock_wood.png",
+		"homedecor_grandfather_clock_face_edge.png",
+		"homedecor_tile_brass2.png"
 	},
 	inventory_image = "homedecor_grandfather_clock_inv.png",
 	groups = { snappy = 3 },
 	selection_box = gf_cbox,
 	collision_box = gf_cbox,
+	sounds = default.node_sound_wood_defaults(),
 	expand = { top="air" },
 })
 

@@ -1,19 +1,21 @@
 local S = homedecor.gettext
 
+local toilet_cbox = {
+	type = "fixed",
+	fixed = { -6/16, -8/16, -8/16, 6/16, 9/16, 8/16 }
+}
+
 homedecor.register("toilet", {
 	description = S("Toilet"),
-	tiles = { "forniture_marble.png" },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.20, -0.50, -0.20,  0.20, -0.45,  0.50, },
-			{ -0.10, -0.45, -0.10,  0.10,  0.00,  0.50, },
-			{ -0.30, -0.20, -0.30,  0.30,  0.00,  0.35, },
-			{ -0.25,  0.00, -0.25,  0.25,  0.05,  0.25, },
-			{ -0.30,  0.00,  0.30,  0.30,  0.40,  0.50, },
-			{ -0.05,  0.40,  0.35,  0.05,  0.45,  0.45, },
-		},
+	mesh = "homedecor_toilet_closed.obj",
+	tiles = {
+		"homedecor_marble_light.png",
+		"homedecor_marble_light.png",
+		"homedecor_marble_light.png",
+		"forniture_metal.png"
 	},
+	selection_box = toilet_cbox,
+	collision_box = toilet_cbox,
 	groups = {cracky=3,},
 	sounds = default.node_sound_stone_defaults(),
 	on_punch = function (pos, node, puncher)
@@ -23,27 +25,16 @@ homedecor.register("toilet", {
 })
 
 homedecor.register("toilet_open", {
+	mesh = "homedecor_toilet_open.obj",
 	tiles = {
-		"forniture_marble_top_toilet.png",
-		"forniture_marble.png"
+		"homedecor_marble_light.png",
+		"homedecor_marble_light.png",
+		"homedecor_marble_light.png",
+		"default_water.png",
+		"forniture_metal.png"
 	},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.20, -0.50, -0.20,  0.20, -0.45,  0.50, },
-			{ -0.10, -0.45, -0.10,  0.10, -0.20,  0.50, },
-			{ -0.10, -0.20,  0.30,  0.10,  0.00,  0.50, },
-			{ -0.30, -0.20,  0.10,  0.30,  0.00,  0.35, },
-			{ -0.30, -0.20, -0.30, -0.10, -0.15,  0.10, },
-			{ -0.10, -0.20, -0.30,  0.10, -0.15, -0.10, },
-			{  0.10, -0.20, -0.30,  0.30, -0.15,  0.10, },
-			{ -0.30, -0.15, -0.30, -0.20,  0.00,  0.10, },
-			{ -0.20, -0.15, -0.30,  0.20,  0.00, -0.20, },
-			{  0.20, -0.15, -0.30,  0.30,  0.00,  0.10, },
-			{ -0.25,  0.00,  0.20,  0.25,  0.50,  0.25, },
-			{ -0.30,  0.00,  0.30,  0.30,  0.40,  0.50, },
-		},
-	},
+	selection_box = toilet_cbox,
+	collision_box = toilet_cbox,
 	drop = "homedecor:toilet",
 	groups = {cracky = 3,},
 	--sounds = {dig = "3dforniture_dig_toilet",  gain=0.5},
@@ -60,32 +51,23 @@ homedecor.register("toilet_open", {
 })
 
 --Sink
+
+local sink_cbox = {
+	type = "fixed",
+	fixed = { -5/16, -8/16, 1/16, 5/16, 8/16, 8/16 }
+}
+
 homedecor.register("sink", {
-	description = S("Sink"),
+	description = S("Bathroom Sink"),
+	mesh = "homedecor_bathroom_sink.obj",
 	tiles = {
-		"forniture_marble_top_sink.png",
-		"forniture_marble.png"
+		"homedecor_marble_light.png",
+		"forniture_marble.png",
+		"default_water.png"
 	},
-	inventory_image="3dforniture_inv_sink.png",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.15,  0.35,  0.20,  0.15,  0.40,  0.50, },
-			{ -0.25,  0.40,  0.40,  0.25,  0.45,  0.50, },
-			{ -0.25,  0.40,  0.15, -0.15,  0.45,  0.40, },
-			{  0.15,  0.40,  0.15,  0.25,  0.45,  0.40, },
-			{ -0.15,  0.40,  0.15,  0.15,  0.45,  0.20, },
-			{ -0.30,  0.45,  0.40,  0.30,  0.50,  0.50, },
-			{ -0.30,  0.45,  0.10, -0.25,  0.50,  0.40, },
-			{  0.25,  0.45,  0.10,  0.30,  0.50,  0.40, },
-			{ -0.25,  0.45,  0.10,  0.25,  0.50,  0.15, },
-		{-0.1, -0.5, 0.3, 0.1, 0.4, 0.5},
-		},
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.3,-0.5,0.1, 0.3,0.5,0.5},
-	},
+	inventory_image="homedecor_bathroom_sink_inv.png",
+	selection_box = sink_cbox,
+	collision_box = sink_cbox,
 	groups = {cracky=2,},
 	sounds = default.node_sound_stone_defaults(),
 })

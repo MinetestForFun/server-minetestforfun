@@ -147,45 +147,64 @@ homedecor.register("plasma_lamp", {
 	end
 })
 
+local tc_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -0.1875, -0.5, -0.1875, 0.1875, 0.375, 0.1875 },
+	}
+}
+
 homedecor.register("candle", {
 	description = S("Thick Candle"),
+	mesh = "homedecor_candle_thick.obj",
 	tiles = {
-		'homedecor_candle_top.png',
-		'homedecor_candle_top.png',
-		{name="homedecor_candle_sides.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
+		'homedecor_candle_sides.png',
+		{name="homedecor_candle_flame.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
 	},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.125, -0.5, -0.125, 0.125, 0, 0.125 },
-			{ -0.125, 0, 0, 0.125, 0.5, 0 },
-			{ 0, 0, -0.125, 0, 0.5, 0.125 }
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875 },
-		}
-	},
+	inventory_image = "homedecor_candle_inv.png",
+	selection_box = tc_cbox,
+	collision_box = tc_cbox,
 	sunlight_propagates = true,
 	groups = { snappy = 3 },
 	light_source = LIGHT_MAX-4,
-	sounds = default.node_sound_wood_defaults(),
 })
+
+local c_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -0.1, -0.5, -0.1, 0.125, 0.05, 0.125 },
+	}
+}
 
 homedecor.register("candle_thin", {
 	description = S("Little Candle"),
-	inventory_image = 'homedecor_candle_inv.png',
-	drawtype = "plantlike",
+	mesh = "homedecor_candle_thin.obj",
 	tiles = {
-		{name="homedecor_candle.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=1.0}},
+		'homedecor_candle_sides.png',
+		{name="homedecor_candle_flame.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
 	},
+	inventory_image = "homedecor_candle_thin_inv.png",
+	selection_box = c_cbox,
+	collision_box = c_cbox,
+	sunlight_propagates = true,
+	walkable = false,
+	groups = { snappy = 3 },
+	light_source = LIGHT_MAX-4,
+})
+
+homedecor.register("wall_sconce", {
+	description = S("Wall sconce"),
+	mesh = "homedecor_wall_sconce.obj",
+	tiles = {
+		'homedecor_candle_sides.png',
+		{name="homedecor_candle_flame.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
+		'homedecor_wall_sconce_back.png',
+		'homedecor_tile_wrought_iron2.png',
+	},
+	inventory_image = "homedecor_wall_sconce_inv.png",
 	selection_box = {
 		type = "fixed",
-		fixed = {
-			{ -0.1, -0.5, -0.1, 0.125, 0.05, 0.125 },
-		}
+		fixed = { -0.1875, -0.25, 0.3125, 0.1875, 0.25, 0.5 }
 	},
 	sunlight_propagates = true,
 	walkable = false,
@@ -193,21 +212,30 @@ homedecor.register("candle_thin", {
 	light_source = LIGHT_MAX-4,
 })
 
+local ol_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -5/16, -8/16, -3/16, 5/16, 4/16, 3/16 },
+	}
+}
+
 homedecor.register("oil_lamp", {
 	description = S("Oil lamp"),
-	drawtype = "plantlike",
-	tiles = { 'homedecor_oil_lamp.png' },
-	inventory_image = 'homedecor_oil_lamp.png',
-	sunlight_propagates = true,
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.3, -0.5, -0.3, 0.3, 0.5, 0.3 },
-		}
+	mesh = "homedecor_oil_lamp.obj",
+	tiles = {
+		"homedecor_oil_lamp_handles.png",
+		"homedecor_oil_lamp_glass.png",
+		"homedecor_tile_brass2.png",
+		"homedecor_oil_lamp_base.png",
+		"homedecor_oil_lamp_top.png",
 	},
+	inventory_image = "homedecor_oil_lamp_inv.png",
+	sunlight_propagates = true,
+	selection_box = ol_cbox,
+	collision_box = ol_cbox,
 	groups = { snappy = 3 },
-	light_source = LIGHT_MAX-4,
-	sounds = default.node_sound_wood_defaults(),
+	light_source = LIGHT_MAX-3,
+	sounds = default.node_sound_glass_defaults(),
 })
 
 local gl_cbox = {
@@ -293,7 +321,17 @@ homedecor.register("lattice_lantern_small", {
 })
 
 local repl = { off="low", low="med", med="hi", hi="max", max="off", }
-local lamp_colors = { "", "blue", "green", "pink", "red", "violet" }
+
+local brights_tab = { 0, 50, 100, 150, 200 }
+
+local lamp_colors = {
+	"",
+	"blue",
+	"green",
+	"pink",
+	"red",
+	"violet"
+}
 
 local tlamp_cbox = {
 	type = "fixed",
@@ -308,15 +346,25 @@ local slamp_cbox = {
 local function reg_lamp(suffix, nxt, tilesuffix, light, color)
 	local lampcolor = "_"..color
 	local colordesc = " ("..color..")"
+	local woolcolor = color
+	local wool_brighten = (light or 0) * 7
+	local bulb_brighten = (light or 0) * 14
+
 	if color == "" then
 		lampcolor = ""
 		colordesc  = " (white)"
+		woolcolor = "white"
 	end
 
 	homedecor.register("table_lamp"..lampcolor.."_"..suffix, {
 		description = S("Table Lamp "..colordesc),
 		mesh = "homedecor_table_lamp.obj",
-		tiles = { "homedecor_table_standing_lamp"..lampcolor.."_"..suffix..".png" },
+		tiles = {
+			"wool_"..woolcolor..".png^[colorize:#ffffff:"..wool_brighten,
+			"homedecor_table_standing_lamp_lightbulb.png^[colorize:#ffffff:"..bulb_brighten,
+			"homedecor_table_standing_lamp_wood.png",
+			"forniture_metal.png",
+		},
 		inventory_image = "homedecor_table_lamp"..lampcolor.."_inv.png",
 		walkable = false,
 		light_source = light,
@@ -337,7 +385,12 @@ local function reg_lamp(suffix, nxt, tilesuffix, light, color)
 	homedecor.register("standing_lamp"..lampcolor.."_"..suffix, {
 		description = S("Standing Lamp"..colordesc),
 		mesh = "homedecor_standing_lamp.obj",
-		tiles = { "homedecor_table_standing_lamp"..lampcolor.."_"..suffix..".png" },
+		tiles = {
+			"wool_"..woolcolor..".png^[colorize:#ffffff:"..wool_brighten,
+			"homedecor_table_standing_lamp_lightbulb.png^[colorize:#ffffff:"..bulb_brighten,
+			"homedecor_table_standing_lamp_wood.png",
+			"forniture_metal.png",
+		},
 		inventory_image = "homedecor_standing_lamp"..lampcolor.."_inv.png",
 		walkable = false,
 		light_source = light,
@@ -353,11 +406,10 @@ local function reg_lamp(suffix, nxt, tilesuffix, light, color)
 		expand = { top="air" },
 	})
 
-	-- "bottom" in the node name is obsolete now, as "top" node doesn't exist anymore.
 	minetest.register_alias("homedecor:standing_lamp_bottom"..lampcolor.."_"..suffix, "homedecor:standing_lamp"..lampcolor.."_"..suffix)
 	minetest.register_alias("homedecor:standing_lamp_top"..lampcolor.."_"..suffix, "air")
 
-	-- for old maps that had 3dfornit`ure
+	-- for old maps that had the original 3dforniture mod
 	if lampcolor == "" then
 		minetest.register_alias("3dforniture:table_lamp_"..suffix, "homedecor:table_lamp_"..suffix)
 	end
