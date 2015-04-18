@@ -12,11 +12,11 @@ minetest.register_alias("flowers:flower_rose", "flowers:rose")
 minetest.register_alias("flowers:flower_tulip", "flowers:tulip")
 minetest.register_alias("flowers:flower_viola", "flowers:viola")
 
--------------------------------
---- Fleur Simple (une case) ---
--------------------------------
+---------------------------------
+--- Simple flowers (one node) ---
+---------------------------------
 
-local function add_simple_flower(name, desc, image, color, f_groups)
+local function add_simple_flower(name, desc, image, f_groups)
 	minetest.register_node("flowers:"..name.."", {
 		description = desc,
 		drawtype = "plantlike",
@@ -37,52 +37,12 @@ local function add_simple_flower(name, desc, image, color, f_groups)
 end
 
 
-add_simple_flower("dandelion_yellow", "Yellow Dandelion", "flowers_dandelion_yellow", "color_yellow",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_yellow=1})
-add_simple_flower("geranium", "Blue Geranium", "flowers_geranium", "color_blue",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_blue=1})
-add_simple_flower("rose", "Rose", "flowers_rose", "color_red",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_red=1}) 
-add_simple_flower("tulip", "Orange Tulip", "flowers_tulip", "color_orange",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_orange=1})
-
----------------------------------------------
------------------ OLD SYSTEM ----------------
----------------------------------------------
-
-minetest.register_node("flowers:dandelion_white", {
-	description = "White Dandelion",
-	drawtype = "plantlike",
-	tiles = { "flowers_dandelion_white.png" },
-	inventory_image = "flowers_dandelion_white.png",
-	wield_image = "flowers_dandelion_white.png",
-	is_ground_content = true,
-	sunlight_propagates = true,
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	groups = {snappy = 3, flammable = 2, flower = 1, flora = 1, attached_node = 1, color_white = 1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, -0.2, 0.5},
-	},
-})
-
-minetest.register_node("flowers:viola", {
-	description = "Viola",
-	drawtype = "plantlike",
-	tiles = { "flowers_viola.png" },
-	inventory_image = "flowers_viola.png",
-	wield_image = "flowers_viola.png",
-	is_ground_content = true,
-	sunlight_propagates = true,
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	groups = {snappy = 3, flammable = 2, flower = 1, flora = 1, attached_node = 1, color_violet = 1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, -0.2, 0.5 },
-	},
-})
+add_simple_flower("dandelion_yellow", "Yellow Dandelion", "flowers_dandelion_yellow", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_yellow=1})
+add_simple_flower("geranium", "Blue Geranium", "flowers_geranium", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_blue=1})
+add_simple_flower("rose", "Rose", "flowers_rose", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_red=1}) 
+add_simple_flower("tulip", "Orange Tulip", "flowers_tulip", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_orange=1})
+add_simple_flower("dandelion_white", "White dandelion", "flowers_dandelion_white",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_white=1})
+add_simple_flower("viola", "Viola", "flowers_viola", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_violet=1})
 
 minetest.register_node("flowers:lily_pad", {
 	description = "Lily Pad",
