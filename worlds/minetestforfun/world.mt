@@ -191,3 +191,6 @@ load_mod_minetest-minetestforfun-server-master = false
 load_mod_mesecons_doors = false
 load_mod_minetestforfun_game = false
 load_mod_snowdrift = false
+
+load_mod_metatools = true
+load_mod_connected_chests = true
