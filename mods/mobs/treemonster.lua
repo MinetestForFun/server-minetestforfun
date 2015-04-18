@@ -40,7 +40,7 @@ mobs:register_mob("mobs:tree_monster", {
 		{name = "default:apple",
 		chance = 2, min = 1, max = 3,},
 		{name = "maptools:silver_coin",
-		chance = 2, min = 1, max = 1,},
+		chance = 4, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
