@@ -28,7 +28,7 @@ mobs:register_mob("tsm_pyramids:mummy", {
 	walk_velocity = 0.5, -- A tester si assez lent / trop lent, valeur actuel = moitié moins que les Tree Monster
 	run_velocity = 1,
 	view_range = 16,
-	jump = true,
+	jump = false,
 	floats = 0,
 	-- drops papyrus when dead
 	drops = {
