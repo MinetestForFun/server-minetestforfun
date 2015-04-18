@@ -34,9 +34,9 @@ mobs:register_mob("mobs:tree_monster", {
 	-- drops saplings, junglesapling, apple and/or silver coins
 	drops = {
 		{name = "default:sapling",
-		chance = 3, min = 1, max = 2},
+		chance = 2, min = 1, max = 2},
 		{name = "default:junglesapling",
-		chance = 3, min = 1, max = 2},
+		chance = 2, min = 1, max = 2},
 		{name = "default:apple",
 		chance = 2, min = 1, max = 3,},
 		{name = "maptools:silver_coin",
