@@ -99,6 +99,7 @@ minetest.register_globalstep(function(dtime)
 		end
 	    end
 
+
             mana.setregen(name, regen_to)
             --print("Regen to "..regen_to.." : "..light_day.."/"..light_now.."/"..light_night)
         end
