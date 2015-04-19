@@ -7,6 +7,7 @@ MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé d
 MAJ de "mobs" (ajout des chèvres/goats)
 
 ---??/??/2015--- (Remerciements : Mg)
+MaJ de "default" (ajout de default:river_water_*)
 MaJ de "irc"
 MaJ de "homedecor"
 MaJ de "metatools"
