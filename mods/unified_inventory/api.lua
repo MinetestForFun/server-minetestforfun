@@ -1,10 +1,4 @@
-local S
-if (minetest.get_modpath("intllib")) then
-	dofile(minetest.get_modpath("intllib").."/intllib.lua")
-	S = intllib.Getter(minetest.get_current_modname())
-else
-	S = function(s) return s end
-end
+local S = unified_inventory.gettext
 
 -- Create detached creative inventory after loading all mods
 minetest.after(0.01, function()
@@ -74,43 +68,36 @@ end)
 -- load_home
 local function load_home()
 	local input = io.open(unified_inventory.home_filename, "r")
-	if input then
-		while true do
-			local x = input:read("*n")
-			if x == nil then
-				break
-			end
-			local y = input:read("*n")
-			local z = input:read("*n")
-			local name = input:read("*l")
-			unified_inventory.home_pos[name:sub(2)] = {x = x, y = y, z = z}
-		end
-		io.close(input)
-	else
+	if not input then
 		unified_inventory.home_pos = {}
+		return
 	end
+	while true do
+		local x = input:read("*n")
+		if not x then break end
+		local y = input:read("*n")
+		local z = input:read("*n")
+		local name = input:read("*l")
+		unified_inventory.home_pos[name:sub(2)] = {x = x, y = y, z = z}
+	end
+	io.close(input)
 end
 load_home()
 
 function unified_inventory.set_home(player, pos)
 	local player_name = player:get_player_name()
-	unified_inventory.home_pos[player_name] = pos
+	unified_inventory.home_pos[player_name] = vector.round(pos)
 	-- save the home data from the table to the file
 	local output = io.open(unified_inventory.home_filename, "w")
 	for k, v in pairs(unified_inventory.home_pos) do
-		if v ~= nil then
-			output:write(math.floor(v.x).." "
-					..math.floor(v.y).." "
-					..math.floor(v.z).." "
-					..k.."\n")
-		end
+		output:write(v.x.." "..v.y.." "..v.z.." "..k.."\n")
 	end
 	io.close(output)
 end
 
 function unified_inventory.go_home(player)
 	local pos = unified_inventory.home_pos[player:get_player_name()]
-	if pos ~= nil then
+	if pos then
 		player:setpos(pos)
 	end
 end
@@ -158,6 +145,7 @@ end
 
 unified_inventory.register_craft_type("normal", {
 	description = "Crafting",
+	icon = "ui_craftgrid_icon.png",
 	width = 3,
 	height = 3,
 	get_shaped_craft_width = function (craft) return craft.width end,
@@ -173,6 +161,7 @@ unified_inventory.register_craft_type("normal", {
 
 unified_inventory.register_craft_type("shapeless", {
 	description = "Mixing",
+	icon = "ui_craftgrid_icon.png",
 	width = 3,
 	height = 3,
 	dynamic_display_size = function (craft)
@@ -187,6 +176,7 @@ unified_inventory.register_craft_type("shapeless", {
 
 unified_inventory.register_craft_type("cooking", {
 	description = "Cooking",
+	icon = "default_furnace_front.png",
 	width = 1,
 	height = 1,
 })
@@ -194,6 +184,7 @@ unified_inventory.register_craft_type("cooking", {
 
 unified_inventory.register_craft_type("digging", {
 	description = "Digging",
+	icon = "default_tool_steelpick.png",
 	width = 1,
 	height = 1,
 })
