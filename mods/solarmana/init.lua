@@ -34,6 +34,7 @@ local mana_from_node = {
     ['default:wood'] = 1,
     ['default:junglewood'] = 1,
     ['default:pinewood'] = 1,
+    ['group:wood'] = 1,
 }
 
 -- just for debugging: see below
@@ -85,6 +86,15 @@ minetest.register_globalstep(function(dtime)
                 regen_to = math.max(regen_to, mana_from_node[node.name])
                 --print("Regen to "..regen_to.." : "..node.name)
             end
+
+            for key, value in pairs(mana_from_node) do
+		if key:split(":")[1] == "group" then
+			groupname = key:split(":")[2]
+			if minetest.get_node_group(node.name, groupname) > 0 then
+				regen_to = math.max(regen_to, value) -- We get the greater one (if the node is part of 2 or more groups)
+			end
+		end
+	    end
 
             mana.setregen(name, regen_to)
             --print("Regen to "..regen_to.." : "..light_day.."/"..light_now.."/"..light_night)
