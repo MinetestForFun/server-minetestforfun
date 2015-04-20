@@ -57,7 +57,7 @@ mobs:register_mob("mobs:tree_monster", {
 	},
 })
 -- spawn on leaves and beech_leaves, between 0 and 5 light, 1 in 8000 chance, 1 in area up to 31000 in height
-mobs:register_spawn("mobs:tree_monster", {"default:leaves", "moretrees:beech_leaves"}, 3, -1, 8000, 1, 31000)
+mobs:register_spawn("mobs:tree_monster", {"default:leaves", "moretrees:beech_leaves"}, 5, 0, 8000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:tree_monster", "Tree Monster", "default_tree_top.png", 1)
 

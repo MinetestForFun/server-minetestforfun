@@ -31,7 +31,7 @@ mobs:register_mob("mobs:lava_flan", {
 	walk_velocity = 0.5,
 	run_velocity = 2,
 	jump = true,
-	-- step = 2, (c'était pas mal, voir comment faire pour le remettre comme ça ?) 
+	-- step = 2, (was good with this value, but don't care now because Lava Slime remplace Lava Flan)
 	view_range = 16,
 	floats = 1,
 	-- chance of dropping lava orb when dead

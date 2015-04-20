@@ -28,10 +28,11 @@ This mod contains the following additions:
 
 Changelog:
 
-beta- Npc mob added, kills monsters, attacks player when punched, right click with food to heal or gold lump for drop
+1,10- Footstep removed (use replace), explosion routine added for exploding mobs. 
 1.09- reworked breeding routine, added mob rotation value, added footstep feature, added jumping mobs with sounds feature, added magic lasso for picking up animals
 1.08- Mob throwing attack has been rehauled so that they can damage one another, also drops and on_die function added
 1.07- Npc's can now be set to follow player or stand by using self.order and self.owner variables
+beta- Npc mob added, kills monsters, attacks player when punched, right click with food to heal or gold lump for drop
 1.06- Changed recovery times after breeding, and time taken to grow up (can be sped up by feeding baby animal)
 1.05- Added ExeterDad's bunny's which can be picked up and tamed with 4 carrots from farming redo or farming_plus, also shears added to get wool from sheep and lastly Jordach/BSD's kitten
 1.04- Added mating for sheep, cows and hogs...  feed animals to make horny and hope for a baby which is half size, will grow up quick though :)

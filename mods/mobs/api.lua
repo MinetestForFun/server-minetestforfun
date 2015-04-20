@@ -1,4 +1,4 @@
--- Mobs Api (11th April 2015)
+-- Mobs Api (20th April 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -19,7 +19,6 @@ function mobs:register_mob(name, def)
 on_die = def.on_die,
 jump_height = def.jump_height or 6,
 jump_chance = def.jump_chance or 0,
-footstep = def.footstep,
 rotate = def.rotate or 0, -- 0=front, 1.5=side, 3.0=back, 4.5=side2
 lifetimer = def.lifetimer or 600,
 		hp_min = def.hp_min or 5,
@@ -182,26 +181,36 @@ lifetimer = def.lifetimer or 600,
 			end
 
 			-- check for mob drop/replace (used for chicken egg and sheep eating grass/wheat)
-			if self.replace_rate and math.random(1,self.replace_rate) == 1 and self.child == false then
-				local pos = self.object:getpos() ; pos.y = pos.y + self.replace_offset
-				if self.footstep and self.object:getvelocity().y == 0 and minetest.get_node(pos).name == "air" then minetest.set_node(pos, {name = self.footstep}) end
+			if self.replace_rate
+			and math.random(1,self.replace_rate) == 1
+			and self.child == false then
+				local pos = self.object:getpos()
+				pos.y = pos.y + self.replace_offset
 				if #minetest.find_nodes_in_area(pos,pos,self.replace_what) > 0
 				and self.object:getvelocity().y == 0
-				and self.replace_what
-				and self.state == "stand" then
+				and self.replace_what then
+				--and self.state == "stand" then
 					minetest.set_node(pos, {name = self.replace_with})
 				end
 			end
 
-			-- gravity, falling or floating in water
-			if self.floats == 1 then
+			-- jump direction (adapted from Carbone mobs), gravity, falling or floating in water
+			if self.object:getvelocity().y > 0.1 then
+				local yaw = self.object:getyaw() + self.rotate
+				local x = math.sin(yaw) * -2
+				local z = math.cos(yaw) * 2
+
 				if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-					self.object:setacceleration({x = 0, y = 1.5, z = 0})
+					if self.floats == 1 then self.object:setacceleration({x = x, y = 1.5, z = z}) end
+				else
+					self.object:setacceleration({x = x, y = self.fall_speed, z = z})
+				end
+			else
+				if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+					if self.floats == 1 then self.object:setacceleration({x = 0, y = 1.5, z = 0}) end
 				else
 					self.object:setacceleration({x = 0, y = self.fall_speed, z = 0})
 				end
-			else
-				self.object:setacceleration({x = 0, y = self.fall_speed, z = 0})
 			end
 
 			-- fall damage
@@ -214,7 +223,7 @@ lifetimer = def.lifetimer or 600,
 				self.old_y = self.object:getpos().y
 			end
 			
-			-- knock back timer
+			-- knockback timer
 			if self.pause_timer > 0 then
 				self.pause_timer = self.pause_timer - dtime
 				if self.pause_timer < 1 then
@@ -540,7 +549,21 @@ lifetimer = def.lifetimer or 600,
 
 			elseif self.state == "walk" then
 
-				if math.random(1, 100) <= 30 then
+				local lp = nil
+				local s = self.object:getpos()
+				-- if there is water nearby, try to avoid it
+				local lp = minetest.find_node_near(s, 2, {"group:water"})
+				
+				if lp ~= nil then
+					local vec = {x=lp.x-s.x, y=lp.y-s.y, z=lp.z-s.z}
+					yaw = math.atan(vec.z/vec.x) + 3*math.pi / 2 + self.rotate
+					if lp.x > s.x then
+						yaw = yaw+math.pi
+					end
+					self.object:setyaw(yaw)
+
+				-- no water near, so randomly turn
+				elseif math.random(1, 100) <= 30 then
 					self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/180*math.pi))
 				end
 				if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
@@ -555,6 +578,7 @@ lifetimer = def.lifetimer or 600,
 					self.state = "stand"
 					self:set_animation("stand")
 				end
+
 -- Modif MFF "attack type kamicaze" des creepers /DEBUT
 			elseif self.state == "attack" and self.attack_type == "kamicaze" then 
 				if not self.attack.player or not self.attack.player:is_player() then
@@ -595,7 +619,7 @@ lifetimer = def.lifetimer or 600,
 						self.v_start = true
 						self.set_velocity(self, self.run_velocity)
 						self.timer = 0
-						 self.blinktimer = 0
+						self.blinktimer = 0
 					else
 					     self.timer = 0
 						 self.blinktimer = 0
@@ -683,6 +707,7 @@ lifetimer = def.lifetimer or 600,
 						end
 				end
 -- Modif MFF "attack type kamicaze" des creepers /FIN
+
 			elseif self.state == "attack" and self.attack_type == "dogfight" then
 
 				if not self.attack.player or not self.attack.player:getpos() then
@@ -710,7 +735,7 @@ lifetimer = def.lifetimer or 600,
 					yaw = yaw+math.pi
 				end
 				self.object:setyaw(yaw)
-				if self.attack.dist > 2 then
+				if self.attack.dist > 3 then -- was set to 2 but slimes didnt hurt when above player
 					-- jump attack
 					if (self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0)
 					or (self.object:getvelocity().y == 0 and self.jump_chance > 0) then
@@ -979,11 +1004,11 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 
 			-- are we spawning inside a solid node?
 			local nod = minetest.get_node_or_nil(pos)
-			if not nod or not minetest.registered_nodes[nod.name]
+			if not nod or not nod.name or not minetest.registered_nodes[nod.name]
 			or minetest.registered_nodes[nod.name].walkable == true then return end
 			pos.y = pos.y + 1
 			nod = minetest.get_node_or_nil(pos)
-			if not nod or not minetest.registered_nodes[nod.name]
+			if not nod or not nod.name or not minetest.registered_nodes[nod.name]
 			or minetest.registered_nodes[nod.name].walkable == true then return end
 
 			if minetest.setting_getbool("display_mob_spawn") then
@@ -1053,6 +1078,7 @@ function check_for_death(self)
 		self.on_die(self, pos)
 	end
 end
+
 -- Modif MFF "fonction TNT" des creepers /DEBUT
 function do_tnt_physics(tnt_np,tntr,entity)
     local objs = minetest.get_objects_inside_radius(tnt_np, tntr)
