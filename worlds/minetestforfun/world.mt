@@ -190,6 +190,5 @@ load_mod_chatplus = true
 load_mod_future_ban = false
 load_mod_textures = false
 load_mod_minetest-minetestforfun-server-master = false
-load_mod_mesecons_doors = false
 load_mod_minetestforfun_game = false
 load_mod_snowdrift = falsewor
