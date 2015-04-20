@@ -72,6 +72,7 @@ minetest.register_node("sponge:sponge", {
 			else
 				minetest.add_node(pointed_thing.above, {name = "sponge:sponge"})	
 			end
+		itemstack:take_item()
 		return itemstack
 		
 	end
