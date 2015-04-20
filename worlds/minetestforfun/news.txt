@@ -7,10 +7,11 @@ MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé d
 MAJ de "mobs" (ajout des chèvres/goats)
 
 ---??/??/2015--- (Remerciements : Mg)
-MaJ de "default" (ajout de default:river_water_*)
-MaJ de "irc"
-MaJ de "homedecor"
-MaJ de "metatools"
+MAJ de "connected_chests"
+MAJ de "default" (ajout de default:river_water_*)
+MAJ de "irc"
+MAJ de "homedecor"
+MAJ de "metatools"
 Ajout du mod "connected_chests" (permet de fusionner deux chests, il suffit de placer le second en cliquant droit sur le côté du premier avec sneak enfoncé)
 
 ---13/04/2015--- (Remerciements : Crabman, Mg)

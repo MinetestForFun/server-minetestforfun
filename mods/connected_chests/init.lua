@@ -113,6 +113,9 @@ end
 
 local function return_remove_next(allowed_name)
 	local function remove_next(pos, oldnode)
+		if oldnode.param2 > 3 then
+			return
+		end
 		local x, z = unpack(string.split(param_tab2[oldnode.param2], " "))
 		pos.x = pos.x-x
 		pos.z = pos.z-z
@@ -123,116 +126,194 @@ local function return_remove_next(allowed_name)
 	return remove_next
 end
 
+local function return_add_next(right_name)
+	local function add_next(pos, node)
+		node = node or minetest.get_node(pos)
+		local par = node.param2
+		if par > 3 then
+			node.param2 = 0
+			minetest.set_node(pos, node)
+			return
+		end
+		local x, z = unpack(string.split(param_tab2[par], " "))
+		pos.x = pos.x-x
+		pos.z = pos.z-z
+		if minetest.get_node(pos).name == "air" then
+			minetest.set_node(pos, {name=right_name, param2=par})
+		end
+	end
+	return add_next
+end
+
+
 local function log_access(pos, player, text)
 	minetest.log("action", player:get_player_name()..
 		" moves stuff "..text.." at "..minetest.pos_to_string(pos))
 end
 
-local default_chest = minetest.registered_nodes["default:chest"]
-minetest.register_node("connected_chests:chest_left", {
-	tiles = {"connected_chests_top.png", "connected_chests_top.png", "default_obsidian_glass.png",
-		"default_chest_side.png", "connected_chests_side.png^[transformFX", "connected_chests_side.png^connected_chests_front.png"},
-	paramtype2 = "facedir",
-	drop = "default:chest 2",
-	groups = default_chest.groups,
-	is_ground_content = default_chest.is_ground_content,
-	sounds = default_chest.sounds,
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 1.5, 0.5, 0.5},
-		},
+
+-- Adds the big chests
+
+local top_texture = "connected_chests_top.png^default_chest_top.png^([combine:16x16:5,0=default_chest_top.png^connected_chests_frame.png^[makealpha:255,126,126)^connected_chests_top.png"
+local side_texture = "connected_chests_side.png^default_chest_side.png^([combine:16x16:5,0=default_chest_side.png^connected_chests_frame.png^[makealpha:255,126,126)^connected_chests_side.png"
+
+local chest = table.copy(minetest.registered_nodes["default:chest"])
+chest.description = nil
+chest.legacy_facedir_simple = nil
+chest.after_place_node = nil
+chest.on_receive_fields = nil
+chest.tiles = {top_texture, top_texture, "default_obsidian_glass.png",
+	"default_chest_side.png", side_texture.."^[transformFX", side_texture.."^connected_chests_front.png"}
+chest.drop = "default:chest 2"
+chest.selection_box = {
+	type = "fixed",
+	fixed = {
+		{-0.5, -0.5, -0.5, 1.5, 0.5, 0.5},
 	},
-	can_dig = default_chest.can_dig,
-	after_dig_node = return_remove_next("connected_chests:chest_right"),
-	on_metadata_inventory_move = function(pos, _, _, _, _, _, player)
-		log_access(pos, player, "in a big chest")
-	end,
-	on_metadata_inventory_put = function(pos, _, _, _, player)
-		log_access(pos, player, "to a big chest")
-	end,
-	on_metadata_inventory_take = function(pos, _, _, _, player)
-		log_access(pos, player, "from a big chest")
-	end,
-})
-
-
-local function has_locked_chest_privilege(meta, player)
-	if player:get_player_name() ~= meta:get_string("owner") then
-		return false
-	end
-	return true
+}
+chest.on_construct = return_add_next("connected_chests:chest_right")
+chest.after_destruct = return_remove_next("connected_chests:chest_right")
+chest.on_metadata_inventory_move = function(pos, _, _, _, _, _, player)
+	log_access(pos, player, "in a big chest")
+end
+chest.on_metadata_inventory_put = function(pos, _, _, _, player)
+	log_access(pos, player, "to a big chest")
+end
+chest.on_metadata_inventory_take = function(pos, _, _, _, player)
+	log_access(pos, player, "from a big chest")
 end
 
-local default_chest_locked = minetest.registered_nodes["default:chest_locked"]
-minetest.register_node("connected_chests:chest_locked_left", {
-	tiles = {"connected_chests_top.png", "connected_chests_top.png", "default_obsidian_glass.png",
-		"default_chest_side.png", "connected_chests_side.png^[transformFX", "connected_chests_side.png^connected_chests_lock.png"},
-	paramtype2 = "facedir",
-	drop = "default:chest_locked 2",
-	groups = default_chest_locked.groups,
-	is_ground_content = default_chest_locked.is_ground_content,
-	sounds = default_chest_locked.sounds,
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 1.5, 0.5, 0.5},
-		},
+minetest.register_node("connected_chests:chest_left", chest)
+
+
+local chest_locked = table.copy(minetest.registered_nodes["default:chest_locked"])
+chest_locked.description = nil
+chest_locked.legacy_facedir_simple = nil
+chest_locked.after_place_node = nil
+chest_locked.on_construct = nil
+chest_locked.on_receive_fields = nil
+chest_locked.tiles = {top_texture, top_texture, "default_obsidian_glass.png",
+	"default_chest_side.png", side_texture.."^[transformFX", side_texture.."^connected_chests_front.png^connected_chests_lock.png"}
+chest_locked.drop = "default:chest_locked 2"
+chest_locked.selection_box = {
+	type = "fixed",
+	fixed = {
+		{-0.5, -0.5, -0.5, 1.5, 0.5, 0.5},
 	},
-	can_dig = default_chest_locked.can_dig,
-	after_dig_node = return_remove_next("connected_chests:chest_locked_right"),
-	allow_metadata_inventory_move = default_chest_locked.allow_metadata_inventory_move,
-	allow_metadata_inventory_put = default_chest_locked.allow_metadata_inventory_put,
-	allow_metadata_inventory_take = default_chest_locked.allow_metadata_inventory_take,
-	on_metadata_inventory_move = function(pos, _, _, _, _, _, player)
-		log_access(pos, player, "in a big locked chest")
-	end,
-	on_metadata_inventory_put = function(pos, _, _, _, player)
-		log_access(pos, player, "to a big locked chest")
-	end,
-	on_metadata_inventory_take = function(pos, _, _, _, player)
-		log_access(pos, player, "from a big locked chest")
-	end,
-	on_rightclick = function(pos, _, clicker)
-		local meta = minetest.get_meta(pos)
-		if has_locked_chest_privilege(meta, clicker) then
-			minetest.show_formspec(
-				clicker:get_player_name(),
-				"connected_chests:chest_locked_left",
-				"size[13,9]"..
-				"list[nodemeta:".. pos.x .. "," .. pos.y .. "," ..pos.z .. ";main;0,0;13,5;]"..
-				"list[current_player;main;2.5,5.2;8,4;]"
-			)
-		end
-	end,
-})
+}
+chest_locked.on_construct = return_add_next("connected_chests:chest_locked_right")
+chest_locked.after_destruct = return_remove_next("connected_chests:chest_locked_right")
+chest_locked.on_metadata_inventory_move = function(pos, _, _, _, _, _, player)
+	log_access(pos, player, "in a big locked chest")
+end
+chest_locked.on_metadata_inventory_put = function(pos, _, _, _, player)
+	log_access(pos, player, "to a big locked chest")
+end
+chest_locked.on_metadata_inventory_take = function(pos, _, _, _, player)
+	log_access(pos, player, "from a big locked chest")
+end
+chest_locked.on_rightclick = function(pos, _, clicker)
+	local meta = minetest.get_meta(pos)
+	if clicker:get_player_name() == meta:get_string("owner") then
+		minetest.show_formspec(
+			clicker:get_player_name(),
+			"connected_chests:chest_locked_left",
+			"size[13,9]"..
+			"list[nodemeta:".. pos.x .. "," .. pos.y .. "," ..pos.z .. ";main;0,0;13,5;]"..
+			"list[current_player;main;2.5,5.2;8,4;]"
+		)
+	end
+end
+
+minetest.register_node("connected_chests:chest_locked_left", chest_locked)
+
 
 minetest.register_node("connected_chests:chest_right", {
-	tiles = {"connected_chests_top.png^[transformFX", "connected_chests_top.png^[transformFX", "default_chest_side.png",
-		"default_obsidian_glass.png", "connected_chests_side.png", "connected_chests_side.png^connected_chests_front.png^[transformFX"},
+	tiles = {top_texture.."^[transformFX", top_texture.."^[transformFX", "default_chest_side.png",
+		"default_obsidian_glass.png", side_texture, side_texture.."^connected_chests_front.png^[transformFX"},
 	paramtype2 = "facedir",
 	drop = "",
 	pointable = false,
 	diggable = false,
+	on_construct = function(pos)
+		local node = minetest.get_node(pos)
+		if node.param2 > 3 then
+			node.param2 = node.param2%4
+			minetest.set_node(pos, node)
+			return
+		end
+		local x, z = unpack(string.split(param_tab2[node.param2], " "))
+		local node_left = minetest.get_node({x=pos.x+x, y=pos.y, z=pos.z+z})
+		if node_left.name ~= "connected_chests:chest_left"
+		or node_left.param2 ~= node.param2 then
+			minetest.remove_node(pos)
+		end
+	end,
+	after_destruct = function(pos, oldnode)
+		if oldnode.param2 > 3 then
+			return
+		end
+		local x, z = unpack(string.split(param_tab2[oldnode.param2], " "))
+		local node_left = minetest.get_node({x=pos.x+x, y=pos.y, z=pos.z+z})
+		if node_left.name == "connected_chests:chest_left"
+		and node_left.param2 == oldnode.param2
+		and minetest.get_node(pos).name == "air" then
+			minetest.set_node(pos, oldnode)
+		end
+	end
 })
 
 minetest.register_node("connected_chests:chest_locked_right", {
-	tiles = {"connected_chests_top.png^[transformFX", "connected_chests_top.png^[transformFX", "default_chest_side.png",
-		"default_obsidian_glass.png", "connected_chests_side.png", "connected_chests_side.png^connected_chests_lock.png^[transformFX"},
+	tiles = {top_texture.."^[transformFX", top_texture.."^[transformFX", "default_chest_side.png",
+		"default_obsidian_glass.png", side_texture, side_texture.."^connected_chests_front.png^connected_chests_lock.png^[transformFX"},
 	paramtype2 = "facedir",
 	drop = "",
 	pointable = false,
 	diggable = false,
+	on_construct = function(pos)
+		local node = minetest.get_node(pos)
+		if node.param2 > 3 then
+			node.param2 = node.param2%4
+			minetest.set_node(pos, node)
+			return
+		end
+		local x, z = unpack(string.split(param_tab2[node.param2], " "))
+		local node_left = minetest.get_node({x=pos.x+x, y=pos.y, z=pos.z+z})
+		if node_left.name ~= "connected_chests:chest_locked_left"
+		or node_left.param2 ~= node.param2 then
+			minetest.remove_node(pos)
+		end
+	end,
+	after_destruct = function(pos, oldnode)
+		if oldnode.param2 > 3 then
+			return
+		end
+		local x, z = unpack(string.split(param_tab2[oldnode.param2], " "))
+		local node_left = minetest.get_node({x=pos.x+x, y=pos.y, z=pos.z+z})
+		if node_left.name == "connected_chests:chest_locked_left"
+		and node_left.param2 == oldnode.param2
+		and minetest.get_node(pos).name == "air" then
+			minetest.set_node(pos, oldnode)
+		end
+	end
 })
 
+-- abms to fix half chests
 for _,i in pairs({"chest", "chest_locked"}) do
 	minetest.register_abm ({
 		nodenames = {"connected_chests:"..i.."_right"},
-		interval = 3,
+		interval = 10,
 		chance = 1,
 		action = function (pos, node)
+			if node.param2 > 3 then
+				node.param2 = node.param2%4
+				minetest.set_node(pos, node)
+				return
+			end
 			local x, z = unpack(string.split(param_tab2[node.param2], " "))
-			if minetest.get_node({x=pos.x+x, y=pos.y, z=pos.z+z}).name ~= "connected_chests:"..i.."_left" then
+			local left_node = minetest.get_node({x=pos.x+x, y=pos.y, z=pos.z+z})
+			if left_node.name ~= "connected_chests:"..i.."_left"
+			or left_node.param2 ~= node.param2 then
 				minetest.remove_node(pos)
 			end
 		end,
@@ -241,14 +322,7 @@ for _,i in pairs({"chest", "chest_locked"}) do
 		nodenames = {"connected_chests:"..i.."_left"},
 		interval = 3,
 		chance = 1,
-		action = function (pos, node)
-			local par = node.param2
-			local x, z = unpack(string.split(param_tab2[par], " "))
-			pos = {x=pos.x-x, y=pos.y, z=pos.z-z}
-			if minetest.get_node(pos).name == "air" then
-				minetest.set_node(pos, {name="connected_chests:"..i.."_right", param2=par})
-			end
-		end,
+		action = return_add_next("connected_chests:"..i.."_right"),
 	})
 end
 
