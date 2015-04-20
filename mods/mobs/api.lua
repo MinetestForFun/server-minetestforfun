@@ -1,4 +1,4 @@
--- Mobs Api (11th April 2015)
+-- Mobs Api (20th April 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -19,7 +19,6 @@ function mobs:register_mob(name, def)
 on_die = def.on_die,
 jump_height = def.jump_height or 6,
 jump_chance = def.jump_chance or 0,
-footstep = def.footstep,
 rotate = def.rotate or 0, -- 0=front, 1.5=side, 3.0=back, 4.5=side2
 lifetimer = def.lifetimer or 600,
 		hp_min = def.hp_min or 5,
@@ -81,7 +80,6 @@ lifetimer = def.lifetimer or 600,
 			if self.state ~= "attack" then
 					if math.random(0,100) < 90  and self.sounds.war_cry then
 						minetest.sound_play(self.sounds.war_cry,{object = self.object})
-						print ("attack sound")
 					end
 				self.state = "attack"
 				self.attack.player = player
@@ -182,26 +180,36 @@ lifetimer = def.lifetimer or 600,
 			end
 
 			-- check for mob drop/replace (used for chicken egg and sheep eating grass/wheat)
-			if self.replace_rate and math.random(1,self.replace_rate) == 1 and self.child == false then
-				local pos = self.object:getpos() ; pos.y = pos.y + self.replace_offset
-				if self.footstep and self.object:getvelocity().y == 0 and minetest.get_node(pos).name == "air" then minetest.set_node(pos, {name = self.footstep}) end
+			if self.replace_rate
+			and math.random(1,self.replace_rate) == 1
+			and self.child == false then
+				local pos = self.object:getpos()
+				pos.y = pos.y + self.replace_offset
 				if #minetest.find_nodes_in_area(pos,pos,self.replace_what) > 0
 				and self.object:getvelocity().y == 0
-				and self.replace_what
-				and self.state == "stand" then
+				and self.replace_what then
+				--and self.state == "stand" then
 					minetest.set_node(pos, {name = self.replace_with})
 				end
 			end
 
-			-- gravity, falling or floating in water
-			if self.floats == 1 then
+			-- jump direction (adapted from Carbone mobs), gravity, falling or floating in water
+			if self.object:getvelocity().y > 0.1 then
+				local yaw = self.object:getyaw() + self.rotate
+				local x = math.sin(yaw) * -2
+				local z = math.cos(yaw) * 2
+
 				if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
-					self.object:setacceleration({x = 0, y = 1.5, z = 0})
+					if self.floats == 1 then self.object:setacceleration({x = x, y = 1.5, z = z}) end
+				else
+					self.object:setacceleration({x = x, y = self.fall_speed, z = z})
+				end
+			else
+				if minetest.get_item_group(minetest.get_node(self.object:getpos()).name, "water") ~= 0 then
+					if self.floats == 1 then self.object:setacceleration({x = 0, y = 1.5, z = 0}) end
 				else
 					self.object:setacceleration({x = 0, y = self.fall_speed, z = 0})
 				end
-			else
-				self.object:setacceleration({x = 0, y = self.fall_speed, z = 0})
 			end
 
 			-- fall damage
@@ -214,7 +222,7 @@ lifetimer = def.lifetimer or 600,
 				self.old_y = self.object:getpos().y
 			end
 			
-			-- knock back timer
+			-- knockback timer
 			if self.pause_timer > 0 then
 				self.pause_timer = self.pause_timer - dtime
 				if self.pause_timer < 1 then
@@ -540,7 +548,21 @@ lifetimer = def.lifetimer or 600,
 
 			elseif self.state == "walk" then
 
-				if math.random(1, 100) <= 30 then
+				local lp = nil
+				local s = self.object:getpos()
+				-- if there is water nearby, try to avoid it
+				local lp = minetest.find_node_near(s, 2, {"group:water"})
+				
+				if lp ~= nil then
+					local vec = {x=lp.x-s.x, y=lp.y-s.y, z=lp.z-s.z}
+					yaw = math.atan(vec.z/vec.x) + 3*math.pi / 2 + self.rotate
+					if lp.x > s.x then
+						yaw = yaw+math.pi
+					end
+					self.object:setyaw(yaw)
+
+				-- no water near, so randomly turn
+				elseif math.random(1, 100) <= 30 then
 					self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/180*math.pi))
 				end
 				if self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
@@ -555,8 +577,9 @@ lifetimer = def.lifetimer or 600,
 					self.state = "stand"
 					self:set_animation("stand")
 				end
+
 -- Modif MFF "attack type kamicaze" des creepers /DEBUT
-			elseif self.state == "attack" and self.attack_type == "kamicaze" then 
+			elseif self.state == "attack" and self.attack_type == "explode" then 
 				if not self.attack.player or not self.attack.player:is_player() then
 					self.state = "stand"
 					self:set_animation("stand")
@@ -582,10 +605,7 @@ lifetimer = def.lifetimer or 600,
 				end
 				
 				local vec = {x = p.x -s.x, y = p.y -s.y, z = p.z -s.z}
-				local yaw = math.atan(vec.z/vec.x)+math.pi/2
-				if self.drawtype == "side" then
-					yaw = yaw+(math.pi/2)
-				end
+				local yaw = math.atan(vec.z/vec.x)+math.pi/2 + self.rotate
 				if p.x > s.x then
 					yaw = yaw+math.pi
 				end
@@ -595,11 +615,11 @@ lifetimer = def.lifetimer or 600,
 						self.v_start = true
 						self.set_velocity(self, self.run_velocity)
 						self.timer = 0
-						 self.blinktimer = 0
+						self.blinktimer = 0
 					else
 					     self.timer = 0
 						 self.blinktimer = 0
-						if self.get_velocity(self) <= 1.58 and self.object:getvelocity().y == 0 then
+						if self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
 							local v = self.object:getvelocity()
 							v.y = 5
 							self.object:setvelocity(v)
@@ -612,7 +632,7 @@ lifetimer = def.lifetimer or 600,
 					self.timer = self.timer + dtime
 					self.blinktimer = (self.blinktimer or 0) + dtime
 						if self.blinktimer > 0.2 then
-							self.blinktimer = self.blinktimer - 0.2
+							self.blinktimer = 0 -- self.blinktimer - 0.2
 							if self.blinkstatus then
 								self.object:settexturemod("")
 							else
@@ -621,68 +641,23 @@ lifetimer = def.lifetimer or 600,
 							self.blinkstatus = not self.blinkstatus
 						end
 						if self.timer > 3 then
-							local pos = self.object:getpos()
-							pos.x = math.floor(pos.x+0.5)
-							pos.y = math.floor(pos.y+0.5)
-							pos.z = math.floor(pos.z+0.5)
-							do_tnt_physics(pos, 3, self) -- on applique le principe le la tnt
-							local meta = minetest.get_meta(pos)
-							minetest.sound_play("tnt_explode", {pos = pos,gain = 1.0,max_hear_distance = 16,})
-							if minetest.get_node(pos).name == "default:water_source" or minetest.get_node(pos).name == "default:water_flowing" or minetest.is_protected(pos, "tnt") then
+							local pos = vector.round(self.object:getpos())
+							do_tnt_physics(pos, 3, self) -- hurt player/mobs in blast area
+							if minetest.find_node_near(pos, 1, {"group:water"})
+							or minetest.is_protected(pos, "") then
 								self.object:remove()
+								if self.sounds.explode ~= "" then
+									minetest.sound_play(self.sounds.explode, {pos = pos, gain = 1.0, max_hear_distance = 16})
+								end
+								effect(pos, 10, "tnt_smoke.png")
 								return
 							end
-							for x=-3,3 do
-								for y=-3,3 do
-									for z=-3,3 do
-										if x*x+y*y+z*z <= 3 * 3 + 3 then
-											local np={x=pos.x+x,y=pos.y+y,z=pos.z+z}
-											local n = minetest.get_node(np)
-											if n.name ~= "air" and n.name ~= "doors:door_steel_b_1" and n.name ~= "doors:door_steel_t_1" 
-												and n.name ~= "doors:door_steel_b_2" and n.name ~= "doors:door_steel_t_2" 
-												and n.name ~= "default:chest_locked" and n.name ~= "default:obsidian"  and n.name ~= "default:obsidian_cooled" 
-												and n.name ~= "default:obsidianbrick" and n.name ~= "default:bedrock" 
-												and n.name ~= "more_chests:cobble" and n.name ~= "more_chests:shared" and n.name ~= "more_chests:secret" 
-												and n.name ~= "more_chests:dropbox" and n.name ~= "chesttools:shared_chest" 
-												and minetest.get_item_group(n.name, "unbreakable") ~= 1 and next(areas:getAreasAtPos(np)) == nil then
-												--activate_if_tnt(n.name, np, pos, 3) -- Pas de module TNT sur le serveur donc inutile
-												if n.name == "default:chest" then
-													meta = minetest.get_meta(np)
-													local inv  = meta:get_inventory()
-													for i = 1,32 do
-														local m_stack = inv:get_stack("main",i)
-														local obj = minetest.add_item(pos,m_stack)
-														if obj then
-															obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
-														end
-													end
-												end
-												if n.name == "doors:door_wood_b_1" then
-													minetest.remove_node({x=np.x,y=np.y+1,z=np.z})
-												elseif n.name == "doors:door_wood_t_1" then
-													minetest.remove_node({x=np.x,y=np.y-1,z=np.z})
-												end
-												minetest.remove_node(np)
-												nodeupdate(np)
-											--[[	if n.name ~= "tnt:tnt" and math.random() > 0.9 then
-													local drop = minetest.get_node_drops(n.name, "")
-													for _,item in ipairs(drop) do
-														if type(item) == "string" then
-															if math.random(1,100) > 40 then
-															local obj = minetest.add_item(np, item)
-															end
-														end
-													end
-												end ]]
-											end
-										end
-									end
-								end
-								self.object:remove()
-							end
+							self.object:remove()
+							mobs:explosion(pos, 2, 1, 1, "tnt_explode", self.sounds.explode)
 						end
 				end
 -- Modif MFF "attack type kamicaze" des creepers /FIN
+
 			elseif self.state == "attack" and self.attack_type == "dogfight" then
 
 				if not self.attack.player or not self.attack.player:getpos() then
@@ -710,7 +685,7 @@ lifetimer = def.lifetimer or 600,
 					yaw = yaw+math.pi
 				end
 				self.object:setyaw(yaw)
-				if self.attack.dist > 2 then
+				if self.attack.dist > 3 then -- was set to 2 but slimes didnt hurt when above player
 					-- jump attack
 					if (self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0)
 					or (self.object:getvelocity().y == 0 and self.jump_chance > 0) then
@@ -979,11 +954,11 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 
 			-- are we spawning inside a solid node?
 			local nod = minetest.get_node_or_nil(pos)
-			if not nod or not minetest.registered_nodes[nod.name]
+			if not nod or not nod.name or not minetest.registered_nodes[nod.name]
 			or minetest.registered_nodes[nod.name].walkable == true then return end
 			pos.y = pos.y + 1
 			nod = minetest.get_node_or_nil(pos)
-			if not nod or not minetest.registered_nodes[nod.name]
+			if not nod or not nod.name or not minetest.registered_nodes[nod.name]
 			or minetest.registered_nodes[nod.name].walkable == true then return end
 
 			if minetest.setting_getbool("display_mob_spawn") then
@@ -1001,7 +976,7 @@ end
 
 -- compatibility with older mob registration
 function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_object_count, max_height)
-	mobs:spawn_specific(name, nodes, {"air"}, min_light, max_light, 30, chance, active_object_count, -32000, max_height)
+	mobs:spawn_specific(name, nodes, {"air"}, min_light, max_light, 30, chance, active_object_count, -31000, max_height)
 end
 
 -- particle effects
@@ -1021,6 +996,75 @@ function effect(pos, amount, texture)
 		maxsize = 1,
 		texture = texture,
 	})
+end
+
+-- explosion
+function mobs:explosion(pos, radius, fire, smoke, sound)
+	-- node hit, bursts into flame (cannot blast through obsidian or protection redo mod items)
+	if not fire then fire = 0 end
+	if not smoke then smoke = 0 end
+	local pos = vector.round(pos)
+	local radius = 1
+	local vm = VoxelManip()
+	local minp, maxp = vm:read_from_map(vector.subtract(pos, radius), vector.add(pos, radius))
+	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
+	local data = vm:get_data()
+	local p = {}
+	local c_air = minetest.get_content_id("air")
+	local c_ignore = minetest.get_content_id("ignore")
+	local c_obsidian = minetest.get_content_id("default:obsidian")
+	local c_brick = minetest.get_content_id("default:obsidianbrick")
+	local c_chest = minetest.get_content_id("default:chest_locked")
+if sound and sound ~= "" then minetest.sound_play(sound, {pos = pos, gain = 1.0, max_hear_distance = 16}) end
+	for z = -radius, radius do
+	for y = -radius, radius do
+	local vi = a:index(pos.x + (-radius), pos.y + y, pos.z + z)
+	for x = -radius, radius do
+		p.x = pos.x + x
+		p.y = pos.y + y
+		p.z = pos.z + z
+		if n.name ~= "doors:door_steel_b_1" and n.name ~= "doors:door_steel_t_1" 
+			and n.name ~= "doors:door_steel_b_2" and n.name ~= "doors:door_steel_t_2" 
+			and n.name ~= "default:chest_locked" and n.name ~= "default:obsidian_cooled" 
+			and n.name ~= "default:obsidianbrick" and n.name ~= "default:bedrock" 
+			and n.name ~= "more_chests:cobble" and n.name ~= "more_chests:shared" and n.name ~= "more_chests:secret" 
+			and n.name ~= "more_chests:dropbox" and n.name ~= "chesttools:shared_chest" 
+			and minetest.get_item_group(n.name, "unbreakable") ~= 1 and next(areas:getAreasAtPos(np)) == nil
+			and data[vi] ~= c_air and data[vi] ~= c_ignore and data[vi] ~= c_obsidian and data[vi] ~= c_brick then and data[vi] ~= c_chest then
+			local n = minetest.get_node(p).name
+			-- do NOT destroy protection nodes but DO destroy nodes in protected area
+			if not n:find("protector:")
+			--and not minetest.is_protected(p, "")
+			and minetest.get_item_group(n.name, "unbreakable") ~= 1 then
+			-- if chest then drop items inside
+			if n == "default:chest" then
+				local meta = minetest.get_meta(p)
+				local inv  = meta:get_inventory()
+				for i = 1,32 do
+					local m_stack = inv:get_stack("main",i)
+					local obj = minetest.add_item(pos,m_stack)
+					if obj then
+						obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
+					end
+				end
+			end
+			if n.name == "doors:door_wood_b_1" then
+				minetest.remove_node({x=np.x,y=np.y+1,z=np.z})
+			elseif n.name == "doors:door_wood_t_1" then
+				minetest.remove_node({x=np.x,y=np.y-1,z=np.z})
+			end
+			if fire > 0 and (minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30) then
+				minetest.set_node(p, {name="fire:basic_flame"})
+			else
+				minetest.remove_node(p)
+			end
+			if smoke > 0 then effect(p, 1, "tnt_smoke.png") end
+			end
+		end
+		vi = vi + 1
+	end
+	end
+	end
 end
 
 -- on mob death drop items
@@ -1053,6 +1097,7 @@ function check_for_death(self)
 		self.on_die(self, pos)
 	end
 end
+
 -- Modif MFF "fonction TNT" des creepers /DEBUT
 function do_tnt_physics(tnt_np,tntr,entity)
     local objs = minetest.get_objects_inside_radius(tnt_np, tntr)
