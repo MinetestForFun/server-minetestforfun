@@ -56,12 +56,22 @@ meseconify_door("doors:door_obsidian_glass")
 local function trapdoor_switch(pos, node)
 	local state = minetest.get_meta(pos):get_int("state")
 
-	if state == 1 then
-		minetest.sound_play("doors_door_close", {pos = pos, gain = 0.3, max_hear_distance = 10})
-		minetest.set_node(pos, {name="doors:trapdoor", param2 = node.param2})
+	if node.name:split(":")[2] == "trapdoor" or node.name:split(":")[2] == "trapdoor_open" then
+		if state == 1 then
+			minetest.sound_play("doors_door_close", {pos = pos, gain = 0.3, max_hear_distance = 10})
+			minetest.set_node(pos, {name="doors:trapdoor", param2 = node.param2})
+		else
+			minetest.sound_play("doors_door_open", {pos = pos, gain = 0.3, max_hear_distance = 10})
+			minetest.set_node(pos, {name="doors:trapdoor_open", param2 = node.param2})
+		end
 	else
-		minetest.sound_play("doors_door_open", {pos = pos, gain = 0.3, max_hear_distance = 10})
-		minetest.set_node(pos, {name="doors:trapdoor_open", param2 = node.param2})
+		if state == 1 then
+			minetest.sound_play("doors_door_close", {pos = pos, gain = 0.3, max_hear_distance = 10})
+			minetest.set_node(pos, {name="doors:trapdoor_cherry", param2 = node.param2})
+		else
+			minetest.sound_play("doors_door_open", {pos = pos, gain = 0.3, max_hear_distance = 10})
+			minetest.set_node(pos, {name="doors:trapdoor_cherry_open", param2 = node.param2})
+		end
 	end
 
 	minetest.get_meta(pos):set_int("state", state == 1 and 0 or 1)
@@ -76,6 +86,22 @@ if minetest.registered_nodes["doors:trapdoor"] then
 	})
 
 	minetest.override_item("doors:trapdoor_open", {
+		mesecons = {effector = {
+			action_on = trapdoor_switch,
+			action_off = trapdoor_switch
+		}},
+	})
+end
+
+if minetest.registered_nodes["doors:trapdoor_cherry"] then
+	minetest.override_item("doors:trapdoor_cherry", {
+		mesecons = {effector = {
+			action_on = trapdoor_switch,
+			action_off = trapdoor_switch
+		}},
+	})
+
+	minetest.override_item("doors:trapdoor_cherry_open", {
 		mesecons = {effector = {
 			action_on = trapdoor_switch,
 			action_off = trapdoor_switch
