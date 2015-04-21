@@ -633,7 +633,7 @@ lifetimer = def.lifetimer or 600,
 					self.timer = self.timer + dtime
 					self.blinktimer = (self.blinktimer or 0) + dtime
 						if self.blinktimer > 0.2 then
-							self.blinktimer = 0 -- self.blinktimer - 0.2
+							self.blinktimer = self.blinktimer - 0.2
 							if self.blinkstatus then
 								self.object:settexturemod("")
 							else
@@ -1024,7 +1024,14 @@ if sound and sound ~= "" then minetest.sound_play(sound, {pos = pos, gain = 1.0,
 		p.x = pos.x + x
 		p.y = pos.y + y
 		p.z = pos.z + z
-		if data[vi] ~= c_air and data[vi] ~= c_ignore and data[vi] ~= c_obsidian and data[vi] ~= c_brick and data[vi] ~= c_chest then
+		if data[vi] ~= c_air and data[vi] ~= c_ignore n.name ~= "doors:door_steel_b_1" and n.name ~= "doors:door_steel_t_1" 
+			and n.name ~= "doors:door_steel_b_2" and n.name ~= "doors:door_steel_t_2" 
+			and data[vi] ~= c_chest and data[vi] ~= c_obsidian and n.name ~= "default:obsidian_cooled" 
+			and n.name ~= "default:obsidianbrick" and n.name ~= "default:bedrock" 
+			and n.name ~= "more_chests:cobble" and n.name ~= "more_chests:shared" and n.name ~= "more_chests:secret" 
+			and n.name ~= "more_chests:dropbox" and n.name ~= "chesttools:shared_chest" 
+			and minetest.get_item_group(n.name, "unbreakable") ~= 1 and next(areas:getAreasAtPos(np)) == nil
+			and and data[vi] ~= c_brick and  then
 			local n = minetest.get_node(p).name
 			-- do NOT destroy protection nodes but DO destroy nodes in protected area
 			if not n:find("protector:")
@@ -1041,6 +1048,11 @@ if sound and sound ~= "" then minetest.sound_play(sound, {pos = pos, gain = 1.0,
 						obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
 					end
 				end
+			end
+			if n.name == "doors:door_wood_b_1" then
+				minetest.remove_node({x=np.x,y=np.y+1,z=np.z})
+			elseif n.name == "doors:door_wood_t_1" then
+				minetest.remove_node({x=np.x,y=np.y-1,z=np.z})
 			end
 			if fire > 0 and (minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30) then
 				minetest.set_node(p, {name="fire:basic_flame"})

@@ -7,6 +7,7 @@ for branch in $( git branch ); do
 	if [ branch != "master" ];
 	then
 		git checkout $branch
+		git pull origin $branch
 		git rebase master
 		git push -f origin $branch
 	fi

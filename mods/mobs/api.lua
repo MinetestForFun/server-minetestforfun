@@ -580,7 +580,7 @@ lifetimer = def.lifetimer or 600,
 				end
 
 -- Modif MFF "attack type kamicaze" des creepers /DEBUT
-			elseif self.state == "attack" and self.attack_type == "kamicaze" then 
+			elseif self.state == "attack" and self.attack_type == "explode" then 
 				if not self.attack.player or not self.attack.player:is_player() then
 					self.state = "stand"
 					self:set_animation("stand")
@@ -606,10 +606,7 @@ lifetimer = def.lifetimer or 600,
 				end
 				
 				local vec = {x = p.x -s.x, y = p.y -s.y, z = p.z -s.z}
-				local yaw = math.atan(vec.z/vec.x)+math.pi/2
-				if self.drawtype == "side" then
-					yaw = yaw+(math.pi/2)
-				end
+				local yaw = math.atan(vec.z/vec.x)+math.pi/2 + self.rotate
 				if p.x > s.x then
 					yaw = yaw+math.pi
 				end
@@ -623,7 +620,7 @@ lifetimer = def.lifetimer or 600,
 					else
 					     self.timer = 0
 						 self.blinktimer = 0
-						if self.get_velocity(self) <= 1.58 and self.object:getvelocity().y == 0 then
+						if self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0 then
 							local v = self.object:getvelocity()
 							v.y = 5
 							self.object:setvelocity(v)
@@ -645,65 +642,19 @@ lifetimer = def.lifetimer or 600,
 							self.blinkstatus = not self.blinkstatus
 						end
 						if self.timer > 3 then
-							local pos = self.object:getpos()
-							pos.x = math.floor(pos.x+0.5)
-							pos.y = math.floor(pos.y+0.5)
-							pos.z = math.floor(pos.z+0.5)
-							do_tnt_physics(pos, 3, self) -- on applique le principe le la tnt
-							local meta = minetest.get_meta(pos)
-							minetest.sound_play("tnt_explode", {pos = pos,gain = 1.0,max_hear_distance = 16,})
-							if minetest.get_node(pos).name == "default:water_source" or minetest.get_node(pos).name == "default:water_flowing" or minetest.is_protected(pos, "tnt") then
+							local pos = vector.round(self.object:getpos())
+							do_tnt_physics(pos, 3, self) -- hurt player/mobs in blast area
+							if minetest.find_node_near(pos, 1, {"group:water"})
+							or minetest.is_protected(pos, "") then
 								self.object:remove()
+								if self.sounds.explode ~= "" then
+									minetest.sound_play(self.sounds.explode, {pos = pos, gain = 1.0, max_hear_distance = 16})
+								end
+								effect(pos, 10, "tnt_smoke.png")
 								return
 							end
-							for x=-3,3 do
-								for y=-3,3 do
-									for z=-3,3 do
-										if x*x+y*y+z*z <= 3 * 3 + 3 then
-											local np={x=pos.x+x,y=pos.y+y,z=pos.z+z}
-											local n = minetest.get_node(np)
-											if n.name ~= "air" and n.name ~= "doors:door_steel_b_1" and n.name ~= "doors:door_steel_t_1" 
-												and n.name ~= "doors:door_steel_b_2" and n.name ~= "doors:door_steel_t_2" 
-												and n.name ~= "default:chest_locked" and n.name ~= "default:obsidian"  and n.name ~= "default:obsidian_cooled" 
-												and n.name ~= "default:obsidianbrick" and n.name ~= "default:bedrock" 
-												and n.name ~= "more_chests:cobble" and n.name ~= "more_chests:shared" and n.name ~= "more_chests:secret" 
-												and n.name ~= "more_chests:dropbox" and n.name ~= "chesttools:shared_chest" 
-												and minetest.get_item_group(n.name, "unbreakable") ~= 1 and next(areas:getAreasAtPos(np)) == nil then
-												--activate_if_tnt(n.name, np, pos, 3) -- Pas de module TNT sur le serveur donc inutile
-												if n.name == "default:chest" then
-													meta = minetest.get_meta(np)
-													local inv  = meta:get_inventory()
-													for i = 1,32 do
-														local m_stack = inv:get_stack("main",i)
-														local obj = minetest.add_item(pos,m_stack)
-														if obj then
-															obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
-														end
-													end
-												end
-												if n.name == "doors:door_wood_b_1" then
-													minetest.remove_node({x=np.x,y=np.y+1,z=np.z})
-												elseif n.name == "doors:door_wood_t_1" then
-													minetest.remove_node({x=np.x,y=np.y-1,z=np.z})
-												end
-												minetest.remove_node(np)
-												nodeupdate(np)
-											--[[	if n.name ~= "tnt:tnt" and math.random() > 0.9 then
-													local drop = minetest.get_node_drops(n.name, "")
-													for _,item in ipairs(drop) do
-														if type(item) == "string" then
-															if math.random(1,100) > 40 then
-															local obj = minetest.add_item(np, item)
-															end
-														end
-													end
-												end ]]
-											end
-										end
-									end
-								end
-								self.object:remove()
-							end
+							self.object:remove()
+							mobs:explosion(pos, 2, 1, 1, "tnt_explode", self.sounds.explode)
 						end
 				end
 -- Modif MFF "attack type kamicaze" des creepers /FIN
@@ -1046,6 +997,88 @@ function effect(pos, amount, texture)
 		maxsize = 1,
 		texture = texture,
 	})
+end
+
+-- explosion
+function mobs:explosion(pos, radius, fire, smoke, sound)
+	-- node hit, bursts into flame (cannot blast through obsidian or protection redo mod items)
+	if not fire then fire = 0 end
+	if not smoke then smoke = 0 end
+	local pos = vector.round(pos)
+	local radius = 1
+	local vm = VoxelManip()
+	local minp, maxp = vm:read_from_map(vector.subtract(pos, radius), vector.add(pos, radius))
+	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
+	local data = vm:get_data()
+	local p = {}
+	local undestroyed = {
+		minetest.get_content_id("air"),
+		minetest.get_content_id("ignore"),
+		minetest.get_content_id("default:obsidian"),
+		minetest.get_content_id("default:obsidianbrick"),
+		minetest.get_content_id("default:chest_locked"),
+		minetest.get_content_id("doors:door_steel_b_1"),
+		minetest.get_content_id("doors:door_steel_t_1"),
+		minetest.get_content_id("doors:door_steel_b_2"),
+		minetest.get_content_id("doors:door_steel_t_2"),
+		minetest.get_content_id("default:bedrock"),
+		minetest.get_content_id("default:obsidian_cooled"),
+		minetest.get_content_id("more_chests:cobble"),
+		minetest.get_content_id("more_chests:shared"),
+		minetest.get_content_id("more_chests:secret"),
+		minetest.get_content_id("more_chests:dropbox"),
+		minetest.get_content_id("more_chests:shared_chest")
+	}
+	if sound and sound ~= "" then minetest.sound_play(sound, {pos = pos, gain = 1.0, max_hear_distance = 16}) end
+	for z = -radius, radius do
+	for y = -radius, radius do
+	local vi = a:index(pos.x + (-radius), pos.y + y, pos.z + z)
+	for x = -radius, radius do
+		p.x = pos.x + x
+		p.y = pos.y + y
+		p.z = pos.z + z
+		local is_destroyed = true
+		for _,value in pairs(undestroyed) do
+			if data[vi] == value then
+				is_destroyed = false
+			end
+		end
+		if is_destroyed then
+			local n = minetest.get_node(p).name
+			-- do NOT destroy protection nodes but DO destroy nodes in protected area
+			if not n:find("protector:")
+			--and not minetest.is_protected(p, "")
+			and minetest.get_item_group(n, "unbreakable") == 0
+			and next(areas:getAreasAtPos(p)) == nil then
+			-- if chest then drop items inside
+			if n == "default:chest" then
+				local meta = minetest.get_meta(p)
+				local inv  = meta:get_inventory()
+				for i = 1,32 do
+					local m_stack = inv:get_stack("main",i)
+					local obj = minetest.add_item(pos,m_stack)
+					if obj then
+						obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
+					end
+				end
+			end
+			if n.name == "doors:door_wood_b_1" then
+				minetest.remove_node({x=np.x,y=np.y+1,z=np.z})
+			elseif n.name == "doors:door_wood_t_1" then
+				minetest.remove_node({x=np.x,y=np.y-1,z=np.z})
+			end
+			if fire > 0 and (minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30) then
+				minetest.set_node(p, {name="fire:basic_flame"})
+			else
+				minetest.remove_node(p)
+			end
+			if smoke > 0 then effect(p, 1, "tnt_smoke.png") end
+			end
+		end
+		vi = vi + 1
+	end
+	end
+	end
 end
 
 -- on mob death drop items
