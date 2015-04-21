@@ -80,7 +80,6 @@ lifetimer = def.lifetimer or 600,
 			if self.state ~= "attack" then
 					if math.random(0,100) < 90  and self.sounds.war_cry then
 						minetest.sound_play(self.sounds.war_cry,{object = self.object})
-						print ("attack sound")
 					end
 				self.state = "attack"
 				self.attack.player = player
@@ -633,7 +632,7 @@ lifetimer = def.lifetimer or 600,
 					self.timer = self.timer + dtime
 					self.blinktimer = (self.blinktimer or 0) + dtime
 						if self.blinktimer > 0.2 then
-							self.blinktimer = self.blinktimer - 0.2
+							self.blinktimer = 0 -- self.blinktimer - 0.2
 							if self.blinkstatus then
 								self.object:settexturemod("")
 							else
@@ -977,7 +976,7 @@ end
 
 -- compatibility with older mob registration
 function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_object_count, max_height)
-	mobs:spawn_specific(name, nodes, {"air"}, min_light, max_light, 30, chance, active_object_count, -32000, max_height)
+	mobs:spawn_specific(name, nodes, {"air"}, min_light, max_light, 30, chance, active_object_count, -31000, max_height)
 end
 
 -- particle effects
