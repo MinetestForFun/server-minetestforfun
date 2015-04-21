@@ -272,7 +272,7 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
 	local new = item:get_wear()
 
 	if old ~= new then
-		if old > 0 and new == 0 then
+		if old and old > 0 and new == 0 then
 			wielded.wear[name] = new
 			minetest.sound_play("invtweak_tool_break", {
 				pos = digger:getpos(),
