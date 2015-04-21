@@ -7,6 +7,7 @@ MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé d
 MAJ de "mobs" (ajout des chèvres/goats)
 
 ---21/04/2015--- (Remerciements : Davedevils, Gael-de-Sailly, Obani, crabman, Mg)
+MAJ de "invtweak" (ajout de boutons pour trier l'inventaire)
 MAJ de "doors" (les trap cherry doors sont compatibles mesecons)
 MAJ de "metatools"
 MAJ de "name_restrictions" (ajout de noms dans la blacklist)
