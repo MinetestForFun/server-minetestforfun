@@ -1,10 +1,9 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
-MAJ du mod "carts" (pour qu'ils ne se bloquent plus en l'air)
-MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé de cette façon maintenant : "/played <pseudo>")
-MAJ de "mobs" (ajout des chèvres/goats)
+MAJ de "mobs" (ajout des chèvres/goats et des zombies)
+MAJ de "throwing" (refonte TOTAL des armes à distance, à debug et modifier)
 
 ---22/04/2015--- (Remerciements : Gael-de-Sailly, Mg, Ataron)
 MAJ de "builtin_falling" (désactivation de tout le mod sauf de ses fonctions protégeant les areas protégés des liquides)
@@ -12,6 +11,7 @@ MAJ de "invtweak" (bugfix)
 MAJ de "nether" (les "nether_fruit" ne nourrissaient plus suite à une MAJ faite trop vite, c'est maintenant réparé)
 Ajout du mod "maze" (permet la génération de labyrinthe à la WorldEdit, réservé aux admins/modérateurs, et sera utilisé lors d'événements futur sur le serveur)
 MAJ de "u_skins" (ajout de divers skins provenant des demandes de Cyberpangolin et Obani)
+Tentative - MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
 ---21/04/2015--- (Remerciements : Davedevils, Gael-de-Sailly, Obani, crabman, Mg)
 MAJ de "invtweak" (ajout de boutons pour trier l'inventaire, inclu dans l'interface de l'inventaire)
