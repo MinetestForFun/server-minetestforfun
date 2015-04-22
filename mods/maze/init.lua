@@ -1,5 +1,6 @@
 minetest.register_chatcommand("maze", {
 	params = "<size_x> <size_y> <#floors> <material_floor> <material_wall> <material_ceiling>",
+	privs = {server = true},
 	description = "Create a maze near your position",
 	func = function(name, param)
 		local t1 = os.clock()
