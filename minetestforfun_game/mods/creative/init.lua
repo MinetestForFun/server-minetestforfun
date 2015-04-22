@@ -152,7 +152,7 @@ if minetest.setting_getbool("creative_mode") then
 	})
 	
 	minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack)
-		return true
+		return
 	end)
 	
 	function minetest.handle_node_drops(pos, drops, digger)

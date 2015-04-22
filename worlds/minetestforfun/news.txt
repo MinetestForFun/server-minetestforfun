@@ -6,6 +6,24 @@ MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé de cette façon maintenant : "/played <pseudo>")
 MAJ de "mobs" (ajout des chèvres/goats)
 
+---21/04/2015--- (Remerciements : Davedevils, Gael-de-Sailly, Obani, crabman, Mg)
+MAJ de "invtweak" (ajout de boutons pour trier l'inventaire)
+MAJ de "doors" (les trap cherry doors sont compatibles mesecons)
+MAJ de "metatools"
+MAJ de "name_restrictions" (ajout de noms dans la blacklist)
+MAJ de "default" (suppression des blobs de 'ice' sous terre, ajout d'eau de rivière)
+MAJ de "mesecons" (remise en place de la dernière version et bug des portes fixé)
+MAJ de "ambiance" (ajout du son "Interlude")
+MAJ de "markers" (mise à jour avec fix du bug de vector.interpolate)
+MAJ de "sponge" (nouvelles éponges mouillées)
+MAJ de "mobs" (modifications sur les creepers, ils ne disparaissent pas toujours après l'explosion, juste près de l'eau, petit bugfixes)
+MAJ de "connected_chests"
+MAJ de "default" (ajout de default:river_water_*)
+MAJ de "irc" (conversion des caractères spéciaux d'irc vers minetest pour qu'ils soient lisibles)
+MAJ de "homedecor" (merge dans le modpack de notre mod lavalamp)
+MAJ de "metatools"
+Ajout du mod "connected_chests" (permet de fusionner deux chests, il suffit de placer le second en cliquant droit sur le côté du premier avec sneak enfoncé)
+
 ---13/04/2015--- (Remerciements : Crabman, Mg)
 MAJ de "mobs" (Les NPCs vous suivent et protègent uniquement si vous leur donnez 4 diamants - avec un clique droit -)
 MAJ de "mesecons" (retour à la version antéireure fonctionnelle tant que la dernière version à son problème avec les portes/doors) 

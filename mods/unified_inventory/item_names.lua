@@ -1,25 +1,17 @@
--- code based on 4itemnames mod by 4aiman
+-- Based on 4itemnames mod by 4aiman
 
 local wield = {}
 local huds = {}
 local dtimes = {}
-local dlimit = 3  -- hud will be hidden after this much seconds
-local airhudmod = minetest.get_modpath("4air")
+local dlimit = 3  -- HUD element will be hidden after this many seconds
+local air_hud_mod = minetest.get_modpath("4air")
+local hud_mod = minetest.get_modpath("hud")
 
-local function get_desc(item)
-    if minetest.registered_nodes[item] then return minetest.registered_nodes[item]["description"] end
-    if minetest.registered_items[item] then return minetest.registered_items[item]["description"] end
-    if minetest.registered_craftitems[item] then return minetest.registered_craftitems[item]["description"] end
-    if minetest.registered_tools[item] then return minetest.registered_tools[item]["description"] end
-    return ""
-end
-
-minetest.register_on_joinplayer(function(player)
-	minetest.after(0.0, function()
+local function set_hud(player)
 	local player_name = player:get_player_name() 
 	local off = {x=0, y=-70}
-	if airhudmod then 
-		off.y=off.y-20
+	if air_hud_mod or hud_mod then
+		off.y = off.y - 20
 	end
 	huds[player_name] = player:hud_add({
 		hud_elem_type = "text",
@@ -29,13 +21,14 @@ minetest.register_on_joinplayer(function(player)
 		number = 0xFFFFFF ,
 		text = "",
 	})
-	--print(dump("item hud id: "..huds[player_name]))
-	end)
+end
+
+minetest.register_on_joinplayer(function(player)
+	minetest.after(0, set_hud, player)
 end)
 
 minetest.register_globalstep(function(dtime)
-	local players = minetest.get_connected_players()
-	for i,player in ipairs(players) do
+	for _, player in pairs(minetest.get_connected_players()) do
 		local player_name = player:get_player_name()
 		local wstack = player:get_wielded_item():get_name()
 
@@ -48,11 +41,13 @@ minetest.register_globalstep(function(dtime)
 
 		if wstack ~= wield[player_name] then
 			wield[player_name] = wstack
-			local desc = get_desc(wstack)
 			dtimes[player_name] = 0
 			if huds[player_name] then 
+				local def = minetest.registered_items[wstack]
+				local desc = def and def.description or ""
 				player:hud_change(huds[player_name], 'text', desc)
 			end
 		end
 	end
 end)
+

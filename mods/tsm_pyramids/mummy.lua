@@ -25,10 +25,10 @@ mobs:register_mob("tsm_pyramids:mummy", {
 		random = "mummy",
 	},
 	-- speed and jump, sinks in water
-	walk_velocity = 0.25, -- A tester si assez lent / trop lent, valeur actuel = moitié moins que les Tree Monster
-	run_velocity = 0.5,
+	walk_velocity = 0.5, -- A tester si assez lent / trop lent, valeur actuel = moitié moins que les Tree Monster
+	run_velocity = 1,
 	view_range = 16,
-	jump = true,
+	jump = false,
 	floats = 0,
 	-- drops papyrus when dead
 	drops = {
@@ -39,8 +39,8 @@ mobs:register_mob("tsm_pyramids:mummy", {
 	},
 	-- damaged by
 	water_damage = 0,
-	lava_damage = 4,
-	light_damage = 8,
+	lava_damage = 5,
+	light_damage = 10,
 	-- model animation
 	animation = {
 		speed_normal = 15,		speed_run = 15,

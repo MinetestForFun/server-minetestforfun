@@ -9,12 +9,12 @@ package.path =
 		-- For LuaIRC to find its files
 		..modpath.."/?.lua;"
 		..package.path
-		..";/usr/lib/x86_64-linux-gnu/lua/5.1/socket/*.so"
+		..";/usr/lib/*/lua/5.1/socket/*.so"
 
 -- The build of Lua that Minetest comes with only looks for libraries under
 -- /usr/local/share and /usr/local/lib but LuaSocket is often installed under
 -- /usr/share and /usr/lib.
-if not jit and package.config:sub(1, 1) == "/" then
+if not rawget(_G, "jit") and package.config:sub(1, 1) == "/" then
 	package.path = package.path..
 			";/usr/share/lua/5.1/?.lua"..
 			";/usr/share/lua/5.1/?/init.lua"

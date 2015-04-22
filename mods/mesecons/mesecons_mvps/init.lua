@@ -1,9 +1,19 @@
 --register stoppers for movestones/pistons
 
 mesecon.mvps_stoppers = {}
-mesecon.mvps_unmov = {}
 mesecon.on_mvps_move = {}
+mesecon.mvps_unmov = {}
 
+--- Objects (entities) that cannot be moved
+function mesecon.register_mvps_unmov(objectname)
+	mesecon.mvps_unmov[objectname] = true;
+end
+
+function mesecon.is_mvps_unmov(objectname)
+	return mesecon.mvps_unmov[objectname]
+end
+
+-- Nodes that cannot be pushed / pulled by movestones, pistons
 function mesecon.is_mvps_stopper(node, pushdir, stack, stackid)
 	local get_stopper = mesecon.mvps_stoppers[node.name]
 	if type (get_stopper) == "function" then
@@ -17,15 +27,6 @@ function mesecon.register_mvps_stopper(nodename, get_stopper)
 			get_stopper = true
 	end
 	mesecon.mvps_stoppers[nodename] = get_stopper
-end
-
--- Objects that cannot be moved (e.g. movestones)
-function mesecon.register_mvps_unmov(objectname)
-	mesecon.mvps_unmov[objectname] = true;
-end
-
-function mesecon.is_mvps_unmov(objectname)
-	return mesecon.mvps_unmov[objectname]
 end
 
 -- Functions to be called on mvps movement
@@ -46,37 +47,102 @@ function mesecon.mvps_process_stack(stack)
 	end
 end
 
-function mesecon.mvps_get_stack(pos, dir, maximum)
+function mesecon.mvps_get_stack(pos, dir, maximum, all_pull_sticky)
 	-- determine the number of nodes to be pushed
-	local np = {x = pos.x, y = pos.y, z = pos.z}
 	local nodes = {}
-	while true do
-		local nn = minetest.get_node_or_nil(np)
-		if not nn or #nodes > maximum then
-			-- don't push at all, something is in the way (unloaded map or too many nodes)
-			return nil
+	local frontiers = {pos}
+
+	while #frontiers > 0 do
+		local np = frontiers[1]
+		local nn = minetest.get_node(np)
+
+		if nn.name ~= "air"
+		and minetest.registered_nodes[nn.name]
+		and minetest.registered_nodes[nn.name].liquidtype == "none" then
+			table.insert(nodes, {node = nn, pos = np})
+			if #nodes > maximum then return nil end
+
+			-- add connected nodes to frontiers, connected is a vector list
+			-- the vectors must be absolute positions
+			local connected = {}
+			if minetest.registered_nodes[nn.name]
+			and minetest.registered_nodes[nn.name].mvps_sticky then
+				connected = minetest.registered_nodes[nn.name].mvps_sticky(np, nn)
+			end
+
+			table.insert(connected, vector.add(np, dir))
+
+			-- If adjacent node is sticky block and connects add that
+			-- position to the connected table
+			for _, r in ipairs(mesecon.rules.alldirs) do
+				local adjpos = vector.add(np, r)
+				local adjnode = minetest.get_node(adjpos)
+				if minetest.registered_nodes[adjnode.name]
+				and minetest.registered_nodes[adjnode.name].mvps_sticky then
+					local sticksto = minetest.registered_nodes[adjnode.name]
+						.mvps_sticky(adjpos, adjnode)
+
+					-- connects to this position?
+					for _, link in ipairs(sticksto) do
+						if vector.equals(link, np) then
+							table.insert(connected, adjpos)
+						end
+					end
+				end
+			end
+
+			if all_pull_sticky then
+				table.insert(connected, vector.subtract(np, dir))
+			end
+
+			-- Make sure there are no duplicates in frontiers / nodes before
+			-- adding nodes in "connected" to frontiers
+			for _, cp in ipairs(connected) do
+				local duplicate = false
+				for _, rp in ipairs(nodes) do
+					if vector.equals(cp, rp.pos) then
+						duplicate = true
+					end
+				end
+				for _, fp in ipairs(frontiers) do
+					if vector.equals(cp, fp) then
+						duplicate = true
+					end
+				end
+				if not duplicate then
+					table.insert(frontiers, cp)
+				end
+			end
 		end
-
-		if nn.name == "air"
-		or (minetest.registered_nodes[nn.name]
-		and minetest.registered_nodes[nn.name].liquidtype ~= "none") then --is liquid
-			break
-		end
-
-		table.insert (nodes, {node = nn, pos = np})
-
-		np = mesecon.addPosRule(np, dir)
+		table.remove(frontiers, 1)
 	end
+
 	return nodes
 end
 
-function mesecon.mvps_push(pos, dir, maximum) -- pos: pos of mvps; dir: direction of push; maximum: maximum nodes to be pushed
-	local nodes = mesecon.mvps_get_stack(pos, dir, maximum)
+function mesecon.mvps_push(pos, dir, maximum)
+	return mesecon.mvps_push_or_pull(pos, dir, dir, maximum)
+end
+
+function mesecon.mvps_pull_all(pos, dir, maximum)
+	return mesecon.mvps_push_or_pull(pos, vector.multiply(dir, -1), dir, maximum, true)
+end
+
+function mesecon.mvps_pull_single(pos, dir, maximum)
+	return mesecon.mvps_push_or_pull(pos, vector.multiply(dir, -1), dir, maximum)
+end
+
+-- pos: pos of mvps; stackdir: direction of building the stack
+-- movedir: direction of actual movement
+-- maximum: maximum nodes to be pushed
+-- all_pull_sticky: All nodes are sticky in the direction that they are pulled from
+function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, all_pull_sticky)
+	local nodes = mesecon.mvps_get_stack(pos, movedir, maximum, all_pull_sticky)
 
 	if not nodes then return end
-	-- determine if one of the nodes blocks the push
+	-- determine if one of the nodes blocks the push / pull
 	for id, n in ipairs(nodes) do
-		if mesecon.is_mvps_stopper(n.node, dir, nodes, id) then
+		if mesecon.is_mvps_stopper(n.node, movedir, nodes, id) then
 			return
 		end
 	end
@@ -94,22 +160,23 @@ function mesecon.mvps_push(pos, dir, maximum) -- pos: pos of mvps; dir: directio
 
 	-- add nodes
 	for _, n in ipairs(nodes) do
-		local np = mesecon.addPosRule(n.pos, dir)
+		local np = mesecon.addPosRule(n.pos, movedir)
+
 		minetest.add_node(np, n.node)
 		minetest.get_meta(np):from_table(n.meta)
 	end
-	
+
 	local moved_nodes = {}
 	local oldstack = mesecon.tablecopy(nodes)
 	for i in ipairs(nodes) do
 		moved_nodes[i] = {}
 		moved_nodes[i].oldpos = nodes[i].pos
-		nodes[i].pos = mesecon.addPosRule(nodes[i].pos, dir)
+		nodes[i].pos = mesecon.addPosRule(nodes[i].pos, movedir)
 		moved_nodes[i].pos = nodes[i].pos
 		moved_nodes[i].node = nodes[i].node
 		moved_nodes[i].meta = nodes[i].meta
 	end
-	
+
 	on_mvps_move(moved_nodes)
 
 	return true, nodes, oldstack
@@ -121,73 +188,6 @@ mesecon.register_on_mvps_move(function(moved_nodes)
 		mesecon.update_autoconnect(n.pos)
 	end
 end)
-
-function mesecon.mvps_pull_single(pos, dir) -- pos: pos of mvps; direction: direction of pull (matches push direction for sticky pistons)
-	local np = mesecon.addPosRule(pos, dir)
-	local nn = minetest.get_node(np)
-
-	if ((not minetest.registered_nodes[nn.name]) --unregistered node
-	or minetest.registered_nodes[nn.name].liquidtype == "none") --non-liquid node
-	and not mesecon.is_mvps_stopper(nn, {x = -dir.x, y = -dir.y, z = -dir.z}, {{pos = np, node = nn}}, 1) then --non-stopper node
-		local meta = minetest.get_meta(np):to_table()
-		minetest.remove_node(np)
-		minetest.add_node(pos, nn)
-		minetest.get_meta(pos):from_table(meta)
-
-		nodeupdate(np)
-		nodeupdate(pos)
-		mesecon.on_dignode(np, nn)
-		mesecon.update_autoconnect(np)
-		on_mvps_move({{pos = pos, oldpos = np, node = nn, meta = meta}})
-	end
-	return {{pos = np, node = {param2 = 0, name = "air"}}, {pos = pos, node = nn}}
-end
-
-function mesecon.mvps_pull_all(pos, direction) -- pos: pos of mvps; direction: direction of pull
-	local lpos = {x=pos.x-direction.x, y=pos.y-direction.y, z=pos.z-direction.z} -- 1 away
-	local lnode = minetest.get_node(lpos)
-	local lpos2 = {x=pos.x-direction.x*2, y=pos.y-direction.y*2, z=pos.z-direction.z*2} -- 2 away
-	local lnode2 = minetest.get_node(lpos2)
-
-	--avoid pulling solid nodes
-	if lnode.name ~= "ignore"
-	and lnode.name ~= "air"
-	and ((not minetest.registered_nodes[lnode.name])
-	or minetest.registered_nodes[lnode.name].liquidtype == "none") then
-		return
-	end
-
-	--avoid pulling empty or liquid nodes
-	if lnode2.name == "ignore"
-	or lnode2.name == "air"
-	or (minetest.registered_nodes[lnode2.name]
-	and minetest.registered_nodes[lnode2.name].liquidtype ~= "none") then
-		return
-	end
-
-	local moved_nodes = {}
-	local oldpos = {x=lpos2.x + direction.x, y=lpos2.y + direction.y, z=lpos2.z + direction.z}
-	repeat
-		lnode2 = minetest.get_node(lpos2)
-		local meta = minetest.get_meta(lnode2):to_table()
-		minetest.add_node(oldpos, lnode2)
-		minetest.get_meta(oldpos):from_table(meta)
-		moved_nodes[#moved_nodes+1] = {pos = oldpos, oldpos = lpos2, node = lnode2, meta = meta}
-		nodeupdate(oldpos)
-		oldpos = {x=lpos2.x, y=lpos2.y, z=lpos2.z}
-		lpos2.x = lpos2.x-direction.x
-		lpos2.y = lpos2.y-direction.y
-		lpos2.z = lpos2.z-direction.z
-		lnode = minetest.get_node(lpos2)
-	until lnode.name == "air"
-	or lnode.name == "ignore"
-	or (minetest.registered_nodes[lnode.name]
-	and minetest.registered_nodes[lnode.name].liquidtype ~= "none")
-	minetest.remove_node(oldpos)
-	mesecon.on_dignode(oldpos, lnode2)
-	mesecon.update_autoconnect(oldpos)
-	on_mvps_move(moved_nodes)
-end
 
 function mesecon.mvps_move_objects(pos, dir, nodestack)
 	local objects_to_move = {}
@@ -231,5 +231,8 @@ function mesecon.mvps_move_objects(pos, dir, nodestack)
 	end
 end
 
+mesecon.register_mvps_stopper("doors:door_steel_b_1")
+mesecon.register_mvps_stopper("doors:door_steel_t_1")
+mesecon.register_mvps_stopper("doors:door_steel_b_2")
+mesecon.register_mvps_stopper("doors:door_steel_t_2")
 mesecon.register_mvps_stopper("default:chest_locked")
-mesecon.register_mvps_stopper("default:furnace")

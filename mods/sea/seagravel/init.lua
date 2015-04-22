@@ -10,23 +10,6 @@ minetest.register_node("seagravel:seagravel", {
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
 	}),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 minetest.register_node("seagravel:seagravel_cyan", {
@@ -38,23 +21,6 @@ minetest.register_node("seagravel:seagravel_cyan", {
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
 	}),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 minetest.register_node("seagravel:seagravel_magenta", {
@@ -66,23 +32,6 @@ minetest.register_node("seagravel:seagravel_magenta", {
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
 	}),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 minetest.register_node("seagravel:seagravel_lime", {
@@ -94,23 +43,6 @@ minetest.register_node("seagravel:seagravel_lime", {
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
 	}),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 minetest.register_node("seagravel:seagravel_aqua", {
@@ -122,23 +54,6 @@ minetest.register_node("seagravel:seagravel_aqua", {
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
 	}),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 minetest.register_node("seagravel:seagravel_skyblue", {
@@ -150,23 +65,6 @@ minetest.register_node("seagravel:seagravel_skyblue", {
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
 	}),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 minetest.register_node("seagravel:seagravel_redviolet", {
@@ -178,23 +76,6 @@ minetest.register_node("seagravel:seagravel_redviolet", {
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
 	}),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 
@@ -209,23 +90,6 @@ stairs.register_stair_and_slab("seagravel", "seagravel:seagravel",
 		default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
-			on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 }))
 
 stairs.register_stair_and_slab("seagravel_cyan", "seagravel:seagravel_cyan",
@@ -236,23 +100,6 @@ stairs.register_stair_and_slab("seagravel_cyan", "seagravel:seagravel_cyan",
 		default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
-			on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 }))
 
 stairs.register_stair_and_slab("seagravel_magenta", "seagravel:seagravel_magenta",
@@ -263,23 +110,6 @@ stairs.register_stair_and_slab("seagravel_magenta", "seagravel:seagravel_magenta
 		default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
-			on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 }))
 
 stairs.register_stair_and_slab("seagravel_lime", "seagravel:seagravel_lime",
@@ -290,23 +120,6 @@ stairs.register_stair_and_slab("seagravel_lime", "seagravel:seagravel_lime",
 		default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
-			on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 }))
 
 stairs.register_stair_and_slab("seagravel_aqua", "seagravel:seagravel_aqua",
@@ -317,23 +130,6 @@ stairs.register_stair_and_slab("seagravel_aqua", "seagravel:seagravel_aqua",
 		default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
-			on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 }))
 
 stairs.register_stair_and_slab("seagravel_skyblue", "seagravel:seagravel_skyblue",
@@ -344,23 +140,6 @@ stairs.register_stair_and_slab("seagravel_skyblue", "seagravel:seagravel_skyblue
 		default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
-			on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 }))
 
 stairs.register_stair_and_slab("seagravel_redviolet", "seagravel:seagravel_redviolet",
@@ -371,23 +150,6 @@ stairs.register_stair_and_slab("seagravel_redviolet", "seagravel:seagravel_redvi
 		default.node_sound_dirt_defaults({
 		footstep = {name="default_gravel_footstep", gain=0.5},
 		dug = {name="default_gravel_footstep", gain=1.0},
-			on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 }))
 
 

@@ -1,5 +1,149 @@
 -- mods/default/nodes.lua
 
+--[[ Index:
+
+Stone
+-----
+(1. Material 2. Cobble variant 3. Brick variant [4. Modified forms])
+
+default:stone
+default:cobble
+default:stonebrick
+default:mossycobble
+
+default:desert_stone
+default:desert_cobble
+default:desert_stonebrick
+
+default:sandstone
+default:sandstonebrick
+
+default:obsidian
+default:obsidianbrick
+
+Soft / Non-Stone
+----------------
+(1. Material [2. Modified forms])
+
+default:dirt
+default:dirt_with_grass
+default:dirt_with_grass_footsteps
+default:dirt_with_snow
+
+default:sand
+default:desert_sand
+
+default:gravel
+
+default:clay
+
+default:snow
+default:snowblock
+
+default:ice
+
+Trees
+-----
+(1. Trunk 2. Fabricated trunk 3. Leaves 4. Sapling [5. Fruits])
+
+default:tree
+default:wood
+default:leaves
+default:sapling
+default:apple
+
+default:jungletree
+default:junglewood
+default:jungleleaves
+default:junglesapling
+
+default:pinetree
+default:pinewood
+default:pine_needles
+default:pine_sapling
+
+Ores
+----
+(1. In stone 2. Block)
+
+default:stone_with_coal
+default:coalblock
+
+default:stone_with_iron
+default:steelblock
+
+default:stone_with_copper
+default:copperblock
+default:bronzeblock
+
+default:stone_with_gold
+default:goldblock
+
+default:stone_with_mese
+default:mese
+
+default:stone_with_diamond
+default:diamondblock
+
+Plantlife (non-cubic)
+---------------------
+default:cactus
+default:papyrus
+default:dry_shrub
+default:junglegrass
+default:grass_1
+default:grass_2
+default:grass_3
+default:grass_4
+default:grass_5
+
+Liquids
+-------
+(1. Source 2. Flowing)
+
+default:water_source
+default:water_flowing
+
+default:river_water_source
+default:river_water_flowing
+
+default:lava_source
+default:lava_flowing
+
+Tools / "Advanced" crafting / Non-"natural"
+-------------------------------------------
+default:torch
+
+default:chest
+default:chest_locked
+
+default:bookshelf
+
+default:sign_wall
+default:ladder
+default:fence_wood
+
+default:glass
+default:obsidian_glass
+
+default:rail
+
+default:brick
+
+default:meselamp
+
+Misc
+----
+default:cloud
+default:nyancat
+default:nyancat_rainbow
+
+--]]
+
+--
+-- Stone
+--
+
 minetest.register_node("default:stone", {
 	description = "Stone",
 	tiles = {"default_stone.png"},
@@ -273,30 +417,6 @@ minetest.register_abm({
 	end
 })
 
-local function sand_on_place(itemstack, placer, pointed_thing)
-	if not pointed_thing.type == "node" then
-		return itemstack
-	end
-	local pn = placer:get_player_name()
-	if minetest.is_protected(pointed_thing.above, pn) then
-		return itemstack
-	end
-	local node = minetest.get_node(pointed_thing.above)
-	local def = minetest.registered_nodes[node.name]
-	if def and def.buildable_to then
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-			itemstack:take_item()
-		end
-		return itemstack
-	else
-		return itemstack
-	end
-end
-
 minetest.register_node("default:sand", {
 	description = "Sand",
 	tiles = {"default_sand.png"},
@@ -307,8 +427,7 @@ minetest.register_node("default:sand", {
 		},
 	},
 	groups = {crumbly = 3, falling_node = 1, sand = 1},
-	sounds = default.node_sound_sand_defaults(),
-	on_place = sand_on_place
+	sounds = default.node_sound_sand_defaults()
 })
 
 minetest.register_node("default:desert_sand", {
@@ -321,8 +440,7 @@ minetest.register_node("default:desert_sand", {
 		},
 	},
 	groups = {crumbly = 3, falling_node = 1, sand = 1},
-	sounds = default.node_sound_sand_defaults(),
-	on_place = sand_on_place
+	sounds = default.node_sound_sand_defaults()
 })
 
 minetest.register_node("default:gravel", {
@@ -335,8 +453,7 @@ minetest.register_node("default:gravel", {
 			{items = {"default:gravel"}},
 		},
 	},
-	sounds = default.node_sound_gravel_defaults(),
-	on_place = sand_on_place
+	sounds = default.node_sound_gravel_defaults()
 })
 
 minetest.register_node("default:sandstone", {
@@ -451,6 +568,7 @@ minetest.register_node("default:jungleleaves", {
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
+
 	after_place_node = default.after_place_leaves,
 })
 
@@ -1849,6 +1967,99 @@ minetest.register_node("default:cherry_blossom_leaves", {
 		return ItemStack("default:cherry_blossom_leaves".." "..itemstack:get_count()-(1-ret:get_count()))
 	end,
 })
+minetest.register_node("default:river_water_source", {
+	description = "River Water Source",
+	inventory_image = minetest.inventorycube("default_water.png"),
+	drawtype = "liquid",
+	tiles = {
+		{
+			name = "default_water_source_animated.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 2.0,
+			},
+		},
+	},
+	special_tiles = {
+		{
+			name = "default_water_source_animated.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 2.0,
+			},
+			backface_culling = false,
+		},
+	},
+	alpha = 160,
+	paramtype = "light",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	is_ground_content = false,
+	drop = "",
+	drowning = 1,
+	liquidtype = "source",
+	liquid_alternative_flowing = "default:river_water_flowing",
+	liquid_alternative_source = "default:river_water_source",
+	liquid_viscosity = 1,
+	liquid_renewable = false,
+	liquid_range = 2,
+	post_effect_color = {a=64, r=100, g=100, b=200},
+	groups = {water=3, liquid=3, puts_out_fire=1},
+})
+
+minetest.register_node("default:river_water_flowing", {
+	description = "Flowing River Water",
+	inventory_image = minetest.inventorycube("default_water.png"),
+	drawtype = "flowingliquid",
+	tiles = {"default_water.png"},
+	special_tiles = {
+		{
+			name = "default_water_flowing_animated.png",
+			backface_culling = false,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 0.8,
+			},
+		},
+		{
+			name = "default_water_flowing_animated.png",
+			backface_culling = true,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 0.8,
+			},
+		},
+	},
+	alpha = 160,
+	paramtype = "light",
+	paramtype2 = "flowingliquid",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	is_ground_content = false,
+	drop = "",
+	drowning = 1,
+	liquidtype = "flowing",
+	liquid_alternative_flowing = "default:river_water_flowing",
+	liquid_alternative_source = "default:river_water_source",
+	liquid_viscosity = 1,
+	liquid_renewable = false,
+	liquid_range = 2,
+	post_effect_color = {a=64, r=100, g=100, b=200},
+	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1},
+})
+
 
 minetest.register_node("default:cherry_leaves_deco", {
 	description = "Cherry Leaves",

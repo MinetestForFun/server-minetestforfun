@@ -14,7 +14,24 @@ signs_lib = {}
 
 signs_lib.modpath = minetest.get_modpath("signs_lib")
 
-signs_lib.wall_sign_model = {
+signs_lib.regular_wall_sign_model = {
+	nodebox = {
+		type = "wallmounted",
+		wall_side =   { -0.5,    -0.25,   -0.4375, -0.4375,  0.375,  0.4375 },
+		wall_bottom = { -0.4375, -0.5,    -0.25,    0.4375, -0.4375, 0.375 },
+		wall_top =    { -0.4375,  0.4375, -0.375,   0.4375,  0.5,    0.25 }
+	},
+	textpos = {
+		nil,
+		nil,
+		{delta = {x =  0.43,  y = 0.07, z =  0     }, yaw = math.pi / -2},
+		{delta = {x = -0.43,  y = 0.07, z =  0     }, yaw = math.pi / 2},
+		{delta = {x =  0,     y = 0.07, z =  0.43  }, yaw = 0},
+		{delta = {x =  0,     y = 0.07, z = -0.43  }, yaw = math.pi},
+	}
+}
+
+signs_lib.metal_wall_sign_model = {
 	nodebox = {
 		type = "fixed",
 		fixed = {-0.4375, -0.25, 0.4375, 0.4375, 0.375, 0.5}
@@ -536,7 +553,11 @@ signs_lib.update_sign = function(pos, fields, owner)
 	elseif signnode.name == "signs:sign_hanging" then
 		sign_info = signs_lib.hanging_sign_model.textpos[minetest.get_node(pos).param2 + 1]
 	elseif string.find(signnode.name, "sign_wall") then
-		sign_info = signs_lib.wall_sign_model.textpos[minetest.get_node(pos).param2 + 1]
+		if signnode.name == "default:sign_wall" then
+			sign_info = signs_lib.regular_wall_sign_model.textpos[minetest.get_node(pos).param2 + 1]
+		else
+			sign_info = signs_lib.metal_wall_sign_model.textpos[minetest.get_node(pos).param2 + 1]
+		end
 	else -- ...it must be a sign on a fence post.
 		sign_info = signs_lib.sign_post_model.textpos[minetest.get_node(pos).param2 + 1]
 	end
@@ -607,8 +628,11 @@ function signs_lib.determine_sign_type(itemstack, placer, pointed_thing, locked)
 			minetest.add_node(above, {name = "signs:sign_hanging", param2 = fdir})
 		elseif wdir == 1 and signname == "default:sign_wall" then
 			minetest.add_node(above, {name = "signs:sign_yard", param2 = fdir})
-		else -- it must be a wooden or metal wall sign.
+		elseif signname ~= "default:sign_wall"
+		  and signname ~= "locked_sign:sign_wall_locked" then -- it's a metal wall sign.
 			minetest.add_node(above, {name = signname, param2 = fdir})
+		else -- it must be a default or locked wooden wall sign
+			minetest.add_node(above, {name = signname, param2 = wdir }) -- note it's wallmounted here!
 			if locked then
 				local meta = minetest.get_meta(above)
 				local owner = placer:get_player_name()
@@ -649,12 +673,12 @@ minetest.register_node(":default:sign_wall", {
 	inventory_image = "default_sign_wall.png",
 	wield_image = "default_sign_wall.png",
 	node_placement_prediction = "",
-	paramtype = "light",
 	sunlight_propagates = true,
-	paramtype2 = "facedir",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
 	drawtype = "nodebox",
-	node_box = signs_lib.wall_sign_model.nodebox,
-	tiles = {"signs_top.png", "signs_bottom.png", "signs_side.png", "signs_side.png", "signs_back.png", "signs_front.png"},
+	node_box = signs_lib.regular_wall_sign_model.nodebox,
+	tiles = {"signs_wall_sign.png"},
 	groups = sign_groups,
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -770,19 +794,12 @@ minetest.register_node(":locked_sign:sign_wall_locked", {
 	inventory_image = "signs_locked_inv.png",
 	wield_image = "signs_locked_inv.png",
 	node_placement_prediction = "",
-	paramtype = "light",
 	sunlight_propagates = true,
-	paramtype2 = "facedir",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
 	drawtype = "nodebox",
-	node_box = signs_lib.wall_sign_model.nodebox,
-	tiles = {
-		"signs_top_locked.png",
-		"signs_bottom_locked.png",
-		"signs_side_locked.png",
-		"signs_side.png",
-		"signs_back.png",
-		"signs_front_locked.png"
-	},
+	node_box = signs_lib.regular_wall_sign_model.nodebox,
+	tiles = { "signs_wall_sign_locked.png" },
 	groups = sign_groups,
 	on_place = function(itemstack, placer, pointed_thing)
 		return signs_lib.determine_sign_type(itemstack, placer, pointed_thing, true)
@@ -829,7 +846,7 @@ for _, color in ipairs(sign_colors) do
 		sunlight_propagates = true,
 		paramtype2 = "facedir",
 		drawtype = "nodebox",
-		node_box = signs_lib.wall_sign_model.nodebox,
+		node_box = signs_lib.metal_wall_sign_model.nodebox,
 		tiles = {
 			"signs_metal_tb.png",
 			"signs_metal_tb.png",

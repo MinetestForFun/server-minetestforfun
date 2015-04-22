@@ -1270,6 +1270,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "homedecor:wall_sconce 2",
+	recipe = {
+		{"default:iron_lump", "", ""},
+		{"default:iron_lump", "homedecor:candle", ""},
+		{"default:iron_lump", "", ""},
+	}
+})
+
+minetest.register_craft({
 	output = "homedecor:oil_lamp 4",
 	recipe = {
 		{ "", "vessels:glass_bottle", "" },
@@ -2504,7 +2513,7 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-        output = "homedecor:wardrobe_bottom",
+        output = "homedecor:wardrobe",
         recipe = {
 			{ "homedecor:drawer_small", "homedecor:kitchen_cabinet" },
 			{ "homedecor:drawer_small", "default:wood" },
@@ -2581,7 +2590,7 @@ minetest.register_craft( {
 
 
 minetest.register_craft( {
-        output = "homedecor:bench_large_1_left",
+        output = "homedecor:bench_large_1",
         recipe = {
 			{ "group:wood", "group:wood", "group:wood" },
 			{ "group:wood", "group:wood", "group:wood" },
@@ -2758,12 +2767,21 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "homedecor:deckchair_foot",
+	output = "homedecor:deckchair",
 	recipe = {
 		{ "group:stick", "building_blocks:terrycloth_towel", "group:stick" },
 		{ "group:stick", "building_blocks:terrycloth_towel", "group:stick" },
 		{ "group:stick", "building_blocks:terrycloth_towel", "group:stick" }
 	},
+})
+
+minetest.register_craft({
+	output = "homedecor:deckchair_striped_blue",
+	type = "shapeless",
+	recipe = {
+		"homedecor:deckchair",
+		"dye:blue"
+	}
 })
 
 minetest.register_craft({
@@ -2796,12 +2814,12 @@ minetest.register_craft({
 	recipe = {
 		{ "default:gold_ingot","","default:gold_ingot" },
 		{ "","default:gold_ingot","" },
-		{ "default:gold_ingot","default:gold_ingot","default:gold_ingot" }
+		{ "group:wood","default:gold_ingot","group:wood" }
 	},
 })
 
 minetest.register_craft({
-	output = "homedecor:grandfather_clock_bottom",
+	output = "homedecor:grandfather_clock",
 	recipe = {
 		{ "building_blocks:slab_hardwood","homedecor:analog_clock_wood","building_blocks:slab_hardwood" },
 		{ "building_blocks:slab_hardwood","technic:brass_ingot","building_blocks:slab_hardwood" },
@@ -3076,7 +3094,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "homedecor:tool_cabinet_bottom",
+	output = "homedecor:tool_cabinet",
 	recipe = {
 		{ "homedecor:motor", "default:axe_steel", "default:pick_steel" },
 		{ "default:steel_ingot", "homedecor:drawer_small", "default:steel_ingot" },

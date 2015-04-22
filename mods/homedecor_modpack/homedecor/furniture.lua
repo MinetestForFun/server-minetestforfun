@@ -86,42 +86,35 @@ local chaircolors = {
 	{ "dark_green", "Dark Green" },
 }
 
+local kc_cbox = {
+	type = "fixed",
+	fixed = { -0.3125, -0.5, -0.3125, 0.3125, 0.5, 0.3125 },
+}
+
 for i in ipairs(chaircolors) do
 
 	local color = "_"..chaircolors[i][1]
 	local color2 = chaircolors[i][1]
 	local name = S(chaircolors[i][2])
 	local chairtiles = {
-			"forniture_kitchen_chair_top"..color..".png",
-			"forniture_wood.png",
-			"forniture_kitchen_chair_sides"..color..".png",
-			"forniture_kitchen_chair_sides"..color..".png^[transformFX",
-			"forniture_kitchen_chair_back"..color..".png",
-			"forniture_kitchen_chair_front"..color..".png",
+		"forniture_wood.png",
+		"wool"..color..".png",
 	}
+
 	if chaircolors[i][1] == "" then
 		color = ""
-		chairtiles = { "forniture_wood.png" }
+		chairtiles = {
+			"forniture_wood.png",
+			"forniture_wood.png"
+		}
 	end
 
 	homedecor.register("chair"..color, {
 		description = S("Kitchen chair (%s)"):format(name),
+		mesh = "homedecor_kitchen_chair.obj",
 		tiles = chairtiles,
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-0.3125, -0.5, 0.1875, -0.1875, 0.5, 0.3125},
-				{0.1875, -0.5, 0.1875, 0.3125, 0.5, 0.3125},
-				{-0.3125, -0.5, -0.3125, -0.1875, 0, -0.1875},
-				{0.1875, -0.5, -0.3125, 0.3125, 0, -0.1875},
-				{-0.3125, -0.125, -0.3125, 0.3125, 0, 0.3125},
-				{-0.25, 0.0625, 0.25, 0.25, 0.4375, 0.25},
-			},
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
-		},
+		selection_box = kc_cbox,
+		collision_box = kc_cbox,
 		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 		--[[
 		on_rightclick = function(pos, node, clicker)
@@ -162,24 +155,26 @@ for i in ipairs(chaircolors) do
 	end
 end
 
+local ob_cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0.5 }
+}
+
 minetest.register_node(":homedecor:openframe_bookshelf", {
 	description = "Bookshelf (open-frame)",
 	drawtype = "mesh",
 	mesh = "homedecor_openframe_bookshelf.obj",
-	tiles = { "homedecor_openframe_bookshelf.png" },
+	tiles = {
+		"homedecor_openframe_bookshelf_books.png",
+		"default_wood.png"
+	},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {choppy=3,oddly_breakable_by_hand=2,flammable=3},
 	sounds = default.node_sound_wood_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0.5 }
-	},
-	collision_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0.5 }
-	},
+	selection_box = ob_cbox,
+	collision_box = ob_cbox,
 })
 
 local bedcolors = {
