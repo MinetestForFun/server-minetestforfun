@@ -417,30 +417,6 @@ minetest.register_abm({
 	end
 })
 
-local function sand_on_place(itemstack, placer, pointed_thing)
-	if not pointed_thing.type == "node" then
-		return itemstack
-	end
-	local pn = placer:get_player_name()
-	if minetest.is_protected(pointed_thing.above, pn) then
-		return itemstack
-	end
-	local node = minetest.get_node(pointed_thing.above)
-	local def = minetest.registered_nodes[node.name]
-	if def and def.buildable_to then
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-			itemstack:take_item()
-		end
-		return itemstack
-	else
-		return itemstack
-	end
-end
-
 minetest.register_node("default:sand", {
 	description = "Sand",
 	tiles = {"default_sand.png"},
@@ -451,8 +427,7 @@ minetest.register_node("default:sand", {
 		},
 	},
 	groups = {crumbly = 3, falling_node = 1, sand = 1},
-	sounds = default.node_sound_sand_defaults(),
-	on_place = sand_on_place
+	sounds = default.node_sound_sand_defaults()
 })
 
 minetest.register_node("default:desert_sand", {
@@ -465,8 +440,7 @@ minetest.register_node("default:desert_sand", {
 		},
 	},
 	groups = {crumbly = 3, falling_node = 1, sand = 1},
-	sounds = default.node_sound_sand_defaults(),
-	on_place = sand_on_place
+	sounds = default.node_sound_sand_defaults()
 })
 
 minetest.register_node("default:gravel", {
@@ -479,8 +453,7 @@ minetest.register_node("default:gravel", {
 			{items = {"default:gravel"}},
 		},
 	},
-	sounds = default.node_sound_gravel_defaults(),
-	on_place = sand_on_place
+	sounds = default.node_sound_gravel_defaults()
 })
 
 minetest.register_node("default:sandstone", {
