@@ -15,9 +15,22 @@ minetest.register_tool("eventobjects:spleef_shovel", {
 
 minetest.register_node("eventobjects:surprise_node", {
 	description = "'?' block",
-	tiles = {"eventobjects_surprise_node.png"},
-	inventory_image = "eventobjects_surprise_node.png",
-	wield_image = "eventobjects_surprise_node.png",
+	inventory_image = minetest.inventorycube("eventobjects_surprise_node.png"),
+	tiles = {
+		"eventobjects_surprise_node_top.png", "eventobjects_surprise_node_top.png", {name = "eventobjects_surprise_node_animated.png", animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 1.5}}
+	},
+	special_tiles = {
+		{
+			image = "blocmario.png",
+			backface_culling=false,
+			animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 0.6}
+		},
+		{
+			image = "blocmario.png",
+			backface_culling=true,
+			animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 0.6}
+		}
+	},
 	groups = {oddly_breakable_by_hand = 2},
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
