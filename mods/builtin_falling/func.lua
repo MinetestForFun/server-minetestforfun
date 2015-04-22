@@ -115,27 +115,6 @@ end
 minetest.register_on_dignode(on_dignode)
 
 --
--- Rewrite of all item you need
---
-function add_falling_protect_item(named)
-	minetest.override_item(named, {
-	   on_place = function(itemstack, placer, pointed_thing)
-		  if not pointed_thing.type == "node" then
-			 return
-		  end
-		  local pn = placer:get_player_name()
-		  if minetest.is_protected(pointed_thing.above, pn) then
-			 return
-		  end
-		  minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		  local meta = minetest.get_meta(pointed_thing.above)
-		  meta:set_string("owner", pn)
-		  nodeupdate(pointed_thing.above)
-	   end
-	})
-end
-
---
 -- Protected Area
 --
 

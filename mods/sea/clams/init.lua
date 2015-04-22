@@ -17,23 +17,6 @@ minetest.register_node("clams:sandalgae", {
 		}
 	},
 	sounds = default.node_sound_sand_defaults(),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 minetest.register_node("clams:dirtalgae", {
@@ -62,23 +45,6 @@ minetest.register_node("clams:sandalgaeused", {
 	is_ground_content = true,
 	groups = {crumbly=3, falling_node=1, sand=1},
 	sounds = default.node_sound_sand_defaults(),
-	on_place = function(itemstack, placer, pointed_thing)
-     		if not pointed_thing.type == "node" then
-			return itemstack
-		end
-		local pn = placer:get_player_name()
-		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
-		end
-		minetest.add_node(pointed_thing.above, {name=itemstack:get_name()})
-		local meta = minetest.get_meta(pointed_thing.above)
-		meta:set_string("owner", pn)
-		nodeupdate(pointed_thing.above)
-		if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-		end
-		return itemstack
-	end
 })
 
 minetest.register_node("clams:dirtalgaeused", {
