@@ -38,6 +38,7 @@ runes.datas.items = {
 		description = "Go to me rune",
 		img = "default_wood.png",
 		type = "cube"
+<<<<<<< HEAD
 	},
 	["megamana"] = {
 		description = "Mega Mana",
@@ -49,6 +50,9 @@ runes.datas.items = {
 		img = "default_grass.png",
 		type = "plate"
 	},
+=======
+	}
+>>>>>>> Added base of runes mod
 }
 
 for key, value in pairs(runes.datas.items) do
