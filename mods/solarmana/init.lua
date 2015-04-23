@@ -30,7 +30,10 @@ local time_next_regen_check = time_total_regen_check
 
 -- TODO: make this globally accessible
 local mana_from_node = {
-    ['default:goldblock'] = 2,
+    ['default:goldblock'] = 5,
+    ['runes:rune_simple_heal'] = 1,
+    ['runes:rune_improved_heal'] = 3,
+    ['runes:rune_perfect_heal'] = 8,
     ['default:wood'] = 1,
     ['default:junglewood'] = 1,
     ['default:pinewood'] = 1,
