@@ -45,9 +45,7 @@ minetest.register_chatcommand("news",{
 })
 
 minetest.register_on_joinplayer(function (player)
-	minetest.after(6,show_formspec,player)
-end)
-
-minetest.register_on_newplayer(function(player)
-	minetest.after(8,show_formspec,player)
+	if minetest.get_player_privs(player:get_player_name()).interact == true then
+		minetest.after(6,show_formspec,player)
+	end
 end)
