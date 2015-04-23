@@ -17,13 +17,6 @@ while fetched_skip < 40 do
 		u_skins.meta[name].author = data[2]
 		u_skins.meta[name].license = data[3]
 		u_skins.meta[name].description = "" --what's that??
-
-		local logstr = "[u_skins][#" .. internal_id .. " Skin " .. name
-		if data[2] ~= "" then
-			logstr = logstr .. " from " .. data[2]
-		end
-		logstr = logstr .. " under license " .. data[3] .. " registered as " .. data[1]
-		minetest.log("action", logstr)
 		
 		fetched_skip = 0
 		internal_id = internal_id + 1
@@ -48,14 +41,7 @@ while fetched_skip < 40 do
 		u_skins.meta[name].author = data[2]
 		u_skins.meta[name].license = data[3] or ""
 		u_skins.meta[name].description = ""
-			
-		logstr = "[u_skins][#" .. internal_id .. " Skin " .. name
-		if data[2] ~= "" then
-			logstr = logstr .. " from " .. data[2]
-		end
-		logstr = logstr .. " under license " .. data[3] .. " registered as " .. data[1]
-		minetest.log("action", logstr)
-
+		
 		fetched_skip = 0
 		internal_id = internal_id + 1
 	end
