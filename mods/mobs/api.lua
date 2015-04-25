@@ -16,11 +16,11 @@ function mobs:register_mob(name, def)
 
 		owner = def.owner,
 		order = def.order or "",
-on_die = def.on_die,
-jump_height = def.jump_height or 6,
-jump_chance = def.jump_chance or 0,
-rotate = def.rotate or 0, -- 0=front, 1.5=side, 3.0=back, 4.5=side2
-lifetimer = def.lifetimer or 600,
+		on_die = def.on_die,
+		jump_height = def.jump_height or 6,
+		jump_chance = def.jump_chance or 0,
+		rotate = def.rotate or 0, -- 0=front, 1.5=side, 3.0=back, 4.5=side2
+		lifetimer = def.lifetimer or 600,
 		hp_min = def.hp_min or 5,
 		hp_max = def.hp_max or 10,
 		physical = true,
