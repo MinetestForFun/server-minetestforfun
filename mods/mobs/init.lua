@@ -15,6 +15,7 @@ dofile(minetest.get_modpath("mobs").."/kitten.lua") -- Jordach/BFD
 
 -- Monsters
 
+dofile(minetest.get_modpath("mobs").."/sarangay.lua") -- Kalabasa
 dofile(minetest.get_modpath("mobs").."/dirtmonster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/dungeonmaster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/oerkki.lua") -- PilzAdam

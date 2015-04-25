@@ -1,6 +1,7 @@
 mobs:register_mob("mobs:sarangay", {
 	type = "monster",
 	passive = false,
+	rotate = 1.5,
 	damage = 5,
 	hp_min = 40,
 	hp_max = 60,
