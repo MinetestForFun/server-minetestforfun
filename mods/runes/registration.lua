@@ -38,6 +38,11 @@ runes.datas.items = {
 		description = "Go to me rune",
 		img = "default_wood.png",
 		type = "cube"
+	},
+	["megamana"] = {
+		description = "Mega Mana",
+		img = "default_diamond.png",
+		type = "craftitem"
 	}
 }
 
