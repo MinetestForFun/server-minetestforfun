@@ -5,12 +5,9 @@
 projection = function(itemstack, user, pointed_thing)
 	if pointed_thing.type == "object" then
 		local dir = vector.direction(user:getpos(),pointed_thing.ref:getpos())
-<<<<<<< HEAD
 		local v = pointed_thing.ref:getvelocity() or {x=0,y=0,z=0}
-=======
->>>>>>> Added base of runes mod
 		local ykb = 10
-		if v.y ~= 0 then ykb = 0 end 
+		if v.y ~= 0 then ykb = 0 end
 		pointed_thing.ref:setvelocity({x=dir.x*50,y=ykb,z=dir.z*50})
 	end
 end
@@ -39,10 +36,7 @@ end
 
 is_owner_online = function(pos)
 	local meta = minetest.get_meta(pos)
-<<<<<<< HEAD
-=======
 	print(meta:get_string("owner"))
->>>>>>> Added base of runes mod
 	if meta:get_string("owner") ~= nil then
 		return minetest.get_player_by_name(meta:get_string("owner")) ~= nil
 	else
@@ -56,7 +50,6 @@ go_to_me = function(pos, node, digger)
 	end
 end
 
-<<<<<<< HEAD
 set_manamax = function(itemstack, user, pointed_thing)
 	if user and user:is_player() then
 		mana.set(user:get_player_name(),mana.getmax(user:get_player_name()))
@@ -71,8 +64,13 @@ set_manamax = function(itemstack, user, pointed_thing)
 	end
 end
 
-=======
->>>>>>> Added base of runes mod
+
+set_manamax = function(itemstack, user, pointed_thing)
+	if user and user:is_player() then
+		mana.set(user:get_player_name(),mana.getmax(user:get_player_name()))
+	end
+end
+
 -- Then, connect
 
 runes.functions.connect("project","use",projection)
@@ -81,7 +79,6 @@ runes.functions.connect("earthquake","use",earthquake)
 runes.functions.connect("gotome","place",add_owner)
 runes.functions.connect("gotome","dig",go_to_me)
 runes.functions.connect("gotome","can_dig",is_owner_online)
-<<<<<<< HEAD
 runes.functions.connect("megamana","use",set_manamax)
 
 -- And globalsteps
@@ -111,5 +108,3 @@ minetest.register_globalstep(function(dtime)
 		end
 	end
 end)
-=======
->>>>>>> Added base of runes mod
