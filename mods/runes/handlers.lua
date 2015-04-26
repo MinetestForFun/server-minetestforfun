@@ -36,7 +36,6 @@ end
 
 is_owner_online = function(pos)
 	local meta = minetest.get_meta(pos)
-	print(meta:get_string("owner"))
 	if meta:get_string("owner") ~= nil then
 		return minetest.get_player_by_name(meta:get_string("owner")) ~= nil
 	else
