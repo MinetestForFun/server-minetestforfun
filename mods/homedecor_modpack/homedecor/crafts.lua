@@ -1279,6 +1279,24 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "homedecor:candlestick_wrought_iron",
+	recipe = {
+		{""},
+		{"homedecor:candle_thin"},
+		{"default:iron_lump"},
+	}
+})
+
+minetest.register_craft({
+	output = "homedecor:candlestick_brass",
+	recipe = {
+		{""},
+		{"homedecor:candle_thin"},
+		{"technic:brass_ingot"},
+	}
+})
+
+minetest.register_craft({
 	output = "homedecor:oil_lamp 4",
 	recipe = {
 		{ "", "vessels:glass_bottle", "" },
@@ -2427,8 +2445,8 @@ for i in ipairs(color_pairings) do
 	minetest.register_craft( {
 		    output = "homedecor:tiles_"..result.." 2",
 		    recipe = {
-				{ "building_blocks:Marble", "dye:"..dye1 },
-				{ "building_blocks:Marble", "dye:"..dye2 }
+				{ "group:marble", "dye:"..dye1 },
+				{ "group:marble", "dye:"..dye2 }
 		    },
 	})
 end
@@ -2674,12 +2692,19 @@ for c in ipairs(bedcolors) do
 	local woolcolor = bedcolors[c][2]
 
 	minetest.register_craft( {
-		    output = "homedecor:bed_"..color.."_foot",
-		    recipe = {
-				{ "group:stick", "", "group:stick" },
-				{ "wool:white", "wool:"..woolcolor, "wool:"..woolcolor },
-				{ "group:wood", "", "group:wood" },
-		    },
+		output = "homedecor:bed_"..color.."_regular",
+		recipe = {
+			{ "group:stick", "", "group:stick" },
+			{ "wool:white", "wool:"..woolcolor, "wool:"..woolcolor },
+			{ "group:wood", "", "group:wood" },
+		},
+	})
+
+	minetest.register_craft( {
+		output = "homedecor:bed_"..color.."_kingsize",
+		recipe = {
+			{ "homedecor:bed_"..color.."_regular", "homedecor:bed_"..color.."_regular" }
+		},
 	})
 
 end
@@ -3117,6 +3142,23 @@ minetest.register_craft({
 		{ "homedecor:plastic_sheeting", "", "homedecor:plastic_sheeting" },
 		{ "homedecor:plastic_sheeting", "dye:green", "homedecor:plastic_sheeting" },
 		{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:ceiling_lamp",
+	recipe = {
+		{ "", "technic:brass_ingot", ""},
+		{ "", "homedecor:chainlink_brass", ""},
+		{ "default:glass", "homedecor:glowlight_small_cube_white", "default:glass"}
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:ceiling_lamp",
+	recipe = {
+		{ "", "chains:chain_top_brass", ""},
+		{ "default:glass", "homedecor:glowlight_small_cube_white", "default:glass"}
 	},
 })
 

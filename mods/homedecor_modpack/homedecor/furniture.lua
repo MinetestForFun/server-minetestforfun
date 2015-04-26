@@ -189,41 +189,14 @@ local bedcolors = {
 	"pink",
 }
 
-local function bed_extension(pos, color)
-
-	local topnode = minetest.get_node({x=pos.x, y=pos.y+1.0, z=pos.z})
-	local thisnode = minetest.get_node(pos)
-	local bottomnode = minetest.get_node({x=pos.x, y=pos.y-1.0, z=pos.z})
-
-	local fdir = thisnode.param2
-
-	if string.find(topnode.name, "homedecor:bed_.*_regular$") then
-		if fdir == topnode.param2 then
-			local newnode = string.gsub(thisnode.name, "_regular", "_extended")
-			minetest.set_node(pos, { name = newnode, param2 = fdir})
-		end
-	end
-
-	if string.find(bottomnode.name, "homedecor:bed_.*_regular$") then
-		if fdir == bottomnode.param2 then
-			local newnode = string.gsub(bottomnode.name, "_regular", "_extended")
-			minetest.set_node({x=pos.x, y=pos.y-1.0, z=pos.z}, { name = newnode, param2 = fdir})
-		end
-	end
-end
-
-local function unextend_bed(pos, color)
-	local bottomnode = minetest.get_node({x=pos.x, y=pos.y-1.0, z=pos.z})
-	local fdir = bottomnode.param2
-	if  string.find(bottomnode.name, "homedecor:bed_.*_extended$") then
-		local newnode = string.gsub(bottomnode.name, "_extended", "_regular")
-		minetest.set_node({x=pos.x, y=pos.y-1.0, z=pos.z}, { name = newnode, param2 = fdir})
-	end
-end
-
 local bed_cbox = {
 	type = "fixed",
 	fixed = { -0.5, -0.5, -0.5, 0.5, 0.5, 1.5 }
+}
+
+local kbed_cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, -0.5, 1.5, 0.5, 1.5 }
 }
 
 for _, color in ipairs(bedcolors) do
@@ -246,12 +219,13 @@ for _, color in ipairs(bedcolors) do
 		groups = {snappy=3},
 		selection_box = bed_cbox,
 		collision_box = bed_cbox,
-		on_construct = function(pos)
-			bed_extension(pos, color)
+		after_place_node = function(pos, placer, itemstack, pointed_thing)
+			if not placer:get_player_control().sneak then
+				return homedecor.bed_expansion(pos, placer, itemstack, pointed_thing, color)
+			end
 		end,
-		expand = { forward = "air" },
-		after_unexpand = function(pos)
-			unextend_bed(pos, color)
+		after_dig_node = function(pos)
+			homedecor.unextend_bed(pos, color)
 		end,
 	})
 
@@ -269,10 +243,34 @@ for _, color in ipairs(bedcolors) do
 		selection_box = bed_cbox,
 		collision_box = bed_cbox,
 		expand = { forward = "air" },
-		after_unexpand = function(pos)
-			unextend_bed(pos, color)
+		after_dig_node = function(pos)
+			homedecor.unextend_bed(pos, color)
 		end,
 		drop = "homedecor:bed_"..color.."_regular"
+	})
+
+	homedecor.register("bed_"..color.."_kingsize", {
+		mesh = "homedecor_bed_kingsize.obj",
+		tiles = {
+			"homedecor_bed_frame.png",
+			"default_wood.png",
+			"wool_white.png",
+			"wool_"..color2..".png",
+			"homedecor_bed_bottom.png",
+			"wool_"..color2..".png^[brighten",
+		},
+		inventory_image = "homedecor_bed_kingsize_"..color.."_inv.png",
+		description = S("Bed (%s, king sized)"):format(color),
+		groups = {snappy=3, not_in_creative_inventory=1},
+		selection_box = kbed_cbox,
+		collision_box = kbed_cbox,
+		after_dig_node = function(pos, oldnode, oldmetadata, digger)
+			local inv = digger:get_inventory()
+			if digger:get_player_control().sneak and inv:room_for_item("main", "bed_"..color.."_regular 1") then
+				inv:remove_item("main", "homedecor:bed_"..color.."_kingsize 1")
+				inv:add_item("main", "homedecor:bed_"..color.."_regular 2")
+			end
+		end,
 	})
 
 	minetest.register_alias("homedecor:bed_"..color.."_foot",    "homedecor:bed_"..color.."_regular")

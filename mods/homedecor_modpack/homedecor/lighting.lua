@@ -172,12 +172,12 @@ homedecor.register("candle", {
 local c_cbox = {
 	type = "fixed",
 	fixed = {
-		{ -0.1, -0.5, -0.1, 0.125, 0.05, 0.125 },
+		{ -0.125, -0.5, -0.125, 0.125, 0.05, 0.125 },
 	}
 }
 
 homedecor.register("candle_thin", {
-	description = S("Little Candle"),
+	description = S("Thin Candle"),
 	mesh = "homedecor_candle_thin.obj",
 	tiles = {
 		'homedecor_candle_sides.png',
@@ -186,6 +186,47 @@ homedecor.register("candle_thin", {
 	inventory_image = "homedecor_candle_thin_inv.png",
 	selection_box = c_cbox,
 	collision_box = c_cbox,
+	sunlight_propagates = true,
+	walkable = false,
+	groups = { snappy = 3 },
+	light_source = LIGHT_MAX-4,
+})
+
+local cs_cbox = {
+	type = "fixed",
+	fixed = {
+		{ -0.15625, -0.5, -0.15625, 0.15625, 0.3125, 0.15625 },
+	}
+}
+
+homedecor.register("candlestick_wrought_iron", {
+	description = S("Candlestick (wrought iron)"),
+	mesh = "homedecor_candlestick.obj",
+	tiles = {
+		"homedecor_candle_sides.png",
+		{name="homedecor_candle_flame.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
+		"homedecor_tile_wrought_iron2.png",
+	},
+	inventory_image = "homedecor_candlestick_wrought_iron_inv.png",
+	selection_box = cs_cbox,
+	collision_box = cs_cbox,
+	sunlight_propagates = true,
+	walkable = false,
+	groups = { snappy = 3 },
+	light_source = LIGHT_MAX-4,
+})
+
+homedecor.register("candlestick_brass", {
+	description = S("Candlestick (brass)"),
+	mesh = "homedecor_candlestick.obj",
+	tiles = {
+		"homedecor_candle_sides.png",
+		{name="homedecor_candle_flame.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}},
+		"homedecor_tile_brass2.png",
+	},
+	inventory_image = "homedecor_candlestick_brass_inv.png",
+	selection_box = cs_cbox,
+	collision_box = cs_cbox,
 	sunlight_propagates = true,
 	walkable = false,
 	groups = { snappy = 3 },
@@ -442,3 +483,37 @@ for _, color in ipairs(dlamp_colors) do
 		groups = {snappy=3},
 	})
 end
+
+homedecor.register("ceiling_lamp", {
+	description = S("Ceiling Lamp"),
+	mesh = "homedecor_ceiling_lamp.obj",
+	tiles = {
+		"homedecor_tile_brass2.png",
+		"homedecor_ceiling_lamp_glass.png",
+		"homedecor_table_standing_lamp_lightbulb.png^[colorize:#ffffff:200",
+		"homedecor_generic_brown_plastic.png",
+	},
+	inventory_image = "homedecor_ceiling_lamp_inv.png",
+	light_source = LIGHT_MAX,
+	groups = {snappy=3},
+	on_punch = function(pos, node, puncher)
+		minetest.set_node(pos, {name = "homedecor:ceiling_lamp_off"})
+	end,
+})
+
+homedecor.register("ceiling_lamp_off", {
+	description = S("Ceiling Lamp (off)"),
+	mesh = "homedecor_ceiling_lamp.obj",
+	tiles = {
+		"homedecor_tile_brass2.png",
+		"homedecor_ceiling_lamp_glass.png",
+		"homedecor_table_standing_lamp_lightbulb.png",
+		"homedecor_generic_brown_plastic.png",
+	},
+	groups = {snappy=3, not_in_creative_inventory=1},
+	on_punch = function(pos, node, puncher)
+		minetest.set_node(pos, {name = "homedecor:ceiling_lamp"})
+	end,
+	drop = "homedecor:ceiling_lamp"
+})
+

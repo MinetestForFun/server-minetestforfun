@@ -553,7 +553,8 @@ signs_lib.update_sign = function(pos, fields, owner)
 	elseif signnode.name == "signs:sign_hanging" then
 		sign_info = signs_lib.hanging_sign_model.textpos[minetest.get_node(pos).param2 + 1]
 	elseif string.find(signnode.name, "sign_wall") then
-		if signnode.name == "default:sign_wall" then
+		if signnode.name == "default:sign_wall" 
+		  or signnode.name == "locked_sign:sign_wall_locked" then
 			sign_info = signs_lib.regular_wall_sign_model.textpos[minetest.get_node(pos).param2 + 1]
 		else
 			sign_info = signs_lib.metal_wall_sign_model.textpos[minetest.get_node(pos).param2 + 1]

@@ -687,7 +687,11 @@ for _, i in ipairs(n) do
 	homedecor.register("picture_frame"..i, {
 		description = S("Picture Frame"),
 		mesh = "homedecor_picture_frame.obj",
-		tiles = { "homedecor_picture_frame"..i..".png" },
+		tiles = {
+			"homedecor_picture_frame_image"..i..".png",
+			"homedecor_picture_frame_edges.png",
+			"homedecor_picture_frame_back.png",
+		},
 		inventory_image = "homedecor_picture_frame"..i.."_inv.png",
 		wield_image = "homedecor_picture_frame"..i.."_inv.png",
 		groups = {snappy = 3},
@@ -695,3 +699,4 @@ for _, i in ipairs(n) do
 		collision_box = pframe_cbox,
 	})
 end
+

@@ -117,7 +117,6 @@ dofile(homedecor.modpath.."/shutters.lua")
 dofile(homedecor.modpath.."/shingles.lua")
 dofile(homedecor.modpath.."/slopes.lua")
 
-dofile(homedecor.modpath.."/door_models.lua")
 dofile(homedecor.modpath.."/doors_and_gates.lua")
 
 dofile(homedecor.modpath.."/fences.lua")
