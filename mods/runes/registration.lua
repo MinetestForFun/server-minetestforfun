@@ -3,41 +3,42 @@
 runes.datas.items = {
 	["project"] = {
 		description = "Projection rune",
-		img = "default_dirt.png",
+		img = "runes_projection.png",
 		type = "craftitem",
 		needed_mana = 30
 	},
 	["damager"] = {
 		description = "Damaging rune",
-		img = "default_lava.png",
+		img = "runes_damaging.png",
 		type = "craftitem",
 		needed_mana = 190
 	},
 	["earthquake"] = {
 		description = "Earth Quake rune",
-		img = "default_apple.png",
+		img = "runes_earthquake.png",
 		type = "craftitem",
 		needed_mana = 80
 	},
 	["simple_heal"] = {
 		description = "Simple healing rune",
-		img = "default_water.png",
+		img = "runes_simple_heal.png",
 		type = "cube"
 	},
 	["improved_heal"] = {
 		description = "Improved healing rune",
-		img = "default_acid.png",
+		img = "runes_improved_heal.png",
 		type = "cube"
 	},
 	["perfect_heal"] = {
 		description = "Perfect healing rune",
-		img = "default_lava.png",
+		img = "runes_perfect_heal.png",
 		type = "cube"
 	},
 	["gotome"] = {
 		description = "Go to me rune",
-		img = "default_wood.png",
-		type = "cube"
+		img = "runes_go_to_me.png",
+		type = "cube",
+		needed_mana = 50
 	},
 	["megamana"] = {
 		description = "Mega Mana",

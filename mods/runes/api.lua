@@ -52,7 +52,12 @@ runes.functions.register_rune = function(parameters)
 			end,
 			on_punch = function(pos, node, puncher, pointed_thing)
 				if runes.datas.handlers[runedef.name].on_punch then
-					runes.datas.handlers[runedef.name].on_punch(pos, node, puncher, pointed_thing)
+					if mana.get(puncher:get_player_name()) >= runedef.needed_mana then
+						runes.datas.handlers[runedef.name].on_punch(pos, node, puncher, pointed_thing)
+						mana.subtract(puncher:get_player_name(),runedef.needed_mana)
+					else
+						minetest.chat_send_player(puncher:get_player_name(),"Not enough mana (needed : " .. runedef.needed_mana ..")")
+					end
 				end
 			end,
 			--[[after_dig_node = function(pos, oldnode, oldmetadata, digger)

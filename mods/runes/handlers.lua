@@ -39,13 +39,25 @@ is_owner_online = function(pos)
 	if meta:get_string("owner") ~= nil then
 		return minetest.get_player_by_name(meta:get_string("owner")) ~= nil
 	else
-		return true
+		return false
+	end
+end
+
+is_owner = function(pos, player)
+	local meta = minetest.get_meta(pos)
+	if meta:get_string("owner") ~= nil and player:get_player_name() then
+		return meta:get_string("owner") == player:get_player_name()
+	else
+		return false
 	end
 end
 
 go_to_me = function(pos, node, digger)
-	if digger then
+	if digger and is_owner_online(pos) and not (minetest.get_meta(pos):get_string("owner") == digger:get_player_name()) then
 		digger:setpos(minetest.get_player_by_name(minetest.get_meta(pos):get_string("owner")):getpos())
+		mana.subtract(minetest.get_meta(pos):get_string("owner"), 5)
+	else
+		mana.add(digger:get_player_name(),50)
 	end
 end
 
@@ -75,9 +87,8 @@ end
 runes.functions.connect("project","use",projection)
 runes.functions.connect("damager","use",damage_around)
 runes.functions.connect("earthquake","use",earthquake)
-runes.functions.connect("gotome","place",add_owner)
-runes.functions.connect("gotome","dig",go_to_me)
-runes.functions.connect("gotome","can_dig",is_owner_online)
+runes.functions.connect("gotome","punch",go_to_me)
+runes.functions.connect("gotome","can_dig",is_owner)
 runes.functions.connect("megamana","use",set_manamax)
 
 -- And globalsteps
