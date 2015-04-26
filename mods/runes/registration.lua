@@ -43,7 +43,12 @@ runes.datas.items = {
 		description = "Mega Mana",
 		img = "default_diamond.png",
 		type = "craftitem"
-	}
+	},
+	["popper"] = {
+		description = "Popper",
+		img = "default_grass.png",
+		type = "plate"
+	},
 }
 
 for key, value in pairs(runes.datas.items) do

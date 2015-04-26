@@ -30,6 +30,10 @@ runes.functions.register_rune = function(parameters)
 			tiles = {runedef.img},
 			groups = {oddly_breakable_by_hand = 2, rune = 1},
 			after_place_node = function(pos, placer, itemstack, pointed_thing)
+				if placer and placer:is_player() then
+					local meta = minetest.get_meta(pos)
+					meta:set_string("owner",placer:get_player_name())
+				end
 				if runes.datas.handlers[runedef.name].on_place then
 					if mana.get(placer:get_player_name()) >= runedef.needed_mana then
 						runes.datas.handlers[runedef.name].on_place(pos, placer, itemstack, pointed_thing)
@@ -40,11 +44,15 @@ runes.functions.register_rune = function(parameters)
 				end
 			end,
 			can_dig = function(pos, player)
-				print(runes.datas.handlers[runedef.name].can_dig)
 				if runes.datas.handlers[runedef.name].can_dig then
 					return runes.datas.handlers[runedef.name].can_dig(pos, player)
 				else
 					return true
+				end
+			end,
+			on_punch = function(pos, node, puncher, pointed_thing)
+				if runes.datas.handlers[runedef.name].on_punch then
+					runes.datas.handlers[runedef.name].on_punch(pos, node, puncher, pointed_thing)
 				end
 			end,
 			--[[after_dig_node = function(pos, oldnode, oldmetadata, digger)
@@ -62,7 +70,48 @@ runes.functions.register_rune = function(parameters)
 		})
 
 	elseif runedef.type == "plate" then
-
+		minetest.register_node("runes:rune_" .. runedef.name, {
+			description = runedef.desc,
+			paramtype = "light",
+			inventory_image = runedef.img,
+			sunlight_propagates = true,
+			walkable = false,
+			tiles = {runedef.img},
+			groups = {rune = 1, oddly_breakable_by_hand = 2},
+			drawtype = "nodebox",
+			node_box = {
+				type = "fixed",
+				fixed = {
+					{-0.5, -0.5, -0.5, 0.5, -0.499, 0.5},
+				}
+			},
+			after_place_node = function(pos, placer, itemstack, pointed_thing)
+				if placer and placer:is_player() then
+					local meta = minetest.get_meta(pos)
+					meta:set_string("owner",placer:get_player_name())
+				end
+				if runes.datas.handlers[runedef.name].on_place then
+					if mana.get(placer:get_player_name()) >= runedef.needed_mana then
+						runes.datas.handlers[runedef.name].on_place(pos, placer, itemstack, pointed_thing)
+						mana.subtract(placer:get_player_name(),runedef.needed_mana)
+					else
+						minetest.chat_send_player(placer:get_player_name(),"Not enough mana (needed : " .. runedef.needed_mana ..")")
+					end
+				end
+			end,
+			can_dig = function(pos, player)
+				if runes.datas.handlers[runedef.name].can_dig then
+					return runes.datas.handlers[runedef.name].can_dig(pos, player)
+				else
+					return true
+				end
+			end,
+			on_punch = function(pos, node, puncher, pointed_thing)
+				if runes.datas.handlers[runedef.name].on_punch then
+					runes.datas.handlers[runedef.name].on_punch(pos, node, puncher, pointed_thing)
+				end
+			end,
+		})
 	elseif runedef.type == "craftitem" then
 		minetest.register_craftitem("runes:rune_" .. runedef.name, {
 			description = runedef.desc,
@@ -74,6 +123,7 @@ runes.functions.register_rune = function(parameters)
 					if mana.get(user:get_player_name()) >= runedef.needed_mana then
 						runes.datas.handlers[runedef.name].on_use(itemstack, user, pointed_thing)
 						mana.subtract(user:get_player_name(),runedef.needed_mana)
+						user:get_inventory():remove_item("main",{name = runedef.name})
 					else
 						minetest.chat_send_player(user:get_player_name(),"Not enough mana (needed : " .. runedef.needed_mana ..")")
 					end
@@ -91,6 +141,7 @@ runes.functions.connect = function(itemname, callback, handler)
 		place
 		dig
 		can_dig
+		punch
 	]]
 
 	if not runes.datas.items[itemname] then
@@ -106,8 +157,10 @@ runes.functions.connect = function(itemname, callback, handler)
 		runes.datas.handlers[itemname].on_dig = handler
 	elseif callback == "can_dig" then
 		runes.datas.handlers[itemname].can_dig = handler
+	elseif callback == "punch" then
+		runes.datas.handlers[itemname].on_punch = handler
 	else
-		minetest.log("error","[runes] Cannot connect handler at " .. handler .. " to item's " .. itemname .. " unknown " .. callback .. " callback")
+		minetest.log("error","[runes] Cannot connect handler to item's " .. itemname .. " unknown " .. callback .. " callback")
 		return
 	end
 end
