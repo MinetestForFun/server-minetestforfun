@@ -195,8 +195,6 @@ runes.functions.connect = function(itemname, callback, handler)
 		runes.datas.handlers[itemname].on_punch = handler
 	else
 		minetest.log("error","[runes] Cannot connect handler to item's " .. itemname .. " unknown " .. callback .. " callback")
-	else
-		minetest.log("error","[runes] Cannot connect handler at " .. handler .. " to item's " .. itemname .. " unknown " .. callback .. " callback")
 		return
 	end
 end
