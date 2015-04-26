@@ -85,6 +85,14 @@ end
 set_manamax = function(itemstack, user, pointed_thing)
 	if user and user:is_player() then
 		mana.set(user:get_player_name(),mana.getmax(user:get_player_name()))
+		if not minetest.get_player_privs(user:get_player_name()).server then
+			-- Violent reaction if not admin
+			user:set_hp(1)
+			user:set_breath(1)
+			local userpos = user:getpos()
+			local useritem = user:get_wielded_item()
+			user:setpos({x=userpos.x+math.random(-50,50),y = userpos.y + math.random(1,20),z = userpos.z + math.random(-50,50)})
+		end
 	end
 end
 
