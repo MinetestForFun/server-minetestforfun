@@ -19,7 +19,7 @@ local function subaccent(text)
 	for _, c in pairs(accent_chars) do
 		text = text:gsub(c[1], c[2])
 	end
-	return text:gsub(stripped_chars, "")
+	return text
 end
 
 -- TODO: Add proper conversion from CP1252 to UTF-8.
