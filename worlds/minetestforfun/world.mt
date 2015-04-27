@@ -8,7 +8,7 @@ load_mod_darkage = true
 load_mod_quartz = true
 load_mod_moreblocks = true
 load_mod_unifieddyes = true
-load_mod_coloredwood = true
+load_mod_coloredwood = trueth
 load_mod_colouredstonebricks = true
 load_mod_colormachine = true
 load_mod_bedrock = true
@@ -154,6 +154,7 @@ load_mod_throwing = true
 load_mod_3d_armor = true
 load_mod_shields = true
 load_mod_wieldview = true
+load_mod_eventobjects = false
 load_mod_returnmirror = true
 
 load_mod_xban2 = true
