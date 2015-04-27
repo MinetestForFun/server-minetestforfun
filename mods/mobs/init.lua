@@ -12,6 +12,7 @@ dofile(minetest.get_modpath("mobs").."/warthog.lua") -- KrupnoPavel
 dofile(minetest.get_modpath("mobs").."/bee.lua") -- KrupnoPavel
 dofile(minetest.get_modpath("mobs").."/bunny.lua") -- ExeterDad
 dofile(minetest.get_modpath("mobs").."/kitten.lua") -- Jordach/BFD
+dofile(minetest.get_modpath("mobs").."/ghoat.lua") -- ???
 
 -- Monsters
 
@@ -28,6 +29,8 @@ dofile(minetest.get_modpath("mobs").."/mese_monster.lua") -- Zeg9
 dofile(minetest.get_modpath("mobs").."/spider.lua") -- AspireMint
 dofile(minetest.get_modpath("mobs").."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 dofile(minetest.get_modpath("mobs").."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
+dofile(minetest.get_modpath("mobs").."/zombie.lua") -- ???
+
 
 -- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead

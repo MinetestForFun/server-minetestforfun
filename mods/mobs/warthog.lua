@@ -86,8 +86,8 @@ mobs:register_mob("mobs:pumba", {
 		end
 	end,
 })
--- spawns on normal or shroom dirt, between 8 and 20 light, 1 in 10000 chance, 1 in area up to 31000 in height
-mobs:register_spawn("mobs:pumba", {"default:dirt_with_grass", "default:dirt"}, 20, 8, 10000, 1, 31000)
+-- spawns on dirt or junglegrass, between 8 and 20 light, 1 in 10000 chance, 1 in area up to 31000 in height
+mobs:register_spawn("mobs:pumba", {"default:dirt", "default:junglegrass"}, 20, 8, 10000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:pumba", "Warthog", "wool_pink.png", 1)
 

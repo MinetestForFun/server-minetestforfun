@@ -29,6 +29,7 @@ mobs:register_mob("mobs:sheep", {
 	},
 	-- speed and jump
 	walk_velocity = 1,
+	run_velocity = 2,
 	jump = true,
 	-- drops raw meat when dead
 	drops = {

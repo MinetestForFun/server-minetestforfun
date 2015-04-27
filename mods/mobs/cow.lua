@@ -9,7 +9,7 @@ mobs:register_mob("mobs:cow", {
 	attack_type = "dogfight",
 	damage = 5,
 	-- health & armor
-	hp_min = 20,
+	hp_min = 25,
 	hp_max = 30,
 	armor = 200,
 	-- textures and model
