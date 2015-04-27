@@ -5,6 +5,7 @@ runes = {}
 runes.datas = {}
 runes.datas.handlers = {}
 runes.datas.items = {}
+runes.datas.amulets = {}
 runes.functions = {}
 
 -- Simple rune register function
@@ -196,4 +197,16 @@ runes.functions.connect = function(itemname, callback, handler)
 		minetest.log("error","[runes] Cannot connect handler to item's " .. itemname .. " unknown " .. callback .. " callback")
 		return
 	end
+end
+
+-- Amulets
+
+runes.functions.register_amulet = function(name, desc, maxcount, manadiff)
+	minetest.register_craftitem("runes:" .. name .. "_amulet", {
+		description = desc,
+		inventory_image = "runes_" .. name .. "_amulet.png",
+		groups = {amulet = 1},
+		stack_max = maxcount,
+	})
+	runes.datas.amulets[name] = manadiff
 end

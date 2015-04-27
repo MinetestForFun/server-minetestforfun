@@ -9,7 +9,10 @@ dofile(modpath.."/api.lua")
 -- Then the rune themselves
 dofile(modpath.."/registration.lua")
 
--- And the handlers
+-- The handlers
 dofile(modpath.."/handlers.lua")
+
+-- The amulets
+dofile(modpath.."/amulets.lua")
 
 minetest.log("action","[runes] Mod loaded")
