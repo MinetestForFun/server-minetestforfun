@@ -1,4 +1,4 @@
--- Mobs Api (20th April 2015)
+-- Mobs Api (26th April 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -16,11 +16,11 @@ function mobs:register_mob(name, def)
 
 		owner = def.owner,
 		order = def.order or "",
-		on_die = def.on_die,
-		jump_height = def.jump_height or 6,
-		jump_chance = def.jump_chance or 0,
-		rotate = def.rotate or 0, -- 0=front, 1.5=side, 3.0=back, 4.5=side2
-		lifetimer = def.lifetimer or 600,
+on_die = def.on_die,
+jump_height = def.jump_height or 6,
+jump_chance = def.jump_chance or 0,
+rotate = def.rotate or 0, -- 0=front, 1.5=side, 3.0=back, 4.5=side2
+lifetimer = def.lifetimer or 600,
 		hp_min = def.hp_min or 5,
 		hp_max = def.hp_max or 10,
 		physical = true,
@@ -312,9 +312,12 @@ function mobs:register_mob(name, def)
 			if self.type == "monster" and damage_enabled and self.state ~= "attack" then
 
 				local s = self.object:getpos()
+				local p, sp, dist
 				local player = nil
 				local type = nil
 				local obj = nil
+				local min_dist = self.view_range + 1
+				local min_player = nil
 
 				for _,oir in ipairs(minetest.get_objects_inside_radius(s,self.view_range)) do
 
@@ -337,29 +340,42 @@ function mobs:register_mob(name, def)
 						sp.y = sp.y + 1		-- aim higher to make looking up hills more realistic
 						local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
 						if dist < self.view_range then -- and self.in_fov(self,p) then
-							if minetest.line_of_sight(sp,p,2) == true then
-								self.do_attack(self,player,dist)
-								break
+							-- choose closest player to attack
+							if minetest.line_of_sight(sp,p,2) == true
+							and dist < min_dist then
+								min_dist = dist
+								min_player = player
 							end
 						end
 					end
 				end
+				-- attack player
+				if min_player then
+					self.do_attack(self, min_player, min_dist)
+				end
 			end
 			
-			-- npc, find monster to attack
+			-- npc, find closest monster to attack
+			local min_dist = self.view_range + 1
+			local min_player = nil
+
 			if self.type == "npc" and self.attacks_monsters and self.state ~= "attack" then
 				local s = self.object:getpos()
 				local obj = nil
-				local p, dist
 				for _, oir in pairs(minetest.get_objects_inside_radius(s,self.view_range)) do
 					obj = oir:get_luaentity()
 					if obj and obj.type == "monster" then
 						-- attack monster
 						p = obj.object:getpos()
 						dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
-						self.do_attack(self,obj.object,dist)
-						break
+						if dist < min_dist then
+							min_dist = dist
+							min_player = obj.object
+						end
 					end
+				end
+				if min_player then
+					self.do_attack(self, min_player, min_dist)
 				end
 			end
 
@@ -548,7 +564,6 @@ function mobs:register_mob(name, def)
 
 			elseif self.state == "walk" then
 
-				local lp = nil
 				local s = self.object:getpos()
 				-- if there is water nearby, try to avoid it
 				local lp = minetest.find_node_near(s, 2, {"group:water"})
@@ -578,7 +593,7 @@ function mobs:register_mob(name, def)
 					self:set_animation("stand")
 				end
 
--- Modif MFF "attack type kamicaze" des creepers /DEBUT
+			-- exploding mobs
 			elseif self.state == "attack" and self.attack_type == "explode" then 
 				if not self.attack.player or not self.attack.player:is_player() then
 					self.state = "stand"
@@ -631,20 +646,20 @@ function mobs:register_mob(name, def)
 					self.set_velocity(self, 0)
 					self.timer = self.timer + dtime
 					self.blinktimer = (self.blinktimer or 0) + dtime
-						if self.blinktimer > 0.2 then
-							self.blinktimer = 0 -- self.blinktimer - 0.2
-							if self.blinkstatus then
-								self.object:settexturemod("")
-							else
-								self.object:settexturemod("^[brighten")
-							end
-							self.blinkstatus = not self.blinkstatus
+					if self.blinktimer > 0.2 then
+						self.blinktimer = 0
+						if self.blinkstatus then
+							self.object:settexturemod("")
+						else
+							self.object:settexturemod("^[brighten")
 						end
-						if self.timer > 3 then
-							local pos = vector.round(self.object:getpos())
-							do_tnt_physics(pos, 3, self) -- hurt player/mobs in blast area
-							if minetest.find_node_near(pos, 1, {"group:water"})
-							or minetest.is_protected(pos, "") then
+						self.blinkstatus = not self.blinkstatus
+					end
+					if self.timer > 3 then
+						local pos = vector.round(self.object:getpos())
+						entity_physics(pos, 3) -- hurt player/mobs caught in blast area
+						if minetest.find_node_near(pos, 1, {"group:water"})
+						or minetest.is_protected(pos, "") then
 								self.object:remove()
 								if self.sounds.explode ~= "" then
 									minetest.sound_play(self.sounds.explode, {pos = pos, gain = 1.0, max_hear_distance = 16})
@@ -653,10 +668,18 @@ function mobs:register_mob(name, def)
 								return
 							end
 							self.object:remove()
-							mobs:explosion(pos, 2, 1, 1, "tnt_explode", self.sounds.explode)
+							if self.sounds.explode ~= "" then
+								minetest.sound_play(self.sounds.explode, {pos = pos, gain = 1.0, max_hear_distance = 16})
+							end
+							pos.y = pos.y + 1
+							effect(pos, 15, "tnt_smoke.png", 5)
+							return
 						end
+						self.object:remove()
+						mobs:explosion(pos, 2, 0, 1, "tnt_explode", self.sounds.explode)
+					end
 				end
--- Modif MFF "attack type kamicaze" des creepers /FIN
+				-- end of exploding mobs
 
 			elseif self.state == "attack" and self.attack_type == "dogfight" then
 
@@ -685,7 +708,8 @@ function mobs:register_mob(name, def)
 					yaw = yaw+math.pi
 				end
 				self.object:setyaw(yaw)
-				if self.attack.dist > 3 then -- was set to 2 but slimes didnt hurt when above player
+				-- attack distance is 2 + half of mob width so the bigger mobs can attack (like slimes)
+				if self.attack.dist > ((-self.collisionbox[1]+self.collisionbox[4])/2)+2 then
 					-- jump attack
 					if (self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0)
 					or (self.object:getvelocity().y == 0 and self.jump_chance > 0) then
@@ -968,7 +992,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			-- spawn mob half block higher
 			pos.y = pos.y - 0.5
 			minetest.add_entity(pos, name)
-			--print ("Spawned "..name.." at "..minetest.pos_to_string(pos))
+			--print ("Spawned "..name.." at "..minetest.pos_to_string(pos).." on "..node.name.." near "..neighbors[1])
 
 		end
 	})
@@ -980,7 +1004,7 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 end
 
 -- particle effects
-function effect(pos, amount, texture)
+function effect(pos, amount, texture, max_size)
 	minetest.add_particlespawner({
 		amount = amount,
 		time = 0.25,
@@ -993,7 +1017,7 @@ function effect(pos, amount, texture)
 		minexptime = 0.1,
 		maxexptime = 1,
 		minsize = 0.5,
-		maxsize = 1,
+		maxsize = (max_size or 1),
 		texture = texture,
 	})
 end
@@ -1010,7 +1034,7 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
 	local p = {}
-	local undestroyed = {
+	local undestroyed = {					--Modif MFF DEBUT
 		minetest.get_content_id("air"),
 		minetest.get_content_id("ignore"),
 		minetest.get_content_id("default:obsidian"),
@@ -1027,8 +1051,15 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 		minetest.get_content_id("more_chests:secret"),
 		minetest.get_content_id("more_chests:dropbox"),
 		minetest.get_content_id("more_chests:shared_chest")
-	}
-	if sound and sound ~= "" then minetest.sound_play(sound, {pos = pos, gain = 1.0, max_hear_distance = 16}) end
+	}							--Modif MFF DEBUT
+	local c_air = minetest.get_content_id("air")
+	local c_ignore = minetest.get_content_id("ignore")
+	local c_obsidian = minetest.get_content_id("default:obsidian")
+	local c_brick = minetest.get_content_id("default:obsidianbrick")
+	local c_chest = minetest.get_content_id("default:chest_locked")
+	if sound and sound ~= "" then
+		minetest.sound_play(sound, {pos = pos, gain = 1.0, max_hear_distance = 16})
+	end
 	for z = -radius, radius do
 	for y = -radius, radius do
 	local vi = a:index(pos.x + (-radius), pos.y + y, pos.z + z)
@@ -1036,28 +1067,22 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 		p.x = pos.x + x
 		p.y = pos.y + y
 		p.z = pos.z + z
-		local is_destroyed = true
-		for _,value in pairs(undestroyed) do
-			if data[vi] == value then
-				is_destroyed = false
-			end
-		end
-		if is_destroyed then
+		if data[vi] ~= c_air and data[vi] ~= c_ignore and data[vi] ~= c_obsidian and data[vi] ~= c_brick and data[vi] ~= c_chest then
 			local n = minetest.get_node(p).name
 			-- do NOT destroy protection nodes but DO destroy nodes in protected area
 			if not n:find("protector:")
 			--and not minetest.is_protected(p, "")
-			and minetest.get_item_group(n, "unbreakable") == 0
-			and next(areas:getAreasAtPos(p)) == nil then
-			-- if chest then drop items inside
-			if n == "default:chest" then
-				local meta = minetest.get_meta(p)
-				local inv  = meta:get_inventory()
-				for i = 1,32 do
-					local m_stack = inv:get_stack("main",i)
-					local obj = minetest.add_item(pos,m_stack)
-					if obj then
-						obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
+			and minetest.get_item_group(n.name, "unbreakable") ~= 1 then
+				-- if chest then drop items inside
+				if n == "default:chest" then
+					local meta = minetest.get_meta(p)
+					local inv  = meta:get_inventory()
+					for i = 1,32 do
+						local m_stack = inv:get_stack("main",i)
+						local obj = minetest.add_item(pos,m_stack)
+						if obj then
+							obj:setvelocity({x=math.random(-2,2), y=7, z=math.random(-2,2)})
+						end
 					end
 				end
 			end
@@ -1066,12 +1091,14 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 			elseif n.name == "doors:door_wood_t_1" then
 				minetest.remove_node({x=np.x,y=np.y-1,z=np.z})
 			end
-			if fire > 0 and (minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30) then
-				minetest.set_node(p, {name="fire:basic_flame"})
-			else
-				minetest.remove_node(p)
-			end
-			if smoke > 0 then effect(p, 1, "tnt_smoke.png") end
+				if fire > 0 and (minetest.registered_nodes[n].groups.flammable or math.random(1, 100) <= 30) then
+					minetest.set_node(p, {name="fire:basic_flame"})
+				else
+					minetest.remove_node(p)
+				end
+				if smoke > 0 then
+					effect(p, 2, "tnt_smoke.png", 5)
+				end
 			end
 		end
 		vi = vi + 1
@@ -1111,28 +1138,37 @@ function check_for_death(self)
 	end
 end
 
--- Modif MFF "fonction TNT" des creepers /DEBUT
-function do_tnt_physics(tnt_np,tntr,entity)
-    local objs = minetest.get_objects_inside_radius(tnt_np, tntr)
-    for k, obj in pairs(objs) do
-        local oname = obj:get_entity_name()
-        local v = obj:getvelocity()
-        local p = obj:getpos()
-            if v ~= nil then
-                obj:setvelocity({x=(p.x - tnt_np.x) + (tntr / 4) + v.x, y=(p.y - tnt_np.y) + (tntr / 2) + v.y, z=(p.z - tnt_np.z) + (tntr / 4) + v.z})
-            else
-                if obj:get_player_name() ~= nil then
-					if entity.object ~= nil then
-						obj:punch(entity.object, 1.0,  {full_punch_interval=1.0,damage_groups = {fleshy=entity.damage}})
-					else
-						obj:set_hp(obj:get_hp() - 21)
-					end
-                end
-            end
-    end
+-- from TNT mod
+function calc_velocity(pos1, pos2, old_vel, power)
+	local vel = vector.direction(pos1, pos2)
+	vel = vector.normalize(vel)
+	vel = vector.multiply(vel, power)
+	local dist = vector.distance(pos1, pos2)
+	dist = math.max(dist, 1)
+	vel = vector.divide(vel, dist)
+	vel = vector.add(vel, old_vel)
+	return vel
 end
--- Modif MFF "fonction TNT" des creepers /FIN
 
+-- modified from TNT mod
+function entity_physics(pos, radius)
+	radius = radius * 2
+	local objs = minetest.get_objects_inside_radius(pos, radius)
+	local obj_pos, obj_vel, dist
+	for _, obj in pairs(objs) do
+		obj_pos = obj:getpos()
+		obj_vel = obj:getvelocity()
+		dist = math.max(1, vector.distance(pos, obj_pos))
+		if obj_vel ~= nil then
+			obj:setvelocity(calc_velocity(pos, obj_pos,
+					obj_vel, radius * 10))
+		end
+		local damage = (4 / dist) * radius
+		obj:set_hp(obj:get_hp() - damage)
+	end
+end
+
+-- register arrow for shoot attack
 function mobs:register_arrow(name, def)
 	if not name or not def then return end -- errorcheck
 	minetest.register_entity(name, {
