@@ -31,9 +31,9 @@ local time_next_regen_check = time_total_regen_check
 -- TODO: make this globally accessible
 local mana_from_node = {
     ['default:goldblock'] = 5,
-    ['runes:rune_simple_heal'] = 1,
-    ['runes:rune_improved_heal'] = 3,
-    ['runes:rune_perfect_heal'] = 8,
+    ['runes:rune_heal_minor'] = 1,
+    ['runes:rune_heal_medium'] = 3,
+    ['runes:rune_heal_major'] = 8,
     ['default:wood'] = 1,
     ['default:junglewood'] = 1,
     ['default:pinewood'] = 1,
@@ -92,13 +92,12 @@ minetest.register_globalstep(function(dtime)
 
             for key, value in pairs(mana_from_node) do
 		        if key:split(":")[1] == "group" then
-    			    groupname = key:split(":")[2]
+			        local groupname = key:split(":")[2]
 			        if minetest.get_node_group(node.name, groupname) > 0 then
 				        regen_to = math.max(regen_to, value) -- We get the greater one (if the node is part of 2 or more groups)
 			        end
 		        end
 	        end
-
 
             mana.setregen(name, regen_to)
             --print("Regen to "..regen_to.." : "..light_day.."/"..light_now.."/"..light_night)

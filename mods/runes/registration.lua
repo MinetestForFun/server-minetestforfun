@@ -3,51 +3,65 @@
 runes.datas.items = {
 	["project"] = {
 		description = "Projection rune",
-		img = "runes_projection.png",
+		img = "runes_projection",
 		type = "craftitem",
-		needed_mana = 30
+		needed_mana = {
+			["minor"] = 15,
+			["medium"] = 30,
+			["major"]  = 45,
+		},
 	},
 	["damager"] = {
 		description = "Damaging rune",
-		img = "runes_damaging.png",
+		img = "runes_damaging",
 		type = "craftitem",
-		needed_mana = 190
+		needed_mana = {
+			["minor"] = 180,
+			["medium"] = 190,
+			["major"] = 230
+		}
 	},
 	["earthquake"] = {
 		description = "Earth Quake rune",
-		img = "runes_earthquake.png",
+		img = "runes_earthquake",
 		type = "craftitem",
-		needed_mana = 80
+		needed_mana = {
+			["minor"] = 70,
+			["medium"] = 80,
+			["major"] = 90
+		}
 	},
-	["simple_heal"] = {
-		description = "Simple healing rune",
-		img = "runes_simple_heal.png",
-		type = "cube"
-	},
-	["improved_heal"] = {
-		description = "Improved healing rune",
-		img = "runes_improved_heal.png",
-		type = "cube"
-	},
-	["perfect_heal"] = {
-		description = "Perfect healing rune",
-		img = "runes_perfect_heal.png",
+	["heal"] = {
+		description = "Healing rune",
+		img = "runes_heal",
 		type = "cube"
 	},
 	["gotome"] = {
 		description = "Go to me rune",
-		img = "runes_go_to_me.png",
+		img = "runes_go_to_me",
 		type = "cube",
-		needed_mana = 50
+		needed_mana = {
+			["minor"] = 40,
+			["medium"] = 50,
+			["major"] = 75
+		}
 	},
 	["megamana"] = {
 		description = "Mega Mana",
-		img = "default_diamond.png",
+		img = {
+			["minor"] = "default_diamond.png",
+			["medium"] = "default_diamond.png",
+			["major"] = "default_diamond.png"
+		},
 		type = "craftitem"
 	},
 	["popper"] = {
 		description = "Popper",
-		img = "default_grass.png",
+		img = {
+			["minor"] = "default_grass.png",
+			["medium"] = "default_grass.png",
+			["major"] = "default_grass.png"
+		},
 		type = "plate"
 	},
 }
