@@ -30,11 +30,11 @@ mobs:register_mob("mobs:zombie", {
 		death = "mobs_zombie_death",
 	},
 	-- speed and jump
+	view_range = 16,
 	walk_velocity = 1,
 	run_velocity = 3,
 	jump = true,
 	floats = 0,
-	view_range = 10,
 -- drops dirt and coins when dead
 	drops = {
 		{name = "maptools:copper_coin",
