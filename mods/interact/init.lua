@@ -10,6 +10,7 @@ local multi = 0
 local function make_formspec(player)
 	local name = player:get_player_name()
 	local size = { "size[10,4]" }
+	table.insert(size, "background[0,0;10,4;background.jpg]")
 	table.insert(size, "label[0.5,0.5;" ..interact.s1_header.. "]")
 	table.insert(size, "label[0.5,1.5;" ..interact.s1_l2.. "]")
 	table.insert(size, "label[0.5,2;" ..interact.s1_l3.. "]")
@@ -21,6 +22,7 @@ end
 local function make_formspec2(player)
 	local name = player:get_player_name()
 	local size = { "size[10,4]" }
+	table.insert(size, "background[0,0;10,4;background.jpg]")
 	table.insert(size, "label[0.5,0.5;" ..interact.s2_l1.. "]")
 	table.insert(size, "label[0.5,1;" ..interact.s2_l2.. "]")
 	table.insert(size, "button_exit[2.5,3.4;3.5,0.5;interact;" ..interact.s2_b1.. "]")
@@ -30,6 +32,7 @@ end
 
 local function make_formspec3(player)
 	local size = { "size[10,8]" }
+	table.insert(size, "background[0,0;10,8;background.jpg]")
 	table.insert(size, "textarea[0.5,0.5;9.5,7.5;TOS;" ..interact.s3_header.. ";" ..interact.rules.. "]")
 	table.insert(size, "button[5.5,7.4;2,0.5;decline;" ..interact.s3_b2.. "]")
 	table.insert(size, "button_exit[7.5,7.4;2,0.5;accept;" ..interact.s3_b1.. "]")
@@ -59,6 +62,7 @@ local function make_formspec4(player)
 	table.insert(size, "checkbox[4.75,6.25;multi_choice1;" ..interact.s4_multi1.. "]")
 	table.insert(size, "checkbox[0.25,7;multi_choice2;" ..interact.s4_multi2.. "]")
 	table.insert(size, "checkbox[4.75,7;multi_choice3;" ..interact.s4_multi3.."]")
+	table.insert(size, "background[0,0;10,9;background.jpg]")
 	table.insert(size, "button_exit[3,8.4;3.5,0.5;submit;" ..interact.s4_submit.."]")
 	return table.concat(size)
 end

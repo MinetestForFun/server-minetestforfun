@@ -8,8 +8,6 @@ dofile(minetest.get_modpath("_misc").."/give_initial_stuff.lua")
 -- Chat Commands
 dofile(minetest.get_modpath("_misc").."/chatcommands.lua")
 
--- Rules
-dofile(minetest.get_modpath("_misc").."/rules.lua")
 -- No Interact Messages
 dofile(minetest.get_modpath("_misc").."/nointeract_messages.lua")
 
