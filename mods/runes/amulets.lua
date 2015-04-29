@@ -1,14 +1,64 @@
 -- Amulets
+runes.functions.register_amulet("silver_cross",		"Silver Cross",			1,	25 )
+runes.functions.register_amulet("minotaur_eye",		"Minotaur Eye",			1,	50 )
+runes.functions.register_amulet("hellfire_amulet",	"Hellfire Amulet",		1,	75 )
+runes.functions.register_amulet("Grim_Reaper_Amulet",	"Grim Reaper's Amulet",		1,	100)
 
-runes.functions.register_amulet("snake",	"Snake Amulet",		10,	5  )
-runes.functions.register_amulet("scorpion",	"Scorpion Amulet",	5,	7  )
-runes.functions.register_amulet("cactus",	"Cactus Amulet",	5,	10 )
-runes.functions.register_amulet("eye", 		"Eye Amulet",		3,	20 )
-runes.functions.register_amulet("anubis",	"Anubis' Amulet",	3,	25 )
-runes.functions.register_amulet("horus",	"Horus' Amulet",	2,	40 )
-runes.functions.register_amulet("thot",		"Thot's Amulet",	2,	45 )
-runes.functions.register_amulet("osiris",	"Osiris' Amulet",	2,	50 )
-runes.functions.register_amulet("ra",		"Ra's Amulet",		1,	100)
+-- Recipes
+minetest.register_craft({
+	output = "amulets:silver_cross",
+	recipe = {
+		{"", "farming:cotton", ""},
+		{"moreores:silver_ingot", "moreores:silver_ingot", "moreores:silver_ingot"},
+		{"", "moreores:silver_ingot", ""},
+	}
+})
+
+mminetest.register_craft({
+	output = "amulets:minotaur_eye",
+	recipe = {
+		{"", "darkage:chain", ""},
+		{"technic:brass_ingot", "mobs:minotaur_eye", "technic:brass_ingot"},
+		{"", "mesecons_materials:glue", ""},
+	}
+})
+
+minetest.register_craft({
+	output = "amulets:hellfire_amulet",
+	recipe = {
+		{"", "darkage:chain", ""},
+		{"mobs:lava_orb", "default:diamondblock", "mobs:lava_orb"},
+		{"default:obsidian", "bucket:bucket_lava", "default:obsidian"},
+	}
+})
+
+minetest.register_craft({
+	output = "amulets:Grim_Reaper_Amulet",
+	recipe = {
+		{"", "amulets:hellfire_amulet", ""},
+		{"nether:white", "amulets:black_magic_block", "nether:white"},
+		{"", "moreores:mithril_block", ""},
+	}
+})
+
+minetest.register_craft({
+	output = "amulets:black_magic_block",
+	recipe = {
+		{"nether:white", "amulets:hellfire_amulet", "default:obsidian"},
+		{"default:nyancat", "nether:tree", "default:mese"},
+		{"default:obsidian", "moreores:mithril_block", "nether:white"},
+	}
+})
+
+-- Nodes
+minetest.register_node("amulets:black_magic_block", {
+	description = "Black Magic Block",
+	tiles = {"black_magic_block.png"},
+	is_ground_content = true,
+	paramtype2 = "facedir",
+	groups = {crumbly=3},
+	sounds = default.node_sound_sand_defaults(),
+}) 
 
 -- Globalstep checking for the amulets
 minetest.register_globalstep(function(dtime)
