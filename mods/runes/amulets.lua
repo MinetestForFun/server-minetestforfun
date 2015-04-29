@@ -2,11 +2,11 @@
 runes.functions.register_amulet("silver_cross",		"Silver Cross",			1,	25 )
 runes.functions.register_amulet("minotaur_eye",		"Minotaur Eye",			1,	50 )
 runes.functions.register_amulet("hellfire_amulet",	"Hellfire Amulet",		1,	75 )
-runes.functions.register_amulet("Grim_Reaper_Amulet",	"Grim Reaper's Amulet",		1,	100)
+runes.functions.register_amulet("grim_reaper_amulet",	"Grim Reaper's Amulet",		1,	100)
 
 -- Recipes
 minetest.register_craft({
-	output = "amulets:silver_cross",
+	output = "runes:silver_cross_amulet",
 	recipe = {
 		{"", "farming:cotton", ""},
 		{"moreores:silver_ingot", "moreores:silver_ingot", "moreores:silver_ingot"},
@@ -14,8 +14,8 @@ minetest.register_craft({
 	}
 })
 
-mminetest.register_craft({
-	output = "amulets:minotaur_eye",
+minetest.register_craft({
+	output = "runes:minotaur_eye_amulet",
 	recipe = {
 		{"", "darkage:chain", ""},
 		{"technic:brass_ingot", "mobs:minotaur_eye", "technic:brass_ingot"},
@@ -24,7 +24,7 @@ mminetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "amulets:hellfire_amulet",
+	output = "runes:hellfire_amulet",
 	recipe = {
 		{"", "darkage:chain", ""},
 		{"mobs:lava_orb", "default:diamondblock", "mobs:lava_orb"},
@@ -33,27 +33,27 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "amulets:Grim_Reaper_Amulet",
+	output = "runes:grim_reaper_amulet",
 	recipe = {
-		{"", "amulets:hellfire_amulet", ""},
-		{"nether:white", "amulets:black_magic_block", "nether:white"},
+		{"", "runes:hellfire_amulet_amulet", ""},
+		{"nether:white", "runes:black_magic_block", "nether:white"},
 		{"", "moreores:mithril_block", ""},
 	}
 })
 
 minetest.register_craft({
-	output = "amulets:black_magic_block",
+	output = "runes:black_magic_block",
 	recipe = {
-		{"nether:white", "amulets:hellfire_amulet", "default:obsidian"},
+		{"nether:white", "runes:hellfire_amulet_amulet", "default:obsidian"},
 		{"default:nyancat", "nether:tree", "default:mese"},
 		{"default:obsidian", "moreores:mithril_block", "nether:white"},
 	}
 })
 
 -- Nodes
-minetest.register_node("amulets:black_magic_block", {
+minetest.register_node("runes:black_magic_block", {
 	description = "Black Magic Block",
-	tiles = {"black_magic_block.png"},
+	tiles = {"runes_black_magic_block.png"},
 	is_ground_content = true,
 	paramtype2 = "facedir",
 	groups = {crumbly=3},
