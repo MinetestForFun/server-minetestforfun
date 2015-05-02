@@ -1,3 +1,3 @@
-Steve on the a creeper head
-hansuke123
-CC BY 4.0
+name = "Steve on the a creeper head",
+author = "hansuke123",
+comment = "CC BY 4.0",

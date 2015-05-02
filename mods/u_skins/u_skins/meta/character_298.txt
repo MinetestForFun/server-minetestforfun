@@ -1,3 +1,3 @@
-Bag dude
-Krock
-CC BY-SA 3.0
+name = "Bag dude",
+author = "Krock",
+comment = "CC BY-SA 3.0",

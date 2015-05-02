@@ -1,3 +1,3 @@
-bmx xxx
-bnw
-CC BY-NC-SA 3.0
+name = "bmx xxx",
+author = "bnw",
+comment = "CC BY-NC-SA 3.0",

@@ -1,3 +1,3 @@
-mage
-Ginsu23
-CC BY 4.0
+name = "mage",
+author = "Ginsu23",
+comment = "CC BY 4.0",

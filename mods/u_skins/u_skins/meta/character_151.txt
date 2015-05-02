@@ -1,3 +1,3 @@
-killer man
-hansuke123
-CC BY-SA 3.0
+name = "killer man",
+author = "hansuke123",
+comment = "CC BY-SA 3.0",

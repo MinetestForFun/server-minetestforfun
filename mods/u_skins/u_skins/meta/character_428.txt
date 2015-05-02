@@ -1,3 +1,3 @@
-KoyuLP Skin
-Sommerlichter
-CC 0 (1.0)
+name = "elgamerbraian 2015",
+author = "elgamerbraian",
+comment = "CC BY-SA 3.0",

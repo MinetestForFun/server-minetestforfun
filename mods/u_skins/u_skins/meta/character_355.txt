@@ -1,3 +1,3 @@
-Farofa
-Michael Bastos Santana
-CC BY-SA 3.0
+name = "Farofa",
+author = "Michael Bastos Santana",
+comment = "CC BY-SA 3.0",

@@ -1,3 +1,3 @@
-zombie-Sam
-sazonov.pavlik73-nickli
-CC BY-SA 3.0
+name = "zombie-Sam",
+author = "sazonov.pavlik73-nickli",
+comment = "CC BY-SA 3.0",

@@ -1,3 +1,3 @@
-agent slender
-krauserlee
-CC BY-SA 3.0
+name = "agent slender",
+author = "krauserlee",
+comment = "CC BY-SA 3.0",

@@ -1,3 +1,3 @@
-AMMOnym
-AMMOnym
-CC BY-SA 3.0
+name = "AMMOnym",
+author = "AMMOnym",
+comment = "CC BY-SA 3.0",

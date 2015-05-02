@@ -1,3 +1,3 @@
-wheat farmer
-addi
-CC BY 3.0
+name = "wheat farmer",
+author = "addi",
+comment = "CC BY 3.0",

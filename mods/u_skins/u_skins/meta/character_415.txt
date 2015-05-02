@@ -1,3 +1,3 @@
-gato rojo
-edwar masterchieft
-CC BY 4.0
+name = "Night Guard",
+author = "Lukester",
+comment = "CC BY 3.0",

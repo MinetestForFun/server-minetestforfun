@@ -1,3 +1,3 @@
-hombre calabaza
-edwar masterchieft
-CC 0 (1.0)
+name = "Jaded Bow",
+author = "jadedtest",
+comment = "CC BY 4.0",

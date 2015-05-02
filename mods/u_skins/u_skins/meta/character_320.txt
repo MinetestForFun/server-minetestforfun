@@ -1,3 +1,3 @@
-panda
-edwar masterchieft
-CC BY 3.0
+name = "panda",
+author = "edwar masterchieft",
+comment = "CC BY 3.0",

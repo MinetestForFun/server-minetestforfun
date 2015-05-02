@@ -1,3 +1,3 @@
-greenman
-sazonov.pavlik73-nickli
-CC BY 3.0
+name = "greenman",
+author = "sazonov.pavlik73-nickli",
+comment = "CC BY 3.0",

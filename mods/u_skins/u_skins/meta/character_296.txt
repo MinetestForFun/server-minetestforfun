@@ -1,3 +1,3 @@
-Nerd_TrollBr
-Nerd_TrollBr
-CC BY-SA 3.0
+name = "Nerd_TrollBr",
+author = "Nerd_TrollBr",
+comment = "CC BY-SA 3.0",

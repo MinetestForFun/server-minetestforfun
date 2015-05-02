@@ -1,3 +1,3 @@
-jajaja nose que nombre xd
-edwar masterchieft
-CC BY 4.0
+name = "jajaja nose que nombre xd",
+author = "edwar masterchieft",
+comment = "CC BY 4.0",

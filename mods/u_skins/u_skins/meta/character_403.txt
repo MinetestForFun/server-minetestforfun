@@ -1,3 +1,3 @@
-Pumpkin_Man
-JAPP
-WTFPL
+name = "Foxy (Five Nights At Freedy) Eye Patch Version *fixed*",
+author = "Esteban",
+comment = "CC BY-NC-SA 4.0",

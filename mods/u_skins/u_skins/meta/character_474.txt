@@ -1,3 +1,3 @@
-test
-addi
-CC 0 (1.0)
+name = "xXTRANSFANXx",
+author = "TRANSFAN",
+comment = "CC BY 3.0",

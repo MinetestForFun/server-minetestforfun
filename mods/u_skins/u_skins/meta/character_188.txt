@@ -1,3 +1,3 @@
-Bajancanadian soldier
-bajanhgk
-CC BY-NC-SA 3.0
+name = "Bajancanadian soldier",
+author = "bajanhgk",
+comment = "CC BY-NC-SA 3.0",
