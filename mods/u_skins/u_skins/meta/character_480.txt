@@ -1,3 +1,3 @@
-name = "Red &yuml;oshi",
-author = "&yuml;oshi_Retro",
-comment = "CC BY-NC-SA 4.0",
+Red &yuml;oshi
+&yuml;oshi_Retro
+CC BY-NC-SA 4.0

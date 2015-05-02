@@ -1,3 +1,3 @@
-name = "Vash V2",
-author = "Prf",
-comment = "CC 0 (1.0)",
+Vash V2
+Prf
+CC 0 (1.0)

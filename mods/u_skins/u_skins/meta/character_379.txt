@@ -1,3 +1,3 @@
-name = "Corvo Attano",
-author = "D3R4A5AURU5",
-comment = "CC BY 3.0",
+Corvo Attano
+D3R4A5AURU5
+CC BY 3.0

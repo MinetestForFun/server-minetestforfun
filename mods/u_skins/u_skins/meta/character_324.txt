@@ -1,3 +1,3 @@
-name = "Halo the FBI agent",
-author = "Halo",
-comment = "CC BY 3.0",
+Halo the FBI agent
+Halo
+CC BY 3.0

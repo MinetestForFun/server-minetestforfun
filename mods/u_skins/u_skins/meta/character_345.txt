@@ -1,3 +1,3 @@
-name = "Clone Troper",
-author = "Ghanastripes1",
-comment = "CC BY-SA 3.0",
+Clone Troper
+Ghanastripes1
+CC BY-SA 3.0

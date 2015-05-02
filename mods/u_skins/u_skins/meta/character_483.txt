@@ -1,3 +1,3 @@
-name = "A.C.Milan Sam",
-author = "david",
-comment = "CC BY-NC-SA 4.0",
+A.C.Milan Sam
+david
+CC BY-NC-SA 4.0

@@ -1,3 +1,3 @@
-name = "gondor guard from lottmob",
-author = "lovehart",
-comment = "CC BY-SA 3.0",
+gondor guard from lottmob
+lovehart
+CC BY-SA 3.0

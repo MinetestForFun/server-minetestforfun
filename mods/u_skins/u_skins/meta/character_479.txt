@@ -1,3 +1,3 @@
-name = "The Cool",
-author = "Kirby_Retro",
-comment = "CC BY-SA 3.0",
+The Cool
+Kirby_Retro
+CC BY-SA 3.0

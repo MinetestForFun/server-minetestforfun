@@ -1,3 +1,3 @@
-name = "darckcraft",
-author = "gustavomoura",
-comment = "CC BY-SA 3.0",
+darckcraft
+gustavomoura
+CC BY-SA 3.0

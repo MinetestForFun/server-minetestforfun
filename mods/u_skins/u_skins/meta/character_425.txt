@@ -1,3 +1,3 @@
-name = "King Sam",
-author = "Gabo",
-comment = "CC BY-NC-SA 3.0",
+King Sam
+Gabo
+CC BY-NC-SA 3.0

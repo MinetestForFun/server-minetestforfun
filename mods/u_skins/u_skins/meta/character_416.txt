@@ -1,3 +1,3 @@
-name = "Grinch",
-author = "kefka",
-comment = "CC BY-NC-SA 4.0",
+Grinch
+kefka
+CC BY-NC-SA 4.0

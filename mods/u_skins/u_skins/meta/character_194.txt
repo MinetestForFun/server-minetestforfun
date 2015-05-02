@@ -1,3 +1,3 @@
-name = "Ssj Goku",
-author = "Esteban",
-comment = "CC BY-NC-SA 3.0",
+Ssj Goku
+Esteban
+CC BY-NC-SA 3.0

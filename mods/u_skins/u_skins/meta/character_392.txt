@@ -1,3 +1,3 @@
-name = "Esteban (Space Outfit)",
-author = "Esteban",
-comment = "CC BY-NC-SA 4.0",
+Esteban (Space Outfit)
+Esteban
+CC BY-NC-SA 4.0

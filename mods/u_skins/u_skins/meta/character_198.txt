@@ -1,3 +1,3 @@
-name = "In the Navy",
-author = "Bob Hovercraft",
-comment = "CC BY-SA 3.0",
+In the Navy
+Bob Hovercraft
+CC BY-SA 3.0

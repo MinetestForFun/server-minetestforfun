@@ -1,3 +1,3 @@
-name = "Blue Tron Man",
-author = "Novacain",
-comment = "CC BY 3.0",
+Blue Tron Man
+Novacain
+CC BY 3.0

@@ -1,3 +1,3 @@
-name = "Akatsuki sasuke",
-author = "bajanhgk",
-comment = "CC BY-NC-SA 3.0",
+Akatsuki sasuke
+bajanhgk
+CC BY-NC-SA 3.0

@@ -1,3 +1,3 @@
-name = "DJ Gangstar",
-author = "hansuke123",
-comment = "CC BY-SA 3.0",
+DJ Gangstar
+hansuke123
+CC BY-SA 3.0

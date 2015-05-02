@@ -1,3 +1,3 @@
-name = "Checker masta",
-author = "shadowzone",
-comment = "CC BY-SA 3.0",
+Checker masta
+shadowzone
+CC BY-SA 3.0

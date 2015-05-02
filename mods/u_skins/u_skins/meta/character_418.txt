@@ -1,3 +1,3 @@
-name = "Jaded-Dual Bow",
-author = "jadedtest",
-comment = "CC BY 4.0",
+Jaded-Dual Bow
+jadedtest
+CC BY 4.0

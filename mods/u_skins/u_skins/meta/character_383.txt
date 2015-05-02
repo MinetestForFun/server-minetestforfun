@@ -1,3 +1,3 @@
-name = "shadowzone",
-author = "shadowzone",
-comment = "CC BY-NC-SA 3.0",
+shadowzone
+shadowzone
+CC BY-NC-SA 3.0

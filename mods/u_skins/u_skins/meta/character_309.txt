@@ -1,3 +1,3 @@
-name = "the next derp steave",
-author = "lovehart",
-comment = "CC BY-NC-SA 4.0",
+the next derp steave
+lovehart
+CC BY-NC-SA 4.0

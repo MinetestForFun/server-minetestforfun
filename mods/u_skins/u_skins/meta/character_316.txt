@@ -1,3 +1,3 @@
-name = "thewillyrex",
-author = "edwar masterchieft",
-comment = "CC BY-SA 4.0",
+thewillyrex
+edwar masterchieft
+CC BY-SA 4.0

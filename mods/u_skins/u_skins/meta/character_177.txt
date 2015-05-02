@@ -1,3 +1,3 @@
-name = "Spider man",
-author = "bajanhgk",
-comment = "CC BY-NC-SA 3.0",
+Spider man
+bajanhgk
+CC BY-NC-SA 3.0

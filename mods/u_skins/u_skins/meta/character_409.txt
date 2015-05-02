@@ -1,3 +1,3 @@
-name = "Broken Bonnie (Five Nights At Freddys 2 Trailer)",
-author = "Esteban",
-comment = "CC BY-NC-SA 4.0",
+Broken Bonnie (Five Nights At Freddys 2 Trailer)
+Esteban
+CC BY-NC-SA 4.0

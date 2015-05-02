@@ -1,3 +1,3 @@
-name = "TroLLinG4TheWinYT",
-author = "Yo",
-comment = "CC BY 4.0",
+TroLLinG4TheWinYT
+Yo
+CC BY 4.0

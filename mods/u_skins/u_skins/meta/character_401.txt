@@ -1,3 +1,3 @@
-name = "Wolf In Tuxedo",
-author = "Esteban",
-comment = "CC BY-NC-SA 4.0",
+Wolf In Tuxedo
+Esteban
+CC BY-NC-SA 4.0

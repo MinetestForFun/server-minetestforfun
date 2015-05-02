@@ -1,3 +1,3 @@
-name = "Tetra",
-author = "philipbenr",
-comment = "CC BY-SA 3.0",
+Tetra
+philipbenr
+CC BY-SA 3.0

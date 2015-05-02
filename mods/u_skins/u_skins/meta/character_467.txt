@@ -1,3 +1,3 @@
-name = "Calinou",
-author = "Calinou",
-comment = "CC 0 (1.0)",
+Calinou
+Calinou
+CC 0 (1.0)

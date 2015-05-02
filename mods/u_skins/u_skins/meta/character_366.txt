@@ -1,3 +1,3 @@
-name = "Pirate girl",
-author = "Misty",
-comment = "CC BY-SA 3.0",
+Pirate girl
+Misty
+CC BY-SA 3.0
