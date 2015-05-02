@@ -1,11 +1,10 @@
+food
 animalmaterials?
 bushes_classic?
 default?
 docfarming?
-diet?
 farming?
 farming_plus?
-hud?
 intllib?
 jkanimals?
 jkfarming?

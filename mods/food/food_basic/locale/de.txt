@@ -5,6 +5,7 @@ Flour = Mehl
 Potato = Kartoffel
 Tomato = Tomate
 Carrot = Karotte
+Orange =
 Milk = Milch
 Egg = Ei
 Cocoa Bean = Kakaobohne

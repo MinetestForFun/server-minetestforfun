@@ -6,15 +6,6 @@
 -- The supporting api for the mod
 -- =====================================
 
--- Boilerplate to support localized strings if intllib mod is installed.
-S = 0
-if (minetest.get_modpath("intllib")) then
-	dofile(minetest.get_modpath("intllib").."/intllib.lua")
-	S = intllib.Getter(minetest.get_current_modname())
-else
-	S = function ( s ) return s end
-end
-
 food = {
 	modules = {},
 	disabled_modules = {},
@@ -70,7 +61,7 @@ function food.support(group, item)
 	minetest.override_item(item, {groups = g})
 end
 
-function food.disable(name)	
+function food.disable(name)
 	if type(name) == "table" then
 		for i = 1, #name do
 			food.disable(name[i])
@@ -99,7 +90,7 @@ function food.module(name, func, ingred)
 				return
 			end
 		end
-	
+
 		if food.debug then
 			print("[Food Debug] Registering " .. name .. " fallback definition")
 		end
@@ -111,10 +102,16 @@ end
 
 -- Checks for hunger mods to register food on
 function food.item_eat(amt)
-	if minetest.get_modpath("diet") then
+	if minetest.get_modpath("diet") and diet and diet.item_eat then
 		return diet.item_eat(amt)
-	elseif minetest.get_modpath("hunger") then
-		return hunger.item_eat(amt)
+	elseif minetest.get_modpath("hud") and hud and hud.item_eat then
+		return hud.item_eat(amt)
+	elseif minetest.get_modpath("hphunger") then
+		if hphunger then
+			return hphunger.item_eat(amt)
+		else
+			return hunger.item_eat(amt)
+		end
 	else
 		return minetest.item_eat(amt)
 	end

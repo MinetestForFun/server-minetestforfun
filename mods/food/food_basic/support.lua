@@ -14,6 +14,9 @@
 -- Add support for other mods
 food.support("cocoa", "farming_plus:cocoa_bean")
 food.support("cup", "vessels:drinking_glass")
+food.support("cactus", "default:cactus")
+food.support("apple", "default:apple")
+food.support("orange", "farming_plus:orange_item")
 food.support("potato", {
 	"docfarming:potato",
 	"veggies:potato",
@@ -67,5 +70,12 @@ if farming and farming.mod == "redo" then
 else
 	food.support("wheat", "farming:wheat")
 	food.support("flour", "farming:flour")
+end
+
+if minetest.get_modpath("mtfoods") then
+	food.support("strawberry", "farming_plus:strawberry_item")
+	food.support("strawberry", "plantlib:strawberry")
+	food.support("strawberry", "bushes:strawberry")
+	food.support("rhubarb", "farming_plus:rhubarb_item")
 end
 

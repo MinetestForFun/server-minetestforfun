@@ -350,6 +350,22 @@ if minetest.get_modpath("ferns") ~= nil then
 	overwrite("ferns:horsetail_01", 1)
 end
 
+-- Food mod by Rubenwardy ( https://github.com/rubenwardy/food )
+if minetest.get_modpath("food") ~= nil then
+	overwrite("food:apple_juice", 1)
+	overwrite("food:rainbow_juice", 6)
+	overwrite("food:cheese", 4)
+	overwrite("food:cactus_juice", 3)
+	overwrite("food:cake", 5)
+	overwrite("food:cake_carrot", 6)
+	overwrite("food:cake_choco", 7)
+	overwrite("food:milk", 3)
+	overwrite("food:milk_chocolate", 4)
+	overwrite("food:pasta_bake", 7)
+	overwrite("food:soup_chicken", 4)
+	overwrite("food:soup_tomato", 4)
+end
+
 -- player-action based hunger changes
 function hud.handle_node_actions(pos, oldnode, player, ext)
 	if not player or not player:is_player() then

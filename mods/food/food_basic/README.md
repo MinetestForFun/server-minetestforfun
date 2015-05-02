@@ -1,5 +1,5 @@
-Food
-====
+The Food Mod
+============
 
 This is the main mod in the food mod collection.
 
@@ -37,8 +37,6 @@ Exceptions:
 
 * Baked potato texture by Doc, WTFPL
 * Dough, flour and wheat textures from default farming mod, WTFPL
-* Orange from farming_plus, WTFPL
 * Egg and milk textures from Mobf, CC BY SA
-* Orange juice texture by CiaranG (modified from rubenwardy's apple juice texture)
 
 Have I missed out credit? Please tell me.
