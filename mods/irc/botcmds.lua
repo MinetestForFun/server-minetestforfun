@@ -163,3 +163,12 @@ irc:register_bot_command("players", {
 	end
 })
 
+irc:register_bot_command("timeofday", {
+	description = "Tell the in-game time of day",
+	func = function(user, args)
+		local timeofday = minetest.get_timeofday()
+		local hours, minutes = math.modf(timeofday * 24)
+		minutes = math.floor(minutes * 60)
+		return true, "It's " .. hours .. " h " .. minutes .. " min."
+	end
+})
