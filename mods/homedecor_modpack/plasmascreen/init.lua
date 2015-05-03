@@ -1,6 +1,3 @@
---Mod adding a plasma screen television by qwrwed
-
-
 minetest.register_node("plasmascreen:stand", {
 	description = "Plasma Screen TV Stand",
 	tiles = {"plasmascreen_back.png"},

@@ -185,7 +185,7 @@ local door_model_list = {
 
 	{	name = "wrought_iron",
 		description = S("Wrought Iron Gate/Door"),
-		mesh = "homedecor_door_plain.obj"
+		mesh = "homedecor_door_wrought_iron.obj"
 	},
 
 	{	name = "woodglass",
@@ -497,7 +497,7 @@ minetest.register_node("homedecor:japanese_wall_top", {
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_top.obj",
 	tiles = {
-		"homedecor_japanese_wood.png",
+		"homedecor_generic_wood_luxury_brown2.png",
 		"homedecor_japanese_paper.png"
 	},
 	paramtype = "light",
@@ -505,6 +505,7 @@ minetest.register_node("homedecor:japanese_wall_top", {
 	groups = {snappy=3},
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
+	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("homedecor:japanese_wall_middle", {
@@ -512,7 +513,7 @@ minetest.register_node("homedecor:japanese_wall_middle", {
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_middle.obj",
 	tiles = {
-		"homedecor_japanese_wood.png",
+		"homedecor_generic_wood_luxury_brown2.png",
 		"homedecor_japanese_paper.png"
 	},
 	paramtype = "light",
@@ -520,6 +521,7 @@ minetest.register_node("homedecor:japanese_wall_middle", {
 	groups = {snappy=3},
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
+	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("homedecor:japanese_wall_bottom", {
@@ -527,7 +529,7 @@ minetest.register_node("homedecor:japanese_wall_bottom", {
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_bottom.obj",
 	tiles = {
-		"homedecor_japanese_wood.png",
+		"homedecor_generic_wood_luxury_brown2.png",
 		"homedecor_japanese_paper.png"
 	},
 	paramtype = "light",
@@ -535,6 +537,7 @@ minetest.register_node("homedecor:japanese_wall_bottom", {
 	groups = {snappy=3},
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
+	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_node("homedecor:tatami_mat", {
@@ -549,7 +552,7 @@ minetest.register_node("homedecor:tatami_mat", {
 	description = "Japanese tatami",
 	drawtype = "nodebox",
 	paramtype = "light",
-        groups = {snappy=3},
+	groups = {snappy=3},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -562,11 +565,12 @@ homedecor.register("door_japanese_closed", {
 	description = "Japanese-style door",
 	inventory_image = "homedecor_door_japanese_inv.png",
 	tiles = {
-		"homedecor_japanese_wood.png",
+		"homedecor_generic_wood_luxury_brown2.png",
 		"homedecor_japanese_paper.png"
 	},
 	mesh = "homedecor_door_japanese_closed.obj",
 	groups = { snappy = 3 },
+	sounds = default.node_sound_wood_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, 0, 0.5, 1.5, 0.0625},
@@ -583,7 +587,7 @@ homedecor.register("door_japanese_closed", {
 
 minetest.register_node("homedecor:door_japanese_open", {
 	tiles = {
-		"homedecor_japanese_wood.png",
+		"homedecor_generic_wood_luxury_brown2.png",
 		"homedecor_japanese_paper.png"
 	},
 	drawtype = "mesh",
@@ -591,6 +595,7 @@ minetest.register_node("homedecor:door_japanese_open", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
+	sounds = default.node_sound_wood_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-1.5, -0.5, -0.0625, 0.5, 1.5, 0},
@@ -610,4 +615,3 @@ minetest.register_alias("homedecor:jpn_door_bottom", "homedecor:door_japanese_cl
 
 minetest.register_alias("homedecor:jpn_door_top_open", "air")
 minetest.register_alias("homedecor:jpn_door_bottom_open", "homedecor:door_japanese_open")
-

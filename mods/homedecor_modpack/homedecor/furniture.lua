@@ -1,5 +1,192 @@
 local S = homedecor.gettext
 
+local table_colors = { "", "mahogany", "white" }
+
+for _, i in ipairs(table_colors) do
+	local color = "_"..i
+	local color2 = "_"..i
+	local desc = S("Table ("..i..")")
+
+	if i == "" then
+		color = ""
+		color2 = "_beech"
+		desc = S("Table")
+	end
+
+	homedecor.register("table"..color, {
+		description = desc,
+		tiles = { "homedecor_generic_wood"..color2..".png" },
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{ -0.4, -0.5, -0.4, -0.3,  0.4, -0.3 },
+				{  0.3, -0.5, -0.4,  0.4,  0.4, -0.3 },
+				{ -0.4, -0.5,  0.3, -0.3,  0.4,  0.4 },
+				{  0.3, -0.5,  0.3,  0.4,  0.4,  0.4 },
+				{ -0.5,  0.4, -0.5,  0.5,  0.5,  0.5 },
+				{ -0.4, -0.2, -0.3, -0.3, -0.1,  0.3 },
+				{  0.3, -0.2, -0.4,  0.4, -0.1,  0.3 },
+				{ -0.3, -0.2, -0.4,  0.4, -0.1, -0.3 },
+				{ -0.3, -0.2,  0.3,  0.3, -0.1,  0.4 },
+			},
+		},
+		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
+		sounds = default.node_sound_wood_defaults(),
+	})
+end
+
+local chaircolors = {
+	{ "", "plain" },
+	{ "black", "Black" },
+	{ "red", "Red" },
+	{ "pink", "Pink" },
+	{ "violet", "Violet" },
+	{ "blue", "Blue" },
+	{ "dark_green", "Dark Green" },
+}
+
+local kc_cbox = {
+	type = "fixed",
+	fixed = { -0.3125, -0.5, -0.3125, 0.3125, 0.5, 0.3125 },
+}
+
+local ac_cbox = {
+	type = "fixed",
+	fixed = { 
+		{-0.5, -0.5, -0.5, 0.5, 0, 0.5 },
+		{-0.5, -0.5, 0.4, 0.5, 0.5, 0.5 }
+	}
+}
+
+for i in ipairs(chaircolors) do
+
+	local color = "_"..chaircolors[i][1]
+	local color2 = chaircolors[i][1]
+	local name = S(chaircolors[i][2])
+	local chairtiles = {
+		"homedecor_generic_wood_beech.png",
+		"wool"..color..".png",
+	}
+
+	if chaircolors[i][1] == "" then
+		color = ""
+		chairtiles = {
+			"homedecor_generic_wood_beech.png",
+			"homedecor_generic_wood_beech.png"
+		}
+	end
+
+	homedecor.register("chair"..color, {
+		description = S("Kitchen chair (%s)"):format(name),
+		mesh = "homedecor_kitchen_chair.obj",
+		tiles = chairtiles,
+		selection_box = kc_cbox,
+		collision_box = kc_cbox,
+		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
+		sounds = default.node_sound_wood_defaults(),
+		--[[
+		on_rightclick = function(pos, node, clicker)
+			pos.y = pos.y-0 -- player's sit position.
+			homedecor.sit_exec(pos, node, clicker)
+		end,
+		--]]
+	})
+
+	if color ~= "" then
+		homedecor.register("armchair"..color, {
+			description = S("Armchair (%s)"):format(name),
+			mesh = "forniture_armchair.obj",
+			tiles = {
+				"wool"..color..".png",
+				"wool_dark_grey.png",
+				"default_wood.png"
+			},
+			groups = {snappy=3},
+			sounds = default.node_sound_wood_defaults(),
+			node_box = ac_cbox
+		})
+
+		minetest.register_craft({
+			output = "homedecor:armchair"..color.." 2",
+			recipe = {
+			{ "wool:"..color2,""},
+			{ "group:wood","group:wood" },
+			{ "wool:"..color2,"wool:"..color2 },
+			},
+		})
+	end
+end
+
+local ob_cbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0.5 }
+}
+
+minetest.register_node(":homedecor:openframe_bookshelf", {
+	description = "Bookshelf (open-frame)",
+	drawtype = "mesh",
+	mesh = "homedecor_openframe_bookshelf.obj",
+	tiles = {
+		"homedecor_openframe_bookshelf_books.png",
+		"default_wood.png"
+	},
+	groups = {choppy=3,oddly_breakable_by_hand=2,flammable=3},
+	sounds = default.node_sound_wood_defaults(),
+	paramtype = "light",
+	paramtype2 = "facedir",
+	selection_box = ob_cbox,
+	collision_box = ob_cbox,
+})
+
+homedecor.register("wall_shelf", {
+	description = "Wall Shelf",
+	tiles = {
+		"homedecor_wood_table_large_edges.png",
+	},
+	groups = { snappy = 3 },
+	sounds = default.node_sound_wood_defaults(),
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, 0.4, 0.47, 0.5, 0.47, 0.5},
+			{-0.5, 0.47, -0.1875, 0.5, 0.5, 0.5}
+		}
+	}
+})
+
+local ofchairs_sbox = {
+		type = "fixed",
+		fixed = { -8/16, -8/16, -8/16, 8/16, 29/32, 8/16 }
+	}
+
+local ofchairs_cbox = {
+		type = "fixed",
+		fixed = {
+			{ -5/16,   1/16, -7/16,  5/16,   4/16,  7/16 }, -- seat
+			{ -5/16,   4/16,  4/16,  5/16,  29/32, 15/32 }, -- seatback
+			{ -1/16, -11/32, -1/16,  1/16,   1/16,  1/16 }, -- cylinder
+			{ -8/16,  -8/16, -8/16,  8/16, -11/32,  8/16 }  -- legs/wheels
+		}
+	}
+
+local ofchairs = {"basic", "upscale"}
+
+for _, c in ipairs(ofchairs) do
+
+homedecor.register("office_chair_"..c, {
+	description = "Office chair ("..c..")",
+	drawtype = "mesh",
+	tiles = { "homedecor_office_chair_"..c..".png" },
+	mesh = "homedecor_office_chair_"..c..".obj",
+	groups = { snappy = 3 },
+	sounds = default.node_sound_wood_defaults(),
+	selection_box = ofchairs_sbox,
+	collision_box = ofchairs_cbox,
+	expand = { top = "air" },
+})
+
+end
+
 -- Sitting functions disabled for now because of buggyness.
 
 --[[
@@ -43,322 +230,6 @@ function homedecor.sit_exec(pos, node, clicker) -- don't move these functions in
 	default.player_set_animation(clicker, "sit", 30)
 end
 --]]
-
-local table_colors = { "", "mahogany", "white" }
-
-for _, i in ipairs(table_colors) do
-	local color = "_"..i
-	local desc = S("Table ("..i..")")
-
-	if i == "" then
-		color = ""
-		desc = S("Table")
-	end
-
-	homedecor.register("table"..color, {
-		description = desc,
-		tiles = { "forniture_wood"..color..".png" },
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{ -0.4, -0.5, -0.4, -0.3,  0.4, -0.3 },
-				{  0.3, -0.5, -0.4,  0.4,  0.4, -0.3 },
-				{ -0.4, -0.5,  0.3, -0.3,  0.4,  0.4 },
-				{  0.3, -0.5,  0.3,  0.4,  0.4,  0.4 },
-				{ -0.5,  0.4, -0.5,  0.5,  0.5,  0.5 },
-				{ -0.4, -0.2, -0.3, -0.3, -0.1,  0.3 },
-				{  0.3, -0.2, -0.4,  0.4, -0.1,  0.3 },
-				{ -0.3, -0.2, -0.4,  0.4, -0.1, -0.3 },
-				{ -0.3, -0.2,  0.3,  0.3, -0.1,  0.4 },
-			},
-		},
-		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
-	})
-end
-
-local chaircolors = {
-	{ "", "plain" },
-	{ "black", "Black" },
-	{ "red", "Red" },
-	{ "pink", "Pink" },
-	{ "violet", "Violet" },
-	{ "blue", "Blue" },
-	{ "dark_green", "Dark Green" },
-}
-
-local kc_cbox = {
-	type = "fixed",
-	fixed = { -0.3125, -0.5, -0.3125, 0.3125, 0.5, 0.3125 },
-}
-
-for i in ipairs(chaircolors) do
-
-	local color = "_"..chaircolors[i][1]
-	local color2 = chaircolors[i][1]
-	local name = S(chaircolors[i][2])
-	local chairtiles = {
-		"forniture_wood.png",
-		"wool"..color..".png",
-	}
-
-	if chaircolors[i][1] == "" then
-		color = ""
-		chairtiles = {
-			"forniture_wood.png",
-			"forniture_wood.png"
-		}
-	end
-
-	homedecor.register("chair"..color, {
-		description = S("Kitchen chair (%s)"):format(name),
-		mesh = "homedecor_kitchen_chair.obj",
-		tiles = chairtiles,
-		selection_box = kc_cbox,
-		collision_box = kc_cbox,
-		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
-		--[[
-		on_rightclick = function(pos, node, clicker)
-			pos.y = pos.y-0 -- player's sit position.
-			homedecor.sit_exec(pos, node, clicker)
-		end,
-		--]]
-	})
-
-	if color ~= "" then
-		homedecor.register("armchair"..color, {
-			description = S("Armchair (%s)"):format(name),
-			mesh = "forniture_armchair.obj",
-			tiles = {
-				"wool"..color..".png",
-				"wool_dark_grey.png",
-				"default_wood.png"
-			},
-			sunlight_propagates = true,
-			groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
-			--[[
-			on_rightclick = function(pos, node, clicker)
-				pos.y = pos.y-0.1 -- player's sit position.
-				homedecor.sit_exec(pos, node, clicker)
-				clicker:set_hp(20)
-			end,
-			--]]
-		})
-
-		minetest.register_craft({
-			output = "homedecor:armchair"..color.." 2",
-			recipe = {
-			{ "wool:"..color2,""},
-			{ "group:wood","group:wood" },
-			{ "wool:"..color2,"wool:"..color2 },
-			},
-		})
-	end
-end
-
-local ob_cbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0.5 }
-}
-
-minetest.register_node(":homedecor:openframe_bookshelf", {
-	description = "Bookshelf (open-frame)",
-	drawtype = "mesh",
-	mesh = "homedecor_openframe_bookshelf.obj",
-	tiles = {
-		"homedecor_openframe_bookshelf_books.png",
-		"default_wood.png"
-	},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {choppy=3,oddly_breakable_by_hand=2,flammable=3},
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = ob_cbox,
-	collision_box = ob_cbox,
-})
-
-local bedcolors = {
-	"red",
-	"green",
-	"blue",
-	"violet",
-	"brown",
-	"darkgrey",
-	"orange",
-	"yellow",
-	"pink",
-}
-
-local bed_cbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, -0.5, 0.5, 0.5, 1.5 }
-}
-
-local kbed_cbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, -0.5, 1.5, 0.5, 1.5 }
-}
-
-for _, color in ipairs(bedcolors) do
-	local color2=color
-	if color == "darkgrey" then
-		color2 = "dark_grey"
-	end
-	homedecor.register("bed_"..color.."_regular", {
-		mesh = "homedecor_bed_regular.obj",
-		tiles = {
-			"homedecor_bed_frame.png",
-			"default_wood.png",
-			"wool_white.png",
-			"wool_"..color2..".png",
-			"homedecor_bed_bottom.png",
-			"wool_"..color2..".png^[brighten", -- pillow
-		},
-		inventory_image = "homedecor_bed_"..color.."_inv.png",
-		description = S("Bed (%s)"):format(color),
-		groups = {snappy=3},
-		selection_box = bed_cbox,
-		collision_box = bed_cbox,
-		after_place_node = function(pos, placer, itemstack, pointed_thing)
-			if not placer:get_player_control().sneak then
-				return homedecor.bed_expansion(pos, placer, itemstack, pointed_thing, color)
-			end
-		end,
-		after_dig_node = function(pos)
-			homedecor.unextend_bed(pos, color)
-		end,
-	})
-
-	homedecor.register("bed_"..color.."_extended", {
-		mesh = "homedecor_bed_extended.obj",
-		tiles = {
-			"homedecor_bed_frame.png",
-			"default_wood.png",
-			"wool_white.png",
-			"wool_"..color2..".png",
-			"homedecor_bed_bottom.png",
-			"wool_"..color2..".png^[brighten",
-		},
-		groups = {snappy=3, not_in_creative_inventory=1},
-		selection_box = bed_cbox,
-		collision_box = bed_cbox,
-		expand = { forward = "air" },
-		after_dig_node = function(pos)
-			homedecor.unextend_bed(pos, color)
-		end,
-		drop = "homedecor:bed_"..color.."_regular"
-	})
-
-	homedecor.register("bed_"..color.."_kingsize", {
-		mesh = "homedecor_bed_kingsize.obj",
-		tiles = {
-			"homedecor_bed_frame.png",
-			"default_wood.png",
-			"wool_white.png",
-			"wool_"..color2..".png",
-			"homedecor_bed_bottom.png",
-			"wool_"..color2..".png^[brighten",
-		},
-		inventory_image = "homedecor_bed_kingsize_"..color.."_inv.png",
-		description = S("Bed (%s, king sized)"):format(color),
-		groups = {snappy=3, not_in_creative_inventory=1},
-		selection_box = kbed_cbox,
-		collision_box = kbed_cbox,
-		after_dig_node = function(pos, oldnode, oldmetadata, digger)
-			local inv = digger:get_inventory()
-			if digger:get_player_control().sneak and inv:room_for_item("main", "bed_"..color.."_regular 1") then
-				inv:remove_item("main", "homedecor:bed_"..color.."_kingsize 1")
-				inv:add_item("main", "homedecor:bed_"..color.."_regular 2")
-			end
-		end,
-	})
-
-	minetest.register_alias("homedecor:bed_"..color.."_foot",    "homedecor:bed_"..color.."_regular")
-	minetest.register_alias("homedecor:bed_"..color.."_footext", "homedecor:bed_"..color.."_extended")
-	minetest.register_alias("homedecor:bed_"..color.."_head",    "air")
-
-end
-
-local wd_cbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, -0.5, 0.5, 1.5, 0.5 }
-}
-
-homedecor.register("wardrobe_bottom", {
-	mesh = "homedecor_bedroom_wardrobe.obj",
-	tiles = {
-		"forniture_wood.png",
-		"homedecor_wardrobe_drawers.png",
-		"homedecor_wardrobe_doors.png"
-	},
-	inventory_image = "homedecor_wardrobe_inv.png",
-	description = "Wardrobe",
-	groups = {snappy=3},
-	selection_box = wd_cbox,
-	collision_box = wd_cbox,
-	expand = { top="air" },
-	infotext = S("Wardrobe cabinet"),
-	inventory = {
-		size=24,
-	},
-})
-
-minetest.register_alias("homedecor:wardrobe_bottom", "homedecor:wardrobe")
-minetest.register_alias("homedecor:wardrobe_top", "air")
-
-homedecor.register("wall_shelf", {
-	description = "Wall Shelf",
-	tiles = {
-		"homedecor_wood_table_large_edges.png",
-	},
-	groups = { snappy = 3 },
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, 0.4, 0.47, 0.5, 0.47, 0.5},
-			{-0.5, 0.47, -0.1875, 0.5, 0.5, 0.5}
-		}
-	}
-})
-
-local ofchairs_sbox = {
-		type = "fixed",
-		fixed = { -8/16, -8/16, -8/16, 8/16, 29/32, 8/16 }
-	}
-
-local ofchairs_cbox = {
-		type = "fixed",
-		fixed = {
-			{ -5/16,   1/16, -7/16,  5/16,   4/16,  7/16 }, -- seat
-			{ -5/16,   4/16,  4/16,  5/16,  29/32, 15/32 }, -- seatback
-			{ -1/16, -11/32, -1/16,  1/16,   1/16,  1/16 }, -- cylinder
-			{ -8/16,  -8/16, -8/16,  8/16, -11/32,  8/16 }  -- legs/wheels
-		}
-	}
-
-local ofchairs = {"basic", "upscale"}
-
-for _, c in ipairs(ofchairs) do
-
-homedecor.register("office_chair_"..c, {
-	description = "Office chair ("..c..")",
-	drawtype = "mesh",
-	tiles = { "homedecor_office_chair_"..c..".png" },
-	mesh = "homedecor_office_chair_"..c..".obj",
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = ofchairs_sbox,
-	collision_box = ofchairs_cbox,
-	expand = { top = "air" },
-	--[[
-	on_rightclick = function(pos, node, clicker)
-		pos.y = pos.y+0.14 -- player's sit position.
-		homedecor.sit_exec(pos, node, clicker)
-	end,
-	--]]
-})
-
-end
 
 -- Aliases for 3dforniture mod.
 

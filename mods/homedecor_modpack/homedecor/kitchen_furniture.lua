@@ -53,7 +53,12 @@ homedecor.register("kitchen_cabinet_half", {
 homedecor.register("kitchen_cabinet_with_sink", {
 	description = S("Kitchen Cabinet with sink"),
 	mesh = "homedecor_kitchen_sink.obj",
-	tiles = { "homedecor_kitchen_sink.png" },
+	tiles = {
+		"homedecor_kitchen_sink_top.png",
+		"homedecor_kitchen_cabinet_front.png",
+		"homedecor_kitchen_cabinet_sides.png",
+		"homedecor_kitchen_cabinet_bottom.png"
+	},
 	groups = { snappy = 3 },
 	sounds = default.node_sound_wood_defaults(),
 	infotext=S("Under-sink cabinet"),
@@ -74,7 +79,7 @@ homedecor.register("copper_pans", {
 	inventory_image = "homedecor_copper_pans_inv.png",
 	groups = { snappy=3 },
 	selection_box = cp_cbox,
-	collision_box = cp_cbox,
+	walkable = false,
 	on_place = minetest.rotate_node
 })
 
@@ -85,27 +90,26 @@ local kf_cbox = {
 
 homedecor.register("kitchen_faucet", {
 	mesh = "homedecor_kitchen_faucet.obj",
-	tiles = { "homedecor_bright_metal.png" },
+	tiles = { "homedecor_generic_metal_bright.png" },
 	inventory_image = "homedecor_kitchen_faucet_inv.png",
 	description = "Kitchen Faucet",
 	groups = {snappy=3},
 	selection_box = kf_cbox,
-	collision_box = kf_cbox,
+	walkable = false
 })
 
 homedecor.register("paper_towel", {
 	mesh = "homedecor_paper_towel.obj",
-	tiles = { "homedecor_paper_towel.png" },
+	tiles = {
+		"homedecor_generic_quilted_paper.png",
+		"default_wood.png"
+	},
 	inventory_image = "homedecor_paper_towel_inv.png",
 	description = "Paper towels",
 	groups = { snappy=3 },
+	walkable = false,
 	selection_box = {
 		type = "fixed",
 		fixed = { -0.4375, 0.125, 0.0625, 0.4375, 0.4375, 0.5 }
 	},
-	collision_box = {
-		type = "fixed",
-		fixed = { -0.4375, 0.125, 0.0625, 0.4375, 0.4375, 0.5 }
-	}
 })
-

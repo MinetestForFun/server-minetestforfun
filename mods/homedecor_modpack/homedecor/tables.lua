@@ -31,7 +31,6 @@ for i in ipairs(materials) do
 		tiles = { 'homedecor_'..m..'_table_small_square.png' },
 		wield_image = 'homedecor_'..m..'_table_small_square_inv.png',
 		inventory_image = 'homedecor_'..m..'_table_small_square_inv.png',
-		sunlight_propagates = true,
 		groups = { snappy = 3 },
 		sounds = s,
 		selection_box = tables_cbox,
@@ -47,7 +46,6 @@ for i in ipairs(materials) do
 		tiles = { "homedecor_"..m.."_table_small_round.png" },
 		wield_image = 'homedecor_'..m..'_table_small_round_inv.png',
 		inventory_image = 'homedecor_'..m..'_table_small_round_inv.png',
-		sunlight_propagates = true,
 		groups = { snappy = 3 },
 		sounds = s,
 		selection_box = tables_cbox,
@@ -69,7 +67,6 @@ for i in ipairs(materials) do
 		},
 		wield_image = 'homedecor_'..m..'_table_large_inv.png',
 		inventory_image = 'homedecor_'..m..'_table_large_inv.png',
-		sunlight_propagates = true,
 		groups = { snappy = 3 },
 		sounds = s,
 		node_box = {
@@ -168,7 +165,7 @@ homedecor.register("table_legs_"..t, {
 	wield_image = "homedecor_table_legs_"..t..".png",
 	walkable = false,
 	groups = {snappy=3},
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = { -0.37, -0.5, -0.37, 0.37, 0.5, 0.37 }
@@ -182,7 +179,6 @@ homedecor.register("utility_table_legs", {
 	tiles = { 'homedecor_utility_table_legs.png' },
 	inventory_image = 'homedecor_utility_table_legs_inv.png',
 	wield_image = 'homedecor_utility_table_legs.png',
-	sunlight_propagates = true,
 	walkable = false,
 	groups = { snappy = 3 },
 	sounds = default.node_sound_wood_defaults(),
@@ -201,13 +197,14 @@ homedecor.register("desk", {
 	description = "Desk",
 	mesh = "homedecor_desk.obj",
 	tiles = {
+		"homedecor_generic_wood_beech.png",
 		"homedecor_desk_drawers.png",
-		"forniture_black_metal.png",
-		"forniture_wood.png"
+		"homedecor_generic_metal_black.png",
 	},
 	inventory_image = "homedecor_desk_inv.png",
 	selection_box = desk_cbox,
 	collision_box = desk_cbox,
+	sounds = default.node_sound_wood_defaults(),
 	groups = { snappy = 3 },
 	expand = { right="air" },
 	inventory = {
@@ -216,4 +213,3 @@ homedecor.register("desk", {
 })
 
 minetest.register_alias("homedecor:desk_r", "air")
-

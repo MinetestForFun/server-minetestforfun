@@ -135,10 +135,7 @@ dofile(homedecor.modpath.."/nightstands.lua")
 dofile(homedecor.modpath.."/clocks.lua")
 dofile(homedecor.modpath.."/misc-electrical.lua")
 
-dofile(homedecor.modpath.."/paintings.lua")
 dofile(homedecor.modpath.."/window_treatments.lua")
-
-dofile(homedecor.modpath.."/crafts.lua")
 
 dofile(homedecor.modpath.."/furniture.lua")
 dofile(homedecor.modpath.."/furniture_medieval.lua")
@@ -146,10 +143,14 @@ dofile(homedecor.modpath.."/furniture_recipes.lua")
 dofile(homedecor.modpath.."/climate-control.lua")
 
 dofile(homedecor.modpath.."/cobweb.lua")
+dofile(homedecor.modpath.."/beds.lua")
 dofile(homedecor.modpath.."/books.lua")
 dofile(homedecor.modpath.."/exterior.lua")
 dofile(homedecor.modpath.."/trash_cans.lua")
+dofile(homedecor.modpath.."/wardrobe.lua")
 
 dofile(homedecor.modpath.."/handlers/locked.lua")
+
+dofile(homedecor.modpath.."/crafts.lua")
 
 print("[HomeDecor] "..S("Loaded!"))

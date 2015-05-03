@@ -42,3 +42,20 @@ homedecor.register("dryer", {
 	groups = { snappy = 3 },
 })
 
+local ib_cbox = {
+	type = "fixed",
+	fixed = { -6/16, -8/16, -4/16, 17/16, 4/16, 4/16 }
+}
+
+homedecor.register("ironing_board", {
+	description = "Ironing board",
+	mesh = "homedecor_ironing_board.obj",
+	tiles = {
+		"wool_grey.png",
+		"homedecor_generic_metal_neutral.png"
+	},
+	expand = {right = "air"},
+	groups = { snappy = 3 },
+	selection_box = ib_cbox,
+	collision_box = ib_cbox
+})

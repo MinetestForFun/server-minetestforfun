@@ -1,4 +1,3 @@
-
 local S = homedecor.gettext
 
 homedecor.register("window_quartered", {
@@ -24,14 +23,12 @@ homedecor.register("window_quartered", {
 			{0.4375, -0.5, -0.0625, 0.5, 0.5, 0.0625}, -- NodeBox5
 			{-0.5, -0.5, -0.0625, -0.4375, 0.5, 0.0625}, -- NodeBox6
 			{-0.0625, -0.5, -0.025, 0.0625, 0.5, 0.025}, -- NodeBox7
-			},
-		},
+		}
+	},
 	selection_box = {
 		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.0625, 0.5, 0.5, 0.0625}
-		},
-	},
+		fixed = {-0.5, -0.5, -0.0625, 0.5, 0.5, 0.0625}
+	}
 })
 
 homedecor.register("window_plain", {
@@ -55,14 +52,12 @@ homedecor.register("window_plain", {
 			{-0.5, -0.5, -0.0625, 0.5, -0.4375, 0.0625}, -- NodeBox3
 			{0.4375, -0.5, -0.0625, 0.5, 0.5, 0.0625}, -- NodeBox4
 			{-0.5, -0.5, -0.0625, -0.4375, 0.5, 0.0625}, -- NodeBox5
-			},
-		},
+		}
+	},
 	selection_box = {
 		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.0625, 0.5, 0.5, 0.0625}
-			},
-		},
+		fixed = {-0.5, -0.5, -0.0625, 0.5, 0.5, 0.0625}
+	}
 })
 
 local wb1_cbox = {
@@ -81,8 +76,7 @@ homedecor.register("blinds_thick", {
 	walkable = false,
 	groups = {snappy=3},
 	sounds = default.node_sound_wood_defaults(),
-	selection_box = wb1_cbox,
-	collision_box = wb1_cbox,
+	selection_box = wb1_cbox
 })
 
 local wb2_cbox = {
@@ -101,8 +95,7 @@ homedecor.register("blinds_thin", {
 	walkable = false,
 	groups = {snappy=3},
 	sounds = default.node_sound_wood_defaults(),
-	selection_box = wb2_cbox,
-	collision_box = wb2_cbox,
+	selection_box = wb2_cbox
 })
 
 local curtaincolors = {
@@ -124,15 +117,12 @@ for c in ipairs(curtaincolors) do
 		inventory_image = "homedecor_curtain_"..color..".png",
 		wield_image = "homedecor_curtain_"..color..".png",
 		drawtype = 'signlike',
-		sunlight_propagates = true,
 		use_texture_alpha = true,
 		walkable = false,
 		groups = { snappy = 3 },
 		sounds = default.node_sound_leaves_defaults(),
 		paramtype2 = 'wallmounted',
-		selection_box = {
-			type = "wallmounted",
-		},
+		selection_box = { type = "wallmounted" },
 	-- Open the curtains
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local topnode = minetest.get_node({x=pos.x, y=pos.y+1.0, z=pos.z})
@@ -149,15 +139,12 @@ for c in ipairs(curtaincolors) do
 		inventory_image = "homedecor_curtain_open_"..color..".png",
 		wield_image = "homedecor_curtain_open_"..color..".png",
 		drawtype = 'signlike',
-		sunlight_propagates = true,
 		use_texture_alpha = true,
 		walkable = false,
 		groups = { snappy = 3 },
 		sounds = default.node_sound_leaves_defaults(),
 		paramtype2 = 'wallmounted',
-		selection_box = {
-			type = "wallmounted",
-		},
+		selection_box = { type = "wallmounted" },
 	-- Close the curtains
 		on_rightclick = function(pos, node, clicker, itemstack)
 			local topnode = minetest.get_node({x=pos.x, y=pos.y+1.0, z=pos.z})
@@ -171,8 +158,8 @@ for c in ipairs(curtaincolors) do
 end
 
 local mats = {
-	{ "brass", "Brass", "homedecor_tile_brass2.png" },
-	{ "wrought_iron", "Wrought iron", "homedecor_tile_wrought_iron2.png" },
+	{ "brass", "Brass", "homedecor_generic_metal_brass.png" },
+	{ "wrought_iron", "Wrought iron", "homedecor_generic_metal_wrought_iron.png" },
 	{ "wood", "Wooden", "default_wood.png" }
 }
 
@@ -184,7 +171,6 @@ for i in ipairs(mats) do
 		tiles = { texture },
 		inventory_image  = "homedecor_curtainrod_"..material.."_inv.png",
 		description = "Curtain Rod ("..mat_name..")",
-		sunlight_propagates = true,
 		groups = { snappy = 3 },
 		node_box = {
 			type = "fixed",
@@ -205,6 +191,7 @@ homedecor.register("window_flowerbox", {
 		"homedecor_flowerbox_sides.png"
 	},
 	inventory_image = "homedecor_flowerbox_inv.png",
+	sounds = default.node_sound_stone_defaults(),
 	groups = { snappy = 3 },
 	node_box = {
 		type = "fixed",

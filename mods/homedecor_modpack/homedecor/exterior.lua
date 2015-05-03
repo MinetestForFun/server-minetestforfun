@@ -1,5 +1,4 @@
 local S = homedecor.gettext
-dofile(homedecor.modpath.."/furniture.lua")
 
 local bbq_cbox = {
 	type = "fixed",
@@ -10,7 +9,7 @@ homedecor.register("barbecue", {
 	description = "Barbecue",
 	mesh = "homedecor_barbecue.obj",
 	tiles = {
-		"forniture_black_metal.png",
+		"homedecor_generic_metal_black.png",
 		{	name="homedecor_embers.png",
 			animation={
 				type="vertical_frames",
@@ -25,54 +24,66 @@ homedecor.register("barbecue", {
 	light_source = 9,
 	selection_box = bbq_cbox,
 	collision_box = bbq_cbox,
+	sounds = default.node_sound_stone_defaults(),
 	expand = { top="air" },
 })
 
 minetest.register_alias("homedecor:barbecue_meat", "air")
 
-local bl1_cbox = {
+local bl1_sbox = {
 	type = "fixed",
 	fixed = { -0.5, -0.5, -0.25, 1.5, 0.5, 0.5 }
+}
+
+local bl1_cbox = {
+	type = "fixed",
+	fixed = { 
+		{-0.5, -0.5, -0.25, 1.5, 0, 0.5 },
+		{-0.5, -0.5, 0.45, 1.5, 0.5, 0.5 },
+	}
 }
 
 homedecor.register("bench_large_1", {
 	mesh = "homedecor_bench_large_1.obj",
 	tiles = {
-		"homedecor_generic_wood.png",
-		"homedecor_tile_wrought_iron2.png"
+		"homedecor_generic_wood_neutral.png",
+		"homedecor_generic_metal_wrought_iron.png"
 	},
 	description = "Garden Bench (style 1)",
 	inventory_image = "homedecor_bench_large_1_inv.png",
 	groups = { snappy = 3 },
 	expand = { right="air" },
 	sounds = default.node_sound_wood_defaults(),
-	selection_box = bl1_cbox,
-	collision_box = bl1_cbox,
+	selection_box = bl1_sbox,
+	node_box = bl1_cbox,
 })
 
 minetest.register_alias("homedecor:bench_large_1_left", "homedecor:bench_large_1")
 minetest.register_alias("homedecor:bench_large_1_right", "air")
 
-local bl2_cbox = {
+local bl2_sbox = {
 	type = "fixed",
 	fixed = { -0.5, -0.5, -0.25, 1.5, 0.5, 0.5 }
+}
+
+local bl2_cbox = {
+	type = "fixed",
+	fixed = { 
+		{-0.5, -0.5, -0.25, 1.5, 0, 0.5 },
+		{-0.5, -0.5, 0.45, 1.5, 0.5, 0.5 },
+	}
 }
 
 homedecor.register("bench_large_2", {
 	description = "Garden Bench (style 2)",
 	mesh = "homedecor_bench_large_2.obj",
-	tiles = { "homedecor_generic_wood.png" },
+	tiles = { "homedecor_generic_wood_neutral.png" },
 	inventory_image = "homedecor_bench_large_2_inv.png",
 	groups = {snappy=3},
-	selection_box = bl2_cbox,
-	collision_box = bl2_cbox,
+	selection_box = bl2_sbox,
+	node_box = bl2_cbox,
 	expand = { right="air" },
-	--[[
-	on_rightclick = function(pos, node, clicker)
-		pos.y = pos.y-0 -- player's sit position.
-		homedecor.sit_exec(pos, node, clicker)
-	end,
-	--]]
+	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_alias("homedecor:bench_large_2_left", "homedecor:bench_large_2")
@@ -121,13 +132,14 @@ homedecor.register("doghouse", {
 	collision_box = homedecor.nodebox.slab_y(1.5),
 	groups = {snappy=3},
 	expand = { top="air" },
+	sounds = default.node_sound_wood_defaults(),
 })
 
 minetest.register_alias("homedecor:doghouse_roof", "air")
 minetest.register_alias("homedecor:doghouse_base", "homedecor:doghouse")
 
 homedecor.register("simple_bench", {
-	tiles = { "homedecor_generic_wood.png" },
+	tiles = { "homedecor_generic_wood_neutral.png" },
 	description = "Simple Bench",
 	groups = {snappy=3},
 	node_box = {
@@ -138,12 +150,7 @@ homedecor.register("simple_bench", {
 			{ 0.3, -0.5,  0.1,  0.4, -0.15, 0.3},
 			}
 	},
-	--[[
-	on_rightclick = function(pos, node, clicker)
-		pos.y = pos.y-0 -- player's sit position.
-		homedecor.sit_exec(pos, node, clicker)
-	end,
-	--]]
+	sounds = default.node_sound_wood_defaults(),
 })
 
 homedecor.register("stonepath", {
@@ -169,7 +176,8 @@ homedecor.register("stonepath", {
 	selection_box = {
 		type = "fixed",
 		fixed = { -0.4375, -0.5, -0.4375, 0.4375, -0.4, 0.4375 }
-	}
+	},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 homedecor.register("swing", {
@@ -181,6 +189,8 @@ homedecor.register("swing", {
 	},
 	inventory_image = "homedecor_swing_inv.png",
 	groups = { snappy=3, oddly_breakable_by_hand=3 },
+	sounds = default.node_sound_wood_defaults(),
+	walkable = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -249,6 +259,7 @@ homedecor.register("swing_rope", {
 		"homedecor_swingrope_sides.png"
 	},
 	groups = { not_in_creative_inventory=1 },
+	walkable = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -263,7 +274,7 @@ homedecor.register("well", {
 	mesh = "homedecor_well.obj",
 	tiles = {
 		"homedecor_rope_texture.png",
-		"forniture_metal.png",
+		"homedecor_generic_metal_neutral.png",
 		"default_water.png",
 		"default_cobble.png",
 		"default_wood.png",
@@ -275,8 +286,8 @@ homedecor.register("well", {
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
 	expand = { top="air" },
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_alias("homedecor:well_top", "air")
 minetest.register_alias("homedecor:well_base", "homedecor:well")
-

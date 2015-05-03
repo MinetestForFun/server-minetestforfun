@@ -47,19 +47,16 @@ homedecor.register("trash_can_green_open", {
 		return inv:is_empty("main")
 	end,
 	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", S("%s moves stuff in %s at %s"):format(
-			player:get_player_name(), name, minetest.pos_to_string(pos)
-		))
+		minetest.log("action", player:get_player_name()..
+				" moves stuff in trash can at "..minetest.pos_to_string(pos))
 	end,
 	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", S("%s moves stuff in %s at %s"):format(
-			player:get_player_name(), name, minetest.pos_to_string(pos)
-		))
+		minetest.log("action", player:get_player_name()..
+				" moves stuff in trash can at "..minetest.pos_to_string(pos))
 	end,
 	on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", S("%s takes stuff in %s at %s"):format(
-			player:get_player_name(), name, minetest.pos_to_string(pos)
-		))
+		minetest.log("action", player:get_player_name()..
+				" takes stuff from trash can at "..minetest.pos_to_string(pos))
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if fields.empty then

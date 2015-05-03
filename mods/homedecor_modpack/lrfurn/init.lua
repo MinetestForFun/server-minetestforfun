@@ -1,5 +1,3 @@
--- LRfurn mod by thefamilygrog66
-
 lrfurn = {}
 
 lrfurn.fdir_to_fwd = {

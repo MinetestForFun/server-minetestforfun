@@ -3,13 +3,13 @@
 local S = homedecor.gettext
 
 -- steel-textured fridge
-
 homedecor.register("refrigerator_steel", {
 	mesh = "homedecor_refrigerator.obj",
 	tiles = { "homedecor_refrigerator_steel.png" },
 	inventory_image = "homedecor_refrigerator_steel_inv.png",
 	description = S("Refrigerator (stainless steel)"),
 	groups = {snappy=3},
+	sounds = default.node_sound_stone_defaults(),
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
 	expand = { top="air" },
@@ -21,7 +21,6 @@ homedecor.register("refrigerator_steel", {
 })
 
 -- white, enameled fridge
-
 homedecor.register("refrigerator_white", {
 	mesh = "homedecor_refrigerator.obj",
 	tiles = { "homedecor_refrigerator_white.png" },
@@ -30,6 +29,7 @@ homedecor.register("refrigerator_white", {
 	groups = {snappy=3},
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
+	sounds = default.node_sound_stone_defaults(),
 	expand = { top="air" },
 	infotext=S("Refrigerator"),
 	inventory = {
@@ -51,7 +51,6 @@ minetest.register_alias("homedecor:refrigerator_steel_bottom_locked", "homedecor
 minetest.register_alias("homedecor:refrigerator_steel_top_locked", "air")
 
 -- kitchen "furnaces"
-
 homedecor.register_furnace("homedecor:oven", {
 	description = S("Oven"),
 	tile_format = "homedecor_oven_%s%s.png",
@@ -86,7 +85,6 @@ homedecor.register_furnace("homedecor:microwave_oven", {
 	extra_nodedef_fields = {
 		drawtype = "nodebox",
 		paramtype = "light",
-		--paramtype2 = "facedir", -- Not needed, set by register_furnace
 		node_box = {
 			type = "fixed",
 			fixed = { { -0.5, -0.5, -0.125, 0.5, 0.125, 0.5 } },
@@ -115,9 +113,7 @@ homedecor.register("coffee_maker", {
 	},
 	description = "Coffee Maker",
 	inventory_image = "homedecor_coffeemaker_inv.png",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	sunlight_propagates = true,
+	walkable = false,
 	groups = {snappy=3},
 	selection_box = cm_cbox,
 	node_box = cm_cbox
@@ -160,20 +156,10 @@ minetest.register_abm({
 })
 
 homedecor.register("toaster", {
-        description = "Toaster",
-	tiles = {
-		"homedecor_toaster_sides.png",
-		"homedecor_toaster_sides.png",
-		"homedecor_toaster_sides.png",
-		"homedecor_toaster_sides.png",
-		"homedecor_toaster_sides.png",
-		"homedecor_toaster_sides.png"
-	},
+	description = "Toaster",
+	tiles = { "homedecor_toaster_sides.png" },
 	inventory_image = "homedecor_toaster_inv.png",
-	drawtype = "nodebox",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	sunlight_propagates = true,
+	walkable = false,
 	groups = { snappy=3 },
 	node_box = {
 		type = "fixed",
@@ -201,10 +187,7 @@ homedecor.register("toaster_loaf", {
 		"homedecor_toaster_sides.png",
 		"homedecor_toaster_sides.png"
 	},
-	drawtype = "nodebox",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	sunlight_propagates = true,
+	walkable = false,
 	groups = { snappy=3, not_in_creative_inventory=1 },
 	node_box = {
 		type = "fixed",
@@ -233,8 +216,6 @@ homedecor.register("dishwasher", {
 		"homedecor_dishwasher_back.png",
 		"homedecor_dishwasher_front.png"
 	},
-	paramtype = "light",
-	paramtype2 = "facedir",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -245,6 +226,7 @@ homedecor.register("dishwasher", {
 		}
 	},
 	selection_box = { type = "regular" },
+	sounds = default.node_sound_stone_defaults(),
 	groups = { snappy = 3 },
 })
 
@@ -261,8 +243,7 @@ homedecor.register("dishwasher_"..m, {
 		"homedecor_dishwasher_back.png",
 		"homedecor_dishwasher_front.png"
 	},
-	paramtype = "light",
-	paramtype2 = "facedir",
 	groups = { snappy = 3 },
+	sounds = default.node_sound_stone_defaults(),
 })
 end

@@ -1,30 +1,29 @@
-local clock_cbox = {
-	type = "fixed",
-	fixed = {
-		{ -8/32, -3/32, 14/32, 8/32, 3/32, 16/32 },
-		{ -7/32, -5/32, 14/32, 7/32, 5/32, 16/32 },
-		{ -6/32, -6/32, 14/32, 6/32, 6/32, 16/32 },
-		{ -5/32, -7/32, 14/32, 5/32, 7/32, 16/32 },
-		{ -3/32, -8/32, 14/32, 3/32, 8/32, 16/32 }
-	}
-}
-
 local clock_sbox = {
 	type = "fixed",
 	fixed = { -8/32, -8/32, 14/32, 8/32, 8/32, 16/32 }
 }
 
-local materials = {"plastic", "wood"}
+local clock_materials = {
+	{ "plastic", "homedecor_generic_plastic_white.png" },
+	{ "wood", "default_wood.png" }
+}
 
-for _, m in ipairs(materials) do
-	homedecor.register("analog_clock_"..m, {
-		description = "Analog clock ("..m..")",
+for i in ipairs(clock_materials) do
+	local m1 = clock_materials[i][1]
+	local m2 = clock_materials[i][2]
+	homedecor.register("analog_clock_"..m1, {
+		description = "Analog clock ("..m1..")",
 		mesh = "homedecor_analog_clock.obj",
-		tiles = { "homedecor_analog_clock_"..m..".png" },
-		inventory_image = "homedecor_analog_clock_"..m.."_inv.png",
-		collision_box = clock_cbox,
+		tiles = {
+			"homedecor_analog_clock_face.png",
+			m2,
+			"homedecor_analog_clock_back.png"
+		},
+		inventory_image = "homedecor_analog_clock_"..m1.."_inv.png",
+		walkable = false,
 		selection_box = clock_sbox,
 		groups = {snappy=3},
+		sounds = default.node_sound_wood_defaults(),
 	})
 end
 
@@ -45,6 +44,8 @@ homedecor.register("digital_clock", {
 			{-0.28125, -0.25, 0.4375, 0.3125, 0.25, 0.5},
 		}
 	},
+	walkable = false,
+	sounds = default.node_sound_wood_defaults(),
 	groups = {snappy=3},
 })
 
@@ -65,6 +66,8 @@ homedecor.register("alarm_clock", {
 			{ -9/32, -16/32, 7/32, 10/32, -5/32, 16/32 },
 		}
 	},
+	walkable = false,
+	sounds = default.node_sound_wood_defaults(),
 	groups = {snappy=3},
 })
 
@@ -79,9 +82,9 @@ homedecor.register("grandfather_clock", {
 	tiles = {
 		"default_glass.png",
 		"homedecor_grandfather_clock_face.png",
-		"homedecor_grandfather_clock_wood.png",
+		"homedecor_generic_wood_luxury_brown1.png",
 		"homedecor_grandfather_clock_face_edge.png",
-		"homedecor_tile_brass2.png"
+		"homedecor_generic_metal_brass.png"
 	},
 	inventory_image = "homedecor_grandfather_clock_inv.png",
 	groups = { snappy = 3 },
@@ -93,5 +96,3 @@ homedecor.register("grandfather_clock", {
 
 minetest.register_alias("homedecor:grandfather_clock_bottom", "homedecor:grandfather_clock")
 minetest.register_alias("homedecor:grandfather_clock_top", "air")
-
-

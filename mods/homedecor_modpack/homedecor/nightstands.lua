@@ -11,7 +11,6 @@ homedecor.register("nightstand_"..w.."_one_drawer", {
 			'homedecor_nightstand_'..w..'_left.png',
 			'homedecor_nightstand_'..w..'_back.png',
 			'homedecor_nightstand_'..w..'_1_drawer_front.png'},
-	selection_box = { type = "regular" },
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -25,6 +24,7 @@ homedecor.register("nightstand_"..w.."_one_drawer", {
 	},
 	groups = { snappy = 3 },
 	sounds = default.node_sound_wood_defaults(),
+	selection_box = { type = "regular" },
 	infotext=S("One-drawer Nightstand"),
 	inventory = {
 		size=8,
@@ -39,7 +39,6 @@ homedecor.register("nightstand_"..w.."_two_drawers", {
 			'homedecor_nightstand_'..w..'_left.png',
 			'homedecor_nightstand_'..w..'_back.png',
 			'homedecor_nightstand_'..w..'_2_drawer_front.png'},
-	selection_box = { type = "regular" },
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -51,6 +50,7 @@ homedecor.register("nightstand_"..w.."_two_drawers", {
 	},
 	groups = { snappy = 3 },
 	sounds = default.node_sound_wood_defaults(),
+	selection_box = { type = "regular" },
 	infotext=S("Two-drawer Nightstand"),
 	inventory = {
 		size=16,

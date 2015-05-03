@@ -152,7 +152,6 @@ minetest.register_node("building_blocks:grate", {
 	sunlight_propagates = true,
 	is_ground_content = true,
 	groups = {cracky=1},
-	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("building_blocks:Fireplace", {
@@ -213,6 +212,7 @@ minetest.register_node("building_blocks:Tarmac_spread", {
 	sunlight_propagates = true,
 	is_ground_content = true,
 	groups = {cracky=3},
+	sounds = default.node_sound_dirt_defaults(),
 })
 minetest.register_node("building_blocks:BWtile", {
 	drawtype = "raillike",
@@ -261,6 +261,10 @@ minetest.register_node("building_blocks:gravel_spread", {
 	sunlight_propagates = true,
 	is_ground_content = true,
 	groups = {crumbly=2},
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name="default_gravel_footstep", gain=0.5},
+		dug = {name="default_gravel_footstep", gain=1.0},
+	}),
 })
 minetest.register_node("building_blocks:hardwood", {
 	tiles = {"building_blocks_hardwood.png"},

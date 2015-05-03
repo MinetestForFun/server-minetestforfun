@@ -36,6 +36,7 @@ homedecor.register("book_"..color, {
 	inventory_image = "homedecor_book_"..color.."_inv.png",
 	wield_image = "homedecor_book_"..color.."_inv.png",
 	groups = { snappy=3, oddly_breakable_by_hand=3, book=1 },
+	walkable = false,
 	stack_max = 1,
 	on_rightclick = function(pos, node, clicker)
 		local fdir = node.param2
@@ -99,11 +100,7 @@ homedecor.register("book_"..color, {
 	selection_box = {
             type = "fixed",
 			fixed = {-0.2, -0.5, -0.25, 0.2, -0.35, 0.25}
-	},
-	collision_box = {
-            type = "fixed",
-			fixed = {-0.15, -0.5, -0.25, 0.15, -0.35, 0.25}
-	},
+	}
 })
 
 homedecor.register("book_open_"..color, {
@@ -111,6 +108,7 @@ homedecor.register("book_open_"..color, {
 	tiles = { "homedecor_book_open_"..color..".png" },
 	groups = { snappy=3, oddly_breakable_by_hand=3, not_in_creative_inventory=1 },
 	drop = "homedecor:book_"..color,
+	walkable = false,
 	on_dig = book_dig,
 	on_rightclick = function(pos, node, clicker)
 		local fdir = node.param2
@@ -124,11 +122,7 @@ homedecor.register("book_open_"..color, {
 	selection_box = {
             type = "fixed",
 			fixed = {-0.35, -0.5, -0.25, 0.35, -0.4, 0.25}
-	},
-	collision_box = {
-            type = "fixed",
-			fixed = {-0.35, -0.5, -0.25, 0.35, -0.4, 0.25}
-	},
+	}
 })
 
 end

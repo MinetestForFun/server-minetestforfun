@@ -10,7 +10,7 @@ homedecor.register("speaker", {
 		"homedecor_speaker_front.png"
 	},
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:speaker_open", param2 = node.param2})
 	end
@@ -23,9 +23,10 @@ homedecor.register("speaker_open", {
 		"homedecor_speaker_sides.png",
 		"homedecor_speaker_driver.png",
 		"homedecor_speaker_open_front.png",
+		"homedecor_generic_metal_black.png"
 	},
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:speaker", param2 = node.param2})
 	end
@@ -44,9 +45,9 @@ homedecor.register("speaker_small", {
 		"homedecor_speaker_front.png"
 	},
 	selection_box = spk_cbox,
-	collision_box = spk_cbox,
+	walkable = false,
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 })
 
 homedecor.register("stereo", {
@@ -58,7 +59,7 @@ homedecor.register("stereo", {
 			'homedecor_stereo_back.png',
 			'homedecor_stereo_front.png'},
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 })
 
 homedecor.register("projection_screen", {
@@ -137,6 +138,19 @@ homedecor.register("telephone", {
 	description = "Telephone",
 	groups = {snappy=3},
 	selection_box = tel_cbox,
-	collision_box = tel_cbox,
+	walkable = false,
+	sounds = default.node_sound_wood_defaults(),
 })
 
+minetest.register_abm({
+	nodenames = "homedecor:telephone",
+	interval = 30,
+	chance = 10,
+	action = function(pos, node)
+		minetest.sound_play("homedecor_telephone_ringing", {
+		pos = pos,
+		gain = 1.0,
+		max_hear_distance = 10
+	})
+	end
+})

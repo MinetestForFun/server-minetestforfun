@@ -197,3 +197,49 @@ function homedecor.unextend_bed(pos, color)
 	end
 end
 
+function homedecor.place_banister(itemstack, placer, pointed_thing)
+	local pos, def = select_node(pointed_thing)
+
+	if def.on_rightclick then
+		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
+	end				
+
+	local fdir = minetest.dir_to_facedir(placer:get_look_dir())
+
+	local abovepos  = { x=pos.x, y=pos.y+1, z=pos.z }
+	local abovenode = minetest.get_node(abovepos)
+
+	local adef = minetest.registered_nodes[abovenode.name]
+	local placer_name = placer:get_player_name()
+
+	if not (adef and adef.buildable_to) then
+		minetest.chat_send_player(placer_name, "Not enough room - the upper space is occupied!" )
+		return
+	end
+
+	if minetest.is_protected(abovepos, placer_name) then 
+		minetest.chat_send_player(placer_name, "Someone already owns that spot." )
+		return
+	end
+
+	local rxd = homedecor.fdir_to_right[fdir+1][1]
+	local rzd = homedecor.fdir_to_right[fdir+1][2]
+
+	local fxd = homedecor.fdir_to_fwd[fdir+1][1]
+	local fzd = homedecor.fdir_to_fwd[fdir+1][2]
+
+	local right_fwd_above_pos = { x=pos.x+rxd+fxd, y=pos.y+1, z=pos.z+rzd+fzd }
+	local right_fwd_above_node = minetest.get_node(right_fwd_above_pos)
+
+	local new_place_name = itemstack:get_name()
+
+	if placer:get_player_control()["sneak"]
+	  or not is_buildable_to(placer_name, right_fwd_above_pos, nil, right_fwd_above_pos) then
+		new_place_name = string.gsub(new_place_name, "_left", "_right")
+	end
+
+	minetest.set_node(pos, {name = new_place_name, param2 = fdir})
+	itemstack:take_item()
+	return itemstack
+end
+

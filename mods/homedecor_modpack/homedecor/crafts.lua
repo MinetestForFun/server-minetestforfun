@@ -1297,11 +1297,20 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "homedecor:oil_lamp 4",
+	output = "homedecor:oil_lamp",
 	recipe = {
 		{ "", "vessels:glass_bottle", "" },
 		{ "", "farming:string", "" },
 		{ "default:steel_ingot", "homedecor:oil_extract", "default:steel_ingot" }
+	}
+})
+
+minetest.register_craft({
+	output = "homedecor:oil_lamp_tabletop",
+	recipe = {
+		{ "", "vessels:glass_bottle", "" },
+		{ "", "farming:string", "" },
+		{ "default:iron_lump", "homedecor:oil_extract", "default:iron_lump" }
 	}
 })
 
@@ -1911,7 +1920,7 @@ minetest.register_craft( {
 	},
 })
 
--- washer and dryer
+-- laundry stuff
 
 minetest.register_craft( {
     output = "homedecor:washing_machine",
@@ -1946,6 +1955,15 @@ minetest.register_craft( {
 		{ "default:steel_ingot", "default:steel_ingot", "homedecor:ic" },
 		{ "default:steel_ingot", "bucket:bucket_empty", "technic:motor" },
 		{ "default:steel_ingot", "homedecor:heating_element", "default:steel_ingot" }
+    },
+})
+
+minetest.register_craft( {
+    output = "homedecor:ironing_board",
+    recipe = {
+		{ "wool:grey", "wool:grey", "wool:grey"},
+		{ "", "default:steel_ingot", "" },
+		{ "default:steel_ingot", "", "default:steel_ingot" }
     },
 })
 
@@ -2568,10 +2586,10 @@ minetest.register_craft( {
 minetest.register_craft( {
         output = "homedecor:cobweb_corner 5",
         recipe = {
-			{ "", 			"farming:string", 	"" 			},
-			{ "farming:string", 	"farming:string", 	"farming:string" 	}, -- craft changé pour éviter conflit avec le "Spider Cobweb" du mod "mobs"
-			{ "", 			"farming:string", 	"" 			}
-        }, -- MODIFICATION MADE FOR MFF ^
+			{ "farming:string", "", "farming:string" },
+			{ "", "farming:string", "" },
+			{ "farming:string", "", "farming:string" }
+        },
 })
 
 minetest.register_craft( {
@@ -3161,6 +3179,24 @@ minetest.register_craft({
 		{ "default:glass", "homedecor:glowlight_small_cube_white", "default:glass"}
 	},
 })
+
+for i in ipairs(homedecor.banister_materials) do
+
+	local name    = homedecor.banister_materials[i][1]
+	local topmat  = homedecor.banister_materials[i][5]
+	local vertmat = homedecor.banister_materials[i][6]
+	local dye1    = homedecor.banister_materials[i][7]
+	local dye2    = homedecor.banister_materials[i][8]
+
+	minetest.register_craft({
+		output = "homedecor:banister_"..name.."_left 2",
+		recipe = {
+			{ topmat,  "",      dye1   },
+			{ vertmat, topmat,  ""     },
+			{ dye2,    vertmat, topmat }
+		},
+	})
+end
 
 if (minetest.get_modpath("technic") and minetest.get_modpath("dye") and minetest.get_modpath("bees")) then
 	technic.register_separating_recipe({ input = {"bees:wax 1"}, output = {"homedecor:oil_extract 2","dye:yellow 1"} })

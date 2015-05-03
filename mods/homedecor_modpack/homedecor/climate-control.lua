@@ -34,7 +34,6 @@ minetest.register_entity("homedecor:mesh_desk_fan", {
 
 homedecor.register("desk_fan", {
 	description = "Desk Fan",
-	legacy_facedir_simple = true,
 	groups = {oddly_breakable_by_hand=2},
 	node_box = {
 		type = "fixed",
@@ -123,7 +122,7 @@ homedecor.register("ceiling_fan", {
 	},
 	groups = { snappy = 3 },
 	light_source = LIGHT_MAX-1,
-	sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_glass_defaults(),
 })
 
 -- heating devices
@@ -138,9 +137,9 @@ homedecor.register("space_heater", {
 		  'homedecor_heater_front.png'
 	},
 	inventory_image = "homedecor_heater_inv.png",
-	sunlight_propagates = true,
+	walkable = false,
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -161,7 +160,7 @@ local r_cbox = {
 homedecor.register("radiator", {
 	mesh = "homedecor_radiator.obj",
 	tiles = {
-		"homedecor_white_metal.png",
+		"homedecor_generic_metal_white.png",
 		"homedecor_radiator_controls.png"
 	},
 	inventory_image = "homedecor_radiator_inv.png",
@@ -169,5 +168,5 @@ homedecor.register("radiator", {
 	groups = {snappy=3},
 	selection_box = r_cbox,
 	collision_box = r_cbox,
+	sounds = default.node_sound_wood_defaults(),
 })
-

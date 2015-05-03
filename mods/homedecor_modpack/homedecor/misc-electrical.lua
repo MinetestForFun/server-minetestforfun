@@ -22,7 +22,7 @@ homedecor.register("power_outlet", {
 		}
 	},
 	groups = {cracky=3,dig_immediate=2},
-	sounds = default.node_sound_stone_defaults()
+	walkable = false
 })
 
 homedecor.register("light_switch", {
@@ -51,7 +51,7 @@ homedecor.register("light_switch", {
 		}
 	},
 	groups = {cracky=3,dig_immediate=2},
-	sounds = default.node_sound_stone_defaults()
+	walkable = false
 })
 
 
@@ -60,6 +60,7 @@ homedecor.register("doorbell", {
 	inventory_image = "homedecor_doorbell_inv.png",
 	description = "Doorbell",
     groups = {snappy=3},
+    walkable = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -75,4 +76,3 @@ homedecor.register("doorbell", {
 		})
 	end
 })
-

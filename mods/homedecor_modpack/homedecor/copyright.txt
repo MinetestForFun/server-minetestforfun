@@ -13,4 +13,6 @@ Licenses:
 	http://freesound.org/people/guitarguy1985/sounds/69384/
 * For the book sound, Public Domain by mckinneysound's on http://www.freesfx.co.uk/
 	http://www.freesfx.co.uk/sfx/book?p=3
+* For the phone ring, Public Domain by andyt's on http://www.freesfx.co.uk/
+	http://www.freesfx.co.uk/sfx/phone?p=5
 * For all images and everything else, WTFPL.

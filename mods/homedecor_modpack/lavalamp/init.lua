@@ -38,6 +38,7 @@ for i in ipairs(lavalamps_list) do
 	        fixed = { -0.25, -0.5, -0.25, 0.25,0.5, 0.25 },
 	    },
 		groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
+		sounds = default.node_sound_glass_defaults(),
 		on_rightclick = function(pos, node, clicker)
 	        node.name = "lavalamp:"..colour.."_off"
 	        minetest.set_node(pos, node)
@@ -61,7 +62,8 @@ for i in ipairs(lavalamps_list) do
 	        fixed = { -0.25, -0.5, -0.25, 0.25,0.5, 0.25 },
 	    },
 		groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
-	    drop = "lavalamp:"..colour,
+		sounds = default.node_sound_glass_defaults(),
+		drop = "lavalamp:"..colour,
 		on_rightclick = function(pos, node, clicker)
 	        node.name = "lavalamp:"..colour
 	        minetest.set_node(pos, node)
@@ -78,4 +80,3 @@ for i in ipairs(lavalamps_list) do
 	})
 	
 end
-

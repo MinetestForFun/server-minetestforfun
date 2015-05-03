@@ -10,6 +10,14 @@ local armchairs_list = {
 	{ "White Armchair", "white"},
 }
 
+local armchair_cbox = {
+	type = "fixed",
+	fixed = { 
+		{-0.5, -0.5, -0.5, 0.5, 0, 0.5 },
+		{-0.5, -0.5, 0.4, 0.5, 0.5, 0.5 }
+	}
+}
+
 for i in ipairs(armchairs_list) do
 	local armchairdesc = armchairs_list[i][1]
 	local colour = armchairs_list[i][2]
@@ -24,8 +32,9 @@ for i in ipairs(armchairs_list) do
 		},
 		paramtype = "light",
 		paramtype2 = "facedir",
-		groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		groups = {snappy=3},
 		sounds = default.node_sound_wood_defaults(),
+		node_box = armchair_cbox,
 		on_rightclick = function(pos, node, clicker)
 			if not clicker:is_player() then
 				return

@@ -217,6 +217,13 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "homedecor:taps_brass",
+	recipe = {
+		{ "technic:brass_ingot","bucket:bucket_water", "technic:brass_ingot" },
+	},
+})
+
+minetest.register_craft({
 	output = "homedecor:shower_tray",
 	recipe = {
 		{ "group:marble","bucket:bucket_water", "group:marble" },

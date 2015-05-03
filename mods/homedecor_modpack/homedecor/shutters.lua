@@ -33,7 +33,6 @@ for i in ipairs(shutters) do
 		description = S("Wooden Shutter ("..desc..")"),
 		inventory_image = "homedecor_window_shutter_"..name.."_inv.png",
 		wield_image = "homedecor_window_shutter_"..name.."_inv.png",
-		paramtype = "light",
 		paramtype2 = "wallmounted",
 		groups = { snappy = 3 },
 		sounds = default.node_sound_wood_defaults(),

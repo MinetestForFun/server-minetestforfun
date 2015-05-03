@@ -44,7 +44,7 @@ homedecor.register("towel_rod", {
 	},
 	inventory_image = "homedecor_towel_rod_inv.png",
 	selection_box = tr_cbox,
-	collision_box = tr_cbox,
+	walkable = false,
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3},
 	sounds = default.node_sound_defaults(),
 })
@@ -102,22 +102,5 @@ homedecor.register("medicine_cabinet_open", {
 		node.name = "homedecor:medicine_cabinet"
 		minetest.swap_node(pos, node)
 	end,
-})
-
-homedecor.register("toilet_paper", {
-	description = S("Toilet paper"),
-	mesh = "homedecor_toilet_paper.obj",
-	tiles = { "homedecor_toilet_paper.png" },
-	inventory_image = "homedecor_toilet_paper_inv.png",
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.1875, 0.125, 0.0625, 0.25, 0.4375, 0.5 }
-	},
-	collision_box = {
-		type = "fixed",
-		fixed = { -0.1875, 0.125, 0.0625, 0.25, 0.4375, 0.5 }
-	},
-	groups = {snappy=2,oddly_breakable_by_hand=3,flammable=3},
-	sounds = default.node_sound_defaults(),
 })
 

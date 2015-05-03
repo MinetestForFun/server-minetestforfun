@@ -22,7 +22,7 @@ for _, m in ipairs(materials) do
 homedecor.register("fence_"..m, {
 	description = S("Fence/railing ("..m..")"),
 	drawtype = "fencelike",
-	tiles = {"homedecor_tile_"..m..".png"},
+	tiles = {"homedecor_generic_metal_"..m..".png"},
 	inventory_image = "homedecor_fence_"..m..".png",
 	selection_box = homedecor.nodebox.bar_y(1/7),
 	groups = {snappy=3},

@@ -6,10 +6,8 @@ minetest.register_node("homedecor:skylight", {
 	tiles = { "default_glass.png" },
 	wield_image = "default_glass.png",
 	inventory_image = "homedecor_skylight_inv.png",
-	paramtype = "light",
-	sunlight_propagates = true,
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_glass_defaults(),
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
@@ -19,11 +17,9 @@ minetest.register_node("homedecor:skylight_frosted", {
 	tiles = { "homedecor_skylight_frosted.png" },
 	wield_image = "homedecor_skylight_frosted.png",
 	inventory_image = "homedecor_skylight_frosted_inv.png",
-	paramtype = "light",
-	sunlight_propagates = true,
 	use_texture_alpha = true,
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_glass_defaults(),
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
@@ -39,7 +35,7 @@ minetest.register_node("homedecor:shingles_"..s, {
 	paramtype = "light",
 	walkable = false,
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_wood_defaults(),
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 end
