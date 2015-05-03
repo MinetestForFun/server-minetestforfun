@@ -74,7 +74,7 @@ for shade = 1, 3 do
 				"wood_"..shadename..huename,
 				colorname,
 				{
-					groups = colored_block_groups,
+					groups = stairsplus_groups,	-- Modif MFF
 					tiles =	{ pngname },
 					description = nodedesc,
 					drop = "wood_"..shadename..huename,
@@ -86,7 +86,7 @@ for shade = 1, 3 do
 				"wood_"..shadename..huename.."_s50",
 				s50colorname,
 				{
-					groups = colored_block_groups,
+					groups = stairsplus_groups,	-- Modif MFF
 					tiles =	{ s50pngname },
 					description = s50nodedesc,
 					drop = "wood_"..shadename..huename.."_s50",
@@ -155,7 +155,7 @@ for hue = 1, 12 do
 			"wood_light_"..huename,
 			colorname,
 			{
-				groups = colored_block_groups,
+				groups = stairsplus_groups,	-- Modif MFF
 				tiles =	{ pngname },
 				description = nodedesc,
 				drop = "wood_light_"..huename,
@@ -214,7 +214,7 @@ for grey = 1,5 do
 			"wood_"..greyname,
 			greyshadename,
 			{
-				groups = colored_block_groups,
+				groups = stairsplus_groups,	-- Modif MFF
 				tiles =	{ pngname },
 				description = nodedesc,
 				drop = "wood_"..greyname,
