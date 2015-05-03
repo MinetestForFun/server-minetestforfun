@@ -143,6 +143,8 @@ load_mod_hud = true
 load_mod_gauges = true
 load_mod_sprint = true
 load_mod_mana = true
+load_mod_solarmana = true
+load_mod_runes = true
 load_mod_awards = true
 load_mod_fail = true
 
@@ -192,7 +194,3 @@ load_mod_chatplus = true
 load_mod_future_ban = false
 load_mod_textures = false
 load_mod_snowdrift = false
-
-load_mod_metatools = true
-load_mod_connected_chests = true
-load_mod_solarmana = true
