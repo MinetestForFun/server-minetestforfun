@@ -51,7 +51,9 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			if obj:get_luaentity() ~= nil then
 				if obj:get_luaentity().name ~= "throwing:arrow_teleport_entity" and obj:get_luaentity().name ~= "__builtin:item" then
 					if self.player ~= "" then
-						self.player:setpos(pos)
+						if not minetest.is_protected(pos, self.player:get_player_name()) then
+							self.player:setpos(pos)
+						end
 						self.player:get_inventory():add_item("main", ItemStack("throwing:arrow_teleport"))
 						minetest.sound_play("throwing_teleport_arrow", {pos = self.lastpos})
 					end
@@ -59,7 +61,9 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				end
 			else
 				if self.player ~= "" then
-					self.player:setpos(pos)
+					if not minetest.is_protected(pos, self.player:get_player_name()) then
+						self.player:setpos(pos)
+					end
 					self.player:get_inventory():add_item("main", ItemStack("throwing:arrow_teleport"))
 					minetest.sound_play("throwing_teleport_arrow", {pos = self.lastpos})
 				end
@@ -71,7 +75,9 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 	if self.lastpos.x ~= nil then
 		if minetest.registered_nodes[node.name].walkable then
 			if self.player ~= "" then
-					self.player:setpos(self.lastpos)
+					if not minetest.is_protected(self.lastpos, self.player:get_player_name()) then
+						self.player:setpos(self.lastpos)
+					end
 					self.player:get_inventory():add_item("main", ItemStack("throwing:arrow_teleport"))
 					minetest.sound_play("throwing_teleport_arrow", {pos = self.lastpos})
 				end
