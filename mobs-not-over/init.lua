@@ -24,13 +24,15 @@ dofile(minetest.get_modpath("mobs").."/sandmonster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/stonemonster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/treemonster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/wolf.lua") -- PilzAdam
+--dofile(minetest.get_modpath("mobs").."/dog-can-help.lua") -- ???
 --dofile(minetest.get_modpath("mobs").."/lava_flan.lua") -- Zeg9 --Remplaced by Lava Slime
 dofile(minetest.get_modpath("mobs").."/mese_monster.lua") -- Zeg9
 dofile(minetest.get_modpath("mobs").."/spider.lua") -- AspireMint
 dofile(minetest.get_modpath("mobs").."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 dofile(minetest.get_modpath("mobs").."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 dofile(minetest.get_modpath("mobs").."/zombie.lua") -- ???
-
+dofile(minetest.get_modpath("mobs").."/yeti.lua") -- ???
+dofile(minetest.get_modpath("mobs").."/minotaur.lua") -- ???
 
 -- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead

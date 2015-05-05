@@ -7,7 +7,7 @@ mobs:register_mob("mobs:wolf", {
 	-- agressive, does 4 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 5,					-- 3 damages if tamed
+	damage = 3,					-- 2 damage less than wolf
 	-- health & armor
 	hp_min = 15, hp_max = 20, armor = 200,
 	-- textures and model
@@ -24,7 +24,6 @@ mobs:register_mob("mobs:wolf", {
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_wolf",
-		attack = "mobs_wolf_attack",
 	},
 	-- speed and jump
 	walk_velocity = 3,
@@ -63,10 +62,6 @@ mobs:register_mob("mobs:wolf", {
 			self.object:remove()
 			local dog_obj = minetest.add_entity(self.object:getpos(), "mobs:dog")
 			dog_obj.tamed == true
-			dog_obj.textures = {{"mobs_dog.png"},},
-			dog_obj.damage = 3
-			dog_obj.walk_velocity = 4,
-			dog_obj.run_velocity = 4,
 			if dog_obj.owner == "" then
 				self.owner = clicker:get_player_name()
 			else return end

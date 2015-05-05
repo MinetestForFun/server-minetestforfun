@@ -13,7 +13,7 @@ mobs:register_mob("mobs:npc", {
 	type = "npc",
 	-- aggressive, deals 6 damage to player/monster when hit
 	passive = false,
-	damage = 6,
+	damage = 6,					-- 4 damages if tamed
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health & armor
@@ -97,6 +97,7 @@ mobs:register_mob("mobs:npc", {
 
 			if self.owner == "" then
 				self.owner = clicker:get_player_name()
+				self.damages = 4
 			else
 				if self.order == "follow" then
 					self.order = "stand"

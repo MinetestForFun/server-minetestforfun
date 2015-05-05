@@ -13,7 +13,7 @@ mobs:register_mob("mobs:zombie", {
 	hp_max = 40,
 	armor = 100,
 	-- textures and model
-	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
+	collisionbox = {-0.25, -1, -0.3, 0.25, 0.75, 0.3},
 	visual = "mesh",
 	mesh = "mobs_zombie.x",
 	textures = {
@@ -30,11 +30,11 @@ mobs:register_mob("mobs:zombie", {
 		death = "mobs_zombie_death",
 	},
 	-- speed and jump
+	view_range = 16,
 	walk_velocity = 1,
 	run_velocity = 3,
 	jump = true,
 	floats = 0,
-	view_range = 10,
 -- drops dirt and coins when dead
 	drops = {
 		{name = "maptools:copper_coin",
