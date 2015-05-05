@@ -62,11 +62,11 @@ mobs:register_mob("mobs:wolf", {
 			minetest.add_entity(self.object:getpos(), "mobs:dog")
 			self.object:remove()
 			local dog_obj = minetest.add_entity(self.object:getpos(), "mobs:dog")
-			dog_obj.tamed == true
-			dog_obj.textures = {{"mobs_dog.png"},},
+			dog_obj.tamed = true
+			dog_obj.textures = {"mobs_dog.png"}
 			dog_obj.damage = 3
-			dog_obj.walk_velocity = 4,
-			dog_obj.run_velocity = 4,
+			dog_obj.walk_velocity = 4
+			dog_obj.run_velocity = 4
 			if dog_obj.owner == "" then
 				self.owner = clicker:get_player_name()
 			else return end
