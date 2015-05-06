@@ -52,13 +52,17 @@ boats.register_boat = function(parameters)
 			default.player_attached[name] = false
 			default.player_set_animation(clicker, "stand" , 30)
 		elseif not self.driver then
-			self.driver = clicker
-			clicker:set_attach(self.object, "", {x = 0, y = 11, z = -3}, {x = 0, y = 0, z = 0})
-			default.player_attached[name] = true
-			minetest.after(0.2, function()
-				default.player_set_animation(clicker, "sit" , 30)
-			end)
-			self.object:setyaw(clicker:get_look_yaw() - math.pi / 2)
+			if not default.player_attached[name] == true then
+				self.driver = clicker
+				clicker:set_attach(self.object, "", {x = 0, y = 11, z = -3}, {x = 0, y = 0, z = 0})
+				default.player_attached[name] = true
+				minetest.after(0.2, function()
+					default.player_set_animation(clicker, "sit" , 30)
+				end)
+				self.object:setyaw(clicker:get_look_yaw() - math.pi / 2)
+			else
+				minetest.chat_send_player(name, "You're already on a boat")
+			end
 		end
 	end
 
