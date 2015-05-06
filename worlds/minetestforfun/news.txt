@@ -1,9 +1,9 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
-MAJ de "whoison" (la commande "/timeonline <pseudo>" peut aussi être utilisé de cette façon maintenant : "/played <pseudo>")
-MAJ de "mobs" (ajout des chèvres/goats et des zombies)
-MAJ de "throwing" (refonte TOTAL des armes à distance, à debug et modifier)
+/!\ Le serveur étant devenu extrêmement stable, les MAJ vont ce rarifier pour un temps /!\
+/!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
+/!\ C'est un énorme projet, ambitieux et jamais tenté auparavant, beaucoup de monde travail dessus, restez à l'affut ! :) /!\
 
 ---22/04/2015--- (Remerciements : Gael-de-Sailly, Mg, Ataron)
 MAJ de "builtin_falling" (désactivation de tout le mod sauf de ses fonctions protégeant les areas protégés des liquides)
