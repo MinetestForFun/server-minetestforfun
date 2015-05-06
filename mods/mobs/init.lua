@@ -32,7 +32,7 @@ dofile(minetest.get_modpath("mobs").."/greenslimes.lua") -- davedevils/TomasJLui
 dofile(minetest.get_modpath("mobs").."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 dofile(minetest.get_modpath("mobs").."/zombie.lua") -- ???
 dofile(minetest.get_modpath("mobs").."/yeti.lua") -- ???
-dofile(minetest.get_modpath("mobs").."/minotaur.lua") -- ???
+--dofile(minetest.get_modpath("mobs").."/minotaur.lua") -- ???
 
 -- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead
