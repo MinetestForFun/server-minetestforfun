@@ -8,7 +8,7 @@
 
 -- Boilerplate to support localized strings if intllib mod is installed.
 local S = 0
-if (intllib) then
+if rawget(_G, "intllib") then
 	dofile(minetest.get_modpath("intllib").."/intllib.lua")
 	S = intllib.Getter(minetest.get_current_modname())
 else
