@@ -1,5 +1,5 @@
 --[[
-	Minetest Farming Redo Mod 1.12 (1st March 2015)
+	Minetest Farming Redo Mod 1.14 (19th April 2015)
 	by TenPlus1
 ]]
 
@@ -25,7 +25,8 @@ dofile(minetest.get_modpath("farming").."/cocoa.lua")
 dofile(minetest.get_modpath("farming").."/raspberry.lua")
 dofile(minetest.get_modpath("farming").."/blueberry.lua")
 dofile(minetest.get_modpath("farming").."/rhubarb.lua")
-dofile(minetest.get_modpath("farming").."/donut.lua") -- sweet treat
+dofile(minetest.get_modpath("farming").."/beanpole.lua")
+dofile(minetest.get_modpath("farming").."/donut.lua")
 dofile(minetest.get_modpath("farming").."/mapgen.lua")
 dofile(minetest.get_modpath("farming").."/compatibility.lua") -- Farming Plus compatibility
 
@@ -55,7 +56,8 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 	-- can I replace above node, and am I pointing at soil
 	if not minetest.registered_nodes[above.name].buildable_to
-	or minetest.get_item_group(under.name, "soil") < 2 then
+	or minetest.get_item_group(under.name, "soil") < 2 
+	or minetest.get_item_group(above.name, "plant") ~= 0 then -- ADDED this line for multiple seed placement bug
 		return
 	end
 

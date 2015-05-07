@@ -1,8 +1,4 @@
 
--- Override default jungletree, add tree=2 for cocoa placement
-
-minetest.override_item("default:jungletree", {groups = {tree=2,choppy=2,oddly_breakable_by_hand=1,flammable=2}})
-
 -- Place Cocoa
 
 function place_cocoa(itemstack, placer, pointed_thing, plantname)
@@ -21,7 +17,7 @@ function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	end
 
 	-- check if pointing at jungletree
-	if minetest.get_item_group(under.name, "tree") ~= 2 then
+	if under.name ~= "default:jungletree" then
 		return
 	end
 	

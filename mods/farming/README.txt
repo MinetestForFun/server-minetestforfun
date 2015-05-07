@@ -13,6 +13,8 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 Changelog:
 
+1.14 - Added Green Beans from Crops mod (thanks sofar), little bushels in the wild but need to be grown using beanpoles crafted with 4 sticks (2 either side)
+1.13 - Fixed seed double-placement glitch.  Mapgen now uses 0.4.12+ for plant generation
 1.12 - Player cannot place seeds in protected area, also growing speeds changed to match defaults
 1.11 - Added Straw Bale, streamlined growing abm a little, fixed melon rotation bug with screwdriver
 1.10 - Added Blueberry Bush and Blueberry Muffins, also Pumpkin/Melon easier to pick up, added check for unloaded map
