@@ -702,7 +702,7 @@ lifetimer = def.lifetimer or 600,
 				end
 				self.object:setyaw(yaw)
 				-- attack distance is 2 + half of mob width so the bigger mobs can attack (like slimes)
-				if self.attack.dist > ((-self.collisionbox[1]+self.collisionbox[4])/2)+2 then
+				if self.attack.dist > ((-self.collisionbox[1]+self.collisionbox[4])/2)+1.5 then
 					-- jump attack
 					if (self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0)
 					or (self.object:getvelocity().y == 0 and self.jump_chance > 0) then
