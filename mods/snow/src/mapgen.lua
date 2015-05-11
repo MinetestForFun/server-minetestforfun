@@ -40,7 +40,7 @@ local pine_tree = {
 	axiom="TABff",
 	rules_a="[&T+f+ff+ff+ff+f]GA",
 	rules_b="[&T+f+Gf+Gf+Gf]GB",
-	trunk="default:tree",
+	trunk="default:pinetree",
 	leaves="snow:needles",
 	angle=90,
 	iterations=1,
@@ -55,7 +55,7 @@ local xmas_tree = {
 	axiom="TABff",
 	rules_a="[&T+f+ff+ff+ff+f]GA",
 	rules_b="[&T+f+Gf+Gf+Gf]GB",
-	trunk="default:tree",
+	trunk="default:pinetree",
 	leaves="snow:needles_decorated",
 	angle=90,
 	iterations=1,
@@ -68,59 +68,59 @@ local xmas_tree = {
 
 --Makes pine tree
 function snow.make_pine(pos,snow,xmas)
-        local env = minetest.env
-        local perlin1 = env:get_perlin(112,3, 0.5, 150)
-        local try_node = function(pos, node)
-                local n = env:get_node(pos).name
-                if n == "air" or n == "ignore" then
-                        env:add_node(pos,node)
-                end
-        end
-        --Clear ground.
-        for x=-1,1 do
-        for z=-1,1 do
-                if env:get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snow" then
-                        env:remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
-                end
-                if env:get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snowblock" then
-                        env:remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
-                end
-        end
-        end
-        if xmas then
-                env:remove_node(pos)
-                minetest.env:spawn_tree(pos, xmas_tree)
-        else
-                minetest.env:spawn_tree(pos, pine_tree)
-        end
-        if snow then
-                local x,z = pos.x,pos.z
-                try_node({x=x+1,y=pos.y+3,z=z+1},{name="default:snow"})
-                try_node({x=x-1,y=pos.y+3,z=z-1},{name="default:snow"})
-                try_node({x=x-1,y=pos.y+3,z=z+1},{name="default:snow"})
-                try_node({x=x+1,y=pos.y+3,z=z-1},{name="default:snow"})
-                
-                try_node({x=x+1,y=pos.y+5,z=z},{name="default:snow"})
-                try_node({x=x-1,y=pos.y+5,z=z},{name="default:snow"})
-                try_node({x=x,y=pos.y+5,z=z+1},{name="default:snow"})
-                try_node({x=x,y=pos.y+5,z=z-1},{name="default:snow"})
-        end
-        if xmas then
-                try_node({x=pos.x,y=pos.y+7,z=pos.z},{name="snow:star_lit"}) -- Added lit star. ~ LazyJ
-        elseif snow and perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
-                try_node({x=pos.x,y=pos.y+7,z=pos.z},{name="default:snow"})
-        end
+	local minetest = minetest
+	local perlin1 = minetest.get_perlin(112,3, 0.5, 150)
+	local try_node = function(pos, node)
+		local n = minetest.get_node(pos).name
+		if n == "air" or n == "ignore" then
+			minetest.add_node(pos,node)
+		end
+	end
+	--Clear ground.
+	for x=-1,1 do
+	for z=-1,1 do
+		if minetest.get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snow" then
+			minetest.remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
+		end
+		if minetest.get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snowblock" then
+			minetest.remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
+		end
+	end
+	end
+	if xmas then
+		minetest.remove_node(pos)
+		minetest.spawn_tree(pos, xmas_tree)
+	else
+		minetest.spawn_tree(pos, pine_tree)
+	end
+	if snow then
+		local x,z = pos.x,pos.z
+		try_node({x=x+1,y=pos.y+3,z=z+1},{name="default:snow"})
+		try_node({x=x-1,y=pos.y+3,z=z-1},{name="default:snow"})
+		try_node({x=x-1,y=pos.y+3,z=z+1},{name="default:snow"})
+		try_node({x=x+1,y=pos.y+3,z=z-1},{name="default:snow"})
+
+		try_node({x=x+1,y=pos.y+5,z=z},{name="default:snow"})
+		try_node({x=x-1,y=pos.y+5,z=z},{name="default:snow"})
+		try_node({x=x,y=pos.y+5,z=z+1},{name="default:snow"})
+		try_node({x=x,y=pos.y+5,z=z-1},{name="default:snow"})
+	end
+	if xmas then
+		try_node({x=pos.x,y=pos.y+7,z=pos.z},{name="snow:star_lit"}) -- Added lit star. ~ LazyJ
+	elseif snow and perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
+		try_node({x=pos.x,y=pos.y+7,z=pos.z},{name="default:snow"})
+	end
 end
 
 
 
 --Makes pine tree
 function snow.voxelmanip_pine(pos,a,data)
-    local c_snow = minetest.get_content_id("default:snow")
-    local c_pine_needles = minetest.get_content_id("snow:needles")
-    local c_tree = minetest.get_content_id("default:tree")
-    local c_air = minetest.get_content_id("air")
-    
+	local c_snow = minetest.get_content_id("default:snow")
+	local c_pine_needles = minetest.get_content_id("snow:needles")
+	local c_pinetree = minetest.get_content_id("default:pinetree")
+	local c_air = minetest.get_content_id("air")
+
 	local perlin1 = minetest.get_perlin(112,3, 0.5, 150) 
 	--Clear ground.
 	for x=-1,1 do
@@ -170,7 +170,7 @@ function snow.voxelmanip_pine(pos,a,data)
 				end
 			end
 		end
-		data[a:index(pos.x,pos.y+i,pos.z)] = c_tree
+		data[a:index(pos.x,pos.y+i,pos.z)] = c_pinetree
 	end
 	data[a:index(pos.x,pos.y+5,pos.z)] = c_pine_needles
 	data[a:index(pos.x,pos.y+6,pos.z)] = c_pine_needles

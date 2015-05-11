@@ -75,7 +75,6 @@ if (minetest.get_modpath("moreblocks")) then
 
 	dofile(minetest.get_modpath("snow").."/src/stairsplus.lua")
 
-else
 end
 
 --This function places snow checking at the same time for snow level and increasing as needed.

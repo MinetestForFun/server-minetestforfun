@@ -66,7 +66,7 @@ end
 	
 	--Christmas easter egg
 	minetest.register_on_mapgen_init( function()
-		if minetest.get_modpath("skins") ~= nil then
+		if rawget(_G, "skins") then
 			skins.add("character_snow_man")
 		end
 	end
@@ -209,7 +209,7 @@ minetest.register_node("snow:star", {
 minetest.register_node("snow:star_lit", {
 	description = "Star Lighted",
 	drawtype = "plantlike",
-	light_source = default.LIGHT_MAX - 1,
+	light_source = LIGHT_MAX,
 	tiles = {"snow_star_lit.png"},
 	wield_image = "snow_star.png",
 	paramtype = "light",
@@ -228,6 +228,7 @@ minetest.register_node("snow:star_lit", {
 -- Moss
 minetest.register_node("snow:moss", {
 	description = "Moss",
+	inventory_image = "snow_moss.png",
 	tiles = {"snow_moss.png"},
 	drawtype = "signlike",
 	paramtype = "light",
@@ -239,6 +240,18 @@ minetest.register_node("snow:moss", {
 	is_ground_content = true,
 	groups = {crumbly=3, attached_node=1},
 })
+
+
+
+local function snow_onto_dirt(pos)
+	pos.y = pos.y - 1
+	local node = minetest.get_node(pos)
+	if node.name == "default:dirt_with_grass"
+	or node.name == "default:dirt" then
+		node.name = "default:dirt_with_snow"
+		minetest.set_node(pos, node)
+	end
+end
 
 
 
@@ -265,15 +278,7 @@ minetest.register_node("snow:snow_brick", {
 	}),
  	-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could also 
  	-- double as dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ
-	on_construct = function(pos)
-		pos.y = pos.y - 1
-		if minetest.get_node(pos).name == "default:dirt_with_grass"
-			-- Thinking in terms of layers, dirt_with_snow could also double as 
-			-- dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ, 2014_04_04
-			or minetest.get_node(pos).name == "default:dirt" then
-			minetest.set_node(pos, {name="default:dirt_with_snow"})
-		end
-	end
+	on_construct = snow_onto_dirt
 })
 
 
@@ -299,13 +304,7 @@ minetest.register_node("snow:snow_cobble", {
 	}),
  	-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could also 
  	-- double as dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ
-	on_construct = function(pos)
-		pos.y = pos.y - 1
-		if minetest.get_node(pos).name == "default:dirt_with_grass"
-			or minetest.get_node(pos).name == "default:dirt" then
-			minetest.set_node(pos, {name="default:dirt_with_snow"})
-		end
-	end
+	on_construct = snow_onto_dirt
 })
 
 
@@ -321,18 +320,12 @@ minetest.override_item("default:ice", {
 	--param2 is reserved for how much ice will freezeover.
 	sunlight_propagates = true, -- 2
 	drawtype = "glasslike",
-	inventory_image  = minetest.inventorycube("default_ice.png"),
+	inventory_image  = minetest.inventorycube("default_ice.png").."^[brighten",
 	liquidtype = "none",
 	 -- I made this a lot harder to dig than snow blocks because ice is much more dense
 	 -- and solid than fluffy snow. ~ LazyJ
 	groups = {cracky=2, crumbly=1, choppy=1, --[[oddly_breakable_by_hand=1,]] melts=1},
-	on_construct = function(pos)
-		pos.y = pos.y - 1
-		if minetest.get_node(pos).name == "default:dirt_with_grass"
-			or minetest.get_node(pos).name == "default:dirt" then
-			minetest.set_node(pos, {name="default:dirt_with_snow"})
-		end
-	end,
+	on_construct = snow_onto_dirt,
 	liquids_pointable = true,
 	--Make ice freeze over when placed by a maximum of 10 blocks.
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
@@ -350,13 +343,7 @@ minetest.override_item("default:snowblock", {
 	 -- Snow blocks should be easy to dig because they are just fluffy snow. ~ LazyJ
 	groups = {cracky=3, crumbly=3, choppy=3, oddly_breakable_by_hand=3, melts=1, icemaker=1, cooks_into_ice=1, falling_node=1},
 	--drop = "snow:snow_cobble",
-	on_construct = function(pos)
-		pos.y = pos.y - 1
-		if minetest.get_node(pos).name == "default:dirt_with_grass"
-			-- Thinking in terms of layers, dirt_with_snow could also double as 
-			-- dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ, 2014_04_04
-			or minetest.get_node(pos).name == "default:dirt" then
-			minetest.set_node(pos, {name="default:dirt_with_snow"})
-		end
-	end
+	on_construct = snow_onto_dirt
+		-- Thinking in terms of layers, dirt_with_snow could also double as 
+		-- dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ, 2014_04_04
 })

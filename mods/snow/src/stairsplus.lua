@@ -51,8 +51,9 @@ There is one in each of the "stairsplus.register_all" sections.
 -- next section of stairsplus stuff. ~LazyJ
 
 if (minetest.get_modpath("moreblocks"))
+and rawget(_G, "stairsplus")
 
--- 'If' MoreBlocks was found, well, 'then' go ahead with this next part:
+-- 'If' MoreBlocks was found and stairsplus is available, well, 'then' go ahead with this next part:
 
 then
 
@@ -270,9 +271,6 @@ for _, name in pairs(snow_nodes) do
 	local ndef = minetest.registered_nodes[nodename]
 	local groups = {}
 	for k, v in pairs(ndef.groups) do groups[k] = v end
-
-	local drop
-	-- FIXME: FIND WHAT IS DROP SUPPOSED TO BE FROM AND FOR WHAT IT IS HERE
 
 	stairsplus:register_all("moreblocks", name, nodename, {
 		description = ndef.description,

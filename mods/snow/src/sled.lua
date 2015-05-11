@@ -53,7 +53,7 @@ than I originally planned. :p  ~ LazyJ
 --
 
 local function is_water(pos)
-	local nn = minetest.env:get_node(pos).name
+	local nn = minetest.get_node(pos).name
 	return minetest.get_item_group(nn, "water") ~= 0
 end
 
@@ -62,16 +62,13 @@ end
 -- Sled entity
 --
 
-local HUD
--- FIXME: FIND WHAT IS HUD FOR
-
 local sled = {
 	physical = false,
 	collisionbox = {-0.6,-0.25,-0.6, 0.6,0.3,0.6},
 	visual = "mesh",
 	mesh = "sled.x",
 	textures = {"sled.png"},
-	HUD,
+	nil,
 	
 	driver = nil,
 	sliding = false,
@@ -184,8 +181,8 @@ minetest.register_craftitem("snow:sled", {
  		local name = placer:get_player_name()
  		local player_pos = placer:getpos()
  		if not players_sled[name] then
- 			if minetest.get_node({x=player_pos.x,y=player_pos.y, z=player_pos.z}).name == "default:snow" then
-				local sled = minetest.env:add_entity(pos, "snow:sled")
+ 			if minetest.get_node(player_pos).name == "default:snow" then
+				local sled = minetest.add_entity(pos, "snow:sled")
 				sled:get_luaentity():on_rightclick(placer)
 			end
 		end

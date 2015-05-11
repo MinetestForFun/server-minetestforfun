@@ -100,14 +100,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	-- Choose biomes
 	local pr = PseudoRandom(seed+57)
 	local biome
-	local biome2
 	-- Land biomes
 	biome = pr:next(1, 5)
 	local snowy = biome == 1 -- spawns alot of snow
 	local plain = biome == 2 -- spawns not much
 	local alpine = biome == 3 -- rocky terrain
 	-- Water biomes
-	biome2 = pr:next(1, 5)
+	local biome2 = pr:next(1, 5)
 	local cool = biome == 1  -- only spawns ice on edge of water
 	local icebergs = biome == 2
 	local icesheet = biome == 3
@@ -151,14 +150,17 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if data[vi] == c_leaves or data[vi] == c_jungleleaves then						
 						for y = ground_y, -16, -1 do
 							local vi = area:index(x, y, z)
-							if data[vi] ~= c_leaves
-							and data[vi] ~= c_jungleleaves
-							and data[vi] ~= c_tree
-							and data[vi] ~= c_air
-							and data[vi] ~= c_apple then
-								break
-							else
-								data[vi] = c_air
+							local id = data[vi]
+							if id ~= c_air then
+								if id == c_leaves
+								or id == c_jungleleaves
+								or id == c_tree
+								or id == c_air
+								or id == c_apple then
+									data[vi] = c_air
+								else
+									break
+								end
 							end
 						end
 					end			
@@ -254,24 +256,24 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						local rand = pr:next(1,4) == 1
 						if ((x1 and x1 ~= c_water and x1 ~= c_ice
 						and x1 ~= c_air and x1 ~= c_ignore)
-						or ((cool or icebergs) and x1 == c_ice and rand))
+						or (rand and (cool or icebergs) and x1 == c_ice))
 						or ((z1 and z1 ~= c_water and z1 ~= c_ice
 						and z1 ~= c_air and z1 ~= c_ignore)
-						or ((cool or icebergs) and z1 == c_ice and rand))
+						or (rand and (cool or icebergs) and z1 == c_ice))
 						or ((xz1 and xz1 ~= c_water and xz1 ~= c_ice
 						and xz1 ~= c_air and xz1 ~= c_ignore)
-						or ((cool or icebergs) and xz1 == c_ice and rand))
+						or (rand and (cool or icebergs) and xz1 == c_ice))
 						or ((xz2 and xz2 ~= c_water and xz2 ~= c_ice
 						and xz2 ~= c_air and xz2 ~= c_ignore)
-						or ((cool or icebergs) and xz2 == c_ice and rand))
+						or (rand and (cool or icebergs) and xz2 == c_ice))
 						or ((x2 and x2 ~= c_water and x2 ~= c_ice
 						and x2 ~= c_air and x2 ~= c_ignore)
-						or ((cool or icebergs) and x2 == c_ice and rand))
+						or (rand and (cool or icebergs) and x2 == c_ice))
 						or ((z2 and z2 ~= c_water and z2 ~= c_ice
 						and z2 ~= c_air and z2 ~= c_ignore)
-						or ((cool or icebergs) and z2 == c_ice and rand))
-						or (y ~= c_water and y ~= c_ice and y ~= "air")
-						or (pr:next(1,6) == 1 and icebergs) then
+						or (rand and (cool or icebergs) and z2 == c_ice))
+						or (y ~= c_water and y ~= c_ice) -- and y ~= "air") …I don't think y can be a string here ~HybridDog
+						or (icebergs and pr:next(1,6) == 1) then
 							data[node] = c_ice
 						end
 					else
