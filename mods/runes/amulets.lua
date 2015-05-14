@@ -1,8 +1,8 @@
 -- Amulets
 runes.functions.register_amulet("silver_cross",		"Silver Cross",			1,	25 )
 runes.functions.register_amulet("minotaur_eye",		"Minotaur Eye",			1,	50 )
-runes.functions.register_amulet("hellfire_amulet",	"Hellfire Amulet",		1,	75 )
-runes.functions.register_amulet("grim_reaper_amulet",	"Grim Reaper's Amulet",		1,	100)
+runes.functions.register_amulet("hellfire",	"Hellfire Amulet",		1,	75 )
+runes.functions.register_amulet("grim_reaper",	"Grim Reaper's Amulet",		1,	100)
 
 -- Recipes
 minetest.register_craft({
@@ -58,7 +58,7 @@ minetest.register_node("runes:black_magic_block", {
 	paramtype2 = "facedir",
 	groups = {crumbly=3},
 	sounds = default.node_sound_sand_defaults(),
-}) 
+})
 
 -- Globalstep checking for the amulets
 minetest.register_globalstep(function(dtime)
