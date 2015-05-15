@@ -56,22 +56,12 @@ meseconify_door("doors:door_obsidian_glass")
 local function trapdoor_switch(pos, node)
 	local state = minetest.get_meta(pos):get_int("state")
 
-	if node.name:split(":")[2] == "trapdoor" or node.name:split(":")[2] == "trapdoor_open" then
-		if state == 1 then
-			minetest.sound_play("doors_door_close", {pos = pos, gain = 0.3, max_hear_distance = 10})
-			minetest.set_node(pos, {name="doors:trapdoor", param2 = node.param2})
-		else
-			minetest.sound_play("doors_door_open", {pos = pos, gain = 0.3, max_hear_distance = 10})
-			minetest.set_node(pos, {name="doors:trapdoor_open", param2 = node.param2})
-		end
+	if state == 1 then
+		minetest.sound_play("doors_door_close", {pos = pos, gain = 0.3, max_hear_distance = 10})
+		minetest.set_node(pos, {name="doors:trapdoor", param2 = node.param2})
 	else
-		if state == 1 then
-			minetest.sound_play("doors_door_close", {pos = pos, gain = 0.3, max_hear_distance = 10})
-			minetest.set_node(pos, {name="doors:trapdoor_cherry", param2 = node.param2})
-		else
-			minetest.sound_play("doors_door_open", {pos = pos, gain = 0.3, max_hear_distance = 10})
-			minetest.set_node(pos, {name="doors:trapdoor_cherry_open", param2 = node.param2})
-		end
+		minetest.sound_play("doors_door_open", {pos = pos, gain = 0.3, max_hear_distance = 10})
+		minetest.set_node(pos, {name="doors:trapdoor_open", param2 = node.param2})
 	end
 
 	minetest.get_meta(pos):set_int("state", state == 1 and 0 or 1)
