@@ -91,13 +91,13 @@ minetest.register_globalstep(function(dtime)
             end
 
             for key, value in pairs(mana_from_node) do
-		        if key:split(":")[1] == "group" then
-			        local groupname = key:split(":")[2]
-			        if minetest.get_node_group(node.name, groupname) > 0 then
-				        regen_to = math.max(regen_to, value) -- We get the greater one (if the node is part of 2 or more groups)
-			        end
-		        end
-	        end
+		if key:split(":")[1] == "group" then
+			local groupname = key:split(":")[2]
+			if minetest.get_node_group(node.name, groupname) > 0 then
+				regen_to = math.max(regen_to, value) -- We get the greater one (if the node is part of 2 or more groups)
+			end
+		end
+	    end
 
             mana.setregen(name, regen_to)
             --print("Regen to "..regen_to.." : "..light_day.."/"..light_now.."/"..light_night)

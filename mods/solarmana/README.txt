@@ -4,7 +4,7 @@ Solar Mana Mod [solarmana]
 A mana regeneration controller: only regenerate mana in sunlight
 or on special nodes.
 
-Version: 0.1.0
+Version: 0.3.0
 Licence: LGPL 2.1 or later
 
 Report bugs or request help on the forum topic.
@@ -24,6 +24,10 @@ planks and gold blocks) will also regenerate mana.
 Dependencies
 ------------
 * mana: https://forum.minetest.net/viewtopic.php?f=11&t=11154
+
+Contributors
+------------
+Mg (LeMagnesium) - node group handling
 
 Installation
 ------------
