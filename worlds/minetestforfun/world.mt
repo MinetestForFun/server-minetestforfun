@@ -81,6 +81,7 @@ load_mod_multitest = true
 load_mod_lavalamp = true
 load_mod_lantern = true
 load_mod_jumping = true
+load_mod_tetris = true
 
 load_mod_mesecons = true
 load_mod_mesecons_alias = true
@@ -190,6 +191,4 @@ load_mod_chatplus = true
 
 load_mod_future_ban = false
 load_mod_textures = false
-load_mod_minetest-minetestforfun-server-master = false
-load_mod_minetestforfun_game = false
 load_mod_snowdrift = false
