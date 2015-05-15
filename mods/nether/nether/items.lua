@@ -622,11 +622,10 @@ minetest.register_node("nether:portal", {
 	sunlight_propagates = true,
 	use_texture_alpha = true,
 	walkable = false,
-	digable = false,
 	pointable = false,
 	buildable_to = false,
 	drop = "",
-	can_dig = function() return false end,
+	diggable = false,
 	groups = {not_in_creative_inventory=1},
 	post_effect_color = {a=200, r=50, g=0, b=60},--{a=180, r=128, g=0, b=128}
 	drawtype = "nodebox",

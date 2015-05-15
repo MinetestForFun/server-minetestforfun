@@ -390,6 +390,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local test3 = math.abs(pmap3[count])
 
 			local t = math.floor(test*3+0.5)
+
 			local h
 			if test2 < 0 then
 				h = math.floor(test2*3+0.5)-1
