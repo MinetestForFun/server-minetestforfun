@@ -6,8 +6,18 @@ local function nextrange(x, max)
 	return x
 end
 
-local ROTATE_FACE = 1
-local ROTATE_AXIS = 2
+screwdriver = {}
+
+screwdriver.ROTATE_FACE = 1
+screwdriver.ROTATE_AXIS = 2
+screwdriver.disallow = function(pos, node, user, mode, new_param2)
+	return false
+end
+screwdriver.rotate_simple = function(pos, node, user, mode, new_param2)
+	if mode ~= screwdriver.ROTATE_FACE then
+		return false
+	end
+end
 local USES = 200
 local USES_perfect = 10000
 
@@ -26,29 +36,47 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 
 	local node = minetest.get_node(pos)
 	local ndef = minetest.registered_nodes[node.name]
-	if not ndef or not ndef.paramtype2 == "facedir" or
-			(ndef.drawtype == "nodebox" and
-			not ndef.node_box.type == "fixed") or
-			node.param2 == nil then
-		return
+	-- Compute param2
+	local rotationPart = node.param2 % 32 -- get first 4 bits
+	local preservePart = node.param2 - rotationPart
+	local axisdir = math.floor(rotationPart / 4)
+	local rotation = rotationPart - axisdir * 4
+	if mode == screwdriver.ROTATE_FACE then
+		rotationPart = axisdir * 4 + nextrange(rotation, 3)
+	elseif mode == screwdriver.ROTATE_AXIS then
+		rotationPart = nextrange(axisdir, 5) * 4
 	end
 
-	if ndef.can_dig and not ndef.can_dig(pos, user) then
-		return
+	local new_param2 = preservePart + rotationPart
+	local should_rotate = true
+
+	if ndef and ndef.on_rotate then -- Node provides a handler, so let the handler decide instead if the node can be rotated
+		-- Copy pos and node because callback can modify it
+		local result = ndef.on_rotate(vector.new(pos),
+				{name = node.name, param1 = node.param1, param2 = node.param2},
+				user, mode, new_param2)
+		if result == false then -- Disallow rotation
+			return
+		elseif result == true then
+			should_rotate = false
+		end
+	else
+		if not ndef or not ndef.paramtype2 == "facedir" or
+				(ndef.drawtype == "nodebox" and
+				not ndef.node_box.type == "fixed") or
+				node.param2 == nil then
+			return
+		end
+
+		if ndef.can_dig and not ndef.can_dig(pos, user) then
+			return
+		end
 	end
 
-	-- Set param2
-	local n = node.param2
-	local axisdir = math.floor(n / 4)
-	local rotation = n - axisdir * 4
-	if mode == ROTATE_FACE then
-		n = axisdir * 4 + nextrange(rotation, 3)
-	elseif mode == ROTATE_AXIS then
-		n = nextrange(axisdir, 5) * 4
+	if should_rotate then
+		node.param2 = new_param2
+		minetest.swap_node(pos, node)
 	end
-
-	node.param2 = n
-	minetest.swap_node(pos, node)
 
 	if not minetest.setting_getbool("creative_mode") and minetest.registered_tools["screwdriver:screwdriver_perfect"] then
 		itemstack:add_wear(65535 / (USES_perfect - 1))
@@ -64,11 +92,11 @@ minetest.register_tool("screwdriver:screwdriver", {
 	description = "Screwdriver (left-click rotates face, right-click rotates axis)",
 	inventory_image = "screwdriver.png",
 	on_use = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, ROTATE_FACE)
+		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_FACE)
 		return itemstack
 	end,
 	on_place = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, ROTATE_AXIS)
+		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_AXIS)
 		return itemstack
 	end,
 })

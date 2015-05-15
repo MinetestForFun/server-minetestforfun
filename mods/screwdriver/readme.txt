@@ -1,6 +1,5 @@
 Minetest mod: screwdriver
-Edited by TenPlus1 on 2nd Sep 2014
-==================================
+=========================
 
 License of source code:
 -----------------------
@@ -17,3 +16,6 @@ License of media (textures and sounds)
 --------------------------------------
 Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)                                 
 http://creativecommons.org/licenses/by-sa/3.0/
+
+Created by Gambit (WTFPL):
+  screwdriver.png
