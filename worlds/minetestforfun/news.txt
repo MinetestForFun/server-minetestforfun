@@ -5,6 +5,26 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 /!\ C'est un énorme projet, ambitieux et jamais tenté auparavant, beaucoup de monde travail dessus, restez à l'affut ! :) /!\
 
+---??/??/????--- (Remerciements : Crabman, Mg, Gael-de-Sailly, Obani)
+MaJ de "homedecor"
+MaJ de "plantlife_modpack"
+MaJ de "nether"
+MaJ de "farming"
+MaJ de "screwdriver"
+MaJ de "mesecons"
+Ajout du mod "interact" (questionnaire à l'arrivée d'un nouveau joueur pour obtenir interact)
+Ajout du mod "eventobjects" (objets spéciaux utilisés comme récompenses d'events)
+MaJ de "3d_armor"
+MaJ de "mobs" (ajout du minotaur, et des zombies qui spawnent dans la nether forest à la place des stone monsters. Chèvre aussi ajoutée, ainsi que le yéti)
+MaJ de "moreblocks"
+MaJ de "_misc" (bouts de codes inutiles car remplacés par interact)
+MaJ de "boats" (ajout de boats différents avec différentes vitesses d'avancée et de rotation, par Obani)
+MaJ de "minetestforfun_game"
+MaJ de "food"
+MaJ de "hud" (ajout des items de food dans le hunger.lua)
+MaJ de "irc_commands" (ajout d'une commande "time" du MFF-Bot pour voir l'heure in-game)
+MaJ de "snow"
+
 ---22/04/2015--- (Remerciements : Gael-de-Sailly, Mg, Ataron)
 MAJ de "builtin_falling" (désactivation de tout le mod sauf de ses fonctions protégeant les areas protégés des liquides)
 MAJ de "invtweak" (bugfix)
