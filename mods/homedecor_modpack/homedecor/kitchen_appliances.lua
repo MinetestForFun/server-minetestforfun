@@ -18,6 +18,7 @@ homedecor.register("refrigerator_steel", {
 		size=50,
 		lockable=true,
 	},
+	on_rotate = screwdriver.rotate_simple
 })
 
 -- white, enameled fridge
@@ -36,6 +37,7 @@ homedecor.register("refrigerator_white", {
 		size=50,
 		lockable=true
 	},
+	on_rotate = screwdriver.rotate_simple
 })
 
 minetest.register_alias("homedecor:refrigerator_white_bottom", "homedecor:refrigerator_white")
@@ -116,7 +118,8 @@ homedecor.register("coffee_maker", {
 	walkable = false,
 	groups = {snappy=3},
 	selection_box = cm_cbox,
-	node_box = cm_cbox
+	node_box = cm_cbox,
+	on_rotate = screwdriver.disallow
 })
 
 local fdir_to_steampos = {

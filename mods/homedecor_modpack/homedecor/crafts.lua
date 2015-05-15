@@ -118,6 +118,17 @@ minetest.register_craftitem("homedecor:chainlink_brass", {
 	inventory_image = "homedecor_chainlink_brass.png"
 })
 
+minetest.register_craftitem("homedecor:soda_can", {
+	description = "Soda Can",
+	inventory_image = "homedecor_soda_can.png",
+	on_use = minetest.item_eat(2),
+})
+
+minetest.register_craftitem("homedecor:coin", {
+	description = "Gold Coin",
+	inventory_image = "homedecor_coin.png",
+})
+
 -- alternate crafting if mesecons is/isn't installed
 
 if not minetest.get_modpath("mesecons") then
@@ -911,25 +922,45 @@ minetest.register_craft( {
 	type = "shapeless",
         output = "homedecor:rug_small 8",
        	recipe = {
-       		"wool:red",
-		"wool:yellow",
-		"wool:blue",
-		"wool:black"
+			"wool:red",
+			"wool:yellow",
+			"wool:blue",
+			"wool:black"
 	},
 })
 
--- cotton version:
+minetest.register_craft( {
+	output = "homedecor:rug_persian 8",
+	recipe = {
+		{ "", "wool:yellow", "" },
+		{ "wool:red", "wool:blue", "wool:red" },
+		{ "", "wool:yellow", "" }
+	},
+})
+
+-- cotton versions:
 
 minetest.register_craft( {
 	type = "shapeless",
         output = "homedecor:rug_small 8",
        	recipe = {
-       		"cotton:red",
-		"cotton:yellow",
-		"cotton:blue",
-		"cotton:black"
+			"cotton:red",
+			"cotton:yellow",
+			"cotton:blue",
+			"cotton:black"
 	},
 })
+
+minetest.register_craft( {
+	output = "homedecor:rug_persian 8",
+	recipe = {
+		{ "", "cotton:yellow", "" },
+		{ "cotton:red", "cotton:blue", "cotton:red" },
+		{ "", "cotton:yellow", "" }
+	},
+})
+
+-- fuel recipes for same
 
 minetest.register_craft({
        	type = "fuel",
@@ -949,6 +980,12 @@ minetest.register_craft( {
 minetest.register_craft({
        	type = "fuel",
        	recipe = "homedecor:rug_large",
+       	burntime = 30,
+})
+
+minetest.register_craft({
+       	type = "fuel",
+       	recipe = "homedecor:rug_persian",
        	burntime = 30,
 })
 
@@ -1493,6 +1530,15 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+    output = "homedecor:plasma_ball 2",
+    recipe = {
+		{"", "default:glass", ""},
+		{"default:glass", "default:copper_ingot", "default:glass"},
+		{"homedecor:plastic_sheeting", "homedecor:power_crystal", "homedecor:plastic_sheeting"}
+	}
+})
+
 -- Brass/wrought iron fences
 
 
@@ -1753,7 +1799,7 @@ minetest.register_craft( {
 -- plain wood, non-windowed
 
 minetest.register_craft( {
-        output = "homedecor:door_wood_plain_bottom_left 2",
+        output = "homedecor:door_wood_plain_left 2",
         recipe = {
 			{ "group:wood", "group:wood", "" },
 			{ "group:wood", "group:wood", "default:steel_ingot" },
@@ -1764,7 +1810,7 @@ minetest.register_craft( {
 -- fancy exterior
 
 minetest.register_craft( {
-        output = "homedecor:door_exterior_fancy_bottom_left 2",
+        output = "homedecor:door_exterior_fancy_left 2",
         recipe = {
 			{ "group:wood", "default:glass" },
 			{ "group:wood", "group:wood" },
@@ -1777,7 +1823,7 @@ minetest.register_craft( {
 -- bare
 
 minetest.register_craft( {
-        output = "homedecor:door_wood_glass_bottom_left 2",
+        output = "homedecor:door_wood_glass_oak_left 2",
         recipe = {
 			{ "default:glass", "group:wood" },
 			{ "group:wood", "default:glass" },
@@ -1786,7 +1832,7 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-        output = "homedecor:door_wood_glass_bottom_left 2",
+        output = "homedecor:door_wood_glass_oak_left 2",
         recipe = {
 			{ "group:wood", "default:glass" },
 			{ "default:glass", "group:wood" },
@@ -1798,22 +1844,22 @@ minetest.register_craft( {
 
 minetest.register_craft( {
 	type = "shapeless",
-        output = "homedecor:door_wood_glass_mahogany_bottom_left 2",
+        output = "homedecor:door_wood_glass_mahogany_left 2",
         recipe = {
 			"default:dirt",
 			"default:coal_lump",
-			"homedecor:door_wood_glass_bottom_left",
-			"homedecor:door_wood_glass_bottom_left"
+			"homedecor:door_wood_glass_oak_left",
+			"homedecor:door_wood_glass_oak_left"
         },
 })
 
 minetest.register_craft( {
 	type = "shapeless",
-        output = "homedecor:door_wood_glass_mahogany_bottom_left 2",
+        output = "homedecor:door_wood_glass_mahogany_left 2",
         recipe = {
 			"dye:brown",
-			"homedecor:door_wood_glass_bottom_left",
-			"homedecor:door_wood_glass_bottom_left"
+			"homedecor:door_wood_glass_oak_left",
+			"homedecor:door_wood_glass_oak_left"
         },
 })
 
@@ -1821,18 +1867,18 @@ minetest.register_craft( {
 
 minetest.register_craft( {
 	type = "shapeless",
-        output = "homedecor:door_wood_glass_white_bottom_left 2",
+        output = "homedecor:door_wood_glass_white_left 2",
         recipe = {
 			"dye:white",
-			"homedecor:door_wood_glass_bottom_left",
-			"homedecor:door_wood_glass_bottom_left"
+			"homedecor:door_wood_glass_oak_left",
+			"homedecor:door_wood_glass_oak_left"
         },
 })
 
 -- Solid glass with metal handle
 
 minetest.register_craft( {
-        output = "homedecor:door_glass_bottom_left 2",
+        output = "homedecor:door_glass_left 2",
         recipe = {
 			{ "default:glass", "default:glass" },
 			{ "default:glass", "default:steel_ingot" },
@@ -1845,7 +1891,7 @@ minetest.register_craft( {
 -- oak
 
 minetest.register_craft( {
-        output = "homedecor:door_closet_oak_bottom_left 2",
+        output = "homedecor:door_closet_oak_left 2",
         recipe = {
 			{ "", "group:stick", "group:stick" },
 			{ "default:steel_ingot", "group:stick", "group:stick" },
@@ -1857,10 +1903,10 @@ minetest.register_craft( {
 
 minetest.register_craft( {
 	type = "shapeless",
-        output = "homedecor:door_closet_mahogany_bottom_left 2",
+        output = "homedecor:door_closet_mahogany_left 2",
         recipe = {
-			"homedecor:door_closet_oak_bottom_left",
-			"homedecor:door_closet_oak_bottom_left",
+			"homedecor:door_closet_oak_left",
+			"homedecor:door_closet_oak_left",
 			"default:dirt",
 			"default:coal_lump",
         },
@@ -1868,10 +1914,10 @@ minetest.register_craft( {
 
 minetest.register_craft( {
 	type = "shapeless",
-        output = "homedecor:door_closet_mahogany_bottom_left 2",
+        output = "homedecor:door_closet_mahogany_left 2",
         recipe = {
-			"homedecor:door_closet_oak_bottom_left",
-			"homedecor:door_closet_oak_bottom_left",
+			"homedecor:door_closet_oak_left",
+			"homedecor:door_closet_oak_left",
 			"dye:brown"
         },
 })
@@ -1879,7 +1925,7 @@ minetest.register_craft( {
 -- wrought fence-like door
 
 minetest.register_craft( {
-        output = "homedecor:door_wrought_iron_bottom_left 2",
+        output = "homedecor:door_wrought_iron_left 2",
         recipe = {
 			{ "homedecor:pole_wrought_iron", "default:iron_lump" },
 			{ "homedecor:pole_wrought_iron", "default:iron_lump" },
@@ -1890,10 +1936,10 @@ minetest.register_craft( {
 -- bedroom door
 
 minetest.register_craft( {
-	output = "homedecor:door_bedroom_bottom_left",
+	output = "homedecor:door_bedroom_left",
 	recipe = {
 		{ "dye:white", "dye:white", "" },
-		{ "homedecor:door_wood_plain_bottom_left", "technic:brass_ingot", "" },
+		{ "homedecor:door_wood_plain_left", "technic:brass_ingot", "" },
 		{ "", "", "" },
 	},
 })
@@ -1901,7 +1947,7 @@ minetest.register_craft( {
 -- woodglass door
 
 minetest.register_craft( {
-	output = "homedecor:door_woodglass_bottom_left",
+	output = "homedecor:door_woodglass_left",
 	recipe = {
 		{ "default:wood", "default:glass", "" },
 		{ "default:wood", "default:glass", "technic:brass_ingot" },
@@ -1912,7 +1958,7 @@ minetest.register_craft( {
 -- woodglass door type 2
 
 minetest.register_craft( {
-	output = "homedecor:door_woodglass2_bottom_left",
+	output = "homedecor:door_woodglass2_left",
 	recipe = {
 		{ "default:glass", "default:glass", "" },
 		{ "default:wood", "default:wood", "default:iron_lump" },
@@ -3005,7 +3051,7 @@ for _, color in ipairs(bookcolors) do
 end
 
 minetest.register_craft({
-	output = "homedecor:jpn_door_bottom",
+	output = "homedecor:door_japanese_closed",
 	recipe = {
 		{ "homedecor:japanese_wall_top" },
 		{ "homedecor:japanese_wall_bottom" }
@@ -3180,6 +3226,96 @@ minetest.register_craft({
 	},
 })
 
+minetest.register_craft({
+	output = "homedecor:spiral_staircase",
+	recipe = {
+		{ "default:steelblock", "homedecor:pole_wrought_iron", "" },
+		{ "", "homedecor:pole_wrought_iron", "default:steelblock" },
+		{ "default:steelblock", "homedecor:pole_wrought_iron", "" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:soda_machine",
+	recipe = {
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		{"default:steel_ingot", "dye:red", "default:steel_ingot"},
+		{"default:steel_ingot", "default:copperblock", "default:steel_ingot"},
+	},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "homedecor:coin 5",
+	recipe = {"moreblocks:micro_goldblock_1", "default:sword_stone"}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "homedecor:coin 15",
+	recipe = {"default:gold_ingot", "default:sword_steel"}
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "homedecor:coin 50",
+	recipe = {"default:goldblock", "default:sword_mese"}
+})
+
+minetest.register_craft({
+	output = "homedecor:lattice_wood 8",
+	recipe = {
+		{"group:stick", "group:wood", "group:stick"},
+		{"group:wood", "", "group:wood"},
+		{"group:stick", "group:wood", "group:stick"},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:lattice_white_wood 8",
+	recipe = {
+		{"group:stick", "group:wood", "group:stick"},
+		{"group:wood", "dye:white", "group:wood"},
+		{"group:stick", "group:wood", "group:stick"},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:lattice_wood_vegetal 8",
+	recipe = {
+		{"group:stick", "group:wood", "group:stick"},
+		{"group:wood", "group:leaves", "group:wood"},
+		{"group:stick", "group:wood", "group:stick"},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:lattice_white_wood_vegetal 8",
+	recipe = {
+		{"group:stick", "group:wood", "group:stick"},
+		{"group:wood", "group:leaves", "group:wood"},
+		{"group:stick", "dye:white", "group:stick"},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:stained_glass 8",
+	recipe = {
+		{"", "dye:blue", ""},
+		{"dye:red", "default:glass", "dye:green"},
+		{"", "dye:yellow", ""},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:stained_glass",
+	recipe = {
+		{"", "dye:blue", ""},
+		{"dye:red", "xpanes:pane", "dye:green"},
+		{"", "dye:yellow", ""},
+	},
+})
+
 for i in ipairs(homedecor.banister_materials) do
 
 	local name    = homedecor.banister_materials[i][1]
@@ -3189,7 +3325,7 @@ for i in ipairs(homedecor.banister_materials) do
 	local dye2    = homedecor.banister_materials[i][8]
 
 	minetest.register_craft({
-		output = "homedecor:banister_"..name.."_left 2",
+		output = "homedecor:banister_"..name.."_horizontal 2",
 		recipe = {
 			{ topmat,  "",      dye1   },
 			{ vertmat, topmat,  ""     },

@@ -4,21 +4,13 @@ local S = homedecor.gettext
 
 homedecor.register("air_conditioner", {
 	description = S("Air Conditioner"),
-	tiles = { 'homedecor_ac_tb.png',
-		  'homedecor_ac_tb.png',
-		  'homedecor_ac_sides.png',
-		  'homedecor_ac_sides.png',
-		  'homedecor_ac_back.png',
-		  'homedecor_ac_front.png'},
+	mesh = "homedecor_ac.obj",
+	tiles = {
+		"homedecor_ac.png",
+		"default_glass.png"
+	},
 	groups = { snappy = 3 },
 	sounds = default.node_sound_leaves_defaults(),
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.124, 0.5 }, -- off by just a tad to force the adjoining faces to be drawn.
-			{-0.5, 0.125, -0.5, 0.5, 0.5, 0.5 },
-		}
-	},
 	selection_box = { type="regular" },
 })
 
@@ -45,6 +37,7 @@ homedecor.register("desk_fan", {
 	inventory_image = "homedecor_desk_fan_inv.png",
 	wield_image = "homedecor_desk_fan_inv.png",
 	selection_box = { type = "regular" },
+	on_rotate = screwdriver.disallow,
 	on_construct = function(pos)
 		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
 		local meta = minetest.get_meta(pos)
@@ -160,7 +153,7 @@ local r_cbox = {
 homedecor.register("radiator", {
 	mesh = "homedecor_radiator.obj",
 	tiles = {
-		"homedecor_generic_metal_white.png",
+		"homedecor_generic_metal_black.png^[colorize:#ffffff:200",
 		"homedecor_radiator_controls.png"
 	},
 	inventory_image = "homedecor_radiator_inv.png",

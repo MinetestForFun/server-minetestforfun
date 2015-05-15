@@ -114,6 +114,7 @@ minetest.register_node("plasmascreen:tv", {
 	light_source = 10,
 	selection_box = tv_cbox,
 	collision_box = tv_cbox,
+	on_rotate = screwdriver.disallow,
 	groups = {snappy=1, choppy=2, oddly_breakable_by_hand=2},
 	after_place_node = function(pos, placer, itemstack)
 		if not checkwall(pos) then

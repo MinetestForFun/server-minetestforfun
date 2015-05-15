@@ -12,6 +12,20 @@
 
 signs_lib = {}
 
+local screwdriver = screwdriver or {}
+signs_lib.wallmounted_rotate = function(pos, node, user, mode, new_param2)
+	if mode ~= screwdriver.ROTATE_AXIS then return false end
+	minetest.swap_node(pos, {name = node.name, param2 = (node.param2 + 1) % 6})
+    for _, v in ipairs(minetest.get_objects_inside_radius(pos, 0.5)) do
+		local e = v:get_luaentity()
+		if e and e.name == "signs:text" then
+			v:remove()
+		end
+	end
+	signs_lib.update_sign(pos)
+	return true
+end
+
 signs_lib.modpath = minetest.get_modpath("signs_lib")
 
 signs_lib.regular_wall_sign_model = {
@@ -697,6 +711,7 @@ minetest.register_node(":default:sign_wall", {
 	on_punch = function(pos, node, puncher)
 		signs_lib.update_sign(pos)
 	end,
+	on_rotate = signs_lib.wallmounted_rotate
 })
 
 minetest.register_node(":signs:sign_yard", {
@@ -831,6 +846,7 @@ minetest.register_node(":locked_sign:sign_wall_locked", {
 		return pname == owner or pname == minetest.setting_get("name")
 			or minetest.check_player_privs(pname, {sign_editor=true})
 	end,
+	on_rotate = signs_lib.wallmounted_rotate
 })
 
 -- metal, colored signs

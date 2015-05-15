@@ -6,3 +6,5 @@ technic?
 dye?
 bees?
 intllib?
+bucket?
+beds?

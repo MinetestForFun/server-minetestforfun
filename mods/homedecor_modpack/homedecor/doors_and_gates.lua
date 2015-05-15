@@ -243,6 +243,7 @@ for i in ipairs(sides) do
 			use_texture_alpha = door_model.usealpha,
 			selection_box = selbox,
 			collision_box = colbox,
+			on_rotate = screwdriver.rotate_simple,
 			on_place = function(itemstack, placer, pointed_thing)
 				return homedecor.stack_wing(itemstack, placer, pointed_thing,
 					"homedecor:door_"..doorname.."_left", "air",
@@ -337,17 +338,41 @@ for i in ipairs(gates_list) do
 
 	local gate=gates_list[i]
 
+	local tiles = {
+		"homedecor_gate_"..gate.."_tb.png",
+		"homedecor_gate_"..gate.."_tb.png",
+		"homedecor_gate_"..gate.."_lr.png",
+		"homedecor_gate_"..gate.."_lr.png",
+		"homedecor_gate_"..gate.."_fb.png^[transformFX",
+		"homedecor_gate_"..gate.."_fb.png"
+	}
+
+	if gate == "barbed_wire" then
+		tiles = {
+			"homedecor_gate_barbed_wire_edges.png",
+			"homedecor_gate_barbed_wire_edges.png",
+			"homedecor_gate_barbed_wire_edges.png",
+			"homedecor_gate_barbed_wire_edges.png",
+			"homedecor_gate_barbed_wire_fb.png^[transformFX",
+			"homedecor_gate_barbed_wire_fb.png"
+		}
+	end
+
+	if gate == "picket" or gate == "picket_white" then
+		tiles = {
+			"homedecor_blanktile.png",
+			"homedecor_blanktile.png",
+			"homedecor_blanktile.png",
+			"homedecor_blanktile.png",
+			"homedecor_gate_"..gate.."_back.png",
+			"homedecor_gate_"..gate.."_front.png"
+		}
+	end
+
     local def = {
 		drawtype = "nodebox",
 		description = S(gate_names[i].." Fence Gate"),
-		tiles = {
-			"homedecor_gate_"..gate.."_top.png",
-			"homedecor_gate_"..gate.."_bottom.png",
-			"homedecor_gate_"..gate.."_left.png",
-			"homedecor_gate_"..gate.."_right.png",
-			"homedecor_gate_"..gate.."_back.png",
-			"homedecor_gate_"..gate.."_front.png"
-		},
+		tiles = tiles,
 		paramtype = "light",
 		groups = {snappy=3},
 		sounds = default.node_sound_wood_defaults(),
@@ -378,15 +403,15 @@ for i in ipairs(gates_list) do
     def = homedecor.table_copy(def)
     def.groups.not_in_creative_inventory = 1
     def.selection_box.fixed = { 0.4, -0.5, -0.5, 0.5, 0.5, 0.5 }
-    def.tiles = {
-		"homedecor_gate_"..gate.."_top.png",
-		"homedecor_gate_"..gate.."_bottom.png",
-		"homedecor_gate_"..gate.."_front.png",
-		"homedecor_gate_"..gate.."_back.png",
-		"homedecor_gate_"..gate.."_left.png",
-        "homedecor_gate_"..gate.."_right.png"
-    }
     def.node_box.fixed = gate_models_open[i]
+	def.tiles = {
+		tiles[1],
+		tiles[2],
+		tiles[6],
+		tiles[5],
+		tiles[4],
+		tiles[3]
+	}
     def.drop = "homedecor:gate_"..gate.."_closed"
 	def.on_rightclick = function(pos, node, clicker)
         homedecor.flip_gate(pos, node, clicker, gate, "open")
@@ -497,7 +522,7 @@ minetest.register_node("homedecor:japanese_wall_top", {
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_top.obj",
 	tiles = {
-		"homedecor_generic_wood_luxury_brown2.png",
+		"homedecor_generic_wood_luxury.png",
 		"homedecor_japanese_paper.png"
 	},
 	paramtype = "light",
@@ -513,7 +538,7 @@ minetest.register_node("homedecor:japanese_wall_middle", {
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_middle.obj",
 	tiles = {
-		"homedecor_generic_wood_luxury_brown2.png",
+		"homedecor_generic_wood_luxury.png",
 		"homedecor_japanese_paper.png"
 	},
 	paramtype = "light",
@@ -529,7 +554,7 @@ minetest.register_node("homedecor:japanese_wall_bottom", {
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_bottom.obj",
 	tiles = {
-		"homedecor_generic_wood_luxury_brown2.png",
+		"homedecor_generic_wood_luxury.png",
 		"homedecor_japanese_paper.png"
 	},
 	paramtype = "light",
@@ -565,7 +590,7 @@ homedecor.register("door_japanese_closed", {
 	description = "Japanese-style door",
 	inventory_image = "homedecor_door_japanese_inv.png",
 	tiles = {
-		"homedecor_generic_wood_luxury_brown2.png",
+		"homedecor_generic_wood_luxury.png",
 		"homedecor_japanese_paper.png"
 	},
 	mesh = "homedecor_door_japanese_closed.obj",
@@ -587,7 +612,7 @@ homedecor.register("door_japanese_closed", {
 
 minetest.register_node("homedecor:door_japanese_open", {
 	tiles = {
-		"homedecor_generic_wood_luxury_brown2.png",
+		"homedecor_generic_wood_luxury.png",
 		"homedecor_japanese_paper.png"
 	},
 	drawtype = "mesh",
@@ -596,6 +621,7 @@ minetest.register_node("homedecor:door_japanese_open", {
 	paramtype2 = "facedir",
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	sounds = default.node_sound_wood_defaults(),
+	on_rotate = screwdriver.disallow,
 	selection_box = {
 		type = "fixed",
 		fixed = {-1.5, -0.5, -0.0625, 0.5, 1.5, 0},

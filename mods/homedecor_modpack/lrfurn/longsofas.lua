@@ -41,6 +41,7 @@ for i in ipairs(longsofas_list) do
 		sounds = default.node_sound_wood_defaults(),
 		selection_box = longsofa_sbox,
 		node_box = longsofa_cbox,
+		on_rotate = screwdriver.disallow,
         on_place = function(itemstack, placer, pointed_thing)
 			local pos = pointed_thing.above
 			local fdir = minetest.dir_to_facedir(placer:get_look_dir(), false)

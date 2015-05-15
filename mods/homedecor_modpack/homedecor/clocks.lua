@@ -4,7 +4,7 @@ local clock_sbox = {
 }
 
 local clock_materials = {
-	{ "plastic", "homedecor_generic_plastic_white.png" },
+	{ "plastic", "homedecor_generic_plastic_black.png^[colorize:#ffffff:220" },
 	{ "wood", "default_wood.png" }
 }
 
@@ -82,7 +82,7 @@ homedecor.register("grandfather_clock", {
 	tiles = {
 		"default_glass.png",
 		"homedecor_grandfather_clock_face.png",
-		"homedecor_generic_wood_luxury_brown1.png",
+		"homedecor_generic_wood_luxury.png",
 		"homedecor_grandfather_clock_face_edge.png",
 		"homedecor_generic_metal_brass.png"
 	},
@@ -92,6 +92,7 @@ homedecor.register("grandfather_clock", {
 	collision_box = gf_cbox,
 	sounds = default.node_sound_wood_defaults(),
 	expand = { top="air" },
+	on_rotate = screwdriver.rotate_simple
 })
 
 minetest.register_alias("homedecor:grandfather_clock_bottom", "homedecor:grandfather_clock")

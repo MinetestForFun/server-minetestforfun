@@ -46,7 +46,7 @@ local bl1_cbox = {
 homedecor.register("bench_large_1", {
 	mesh = "homedecor_bench_large_1.obj",
 	tiles = {
-		"homedecor_generic_wood_neutral.png",
+		"homedecor_generic_wood_old.png",
 		"homedecor_generic_metal_wrought_iron.png"
 	},
 	description = "Garden Bench (style 1)",
@@ -56,6 +56,7 @@ homedecor.register("bench_large_1", {
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = bl1_sbox,
 	node_box = bl1_cbox,
+	on_rotate = screwdriver.disallow
 })
 
 minetest.register_alias("homedecor:bench_large_1_left", "homedecor:bench_large_1")
@@ -77,13 +78,14 @@ local bl2_cbox = {
 homedecor.register("bench_large_2", {
 	description = "Garden Bench (style 2)",
 	mesh = "homedecor_bench_large_2.obj",
-	tiles = { "homedecor_generic_wood_neutral.png" },
+	tiles = { "homedecor_generic_wood_old.png" },
 	inventory_image = "homedecor_bench_large_2_inv.png",
 	groups = {snappy=3},
 	selection_box = bl2_sbox,
 	node_box = bl2_cbox,
 	expand = { right="air" },
 	sounds = default.node_sound_wood_defaults(),
+	on_rotate = screwdriver.disallow
 })
 
 minetest.register_alias("homedecor:bench_large_2_left", "homedecor:bench_large_2")
@@ -103,6 +105,7 @@ homedecor.register("deckchair", {
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
+	on_rotate = screwdriver.disallow
 })
 
 minetest.register_alias("homedecor:deckchair_foot", "homedecor:deckchair")
@@ -117,6 +120,7 @@ homedecor.register("deckchair_striped_blue", {
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
+	on_rotate = screwdriver.disallow
 })
 
 homedecor.register("doghouse", {
@@ -133,13 +137,14 @@ homedecor.register("doghouse", {
 	groups = {snappy=3},
 	expand = { top="air" },
 	sounds = default.node_sound_wood_defaults(),
+	on_rotate = screwdriver.rotate_simple
 })
 
 minetest.register_alias("homedecor:doghouse_roof", "air")
 minetest.register_alias("homedecor:doghouse_base", "homedecor:doghouse")
 
 homedecor.register("simple_bench", {
-	tiles = { "homedecor_generic_wood_neutral.png" },
+	tiles = { "homedecor_generic_wood_old.png" },
 	description = "Simple Bench",
 	groups = {snappy=3},
 	node_box = {
@@ -180,6 +185,37 @@ homedecor.register("stonepath", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+local lattice_colors = {
+	{"wood", ".png^[colorize:#704214:180"},
+	{"white_wood", ".png"},
+	{"wood_vegetal", ".png^[colorize:#704214:180^homedecor_lattice_vegetal.png"},
+	{"white_wood_vegetal", ".png^homedecor_lattice_vegetal.png"},
+}
+
+for _, m in ipairs(lattice_colors) do
+homedecor.register("lattice_"..m[1], {
+	description = "Garden Lattice ("..m[1]..")",
+	tiles = {"homedecor_lattice"..m[2]},
+	inventory_image = "homedecor_lattice"..m[2],
+	groups = { snappy=3 },
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, 0.47, 0.5, 0.5, 0.47}, -- NodeBox1
+			{-0.5, 0.421875, 0.44, 0.5, 0.5, 0.5}, -- NodeBox2
+			{-0.5, -0.5, 0.44, 0.5, -0.421875, 0.5}, -- NodeBox3
+			{0.421875, -0.5, 0.44, 0.5, 0.5, 0.5}, -- NodeBox4
+			{-0.5, -0.5, 0.44, -0.421875, 0.5, 0.5} -- NodeBox5
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, 0.44, 0.5, 0.5, 0.5}
+	},
+	sounds = default.node_sound_wood_defaults(),
+})
+end
+
 homedecor.register("swing", {
 	description = "Tree's swing",
 	tiles = {
@@ -191,6 +227,7 @@ homedecor.register("swing", {
 	groups = { snappy=3, oddly_breakable_by_hand=3 },
 	sounds = default.node_sound_wood_defaults(),
 	walkable = false,
+	on_rotate = screwdriver.disallow,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -274,7 +311,7 @@ homedecor.register("well", {
 	mesh = "homedecor_well.obj",
 	tiles = {
 		"homedecor_rope_texture.png",
-		"homedecor_generic_metal_neutral.png",
+		"homedecor_generic_metal_black.png^[brighten",
 		"default_water.png",
 		"default_cobble.png",
 		"default_wood.png",
@@ -287,7 +324,29 @@ homedecor.register("well", {
 	collision_box = homedecor.nodebox.slab_y(2),
 	expand = { top="air" },
 	sounds = default.node_sound_stone_defaults(),
+	on_rotate = screwdriver.rotate_simple
 })
+
+if minetest.get_modpath("bucket") then
+	minetest.override_item("bucket:bucket_empty", {
+		on_use = function(itemstack, user, pointed_thing)
+			local wielditem = user:get_wielded_item()
+			local wieldname = itemstack:get_name()
+			local inv = user:get_inventory()
+			
+			if pointed_thing.type == "node" and minetest.get_node(pointed_thing.under).name == "homedecor:well" then
+				if inv:room_for_item("main", "bucket:bucket_water 1") then
+					wielditem:take_item()
+					user:set_wielded_item(wielditem)
+					inv:add_item("main", "bucket:bucket_water 1")
+				else
+					minetest.chat_send_player(user:get_player_name(), "No room in your inventory to add a filled bucket!")
+				end
+			end
+			return wielditem
+		end	
+	})
+end
 
 minetest.register_alias("homedecor:well_top", "air")
 minetest.register_alias("homedecor:well_base", "homedecor:well")

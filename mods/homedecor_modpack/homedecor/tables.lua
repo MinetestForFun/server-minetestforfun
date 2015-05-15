@@ -197,7 +197,7 @@ homedecor.register("desk", {
 	description = "Desk",
 	mesh = "homedecor_desk.obj",
 	tiles = {
-		"homedecor_generic_wood_beech.png",
+		homedecor.plain_wood,
 		"homedecor_desk_drawers.png",
 		"homedecor_generic_metal_black.png",
 	},

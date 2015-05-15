@@ -104,7 +104,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "homedecor:table_lamp_off",
+	output = "homedecor:table_lamp_white_off",
 	recipe = {
 		{"default:paper","default:torch" ,"default:paper"},
 		{"","group:stick",""},
@@ -113,7 +113,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "homedecor:table_lamp_off",
+	output = "homedecor:table_lamp_white_off",
 	recipe = {
 		{"default:paper","default:torch" ,"default:paper"},
 		{"","group:stick",""},
@@ -122,9 +122,9 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "homedecor:standing_lamp_bottom_off",
+	output = "homedecor:standing_lamp_white_off",
 	recipe = {
-		{"homedecor:table_lamp_off"},
+		{"homedecor:table_lamp_white_off"},
 		{"group:stick"},
 		{"group:stick"},
 	},
@@ -132,7 +132,7 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "homedecor:table_lamp_off",
+	recipe = "homedecor:table_lamp_white_off",
 	burntime = 10,
 })
 

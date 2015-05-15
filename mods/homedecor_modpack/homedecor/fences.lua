@@ -189,8 +189,8 @@ homedecor.register("fence_privacy", {
 homedecor.register("fence_privacy_corner", {
 	description = S("Wooden Privacy Fence Corner"),
 	tiles = {
-		"homedecor_fence_privacy_corner_top.png",
-		"homedecor_fence_privacy_corner_bottom.png",
+		"homedecor_fence_privacy_corner_tb.png",
+		"homedecor_fence_privacy_corner_tb.png^[transformFY",
 		"homedecor_fence_privacy_corner_right.png",
 		"homedecor_fence_privacy_backside2.png",
 		"homedecor_fence_privacy_backside.png",
@@ -365,10 +365,10 @@ homedecor.register("fence_wrought_iron_2_corner", {
 	tiles = {
 		"homedecor_fence_corner_wrought_iron_2_tb.png",
 		"homedecor_fence_corner_wrought_iron_2_tb.png",
-		"homedecor_fence_corner_wrought_iron_2_lr.png",
-		"homedecor_fence_corner_wrought_iron_2_lr.png^[transformFX",
-		"homedecor_fence_corner_wrought_iron_2_fb.png^[transformFX",
-		"homedecor_fence_corner_wrought_iron_2_fb.png"
+		"homedecor_fence_corner_wrought_iron_2_sides.png^[transformFX",
+		"homedecor_fence_corner_wrought_iron_2_sides.png",
+		"homedecor_fence_corner_wrought_iron_2_sides.png^[transformFX",
+		"homedecor_fence_corner_wrought_iron_2_sides.png"
 	},
 	groups = {snappy=3},
 	sounds = default.node_sound_wood_defaults(),

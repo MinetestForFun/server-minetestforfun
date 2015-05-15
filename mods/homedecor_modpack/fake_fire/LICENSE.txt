@@ -1,21 +1,7 @@
-JP's Fork of LazyJ's Minetest Mod, "Fake Fire"
-by : JP.
-
-Replaced LazyJ's smoke nodes pictures by smoke particles. Lighter, prettier, configurable smoke.
-
-======================================================================
-
-
-LazyJ's Fork of Semmett9's Minetest Mod, "Fake Fire"
-by:
-LazyJ
-
-This is my fork of Semmett9's "Fake Fire" mod. Some code clean-up, a
-bunch of changes and a few new things have been added. 
-
-
-
-======================================================================
+Semmett9's "Fake Fire" mod.  kilbith's fork.
+Some textures by LazyJ.
+Fancy mesh fire model/texture by NathanS (CC-0).
+==============================================================
 
 
                     GNU GENERAL PUBLIC LICENSE

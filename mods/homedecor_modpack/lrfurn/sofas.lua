@@ -41,6 +41,7 @@ for i in ipairs(sofas_list) do
 		sounds = default.node_sound_wood_defaults(),
 		selection_box = sofa_sbox,
 		node_box = sofa_cbox,
+		on_rotate = screwdriver.disallow,
         on_place = function(itemstack, placer, pointed_thing)
 			local pos = pointed_thing.above
 			local fdir = minetest.dir_to_facedir(placer:get_look_dir(), false)

@@ -8,7 +8,7 @@ local wd_cbox = {
 homedecor.register("wardrobe", {
 	mesh = "homedecor_bedroom_wardrobe.obj",
 	tiles = {
-		"homedecor_generic_wood_beech.png",
+		homedecor.plain_wood,
 		"homedecor_wardrobe_drawers.png",
 		"homedecor_wardrobe_doors.png"
 	},
@@ -19,6 +19,7 @@ homedecor.register("wardrobe", {
 	collision_box = wd_cbox,
 	sounds = default.node_sound_wood_defaults(),
 	expand = { top="air" },
+	on_rotate = screwdriver.rotate_simple,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		local skins = {"male1", "male2", "male3", "male4", "male5"}
@@ -26,8 +27,8 @@ homedecor.register("wardrobe", {
 		local clothes_strings = ""
 		for i = 1,5 do
 			clothes_strings = clothes_strings..
-			  "image_button_exit["..(i-1)..".5,0;1.1,2;"..skins[i].."_preview.png;"..skins[i]..";]"..
-			  "image_button_exit["..(i-1)..".5,2;1.1,2;fe"..skins[i].."_preview.png;fe"..skins[i]..";]"
+			  "image_button_exit["..(i-1)..".5,0;1.1,2;homedecor_clothes_"..skins[i].."_preview.png;"..skins[i]..";]"..
+			  "image_button_exit["..(i-1)..".5,2;1.1,2;homedecor_clothes_fe"..skins[i].."_preview.png;fe"..skins[i]..";]"
 		end
 
 		meta:set_string("formspec", "size[5.5,8.5]"..default.gui_bg..default.gui_bg_img..default.gui_slots..
@@ -60,13 +61,25 @@ homedecor.register("wardrobe", {
 	on_receive_fields = function(pos, formname, fields, sender)
 		local meta = minetest.get_meta(pos)
 		local skins = {"male1", "male2", "male3", "male4", "male5"}
+		local playerName = sender:get_player_name()
+		local armor_mod = minetest.get_modpath("3d_armor")
 
 		for i = 1,5 do
 			if fields[skins[i]] then
-				default.player_set_textures(sender, { skins[i]..".png" })
+				if armor_mod then -- if 3D_armor's installed, let it set the skin
+					armor.textures[playerName].skin = "homedecor_clothes_"..skins[i]..".png"
+					armor:update_player_visuals(sender)
+					break
+				end
+				default.player_set_textures(sender, { "homedecor_clothes_"..skins[i]..".png" })
 				break
 			elseif fields["fe"..skins[i]] then
-				default.player_set_textures(sender, { skin = "fe"..skins[i]..".png" })
+				if armor_mod then
+					armor.textures[playerName].skin = "fe"..skins[i]..".png"
+					armor:update_player_visuals(sender)
+					break
+				end
+				default.player_set_textures(sender, { skin = "homedecor_clothes_fe"..skins[i]..".png" })
 				break
 			end
 		end

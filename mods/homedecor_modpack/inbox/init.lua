@@ -30,6 +30,7 @@ minetest.register_node("inbox:empty", {
 	paramtype2 = "facedir",
 	groups = {choppy=2,oddly_breakable_by_hand=2},
 	sounds = default.node_sound_wood_defaults(),
+	on_rotate = screwdriver.rotate_simple,
 	after_place_node = function(pos, placer, itemstack)
 		local meta = minetest.get_meta(pos)
 		local owner = placer:get_player_name()

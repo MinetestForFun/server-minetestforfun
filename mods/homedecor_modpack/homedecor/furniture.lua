@@ -1,21 +1,21 @@
 local S = homedecor.gettext
 
-local table_colors = { "", "mahogany", "white" }
+local table_colors = {
+	{ "",          homedecor.plain_wood },
+	{ "_mahogany", homedecor.mahogany_wood },
+	{ "_white",    homedecor.white_wood }
+}
 
-for _, i in ipairs(table_colors) do
-	local color = "_"..i
-	local color2 = "_"..i
+for i in ipairs(table_colors) do
 	local desc = S("Table ("..i..")")
 
-	if i == "" then
-		color = ""
-		color2 = "_beech"
+	if i == 1 then
 		desc = S("Table")
 	end
 
-	homedecor.register("table"..color, {
+	homedecor.register("table"..table_colors[i][1], {
 		description = desc,
-		tiles = { "homedecor_generic_wood"..color2..".png" },
+		tiles = { table_colors[i][2] },
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -64,15 +64,15 @@ for i in ipairs(chaircolors) do
 	local color2 = chaircolors[i][1]
 	local name = S(chaircolors[i][2])
 	local chairtiles = {
-		"homedecor_generic_wood_beech.png",
+		homedecor.plain_wood,
 		"wool"..color..".png",
 	}
 
 	if chaircolors[i][1] == "" then
 		color = ""
 		chairtiles = {
-			"homedecor_generic_wood_beech.png",
-			"homedecor_generic_wood_beech.png"
+			homedecor.plain_wood,
+			homedecor.plain_wood
 		}
 	end
 
@@ -84,12 +84,10 @@ for i in ipairs(chaircolors) do
 		collision_box = kc_cbox,
 		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 		sounds = default.node_sound_wood_defaults(),
-		--[[
 		on_rightclick = function(pos, node, clicker)
-			pos.y = pos.y-0 -- player's sit position.
-			homedecor.sit_exec(pos, node, clicker)
-		end,
-		--]]
+			pos.y = pos.y+0 -- where do I put my ass ?
+			homedecor.sit(pos, node, clicker)
+		end
 	})
 
 	if color ~= "" then
@@ -183,53 +181,10 @@ homedecor.register("office_chair_"..c, {
 	selection_box = ofchairs_sbox,
 	collision_box = ofchairs_cbox,
 	expand = { top = "air" },
+	on_rotate = screwdriver.rotate_simple
 })
 
 end
-
--- Sitting functions disabled for now because of buggyness.
-
---[[
-function homedecor.sit(pos, node, clicker)
-	local name = clicker:get_player_name()
-	local meta = minetest:get_meta(pos)
-	local param2 = node.param2
-	if clicker:get_player_name() == meta:get_string("player") then
-		meta:set_string("player", "")
-		pos.y = pos.y-0.5
-		clicker:setpos(pos)
-		clicker:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
-		clicker:set_physics_override(1, 1, 1)
-		default.player_attached[name] = false
-		default.player_set_animation(clicker, "stand", 30)
-	else
-		meta:set_string("player", clicker:get_player_name())
-		clicker:set_eye_offset({x=0,y=-7,z=2}, {x=0,y=0,z=0})
-		clicker:set_physics_override(0, 0, 0)
-		default.player_attached[name] = true
-		if param2 == 1 then
-			clicker:set_look_yaw(7.9)
-		elseif param2 == 3 then
-			clicker:set_look_yaw(4.75)
-		elseif param2 == 0 then
-			clicker:set_look_yaw(3.15)
-		else
-			clicker:set_look_yaw(6.28)
-		end
-	end
-end
-
-function homedecor.sit_exec(pos, node, clicker) -- don't move these functions inside sit()
-	if not clicker or not clicker:is_player()
-		or clicker:get_player_control().up == true or clicker:get_player_control().down == true
-		or clicker:get_player_control().left == true or clicker:get_player_control().right == true
-		or clicker:get_player_control().jump == true then  -- make sure that the player is immobile.
-	return end
-	homedecor.sit(pos, node, clicker)
-	clicker:setpos(pos)
-	default.player_set_animation(clicker, "sit", 30)
-end
---]]
 
 -- Aliases for 3dforniture mod.
 

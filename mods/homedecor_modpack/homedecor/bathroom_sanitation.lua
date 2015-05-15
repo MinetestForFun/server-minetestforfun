@@ -17,10 +17,10 @@ homedecor.register("toilet", {
 	description = S("Toilet"),
 	mesh = "homedecor_toilet_closed.obj",
 	tiles = {
-		"homedecor_marble_light.png",
-		"homedecor_marble_light.png",
-		"homedecor_marble_light.png",
-		"homedecor_generic_metal_neutral.png"
+		"homedecor_marble.png^[colorize:#ffffff:175",
+		"homedecor_marble.png^[colorize:#ffffff:175",
+		"homedecor_marble.png^[colorize:#ffffff:175",
+		"homedecor_generic_metal_black.png^[brighten"
 	},
 	selection_box = toilet_sbox,
 	node_box = toilet_cbox,
@@ -35,11 +35,11 @@ homedecor.register("toilet", {
 homedecor.register("toilet_open", {
 	mesh = "homedecor_toilet_open.obj",
 	tiles = {
-		"homedecor_marble_light.png",
-		"homedecor_marble_light.png",
-		"homedecor_marble_light.png",
+		"homedecor_marble.png^[colorize:#ffffff:175",
+		"homedecor_marble.png^[colorize:#ffffff:175",
+		"homedecor_marble.png^[colorize:#ffffff:175",
 		"default_water.png",
-		"homedecor_generic_metal_neutral.png"
+		"homedecor_generic_metal_black.png^[brighten"
 	},
 	selection_box = toilet_sbox,
 	collision_box = toilet_cbox,
@@ -89,26 +89,55 @@ homedecor.register("sink", {
 	description = S("Bathroom Sink"),
 	mesh = "homedecor_bathroom_sink.obj",
 	tiles = {
-		"homedecor_marble_light.png",
-		"forniture_marble.png",
+		"homedecor_marble.png^[colorize:#ffffff:175",
+		"homedecor_marble.png",
 		"default_water.png"
 	},
 	inventory_image="homedecor_bathroom_sink_inv.png",
 	selection_box = sink_cbox,
-	collision_box = sink_cbox,
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -5/16,  5/16, 1/16, -4/16, 8/16, 8/16 },
+			{  5/16,  5/16, 1/16,  4/16, 8/16, 8/16 },
+			{ -5/16,  5/16, 1/16,  5/16, 8/16, 2/16 },
+			{ -5/16,  5/16, 6/16,  5/16, 8/16, 8/16 },
+			{ -4/16, -8/16, 1/16,  4/16, 5/16, 6/16 }
+		}
+	},
+	on_destruct = function(pos)
+		homedecor.stop_particle_spawner({x=pos.x, y=pos.y+1, z=pos.z})
+	end
 })
 
 --Taps
+
+local function taps_on_rightclick(pos, node, clicker)
+	local below = minetest.get_node_or_nil({x=pos.x, y=pos.y-1, z=pos.z})
+	if below and
+	  below.name == "homedecor:shower_tray" or
+	  below.name == "homedecor:sink" or
+	  below.name == "homedecor:kitchen_cabinet_with_sink" then
+		local particledef = {
+			outlet      = { x = 0, y = -0.44, z = 0.28 },
+			velocity_x  = { min = -0.1, max = 0.1 },
+			velocity_y  = -0.3,
+			velocity_z  = { min = -0.1, max = 0 },
+			spread      = 0
+		}
+		homedecor.start_particle_spawner(pos, node, particledef, "homedecor_faucet")
+	end
+end
 
 homedecor.register("taps", {
 	description = S("Bathroom taps/faucet"),
 	mesh = "homedecor_bathroom_faucet.obj",
 	tiles = {
-		"homedecor_generic_metal_neutral.png",
+		"homedecor_generic_metal_black.png^[brighten",
 		"homedecor_generic_metal_bright.png",
-		"homedecor_generic_metal_white.png",
+		"homedecor_generic_metal_black.png^[colorize:#ffffff:200",
 		"homedecor_generic_metal_bright.png"
 	},
 	inventory_image = "3dforniture_taps_inv.png",
@@ -120,6 +149,9 @@ homedecor.register("taps", {
 	walkable = false,
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
+	on_rightclick = taps_on_rightclick,
+	on_destruct = homedecor.stop_particle_spawner,
+	on_rotate = screwdriver.disallow
 })
 
 homedecor.register("taps_brass", {
@@ -128,7 +160,7 @@ homedecor.register("taps_brass", {
 	tiles = {
 		"homedecor_generic_metal_brass.png",
 		"homedecor_generic_metal_brass.png",
-		"homedecor_generic_metal_white.png",
+		"homedecor_generic_metal_black.png^[colorize:#ffffff:200",
 		"homedecor_generic_metal_brass.png"
 	},
 	inventory_image = "3dforniture_taps_brass_inv.png",
@@ -140,6 +172,9 @@ homedecor.register("taps_brass", {
 	walkable = false,
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
+	on_rightclick = taps_on_rightclick,
+	on_destruct = homedecor.stop_particle_spawner,
+	on_rotate = screwdriver.disallow
 })
 
 --Shower Tray
@@ -148,7 +183,7 @@ homedecor.register("shower_tray", {
 	description = S("Shower Tray"),
 	tiles = {
 		"forniture_marble_base_ducha_top.png",
-		"forniture_marble.png"
+		"homedecor_marble.png"
 	},
 	node_box = {
 		type = "fixed",
@@ -167,34 +202,13 @@ homedecor.register("shower_tray", {
 	groups = {cracky=2},
 	sounds = default.node_sound_stone_defaults(),
 	on_destruct = function(pos)
-		headpos = {x=pos.x, y=pos.y+2, z=pos.z}
-		local above_spawner_meta = minetest.get_meta(headpos)
-
-		local id = above_spawner_meta:get_int("active")
-		local s_handle = above_spawner_meta:get_int("sound")
-
-		if id ~= 0 then
-			minetest.delete_particlespawner(id)
-		end
-
-		if s_handle then
-			minetest.after(0, function(s_handle)
-				minetest.sound_stop(s_handle)
-			end, s_handle)
-		end
-
-		above_spawner_meta:set_int("active", nil)
-		above_spawner_meta:set_int("sound", nil)
+		homedecor.stop_particle_spawner({x=pos.x, y=pos.y+2, z=pos.z}) -- the showerhead
+		homedecor.stop_particle_spawner({x=pos.x, y=pos.y+1, z=pos.z}) -- the taps, if any
 	end
 })
 
 --Shower Head
 
-local fdir_to_flowpos = {
-	minx = { 0.15, 0.05, -0.15, -0.05 }, maxx = { -0.15, -0.3, 0.15, 0.3 },
-	minz = { 0.05, 0.15, -0.05, -0.15 }, maxz = { -0.3, -0.15, 0.3, 0.15 },
-	velx = { 0, -0.2, 0, 0.2 }, velz = { -0.2, 0, 0.2, 0 }
-}
 
 local sh_cbox = {
 	type = "fixed",
@@ -205,7 +219,7 @@ homedecor.register("shower_head", {
 	drawtype = "mesh",
 	mesh = "homedecor_shower_head.obj",
 	tiles = {
-		"homedecor_generic_metal_neutral.png",
+		"homedecor_generic_metal_black.png^[brighten",
 		"homedecor_shower_head.png"
 	},
 	inventory_image = "homedecor_shower_head_inv.png",
@@ -213,70 +227,22 @@ homedecor.register("shower_head", {
 	groups = {snappy=3},
 	selection_box = sh_cbox,
 	walkable = false,
+	on_rotate = screwdriver.disallow,
 	on_rightclick = function (pos, node, clicker)
-		local below = minetest.get_node({x=pos.x, y=pos.y-2.0, z=pos.z})
-		local is_tray = string.find(below.name, "homedecor:shower_tray")
-		local fdir = node.param2
-		local minx = fdir_to_flowpos.minx[fdir + 1]
-		local maxx = fdir_to_flowpos.maxx[fdir + 1]
-		local minz = fdir_to_flowpos.minz[fdir + 1]
-		local maxz = fdir_to_flowpos.maxz[fdir + 1]
-		local velx = fdir_to_flowpos.velx[fdir + 1]
-		local velz = fdir_to_flowpos.velz[fdir + 1]
-
-		local this_spawner_meta = minetest.get_meta(pos)
-		local id = this_spawner_meta:get_int("active")
-		local s_handle = this_spawner_meta:get_int("sound")
-
-		if id ~= 0 then
-			if s_handle then
-				minetest.after(0, function(s_handle)
-					minetest.sound_stop(s_handle)
-				end, s_handle)
-			end
-			minetest.delete_particlespawner(id)
-			this_spawner_meta:set_int("active", nil)
-			this_spawner_meta:set_int("sound", nil)
-			return
-		end
-
-		if fdir and fdir < 4 and is_tray and (not id or id == 0) then
-			id = minetest.add_particlespawner({
-				amount = 60, time = 0, collisiondetection = true,
-				minpos = {x=pos.x - minx, y=pos.y-0.45, z=pos.z - minz},
-				maxpos = {x=pos.x - maxx, y=pos.y-0.45, z=pos.z - maxz},
-				minvel = {x=velx, y=-2, z=velz}, maxvel = {x=velx, y=-2, z=velz},
-				minacc = {x=0, y=0, z=0}, maxacc = {x=0, y=-0.05, z=0},
-				minexptime = 2, maxexptime = 4, minsize = 0.5, maxsize = 1,
-				texture = "homedecor_water_particle.png",
-			})
-			s_handle = minetest.sound_play("homedecor_shower", {
-				pos = pos,
-				max_hear_distance = 5,
-				loop = true 
-			})
-			this_spawner_meta:set_int("active", id)
-			this_spawner_meta:set_int("sound", s_handle)
-			return
+		local below = minetest.get_node_or_nil({x=pos.x, y=pos.y-2.0, z=pos.z})
+		if below and below.name == "homedecor:shower_tray" then
+			local particledef = {
+				outlet      = { x = 0, y = -0.42, z = 0.1 },
+				velocity_x  = { min = -0.15, max = 0.15 },
+				velocity_y  = -2,
+				velocity_z  = { min = -0.3,  max = 0.1 },
+				spread      = 0.12
+			}
+			homedecor.start_particle_spawner(pos, node, particledef, "homedecor_shower")
 		end
 	end,
 	on_destruct = function(pos)
-		local this_spawner_meta = minetest.get_meta(pos)
-		local id = this_spawner_meta:get_int("active")
-		local s_handle = this_spawner_meta:get_int("sound")
-
-		if id ~= 0 then
-			minetest.delete_particlespawner(id)
-		end
-
-		if s_handle then
-			minetest.after(0, function(s_handle)
-				minetest.sound_stop(s_handle)
-			end, s_handle)
-		end
-
-		this_spawner_meta:set_int("active", nil)
-		this_spawner_meta:set_int("sound", nil)
+		homedecor.stop_particle_spawner(pos)
 	end
 })
 
