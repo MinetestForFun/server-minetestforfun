@@ -137,7 +137,7 @@ local function register_wielder(data)
 		end
 		minetest.register_node(data.name_base.."_"..state, {
 			description = data.description,
-			tile_images = tile_images,
+			tiles = tile_images,
 			mesecons = {
 				effector = {
 					rules = pipeworks.rules_all,

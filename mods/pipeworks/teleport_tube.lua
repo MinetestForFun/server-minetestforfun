@@ -227,7 +227,7 @@ minetest.register_craft( {
 	        { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
 	        { "default:desert_stone", "default:mese", "default:desert_stone" },
 	        { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
-	}, -- MODIFICATION MADE FOR MFF ^
+	},
 })
 
 if minetest.get_modpath("mesecons_mvps") ~= nil then
