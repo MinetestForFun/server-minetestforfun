@@ -1,0 +1,5 @@
+# Template
+
+someone = quelqu'un
+Sorry, %s owns that spot. = Désolé, %s possède cet endroit.
+[Plantlife Library] Loaded = [Librairie Plantlife] Chargée.

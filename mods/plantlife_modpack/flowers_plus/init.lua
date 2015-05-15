@@ -242,18 +242,17 @@ for i in ipairs(flowers_list) do
 	
 	minetest.register_node(":flowers:potted_"..flower, {
 		description = S("Potted "..flowerdesc),
-		drawtype = "plantlike",
-		tiles = { "flowers_potted_"..flower..".png" },
-		inventory_image = "flowers_potted_"..flower..".png",
-		wield_image = "flowers_potted_"..flower..".png",
+		drawtype = "mesh",
+		mesh = "flowers_potted.obj",
+		tiles = { "flowers_potted_"..flower..".png", "flowers_potted.png" },
 		sunlight_propagates = true,
 		paramtype = "light",
 		walkable = false,
-		groups = { snappy = 3,flammable=2 },
-		sounds = default.node_sound_leaves_defaults(),
+		groups = { snappy = 3, flammable=2 },
+		sounds = default.node_sound_glass_defaults(),
 		selection_box = {
 			type = "fixed",
-			fixed = { -0.25, -0.5, -0.25, 0.25, 0.5, 0.25 },
+			fixed = { -0.2, -0.5, -0.2, 0.2, 0.4, 0.2 },
 		},	
 	})
 
@@ -497,14 +496,15 @@ plantslib:spawn_on_surfaces({
 	spawn_plants = {"flowers:sunflower"},
 	spawn_chance = SPAWN_CHANCE*2,
 	spawn_surfaces = {"default:dirt_with_grass"},
-	avoid_nodes = {"group:flower"},
+	avoid_nodes = {"group:flower", "flowers:sunflower"},
 	seed_diff = flowers_seed_diff,
 	light_min = 11,
 	light_max = 14,
 	min_elevation = 0,
 	plantlife_limit = -0.9,
 	temp_max = 0.53,
-	random_facedir = {0,3}
+	random_facedir = {0,3},
+	avoid_radius = 5
 })
 
 -- crafting recipes!

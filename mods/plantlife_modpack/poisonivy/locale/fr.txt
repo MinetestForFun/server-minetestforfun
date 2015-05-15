@@ -1,0 +1,7 @@
+# Template
+
+Poison ivy (seedling) = Sumac vénéneux (semis)
+Poison ivy (sproutling) = Sumac vénéneux (pousse)
+Poison ivy (climbing plant) = Sumac vénéneux (grimpant)
+
+[Poison Ivy] Loaded. = [Sumac vénéneux] Chargé.
