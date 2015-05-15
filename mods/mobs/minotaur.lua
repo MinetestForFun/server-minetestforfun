@@ -19,7 +19,6 @@ mobs:register_mob("mobs:minotaur", {
 	textures = {
 		{"mobs_minotaur.png"},
 	},
-	rotate = 1.5,
 	visual_size = {x=1, y=1},
 	blood_texture = "mobs_blood.png",
 	-- sounds
