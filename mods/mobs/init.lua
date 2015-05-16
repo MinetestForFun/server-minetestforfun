@@ -16,7 +16,6 @@ dofile(minetest.get_modpath("mobs").."/ghoat.lua") -- ???
 
 -- Monsters
 
-dofile(minetest.get_modpath("mobs").."/sarangay.lua") -- Kalabasa
 dofile(minetest.get_modpath("mobs").."/dirtmonster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/dungeonmaster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/oerkki.lua") -- PilzAdam
@@ -32,7 +31,7 @@ dofile(minetest.get_modpath("mobs").."/greenslimes.lua") -- davedevils/TomasJLui
 dofile(minetest.get_modpath("mobs").."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
 dofile(minetest.get_modpath("mobs").."/zombie.lua") -- ???
 dofile(minetest.get_modpath("mobs").."/yeti.lua") -- ???
---dofile(minetest.get_modpath("mobs").."/minotaur.lua") -- ???
+dofile(minetest.get_modpath("mobs").."/minotaur.lua") -- Kalabasa
 
 -- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead
