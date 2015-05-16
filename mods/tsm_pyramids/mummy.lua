@@ -34,8 +34,8 @@ mobs:register_mob("tsm_pyramids:mummy", {
 	drops = {
 		{name = "default:papyrus",
 		chance = 1, min = 3, max = 5,},
-		{name = "maptools:copper_coin",
-		chance = 2, min = 2, max = 4,},
+		{name = "maptools:silver_coin",
+		chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,

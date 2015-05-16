@@ -26,12 +26,12 @@ mobs:register_mob("mobs:tree_monster", {
 	sounds = {
 		random = "mobs_treemonster",
 	},
-	-- speed and jumop
+	-- speed and jump
 	walk_velocity = 0.5,
 	run_velocity = 2.5,
 	jump = true,
 	view_range = 16,
-	-- drops saplings, junglesapling, apple and/or silver coins
+	-- drops saplings, junglesapling, apple and/or silver coin
 	drops = {
 		{name = "default:sapling",
 		chance = 2, min = 1, max = 2},
@@ -40,7 +40,7 @@ mobs:register_mob("mobs:tree_monster", {
 		{name = "default:apple",
 		chance = 2, min = 1, max = 3,},
 		{name = "maptools:silver_coin",
-		chance = 4, min = 1, max = 1,},
+		chance = 3, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

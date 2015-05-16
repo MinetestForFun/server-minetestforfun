@@ -40,14 +40,14 @@ mobs:register_mob("mobs:yeti", {
 	-- drops ice when dead
 	drops = {
 		{name = "default:ice",
-		chance = 1,
-		min = 1,
-		max = 3,},
+		chance = 1, min = 1, max = 3,},
+		{name = "maptools:silver_coin",
+		chance = 2, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
 	lava_damage = 5,
-	light_damage = 1,
+	light_damage = 0,
 	-- model animation
 	animation = {
 		speed_normal = 30,		speed_run = 30,
@@ -57,8 +57,8 @@ mobs:register_mob("mobs:yeti", {
 		punch_start = 200,		punch_end = 219,
 	},
 })
--- spawn on stone between 20 and -1 light, 1 in 7000 chance, 1 in area below -25
-mobs:register_spawn("mobs:yeti", {"default:dirt_with_snow", "default:snowblock", "default:ice"}, 10, -1, 7000, 1, 31000)
+-- spawn on stone between 20 and -1 light, 1 in 7000 chance, 1 in area below 31000
+mobs:register_spawn("mobs:yeti", {"default:dirt_with_snow", "default:snowblock", "default:ice"}, 20, -1, 7000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:yeti", "Yeti", "default_snow.png", 1)
 

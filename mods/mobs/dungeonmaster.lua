@@ -51,9 +51,7 @@ mobs:register_mob("mobs:dungeon_master", {
 		{name = "default:diamond_block",
 		chance = 30, min = 1, max = 1,},
 		{name = "maptools:gold_coin",
-		chance = 15, min = 1, max = 2,},
-		{name = "maptools:silver_coin",
-		chance = 1, min = 2, max = 10,},
+		chance = 20, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

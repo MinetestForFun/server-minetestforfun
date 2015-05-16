@@ -35,8 +35,8 @@ mobs:register_mob("mobs:dirt_monster", {
 	drops = {
 		{name = "default:dirt",
 		chance = 1, min = 3, max = 5,},
-		{name = "maptools:copper_coin",
-		chance = 2, min = 2, max = 8,},
+		{name = "maptools:silver_coin",
+		chance = 2, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

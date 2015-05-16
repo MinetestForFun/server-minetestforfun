@@ -35,10 +35,12 @@ mobs:register_mob("mobs:zombie", {
 	run_velocity = 3,
 	jump = true,
 	floats = 0,
--- drops dirt and coins when dead
+-- drops nether fruit and silver coin when dead
 	drops = {
-		{name = "maptools:copper_coin",
-		chance = 2, min = 2, max = 8,},
+		{name = "nether:apple",
+		chance = 4, min = 1, max = 1,},
+		{name = "maptools:silver_coin",
+		chance = 1, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

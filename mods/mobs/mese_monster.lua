@@ -44,7 +44,7 @@ mobs:register_mob("mobs:mese_monster", {
 		{name = "default:mese_crystal_fragment",
 		chance = 1, min = 1, max = 9,},
 		{name = "maptools:silver_coin",
-		chance = 2, min = 2, max = 5,},
+		chance = 1, min = 1, max = 2,},
 		{name = "returnmirror:mirror_inactive",
 		chance = 50, min = 1, max = 1,},
 	},

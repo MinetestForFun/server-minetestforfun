@@ -42,7 +42,7 @@ mobs:register_mob("mobs:stone_monster", {
 		{name = "default:coal_lump",
 		chance = 3, min = 1, max = 3,},
 		{name = "maptools:silver_coin",
-		chance = 2, min = 2, max = 3,},
+		chance = 1, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,

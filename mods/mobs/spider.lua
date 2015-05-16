@@ -41,8 +41,8 @@ mobs:register_mob("mobs:spider", {
 		chance = 2, min = 1, max = 3,},
 		{name = "mobs:meat_raw",
 		chance = 4, min = 1, max = 2,},
-		{name = "maptools:copper_coin",
-		chance = 2, min = 2, max = 6,},
+		{name = "maptools:silver_coin",
+		chance = 3, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 5,
