@@ -37,7 +37,7 @@ local bl1_sbox = {
 
 local bl1_cbox = {
 	type = "fixed",
-	fixed = { 
+	fixed = {
 		{-0.5, -0.5, -0.25, 1.5, 0, 0.5 },
 		{-0.5, -0.5, 0.45, 1.5, 0.5, 0.5 },
 	}
@@ -69,7 +69,7 @@ local bl2_sbox = {
 
 local bl2_cbox = {
 	type = "fixed",
-	fixed = { 
+	fixed = {
 		{-0.5, -0.5, -0.25, 1.5, 0, 0.5 },
 		{-0.5, -0.5, 0.45, 1.5, 0.5, 0.5 },
 	}
@@ -328,12 +328,13 @@ homedecor.register("well", {
 })
 
 if minetest.get_modpath("bucket") then
+	local original_bucket_on_use = minetest.registered_items["bucket:bucket_empty"].on_use
 	minetest.override_item("bucket:bucket_empty", {
 		on_use = function(itemstack, user, pointed_thing)
 			local wielditem = user:get_wielded_item()
 			local wieldname = itemstack:get_name()
 			local inv = user:get_inventory()
-			
+
 			if pointed_thing.type == "node" and minetest.get_node(pointed_thing.under).name == "homedecor:well" then
 				if inv:room_for_item("main", "bucket:bucket_water 1") then
 					wielditem:take_item()
@@ -342,9 +343,11 @@ if minetest.get_modpath("bucket") then
 				else
 					minetest.chat_send_player(user:get_player_name(), "No room in your inventory to add a filled bucket!")
 				end
+				return wielditem
+			else
+				return original_bucket_on_use(itemstack, user, pointed_thing)
 			end
-			return wielditem
-		end	
+		end
 	})
 end
 
