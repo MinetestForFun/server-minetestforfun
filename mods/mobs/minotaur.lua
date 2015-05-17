@@ -44,7 +44,6 @@ mobs:register_mob("mobs:minotaur", {
 		{name = "mobs:minotaur_horn",	 	-- NOT IMPLEMENTED YET - used for 3d_armor/throwing_enhanced mod
 		chance = 1, min = 1, max = 2,},
 	},
-	},
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 2,
