@@ -56,9 +56,13 @@ mobs:register_mob("mobs:chicken", {
 	follow = "farming:seed_wheat",
 	view_range = 8,
 	-- replace air with egg (lay)
-	replace_rate = 2000,
-	replace_what = {"air"},
-	replace_with = "mobs:egg",
+	replacements = {
+		{
+			replace_rate = 2000,
+			replace_what = {"air"},
+			replace_with = "mobs:egg",
+		}
+	},
 	-- right click to pick up chicken
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()

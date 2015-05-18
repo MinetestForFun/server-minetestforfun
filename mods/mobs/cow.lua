@@ -53,9 +53,19 @@ mobs:register_mob("mobs:cow", {
 	-- follows wheat
 	follow = "farming:wheat", view_range = 8,
 	-- replace grass/wheat with air (eat)
-	replace_rate = 50,
-	replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "farming:wheat_8"},
-	replace_with = "air",
+	replacements = {
+		{
+			replace_rate = 50,
+			replace_what = {"default:grass_3", "default:grass_4",
+				"default:grass_5", "farming:wheat_8"},
+			replace_with = "air",
+		},
+		{
+			replace_rate = 2000,
+			replace_what = {"air"},
+			replace_with = "mobs:dung",
+		}
+	},
 	-- right-click cow with empty bucket to get milk, then feed 8 wheat to replenish milk
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()
@@ -168,4 +178,30 @@ minetest.register_craft({
 	recipe = {
 		{'mobs:cheeseblock'},
 	}
+})
+
+-- Dung
+-- O_o?
+
+minetest.register_node("mobs:dung", {
+	description = "Cow dung",
+	tiles = {"mobs_dung.png"},
+	inventory_image  = "mobs_dung.png",
+	visual_scale = 0.7,
+	drawtype = "plantlike",
+	wield_image = "mobs_dung.png",
+	paramtype = "light",
+	walkable = false,
+	is_ground_content = true,
+	sunlight_propagates = true,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
+	},
+	groups = {snappy=2, dig_immediate=3},
+	after_place_node = function(pos, placer, itemstack)
+		if placer:is_player() then
+			minetest.set_node(pos, {name="mobs:dung", param2=1})
+		end
+	end
 })
