@@ -61,10 +61,7 @@ lifetimer = def.lifetimer or 600,
 		blood_texture = def.blood_texture or "mobs_blood.png",
 		shoot_offset = def.shoot_offset or 0,
 		floats = def.floats or 1, -- floats in water by default
-		replace_rate = def.replace_rate,
-		replace_what = def.replace_what,
-		replace_with = def.replace_with,
-		replace_offset = def.replace_offset or 0,
+		replacements = def.replacements or {},
 		timer = 0,
 		env_damage_timer = 0, -- only if state = "attack"
 		attack = {player=nil, dist=nil},
@@ -86,7 +83,7 @@ lifetimer = def.lifetimer or 600,
 				self.attack.dist = dist
 			end
 		end,
-		
+
 		set_velocity = function(self, v)
 			if not v then v = 0 end
 			if def.drawtype and def.drawtype == "side" then self.rotate = 1.5 end
@@ -95,7 +92,7 @@ lifetimer = def.lifetimer or 600,
 			local z = math.cos(yaw) * v
 			self.object:setvelocity({x=x, y=self.object:getvelocity().y, z=z})
 		end,
-		
+
 		get_velocity = function(self)
 			local v = self.object:getvelocity()
 			return (v.x^2 + v.z^2)^(0.5)
@@ -110,11 +107,11 @@ lifetimer = def.lifetimer or 600,
 			local ps = math.sqrt(pos.x^2 + pos.z^2)
 			local d = { x = vx / ds, z = vz / ds }
 			local p = { x = pos.x / ps, z = pos.z / ps }
-			
+
 			local an = ( d.x * p.x ) + ( d.z * p.z )
-			
+
 			a = math.deg( math.acos( an ) )
-			
+
 			if a > ( self.fov / 2 ) then
 				return false
 			else
@@ -155,7 +152,7 @@ lifetimer = def.lifetimer or 600,
 				end
 			end
 		end,
-		
+
 		on_step = function(self, dtime)
 
 			local yaw = 0
@@ -180,16 +177,28 @@ lifetimer = def.lifetimer or 600,
 			end
 
 			-- check for mob drop/replace (used for chicken egg and sheep eating grass/wheat)
-			if self.replace_rate
-			and math.random(1,self.replace_rate) == 1
-			and self.child == false then
-				local pos = self.object:getpos()
-				pos.y = pos.y + self.replace_offset
-				if #minetest.find_nodes_in_area(pos,pos,self.replace_what) > 0
-				and self.object:getvelocity().y == 0
-				and self.replace_what then
-				--and self.state == "stand" then
-					minetest.set_node(pos, {name = self.replace_with})
+			--[[
+				old fields :
+				replace_rate = def.replace_rate,
+				replace_what = def.replace_what,
+				replace_with = def.replace_with,
+				replace_offset = def.replace_offset or 0,
+			]]--
+			for _, fields in pairs(self.replacements) do
+
+				if fields.replace_rate
+					and math.random(1,fields.replace_rate) == 1
+					and self.child == false then
+
+					fields.replace_offset = fields.replace_offset or 0
+
+					local pos = self.object:getpos()
+					pos.y = pos.y + fields.replace_offset
+					if #minetest.find_nodes_in_area(pos,pos,fields.replace_what) > 0
+					and self.object:getvelocity().y == 0
+					and fields.replace_what then
+						minetest.set_node(pos, {name = fields.replace_with})
+					end
 				end
 			end
 
@@ -221,7 +230,7 @@ lifetimer = def.lifetimer or 600,
 				end
 				self.old_y = self.object:getpos().y
 			end
-			
+
 			-- knockback timer
 			if self.pause_timer > 0 then
 				self.pause_timer = self.pause_timer - dtime
@@ -230,7 +239,7 @@ lifetimer = def.lifetimer or 600,
 				end
 				return
 			end
-			
+
 			-- attack timer
 			self.timer = self.timer + dtime
 			if self.state ~= "attack" then
@@ -243,7 +252,7 @@ lifetimer = def.lifetimer or 600,
 			if self.sounds.random and math.random(1, 100) <= 1 then
 				minetest.sound_play(self.sounds.random, {object = self.object})
 			end
-			
+
 			local do_env_damage = function(self)
 
 				local pos = self.object:getpos()
@@ -264,7 +273,7 @@ lifetimer = def.lifetimer or 600,
 					self.object:set_hp(self.object:get_hp()-self.water_damage)
 					effect(pos, 5, "bubble.png")
 				end
-				
+
 				if self.lava_damage and self.lava_damage ~= 0
 				and minetest.get_item_group(n.name, "lava") ~= 0 then
 					self.object:set_hp(self.object:get_hp()-self.lava_damage)
@@ -273,7 +282,7 @@ lifetimer = def.lifetimer or 600,
 
 				check_for_death(self)
 			end
-			
+
 			local do_jump = function(self)
 				local pos = self.object:getpos()
 				pos.y = pos.y - (-self.collisionbox[2] + self.collisionbox[5])
@@ -298,7 +307,7 @@ lifetimer = def.lifetimer or 600,
 					end
 				end
 			end
-			
+
 			-- environmental damage timer
 			self.env_damage_timer = self.env_damage_timer + dtime
 			if self.state == "attack" and self.env_damage_timer > 1 then
@@ -307,7 +316,7 @@ lifetimer = def.lifetimer or 600,
 			elseif self.state ~= "attack" then
 				do_env_damage(self)
 			end
-			
+
 			-- find someone to attack
 			if self.type == "monster" and damage_enabled and self.state ~= "attack" then
 
@@ -331,7 +340,7 @@ lifetimer = def.lifetimer or 600,
 							type = obj.type
 						end
 					end
-					
+
 					if type == "player" or type == "npc" then
 						local s = self.object:getpos()
 						local p = player:getpos()
@@ -354,7 +363,7 @@ lifetimer = def.lifetimer or 600,
 					self.do_attack(self, min_player, min_dist)
 				end
 			end
-			
+
 			-- npc, find closest monster to attack
 			local min_dist = self.view_range + 1
 			local min_player = nil
@@ -517,7 +526,7 @@ lifetimer = def.lifetimer or 600,
 
 					if self.type == "npc" then
 						local o = minetest.get_objects_inside_radius(self.object:getpos(), 3)
-						
+
 						local yaw = 0
 						for _,o in ipairs(o) do
 							if o:is_player() then
@@ -533,7 +542,7 @@ lifetimer = def.lifetimer or 600,
 						if lp.x > s.x then
 							yaw = yaw+math.pi
 						end
-					else 
+					else
 						yaw = self.object:getyaw()+((math.random(0,360)-180)/180*math.pi)
 					end
 					self.object:setyaw(yaw)
@@ -567,7 +576,7 @@ lifetimer = def.lifetimer or 600,
 				local s = self.object:getpos()
 				-- if there is water nearby, try to avoid it
 				local lp = minetest.find_node_near(s, 2, {"group:water"})
-				
+
 				if lp ~= nil then
 					local vec = {x=lp.x-s.x, y=lp.y-s.y, z=lp.z-s.z}
 					yaw = math.atan(vec.z/vec.x) + 3*math.pi / 2 + self.rotate
@@ -594,7 +603,7 @@ lifetimer = def.lifetimer or 600,
 				end
 
 			-- exploding mobs
-			elseif self.state == "attack" and self.attack_type == "explode" then 
+			elseif self.state == "attack" and self.attack_type == "explode" then
 				if not self.attack.player or not self.attack.player:is_player() then
 					self.state = "stand"
 					self:set_animation("stand")
@@ -618,7 +627,7 @@ lifetimer = def.lifetimer or 600,
 					self:set_animation("walk")
 					self.attack.dist = dist
 				end
-				
+
 				local vec = {x = p.x -s.x, y = p.y -s.y, z = p.z -s.z}
 				local yaw = math.atan(vec.z/vec.x)+math.pi/2 + self.rotate
 				if p.x > s.x then
@@ -694,7 +703,7 @@ lifetimer = def.lifetimer or 600,
 				else
 					self.attack.dist = dist
 				end
-				
+
 				local vec = {x=p.x-s.x, y=p.y-s.y, z=p.z-s.z}
 				local yaw = (math.atan(vec.z/vec.x)+math.pi/2) + self.rotate
 				if p.x > s.x then
@@ -759,7 +768,7 @@ lifetimer = def.lifetimer or 600,
 				else
 					self.attack.dist = dist
 				end
-				
+
 				local vec = {x=p.x-s.x, y=p.y-s.y, z=p.z-s.z}
 				local yaw = (math.atan(vec.z/vec.x)+math.pi/2) + self.rotate
 				if p.x > s.x then
@@ -767,7 +776,7 @@ lifetimer = def.lifetimer or 600,
 				end
 				self.object:setyaw(yaw)
 				self.set_velocity(self, 0)
-				
+
 				if self.shoot_interval and self.timer > self.shoot_interval and math.random(1, 100) <= 60 then
 					self.timer = 0
 
@@ -913,7 +922,7 @@ lifetimer = def.lifetimer or 600,
 				kb = kb * ( tflp / tool_capabilities.full_punch_interval )
 				r = r * ( tflp / tool_capabilities.full_punch_interval )
 			end
-			if v.y ~= 0 then ykb = 0 end 
+			if v.y ~= 0 then ykb = 0 end
 			self.object:setvelocity({x=dir.x*kb,y=ykb,z=dir.z*kb})
 			self.pause_timer = r
 
@@ -949,7 +958,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 		action = function(pos, node, _, active_object_count_wider)
 			-- do not spawn if too many active in area
 			if active_object_count_wider > active_object_count
-			or not mobs.spawning_mobs[name] 
+			or not mobs.spawning_mobs[name]
 			or not pos then
 				return
 			end
