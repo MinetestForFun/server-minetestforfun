@@ -360,17 +360,17 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local side_length = maxp.x - minp.x + 1	-- maybe mistake here
 	local map_lengths_xyz = {x=side_length, y=side_length, z=side_length}
 
-	local pmap1 = minetest.get_perlin_map(perlins[1], map_lengths_xyz):get2dMap_flat(minp)
-	local pmap2 = minetest.get_perlin_map(perlins[2], map_lengths_xyz):get2dMap_flat(minp)
-	local pmap3 = minetest.get_perlin_map(perlins[3], map_lengths_xyz):get2dMap_flat(minp)
+	local pmap1 = minetest.get_perlin_map(perlins[1], map_lengths_xyz):get2dMap_flat({x=minp.x, y=minp.z})
+	local pmap2 = minetest.get_perlin_map(perlins[2], map_lengths_xyz):get2dMap_flat({x=minp.x, y=minp.z})
+	local pmap3 = minetest.get_perlin_map(perlins[3], map_lengths_xyz):get2dMap_flat({x=minp.x, y=minp.z})
 
 	local forest_possible = maxp.y > f_h_min and minp.y < f_h_max
 
-	--local pmap_f_bottom = minetest.get_perlin_map(perlins.forest_bottom, map_lengths_xyz):get2dMap_flat(minp)
+	--local pmap_f_bottom = minetest.get_perlin_map(perlins.forest_bottom, map_lengths_xyz):get2dMap_flat({x=minp.x, y=minp.z})
 	local perlin_f_bottom, pmap_f_top
 	if forest_possible then
 		perlin_f_bottom = minetest.get_perlin(11, 3, 0.8, tmp2)
-		pmap_f_top = minetest.get_perlin_map(perlins.forest_top, map_lengths_xyz):get2dMap_flat(minp)
+		pmap_f_top = minetest.get_perlin_map(perlins.forest_top, map_lengths_xyz):get2dMap_flat({x=minp.x, y=minp.z})
 	end
 
 	local num2, tab2
