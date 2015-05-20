@@ -205,3 +205,9 @@ minetest.register_node("mobs:dung", {
 		end
 	end
 })
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mobs:dung",
+	burntime = "8",
+})
