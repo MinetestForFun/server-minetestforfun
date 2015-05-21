@@ -16,3 +16,5 @@ minetest.register_chatcommand("list_players", {
 		return true
 	end,
 })
+
+minetest.register_chatcommand("players", core.chatcommands["list_players"])
