@@ -4,8 +4,9 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Le serveur étant devenu extrêmement stable, les MAJ vont ce rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
----??/??/????--- (Remerciements : Crabman, Mg, Gael-de-Sailly, Obani)
+---??/??/????--- (Remerciements : Gael-de-Sailly, Crabman, Ataron, Obani, Mg, Le_Docteur)
 
+MAJ de "mobs" (énormément d'amélioration général de l'intelligence des monstres, ajout en beta d'une intégration des monstres nageants et volants, nombreux bugfix, ajout du propriétaire sur les monstres apprivoisés - ils ne peuvent donc plus être volé -, les monstres peuvent maintenant marcher sur les demi-dalles, amélioration du code des exlosions)
 Ajout de "/misc/list_players" ("/list_players" ou son alias "/players" est une commande pour afficher la liste des joueurs connectés de façon plus propre que "/status")
 Ajout du mod "dumpnodes mod" (permet à l'admin de générer les couleurs des cubes pour la worldmap du serveur)
 MAJ de "worldedit" (amélioration du code)
