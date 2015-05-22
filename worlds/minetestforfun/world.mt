@@ -13,13 +13,18 @@ load_mod_colouredstonebricks = true
 load_mod_colormachine = true
 load_mod_bedrock = true
 
+load_mod_metatools = true
 load_mod_worldedit = true
 load_mod_worldedit_commands = true
 load_mod_worldedit_gui = true
 load_mod_worldedit_infinity = true
 load_mod_worldedit_limited = true
 load_mod_worldedit_shortcommands = true
-load_mod_metatools = true
+load_mod_dumpnodes = true
+load_mod_mapfix = true
+load_mod_worldedge = true
+load_mod_maze = true
+load_mod_compassgps = true
 
 load_mod_bushes_classic = true
 load_mod_flowers_plus = true
@@ -48,7 +53,6 @@ load_mod_nether = true
 load_mod_vector_extras = true
 load_mod_glow = true
 load_mod_riesenpilz = true
-load_mod_mapfix = true
 load_mod_seacobble = true
 load_mod_seacoral = true
 load_mod_seaglass = true
@@ -112,6 +116,7 @@ load_mod_mesecons_luacontroller = true
 load_mod_mesecons_microcontroller = true
 load_mod_mesecons_movestones = true
 load_mod_mesecons_noteblock = true
+load_mod_mesecons_stickyblocks = true
 load_mod_bobblocks = true
 load_mod_pipeworks = true
 
@@ -137,6 +142,7 @@ load_mod_chesttools = true
 
 load_mod_farming = true
 load_mod_food = true
+load_mod_food_basic = true
 load_mod_fishing = true
 
 load_mod_hud = true
@@ -175,6 +181,7 @@ load_mod_whoison = true
 load_mod_player_inactive = true
 load_mod_spawn = true
 load_mod__misc = true
+load_mod_interact = true
 load_mod_news = true
 load_mod_random_messages = true
 load_mod_death_messages = true
@@ -199,5 +206,3 @@ load_mod_chatplus = true
 load_mod_future_ban = false
 load_mod_textures = false
 load_mod_snowdrift = false
-
-load_mod_compassgps = true
