@@ -3,7 +3,7 @@ lighter_snowfall = false
 # Enables smooth transition of biomes
 smooth_biomes = true
 # The minumum height a snow biome will generate.
-min_height = 3
+min_height = 50   -- Modif MFF
 # Disable this to prevent sleds from being riden.
 sleds = true
 # Disable this to stop snow from being smoothed.
