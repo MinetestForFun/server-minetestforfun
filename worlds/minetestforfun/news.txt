@@ -3,27 +3,43 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 ---Bientôt---
 /!\ Le serveur étant devenu extrêmement stable, les MAJ vont ce rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
-/!\ C'est un énorme projet, ambitieux et jamais tenté auparavant, beaucoup de monde travail dessus, restez à l'affut ! :) /!\
 
 ---??/??/????--- (Remerciements : Crabman, Mg, Gael-de-Sailly, Obani)
-MaJ de "homedecor"
-MaJ de "plantlife_modpack"
-MaJ de "nether"
-MaJ de "farming"
-MaJ de "screwdriver"
-MaJ de "mesecons"
-Ajout du mod "interact" (questionnaire à l'arrivée d'un nouveau joueur pour obtenir interact)
-Ajout du mod "eventobjects" (objets spéciaux utilisés comme récompenses d'events)
-MaJ de "3d_armor"
-MaJ de "mobs" (ajout du minotaur, et des zombies qui spawnent dans la nether forest à la place des stone monsters. Chèvre aussi ajoutée, ainsi que le yéti)
-MaJ de "moreblocks"
-MaJ de "_misc" (bouts de codes inutiles car remplacés par interact)
-MaJ de "boats" (ajout de boats différents avec différentes vitesses d'avancée et de rotation, par Obani)
-MaJ de "minetestforfun_game"
-MaJ de "food"
-MaJ de "hud" (ajout des items de food dans le hunger.lua)
-MaJ de "irc_commands" (ajout d'une commande "time" du MFF-Bot pour voir l'heure in-game)
-MaJ de "snow"
+
+Ajout de "/misc/list_players" ("/list_players" ou son alias "/players" est une commande pour afficher la liste des joueurs connectés de façon plus propre que "/status")
+Ajout du mod "dumpnodes mod" (permet à l'admin de générer les couleurs des cubes pour la worldmap du serveur)
+MAJ de "worldedit" (amélioration du code)
+MAJ de "nether" (bugfix du problème de mapgen que nous avons rencontré)
+MAJ de "whoison" (plus précis dans les données sorties)
+Ajout du mod "compassgps" (une boussole, avec possibilité d'enregistrer des positions, différentes textures de boussoles disponibles) 
+Ajout du mod "worldedge" (quand vous atteingnez le bout de la carte, vous êtes téléporté à l'autre bout "logique" de la carte, à la façon du jeu "sneak")
+MAJ de "mobs" (ajout des bouses/dungs - rare - pour les vaches/cows, elles peuvent être utilisées comme combustible)
+MAJ de "mobs" (modification des drops de "coins", uniquement "desfois" des silver_coins maintenant, les creeper ne droppent plus de coins, le Minotaur et le Yeti sont maintenant 100% fonctionnels)
+MAJ de "homedecor" (fix d'un problèlme avec les buckets)
+MAJ de "mesecons" (amélioration du code portant sur la lumière et le son)
+MAJ de "plantlife_modpack" (code plus rapide, meshe ajoutés)
+MAJ de "screwdriver" (amélioration du code depuis MT_game, notamment fix du bug des objets de mesecons tournés)
+Suppression du mod "tetris_arcade" (car ajouté dans homedecor)
+MAJ de "homedecor" (plus de meshe, plus d'objets et mod tetris arcade ajouté dans le modpack)
+MAJ de "3d_armor" (amélioration du code, et ajout ne nous concernant pas)
+MAJ de "snow" (bugfix et modification pour ressembler au mob snow ajouté dans mt_game)
+MAJ de "farming" (ajout des beans/haricots)
+MAJ de "throwing" (ajout d'une sécurité sur la teleport arrow pour empêcher les joueurs de traverser les blocs protégés)
+MAJ de "mobs" (le monstre wolf/loup peut maintenant être apprivoisé en dog/chien en échange de 4 raw_meat/viande cru, le chien fait moins mal et cours moins vite)
+MAJ de "coloredwood" (rajout des blocs de wood colorés dans le guide de recette de l'inventaire)
+MAJ de "irc_commands" (ajout d'une commande "time" au MFF-Bot pour voir l'heure in-game)
+MAJ de "minetestforfun_game" (ajout de meselamps et shelf:vessel)
+MAJ de "boats" (ajout de boats différents avec différentes vitesses d'avancée et de rotation, par Obani - un tableau sera bientot accessible sur le site pour consulter les vitesses des bateaux -)
+Suppression du mod "/__misc/rules" (remplacé par le quizz du nouveau mod interact)
+MAJ de "mobs" (ajout des minotaurs dans la jungle forest - spawn rare -, grosse réduction du spawn des spiders dans la jungle, des zombies dans la nether forest à la place des stone monsters - même spawn -, Chèvre/ghoat ajoutée dans les plaines herbeuses, et enfin yéti ajouté dans son habitat naturel)
+MAJ de "moreblocks" (bugfix des arêtes des blocs)
+MAJ de "homedecor" (nouveaux lits, et toujours plus de meshe)
+MAJ de "3d_armor" (amélioration du code, meilleur modèle)
+Ajout du mod "eventobjects" (objets spéciaux utilisés comme récompenses d'events, désactivé pour l'instant)
+Ajout du mod "interact" (nouvelle façon d'avoir interact sous forme de quizz pour les nouveaux joueurs et désactivation des news si le joueur n'a pas interact)
+Ajout du mod "maze" (génération aléatoire de labyrinthe, uniquement utilisable par les admins/modérateurs)
+MAJ de "food" (grosse MAJ, nombreuses améliortions de code et ajout du fruit "Orange" et de l'orange juice)
+MAJ de "hud" (ajout de plusieurs nourritures en plus dans le hunger.lua)
 
 ---22/04/2015--- (Remerciements : Gael-de-Sailly, Mg, Ataron)
 MAJ de "builtin_falling" (désactivation de tout le mod sauf de ses fonctions protégeant les areas protégés des liquides)
@@ -31,7 +47,7 @@ MAJ de "invtweak" (bugfix)
 MAJ de "nether" (les "nether_fruit" ne nourrissaient plus suite à une MAJ faite trop vite, c'est maintenant réparé)
 Ajout du mod "maze" (permet la génération de labyrinthe à la WorldEdit, réservé aux admins/modérateurs, et sera utilisé lors d'événements futur sur le serveur)
 MAJ de "u_skins" (ajout de divers skins provenant des demandes de Cyberpangolin et Obani)
-Tentative - MAJ de "irc" (utilisation des dernières bibliothèques IRC)
+Tentative échouée - MAJ de "irc" (utilisation des dernières bibliothèques IRC)
 
 ---21/04/2015--- (Remerciements : Davedevils, Gael-de-Sailly, Obani, crabman, Mg)
 MAJ de "invtweak" (ajout de boutons pour trier l'inventaire, inclu dans l'interface de l'inventaire)
