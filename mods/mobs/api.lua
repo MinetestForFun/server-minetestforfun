@@ -1,4 +1,4 @@
--- Mobs Api (20th May 2015)
+-- Mobs Api (22nd May 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -1292,9 +1292,11 @@ function mobs:register_egg(mob, desc, background, addegg)
 				pos.y = pos.y + 0.5
 				local mob = minetest.add_entity(pos, mob)
 				local ent = mob:get_luaentity()
-				-- set owner
-				ent.owner = placer:get_player_name()
-				ent.tamed = true
+				if ent.type ~= "monster" then
+					ent.owner = placer:get_player_name() 	+ -- set owner
+					ent.tamed = true 	+ ent.owner = placer:get_player_name()
+					ent.tamed = true
+				end
 				itemstack:take_item()
 			end
 			return itemstack
