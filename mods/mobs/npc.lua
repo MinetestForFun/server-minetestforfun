@@ -1,9 +1,9 @@
 
 -- Npc by TenPlus1
 
-mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:apple", "default:sapling", "default:junglesapling", 
-					"shields:shield_enhanced_wood", "3d_armor:chestplate_cactus", "3d_armor:boots_bronze", 
-					"default:sword_steel", "default:sword_gold", "default:pick_steel", "default:shovel_steel", 
+mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:apple", "default:sapling", "default:junglesapling",
+					"shields:shield_enhanced_wood", "3d_armor:chestplate_cactus", "3d_armor:boots_bronze",
+					"default:sword_steel", "default:sword_gold", "default:pick_steel", "default:shovel_steel",
 					"default:bronze_ingot", "bucket:bucket_water" }
 
 mobs.npc_max_hp = 20
@@ -94,6 +94,7 @@ mobs:register_mob("mobs:npc", {
 			self.diamond_count = (self.diamond_count or 0) + 1
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
+			end
 		-- pick up npc
 		elseif item:get_name() == "mobs:magic_lasso"
 		and clicker:is_player()
@@ -120,7 +121,6 @@ mobs:register_mob("mobs:npc", {
 			-- if owner switch between follow and stand
 			if self.owner and self.owner == clicker:get_player_name() then
 				self.damages = 4
-			else
 				if self.order == "follow" then
 					self.order = "stand"
 				else
