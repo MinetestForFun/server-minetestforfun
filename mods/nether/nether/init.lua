@@ -125,6 +125,36 @@ local function table_contains(t, v)
 	return false
 end
 
+-- Weierstrass function stuff from https://github.com/slemonide/gen
+local SIZE = 1000
+local ssize = math.ceil(math.abs(SIZE))
+local function do_ws_func(depth, a, x)
+	local n = x/(16*SIZE)
+	local y = 0
+	for k=1,depth do
+		y = y + SIZE*(math.sin(math.pi * k^a * n)/(math.pi * k^a))
+	end
+	return y
+end
+
+local chunksize = minetest.setting_get("chunksize") or 5
+local ws_lists = {}
+local function get_ws_list(a,x)
+        ws_lists[a] = ws_lists[a] or {}
+        local v = ws_lists[a][x]
+        if v then
+                return v
+        end
+        v = {}
+        for x=x,x + (chunksize*16 - 1) do
+		local y = do_ws_func(ssize, a, x)
+                v[x] = y
+        end
+        ws_lists[a][x] = v
+        return v
+end
+
+
 local function dif(z1, z2)
 	if z1 < 0
 	and z2 < 0 then

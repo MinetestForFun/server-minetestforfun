@@ -7,4 +7,5 @@ http://i.imgur.com/pMZYqt9.png
 
 
 TODO:
-— finish nether forest
+— care about nether torches
+— find a way to get the perlin noise inside [-1; 1] or use another noise
