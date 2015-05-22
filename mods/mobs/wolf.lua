@@ -36,7 +36,7 @@ mobs:register_mob("mobs:wolf", {
 		{name = "mobs:meat_raw",
 		chance = 1, min = 2, max = 3,},
 		{name = "maptools:silver_coin",
-		chance = 3, min = 1, max = 1,},
+		chance = 4, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

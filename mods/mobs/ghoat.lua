@@ -37,6 +37,8 @@ mobs:register_mob("mobs:goat", {
 	drops = {
 		{name = "mobs:meat_raw",
 		chance = 1, min = 2, max = 4},
+		{name = "maptools:silver_coin",
+		chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

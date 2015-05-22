@@ -38,6 +38,8 @@ mobs:register_mob("mobs:pumba", {
 	drops = {
 		{name = "mobs:pork_raw",
 		chance = 1, min = 2, max = 3,},
+		{name = "maptools:silver_coin",
+		chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

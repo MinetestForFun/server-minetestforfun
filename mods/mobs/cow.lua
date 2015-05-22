@@ -37,6 +37,8 @@ mobs:register_mob("mobs:cow", {
 		chance = 1, min = 5, max = 10},
 		{name = "mobs:leather",
 		chance = 1, min = 0, max = 3},
+		{name = "maptools:silver_coin",
+		chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,

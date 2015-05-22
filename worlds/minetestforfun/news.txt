@@ -5,7 +5,6 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
 ---??/??/????--- (Remerciements : Gael-de-Sailly, Crabman, Ataron, Obani, Mg, Le_Docteur)
-
 MAJ de "mobs" (énormément d'amélioration général de l'intelligence des monstres, ajout en beta d'une intégration des monstres nageants et volants, nombreux bugfix, ajout du propriétaire sur les monstres apprivoisés - ils ne peuvent donc plus être volé -, les monstres peuvent maintenant marcher sur les demi-dalles, amélioration du code des exlosions)
 Ajout de "/misc/list_players" ("/list_players" ou son alias "/players" est une commande pour afficher la liste des joueurs connectés de façon plus propre que "/status")
 Ajout du mod "dumpnodes mod" (permet à l'admin de générer les couleurs des cubes pour la worldmap du serveur)
@@ -32,7 +31,7 @@ MAJ de "irc_commands" (ajout d'une commande "time" au MFF-Bot pour voir l'heure 
 MAJ de "minetestforfun_game" (ajout de meselamps et shelf:vessel)
 MAJ de "boats" (ajout de boats différents avec différentes vitesses d'avancée et de rotation, par Obani - un tableau sera bientot accessible sur le site pour consulter les vitesses des bateaux -)
 Suppression du mod "/__misc/rules" (remplacé par le quizz du nouveau mod interact)
-MAJ de "mobs" (ajout des minotaurs dans la jungle forest - spawn rare -, grosse réduction du spawn des spiders dans la jungle, des zombies dans la nether forest à la place des stone monsters - même spawn -, Chèvre/ghoat ajoutée dans les plaines herbeuses, et enfin yéti ajouté dans son habitat naturel)
+MAJ de "mobs" (ajout des minotaurs dans le désert - spawn rare -, réduction du spawn du sandmonster dans le désert, les Zombies remplacent les Stone Monsters dans la Nether Forest - même taux de spawn -, Chèvre/ghoat ajoutée dans les plaines herbeuses, et enfin yéti ajouté dans son habitat naturel)
 MAJ de "moreblocks" (bugfix des arêtes des blocs)
 MAJ de "homedecor" (nouveaux lits, et toujours plus de meshe)
 MAJ de "3d_armor" (amélioration du code, meilleur modèle)

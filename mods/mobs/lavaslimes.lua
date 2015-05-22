@@ -44,7 +44,7 @@ mobs:register_mob("mobs:lavasmall", {
 	footstep = "fire:basic_flame",
 	view_range = 16,
 	floats = 1,
-	-- chance of dropping coins
+	-- chance of dropping lava orb and coins
 	drops = {
 		{name = "mobs:lava_orb",
 		chance = 15, min = 1, max = 1,},
@@ -92,7 +92,7 @@ mobs:register_mob("mobs:lavamedium", {
 	footstep = "fire:basic_flame",
 	view_range = 16,
 	floats = 1,
-	-- chance of dropping coins
+	-- chance of dropping lava orb and coins
 	drops = {
 	},
 	-- damaged by
@@ -144,7 +144,7 @@ mobs:register_mob("mobs:lavabig", {
 	footstep = "fire:basic_flame",
 	view_range = 16,
 	floats = 1,
-	-- chance of dropping coins
+	-- chance of dropping lava orb and coins
 	drops = {
 	},
 	-- damaged by
