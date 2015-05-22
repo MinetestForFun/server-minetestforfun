@@ -17,13 +17,12 @@ mobs:register_mob("mobs:npc", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health & armor
-	hp_min = 20,
-	hp_max = 20,
-	armor = 100,
+	hp_min = 20, hp_max = 20, armor = 100,
 	-- textures and model
 	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
 	visual = "mesh",
 	mesh = "character.b3d",
+	drawtype = "front",
 	textures = {
 		{"mobs_npc.png"},
 	},
@@ -67,12 +66,16 @@ mobs:register_mob("mobs:npc", {
 	-- right clicking with "cooked meat" or "bread" will give npc more health
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
+		local name = clicker:get_player_name()
+
+		-- heal npc
 		if item:get_name() == "mobs:meat"
 		or item:get_name() == "farming:bread" then
+			-- feed and add health
 			local hp = self.object:get_hp()
-			if hp + 4 > self.hp_max then
-				return
-			end
+			if hp + 4 > self.hp_max then return end
+			self.object:set_hp(hp+4)
+			-- take item
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
@@ -91,12 +94,31 @@ mobs:register_mob("mobs:npc", {
 			self.diamond_count = (self.diamond_count or 0) + 1
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
+		-- pick up npc
+		elseif item:get_name() == "mobs:magic_lasso"
+		and clicker:is_player()
+		and clicker:get_inventory()
+		and self.child == false
+		and clicker:get_inventory():room_for_item("main", "mobs:npc") then
+
+			-- pick up if owner
+			if self.owner == name then
+				clicker:get_inventory():add_item("main", "mobs:npc")
+				self.object:remove()
+				item:add_wear(3000) -- 22 uses
 				clicker:set_wielded_item(item)
+			-- cannot pick up if not tamed
+			elseif not self.owner or self.owner == "" then
+				minetest.chat_send_player(name, "Not tamed!")
+			-- cannot pick up if not tamed
+			elseif self.owner ~= name then
+				minetest.chat_send_player(name, "Not owner!")
 			end
 			if self.diamond_count < 4 then return end
 
-			if self.owner == "" then
-				self.owner = clicker:get_player_name()
+		else
+			-- if owner switch between follow and stand
+			if self.owner and self.owner == clicker:get_player_name() then
 				self.damages = 4
 			else
 				if self.order == "follow" then
@@ -104,6 +126,8 @@ mobs:register_mob("mobs:npc", {
 				else
 					self.order = "follow"
 				end
+			else
+				self.owner = clicker:get_player_name()
 			end
 		end
 	end,

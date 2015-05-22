@@ -7,9 +7,7 @@ mobs:register_mob("mobs:kitten", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 4,
-	hp_max = 8,
-	armor = 200,
+	hp_min = 4, hp_max = 8, armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
@@ -32,8 +30,6 @@ mobs:register_mob("mobs:kitten", {
 	jump = false,
 	--	drops string and coins
 	drops = {
-		{name = "maptools:copper_coin",
-		chance = 10, min = 1, max = 1,},
 		{name = "farming:string",
 		chance = 2, min = 1, max = 1},
 	},
@@ -52,17 +48,30 @@ mobs:register_mob("mobs:kitten", {
 	-- feed with raw fish to tame or right click to pick up
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
+		local name = clicker:get_player_name()
+
 		if item:get_name() == "fishing:fish_raw"
 		or item:get_name() == "ethereal:fish_raw" then
+			-- take item
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
+			-- feed and tame
 			self.food = (self.food or 0) + 1
-			if self.food >= 4 then
+			if self.food > 3 then
 				self.food = 0
 				self.tamed = true
-				minetest.sound_play("mobs_kitten", {object = self.object,gain = 1.0,max_hear_distance = 32,loop = false,})
+				-- make owner
+				if not self.owner or self.owner == "" then
+					self.owner = name
+				end
+				minetest.sound_play("mobs_kitten", {
+					object = self.object,
+					gain = 1.0,
+					max_hear_distance = 10,
+					loop = false,
+				})
 			end
 			return
 		end
@@ -71,10 +80,20 @@ mobs:register_mob("mobs:kitten", {
 		and clicker:get_inventory()
 		and self.child == false
 		and clicker:get_inventory():room_for_item("main", "mobs:kitten") then
-			clicker:get_inventory():add_item("main", "mobs:kitten")
-			self.object:remove()
+
+			-- pick up if owner
+			if self.owner == name then
+				clicker:get_inventory():add_item("main", "mobs:kitten")
+				self.object:remove()
+			-- cannot pick up if not tamed
+			elseif not self.owner or self.owner == "" then
+				minetest.chat_send_player(name, "Not tamed!")
+			-- cannot pick up if not owner
+			elseif self.owner ~= name then
+				minetest.chat_send_player(name, "Not owner!")
+			end
 		end
-	end,
+	end
 })
 
 mobs:register_spawn("mobs:kitten", {"default:dirt_with_grass"}, 20, 0, 10000, 1, 31000)

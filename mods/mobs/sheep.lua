@@ -58,28 +58,42 @@ mobs:register_mob("mobs:sheep", {
 	-- right click sheep to shear sheep and get wood, feed 8 wheat for wool to grow back
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
+		local name = clicker:get_player_name()
+
 		if item:get_name() == "farming:wheat" then
+			-- take item
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
+			-- make child grow quicker
 			if self.child == true then
 				self.hornytimer = self.hornytimer + 10
 				return
 			end
+			-- feed and tame
 			self.food = (self.food or 0) + 1
-			if self.food >= 8 then
+			if self.food > 7 then
 				self.food = 0
 				if self.hornytimer == 0 then
 					self.horny = true
 				end
 				self.gotten = false -- can be shaved again
 				self.tamed = true
+				-- make owner
+				if not self.owner or self.owner == "" then
+					self.owner = name
+				end
 				self.object:set_properties({
 					textures = {"mobs_sheep.png"},
 					mesh = "mobs_sheep.x",
 				})
-				minetest.sound_play("mobs_sheep", {object = self.object,gain = 1.0,max_hear_distance = 32,loop = false,})
+				minetest.sound_play("mobs_sheep", {
+					object = self.object,
+					gain = 1.0,
+					max_hear_distance = 20,
+					loop = false,
+				})
 			end
 			return
 		end
@@ -109,11 +123,20 @@ mobs:register_mob("mobs:sheep", {
 		and clicker:get_inventory()
 		and self.child == false
 		and clicker:get_inventory():room_for_item("main", "mobs:sheep") then
-			clicker:get_inventory():add_item("main", "mobs:sheep")
-			self.object:remove()
-			item:add_wear(3000) -- 22 uses
-			print ("wear", item:get_wear())
-			clicker:set_wielded_item(item)
+
+			-- pick up if owner
+			if self.owner == name then
+				clicker:get_inventory():add_item("main", "mobs:sheep")
+				self.object:remove()
+				item:add_wear(3000) -- 22 uses
+				clicker:set_wielded_item(item)
+			-- cannot pick up if not tamed
+			elseif not self.owner or self.owner == "" then
+				minetest.chat_send_player(name, "Not tamed!")
+			-- cannot pick up if not tamed
+			elseif self.owner ~= name then
+				minetest.chat_send_player(name, "Not owner!")
+			end
 		end
 	end,
 })
@@ -126,7 +149,7 @@ mobs:register_egg("mobs:sheep", "Sheep", "wool_white.png", 1)
 minetest.register_tool("mobs:shears", {
 	description = "Steel Shears (right-click sheep to shear)",
 	inventory_image = "mobs_shears.png",
-	tool_capabilities = {
+	tool_capabilities = {				-- Modif MFF /DEBUT
 		full_punch_interval = 1,
 		max_drop_level=1,
 		groupcaps={
@@ -134,7 +157,7 @@ minetest.register_tool("mobs:shears", {
 		},
 		damage_groups = {fleshy=0},
 	}
-})
+})										-- Modif MFF /FIN
 
 minetest.register_craft({
 	output = 'mobs:shears',

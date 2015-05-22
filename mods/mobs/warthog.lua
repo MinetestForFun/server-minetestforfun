@@ -53,23 +53,37 @@ mobs:register_mob("mobs:pumba", {
 	-- can be tamed by feeding 8 wheat (will not attack when tamed)
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
+		local name = clicker:get_player_name()
+
 		if item:get_name() == "default:apple" then
+			-- take item
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
+			-- make child grow quicker
 			if self.child == true then
 				self.hornytimer = self.hornytimer + 10
 				return
 			end
+			-- feed and tame
 			self.food = (self.food or 0) + 1
-			if self.food >= 8 then
+			if self.food > 7 then
 				self.food = 0
 				if self.hornytimer == 0 then
 					self.horny = true
 				end
 				self.tamed = true
-				minetest.sound_play("mobs_pig", {object = self.object,gain = 1.0, max_hear_distance = 32,loop = false,})
+				-- make owner
+				if not self.owner or self.owner == "" then
+					self.owner = name
+				end
+				minetest.sound_play("mobs_pig", {
+					object = self.object,
+					gain = 1.0,
+					max_hear_distance = 16,
+					loop = false,
+				})
 			end
 			return
 		end
@@ -79,10 +93,20 @@ mobs:register_mob("mobs:pumba", {
 		and clicker:get_inventory()
 		and self.child == false
 		and clicker:get_inventory():room_for_item("main", "mobs:pumba") then
-			clicker:get_inventory():add_item("main", "mobs:pumba")
-			self.object:remove()
-			item:add_wear(3000) -- 22 uses
-			clicker:set_wielded_item(item)
+
+			-- pick up if owner
+			if self.owner == name then
+				clicker:get_inventory():add_item("main", "mobs:pumba")
+				self.object:remove()
+				item:add_wear(3000) -- 22 uses
+				clicker:set_wielded_item(item)
+			-- cannot pick up if not tamed
+			elseif not self.owner or self.owner == "" then
+				minetest.chat_send_player(name, "Not tamed!")
+			-- cannot pick up if not tamed
+			elseif self.owner ~= name then
+				minetest.chat_send_player(name, "Not owner!")
+			end
 		end
 	end,
 })

@@ -7,9 +7,7 @@ mobs:register_mob("mobs:chicken", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 4,
-	hp_max = 8,
-	armor = 200,
+	hp_min = 4, hp_max = 8, armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
@@ -54,35 +52,43 @@ mobs:register_mob("mobs:chicken", {
 	},
 	-- follows wheat
 	follow = "farming:seed_wheat",
-	view_range = 8,
-	-- replace air with egg (lay)
-	replacements = {
-		{
-			replace_rate = 2000,
-			replace_what = {"air"},
-			replace_with = "mobs:egg",
-		}
-	},
+	view_range = 5,
+	replace_rate = 4000,
+	replace_what = {"air"},
+	replace_with = "mobs:egg",
 	-- right click to pick up chicken
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()
+		local name = clicker:get_player_name()
+
 		if tool:get_name() == "farming:seed_wheat" then
+			-- take item
 			if not minetest.setting_getbool("creative_mode") then
 				tool:take_item(1)
 				clicker:set_wielded_item(tool)
 			end
+			-- make child grow quicker
 			if self.child == true then
 				self.hornytimer = self.hornytimer + 10
 				return
 			end
+			-- feed and tame
 			self.food = (self.food or 0) + 1
-			if self.food >= 8 then
+			if self.food > 7 then
 				self.food = 0
 				if self.hornytimer == 0 then
 					self.horny = true
 				end
 				self.tamed = true
-				minetest.sound_play("mobs_chicken", {object = self.object,gain = 1.0,max_hear_distance = 16,loop = false,})
+				-- make owner
+				if not self.owner or self.owner == "" then
+					self.owner = name
+				end
+				minetest.sound_play("mobs_chicken", {
+					object = self.object,gain = 1.0,
+					max_hear_distance = 15,
+					loop = false,
+				})
 			end
 			return
 		end
@@ -91,8 +97,18 @@ mobs:register_mob("mobs:chicken", {
 		and clicker:get_inventory()
 		and self.child == false
 		and clicker:get_inventory():room_for_item("main", "mobs:chicken") then
-			clicker:get_inventory():add_item("main", "mobs:chicken")
-			self.object:remove()
+
+			-- pick up if owner
+			if self.owner == name then
+				clicker:get_inventory():add_item("main", "mobs:chicken")
+				self.object:remove()
+			-- cannot pick up if not tamed
+			elseif not self.owner or self.owner == "" then
+				minetest.chat_send_player(name, "Not tamed!")
+			-- cannot pick up if not owner
+			elseif self.owner ~= name then
+				minetest.chat_send_player(name, "Not owner!")
+			end
 		end
 	end,
 })
@@ -145,6 +161,7 @@ description = "Raw Chicken",
 	on_use = minetest.item_eat(2),
 })
 
+-- cooked chicken
 minetest.register_craftitem("mobs:chicken_cooked", {
 description = "Cooked Chicken",
 	inventory_image = "mobs_chicken_cooked.png",

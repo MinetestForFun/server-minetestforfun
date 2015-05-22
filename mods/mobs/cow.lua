@@ -18,7 +18,7 @@ mobs:register_mob("mobs:cow", {
 	mesh = "mobs_cow.x",
 	textures = {
 		{"mobs_cow.png"},
-		--{"mobs_cow_brown.png"}, -- dÃ©-commenter quand "mobs_cow_brown.png" sera compatible
+		--{"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
 	},
 	blood_texture = "mobs_blood.png",
 	visual_size = {x=1,y=1},
@@ -52,12 +52,12 @@ mobs:register_mob("mobs:cow", {
 	},
 	-- follows wheat
 	follow = "farming:wheat", view_range = 8,
-	-- replace grass/wheat with air (eat)
+	-- replace grass/wheat with air (eat) 	-- Modif MFF /DEBUT
 	replacements = {
 		{
 			replace_rate = 50,
 			replace_what = {"default:grass_3", "default:grass_4",
-				"default:grass_5", "farming:wheat_8"},
+							"default:grass_5", "farming:wheat_8"},
 			replace_with = "air",
 		},
 		{
@@ -65,10 +65,12 @@ mobs:register_mob("mobs:cow", {
 			replace_what = {"air"},
 			replace_with = "mobs:dung",
 		}
-	},
+	},										-- Modif MFF /FIN
 	-- right-click cow with empty bucket to get milk, then feed 8 wheat to replenish milk
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()
+		local name = clicker:get_player_name()
+
 		if tool:get_name() == "bucket:bucket_empty" then
 			if self.gotten == true
 			or self.child == true then
@@ -88,23 +90,35 @@ mobs:register_mob("mobs:cow", {
 		end
 
 		if tool:get_name() == "farming:wheat" then
+			-- take item
 			if not minetest.setting_getbool("creative_mode") then
 				tool:take_item(1)
 				clicker:set_wielded_item(tool)
 			end
+			-- make child grow quicker
 			if self.child == true then
 				self.hornytimer = self.hornytimer + 10
 				return
 			end
+			-- feed and tame
 			self.food = (self.food or 0) + 1
-			if self.food >= 8 then
+			if self.food > 7 then
 				self.food = 0
 				if self.hornytimer == 0 then
 					self.horny = true
 				end
 				self.gotten = false -- ready to be milked again
 				self.tamed = true
-				minetest.sound_play("mobs_cow", {object = self.object,gain = 1.0,max_hear_distance = 32,loop = false,})
+				-- make owner
+				if not self.owner or self.owner == "" then
+					self.owner = name
+				end
+				minetest.sound_play("mobs_cow", {
+					object = self.object,
+					gain = 1.0,
+					max_hear_distance = 32,
+					loop = false,
+				})
 			end
 			return
 		end
@@ -114,10 +128,21 @@ mobs:register_mob("mobs:cow", {
 		and clicker:get_inventory()
 		and self.child == false
 		and clicker:get_inventory():room_for_item("main", "mobs:cow") then
-			clicker:get_inventory():add_item("main", "mobs:cow")
-			self.object:remove()
-			tool:add_wear(3000) -- 22 uses
-			clicker:set_wielded_item(tool)
+
+			-- pick up if owner
+			if self.owner == name then
+				clicker:get_inventory():add_item("main", "mobs:cow")
+				self.object:remove()
+				tool:add_wear(3000) -- 22 uses
+				clicker:set_wielded_item(tool)
+			-- cannot pick up if not tamed
+			elseif not self.owner or self.owner == "" then
+				minetest.chat_send_player(name, "Not tamed!")
+			-- cannot pick up if not owner
+			elseif self.owner ~= name then
+				minetest.chat_send_player(name, "Not owner!")
+			end
+
 		end
 	end,
 })
