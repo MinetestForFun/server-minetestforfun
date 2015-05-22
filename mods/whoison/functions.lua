@@ -23,7 +23,7 @@ function whoison.functions.load(param)
         for line in whoison.presence_file:lines() do
             local datas = minetest.deserialize(line)
             if datas then
-                if datas.name == name then
+                if datas.name == param then
                     return datas.time
                 end
             end
@@ -41,34 +41,30 @@ end
 function whoison.functions.save(param)
     --[[
         Values for param :
-            * E : Everyone
             * <name> : name
     ]]--
 
-    if param == "E" then
-        -- TODO
-    else
-        for line in whoison.presence_file:lines() do
-            local datas = minetest.deserialize(line)
-            if datas then
-                if datas.name == name then
-                    -- Erase line
-                    local i = 0
-                    whoison.presence_file:seek(string.len(line),"cur")
-                    while i < string.len(line) do
-                        whoison.presence_file:write("\b")
-                        i = i + 1
-                    end
-                    whoison.presence_file:write(minetest.serialize(
-                        {name = param, time = whoison.datas[param]}
-                    ) .. "\n")
-                    return true
+    for line in whoison.presence_file:lines() do
+        local datas = minetest.deserialize(line)
+        if datas then
+            if datas.name == param then
+                -- Erase line
+                local i = 0
+                whoison.presence_file:seek(string.len(line),"cur")
+                print("removing " .. string.len(line))
+                while i < string.len(line) do
+                    whoison.presence_file:write("\b")
+                    i = i + 1
                 end
+                whoison.presence_file:write(minetest.serialize(
+                    {name = param, time = whoison.datas[param]}
+                ) .. "\n")
+                return true
             end
         end
-        whoison.presence_file:write(minetest.serialize(
-            {name = param, time = whoison.datas[param]}
-        ) .. "\n")
-        return true
     end
+    whoison.presence_file:write(minetest.serialize(
+        {name = param, time = whoison.datas[param]}
+    ) .. "\n")
+    return true
 end
