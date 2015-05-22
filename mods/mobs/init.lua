@@ -12,7 +12,7 @@ dofile(minetest.get_modpath("mobs").."/warthog.lua") -- KrupnoPavel
 dofile(minetest.get_modpath("mobs").."/bee.lua") -- KrupnoPavel
 dofile(minetest.get_modpath("mobs").."/bunny.lua") -- ExeterDad
 dofile(minetest.get_modpath("mobs").."/kitten.lua") -- Jordach/BFD
-dofile(minetest.get_modpath("mobs").."/ghoat.lua") -- ???
+dofile(minetest.get_modpath("mobs").."/goat.lua") -- ???
 
 -- Monsters
 
