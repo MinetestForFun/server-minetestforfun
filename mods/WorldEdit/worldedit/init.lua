@@ -41,4 +41,3 @@ load_module(path .. "/compatibility.lua")
 if minetest.setting_getbool("log_mods") then
 	print("[WorldEdit] Loaded!")
 end
-

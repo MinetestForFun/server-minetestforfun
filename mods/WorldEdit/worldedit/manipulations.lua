@@ -594,4 +594,3 @@ function worldedit.clear_objects(pos1, pos2)
 	end
 	return count
 end
-

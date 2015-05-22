@@ -65,4 +65,3 @@ minetest.register_chatcommand("/n", {
 })
 
 return safe_region, check_region
-

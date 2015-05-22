@@ -66,10 +66,7 @@ function mobs:register_mob(name, def)
 		blood_texture = def.blood_texture or "mobs_blood.png",
 		shoot_offset = def.shoot_offset or 0,
 		floats = def.floats or 1, -- floats in water by default
-		replace_rate = def.replace_rate,
-		replace_what = def.replace_what,
-		replace_with = def.replace_with,
-		replace_offset = def.replace_offset or 0,
+		replacements = def.replacements or {},
 		timer = 0,
 		env_damage_timer = 0, -- only if state = "attack"
 		attack = {player=nil, dist=nil},
@@ -186,16 +183,28 @@ function mobs:register_mob(name, def)
 			end
 
 			-- check for mob drop/replace (used for chicken egg and sheep eating grass/wheat)
-			if self.replace_rate
-			and self.child == false
-			and math.random(1,self.replace_rate) == 1 then
-				local pos = self.object:getpos()
-				pos.y = pos.y + self.replace_offset
-				if self.replace_what
-				and self.object:getvelocity().y == 0
-				and #minetest.find_nodes_in_area(pos, pos, self.replace_what) > 0 then
-				--and self.state == "stand" then
-					minetest.set_node(pos, {name = self.replace_with})
+			--[[
+				old fields :
+				replace_rate = def.replace_rate,
+				replace_what = def.replace_what,
+				replace_with = def.replace_with,
+				replace_offset = def.replace_offset or 0,
+			]]--
+			for _, fields in pairs(self.replacements) do
+
+				if fields.replace_rate
+					and math.random(1,fields.replace_rate) == 1
+					and self.child == false then
+
+					fields.replace_offset = fields.replace_offset or 0
+
+					local pos = self.object:getpos()
+					pos.y = pos.y + fields.replace_offset
+					if #minetest.find_nodes_in_area(pos,pos,fields.replace_what) > 0
+					and self.object:getvelocity().y == 0
+					and fields.replace_what then
+						minetest.set_node(pos, {name = fields.replace_with})
+					end
 				end
 			end
 

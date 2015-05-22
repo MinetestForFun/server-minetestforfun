@@ -18,7 +18,7 @@ mobs:register_mob("mobs:cow", {
 	mesh = "mobs_cow.x",
 	textures = {
 		{"mobs_cow.png"},
-		--{"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
+		--{"mobs_cow_brown.png"}, -- dï¿½-commenter quand "mobs_cow_brown.png" sera compatible
 	},
 	blood_texture = "mobs_blood.png",
 	visual_size = {x=1,y=1},
