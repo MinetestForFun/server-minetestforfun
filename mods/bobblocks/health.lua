@@ -21,7 +21,7 @@ local toggle_healthpack = function (pos, node)
     if not is_healthgate(node) then return end
     update_healthpack (pos, node, state)
 end
-    
+
 local on_healthpack_punched = function (pos, node, puncher)
     if node.name == 'bobblocks:health_off' or node.name == 'bobblocks:health_on' then
         update_healthpack(pos, node)
@@ -77,7 +77,7 @@ minetest.register_abm(
         minetest.remove_node(pos)  -- remove the node after use
     end
     end,
-     
+
 })
 
 --- Health
