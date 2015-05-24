@@ -274,7 +274,7 @@ for _, name in pairs(snow_nodes) do
 
 	stairsplus:register_all("moreblocks", name, nodename, {
 		description = ndef.description,
-		drop = drop,
+		drop = ndef.drop,
 		groups = {cracky=2, crumbly=2, choppy=2, oddly_breakable_by_hand=2, melts=2, icemaker=1},
 		tiles = ndef.tiles,
 		--paramtype2 = "facedir",
