@@ -173,7 +173,7 @@ do
 			local savetable = minetest.deserialize(string)
 			mana.playerlist = savetable.playerlist
 			if mana.playerlist == nil then mana.playerlist = {} end
-			minetest.debug("[mana] mana.mt successfully read.")
+			minetest.log("action", "[mana] mana.mt successfully read.")
 		end
 	end
 end

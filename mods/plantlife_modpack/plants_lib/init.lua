@@ -726,10 +726,10 @@ function plantslib:get_nodedef_field(nodename, fieldname)
 	return minetest.registered_nodes[nodename][fieldname]
 end
 
-print("[Plants Lib] Loaded")
+minetest.log("action", "[Plants Lib] Loaded")
 
 minetest.after(0, function()
-	print("[Plants Lib] Registered a total of "..(#plantslib.surfaceslist_aircheck)+(#plantslib.surfaceslist_no_aircheck).." surface types to be evaluated, spread")
-	print("[Plants Lib] across "..#plantslib.actionslist_aircheck.." actions with air-checking and "..#plantslib.actionslist_no_aircheck.." actions without.")
+	minetest.log("action", "[Plants Lib] Registered a total of "..(#plantslib.surfaceslist_aircheck)+(#plantslib.surfaceslist_no_aircheck).." surface types to be evaluated, spread")
+	minetest.log("action", "[Plants Lib] across "..#plantslib.actionslist_aircheck.." actions with air-checking and "..#plantslib.actionslist_no_aircheck.." actions without.")
 end)
 

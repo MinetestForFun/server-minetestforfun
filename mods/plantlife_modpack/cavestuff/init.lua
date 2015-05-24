@@ -9,4 +9,4 @@ dofile(minetest.get_modpath("cavestuff").."/mapgen.lua")
 
 -----------------------------------------------------------------------------------------------
 
-print("[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
+minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")

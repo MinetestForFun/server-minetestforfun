@@ -289,7 +289,7 @@ for h = 1, 12 do
 end  --hues
 
 
-print("[stained_glass] Loaded!")
+minetest.log("action", "[stained_glass] Loaded!")
 
 
 

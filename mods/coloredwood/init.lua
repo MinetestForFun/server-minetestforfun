@@ -133,5 +133,5 @@ dofile(minetest.get_modpath("coloredwood").."/wood.lua")
 dofile(minetest.get_modpath("coloredwood").."/fence.lua")
 dofile(minetest.get_modpath("coloredwood").."/stick.lua")
 
-print("[Colored Wood] Loaded!")
+minetest.log("action", "[Colored Wood] Loaded!")
 

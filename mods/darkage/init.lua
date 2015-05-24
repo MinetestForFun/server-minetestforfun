@@ -13,4 +13,4 @@ dofile(minetest.get_modpath("darkage").."/aliases.lua")
 -- Config
 --
 
-print ("Darkage [darkage] has loaded!")
+minetest.log ("Darkage [darkage] has loaded!")
