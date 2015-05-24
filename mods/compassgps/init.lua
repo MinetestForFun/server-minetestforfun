@@ -570,7 +570,7 @@ end --write_bookmarks
 function compassgps.write_settings()
   --loop through players and set settings
   --(less error prone than trying to keep settings in sync all the time
-  print(S("compassgps writing settings"))
+  minetest.log("action", S("compassgps writing settings"))
   local players  = minetest.get_connected_players()
 	for i,player in ipairs(players) do
     local name = player:get_player_name();
