@@ -181,12 +181,29 @@ bucket.register_liquid(
 	"bucket_acid.png",
 	"Acid Bucket"
 )
-	
+
+bucket.register_liquid(
+	"default:sand_source",
+	"default:sand_flowing",
+	"bucket:bucket_sand",
+	"bucket_sand.png",
+	"Sand Bucket"
+)
+
 minetest.register_craft({
 	type = "fuel",
 	recipe = "bucket:bucket_lava",
 	burntime = 60,
 	replacements = {{"bucket:bucket_lava", "bucket:bucket_empty"}},
+})
+
+minetest.register_craft({
+	output = "bucket:bucket_sand",
+	recipe = {
+		{"group:sand"},
+		{"group:sand"},
+		{"bucket:bucket_water"},
+	},
 })
 
 if minetest.setting_getbool("log_mods") then
