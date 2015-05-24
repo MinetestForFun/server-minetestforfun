@@ -282,8 +282,8 @@ runes.functions.save_detached_inventory = function(player)
 	end
 	if datafile then
 		datafile:write(minetest.serialize(translated_rune_data))
+		io.close(datafile)
 	end
-	io.close(datafile)
 	minetest.log("action", "[runes] Rune inventory saved for player " .. name)
 end
 
