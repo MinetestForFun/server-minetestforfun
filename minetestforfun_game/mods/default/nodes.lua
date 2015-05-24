@@ -994,7 +994,7 @@ minetest.register_node("default:sand_flowing", {
 			animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 0.6}
 		},
 	},
-	alpha = 160,
+	alpha = 255,
 	paramtype = "light",
 	paramtype2 = "flowingliquid",
 	walkable = false,
@@ -1007,7 +1007,7 @@ minetest.register_node("default:sand_flowing", {
 	liquid_alternative_flowing = "default:sand_flowing",
 	liquid_alternative_source = "default:sand_source",
 	liquid_viscosity = 20,
-	post_effect_color = {a = 220, r = 187, g = 187, b = 0},
+	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 	groups = {liquid = 3, not_in_creative_inventory = 1},
 })
 
@@ -1015,9 +1015,7 @@ minetest.register_node("default:sand_source", {
 	description = "Sand Source",
 	inventory_image = minetest.inventorycube("default_sand.png"),
 	drawtype = "liquid",
-	tiles = {
-		{name = "default_sand_source_animated.png", animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 1.5}}
-	},
+	tiles = {"default_sand.png"},
 	special_tiles = {
 		-- New-style water source material (mostly unused)
 		{
@@ -1026,7 +1024,7 @@ minetest.register_node("default:sand_source", {
 			backface_culling = false,
 		}
 	},
-	alpha = 160,
+	alpha = 255,
 	paramtype = "light",
 	walkable = false,
 	pointable = false,
@@ -1039,7 +1037,7 @@ minetest.register_node("default:sand_source", {
 	liquid_alternative_source = "default:sand_source",
 	liquid_viscosity = 20,
 	liquid_renewable = false,
-	post_effect_color = {a = 220, r = 187, g = 187, b = 0},
+	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 	groups = {liquid = 3},
 })
 
