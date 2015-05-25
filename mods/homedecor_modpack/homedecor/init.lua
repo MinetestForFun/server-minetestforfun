@@ -170,4 +170,4 @@ dofile(homedecor.modpath.."/handlers/locked.lua")
 
 dofile(homedecor.modpath.."/crafts.lua")
 
-print("[HomeDecor] "..S("Loaded!"))
+minetest.log("action", "[HomeDecor] "..S("Loaded!"))

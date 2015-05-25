@@ -11,4 +11,4 @@ dofile( minetest.get_modpath( vines.name ) .. "/nodes.lua" )
 dofile( minetest.get_modpath( vines.name ) .. "/shear.lua" )
 dofile( minetest.get_modpath( vines.name ) .. "/vines.lua" )
 
-print("[Vines] Loaded!")
+minetest.log("action", "[Vines] Loaded!")

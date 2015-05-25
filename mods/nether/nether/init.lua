@@ -98,7 +98,7 @@ if nether.info then
 			else
 				info = "[nether] "..msg
 			end
-			print(info)
+			minetest.log("action", info)
 			if self.inform_all then
 				minetest.chat_send_all(info)
 			end

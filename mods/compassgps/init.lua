@@ -61,7 +61,7 @@ local default_bookmark = {}
 local backwardscompatsave = "NO"
 
 
-print(S("compassgps reading bookmarks"))
+minetest.log("action", S("compassgps reading bookmarks"))
 local file = io.open(minetest.get_worldpath().."/bookmarks", "r")
 if file then
 	bookmarks = minetest.deserialize(file:read("*all"))
@@ -127,7 +127,7 @@ end --distance3d
 
 
 -- **********************************************************
-print(S("compassgps reading settings"))
+minetest.log("action", S("compassgps reading settings"))
 if minetest.is_singleplayer() and show_shared_on_singleplayer==false then
   singleplayer=true
 else
@@ -570,7 +570,7 @@ end --write_bookmarks
 function compassgps.write_settings()
   --loop through players and set settings
   --(less error prone than trying to keep settings in sync all the time
-  print(S("compassgps writing settings"))
+  minetest.log("action", S("compassgps writing settings"))
   local players  = minetest.get_connected_players()
 	for i,player in ipairs(players) do
     local name = player:get_player_name();

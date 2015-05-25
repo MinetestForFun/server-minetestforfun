@@ -43,20 +43,20 @@ if run_tests then
 
 	-- Check node names
 	if abstract_ferns.config.enable_horsetails then
-		print("[Mod] " ..title.. " Checking horsetail item strings")
+		minetest.log("action", "[Mod] " ..title.. " Checking horsetail item strings")
 		assert(minetest.registered_items["ferns:horsetail_01"] ~= nil)
 		assert(minetest.registered_items["ferns:horsetail_02"] ~= nil)
 		assert(minetest.registered_items["ferns:horsetail_03"] ~= nil)
 		assert(minetest.registered_items["ferns:horsetail_04"] ~= nil)
 	end
 	if abstract_ferns.config.enable_lady_fern then
-		print("[Mod] ".. title .." Checking lady fern item strings")
+		minetest.log("action", "[Mod] ".. title .." Checking lady fern item strings")
 		assert(minetest.registered_items["ferns:fern_01"] ~= nil)
 		assert(minetest.registered_items["ferns:fern_02"] ~= nil)
 		assert(minetest.registered_items["ferns:fern_03"] ~= nil)
 	end
 	if abstract_ferns.config.enable_treefern then
-		print("[Mod] ".. title .." Checking tree fern item strings")
+		minetest.log("action", "[Mod] ".. title .." Checking tree fern item strings")
 		assert(minetest.registered_items["ferns:tree_fern_leaves"] ~= nil)
 		assert(minetest.registered_items["ferns:tree_fern_leaves_02"] ~= nil)
 		assert(minetest.registered_items["ferns:fern_trunk"] ~= nil)
@@ -65,5 +65,5 @@ if run_tests then
 end
 
 -----------------------------------------------------------------------------------------------
-print("[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
+minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
 -----------------------------------------------------------------------------------------------
