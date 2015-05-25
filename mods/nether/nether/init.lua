@@ -239,6 +239,7 @@ HADES_THRONE_ENDPOS_ABS = {x=htx, y=hty, z=htz}]]
 local c
 local function define_contents()
 	c = {
+		ignore = minetest.get_content_id("ignore"),
 		air = minetest.get_content_id("air"),
 		lava = minetest.get_content_id("default:lava_source"),
 		gravel = minetest.get_content_id("default:gravel"),
@@ -397,10 +398,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local forest_possible = maxp.y > f_h_min and minp.y < f_h_max
 
 	--local pmap_f_bottom = minetest.get_perlin_map(perlins.forest_bottom, map_lengths_xyz):get2dMap_flat({x=minp.x, y=minp.z})
-	local perlin_f_bottom, pmap_f_top
+	local perlin_f_bottom, pmap_f_top, strassx, strassz
 	if forest_possible then
 		perlin_f_bottom = minetest.get_perlin(11, 3, 0.8, tmp2)
 		pmap_f_top = minetest.get_perlin_map(perlins.forest_top, map_lengths_xyz):get2dMap_flat({x=minp.x, y=minp.z})
+		strassx = get_ws_list(2, minp.x)
+		strassz = get_ws_list(2, minp.z)
 	end
 
 	local num2, tab2
@@ -479,8 +482,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if not f_perlins[pstr] then
 						f_perlins[pstr] = math.floor(f_h_min+(math.abs(perlin_f_bottom:get2d({x=p.x, y=p.z})+1))*f_yscale_bottom+0.5)
 					end
-					f_bottom = f_perlins[pstr]+math.random(0,f_bottom_scale-1)
-					f_top = math.floor(f_h_max-(pmap_f_top[count]+1)*f_yscale_top+0.5)
+					local top_noise = pmap_f_top[count]+1
+					if top_noise < 0 then
+						top_noise = -top_noise/10
+						--nether:inform("ERROR: (perlin noise) "..pmap_f_top[count].." is not inside [-1; 1]", 1)
+					end
+					f_top = math.floor(f_h_max - top_noise*f_yscale_top + 0.5)
+					f_bottom = f_perlins[pstr]+pr:next(0,f_bottom_scale-1)
 					is_forest = f_bottom < f_top
 					f_h_dirt = f_bottom-pr:next(0,1)
 				end
@@ -538,6 +546,18 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								{c.nether_tree, c.nether_tree_corner, c.nether_leaves, c.nether_fruit},
 								d_p_addp
 							) then
+								data[p_addpos] = c.air
+							end
+						elseif is_forest
+						and y == f_top then
+							local sel = math.floor(strassx[x]+strassz[z]+0.5)%10
+							if sel <= 5 then
+								data[p_addpos] = return_nether_ore(d_p_addp, true)
+							elseif sel == 6 then
+								data[p_addpos] = c.netherrack_black
+							elseif sel == 7 then
+								data[p_addpos] = c.glowstone
+							else
 								data[p_addpos] = c.air
 							end
 
@@ -667,6 +687,10 @@ function nether.grow_netherstructure(pos, generated)
 	set_vm_data(manip, nodes, pos, t1, "blood", generated)
 end
 
+
+local function soft_node(id)
+	return id == c.air or id == c.ignore
+end
 
 local function update_minmax(min, max, p)
 	min.x = math.min(min.x, p.x)
@@ -840,7 +864,7 @@ function nether.grow_tree(pos, generated)
 
 	for _,p in pairs(leaf_ps) do
 		p = area:indexp(p)
-		if nodes[p] == c.air then
+		if soft_node(nodes[p]) then
 			nodes[p] = c.nether_leaves
 			param2s[p] = math.random(0,44)
 		end
@@ -848,7 +872,7 @@ function nether.grow_tree(pos, generated)
 
 	for _,p in pairs(fruit_ps) do
 		p = area:indexp(p)
-		if nodes[p] == c.air then
+		if soft_node(nodes[p]) then
 			nodes[p] = c.nether_apple
 			--param2s[p] = math.random(0,44)
 		end

@@ -99,7 +99,7 @@ function homedecor.find_ceiling(itemstack, placer, pointed_thing)
 	return isceiling, pos
 end
 
-if screwdriver == nil then screwdriver = {} end
+screwdriver = screwdriver or {}
 
 homedecor.plain_wood = "homedecor_generic_wood_plain.png^"..
 					   "(homedecor_generic_wood_boards_overlay.png^[colorize:#a7682020:100)"

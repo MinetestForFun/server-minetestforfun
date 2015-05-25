@@ -11,12 +11,12 @@
 -- }
 
 signs_lib = {}
+screwdriver = screwdriver or {}
 
-local screwdriver = screwdriver or {}
 signs_lib.wallmounted_rotate = function(pos, node, user, mode, new_param2)
 	if mode ~= screwdriver.ROTATE_AXIS then return false end
 	minetest.swap_node(pos, {name = node.name, param2 = (node.param2 + 1) % 6})
-    for _, v in ipairs(minetest.get_objects_inside_radius(pos, 0.5)) do
+	for _, v in ipairs(minetest.get_objects_inside_radius(pos, 0.5)) do
 		local e = v:get_luaentity()
 		if e and e.name == "signs:text" then
 			v:remove()

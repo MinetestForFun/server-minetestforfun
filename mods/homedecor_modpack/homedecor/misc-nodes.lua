@@ -79,6 +79,46 @@ homedecor.register("flower_pot_"..p, {
 })
 end
 
+local flowers_list = {
+	{ "Rose",				"rose", 			"flowers:rose" },
+	{ "Tulip",				"tulip", 			"flowers:tulip" },
+	{ "Yellow Dandelion",	"dandelion_yellow",	"flowers:dandelion_yellow" },
+	{ "White Dandelion",	"dandelion_white",	"flowers:dandelion_white" },
+	{ "Blue Geranium",		"geranium",			"flowers:geranium" },
+	{ "Viola",				"viola",			"flowers:viola" },
+	{ "Cactus",				"cactus",			"default:cactus" },
+	{ "Bonsai",				"bonsai",			"default:sapling" }
+}
+
+for i in ipairs(flowers_list) do
+	local flowerdesc	= flowers_list[i][1]
+	local flower		= flowers_list[i][2]
+	local craftwith		= flowers_list[i][3]
+	
+	homedecor.register("potted_"..flower, {
+		description = S("Potted flower ("..flowerdesc..")"),
+		mesh = "homedecor_flowerpot_small.obj",
+		tiles = {"homedecor_potted_"..flower..".png", "homedecor_potted.png"},
+		walkable = false,
+		groups = {snappy = 3},
+		sounds = default.node_sound_glass_defaults(),
+		selection_box = {
+			type = "fixed",
+			fixed = { -0.2, -0.5, -0.2, 0.2, 0.4, 0.2 }
+		}
+	})
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = "homedecor:potted_"..flower,
+		recipe = { craftwith, "homedecor:flower_pot_small" }
+	})
+
+	minetest.register_alias("flowers:flower_"..flower.."_pot", "homedecor:potted_"..flower)
+	minetest.register_alias("flowers:potted_"..flower, "homedecor:potted_"..flower)
+	minetest.register_alias("flowers:flower_pot", "homedecor:flower_pot_small")
+end
+
 homedecor.register("pole_brass", {
     description = S("Brass Pole"),
 	mesh = "homedecor_round_pole.obj",

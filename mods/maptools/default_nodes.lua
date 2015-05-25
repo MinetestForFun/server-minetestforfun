@@ -190,7 +190,7 @@ minetest.register_node("maptools:sandstone", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("maptools:sandstonebrick", {
+minetest.register_node("maptools:sandstone_brick", {
 	description = S("Unbreakable Sandstone Brick"),
 	range = 12,
 	stack_max = 10000,

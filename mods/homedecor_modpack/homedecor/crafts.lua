@@ -3316,6 +3316,24 @@ minetest.register_craft({
 	},
 })
 
+minetest.register_craftitem("homedecor:flower_pot_small", {
+	description = S("Small Flower Pot"),
+	inventory_image = "homedecor_flowerpot_small_inv.png"
+})
+
+minetest.register_craft( {
+	output = "homedecor:flower_pot_small",
+	recipe = {
+	        { "default:clay_brick", "", "default:clay_brick" },
+	        { "", "default:clay_brick", "" }
+	}
+})
+
+minetest.register_craft( {
+	output = "homedecor:flower_pot_small 3",
+	recipe = { { "homedecor:flower_pot_terracotta" } }
+})
+
 for i in ipairs(homedecor.banister_materials) do
 
 	local name    = homedecor.banister_materials[i][1]

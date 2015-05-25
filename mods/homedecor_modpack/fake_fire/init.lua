@@ -1,3 +1,5 @@
+screwdriver = screwdriver or {}
+
 local function start_smoke(pos, node, clicker, chimney)
 	local this_spawner_meta = minetest.get_meta(pos)
 	local id = this_spawner_meta:get_int("smoky")

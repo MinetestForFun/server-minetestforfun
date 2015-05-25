@@ -1,5 +1,6 @@
 local tmp = {}
-local itemframes = {}
+itemframes = {}
+screwdriver = screwdriver or {}
 
 minetest.register_entity("itemframes:item",{
 	hp_max = 1,
@@ -68,11 +69,11 @@ local update_item = function(pos, node)
 		if node.name == "itemframes:frame" then
 			local posad = facedir[node.param2]
 			if not posad then return end
-				pos.x = pos.x + posad.x*6.5/16
-				pos.y = pos.y + posad.y*6.5/16
-				pos.z = pos.z + posad.z*6.5/16
-			elseif minetest.get_item_group(node.name, "group:pedestal") then
-				pos.y = pos.y + 12/16+.33
+			pos.x = pos.x + posad.x*6.5/16
+			pos.y = pos.y + posad.y*6.5/16
+			pos.z = pos.z + posad.z*6.5/16
+		elseif minetest.get_item_group(node.name, "group:pedestal") then
+			pos.y = pos.y + 12/16+.33
 		end
 		tmp.nodename = node.name
 		tmp.texture = ItemStack(meta:get_string("item")):get_name()

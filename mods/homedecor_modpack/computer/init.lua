@@ -1,4 +1,5 @@
-computer = { }
+computer = {}
+screwdriver = screwdriver or {}
 
 computer.register = function (name, def)
 	local nodename = name
