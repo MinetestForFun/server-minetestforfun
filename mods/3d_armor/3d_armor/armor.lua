@@ -15,6 +15,12 @@ ARMOR_MATERIALS = {
 	gold = "default:gold_ingot",
 	mithril = "moreores:mithril_ingot",
 	crystal = "ethereal:crystal_ingot",
+	-- Hunter armors
+	hardened_leather = "3d_armor:hardened_leather"
+	reinforced_leather = "3d_armor:reinforced_leather"
+	-- Wizard armors
+	--armor = "xxx",
+	--armor = "xxx",
 }
 ARMOR_FIRE_PROTECT = minetest.get_modpath("ethereal") ~= nil
 ARMOR_FIRE_NODES = {
