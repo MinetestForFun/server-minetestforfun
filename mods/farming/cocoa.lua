@@ -66,7 +66,7 @@ minetest.register_craft( {
 minetest.register_craftitem("farming:chocolate_dark", {
 	description = "Bar of Dark Chocolate",
 	inventory_image = "farming_chocolate_dark.png",
-	on_use = minetest.item_eat(2),
+	on_use = minetest.item_eat(2), --/MFF (Mg|05/26/2015)
 })
 
 minetest.register_craft( {

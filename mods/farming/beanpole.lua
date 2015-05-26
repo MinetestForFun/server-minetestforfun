@@ -65,7 +65,7 @@ minetest.register_craft({
 	}
 })
 
--- Define Corn growth stages
+-- Define Green Bean growth stages
 
 minetest.register_node("farming:beanpole_1", {
 	drawtype = "plantlike",
@@ -140,7 +140,7 @@ minetest.register_node("farming:beanpole_4", {
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Last stage of Corn growth doesnnot have growing=1 so abm never has to check these
+-- Last stage of Green Bean growth does not have growing=1 so abm never has to check these
 
 minetest.register_node("farming:beanpole_5", {
 	drawtype = "plantlike",

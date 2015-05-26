@@ -42,6 +42,7 @@ minetest.register_craft({
 		{"farming:string", "farming:string", "farming:string"},
 		{"farming:string", "farming:string", "farming:string"},
 		{"farming:string", "farming:string", "farming:string"},
+		-- ^ /MFF (Mg|05/26/2015)
 	}
 })
 

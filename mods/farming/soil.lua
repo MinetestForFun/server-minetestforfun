@@ -1,8 +1,4 @@
-
---= Soil Functions
-
--- Normal Soil
-
+-- normal soil
 minetest.register_node("farming:soil", {
 	description = "Soil",
 	tiles = {"farming_soil.png", "default_dirt.png"},
@@ -11,10 +7,11 @@ minetest.register_node("farming:soil", {
 	groups = {crumbly=3, not_in_creative_inventory=1, soil=2},
 	sounds = default.node_sound_dirt_defaults(),
 })
+
+-- sand is not soil, change existing sand-soil to use normal soil
 minetest.register_alias("farming:desert_sand_soil", "farming:soil")
 
--- Wet Soil
-
+-- wet soil
 minetest.register_node("farming:soil_wet", {
 	description = "Wet Soil",
 	tiles = {"farming_soil_wet.png", "farming_soil_wet_side.png"},
@@ -25,23 +22,21 @@ minetest.register_node("farming:soil_wet", {
 })
 minetest.register_alias("farming:desert_sand_soil_wet", "farming:soil_wet")
 
--- If Water near Soil then turn into Wet Soil
-
+-- if water near soil then change to wet soil
 minetest.register_abm({
 	nodenames = {"farming:soil", "farming:soil_wet"},
 	interval = 15,
 	chance = 4,
 	action = function(pos, node)
 
-		pos.y = pos.y+1
-		local nn = minetest.get_node(pos).name
-		pos.y = pos.y-1
+		local nn = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name
 
 		-- what's on top of soil, if solid/not plant change soil to dirt
 		if minetest.registered_nodes[nn]
 		and minetest.registered_nodes[nn].walkable
 		and minetest.get_item_group(nn, "plant") == 0 then
 			minetest.set_node(pos, {name="default:dirt"})
+			return
 		end
 
 		-- if map around soil not loaded then skip until loaded
