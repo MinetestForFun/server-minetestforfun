@@ -137,6 +137,7 @@ mobs:register_mob("mobs:greenbig", {
 	jump_height = 6,
 	view_range = 16,
 	floats = 1,
+	knock_back = 0, --this is a test
 	-- chance of dropping glue and coins
 	drops = {
 	},
