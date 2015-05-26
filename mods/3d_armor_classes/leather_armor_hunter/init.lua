@@ -30,6 +30,6 @@ minetest.register_tool(":3d_armor:leggings_leather_hunter", {
 	minetest.register_tool(":3d_armor:boots_leather_hunter", {
 	description = "Hunter's Leather Boots",
 	inventory_image = "3d_armor_inv_boots_leather_hunter.png",
-		groups = {armor_feet = 5, armor_heal = 0, armor_use = 250},
+	groups = {armor_feet = 5, armor_heal = 0, armor_use = 250},
 	wear = 0,
 })
