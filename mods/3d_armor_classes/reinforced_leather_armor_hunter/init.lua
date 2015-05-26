@@ -33,3 +33,13 @@ minetest.register_tool(":3d_armor:leggings_reinforced_leather_hunter", {
 	groups = {armor_feet = 6, armor_heal = 0, armor_use = 40},
 	wear = 0,
 })
+
+-- Reinforced Leather craft recipe
+minetest.register_craft({
+	output = "3d_armor:reinforced_leather",
+	recipe = {
+		{"technic:brass_ingot",		"moreores:mithril_ingot", 	"darkage:chain"		},
+		{"mobs:leather", 		"mobs:minotaur_eye", 		"mobs:leather"		},
+		{"darkage:chain", 		"moreores:mithril_ingot", 	"technic:brass_ingot"	},
+	}
+})
