@@ -549,6 +549,13 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:sand",
+	recipe = {
+		{"default:gravel"},
+	}
+})
+
+minetest.register_craft({
 	type = "cooking",
 	output = "default:stone",
 	recipe = "default:mossycobble",
