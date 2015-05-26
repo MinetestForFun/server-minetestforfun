@@ -33,3 +33,13 @@ minetest.register_tool(":3d_armor:leggings_leather_hunter", {
 	groups = {armor_feet = 5, armor_heal = 0, armor_use = 250},
 	wear = 0,
 })
+
+-- Hardened Leather craft recipe
+minetest.register_craft({
+	output = "3d_armor:hardened_leather",
+	recipe = {
+		{"default:steel_ingot",		"mobs:leather", 	"default:bronze_ingot"	},
+		{"mobs:leather", 		"mobs:leather", 	"mobs:leather"		},
+		{"default:bronze_ingot", 	"mobs:leather", 	"default:steel_ingot"	},
+	}
+})
