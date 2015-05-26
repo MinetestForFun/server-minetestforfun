@@ -5,7 +5,7 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
 ---22/05/2015--- (Remerciements : Gael-de-Sailly, Crabman, Ataron, Obani, Mg, Le_Docteur)
-Ajout du mod solarmana (la mana ne se recharge plus qu'au contact direct de la lumière du soleil où lorsque le joueur se tient sur de l'or, du bois, ou des minerais, par exemple)
+Ajout du mod "solarmana" (la mana ne se recharge plus qu'au contact direct de la lumière du soleil où lorsque le joueur se tient sur de l'or, du bois, ou des minerais, par exemple. Un tabeau sera bientôt disponible sur le site section "liste des mods" pour consulter les minerais permettant la régénération de mana)
 MAJ de "mobs" (énormément d'amélioration général de l'intelligence des monstres, ajout en beta d'une intégration des monstres nageants et volants, nombreux bugfix, ajout du propriétaire sur les monstres apprivoisés - ils ne peuvent donc plus être volé -, les monstres peuvent maintenant marcher sur les demi-dalles, amélioration du code des explosions)
 Ajout de "/misc/list_players" ("/list_players" ou son alias "/players" est une commande pour afficher la liste des joueurs connectés de façon plus propre que "/status")
 Ajout du mod "dumpnodes mod" (permet à l'admin de générer les couleurs des cubes pour la worldmap du serveur)
