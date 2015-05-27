@@ -9,7 +9,7 @@ riesenpilz.always_generate = false
 riesenpilz.smooth = true
 
 --rarity in %
-riesenpilz.mapgen_rarity = 0.1
+riesenpilz.mapgen_rarity = 0.25        -- Modif MFF
 
 --size of the generated... (has an effect to the rarity, too)
 riesenpilz.mapgen_size = 50
