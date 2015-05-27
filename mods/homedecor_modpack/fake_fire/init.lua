@@ -20,7 +20,7 @@ local function start_smoke(pos, node, clicker, chimney)
 
 	if above == "air" and (not id or id == 0) then
 		id = minetest.add_particlespawner({
-			amount = 4, time = 0, collisiondetection = false,
+			amount = 4, time = 0, collisiondetection = true,
 			minpos = {x=pos.x-0.25, y=pos.y+0.4, z=pos.z-0.25},
 			maxpos = {x=pos.x+0.25, y=pos.y+5, z=pos.z+0.25},
 			minvel = {x=-0.2, y=0.3, z=-0.2}, maxvel = {x=0.2, y=1, z=0.2},

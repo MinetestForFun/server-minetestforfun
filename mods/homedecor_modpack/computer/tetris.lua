@@ -224,7 +224,7 @@ local function step(pos, fields)
 		run = tick()
 	end
 
-	if t ~= nil then
+	if t then
 	local scr = { formsize, background, 
 		t.boardstring, t.previewstring,
 		draw_shape(t.cur, t.x, t.y, t.rot, boardx, boardy),

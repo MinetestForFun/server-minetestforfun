@@ -344,10 +344,11 @@ if minetest.get_modpath("bucket") then
 					minetest.chat_send_player(user:get_player_name(), "No room in your inventory to add a filled bucket!")
 				end
 				return wielditem
-			else
-				return original_bucket_on_use(itemstack, user, pointed_thing)
-			end
+			else if original_bucket_on_use then
+				original_bucket_on_use(itemstack, user, pointed_thing)
+			else return end
 		end
+	end
 	})
 end
 

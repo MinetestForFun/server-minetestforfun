@@ -590,7 +590,8 @@ homedecor.register("beer_mug", {
 	groups = { snappy=3, oddly_breakable_by_hand=3 },
 	walkable = false,
 	sounds = default.node_sound_glass_defaults(),
-	selection_box = beer_cbox
+	selection_box = beer_cbox,
+	on_use = minetest.item_eat(2)
 })
 
 homedecor.register("tool_cabinet", {

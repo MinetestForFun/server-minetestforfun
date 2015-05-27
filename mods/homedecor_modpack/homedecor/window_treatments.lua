@@ -87,7 +87,7 @@ local wb2_cbox = {
 homedecor.register("blinds_thin", {
 	description = "Window Blinds (thin)",
 	mesh = "homedecor_windowblind_thin.obj",
-	inventory_image = "homedecor_windowblind_thick_inv.png",
+	inventory_image = "homedecor_windowblind_thin_inv.png",
 	tiles = {
 		"homedecor_windowblind_strings.png",
 		"homedecor_windowblinds.png"

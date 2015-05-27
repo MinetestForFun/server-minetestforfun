@@ -128,7 +128,8 @@ homedecor.register("kitchen_faucet", {
 			}
 			homedecor.start_particle_spawner(pos, node, particledef, "homedecor_faucet")
 		end
-	end
+	end,
+	on_destruct = homedecor.stop_particle_spawner
 })
 
 homedecor.register("paper_towel", {
