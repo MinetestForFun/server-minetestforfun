@@ -1,8 +1,21 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
-/!\ Le serveur étant devenu extrêmement stable, les MAJ vont ce rarifier pour un temps /!\
+/!\ Le serveur étant devenu extrêmement stable, les MAJ vont se rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
+
+---27/05/2015--- (Remerciements : Mg, Obani, Ataron)
+MAJ du mod "/_misc/whoison" ("/timeonline" à maintenant un alias "/played", libre à vous de l'utiliser)
+MAJ du mod "bobblocks" (grosse amélioration du code par HybridDog)
+MAJ de "/MFF_subgame/node.lua" (ajout du sable mouvant/quicksand et du sceau de sable/bucket_sand, le craft gravel->sand est de nouveau disponible)
+MAJ de "/MFF_subgame/boats" (meilleurs textures dans l'inventaire et amélioration du "Expert Boat" pour qu'il tourne plus vite)
+MAJ de "homedecor" (encore plus de meshe, meileur textures dans l'inventaire)
+MAJ de "nether" (amélioration du code)
+MAJ de "maptools" (petit nettoyage)
+MAJ de "ambiance" (petit nettoyage)
+MAJ du mod "farming" (les plantes de ce mod poussent même si un joueur n'est pas â coté)
+MAJ du mod "mobs" (le knockback à été supprimé pour les monstres Minotaur, Dungeon Master, Big Lava Slime et Big Green Slime)
+MAJ du mod "riesenpilz" (les champignons – uniquement esthétique – de ce mod ont vu leurs spawnent réduit de 4 fois)
 
 ---22/05/2015--- (Remerciements : Gael-de-Sailly, Crabman, Ataron, Obani, Mg, Le_Docteur)
 Ajout du mod "solarmana" (la mana ne se recharge plus qu'au contact direct de la lumière du soleil où lorsque le joueur se tient sur de l'or, du bois, ou des minerais, par exemple. Un tableau sera bientôt disponible sur le site dans la section "liste des mods" pour consulter les minerais permettant la régénération de mana)
