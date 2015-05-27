@@ -1,4 +1,4 @@
--- Mobs Api (22nd May 2015)
+-- Mobs Api (24th May 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -266,7 +266,8 @@ function mobs:register_mob(name, def)
 				local pos = self.object:getpos()
 				local n = minetest.get_node(pos)
 				local tod = minetest.get_timeofday()
-				pos.y = pos.y + (self.collisionbox[2] + self.collisionbox[5]) / 2
+				pos.y = (pos.y + self.collisionbox[2]) -- foot level
+--print ("standing on:", minetest.get_node(pos).name)
 
 				if self.light_damage and self.light_damage ~= 0
 				and pos.y > 0
@@ -299,13 +300,13 @@ function mobs:register_mob(name, def)
 					local pos = self.object:getpos()
 					pos.y = (pos.y + self.collisionbox[2]) - 0.2
 					local nod = minetest.get_node(pos)
---print ("stand", nod.name, pos.y)
+--print ("standing on:", nod.name, pos.y)
 					if not nod or not minetest.registered_nodes[nod.name]
 					or minetest.registered_nodes[nod.name].walkable == false then return end
 					if self.direction then
  						pos.y = pos.y + 0.2
 						local nod = minetest.get_node_or_nil({x=pos.x + self.direction.x,y=pos.y,z=pos.z + self.direction.z})
---print ("front", nod.name, pos.y)
+--print ("in front:", nod.name, pos.y)
 						if nod and nod.name and (nod.name ~= "air"  or self.walk_chance == 0) then
 							local def = minetest.registered_items[nod.name]
 							if (def and def.walkable and not nod.name:find("fence")) or self.walk_chance == 0 then
