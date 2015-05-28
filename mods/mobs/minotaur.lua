@@ -71,6 +71,6 @@ minetest.register_craftitem("mobs:minotaur_eye", {
 
 minetest.register_craftitem("mobs:minotaur_horn", {
 	description = "Minotaur Horn",
-	inventory_image = "mobs_minotaur_eye.png",
+	inventory_image = "mobs_minotaur_horn.png",
 	groups = {magic = 1},
 })
