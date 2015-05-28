@@ -51,6 +51,13 @@ messages.acid = {
 	" a cru qu'il se baignait dans du jus de pomme."
 }
 
+-- Quicksands death messages
+messages.sand = {
+	" a appris que le sable c'est moins fluide que l'eau",
+	" a rejoint les momies",
+	" est enseveli(e)",
+}
+
 -- Other death messages
 messages.other = {
 	" a fait quelque chose qui lui a ete fatale.",
@@ -84,11 +91,14 @@ if RANDOM_MESSAGES == true then
 		elseif node.groups.acid ~= nil then
 			minetest.chat_send_all(player_name ..  messages.acid[math.random(1,#messages.acid)] )
 		-- Death by drowning
-		elseif player:get_breath() == 0 then
+		elseif player:get_breath() == 0 and node.groups.water then
 			minetest.chat_send_all(player_name ..  messages.water[math.random(1,#messages.water)] )
 		-- Death by fire
 		elseif node.name == "fire:basic_flame" then
 			minetest.chat_send_all(player_name ..  messages.fire[math.random(1,#messages.fire)] )
+		-- Death in quicksand
+		elseif player:get_breath() == 0 and node.name == "default:sand_source" or node.name == "default:sand_flowing" then
+			minetest.chat_send_all(player_name .. messages.sand[math.random(1,#messages.sand)] )
 		-- Death by something else
 		else
 			minetest.chat_send_all(player_name ..  messages.other[math.random(1,#messages.other)] )
