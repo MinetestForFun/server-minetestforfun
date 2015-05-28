@@ -43,7 +43,7 @@ end
 
 
 local function find_ground(a,list)
-	for _,nam in ipairs(list) do			
+	for _,nam in ipairs(list) do
 		if a == nam then
 			return true
 		end
@@ -157,7 +157,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	for p_pos in area:iterp(minp, maxp) do	--remove tree stuff
 		local d_p_pos = data[p_pos]
-		for _,nam in ipairs(c.TREE_STUFF) do			
+		for _,nam in ipairs(c.TREE_STUFF) do
 			if d_p_pos == nam then
 				data[p_pos] = c.air
 				break
@@ -201,7 +201,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				for b = minp.y,maxp.y,1 do	--remove usual stuff
 					local p_pos = area:index(x, b, z)
 					local d_p_pos = data[p_pos]
-					for _,nam in ipairs(c.USUAL_STUFF) do			
+					for _,nam in ipairs(c.USUAL_STUFF) do
 						if d_p_pos == nam then
 							data[p_pos] = c.air
 							break
@@ -244,7 +244,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						riesenpilz_circle(c.riesenpilz_red, boden, pr:next(4,5), 3)
 					elseif pr:next(1,100) == 1 then
 						riesenpilz_circle(c.riesenpilz_fly_agaric, boden, 4, 3)
-					elseif pr:next(1,4000) == 1 then
+					elseif pr:next(1,4000) == 1 and maxp.y <= -200 then
 						riesenpilz_circle(c.riesenpilz_lavashroom, boden, pr:next(5,6), 3)
 					elseif pr:next(1,5000) == 1 then
 						riesenpilz_circle(c.riesenpilz_glowshroom, boden, 3, 3)
