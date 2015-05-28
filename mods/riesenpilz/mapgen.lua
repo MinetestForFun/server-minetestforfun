@@ -244,7 +244,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						riesenpilz_circle(c.riesenpilz_red, boden, pr:next(4,5), 3)
 					elseif pr:next(1,100) == 1 then
 						riesenpilz_circle(c.riesenpilz_fly_agaric, boden, 4, 3)
-					elseif pr:next(1,4000) == 1 and maxp.y <= -200 then
+					elseif pr:next(1,4000) == 1 and maxp.y <= -200 then -- Modif MFF
 						riesenpilz_circle(c.riesenpilz_lavashroom, boden, pr:next(5,6), 3)
 					elseif pr:next(1,5000) == 1 then
 						riesenpilz_circle(c.riesenpilz_glowshroom, boden, 3, 3)
