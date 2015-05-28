@@ -1,9 +1,9 @@
 if minetest.get_modpath("technic") then
 	local stats = {
 		brass = { name="Brass", armor=1.8, heal=0, use=650 },
-		cast = { name="Cast Iron", armor=2.5, heal=8, use=200 },
-		carbon = { name="Carbon Steel", armor=2.7, heal=10, use=100 },
-		stainless = { name="Stainless Steel", armor=2.7, heal=10, use=75 },
+		cast = { name="Cast Iron", armor=2.5, heal=0, use=200 },
+		carbon = { name="Carbon Steel", armor=2.7, heal=0, use=100 },
+		stainless = { name="Stainless Steel", armor=2.7, heal=0, use=75 },
 	}
 	local mats = {
 		brass="technic:brass_ingot",
@@ -13,7 +13,7 @@ if minetest.get_modpath("technic") then
 	}
 	if minetest.get_modpath("moreores") then
 		stats.tin = { name="Tin", armor=1.6, heal=0, use=750 }
-		stats.silver = { name="Silver", armor=1.8, heal=6, use=650 }
+		stats.silver = { name="Silver", armor=1.8, heal=0, use=650 }
 		mats.tin = "moreores:tin_ingot"
 		mats.silver = "moreores:silver_ingot"
 	end
