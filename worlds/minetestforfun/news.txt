@@ -4,7 +4,7 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Le serveur étant devenu extrêmement stable, les MAJ vont se rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
----xx/05/2015--- (Remerciements : x)
+---xx/05/2015--- (Remerciements : x) Bientot !
 MAJ de "mobs" (possibilité d'ajouter des armes aux monstres, les monstres endommagés ne voient plus leur vie restauré s'ils sont déchargés puis rechergés, et amélioration du code)
 MAJ de "hud/hunger.lua" (ajout des valeurs de nutritions des haricots/beans)
 
