@@ -16,7 +16,7 @@ minetest.register_alias("flowers:flower_viola", "flowers:viola")
 --- Simple flowers (one node) ---
 ---------------------------------
 
-local function add_simple_flower(name, desc, image, f_groups)
+local function add_simple_flower(name, desc, image, box, f_groups)
 	minetest.register_node("flowers:"..name.."", {
 		description = desc,
 		drawtype = "plantlike",
@@ -29,20 +29,30 @@ local function add_simple_flower(name, desc, image, f_groups)
 		stack_max = 99,
 		groups = f_groups,
 		sounds = default.node_sound_leaves_defaults(),
-		selection_box = {
-			type = "fixed",
-			fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
-		},
+		selection_box = box
 	})
 end
 
+-- Selection boxes
+vertical = {
+	type = "fixed",
+	fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+}
 
-add_simple_flower("dandelion_yellow", "Yellow Dandelion", "flowers_dandelion_yellow", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_yellow=1})
-add_simple_flower("geranium", "Blue Geranium", "flowers_geranium", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_blue=1})
-add_simple_flower("rose", "Rose", "flowers_rose", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_red=1}) 
-add_simple_flower("tulip", "Orange Tulip", "flowers_tulip", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_orange=1})
-add_simple_flower("dandelion_white", "White dandelion", "flowers_dandelion_white",{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_white=1})
-add_simple_flower("viola", "Viola", "flowers_viola", {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_violet=1})
+slab = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, -0.5, 0.5, -0.2, 0.5 },
+}
+
+add_simple_flower("dandelion_yellow", "Yellow Dandelion", "flowers_dandelion_yellow", vertical, {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_yellow=1})
+add_simple_flower("geranium", "Blue Geranium", "flowers_geranium", vertical, {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_blue=1})
+add_simple_flower("rose", "Rose", "flowers_rose", vertical, 
+{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_red=1}) 
+add_simple_flower("tulip", "Orange Tulip", "flowers_tulip", vertical,
+{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,dig_by_water=1,color_orange=1})
+add_simple_flower("dandelion_white", "White dandelion", "flowers_dandelion_white", slab, {snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_white=1})
+add_simple_flower("viola", "Viola", "flowers_viola", slab, 
+{snappy=3,flammable=2,flower=1,flora=1,attached_node=1,color_violet=1})
 
 minetest.register_node("flowers:lily_pad", {
 	description = "Lily Pad",
