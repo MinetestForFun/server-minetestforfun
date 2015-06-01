@@ -7,6 +7,7 @@ minetest.register_node("homedecor:skylight", {
 	wield_image = "default_glass.png",
 	inventory_image = "homedecor_skylight_inv.png",
 	groups = { snappy = 3 },
+	paramtype = "light",
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })
@@ -19,6 +20,7 @@ minetest.register_node("homedecor:skylight_frosted", {
 	inventory_image = "homedecor_skylight_frosted_inv.png",
 	use_texture_alpha = true,
 	groups = { snappy = 3 },
+	paramtype = "light",
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })

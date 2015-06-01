@@ -1,4 +1,5 @@
 local inbox = {}
+screwdriver = screwdriver or {}
 
 minetest.register_craft({
 	output ="inbox:empty",

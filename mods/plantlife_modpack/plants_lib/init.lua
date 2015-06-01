@@ -42,7 +42,7 @@ local DEBUG = false --... except if you want to spam the console with debugging 
 
 function plantslib:dbg(msg)
 	if DEBUG then
-		print("[Plantlife] "..msg)
+		minetest.log("action", "[Plantlife] "..msg)
 		minetest.log("verbose", "[Plantlife] "..msg)
 	end
 end
@@ -446,8 +446,8 @@ end)
 -- to prevent unpopulated map areas
 
 minetest.register_on_shutdown(function()
-	print("[plants_lib] Stand by, playing out the rest of the aircheck mapblock log")
-	print("(there are "..#plantslib.blocklist_aircheck.." entries)...")
+	minetest.log("[plants_lib] Stand by, playing out the rest of the aircheck mapblock log")
+	minetest.log("(there are "..#plantslib.blocklist_aircheck.." entries)...")
 	while true do
 		plantslib:generate_block_with_air_checking(0.1)
 		if #plantslib.blocklist_aircheck == 0 then return end
@@ -455,8 +455,8 @@ minetest.register_on_shutdown(function()
 end)
 
 minetest.register_on_shutdown(function()
-	print("[plants_lib] Stand by, playing out the rest of the no-aircheck mapblock log")
-	print("(there are "..#plantslib.blocklist_aircheck.." entries)...")
+	minetest.log("[plants_lib] Stand by, playing out the rest of the no-aircheck mapblock log")
+	minetest.log("(there are "..#plantslib.blocklist_aircheck.." entries)...")
 	while true do
 		plantslib:generate_block_no_aircheck(0.1)
 		if #plantslib.blocklist_no_aircheck == 0 then return end
@@ -726,10 +726,10 @@ function plantslib:get_nodedef_field(nodename, fieldname)
 	return minetest.registered_nodes[nodename][fieldname]
 end
 
-print("[Plants Lib] Loaded")
+minetest.log("action", "[Plants Lib] Loaded")
 
 minetest.after(0, function()
-	print("[Plants Lib] Registered a total of "..(#plantslib.surfaceslist_aircheck)+(#plantslib.surfaceslist_no_aircheck).." surface types to be evaluated, spread")
-	print("[Plants Lib] across "..#plantslib.actionslist_aircheck.." actions with air-checking and "..#plantslib.actionslist_no_aircheck.." actions without.")
+	minetest.log("action", "[Plants Lib] Registered a total of "..(#plantslib.surfaceslist_aircheck)+(#plantslib.surfaceslist_no_aircheck).." surface types to be evaluated, spread")
+	minetest.log("action", "[Plants Lib] across "..#plantslib.actionslist_aircheck.." actions with air-checking and "..#plantslib.actionslist_no_aircheck.." actions without.")
 end)
 

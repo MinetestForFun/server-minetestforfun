@@ -228,7 +228,7 @@ boats.register_boat({
 	controls = {
 		up = 0.25,
 		down = 0.25,
-		rotate = 2
+		rotate = 4
 	},
 	description = "Expert race boat"
 })

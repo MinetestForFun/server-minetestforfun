@@ -162,3 +162,4 @@ irc:register_bot_command("players", {
 				..table.concat(names, ", ")
 	end
 })
+

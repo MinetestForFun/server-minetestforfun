@@ -82,19 +82,3 @@ if minetest.registered_nodes["doors:trapdoor"] then
 		}},
 	})
 end
-
-if minetest.registered_nodes["doors:trapdoor_cherry"] then
-	minetest.override_item("doors:trapdoor_cherry", {
-		mesecons = {effector = {
-			action_on = trapdoor_switch,
-			action_off = trapdoor_switch
-		}},
-	})
-
-	minetest.override_item("doors:trapdoor_cherry_open", {
-		mesecons = {effector = {
-			action_on = trapdoor_switch,
-			action_off = trapdoor_switch
-		}},
-	})
-end

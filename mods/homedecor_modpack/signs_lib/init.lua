@@ -11,12 +11,12 @@
 -- }
 
 signs_lib = {}
+screwdriver = screwdriver or {}
 
-local screwdriver = screwdriver or {}
 signs_lib.wallmounted_rotate = function(pos, node, user, mode, new_param2)
 	if mode ~= screwdriver.ROTATE_AXIS then return false end
 	minetest.swap_node(pos, {name = node.name, param2 = (node.param2 + 1) % 6})
-    for _, v in ipairs(minetest.get_objects_inside_radius(pos, 0.5)) do
+	for _, v in ipairs(minetest.get_objects_inside_radius(pos, 0.5)) do
 		local e = v:get_luaentity()
 		if e and e.name == "signs:text" then
 			v:remove()
@@ -634,7 +634,7 @@ function signs_lib.determine_sign_type(itemstack, placer, pointed_thing, locked)
 		local fdir = minetest.dir_to_facedir(dir)
 
 		local pt_name = minetest.get_node(under).name
-		print(dump(pt_name))
+		minetest.log("action", dump(pt_name))
 		local signname = itemstack:get_name()
 
 		if fences_with_sign[pt_name] and signname == "default:sign_wall" then
@@ -981,7 +981,7 @@ function signs_lib.register_fence_with_sign(fencename, fencewithsignname)
 	minetest.register_node(":"..fencename, def)
 	minetest.register_node(":"..fencewithsignname, def_sign)
 	table.insert(signs_lib.sign_node_list, fencewithsignname)
-	print(S("Registered %s and %s"):format(fencename, fencewithsignname))
+	minetest.log("action", S("Registered %s and %s"):format(fencename, fencewithsignname))
 end
 
 build_char_db()

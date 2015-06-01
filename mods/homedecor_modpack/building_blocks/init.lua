@@ -598,4 +598,3 @@ if not minetest.get_modpath("technic") then
 		})
 	end
 end
-

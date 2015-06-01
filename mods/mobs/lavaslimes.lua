@@ -144,6 +144,7 @@ mobs:register_mob("mobs:lavabig", {
 	footstep = "fire:basic_flame",
 	view_range = 16,
 	floats = 1,
+	knock_back = 0, --this is a test
 	-- chance of dropping lava orb and coins
 	drops = {
 	},

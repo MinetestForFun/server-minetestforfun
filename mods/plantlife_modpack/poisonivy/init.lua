@@ -100,4 +100,4 @@ plantslib:grow_plants({
 	ground_nodes = {"default:dirt_with_grass"}
 })
 
-print(S("[Poison Ivy] Loaded."))
+minetest.log("action", S("[Poison Ivy] Loaded."))

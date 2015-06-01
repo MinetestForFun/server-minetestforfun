@@ -17,7 +17,6 @@ homedecor.register("trash_can_green", {
 	on_punch = function(pos, node, puncher, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:trash_can_green_open", param2 = node.param2})
 	end
-	
 })
 
 homedecor.register("trash_can_green_open", {
@@ -27,6 +26,7 @@ homedecor.register("trash_can_green_open", {
    	groups = {snappy=3, not_in_creative_inventory=1},
 	selection_box = tg_cbox,
 	collision_box = tg_cbox,
+	drop = "homedecor:trash_can_green",
 	on_punch = function(pos, node, puncher, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:trash_can_green", param2 = node.param2})
 	end,
@@ -65,7 +65,7 @@ homedecor.register("trash_can_green_open", {
 			inv:set_list("main", {})
 			minetest.sound_play("homedecor_trash_all", {to_player=sender:get_player_name(), gain = 1.0})
 		end
-	end,
+	end
 })
 
 local trash_cbox = {

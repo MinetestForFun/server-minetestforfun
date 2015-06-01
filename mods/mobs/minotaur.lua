@@ -35,6 +35,7 @@ mobs:register_mob("mobs:minotaur", {
 	jump = true,
 	floats = 1,
 	view_range = 16,
+	knock_back = 0,		--this is a test
 	-- drops desert_sand and coins when dead
 	drops = {
 		{name = "maptools:gold_coin",
@@ -70,6 +71,6 @@ minetest.register_craftitem("mobs:minotaur_eye", {
 
 minetest.register_craftitem("mobs:minotaur_horn", {
 	description = "Minotaur Horn",
-	inventory_image = "mobs_minotaur_eye.png",
+	inventory_image = "mobs_minotaur_horn.png",
 	groups = {magic = 1},
 })

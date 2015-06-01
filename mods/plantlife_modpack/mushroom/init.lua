@@ -258,4 +258,4 @@ minetest.register_abm({
 dofile(minetest.get_modpath("mushroom").."/crafting.lua")
 dofile(minetest.get_modpath("mushroom").."/compat.lua")
 
-print("[Mushrooms] loaded.")
+minetest.log("action", "[Mushrooms] loaded.")

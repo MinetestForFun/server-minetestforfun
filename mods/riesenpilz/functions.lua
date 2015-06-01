@@ -7,7 +7,7 @@ if riesenpilz.info then
 			else
 				info = "[riesenpilz] "..msg
 			end
-			print(info)
+			minetest.log("action", info)
 			if riesenpilz.inform_all then
 				minetest.chat_send_all(info)
 			end

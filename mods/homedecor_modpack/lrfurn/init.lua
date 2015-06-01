@@ -1,4 +1,5 @@
 lrfurn = {}
+screwdriver = screwdriver or {}
 
 lrfurn.fdir_to_fwd = {
 	{  0,  1 },

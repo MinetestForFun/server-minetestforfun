@@ -68,7 +68,7 @@ if ARMOR_MATERIALS.bronze then
 	minetest.register_tool("shields:shield_bronze", {
 		description = "Bronze Shield",
 		inventory_image = "shields_inv_shield_bronze.png",
-		groups = {armor_shield=5, armor_heal=6, armor_use=250},
+		groups = {armor_shield=5, armor_heal=0, armor_use=250},
 		wear = 0,
 	})
 end
@@ -77,7 +77,7 @@ if ARMOR_MATERIALS.diamond then
 	minetest.register_tool("shields:shield_diamond", {
 		description = "Diamond Shield",
 		inventory_image = "shields_inv_shield_diamond.png",
-		groups = {armor_shield=7, armor_heal=12, armor_use=100},
+		groups = {armor_shield=7, armor_heal=0, armor_use=100},
 		wear = 0,
 	})
 end
@@ -86,7 +86,7 @@ if ARMOR_MATERIALS.gold then
 	minetest.register_tool("shields:shield_gold", {
 		description = "Gold Shield",
 		inventory_image = "shields_inv_shield_gold.png",
-		groups = {armor_shield=6, armor_heal=6, armor_use=200},
+		groups = {armor_shield=6, armor_heal=0, armor_use=200},
 		wear = 0,
 	})
 end
@@ -95,7 +95,7 @@ if ARMOR_MATERIALS.mithril then
 	minetest.register_tool("shields:shield_mithril", {
 		description = "Mithril Shield",
 		inventory_image = "shields_inv_shield_mithril.png",
-		groups = {armor_shield=9, armor_heal=12, armor_use=50},
+		groups = {armor_shield=9, armor_heal=0, armor_use=50},
 		wear = 0,
 	})
 end
@@ -104,7 +104,7 @@ if ARMOR_MATERIALS.crystal then
 	minetest.register_tool("shields:shield_crystal", {
 		description = "Crystal Shield",
 		inventory_image = "shields_inv_shield_crystal.png",
-		groups = {armor_shield=15, armor_heal=12, armor_use=50, armor_fire=1},
+		groups = {armor_shield=15, armor_heal=0, armor_use=50, armor_fire=1},
 		wear = 0,
 	})
 end

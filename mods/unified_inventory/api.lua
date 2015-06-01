@@ -27,7 +27,7 @@ minetest.after(0.01, function()
 	end
 	table.sort(unified_inventory.items_list)
 	unified_inventory.items_list_size = #unified_inventory.items_list
-	print("Unified Inventory. inventory size: "..unified_inventory.items_list_size)
+	minetest.log("Unified Inventory. inventory size: "..unified_inventory.items_list_size)
 	for _, name in ipairs(unified_inventory.items_list) do
 		local def = minetest.registered_items[name]
 		if type(def.drop) == "string" then

@@ -55,4 +55,4 @@ plantslib:spawn_on_surfaces({
 
 minetest.register_alias("bushes:basket_pies", "bushes:basket_strawberry")
 
-print(S("[Bushes] Loaded."))
+minetest.log("action", S("[Bushes] Loaded."))

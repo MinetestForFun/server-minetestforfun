@@ -75,4 +75,4 @@ minetest.register_alias("dye:dark_blue","dye:blue")
 minetest.register_alias("dye:dark_pink","dye:magenta")
 minetest.register_alias("dye:purple","dye:violet")
 
-print ("Coloured Stone Bricks [colouredstonebricks] has loaded!")
+minetest.log ("action", "Coloured Stone Bricks [colouredstonebricks] has loaded!")

@@ -125,7 +125,7 @@ minetest.register_craftitem("homedecor:soda_can", {
 })
 
 minetest.register_craftitem("homedecor:coin", {
-	description = "Gold Coin",
+	description = "Gold Coin (only for machine)",		-- Modif MFF
 	inventory_image = "homedecor_coin.png",
 })
 
@@ -3314,6 +3314,24 @@ minetest.register_craft({
 		{"dye:red", "xpanes:pane", "dye:green"},
 		{"", "dye:yellow", ""},
 	},
+})
+
+minetest.register_craftitem("homedecor:flower_pot_small", {
+	description = S("Small Flower Pot"),
+	inventory_image = "homedecor_flowerpot_small_inv.png"
+})
+
+minetest.register_craft( {
+	output = "homedecor:flower_pot_small",
+	recipe = {
+	        { "default:clay_brick", "", "default:clay_brick" },
+	        { "", "default:clay_brick", "" }
+	}
+})
+
+minetest.register_craft( {
+	output = "homedecor:flower_pot_small 3",
+	recipe = { { "homedecor:flower_pot_terracotta" } }
 })
 
 for i in ipairs(homedecor.banister_materials) do

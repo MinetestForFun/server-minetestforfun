@@ -21,7 +21,8 @@ messages.lava = {
 	" s'est sentit oblige de toucher la lave.",
 	" est tombe dans la lave.",
 	" est mort(e) dans de la lave.",
-	" ne savait pas que la lave etait vraiment chaude."
+	" ne savait pas que la lave etait vraiment chaude.",
+	" a detruit l'anneau de Sauron."
 }
 
 -- Drowning death messages
@@ -30,7 +31,9 @@ messages.water = {
 	" a essaye d'usurper l'identite d'une ancre.",
 	" a oublie qu'il n'etait pas un poisson.",
 	" a oublier qu'il lui fallait respirer sous l'eau.",
-	" n'est pas bon en natation."
+	" n'est pas bon en natation.",
+	" a cherche le secret de la licorne.",
+	" a oublie son scaphandre."
 }
 
 -- Burning death messages
@@ -39,7 +42,8 @@ messages.fire = {
 	" a ete trop pres du feu.",
 	" vient de se faire rotir.",
 	" a ete carbonise.",
-	" s'est prit pour torch man. (des quatres fantastiques)"
+	" s'est prit pour la torche.",
+	" a allume le feu."
 }
 
 -- Acid death messages
@@ -48,7 +52,18 @@ messages.acid = {
 	" a decouvert que l'acide c'est fun.",
 	" a mis sa tete la ou elle a fondu.",
 	" a decouvert que son corps dans l'acide, c'est comme du sucre dans de l'eau.",
-	" a cru qu'il se baignait dans du jus de pomme."
+	" a cru qu'il se baignait dans du jus de pomme.",
+	" a donne son corps pour faire une infusion.",
+	" a bu la mauvaise tasse.",
+	" a voulu tester la solubilite de son corps dans l'acide."
+}
+
+-- Quicksands death messages
+messages.sand = {
+	" a appris que le sable etait moins fluide que l'eau.",
+	" a rejoint les momies.",
+	" s'est fait(e) ensevelir.",
+	" a choisi la voie de la fossilisation."
 }
 
 -- Other death messages
@@ -57,7 +72,8 @@ messages.other = {
 	" est mort(e).",
 	" n'est plus de ce monde.",
 	" a rejoint le paradis des mineurs.",
-	" a perdu la vie."
+	" a perdu la vie.",
+	" a vu la lumière."
 }
 
 
@@ -84,11 +100,14 @@ if RANDOM_MESSAGES == true then
 		elseif node.groups.acid ~= nil then
 			minetest.chat_send_all(player_name ..  messages.acid[math.random(1,#messages.acid)] )
 		-- Death by drowning
-		elseif player:get_breath() == 0 then
+		elseif player:get_breath() == 0 and node.groups.water then
 			minetest.chat_send_all(player_name ..  messages.water[math.random(1,#messages.water)] )
 		-- Death by fire
 		elseif node.name == "fire:basic_flame" then
 			minetest.chat_send_all(player_name ..  messages.fire[math.random(1,#messages.fire)] )
+		-- Death in quicksand
+		elseif player:get_breath() == 0 and node.name == "default:sand_source" or node.name == "default:sand_flowing" then
+			minetest.chat_send_all(player_name .. messages.sand[math.random(1,#messages.sand)] )
 		-- Death by something else
 		else
 			minetest.chat_send_all(player_name ..  messages.other[math.random(1,#messages.other)] )
@@ -123,5 +142,5 @@ else
 end
 
 -----------------------------------------------------------------------------------------------
-print("[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
+minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
 -----------------------------------------------------------------------------------------------

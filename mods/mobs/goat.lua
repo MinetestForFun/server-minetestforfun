@@ -5,7 +5,7 @@ mobs:register_mob("mobs:goat", {
 	-- animal, monster, npc, barbarian
 	type = "animal",
 	-- aggressive, does 5 damage to player when threatened
-	passive = true,
+	passive = false,
 	attack_type = "dogfight",
 	damage = 5,
 	-- health & armor

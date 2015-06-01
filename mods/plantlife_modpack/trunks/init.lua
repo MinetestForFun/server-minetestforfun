@@ -13,5 +13,5 @@ dofile(minetest.get_modpath("trunks").."/nodes.lua")
 dofile(minetest.get_modpath("trunks").."/crafting.lua")
 
 -----------------------------------------------------------------------------------------------
-print("[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
+minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
 -----------------------------------------------------------------------------------------------

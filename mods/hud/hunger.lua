@@ -277,6 +277,7 @@ if minetest.get_modpath("farming") and farming.mod == "redo" then
    overwrite("farming:raspberries", 1)
    overwrite("farming:blueberries", 1)
    overwrite("farming:muffin_blueberry", 4)
+   overwrite("farming:beans", 1)
    if minetest.get_modpath("vessels") then
 	overwrite("farming:smoothie_raspberry", 2, "vessels:drinking_glass")
    end

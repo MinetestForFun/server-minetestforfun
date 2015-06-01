@@ -15,6 +15,7 @@ tweak.buttons = {
 local function get_formspec_size(formspec)
 	local w = 8
 	local h = 7.5
+	if not formspec then return end
 	local sstring = string.find(formspec,"size[",1,true)
 	if sstring ~= nil then
 		sstring = string.sub(formspec, sstring+5)

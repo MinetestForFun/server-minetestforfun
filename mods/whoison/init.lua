@@ -95,7 +95,7 @@ minetest.register_chatcommand("seen",{
 	end
 })
 
-minetest.register_chatcommand("played",{
+minetest.register_chatcommand("timeonline",{
 	param = "<name>",
 	description = "Shows the cumulative time a player has been online",
 	func = function (name, param)
@@ -111,6 +111,7 @@ minetest.register_chatcommand("played",{
 		end
 	end
 })
+minetest.register_chatcommand("timeonline", core.chatcommands["played"])
 
 function breakdowntime(t)
 	local countdown = t
