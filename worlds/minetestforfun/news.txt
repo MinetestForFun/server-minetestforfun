@@ -1,11 +1,22 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
-/!\ Le serveur étant devenu extrêmement stable, les MAJ vont se rarifier pour un temps /!\
-/!\ En effet, nous profitons de cette stabilité pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
+/!\ Le serveur étant devenu stable, les MAJs vont se rarifier pour un temps /!\
+/!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
----xx/05/2015--- (Remerciements : x) Bientot !
-MAJ de "mobs" (possibilité d'ajouter des armes aux monstres, les monstres endommagés ne voient plus leur vie restauré s'ils sont déchargés puis rechergés, et amélioration du code)
+---01/06/2015--- (Remerciements : Mg, Obani, Ataron)
+MAJ de "/MFF_subgame/flowers" (ajustement des collision_box)
+MAJ de "/MFF_subgame/default/textures" (les outils Sword/Axe/Shovel en Wood/Stone/Steel ont une nouvelle texture en 32px - dite nous ce que vous en pensez ! :)-)
+MAJ de "mobs" (les objets "Minotaur Eye" et "Minotaur Horn" ont maintenant une texture)
+MAJ de "invtweak" (crashfix)
+MAJ de "3d_armor" (préparatif pour diverses futures armures)
+MAJ de "death_messages" (Ajout de messages de mort dans le sable mouvant et pour les autres morts)
+MAJ de "solarmana" (Debug de la valeur de lumière du soleil nécessaire pour enclencher la régénération de mana)
+MAJ de "/MFF_subgame/screwdriver" (Debug du "Mithril Screwdriver")
+MAJ de "homedecor_modpack" et "plantlife" (déplacement du flower_potted dans plantlife, aucun meshe ne manque mainteannt, et toujours plus de textures en meshe, renommage du gold coin de homedecor pour que ça fonction soit plus compréhensible - utilisable uniquement pour activer la machine tetris et soda -)
+MAJ de "mobs (réduction de 50% du spawn des Sand Monster dans les déserts/desert_sand, et la chèvre attaque le joueur si elles sont attaqués)
+MAJ de "/MFF_subgame/crafting.lua" (les crafts/uncrafts de sand<=>desert_sand et gravel=>cobble, sont de nouveaux disponibles)
+MAJ de "mobs" (possibilité d'ajouter des armes aux monstres, les monstres endommagés ne voient plus leur vie restauré si le chunck est déchargé puis rechargé, et amélioration du code)
 MAJ de "hud/hunger.lua" (ajout des valeurs de nutritions des haricots/beans)
 
 ---27/05/2015--- (Remerciements : Mg, Obani, Ataron)
