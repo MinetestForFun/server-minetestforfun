@@ -16,8 +16,7 @@ highlandpools = {}
 
 minetest.register_abm({
 	nodenames = {"default:grass_1","default:grass_2","default:grass_3","default:grass_4",
-				 "default:grass_5","default:grass_6","default:grass_7","default:grass_8",
-				 "cavestuff:pebble_2","group:flowers"},
+				 "default:grass_5","default:grass_6","default:grass_7","default:grass_8"},
 	interval = 1,
 	chance = 1,
 	action = function(pos)
