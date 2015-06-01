@@ -5,6 +5,8 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
 ---01/06/2015--- (Remerciements : Mg, Obani, Ataron)
+MAJ de "beginner_chest" (changement de position du tout premier coffre pour le mettre dans le nouveau spawn)
+MAJ de "highlandpools" (réduction des cubes tranformés en eau)
 MAJ de "/MFF_subgame/flowers" (ajustement des collision_box)
 MAJ de "/MFF_subgame/default/textures" (les outils Sword/Axe/Shovel en Wood/Stone/Steel ont une nouvelle texture en 32px - dite nous ce que vous en pensez ! :)-)
 MAJ de "mobs" (les objets "Minotaur Eye" et "Minotaur Horn" ont maintenant une texture)
