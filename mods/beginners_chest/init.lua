@@ -10,7 +10,7 @@
 
 local chests = {
   [1] = {
-    position = {x = 5, y = 40, z = -1},
+    position = {x = 43, y = 48, z = -87},
     interval_max = 3600,
 	stuff = {
 		[1] = "3d_armor:boots_steel",
