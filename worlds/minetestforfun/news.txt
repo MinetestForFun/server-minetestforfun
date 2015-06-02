@@ -4,7 +4,11 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Le serveur étant devenu stable, les MAJs vont se rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
----02/06/2015--- (Remerciements : Obani, Mg)
+---xx/06/2015--- (Remerciements : crabman, Obani, Mg)
+MAJ du site (la page nommée "Galerie" a été amélioré)
+MAJ de "/MFF_subgame/default/tools.lua", "moreores" et "nether" (unification des outils terminé ! Ils sont maintenant tous parfaitement équilibrés, les tableaux sont disponible sur le site)
+MAJ de "plantlife_modpack/mushroom" (3 fois moins de champignons, voila de quoi allèger un peu le biome)
+MAJ de "mobs" (bugfix, comme pour les barrières normales, ils ne sauteront plus à la vu d'une barrière qui fait portail)
 Suppression du mod "highlandpools" (trop de bugs qui rendent son effet sur le biome moche)
 
 ---01/06/2015--- (Remerciements : Mg, Obani, Ataron)
