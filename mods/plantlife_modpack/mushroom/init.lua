@@ -16,7 +16,7 @@ minetest.register_node("mushroom:brown",{
 	groups = {oddly_breakable_by_hand=3,attached_node=1},
 	paramtype = "light",
 	walkable = false,
-	on_use = minetest.item_eat(5),
+	on_use = minetest.item_eat(5),				-- Modif MFF
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0, 0.3}
@@ -34,7 +34,7 @@ minetest.register_node("mushroom:red",{
 	groups = {oddly_breakable_by_hand=3,attached_node=1},
 	paramtype = "light",
 	walkable = false,
-	on_use = minetest.item_eat(-5),
+	on_use = minetest.item_eat(-5),				-- Modif MFF
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0, 0.3}
@@ -115,8 +115,8 @@ minetest.register_node("mushroom:red_natural",{
 minetest.register_abm({
 	nodenames = {"mushroom:spore_brown"},
 	neighbors = {"air"},
-	interval = 120,
-	chance = 4,
+	interval = 360,			-- Modif MFF
+	chance = 12,			-- Modif MFF
 	action = function(pos, node)
 		local soil = minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z})
 		if (soil.name == "farming:soil_wet" or string.find(soil.name, "homedecor:flower_pot_"))
@@ -129,8 +129,8 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"mushroom:spore_red"},
 	neighbors = {"air"},
-	interval = 120,
-	chance = 4,
+	interval = 360,			-- Modif MFF
+	chance = 12,			-- Modif MFF
 	action = function(pos, node)
 		local soil = minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z})
 		if (soil.name == "farming:soil_wet" or string.find(soil.name, "homedecor:flower_pot_"))
@@ -171,8 +171,8 @@ minetest.register_abm({
 		"farming:soil_wet"
 	},
 	neighbors = {"air"},
-	interval = 300,
-	chance = 100,
+	interval = 900,			-- Modif MFF
+	chance = 300,			-- Modif MFF
 	action = function(pos, node)
 		local top_pos = {x=pos.x, y=pos.y+1, z=pos.z}
 		if minetest.get_node(top_pos).name == "air" and minetest.get_node_light(top_pos, nil) < 8 
@@ -190,8 +190,8 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"default:stone"},
 	neighbors = {"air"},
-	interval = 300,
-	chance = 100,
+	interval = 900,			-- Modif MFF
+	chance = 300,			-- Modif MFF
 	action = function(pos, node)
 		local top_pos = {x=pos.x, y=pos.y+1, z=pos.z}
 		if minetest.get_node(top_pos).name == "air" and minetest.get_node_light(top_pos, nil) < 8 
