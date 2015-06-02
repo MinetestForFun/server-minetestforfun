@@ -1,4 +1,4 @@
--- Mobs Api (27th May 2015)
+-- Mobs Api (29th May 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -291,7 +291,7 @@ function mobs:register_mob(name, def)
 					if not nod or not minetest.registered_nodes[nod.name]
 					or minetest.registered_nodes[nod.name].walkable == false then return end
 					if self.direction then
- 						pos.y = pos.y + 0.2
+ 						pos.y = pos.y + 0.5
 						local nod = minetest.get_node_or_nil({x=pos.x + self.direction.x,y=pos.y,z=pos.z + self.direction.z})
 --print ("in front:", nod.name, pos.y)
 						if nod and nod.name and (nod.name ~= "air"  or self.walk_chance == 0) then
