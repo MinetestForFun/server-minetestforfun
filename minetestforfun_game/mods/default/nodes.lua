@@ -2177,31 +2177,3 @@ minetest.register_node("default:nyancat_rainbow", {
 	post_effect_color = {a = 128, r= 255, g= 128, b= 255},
 	sounds = default.node_sound_stone_defaults(),
 })
-
-if minetest.setting_getbool("xray") then
-	-- Nodes to make partially see-through:
-	minetest.override_item("default:stone_with_coal",    {tiles = {"default_mineral_coal.png"}})
-	minetest.override_item("default:stone_with_iron",    {tiles = {"default_mineral_iron.png"}})
-	minetest.override_item("default:stone_with_copper",  {tiles = {"default_mineral_copper.png"}})
-	minetest.override_item("default:stone_with_gold",    {tiles = {"default_mineral_gold.png"}})
-	minetest.override_item("default:stone_with_mese",    {tiles = {"default_mineral_mese.png"}})
-	minetest.override_item("default:stone_with_diamond", {tiles = {"default_mineral_diamond.png"}})
-	minetest.override_item("default:stone_with_coin",    {tiles = {"maptools_gold_coin.png"}})
-
-	-- Nodes to hide:
-	minetest.override_item("default:stone",                     {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:dirt",                      {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:dirt_with_grass",           {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:dirt_with_grass_footsteps", {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:dirt_with_snow",            {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:water_source",              {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:water_flowing",             {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:leaves",                    {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:jungleleaves",              {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:gravel",                    {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:sand",                      {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:desert_sand",               {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:desert_stone",              {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:cobble",                    {drawtype = "airlike", pointable = false,})
-	minetest.override_item("default:desert_cobble",             {drawtype = "airlike", pointable = false,})
-end
