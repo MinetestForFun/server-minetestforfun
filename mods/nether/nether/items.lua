@@ -809,8 +809,8 @@ minetest.register_craftitem("nether:hotbed", {
 	end
 })
 
-
-minetest.register_tool("nether:pick_mushroom", {
+-- Nether Pickaxe
+minetest.register_tool("nether:pick_mushroom", {		-- Modif MFF the entire tool
 	description = "Nether Mushroom Pickaxe",
 	inventory_image = "nether_pick_mushroom.png",
 	tool_capabilities = {
@@ -819,10 +819,11 @@ minetest.register_tool("nether:pick_mushroom", {
 			cracky = {times={[3]=3.0}, uses=5, maxlevel=1},
 			nether = {times={[3]=3}, uses=5, maxlevel=1},
 		},
+		damage_groups = {fleshy=2},
 	},
 })
 
-minetest.register_tool("nether:pick_wood", {
+minetest.register_tool("nether:pick_wood", {			-- Modif MFF the entire tool
 	description = "Nether Wood Pickaxe",
 	inventory_image = "nether_pick_wood.png",
 	tool_capabilities = {
@@ -836,21 +837,21 @@ minetest.register_tool("nether:pick_wood", {
 	},
 })
 
-minetest.register_tool("nether:pick_netherrack", {
+minetest.register_tool("nether:pick_netherrack", {		-- Modif MFF the entire tool
 	description = "Netherrack Pickaxe",
 	inventory_image = "nether_pick_netherrack.png",
 	tool_capabilities = {
 		full_punch_interval = 1.2,
 		max_drop_level=0,
 		groupcaps={
-			cracky = {times={[2]=2.00, [3]=1.20}, uses=20, maxlevel=1},
+			cracky = {times={[2]=2.00, [3]=1.20}, uses=20, maxlevel=2},
 			nether = {times={[1]=16, [2]=2.00, [3]=1.20}, uses=20, maxlevel=1},
 		},
 		damage_groups = {fleshy=3},
 	},
 })
 
-minetest.register_tool("nether:pick_netherrack_blue", {
+minetest.register_tool("nether:pick_netherrack_blue", {		-- Modif MFF the entire tool
 	description = "Blue Netherrack Pickaxe",
 	inventory_image = "nether_pick_netherrack_blue.png",
 	tool_capabilities = {
@@ -864,7 +865,7 @@ minetest.register_tool("nether:pick_netherrack_blue", {
 	},
 })
 
-minetest.register_tool("nether:pick_white", {
+minetest.register_tool("nether:pick_white", {			-- Modif MFF the entire tool
 	description = "Siwtonic Pickaxe",
 	inventory_image = "nether_pick_white.png",
 	tool_capabilities = {
@@ -878,46 +879,48 @@ minetest.register_tool("nether:pick_white", {
 	},
 })
 
-minetest.register_tool("nether:axe_netherrack", {
+-- Nether Axe
+minetest.register_tool("nether:axe_netherrack", {		-- Modif MFF the entire tool
 	description = "Netherrack Axe",
 	inventory_image = "nether_axe_netherrack.png",
 	tool_capabilities = {
 		full_punch_interval = 1.3,
 		max_drop_level=0,
 		groupcaps={
-			choppy={times={[1]=2.9, [2]=1.9, [3]=1.4}, uses=20, maxlevel=1},
+			choppy={times={[1]=3.00, [2]=1.00, [3]=0.60}, uses=20, maxlevel=2},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=3},
 	},
 })
 
-minetest.register_tool("nether:axe_netherrack_blue", {
+minetest.register_tool("nether:axe_netherrack_blue", {		-- Modif MFF the entire tool
 	description = "Blue Netherrack Axe",
 	inventory_image = "nether_axe_netherrack_blue.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=1,
 		groupcaps={
-			choppy={times={[1]=2.5, [2]=1.5, [3]=1}, uses=30, maxlevel=2},
+			choppy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=6},
+		damage_groups = {fleshy=4},
 	},
 })
 
-minetest.register_tool("nether:axe_white", {
+minetest.register_tool("nether:axe_white", {			-- Modif MFF the entire tool
 	description = "Siwtonic Axe",
 	inventory_image = "nether_axe_white.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=1,
 		groupcaps={
-			choppy={times={[1]=1.2, [2]=0.5, [3]=0.3}, uses=180, maxlevel=2},
+			choppy={times={[1]=0.90, [2]=0.45, [3]=0.20}, uses=125, maxlevel=3},
 		},
-		damage_groups = {fleshy=8},
+		damage_groups = {fleshy=5},
 	},
 })
 
-minetest.register_tool("nether:shovel_netherrack", {
+-- Nether Shovel
+minetest.register_tool("nether:shovel_netherrack", {		-- Modif MFF the entire tool
 	description = "Netherrack Shovel",
 	inventory_image = "nether_shovel_netherrack.png",
 	wield_image = "nether_shovel_netherrack.png^[transformR90",
@@ -925,13 +928,13 @@ minetest.register_tool("nether:shovel_netherrack", {
 		full_punch_interval = 1.4,
 		max_drop_level=0,
 		groupcaps={
-			crumbly = {times={[1]=1.7, [2]=1.1, [3]=0.45}, uses=22, maxlevel=2},
+			crumbly = {times={[1]=3.30, [2]=2.20, [3]=1.32}, uses=20, maxlevel=2},
 		},
-		damage_groups = {fleshy=2},
+		damage_groups = {fleshy=3},
 	},
 })
 
-minetest.register_tool("nether:shovel_netherrack_blue", {
+minetest.register_tool("nether:shovel_netherrack_blue", {	-- Modif MFF the entire tool
 	description = "Blue Netherrack Shovel",
 	inventory_image = "nether_shovel_netherrack_blue.png",
 	wield_image = "nether_shovel_netherrack_blue.png^[transformR90",
@@ -939,13 +942,13 @@ minetest.register_tool("nether:shovel_netherrack_blue", {
 		full_punch_interval = 1.1,
 		max_drop_level=1,
 		groupcaps={
-			crumbly = {times={[1]=1.4, [2]=0.8, [3]=0.35}, uses=50, maxlevel=2},
+			crumbly = {times={[1]=4.40, [2]=1.76, [3]=0.88}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=3},
+		damage_groups = {fleshy=4},
 	},
 })
 
-minetest.register_tool("nether:shovel_white", {
+minetest.register_tool("nether:shovel_white", {			-- Modif MFF the entire tool
 	description = "Siwtonic Shovel",
 	inventory_image = "nether_shovel_white.png",
 	wield_image = "nether_shovel_white.png^[transformR90",
@@ -953,13 +956,14 @@ minetest.register_tool("nether:shovel_white", {
 		full_punch_interval = 1,
 		max_drop_level=1,
 		groupcaps={
-			crumbly = {times={[1]=0.95, [2]=0.45, [3]=0.1}, uses=151, maxlevel=3},
+			crumbly = {times={[1]=1.93, [2]=0.94, [3]=0.44}, uses=125, maxlevel=3},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=5},
 	},
 })
 
-minetest.register_tool("nether:sword_netherrack", {
+-- Nether Sword
+minetest.register_tool("nether:sword_netherrack", {		-- Modif MFF the entire tool
 	description = "Netherrack Sword",
 	inventory_image = "nether_sword_netherrack.png",
 	tool_capabilities = {
@@ -972,7 +976,7 @@ minetest.register_tool("nether:sword_netherrack", {
 	},
 })
 
-minetest.register_tool("nether:sword_netherrack_blue", {
+minetest.register_tool("nether:sword_netherrack_blue", {	-- Modif MFF the entire tool
 	description = "Blue Netherrack Sword",
 	inventory_image = "nether_sword_netherrack_blue.png",
 	tool_capabilities = {
@@ -985,7 +989,7 @@ minetest.register_tool("nether:sword_netherrack_blue", {
 	},
 })
 
-minetest.register_tool("nether:sword_white", {
+minetest.register_tool("nether:sword_white", {			-- Modif MFF the entire tool
 	description = "Siwtonic Sword",
 	inventory_image = "nether_sword_white.png",
 	wield_image = "nether_sword_white.png^[transformR90",
@@ -995,7 +999,6 @@ minetest.register_tool("nether:sword_white", {
 		groupcaps={
 			snappy={times={[1]=1.7, [2]=0.8, [3]=0.2}, uses=100, maxlevel=3},
 		},
-		damage_groups = {fleshy=9},
+		damage_groups = {fleshy=8},
 	},
 })
-
