@@ -4,6 +4,9 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Le serveur étant devenu stable, les MAJs vont se rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
+---02/06/2015--- (Remerciements : Obani, Mg)
+Suppression du mod "highlandpools" (trop de bugs qui rendent son effet sur le biome moche)
+
 ---01/06/2015--- (Remerciements : Mg, Obani, Ataron)
 MAJ de "beginner_chest" (changement de position du tout premier coffre pour le mettre dans le nouveau spawn)
 MAJ de "highlandpools" (réduction des cubes tranformés en eau)
