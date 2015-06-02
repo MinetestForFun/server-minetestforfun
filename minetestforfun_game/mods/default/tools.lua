@@ -136,7 +136,7 @@ minetest.register_tool("default:shovel_wood", {
 		full_punch_interval = 1.2,
 		max_drop_level = 0,
 		groupcaps = {
-			crumbly = {times = {[1] = 2.6, [2] = 1.4, [3] = 0.44}, uses = 20, maxlevel = 1},
+			crumbly = {times = {[1] = 3.00, [2] = 0.90, [3] = 0.60}, uses = 15, maxlevel = 1},
 		},
 		damage_groups = {fleshy = 2},
 	},
@@ -149,9 +149,9 @@ minetest.register_tool("default:shovel_stone", {
 		full_punch_interval = 1.2,
 		max_drop_level = 0,
 		groupcaps = {
-			crumbly = {times = {[1] = 2.4, [2] = 1.2, [3] = 0.39}, uses = 20, maxlevel = 1},
+			crumbly = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 20, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 3},
+		damage_groups = {fleshy = 2},
 	},
 })
 minetest.register_tool("default:shovel_steel", {
@@ -162,7 +162,7 @@ minetest.register_tool("default:shovel_steel", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			crumbly = {times = {[1] = 2.0, [2] = 0.9, [3] = 0.36}, uses = 30, maxlevel = 2},
+			crumbly = {times = {[1] = 2.00, [2] = 0.70, [3] = 0.40}, uses = 25, maxlevel = 2},
 		},
 		damage_groups = {fleshy = 3},
 	},
@@ -175,7 +175,7 @@ minetest.register_tool("default:shovel_bronze", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			crumbly = {times = {[1] = 2.0, [2] = 0.9, [3] = 0.36}, uses = 40, maxlevel = 2},
+			crumbly = {times = {[1] = 2.00, [2] = 0.70, [3] = 0.40}, uses = 30, maxlevel = 2},
 		},
 		damage_groups = {fleshy = 3},
 	},
@@ -188,7 +188,7 @@ minetest.register_tool("default:shovel_gold", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			crumbly = {times = {[1] = 1.65, [2] = 0.6, [3] = 0.32}, uses = 5, maxlevel = 3},
+			crumbly = {times = {[1] = 1.40, [2] = 0.60, [3] = 0.35}, uses = 15, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 4},
 	},
@@ -201,7 +201,7 @@ minetest.register_tool("default:shovel_mese", {
 		full_punch_interval = 0.9,
 		max_drop_level = 3,
 		groupcaps = {
-			crumbly = {times = {[1] = 1.25, [2] = 0.45, [3] = 0.26}, uses = 15, maxlevel = 3},
+			crumbly = {times = {[1] = 1.30, [2] = 0.55, [3] = 0.30}, uses = 20, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 4},
 	},
@@ -214,7 +214,7 @@ minetest.register_tool("default:shovel_nyan", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			crumbly = {times = {[1] = 1.65, [2] = 0.6, [3] = 0.32}, uses = 75, maxlevel = 3},
+			crumbly = {times = {[1] = 1.30, [2] = 0.55, [3] = 0.30}, uses = 60, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 4},
 	},
@@ -227,7 +227,7 @@ minetest.register_tool("default:shovel_diamond", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			crumbly = {times = {[1] = 1.65, [2] = 0.6, [3] = 0.32}, uses = 25, maxlevel = 3},
+			crumbly = {times = {[1] = 1.00, [2] = 0.50, [3] = 0.25}, uses = 30, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 4},
 	},
@@ -244,10 +244,10 @@ minetest.register_tool("default:axe_wood", {
 		full_punch_interval = 1.2,
 		max_drop_level = 0,
 		groupcaps = {
-			choppy = {times = {[2] = 2.0, [3] = 1.3}, uses = 20, maxlevel = 1},
+			choppy = {times = {[2] = 1.98, [3] = 1.32}, uses = 15, maxlevel = 1},
 			snappy = {times = {[3] = 0.2}, uses = 0, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 3},
+		damage_groups = {fleshy = 2},
 	},
 })
 minetest.register_tool("default:axe_stone", {
@@ -257,10 +257,10 @@ minetest.register_tool("default:axe_stone", {
 		full_punch_interval = 1.2,
 		max_drop_level = 0,
 		groupcaps = {
-			choppy = {times = {[1] = 3.0, [2] = 1.6, [3] = 1.1}, uses = 20, maxlevel = 1},
+			choppy = {times = {[1] = 5.50, [2] = 1.76, [3] = 1.10}, uses = 20, maxlevel = 1},
 			snappy = {times = {[3] = 0.175}, uses = 0, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 4},
+		damage_groups = {fleshy = 2},
 	},
 })
 minetest.register_tool("default:axe_steel", {
@@ -270,10 +270,10 @@ minetest.register_tool("default:axe_steel", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			choppy = {times = {[1] = 2.5, [2] = 1.3, [3] = 0.9}, uses = 20, maxlevel = 2},
+			choppy = {times = {[1] = 4.40, [2] = 1.54, [3] = 0.88}, uses = 25, maxlevel = 2},
 			snappy = {times = {[3] = 0.15}, uses = 0, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 5},
+		damage_groups = {fleshy = 3},
 	},
 })
 minetest.register_tool("default:axe_bronze", {
@@ -283,10 +283,10 @@ minetest.register_tool("default:axe_bronze", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			choppy = {times = {[1] = 2.5, [2] = 1.3, [3] = 0.9}, uses = 30, maxlevel = 2},
+			choppy = {times = {[1] = 4.40, [2] = 1.54, [3] = 0.88}, uses = 30, maxlevel = 2},
 			snappy = {times = {[3] = 0.15}, uses = 0, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 5},
+		damage_groups = {fleshy = 3},
 	},
 })
 minetest.register_tool("default:axe_gold", {
@@ -296,10 +296,10 @@ minetest.register_tool("default:axe_gold", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			choppy = {times = {[1] = 2.2, [2] = 1.0, [3] = 0.55}, uses = 5, maxlevel = 3},
+			choppy = {times = {[1] = 3.08, [2] = 1.27, [3] = 0.72}, uses = 15, maxlevel = 3},
 			snappy = {times = {[3] = 0.125}, uses = 0, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 6},
+		damage_groups = {fleshy = 4},
 	},
 })
 minetest.register_tool("default:axe_mese", {
@@ -309,10 +309,10 @@ minetest.register_tool("default:axe_mese", {
 		full_punch_interval = 0.9,
 		max_drop_level = 1,
 		groupcaps = {
-			choppy = {times = {[1] = 1.5, [2] = 0.75, [3] = 0.4}, uses = 15, maxlevel = 3},
+			choppy = {times = {[1] = 2.86, [2] = 1.21, [3] = 0.66}, uses = 20, maxlevel = 3},
 			snappy = {times = {[3] = 0.1}, uses = 0, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 6},
+		damage_groups = {fleshy = 4},
 	},
 })
 minetest.register_tool("default:axe_nyan", {
@@ -322,10 +322,10 @@ minetest.register_tool("default:axe_nyan", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			choppy = {times = {[1] = 2.2, [2] = 1.0, [3] = 0.55}, uses = 75, maxlevel = 3},
+			choppy = {times = {[1] = 2.86, [2] = 1.21, [3] = 0.66}, uses = 60, maxlevel = 3},
 			snappy = {times = {[3] = 0.125}, uses = 0, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 6},
+		damage_groups = {fleshy = 4},
 	},
 })
 minetest.register_tool("default:axe_diamond", {
@@ -335,10 +335,10 @@ minetest.register_tool("default:axe_diamond", {
 		full_punch_interval = 1.2,
 		max_drop_level = 1,
 		groupcaps = {
-			choppy = {times = {[1] = 2.2, [2] = 1.0, [3] = 0.55}, uses = 25, maxlevel = 3},
+			choppy = {times = {[1] = 2.20, [2] = 1.10, [3] = 0.55}, uses = 30, maxlevel = 3},
 			snappy = {times = {[3] = 0.125}, uses = 0, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 6},
+		damage_groups = {fleshy = 5},
 	},
 })
 
