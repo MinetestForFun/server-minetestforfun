@@ -250,14 +250,14 @@ local oredefs = {
 			},
 			shovel = {
 				groupcaps = {
-					crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1}
+					crumbly = {times = {[1] = 1.50, [2] = 0.60, [3] = 0.35}, uses = 90, maxlevel= 2}
 				},
 				damage_groups = {fleshy = 3},
 				full_punch_interval = 0.8,
 			},
 			axe = {
 				groupcaps = {
-					choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel= 1},
+					choppy = {times = {[1] = 3.30, [2] = 1.32, [3] = 0.77}, uses = 90, maxlevel= 2},
 					fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel= 1}
 				},
 				damage_groups = {fleshy = 3},
@@ -307,14 +307,14 @@ local oredefs = {
 			},
 			shovel = {
 				groupcaps = {
-					crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel= 1}
+					crumbly = {times = {[1] = 0.75, [2] = 0.4, [3] = 0.17}, uses = 200, maxlevel= 3}
 				},
 				damage_groups = {fleshy = 5},
 				full_punch_interval = 0.5,
 			},
 			axe = {
 				groupcaps = {
-					choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel= 1},
+					choppy = {times = {[1] = 1.65, [2] = 0.88, [3] = 0.39}, uses = 200, maxlevel= 3},
 					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel= 1}
 				},
 				damage_groups = {fleshy = 5},
