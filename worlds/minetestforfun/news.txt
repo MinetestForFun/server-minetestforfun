@@ -4,7 +4,10 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Le serveur étant devenu stable, les MAJs vont se rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
----xx/06/2015--- (Remerciements : crabman, Obani, Mg)
+---03/06/2015--- (Remerciements : crabman, Obani, Mg)
+MAJ de "homedecor_modpack" (bugfix des buckets)
+MAJ de "moreblocks" (les "clean_glass" disposent maintenant de l'option "connected_glass" si activé dans vos options graphiques)
+MAJ de "framedglass" (bugfix des textures grises lorsque l'option graphique "connected_glass" n'était pas activée)
 MAJ du site (la page nommée "Galerie" a été amélioré)
 MAJ de "/MFF_subgame/default/tools.lua", "moreores" et "nether" (unification des outils terminé ! Ils sont maintenant tous parfaitement équilibrés, les tableaux sont disponible sur le site)
 MAJ de "plantlife_modpack/mushroom" (3 fois moins de champignons, voila de quoi allèger un peu le biome)
