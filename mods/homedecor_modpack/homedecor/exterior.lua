@@ -345,7 +345,7 @@ if minetest.get_modpath("bucket") then
 				end
 				return wielditem
 			else if original_bucket_on_use then
-				original_bucket_on_use(itemstack, user, pointed_thing)
+				return original_bucket_on_use(itemstack, user, pointed_thing)
 			else return end
 		end
 	end
