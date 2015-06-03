@@ -1,4 +1,6 @@
 default
-bucket
-fire
 farming
+dye
+bucket?
+fire?
+tnt?
