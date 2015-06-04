@@ -117,36 +117,39 @@ function areas:canPlayerAddArea(pos1, pos2, name)
 	end
 
 	-- Check self protection privilege, if it is enabled,
-	-- and if the area is too big.
 	if not self.config.self_protection or
 			not privs[areas.config.self_protection_privilege] then
 		return false, "Self protection is disabled or you do not have"
 				.." the necessary privilege."
 	end
 
-	local max_size = privs.areas_high_limit and
-			self.config.self_protection_max_size_high or
-			self.config.self_protection_max_size
-	if
-			(pos2.x - pos1.x) > max_size.x or
-			(pos2.y - pos1.y) > max_size.y or
-			(pos2.z - pos1.z) > max_size.z then
-		return false, "Area is too big."
-	end
-
-	-- Check number of areas the user has and make sure it not above the max
-	local count = 0
-	for _, area in pairs(self.areas) do
-		if area.owner == name then
-			count = count + 1
+	-- MFF: megabuilders skip checks on size and number of areas.
+	if not privs["megabuilder"] then
+		-- Check size
+		local max_size = privs.areas_high_limit and
+				self.config.self_protection_max_size_high or
+				self.config.self_protection_max_size
+		if
+				(pos2.x - pos1.x) > max_size.x or
+				(pos2.y - pos1.y) > max_size.y or
+				(pos2.z - pos1.z) > max_size.z then
+			return false, "Area is too big."
 		end
-	end
-	local max_areas = privs.areas_high_limit and
-			self.config.self_protection_max_areas_high or
-			self.config.self_protection_max_areas
-	if count >= max_areas and minetest.get_player_privs(name)["megabuilder"] ~= true then
-		return false, "You have reached the maximum amount of"
-				.." areas that you are allowed to  protect."
+
+		-- Check number of areas the user has and make sure it not above the max
+		local count = 0
+		for _, area in pairs(self.areas) do
+			if area.owner == name then
+				count = count + 1
+			end
+		end
+		local max_areas = privs.areas_high_limit and
+				self.config.self_protection_max_areas_high or
+				self.config.self_protection_max_areas
+		if count >= max_areas then
+			return false, "You have reached the maximum amount of"
+					.." areas that you are allowed to  protect."
+		end
 	end
 
 	-- Check intersecting areas
