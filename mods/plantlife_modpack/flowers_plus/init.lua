@@ -224,7 +224,8 @@ end
 -- register all potted plant nodes, crafts, and most backward-compat aliases
 -- Description, base node name, item to craft flowerpot with
 
-local flowers_list = {
+-- /MFF BEGIN (Mg|06/04/15 4:31PM)
+--[[local flowers_list = {
 	{ "Rose",				"rose", 			"flowers:rose" },
 	{ "Tulip",				"tulip", 			"flowers:tulip" },
 	{ "Yellow Dandelion",	"dandelion_yellow",	"flowers:dandelion_yellow" },
@@ -267,6 +268,7 @@ for i in ipairs(flowers_list) do
 
 	minetest.register_alias("flowers:flower_"..flower.."_pot", "flowers:potted_"..flower)
 end
+]]-- /MFF END (Mg|06/04/15 4:32PM)
 
 local box = {
 	type="fixed",
