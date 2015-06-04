@@ -14,7 +14,7 @@ Contributors
 - crabman77 - crabman - guillaume
   > Debugging, mod maintenance and global variables annihilator.
 - mgl512
-  > Helper for debugging, who leaves useful comments.
+  > Helper for debugging, and leaves very useful comments.
 - Ataron
   > Occasionnal debogger, texture creater.
 - Gael-de-Sailly
@@ -40,7 +40,7 @@ Contributeurs
 - crabman77 - crabman - guillaume
   > Deboggueur, entretien des mods et annihilateur de variables globales.
 - mgl512
-  > Aide au déboggage, laisse aussi des commentaires très utiles.
+  > Aide au déboggage, et laisse des commentaires très utiles.
 - Ataron
   > Déboggueur occasionnel, créateur de textures
 - Gael-de-Sailly
