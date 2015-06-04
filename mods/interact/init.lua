@@ -219,7 +219,7 @@ minetest.register_chatcommand("rules",{
 	end
 })
 
-minetest.register_on_joinplayer(function(player)
+function start_formspecs(player)
 	local name = player:get_player_name()
 	if not minetest.get_player_privs(name).interact then
 		if interact.screen1 ~= false then
@@ -229,7 +229,19 @@ minetest.register_on_joinplayer(function(player)
 		else
 			minetest.show_formspec(name, "rules", make_formspec3(player))
 		end
-	else
-		end
 	end
-)
+end
+
+minetest.register_on_joinplayer(start_formspecs)
+
+minetest.register_chatcommand("rules", {
+	description = "Obtain interact privilege / Obtenir le privilege interact",
+	params = "",
+	privs = {},
+	func = function(name)
+		local player = minetest.get_player_by_name(name)
+		if player then
+			start_formspecs(player)
+		end
+	end,
+})
