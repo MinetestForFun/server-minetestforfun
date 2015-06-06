@@ -97,13 +97,21 @@ if stairsplus then
 	})
 	--if not farming:straw
 	if minetest.get_modpath("farming") == nil then
-	stairsplus:register_all("darkage", "straw", "darkage:straw", {
-		description = "Straw",
-		tiles = {"darkage_straw.png"},
-		groups = {snappy=3, flammable=2},
-		sounds = default.node_sound_stone_defaults(),
-		sunlight_propagates = true,
-	})
+		stairsplus:register_all("darkage", "straw", "darkage:straw", {
+			description = "Straw",
+			tiles = {"darkage_straw.png"},
+			groups = {snappy=3, flammable=2},
+			sounds = default.node_sound_stone_defaults(),
+			sunlight_propagates = true,
+		})
+	else
+		stairsplus:register_all("darkage", "straw", "farming:straw", {
+			description = "Straw",
+			tiles = {"darkage_straw.png"},
+			groups = {snappy=3, flammable=2},
+			sounds = default.node_sound_stone_defaults(),
+			sunlight_propagates = true,
+		})
 	end
 	
 	stairsplus:register_all("darkage", "straw_bale", "darkage:straw_bale", {
@@ -271,13 +279,21 @@ elseif stairs then
 	)
 		--if not farming:straw
 	if minetest.get_modpath("farming") == nil then
-	stairs.register_stair_and_slab("straw", "darkage:straw",
-		{snappy=3, flammable=2},
-		{"darkage_straw.png"},
-		"Straw Stair",
-		"Straw Slab",
-		default.node_sound_stone_defaults()
-	)
+		stairs.register_stair_and_slab("straw", "darkage:straw",
+			{snappy=3, flammable=2},
+			{"darkage_straw.png"},
+			"Straw Stair",
+			"Straw Slab",
+			default.node_sound_stone_defaults()
+		)
+	else
+		stairs.register_stair_and_slab("straw", "farming:straw",
+			{snappy=3, flammable=2},
+			{"darkage_straw.png"},
+			"Straw Stair",
+			"Straw Slab",
+			default.node_sound_stone_defaults()
+		)
 	end
 	stairs.register_stair_and_slab("straw_bale", "darkage:straw_bale",
 		{snappy=2, flammable=2},
