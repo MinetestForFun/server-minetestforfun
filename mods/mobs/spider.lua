@@ -11,7 +11,7 @@ mobs:register_mob("mobs:spider", {
 	-- health & armor
 	hp_min = 30,
 	hp_max = 40,
-	armor = 100,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.9, -0.01, -0.7, 0.7, 0.6, 0.7},
 	visual = "mesh",
