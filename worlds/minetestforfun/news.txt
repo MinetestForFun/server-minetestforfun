@@ -4,6 +4,16 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Le serveur étant devenu stable, les MAJs vont se rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
+---08/06/2015--- (Remerciements : mgl512/Le_Docteur, LeMagnesium/Mg, crabman77/crabman, Obani)
+MAJ de "/plantlife_modpack/flowers_plus" (les pots de fleurs étant dans "homedecor", nous les commentons pour ne pas faire doublon inutile)
+MAJ de "farming" (réduction de l'indice de lumière nécessaire aux plantes pour pousser, passe de 13 à 11)
+MAJ de "areas" (debug du megabuilder, le nombre d'areas n'est plus un problème !)
+MAJ de "interact" (la commande "/rules" pointe maintenant sur le nouveau système pour lire les règles sur le serveur - le quizz-)
+MAJ de "darkage" et "farming" (amélioration de l'intégration du cube "straw/botte de foin", et le rend comptabile avec le "circular saw" du mod "moreblocks")
+Ajout du mod "jukebox" (EN BETA - bloc permettant de jouer des musiques, nécessite des vinyles/CD/DVD)
+MAJ de "mobs" (équilibrage nécessaire : réduction de l'armure de la Spider et du Sand Monster, ces deux monstres subiront 1 de dégâts en plus à chaque coup subit, réduction du taux de spawn des Spiders de 12%, et réduction de la vitesse de course des Sand Monsters de 10%)
+MAJ de "solarmana" (la régénération de mana au soleil a été grandement amélioré)
+
 ---03/06/2015--- (Remerciements : crabman, Obani, Mg)
 MAJ de "homedecor_modpack" (bugfix des buckets)
 MAJ de "moreblocks" (les "clean_glass" disposent maintenant de l'option "connected_glass" si activé dans vos options graphiques)
