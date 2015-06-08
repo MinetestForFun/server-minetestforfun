@@ -30,7 +30,7 @@ mobs:register_mob("mobs:minotaur", {
 		-- death = "mobs_zombie_death",
 	-- },
 	-- speed and jump
-	walk_velocity = 2,
+	walk_velocity = 3,
 	run_velocity = 4,
 	jump = true,
 	floats = 1,
@@ -47,7 +47,7 @@ mobs:register_mob("mobs:minotaur", {
 	},
 	water_damage = 1,
 	lava_damage = 5,
-	light_damage = 2,
+	light_damage = 0,
 	-- model animation
 	animation = {
 		speed_normal = 15,		speed_run = 15,
