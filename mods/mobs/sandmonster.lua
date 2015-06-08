@@ -11,7 +11,7 @@ mobs:register_mob("mobs:sand_monster", {
 	-- health & armor
 	hp_min = 15,
 	hp_max = 20,
-	armor = 90,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
@@ -27,8 +27,8 @@ mobs:register_mob("mobs:sand_monster", {
 		random = "mobs_sandmonster",
 	},
 	-- speed and jump, sinks in water
-	walk_velocity = 3,
-	run_velocity = 5,
+	walk_velocity = 2.5,
+	run_velocity = 4.5,
 	view_range = 16,
 	jump = true,
 	floats = 0,
