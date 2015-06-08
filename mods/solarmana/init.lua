@@ -68,7 +68,7 @@ minetest.register_globalstep(function(dtime)
 
             -- simplest version checks for "full sunlight now"
             if light_now >= 14 then
-                regen_to = 1
+                regen_to = 3
             end
 
             -- we can get a bit more lenience by testing whether
