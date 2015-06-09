@@ -33,7 +33,7 @@ boats.register_boat = function(parameters)
 		physical = true,
 		collisionbox = {-0.6, -0.4, -0.6, 0.6, 0.3, 0.6},
 		visual = "mesh",
-		mesh = "boat.x",
+		mesh = "boat.obj",
 		textures = {parameters.texture or "default_wood.png"},
 		driver = nil,
 		v = 0,
@@ -297,3 +297,4 @@ minetest.register_craft({
 		{"group:wood", "group:wood", "group:wood"},
 	},
 })
+
