@@ -1,4 +1,5 @@
 -- minetest/fire/init.lua
+
 fire = {}
 
 minetest.register_node("fire:basic_flame", {
@@ -16,15 +17,17 @@ minetest.register_node("fire:basic_flame", {
 	buildable_to = true,
 	damage_per_second = 4,
 
-	on_construct = function(pos, placer)
-		fire.on_flame_add_at(pos)
+	on_construct = function(pos)
+		minetest.after(0, fire.on_flame_add_at, pos)
 	end,
 
-	on_destruct = function(pos, oldnode, oldmetadata, digger)
-		fire.on_flame_remove_at(pos)
+	on_destruct = function(pos)
+		minetest.after(0, fire.on_flame_remove_at, pos)
 	end,
+
+	-- unaffected by explosions
+	on_blast = function() end,
 })
-
 
 fire.D = 6
 -- key: position hash of low corner of area
@@ -63,7 +66,7 @@ function fire.update_sounds_around(pos)
 	if not sound then
 		if should_have_sound then
 			fire.sounds[p0_hash] = {
-				handle = minetest.sound_play(wanted_sound, {pos=cp, loop=true}),
+				handle = minetest.sound_play(wanted_sound, {pos=cp, max_hear_distance = 16, loop=true}),
 				name = wanted_sound.name,
 			}
 		end
@@ -74,7 +77,7 @@ function fire.update_sounds_around(pos)
 		elseif sound.name ~= wanted_sound.name then
 			minetest.sound_stop(sound.handle)
 			fire.sounds[p0_hash] = {
-				handle = minetest.sound_play(wanted_sound, {pos=cp, loop=true}),
+				handle = minetest.sound_play(wanted_sound, {pos=cp, max_hear_distance = 16, loop=true}),
 				name = wanted_sound.name,
 			}
 		end
@@ -106,7 +109,7 @@ end
 minetest.register_abm({
 	nodenames = {"group:flammable"},
 	neighbors = {"group:igniter"},
-	interval = 1,
+	interval = 5,
 	chance = 2,
 	action = function(p0, node, _, _)
 		-- If there is water or stuff like that around flame, don't ignite
@@ -124,7 +127,7 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"group:igniter"},
 	neighbors = {"air"},
-	interval = 2,
+	interval = 5,
 	chance = 10,
 	action = function(p0, node, _, _)
 		local reg = minetest.registered_nodes[node.name]
