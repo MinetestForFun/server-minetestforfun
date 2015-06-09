@@ -57,6 +57,30 @@ for _,item in pairs(flowers.datas) do
 	add_simple_flower(unpack(item))
 end
 
+minetest.register_node("flowers:lily_pad", {
+	description = "Lily Pad",
+	drawtype = "nodebox",
+	tiles = { "flowers_lily_pad.png" },
+	inventory_image = "flowers_lily_pad.png",
+	wield_image = "flowers_lily_pad.png",
+	wield_scale = {x = 1, y = 1, z = 0.001},
+	is_ground_content = true,
+	sunlight_propagates = true,
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy = 3, flammable = 2, flower = 1, flora = 1},
+	sounds = default.node_sound_leaves_defaults(),
+	node_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.45, -0.5, 0.5, -0.4375, 0.5},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5},
+	},
+})
+
 minetest.register_abm({
 	nodenames = {"group:flora"},
 	neighbors = {"default:dirt_with_grass", "default:desert_sand"},
