@@ -1,5 +1,51 @@
 jukebox = {}
 jukebox.tracks = {}
+jukebox.particles = {}
+
+function make_particles(pos)
+	-- create particles table
+	if jukebox.particles[pos.x] == nil then
+		jukebox.particles[pos.x] = {}
+	end
+	if jukebox.particles[pos.x][pos.y] == nil then
+		jukebox.particles[pos.x][pos.y] = {}
+	end
+	if jukebox.particles[pos.x][pos.y][pos.z] == nil then
+		jukebox.particles[pos.x][pos.y][pos.z] = {}
+	end
+	--create particle spawner
+	local particle = minetest.add_particlespawner({
+		amount = 1,
+		time = 0,
+		minpos = {x=pos.x, y=pos.y, z=pos.z},
+		maxpos = {x=pos.x, y=pos.y, z=pos.z},
+		minvel = {x=0, y=2, z=0},
+		maxvel = {x=0, y=2, z=0},
+		minacc = {x=0, y=0, z=0},
+		maxacc = {x=0, y=0, z=0},
+		minexptime = 1,
+		maxexptime = 1,
+		minsize = 5,
+		maxsize = 5,
+		collisiondetection = false,
+		vertical = true,
+		texture = "jukebox_note.png",
+	})
+	--add the particle spawner to the global table
+	jukebox.particles[pos.x][pos.y][pos.z] = particle
+end
+
+function free_particles(pos)
+	--remove particle spawner
+	if jukebox.particles[pos.x] ~= nil then
+		if jukebox.particles[pos.x][pos.y] ~= nil then
+			if jukebox.particles[pos.x][pos.y][pos.z] ~= nil then
+				minetest.delete_particlespawner(jukebox.particles[pos.x][pos.y][pos.z])
+				jukebox.particles[pos.x][pos.y][pos.z] = nil
+			end
+		end
+	end
+end
 
 minetest.register_node("jukebox:box", {
 	description = "Jukebox",
@@ -41,14 +87,19 @@ minetest.register_node("jukebox:box", {
 				gain = soundset.get_gain(clicker:get_player_name(),
 					"music"),
 				max_hear_distance = 25,
+				loop = 1,
 			}))
+			make_particles(pos)
 		else
 			if not inv:is_empty("main") then
 				local drop_pos = minetest.find_node_near(pos, 1, "air")
 				if drop_pos == nil then drop_pos = {x=pos.x, y=pos.y+1,z=pos.z} end
 				minetest.add_item(drop_pos, inv:get_stack("main",1))
 				inv:remove_item("main",  inv:get_stack("main",1))
-				if meta:get_string("now_playing") then minetest.sound_stop(meta:get_string("now_playing")) end
+				if meta:get_string("now_playing") then
+					minetest.sound_stop(meta:get_string("now_playing"))
+					free_particles(pos)
+				end
 			end
 		end
 	end,
