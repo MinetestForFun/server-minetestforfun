@@ -85,7 +85,6 @@ load_mod_multitest = true
 load_mod_lavalamp = true
 load_mod_lantern = true
 load_mod_jumping = true
-load_mod_tetris = true
 
 load_mod_mesecons = true
 load_mod_mesecons_alias = true
