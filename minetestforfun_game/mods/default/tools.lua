@@ -4,6 +4,7 @@
 minetest.register_item(":", {
 	type = "none",
 	wield_image = "wieldhand.png",
+	wield_scale = {x=1,y=1,z=2.5},
 	range = 5,
 	tool_capabilities = {
 		full_punch_interval = 0.8,
@@ -26,11 +27,11 @@ minetest.register_tool("default:pick_wood", {
 	inventory_image = "default_tool_woodpick.png",
 	tool_capabilities = {
 		full_punch_interval = 1.2,
-		max_drop_level = 0,
-		groupcaps = {
+		max_drop_level=0,
+		groupcaps={
 			cracky = {times = {[3] = 1.20}, uses = 15, maxlevel = 1},
 		},
-		damage_groups = {fleshy = 2},
+		damage_groups = {fleshy=2},
 	},
 })
 minetest.register_tool("default:pick_stone", {
@@ -38,8 +39,8 @@ minetest.register_tool("default:pick_stone", {
 	inventory_image = "default_tool_stonepick.png",
 	tool_capabilities = {
 		full_punch_interval = 1.2,
-		max_drop_level = 0,
-		groupcaps = {
+		max_drop_level=0,
+		groupcaps={
 			cracky = {times = {[2] = 1.60, [3] = 1.00}, uses = 20, maxlevel = 1},
 			crumbly = {times = {[1] = 2.6, [2] = 1.4, [3] = 0.44}, uses = 20, maxlevel = 1},
 		},
@@ -124,6 +125,7 @@ minetest.register_tool("default:pick_diamond", {
 		damage_groups = {fleshy = 4},
 	},
 })
+
 --
 -- Shovels
 --

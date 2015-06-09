@@ -1300,11 +1300,11 @@ minetest.register_node("default:water_flowing", {
 
 minetest.register_node("default:river_water_source", {
 	description = "River Water Source",
-	inventory_image = minetest.inventorycube("default_water.png"),
+	inventory_image = minetest.inventorycube("default_river_water.png"),
 	drawtype = "liquid",
 	tiles = {
 		{
-			name = "default_water_source_animated.png",
+			name = "default_river_water_source_animated.png",
 			animation = {
 				type = "vertical_frames",
 				aspect_w = 16,
@@ -1315,7 +1315,7 @@ minetest.register_node("default:river_water_source", {
 	},
 	special_tiles = {
 		{
-			name = "default_water_source_animated.png",
+			name = "default_river_water_source_animated.png",
 			animation = {
 				type = "vertical_frames",
 				aspect_w = 16,
@@ -1346,12 +1346,12 @@ minetest.register_node("default:river_water_source", {
 
 minetest.register_node("default:river_water_flowing", {
 	description = "Flowing River Water",
-	inventory_image = minetest.inventorycube("default_water.png"),
+	inventory_image = minetest.inventorycube("default_river_water.png"),
 	drawtype = "flowingliquid",
-	tiles = {"default_water.png"},
+	tiles = {"default_river_water.png"},
 	special_tiles = {
 		{
-			name = "default_water_flowing_animated.png",
+			name = "default_river_water_flowing_animated.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -1361,7 +1361,7 @@ minetest.register_node("default:river_water_flowing", {
 			},
 		},
 		{
-			name = "default_water_flowing_animated.png",
+			name = "default_river_water_flowing_animated.png",
 			backface_culling = true,
 			animation = {
 				type = "vertical_frames",
