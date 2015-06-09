@@ -117,6 +117,7 @@ minetest.register_node("jukebox:box", {
 			minetest.add_item(drop_pos, inv:get_stack("main",1))
 			if meta:get_string("now_playing") then minetest.sound_stop(meta:get_string("now_playing")) end
 		end
+		free_particles(pos)
 	end,
 })
 
