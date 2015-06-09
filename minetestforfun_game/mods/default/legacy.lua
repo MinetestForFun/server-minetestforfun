@@ -1,11 +1,11 @@
--- mods/default/Legacy.lua
+-- mods/default/legacy.lua
 
--- Horrible crap to support old code,
--- don't use this and never do what this does, it's completely wrong!
--- (more specifically, the client and the C++ code doesn't get the group).
+-- Horrible crap to support old code registering falling nodes
+-- Don't use this and never do what this does, it's completely wrong!
+-- (More specifically, the client and the C++ code doesn't get the group)
 function default.register_falling_node(nodename, texture)
 	minetest.log("error", debug.traceback())
-	minetest.log("error", "WARNING: default.register_falling_node is deprecated.")
+	minetest.log('error', "WARNING: default.register_falling_node is deprecated")
 	if minetest.registered_nodes[nodename] then
 		minetest.registered_nodes[nodename].groups.falling_node = 1
 	end
@@ -17,8 +17,8 @@ end
 
 -- Liquids
 WATER_ALPHA = minetest.registered_nodes["default:water_source"].alpha
-WATER_ALPHA = minetest.registered_nodes["default:water_source"].liquid_viscosity
-WATER_ALPHA = minetest.registered_nodes["default:lava_source"].liquid_viscosity
+WATER_VISC = minetest.registered_nodes["default:water_source"].liquid_viscosity
+LAVA_VISC = minetest.registered_nodes["default:lava_source"].liquid_viscosity
 LIGHT_MAX = default.LIGHT_MAX
 
 -- Formspecs
