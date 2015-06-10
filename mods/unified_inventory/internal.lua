@@ -67,7 +67,7 @@ function unified_inventory.get_formspec(player, page)
 
 	-- Controls to flip items pages
 	local start_x = 9.2
-	formspec = formspec 
+	formspec = formspec
 		.. "image_button[" .. (start_x + 0.6 * 0)
 			.. ",9;.8,.8;ui_skip_backward_icon.png;start_list;]"
 		.. "tooltip[start_list;" .. minetest.formspec_escape(S("First page")) .. "]"

@@ -128,14 +128,14 @@ minetest.register_on_dieplayer(function(player)
 	if not player or not name or name=="" then
 		return
 	end
-	
-	-- Get player	
+
+	-- Get player
 	awards.assertPlayer(name)
 	local data = awards.players[name]
 
 	-- Increment counter
 	data.deaths = data.deaths + 1
-	
+
 	-- Run callbacks and triggers
 	for _,trigger in pairs(awards.onDeath) do
 		local res = nil
@@ -160,14 +160,14 @@ minetest.register_on_joinplayer(function(player)
 	if not player or not name or name=="" then
 		return
 	end
-	
-	-- Get player	
+
+	-- Get player
 	awards.assertPlayer(name)
 	local data = awards.players[name]
 
 	-- Increment counter
 	data.joins = data.joins + 1
-	
+
 	-- Run callbacks and triggers
 	for _,trigger in pairs(awards.onJoin) do
 		local res = nil
@@ -197,11 +197,11 @@ minetest.register_on_chat_message(function(name, message)
 	awards.assertPlayer(name)
 	local data = awards.players[name]
 	local player = minetest.get_player_by_name(name)
-	
+
 	-- Increment counter
 	data.chats = data.chats + 1
-	
-	-- Run callbacks and triggers	
+
+	-- Run callbacks and triggers
 	for _,trigger in pairs(awards.onChat) do
 		local res = nil
 		if type(trigger) == "function" then

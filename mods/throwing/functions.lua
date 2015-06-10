@@ -1,6 +1,6 @@
---~ 
+--~
 --~ Shot and reload system
---~ 
+--~
 
 local players = {}
 
@@ -80,7 +80,7 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 		description = desc,
 		inventory_image = "throwing_" .. name .. ".png",
 		wield_scale = scale,
-	    stack_max = 1,	
+	    stack_max = 1,
 		on_use = function(itemstack, user, pointed_thing)
 			local pos = user:getpos()
 			local playerName = user:get_player_name()
@@ -91,7 +91,7 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 			return itemstack
 		end,
 	})
-	
+
 	minetest.register_tool("throwing:" .. name .. "_loaded", {
 		description = desc,
 		inventory_image = "throwing_" .. name .. "_loaded.png",
@@ -104,7 +104,7 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 			end
 			local unloaded = "throwing:" .. name
 			throwing_shoot_arrow(itemstack, user, stiffness, is_cross)
-			minetest.after(0, throwing_unload, itemstack, user, unloaded, wear)				
+			minetest.after(0, throwing_unload, itemstack, user, unloaded, wear)
 			return itemstack
 		end,
 		on_drop = function(itemstack, dropper, pointed_thing)
@@ -114,7 +114,7 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 		end,
 		groups = {not_in_creative_inventory=1},
 	})
-	
+
 	minetest.register_craft({
 		output = 'throwing:' .. name,
 		recipe = craft

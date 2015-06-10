@@ -30,7 +30,7 @@ mobs:register_mob("mobs:lavasmall", {
 	textures = { lava_textures },
 	blood_texture = "mobs_lava_slime_blood.png",
 	visual_size = {x = 0.5, y = 0.5},
-	-- sounds a bit here, but mainly define in the beginning 
+	-- sounds a bit here, but mainly define in the beginning
 	makes_footstep_sound = false,
 	sounds = lava_sounds,
 	-- speed and jump, sinks in water
@@ -78,7 +78,7 @@ mobs:register_mob("mobs:lavamedium", {
 	textures = { lava_textures },
 	blood_texture = "mobs_lava_slime_blood.png",
 	visual_size = {x = 1, y = 1},
-	-- sounds a bit here, but mainly define in the beginning 
+	-- sounds a bit here, but mainly define in the beginning
 	makes_footstep_sound = false,
 	sounds = lava_sounds,
 	-- speed and jump, sinks in water
@@ -129,7 +129,7 @@ mobs:register_mob("mobs:lavabig", {
 	textures = { lava_textures },
 	blood_texture = "mobs_lava_slime_blood.png",
 	visual_size = {x = 2, y = 2},
-	-- sounds a bit here, but mainly define in the beginning 
+	-- sounds a bit here, but mainly define in the beginning
 	makes_footstep_sound = false,
 	sounds = lava_sounds,
 	-- speed and jump, sinks in water

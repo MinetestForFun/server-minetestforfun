@@ -404,7 +404,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 	-- can I replace above node, and am I pointing at soil
 	if not minetest.registered_nodes[above.name].buildable_to
-	or minetest.get_item_group(under.name, "soil") < 2 
+	or minetest.get_item_group(under.name, "soil") < 2
 	or minetest.get_item_group(above.name, "plant") ~= 0 then -- ADDED this line for multiple seed placement bug
 		return
 	end
@@ -471,7 +471,7 @@ farming.register_plant = function(name, def)
 				{items = {mname .. ":seed_" .. pname}, rarity = 18 - i * 2},
 			}
 		}
-		
+
 		local g = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, growing = 1}
 		-- Last step doesn't need growing=1 so Abm never has to check these
 		if i == def.steps then

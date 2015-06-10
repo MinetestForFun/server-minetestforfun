@@ -24,7 +24,7 @@ function ForceloadManager(filetoopen, hide_file_errors)
 		end
 	end
 	for i = 1, #blocks do
-		if not minetest.forceload_block(blocks[i]) then			
+		if not minetest.forceload_block(blocks[i]) then
 			minetest.log("error", "Failed to load block " .. minetest.pos_to_string(blocks[i]))
 		end
 	end
@@ -40,7 +40,7 @@ function ForceloadManager(filetoopen, hide_file_errors)
 		end,
 		unload = function(self, pos)
 			for i = 1, #self._blocks do
-				if vector.equals(pos, self._blocks[i]) then					
+				if vector.equals(pos, self._blocks[i]) then
 					minetest.forceload_free_block(pos)
 					table.remove(self._blocks, i)
 					return true
@@ -56,16 +56,16 @@ function ForceloadManager(filetoopen, hide_file_errors)
 			end
 		end,
 		verify = function(self)
-			return self:verify_each(function(pos, block)				
+			return self:verify_each(function(pos, block)
 				local name = "ignore"
 				if block ~= nil then
 					name = block.name
 				end
 
-				if name == "ignore" then	
+				if name == "ignore" then
 					if not pos.last or elapsed_time > pos.last + 15 then
 						pos.last = elapsed_time
-						if not minetest.forceload_block(pos) then							
+						if not minetest.forceload_block(pos) then
 							minetest.log("error", "Failed to force load " .. minetest.pos_to_string(pos))
 							pos.remove = true
 						end
@@ -74,15 +74,15 @@ function ForceloadManager(filetoopen, hide_file_errors)
 				elseif name == "forceload:anchor" then
 					pos.last = elapsed_time
 					return true
-				else	
+				else
 					minetest.log("error", minetest.pos_to_string(pos) .. " shouldn't be loaded")
 					pos.remove = true
-					return false		
+					return false
 				end
 			end)
 		end,
 		verify_each = function(self, func)
-			local not_loaded = {}			
+			local not_loaded = {}
 			for i = 1, #self._blocks do
 				local res = minetest.get_node(self._blocks[i])
 				if not func(self._blocks[i], res) then
@@ -125,10 +125,10 @@ minetest.register_node("forceload:anchor",{
 		if not minetest.check_player_privs(placer:get_player_name(),
 				{forceload = true}) then
 			minetest.chat_send_player(placer:get_player_name(), "The forceload privilege is required to do that.")
-		elseif flm:load(pos) then			
+		elseif flm:load(pos) then
 			flm:save(minetest.get_worldpath().."/flm.json")
 			return
-		end		
+		end
 		minetest.set_node(pos, {name="air"})
 		return true
 	end

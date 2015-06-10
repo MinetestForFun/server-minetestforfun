@@ -159,7 +159,7 @@ for h = 1, 12 do
 end  --hues
 
 
---secondary loop for light blocks 
+--secondary loop for light blocks
 --(as they don't have 50% saturation blocks to go along with 'em)
 
 
@@ -200,7 +200,7 @@ for h = 1, 12 do
 end  --hues
 
 
---third loop for pastel blocks 
+--third loop for pastel blocks
 --(as they don't have 50% saturation blocks to go along with 'em)
 --(plus they have a diff recipe to create.)
 
@@ -244,7 +244,7 @@ for h = 1, 12 do
 end  --hues
 
 
---last loop for faint blocks 
+--last loop for faint blocks
 --(as they don't have 50% saturation blocks to go along with 'em)
 --(plus they have a diff recipe to create.)
 

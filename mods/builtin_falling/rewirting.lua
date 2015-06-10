@@ -35,7 +35,7 @@ minetest.register_entity(":__builtin:falling_node", {
 		}
 		self.object:set_properties(prop)
 	end,
-	
+
 	set_owner = function(self, owner)
 		if owner ~= nil then
 			self.owner = "falling"
@@ -181,7 +181,7 @@ if PROTECT_LAVA_REALTIME == 1 then
 		interval = 1,
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
-				local meta = minetest.get_meta(pos)		
+				local meta = minetest.get_meta(pos)
 				if meta:get_string("owner") ~= nil and minetest.is_protected(pos, meta:get_string("owner")) then
 					minetest.add_node(pos,{name="air"})
 				end
@@ -196,7 +196,7 @@ if PROTECT_WATER_REALTIME == 1 then
 		interval = 1,
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
-				local meta = minetest.get_meta(pos)		
+				local meta = minetest.get_meta(pos)
 				if meta:get_string("owner") ~= nil and minetest.is_protected(pos, meta:get_string("owner")) then
 					minetest.add_node(pos,{name="air"})
 				end
@@ -224,7 +224,7 @@ end
 --						local meta = minetest.get_meta(area:position(p_pos))
 --						if minetest.get_name_from_content_id(data[p_pos])== "default:lava_source"  and meta:get_string("owner") ~= nil and minetest.is_protected(area:position(p_pos), meta:get_string("owner")) then
 --							data[p_pos] = c_air
---						end	
+--						end
 --			vm:set_data(data)
 --			vm:write_to_map()
 --			vm:update_map()

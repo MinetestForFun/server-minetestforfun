@@ -7,7 +7,7 @@ minetest.register_globalstep(function(dtime)
 		if player:get_hp() > 0 or not enable_damage then
 			local pos = player:getpos()
 			local inv = player:get_inventory()
-			
+
 			for _,object in ipairs(minetest.get_objects_inside_radius(pos, 1)) do
 				if not object:is_player() and object:get_luaentity() and object:get_luaentity().name == "__builtin:item" then
 					if inv and inv:room_for_item("main", ItemStack(object:get_luaentity().itemstring)) then
@@ -20,7 +20,7 @@ minetest.register_globalstep(function(dtime)
 					end
 				end
 			end
-			
+
 			for _,object in ipairs(minetest.get_objects_inside_radius(pos, 1)) do
 				if not object:is_player() and object:get_luaentity() and object:get_luaentity().name == "__builtin:item" then
 					if object:get_luaentity().always_collect then
@@ -37,7 +37,7 @@ minetest.register_globalstep(function(dtime)
 							object:get_luaentity().object:set_properties({
 								physical = false
 							})
-							
+
 							minetest.after(1, function(args)
 								local lua = object:get_luaentity()
 								if object == nil or lua == nil or lua.itemstring == nil then
@@ -58,7 +58,7 @@ minetest.register_globalstep(function(dtime)
 									})
 								end
 							end, {player, object})
-							
+
 						end
 					end
 				end
@@ -86,7 +86,7 @@ function minetest.handle_node_drops(pos, drops, digger)
 				local obj
 				local x = math.random(1, 5)
 				if math.random(1,2) == 1 then x = -x end
-				
+
 				local z = math.random(1, 5)
 				if math.random(1,2) == 1 then z = -z end
 

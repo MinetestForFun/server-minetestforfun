@@ -156,7 +156,7 @@ tweak.sort = function(player, mode, con)
 	if inv then
 		local list = inv:get_list("main")
 		local tmp_list = {}
-		
+
 		--write whole list as table
 		for _,stack in ipairs(list) do
 			local tbl_stack = stack:to_table()

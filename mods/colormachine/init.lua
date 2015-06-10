@@ -22,7 +22,7 @@
 
 -- Version 0.6
 
--- Changelog: 
+-- Changelog:
 -- 23.05.15 As all dyes can be crafted into other dyes, only white dye is consumed - provided the
 --          other dyes needed for the crafting chain are stored.
 -- 22.05.15 Added support for new homedecor meshnodes.
@@ -61,7 +61,7 @@
 --          Added some more labels in the main menu to make it easier to understand.
 -- 22.07.13 Added textures provided by Vanessae
 --          fixed a bug concerning normal dyes (when unifieddyes is not installed)
-    
+
 -- adds a function to check ownership of a node; taken from VanessaEs homedecor mod
 colormachine = {};
 
@@ -86,14 +86,14 @@ local stained_glass_exception = 0;
 
 -- the names of suitable sources of that color (note: this does not work by group!);
 -- you can add your own color sources here if you want
-colormachine.basic_dye_sources  = { "flowers:rose",      "flowers:tulip",         "flowers:dandelion_yellow", 
+colormachine.basic_dye_sources  = { "flowers:rose",      "flowers:tulip",         "flowers:dandelion_yellow",
                                     "",                  "default:cactus",        "",  "",  "", -- no lime, no aqua, no cyan, no skyblue
                                     "flowers:geranium",  "flowers:viola",         "",  "",      -- no magenta, no redviolet
                                     "default:clay_lump", "", "", "", "default:coal_lump" };
 
 -- if flowers is not installed
-colormachine.alternate_basic_dye_sources  = { 
-                                    "default:apple",     "default:desert_stone",  "default:sand",  
+colormachine.alternate_basic_dye_sources  = {
+                                    "default:apple",     "default:desert_stone",  "default:sand",
                                     "",                  "default:cactus",        "",  "",  "",
                                     "default:leaves",    "",                      "",  "" ,
                                     "default:clay_lump", "", "", "", "default:coal_lump" };
@@ -115,11 +115,11 @@ colormachine.dye_mixes          = { red       = {},      -- base color
 
                                     white     = {},      -- base color
                                     lightgrey = {13,15},   -- white + grey
-                                    grey      = {13,17},   -- black + white 
+                                    grey      = {13,17},   -- black + white
                                     darkgrey  = {15,17},   -- grey + black
                                     black     = {},      -- base color
                                   }
-                                   
+
 
 
 -- construct the formspec for the color selector
@@ -140,7 +140,7 @@ end
 
 -- defines the order in which blocks are shown
 --   nr:          the diffrent block types need to be ordered by some system; the number defines that order
---   modname:     some mods define more than one type of colored blocks; the modname is needed 
+--   modname:     some mods define more than one type of colored blocks; the modname is needed
 --                for checking if the mod is installed and for creating colored blocks
 --   shades:      some mods (or parts thereof) do not support all possible shades
 --   grey_shades: some mods support only some shades of grey (or none at all)
@@ -166,7 +166,7 @@ colormachine.data = {
 
    hardenedclay_             = { nr=3.5, modname='hardenedclay', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="hclay",  block="hardenedclay:hardened_clay_white", add="hardened_clay_", p=16},
    colouredstonebricks_      = { nr=3.6, modname='colouredstonebricks', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="cbrick",  block="default:stonebrick", add="", p=1},
-   
+
    clstone_stone_            = { nr=3.7, modname='clstone',       shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="clstone",block="default:stone", add="", p=1, obj_postfix='_stone' },
 
    colorcubes_1_             = { nr=3.8, modname='colorcubes',    shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="ccubes",block="default:stone", add="", p=1, obj_postfix='_single' },
@@ -403,7 +403,7 @@ colormachine.generate_form = function( m_prefix )
          "label[0.3,1;light]";
 
    -- not all mods offer all shades (and some offer even more)
-   local supported = colormachine.data[ m_prefix ].shades; 
+   local supported = colormachine.data[ m_prefix ].shades;
 
    if( supported[2]==0 ) then
       form = form..
@@ -510,7 +510,7 @@ colormachine.decode_color_name = function( meta, new_color )
          table.remove( liste, 1 ); -- the color has been selected
       end
    end
- 
+
    -- the color was not found! error! keep the old color
    if( selected_color == -1 ) then
       if( meta ) then
@@ -595,8 +595,8 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
 
    if( meta ~= nil ) then
       c = tonumber(meta:get_string('selected_color'));
-      s = tonumber(meta:get_string('selected_shade'));   
-      g = tonumber(meta:get_string('selected_grey_shade')); 
+      s = tonumber(meta:get_string('selected_shade'));
+      g = tonumber(meta:get_string('selected_grey_shade'));
    end
 
 
@@ -608,7 +608,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
 
    local k_orig = k;
    -- unifieddyes_ does not supply all colors
-   if( k == 'unifieddyes_' 
+   if( k == 'unifieddyes_'
      and ( (g==-1 and s==3 and (as_obj_name==1 or not(c==4 or c==6 or c==8 or c==12 or c==13 )))
         or (g==-1 and s==1 and c==1 ) -- pink
         or (g==-1 and s==7 and c==5 ) -- dark brown
@@ -646,7 +646,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
          return 'homedecor:'..colormachine.data[k].add..'brown'..(colormachine.data[k].postfix or '');
       end
    end
-   
+
    if( k=='homedecor_table_' and as_obj_name==1 and new_color=='dark_orange' ) then
       return 'homedecor:'..colormachine.data[k].add..'mahogany'..(colormachine.data[k].postfix or '');
    end
@@ -661,8 +661,8 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
    end
 
    -- beds and sofas are available in less colors
-   if( g==-1 
-     and (c==7 or c==11) 
+   if( g==-1
+     and (c==7 or c==11)
      and (k=='beds_bed_top_top_' or k=='lrfurn_sofa_right_front_' or k=='lrfurn_armchair_front_' or k=='lrfurn_longsofa_middle_front_' )) then
 
       return nil;
@@ -674,7 +674,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
       local color_used = "";
       if( s==1 and c==1 ) then
          color_used = 'pink'; -- in blox, this is called "pink"; normally "light_red"
-      elseif( g>-1 ) then 
+      elseif( g>-1 ) then
          color_used = colormachine.grey_names[ g ];
       elseif( s ~= 3 ) then
          return nil; -- only normal saturation supported
@@ -692,7 +692,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
          return 'blox_'..( color_used )..( colormachine.data[k].add )..'.png';
       end
    end
- 
+
 
    local postfix = '.png';
    local prefix  = k;
@@ -709,12 +709,12 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
             return nil; -- no grey values for them
          end
          local h_trans = {yellow=1, lime=2, green=3, aqua=4, cyan=5, skyblue=6, blue=7, violet=8, magenta=9, redviolet=10, red=11,orange=12};
-      
+
          local h = h_trans[ colormachine.colors[c] ];
 
          local b   = "";
          local sat = "";
- 
+
          if( k == 'stained_glass_' ) then
             prefix = "stained_glass:"..(colormachine.colors[c]).."_";
             if(     s==1 or s==2) then b = "8"; -- light
@@ -723,7 +723,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
             elseif( s==7 or s==8) then b = "3"; -- dark
             end
             prefix = prefix.."_";
- 
+
             sat = "7";
             if( s==2 or s==4 or s==6 or s==8 ) then -- saturation
                sat = "6";
@@ -747,7 +747,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
 
       if( s==1 and new_color=='light_blue' ) then -- only light blue is supported
          return prefix..'light_blue'..postfix;
- 
+
       elseif( new_color=='dark_green' ) then
          return prefix..'forest_green'..postfix;
 
@@ -760,14 +760,14 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
 
       elseif( new_color=='orange' ) then
          return prefix..'oak'..postfix;
- 
+
       end
    end
 
    if( k=='cotton_' and new_color=='grey') then
       new_color = 'mediumgrey';
    end
-  
+
 
    if( k=='framedglass_' and as_obj_name ~= 1) then
       postfix = 'glass.png';
@@ -791,7 +791,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
    end
 
    -- those have split textures...
-   if( colormachine.data[k].modname == 'coloredblocks') then 
+   if( colormachine.data[k].modname == 'coloredblocks') then
 
 
 
@@ -818,7 +818,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
 
          return 'coloredblocks_'..new_color..postfix;
 
-      elseif( new_color..'_' == colormachine.data[k].add ) then 
+      elseif( new_color..'_' == colormachine.data[k].add ) then
 
          prefix = 'coloredblocks:';
 --]]
@@ -827,7 +827,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
    end
 
    if( colormachine.data[k].modname == 'plasticbox'
-       and new_color == 'dark_green') then 
+       and new_color == 'dark_green') then
       return prefix..'darkgreen'..postfix;
    end
 
@@ -835,11 +835,11 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
    if( as_obj_name == 1 and colormachine.data[k].obj_postfix ) then
 	postfix = (colormachine.data[k].obj_postfix) ..postfix;
    end
-	
+
    -- normal dyes (also used for wool) use a diffrent naming scheme
    if( colormachine.data[k].u == 0) then
       if(     new_color == 'darkgrey' and k ~= 'framedglass_') then
-         return prefix..'dark_grey'..postfix;  
+         return prefix..'dark_grey'..postfix;
       elseif( new_color == 'dark_orange' ) then
          return prefix..'brown'..postfix;
       elseif( new_color == 'dark_green'  ) then
@@ -847,7 +847,7 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
       elseif( new_color == 'light_red'   ) then
          return prefix..'pink'..postfix;
       -- lime, aqua, skyblue and redviolet do not exist as standard wool/dye colors
-      elseif( g == -1 and (c==4 or c==6 or c==8 or c==12) and k_orig ~= 'unifieddyes_') then 
+      elseif( g == -1 and (c==4 or c==6 or c==8 or c==12) and k_orig ~= 'unifieddyes_') then
          return nil;
       -- all other colors of normal dye/wool exist only in normal shade
       elseif( g == -1 and s~= 3  and k_orig ~= 'unifieddyes_') then
@@ -872,16 +872,16 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
       if( mod_name == v.modname ) then
          table.insert( found, k );
       end
-   end 
+   end
 
    if( #found < 1 ) then
       return { error_code ="Sorry, this block is not supported by the spray booth.",
                found_name = "",
                blocktype  = ""};
    end
-     
-   -- another case of special treatment needed; at least the color is given in the tiles 
-   if( mod_name =='stained_glass' and stained_glass_exception==1) then 
+
+   -- another case of special treatment needed; at least the color is given in the tiles
+   if( mod_name =='stained_glass' and stained_glass_exception==1) then
 
       local original_node = minetest.registered_items[ bname ];
       if( original_node ~= nil ) then
@@ -891,7 +891,7 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
       end
    end
 
-   -- this mod does not seperate modname and objectname well enough :-( Naming scheme:- steel_framed_obsidian_glassCOLOR 
+   -- this mod does not seperate modname and objectname well enough :-( Naming scheme:- steel_framed_obsidian_glassCOLOR
    if( mod_name =='framedglass' ) then
       block_name = string.sub( block_name, 28 );
    end
@@ -909,13 +909,13 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
          local bloxdescr = original_node.description;
          -- bloxparts[1] will be filled with the name of the color:
          local bloxparts = string.split( bloxdescr, " ");
-         -- now extract the blocktype information         
+         -- now extract the blocktype information
          if( bloxparts ~= nil and #bloxparts > 0 ) then
 
             -- we split with the color name
             local found_name      = bloxparts[1];
             local blocktype       = 'blox_'..string.sub( block_name, string.len( found_name )+1 )..'_';
-               
+
             -- handle pink and purple
             if(     found_name == 'pink' ) then
                found_name = 'light_red';
@@ -931,7 +931,7 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
       -- if this point is reached, the decoding of the blox-block-name has failed
       return { error_code = "Error: Failed to decode color of this blox-block.",
                found_name = "",
-               blocktype  = "" }; 
+               blocktype  = "" };
 
    end
 
@@ -944,9 +944,9 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
 
       elseif( block_name == 'shutter_mahogany' ) then
          block_name = 'shutter_dark_orange';
- 
+
       -- this is the default, unpainted one..which can also be considered as "orange" in the menu
---      elseif( blockname == 'shutter_oak' ) then 
+--      elseif( blockname == 'shutter_oak' ) then
 --         block_name = 'shutter_orange';
       end
    end
@@ -968,7 +968,7 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
       if( colormachine.data[k].obj_postfix ) then
 
          local l = string.len( colormachine.data[k].obj_postfix);
-         if( string.len( block_name ) > l 
+         if( string.len( block_name ) > l
          and string.sub( block_name, -1*l ) == colormachine.data[k].obj_postfix ) then
 
             block_name = string.sub( block_name, 1, (-1*l)-1 );
@@ -992,14 +992,14 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
       liste[ curr_index ] = 'dark';
       table.insert( liste, 'orange' );
       curr_index = curr_index + 1;
-  
+
    -- pink <=> light_red
    elseif( #liste > 0 and liste[ curr_index ]=='pink' ) then
       liste[ curr_index ] = 'light';
       table.insert( liste, 'red' );
       curr_index = curr_index + 1;
    end
- 
+
    -- find out the saturation - either "s50" or omitted
    local sat = 0;
    if( curr_index > 1 and liste[ curr_index ] == "s50" ) then
@@ -1060,7 +1060,7 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
 
    -- for blocks that do not follow the naming scheme - the color cannot be decoded
    if( g==-1 and c==0 ) then
-      return { error_code ="This is a colored block: "..tostring( bname )..".", 
+      return { error_code ="This is a colored block: "..tostring( bname )..".",
                found_name = "",
                blocktype  = ""};
    end
@@ -1072,7 +1072,7 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
 
       for k,v in pairs( colormachine.data ) do
          -- prefix and postfix have to fit
-         if( curr_index > 0 and add=="" and mod_name == v.modname and (liste[ curr_index ].."_") == v.add  
+         if( curr_index > 0 and add=="" and mod_name == v.modname and (liste[ curr_index ].."_") == v.add
          -- if a postfix exists, we did check for that before and set blocktype accordingly
             and( not( blocktype ) or blocktype=='' or blocktype==k)) then
             add        = v.add;
@@ -1133,13 +1133,13 @@ colormachine.blocktype_menu = function( meta, new_color, page )
    local y = 2;
 
    for i,k in ipairs( colormachine.ordered ) do
- 
+
       -- only installed mods are of intrest
-      if( k ~= nil and colormachine.data[ k ].installed == 1 and i > start_at_offset and i <= (start_at_offset + per_page)) then 
+      if( k ~= nil and colormachine.data[ k ].installed == 1 and i > start_at_offset and i <= (start_at_offset + per_page)) then
 
          -- that particular mod may not offer this color
          form = form.."button["..tostring(x)..","..tostring(y-0.8)..  ";1,1;"..k..";"..colormachine.data[k].descr.."]"..
-                  "item_image["..tostring(x)..","..tostring(y    )..";1,1;"..colormachine.data[k].block.."]"; 
+                  "item_image["..tostring(x)..","..tostring(y    )..";1,1;"..colormachine.data[k].block.."]";
 
          local button = colormachine.print_color_image( meta, k, new_color, nil, nil, nil, tostring(x), tostring(y+1), 1);-- translated_color as return value for button
          if( button ~= "" ) then
@@ -1198,7 +1198,7 @@ colormachine.main_menu_formspec = function( pos, option )
 
                 "label[3,0.0;1. Input - Insert material to paint:]"..
                 "list[current_name;input;4.5,0.5;1,1;]"..
-		
+
 		"label[9.3,-0.5;Additional storage for dyes:]"..
 		"list[current_name;extrastore;9.3,0;5,9]";
 
@@ -1228,7 +1228,7 @@ colormachine.main_menu_formspec = function( pos, option )
       if( bname == v.block and colormachine.data[ k ].installed==1) then
          table.insert( found, k );
       end
-   end 
+   end
 
    -- make sure all output fields are empty
    for i = 1, inv:get_size( "output" ) do
@@ -1288,13 +1288,13 @@ colormachine.main_menu_formspec = function( pos, option )
       end
       -- so that we can determine the factor when taking blocks from the output slots
       meta:set_string('p_values', minetest.serialize( p_values ));
-      
+
       -- this color was not supported
       if( anz_found == 0 ) then
          form = form.."label[2.2,3.0;Block is not available in that color.]";
          return form;
       end
-      
+
       form = form.."label[3.0,1.2;2. Select color for any style:]"..
                    "label[3.0,2.9;3. Take output (determines style):]"..
                    "list[current_name;output;"..tostring(out_offset+1)..",3.5;"..tostring( anz_found )..",1;]";
@@ -1308,7 +1308,7 @@ colormachine.main_menu_formspec = function( pos, option )
       form = form.."label[2.2,3.0;ERROR! Failed to analyze the name of this node: "..tostring(bname).."]";
       return form;
    end
-      
+
 
    -- it may be a dye source
    for i,v in ipairs( colormachine.basic_dye_sources ) do
@@ -1330,7 +1330,7 @@ colormachine.main_menu_formspec = function( pos, option )
 
    -- the previous analyse was necessary in order to determine which block we ought to use
    if( option == 'remove_paint' ) then
-      -- actually remove the paint from the 
+      -- actually remove the paint from the
       inv:set_stack( "input", 1, colormachine.data[ found_color_data.blocktype ].block.." "..tostring( anz_blocks ));
       -- update display (we changed the input!)
       return colormachine.main_menu_formspec(pos, "analyze");
@@ -1353,7 +1353,7 @@ colormachine.main_menu_formspec = function( pos, option )
    else
       form = form.."label[5.5,2.0;This is the selected color.]";
    end
- 
+
    return form;
 end
 
@@ -1368,7 +1368,7 @@ colormachine.get_node_name_painted = function( old_node_name, dye_node_name )
 			table.insert( possible_blocks, k );
 			unpainted_block = old_node_name;
 		end
-	end 
+	end
 
 	if( unpainted_block == "" ) then
 		local parts = string.split(old_node_name,":");
@@ -1399,7 +1399,7 @@ colormachine.get_node_name_painted = function( old_node_name, dye_node_name )
 				table.insert( possible_blocks, k );
 			end
 		end
-	end 
+	end
 
 	-- remove paint
 	if( not( dye_node_name ) or dye_node_name == "") then
@@ -1429,7 +1429,7 @@ colormachine.get_node_name_painted = function( old_node_name, dye_node_name )
 
 		local new_block_name = colormachine.translate_color_name( nil, k, dye_name, cdata.c, cdata.s, cdata.g, 1 );
 		table.insert( found, new_block_name );
-	end 
+	end
 	if( #found < 1 ) then
 		return;
 	end
@@ -1468,7 +1468,7 @@ colormachine.allow_inventory_access = function(pos, listname, index, stack, play
 
    local stack_name = stack:get_name();
    -- the dyes are a bit special - they accept only powder of the correct name
-   if( listname == "dyes" 
+   if( listname == "dyes"
        and stack_name ~= ("dye:"..        colormachine.colors_and_greys[ index ])
        and stack_name ~= ("unifieddyes:"..colormachine.colors_and_greys[ index ])
        and (stack_name ~= "dye:light_grey" or colormachine.colors_and_greys[ index ]~="lightgrey" )
@@ -1500,7 +1500,7 @@ end
 
 
 colormachine.on_metadata_inventory_put = function( pos, listname, index, stack, player )
-  
+
    local meta = minetest.get_meta(pos);
    local inv  = meta:get_inventory();
 
@@ -1558,7 +1558,7 @@ end
 
 
 colormachine.on_metadata_inventory_take = function( pos, listname, index, stack, player )
-  
+
    local meta = minetest.get_meta(pos);
    local inv  = meta:get_inventory();
 
@@ -1598,7 +1598,7 @@ colormachine.on_metadata_inventory_take = function( pos, listname, index, stack,
       else
          inv:set_stack( "input", 1, inv:get_stack("input",1):get_name().." "..tostring( anz_present ));
       end
-        
+
       -- the main menu needs to be updated as well
       meta:set_string( 'formspec', colormachine.main_menu_formspec( pos, "analyze" ));
       return;
@@ -1637,7 +1637,7 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
       needed[ colormachine.colors[ c ]] = 1;
       -- handle saturation
       if(     s==1 ) then needed[ "white" ]=1;                       -- light
---      elseif( s==3 ) then                                          -- normal color - no changes needed 
+--      elseif( s==3 ) then                                          -- normal color - no changes needed
       elseif( s==4 ) then needed[ "white" ]=2; needed[ "black" ] =1; -- normal, low saturation
       elseif( s==5 ) then                      needed[ "black" ] =1; -- medium dark
       elseif( s==6 ) then needed[ "white" ]=1; needed[ "black" ] =1; -- medium dark, low saturation
@@ -1651,7 +1651,7 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
       anz_pigments = anz_pigments + v;
    end
 
-   
+
    -- n: portions of *mixtures* needed
    local n = 1;
    -- if the colors are to be consumed, we need to calculate how many we actually need
@@ -1663,7 +1663,7 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
       -- now we need to check how many pigments of each color we have
       for i,v in ipairs( colormachine.colors_and_greys ) do
 
-         if( needed[ v ] and needed[ v ]> 0 ) then 
+         if( needed[ v ] and needed[ v ]> 0 ) then
 
             -- find out how many blocks of this type we can actually color
             local stack = inv:get_stack( "dyes", i );
@@ -1688,8 +1688,8 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
 
       n = math.min( anz_white, need_white );
    end
-        
- 
+
+
    -- return how many *could* be colored
    if( amount_needed > 0 and do_consume ~= 1 ) then
       return n*anz_pigments;
@@ -1700,8 +1700,8 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
 
    for i,v in ipairs( colormachine.colors_and_greys ) do
 
-      if( needed[ v ] and needed[ v ]> 0 ) then 
-  
+      if( needed[ v ] and needed[ v ]> 0 ) then
+
          -- show how many pigments of this color are needed for the selected mixture
          -- normal color
          if( i <= #colormachine.colors ) then
@@ -1717,9 +1717,9 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
          if( amount_needed > 0 and n > 0 ) then
             local stack = inv:get_stack( "dyes", i );
             local found = stack:get_count();
-            --print( ' CONSUMED '..math.floor( n * needed[ v ] )..' of '..tostring( stack:get_name())); 
+            --print( ' CONSUMED '..math.floor( n * needed[ v ] )..' of '..tostring( stack:get_name()));
             if( found > math.floor( n * needed[ v ] )) then
-               inv:set_stack( "dyes", i, stack:get_name()..' '..tostring( math.max( 1, found - math.floor( n * needed[ v ] )))); 
+               inv:set_stack( "dyes", i, stack:get_name()..' '..tostring( math.max( 1, found - math.floor( n * needed[ v ] ))));
             else
                inv:set_stack( "dyes", i, "" );
             end
@@ -1730,7 +1730,7 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
 
    -- in case pigments where consumed, return how many blocks where colored successfully
    if( amount_needed > 0 and n > 0 ) then
---print('Successfully colored: '..tostring( n*anz_pigments )); 
+--print('Successfully colored: '..tostring( n*anz_pigments ));
       return n*anz_pigments;
    end
 
@@ -1763,9 +1763,9 @@ colormachine.mix_colors = function( inv, i, sender )
    local stack1 = inv:get_stack( "dyes", mix[1] );
    local stack2 = inv:get_stack( "dyes", mix[2] );
    local stack3 = inv:get_stack( "dyes", i );
-  
 
-   if(     stack3:get_free_space() > 1 -- we need space for two 
+
+   if(     stack3:get_free_space() > 1 -- we need space for two
        and stack1:get_count() > 0
        and stack2:get_count() > 0 ) then
 
@@ -1794,12 +1794,12 @@ colormachine.mix_colors = function( inv, i, sender )
 
    elseif( stack3:get_free_space() > 1 ) then
       minetest.chat_send_player( sender:get_player_name(), 'Need '..colormachine.colors_and_greys[ mix[1] ]..' and '..
-                                                                    colormachine.colors_and_greys[ mix[2] ]..' in order to mix '..farbe..'.'); 
+                                                                    colormachine.colors_and_greys[ mix[2] ]..' in order to mix '..farbe..'.');
    end
 end
 
 
--- this generates the formspec for all supported mods and the general colormachine.dye_management_formspec 
+-- this generates the formspec for all supported mods and the general colormachine.dye_management_formspec
 colormachine.init = function()
    local liste = {};
    -- create formspecs for all machines
@@ -1820,7 +1820,7 @@ colormachine.init = function()
       end
    end
 
-   table.sort( liste, function(a,b) return colormachine.data[a].nr < colormachine.data[b].nr end); 
+   table.sort( liste, function(a,b) return colormachine.data[a].nr < colormachine.data[b].nr end);
    colormachine.ordered = liste;
 
    -- if no flowers are present, take dye sources from default (so we only have to depend on dyes)
@@ -1854,7 +1854,7 @@ colormachine.init = function()
 
    -- align colors horizontal
    for i,k in ipairs( colormachine.colors ) do
-   
+
       local prefix = 'dye:';
       if( i==4 or i==6 or i==8 or i==12 or i==14 ) then
          if( colormachine.data[ 'unifieddyes_' ].installed == 1 ) then
@@ -1871,15 +1871,15 @@ colormachine.init = function()
             form = form.."item_image["..tostring(i)..",1;1,1;"..source.."]";
 
             -- even those colors may be additionally mixed
-            if(  #colormachine.dye_mixes[         colormachine.colors_and_greys[ i ] ] == 2 ) then 
+            if(  #colormachine.dye_mixes[         colormachine.colors_and_greys[ i ] ] == 2 ) then
                form = form.. "button["..tostring(i-0.1)..",1.9;0.8,0.2;mix_"..colormachine.colors_and_greys[ i ]..";mix]";
             end
 
          -- a color that can be mixed
-         elseif( #colormachine.dye_mixes[         colormachine.colors_and_greys[ i ] ] == 2 ) then 
+         elseif( #colormachine.dye_mixes[         colormachine.colors_and_greys[ i ] ] == 2 ) then
 
             local mixes = colormachine.dye_mixes[ colormachine.colors_and_greys[ i ] ];
-   
+
             local source1 = 'dye:'..colormachine.colors_and_greys[ mixes[1] ];
             local source2 = 'dye:'..colormachine.colors_and_greys[ mixes[2] ];
 
@@ -1887,7 +1887,7 @@ colormachine.init = function()
                          "item_image["..tostring(i+0.3)..",1.3;1,1;"..source2.."]"..
                              "button["..tostring(i-0.1)..",1.9;0.8,0.2;mix_"..colormachine.colors_and_greys[ i ]..";mix]";
          end
-      
+
          form = form.. "item_image["..tostring(i)..",2;1,1;"..tostring( prefix..colormachine.colors[ i ] ).."]"..
                             "label["..tostring(i)..",3.6;"  ..tostring( colormachine.colors_and_greys[ i ] ).."]";
       else
@@ -1897,14 +1897,14 @@ colormachine.init = function()
 
    -- align grey-values vertical
    for i,k in ipairs( colormachine.grey_names ) do
-   
+
       if( i ~= 2 or colormachine.data[ 'unifieddyes_' ].installed == 1 ) then
 
          local source = colormachine.basic_dye_sources[ #colormachine.colors + i ];
          if( source and source ~= "" ) then
             form = form.."item_image[10,"..tostring(i+4)..";1,1;"..source.."]";
 
-         elseif( #colormachine.dye_mixes[         colormachine.colors_and_greys[ #colormachine.colors + i ] ] == 2 ) then 
+         elseif( #colormachine.dye_mixes[         colormachine.colors_and_greys[ #colormachine.colors + i ] ] == 2 ) then
 
             local mixes = colormachine.dye_mixes[ colormachine.colors_and_greys[ #colormachine.colors + i ] ];
 
@@ -1915,7 +1915,7 @@ colormachine.init = function()
                          "item_image[10.3,"..tostring(i+4.3)..";1,1;"..source2.."]"..
                              "button[9.8," ..tostring(i+4.9)..";0.8,0.2;mix_"..colormachine.colors_and_greys[ #colormachine.colors + i ]..";mix]";
          end
-      
+
          local dye_name = 'dye:'..k;
 
          -- lightgrey exists only in unifieddyes
@@ -1930,7 +1930,7 @@ colormachine.init = function()
          elseif( i==4 ) then
             dye_name = 'dye:dark_grey';
          end
-       
+
          if( dye_name ~= "" ) then
             form = form.. "item_image[11,"..tostring(i+4)..";1,1;"..tostring( dye_name ).."]"..
                           "label[   12.9,"..tostring(i+4)..";"    ..tostring( colormachine.colors_and_greys[ #colormachine.colors + i ] ).."]";
@@ -1939,8 +1939,8 @@ colormachine.init = function()
          form = form.."label[12.2,"..tostring(i+4)..";n/a]";
       end
    end
-  
- 
+
+
    colormachine.dye_management_formspec = form;
 
 end
@@ -1957,7 +1957,7 @@ minetest.after( 0, colormachine.init );
 --  unifiedbricks: clay blocks, brick blocks (skip individual clay lumps and bricks!)
 --                 multicolor: 3 shades, usual amount of colors
 --  cotton:        (by jordach) probably the same as coloredwood
---   
+--
 --  stained_glass: 9 shades/intensities
 
 
@@ -2051,15 +2051,15 @@ minetest.register_node("colormachine:colormachine", {
                  return;
               elseif( colormachine.data[ k ] ) then
                  -- remember the page we where at
-                 meta:set_string( 'formspec', colormachine.data[ k ].formspec.. 
+                 meta:set_string( 'formspec', colormachine.data[ k ].formspec..
                         "field[20,20;0.1,0.1;page;;"..tostring(fields.page).."]" );
                  return;
               elseif( k=='key_escape') then
                  -- nothing to do
               else
                  local inv = meta:get_inventory();
-                 
-                 -- perhaps we ought to mix colors 
+
+                 -- perhaps we ought to mix colors
                  for i,f in ipairs( colormachine.colors_and_greys ) do
                     if( k==("mix_"..f )) then
                        colormachine.mix_colors( inv, i, sender );
@@ -2083,8 +2083,8 @@ minetest.register_node("colormachine:colormachine", {
                     elseif( k=='last_page') then
                        fields.page = math.ceil(#colormachine.ordered/(3*13)-1);
                     end
-                             
-                    meta:set_string( 'formspec', colormachine.blocktype_menu( meta, k, fields.page )); 
+
+                    meta:set_string( 'formspec', colormachine.blocktype_menu( meta, k, fields.page ));
 
                  else
 
@@ -2102,7 +2102,7 @@ minetest.register_node("colormachine:colormachine", {
            return 0;
         end,
 
-        
+
         allow_metadata_inventory_put = function(pos, listname, index, stack, player)
            return colormachine.allow_inventory_access(pos, listname, index, stack, player, "put" );
         end,
@@ -2131,13 +2131,13 @@ minetest.register_node("colormachine:colormachine", {
 
            if(   not( inv:is_empty("input"))
               or not( inv:is_empty("refill")))  then
-              minetest.chat_send_player( player:get_player_name(), "Please remove the material in the input- and/or refill slot first!"); 
-              meta:set_string( 'formspec', colormachine.blocktype_menu( meta, meta:get_string('selected_name'), 0)); 
+              minetest.chat_send_player( player:get_player_name(), "Please remove the material in the input- and/or refill slot first!");
+              meta:set_string( 'formspec', colormachine.blocktype_menu( meta, meta:get_string('selected_name'), 0));
               return false;
            end
            if(  not( inv:is_empty("dyes"))) then
-              minetest.chat_send_player( player:get_player_name(), "Please remove the stored dyes first!"); 
-              meta:set_string( 'formspec', colormachine.blocktype_menu( meta, meta:get_string('selected_name'), 0 )); 
+              minetest.chat_send_player( player:get_player_name(), "Please remove the stored dyes first!");
+              meta:set_string( 'formspec', colormachine.blocktype_menu( meta, meta:get_string('selected_name'), 0 ));
               return false;
            end
 

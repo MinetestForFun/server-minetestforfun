@@ -30,7 +30,7 @@ mobs:register_mob("mobs:greensmall", {
 	textures = { green_textures },
 	blood_texture = "mobs_green_slime_blood.png",
 	visual_size = {x = 0.5, y = 0.5},
-	-- sounds a bit here, but mainly define in the beginning 
+	-- sounds a bit here, but mainly define in the beginning
 	makes_footstep_sound = false,
 	sounds = green_sounds,
 	-- speed and jump, sinks in water
@@ -76,7 +76,7 @@ mobs:register_mob("mobs:greenmedium", {
 	textures = { green_textures },
 	blood_texture = "mobs_green_slime_blood.png",
 	visual_size = {x = 1, y = 1},
-	-- sounds a bit here, but mainly define in the beginning 
+	-- sounds a bit here, but mainly define in the beginning
 	makes_footstep_sound = false,
 	sounds = green_sounds,
 	-- speed and jump, sinks in water
@@ -125,7 +125,7 @@ mobs:register_mob("mobs:greenbig", {
 	textures = { green_textures },
 	blood_texture = "mobs_green_slime_blood.png",
 	visual_size = {x = 2, y = 2},
-	-- sounds a bit here, but mainly define in the beginning 
+	-- sounds a bit here, but mainly define in the beginning
 	makes_footstep_sound = false,
 	sounds = green_sounds,
 	-- speed and jump, sinks in water

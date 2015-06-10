@@ -1,27 +1,27 @@
 --more_signs by addi
---Code and Textures are under the CC by-sa 3.0 licence 	
---see: http://creativecommons.org/licenses/by-sa/3.0/	
-	
-	
-	
+--Code and Textures are under the CC by-sa 3.0 licence
+--see: http://creativecommons.org/licenses/by-sa/3.0/
+
+
+
 arrow_signs={}
 
 arrow_signs.formspec = "field[text;Sign text:;${text}]";
 
 arrow_signs_on_place = function(itemstack, placer, pointed_thing)
-	
+
 	local posabove = pointed_thing.above
 	local posunder = pointed_thing.under
 	local vector = placer:get_look_dir()
 	local place = true
-	
+
 	if posabove.y>posunder.y then
 		if(vector.z>0.5 and vector.z<=1) then
 			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 10})
 		elseif (vector.x>0.5 and vector.x<=1) then
 			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 19})
 		elseif(-0.5>vector.z and -1<=vector.z) then
-			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 4})	
+			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 4})
 		elseif (-0.5>vector.x and -1<=vector.x) then
 			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 13})
 		else
@@ -33,7 +33,7 @@ arrow_signs_on_place = function(itemstack, placer, pointed_thing)
 		elseif (vector.x>0.5 and vector.x<=1) then
 			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 17})
 		elseif(-0.5>vector.z and -1<=vector.z) then
-			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 6})	
+			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 6})
 		elseif (-0.5>vector.x and -1<=vector.x) then
 			minetest.add_node(posabove,{name = itemstack:get_name(), param2 = 15})
 		else
@@ -96,15 +96,15 @@ arrow_signs_on_place = function(itemstack, placer, pointed_thing)
 	else
 		itemstack:take_item()
 	end
-		
+
 	if not minetest.setting_getbool("creative_mode") then
 		return itemstack
 	end
-	
+
 end
 
  function arrow_signs:savetext(pos, formname, fields, sender)
-		
+
 		if not minetest.get_player_privs(sender:get_player_name())["interact"] then
 			minetest.chat_send_player(sender:get_player_name(), "error: you don't have permission to edit the sign. you need the interact priv")
 		return
@@ -140,8 +140,8 @@ minetest.override_item("default:sign_wall", {
 minetest.register_node("arrow_signs:wall", {
 	description = "Arrow signs",
 	drawtype = "nodebox",
-	node_box = {		
-		type = "fixed", 
+	node_box = {
+		type = "fixed",
 		fixed = {
 			{ 0.25, -0.25, 0.5, -0.25, 0.5, 0.47},
 			{ 0.1875, -0.3125, 0.5, -0.1875, -0.25, 0.47},
@@ -150,7 +150,7 @@ minetest.register_node("arrow_signs:wall", {
 		}
 	},
 	selection_box = {
-		type = "fixed", 
+		type = "fixed",
 		fixed = {
 			{ 0.25, -0.25, 0.5, -0.25, 0.5, 0.47},
 			{ 0.1875, -0.3125, 0.5, -0.1875, -0.25, 0.47},
@@ -166,7 +166,7 @@ minetest.register_node("arrow_signs:wall", {
 	walkable = false,
 	groups = {choppy=2,dig_immediate=2,sign=1},
 	sounds = default.node_sound_defaults(),
-	on_place = arrow_signs_on_place,	
+	on_place = arrow_signs_on_place,
 	on_construct = function(pos)
 		--local n = minetest.get_node(pos)
 		local meta = minetest.get_meta(pos)

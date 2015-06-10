@@ -3,7 +3,7 @@ local function throwing_register_fireworks(color, desc)
 		description = desc .. "fireworks arrow",
 		inventory_image = "throwing_arrow_fireworks_" .. color .. ".png",
 	})
-	
+
 	minetest.register_node("throwing:arrow_fireworks_" .. color .. "_box", {
 		drawtype = "nodebox",
 		node_box = {
@@ -19,7 +19,7 @@ local function throwing_register_fireworks(color, desc)
 				{7.5/17, -2.5/17, 2.5/17, 6.5/17, -1.5/17, 1.5/17},
 				{7.5/17, 2.5/17, -2.5/17, 6.5/17, 1.5/17, -1.5/17},
 				{6.5/17, -1.5/17, -1.5/17, 7.5/17, -2.5/17, -2.5/17},
-				
+
 				{7.5/17, 2.5/17, 2.5/17, 8.5/17, 3.5/17, 3.5/17},
 				{8.5/17, -3.5/17, 3.5/17, 7.5/17, -2.5/17, 2.5/17},
 				{8.5/17, 3.5/17, -3.5/17, 7.5/17, 2.5/17, -2.5/17},
@@ -29,7 +29,7 @@ local function throwing_register_fireworks(color, desc)
 		tiles = {"throwing_arrow_fireworks_" .. color .. ".png", "throwing_arrow_fireworks_" .. color .. ".png", "throwing_arrow_fireworks_" .. color .. "_back.png", "throwing_arrow_fireworks_" .. color .. "_front.png", "throwing_arrow_fireworks_" .. color .. "_2.png", "throwing_arrow_fireworks_" .. color .. ".png"},
 		groups = {not_in_creative_inventory=1},
 	})
-	
+
 	local THROWING_ARROW_ENTITY={
 		physical = false,
 		timer=0,
@@ -39,9 +39,9 @@ local function throwing_register_fireworks(color, desc)
 		lastpos={},
 		collisionbox = {0,0,0,0,0,0},
 	}
-	
+
 	local radius = 0.5
-	
+
 	local function add_effects(pos, radius)
 		minetest.add_particlespawner({
 			amount = 256,
@@ -59,8 +59,8 @@ local function throwing_register_fireworks(color, desc)
 			texture = "throwing_sparkle_" .. color .. ".png",
 		})
 	end
-	
-	
+
+
 	local function boom(pos)
 		minetest.sound_play("throwing_firework_boom", {pos=pos, gain=1, max_hear_distance=2*64})
 		if minetest.get_node(pos).name == 'air' or minetest.get_node(pos).name == 'throwing:firework_trail' then
@@ -69,9 +69,9 @@ local function throwing_register_fireworks(color, desc)
 		end
 		add_effects(pos, radius)
 	end
-	
+
 	-- Back to the arrow
-	
+
 	THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 		self.timer=self.timer+dtime
 		local pos = self.object:getpos()
@@ -126,16 +126,16 @@ local function throwing_register_fireworks(color, desc)
 		end
 		self.lastpos={x=pos.x, y=pos.y, z=pos.z}
 	end
-	
+
 	minetest.register_entity("throwing:arrow_fireworks_" .. color .. "_entity", THROWING_ARROW_ENTITY)
-	
+
 	minetest.register_craft({
 		output = 'throwing:arrow_fireworks_' .. color .. ' 8',
 		recipe = {
 			{'default:stick', 'tnt:gunpowder', 'dye:' .. color},
 		}
 	})
-	
+
 	minetest.register_craft({
 		output = 'throwing:arrow_fireworks_' .. color .. ' 8',
 		recipe = {

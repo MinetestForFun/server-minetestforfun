@@ -53,11 +53,11 @@ function factions.add_faction(name)
 		factions.data.factions[name].base_reputation = {}
 		factions.data.factions[name].adminlist = {}
 		factions.data.factions[name].invitations = {}
-		
+
 		factions.dynamic_data.membertable[name] = {}
-		
+
 		factions.save()
-		
+
 		return true
 	end
 
@@ -81,7 +81,7 @@ function factions.set_base_reputation(faction1,faction2,value)
 
 	if factions.data.factions[faction1] ~= nil and
 		factions.data.factions[faction2] ~= nil then
-		
+
 		factions.data.factions[faction1].base_reputation[faction2] = value
 		factions.data.factions[faction2].base_reputation[faction1] = value
 		factions.save()
@@ -166,13 +166,13 @@ end
 --! @return true/false
 -------------------------------------------------------------------------------
 function factions.exists(name)
-	
+
 	for key,value in pairs(factions.data.factions) do
 		if key == name then
 			return true
 		end
 	end
-	
+
 	return false
 end
 
@@ -188,11 +188,11 @@ end
 function factions.get_faction_list()
 
 	local retval = {}
-	
+
 	for key,value in pairs(factions.data.factions) do
 		table.insert(retval,key)
 	end
-	
+
 	return retval
 end
 
@@ -210,9 +210,9 @@ end
 function factions.delete_faction(name)
 
 	factions.data.factions[name] = nil
-	
+
 	factions.save()
-	
+
 	if factions.data.factions[name] == nil then
 		return true
 	end
@@ -235,25 +235,25 @@ end
 function factions.member_add(name, object)
 	local new_entry = {}
 	new_entry.factions = {}
-	
+
 	if object.object ~= nil then
 		object = object.object
 	end
-	
+
 	if not factions.exists(name) then
 		print("Unable to add to NON existant faction >" .. name .. "<")
 		return false
 	end
-	
+
 	new_entry.name,new_entry.temporary = factions.get_name(object)
-	
+
 	factions.dbg_lvl2("Adding name=" .. dump(new_entry.name) .. " to faction: " .. name )
-	
+
 	if new_entry.name ~= nil then
 		if factions.data.objects[new_entry.name] == nil then
 			factions.data.objects[new_entry.name] = new_entry
 		end
-		
+
 		if factions.data.objects[new_entry.name].factions[name] == nil then
 			factions.data.objects[new_entry.name].factions[name] = true
 			factions.dynamic_data.membertable[name][new_entry.name] = true
@@ -262,7 +262,7 @@ function factions.member_add(name, object)
 			return true
 		end
 	end
-	
+
 	--return false if no valid object or already member
 	return false
 end
@@ -287,7 +287,7 @@ function factions.member_invite(name, playername)
 		factions.save()
 		return true
 	end
-	
+
 	--return false if not a valid faction or player already invited
 	return false
 end
@@ -307,9 +307,9 @@ end
 function factions.member_remove(name,object)
 
 	local id,type = factions.get_name(object)
-	
+
 	factions.dbg_lvl2("removing name=" .. dump(id) .. " to faction: " .. name )
-	
+
 	if id ~= nil and
 		factions.data.objects[id] ~= nil and
 		factions.data.objects[id].factions[name] ~= nil then
@@ -318,7 +318,7 @@ function factions.member_remove(name,object)
 		factions.save()
 		return true
 	end
-	
+
 	if id ~= nil and
 		factions.data.factions[name].invitations[id] ~= nil then
 		factions.data.factions[name].invitations[id] = nil
@@ -414,7 +414,7 @@ function factions.is_free(name)
 		factions.data.factions[name].open then
 			return true
 	end
-	
+
 	return false
 end
 
@@ -436,7 +436,7 @@ function factions.is_admin(name,playername)
 		factions.data.factions[name].adminlist[playername] == true then
 		return true
 	end
-	
+
 	return false
 end
 
@@ -459,7 +459,7 @@ function factions.is_invited(name,playername)
 		factions.data.factions[name].open == true) then
 		return true
 	end
-	
+
 	return false
 end
 
@@ -477,7 +477,7 @@ end
 function factions.get_factions(object)
 
 	local id,type = factions.get_name(object)
-	
+
 	local retval = {}
 	if id ~= nil and
 		factions.data.objects[id] ~= nil then
@@ -485,7 +485,7 @@ function factions.get_factions(object)
 			table.insert(retval,key)
 		end
 	end
-	
+
 	return retval
 end
 
@@ -504,7 +504,7 @@ end
 function factions.is_member(name,object)
 
 	local retval = false
-	
+
 	local id,type = factions.get_name(object)
 
 	if id ~= nil and
@@ -516,7 +516,7 @@ function factions.is_member(name,object)
 			end
 		end
 	end
-	
+
 	return retval
 end
 
@@ -536,14 +536,14 @@ end
 function factions.get_reputation(name,object)
 
 	local id,type = factions.get_name(object)
-	
+
 	factions.dbg_lvl3("get_reputation: "  .. name .. "<-->" .. dump(id))
-	
+
 	if id ~= nil and
 		factions.data.factions[name] ~= nil then
-		
+
 		factions.dbg_lvl3("get_reputation: object reputation: "  .. dump(factions.data.factions[name].reputation[id]))
-		
+
 		if factions.data.factions[name].reputation[id] == nil then
 			factions.data.factions[name].reputation[id]
 				= factions.calc_base_reputation(name,object)
@@ -571,21 +571,21 @@ end
 --! @return true/false
 -------------------------------------------------------------------------------
 function factions.modify_reputation(name,object,delta)
-	
+
 	local id,type = factions.get_name(object)
-	
+
 	if factions.data.factions[name] ~= nil then
 		if factions.data.factions[name].reputation[id] == nil then
 			factions.data.factions[name].reputation[id]
 				= factions.calc_base_reputation(name,object)
 		end
-		
+
 		factions.data.factions[name].reputation[id]
 			= factions.data.factions[name].reputation[id] + delta
 		factions.save()
 		return true
 	end
-	
+
 	return false
 end
 
@@ -604,21 +604,21 @@ function factions.get_name(object)
 	if object == nil then
 		return nil,true
 	end
-	
+
 	if object.object ~= nil then
 		object = object.object
 	end
-	
+
 	if object:is_player() then
 		return object:get_player_name(),false
 	else
 		local luaentity = object:get_luaentity()
-		
+
 		if luaentity ~= nil then
 			return tostring(luaentity),true
 		end
 	end
-	
+
 	return nil,true
 end
 
@@ -639,9 +639,9 @@ function factions.calc_base_reputation(name,object)
 	--calculate initial reputation based uppon all groups
 	local object_factions = factions.get_factions(object)
 	local rep_value = 0
-	
+
 	factions.dbg_lvl3("calc_base_reputation: " .. name .. " <--> " .. tostring(object))
-	
+
 	if object_factions ~= nil then
 		factions.dbg_lvl3("calc_base_reputation: " .. tostring(object) .. " is in " .. #object_factions .. " factions")
 		for k,v in pairs(object_factions) do
@@ -655,10 +655,10 @@ function factions.calc_base_reputation(name,object)
 				end
 			end
 		end
-		
+
 		rep_value = rep_value / #object_factions
 	end
-	
+
 	return rep_value
 end
 
@@ -675,16 +675,16 @@ function factions.save()
 	--due to figuring out which data to save and which is temporary only
 	--all data is saved here
 	--this implies data needs to be cleant up on load
-	
+
 	local file,error = io.open(factions_worldid .. "/" .. "factions.conf","w")
-	
+
 	if file ~= nil then
 		file:write(minetest.serialize(factions.data))
 		file:close()
 	else
 		minetest.log("error","MOD factions: unable to save factions world specific data!: " .. error)
 	end
-	
+
 end
 
 -------------------------------------------------------------------------------
@@ -698,23 +698,23 @@ end
 -------------------------------------------------------------------------------
 function factions.load()
 	local file,error = io.open(factions_worldid .. "/" .. "factions.conf","r")
-	
+
 	if file ~= nil then
 		local raw_data = file:read("*a")
 		file:close()
-		
+
 		if raw_data ~= nil and
 			raw_data ~= "" then
-			
+
 			local raw_table = minetest.deserialize(raw_data)
-			
-			
+
+
 			--read object data
 			local temp_objects = {}
-			
+
 			if raw_table.objects ~= nil then
 				for key,value in pairs(raw_table.objects) do
-				
+
 					if value.temporary == false then
 						factions.data.objects[key] = value
 					else
@@ -722,7 +722,7 @@ function factions.load()
 					end
 				end
 			end
-			
+
 			if raw_table.factions ~= nil then
 				for key,value in pairs(raw_table.factions) do
 					factions.data.factions[key] = {}
@@ -730,18 +730,18 @@ function factions.load()
 					factions.data.factions[key].adminlist = value.adminlist
 					factions.data.factions[key].open = value.open
 					factions.data.factions[key].invitations = value.invitations
-					
+
 					factions.data.factions[key].reputation = {}
 					for repkey,repvalue in pairs(value.reputation) do
 						if temp_objects[repkey] == nil then
 							factions.data.factions[key].reputation[repkey] = repvalue
 						end
 					end
-					
+
 					factions.dynamic_data.membertable[key] = {}
 				end
 			end
-			
+
 			--populate dynamic faction member table
 			for id,object in pairs(factions.data.objects) do
 				for name,value in pairs(factions.data.objects[id].factions) do
@@ -753,7 +753,7 @@ function factions.load()
 		end
 	else
 		local file,error = io.open(factions_worldid .. "/" .. "factions.conf","w")
-		
+
 		if file ~= nil then
 			file:close()
 		else

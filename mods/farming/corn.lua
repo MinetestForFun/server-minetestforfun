@@ -28,7 +28,7 @@ minetest.register_craft({
 
 --= Ethanol (Thanks to JKMurray for this idea)
 
-minetest.register_craftitem("farming:bottle_ethanol", { 
+minetest.register_craftitem("farming:bottle_ethanol", {
 	description = "Bottle of Ethanol",
 	inventory_image = "farming_bottle_ethanol.png",
 })

@@ -60,7 +60,7 @@ minetest.register_chatcommand("set_owner", {
 
 		local id = areas:add(ownerName, areaName, pos1, pos2, nil)
 		areas:save()
-	
+
 		minetest.chat_send_player(ownerName,
 				"You have been granted control over area #"..
 				id..". Type /list_areas to show your areas.")

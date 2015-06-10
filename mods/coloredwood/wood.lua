@@ -20,7 +20,7 @@ local colored_block_sound = "default.node_sound_wood_defaults()"
 -- Show the wood planks in the crafting guide:
 -- Value copy the groups table to another one to pass to stairsplus:register_all()
 -- oherwise stairsplus:register_all() will add the ["not_in_creative_inventory"] = 1 key/value to the groups
--- of the original table and force the coloredwood planks to be removed from the crafting guide. 
+-- of the original table and force the coloredwood planks to be removed from the crafting guide.
 local stairsplus_groups = {}
 if coloredwood.enable_stairsplus then
 	for k, v in pairs(colored_block_groups) do
@@ -179,7 +179,7 @@ for hue = 1, 12 do
 		},
 	})
 end
-	
+
 
 -- ============================================================
 -- The 5 levels of greyscale.

@@ -7,7 +7,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "marble", "darkage:marble", {
 		description = "Marble",
 		tiles = {"darkage_marble.png"},
@@ -15,7 +15,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "serpentine", "darkage:serpentine", {
 		description = "Serpentine",
 		tiles = {"darkage_serpentine.png"},
@@ -23,7 +23,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "ors", "darkage:ors", {
 		description = "Old Red Sandstone",
 		tiles = {"darkage_ors.png"},
@@ -31,7 +31,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "schist", "darkage:schist", {
 		description = "Schist",
 		tiles = {"darkage_schist.png"},
@@ -39,7 +39,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "slate", "darkage:slate", {
 		description = "Slate",
 		tiles = {"darkage_slate.png"},
@@ -47,7 +47,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "gneiss", "darkage:gneiss", {
 		description = "Gneiss",
 		tiles = {"darkage_gneiss.png"},
@@ -55,7 +55,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "chalk", "darkage:chalk", {
 		description = "Chalk",
 		tiles = {"darkage_chalk.png"},
@@ -63,7 +63,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "slate_cobble", "darkage:slate_cobble", {
 		description = "Slate Cobble",
 		tiles = {"darkage_slate_cobble.png"},
@@ -71,7 +71,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "ors_cobble", "darkage:ors_cobble", {
 		description = "Old Red Sandstone Cobble",
 		tiles = {"darkage_ors_cobble.png"},
@@ -79,7 +79,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "gneiss_cobble", "darkage:gneiss_cobble", {
 		description = "Gneiss Cobble",
 		tiles = {"darkage_gneiss_cobble.png"},
@@ -87,7 +87,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "basalt_cobble", "darkage:basalt_cobble", {
 		description = "Basalt Cobble",
 		tiles = {"darkage_basalt_cobble.png"},
@@ -113,7 +113,7 @@ if stairsplus then
 			sunlight_propagates = true,
 		})
 	end
-	
+
 	stairsplus:register_all("darkage", "straw_bale", "darkage:straw_bale", {
 		description = "Straw Bale",
 		tiles = {"darkage_straw_bale.png"},
@@ -121,7 +121,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "slate_tile", "darkage:slate_tile", {
 		description = "Slate Tile",
 		tiles = {"darkage_slate_tile.png"},
@@ -129,7 +129,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "marble_tile", "darkage:marble_tile", {
 		description = "Marble Tile",
 		tiles = {"darkage_marble_tile.png"},
@@ -137,7 +137,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "stone_brick", "darkage:stone_brick", {
 		description = "Stone Brick",
 		tiles = {"darkage_stone_brick.png"},
@@ -145,7 +145,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "reinforced_chalk", "darkage:reinforced_chalk", {
 		description = "Reinforced Chalk",
 		tiles = {"darkage_chalk.png^darkage_reinforce.png"},
@@ -153,7 +153,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "glass", "darkage:glass", {
 		description = "Medieval Glass",
 		tiles = {"darkage_glass.png"},
@@ -161,7 +161,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "glow_glass", "darkage:glow_glass", {
 		description = "Medieval Glow Glass",
 		tiles = {"darkage_glass.png"},
@@ -171,7 +171,7 @@ if stairsplus then
 		sounds = default.node_sound_stone_defaults(),
 		sunlight_propagates = true,
 	})
-	
+
 	stairsplus:register_all("darkage", "reinforced_wood", "darkage:reinforced_wood", {
 		description = "Reinforced Wood",
 		tiles = {"default_wood.png^darkage_reinforce.png"},
@@ -189,7 +189,7 @@ elseif stairs then
 		"Basalt Slab",
 		default.node_sound_stone_defaults()
 	)
-		
+
 	stairs.register_stair_and_slab("marble", "darkage:marble",
 		{cracky=3},
 		{"darkage_marble.png"},
@@ -197,7 +197,7 @@ elseif stairs then
 		"Marble Slab",
 		default.node_sound_stone_defaults()
 	)
-		
+
 	stairs.register_stair_and_slab("marble", "darkage:serpentine",
 		{cracky=3},
 		{"darkage_serpentine.png"},
@@ -205,7 +205,7 @@ elseif stairs then
 		"Serpentine Slab",
 		default.node_sound_stone_defaults()
 	)
-		
+
 	stairs.register_stair_and_slab("ors", "darkage:ors",
 		{crumbly=2,cracky=2},
 		{"darkage_ors.png"},
@@ -213,7 +213,7 @@ elseif stairs then
 		"Old Red Sandstone Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("schist", "darkage:schist",
 		{cracky=3},
 		{"darkage_schist.png"},
@@ -221,7 +221,7 @@ elseif stairs then
 		"Schist Slab",
 		default.node_sound_stone_defaults()
 	)
-		
+
 	stairs.register_stair_and_slab("slate", "darkage:slate",
 		{cracky=2},
 		{"darkage_slate.png"},
@@ -229,7 +229,7 @@ elseif stairs then
 		"Slate Slab",
 		default.node_sound_stone_defaults()
 	)
-		
+
 	stairs.register_stair_and_slab("gneiss", "darkage:gneiss",
 		{cracky=3},
 		{"darkage_gneiss.png"},
@@ -237,7 +237,7 @@ elseif stairs then
 		"Gneiss Slab",
 		default.node_sound_stone_defaults()
 	)
-		
+
 	stairs.register_stair_and_slab("chalk", "darkage:chalk",
 		{crumbly=2,cracky=2},
 		{"darkage_chalk.png"},
@@ -245,7 +245,7 @@ elseif stairs then
 		"Chalk Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("slate_cobble", "darkage:slate_cobble",
 		{cracky=2},
 		{"darkage_slate_cobble.png"},
@@ -253,7 +253,7 @@ elseif stairs then
 		"Slate Cobble Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("ors_cobble", "darkage:ors_cobble",
 		{crumbly=2,cracky=2},
 		{"darkage_ors_cobble.png"},
@@ -261,7 +261,7 @@ elseif stairs then
 		"Old Red Sandstone Cobble Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("gneiss_cobble", "darkage:gneiss_cobble",
 		{crumbly=2,cracky=2},
 		{"darkage_gneiss_cobble.png"},
@@ -269,7 +269,7 @@ elseif stairs then
 		"Gneiss Cobble Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("basalt_cobble", "darkage:basalt_cobble",
 		{cracky=3},
 		{"darkage_basalt_cobble.png"},
@@ -302,7 +302,7 @@ elseif stairs then
 		"Straw Bale Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("slate_tile", "darkage:slate_tile",
 		{cracky=2},
 		{"darkage_slate_tile.png"},
@@ -310,7 +310,7 @@ elseif stairs then
 		"Slate Tile Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("marble_tile", "darkage:marble_tile",
 		{cracky=2},
 		{"darkage_marble_tile.png"},
@@ -318,7 +318,7 @@ elseif stairs then
 		"Marble Tile Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("stone_brick", "darkage:stone_brick",
 		{cracky=3},
 		{"darkage_stone_brick.png"},
@@ -326,7 +326,7 @@ elseif stairs then
 		"Stone Brick Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("reinforced_chalk", "darkage:reinforced_chalk",
 		{cracky=3},
 		{"darkage_chalk.png^darkage_reinforce.png"},
@@ -334,7 +334,7 @@ elseif stairs then
 		"Reinforced Chalk Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("glass", "darkage:glass",
 		{snappy=2,cracky=3,oddly_breakable_by_hand=3},
 		{"darkage_glass.png"},
@@ -342,7 +342,7 @@ elseif stairs then
 		"Medieval Glass Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("glow_glass", "darkage:glow_glass",
 		{snappy=2,cracky=3,oddly_breakable_by_hand=3},
 		{"darkage_glass.png"},
@@ -350,7 +350,7 @@ elseif stairs then
 		"Medieval Glow Glass Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 	stairs.register_stair_and_slab("reinforced_wood", "darkage:reinforced_wood",
 		{snappy=2,choppy=3,oddly_breakable_by_hand=3,flammable=3},
 		{"default_wood.png^darkage_reinforce.png"},
@@ -358,5 +358,5 @@ elseif stairs then
 		"Reinforced Wood Slab",
 		default.node_sound_stone_defaults()
 	)
-	
+
 end

@@ -52,10 +52,10 @@ minetest.register_node(":default:leaves", {
 	selection_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, 
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		},
 	},
-})	
+})
 -- remplace jungleleaves
 minetest.register_node(":default:jungleleaves", {
 	description = "Jungle Leaves",
@@ -90,7 +90,7 @@ minetest.register_node(":default:jungleleaves", {
 	selection_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, 
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		},
 	},
 })

@@ -238,24 +238,24 @@ local function upgrade_autocrafter(pos, meta)
 end
 
 minetest.register_node("pipeworks:autocrafter", {
-	description = "Autocrafter", 
-	drawtype = "normal", 
-	tiles = {"pipeworks_autocrafter.png"}, 
-	groups = {snappy = 3, tubedevice = 1, tubedevice_receiver = 1}, 
+	description = "Autocrafter",
+	drawtype = "normal",
+	tiles = {"pipeworks_autocrafter.png"},
+	groups = {snappy = 3, tubedevice = 1, tubedevice_receiver = 1},
 	tube = {insert_object = function(pos, node, stack, direction)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			local added = inv:add_item("src", stack)
 			after_inventory_change(pos)
 			return added
-		end, 
+		end,
 		can_insert = function(pos, node, stack, direction)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			return inv:room_for_item("src", stack)
-		end, 
-		input_inventory = "dst", 
-		connect_sides = {left = 1, right = 1, front = 1, back = 1, top = 1, bottom = 1}}, 
+		end,
+		input_inventory = "dst",
+		connect_sides = {left = 1, right = 1, front = 1, back = 1, top = 1, bottom = 1}},
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -282,7 +282,7 @@ minetest.register_node("pipeworks:autocrafter", {
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		return (inv:is_empty("src") and inv:is_empty("dst"))
-	end, 
+	end,
 	after_place_node = pipeworks.scan_for_tube_objects,
 	after_dig_node = function(pos)
 		pipeworks.scan_for_tube_objects(pos)

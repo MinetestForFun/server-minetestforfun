@@ -87,7 +87,7 @@ function add_coloured_framedglass(name, desc, dye)
 		use_texture_alpha = true,
 		groups = {cracky=3},
 		sounds = default.node_sound_glass_defaults(),
-	}) 
+	})
 
 	minetest.register_craft({
 		type = "shapeless",

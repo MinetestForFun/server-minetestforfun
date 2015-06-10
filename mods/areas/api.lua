@@ -2,7 +2,7 @@
 --plants to place in openfarming
 local plants = { ["farming:blueberries"]=1, ["farming:carrot"]=1, ["farming:coffee_beans"]=1, ["farming:corn"]=1, ["farming:cucumber"]=1,
 				 ["farming:melon_slice"]=1, ["farming:potato"]=1, ["farming:pumpkin_slice"]=1, ["farming:raspberries"]=1, ["farming:rhubarb"]=1,
-				 ["farming:tomato"]=1, ["farming:seed_cotton"]=1, ["farming:seed_wheat"]=1,["default:papyrus"]=1 
+				 ["farming:tomato"]=1, ["farming:seed_cotton"]=1, ["farming:seed_wheat"]=1,["default:papyrus"]=1
 				}
 
 --tools to dig in openfarming
@@ -49,17 +49,17 @@ function areas:canInteract(pos, name)
 			if not player then return false end
 			local wstack = player:get_wielded_item():get_name()
 			if wstack == "" then wstack = "hand" end
-			
+
 			--on_place
 			if node == "air" and plants[wstack] ~= nil then
 				return true
 			end
-			
+
 			--on_dig
 			if minetest.get_item_group(node, "plant") == 1 and in_hand[wstack] ~= nil then
 				return true
 			end
-			
+
 			owned = true
 		else
 			owned = true

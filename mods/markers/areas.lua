@@ -100,10 +100,10 @@ markers.get_area_list_formspec = function(ppos, player, mode, pos, mode_data, se
             table.insert( id_list, id );
          end
       end
- 
+
 
    elseif( mode=='all' ) then
-      title  = 'All areas:'; 
+      title  = 'All areas:';
       tlabel = '*all areas*';
 
       for id, area in pairs(areas.areas) do
@@ -128,7 +128,7 @@ markers.get_area_list_formspec = function(ppos, player, mode, pos, mode_data, se
 	"label[4.7,0;"..tlabel.."]"..
 	"label[0.5,8.5;Doubleclick to select area.]"..
 	"label[4.7,8.5;Areas found: "..tostring( #id_list )..".]"..
-	"textlist[0.5,0.5;7,8;markers_area_list_selection;"; 
+	"textlist[0.5,0.5;7,8;markers_area_list_selection;";
 
    local liste = '';
    for i,v in ipairs( id_list ) do
@@ -136,7 +136,7 @@ markers.get_area_list_formspec = function(ppos, player, mode, pos, mode_data, se
          liste = liste..',';
       end
       liste = liste..minetest.formspec_escape( areas:toString( v ) );
-         
+
    end
 
    -- highlight selected entry
@@ -145,14 +145,14 @@ markers.get_area_list_formspec = function(ppos, player, mode, pos, mode_data, se
    else
       formspec = formspec..liste..';]';
    end
-   
+
    local pname = player:get_player_name();
    if( not( markers.menu_data_by_player[ pname ] )) then
       markers.menu_data_by_player[ pname ] = {};
    end
 
    -- display information about the location of the area the player clicked on
-   if( selected 
+   if( selected
       and id_list[ selected ]
       and areas.areas[ id_list[ selected ]] ) then
 
@@ -171,7 +171,7 @@ markers.get_area_list_formspec = function(ppos, player, mode, pos, mode_data, se
 
       if( this_area.parent) then
          formspec = formspec..
-               'button[8.0,0.5;2,0.5;show_parent;'.. 
+               'button[8.0,0.5;2,0.5;show_parent;'..
 			minetest.formspec_escape( areas.areas[ this_area.parent ].name )..']';
       end
 
@@ -180,7 +180,7 @@ markers.get_area_list_formspec = function(ppos, player, mode, pos, mode_data, se
                'button[8.0,1.0;2,0.5;list_subareas;'..
                         minetest.formspec_escape( 'List subareas ('..tostring( #subareas )..')')..']';
       end
- 
+
 
       if( mode=='player' ) then
          formspec = formspec..
@@ -208,8 +208,8 @@ markers.get_area_list_formspec = function(ppos, player, mode, pos, mode_data, se
 
 	  selected  = id_list[ selected ],
 	};
-         
-	  
+
+
    return formspec;
 end
 
@@ -264,7 +264,7 @@ markers.get_area_desc_formspec = function( id, player, pos )
       and this_area.parent
       and areas.areas[ this_area.parent ]
       and areas.areas[ this_area.parent ].owner == pname ) then
- 
+
       formspec = formspec..
         'button_exit[8.0,1.0;2,0.5;delete;Delete subarea]'..
         'button_exit[8.0,2.0;2,0.5;list_player_areas;Player\'s areas]';
@@ -311,12 +311,12 @@ markers.get_area_desc_formspec = function( id, player, pos )
    else
       formspec = formspec..
         'label[4.7,2.5;-none-]';
- 
+
       if( is_owner ) then
          formspec = formspec..
 		'button_exit[8.0,2.5;2,0.5;add_owner;Add]';
       end
-   end  
+   end
 
 
    -- is the area a subarea?
@@ -326,7 +326,7 @@ markers.get_area_desc_formspec = function( id, player, pos )
 	'label[4.7,3.0;'..minetest.formspec_escape( areas.areas[ this_area.parent ].name..' ['..this_area.parent..']' )..']'..
         'button_exit[8.0,3.0;2,0.5;show_parent;Show main area]';
    end
- 
+
 
    -- does the area have subareas, i.e. is it a parent area for others?
    local sub_areas = {};
@@ -377,14 +377,14 @@ markers.get_area_desc_formspec = function( id, player, pos )
    -- player selected
    markers.menu_data_by_player[ pname ] =
 	{ typ       = 'show_area',
-          mode      = nil, 
+          mode      = nil,
           pos       = pos,
           mode_data = nil,
           list      = nil,
 
 	  selected  = id,
 	};
-         
+
    return formspec;
 end
 
@@ -399,10 +399,10 @@ markers.show_compass_marker = function( col_offset, row_offset, with_text, pos, 
 -- TODO: what if checked with a land claim register?
 
    -- if possible, show how far the area streches into each direction relative to pos
-   if(     pos.x >= pos1.x and pos.x <= pos2.x 
-       and pos.y >= pos1.y and pos.y <= pos2.y 
+   if(     pos.x >= pos1.x and pos.x <= pos2.x
+       and pos.y >= pos1.y and pos.y <= pos2.y
        and pos.z >= pos1.z and pos.z <= pos2.z ) then
- 
+
       if( with_text ) then
          formspec = formspec..
 		'label[0.5,5.5;Dimensions of the area in relation to..]'..
@@ -454,7 +454,7 @@ markers.show_compass_marker = function( col_offset, row_offset, with_text, pos, 
 		'label['..(col_offset+0.1)..','..(row_offset-0.80)..';'..starts_north..']'..
 		'label['..(col_offset+0.1)..','..(row_offset+0.80)..';'..starts_south..']';
    end
- 
+
    return formspec;
 end
 
@@ -469,32 +469,32 @@ markers.form_input_handler_areas = function( player, formname, fields)
    if( formname ~= "markers:info"
       or not( player )
       or not(  markers.menu_data_by_player[ pname ] )) then
-   
+
       return false;
    end
-  
+
    local menu_data = markers.menu_data_by_player[ pname ];
    local formspec = '';
 
 
    -- rename an area
-   if( fields.rename 
+   if( fields.rename
           and menu_data.selected
           and areas.areas[ menu_data.selected ]
           and areas.areas[ menu_data.selected ].owner == pname ) then
-   
+
       local area = areas.areas[ menu_data.selected ];
       if( not( area.name )) then
          area.name = '-enter area name-';
       end
       formspec = 'field[rename_new_name;Enter new name for area:;'..minetest.formspec_escape( area.name )..']';
 
-   elseif( fields.rename_new_name 
+   elseif( fields.rename_new_name
           and menu_data.selected
           and  areas.areas[ menu_data.selected ]
-          and ((areas.areas[ menu_data.selected ].owner == pname ) 
+          and ((areas.areas[ menu_data.selected ].owner == pname )
             or minetest.check_player_privs(pname, {areas=true}))) then
-   
+
       local area = areas.areas[ menu_data.selected ];
 
       -- actually rename the area
@@ -504,14 +504,14 @@ markers.form_input_handler_areas = function( player, formname, fields)
       minetest.chat_send_player( pname, 'Area successfully renamed.');
       -- shwo the renamed area
       formspec = markers.get_area_desc_formspec( menu_data.selected, player, menu_data.pos );
- 
 
-   
+
+
    -- change owner the area
    elseif( fields.change_owner
           and menu_data.selected
           and areas.areas[ menu_data.selected ] ) then
-   
+
       -- there are no checks here - those happen when the area is transferred
       local area = areas.areas[ menu_data.selected ];
       formspec = 'field[change_owner_name;Give area \"'..minetest.formspec_escape( area.name )..'\" to player:;-enter name of NEW OWNER-]';
@@ -523,9 +523,9 @@ markers.form_input_handler_areas = function( player, formname, fields)
       local area = areas.areas[ menu_data.selected ];
 
       -- only own areas can be transfered to another player (or if the areas priv is there)
-      if( area.owner ~= pname 
+      if( area.owner ~= pname
         and not( minetest.check_player_privs(pname, {areas=true}))) then
- 
+
          minetest.chat_send_player( pname, 'Permission denied. You do not own the area.');
 
       elseif( not( areas:player_exists( fields.change_owner_name ))) then
@@ -550,11 +550,11 @@ markers.form_input_handler_areas = function( player, formname, fields)
           and menu_data.selected
           and areas.areas[ menu_data.selected ]
           and areas.areas[ menu_data.selected ].owner == pname ) then
-   
+
       local area = areas.areas[ menu_data.selected ];
       formspec = 'field[add_owner_name;Grant access to area \"'..minetest.formspec_escape( area.name )..'\" to player:;-enter player name-]';
 
-   elseif( fields.add_owner_name 
+   elseif( fields.add_owner_name
               -- the player has to own the area already; we need a diffrent name here
           and fields.add_owner_name ~= pname
           and menu_data.selected
@@ -594,20 +594,20 @@ markers.form_input_handler_areas = function( player, formname, fields)
 
 
    -- delete area
-   elseif( fields.delete 
+   elseif( fields.delete
           and menu_data.selected
           and areas.areas[ menu_data.selected ] ) then
 
       local area = areas.areas[ menu_data.selected ];
 
       -- a player can only delete own areas or subareas of own areas
-      if( area.owner ~= pname 
-        and not(     area.parent 
-                 and areas.areas[ area.parent ] 
+      if( area.owner ~= pname
+        and not(     area.parent
+                 and areas.areas[ area.parent ]
                  and areas.areas[ area.parent ].owner
                  and areas.areas[ area.parent ].owner == pname )
         and not( minetest.check_player_privs(pname, {areas=true}))) then
- 
+
          minetest.chat_send_player( pname, 'Permission denied. You own neither the area itshelf nor its parent area.');
          -- shwo the area where the renaming failed
          formspec = markers.get_area_desc_formspec( menu_data.selected, player, menu_data.pos );
@@ -620,10 +620,10 @@ markers.form_input_handler_areas = function( player, formname, fields)
 
       end
 
-   elseif( fields.delete_confirm 
+   elseif( fields.delete_confirm
           and menu_data.selected
           and areas.areas[ menu_data.selected ] ) then
-   
+
       local area = areas.areas[ menu_data.selected ];
       local old_owner = area.owner;
 
@@ -635,13 +635,13 @@ markers.form_input_handler_areas = function( player, formname, fields)
       end
 
       -- a player can only delete own areas or subareas of own areas
-      if( area.owner ~= pname 
-        and not(     area.parent 
-                 and areas.areas[ area.parent ] 
+      if( area.owner ~= pname
+        and not(     area.parent
+                 and areas.areas[ area.parent ]
                  and areas.areas[ area.parent ].owner
                  and areas.areas[ area.parent ].owner == pname )
         and not( minetest.check_player_privs(pname, {areas=true}))) then
- 
+
          minetest.chat_send_player( pname, 'Permission denied. You own neither the area itshelf nor its parent area.');
          -- shwo the renamed area
          formspec = markers.get_area_desc_formspec( menu_data.selected, player, menu_data.pos );
@@ -652,7 +652,7 @@ markers.form_input_handler_areas = function( player, formname, fields)
          formspec = markers.get_area_desc_formspec( menu_data.selected, player, menu_data.pos );
 
       -- only areas without subareas can be deleted
-      elseif( #subareas > 0 ) then 
+      elseif( #subareas > 0 ) then
          minetest.chat_send_player( pname, 'The area has '..tostring( #subareas )..' subarea(s). Please delete those first!');
          formspec = markers.get_area_desc_formspec( menu_data.selected, player, menu_data.pos );
 
@@ -666,9 +666,9 @@ markers.form_input_handler_areas = function( player, formname, fields)
          formspec = markers.get_area_list_formspec(ppos, player, 'player',   menu_data.pos, old_owner, nil );
       end
 
-   
 
-   elseif( fields.show_parent 
+
+   elseif( fields.show_parent
           and menu_data.selected
           and areas.areas[ menu_data.selected ]
           and areas.areas[ menu_data.selected ].parent ) then
@@ -693,7 +693,7 @@ markers.form_input_handler_areas = function( player, formname, fields)
    elseif( fields.list_main_areas ) then
 
       formspec = markers.get_area_list_formspec(ppos, player, 'main_areas', menu_data.pos, nil, nil );
-          
+
    elseif( fields.list_areas_at
           and menu_data.pos ) then
 
@@ -740,7 +740,7 @@ markers.show_marker_stone_formspec = function( player, pos )
    local pname       = player:get_player_name();
    local ppos = pos
 
-   -- this table stores the list the player may have selected from; at the beginning, there is no list 
+   -- this table stores the list the player may have selected from; at the beginning, there is no list
    if( not( markers.menu_data_by_player[ pname ]  )) then
       markers.menu_data_by_player[ pname ] = {
 	  typ       = 'area_list',
@@ -787,7 +787,7 @@ markers.show_marker_stone_formspec = function( player, pos )
  		'label[0.5,0.5;This position is not protected.]'..
 		     'button[1.0,1.5;2,0.5;list_main_areas;List all main areas]'..
 		'button_exit[3.0,1.5;1,0.5;abort;OK]';
- 
+
    -- found exactly one areaa - display it
    elseif( #found_areas == 1 ) then
 

@@ -139,7 +139,7 @@ minetest.register_craftitem("compassgps:cgpsmap_marked", {
 				e:setyaw(yaw)
 				local dist=math.abs(pos.x-x)+math.abs(pos.y-y)+math.abs(pos.z-z)
 				if growing_wall_maps == false then
-					e:set_properties({visual_size={x=0.85,y=0.85}})									
+					e:set_properties({visual_size={x=0.85,y=0.85}})
 				elseif dist>30000 then
 					e:set_properties({visual_size={x=3.45,y=3.45}})
 				elseif dist>15000 then

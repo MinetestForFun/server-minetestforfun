@@ -1,11 +1,11 @@
---[==[	
+--[==[
 	Treasurer
 	- A mod for Minetest
 	version 0.2.0
 ]==]
 
 --[=[
- 	TABLE OF CONTENTS 
+ 	TABLE OF CONTENTS
 	part 1: Initialization
 	part 2: Treasure API
 	part 3: Treasure spawning mod handling
@@ -60,7 +60,7 @@ format of prob_func function:
 	--> returns a random or pseudorandom number between 0 (inclusive) and 1 (exclusive)
 	prob_func is entirely optional, if it’s not used, treasurer will default to math.random.
 	You can use prob_func to define your own random function, in case you don’t like an even
-	distribution 
+	distribution
 
 format of treasurer_groups:
 	This is just a table of strings, each string stands for a group name.
@@ -105,7 +105,7 @@ function treasurer.register_treasure(name, rarity, preciousness, count, wear, tr
 			return false
 		end
 	else
-		minetest.log("error","[treasurer] I rejected the treasure \""..tostring(name).."\" because it had an illegal type of rarity. Given type was \""..type(rarity).."\".") 
+		minetest.log("error","[treasurer] I rejected the treasure \""..tostring(name).."\" because it had an illegal type of rarity. Given type was \""..type(rarity).."\".")
 		return false
 	end
 
@@ -117,7 +117,7 @@ function treasurer.register_treasure(name, rarity, preciousness, count, wear, tr
 			return false
 		end
 	else
-		minetest.log("error","[treasurer] I rejected the treasure \""..tostring(name).."\" because it had an illegal type of preciousness. Given type was \""..type(preciousness).."\".") 
+		minetest.log("error","[treasurer] I rejected the treasure \""..tostring(name).."\" because it had an illegal type of preciousness. Given type was \""..type(preciousness).."\".")
 		return false
 	end
 
@@ -184,7 +184,7 @@ function treasurer.register_treasure(name, rarity, preciousness, count, wear, tr
 			treasurer.groups.treasurer[treasurer_groups] = {}
 		end
 		table.insert(treasurer.groups.treasurer[treasurer_groups], treasure)
-	elseif(type(treasurer_groups) == "table") then 
+	elseif(type(treasurer_groups) == "table") then
 		for i=1,#treasurer_groups do
 			-- assign to Treasurer group (create table if it does not exist yet)
 			if(treasurer.groups.treasurer[treasurer_groups[i]] == nil) then
@@ -211,7 +211,7 @@ end
     min_preciousness: (optional) don’t consider treasures with a lower preciousness. nil = no lower limit
     max_preciousness: (optional) don’t consider treasures with a higher preciousness. nil = no lower limit
     treasurer_groups: (optional): Only consider treasures which are members of at least one of the members of the provided Treasurer group table. nil = consider all groups
-  returns: 
+  returns:
     a table of ItemStacks (the requested treasures) - may be empty
     on error, it returns false
 ]]
@@ -232,7 +232,7 @@ function treasurer.select_random_treasures(count, min_preciousness, max_precious
 		for i=1,#treasurer.treasures do
 			table.insert(p_treasures, treasurer.treasures[i])
 		end
-	
+
 	-- if the group filter IS used, copy only the treasures from the said groups
 	elseif(type(treasurer_groups) == "string") then
 		if(treasurer.groups.treasurer[treasurer_groups] ~= nil) then

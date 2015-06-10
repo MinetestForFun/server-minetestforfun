@@ -17,7 +17,7 @@ local function poisenp(tick, time, time_left, player)
 	if player:get_hp()-1 > 0 then
 		player:set_hp(player:get_hp()-1)
 	end
-	
+
 end
 
 function hud.item_eat(hunger_change, replace_with_item, poisen, heal)
@@ -301,7 +301,7 @@ if minetest.get_modpath("mobs") ~= nil then
 	overwrite("mobs:chicken_cooked", 4)
 	overwrite("mobs:egg", 1)
 	overwrite("mobs:chicken_egg_fried", 2)
-	if minetest.get_modpath("bucket") then 
+	if minetest.get_modpath("bucket") then
 		overwrite("mobs:bucket_milk", 3, "bucket:bucket_empty")
 	end
 end

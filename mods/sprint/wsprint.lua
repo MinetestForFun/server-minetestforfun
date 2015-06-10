@@ -2,9 +2,9 @@
 Sprint mod for Minetest by GunshipPenguin
 
 To the extent possible under law, the author(s)
-have dedicated all copyright and related and neighboring rights 
+have dedicated all copyright and related and neighboring rights
 to this software to the public domain worldwide. This software is
-distributed without any warranty. 
+distributed without any warranty.
 ]]
 
 local players = {}
@@ -13,10 +13,10 @@ local staminaHud = {}
 minetest.register_on_joinplayer(function(player)
 	local playerName = player:get_player_name()
 	players[playerName] = {
-		state = 0, 
-		timeOut = 0, 
-		stamina = SPRINT_STAMINA, 
-		moving = false, 
+		state = 0,
+		timeOut = 0,
+		stamina = SPRINT_STAMINA,
+		moving = false,
 	}
 
 	if SPRINT_HUDBARS_USED then
@@ -53,7 +53,7 @@ minetest.register_globalstep(function(dtime)
 			local near = minetest.find_node_near(pos, 1, "default:cactus")
 			if near then
 				pos = near
-				
+
 				-- am I touching the cactus? if so it hurts
 				for _,player in ipairs(minetest.get_objects_inside_radius(pos, 1.0)) do
 					if player:get_hp() > 0 then
@@ -61,10 +61,10 @@ minetest.register_globalstep(function(dtime)
 					end
 				end
 			end
-			
+
 			--Check if they are moving or not
 			players[playerName]["moving"] = player:get_player_control()["up"]
-			
+
 			--If the player has tapped w longer than SPRINT_TIMEOUT ago, set his/her state to 0
 			if playerInfo["state"] == 2 then
 				if playerInfo["timeOut"] + SPRINT_TIMEOUT < gameTime then
@@ -72,7 +72,7 @@ minetest.register_globalstep(function(dtime)
 					setState(playerName, 0)
 				end
 
-			--If the player is sprinting, create particles behind him/her 
+			--If the player is sprinting, create particles behind him/her
 			elseif playerInfo["state"] == 3 and gameTime % 0.1 == 0 then
 				local numParticles = math.random(1, 2)
 				local playerPos = player:getpos()
@@ -103,16 +103,16 @@ minetest.register_globalstep(function(dtime)
 			elseif players[playerName]["moving"] == true and playerInfo["state"] == 2 then --Sprinting
 				setState(playerName, 3)
 			end
-			
+
 			--Lower the player's stamina by dtime if he/she is sprinting and set his/her state to 0 if stamina is zero
-			if playerInfo["state"] == 3 then 
+			if playerInfo["state"] == 3 then
 				playerInfo["stamina"] = playerInfo["stamina"] - dtime
 				if playerInfo["stamina"] <= 0 then
 					playerInfo["stamina"] = 0
 					setState(playerName, 0)
 					minetest.sound_play("default_breathless",{object=player})
 				end
-			
+
 			--Increase player's stamina if he/she is not sprinting and his/her stamina is less than SPRINT_STAMINA
 			elseif playerInfo["state"] ~= 3 and playerInfo["stamina"] < SPRINT_STAMINA then
 				playerInfo["stamina"] = playerInfo["stamina"] + dtime
@@ -121,7 +121,7 @@ minetest.register_globalstep(function(dtime)
 			if playerInfo["stamina"] > SPRINT_STAMINA then
 				playerInfo["stamina"] = SPRINT_STAMINA
 			end
-			
+
 			--Update the players's hud sprint stamina bar
 
 			if SPRINT_HUDBARS_USED then

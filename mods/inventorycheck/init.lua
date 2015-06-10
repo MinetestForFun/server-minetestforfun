@@ -30,6 +30,6 @@ minetest.register_chatcommand("inv", {
 				invlist = invlist..items.." | "
 			end
 		end
-		minetest.chat_send_player(name, invlist)		
+		minetest.chat_send_player(name, invlist)
 	end,
 })

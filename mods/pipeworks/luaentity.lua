@@ -194,7 +194,7 @@ local entitydef_default = {
 		end
 	end,
 	getvelocity = function(self)
-		return vector.new(self._velocity)	
+		return vector.new(self._velocity)
 	end,
 	setvelocity = function(self, velocity)
 		self._velocity = vector.new(velocity)
@@ -268,7 +268,7 @@ function luaentity.add_entity(pos, name)
 		_acceleration = {x = 0, y = 0, z = 0},
 		_attached_entities = {},
 	}
-	
+
 	local prototype = luaentity.registered_entities[name]
 	setmetatable(entity, prototype) -- Default to prototype for other methods
 	luaentity.entities[index] = entity

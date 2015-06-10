@@ -39,17 +39,17 @@ minetest.register_alias("flowers_plus:seaweed", "flowers:seaweed") -- exception
 
 local PLaNTS = {
  --	  MoD* 			iTeM				MeSSaGe ("You caught "..)
-	{"flowers",		"waterlily",		"a Waterlily." }, 
-	{"flowers",		"waterlily_225",	"a Waterlily." }, 
-	{"flowers",		"waterlily_45",		"a Waterlily." }, 
-	{"flowers",		"waterlily_675",	"a Waterlily." }, 
-	{"flowers",		"waterlily_s1",		"a Waterlily." }, 
-	{"flowers",		"waterlily_s2",		"a Waterlily." }, 
-	{"flowers",		"waterlily_s3",		"a Waterlily." }, 
+	{"flowers",		"waterlily",		"a Waterlily." },
+	{"flowers",		"waterlily_225",	"a Waterlily." },
+	{"flowers",		"waterlily_45",		"a Waterlily." },
+	{"flowers",		"waterlily_675",	"a Waterlily." },
+	{"flowers",		"waterlily_s1",		"a Waterlily." },
+	{"flowers",		"waterlily_s2",		"a Waterlily." },
+	{"flowers",		"waterlily_s3",		"a Waterlily." },
 	{"flowers",		"waterlily_s4",		"a Waterlily." },
-	{"flowers",		"seaweed",			"some Seaweed."}, 
-	{"flowers",		"seaweed_2",		"some Seaweed."}, 
-	{"flowers",		"seaweed_3",		"some Seaweed."}, 
+	{"flowers",		"seaweed",			"some Seaweed."},
+	{"flowers",		"seaweed_2",		"some Seaweed."},
+	{"flowers",		"seaweed_3",		"some Seaweed."},
 	{"flowers",		"seaweed_4",		"some Seaweed."},
 	{"trunks",		"twig_1",			"a Twig."	   },
 	{"trunks",		"twig_2",			"a Twig."	   },
@@ -89,7 +89,7 @@ minetest.register_node("fishing:bobber_box", {
 		"fishing_bobber.png",
 		"fishing_bobber.png",
 		"fishing_bobber.png^[transformFX"
-	}, -- 
+	}, --
 	groups = {not_in_creative_inventory=1},
 })
 
@@ -123,7 +123,7 @@ local FISHING_BOBBER_ENTITY={
 		})
 		self.object:remove()
 	end,
---	WHEN RIGHTCLICKING THE BOBBER THE FOLLOWING HAPPENS	(CLICK AT THE RIGHT TIME WHILE HOLDING A FISHING POLE)	
+--	WHEN RIGHTCLICKING THE BOBBER THE FOLLOWING HAPPENS	(CLICK AT THE RIGHT TIME WHILE HOLDING A FISHING POLE)
 	on_rightclick = function (self, clicker)
 		local item = clicker:get_wielded_item()
 		local player = clicker:get_player_name()
@@ -141,7 +141,7 @@ local FISHING_BOBBER_ENTITY={
 						minetest.add_node({x=pos.x, y=pos.y, z=pos.z}, {name="air"})
 						if inv:room_for_item("main", {name=DRoP, count=1, wear=0, metadata=""}) then
 							inv:add_item("main", {name=DRoP, count=1, wear=0, metadata=""})
-							if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught Plant				
+							if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught Plant
 						end
 						if not minetest.setting_getbool("creative_mode") then
 							if inv:room_for_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""}) then
@@ -176,13 +176,13 @@ local FISHING_BOBBER_ENTITY={
 										iTeM = "fish_blue_white"
 										WeaR = 0
 										MeSSaGe = S("a Blue white fish.")
-										obj:remove()	
+										obj:remove()
 									end
 								end
 								-- add (in)visible fish to inventory
 								if inv:room_for_item("main", {name=MoD..":"..iTeM, count=1, wear=WeaR, metadata=""}) then
 									inv:add_item("main", {name=MoD..":"..iTeM, count=1, wear=WeaR, metadata=""})
-									if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught somethin'	
+									if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught somethin'
 								end
 								if not minetest.setting_getbool("creative_mode") then
 									if GeTBaiTBack == true then
@@ -211,12 +211,12 @@ local FISHING_BOBBER_ENTITY={
 						if inv:room_for_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""}) then
 							inv:add_item("main", {name="fishing:bait_worm", count=1, wear=0, metadata=""})
 							if MESSAGES == true then say(player, S("The bait is still there."), false) end -- bait still there
-						end	
+						end
 					end
 				end
 			end
 			end
-		end 
+		end
 		-- weither player has fishing pole or not
 		-- make sound and remove bobber
 		minetest.sound_play("fishing_bobber1", {
@@ -240,7 +240,7 @@ local FISHING_BOBBER_ENTITY={
 				end
 			end
 		end
-		
+
 		if math.random(1, 4) == 1 then
 			self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/2880*math.pi))
 		end
@@ -259,9 +259,9 @@ local FISHING_BOBBER_ENTITY={
 			minetest.sound_play("fishing_bobber1", {pos = self.object:getpos(),gain = 0.5,})
 			self.object:remove()
 		end
-		
-		
-		
+
+
+
 		if self.object:get_hp() > 310 then
 			local find_fish = minetest.get_objects_inside_radius({x=pos.x,y=pos.y+0.5,z=pos.z}, 1)
 			for k, obj in pairs(find_fish) do
@@ -274,8 +274,8 @@ local FISHING_BOBBER_ENTITY={
 				end
 			end
 		end
-		
-		
+
+
 		local do_env_damage = function(self)
 			self.object:set_hp(self.object:get_hp()-self.water_damage)
 			if self.object:get_hp() == 600 then
@@ -306,7 +306,7 @@ local FISHING_BOBBER_ENTITY={
 				self.object:moveto({x=pos.x,y=pos.y+0.0625,z=pos.z})
 			elseif self.object:get_hp() == 285 then
 				self.object:moveto({x=pos.x,y=pos.y-0.1,z=pos.z})
-			elseif self.object:get_hp() < 284 then	
+			elseif self.object:get_hp() < 284 then
 				self.object:moveto({x=pos.x+(0.001*(math.random(-8, 8))),y=pos.y,z=pos.z+(0.001*(math.random(-8, 8)))})
 				self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/1440*math.pi))
 			elseif self.object:get_hp() == 0 then

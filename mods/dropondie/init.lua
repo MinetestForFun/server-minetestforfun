@@ -42,7 +42,7 @@ minetest.register_on_dieplayer(function(player)
 
    -- Drop unified_inventory bags and their contents
    if minetest.get_modpath("unified_inventory") then
-      
+
       local bag_id = {"bag1", "bag2", "bag3", "bag4"}
       local contents_id = ""
       local n = 0

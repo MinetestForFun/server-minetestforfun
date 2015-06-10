@@ -20,7 +20,7 @@ minetest.register_node("quartz:quartz_ore", {
 	 drop = 'quartz:quartz_crystal',
          sounds = default.node_sound_stone_defaults(),
 })
-	 
+
 minetest.register_ore({
     ore_type       = "scatter",
     ore            = "quartz:quartz_ore",
@@ -72,14 +72,14 @@ stairs.register_slab("quartzstair", "quartz:pillar",
 		{"quartz_pillar_top.png", "quartz_pillar_top.png", "quartz_pillar_side.png"},
 		"Quartz Pillar stair",
 		"Quartz Pillar slab",
-		default.node_sound_glass_defaults())		
+		default.node_sound_glass_defaults())
 
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 --Crafting
 
 --Quartz Crystal Piece
@@ -99,7 +99,7 @@ minetest.register_craft({
 		{'', '', ''}
 	}
 })
-	
+
 --Chiseled Quartz
 minetest.register_craft({
 	output = "quartz:chiseled 2",
@@ -169,22 +169,22 @@ if minetest.get_modpath("moreblocks") and enable_stairsplus then
 	"Quartz Block",
 	"block",
 	0)
-	
+
 	register_stair_slab_panel_micro("quartz", "chiseled", "quartz:chiseled",
 	{cracky=3},
 	{"quartz_chiseled.png"},
 	"Chiseled Quartz",
 	"chiseled",
 	0)
-	
+
 	register_stair_slab_panel_micro("quartz", "pillar", "quartz:pillar",
 	{cracky=3},
 	{"quartz_pillar_top.png", "quartz_pillar_top.png", "quartz_pillar_side.png"},
 	"Quartz Pillar",
 	"pillar",
 	0)
-	
+
 	table.insert(circular_saw.known_stairs, "quartz:block")
 	table.insert(circular_saw.known_stairs, "quartz:chiseled")
 	table.insert(circular_saw.known_stairs, "quartz:pillar")
-end	
+end

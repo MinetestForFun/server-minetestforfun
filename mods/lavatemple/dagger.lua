@@ -17,7 +17,7 @@ minetest.register_globalstep(function(dtime)
 		if string.sub(wielded_item, 0, 18) == "lavatemple:dagger_" then
 			player:set_wielded_item("lavatemple:dagger_"..compass_image)
 		else
-			if player:get_inventory() then 
+			if player:get_inventory() then
 				for i,stack in ipairs(player:get_inventory():get_list("main")) do
 					if string.sub(stack:get_name(), 0, 18) == "lavatemple:dagger_" and
 					   stack:get_name() ~= "lavatemple:dagger_"..compass_image then

@@ -21,7 +21,7 @@ local SETTLE = false -- Snow collects on ground within 32 nodes of player
 local RAIN = false -- Rain above humidity threshold
 local THOVER = false -- Instead use a temperature and humidity system with
 			-- snow in overlap of cold and humid areas, else rain in humid areas
-			
+
 -- Temperature noise parameters
 local SEEDT = 112 -- 112 These are default noise parameters from snow mod by Splizard
 local OCTAT = 3	 -- 3		use these for snowfall in those snow biomes
@@ -46,7 +46,7 @@ minetest.register_globalstep(function(dtime)
 	local perlinp = minetest.get_perlin(813, 1, 0.5, SCALP)
 	if perlinp:get2d({x = os.clock()/60, y = 0}) < PRET then
 		return
-	end 
+	end
 	for _, player in ipairs(minetest.get_connected_players()) do
 		if math.random() > PPPCHA or player:getpos().y < -19600 then
 			return
@@ -66,7 +66,7 @@ minetest.register_globalstep(function(dtime)
 			local perlint = minetest.get_perlin(SEEDT, OCTAT, PERST, SCALT)
 			noiset = perlint:get2d({x = pposx, y = pposz})
 		end
-		if RAIN or THOVER then	
+		if RAIN or THOVER then
 			local perlinh = minetest.get_perlin(SEEDH, OCTAH, PERSH, SCALH)
 			noiseh = perlinh:get2d({x = pposx, y = pposz})
 		end
@@ -188,6 +188,6 @@ minetest.register_globalstep(function(dtime)
 					playername = player:get_player_name(),
 				})
 			end
-		end			
+		end
 	end
 end)

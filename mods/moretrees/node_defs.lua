@@ -1,7 +1,7 @@
 local S = moretrees.intllib
 
 moretrees.avoidnodes = {}
-	
+
 moretrees.treelist = {
 	{"beech",		"Beech Tree"},
 	{"apple_tree",	"Apple Tree"},
@@ -25,7 +25,7 @@ local dirs3 = { 14, 11, 16, 5, 14 }
 local moretrees_new_leaves_drawtype = "allfaces_optional"
 local moretrees_plantlike_leaves_visual_scale = 1
 
-if moretrees.plantlike_leaves then 
+if moretrees.plantlike_leaves then
 	moretrees_new_leaves_drawtype = "plantlike"
 	moretrees_plantlike_leaves_visual_scale = 1.189
 end
@@ -115,7 +115,7 @@ for i in ipairs(moretrees.treelist) do
 			groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1,sapling=1},
 			sounds = default.node_sound_defaults(),
 		})
-	
+
 		minetest.register_node("moretrees:"..treename.."_sapling_ongen", {
 			description = S(treedesc.." Sapling"),
 			drawtype = "plantlike",
@@ -180,7 +180,7 @@ for i in ipairs(moretrees.treelist) do
 			stairsplus:register_all(
 				"moretrees",
 				treename.."_trunk",
-				"moretrees:"..treename.."_trunk", 
+				"moretrees:"..treename.."_trunk",
 				{
 					groups = { snappy=1, choppy=2, oddly_breakable_by_hand=1, flammable=2, not_in_creative_inventory=1 },
 					tiles =	{

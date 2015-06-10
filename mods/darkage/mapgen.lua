@@ -155,7 +155,7 @@ local function generate_claylike(name, minp, maxp, seed, chance, minh, maxh, dir
 							end
 							if num_water_around >= 3 then
 								is_shallow = false
-							end	
+							end
 							if is_shallow then
 								for x1=-divlen,divlen do
 									for z1=-divlen,divlen do

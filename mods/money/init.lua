@@ -71,7 +71,7 @@ local exist = money.exist
 	end
 	end) --]]
 --End.
-	
+
 --Registration privileges.
 --[[minetest.register_privilege("money", "Can use /money [pay <account> <amount>] command")
 minetest.register_privilege("money_admin", {
@@ -134,7 +134,7 @@ minetest.register_privilege("money_admin", {
 		end
 		if param1 and param2 and param3 then --/money pay/take/set/inc/dec <account> <amount>
 			if param1 == "pay" or param1 == "take" or param1 == "set" or param1 == "inc" or param1 == "dec" then
-				if exist(param2) then				
+				if exist(param2) then
 					if tonumber(param3) then
 						if tonumber(param3) >= 0 then
 							param3 = tonumber(param3)
@@ -154,7 +154,7 @@ minetest.register_privilege("money_admin", {
 									end
 								else
 									minetest.chat_send_player(name, "Your account is frozen.")
-								end	
+								end
 								return true
 							end
 							if minetest.get_player_privs(name)["money_admin"] then
@@ -376,7 +376,7 @@ minetest.register_node("money:shop", {
 				minetest.chat_send_player(sender_name, "In the shop is not enough space.")
 				return true
 			elseif get_money(meta:get_string("owner")) - meta:get_string("costsell") < 0 then
-				minetest.chat_send_player(sender_name, "The buyer is not enough money.") 
+				minetest.chat_send_player(sender_name, "The buyer is not enough money.")
 				return true
 			end
 			set_money(sender_name, get_money(sender_name) + meta:get_string("costsell"))
@@ -520,7 +520,7 @@ minetest.register_node("money:barter_shop", {
 	end,
 })
 --End.
-	
+
 minetest.register_craft({--Barter shop recipe.
 	output = "money:barter_shop",
 	recipe = {

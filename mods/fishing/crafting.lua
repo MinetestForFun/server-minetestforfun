@@ -14,7 +14,7 @@
 -- Wooden Fishing Pole
 minetest.register_craft({
 	output = "fishing:pole",
-	recipe = { 
+	recipe = {
 		{"", 				"",					"group:stick"	},
 		{"", 				"group:stick",		"farming:string"},
 		{"group:stick",		"",					"farming:string"},
@@ -24,7 +24,7 @@ minetest.register_craft({
 if minetest.get_modpath("moreblocks") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole",
-	recipe = { 
+	recipe = {
 		{"", 				"",					"group:stick"		},
 		{"", 				"group:stick",		"moreblocks:rope"	},
 		{"group:stick",		"",					"moreblocks:rope"	},
@@ -35,7 +35,7 @@ end
 if minetest.get_modpath("ropes") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole",
-	recipe = { 
+	recipe = {
 		{"", 				"",					"group:stick"	},
 		{"", 				"group:stick",		"ropes:rope"   	},
 		{"group:stick",		"",					"ropes:rope"   	},
@@ -47,7 +47,7 @@ end
 if minetest.get_modpath("moreores") ~= nil then
 minetest.register_craft({
 	output = "fishing:pole_perfect",
-	recipe = { 
+	recipe = {
 		{"", 							"",							"moreores:mithril_ingot"	},
 		{"", 							"moreores:mithril_ingot",	"mobs:spider_cobweb"		},
 		{"moreores:mithril_ingot",		"",							"mobs:spider_cobweb"		},
@@ -86,7 +86,7 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "fishing:sushi",
 	recipe = {"fishing:fish_raw",	"farming:seed_wheat",	"seaplants:kelpgreen"	},
-		
+
 })
 
 -----------------------------------------------------------------------------------------------

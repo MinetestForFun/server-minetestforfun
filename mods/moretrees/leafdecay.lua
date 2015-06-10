@@ -83,10 +83,10 @@ if moretrees.enable_default_leafdecay then
 			minetest.remove_node(pos)
 			nodeupdate(pos)
 		end
-	})	
+	})
 end
 
--- Decay apple tree blossoms from nature_classic mod 
+-- Decay apple tree blossoms from nature_classic mod
 if minetest.get_modpath("nature_classic") then
 	minetest.register_abm({
 		nodenames = "moretrees:apple_blossoms",
@@ -112,6 +112,6 @@ if moretrees.enable_default_jungle_leafdecay then
 			minetest.remove_node(pos)
 			nodeupdate(pos)
 		end
-	})	
+	})
 end
 

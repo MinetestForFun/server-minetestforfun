@@ -172,11 +172,11 @@ treasurer.register_treasure("moreblocks:iron_check", 0.05, 5, {1,2}, nil, deco)	
 treasurer.register_treasure("stained_glass:2_9", 0.05, 6, {2,4}, nil, deco)						--common
 treasurer.register_treasure("stained_glass:7_5_6", 0.05, 6, {2,4}, nil, deco)					--common
 
--- "light" group -- 
+-- "light" group --
 -- preciousness = material/craft cost and light value
 -- total loot chance = 0.85
 treasurer.register_treasure("moreblocks:super_glow_glass", 0.005, 10, {1,2}, nil, light) 			--rare
-treasurer.register_treasure("moreblocks:glow_glass", 0.005, 9, {3,5}, nil, light) 					--rare	
+treasurer.register_treasure("moreblocks:glow_glass", 0.005, 9, {3,5}, nil, light) 					--rare
 treasurer.register_treasure("glow:lamp", 0.01, 7, {1,3}, nil, light) 								--uncommun
 treasurer.register_treasure("glow:stone", 0.01, 7, {1,3}, nil, light) 								--uncommun
 treasurer.register_treasure("bobblocks:blueblock", 0.02, 6, {1,3}, nil, light) 						--uncommun
@@ -226,7 +226,7 @@ treasurer.register_treasure("homedecor:candle", 0.02, 3, {1,5}, nil, light) 				
 treasurer.register_treasure("lantern:candle", 0.02, 3, {1,5}, nil, light) 							--commun
 treasurer.register_treasure("christmas_craft:christmas_lights", 0.02, 2, {4,8}, nil, light) 		--commun
 
--- "building_block" group -- 
+-- "building_block" group --
 -- preciousness = material/craft cost
 -- total loot chance = 0.7525
 treasurer.register_treasure("nether:white", 0.0025, 10, 1, nil, building_block) 						--rare --siwtonic bloc

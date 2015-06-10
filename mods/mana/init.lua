@@ -39,7 +39,7 @@ end
 	API functions
 ]===]
 
-function mana.set(playername, value) 
+function mana.set(playername, value)
 	if value < 0 then
 		minetest.log("info", "[mana] Warning: mana.set was called with negative value!")
 		value = 0
@@ -108,7 +108,7 @@ function mana.add(playername, value)
 	local t = mana.playerlist[playername]
 	value = mana.round(value)
 	if(t ~= nil and ((t.mana + value) <= t.maxmana) and value >= 0) then
-		t.mana = t.mana + value 
+		t.mana = t.mana + value
 		mana.hud_update(playername)
 		return true
 	else
@@ -120,7 +120,7 @@ function mana.subtract(playername, value)
 	local t = mana.playerlist[playername]
 	value = mana.round(value)
 	if(t ~= nil and t.mana >= value and value >= 0) then
-		t.mana = t.mana -value 
+		t.mana = t.mana -value
 		mana.hud_update(playername)
 		return true
 	else
@@ -212,7 +212,7 @@ end)
 
 minetest.register_on_joinplayer(function(player)
 	local playername = player:get_player_name()
-	
+
 	if mana.playerlist[playername] == nil then
 		mana.playerlist[playername] = {}
 		mana.playerlist[playername].mana = 0
@@ -285,7 +285,7 @@ else
 	function mana.manastring(playername)
 		return string.format("Mana: %d/%d", mana.get(playername), mana.getmax(playername))
 	end
-	
+
 	function mana.hud_add(playername)
 		local player = minetest.get_player_by_name(playername)
 		id = player:hud_add({
@@ -312,12 +312,12 @@ else
 		mana.playerlist[playername].hudid = id
 		return id
 	end
-	
+
 	function mana.hud_update(playername)
 		local player = minetest.get_player_by_name(playername)
 		player:hud_change(mana.playerlist[playername].hudid, "text", mana.manastring(playername))
 	end
-	
+
 	function mana.hud_remove(playername)
 		local player = minetest.get_player_by_name(playername)
 		player:hud_remove(mana.playerlist[playername].hudid)

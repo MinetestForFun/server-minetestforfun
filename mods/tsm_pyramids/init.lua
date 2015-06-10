@@ -104,7 +104,7 @@ local function make(pos)
 		local n = minetest.get_node({x=pos.x+ix,y=pos.y+iy+yy,z=pos.z+iz})
 		 if n and n.name and n.name == "default:desert_stone" then minetest.set_node({x=pos.x+ix,y=pos.y+iy+yy,z=pos.z+iz},{name="default:desert_sand"}) end
 		end
-		end	
+		end
 	end
  end
 
@@ -144,7 +144,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	local perlin1 = minetest.env:get_perlin(perl1.SEED1, perl1.OCTA1, perl1.PERS1, perl1.SCAL1)
 	local noise1 = perlin1:get2d({x=minp.x,y=minp.y})--,z=minp.z})
-		
+
 	if noise1 > 0.25 or noise1 < -0.26 then
 	 local mpos = {x=math.random(minp.x,maxp.x), y=math.random(minp.y,maxp.y), z=math.random(minp.z,maxp.z)}
 
@@ -152,7 +152,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		while p2 == nil and cnt < 5 do
 			cnt = cnt+1
 			mpos = {x=math.random(minp.x,maxp.x), y=math.random(minp.y,maxp.y), z=math.random(minp.z,maxp.z)}
-			p2 = minetest.find_node_near(mpos, 25, {"default:desert_sand"})	
+			p2 = minetest.find_node_near(mpos, 25, {"default:desert_sand"})
 		end
 		if p2 == nil then return end
 		if p2.y < 0 then return end
@@ -176,8 +176,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		p2.y = p2.y - 3
 		if p2.y < 0 then p2.y = 0 end
 		if minetest.find_node_near(p2, 25, {"default:water_source"}) ~= nil or minetest.find_node_near(p2, 22, {"default:dirt_with_grass"}) ~= nil or minetest.find_node_near(p2, 52, {"maptools:sandstone_brick"}) ~= nil then return end
-	
-		if math.random(0,10) > 7 then return end	
+
+		if math.random(0,10) > 7 then return end
 		minetest.after(0.8,make,p2)
 	end
 end)

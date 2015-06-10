@@ -17,8 +17,8 @@ minetest.register_node("lantern:lantern", {
 	sounds = default.node_sound_glass_defaults(),
 	node_box = {
 		type = "wallmounted",
-		wall_top = {-1/6, 1/6, -1/6, 1/6, 0.5, 1/6},		
-		wall_bottom = {-1/6, -0.5, -1/6, 1/6, -1/6, 1/6}, 	
+		wall_top = {-1/6, 1/6, -1/6, 1/6, 0.5, 1/6},
+		wall_bottom = {-1/6, -0.5, -1/6, 1/6, -1/6, 1/6},
 		wall_side = {-1/6, -1/6, -1/6, -0.5, 1/6, 1/6},
 		},
 })
@@ -44,7 +44,7 @@ minetest.register_node("lantern:candle", {
 	inventory_image = "candle_inv.png",
 	tiles = {
 			{name="candle.png", animation={type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 0.8}},
-		},	
+		},
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
@@ -184,16 +184,16 @@ minetest.register_node("lantern:lamp1", {
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
 	type = "fixed",
-	fixed = {-0.5, -2.5, -0.5, 1.5, 1.5, 0.5}, 
+	fixed = {-0.5, -2.5, -0.5, 1.5, 1.5, 0.5},
 	},
 	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})	
-		minetest.remove_node({x = pos.x + 1, y = pos.y + 1, z = pos.z })	
+		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
+		minetest.remove_node({x = pos.x + 1, y = pos.y + 1, z = pos.z })
 		minetest.remove_node({x = pos.x + 1, y = pos.y , z = pos.z })
-		minetest.remove_node({x = pos.x + 1, y = pos.y - 1, z = pos.z })	
-		minetest.remove_node({x = pos.x + 1, y = pos.y - 2, z = pos.z })	
+		minetest.remove_node({x = pos.x + 1, y = pos.y - 1, z = pos.z })
+		minetest.remove_node({x = pos.x + 1, y = pos.y - 2, z = pos.z })
 	end
-})	
+})
 
 minetest.register_node("lantern:lamp2", {
 	description = "Lamp2",
@@ -207,16 +207,16 @@ minetest.register_node("lantern:lamp2", {
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
 	type = "fixed",
-	fixed = {-0.5, -2.5, -0.5, 0.5, 1.5, 1.5}, 
+	fixed = {-0.5, -2.5, -0.5, 0.5, 1.5, 1.5},
 	},
 	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})	
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z + 1})	
+		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
+		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z + 1})
 		minetest.remove_node({x = pos.x, y = pos.y , z = pos.z + 1})
-		minetest.remove_node({x = pos.x, y = pos.y - 1, z = pos.z + 1})	
-		minetest.remove_node({x = pos.x, y = pos.y - 2, z = pos.z + 1})	
+		minetest.remove_node({x = pos.x, y = pos.y - 1, z = pos.z + 1})
+		minetest.remove_node({x = pos.x, y = pos.y - 2, z = pos.z + 1})
 	end
-})	
+})
 
 minetest.register_node("lantern:lamp3", {
 	description = "Lamp3",
@@ -230,16 +230,16 @@ minetest.register_node("lantern:lamp3", {
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
 	type = "fixed",
-	fixed = {-1.5, -2.5, -0.5, 0.5, 1.5, 0.5}, 
+	fixed = {-1.5, -2.5, -0.5, 0.5, 1.5, 0.5},
 	},
 	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})	
-		minetest.remove_node({x = pos.x - 1, y = pos.y + 1, z = pos.z})	
+		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
+		minetest.remove_node({x = pos.x - 1, y = pos.y + 1, z = pos.z})
 		minetest.remove_node({x = pos.x - 1, y = pos.y , z = pos.z})
-		minetest.remove_node({x = pos.x - 1, y = pos.y - 1, z = pos.z})	
-		minetest.remove_node({x = pos.x - 1, y = pos.y - 2, z = pos.z})	
+		minetest.remove_node({x = pos.x - 1, y = pos.y - 1, z = pos.z})
+		minetest.remove_node({x = pos.x - 1, y = pos.y - 2, z = pos.z})
 	end
-})	
+})
 
 minetest.register_node("lantern:lamp4", {
 	description = "Lamp4",
@@ -253,16 +253,16 @@ minetest.register_node("lantern:lamp4", {
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
 	type = "fixed",
-	fixed = {-0.5, -2.5, -1.5, 0.5, 1.5, 0.5}, 
+	fixed = {-0.5, -2.5, -1.5, 0.5, 1.5, 0.5},
 	},
 	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})	
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z - 1})	
+		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
+		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z - 1})
 		minetest.remove_node({x = pos.x, y = pos.y , z = pos.z - 1})
-		minetest.remove_node({x = pos.x, y = pos.y - 1, z = pos.z - 1})	
-		minetest.remove_node({x = pos.x, y = pos.y - 2, z = pos.z - 1})	
+		minetest.remove_node({x = pos.x, y = pos.y - 1, z = pos.z - 1})
+		minetest.remove_node({x = pos.x, y = pos.y - 2, z = pos.z - 1})
 	end
-})	
+})
 
 --
 -- register crafting recipes:

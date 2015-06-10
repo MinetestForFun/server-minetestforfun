@@ -100,7 +100,7 @@ if minetest.get_modpath("farming") == nil then
 			{"default:dry_shrub","default:dry_shrub"},
 		}
 	})
-	
+
 	minetest.register_craft({
 		output = "darkage:straw 2",
 		recipe = {
@@ -131,7 +131,7 @@ else
 			{"default:dry_shrub","default:dry_shrub"},
 		}
 	})
-	
+
 	minetest.register_craft({
 		output = "farming:straw 2",
 		recipe = {
@@ -139,7 +139,7 @@ else
 			{"darkage:dry_leaves","darkage:dry_leaves"},
 		}
 	})
-	
+
 	minetest.register_craft({
 		output = "darkage:straw_bale",
 		recipe = {
@@ -147,7 +147,7 @@ else
 			{"farming:straw","farming:straw"},
 		}
 	})
-	
+
 	minetest.register_craft({
 		output = "darkage:adobe 4",
 		recipe = {

@@ -16,17 +16,17 @@ local IRC = [[
 
 Voici les sanctions prévues pour les infractions aux règles ci-dessus.
 
-- Infraction niveau DIRT : 
+- Infraction niveau DIRT :
 	Manque de respect envers autrui : Devoice une journée
 	Provocation envers autrui : Devoice une journée
 	Insultes envers autrui : Kick + Devoice une journée
-	
+
 - Infraction niveau STONE :
 	- Récidivide d'infraction niveau dirt : Kick + Ban 1/2 journée
 	- Flood, Discrimination : Kick + Devoice deux heures
 	- Spam : Kick + Devoice 1 jour + Ban 1/2 journée
-	
-- Infraction niveau MESE : 
+
+- Infraction niveau MESE :
 	- Récidive d'infraction niveau stone : Kick + Ban 4 jours + devoice 5 jours
 	- Diffusion de contenu à caractère sexuel : Kick + Ban 1 semaine + devoice 5 jours
 	- Irrespect envers l'équipe du canal : Kick + Ban 10 jours + devoice 8 jours
@@ -35,7 +35,7 @@ Voici les sanctions prévues pour les infractions aux règles ci-dessus.
 	- Récidive d'infraction niveau mese : Kick + Ban 1 mois + devoice 2 semaines
 	- Violation des lois en vigueur : Kick + Ban définitif + Gline si accord des IrcOP d'InchraNet
 	- Violation des règles d'InchraNet : Kick + Ban définitif + Gline ou sanction défnie par l'équipe d'InchraNet
-	
+
 
 Autres règles de bienséances :
 - Ne demandez pas à faire partie des opérateurs/semi-opérateurs du canal.

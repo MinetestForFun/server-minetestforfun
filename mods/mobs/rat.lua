@@ -48,7 +48,7 @@ mobs:register_mob("mobs:rat", {
 mobs:register_spawn("mobs:rat", {"default:stone"}, 20, 0, 10000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:rat", "Rat", "mobs_rat_inventory.png", 0)
-	
+
 -- cooked rat, yummy!
 minetest.register_craftitem("mobs:rat_cooked", {
 	description = "Cooked Rat",

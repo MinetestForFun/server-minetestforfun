@@ -21,7 +21,7 @@ mobs:register_mob("mobs:bee", {
 	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_bee",
-	},	
+	},
 	-- speed and jump
 	walk_velocity = 1,
 	jump = true,
@@ -86,7 +86,7 @@ minetest.register_node("mobs:beehive", {
 			minetest.add_entity(pos, "mobs:bee")
 		end
 	end,
-	
+
 })
 
 minetest.register_craft({

@@ -38,11 +38,11 @@ local register_one_tube = function(name, tname, dropname, desc, plain, noctrs, e
 	local outboxes = {}
 	local outsel = {}
 	local outimgs = {}
-	
+
 	for i = 1, 6 do
 		outimgs[vti[i]] = plain[i]
 	end
-	
+
 	for _, v in ipairs(connects) do
 		table.extend(outboxes, pipeworks.tube_boxes[v])
 		table.insert(outsel, pipeworks.tube_selectboxes[v])
@@ -73,10 +73,10 @@ local register_one_tube = function(name, tname, dropname, desc, plain, noctrs, e
 		outsel = { -24/64, -10/64, -10/64, 24/64, 10/64, 10/64 }
 		wscale = {x = 1, y = 1, z = 0.01}
 	end
-	
+
 	local rname = string.format("%s_%s", name, tname)
 	table.insert(tubenodes, rname)
-	
+
 	local nodedef = {
 		description = tubedesc,
 		drawtype = "nodebox",
@@ -112,7 +112,7 @@ local register_one_tube = function(name, tname, dropname, desc, plain, noctrs, e
 	if style == "6d" then
 		nodedef.paramtype2 = "facedir"
 	end
-	
+
 	if special == nil then special = {} end
 
 	for key, value in pairs(special) do
