@@ -23,6 +23,16 @@
 -- Version 0.6
 
 -- Changelog: 
+-- 23.05.15 As all dyes can be crafted into other dyes, only white dye is consumed - provided the
+--          other dyes needed for the crafting chain are stored.
+-- 22.05.15 Added support for new homedecor meshnodes.
+--          Added support for nodes that use composed textures (by settig composed=1)
+--          Added support for myroofs: https://forum.minetest.net/viewtopic.php?f=11&t=11416&p=172034
+--          Added support for mydeck: https://forum.minetest.net/viewtopic.php?f=9&t=11729
+--          Added support for mycorners: https://forum.minetest.net/viewtopic.php?f=11&t=11363
+--          Added support for mymulch: https://forum.minetest.net/viewtopic.php?f=9&t=11780
+--          Added support for clothing: https://forum.minetest.net/viewtopic.php?f=9&t=11362&p=179077
+--          Added better handling of diffrent pages for all those blocks in the blocktype menu.
 -- 17.09.14 Added a modified version of Krocks paintroller from his paint_roller mod.
 --          Added additional storage area for dyes (works like a chest for now)
 -- 03.09.14 Added a second block type menu.
@@ -154,8 +164,8 @@ colormachine.data = {
    -- the multicolored bricks come in fewer intensities (only 3 shades) and support only 3 insted of 5 shades of grey
    unifiedbricks_multicolor_ = { nr=6,  modname='unifiedbricks', shades={1,0,0,0,1,0,1,0}, grey_shades={0,1,1,1,0}, u=1, descr="mbrick", block="default:brick", add="multicolor_",p=1},
 
-   hardenedclay_             = { nr=3.5, modname='hardenedclay', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="hclay",  block="hardenedclay:hardened_clay_white", add="hardened_clay_", obj_postfix='',p=16},
-   colouredstonebricks_      = { nr=3.6, modname='colouredstonebricks', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="cbrick",  block="default:stonebrick", add="", obj_postfix='',p=1},
+   hardenedclay_             = { nr=3.5, modname='hardenedclay', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="hclay",  block="hardenedclay:hardened_clay_white", add="hardened_clay_", p=16},
+   colouredstonebricks_      = { nr=3.6, modname='colouredstonebricks', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="cbrick",  block="default:stonebrick", add="", p=1},
    
    clstone_stone_            = { nr=3.7, modname='clstone',       shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="clstone",block="default:stone", add="", p=1, obj_postfix='_stone' },
 
@@ -193,11 +203,11 @@ colormachine.data = {
 -- normal dye mod (from minetest_game) - supports as many colors as the wool mod
    dye_                      = { nr=12, modname='dye',           shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="dye",    block="dye:white",      add="", p=1  },
 
-   beds_bed_top_top_         = { nr=13, modname='beds',          shades={0,0,1,0,0,0,0,0}, grey_shades={1,0,1,0,1}, u=0, descr="beds",   block="beds:bed_white", add="bed_bottom_",p=1},
+--   beds_bed_top_top_         = { nr=13, modname='beds',          shades={0,0,1,0,0,0,0,0}, grey_shades={1,0,1,0,1}, u=0, descr="beds",   block="beds:bed_white", add="bed_bottom_",p=1},
 
-   lrfurn_armchair_front_    = { nr=14, modname='lrfurn',        shades={0,0,1,0,0,0,0,0}, grey_shades={1,0,1,0,1}, u=0, descr="armchair",block="lrfurn:armchair_white", add="armchair_",p=1 },
-   lrfurn_sofa_right_front_  = { nr=15, modname='lrfurn',        shades={0,0,1,0,0,0,0,0}, grey_shades={1,0,1,0,1}, u=0, descr="sofa",    block="lrfurn:longsofa_white", add="sofa_right_",p=1 },
-   lrfurn_longsofa_middle_front_= { nr=16, modname='lrfurn',     shades={0,0,1,0,0,0,0,0}, grey_shades={1,0,1,0,1}, u=0, descr="longsofa",block="lrfurn:sofa_white", add="longsofa_right_",p=1 },
+   lrfurn_armchair_front_    = { nr=14, modname='lrfurn',        shades={0,0,1,0,0,0,0,0}, grey_shades={1,0,1,0,1}, u=0, descr="armchair",block="lrfurn:armchair_white", add="armchair_",p=1, composed=1 },
+   lrfurn_sofa_right_front_  = { nr=15, modname='lrfurn',        shades={0,0,1,0,0,0,0,0}, grey_shades={1,0,1,0,1}, u=0, descr="sofa",    block="lrfurn:longsofa_white", add="sofa_right_",p=1, composed=1 },
+   lrfurn_longsofa_middle_front_= { nr=16, modname='lrfurn',     shades={0,0,1,0,0,0,0,0}, grey_shades={1,0,1,0,1}, u=0, descr="longsofa",block="lrfurn:sofa_white", add="longsofa_right_",p=1, composed=1 },
 
 
    -- grey variants do not seem to exist, even though the textures arethere (perhaps nobody wants a grey flag!)
@@ -228,12 +238,26 @@ colormachine.data = {
    blox_loop_cobble_         = { nr=30.6, modname='blox',        shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,1}, u=0, descr="CLBlox",  block="default:cobble", add="loop_cobble",p=4},
    blox_corner_cobble_       = { nr=30.7, modname='blox',        shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,1}, u=0, descr="CCBlox",  block="default:cobble", add="corner_cobble",p=4},
 
-   homedecor_window_shutter_ = { nr=16.1, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="homedec",  block="homedecor:shutter_oak", add="shutter_",p=16},
-   forniture_armchair_top_   = { nr=16.2, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={0,0,0,0,1}, u=0, descr="armchair", block="homedecor:armchair_black", add="armchair_",p=1},
-   forniture_kitchen_chair_sides_ = {nr=16.3, modname='homedecor',shades={1,0,1,0,0,0,1,0}, grey_shades={0,0,0,0,1}, u=0, descr="kchair",   block="homedecor:chair", add="chair_",p=1},
-   homedecor_bed_            = {nr=16.4, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={0,0,0,0,1}, u=0, descr="hbed",     block="homedecor:bed_darkgrey_foot", add="bed_",p=1, obj_postfix='_foot'},
-   homedecor_bathroom_tiles_ = {nr=16.5, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={0,0,0,0,1}, u=0, descr="htiles",   block="homedecor:tiles_1", add="tiles_",p=1},
-   homedecor_curtain_        = { nr=16.6, modname='homedecor',     shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,0}, u=0, descr="curtain",  block="homedecor:curtain_white", add="curtain_"},
+   homedecor_window_shutter_ = { nr=16.1, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="homedec",  block="homedecor:shutter_oak", add="shutter_",p=16,composed=1},
+   forniture_armchair_top_   = { nr=16.2, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={0,0,0,0,1}, u=0, descr="armchair", block="homedecor:armchair_black", add="armchair_",p=1,composed=1},
+   forniture_kitchen_chair_sides_ = {nr=16.3, modname='homedecor',shades={1,0,1,0,0,0,1,0}, grey_shades={0,0,0,0,1}, u=0, descr="kchair",   block="homedecor:chair", add="chair_",p=1,composed=1},
+   homedecor_bed_            = {nr=16.4, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={1,1,1,1,1}, u=0, descr="hbed",     block="homedecor:bed_darkgrey_regular", add="bed_",p=1, obj_postfix='_regular', composed=1},
+   homedecor_bed_kingsize_   = {nr=16.45, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={1,1,1,1,1}, u=0, descr="hbedk",   block="homedecor:bed_darkgrey_kingsize", add="bed_",p=1, obj_postfix='_kingsize', composed=1},
+   homedecor_bathroom_tiles_ = {nr=16.5, modname='homedecor',     shades={1,0,1,0,0,0,1,0}, grey_shades={1,1,1,1,1}, u=0, descr="htiles",   block="homedecor:tiles_1", add="tiles_",p=1,composed=1},
+   homedecor_curtain_        = { nr=16.6, modname='homedecor',     shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,0}, u=0, descr="curtain",  block="homedecor:curtain_white", add="curtain_",composed=1},
+
+   homedecor_curtain_open_   = { nr=16.61, modname='homedecor',    shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,0}, u=0, descr="ocurtain", block="homedecor:curtain_open_white", add="curtain_open_", composed=1},
+
+   homedecor_desk_lamp_      = { nr=16.62, modname='homedecor',    shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,0}, u=0, descr="dlamp",    block="homedecor:desk_lamp_blue", add="desk_lamp_", composed=1},
+   homedecor_table_lamp_     = { nr=16.63, modname='homedecor',    shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,0}, u=0, descr="tlamp",    block="homedecor:table_lamp_white_off", add="table_lamp_", composed=1, obj_postfix='_off'},
+   homedecor_standing_lamp_  = { nr=16.64, modname='homedecor',    shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,0}, u=0, descr="slamp",    block="homedecor:standing_lamp_white_off", add="standing_lamp_", composed=1, obj_postfix='_off'},
+
+   lavalamp_                 = { nr=16.644, modname='lavalamp',    shades={1,0,1,0,0,0,0,0}, grey_shades={1,0,0,0,0}, u=0, descr="lavalamp", block="lavalamp:blue", add="", composed=1},
+
+   homedecor_table_          = { nr=16,645,modname='homedecor',    shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,0,0}, u=0, descr="htable",   block="homedecor:table", add="table_", composed=1},
+   homedecor_book_           = { nr=16.65, modname='homedecor',    shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,0,0}, u=0, descr="hbook",    block="default:book", add="book_", composed=1},
+   homedecor_bottle_         = { nr=16.66, modname='homedecor',    shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,0,0,0}, u=0, descr="hbottle",  block="vessels:glass_bottle", add="bottle_", composed=1},
+   homedecor_welcome_mat_    = { nr=16.67, modname='homedecor',    shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,0,0}, u=0, descr="hwmat",    block="homedecor:welcome_mat_grey", add="welcome_mat_", composed=1},
 
 
    plasticbox_               = { nr=16.7, modname='plasticbox',  shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="plastic", block="plasticbox:plasticbox", add="plasticbox_",p=16},
@@ -264,7 +288,107 @@ colormachine.data = {
    coloredblocks_white_      = { nr=41, modname='coloredblocks', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,0,0,1}, u=0, descr="cb_whi", block="coloredblocks:white", add="",p=1},
    coloredblocks_black_      = { nr=42, modname='coloredblocks', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,0,0,1}, u=0, descr="cb_bla", block="coloredblocks:black", add="black_",p=1},
 --]]
+
+  clothing_inv_hat_          = { nr=43, modname='clothing', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="clhat",   block="clothing:hat_white", add="hat_",p=1},
+  clothing_inv_shirt_        = { nr=44, modname='clothing', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="clshirt", block="clothing:shirt_white", add="shirt_",p=1},
+  clothing_inv_pants_        = { nr=45, modname='clothing', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="clpants", block="clothing:pants_white", add="pants_",p=1},
+  clothing_inv_cape_         = { nr=46, modname='clothing', shades={1,0,1,0,0,0,1,0}, grey_shades={1,0,1,1,1}, u=0, descr="clcape",  block="clothing:cape_white", add="cape_",p=1},
 }
+
+
+
+local mydeck_names = {'deck_boards','deck_beam',
+	'deck_joists','deck_joists_side','deck_joists_end','deck_joists_side_end','deck_joists_endr','deck_joists_side_endr',
+	'beam','beam_wbracket',
+	'joists_beam','joists_beam_wbracket','joists_side_beam','joists_side_beam_wbracket',
+	'deck_joists_beam','deck_joists_beam_wbracket','deck_joists_side_beam','deck_joists_side_beam_wbracket',
+	'joists','joists_side','joists_end','joists_side_end','joists_endr','joists_side_endr',
+	'lattice','pile_wpost','post',
+	'rail','rail_corner','rail_icorner',
+	'stairs','stairsb','stairs_ocorner','stairs_icorner','stairs_railr','stairs_raill','stairs_railr_end','stairs_raill_end'};
+for i,v in ipairs( mydeck_names ) do
+	colormachine.data[ v..'s_' ] = {
+		nr= 47.0 + 1/100*i,
+		modname='mydeck',
+		shades={1,0,1,0,0,0,1,0},
+		grey_shades={1,1,1,1,1},
+		u=0,
+		descr="myd"..tostring(i),
+		block="mydeck:"..v,
+		add=v.."s_",
+		composed=1,
+		p=1};
+end
+mydeck_names = nil;
+
+
+local myroofs_names = {'', '_bundle', '_icorner','_ocorner',
+		'_round_bundle', '_round_long', '_round_long_icorner', '_round_long_ocorner',
+		'_long', '_long_icorner', '_long_ocorner'};
+for i,v in ipairs( myroofs_names ) do
+	colormachine.data[ 'myroofs'..v..'_' ] = {
+		nr= 48.0 + 1/100*i,
+		modname='myroofs',
+		shades={1,0,1,0,0,0,1,0},
+		grey_shades={1,1,1,1,1},
+		u=0,
+		descr="myr"..tostring(i),
+		block="myroofs:asphalt_shingle_grey"..v,
+		add='asphalt_shingle_',
+		obj_postfix=v,
+		composed=1,
+		p=1};
+end
+myroof_names = nil;
+
+
+
+local mycorner_names = {'wood','stone','stonebrick'}
+local mycorner_materials = {
+	'default_sandstone','default_clay','default_cobble','default_stone',
+	'default_desert_stone','default_wood','default_pinewood','default_brick',
+	'default_desert_cobble','default_junglewood','default_mossycobble',
+	'default_sandstone_brick','default_desert_stone_brick','default_stone_brick'};
+for i,v in ipairs( mycorner_names ) do
+	colormachine.data[ 'corners_'..v..'_' ] = {
+		nr= 49.0 + 1/100*i,
+		modname='mycorners',
+		shades={1,0,1,0,0,0,1,0},
+		grey_shades={1,1,1,1,1},
+		u=0,
+		descr="myc"..v,
+		block="mycorners:corner_"..v..'_white',
+		add='corner_'..v..'_',
+		p=1};
+	for j,m in ipairs( mycorner_materials ) do
+		colormachine.data[ 'cornerblock_'..m..'_'..v..'_' ] = {
+			nr= 49.5 + 1/100*i + 1/1000*j,
+			modname='mycorners',
+			shades={1,0,1,0,0,0,1,0},
+			grey_shades={1,1,1,1,1},
+			u=0,
+			descr="myc"..tostring(j)..v,
+			block="mycorners:cornerblock_"..m..'_'..v..'_white',
+			add='cornerblock_'..m..'_'..v..'_',
+			composed=1,
+			p=1};
+	end
+end
+mycorner_materials = nil;
+mycorner_names = nil;
+
+colormachine.data[ 'mymulch_' ] = {
+		nr= 50,
+		modname='mymulch',
+		shades={1,0,1,0,0,0,1,0},
+		grey_shades={1,1,1,1,1},
+		u=0,
+		descr="mymulch",
+		block="mymulch:mulch_tan",
+		add='mulch_',
+		composed=1,
+		p=1};
+
 
 
 colormachine.ordered = {}
@@ -420,18 +544,30 @@ end
 
 colormachine.print_color_image = function( meta, k, new_color, c, s, g, pos_x, pos_y, change_link )
 
+
+   local translated_node_name = colormachine.translate_color_name( meta, k, new_color, c, s, g, 1 );
+
    local translated_color     = colormachine.translate_color_name( meta, k, new_color, c, s, g, 0 );
+   if( not( translated_color )) then
+      if( translated_node_name and minetest.registered_items[ translated_node_name ] ) then
+          if( minetest.registered_items[ translated_node_name ].inventory_image ) then
+             translated_color = minetest.registered_items[ translated_node_name ].inventory_image;
+          elseif( minetest.registered_items[ translated_node_name ].wield_image ) then
+             translated_color = minetest.registered_items[ translated_node_name ].wield_image;
+          end
+      end
+   end
    if( not( translated_color )) then
       return "";
    end
 
-   local translated_node_name = colormachine.translate_color_name( meta, k, new_color, c, s, g, 1 );
+--   local translated_node_name = colormachine.translate_color_name( meta, k, new_color, c, s, g, 1 );
    if( not( translated_node_name )) then
       return "";
    end
 
    -- a node or craftitem of that name does not exist
-   if(    not( minetest.registered_nodes[      translated_node_name ])
+   if(    not( minetest.registered_items[      translated_node_name ])
       and not( minetest.registered_craftitems[ translated_node_name ])) then
 
 --print("NOT FOUND: "..tostring( translated_node_name ).." image_button["..tostring(pos_x)..","..tostring(pos_y)..";1,1;"..translated_color..";"..tostring(link).."; ]");
@@ -443,7 +579,11 @@ colormachine.print_color_image = function( meta, k, new_color, c, s, g, pos_x, p
       link = k;
    end
 
-   return "image_button["..tostring(pos_x)..","..tostring(pos_y)..";1,1;"..translated_color..";"..tostring(link).."; ]";
+   if( colormachine.data[ k ].composed ) then
+      return "item_image_button["..tostring(pos_x)..","..tostring(pos_y)..";1,1;"..translated_node_name..";"..tostring(link).."; ]";
+   else
+      return "image_button["..tostring(pos_x)..","..tostring(pos_y)..";1,1;"..translated_color..";"..tostring(link).."; ]";
+   end
 end
 
 
@@ -474,6 +614,45 @@ colormachine.translate_color_name = function( meta, k, new_color, c, s, g, as_ob
         or (g==-1 and s==7 and c==5 ) -- dark brown
         or g==1 or g==3 or g==4 or g==5 )) then
       k = 'dye_';
+   end
+
+   if( k=='homedecor_bathroom_tiles_' and as_obj_name==1 ) then
+      if(     g==1 or new_color==colormachine.grey_names[1]) then
+         return 'homedecor:tiles_1';
+      elseif( g==3 or new_color==colormachine.grey_names[3]) then
+         return 'homedecor:tiles_2';
+      elseif( g==4 or new_color==colormachine.grey_names[4]) then
+         return 'homedecor:tiles_4';
+      elseif( g==5 or new_color==colormachine.grey_names[5]) then
+         return 'homedecor:tiles_3';
+      elseif( new_color == 'dark_orange' ) then
+         return 'homedecor:tiles_tan';
+      end
+   end
+
+   if( colormachine.data[k].modname=='myroofs' and as_obj_name==1 ) then
+      if( g==5 or new_color == 'black' ) then
+	 return "myroofs:asphalt_shingle_hd_asphalt"..(colormachine.data[k].postfix or '');
+      elseif( new_color=='orange') then
+	 return "myroofs:asphalt_shingle_hd_terracotta"..(colormachine.data[k].postfix or '');
+      elseif( new_color=='dark_orange') then
+	 return "myroofs:asphalt_shingle_hd_wood"..(colormachine.data[k].postfix or '');
+      end
+   end
+
+   if( (k=='homedecor_book_' or k=='homedecor_bottle_' or k=='homedecor_welcome_mat_' ) and as_obj_name==1) then
+      if( new_color == 'dark_orange' ) then
+          new_color = 'brown';
+         return 'homedecor:'..colormachine.data[k].add..'brown'..(colormachine.data[k].postfix or '');
+      end
+   end
+   
+   if( k=='homedecor_table_' and as_obj_name==1 and new_color=='dark_orange' ) then
+      return 'homedecor:'..colormachine.data[k].add..'mahogany'..(colormachine.data[k].postfix or '');
+   end
+
+   if( k=='homedecor_bed_' and as_obj_name==1 and g==4 ) then
+      return 'homedecor:bed_darkgrey_regular';
    end
 
    -- this does break the namescheme...
@@ -704,7 +883,7 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
    -- another case of special treatment needed; at least the color is given in the tiles 
    if( mod_name =='stained_glass' and stained_glass_exception==1) then 
 
-      local original_node = minetest.registered_nodes[ bname ];
+      local original_node = minetest.registered_items[ bname ];
       if( original_node ~= nil ) then
          local tile   = original_node.tiles[1];
          local liste2 = string.split( tile, "%.");
@@ -724,7 +903,7 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
    -- blox uses its own naming scheme
    if( mod_name =='blox' ) then
       -- the color can be found in the description
-      local original_node = minetest.registered_nodes[ bname ];
+      local original_node = minetest.registered_items[ bname ];
       if( original_node ~= nil ) then
 
          local bloxdescr = original_node.description;
@@ -888,10 +1067,6 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
 
    -- identify the block type/subname
    local add       = "";
-   if( not( blocktype ) or blocktype == '' ) then
-
-      blocktype = found[1];
-   end
 
    if( curr_index > 0 ) then
 
@@ -907,6 +1082,10 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
       end
    end
 
+   if( not( blocktype ) or blocktype == '' ) then
+      blocktype = found[1];
+   end
+
    if( curr_index > 0 and #liste>0 and liste[1]=='chair' and blocktype == 'homedecor_bed_' ) then
       return { error_code = nil,
                found_name = found_name,
@@ -914,7 +1093,15 @@ colormachine.get_color_from_blockname = function( mod_name, block_name )
    end
 
    if( curr_index > 0 ) then
-      print( 'colormachine: ERROR: leftover name parts for '..tostring( bname )..": "..minetest.serialize( liste ));
+      local k_help = '';
+      for i=1, curr_index do
+         k_help = k_help..liste[i]..'_';
+      end
+      if( colormachine.data[ k_help ]) then
+         blocktype = k_help;
+      else
+         print( 'colormachine: ERROR: leftover name parts for '..tostring( bname )..": "..minetest.serialize( liste ));
+      end
    end
 
    return { error_code = nil,
@@ -925,7 +1112,13 @@ end
 
 
 -- if the player has selected a color, show all blocks in that color
-colormachine.blocktype_menu = function( meta, new_color, start_at_offset )
+colormachine.blocktype_menu = function( meta, new_color, page )
+
+   page = tonumber( page );
+   local per_line = 13;
+   local anz_lines = 3;
+   local per_page = anz_lines * per_line;
+   local start_at_offset = per_page * page;
 
    new_color = colormachine.decode_color_name( meta, new_color );
 
@@ -940,9 +1133,9 @@ colormachine.blocktype_menu = function( meta, new_color, start_at_offset )
    local y = 2;
 
    for i,k in ipairs( colormachine.ordered ) do
-
+ 
       -- only installed mods are of intrest
-      if( k ~= nil and colormachine.data[ k ].installed == 1 and i > start_at_offset and i <= (start_at_offset + 3*13)) then 
+      if( k ~= nil and colormachine.data[ k ].installed == 1 and i > start_at_offset and i <= (start_at_offset + per_page)) then 
 
          -- that particular mod may not offer this color
          form = form.."button["..tostring(x)..","..tostring(y-0.8)..  ";1,1;"..k..";"..colormachine.data[k].descr.."]"..
@@ -956,21 +1149,32 @@ colormachine.blocktype_menu = function( meta, new_color, start_at_offset )
          end
 
          x = x+1;
-         if( x>13 ) then
+         if( x>per_line ) then
             x = 1;
-            y = y+3;
-            form = form..
-                "label[0.2,"..tostring(y-1)..".2;name]"..
-                "label[0.2,"..tostring(y  )..".2;unpainted]"..
-                "label[0.2,"..tostring(y+1)..".2;colored]";
-            if( y>3 ) then
-                if( start_at_offset == 0 ) then
-                   form = form.."button[9,0.5;4,1;blocktype_menu2;Show further blocks]";
-                else
-                   form = form.."button[9,0.5;4,1;blocktype_menu;Back to first page]";
-                end
+            y = y+anz_lines;
+            if( y < 2+anz_lines*3 ) then
+               form = form..
+                   "label[0.2,"..tostring(y-1)..".2;name]"..
+                   "label[0.2,"..tostring(y  )..".2;unpainted]"..
+                   "label[0.2,"..tostring(y+1)..".2;colored]";
             end
          end
+      end
+   end
+   if( #colormachine.ordered > per_page ) then
+      local max_page_nr = math.ceil( #colormachine.ordered/per_page );
+      -- add page number
+      form = form.."field[20,20;0.1,0.1;page;;"..math.floor( start_at_offset/(3*13) ).."]"..
+		"label[10.2,0.5;"..tostring( page+1 ).."/"..tostring( max_page_nr ).."]";
+      if( page and page>0 ) then
+         form = form..
+		"button[9.0,0.5;0.5,0.5;first_page;"..minetest.formspec_escape("1|<").."]"..
+		"button[9.6,0.5;0.5,0.5;prev_page;"..tostring(page)..minetest.formspec_escape("<").."]";
+      end
+      if( not( page ) or page+1 < max_page_nr ) then
+         form = form..
+		"button[10.8,0.5;0.5,0.5;next_page;"..minetest.formspec_escape(">")..tostring( math.min( page+2, max_page_nr )).."]"..
+		"button[11.4,0.5;0.5,0.5;last_page;"..minetest.formspec_escape(">|")..tostring( max_page_nr ).."]";
       end
    end
    return form;
@@ -1057,6 +1261,9 @@ colormachine.main_menu_formspec = function( pos, option )
                local block_name = colormachine.translate_color_name( meta, v, meta:get_string('selected_name'), nil, nil, nil, 1 );
                -- one pigment is enough for factor blocks:
                local factor         = colormachine.data[ v ].p;
+               if( not( factor )) then
+                  factor = 1.0;
+               end
                -- how many of these blocks can we actually paint?
 
                local can_be_painted = 0;
@@ -1473,13 +1680,23 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
       end
    end
 
+   local need_white = math.ceil( amount_needed / anz_pigments );
+   -- the machine does have the required colors stored
+   if( n > 0 ) then
+      local stack_white= inv:get_stack( "dyes", 13 );
+      local anz_white  = stack_white:get_count();
+
+      n = math.min( anz_white, need_white );
+   end
+        
  
    -- return how many *could* be colored
    if( amount_needed > 0 and do_consume ~= 1 ) then
       return n*anz_pigments;
    end
 
-
+   needed = {};
+   needed[ "white" ] = n;
 
    for i,v in ipairs( colormachine.colors_and_greys ) do
 
@@ -1501,7 +1718,11 @@ colormachine.calc_dyes_needed = function( meta, inv, amount_needed, do_consume )
             local stack = inv:get_stack( "dyes", i );
             local found = stack:get_count();
             --print( ' CONSUMED '..math.floor( n * needed[ v ] )..' of '..tostring( stack:get_name())); 
-            inv:set_stack( "dyes", i, stack:get_name()..' '..tostring( found - math.floor( n * needed[ v ] ))); 
+            if( found > math.floor( n * needed[ v ] )) then
+               inv:set_stack( "dyes", i, stack:get_name()..' '..tostring( math.max( 1, found - math.floor( n * needed[ v ] )))); 
+            else
+               inv:set_stack( "dyes", i, "" );
+            end
          end
       end
    end
@@ -1792,7 +2013,12 @@ minetest.register_node("colormachine:colormachine", {
               return 0;
            end
 
-           local meta = minetest.get_meta(pos);
+           -- remember the page we where at
+           if( not( fields.page )) then
+              fields.page = 0;
+           end
+
+           local meta = minetest.env:get_meta(pos);
            for k,v in pairs( fields ) do
               if( k == 'main_menu' ) then
                  meta:set_string( 'formspec', colormachine.main_menu_formspec(pos, "analyze") );
@@ -1824,7 +2050,9 @@ minetest.register_node("colormachine:colormachine", {
                  meta:set_string( 'formspec', colormachine.get_individual_dye_management_formspec( meta, inv ));
                  return;
               elseif( colormachine.data[ k ] ) then
-                 meta:set_string( 'formspec', colormachine.data[ k ].formspec );
+                 -- remember the page we where at
+                 meta:set_string( 'formspec', colormachine.data[ k ].formspec.. 
+                        "field[20,20;0.1,0.1;page;;"..tostring(fields.page).."]" );
                  return;
               elseif( k=='key_escape') then
                  -- nothing to do
@@ -1835,21 +2063,35 @@ minetest.register_node("colormachine:colormachine", {
                  for i,f in ipairs( colormachine.colors_and_greys ) do
                     if( k==("mix_"..f )) then
                        colormachine.mix_colors( inv, i, sender );
+
+                       local inv = meta:get_inventory();
+                       meta:set_string( 'formspec', colormachine.get_individual_dye_management_formspec( meta, inv ));
+
                        return; -- formspec remains the dye-management one
                     end
                  end
 
                  -- if no input is present, show the block selection menu
-                 if(     k=="blocktype_menu2" ) then
-                    meta:set_string( 'formspec', colormachine.blocktype_menu( meta, k, 3*13 )); 
-                 elseif( k=="blocktype_menu" or inv:is_empty( "input" )) then
-                    meta:set_string( 'formspec', colormachine.blocktype_menu( meta, k, 0 )); 
+                 if( k=="blocktype_menu" or inv:is_empty( "input" )
+                   or k=='first_page' or k=='prev_page' or k=='next_page' or k=='last_page') then
+                    if( not( fields.page ) or k=='first_page') then
+                       fields.page = 0;
+                    elseif( k=='prev_page') then
+                       fields.page = math.max(0,fields.page-1);
+                    elseif( k=='next_page') then
+                       fields.page = math.min(fields.page+1, math.ceil(#colormachine.ordered/(3*13)-1));
+                    elseif( k=='last_page') then
+                       fields.page = math.ceil(#colormachine.ordered/(3*13)-1);
+                    end
+                             
+                    meta:set_string( 'formspec', colormachine.blocktype_menu( meta, k, fields.page )); 
 
                  else
 
                     -- else set the selected color and go back to the main menu
                     colormachine.decode_color_name( meta, k );
-                    meta:set_string( 'formspec', colormachine.main_menu_formspec(pos, "analyze") );
+                    meta:set_string( 'formspec', colormachine.main_menu_formspec(pos, "analyze")..
+                        "field[20,20;0.1,0.1;page;;"..tostring(fields.page).."]" );
                  end
               end
            end
