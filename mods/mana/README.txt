@@ -1,6 +1,6 @@
 Mana mod [mana]
 ===============
-Version: 1.0.1
+Version: 1.1.0
 Note: This mod uses semantic versioning, as defined by version 2.0.0 of the SemVer standard.
 See: <http://semver.org/>
 
@@ -38,7 +38,7 @@ Configuration
 This mod can be configured with minetest.conf! The following settings are accepted:
 
 * `mana_default_max`: Initial max. mana given to new players. Default: `200`. This value must be non-negative.
-* `mana_default_regen`: Initial regenerated mana per “mana tick”. Default: `1`. This value must be non-negative.
+* `mana_default_regen`: Initial regenerated mana per “mana tick”. Default: `1`. This value can be a floating value. I.e. if the value is `0.5`, 1 mana is generated every two mana ticks (note that the player's mana amount is still a whole number). This value can be negative, in which case the player will lose mana.
 * `mana_regen_timer`: The length of a “mana tick” in seconds. Each player will get his/her mana increased by the current
   regen value per mana tick. Default: `0.2`. This value must be positive, also try to avoid very small values
   as those could probably stress your machine a lot.
@@ -47,5 +47,6 @@ This mod can be configured with minetest.conf! The following settings are accept
 License information
 ===================
 * textures/mana_icon.png: CC-BY by Buch <http://opengameart.org/users/Buch>.
+* textures/mana_bgicon.png: CC-BY, originally by Buch <http://opengameart.org/users/Buch>, modified by Wuzzy.
 * textures/mana_bar.png: WTFPL by Wuzzy.
 * Everything else: WTFPL.

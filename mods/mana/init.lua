@@ -1,5 +1,5 @@
 --[[
-Mana 1.0.1
+Mana 1.0.2
 This mod adds mana to players, a special attribute
 
 License: WTFPL
@@ -70,11 +70,6 @@ function mana.setmax(playername, value)
 end
 
 function mana.setregen(playername, value)
-	if value < 0 then
-		value = 0
-		minetest.log("info", "[mana] Warning: mana.setregen was called with negative value!")
-	end
-	value = mana.round(value)
 	mana.playerlist[playername].regen = value
 end
 
@@ -172,7 +167,6 @@ do
 		if(string ~= nil) then
 			local savetable = minetest.deserialize(string)
 			mana.playerlist = savetable.playerlist
-			if mana.playerlist == nil then mana.playerlist = {} end
 			minetest.log("action", "[mana] mana.mt successfully read.")
 		end
 	end
@@ -205,10 +199,10 @@ end)
 
 minetest.register_on_leaveplayer(function(player)
 	local playername = player:get_player_name()
-	if minetest.get_modpath("hudbars") == nil then
-		player:hud_remove(mana.playerlist[playername].hudid)
+	if not minetest.get_modpath("hudbars") ~= nil then
+		mana.hud_remove(playername)
 	end
-	--mana.playerlist[playername] = nil --uncomment to reset mana at deco/reco
+	mana.save_to_file()
 end)
 
 minetest.register_on_shutdown(function()
@@ -224,6 +218,7 @@ minetest.register_on_joinplayer(function(player)
 		mana.playerlist[playername].mana = 0
 		mana.playerlist[playername].maxmana = mana.settings.default_max
 		mana.playerlist[playername].regen = mana.settings.default_regen
+		mana.playerlist[playername].remainder = 0
 	end
 
 	if minetest.get_modpath("hudbars") ~= nil then
@@ -249,7 +244,19 @@ minetest.register_globalstep(function(dtime)
 			local name = players[i]:get_player_name()
 			if mana.playerlist[name] ~= nil then
 				if players[i]:get_hp() > 0 then
-					mana.add_up_to(name, mana.playerlist[name].regen * factor)
+					local plus = mana.playerlist[name].regen * factor
+					-- Compability check for version <= 1.0.2 which did not have the remainder field
+					if mana.playerlist[name].remainder ~= nil then
+						plus = plus + mana.playerlist[name].remainder
+					end
+					local plus_now = math.floor(plus)
+					local floor = plus - plus_now
+					if plus_now > 0 then
+						mana.add_up_to(name, plus_now)
+					else
+						mana.subtract_up_to(name, math.abs(plus_now))
+					end
+					mana.playerlist[name].remainder = floor
 				end
 			end
 		end
@@ -262,13 +269,16 @@ end)
 ]===]
 
 if minetest.get_modpath("hudbars") ~= nil then
-	hb.register_hudbar("mana", 0xFFFFFF, "Mana", { bar = "mana_bar.png", icon = "mana_icon.png" }, 0, mana.settings.default_max, false)
+	hb.register_hudbar("mana", 0xFFFFFF, "Mana", { bar = "mana_bar.png", icon = "mana_icon.png", bgicon = "mana_bgicon.png" }, 0, mana.settings.default_max, false)
 
 	function mana.hud_update(playername)
 		local player = minetest.get_player_by_name(playername)
 		if player ~= nil then
 			hb.change_hudbar(player, "mana", mana.get(playername), mana.getmax(playername))
 		end
+	end
+
+	function mana.hud_remove(playername)
 	end
 
 else
@@ -278,7 +288,7 @@ else
 	
 	function mana.hud_add(playername)
 		local player = minetest.get_player_by_name(playername)
-		player:hud_add({
+		id = player:hud_add({
 			hud_elem_type = "statbar",
 			position = {x=0.5,y=1},
 			size = {x=24, y=24},
@@ -305,7 +315,12 @@ else
 	
 	function mana.hud_update(playername)
 		local player = minetest.get_player_by_name(playername)
-		player:hud_change(mana.playerlist[playername].hudid, "number", mana.get(playername)/10)
+		player:hud_change(mana.playerlist[playername].hudid, "text", mana.manastring(playername))
+	end
+	
+	function mana.hud_remove(playername)
+		local player = minetest.get_player_by_name(playername)
+		player:hud_remove(mana.playerlist[playername].hudid)
 	end
 end
 

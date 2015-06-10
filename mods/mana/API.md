@@ -1,4 +1,4 @@
-API documentation for Mana 1.0.1
+API documentation for Mana 1.1.0
 ================================
 
 ## Introduction
@@ -41,7 +41,12 @@ the new maximum.
 
 ### `mana.setregen(playername, value)`
 Sets the mana regeneration per mana tick of the player to `value`.
-Negative values are not permitted.
+Floating-point numbers are also permitted, in which the generation
+of 1 mana takes longer than 1 mana tick. I.e. `0.5`. means
+that 1 mana is generated every 2 mana ticks. A negative value means the
+player loses mana.
+
+
 The length of one “mana tick” is specified as the server-wide setting
 `mana_default_regen` in seconds.
 
