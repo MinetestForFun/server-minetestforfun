@@ -59,18 +59,18 @@ function stairsplus:register_slab(modname, subname, recipeitem, fields)
 			output = modname .. ":slab_" .. subname .. " 6",
 			recipe = {{recipeitem, recipeitem, recipeitem}},
 		})
-		
+
 		minetest.register_craft({
 			type = "shapeless",
 			output = modname .. ":slab_" .. subname,
 			recipe = {modname .. ":micro_" .. subname, modname .. ":micro_" .. subname, modname .. ":micro_" .. subname, modname .. ":micro_" .. subname},
 		})
-		
+
 		minetest.register_craft({
 			output = modname .. ":slab_" .. subname,
 			recipe = {{modname .. ":panel_" .. subname, modname .. ":panel_" .. subname}},
 		})
-		
+
 		minetest.register_craft({
 			output = modname .. ":slab_" .. subname,
 			recipe = {
@@ -84,7 +84,7 @@ function stairsplus:register_slab(modname, subname, recipeitem, fields)
 			output = recipeitem,
 			recipe = {modname .. ":slab_" .. subname, modname .. ":slab_" .. subname},
 		})
-		
+
 		minetest.register_craft({
 			type = "shapeless",
 			output = modname .. ":slab_" .. subname .. " 3",

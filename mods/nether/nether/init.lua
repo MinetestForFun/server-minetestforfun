@@ -860,7 +860,7 @@ function nether.grow_tree(pos, generated)
 	local emerged_pos1, emerged_pos2 = manip:read_from_map(min, max)
 	local area = VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
 	local nodes = manip:get_data()
-	local param2s = manip:get_param2_data() 
+	local param2s = manip:get_param2_data()
 
 	for _,p in pairs(leaf_ps) do
 		p = area:indexp(p)

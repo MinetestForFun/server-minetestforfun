@@ -17,7 +17,7 @@ local longsofa_sbox = {
 
 local longsofa_cbox = {
 	type = "fixed",
-	fixed = { 
+	fixed = {
 		{-0.5, -0.5, -0.5, 0.5, 0, 2.5 },
 		{-0.5, -0.5, 0.5, -0.4, 0.5, 2.5 }
 	}

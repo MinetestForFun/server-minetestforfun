@@ -16,7 +16,7 @@ minetest.register_craft({
 if minetest.get_modpath("farming") and farming.mod == "redo" then
 	--[[ We really have nothing to do to use farming:sugar in the recipes
 	     because they use the generic group group:food_sugar
-	     which is added to the groups list of farming:sugar by the mod "food". 
+	     which is added to the groups list of farming:sugar by the mod "food".
 	--]]
 
 	--Temporary alias to replace existing bushes:sugar in the world

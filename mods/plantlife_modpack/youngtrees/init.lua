@@ -1,7 +1,7 @@
-abstract_youngtrees = {} 
+abstract_youngtrees = {}
 
 minetest.register_node("youngtrees:bamboo", {
-	description = "Young Bamboo Tree", 
+	description = "Young Bamboo Tree",
 	drawtype="nodebox",
 	tiles = {"bamboo.png"},
 	paramtype = "light",
@@ -21,11 +21,11 @@ minetest.register_node("youngtrees:bamboo", {
 })
 
 minetest.register_node("youngtrees:youngtree2_middle",{
-	description = "Young Tree 2 (middle)", 
+	description = "Young Tree 2 (middle)",
 	drawtype="nodebox",
 	tiles = {"youngtree2branch.png"},
 	inventory_image = "youngtree2branch.png",
-	wield_image = "youngtree2branch.png", 
+	wield_image = "youngtree2branch.png",
 	paramtype = "light",
 	walkable = false,
 	is_ground_content = true,
@@ -60,7 +60,7 @@ minetest.register_node("youngtrees:youngtree_top", {
 	drop = 'trunks:twig_1'
 })
 
- 
+
 minetest.register_node("youngtrees:youngtree_middle", {
 	description = "Young Tree (middle)",
 	drawtype = "plantlike",
@@ -80,7 +80,7 @@ minetest.register_node("youngtrees:youngtree_middle", {
 })
 
 
- 
+
 minetest.register_node("youngtrees:youngtree_bottom", {
 	description = "Young Tree (bottom)",
 	drawtype = "plantlike",
@@ -98,19 +98,19 @@ minetest.register_node("youngtrees:youngtree_bottom", {
 	sounds = default.node_sound_leaves_defaults(),
 	drop = 'trunks:twig_1'
 })
- 
- 
+
+
  abstract_youngtrees.grow_youngtree = function(pos)
-	local height = math.random(1,3)	
+	local height = math.random(1,3)
 	abstract_youngtrees.grow_youngtree_node(pos,height)
 end
 
 abstract_youngtrees.grow_youngtree_node = function(pos, height)
-	
-	
+
+
 	local right_here = {x=pos.x, y=pos.y+1, z=pos.z}
 	local above_right_here = {x=pos.x, y=pos.y+2, z=pos.z}
-	
+
 	if minetest.get_node(right_here).name == "air"  -- instead of check_air = true,
 	or minetest.get_node(right_here).name == "default:junglegrass" then
 		if height == 1 then
@@ -119,20 +119,20 @@ abstract_youngtrees.grow_youngtree_node = function(pos, height)
 		if height == 2 then
 				minetest.set_node(right_here, {name="youngtrees:youngtree_bottom"})
 				minetest.set_node(above_right_here, {name="youngtrees:youngtree_top"})
-		end	
+		end
 		if height == 3 then
 				local two_above_right_here = {x=pos.x, y=pos.y+3, z=pos.z}
 				minetest.set_node(right_here, {name="youngtrees:youngtree_bottom"})
 				minetest.set_node(above_right_here, {name="youngtrees:youngtree_middle"})
 				minetest.set_node(two_above_right_here, {name="youngtrees:youngtree_top"})
-		end		
+		end
 	end
 end
 
 
 plantslib:register_generate_plant({
     surface = {
-		"default:dirt_with_grass", 
+		"default:dirt_with_grass",
 		"stoneage:grass_with_silex",
 		"sumpf:peat",
 		"sumpf:sumpf"
@@ -143,4 +143,4 @@ plantslib:register_generate_plant({
 	plantlife_limit = -0.9,
   },
   abstract_youngtrees.grow_youngtree
-)		
+)

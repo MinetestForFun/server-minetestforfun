@@ -6,7 +6,7 @@
 
 -- License (everything): 	WTFPL
 -- Contains code from: 		plants_lib
--- Looked at code from:		default			
+-- Looked at code from:		default
 -----------------------------------------------------------------------------------------------
 
 abstract_dryplants.grow_juncus = function(pos)
@@ -86,7 +86,7 @@ minetest.register_node("dryplants:juncus_02", {
 -- near water or swamp
 plantslib:register_generate_plant({
     surface = {
-		"default:dirt_with_grass", 
+		"default:dirt_with_grass",
 		--"default:desert_sand",
 		--"default:sand",
 		"stoneage:grass_with_silex",
@@ -107,7 +107,7 @@ plantslib:register_generate_plant({
 -- at dunes/beach
 plantslib:register_generate_plant({
     surface = {
-		--"default:dirt_with_grass", 
+		--"default:dirt_with_grass",
 		--"default:desert_sand",
 		"default:sand",
 		--"stoneage:grass_with_silex",

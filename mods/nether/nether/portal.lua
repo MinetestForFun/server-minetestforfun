@@ -305,14 +305,14 @@ local function check_portal(p1, p2)
 	else
 		return false
 	end
-	
+
 	if not move_check(p1, p2.y, "y") then
 		return false
 	end
 	if not move_check(p2, p1.y, "y") then
 		return false
 	end
-	
+
 	return true
 end
 
@@ -343,7 +343,7 @@ local function make_portal(pos)
 		print("[nether] aborted, obsidian portals can't be used to get out")
 		return
 	end
-	
+
 	for d=1,2 do
 	for y=p1.y+1,p2.y-1 do
 		local p
@@ -357,18 +357,18 @@ local function make_portal(pos)
 		end
 	end
 	end
-	
+
 	local param2
 	if p1.z == p2.z then
 		param2 = 0
 	else
 		param2 = 1
 	end
-	
+
 	local target = {x=p1.x, y=p1.y, z=p1.z}
 	target.x = target.x + 1
 	target.y = portal_target + math.random(4)
-	
+
 	for d=0,3 do
 	for y=p1.y,p2.y do
 		local p = {}

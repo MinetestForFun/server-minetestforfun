@@ -88,10 +88,10 @@ minetest.register_node("cavestuff:stalactite_1",{
 			{-0.037500,-0.837500,0.037500,0.037500,0.500000,-0.025000},
 		}
 	},
-	
+
 	on_place = function(itemstack, placer, pointed_thing)
 		local pt = pointed_thing
-		if minetest.get_node(pt.under).name=="default:stone" 
+		if minetest.get_node(pt.under).name=="default:stone"
 		and minetest.get_node({x=pt.under.x, y=pt.under.y-1, z=pt.under.z}).name=="air"
 		and minetest.get_node({x=pt.under.x, y=pt.under.y-2, z=pt.under.z}).name=="air" then
 			minetest.set_node({x=pt.under.x, y=pt.under.y-1, z=pt.under.z}, {name="cavestuff:stalactite_"..math.random(1,3)})

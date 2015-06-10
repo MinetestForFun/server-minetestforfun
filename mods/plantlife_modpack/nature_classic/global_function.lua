@@ -44,7 +44,7 @@ end
 function nature:grow_node(pos, nodename)
     if pos ~= nil then
         local light_enough = (minetest.get_node_light(pos, nil) or 0)
-                >= nature.minimum_growth_light 
+                >= nature.minimum_growth_light
 
         if is_not_young(pos) and light_enough then
             minetest.remove_node(pos)

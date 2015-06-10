@@ -17,7 +17,7 @@ local sofa_sbox = {
 
 local sofa_cbox = {
 	type = "fixed",
-	fixed = { 
+	fixed = {
 		{-0.5, -0.5, -0.5, 0.5, 0, 1.5 },
 		{-0.5, -0.5, 0.5, -0.4, 0.5, 1.5 }
 	}

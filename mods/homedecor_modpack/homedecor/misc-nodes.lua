@@ -41,7 +41,7 @@ for i in ipairs(rug_types) do
 	if type(m) == "table" then
 		mesh = nil
 		nodebox = {
-			type = "fixed",	
+			type = "fixed",
 			fixed = m
 		}
 		tiles = {
@@ -94,7 +94,7 @@ for i in ipairs(flowers_list) do
 	local flowerdesc	= flowers_list[i][1]
 	local flower		= flowers_list[i][2]
 	local craftwith		= flowers_list[i][3]
-	
+
 	homedecor.register("potted_"..flower, {
 		description = S("Potted flower ("..flowerdesc..")"),
 		mesh = "homedecor_flowerpot_small.obj",

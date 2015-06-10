@@ -15,7 +15,7 @@ end
 
 abstract_trunks.place_twig = function(pos)
 	local twig_size 	= math.random(1,27)
-	
+
 	local right_here 	= {x=pos.x  , y=pos.y+1, z=pos.z  }
 	local north 		= {x=pos.x  , y=pos.y+1, z=pos.z+1}
 	local north_east 	= {x=pos.x+1, y=pos.y+1, z=pos.z+1}
@@ -25,7 +25,7 @@ abstract_trunks.place_twig = function(pos)
 	local south_west 	= {x=pos.x-1, y=pos.y+1, z=pos.z-1}
 	local west 			= {x=pos.x-1, y=pos.y+1, z=pos.z  }
 	local north_west 	= {x=pos.x-1, y=pos.y+1, z=pos.z+1}
-	
+
 	local node_here 	= minetest.get_node(right_here)
 	local node_north 	= minetest.get_node(north)
 	local node_n_e 		= minetest.get_node(north_east)
@@ -35,17 +35,17 @@ abstract_trunks.place_twig = function(pos)
 	local node_s_w 		= minetest.get_node(south_west)
 	local node_west 	= minetest.get_node(west)
 	local node_n_w 		= minetest.get_node(north_west)
---	small twigs	
+--	small twigs
 	if twig_size <= 16 then
 		minetest.set_node(right_here, {name="trunks:twig_"..math.random(1,4), param2=math.random(0,3)})
 	end
 -- 	big twigs
 	if Big_Twigs == true then
---	big twig 1		
+--	big twig 1
 	if twig_size == 17 then
 		if not (minetest.registered_nodes[minetest.get_node({x=pos.x+1,y=pos.y,z=pos.z+1}).name].buildable_to
 			or minetest.registered_nodes[minetest.get_node({x=pos.x+1,y=pos.y,z=pos.z}).name].buildable_to) then
-			
+
 			if minetest.registered_nodes[node_here.name].buildable_to then
 				minetest.set_node(right_here, {name="trunks:twig_5"})
 			end
@@ -59,7 +59,7 @@ abstract_trunks.place_twig = function(pos)
 	elseif twig_size == 18 then
 		if not (minetest.registered_nodes[minetest.get_node({x=pos.x+1,y=pos.y,z=pos.z-1}).name].buildable_to
 			or minetest.registered_nodes[minetest.get_node({x=pos.x,y=pos.y,z=pos.z-1}).name].buildable_to) then
-			
+
 			if minetest.registered_nodes[node_here.name].buildable_to then
 				minetest.set_node(right_here, {name="trunks:twig_5", param2=1})
 			end
@@ -73,7 +73,7 @@ abstract_trunks.place_twig = function(pos)
 	elseif twig_size == 19 then
 		if not (minetest.registered_nodes[minetest.get_node({x=pos.x+1,y=pos.y,z=pos.z-1}).name].buildable_to
 			or minetest.registered_nodes[minetest.get_node({x=pos.x-1,y=pos.y,z=pos.z}).name].buildable_to) then
-			
+
 			if minetest.registered_nodes[node_here.name].buildable_to then
 				minetest.set_node(right_here, {name="trunks:twig_5", param2=2})
 			end
@@ -87,7 +87,7 @@ abstract_trunks.place_twig = function(pos)
 	elseif twig_size == 20 then
 		if not (minetest.registered_nodes[minetest.get_node({x=pos.x-1,y=pos.y,z=pos.z+1}).name].buildable_to
 			or minetest.registered_nodes[minetest.get_node({x=pos.x,y=pos.y,z=pos.z+1}).name].buildable_to) then
-			
+
 			if minetest.registered_nodes[node_here.name].buildable_to then
 				minetest.set_node(right_here, {name="trunks:twig_5", param2=3})
 			end
@@ -98,11 +98,11 @@ abstract_trunks.place_twig = function(pos)
 				minetest.set_node(north, 	  {name="trunks:twig_8", param2=3})
 			end
 		end
---	big twig 2		
+--	big twig 2
 	elseif twig_size == 21 then
 		if not (minetest.registered_nodes[minetest.get_node({x=pos.x,y=pos.y,z=pos.z+1}).name].buildable_to
 			or minetest.registered_nodes[minetest.get_node({x=pos.x+1,y=pos.y,z=pos.z+1}).name].buildable_to) then
-			
+
 			if minetest.registered_nodes[node_here.name].buildable_to then
 				minetest.set_node(right_here, {name="trunks:twig_9"})
 			end
@@ -116,7 +116,7 @@ abstract_trunks.place_twig = function(pos)
 	elseif twig_size == 22 then
 		if not (minetest.registered_nodes[minetest.get_node({x=pos.x+1,y=pos.y,z=pos.z}).name].buildable_to
 			or minetest.registered_nodes[minetest.get_node({x=pos.x+1,y=pos.y,z=pos.z-1}).name].buildable_to) then
-			
+
 			if minetest.registered_nodes[node_here.name].buildable_to then
 				minetest.set_node(right_here, {name="trunks:twig_9", param2=1})
 			end
@@ -130,7 +130,7 @@ abstract_trunks.place_twig = function(pos)
 	elseif twig_size == 23 then
 		if not (minetest.registered_nodes[minetest.get_node({x=pos.x,y=pos.y,z=pos.z-1}).name].buildable_to
 			or minetest.registered_nodes[minetest.get_node({x=pos.x-1,y=pos.y,z=pos.z-1}).name].buildable_to) then
-			
+
 			if minetest.registered_nodes[node_here.name].buildable_to then
 				minetest.set_node(right_here, {name="trunks:twig_9", param2=2})
 			end
@@ -144,7 +144,7 @@ abstract_trunks.place_twig = function(pos)
 	elseif twig_size == 24 then
 		if not (minetest.registered_nodes[minetest.get_node({x=pos.x-1,y=pos.y,z=pos.z}).name].buildable_to
 			or minetest.registered_nodes[minetest.get_node({x=pos.x-1,y=pos.y,z=pos.z+1}).name].buildable_to) then
-			
+
 			if minetest.registered_nodes[node_here.name].buildable_to then
 				minetest.set_node(right_here, {name="trunks:twig_9", param2=3})
 			end
@@ -202,11 +202,11 @@ local TRuNKS = {
 --	  MoD 						 TRuNK						NR
     {"default",  				"tree",				 		 1},
 	{"default",					"jungletree",				 2},
-	
+
 	{"trees",					"tree_conifer",		 		 3},
 	{"trees",					"tree_mangrove",			 4},
 	{"trees",					"tree_palm",				 5},
-	
+
 	{"moretrees",				"apple_tree_trunk",			 6},
 	{"moretrees",				"beech_trunk",				 7},
 	{"moretrees",				"birch_trunk",				 8},
@@ -227,7 +227,7 @@ for i in pairs(TRuNKS) do
 	local 	TRuNK = TRuNKS[i][2]
 	local 	NR = 	TRuNKS[i][3]
 	local	trunkname = MoD..":"..TRuNK
-	if minetest.get_modpath(MoD) ~= nil 
+	if minetest.get_modpath(MoD) ~= nil
 	and NR < 6 -- moretrees trunks allready have facedir
 	and minetest.registered_nodes[trunkname] then -- the node being called exists.
 			temptrunk = clone_node(trunkname)
@@ -236,9 +236,9 @@ for i in pairs(TRuNKS) do
 	end
 end
 end
-	
+
 abstract_trunks.place_trunk = function(pos)
-	
+
 	local right_here = {x=pos.x, y=pos.y+1, z=pos.z}
 	local north = {x=pos.x, y=pos.y+1, z=pos.z+1}
 	local north2 = {x=pos.x, y=pos.y+1, z=pos.z+2}
@@ -248,7 +248,7 @@ abstract_trunks.place_trunk = function(pos)
 	local west2 = {x=pos.x-2, y=pos.y+1, z=pos.z}
 	local east = {x=pos.x+1, y=pos.y+1, z=pos.z}
 	local east2 = {x=pos.x+2, y=pos.y+1, z=pos.z}
-	
+
 	local node_here = minetest.get_node(right_here)
 	local node_north = minetest.get_node(north)
 	local node_north2 = minetest.get_node(north2)
@@ -278,7 +278,7 @@ abstract_trunks.place_trunk = function(pos)
 						if minetest.registered_nodes[node_north.name].buildable_to then
 							minetest.set_node(north, {name=MoD..":"..TRuNK, param2=4})
 						end
-						
+
 						if length >= 4 and minetest.registered_nodes[node_north2.name].buildable_to then
 							minetest.set_node(north2, {name=MoD..":"..TRuNK, param2=4})
 						end
@@ -365,13 +365,13 @@ if Moss_on_ground == true then
 abstract_trunks.grow_moss_on_ground = function(pos)
 	local on_ground = {x=pos.x, y=pos.y+1, z=pos.z}
 	local moss_type = math.random(1,21)
-	
+
 	if moss_type == 1 then
 		minetest.set_node(on_ground, {name="trunks:moss_fungus", param2=math.random(0,3)})
 	else
 		minetest.set_node(on_ground, {name="trunks:moss", param2=math.random(0,3)})
 	end
-	
+
 end
 
 plantslib:register_generate_plant({
@@ -406,14 +406,14 @@ abstract_trunks.grow_moss_on_trunk = function(pos)
 	local at_side_s = {x=pos.x, y=pos.y, z=pos.z-1}
 	local at_side_w = {x=pos.x-1, y=pos.y, z=pos.z}
 	local undrneath = {x=pos.x, y=pos.y-1, z=pos.z}
-	
+
 	local node_here = minetest.get_node(on_ground)
 	local node_north = minetest.get_node(at_side_n)
 	local node_east = minetest.get_node(at_side_e)
 	local node_south = minetest.get_node(at_side_s)
 	local node_west = minetest.get_node(at_side_w)
 	local node_under = minetest.get_node(undrneath)
-	
+
 	--if minetest.get_item_group(node_under.name, "tree") < 1 then
 		local moss_type = math.random(1,41)
 		if minetest.registered_nodes[node_here.name].buildable_to then -- instead of check_air = true,
@@ -491,20 +491,20 @@ plantslib:register_generate_plant({
 end
 
 -----------------------------------------------------------------------------------------------
--- RooTS 
+-- RooTS
 -----------------------------------------------------------------------------------------------
 if Roots == true then -- see settings.txt
 
 abstract_trunks.grow_roots = function(pos)
 	local twig_size 	= math.random(1,27)
-	
+
 	local right_here 	= {x=pos.x  , y=pos.y  , z=pos.z  }
 	local below 		= {x=pos.x  , y=pos.y-1, z=pos.z  }
 	local north 		= {x=pos.x  , y=pos.y  , z=pos.z+1}
 	local east 			= {x=pos.x+1, y=pos.y  , z=pos.z  }
 	local south 		= {x=pos.x  , y=pos.y  , z=pos.z-1}
 	local west 			= {x=pos.x-1, y=pos.y  , z=pos.z  }
-	
+
 	local node_here 	= minetest.get_node(right_here)
 	local node_below	= minetest.get_node(below)
 	local node_north 	= minetest.get_node(north)
@@ -515,8 +515,8 @@ abstract_trunks.grow_roots = function(pos)
 	for i in pairs(TRuNKS) do
 		local 	MoD = 			TRuNKS[i][1]
 		local 	TRuNK = 		TRuNKS[i][2]
-		if minetest.get_modpath(MoD) ~= nil 
-		and node_here.name == MoD..":"..TRuNK 
+		if minetest.get_modpath(MoD) ~= nil
+		and node_here.name == MoD..":"..TRuNK
 		and string.find(node_below.name, "dirt")
 		and node_here.param2 == 0 then
 			if minetest.registered_nodes[node_north.name].buildable_to then

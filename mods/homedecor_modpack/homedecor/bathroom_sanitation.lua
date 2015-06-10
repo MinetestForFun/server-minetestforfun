@@ -7,7 +7,7 @@ local toilet_sbox = {
 
 local toilet_cbox = {
 	type = "fixed",
-	fixed = { 
+	fixed = {
 		{-6/16, -8/16, -8/16, 6/16, 1/16, 8/16 },
 		{-6/16, -8/16, 4/16, 6/16, 9/16, 8/16 }
 	}

@@ -42,7 +42,7 @@ for i in ipairs(lilies_list) do
 	minetest.register_node(":flowers:waterlily"..deg1, {
 		description = S("Waterlily"),
 		drawtype = "nodebox",
-		tiles = { 
+		tiles = {
 			"flowers_waterlily"..deg2..".png",
 			"flowers_waterlily"..deg2..".png^[transformFY"
 		},
@@ -79,7 +79,7 @@ for i in ipairs(lilies_list) do
 			if plantslib:get_nodedef_field(under_node.name, "buildable_to") then
 				if under_node.name ~= "default:water_source" then
 					place_pos = pt.under
-				elseif top_node.name ~= "default:water_source" 
+				elseif top_node.name ~= "default:water_source"
 				       and plantslib:get_nodedef_field(top_node.name, "buildable_to") then
 					place_pos = top_pos
 				else
@@ -138,11 +138,11 @@ for i in ipairs(algae_list) do
 		num = "_"..algae_list[i][1]
 		algae_groups = { snappy = 3,flammable=2,flower=1, not_in_creative_inventory=1 }
 	end
-	
+
 	minetest.register_node(":flowers:seaweed"..num, {
 		description = S("Seaweed"),
 		drawtype = "nodebox",
-		tiles = { 
+		tiles = {
 			"flowers_seaweed"..num..".png",
 			"flowers_seaweed"..num..".png^[transformFY"
 		},
@@ -161,9 +161,9 @@ for i in ipairs(algae_list) do
 		node_box = {
 			type = "fixed",
 			fixed = { -0.5, -0.49, -0.5, 0.5, -0.49, 0.5 },
-		},	
+		},
 		buildable_to = true,
-		
+
 		liquids_pointable = true,
 		drop = "flowers:seaweed",
 		on_place = function(itemstack, placer, pointed_thing)
@@ -179,7 +179,7 @@ for i in ipairs(algae_list) do
 			if plantslib:get_nodedef_field(under_node.name, "buildable_to") then
 				if under_node.name ~= "default:water_source" then
 					place_pos = pt.under
-				elseif top_node.name ~= "default:water_source" 
+				elseif top_node.name ~= "default:water_source"
 				       and plantslib:get_nodedef_field(top_node.name, "buildable_to") then
 					place_pos = top_pos
 				else
@@ -240,7 +240,7 @@ for i in ipairs(flowers_list) do
 	local flowerdesc	= flowers_list[i][1]
 	local flower		= flowers_list[i][2]
 	local craftwith		= flowers_list[i][3]
-	
+
 	minetest.register_node(":flowers:potted_"..flower, {
 		description = S("Potted "..flowerdesc),
 		drawtype = "mesh",
@@ -254,7 +254,7 @@ for i in ipairs(flowers_list) do
 		selection_box = {
 			type = "fixed",
 			fixed = { -0.2, -0.5, -0.2, 0.2, 0.4, 0.2 },
-		},	
+		},
 	})
 
 	minetest.register_craft( {
@@ -336,7 +336,7 @@ flowers_plus.grow_waterlily = function(pos)
 		if lilies_list[i][1] ~= nil then
 			ext = "_"..lilies_list[i][1]
 		end
-	
+
 		if chance == num then
 			minetest.set_node(right_here, {name="flowers:waterlily"..ext, param2=math.random(0,3)})
 		end
@@ -529,7 +529,7 @@ minetest.register_craft( {
 -- cotton wads -> string (can be crafted into wool blocks)
 -- potted cotton plants -> potted white dandelions
 
-minetest.register_alias("flowers:cotton_plant", "farming:cotton_8") 
+minetest.register_alias("flowers:cotton_plant", "farming:cotton_8")
 minetest.register_alias("flowers:flower_cotton", "farming:cotton_8")
 minetest.register_alias("flowers:flower_cotton_pot", "flowers:potted_dandelion_white")
 minetest.register_alias("flowers:potted_cotton_plant", "flowers:potted_dandelion_white")

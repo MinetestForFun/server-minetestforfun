@@ -1,6 +1,6 @@
 -- In case you don't wanna have errors:
 
--- Only change what's behind a "=" (or "--"). 
+-- Only change what's behind a "=" (or "--").
 -- Don't use caps (behind a "=").
 
 -- If there's a "false" (behind a "=") you can change it to "true" (and the other way around).

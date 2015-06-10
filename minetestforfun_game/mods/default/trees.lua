@@ -57,13 +57,13 @@ minetest.register_abm({
 	if not can_grow(pos) then
 		return
 	end
-	
+
 	minetest.log("action", "A pine sapling grows into a tree at "..
 		minetest.pos_to_string(pos))
 		default.grow_pine_tree(pos)
 	end
 })
-	
+
 -- Appletree, jungletree function
 
 local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
@@ -72,7 +72,7 @@ local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
 	local c_air = minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")
 	local c_apple = minetest.get_content_id("default:apple")
-	
+
 	-- Trunk
 	for y_dist = 0, height - 1 do
 		local vi = a:index(x, y + y_dist, z)
@@ -139,7 +139,7 @@ function default.grow_tree(pos, is_apple_tree, bad)
 	local height = random(4, 5)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_leaves = minetest.get_content_id("default:leaves")
-	
+
 	local vm = minetest.get_voxel_manip()
 	local minp, maxp = vm:read_from_map(
 		{x = pos.x - 2, y = pos.y, z = pos.z - 2},
@@ -410,15 +410,15 @@ minetest.register_abm({
 	interval = 80,
 	chance = 3,
 	action = function(pos, node)
-		
+
 		local nu =  minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
 		local is_soil = minetest.get_item_group(nu, "soil")
-		
+
 		if is_soil == 0 then
 			return
 		end
-		
-		
+
+
 		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
 		default.grow_cherry_tree(pos, false, "default:cherry_tree", "default:cherry_blossom_leaves")
 	end,

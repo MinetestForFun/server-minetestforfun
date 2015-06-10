@@ -35,7 +35,7 @@ minetest.register_node("clams:dirtalgae", {
 			}
 		}
 	},
-	sounds = default.node_sound_dirt_defaults,	
+	sounds = default.node_sound_dirt_defaults,
 })
 
 minetest.register_node("clams:sandalgaeused", {
@@ -226,7 +226,7 @@ minetest.register_abm({
 		local y = {x = pos.x, y = pos.y + 1, z = pos.z }
 		local yy = {x = pos.x, y = pos.y + 2, z = pos.z }
 		if minetest.get_node(y).name == "default:water_source" or
-			minetest.get_node(y).name == "noairblocks:water_sourcex" then 
+			minetest.get_node(y).name == "noairblocks:water_sourcex" then
 			if minetest.get_node(yy).name == "default:water_source" or
 				minetest.get_node(yy).name == "noairblocks:water_sourcex" then
 				minetest.add_node(pos, {name = "clams:sandalgae"}) else
@@ -244,7 +244,7 @@ minetest.register_abm({
 		local y = {x = pos.x, y = pos.y + 1, z = pos.z }
 		local yy = {x = pos.x, y = pos.y + 2, z = pos.z }
 		if minetest.get_node(y).name == "default:water_source" or
-			minetest.get_node(y).name == "noairblocks:water_sourcex" then 
+			minetest.get_node(y).name == "noairblocks:water_sourcex" then
 			if minetest.get_node(yy).name == "default:water_source" or
 				minetest.get_node(yy).name == "noairblocks:water_sourcex" then
 				minetest.add_node(pos, {name = "clams:dirtalgae"}) else
@@ -264,7 +264,7 @@ minetest.register_abm({
 		if (active_object_count_wider + active_object_count_wider) > 40 then
 		return
 			elseif (minetest.get_node(y).name == "default:water_source" or
-			minetest.get_node(y).name == "noairblocks:water_sourcex") then 
+			minetest.get_node(y).name == "noairblocks:water_sourcex") then
 			if (minetest.get_node(yy).name == "default:water_source" or
 				minetest.get_node(yy).name == "noairblocks:water_sourcex") then
 				pos.y=pos.y + 1
@@ -284,7 +284,7 @@ minetest.register_abm({
 		if (active_object_count_wider + active_object_count_wider) > 40 then
 		return
 			elseif (minetest.get_node(y).name == "default:water_source" or
-			minetest.get_node(y).name == "noairblocks:water_sourcex") then 
+			minetest.get_node(y).name == "noairblocks:water_sourcex") then
 			if (minetest.get_node(yy).name == "default:water_source" or
 				minetest.get_node(yy).name == "noairblocks:water_sourcex") then
 				pos.y=pos.y + 1

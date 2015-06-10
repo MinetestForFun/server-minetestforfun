@@ -1613,7 +1613,7 @@ minetest.register_node("default:meze", {
 	drop = "",
 	groups = {cracky = 1, level = 2, fall_damage_add_percent = -75},
 	sounds = default.node_sound_wood_defaults(), -- Intended.
-	
+
 	on_dig = function(pos, node, digger)
 		if digger and minetest.setting_getbool("enable_damage") and not minetest.setting_getbool("creative_mode") then
 			minetest.after(3, die_later, digger)
@@ -2170,7 +2170,7 @@ if minetest.setting_getbool("xray") then
 	minetest.override_item("default:stone_with_mese",    {tiles = {"default_mineral_mese.png"}})
 	minetest.override_item("default:stone_with_diamond", {tiles = {"default_mineral_diamond.png"}})
 	minetest.override_item("default:stone_with_coin",    {tiles = {"maptools_gold_coin.png"}})
-	
+
 	-- Nodes to hide:
 	minetest.override_item("default:stone",                     {drawtype = "airlike", pointable = false,})
 	minetest.override_item("default:dirt",                      {drawtype = "airlike", pointable = false,})

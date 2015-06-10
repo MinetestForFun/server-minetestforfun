@@ -387,7 +387,7 @@ function default.register_ores()
 	end
 
 	-- Underground springs:
-		
+
 	minetest.register_ore({
 		ore_type       = "scatter",
 		ore            = "default:water_source",
@@ -721,7 +721,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						break
 					end
 				end
-				
+
 				if ground_y then
 					local p = {x=x,y =ground_y+1,z=z}
 					local nn = minetest.get_node(p).name
@@ -732,14 +732,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						-- If desert sand, add dry shrub
 						if nn == "default:desert_sand" then
 							minetest.set_node(p,{name = "default:dry_shrub"})
-							
+
 						-- If dirt with grass, add grass
 						elseif nn == "default:dirt_with_grass" then
 							minetest.set_node(p,{name = "default:grass_" .. pr:next(1, 5)})
 						end
 					end
 				end
-				
+
 			end
 		end
 		end
@@ -989,7 +989,7 @@ end
 --
 
 function default.register_blobs()
-	minetest.register_ore({ 
+	minetest.register_ore({
 		ore_type         = "blob",
 		ore              = "default:sand",
 		wherein          = {"default:stone"},

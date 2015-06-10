@@ -158,7 +158,7 @@ homedecor.register("plasma_ball", {
 		"homedecor_plasma_ball_glass.png"
 	},
 	inventory_image = "homedecor_plasma_ball_inv.png",
-	selection_box = {	
+	selection_box = {
 		type = "fixed",
 		fixed = { -0.1875, -0.5, -0.1875, 0.1875, 0, 0.1875 }
 	},
@@ -357,7 +357,7 @@ homedecor.register("ceiling_lantern", {
 	use_texture_alpha = true,
 	inventory_image = "homedecor_ceiling_lantern_inv.png",
 	description = "Ceiling Lantern",
-	groups = {snappy=3},	
+	groups = {snappy=3},
 	light_source = 11,
 	selection_box = cl_cbox,
 	walkable = false
@@ -508,7 +508,7 @@ local dlamp_cbox = {
 
 local dlamp_colors = { "red","blue","green","violet" }
 
-for _, color in ipairs(dlamp_colors) do 
+for _, color in ipairs(dlamp_colors) do
 	homedecor.register("desk_lamp_"..color, {
 		description = S("Desk Lamp ("..color..")"),
 		mesh = "homedecor_desk_lamp.obj",

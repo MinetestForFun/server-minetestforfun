@@ -137,7 +137,7 @@ local door_model_list = {
 		tiles = {
 			"homedecor_door_exterior_fancy.png",
 			"homedecor_door_exterior_fancy_insert.png"
-		},			
+		},
 		usealpha = true
 	},
 

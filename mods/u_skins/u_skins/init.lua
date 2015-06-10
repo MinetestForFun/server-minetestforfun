@@ -51,12 +51,12 @@ unified_inventory.register_page("u_skins", {
 		if not u_skins.is_skin(u_skins.u_skins[name]) then
 			u_skins.u_skins[name] = u_skins.default
 		end
-		
+
 		local formspec = ("background[0.06,0.99;7.92,7.52;ui_misc_form.png]"
 			.."image[0,.75;1,2;"..u_skins.u_skins[name].."_preview.png]"
 			.."label[6,.5;Raw texture:]"
 			.."image[6,1;2,1;"..u_skins.u_skins[name]..".png]")
-				
+
 		local meta = u_skins.meta[u_skins.u_skins[name]]
 		if meta then
 			if meta.name ~= "" then
@@ -125,7 +125,7 @@ u_skins.generate_pages = function(texture)
 			.."button[0,3.8;1,.5;u_skins_page$"..page_prev..";<<]"
 			.."button[.75,3.8;6.5,.5;u_skins_null;Page "..page.."/"..total_pages.."]"
 			.."button[7,3.8;1,.5;u_skins_page$"..page_next..";>>]")
-		
+
 		unified_inventory.register_page("u_skins_page$"..(page - 1), {
 			get_formspec = function(player)
 				return {formspec=formspec}

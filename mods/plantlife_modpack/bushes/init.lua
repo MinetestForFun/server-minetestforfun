@@ -4,15 +4,15 @@
 -- bush leaf textures are cc-by-sa 3.0.  from VannessaE's moretrees mod.  (Leaf texture created by RealBadAngel or VanessaE)
 -- Branch textures created by Neuromancer.
 -- Licence for Code and Non-Bush leaf code is WTFPL.
- 
-  abstract_bushes = {} 
+
+  abstract_bushes = {}
 
   minetest.register_node("bushes:youngtree2_bottom", {
-	description = "Young Tree 2 (bottom)", 
+	description = "Young Tree 2 (bottom)",
  drawtype="nodebox",
  tiles = {"bushes_youngtree2trunk.png"},
  	inventory_image = "bushes_youngtree2trunk_inv.png",
-	wield_image = "bushes_youngtree2trunk_inv.png", 
+	wield_image = "bushes_youngtree2trunk_inv.png",
 paramtype = "light",
 	walkable = false,
 	is_ground_content = true,
@@ -27,7 +27,7 @@ node_box = {
 	sounds = default.node_sound_leaves_defaults(),
 	drop = 'default:stick'
 })
-  
+
   local BushBranchCenter 			= { {1,1}, {3,2} }
 for i in pairs(BushBranchCenter) do
 	local Num 		= BushBranchCenter[i][1]
@@ -56,8 +56,8 @@ for i in pairs(BushBranchCenter) do
 				sunlight_propagates = true,
 		groups = {
 		--	tree=1, -- MM: disabled because some recipes use group:tree for trunks
-			snappy=3, 
-			flammable=2, 
+			snappy=3,
+			flammable=2,
 			leaves=1
 		},
 		sounds = default.node_sound_leaves_defaults(),
@@ -77,8 +77,8 @@ for i in pairs(BushBranchSide) do
 --[[bottom]]"bushes_branches_center_"..TexNum..".png",
 --[[right]]	"bushes_branches_left_"..TexNum..".png",
 --[[left]]	"bushes_branches_right_"..TexNum..".png", -- MM: We could also mirror the previous here,
---[[back]]	"bushes_branches_center_"..TexNum..".png",--     unless U really want 'em 2 B different 
---[[front]]	"bushes_branches_right_"..TexNum..".png"  
+--[[back]]	"bushes_branches_center_"..TexNum..".png",--     unless U really want 'em 2 B different
+--[[front]]	"bushes_branches_right_"..TexNum..".png"
 		},
 		node_box = {
 			type = "fixed",
@@ -99,8 +99,8 @@ for i in pairs(BushBranchSide) do
 				sunlight_propagates = true,
 		groups = {
 		--	tree=1, -- MM: disabled because some recipes use group:tree for trunks
-			snappy=3, 
-			flammable=2, 
+			snappy=3,
+			flammable=2,
 			leaves=1
 		},
 		sounds = default.node_sound_leaves_defaults(),
@@ -110,23 +110,23 @@ end
 
 local BushLeafNode 			= { {1}, {2}}
 for i in pairs(BushLeafNode) do
-	local Num = BushLeafNode[i][1]	
+	local Num = BushLeafNode[i][1]
 	minetest.register_node("bushes:BushLeaves"..Num, {
 		description = "Bush Leaves "..Num,
 		drawtype = "allfaces_optional",
 		tiles = {"bushes_leaves_"..Num..".png"},
 		paramtype = "light",
-		groups = {	-- MM: Should we add leafdecay?	
+		groups = {	-- MM: Should we add leafdecay?
 			snappy=3,
 			flammable=2,
 			attached_node=1
 		},
-		sounds = default.node_sound_leaves_defaults(),    
-	})	
+		sounds = default.node_sound_leaves_defaults(),
+	})
 end
 
 abstract_bushes.grow_bush = function(pos)
-	local leaf_type = math.random(1,2)	
+	local leaf_type = math.random(1,2)
 	local bush_side_height = math.random(0,1)
 		local chance_of_bush_node_right = math.random(1,10)
 		if chance_of_bush_node_right> 5 then
@@ -144,25 +144,25 @@ abstract_bushes.grow_bush = function(pos)
 			bush_side_height = math.random(0,1)
 			local front_pos = {x=pos.x, y=pos.y+bush_side_height, z=pos.z+1}
 			abstract_bushes.grow_bush_node(front_pos,2,leaf_type)
-		end		
+		end
 		local chance_of_bush_node_back = math.random(1,10)
 		if chance_of_bush_node_back> 5 then
 			bush_side_height = math.random(0,1)
 			local back_pos = {x=pos.x, y=pos.y+bush_side_height, z=pos.z-1}
 			abstract_bushes.grow_bush_node(back_pos,0,leaf_type)
 		end
-		
+
 abstract_bushes.grow_bush_node(pos,5,leaf_type)
 end
 
 abstract_bushes.grow_bush_node = function(pos,dir, leaf_type)
-	
-	
+
+
 	local right_here = {x=pos.x, y=pos.y+1, z=pos.z}
 	local above_right_here = {x=pos.x, y=pos.y+2, z=pos.z}
-	
+
 	local bush_branch_type = 2
-	
+
 	-- MM: I'm not sure if it's slower now than before...
 	if dir ~= 5 and leaf_type == 1 then
 		bush_branch_type = 2
@@ -178,7 +178,7 @@ abstract_bushes.grow_bush_node = function(pos,dir, leaf_type)
 		bush_branch_type = 3
 		dir = 1
 	end
-	
+
 	if minetest.get_node(right_here).name == "air"  -- instead of check_air = true,
 	or minetest.get_node(right_here).name == "default:junglegrass" then
 		minetest.set_node(right_here, {name="bushes:bushbranches"..bush_branch_type , param2=dir})
@@ -196,7 +196,7 @@ end
 
 plantslib:register_generate_plant({
     surface = {
-		"default:dirt_with_grass", 
+		"default:dirt_with_grass",
 		"stoneage:grass_with_silex",
 		"sumpf:peat",
 		"sumpf:sumpf"
@@ -207,21 +207,21 @@ plantslib:register_generate_plant({
 	plantlife_limit = -0.9,
   },
   abstract_bushes.grow_bush
-)		
+)
 
  abstract_bushes.grow_youngtree2 = function(pos)
-	local height = math.random(4,5)	
+	local height = math.random(4,5)
 	abstract_bushes.grow_youngtree_node2(pos,height)
 end
 
 abstract_bushes.grow_youngtree_node2 = function(pos, height)
-	
-	
+
+
 	local right_here = {x=pos.x, y=pos.y+1, z=pos.z}
 	local above_right_here = {x=pos.x, y=pos.y+2, z=pos.z}
 	local two_above_right_here = {x=pos.x, y=pos.y+3, z=pos.z}
 	local three_above_right_here = {x=pos.x, y=pos.y+4, z=pos.z}
-	 
+
 	if minetest.get_node(right_here).name == "air"  -- instead of check_air = true,
 	or minetest.get_node(right_here).name == "default:junglegrass" then
 		if height == 4 then
@@ -234,14 +234,14 @@ abstract_bushes.grow_youngtree_node2 = function(pos, height)
 				minetest.set_node(three_above_right_here, {name="bushes:BushLeaves1" })
 				minetest.set_node(three_above_right_here_south, {name="bushes:BushLeaves1" })
 		end
-		 
+
 	end
 end
 
 
 plantslib:register_generate_plant({
     surface = {
-		"default:dirt_with_grass", 
+		"default:dirt_with_grass",
 		"stoneage:grass_with_silex",
 		"sumpf:peat",
 		"sumpf:sumpf"
@@ -252,6 +252,6 @@ plantslib:register_generate_plant({
 	plantlife_limit = -0.9,
   },
   abstract_bushes.grow_youngtree2
-)	
-	 
+)
+
 		--http://dev.minetest.net/Node_Drawtypes

@@ -396,9 +396,9 @@ action = function(pos, node, active_object_count, active_object_count_wider)
 			minetest.get_node(yyp).name == "noairblocks:water_sourcex") then
 				if (minetest.get_node(yyyp).name == "default:water_source" or
 				minetest.get_node(yyyp).name == "noairblocks:water_sourcex") then
-					minetest.add_node(pos, {name = "seaplants:kelpgreenmiddle"}) 
+					minetest.add_node(pos, {name = "seaplants:kelpgreenmiddle"})
 					pos.y = pos.y + 1
-					minetest.add_node(pos, {name = "seaplants:kelpgreen"}) 
+					minetest.add_node(pos, {name = "seaplants:kelpgreen"})
 				else
 				return
 			end
@@ -452,9 +452,9 @@ action = function(pos, node, active_object_count, active_object_count_wider)
 			minetest.get_node(yyp).name == "noairblocks:water_sourcex") then
 				if (minetest.get_node(yyyp).name == "default:water_source" or
 				minetest.get_node(yyyp).name == "noairblocks:water_sourcex") then
-					minetest.add_node(pos, {name = "seaplants:kelpbrownmiddle"}) 
+					minetest.add_node(pos, {name = "seaplants:kelpbrownmiddle"})
 					pos.y = pos.y + 1
-					minetest.add_node(pos, {name = "seaplants:kelpbrown"}) 
+					minetest.add_node(pos, {name = "seaplants:kelpbrown"})
 				else
 				return
 			end

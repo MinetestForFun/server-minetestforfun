@@ -4,7 +4,7 @@ local version 	= "0.2.0"
 local mname		= "ferns" -- former "archaeplantae"
 -----------------------------------------------------------------------------------------------
 -- (by Mossmanikin)
--- License (everything): 	WTFPL			
+-- License (everything): 	WTFPL
 -----------------------------------------------------------------------------------------------
 
 abstract_ferns = {}

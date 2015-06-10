@@ -176,7 +176,7 @@ local function cool_wf_vm(pos, node1, node2)
 			nodes[i] = stone
 		end
 	end
-				
+
 	manip:set_data(nodes)
 	manip:write_to_map()
 	-- minetest.log("action", "Lava cooling happened at (" .. pos.x .. "," .. pos.y .. "," .. pos.z .. ").")

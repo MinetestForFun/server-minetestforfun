@@ -1,6 +1,6 @@
 local shapes = {
    {  { x = {0, 1, 0, 1}, y = {0, 0, 1, 1} } },
-     
+
    {  { x = {1, 1, 1, 1}, y = {0, 1, 2, 3} },
       { x = {0, 1, 2, 3}, y = {1, 1, 1, 1} } },
 
@@ -70,7 +70,7 @@ end
 local function step(pos, fields)
 	local meta = minetest.get_meta(pos)
 	local t = minetest.deserialize(meta:get_string("tetris"))
-	
+
 	local function new_game(pos)
 		local nex = math.random(7)
 
@@ -81,7 +81,7 @@ local function step(pos, fields)
 			score = 0,
 			cur = math.random(7),
 			nex = nex,
-			x=4, y=0, rot=1 
+			x=4, y=0, rot=1
 		}
 
 		local timer = minetest.get_node_timer(pos)
@@ -99,7 +99,7 @@ local function step(pos, fields)
 					i*sizey+boardy, semi,
 					size, comma, size, semi,
 					colors[tile[2]], close }
-				
+
 				ins = ins + 1
 				scr[ins] = concat(tmp)
 			end
@@ -138,9 +138,9 @@ local function step(pos, fields)
 
 		for i=1,4 do
 			local cx, cy = d.x[i]+x, d.y[i]+y
-			
+
 			if cx < 0 or cx > 9 or cy < 0 or cy > 19 then
-				return false 
+				return false
 			end
 
 			for _, tile in pairs(t.board[ cy ] or {}) do
@@ -157,7 +157,7 @@ local function step(pos, fields)
 	end
 
 	local function tick()
-		if stuck() then	
+		if stuck() then
 			if t.y <= 0 then
 				return false end
 			add()
@@ -170,7 +170,7 @@ local function step(pos, fields)
 			t.y = t.y + 1
 		end
 		return true
-	end  
+	end
 
 	local function move(dx, dy)
 		local newx, newy = t.x+dx, t.y+dy
@@ -225,10 +225,10 @@ local function step(pos, fields)
 	end
 
 	if t then
-	local scr = { formsize, background, 
+	local scr = { formsize, background,
 		t.boardstring, t.previewstring,
 		draw_shape(t.cur, t.x, t.y, t.rot, boardx, boardy),
-		"label[3.8,0.1;Next...]label[3.8,2.7;Score: ", 
+		"label[3.8,0.1;Next...]label[3.8,2.7;Score: ",
 		t.score, close, buttons }
 
 

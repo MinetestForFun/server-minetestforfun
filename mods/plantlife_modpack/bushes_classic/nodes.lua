@@ -11,7 +11,7 @@ plantlife_bushes.after_dig_node = function(pos, oldnode, oldmetadata, digger)
 	-- find out which bush type we are dealing with
 	local bush_name   = ""
 	local can_harvest = false
-	
+
 	if oldnode.name == "bushes:fruitless_bush" then
 		-- this bush has not grown fruits yet (but will eventually)
 		bush_name = oldmetadata.fields.bush_type

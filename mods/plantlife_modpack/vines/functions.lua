@@ -123,7 +123,7 @@ vines.dig_vine = function( pos, node_name, user )
   --only dig give the vine if shears are used
   if not user then return false end
   local wielded = user:get_wielded_item()
-  if 'vines:shears' == wielded:get_name() then 
+  if 'vines:shears' == wielded:get_name() then
     local inv = user:get_inventory()
     if inv then
       inv:add_item("main", ItemStack( node_name ))
