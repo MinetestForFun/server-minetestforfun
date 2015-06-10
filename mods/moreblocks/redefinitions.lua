@@ -33,7 +33,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "default:rail 16",
+	output = "default:rail 16", -- /MFF (Mg|06/10/15)
 	recipe = {
 		{"default:steel_ingot", "", "default:steel_ingot"},
 		{"default:steel_ingot", "default:stick", "default:steel_ingot"},
