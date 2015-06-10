@@ -1,41 +1,47 @@
-minetest.register_ore({
-	ore_type       = "scatter",
-	ore            = "bedrock:bedrock",
-	wherein        = "default:stone",
-	clust_scarcity = 1 * 1 * 1,
-	clust_num_ores = 5,
-	clust_size     = 2,
-	height_min     = -30912, -- Engine changes can modify this value.
-	height_max     = -30656, -- This ensures the bottom of the world is not even loaded.
-})
+local bedrock = {}
 
-minetest.register_ore({
-	ore_type       = "scatter",
-	ore            = "bedrock:deepstone",
-	wherein        = "default:stone",
-	clust_scarcity = 1 * 1 * 1,
-	clust_num_ores = 5,
-	clust_size     = 2,
-	height_min     = -30656,
-	height_max     = -30000,
-})
+bedrock.layer = -30912 -- determined as appropriate by experiment
+bedrock.node = {name = "bedrock:bedrock"}
+
+local depth = tonumber(minetest.setting_get("bedrock_y"))
+if depth ~= nil then
+	bedrock.layer = depth
+end
+
+minetest.register_on_generated(function(minp, maxp)
+	if maxp.y >= bedrock.layer and minp.y <= bedrock.layer then
+		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
+		local data = vm:get_data()
+		local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
+		local c_bedrock = minetest.get_content_id("bedrock:bedrock")
+
+		for x = minp.x, maxp.x do
+			for z = minp.z, maxp.z do
+				local p_pos = area:index(x, bedrock.layer, z)
+				data[p_pos] = c_bedrock
+			end
+		end
+
+		vm:set_data(data)
+		vm:calc_lighting()
+		vm:update_liquids()
+		vm:write_to_map()
+	end
+end)
 
 minetest.register_node("bedrock:bedrock", {
 	description = "Bedrock",
-	tile_images = {"bedrock_bedrock.png"},
+	tiles = {"bedrock_bedrock.png"},
+	groups = {immortal=1, not_in_creative_inventory=1, unbreakable = 1},
+	sounds = { footstep = { name = "bedrock_step", gain = 1 } },
+	is_ground_content = false,
+	on_blast = function() end,
+	on_destruct = function () end,
+	can_dig = function() return false end,
+	diggable = false,
 	drop = "",
-	groups = {unbreakable = 1, not_in_creative_inventory = 1}, -- For Map Tools' admin pickaxe.
-	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("bedrock:deepstone", {
-	description = "Deepstone",
-	tile_images = {"bedrock_deepstone.png"},
-	drop = "default:stone", -- Intended.
-	groups = {cracky = 1},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-if minetest.setting_getbool("log_mods") then
-	minetest.log("action", "Carbone: [bedrock] loaded.")
+if minetest.get_modpath("mesecons_mvps") ~= nil then
+	mesecon:register_mvps_stopper("bedrock2:bedrock")
 end
