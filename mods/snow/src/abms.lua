@@ -52,7 +52,7 @@ minetest.register_abm({
 		elseif intensity == 2 then
 	 		minetest.add_node(pos,{name="default:water_flowing", param2=7})
 		--[[	LazyJ, you need to add param2, which defines the amount of the flowing water ~ HybridDog 2015_03_06
-			This was causing "melts=2" nodes to just disappear so I changed it to replace the 
+			This was causing "melts=2" nodes to just disappear so I changed it to replace the
 			node with a water_source for a couple seconds and then replace the water_source with
 			air. This way it made a watery mess that quickly evaporated. ~ LazyJ 2014_04_24
 			local check_place = function(pos,node)
@@ -70,7 +70,7 @@ minetest.register_abm({
 			minetest.add_node(pos,{name="default:water_source"})
 				minetest.after(2, function()  -- 2 seconds gives just enough time for
 											-- the water to flow and spread before the
-											-- water_source is changed to air. ~ LazyJ 
+											-- water_source is changed to air. ~ LazyJ
 					if minetest.get_node(pos).name == "default:water_source" then
 	 					minetest.add_node(pos,{name="air"})
 	 				end
@@ -150,7 +150,7 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"snow:sapling_pine"},
 	interval = 10,
-	chance = 50,   
+	chance = 50,
 	action = function(pos, node)
 
 -- Check if there is enough vertical-space for the sapling to grow without
@@ -169,7 +169,7 @@ minetest.register_abm({
 		if minetest.get_node(pos).name == "snow:sapling_pine" then
 			   -- This switches the sapling to a tree trunk. ~ LazyJ
 			   minetest.set_node(pos, {name="default:pinetree"})
-			   -- This is more for testing but it may be useful info to some admins when 
+			   -- This is more for testing but it may be useful info to some admins when
 			   -- grepping the server logs too. ~ LazyJ
 			   minetest.log("action", "A pine sapling grows into a tree at "..minetest.pos_to_string(pos))
 		end

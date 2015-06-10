@@ -47,7 +47,7 @@ There is one in each of the "stairsplus.register_all" sections.
 
 
 
--- First, let's run a check to see if MoreBlocks is installed; we're going to need it for the 
+-- First, let's run a check to see if MoreBlocks is installed; we're going to need it for the
 -- next section of stairsplus stuff. ~LazyJ
 
 if (minetest.get_modpath("moreblocks"))
@@ -70,7 +70,7 @@ end
 
 
 
--- Leave commented out. Another, possible piece of the puzzle, as to why the placement of 
+-- Leave commented out. Another, possible piece of the puzzle, as to why the placement of
 -- stairsplus nodes aren't recorded in the logs. Shelved till I can concentrate on it again.
 -- ~ LazyJ
 
@@ -134,7 +134,7 @@ end
 				end
 				return itemstack
 			end
-			
+
 			-- Upside down slabs
 			if p0.y-1 == p1.y then
 				-- Turn into full block if pointing at a existing slab
@@ -175,10 +175,10 @@ end
 
 
 --[[
-Below, in the "groups" line there is a "melts" category. Back in the ABMs lua file, melting 
-code, melts=1 will produce a water_source when the full-sized snow/ice block is melted making 
-a big, watery mess. melts=2 will produce a water_source only for a moment, then it changes back 
-to water_flowing and then dries-up and disappears. I gave these stairs/slabs/panels/microblocks 
+Below, in the "groups" line there is a "melts" category. Back in the ABMs lua file, melting
+code, melts=1 will produce a water_source when the full-sized snow/ice block is melted making
+a big, watery mess. melts=2 will produce a water_source only for a moment, then it changes back
+to water_flowing and then dries-up and disappears. I gave these stairs/slabs/panels/microblocks
 a melts value of 2 instead of 1 because they are not full blocks.
 
 ~ LazyJ
@@ -189,26 +189,26 @@ a melts value of 2 instead of 1 because they are not full blocks.
 	local ndef = minetest.registered_nodes["default:ice"]
 	local groups = {}
 	for k, v in pairs(ndef.groups) do groups[k] = v end
-	
+
 	stairsplus:register_all("moreblocks", "ice", "default:ice", {
 		description = ndef.description,
 		paramtype2 = "facedir",
-		-- Added "icemaker=1" in groups. This ties into the freezing 
+		-- Added "icemaker=1" in groups. This ties into the freezing
 		-- function in the ABMs.lua file. ~ LazyJ
 		groups = {cracky=1, crumbly=1, choppy=1, oddly_breakable_by_hand=1, melts=2, icemaker=1},
 		sounds = default.node_sound_glass_defaults(),
 		tiles = ndef.tiles,
 		-- Because of the "use_texture_alpha" line, that gives ice transparency, I couldn't combine
 		-- default ice and default snowblocks in a list like MoreBlocks does. ~ LazyJ
-		use_texture_alpha = true, 
+		use_texture_alpha = true,
 		sunlight_propagates = true,
 		-- This "on_place" line makes placing these nodes recorded in the logs.
 		-- Useful for investigating griefings and determining ownership
 		-- BUT these nodes will nolonger auto-rotate into position. ~ LazyJ
 
 		--on_place = minetest.item_place,
-		
- 		-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could 
+
+ 		-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could
  		-- also double as dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ
 		on_construct = function(pos)
 			pos.y = pos.y - 1
@@ -224,11 +224,11 @@ a melts value of 2 instead of 1 because they are not full blocks.
 	local ndef = minetest.registered_nodes["default:snowblock"]
 	local groups = {}
 	for k, v in pairs(ndef.groups) do groups[k] = v end
-	
+
 	stairsplus:register_all("moreblocks", "snowblock", "default:snowblock", {
 		description = ndef.description,
 		paramtype2 = "facedir",
-		-- Added "icemaker=1" in groups. This ties into the freezing function 
+		-- Added "icemaker=1" in groups. This ties into the freezing function
 		-- in the ABMs.lua file. ~ LazyJ
 		groups = {cracky=3, crumbly=3, choppy=3, oddly_breakable_by_hand=3, melts=2, icemaker=1},
 		tiles = ndef.tiles,
@@ -244,8 +244,8 @@ a melts value of 2 instead of 1 because they are not full blocks.
 		-- BUT these nodes will nolonger auto-rotate into position. ~ LazyJ
 
 		--on_place = minetest.item_place,
-		
- 		-- The "on_construct" part below, thinking in terms of layers, 
+
+ 		-- The "on_construct" part below, thinking in terms of layers,
  		-- dirt_with_snow could also double as dirt_with_frost
  		-- which adds subtlety to the winterscape. ~ LazyJ
 		on_construct = function(pos)
@@ -313,7 +313,7 @@ for _, name in pairs(snow_nodes) do
 
 -- Picking up were we left off... ~ LazyJ
 
- 		-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could 
+ 		-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could
  		-- also double as dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ
 		on_construct = function(pos)
 			pos.y = pos.y - 1
@@ -336,7 +336,7 @@ for _, name in pairs(snow_nodes) do
 	})
 end
 
-else  -- from clear up at the top, the MoreBlocks check. "Else", if MoreBlocks wasn't found, skip  
+else  -- from clear up at the top, the MoreBlocks check. "Else", if MoreBlocks wasn't found, skip
 		-- down to here, "return" nothing and "end" this script. ~ LazyJ
 return
 end

@@ -40,10 +40,6 @@ near torches and lava.
 --=============================================================
 
 
-if not snow.enable_snowfall then
-	return
-end
-
 local weather_legacy
 
 local read_weather_legacy = function ()
@@ -84,7 +80,7 @@ local PERSISTENCE3 = 0.5 -- 0.5
 local SCALE3 = 250 -- 250
 
 --Get snow at position.
-local get_snow = function(pos)
+local function get_snow(pos)
 	--Legacy support.
 	if weather_legacy == "snow" then
 		local perlin1 = minetest.get_perlin(112,3, 0.5, 150)
@@ -106,14 +102,19 @@ end
 local addvectors = vector and vector.add
 
 --Returns a random position between minp and maxp.
-local randpos = function (minp, maxp)
-	local x,y,z
+local function randpos(minp, maxp)
+	local x,z
 	if minp.x > maxp.x then
-		x = math.random(maxp.x,minp.x) else x = math.random(minp.x,maxp.x) end
-		y = minp.y
+		x = math.random(maxp.x,minp.x)
+	else
+		x = math.random(minp.x,maxp.x)
+	end
 	if minp.z > maxp.z then
-		z = math.random(maxp.z,minp.z) else z = math.random(minp.z,maxp.z) end
-	return {x=x,y=y,z=z}
+		z = math.random(maxp.z,minp.z)
+	else
+		z = math.random(minp.z,maxp.z)
+	end
+	return {x=x,y=minp.y,z=z}
 end
 
 local default_snow_particle = {
@@ -152,22 +153,20 @@ local function snow_fall(pos, player, animate)
 			break
 		end
 	end
-	if not ground_y then return end
-	pos = {x=pos.x, y=ground_y, z=pos.z}
-	local spos = {x=pos.x, y=ground_y+10, z=pos.z}
+	if not ground_y then
+		return
+	end
 
-  
+	pos = {x=pos.x, y=ground_y, z=pos.z}
+
   	if get_snow(pos) then
   		if animate then
-	  		local minp = addvectors(spos, {x=-9, y=3, z=-9})
-			local maxp = addvectors(spos, {x= 9, y=5, z= 9})
-	  		local vel = {x=0, y=   -1, z=-1}
-			local acc = {x=0, y=   0, z=0}
+			local spos = {x=pos.x, y=ground_y+10, z=pos.z}
 			minetest.add_particlespawner(get_snow_particledef({
-				minpos = minp,
-				maxpos = maxp,
-				vel = vel,
-				acc = acc,
+				minpos = addvectors(spos, {x=-9, y=3, z=-9}),
+				maxpos = addvectors(spos, {x= 9, y=5, z= 9}),
+				vel = {x=0, y=-1, z=-1},
+				acc = {x=0, y=0, z=0},
 				playername = player:get_player_name()
 			}))
 		end
@@ -177,30 +176,21 @@ local function snow_fall(pos, player, animate)
 end
 
 -- Snow
-minetest.register_globalstep(function(dtime)
+local function calc_snowfall()
 	for _, player in pairs(minetest.get_connected_players()) do
 		local ppos = player:getpos()
-		
-		local sminp = addvectors(ppos, {x=-20, y=0, z=-20})
-		local smaxp = addvectors(ppos, {x= 20, y=0, z= 20})
-	
+
 		-- Make sure player is not in a cave/house...
-		if get_snow(ppos) and minetest.get_node_light(ppos, 0.5) == 15 then
-
-			local minp = addvectors(ppos, {x=-9, y=3, z=-9})
-			local maxp = addvectors(ppos, {x= 9, y=5, z= 9})
-
-			local minp_deep = addvectors(ppos, {x=-5, y=3.2, z=-5})
-			local maxp_deep = addvectors(ppos, {x= 5, y=1.6, z= 5})
-
-			local vel = {x=0, y=   -1, z=-1}
-			local acc = {x=0, y=   0, z=0}
-			
+		if get_snow(ppos)
+		and minetest.get_node_light(ppos, 0.5) == 15 then
+			local animate
 			if not snow.lighter_snowfall then
+				local vel = {x=0, y=-1, z=-1}
+				local acc = {x=0, y=0, z=0}
 				minetest.add_particlespawner(get_snow_particledef({
 					amount = 5,
-					minpos = minp,
-					maxpos = maxp,
+					minpos = addvectors(ppos, {x=-9, y=3, z=-9}),
+					maxpos = addvectors(ppos, {x= 9, y=5, z= 9}),
 					vel = vel,
 					acc = acc,
 					size = 25,
@@ -209,8 +199,8 @@ minetest.register_globalstep(function(dtime)
 
 				minetest.add_particlespawner(get_snow_particledef({
 					amount = 4,
-					minpos = minp_deep,
-					maxpos = maxp_deep,
+					minpos = addvectors(ppos, {x=-5, y=3.2, z=-5}),
+					maxpos = addvectors(ppos, {x= 5, y=1.6, z= 5}),
 					vel = vel,
 					acc = acc,
 					exptime = 4,
@@ -218,14 +208,27 @@ minetest.register_globalstep(function(dtime)
 					playername = player:get_player_name()
 				}))
 
-				if math.random(1,5) == 4 then	
-					snow_fall(randpos(sminp, smaxp), player)
-				end
+				animate = false
 			else
-				if math.random(1,5) == 4 then	
-					snow_fall(randpos(sminp, smaxp), player, true)
-				end
+				animate = true
+			end
+
+			if math.random(1,5) == 4 then
+				snow_fall(
+					randpos(
+						addvectors(ppos, {x=-20, y=0, z=-20}),
+						addvectors(ppos, {x= 20, y=0, z= 20})
+					),
+					player,
+					animate
+				)
 			end
 		end
+	end
+end
+
+minetest.register_globalstep(function(dtime)
+	if snow.enable_snowfall then
+		calc_snowfall()
 	end
 end)

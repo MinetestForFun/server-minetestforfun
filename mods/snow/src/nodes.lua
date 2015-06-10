@@ -35,10 +35,10 @@ The Xmas tree needles are registred and defined a farther down in this nodes.lua
 ~ LazyJ
 
 --]]
- 
+
 if snow.christmas_content then
 	--Christmas trees
-	
+
 	minetest.override_item("snow:needles", {
 		drop = {
 			max_items = 1,
@@ -61,9 +61,9 @@ if snow.christmas_content then
 			}
 		}
 	})
-end	
-	
-	
+end
+
+
 	--Christmas easter egg
 	minetest.register_on_mapgen_init( function()
 		if rawget(_G, "skins") then
@@ -75,7 +75,7 @@ end
 
 
 --[[
-Original, static Xmas lights. Keep so people can "turn off" the 
+Original, static Xmas lights. Keep so people can "turn off" the
 animation if it is too much for them. ~ LazyJ
 
 --Decorated Pine leaves
@@ -179,7 +179,7 @@ minetest.register_node("snow:sapling_pine", {
 	walkable = false,
 	groups = {snappy=2,dig_immediate=3},
 	sounds = default.node_sound_defaults(),
-	
+
 })
 
 
@@ -197,8 +197,9 @@ minetest.register_node("snow:star", {
 	--groups = {snappy=2,dig_immediate=3},
 	groups = {cracky=1, crumbly=1, choppy=1, oddly_breakable_by_hand=1}, -- Don't want the ornament breaking too easily because you have to punch it to turn it on and off. ~ LazyJ
 	sounds = default.node_sound_glass_defaults({dig = {name="default_glass_footstep", gain=0.2}}), -- Breaking "glass" sound makes it sound like a real, broken, Xmas tree ornament (Sorry, Mom!).  ;)-  ~ LazyJ
-	on_punch = function(pos, node, puncher) -- Added a "lit" star that can be punched on or off depending on your preference. ~ LazyJ
-		minetest.set_node(pos, {name = "snow:star_lit"})
+	on_punch = function(pos, node) -- Added a "lit" star that can be punched on or off depending on your preference. ~ LazyJ
+		node.name = "snow:star_lit"
+		minetest.set_node(pos, node)
 		nodeupdate(pos)
 	end,
 })
@@ -217,8 +218,9 @@ minetest.register_node("snow:star_lit", {
 	drop = "snow:star",
 	groups = {cracky=1, crumbly=1, choppy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults({dig = {name="default_glass_footstep", gain=0.2}}),
-	on_punch = function(pos, node, puncher)
-		minetest.set_node(pos, {name = "snow:star"})
+	on_punch = function(pos, node)
+		node.name = "snow:star"
+		minetest.set_node(pos, node)
 		nodeupdate(pos)
 	end,
 })
@@ -264,9 +266,9 @@ minetest.register_node("snow:snow_brick", {
 	liquidtype = "none",
 	paramtype = "light",
 	sunlight_propagates = true,
-	paramtype2 = "facedir", -- Allow blocks to be rotated with the screwdriver or 
+	paramtype2 = "facedir", -- Allow blocks to be rotated with the screwdriver or
 	-- by player position. ~ LazyJ
-	 -- I made this a little harder to dig than snow blocks because 
+	 -- I made this a little harder to dig than snow blocks because
 	 -- I imagine snow brick as being much more dense and solid than fluffy snow. ~ LazyJ
 	groups = {cracky=2, crumbly=2, choppy=2, oddly_breakable_by_hand=2, melts=1, icemaker=1, cooks_into_ice=1},
 	 --Let's use the new snow sounds instead of the old grass sounds. ~ LazyJ
@@ -276,7 +278,7 @@ minetest.register_node("snow:snow_brick", {
 		dug = {name="default_snow_footstep", gain=0.75},
 		place = {name="default_place_node", gain=1.0}
 	}),
- 	-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could also 
+ 	-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could also
  	-- double as dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ
 	on_construct = snow_onto_dirt
 })
@@ -291,9 +293,9 @@ minetest.register_node("snow:snow_cobble", {
 	is_ground_content = true,
 	liquidtype = "none",
 	paramtype = "light",
-	sunlight_propagates = true,	
+	sunlight_propagates = true,
 	paramtype2 = "facedir",
-	 -- I made this a little harder to dig than snow blocks because 
+	 -- I made this a little harder to dig than snow blocks because
 	 -- I imagine snow brick as being much more dense and solid than fluffy snow. ~ LazyJ
 	groups = {cracky=2, crumbly=2, choppy=2, oddly_breakable_by_hand=2, melts=1, icemaker=1, cooks_into_ice=1},
 	sounds = default.node_sound_dirt_defaults({
@@ -302,7 +304,7 @@ minetest.register_node("snow:snow_cobble", {
 		dug = {name="default_snow_footstep", gain=0.75},
 		place = {name="default_place_node", gain=1.0}
 	}),
- 	-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could also 
+ 	-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could also
  	-- double as dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ
 	on_construct = snow_onto_dirt
 })
@@ -313,7 +315,7 @@ minetest.register_node("snow:snow_cobble", {
 
 -- This adds code to the existing default ice. ~ LazyJ
 minetest.override_item("default:ice", {
-	-- The Lines: 1. Alpah to make semi-transparent ice, 2 to work with 
+	-- The Lines: 1. Alpah to make semi-transparent ice, 2 to work with
 	-- the dirt_with_grass/snow/just dirt ABMs. ~ LazyJ, 2014_03_09
 	use_texture_alpha = true, -- 1
 	param2 = 0,
@@ -328,7 +330,7 @@ minetest.override_item("default:ice", {
 	on_construct = snow_onto_dirt,
 	liquids_pointable = true,
 	--Make ice freeze over when placed by a maximum of 10 blocks.
-	after_place_node = function(pos, placer, itemstack, pointed_thing)
+	after_place_node = function(pos)
 		minetest.set_node(pos, {name="default:ice", param2=math.random(0,10)})
 	end
 })
@@ -344,6 +346,6 @@ minetest.override_item("default:snowblock", {
 	groups = {cracky=3, crumbly=3, choppy=3, oddly_breakable_by_hand=3, melts=1, icemaker=1, cooks_into_ice=1, falling_node=1},
 	--drop = "snow:snow_cobble",
 	on_construct = snow_onto_dirt
-		-- Thinking in terms of layers, dirt_with_snow could also double as 
+		-- Thinking in terms of layers, dirt_with_snow could also double as
 		-- dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ, 2014_04_04
 })

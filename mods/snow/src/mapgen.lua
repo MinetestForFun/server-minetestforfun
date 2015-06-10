@@ -1,8 +1,8 @@
 --[[
-If you want to run PlantLife and mods that depend on it, i.e. MoreTrees, Disable the mapgen by 
+If you want to run PlantLife and mods that depend on it, i.e. MoreTrees, Disable the mapgen by
 commenting-out the lines starting with "local mgname = " through "end" (I left a note were to start
-and stop) Disabling "Snow's" mapgen allows MoreTrees and PlantLife to do their thing until the 
-issue is figured out. However, the pine and xmas tree code is still needed for when those 
+and stop) Disabling "Snow's" mapgen allows MoreTrees and PlantLife to do their thing until the
+issue is figured out. However, the pine and xmas tree code is still needed for when those
 saplings grow into trees. --]]
 --The *starting* comment looks like this:  --[[
 --The *closing* comment looks like this:  --]]
@@ -13,13 +13,10 @@ saplings grow into trees. --]]
 -- Part 1: To disable the mapgen, add the *starting* comment under this line.
 
 
-local mgname = ""
-
 --Identify the mapgen.
 minetest.register_on_mapgen_init(function(MapgenParams)
-	if MapgenParams.mgname then
-		mgname = MapgenParams.mgname
-	else
+	local mgname = MapgenParams.mgname
+	if not mgname then
 		io.write("[MOD] Snow Biomes: WARNING! mapgen could not be identifyed!\n")
 	end
 	if mgname == "v7" then
@@ -72,20 +69,21 @@ function snow.make_pine(pos,snow,xmas)
 	local perlin1 = minetest.get_perlin(112,3, 0.5, 150)
 	local try_node = function(pos, node)
 		local n = minetest.get_node(pos).name
-		if n == "air" or n == "ignore" then
-			minetest.add_node(pos,node)
+		if n == "air"
+		or n == "ignore" then
+			minetest.add_node(pos, node)
 		end
 	end
 	--Clear ground.
-	for x=-1,1 do
-	for z=-1,1 do
-		if minetest.get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snow" then
-			minetest.remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
+	for z = -1,1 do
+		for x = -1,1 do
+			local p = {x=pos.x+x,y=pos.y,z=pos.z+z}
+			local nd = minetest.get_node(p).name
+			if nd == "default:snow"
+			or nd == "default:snowblock" then
+				minetest.remove_node(p)
+			end
 		end
-		if minetest.get_node({x=pos.x+x,y=pos.y,z=pos.z+z}).name == "default:snowblock" then
-			minetest.remove_node({x=pos.x+x,y=pos.y,z=pos.z+z})
-		end
-	end
 	end
 	if xmas then
 		minetest.remove_node(pos)
@@ -107,7 +105,8 @@ function snow.make_pine(pos,snow,xmas)
 	end
 	if xmas then
 		try_node({x=pos.x,y=pos.y+7,z=pos.z},{name="snow:star_lit"}) -- Added lit star. ~ LazyJ
-	elseif snow and perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
+	elseif snow
+	and perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
 		try_node({x=pos.x,y=pos.y+7,z=pos.z},{name="default:snow"})
 	end
 end
@@ -121,60 +120,62 @@ function snow.voxelmanip_pine(pos,a,data)
 	local c_pinetree = minetest.get_content_id("default:pinetree")
 	local c_air = minetest.get_content_id("air")
 
-	local perlin1 = minetest.get_perlin(112,3, 0.5, 150) 
-	--Clear ground.
-	for x=-1,1 do
-	for z=-1,1 do
-		local node = a:index(pos.x+x,pos.y,pos.z+z)
-		if data[node] == c_snow then
-			data[node] = c_air
-		end
-	end
-	end
-	--Make tree.
-	for i=0, 4 do
-		if i==1 or i==2 then
-			for x=-1,1 do
-			for z=-1,1 do
-				local x = pos.x + x
-				local z = pos.z + z
+	local perlin1 = minetest.get_perlin(112,3, 0.5, 150)
+	for z = -1,1 do
+		local z = pos.z + z
+		for x = -1,1 do
+			local x = pos.x + x
+
+			--Clear ground.
+			local node = a:index(x,pos.y,z)
+			if data[node] == c_snow then
+				data[node] = c_air
+			end
+
+			--Make tree.
+			for i = 1,2 do
 				local node = a:index(x,pos.y+i,z)
 				data[node] = c_pine_needles
-				if snow and x ~= 0 and z ~= 0 and perlin1:get2d({x=x,y=z}) > 0.53 then
+				if snow
+				and x ~= 0
+				and z ~= 0
+				and perlin1:get2d({x=x,y=z}) > 0.53 then
 					local abovenode = a:index(x,pos.y+i+1,z)
 					data[abovenode] = c_snow
 				end
 			end
+		end
+	end
+	for i=3, 4 do
+		local x = pos.x
+		local y = pos.y+i
+		local z = pos.z
+		data[a:index(x+1,y,z)] = c_pine_needles
+		data[a:index(x-1,y,z)] = c_pine_needles
+		data[a:index(x,y,z+1)] = c_pine_needles
+		data[a:index(x,y,z-1)] = c_pine_needles
+		if snow then
+			if perlin1:get2d({x=x+1,y=z}) > 0.53 then
+				data[a:index(x+1,y+1,z)] = c_snow
+			end
+			if perlin1:get2d({x=x+1,y=z}) > 0.53 then
+				data[a:index(x-1,y+1,z)] = c_snow
+			end
+			if perlin1:get2d({x=x,y=z+1}) > 0.53 then
+				data[a:index(x,y+1,z+1)] = c_snow
+			end
+			if perlin1:get2d({x=x,y=z-1}) > 0.53 then
+				data[a:index(x,y+1,z-1)] = c_snow
 			end
 		end
-		if i==3 or i==4 then
-			local x = pos.x
-			local y = pos.y+i
-			local z = pos.z
-			data[a:index(x+1,y,z)] = c_pine_needles
-			data[a:index(x-1,y,z)] = c_pine_needles
-			data[a:index(x,y,z+1)] = c_pine_needles
-			data[a:index(x,y,z-1)] = c_pine_needles
-			if snow then
-				if perlin1:get2d({x=x+1,y=z}) > 0.53 then
-					data[a:index(x+1,y+1,z)] = c_snow
-				end
-				if perlin1:get2d({x=x+1,y=z}) > 0.53 then
-					data[a:index(x-1,y+1,z)] = c_snow
-				end
-				if perlin1:get2d({x=x,y=z+1}) > 0.53 then
-					data[a:index(x,y+1,z+1)] = c_snow
-				end
-				if perlin1:get2d({x=x,y=z-1}) > 0.53 then
-					data[a:index(x,y+1,z-1)] = c_snow
-				end
-			end
-		end
+	end
+	for i=0, 4 do
 		data[a:index(pos.x,pos.y+i,pos.z)] = c_pinetree
 	end
 	data[a:index(pos.x,pos.y+5,pos.z)] = c_pine_needles
 	data[a:index(pos.x,pos.y+6,pos.z)] = c_pine_needles
-	if snow and perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
+	if snow
+	and perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
 		data[a:index(pos.x,pos.y+7,pos.z)] = c_snow
 	end
 end

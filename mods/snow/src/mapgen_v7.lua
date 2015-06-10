@@ -55,12 +55,12 @@ minetest.register_biome({
 
 minetest.register_biome({
 	name           = "snow_biome_sand",
-	
+
 	node_top       = "default:sand",
 	depth_top      = 3,
 	node_filler    = "default:stone",
 	depth_filler   = 0,
-	
+
 	height_min     = -31000,
 	height_max     = 2,
 	heat_point     = 10.0,

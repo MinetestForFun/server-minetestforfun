@@ -9,7 +9,7 @@
 
 
 
-snow_stairs = {}  -- This is a little trick. Without it Minetest will complain 
+snow_stairs = {}  -- This is a little trick. Without it Minetest will complain
 			-- "attempt to index global 'snow' (a nil value)" and
 			-- refuse to load. So a value without definition "={}"is assigned to snow.
 
@@ -66,11 +66,11 @@ function snow_stairs.register_stair(subname, recipeitem, groups, images, descrip
 
 			return minetest.item_place(itemstack, placer, pointed_thing, param2)
 		end,
-		
+
 		on_construct = function(pos)
 				pos.y = pos.y - 1
 				if minetest.get_node(pos).name == "default:dirt_with_grass"
-					-- Thinking in terms of layers, dirt_with_snow could also double as 
+					-- Thinking in terms of layers, dirt_with_snow could also double as
 					-- dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ, 2014_04_04
 					or minetest.get_node(pos).name == "default:dirt" then
 					minetest.set_node(pos, {name="default:dirt_with_snow"})
@@ -168,7 +168,7 @@ function snow_stairs.register_slab(subname, recipeitem, groups, images, descript
 				end
 				return itemstack
 			end
-			
+
 			-- Upside down slabs
 			if p0.y-1 == p1.y then
 				-- Turn into full block if pointing at a existing slab
@@ -203,17 +203,17 @@ function snow_stairs.register_slab(subname, recipeitem, groups, images, descript
 
 			return minetest.item_place(itemstack, placer, pointed_thing, param2)
 		end,
-		
+
 		on_construct = function(pos)
 				pos.y = pos.y - 1
 				if minetest.get_node(pos).name == "default:dirt_with_grass"
-					-- Thinking in terms of layers, dirt_with_snow could also double as 
+					-- Thinking in terms of layers, dirt_with_snow could also double as
 					-- dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ, 2014_04_04
 					or minetest.get_node(pos).name == "default:dirt" then
 					minetest.set_node(pos, {name="default:dirt_with_snow"})
 				end
 			end
-		
+
 	})
 --[[
 	-- for replace ABM
@@ -296,7 +296,7 @@ for _, row in ipairs(list_of_snow_stuff) do
 			true
 			)
 
-end  -- End the "list of snow stuff" part of the above section. ~ LazyJ 
+end  -- End the "list of snow stuff" part of the above section. ~ LazyJ
 
 
 -- Snow stairs and slabs should be easier to break than the more dense and
