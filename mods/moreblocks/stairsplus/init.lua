@@ -46,7 +46,7 @@ end
 -- dofile(modpath.. "/conversion.lua") -- Not needed as of Q2 2013, uncomment to fix old maps.
 dofile(modpath .. "/stairs.lua")
 dofile(modpath .. "/slabs.lua")
-dofile(modpath .. "/slopes.lua")
+-- dofile(modpath .. "/slopes.lua")
 dofile(modpath .. "/panels.lua")
 dofile(modpath .. "/microblocks.lua")
 dofile(modpath .. "/registrations.lua")
