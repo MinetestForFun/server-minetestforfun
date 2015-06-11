@@ -34,17 +34,17 @@ local CaTCH_BiG = {
 
 local PLaNTS = {
  --	  MoD* 			iTeM				MeSSaGe ("You caught "..)
-	{"flowers",		"waterlily",		"a Waterlily." }, 
-	{"flowers",		"waterlily_225",	"a Waterlily." }, 
-	{"flowers",		"waterlily_45",		"a Waterlily." }, 
-	{"flowers",		"waterlily_675",	"a Waterlily." }, 
-	{"flowers",		"waterlily_s1",		"a Waterlily." }, 
-	{"flowers",		"waterlily_s2",		"a Waterlily." }, 
-	{"flowers",		"waterlily_s3",		"a Waterlily." }, 
+	{"flowers",		"waterlily",		"a Waterlily." },
+	{"flowers",		"waterlily_225",	"a Waterlily." },
+	{"flowers",		"waterlily_45",		"a Waterlily." },
+	{"flowers",		"waterlily_675",	"a Waterlily." },
+	{"flowers",		"waterlily_s1",		"a Waterlily." },
+	{"flowers",		"waterlily_s2",		"a Waterlily." },
+	{"flowers",		"waterlily_s3",		"a Waterlily." },
 	{"flowers",		"waterlily_s4",		"a Waterlily." },
-	{"flowers",		"seaweed",			"some Seaweed."}, 
-	{"flowers",		"seaweed_2",		"some Seaweed."}, 
-	{"flowers",		"seaweed_3",		"some Seaweed."}, 
+	{"flowers",		"seaweed",			"some Seaweed."},
+	{"flowers",		"seaweed_2",		"some Seaweed."},
+	{"flowers",		"seaweed_3",		"some Seaweed."},
 	{"flowers",		"seaweed_4",		"some Seaweed."},
 	{"trunks",		"twig_1",			"a Twig."	   },
 	{"trunks",		"twig_2",			"a Twig."	   },
@@ -83,7 +83,7 @@ local FISHING_BOBBER_ENTITY_SHARK={
 		})
 		self.object:remove()
 	end,
---	WHEN RIGHTCLICKING THE BOBBER THE FOLLOWING HAPPENS	(CLICK AT THE RIGHT TIME WHILE HOLDING A FISHING POLE)	
+--	WHEN RIGHTCLICKING THE BOBBER THE FOLLOWING HAPPENS	(CLICK AT THE RIGHT TIME WHILE HOLDING A FISHING POLE)
 	on_rightclick = function (self, clicker)
 		local item = clicker:get_wielded_item()
 		local player = clicker:get_player_name()
@@ -101,7 +101,7 @@ local FISHING_BOBBER_ENTITY_SHARK={
 						minetest.add_node({x=pos.x, y=pos.y, z=pos.z}, {name="air"})
 						if inv:room_for_item("main", {name=DRoP, count=1, wear=0, metadata=""}) then
 							inv:add_item("main", {name=DRoP, count=1, wear=0, metadata=""})
-							if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught Plant				
+							if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught Plant
 						end
 						if not minetest.setting_getbool("creative_mode") then
 							if inv:room_for_item("main", {name="fishing:fish_raw", count=1, wear=0, metadata=""}) then
@@ -129,7 +129,7 @@ local FISHING_BOBBER_ENTITY_SHARK={
 							if minetest.get_modpath(MoD) ~= nil then
 								if inv:room_for_item("main", {name=MoD..":"..iTeM, count=1, wear=WeaR, metadata=""}) then
 									inv:add_item("main", {name=MoD..":"..iTeM, count=1, wear=WeaR, metadata=""})
-									if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught somethin'					
+									if MESSAGES == true then say(player, S("You caught "..MeSSaGe), false) end -- caught somethin'
 								end
 								if not minetest.setting_getbool("creative_mode") then
 									if GeTBaiTBack == true then
@@ -146,20 +146,20 @@ local FISHING_BOBBER_ENTITY_SHARK={
 					if MESSAGES == true then say(player, S("Your fish escaped."), false) end -- fish escaped
 				end
 			end
-			if self.object:get_hp() > 300 and minetest.get_node(pos).name == "air" then 
+			if self.object:get_hp() > 300 and minetest.get_node(pos).name == "air" then
 				if MESSAGES == true then say(player, S("You didn't catch any fish."), false) end -- fish escaped
 				if not minetest.setting_getbool("creative_mode") then
 					if math.random(1, 3) == 1 then
 						if inv:room_for_item("main", {name="fishing:fish_raw", count=1, wear=0, metadata=""}) then
 							inv:add_item("main", {name="fishing:fish_raw", count=1, wear=0, metadata=""})
 							if MESSAGES == true then say(player, S("The bait is still there."), false) end -- bait still there
-						end	
+						end
 					end
 				end
 			end
 			--end
-		else 
-			if MESSAGES == true then say(player, S("Your fish escaped."), false) end -- fish escaped		
+		else
+			if MESSAGES == true then say(player, S("Your fish escaped."), false) end -- fish escaped
 		end
 		minetest.sound_play("fishing_bobber1", {
 			pos = self.object:getpos(),
@@ -230,7 +230,7 @@ local FISHING_BOBBER_ENTITY_SHARK={
 				self.object:moveto({x=pos.x,y=pos.y+0.0625,z=pos.z})
 			elseif self.object:get_hp() == 285 then
 				self.object:moveto({x=pos.x,y=pos.y-0.0625,z=pos.z})
-			elseif self.object:get_hp() < 284 then	
+			elseif self.object:get_hp() < 284 then
 				self.object:moveto({x=pos.x+(0.001*(math.random(-8, 8))),y=pos.y,z=pos.z+(0.001*(math.random(-8, 8)))})
 				self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/720*math.pi))
 			elseif self.object:get_hp() == 0 then

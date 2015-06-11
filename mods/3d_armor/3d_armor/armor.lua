@@ -16,7 +16,7 @@ ARMOR_MATERIALS = {
 	mithril = "moreores:mithril_ingot",
 	crystal = "ethereal:crystal_ingot",
 	-- Hunter armors (A déc-ommenter quand activation de l'armure au total)
-	--hardened_leather = "3d_armor:hardened_leather"		
+	--hardened_leather = "3d_armor:hardened_leather"
 	--reinforced_leather = "3d_armor:reinforced_leather"
 	-- Wizard armors
 	--armor = "xxx",
@@ -255,7 +255,7 @@ armor.update_armor = function(self, player, dtime)
 				end
 			end
 		end
-	end	
+	end
 	if hp <= 0 or hp == self.player_hp[name] then
 		return
 	end
@@ -463,7 +463,7 @@ minetest.register_on_joinplayer(function(player)
 	for i=1, 6 do
 		local stack = player_inv:get_stack("armor", i)
 		armor_inv:set_stack("armor", i, stack)
-	end	
+	end
 
 	-- Legacy support, import player's armor from old inventory format
 	for _,v in pairs(armor.elements) do

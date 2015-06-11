@@ -66,7 +66,7 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	if not pt or pt.type ~= "node" then
 		return
 	end
-	
+
 	local under = minetest.get_node(pt.under)
 	local upos = pointed_thing.under
 
@@ -77,23 +77,23 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 
 	local p = {x=pt.under.x, y=pt.under.y+1, z=pt.under.z}
 	local above = minetest.get_node(p)
-	
+
 	-- return if any of the nodes is not registered
 	if not minetest.registered_nodes[under.name]
 	or not minetest.registered_nodes[above.name] then
 		return
 	end
-	
+
 	-- check if the node above the pointed thing is air
 	if above.name ~= "air" then
 		return
 	end
-	
+
 	-- check if pointing at dirt
 	if minetest.get_item_group(under.name, "soil") ~= 1 then
 		return
 	end
-	
+
 	-- turn the node into soil, wear out item and play sound
 	minetest.set_node(pt.under, {name="farming:soil"})
 	minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5,})

@@ -27,7 +27,7 @@ if minetest.get_modpath("vessels")
 		paramtype2 = "facedir",
 		use_texture_alpha = true
 	})
-	
+
 	local sbox = {
 		type = "fixed",
 		fixed = { -0.15, -0.5, -0.15, 0.15, -0.1, 0.15 }

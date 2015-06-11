@@ -12,7 +12,7 @@ local hp_bar = {
 
 function hp_bar:on_step(dtime)
 	local wielder = self.wielder
-	if wielder == nil then	
+	if wielder == nil then
 		self.object:remove()
 		 return
 	elseif minetest.get_player_by_name(wielder:get_player_name()) == nil then

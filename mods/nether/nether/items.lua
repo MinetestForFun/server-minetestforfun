@@ -366,7 +366,7 @@ minetest.register_node("nether:apple", {
 		if nether_port(user, vector.round(user:getpos())) then
 			return itemstack
 		end
-		
+
 		local p_hunger = tonumber(hud.hunger[user:get_player_name()])
 		if not p_hunger then
 			return
@@ -428,7 +428,7 @@ minetest.register_node("nether:vine", {
 				minetest.node_dig(p, nn, digger)
 			end
 		end
-	end 
+	end
 })
 
 

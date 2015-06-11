@@ -1,10 +1,10 @@
 --[[
 	Beginners_chest mod
 		Put some useful stuff in chests for the new players
-		
+
 	Version : 1.1 - 11/8/2014_14h48UTC
 	Last modification by Mg on the : 14/3/2015 @ 14h48 UTC
-		
+
 	Mod ßý Mg, based on an idea of MinetestForFun/Darcidride
 ]]--
 
@@ -118,7 +118,7 @@ local chests = {
 minetest.register_globalstep(function(dtime)
 	local i = 1
 	while i < table.getn(chests)+1 do
-		
+
 		if not chests[i].stuff then
 			chests[i].stuff = {
 				[1] = "default:wood",
@@ -128,12 +128,12 @@ minetest.register_globalstep(function(dtime)
 		if not chests[i].interval_timer then
 			chests[i].interval_timer = 0
 		end
-		if not chests[i].interval_max then 
+		if not chests[i].interval_max then
 			chests[i].interval_max = 7200 -- Using default value : 2h
 		end
-		
+
 		chests[i].interval_timer = chests[i].interval_timer + dtime
-		
+
 		if chests[i].position.x and chests[i].position.y and chests[i].position.z and chests[i].interval_timer >= chests[i].interval_max then
 			chests[i].interval_timer = 0
 			local node = minetest.get_node(chests[i].position)
@@ -160,7 +160,7 @@ minetest.register_globalstep(function(dtime)
 				inv:set_list("main", chests[i].stuff)
 
 				minetest.log("action","[b_chest]["..i.."] Chest reloaded at "..chests[i].position.x..", "..chests[i].position.y..", "..chests[i].position.z)
-				
+
 			else
 				minetest.log("action","[b_chest]["..i.."] Cannot reload chest at "..chests[i].position.x..", "..chests[i].position.y..", "..chests[i].position.z.." : area not loaded.")
 			end

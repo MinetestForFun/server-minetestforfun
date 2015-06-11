@@ -5,7 +5,7 @@
 
 -- License (everything): 	WTFPL
 -- Contains code from: 		plants_lib
--- Looked at code from:		default				
+-- Looked at code from:		default
 -----------------------------------------------------------------------------------------------
 
 abstract_dryplants.grow_grass_variation = function(pos)

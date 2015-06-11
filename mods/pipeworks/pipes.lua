@@ -9,7 +9,7 @@ local vti = {4, 3, 2, 1, 6, 5}
 local cconnects = {{}, {1}, {1, 2}, {1, 3}, {1, 3, 5}, {1, 2, 3}, {1, 2, 3, 5}, {1, 2, 3, 4}, {1, 2, 3, 4, 5}, {1, 2, 3, 4, 5, 6}}
 for index, connects in ipairs(cconnects) do
 	local outsel = {}
-	
+
 	local jx = 0
 	local jy = 0
 	local jz = 0
@@ -28,7 +28,7 @@ for index, connects in ipairs(cconnects) do
 		local v = connects[1]
 		v = v-1 + 2*(v%2) -- Opposite side
 	end
-	
+
 	local pgroups = {snappy = 3, pipe = 1, not_in_creative_inventory = 1}
 	local pipedesc = "Pipe segement".." "..dump(connects).."... You hacker, you."
 	local image = nil
@@ -38,11 +38,11 @@ for index, connects in ipairs(cconnects) do
 		pipedesc = "Pipe segment"
 		image = "pipeworks_pipe_inv.png"
 	end
-	
+
 	local outimg_e = { "pipeworks_pipe_plain.png" }
 	local outimg_l = { "pipeworks_pipe_plain.png" }
 
-	if index == 3 then 
+	if index == 3 then
 		outimg_e = { "pipeworks_pipe_3_empty.png" }
 		outimg_l = { "pipeworks_pipe_3_loaded.png" }
 	end
@@ -82,7 +82,7 @@ for index, connects in ipairs(cconnects) do
 			pipeworks.scan_for_pipe_objects(pos)
 		end
 	})
-	
+
 	local pgroups = {snappy = 3, pipe = 1, not_in_creative_inventory = 1}
 
 	minetest.register_node("pipeworks:pipe_"..index.."_loaded", {
@@ -112,7 +112,7 @@ for index, connects in ipairs(cconnects) do
 			pipeworks.scan_for_pipe_objects(pos)
 		end
 	})
-	
+
 	table.insert(pipes_empty_nodenames, "pipeworks:pipe_"..index.."_empty")
 	table.insert(pipes_full_nodenames,  "pipeworks:pipe_"..index.."_loaded")
 end
@@ -206,7 +206,7 @@ minetest.register_abm({
 	nodenames = {"pipeworks:spigot","pipeworks:spigot_pouring"},
 	interval = 1,
 	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider) 
+	action = function(pos, node, active_object_count, active_object_count_wider)
 		pipeworks.spigot_check(pos,node)
 	end
 })
@@ -215,7 +215,7 @@ minetest.register_abm({
 	nodenames = {"pipeworks:fountainhead","pipeworks:fountainhead_pouring"},
 	interval = 1,
 	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider) 
+	action = function(pos, node, active_object_count, active_object_count_wider)
 		pipeworks.fountainhead_check(pos,node)
 	end
 })

@@ -80,11 +80,11 @@ for i in pairs(TRoPHY) do
 			return has_trophy_privilege(meta, player)
 		end,
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = "fishing:trophy_"..iTeM,
 		recipe = {MoD..":"..iTeM, "default:sign_wall"},
 	})
-	
+
 end

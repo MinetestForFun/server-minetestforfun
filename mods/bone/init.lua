@@ -76,7 +76,7 @@ end
 function generate_tree(pos, trunk, leaves)
 	pos.y = pos.y-1
 	local nodename = minetest.get_node(pos).name
-		
+
 	pos.y = pos.y+1
 	if not minetest.get_node_light(pos) then
 		return
@@ -210,7 +210,7 @@ elseif string.find(n.name, "farming:pumpkin_") ~= nil then
 	else
 		minetest.set_node(pos, {name="farming:pumpkin"})
 	end
-	
+
 elseif n.name == "default:dirt_with_grass" then
 	for i = -2, 3, 1 do
 		for j = -3, 2, 1 do
@@ -225,8 +225,8 @@ elseif n.name == "default:dirt_with_grass" then
 				else
 					minetest.set_node(pos, {name=plant_tab[math.random(0, 5)]})
 				end
-				
-				
+
+
 			end
 		end
 	end

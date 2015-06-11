@@ -2,13 +2,13 @@
 --
 -- This mod adds more types of trees to the game
 --
--- Some of the node definitions and textures came from cisoun's conifers mod 
+-- Some of the node definitions and textures came from cisoun's conifers mod
 -- and bas080's jungle trees mod.
 --
 -- Brought together into one mod and made L-systems compatible by Vanessa
 -- Ezekowitz.
 --
--- Firs and Jungle tree axioms/rules by Vanessa Ezekowitz, with the 
+-- Firs and Jungle tree axioms/rules by Vanessa Ezekowitz, with the
 -- latter having been tweaked by RealBadAngel, most other axioms/rules written
 -- by RealBadAngel.
 --
@@ -214,7 +214,7 @@ function moretrees:grow_jungletree(pos)
 	local r2 = math.random(3)
 	if r1 == 1 then
 		moretrees.jungletree_model.leaves2 = "moretrees:jungletree_leaves_red"
-	else 
+	else
 		moretrees.jungletree_model.leaves2 = "moretrees:jungletree_leaves_yellow"
 	end
 	moretrees.jungletree_model.leaves2_chance = math.random(25, 75)

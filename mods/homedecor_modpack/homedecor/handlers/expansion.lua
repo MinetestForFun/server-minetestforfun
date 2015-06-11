@@ -143,7 +143,7 @@ function homedecor.bed_expansion(pos, placer, itemstack, pointed_thing, color)
 		return true
 	end
 
-	if minetest.is_protected(forwardpos, placer_name) then 
+	if minetest.is_protected(forwardpos, placer_name) then
 		minetest.chat_send_player( placer:get_player_name(), "Someone already owns the spot where the headboard goes." )
 		return true
 	end
@@ -169,7 +169,7 @@ function homedecor.bed_expansion(pos, placer, itemstack, pointed_thing, color)
 		minetest.set_node(rightpos, {name = "air"})
 		minetest.set_node(pos, { name = newname, param2 = fdir})
 	end
-	
+
 	local topnode = minetest.get_node({x=pos.x, y=pos.y+1.0, z=pos.z})
 	local bottomnode = minetest.get_node({x=pos.x, y=pos.y-1.0, z=pos.z})
 
@@ -202,7 +202,7 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 
 	if def.on_rightclick then
 		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
-	end				
+	end
 
 	local fdir = minetest.dir_to_facedir(placer:get_look_dir())
 
@@ -217,7 +217,7 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 		return
 	end
 
-	if minetest.is_protected(abovepos, placer_name) then 
+	if minetest.is_protected(abovepos, placer_name) then
 		minetest.chat_send_player(placer_name, "Someone already owns that spot." )
 		return
 	end
@@ -242,7 +242,7 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 	local right_fwd_below_pos = { x=pos.x+rxd+fxd, y=pos.y-1, z=pos.z+rzd+fzd }
 	local left_fwd_below_pos =  { x=pos.x+lxd+fxd, y=pos.y-1, z=pos.z+lzd+fzd }
 
-	local below_node =           minetest.get_node(below_pos) 
+	local below_node =           minetest.get_node(below_pos)
 	local fwd_node =             minetest.get_node(fwd_pos)
 	local left_node =            minetest.get_node(left_pos)
 	local right_node =           minetest.get_node(right_pos)
@@ -280,12 +280,12 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 
 	-- try to place a horizontal in-line with the nearest diagonal, at the top
 	elseif left_fwd_below_node and string.find(left_fwd_below_node.name, "homedecor:banister_.*_diagonal")
-	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then	
+	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then
 		fdir = left_fwd_below_node.param2
 		pos = fwd_pos
 		new_place_name = string.gsub(left_fwd_below_node.name, "_diagonal_.-$", "_horizontal")
 	elseif right_fwd_below_node and string.find(right_fwd_below_node.name, "homedecor:banister_.*_diagonal")
-	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then	
+	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then
 		fdir = right_fwd_below_node.param2
 		pos = fwd_pos
 		new_place_name = string.gsub(right_fwd_below_node.name, "_diagonal_.-$", "_horizontal")
@@ -299,13 +299,13 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 		new_place_name = string.gsub(right_node.name, "_diagonal_.-$", "_horizontal")
 
 	-- try to place a horizontal in-line with the nearest diagonal, at the bottom
-	elseif left_fwd_node and string.find(left_fwd_node.name, "homedecor:banister_.*_diagonal") 
-	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then	
+	elseif left_fwd_node and string.find(left_fwd_node.name, "homedecor:banister_.*_diagonal")
+	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then
 		fdir = left_fwd_node.param2
 		pos = fwd_pos
 		new_place_name = string.gsub(left_fwd_node.name, "_diagonal_.-$", "_horizontal")
 	elseif right_fwd_node and string.find(right_fwd_node.name, "homedecor:banister_.*_diagonal")
-	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then	
+	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then
 		fdir = right_fwd_node.param2
 		pos = fwd_pos
 		new_place_name = string.gsub(right_fwd_node.name, "_diagonal_.-$", "_horizontal")

@@ -1,6 +1,6 @@
 local lavalamps_list = {
 	{ "Red Lava Lamp", "red"},
-	{ "Orange Lava Lamp", "orange"},	
+	{ "Orange Lava Lamp", "orange"},
 	{ "Yellow Lava Lamp", "yellow"},
 	{ "Green Lava Lamp", "green"},
 	{ "Blue Lava Lamp", "blue"},
@@ -52,7 +52,7 @@ for i in ipairs(lavalamps_list) do
 	    tiles = {
 	        "lavalamp_metal.png",
 	        "lavalamp_lamp_off.png",
-	    },	    
+	    },
 	    paramtype = "light",
 	    paramtype2 = "facedir",
 	    sunlight_propagates = true,
@@ -78,5 +78,5 @@ for i in ipairs(lavalamps_list) do
 			{"", "wool:black", "", }
 		}
 	})
-	
+
 end

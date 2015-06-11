@@ -18,8 +18,8 @@ minetest.register_craft({
 	}
 })
 
--- Bracket 
-minetest.register_node("columnia:bracket",	{ 
+-- Bracket
+minetest.register_node("columnia:bracket",	{
             description = 'Bracket (Column)',
 			tiles = {"columnia_rusty.png",},
 			drawtype = "nodebox",
@@ -40,7 +40,7 @@ minetest.register_node("columnia:bracket",	{
 			groups = {choppy=2, oddly_breakable_by_hand=2,},
 			sounds = default.node_sound_stone_defaults(),
 })
-		
+
 minetest.register_craft({
 		output = 'columnia:bracket 4',
 		recipe = {
@@ -70,7 +70,7 @@ minetest.register_node("columnia:lamp_ceiling", {
 		type = "fixed",
 		fixed = {
 			{-0.1875, 0.4375, -0.1875, 0.1875, 0.5, 0.1875},
-			{-0.125, 0.375, -0.125, 0.125, 0.4375, 0.125}, 
+			{-0.125, 0.375, -0.125, 0.125, 0.4375, 0.125},
 		},
 	},
 	sounds = default.node_sound_glass_defaults(),
@@ -189,7 +189,7 @@ function columnia.register_column_top(subname, recipeitem, groups, images, descr
 			type = "fixed",
 			fixed = {
 			   {-0.25, -0.5, -0.25, 0.25, 0.5, 0.25},
-			   {-0.5, 0.25, -0.5, 0.5, 0.5, 0.5}, 
+			   {-0.5, 0.25, -0.5, 0.5, 0.5, 0.5},
 			   {-0.375, 0, -0.375, 0.375, 0.5, 0.375},
 		    },
 		},
@@ -545,7 +545,7 @@ columnia.register_column_ia("stone", "default:stone",
 		"Stone Column Link",
 		"Stone Column Linkdown",
 		default.node_sound_stone_defaults())
-		
+
 columnia.register_column_ia("stonebrick", "default:stonebrick",
 		{cracky=3},
 		{"default_stone_brick.png"},
@@ -566,7 +566,7 @@ columnia.register_column_ia("desert_stonebrick", "default:desert_stonebrick",
 		"Desert Stone Brick Column Crosslink",
 		"Desert Stone Brick Column Link",
 		"Desert Stone Brick Column Linkdown",
-		default.node_sound_stone_defaults())	
+		default.node_sound_stone_defaults())
 
 columnia.register_column_ia("desert_stone", "default:desert_stone",
 		{cracky=3},
@@ -577,8 +577,8 @@ columnia.register_column_ia("desert_stone", "default:desert_stone",
 		"Desert Stone Column Crosslink",
 		"Desert Stone Column Link",
 		"Desert Stone Column Linkdown",
-		default.node_sound_stone_defaults())		
-		
+		default.node_sound_stone_defaults())
+
 columnia.register_column_ia("cobble", "default:cobble",
 		{cracky=3},
 		{"default_cobble.png"},
@@ -599,8 +599,8 @@ columnia.register_column_ia("brick", "default:brick",
 		"Brick Column Crosslink",
 		"Brick Column Link",
 		"Brick Column Linkdown",
-		default.node_sound_stone_defaults())	
-			
+		default.node_sound_stone_defaults())
+
 columnia.register_column_ia("sandstone", "default:sandstone",
 		{crumbly=2,cracky=2},
 		{"default_sandstone.png"},
@@ -611,7 +611,7 @@ columnia.register_column_ia("sandstone", "default:sandstone",
 		"Sandstone Column Link",
 		"Sandstone Column Linkdown",
 		default.node_sound_stone_defaults())
-		
+
 columnia.register_column_ia("sandstonebrick", "default:sandstonebrick",
 		{crumbly=2,cracky=2},
 		{"default_sandstone_brick.png"},
@@ -622,7 +622,7 @@ columnia.register_column_ia("sandstonebrick", "default:sandstonebrick",
 		"Sandstone Brick Column Link",
 		"Sandstone Brick Column Linkdown",
 		default.node_sound_stone_defaults())
-		
+
 columnia.register_column_ia("wood", "default:wood",
 		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 		{"default_wood.png"},

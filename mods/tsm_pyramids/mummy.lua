@@ -76,7 +76,7 @@ if not minetest.setting_getbool("only_peaceful_mobs") then
 		if player_near then
 			if mobs < 6 then
 				pos.x = pos.x+1
-				local p = minetest.find_node_near(pos, 5, {"air"})	
+				local p = minetest.find_node_near(pos, 5, {"air"})
 				minetest.add_entity(p,"tsm_pyramids:mummy")
 			end
 		end
@@ -104,9 +104,9 @@ minetest.register_node("tsm_pyramids:spawner_mummy", {
 	end,
 	on_destruct = function(pos)
 		for  _,obj in ipairs(minetest.env:get_objects_inside_radius(pos, 1)) do
-			if not obj:is_player() then 
+			if not obj:is_player() then
 				if obj ~= nil and obj:get_luaentity().m_name == "dummy" then
-					obj:remove()	
+					obj:remove()
 				end
 			end
 		end

@@ -40,7 +40,7 @@ soundset.set_sound = function(name, param)
 		minetest.chat_send_player(name, "invalid param, /setsound <music|ambience|mobs|other> <number>")
 		return
 	end
-	
+
 	if param_name ~= "music" and param_name ~= "ambience" and param_name ~= "mobs" and param_name ~= "other" then
 		minetest.chat_send_player(name, "invalid param " .. param_name)
 		return
@@ -50,18 +50,18 @@ soundset.set_sound = function(name, param)
 		minetest.chat_send_player(name, "invalid value, " ..param_value .. " must be number")
 		return
 	end
-	
+
 	if value < 0 then
 		value = 0
 	elseif value > 100 then
 		value = 100
 	end
-	
+
 	if soundset.gainplayers[name][param_name] == value then
 		minetest.chat_send_player(name, "volume " .. param_name .. " already set to " .. value)
 		return
 	end
-		
+
 	soundset.gainplayers[name][param_name] = value
 	minetest.chat_send_player(name, "sound " .. param_name .. " set to " .. value)
 	save_sounds_config()
@@ -203,7 +203,7 @@ minetest.register_chatcommand("soundset", {
 		if not name then return end
 		on_show_settings(name, soundset.gainplayers[name]["music"], soundset.gainplayers[name]["ambience"], soundset.gainplayers[name]["other"])
 	end
-})	
+})
 
 
 

@@ -11,7 +11,7 @@ minetest.register_node("christmas_craft:snowman", {
 	paramtype2 = "facedir",
 	groups = {crumbly=3},
 	sounds = default.node_sound_sand_defaults(),
-}) 
+})
 
 
 
@@ -30,7 +30,7 @@ minetest.register_node("christmas_craft:christmas_lights", {
 	selection_box = {
 		type = "wallmounted",
 	},
-	groups = {oddly_breakable_by_hand = 3}, 
+	groups = {oddly_breakable_by_hand = 3},
 })
 
 minetest.register_node("christmas_craft:christmas_wreath", {
@@ -46,7 +46,7 @@ minetest.register_node("christmas_craft:christmas_wreath", {
 	selection_box = {
 		type = "wallmounted",
 	},
-	groups = {oddly_breakable_by_hand = 3}, 
+	groups = {oddly_breakable_by_hand = 3},
 })
 
 minetest.register_node("christmas_craft:christmas_star", {
@@ -92,9 +92,9 @@ minetest.register_node("christmas_craft:red_baubles", {
 		fixed = {
 			{-0.25, 0.438, -0.25, 0.25, -0.05, 0.25},
 			{-0.08, 0.5, -0.08, 0.08, -0.0, 0.08},
-			
+
 			-- side , top , side , side , bottom, side,
-				
+
 		},
 	},
 	selection_box = {
@@ -119,9 +119,9 @@ minetest.register_node("christmas_craft:yellow_baubles", {
 		fixed = {
 			{-0.25, 0.438, -0.25, 0.25, -0.05, 0.25},
 			{-0.08, 0.5, -0.08, 0.08, -0.0, 0.08},
-			
+
 			-- side , top , side , side , bottom, side,
-				
+
 		},
 	},
 	selection_box = {
@@ -146,9 +146,9 @@ minetest.register_node("christmas_craft:green_baubles", {
 		fixed = {
 			{-0.25, 0.438, -0.25, 0.25, -0.05, 0.25},
 			{-0.08, 0.5, -0.08, 0.08, -0.0, 0.08},
-			
+
 			-- side , top , side , side , bottom, side,
-				
+
 		},
 	},
 	selection_box = {
@@ -174,9 +174,9 @@ minetest.register_node("christmas_craft:blue_baubles", {
 		fixed = {
 			{-0.25, 0.438, -0.25, 0.25, -0.05, 0.25},
 			{-0.08, 0.5, -0.08, 0.08, -0.0, 0.08},
-			
+
 			-- side , top , side , side , bottom, side,
-				
+
 		},
 	},
 	selection_box = {
@@ -201,9 +201,9 @@ minetest.register_node("christmas_craft:orange_baubles", {
 		fixed = {
 			{-0.25, 0.438, -0.25, 0.25, -0.05, 0.25},
 			{-0.08, 0.5, -0.08, 0.08, -0.0, 0.08},
-			
+
 			-- side , top , side , side , bottom, side,
-				
+
 		},
 	},
 	selection_box = {
@@ -228,9 +228,9 @@ minetest.register_node("christmas_craft:violet_baubles", {
 		fixed = {
 			{-0.25, 0.438, -0.25, 0.25, -0.05, 0.25},
 			{-0.08, 0.5, -0.08, 0.08, -0.0, 0.08},
-			
+
 			-- side , top , side , side , bottom, side,
-				
+
 		},
 	},
 	selection_box = {
@@ -255,9 +255,9 @@ minetest.register_node("christmas_craft:pink_baubles", {
 		fixed = {
 			{-0.25, 0.438, -0.25, 0.25, -0.05, 0.25},
 			{-0.08, 0.5, -0.08, 0.08, -0.0, 0.08},
-			
+
 			-- side , top , side , side , bottom, side,
-				
+
 		},
 	},
 	selection_box = {
@@ -282,9 +282,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		fixed = {
 			{-0.25, 0.438, -0.25, 0.25, -0.05, 0.25},
 			{-0.08, 0.5, -0.08, 0.08, -0.0, 0.08},
-			
+
 			-- side , top , side , side , bottom, side,
-				
+
 		},
 	},
 	selection_box = {
@@ -298,9 +298,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 
 ------------
 --nodes--
-	
+
 	-- presents --
-	
+
 	minetest.register_node("christmas_craft:present_box", {
 		description = "Present Box",
 		tiles = {"christmas_craft_present_box.png"},
@@ -309,7 +309,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		groups = {crumbly=3},
 		sounds = default.node_sound_sand_defaults(),
 	})
-	
+
 	minetest.register_node("christmas_craft:Christmas_present", {
 		description = "Christmas Present",
 		tiles = {"christmas_craft_present_wh.png^christmas_craft_bow_top.png", "christmas_craft_present_wh.png^christmas_craft_bow_bottom.png", "christmas_craft_present_wh.png^christmas_craft_bow_side.png"},
@@ -334,13 +334,13 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 90,},
 				{items = {'default:chest_locked'},	rarity = 80,},
 				{items = {'default:brick'},	rarity = 80,},
-				{items = {'default:dirt_with_grass'}, rarity = 80,},	
+				{items = {'default:dirt_with_grass'}, rarity = 80,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
 	})
-	
+
 	minetest.register_node("christmas_craft:Christmas_present_green", {
 		description = "Christmas Present Green ",
 		tiles = {"christmas_craft_present_gr.png^christmas_craft_bow_top.png", "christmas_craft_present_gr.png^christmas_craft_bow_bottom.png", "christmas_craft_present_gr.png^christmas_craft_bow_side.png"},
@@ -365,13 +365,13 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
-				{items = {'default:dirt_with_grass'},	rarity = 30,},	
+				{items = {'default:dirt_with_grass'},	rarity = 30,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
 	})
-	
+
 	minetest.register_node("christmas_craft:Christmas_present_red", {
 		description = "Christmas Present Red ",
 		tiles = {"christmas_craft_present_re.png^christmas_craft_bow_top.png", "christmas_craft_present_re.png^christmas_craft_bow_bottom.png", "christmas_craft_present_re.png^christmas_craft_bow_side.png"},
@@ -396,7 +396,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
-				{items = {'default:dirt_with_grass'},	rarity = 30,},	
+				{items = {'default:dirt_with_grass'},	rarity = 30,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -427,13 +427,13 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
-				{items = {'default:dirt_with_grass'},	rarity = 30,},	
+				{items = {'default:dirt_with_grass'},	rarity = 30,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
 	})
-	
+
 	minetest.register_node("christmas_craft:Christmas_present_yellow", {
 		description = "Christmas Present Yellow ",
 		tiles = {"christmas_craft_present_ye.png^christmas_craft_bow_top.png", "christmas_craft_present_ye.png^christmas_craft_bow_bottom.png", "christmas_craft_present_ye.png^christmas_craft_bow_side.png"},
@@ -458,13 +458,13 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
-				{items = {'default:dirt_with_grass'},	rarity = 30,},	
+				{items = {'default:dirt_with_grass'},	rarity = 30,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
 	})
-	
+
 	minetest.register_node("christmas_craft:Christmas_present_red", {
 		description = "Christmas Present Red ",
 		tiles = {"christmas_craft_present_re.png^christmas_craft_bow_top.png", "christmas_craft_present_re.png^christmas_craft_bow_bottom.png", "christmas_craft_present_re.png^christmas_craft_bow_side.png"},
@@ -489,13 +489,13 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
-				{items = {'default:dirt_with_grass'},	rarity = 30,},	
+				{items = {'default:dirt_with_grass'},	rarity = 30,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
 	})
-	
+
 	minetest.register_node("christmas_craft:Christmas_present_violet", {
 		description = "Christmas Present Violet ",
 		tiles = {"christmas_craft_present_vi.png^christmas_craft_bow_top.png", "christmas_craft_present_vi.png^christmas_craft_bow_bottom.png", "christmas_craft_present_vi.png^christmas_craft_bow_side.png"},
@@ -520,13 +520,13 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
-				{items = {'default:dirt_with_grass'},	rarity = 30,},	
+				{items = {'default:dirt_with_grass'},	rarity = 30,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
 	})
-	
+
 	minetest.register_node("christmas_craft:Christmas_present_orange", {
 		description = "Christmas Present Orange ",
 		tiles = {"christmas_craft_present_or.png^christmas_craft_bow_top.png", "christmas_craft_present_or.png^christmas_craft_bow_bottom.png", "christmas_craft_present_or.png^christmas_craft_bow_side.png"},
@@ -551,13 +551,13 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
-				{items = {'default:dirt_with_grass'},	rarity = 30,},	
+				{items = {'default:dirt_with_grass'},	rarity = 30,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
 	})
-	
+
 	minetest.register_node("christmas_craft:Christmas_present_pink", {
 		description = "Christmas Present Pink ",
 		tiles = {"christmas_craft_present_pi.png^christmas_craft_bow_top.png", "christmas_craft_present_pi.png^christmas_craft_bow_bottom.png", "christmas_craft_present_pi.png^christmas_craft_bow_side.png"},
@@ -582,8 +582,8 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'fake_fire:flint_and_steel'},	rarity = 15,},
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
-				{items = {'default:dirt_with_grass'},	rarity = 30,},	
-			}},	
+				{items = {'default:dirt_with_grass'},	rarity = 30,},
+			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
@@ -643,32 +643,32 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		stack_max = 99,
 		liquids_pointable = false,
 	})
-	
+
 	-- string --
-	
+
 		minetest.register_craftitem("christmas_craft:red_ribbon", {
 		description = "Red Ribbon",
 		inventory_image = "christmas_craft_red_ribbon.png",
 		stack_max = 99,
 		liquids_pointable = false,
 	})
-	
+
 	-- wish list --
-	
+
 	minetest.register_craftitem("christmas_craft:wish_list", {
 		description = "Wish list",
 		inventory_image = "christmas_craft_which_list.png",
 		stack_max = 99,
 		liquids_pointable = false,
 	})
-	
+
 ------------
 
 -- minetest.register_craftitem("christmas_craft:snow_ball", {
 --	description = "Snow ball",
 --	inventory_image = "snow_ball.png",
 --	stack_max = 16,
---	liquids_pointable = false, 
+--	liquids_pointable = false,
 --})
 
 
@@ -705,7 +705,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 })
 --]]
 
--- complex node  -- 
+-- complex node  --
 
 snowball_DAMAGE=0.5
 snowball_GRAVITY=9
@@ -734,7 +734,7 @@ snow_snowball_ENTITY={
 	textures = {"snowball.png"},
 	lastpos={},
 	collisionbox = {-0.25,-0.25,-0.25, 0.25,0.25,0.25},
-	
+
 }
 
 
@@ -743,7 +743,7 @@ snow_snowball_ENTITY.on_step = function(self, dtime)
 	self.timer=self.timer+dtime
 	local pos = self.object:getpos()
 	local node = minetest.get_node(pos)
-	
+
 	--Become item when hitting a node.
 	if self.lastpos.x~=nil then --If there is no lastpos for some reason.
 		if node.name ~= "air" then
@@ -754,10 +754,10 @@ snow_snowball_ENTITY.on_step = function(self, dtime)
 			{pos = pos, gain = 1.0, max_hear_distance = 32,})
 			self.object:remove()
 		end
-		
+
 	end
 	self.lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set lastpos-->Node will be added at last pos outside the node
-	
+
 end
 
 minetest.register_entity("christmas_craft:snowball_entity", snow_snowball_ENTITY)

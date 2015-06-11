@@ -6,7 +6,7 @@
 -- Contains code from: 		plants_lib
 -- Looked at code from:		default, flowers, trees
 -- Dependencies: 			plants_lib
--- Supports:				dryplants, stoneage, sumpf			
+-- Supports:				dryplants, stoneage, sumpf
 -----------------------------------------------------------------------------------------------
 
 assert(abstract_ferns.config.enable_horsetails == true)

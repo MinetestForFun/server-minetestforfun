@@ -438,15 +438,15 @@ local function find_dock(pos, second)
 			local tmp_node = {name=tmp_name, param1=me.param1, param2=me.param2}
 			if second > 0 then
 				local tmp_node = {name=tmp_name, param1=me.param1, param2=me.param2}
-				minetest.set_node(pos, tmp_node)			
+				minetest.set_node(pos, tmp_node)
 			end
 		elseif code == 0 then
 			if second == 2 then
 				local tmp_node = {name="fences:fence_wood", param1=me.param1, param2=me.param2}
-				minetest.set_node(pos, tmp_node)			
+				minetest.set_node(pos, tmp_node)
 			end
 		end
-	
+
 end
 
 

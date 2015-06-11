@@ -3,12 +3,12 @@ vector.meta.nodes = {}
 
 vector.meta.nodes_file = {
 	load = function()
-		local nodesfile = io.open(minetest.get_worldpath()..'/vector_nodes.txt', "r")  
+		local nodesfile = io.open(minetest.get_worldpath()..'/vector_nodes.txt', "r")
 		if nodesfile then
 			local contents = nodesfile:read('*all')
 			io.close(nodesfile)
-			if contents ~= nil then 
-				local lines = string.split(contents, "\n") 
+			if contents ~= nil then
+				local lines = string.split(contents, "\n")
 				for _,entry in ipairs(lines) do
 					local name, px, py, pz, meta = unpack(string.split(entry, "°"))
 					vector.meta.set_node({x=px, y=py, z=pz}, name, meta)

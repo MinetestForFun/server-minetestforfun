@@ -37,7 +37,7 @@ local function start_smoke(pos, node, clicker, chimney)
 		s_handle = minetest.sound_play("fire_small", {
 			pos = pos,
 			max_hear_distance = 5,
-			loop = true 
+			loop = true
 		})
 		this_spawner_meta:set_int("smoky", id)
 		this_spawner_meta:set_int("sound", s_handle)
@@ -81,7 +81,7 @@ for _, f in ipairs(flame_types) do
 		light_source = 14,
 		waving = 1,
 		tiles = {
-			{name=f.."_fire_animated.png", animation={type="vertical_frames", 
+			{name=f.."_fire_animated.png", animation={type="vertical_frames",
 			aspect_w=16, aspect_h=16, length=1.5}},
 		},
 		on_rightclick = function (pos, node, clicker)
@@ -111,7 +111,7 @@ minetest.register_node("fake_fire:fancy_fire", {
 		damage_per_second = 4,
 		on_rotate = screwdriver.rotate_simple,
 		tiles = {
-		{name="fake_fire_animated.png", 
+		{name="fake_fire_animated.png",
 		animation={type='vertical_frames', aspect_w=16, aspect_h=16, length=1}}, {name='fake_fire_logs.png'}},
 		on_rightclick = function (pos, node, clicker)
 			start_smoke(pos, node, clicker)
@@ -169,7 +169,7 @@ for _, m in ipairs(materials) do
 			stop_smoke(pos)
 		end
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = 'fake_fire:chimney_top_'..m,

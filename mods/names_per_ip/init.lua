@@ -23,7 +23,7 @@ minetest.register_chatcommand("whois", {
 			minetest.chat_send_player(name, "The player \"" .. param .. "\" did not join yet.")
 			return
 		end
-		
+
 		local ip = ipnames.data[param]
 		local names = "";
 		for k, v in pairs(ipnames.data) do
@@ -52,11 +52,11 @@ minetest.register_on_prejoinplayer(function(name, ip)
 				names = names .. k .. ", "
 			end
 		end
-		
+
 		if count <= ipnames.name_per_ip_limit and count > 1 then
 			minetest.log("action", name .. " now has " .. count .. " accounts. Other accounts: " .. names)
 		end
-		
+
 		if count > ipnames.name_per_ip_limit then
 			ipnames.tmp_data[name] = nil
 			if tostring(ip) ~= "127.0.0.1" then

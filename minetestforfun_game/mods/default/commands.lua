@@ -13,7 +13,7 @@ minetest.register_craftitem("default:infotool", {
 	if minetest.registered_items[nn] == nil or minetest.registered_items[nn].tiles == nil or type(minetest.registered_items[nn].tiles[1]) ~= "string" then return end
 	local def = minetest.registered_nodes[nn]
 	if not def then return end
-	
+
 	local textures = def.tiles
 	local description = def.description
 	if not textures then

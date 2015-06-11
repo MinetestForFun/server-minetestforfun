@@ -26,7 +26,7 @@ minetest.register_node("lavatemple:ladder", {
 	sunlight_propagates = true,
 	paramtype2 = "wallmounted",
 	climbable = true,
-	walkable = true,	
+	walkable = true,
 	node_box = {
 		type = "wallmounted",
 		wall_top    = {-0.375, 0.4375, -0.5, 0.375, 0.5, 0.5},

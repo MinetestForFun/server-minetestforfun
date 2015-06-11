@@ -106,7 +106,7 @@ chesttools.on_receive_fields = function(pos, formname, fields, player)
 			selected = 'main';
 		end
 		local inv_list = 'main';
-		if(     selected == 'main' ) then		
+		if(     selected == 'main' ) then
 			inv_list = 'main';
 		elseif( selected == 'craft' ) then
 			inv_list = 'craft';
@@ -254,8 +254,8 @@ chesttools.update_chest = function(pos, formname, fields, player)
 		elseif( fields.shared ) then
 			price = 1;
 		end
-		
-	elseif( node.name=='chesttools:shared_chest') then 
+
+	elseif( node.name=='chesttools:shared_chest') then
 		if( fields.shared) then
 			return;
 		end
@@ -321,7 +321,7 @@ chesttools.update_chest = function(pos, formname, fields, player)
 	minetest.swap_node( pos, { name = target, param2 = node.param2 });
 
 	minetest.chat_send_player( pname, 'Chest changed to '..tostring( minetest.registered_nodes[ target].description )..
-			' for '..tostring( price )..' steel ingots.'); 
+			' for '..tostring( price )..' steel ingots.');
 end
 
 
@@ -334,7 +334,7 @@ chesttools.form_input_handler = function( player, formname, fields)
 		elseif( formname == "chesttools:update") then
 			chesttools.update_chest(     pos, formname, fields, player);
 		end
-		
+
 		return;
 	end
 end
@@ -435,9 +435,9 @@ minetest.register_node( 'chesttools:shared_chest', {
 			return nil;
 		end
 
-		if(    node.name=='default:chest' 
-		    or node.name=='default:chest_locked' 
-		    or node.name=='chesttools:shared_chest') then 
+		if(    node.name=='default:chest'
+		    or node.name=='default:chest_locked'
+		    or node.name=='chesttools:shared_chest') then
 
 			local formspec = "size[8,4]"..
 					 "label[2,0.4;Change chest type:]"..
@@ -464,7 +464,7 @@ minetest.register_node( 'chesttools:shared_chest', {
 				formspec = formspec..'item_image[5,1;1.5,1.5;chesttools:shared_chest]'..
 					   'label[5,2.5;shared]';
 			end
-			minetest.show_formspec( name, "chesttools:update", formspec );	
+			minetest.show_formspec( name, "chesttools:update", formspec );
 		end
 		return nil;
 	end,

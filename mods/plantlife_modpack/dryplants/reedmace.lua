@@ -6,7 +6,7 @@
 
 -- License (everything): 	WTFPL
 -- Contains code from: 		plants_lib
--- Looked at code from:		default, trees				
+-- Looked at code from:		default, trees
 -----------------------------------------------------------------------------------------------
 
 -- NOTES (from wikipedia, some of this might get implemented)
@@ -70,7 +70,7 @@ abstract_dryplants.grow_reedmace_water = function(pos)
 				minetest.set_node(pos_02, {name="dryplants:reedmace_height_3_spikes"})
 			else
 				minetest.set_node(pos_02, {name="dryplants:reedmace_height_3"})
-			end	
+			end
 		end
 	end
 end
@@ -212,8 +212,8 @@ minetest.register_node("dryplants:reedmace", {
 	after_destruct = function(pos,oldnode)
         local node = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z})
         if node.name == "dryplants:reedmace_top"
-		or node.name == "dryplants:reedmace_spikes" then 
-            minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z}) 
+		or node.name == "dryplants:reedmace_spikes" then
+            minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z})
             minetest.add_item(pos,"dryplants:reedmace_sapling")
         end
     end,
@@ -241,10 +241,10 @@ minetest.register_node("dryplants:reedmace_bottom", {
 	},
 	after_destruct = function(pos,oldnode)
         local node = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z})
-        if node.name == "dryplants:reedmace" 
+        if node.name == "dryplants:reedmace"
 		or node.name == "dryplants:reedmace_top"
-		or node.name == "dryplants:reedmace_spikes" then 
-            minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z}) 
+		or node.name == "dryplants:reedmace_spikes" then
+            minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z})
             minetest.add_item(pos,"dryplants:reedmace_sapling")
         end
     end,
@@ -348,7 +348,7 @@ minetest.register_entity("dryplants:reedmace_water_entity",{
 -- near water or swamp
 plantslib:register_generate_plant({
     surface = {
-		"default:dirt_with_grass", 
+		"default:dirt_with_grass",
 		"default:desert_sand",
 		"stoneage:grass_with_silex",
 		"sumpf:peat",
@@ -370,7 +370,7 @@ plantslib:register_generate_plant({
 plantslib:register_generate_plant({
     surface = {
 		"default:dirt",
-		"default:dirt_with_grass", 
+		"default:dirt_with_grass",
 		--"default:desert_sand",
 		--"stoneage:grass_with_silex",
 		"stoneage:sand_with_silex",

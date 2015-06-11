@@ -85,7 +85,7 @@ local function checkwall(pos)
 	end
 
 	local node5 = minetest.get_node({x=pos.x+dxr, y=pos.y+1, z=pos.z+dzr})
-	if not node5 or not minetest.registered_nodes[node5.name] 
+	if not node5 or not minetest.registered_nodes[node5.name]
 	  or not minetest.registered_nodes[node5.name].buildable_to then
 		return false
 	end

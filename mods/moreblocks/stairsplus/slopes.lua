@@ -129,7 +129,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			mesh = "moreblocks_slope.obj",
 			collision_box = box_slope,
 			selection_box = box_slope,
-			
+
 		},
 		["_half"] = {
 			mesh = "moreblocks_slope_half.obj",
@@ -141,9 +141,9 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			collision_box = box_slope_half_raised,
 			selection_box = box_slope_half_raised,
 		},
-		
+
 --==============================================================
-		
+
 		["_inner"] = {
 			mesh = "moreblocks_slope_inner.obj",
 			collision_box = box_slope_inner,
@@ -159,9 +159,9 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			collision_box = box_slope_inner_half_raised,
 			selection_box = box_slope_inner_half_raised,
 		},
-		
+
 --==============================================================
-		
+
 		["_outer"] = {
 			mesh = "moreblocks_slope_outer.obj",
 			collision_box = box_slope_outer,
@@ -177,9 +177,9 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			collision_box = box_slope_outer_half_raised,
 			selection_box = box_slope_outer_half_raised,
 		},
-		
+
 --==============================================================
-		
+
 		["_outer_cut"] = {
 			mesh = "moreblocks_slope_outer_cut.obj",
 			collision_box = box_slope_outer,
@@ -214,7 +214,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 	end
 
 	-- Some saw-less recipes:
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. " 7",
 		recipe = {
@@ -232,7 +232,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{modname .. ":panel_" .. subname, recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_half 10",
 		recipe = {
@@ -248,7 +248,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{modname .. ":panel_" .. subname, recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_half_raised 7",
 		recipe = {
@@ -257,7 +257,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{recipeitem, recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_half_raised 7",
 		recipe = {
@@ -266,7 +266,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{recipeitem, recipeitem, recipeitem},
 		},
 	})
-	
+
 --===================================================== Inner ==
 
 	minetest.register_craft({
@@ -286,7 +286,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{modname .. ":stair_" .. subname .. "_half", recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_inner_half 10",
 		recipe = {
@@ -302,7 +302,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{modname .. ":stair_" .. subname .. "_half", recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_inner_half_raised 7",
 		recipe = {
@@ -311,7 +311,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{recipeitem, recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_inner_half_raised 7",
 		recipe = {
@@ -320,7 +320,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{recipeitem, recipeitem, recipeitem},
 		},
 	})
-	
+
 --===================================================== Outer ==
 
 	minetest.register_craft({
@@ -340,7 +340,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{modname .. ":micro_" .. subname, recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_outer_half 10",
 		recipe = {
@@ -356,7 +356,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{modname .. ":micro_" .. subname, recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_outer_half_raised 7",
 		recipe = {
@@ -365,7 +365,7 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{recipeitem, recipeitem, recipeitem},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = modname .. ":slope_" .. subname .. "_outer_half_raised 7",
 		recipe = {
@@ -374,83 +374,83 @@ function stairsplus:register_slope(modname, subname, recipeitem, fields)
 			{recipeitem, recipeitem, recipeitem},
 		},
 	})
-	
+
 --================================================= Shapeless ==
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = recipeitem,
 		recipe =  {modname .. ":slope_" .. subname, modname .. ":slope_" .. subname},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = recipeitem,
 		recipe =  {modname .. ":slope_" .. subname .. "_outer_cut", modname .. ":slope_" .. subname .. "_outer_cut"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = recipeitem,
 		recipe =  {modname .. ":slope_" .. subname .. "_half", modname .. ":slope_" .. subname .. "_half_raised"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = recipeitem,
 		recipe =  {modname .. ":slope_" .. subname .. "_half", modname .. ":slope_" .. subname .. "_half",
 				   modname .. ":slope_" .. subname .. "_half", modname .. ":slope_" .. subname .. "_half"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slab_" .. subname,
 		recipe =  {modname .. ":slope_" .. subname .. "_half", modname .. ":slope_" .. subname .. "_half"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slope_" .. subname .. "_half_raised",
 		recipe =  {modname .. ":slope_" .. subname .. "_half", modname .. ":slope_" .. subname .. "_half",
 				   modname .. ":slope_" .. subname .. "_half"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slope_" .. subname .. "_half_raised",
 		recipe =  {modname .. ":slab_" .. subname, modname .. ":slope_" .. subname .. "_half"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slope_" .. subname .. "_inner_half_raised",
 		recipe =  {modname .. ":slab_" .. subname, modname .. ":slope_" .. subname .. "_inner_half"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slope_" .. subname .. "_outer_half_raised",
 		recipe =  {modname .. ":slab_" .. subname, modname .. ":slope_" .. subname .. "_outer_half"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slope_" .. subname .. "_outer_cut_half_raised",
 		recipe =  {modname .. ":slab_" .. subname, modname .. ":slope_" .. subname .. "_outer_cut_half"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slope_" .. subname .. "_outer_cut",
 		recipe =  {modname .. ":slope_" .. subname .. "_outer"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slope_" .. subname .. "_outer_cut_half",
 		recipe =  {modname .. ":slope_" .. subname .. "_outer_half"},
 	})
-	
+
 	minetest.register_craft({
 		type = "shapeless",
 		output = modname .. ":slope_" .. subname .. "_outer_cut_half_raised",

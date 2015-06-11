@@ -187,8 +187,8 @@ minetest.register_abm(
 		for k, obj in pairs(objs) do
 			obj:set_hp(obj:get_hp()-100)
 			minetest.sound_play("bobblocks_trap_fall",
-			{pos = pos, gain = 1.0, max_hear_distance = 3,})            
+			{pos = pos, gain = 1.0, max_hear_distance = 3,})
 		end
 	end,
- 
+
 })

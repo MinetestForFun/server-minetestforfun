@@ -175,7 +175,7 @@ minetest.register_abm({
 	chance = 300,			-- Modif MFF
 	action = function(pos, node)
 		local top_pos = {x=pos.x, y=pos.y+1, z=pos.z}
-		if minetest.get_node(top_pos).name == "air" and minetest.get_node_light(top_pos, nil) < 8 
+		if minetest.get_node(top_pos).name == "air" and minetest.get_node_light(top_pos, nil) < 8
 			and minetest.find_node_near(pos, 1, trees_list)
 			and minetest.find_node_near(pos, 3, "default:water_source") then
 			if math.random(0, 1) == 0 then
@@ -194,7 +194,7 @@ minetest.register_abm({
 	chance = 300,			-- Modif MFF
 	action = function(pos, node)
 		local top_pos = {x=pos.x, y=pos.y+1, z=pos.z}
-		if minetest.get_node(top_pos).name == "air" and minetest.get_node_light(top_pos, nil) < 8 
+		if minetest.get_node(top_pos).name == "air" and minetest.get_node_light(top_pos, nil) < 8
 			and minetest.find_node_near(pos, 1, {"default:water_source"}) then
 			if math.random(0,1) == 0 then
 				minetest.set_node(top_pos, {name="mushroom:brown_natural"})
@@ -219,7 +219,7 @@ minetest.register_abm({
 		local soil_pos = {x=pos.x, y=pos.y-1, z=pos.z}
 		local soil = minetest.get_node(soil_pos)
 		local woodsoil_str = "woodsoils:.+_with_leaves_?"
-		if minetest.get_node_light(pos, nil) < 8 
+		if minetest.get_node_light(pos, nil) < 8
 		  and minetest.find_node_near(pos, 1, trees_list) then
 			local spread_x = math.random(-1, 1)
 			local spread_z = math.random(-1, 1)
@@ -228,10 +228,10 @@ minetest.register_abm({
 			if minetest.get_node(newpos).name == "air"
 			  and (newsoil.name == "default:dirt_with_grass"
 			    or newsoil.name == "default:dirt"
-			    or string.match(newsoil.name, woodsoil_str)) 
+			    or string.match(newsoil.name, woodsoil_str))
 			  and minetest.find_node_near(newpos, 3, "default:water_source") then
 				minetest.set_node(newpos, {name=node.name})
-			end		
+			end
 		end
 	end
 })

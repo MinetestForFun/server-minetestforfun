@@ -5,7 +5,7 @@
 -- License (everything): 	WTFPL
 -- Contains code from: 		plants_lib
 -- Looked at code from:		4seasons, default
--- Supports:				vines			
+-- Supports:				vines
 -----------------------------------------------------------------------------------------------
 
 assert(abstract_ferns.config.enable_giant_treefern == true)
@@ -21,7 +21,7 @@ abstract_ferns.grow_giant_tree_fern = function(pos)
 	end
 
 	local size = math.random(12,16)	-- min of range must be >= 4
-	
+
 	local leafchecks = {
 		{
 			direction  = 3,
@@ -238,8 +238,8 @@ minetest.register_node("ferns:fern_trunk_big", {
 	sounds = default.node_sound_wood_defaults(),
 	after_destruct = function(pos,oldnode)
         local node = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z})
-        if node.name == "ferns:fern_trunk_big" or node.name == "ferns:fern_trunk_big_top" then 
-            minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z}) 
+        if node.name == "ferns:fern_trunk_big" or node.name == "ferns:fern_trunk_big_top" then
+            minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z})
             minetest.add_item(pos,"ferns:fern_trunk_big")
         end
     end,

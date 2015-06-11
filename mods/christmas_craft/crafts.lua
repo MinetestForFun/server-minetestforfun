@@ -136,7 +136,7 @@ minetest.register_craft({
 })
 
 --------------------------
--- presents              - 
+-- presents              -
 --------------------------
 
 -- paper colour craft --

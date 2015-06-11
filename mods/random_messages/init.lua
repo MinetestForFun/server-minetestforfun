@@ -4,7 +4,7 @@ arsdragonfly@gmail.com
 6/19/2013
 --]]
 --Time between two subsequent messages.
-local MESSAGE_INTERVAL = 0 
+local MESSAGE_INTERVAL = 0
 
 math.randomseed(os.time())
 
@@ -14,7 +14,7 @@ random_messages.messages = {} --This table contains all messages.
 function random_messages.initialize() --Set the interval in minetest.conf.
 	minetest.setting_set("random_messages_interval",120)
 	minetest.setting_save();
-	return 120 
+	return 120
 end
 
 function random_messages.set_interval() --Read the interval from minetest.conf(set it if it doesn'st exist)

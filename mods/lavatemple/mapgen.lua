@@ -2,11 +2,11 @@ lavatemple.mapgen_data = {}
 lavatemple.file = minetest.get_worldpath()..'/lavatemple.mt'
 
 -- try to load the data from file
-local f = io.open(lavatemple.file, "r")  
+local f = io.open(lavatemple.file, "r")
 if f then
 	local contents = f:read()
 	io.close(f)
-	if contents ~= nil then 
+	if contents ~= nil then
 		lavatemple.mapgen_data = minetest.deserialize(contents)
 	end
 end
@@ -25,7 +25,7 @@ if type (lavatemple.mapgen_data) ~= "table" or
 		y=math.random(-500,-50),
 		z=math.random(-2000,2000)
 	}
-	
+
 	-- save data
 	local f = io.open(lavatemple.file, "w")
 	f:write(minetest.serialize(lavatemple.mapgen_data))

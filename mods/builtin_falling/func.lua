@@ -145,7 +145,7 @@ function add_protected_bukket_liquid(nameofbukket,liquidsourcename)
 			end
 			-- Check if pointing to a buildable node
 			local n = minetest.get_node(pointed_thing.under)
-			
+
 			if is_protected_area(pointed_thing.under, 4 ,user:get_player_name()) then
 				minetest.chat_send_player(user:get_player_name(),"You can't place here - Too short of a protected area. (less than or equal to 4 blocks)")
 				if minetest.is_protected(pointed_thing.under,user:get_player_name()) then
@@ -153,7 +153,7 @@ function add_protected_bukket_liquid(nameofbukket,liquidsourcename)
 				end
 				return itemstack
 			end
-			
+
 			if minetest.registered_nodes[n.name].buildable_to then
 				-- buildable; replace the node
 				minetest.log("action", user:get_player_name().. " use "..nameofbukket.." at  ".. minetest.pos_to_string(pointed_thing.under))

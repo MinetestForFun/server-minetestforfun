@@ -115,7 +115,7 @@ if RANDOM_MESSAGES == true then
 		minetest.sound_play(sounds[math.random(1,#sounds)],{to_player=player:get_player_name(),gain=0.5*soundset.get_gain(player:get_player_name(),"other")})
 		sound_play_all(player:get_player_name())
 	end)
-	
+
 else
 	minetest.register_on_dieplayer(function(player)
 		local player_name = player:get_player_name()

@@ -60,7 +60,7 @@ minetest.register_node("eventobjects:surprise_node", {
 		end
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		
+
 	end,
 	on_punch = function(pos, node, puncher, pointed_things)
 		-- Spawn betweek 5 and 20 random nodes

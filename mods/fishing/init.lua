@@ -77,10 +77,10 @@ minetest.register_tool("fishing:pole", {
 						gain = 0.5,
 					})
 					minetest.add_entity({interval = 1,x=pt.under.x, y=pt.under.y+(45/64), z=pt.under.z}, "fishing:bobber_entity")
-					
-					if WEAR_OUT == true 
+
+					if WEAR_OUT == true
 					and not minetest.setting_getbool("creative_mode") then
-						return rod_wear(itemstack, user, pointed_thing, 30)	
+						return rod_wear(itemstack, user, pointed_thing, 30)
 					else
 						return {name="fishing:pole", count=1, wear=0, metadata=""}
 					end
@@ -94,10 +94,10 @@ minetest.register_tool("fishing:pole", {
 						gain = 0.5,
 					})
 					minetest.add_entity({interval = 1,x=pt.under.x, y=pt.under.y+(45/64), z=pt.under.z}, "fishing:bobber_entity_shark")
-					
-					if WEAR_OUT == true 
+
+					if WEAR_OUT == true
 					and not minetest.setting_getbool("creative_mode") then
-						return rod_wear(itemstack, user, pointed_thing, 30)	
+						return rod_wear(itemstack, user, pointed_thing, 30)
 					else
 						return {name="fishing:pole", count=1, wear=0, metadata=""}
 					end
@@ -150,10 +150,10 @@ minetest.register_tool("fishing:pole_perfect", {
 						gain = 0.5,
 					})
 					minetest.add_entity({interval = 1,x=pt.under.x, y=pt.under.y+(45/64), z=pt.under.z}, "fishing:bobber_entity")
-					
-					if WEAR_OUT == true 
+
+					if WEAR_OUT == true
 					and not minetest.setting_getbool("creative_mode") then
-						return rod_wear(itemstack, user, pointed_thing, 1500)	
+						return rod_wear(itemstack, user, pointed_thing, 1500)
 					else
 						return {name="fishing:pole_perfect", count=1, wear=0, metadata=""}
 					end
@@ -167,10 +167,10 @@ minetest.register_tool("fishing:pole_perfect", {
 						gain = 0.5,
 					})
 					minetest.add_entity({interval = 1,x=pt.under.x, y=pt.under.y+(45/64), z=pt.under.z}, "fishing:bobber_entity_shark")
-					
-					if WEAR_OUT == true 
+
+					if WEAR_OUT == true
 					and not minetest.setting_getbool("creative_mode") then
-						return rod_wear(itemstack, user, pointed_thing, 1500)	
+						return rod_wear(itemstack, user, pointed_thing, 1500)
 					else
 						return {name="fishing:pole_perfect", count=1, wear=0, metadata=""}
 					end
@@ -240,7 +240,7 @@ if SIMPLE_DECO_FISHING_POLE == true then
 			minetest.remove_node(pos)
 		end,
 	})
-	
+
 	--Canne à pêche parfaite deco
 	minetest.register_node("fishing:pole_perfect_deco", {
 		description = S("Perfect Fishing Pole"),
@@ -348,7 +348,7 @@ else
 			minetest.remove_node(pos)
 		end,
 	})
-	
+
 	--Canne à pêche parfaite deco
 	minetest.register_node("fishing:pole_perfect_deco", {
 		description = S("Perfect Fishing Pole"),
@@ -455,11 +455,11 @@ else
 		if pt.type ~= "node" then
 				return
 		end
-		
+
 		local under = minetest.get_node(pt.under)
 		local p = {x=pt.under.x, y=pt.under.y+1, z=pt.under.z}
 		local above = minetest.get_node(p)
-		
+
 		-- return if any of the nodes is not registered
 		if not minetest.registered_nodes[under.name] then
 			return
@@ -467,24 +467,24 @@ else
 		if not minetest.registered_nodes[above.name] then
 			return
 		end
-		
+
 		-- check if the node above the pointed thing is air
 		if above.name ~= "air" then
 			return
 		end
-	
+
 		-- check if pointing at dirt
 		if minetest.get_item_group(under.name, "soil") ~= 1 then
 			return
 		end
-		
+
 		-- turn the node into soil, play sound, get worm and wear out item
 		minetest.set_node(pt.under, {name="farming:soil"})
 		minetest.sound_play("default_dig_crumbly", {
 			pos = pt.under,
 			gain = 0.5,
 		})
-		
+
 		if math.random(1, 100) < WORM_CHANCE then
 			if WORM_IS_MOB == true then
 				minetest.add_entity({x=pt.under.x, y=pt.under.y+0.4, z=pt.under.z}, "fishing:bait_worm_entity")

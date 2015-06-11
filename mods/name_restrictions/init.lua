@@ -166,7 +166,7 @@ minetest.register_on_prejoinplayer(function(name, ip)
 		.. " (" .. #name .. " characters, must be " .. min_name_len .. " characters at least)."
 		.. " Please try a longer name."
 	end
-	
+
 	if #name > max_name_len then
 		return "Your player name is too long"
 		.. " (" .. #name .. " characters, must be " .. max_name_len .. " characters at most)."

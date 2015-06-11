@@ -69,16 +69,16 @@ minetest.register_entity("fishing:bait_worm_entity", {
 			if n.name == "air" then -- fall when in air
 				self.object:moveto({x=pos.x,y=pos.y-0.5,z=pos.z})
 				self.object:set_hp(self.object:get_hp()-75)
-				
+
 			--if n.name == "snappy" then -- fall when leaves or similar
 			elseif minetest.get_item_group(n.name, "snappy") ~= 0 then
 				self.object:moveto({x=pos.x+(0.001*(math.random(-32, 32))),y=pos.y-(0.001*(math.random(0, 64))),z=pos.z+(0.001*(math.random(-32, 32)))})
-				
-				
+
+
 			elseif string.find(n.name, "default:water") then -- sink when in water
 				self.object:moveto({x=pos.x,y=pos.y-0.25,z=pos.z})
 				self.object:set_hp(self.object:get_hp()-37)
-			
+
 			elseif minetest.get_item_group(n.name, "soil") ~= 0 then
 				if minetest.get_item_group(minetest.get_node({x=pos.x,y=pos.y-0.1,z=pos.z}).name, "soil") == 0 and self.object:get_hp() > 200 then
 					self.object:set_hp(199)
@@ -95,24 +95,24 @@ minetest.register_entity("fishing:bait_worm_entity", {
 				local goal_02 = check_group(minetest.get_node({x = pos.x, 	  y = pos.y-0.4, z = pos.z + 1}).name, "soil")
 				local goal_03 = check_group(minetest.get_node({x = pos.x - 1, y = pos.y-0.4, z = pos.z	  }).name, "soil")
 				local goal_04 = check_group(minetest.get_node({x = pos.x, 	  y = pos.y-0.4, z = pos.z - 1}).name, "soil")
-				
+
 				local goal_1a = check_group(minetest.get_node({x = pos.x + 1, y = pos.y+0.6, z = pos.z	  }).name, "soil")
 				local goal_2a = check_group(minetest.get_node({x = pos.x, 	  y = pos.y+0.6, z = pos.z + 1}).name, "soil")
 				local goal_3a = check_group(minetest.get_node({x = pos.x - 1, y = pos.y+0.6, z = pos.z	  }).name, "soil")
 				local goal_4a = check_group(minetest.get_node({x = pos.x, 	  y = pos.y+0.6, z = pos.z - 1}).name, "soil")
 				-- if there's dirt nearby, go there
 				if     goal_01 ~= 0 or goal_1a ~= 0 then
-					self.object:moveto({x=pos.x+0.002,y=pos.y,z=pos.z+(0.001*(math.random(-2, 2)))})	
+					self.object:moveto({x=pos.x+0.002,y=pos.y,z=pos.z+(0.001*(math.random(-2, 2)))})
 				elseif goal_02 ~= 0 or goal_2a ~= 0 then
-					self.object:moveto({x=pos.x+(0.001*(math.random(-2, 2))),y=pos.y,z=pos.z+0.002})	
+					self.object:moveto({x=pos.x+(0.001*(math.random(-2, 2))),y=pos.y,z=pos.z+0.002})
 				elseif goal_03 ~= 0 or goal_3a ~= 0 then
-					self.object:moveto({x=pos.x-0.002,y=pos.y,z=pos.z+(0.001*(math.random(-2, 2)))})	
+					self.object:moveto({x=pos.x-0.002,y=pos.y,z=pos.z+(0.001*(math.random(-2, 2)))})
 				elseif goal_04 ~= 0 or goal_4a ~= 0 then
-					self.object:moveto({x=pos.x+(0.001*(math.random(-2, 2))),y=pos.y,z=pos.z-0.002})	
+					self.object:moveto({x=pos.x+(0.001*(math.random(-2, 2))),y=pos.y,z=pos.z-0.002})
 				else -- I'm lost, no dirt
-					self.object:moveto({x=pos.x+(0.001*(math.random(-8, 8))),y=pos.y,z=pos.z+(0.001*(math.random(-8, 8)))})	
+					self.object:moveto({x=pos.x+(0.001*(math.random(-8, 8))),y=pos.y,z=pos.z+(0.001*(math.random(-8, 8)))})
 				end
-			end	
+			end
 		end
 		look_whats_up(self)
 	end,

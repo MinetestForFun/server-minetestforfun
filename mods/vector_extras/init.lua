@@ -290,7 +290,7 @@ function vector.explosion_table(r)
 	for x=-r,r do
 		for y=-r,r do
 			for z=-r,r do
-				local rc = x*x+y*y+z*z 
+				local rc = x*x+y*y+z*z
 				if rc <= tmp then
 					local np={x=x, y=y, z=z}
 					if math.floor(math.sqrt(rc) +0.5) > r-1 then

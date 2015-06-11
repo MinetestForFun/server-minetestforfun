@@ -49,7 +49,7 @@ HUD_TICK = 0.1
 --Some hunger settings
 hud.exhaustion = {} -- Exhaustion is experimental!
 
-HUD_HUNGER_TICK = 800 -- time in seconds after that 1 hunger point is taken 
+HUD_HUNGER_TICK = 800 -- time in seconds after that 1 hunger point is taken
 HUD_HUNGER_EXHAUST_DIG = 3  -- exhaustion increased this value after digged node
 HUD_HUNGER_EXHAUST_PLACE = 1 -- exhaustion increased this value after placed
 HUD_HUNGER_EXHAUST_MOVE = 0.3 -- exhaustion increased this value if player movement detected
@@ -69,7 +69,7 @@ end
 
 --load custom settings
 local set = io.open(minetest.get_modpath("hud").."/hud.conf", "r")
-if set then 
+if set then
 	dofile(minetest.get_modpath("hud").."/hud.conf")
 	set:close()
 else
@@ -243,7 +243,7 @@ hud.set_hunger = function(player)
 	if not inv  or not value then return nil end
 	if value > 30 then value = 30 end
 	if value < 0 then value = 0 end
-	
+
 	inv:set_stack("hunger", 1, ItemStack({name=":", count=value+1}))
 
 	return true
@@ -321,7 +321,7 @@ minetest.after(2.5, function()
 
 			 -- update all hud elements
 			 update_hud(player)
-			
+
 			 if HUD_ENABLE_HUNGER then
 				local controls = player:get_player_control()
 				-- Determine if the player is walking
@@ -331,7 +331,7 @@ minetest.after(2.5, function()
 			 end
 			end
 		 end
-		
+
 		end
 		if timer > 4 then timer = 0 end
 		if timer2 > HUD_HUNGER_TICK then timer2 = 0 end

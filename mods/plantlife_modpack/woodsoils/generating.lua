@@ -26,7 +26,7 @@ local RaDiuS = {
 }
 --  e = + , n = +
 abstract_woodsoils.place_soil = function(pos)
-	
+
 	if minetest.get_item_group(minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z}).name, "soil") > 0
 	or minetest.get_item_group(minetest.get_node({x=pos.x,y=pos.y-2,z=pos.z}).name, "soil") > 0 then
 		for i in pairs(RaDiuS) do

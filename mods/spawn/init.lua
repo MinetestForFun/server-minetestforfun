@@ -7,7 +7,7 @@ minetest.register_on_chat_message(function(name, message, playername, player)
 	if message:sub(0, #cmd) == cmd then
 		if message == '/spawn' then
 			local player = minetest.get_player_by_name(name)
-			
+
 			-- Checking timers
 			local timer_player = os.difftime(os.time(),timers[name])
 			if timer_player ~= nil and timer_player < SPAWN_INTERVAL then -- less than x minutes

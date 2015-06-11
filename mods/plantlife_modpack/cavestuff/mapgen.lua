@@ -28,7 +28,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						break
 					end
 				end
-				
+
 				if ground_y then
 					local p = {x=x,y=ground_y+1,z=z}
 					local nn = minetest.get_node(p).name
@@ -44,7 +44,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					    end
 					end
 				end
-				
+
 			end
 		end
 		end

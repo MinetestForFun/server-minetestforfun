@@ -18,7 +18,7 @@ end
 
 function hud.set_armor(player_name, ges_state, items)
 	local max_items = 4
-	if items == 5 then 
+	if items == 5 then
 		max_items = items
 	end
 	local max = max_items * 65535

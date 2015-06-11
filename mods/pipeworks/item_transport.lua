@@ -77,7 +77,7 @@ local function go_next(pos, velocity, stack)
 	if not next_positions[1] then
 		return false, nil
 	end
-	
+
 	local n = (cmeta:get_int("tubedir") % (#next_positions)) + 1
 	if pipeworks.enable_cyclic_mode then
 		cmeta:set_int("tubedir", n)
@@ -182,7 +182,7 @@ luaentity.register_entity("pipeworks:tubed_item", {
 		self.itemstring = itemstring
 		self.item_entity = self:add_attached_entity("pipeworks:tubed_item", itemstring)
 	end,
-	
+
 	set_color = function(self, color)
 		if self.color == color then
 			return
@@ -204,13 +204,13 @@ luaentity.register_entity("pipeworks:tubed_item", {
 			self.start_pos = vector.round(pos)
 			self:setpos(pos)
 		end
-		
+
 		local pos = self:getpos()
 		local stack = ItemStack(self.itemstring)
 		local drop_pos
-		
+
 		local velocity = self:getvelocity()
-		
+
 		local moved = false
 		local speed = math.abs(velocity.x + velocity.y + velocity.z)
 		if speed == 0 then
@@ -218,12 +218,12 @@ luaentity.register_entity("pipeworks:tubed_item", {
 			moved = true
 		end
 		local vel = {x = velocity.x / speed, y = velocity.y / speed, z = velocity.z / speed, speed = speed}
-		
+
 		if vector.distance(pos, self.start_pos) >= 1 then
 			self.start_pos = vector.add(self.start_pos, vel)
 			moved = true
 		end
-		
+
 		minetest.load_position(self.start_pos)
 		local node = minetest.get_node(self.start_pos)
 		if moved and minetest.get_item_group(node.name, "tubedevice_receiver") == 1 then
@@ -242,18 +242,18 @@ luaentity.register_entity("pipeworks:tubed_item", {
 			self:set_item(leftover:to_string())
 			return
 		end
-		
+
 		if moved then
 			local found_next, new_velocity = go_next(self.start_pos, velocity, stack) -- todo: color
 			if not found_next then
 				drop_pos = minetest.find_node_near(vector.add(self.start_pos, velocity), 1, "air")
-				if drop_pos then 
+				if drop_pos then
 					minetest.item_drop(stack, "", drop_pos)
 					self:remove()
 					return
 				end
 			end
-			
+
 			if new_velocity and not vector.equals(velocity, new_velocity) then
 				self:setpos(self.start_pos)
 				self:setvelocity(new_velocity)

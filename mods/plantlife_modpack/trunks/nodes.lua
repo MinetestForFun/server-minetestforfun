@@ -17,7 +17,7 @@ for i in pairs(NoDe) do
 		inventory_image = "trunks_twig_"..NR..".png",
 		wield_image = "trunks_twig_"..NR..".png",
 		drawtype = "nodebox",
-		tiles = { 
+		tiles = {
 			"trunks_twig_"..NR..".png",
 			"trunks_twig_"..NR..".png^[transformFY", -- mirror
 			"trunks_twig_6.png" -- empty
@@ -214,7 +214,7 @@ if Auto_Roof_Corner == true then
 		interval = 1,
 		chance = 1,
 		action = function(pos)
-	
+
 			local node_east = 			minetest.get_node({x=pos.x+1, y=pos.y, z=pos.z  })
 			local node_west = 			minetest.get_node({x=pos.x-1, y=pos.y, z=pos.z  })
 			local node_north = 			minetest.get_node({x=pos.x,   y=pos.y, z=pos.z+1})
@@ -227,7 +227,7 @@ if Auto_Roof_Corner == true then
 			then
 				minetest.set_node(pos, {name=corner, param2=0})
 			end
-		
+
 			if ((node_north.name == roof and node_north.param2 == 1)
 			or (node_north.name == corner and node_north.param2 == 2))
 			and ((node_east.name == roof and node_east.param2 == 0)
@@ -235,7 +235,7 @@ if Auto_Roof_Corner == true then
 			then
 				minetest.set_node(pos, {name=corner, param2=1})
 			end
-		
+
 			if ((node_east.name == roof and node_east.param2 == 2)
 			or (node_east.name == corner and node_east.param2 == 3))
 			and ((node_south.name == roof and node_south.param2 == 1)
@@ -243,7 +243,7 @@ if Auto_Roof_Corner == true then
 			then
 				minetest.set_node(pos, {name=corner, param2=2})
 			end
-		
+
 			if ((node_south.name == roof and node_south.param2 == 3)
 			or (node_south.name == corner and node_south.param2 == 0))
 			and ((node_west.name == roof and node_west.param2 == 2)
@@ -259,7 +259,7 @@ if Auto_Roof_Corner == true then
 			then
 				minetest.set_node(pos, {name=corner_2, param2=0})
 			end
-		
+
 			if ((node_north.name == roof and node_north.param2 == 3)
 			or (node_north.name == corner_2 and node_north.param2 == 2))
 			and ((node_east.name == roof and node_east.param2 == 2)
@@ -267,7 +267,7 @@ if Auto_Roof_Corner == true then
 			then
 				minetest.set_node(pos, {name=corner_2, param2=1})
 			end
-		
+
 			if ((node_east.name == roof and node_east.param2 == 0)
 			or (node_east.name == corner_2 and node_east.param2 == 3))
 			and ((node_south.name == roof and node_south.param2 == 3)
@@ -275,7 +275,7 @@ if Auto_Roof_Corner == true then
 			then
 				minetest.set_node(pos, {name=corner_2, param2=2})
 			end
-		
+
 			if ((node_south.name == roof and node_south.param2 == 1)
 			or (node_south.name == corner_2 and node_south.param2 == 0))
 			and ((node_west.name == roof and node_west.param2 == 0)
@@ -291,7 +291,7 @@ end
 -- MM: The following stuff is just for testing purposes for now; no generating of roots.
 --     I'm not satisfied with this; they should be either bigger or a different drawtype.
 -----------------------------------------------------------------------------------------------
--- RooTS 
+-- RooTS
 -----------------------------------------------------------------------------------------------
 if Roots == true then -- see settings.txt
 
@@ -303,11 +303,11 @@ local TRuNKS = {
 --	  MoD 						 TRuNK
     {"default",  				"tree"						},
 	{"default",					"jungletree"				},
-	
+
 	{"trees",					"tree_conifer"				},
 	{"trees",					"tree_mangrove"				},
 	{"trees",					"tree_palm"					},
-	
+
 	{"moretrees",				"apple_tree_trunk"			},
 	{"moretrees",				"beech_trunk"				},
 	{"moretrees",				"birch_trunk"				},
@@ -326,9 +326,9 @@ for i in pairs(TRuNKS) do
 	local 	MoD = 			TRuNKS[i][1]
 	local 	TRuNK = 		TRuNKS[i][2]
 	if minetest.get_modpath(MoD) ~= nil then
-		
+
 		local des = minetest.registered_nodes[MoD..":"..TRuNK].description
-	
+
 		minetest.register_node("trunks:"..TRuNK.."root", {
 			description = des.." Root",
 			paramtype = "light",
@@ -350,12 +350,12 @@ for i in pairs(TRuNKS) do
 				choppy=2,
 				oddly_breakable_by_hand=1,
 				flammable=2--,
-				--not_in_creative_inventory=1 -- atm in inv for testing 
+				--not_in_creative_inventory=1 -- atm in inv for testing
 			},
 			--drop = "trunks:twig_1", -- not sure about this yet
 			sounds = default.node_sound_wood_defaults(),
-		}) 
-	
+		})
+
 	end
 end
 end

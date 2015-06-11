@@ -184,7 +184,7 @@ boats.register_boat = function(parameters)
 		wield_image = "boats_"..parameters.name.."_wield.png",
 		wield_scale = {x=2, y=2, z=1},
 		liquids_pointable = true,
-		
+
 		on_place = function(itemstack, placer, pointed_thing)
 			if pointed_thing.type ~= "node" then
 				return

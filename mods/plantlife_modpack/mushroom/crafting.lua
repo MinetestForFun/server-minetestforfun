@@ -36,7 +36,7 @@ minetest.register_craftitem("mushroom:poison",{
 
 minetest.register_craft( {
 		output = "mushroom:identifier",
-		recipe = { 
+		recipe = {
 			{ "", "default:torch", "" },
 			{ "default:steel_ingot", "default:mese_crystal_fragment", "default:steel_ingot" },
 		}

@@ -2,9 +2,9 @@
 Sprint mod for Minetest by GunshipPenguin
 
 To the extent possible under law, the author(s)
-have dedicated all copyright and related and neighboring rights 
+have dedicated all copyright and related and neighboring rights
 to this software to the public domain worldwide. This software is
-distributed without any warranty. 
+distributed without any warranty.
 ]]
 
 local players = {}
@@ -15,9 +15,9 @@ minetest.register_on_joinplayer(function(player)
 
 	players[playerName] = {
 		sprinting = false,
-		timeOut = 0, 
-		stamina = SPRINT_STAMINA, 
-		epressed = false, 
+		timeOut = 0,
+		stamina = SPRINT_STAMINA,
+		epressed = false,
 	}
 	if SPRINT_HUDBARS_USED then
 		hb.init_hudbar(player, "sprint")
@@ -61,12 +61,12 @@ minetest.register_globalstep(function(dtime)
 				setSprinting(playerName, false)
 				playerInfo["timeOut"] = 3
 			end
-			
-			
+
+
 			if gameTime > 0.4 then
 				gameTime = 0
 				local pos = player:getpos()
-				-- From playerplus : 
+				-- From playerplus :
 				-- am I near a cactus?
 				pos.y = pos.y + 0.1
 				local near = minetest.find_node_near(pos, 1, "default:cactus")
@@ -75,8 +75,8 @@ minetest.register_globalstep(function(dtime)
 						player:set_hp(player:get_hp()-1)
 					end
 				end
-			
-				--If the player is sprinting, create particles behind him/her 
+
+				--If the player is sprinting, create particles behind him/her
 				if playerInfo["sprinting"] == true then
 					local numParticles = math.random(1, 2)
 					local playerPos = player:getpos()
@@ -97,14 +97,14 @@ minetest.register_globalstep(function(dtime)
 					end
 				end
 			end
-			
+
 			--Adjust player states
 			if players[playerName]["epressed"] == true and playerInfo["timeOut"] == 0 then --Stopped
 				setSprinting(playerName, true)
 			elseif players[playerName]["epressed"] == false then
 				setSprinting(playerName, false)
 			end
-			
+
 			if playerInfo["timeOut"] > 0 then
 				playerInfo["timeOut"] = playerInfo["timeOut"] - dtime
 				if playerInfo["timeOut"] < 0 then
@@ -112,7 +112,7 @@ minetest.register_globalstep(function(dtime)
 				end
 			else
 				--Lower the player's stamina by dtime if he/she is sprinting and set his/her state to 0 if stamina is zero
-				if playerInfo["sprinting"] == true then 
+				if playerInfo["sprinting"] == true then
 					playerInfo["stamina"] = playerInfo["stamina"] - dtime
 					if playerInfo["stamina"] <= 0 then
 						playerInfo["stamina"] = 0
@@ -122,7 +122,7 @@ minetest.register_globalstep(function(dtime)
 					end
 				end
 			end
-			
+
 			--Increase player's stamina if he/she is not sprinting and his/her stamina is less than SPRINT_STAMINA
 			if playerInfo["sprinting"] == false and playerInfo["stamina"] < SPRINT_STAMINA then
 				playerInfo["stamina"] = playerInfo["stamina"] + dtime
@@ -131,7 +131,7 @@ minetest.register_globalstep(function(dtime)
 			if playerInfo["stamina"] > SPRINT_STAMINA then
 				playerInfo["stamina"] = SPRINT_STAMINA
 			end
-			
+
 			--Update the players's hud sprint stamina bar
 
 			if SPRINT_HUDBARS_USED then

@@ -12,7 +12,7 @@ local armchairs_list = {
 
 local armchair_cbox = {
 	type = "fixed",
-	fixed = { 
+	fixed = {
 		{-0.5, -0.5, -0.5, 0.5, 0, 0.5 },
 		{-0.5, -0.5, 0.4, 0.5, 0.5, 0.5 }
 	}

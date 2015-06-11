@@ -13,7 +13,7 @@ local timer = 0
 
 minetest.register_globalstep(function(dtime)
 	timer = timer+dtime
-	-- if timer < X then  = X seconde temps que s'affiche les message 
+	-- if timer < X then  = X seconde temps que s'affiche les message
 	-- Default 300 seconde = 5 minute
 	if timer < 60 then
 		return
@@ -24,7 +24,7 @@ minetest.register_globalstep(function(dtime)
 	local jour = os.date("%u")
 	-- Warn only on monday, thursday, and saturday
 	if jour ~= 1 and jour~= 4 and jour ~= 6 then return end
-	
+
 	if heure == "2" and minute == "25" then        --modifier ici à  vos besoin
 		minetest.chat_send_all("Rappel, arret du serveur pour sauvegarde dans 30min.")
 		minetest.chat_send_all("Attention, server will shutdown in 30 minutes for backup.")

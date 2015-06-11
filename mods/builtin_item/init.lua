@@ -18,7 +18,7 @@ minetest.register_entity(":__builtin:item", {
 		is_visible = false,
 		timer = 0,
 	},
-	
+
 	itemstring = "",
 	physical_state = true,
 
@@ -83,7 +83,7 @@ minetest.register_entity(":__builtin:item", {
 		self.object:setacceleration({x=0, y=-10, z=0})
 		self:set_item(self.itemstring)
 	end,
-	
+
 	on_step = function(self, dtime)
 		if not self.timer then
 			self.timer = 0
@@ -92,16 +92,16 @@ minetest.register_entity(":__builtin:item", {
 		if time ~= 0 and (self.timer > time) then
 			self.object:remove()
 		end
-		
+
 		local p = self.object:getpos()
-		
+
 		local name = minetest.get_node(p).name
 		if (minetest.registered_nodes[name] and minetest.registered_nodes[name].damage_per_second > 0) or name == "maptools:igniter" then
 			minetest.sound_play("builtin_item_lava", {pos = self.object:getpos(), gain = 0.5})
 			self.object:remove()
 			return
 		end
-	
+
 		--[[ if name == "default:water_source" then
 			self.object:setacceleration({x = 0, y = 4, z = 0})
 		else
@@ -119,13 +119,13 @@ minetest.register_entity(":__builtin:item", {
 					else
 						pos.z = pos.z+d
 					end
-					
+
 					local name = minetest.get_node(pos).name
 					local par2 = minetest.get_node(pos).param2
 					if name == "default:water_flowing" and par2 < param2 then
 						return pos
 					end
-					
+
 					if i<3 then
 						pos.x = pos.x-d
 					else
@@ -133,7 +133,7 @@ minetest.register_entity(":__builtin:item", {
 					end
 				end
 			end
-			
+
 			local vec = get_flowing_dir(self)
 			if vec then
 				local v = self.object:getvelocity()
@@ -159,7 +159,7 @@ minetest.register_entity(":__builtin:item", {
 				return
 			end
 		end
-		
+
 		p.y = p.y - 0.3
 		local nn = minetest.get_node(p).name
 		-- If node is not registered or node is walkably solid.

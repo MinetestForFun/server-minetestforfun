@@ -77,7 +77,7 @@ minetest.register_node("seawrecks:ubootchest", {
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		
+
 		local kind_of_price = math.random(0,2)
 		local amount_of_price = math.random(1, 20)
 		local ingot_price = {"default:steel_ingot","default:copper_ingot","default:gold_ingot","moreores:tin_ingot","moreores:silver_ingot"}
@@ -91,7 +91,7 @@ minetest.register_node("seawrecks:ubootchest", {
 		else
 			price_group[2] = ""
 		end
- 
+
 		meta:set_string("formspec",
 			"size[8,9]"..
 			"list[current_name;main;0,0;8,4;]"..
@@ -203,7 +203,7 @@ interval = 1,
 chance = 1,
 action = function(pos, node, active_object_count, active_object_count_wider)
 local yp = {x = pos.x, y = pos.y + 3, z = pos.z}
-	if minetest.get_node(pos).name == "seawrecks:woodship" and 
+	if minetest.get_node(pos).name == "seawrecks:woodship" and
 	(minetest.get_node(yp).name == "default:water_source" or
 	minetest.get_node(yp).name == "noairblocks:water_sourcex") then
 		minetest.add_node(pos, {name = "default:sand"})
@@ -298,7 +298,7 @@ local yp = {x = pos.x, y = pos.y + 3, z = pos.z}
 		end
 
 		pos.z = pos.z - 1
-		pos.x = pos.x + 1	
+		pos.x = pos.x + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
 		pos.z = pos.z - 1
@@ -380,7 +380,7 @@ interval = 1,
 chance = 1,
 action = function(pos, node, active_object_count, active_object_count_wider)
 local yp = {x = pos.x, y = pos.y + 8, z = pos.z}
-	if minetest.get_node(pos).name == "seawrecks:uboot" and 
+	if minetest.get_node(pos).name == "seawrecks:uboot" and
 	(minetest.get_node(yp).name == "default:water_source" or
 	minetest.get_node(yp).name == "noairblocks:water_sourcex") then
 		minetest.add_node(pos, {name = "default:dirt"})

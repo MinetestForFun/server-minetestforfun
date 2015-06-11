@@ -8,9 +8,9 @@ function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	if not pt and pt.type ~= "node" then
 		return
 	end
-	
+
 	local under = minetest.get_node(pt.under)
-	
+
 	-- return if any of the nodes is not registered
 	if not minetest.registered_nodes[under.name] then
 		return
@@ -20,7 +20,7 @@ function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	if under.name ~= "default:jungletree" then
 		return
 	end
-	
+
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name=plantname})
 	if not minetest.setting_getbool("creative_mode") then
@@ -144,7 +144,7 @@ minetest.register_abm({
 		elseif dir == 4 then pos.z = pos.z -1
 		else return
 		end
-		
+
 		if minetest.get_node(pos).name == "air" and minetest.get_node_light(pos) > 12 then
 --			print ("COCOA", pos.x, pos.y, pos.z)
 			minetest.set_node(pos,{name="farming:cocoa_"..tostring(math.random(1,3))})

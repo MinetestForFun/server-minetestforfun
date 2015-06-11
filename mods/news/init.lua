@@ -3,24 +3,24 @@ local news = {}
 local path = minetest.get_worldpath()
 
 local function formspec(player,article)
-	
-	--if ( article == "" or article == nil ) then 
+
+	--if ( article == "" or article == nil ) then
 		article = "news.txt" -- vu qu'il s'en sert pas
 	--else
 	--	article = "news_"..article..".txt"
 	--end
-	
+
 	local newsfile = io.open(path.."/"..article,"r")
-	
+
 	local formspec = "size[12,10;]"
 	formspec = formspec.."background[-0.22,-0.25;13,11;background.jpg]"
 
 	if newsfile ~= nil then
 		local newscontent = newsfile:read("*a")
 		formspec = formspec.."textarea[.50,.50;12,10;news;;"..minetest.formspec_escape(newscontent).."]"
-	else		
+	else
 		formspec = formspec.."label[.50,.50;Pas d'article pour le moment]"
-	end		
+	end
 	formspec = formspec.."button_exit[5,9.25;2,1;exit;Fermer"
 	if ( newsfile ~= nil ) then
 		newsfile:close()
@@ -40,7 +40,7 @@ minetest.register_chatcommand("news",{
 	description="Montre les news du serveur",
 	func = function (name,params)
 		local player = minetest.get_player_by_name(name)
-		minetest.show_formspec(name,"news",formspec(player,params))	
+		minetest.show_formspec(name,"news",formspec(player,params))
 	end,
 })
 

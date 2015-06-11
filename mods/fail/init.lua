@@ -1,6 +1,6 @@
 -- Fails mod By Mg <mg[dot]minetest[at]gmail[dot]com>
 --[[
-  
+
      /-----\-\
     /  /--] \-\
     |  |-]  |-|
@@ -48,7 +48,7 @@ end
 data.is_player_available = minetest.get_player_by_name
 
 if data.STRICT_PLAYER_CHECK == false then
-	
+
 	data.is_player_available = function (name)
 		return (io.open(minetest.get_worldpath().."/players/"..name) ~= nil)
 	end
@@ -68,7 +68,7 @@ end
 minetest.log("action","[FailPoints] Loaded")
 
 -- Global callbacks
-minetest.register_on_shutdown(function() 
+minetest.register_on_shutdown(function()
     -- Saving failpoints
     pntf = io.open(data.fp_file,"w")
     for i,v in pairs(data.failpoints) do
@@ -96,20 +96,20 @@ minetest.register_chatcommand("fail", {
 			minetest.chat_send_player(name,"Available subcommands :")
 			minetest.chat_send_player(name,"  - help : show this help")
 			minetest.chat_send_player(name,"  - version : show actual fail version")
-			minetest.chat_send_player(name,"  - view | view <playername> : View player's failpoints amount") 
+			minetest.chat_send_player(name,"  - view | view <playername> : View player's failpoints amount")
 			return
 		elseif param == "settings" then
 			if not minetest.get_player_privs(name)["server"] then
 				minetest.chat_send_player(name,"You're not allowed to perform this command. (Missing privilege : server)")
 				return
 			end
-			
+
 			minetest.chat_send_player(name,"=== FP_DEBUG_LINES SENT ===")
 			print("=== FP_DEBUG_LINES ===")
 			local send_admin = function(msg)
 				minetest.chat_send_player(name,msg)
 			end
-			
+
 			send_admin("FP File")
 			if pntf ~= nil then
 				send_admin("Found")
@@ -117,7 +117,7 @@ minetest.register_chatcommand("fail", {
 				send_admin("Missing!")
 			end
 			table.foreach(data,print)
-			
+
 			return
 		elseif param == "view" then
 			if param2 == "" or param2 == nil then
@@ -128,14 +128,14 @@ minetest.register_chatcommand("fail", {
 				minetest.chat_send_player(name,"-FP- You own "..ownfail.." FailPoints.")
 				return true
 			end
-			
+
 			if data.failpoints[param2] ~= nil and data.failpoints[param2] > 0 then
 				minetest.chat_send_player(name,"-FP- Player "..param2.." owns "..data.failpoints[param2].." FailPoints.")
 			else
 				minetest.chat_send_player(name,"-FP- Player "..param2.." doesn't seem to own any FailPoint.")
 			end
 		else
-		
+
 			-- If not any known command
 			if name == param then
 				if minetest.get_player_privs(name)["fp_create"] == true then
@@ -148,7 +148,7 @@ minetest.register_chatcommand("fail", {
 				end
 				return false
 			end
-		
+
 			if param == "" then
 				minetest.chat_send_player(name,"-FP- You failed: Not enough parameters given, type /fail help for help")
 				return false
@@ -158,7 +158,7 @@ minetest.register_chatcommand("fail", {
 				minetest.chat_send_player(name,"-FP- You failed: Sorry, "..param.." isn't online.")
 				return false
 			end
-		
+
 			-- Take, or not, failpoints from name's account to give them to param
 			if minetest.get_player_privs(name)["fp_create"] ~= true then
 				if data.failpoints[name] == nil or data.failpoints[name] == 0 then
@@ -170,14 +170,14 @@ minetest.register_chatcommand("fail", {
 			else
 				minetest.log("action","[FailPoints] "..name.." has created a FailPoint.")
 			end
-		
+
 			-- Give/Add the failpoint to param' account
 			if data.failpoints[param] == nil then
 				data.failpoints[param] = 1
 			else
 				data.failpoints[param] = data.failpoints[param]+1
 			end
-		
+
 			minetest.log("action","[FailPoints] "..name.." has given a failpoint to "..param)
 			minetest.log("action","[FailPoints] "..param.." now own "..data.failpoints[param].."FPs")
 			minetest.log("action","[FailPoints] "..name.." now own "..(data.failpoints[name] or 0).."FPs")
