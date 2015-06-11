@@ -152,7 +152,7 @@ minetest.register_abm({
 -- Remove flammable nodes and flame
 minetest.register_abm({
 	nodenames = {"fire:basic_flame"},
-	interval = 1,
+	interval = 3,
 	chance = 2,
 	action = function(p0, node, _, _)
 		-- If there is water or stuff like that around flame, remove flame
@@ -186,3 +186,4 @@ minetest.register_abm({
 		end
 	end,
 })
+

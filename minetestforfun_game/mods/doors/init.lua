@@ -26,6 +26,7 @@ function doors.register_door(name, def)
 		def.sound_open_door = "doors_door_open"
 	end
 
+
 	minetest.register_craftitem(name, {
 		description = def.description,
 		inventory_image = def.inventory_image,
