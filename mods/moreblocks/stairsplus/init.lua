@@ -25,7 +25,7 @@ function stairsplus:register_all(modname, subname, recipeitem, fields)
 	end
 	self:register_stair(modname, subname, recipeitem, fields)
 	self:register_slab (modname, subname, recipeitem, fields)
-	self:register_slope(modname, subname, recipeitem, fields)
+--	self:register_slope(modname, subname, recipeitem, fields) //MFF (Mg|11/06/2015)
 	self:register_panel(modname, subname, recipeitem, fields)
 	self:register_micro(modname, subname, recipeitem, fields)
 	-- self:register_6dfacedir_conversion(modname, subname) -- Not needed as of Q3 2013, uncomment to fix old maps.
