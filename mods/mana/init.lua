@@ -288,7 +288,7 @@ else
 
 	function mana.hud_add(playername)
 		local player = minetest.get_player_by_name(playername)
-		id = player:hud_add({
+		player:hud_add({
 			hud_elem_type = "statbar",
 			position = {x=0.5,y=1},
 			size = {x=24, y=24},
@@ -315,7 +315,7 @@ else
 
 	function mana.hud_update(playername)
 		local player = minetest.get_player_by_name(playername)
-		player:hud_change(mana.playerlist[playername].hudid, "text", mana.manastring(playername))
+		player:hud_change(mana.playerlist[playername].hudid, "number", mana.get(playername)/100)
 	end
 
 	function mana.hud_remove(playername)
