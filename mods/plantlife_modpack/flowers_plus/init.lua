@@ -509,21 +509,6 @@ plantslib:spawn_on_surfaces({
 	avoid_radius = 5
 })
 
--- crafting recipes!
-
-minetest.register_craftitem(":flowers:flower_pot", {
-	description = S("Flower Pot"),
-	inventory_image = "flowers_flowerpot.png",
-})
-
-minetest.register_craft( {
-	output = "flowers:flower_pot",
-	recipe = {
-	        { "default:clay_brick", "", "default:clay_brick" },
-	        { "", "default:clay_brick", "" }
-	},
-})
-
 -- Cotton plants are now provided by the default "farming" mod.
 -- old cotton plants -> farming cotton stage 8
 -- cotton wads -> string (can be crafted into wool blocks)
