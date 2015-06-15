@@ -290,11 +290,11 @@ stairs.register_stair_and_slab("stonebrick", "default:stonebrick",
 		default.node_sound_stone_defaults())
 
 stairs.register_stair_and_slab("pinewood", "default:pinewood",
-	{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-	{"default_pinewood.png"},
-	"Pinewood Stair",
-	"Pinewood Slab",
-	default.node_sound_wood_defaults())
+		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+		{"default_pinewood.png"},
+		"Pinewood Stair",
+		"Pinewood Slab",
+		default.node_sound_wood_defaults())
 
 stairs.register_stair_and_slab("obsidian", "default:obsidian",
 		{cracky=1,level=2},

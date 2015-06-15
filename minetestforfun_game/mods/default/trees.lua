@@ -29,7 +29,7 @@ minetest.register_abm({
 		end
 
 		minetest.log("action", "A sapling grows into a tree at "..
-			minetest.pos_to_string(pos))
+				minetest.pos_to_string(pos))
 		default.grow_tree(pos, random(1, 4) == 1)
 	end
 })
@@ -54,12 +54,12 @@ minetest.register_abm({
 	interval = 12,
 	chance = 50,
 	action = function(pos, node)
-	if not can_grow(pos) then
-		return
-	end
+		if not can_grow(pos) then
+			return
+		end
 
-	minetest.log("action", "A pine sapling grows into a tree at "..
-		minetest.pos_to_string(pos))
+		minetest.log("action", "A pine sapling grows into a tree at "..
+				minetest.pos_to_string(pos))
 		default.grow_pine_tree(pos)
 	end
 })
@@ -78,7 +78,7 @@ local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
 		local vi = a:index(x, y + y_dist, z)
 		local node_id = data[vi]
 		if y_dist == 0 or node_id == c_air or node_id == c_ignore
-			or node_id == leaves_cid then
+		or node_id == leaves_cid then
 			data[vi] = tree_cid
 		end
 	end
