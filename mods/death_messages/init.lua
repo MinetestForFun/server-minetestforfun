@@ -13,6 +13,7 @@ local messages = {}
 -- Fill this table with sounds
 local sounds   = {
 	[1] = "death_messages_player_1",
+	[2] = "death_messages_player_2",
 }
 
 -- Lava death messages
