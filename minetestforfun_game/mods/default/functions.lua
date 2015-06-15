@@ -129,33 +129,9 @@ function default.node_sound_glass_defaults(table)
 	return table
 end
 
---
--- Global callbacks
---
-
--- Global environment step function
-function on_step(dtime)
-	-- print("on_step, " .. p .. ", " .. node)
-end
-minetest.register_globalstep(on_step)
-
-function on_placenode(p, node)
-	-- print("on_placenode, " .. p .. ", " .. node)
-end
-minetest.register_on_placenode(on_placenode)
-
-function on_dignode(p, node)
-	-- print("on_dignode, " .. p .. ", " .. node)
-end
-minetest.register_on_dignode(on_dignode)
-
-function on_punchnode(p, node)
-	-- print("on_punchnode, " .. p .. ", " .. node)
-end
-minetest.register_on_punchnode(on_punchnode)
 
 --
--- Lava cooling
+-- Lavacooling
 --
 
 local function cool_wf_vm(pos, node1, node2)
@@ -240,55 +216,55 @@ minetest.register_abm({
 	end,
 })
 
+
 --
 -- Papyrus and cactus growing
 --
+
+-- wrapping the functions in abm action is necessary to make overriding them possible
 
 function default.grow_cactus(pos, node)
 	if node.param2 ~= 0 then
 		return
 	end
-	pos.y = pos.y-1
+	pos.y = pos.y - 1
 	if minetest.get_item_group(minetest.get_node(pos).name, "sand") == 0 then
 		return
 	end
-	pos.y = pos.y+1
+	pos.y = pos.y + 1
 	local height = 0
-	while node.name == "default:cactus" and height < 4 and node.param2 == 0 do
-		height = height+1
-		pos.y = pos.y+1
+	while node.name == "default:cactus" and height < 4 do
+		height = height + 1
+		pos.y = pos.y + 1
 		node = minetest.get_node(pos)
 	end
-	if height == 4
-	or node.name ~= "air" then
+	if height == 4 or node.name ~= "air" then
 		return
 	end
-	minetest.set_node(pos, {name="default:cactus"})
+	minetest.set_node(pos, {name = "default:cactus"})
 	return true
 end
 
 function default.grow_papyrus(pos, node)
-	pos.y = pos.y-1
+	pos.y = pos.y - 1
 	local name = minetest.get_node(pos).name
-	if name ~= "default:dirt_with_grass"
-	and name ~= "default:dirt" then
+	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" then
 		return
 	end
 	if not minetest.find_node_near(pos, 3, {"group:water"}) then
 		return
 	end
-	pos.y = pos.y+1
+	pos.y = pos.y + 1
 	local height = 0
 	while node.name == "default:papyrus" and height < 4 do
-		height = height+1
-		pos.y = pos.y+1
+		height = height + 1
+		pos.y = pos.y + 1
 		node = minetest.get_node(pos)
 	end
-	if height == 4
-	or node.name ~= "air" then
+	if height == 4 or node.name ~= "air" then
 		return
 	end
-	minetest.set_node(pos, {name="default:papyrus"})
+	minetest.set_node(pos, {name = "default:papyrus"})
 	return true
 end
 
@@ -299,7 +275,7 @@ minetest.register_abm({
 	chance = 25,
 	action = function(...)
 		default.grow_cactus(...)
-	end,
+	end
 })
 
 minetest.register_abm({
@@ -309,8 +285,13 @@ minetest.register_abm({
 	chance = 25,
 	action = function(...)
 		default.grow_papyrus(...)
-	end,
+	end
 })
+
+
+--
+-- dig upwards
+--
 
 function default.dig_up(pos, node, digger)
 	if digger == nil then return end
@@ -321,22 +302,10 @@ function default.dig_up(pos, node, digger)
 	end
 end
 
+
 --
 -- Leafdecay
 --
-
--- To enable leaf decay for a node, add it to the "leafdecay" group.
---
--- The rating of the group determines how far from a node in the group "tree"
--- the node can be without decaying.
---
--- If param2 of the node is ~= 0, the node will always be preserved. Thus, if
--- the player places a node of that kind, you will want to set param2= 1 or so.
---
--- If the node is in the leafdecay_drop group then the it will always be dropped
--- as an item
-
-if minetest.setting_getbool("leaf_decay") ~= false then -- “If not defined or set to true then”
 
 default.leafdecay_trunk_cache = {}
 default.leafdecay_enable_cache = true
@@ -358,20 +327,21 @@ end
 minetest.register_abm({
 	nodenames = {"group:leafdecay"},
 	neighbors = {"air", "group:liquid"},
-	interval = 1, -- A low interval and a high inverse chance spreads the load.
+	-- A low interval and a high inverse chance spreads the load
+	interval = 1,
 	chance = 2,
 
 	action = function(p0, node, _, _)
-		-- print("leafdecay ABM at "..p0.x..", "..p0.y..", "..p0.z..")")
+		--print("leafdecay ABM at "..p0.x..", "..p0.y..", "..p0.z..")")
 		local do_preserve = false
 		local d = minetest.registered_nodes[node.name].groups.leafdecay
 		if not d or d == 0 then
-			-- print("not groups.leafdecay")
+			--print("not groups.leafdecay")
 			return
 		end
 		local n0 = minetest.get_node(p0)
 		if n0.param2 ~= 0 then
-			-- print("param2 ~= 0")
+			--print("param2 ~= 0")
 			return
 		end
 		local p0_hash = nil
@@ -381,13 +351,15 @@ minetest.register_abm({
 			if trunkp then
 				local n = minetest.get_node(trunkp)
 				local reg = minetest.registered_nodes[n.name]
-				-- Assume ignore is a trunk, to make the thing work at the border of the active area:
-				if n.name == "ignore" or (reg and reg.groups.tree and reg.groups.tree ~= 0) then
-					-- print("Cached trunk still exists.")
+				-- Assume ignore is a trunk, to make the thing
+				-- work at the border of the active area
+				if n.name == "ignore" or (reg and reg.groups.tree and
+						reg.groups.tree ~= 0) then
+					--print("cached trunk still exists")
 					return
 				end
-				-- print("Cached trunk is invalid.")
-				-- Cache is invalid:
+				--print("cached trunk is invalid")
+				-- Cache is invalid
 				table.remove(default.leafdecay_trunk_cache, p0_hash)
 			end
 		end
@@ -396,33 +368,38 @@ minetest.register_abm({
 		end
 		default.leafdecay_trunk_find_allow_accumulator =
 				default.leafdecay_trunk_find_allow_accumulator - 1
-		-- Assume ignore is a trunk, to make the thing work at the border of the active area:
+		-- Assume ignore is a trunk, to make the thing
+		-- work at the border of the active area
 		local p1 = minetest.find_node_near(p0, d, {"ignore", "group:tree"})
 		if p1 then
 			do_preserve = true
 			if default.leafdecay_enable_cache then
-				-- print("Caching trunk.")
-				-- Cache the trunk:
+				--print("caching trunk")
+				-- Cache the trunk
 				default.leafdecay_trunk_cache[p0_hash] = p1
 			end
 		end
 		if not do_preserve then
-			-- Drop stuff other than the node itself:
+			-- Drop stuff other than the node itself
 			local itemstacks = minetest.get_node_drops(n0.name)
 			for _, itemname in ipairs(itemstacks) do
-				if minetest.get_item_group(n0.name, "leafdecay_drop") ~= 0
-				or itemname ~= n0.name then
-					minetest.add_item(p0, itemname)
+				if minetest.get_item_group(n0.name, "leafdecay_drop") ~= 0 or
+						itemname ~= n0.name then
+					local p_drop = {
+						x = p0.x - 0.5 + math.random(),
+						y = p0.y - 0.5 + math.random(),
+						z = p0.z - 0.5 + math.random(),
+					}
+					minetest.add_item(p_drop, itemname)
 				end
 			end
+			-- Remove node
 			minetest.remove_node(p0)
-			-- minetest.log("action", n0.name .. " decayed at " .. minetest.pos_to_string(p0) .. ".")
 			nodeupdate(p0)
 		end
 	end
 })
 
-end -- Ends: if minetest.setting_getbool("leaf_decay") ~= false
 
 minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
 	if newnode.name ~= "default:torch" or minetest.get_item_group(oldnode.name, "water") == 0 then
@@ -432,4 +409,45 @@ minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack
 	minetest.set_node(pos, oldnode)
 	minetest.add_item(pos, "default:torch")
 end)
+
+--
+-- Grass growing
+--
+
+minetest.register_abm({
+	nodenames = {"default:dirt"},
+	interval = 30,
+	chance = 5,
+	action = function(pos, node)
+		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+		local name = minetest.get_node(above).name
+		local nodedef = minetest.registered_nodes[name]
+		if nodedef and (nodedef.sunlight_propagates or nodedef.paramtype == "light") and
+				nodedef.liquidtype == "none" and
+				pos.y >= 0 and
+				(minetest.get_node_light(above) or 0) >= 12 then
+			if name == "default:snow" or name == "default:snowblock" then
+				minetest.set_node(pos, {name = "default:dirt_with_snow"})
+			else
+				minetest.set_node(pos, {name = "default:dirt_with_grass"})
+			end
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"default:dirt_with_grass"},
+	interval = 30,
+	chance = 2,
+	action = function(pos, node)
+		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+		local name = minetest.get_node(above).name
+		local nodedef = minetest.registered_nodes[name]
+		if name ~= "ignore" and nodedef and not ((nodedef.sunlight_propagates or
+				nodedef.paramtype == "light") and
+				nodedef.liquidtype == "none") then
+			minetest.set_node(pos, {name = "default:dirt"})
+		end
+	end
+})
 

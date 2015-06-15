@@ -26,6 +26,7 @@ function doors.register_door(name, def)
 		def.sound_open_door = "doors_door_open"
 	end
 
+
 	minetest.register_craftitem(name, {
 		description = def.description,
 		inventory_image = def.inventory_image,
@@ -42,7 +43,7 @@ function doors.register_door(name, def)
 			end
 
 			local pt = pointed_thing.above
-			local pt2 = {x = pt.x, y = pt.y, z = pt.z}
+			local pt2 = {x=pt.x, y=pt.y, z=pt.z}
 			pt2.y = pt2.y+1
 			if
 				not minetest.registered_nodes[minetest.get_node(pt).name].buildable_to or
@@ -60,7 +61,7 @@ function doors.register_door(name, def)
 			end
 
 			local p2 = minetest.dir_to_facedir(placer:get_look_dir())
-			local pt3 = {x = pt.x, y = pt.y, z = pt.z}
+			local pt3 = {x=pt.x, y=pt.y, z=pt.z}
 			if p2 == 0 then
 				pt3.x = pt3.x-1
 			elseif p2 == 1 then
@@ -107,6 +108,25 @@ function doors.register_door(name, def)
 		end
 	end
 
+	local function check_and_blast(pos, name)
+		local node = minetest.get_node(pos)
+		if node.name == name then
+			minetest.remove_node(pos)
+		end
+	end
+
+	local function make_on_blast(base_name, dir, door_type, other_door_type)
+		if def.only_placer_can_open then
+			return function() end
+		else
+			return function(pos, intensity)
+				check_and_blast(pos, base_name .. door_type)
+				pos.y = pos.y + dir
+				check_and_blast(pos, base_name .. other_door_type)
+			end
+		end
+	end
+
 	local function on_rightclick(pos, dir, check_name, replace, replace_dir, params)
 		pos.y = pos.y+dir
 		if not minetest.get_node(pos).name == check_name then
@@ -143,6 +163,33 @@ function doors.register_door(name, def)
 		return meta:get_string("doors_owner") == pn
 	end
 
+	local function on_rotate(pos, node, dir, user, check_name, mode, new_param2)
+		if not check_player_priv(pos, user) then
+			return false
+		end
+		if mode ~= screwdriver.ROTATE_FACE then
+			return false
+		end
+
+		pos.y = pos.y + dir
+		if not minetest.get_node(pos).name == check_name then
+			return false
+		end
+		if minetest.is_protected(pos, user:get_player_name()) then
+			minetest.record_protection_violation(pos, user:get_player_name())
+			return false
+		end
+
+		local node2 = minetest.get_node(pos)
+		node2.param2 = (node2.param2 + 1) % 4
+		minetest.swap_node(pos, node2)
+
+		pos.y = pos.y - dir
+		node.param2 = (node.param2 + 1) % 4
+		minetest.swap_node(pos, node)
+		return true
+	end
+
 	minetest.register_node(name.."_b_1", {
 		tiles = {tb[2], tb[2], tb[2], tb[2], tb[1], tb[1].."^[transformfx"},
 		paramtype = "light",
@@ -170,9 +217,14 @@ function doors.register_door(name, def)
 			end
 		end,
 
+		on_rotate = function(pos, node, user, mode, new_param2)
+			return on_rotate(pos, node, 1, user, name.."_t_1", mode)
+		end,
+
 		can_dig = check_player_priv,
 		sounds = def.sounds,
-        	sunlight_propagates = def.sunlight
+		sunlight_propagates = def.sunlight,
+		on_blast = make_on_blast(name, 1, "_b_1", "_t_1")
 	})
 
 	minetest.register_node(name.."_t_1", {
@@ -202,9 +254,14 @@ function doors.register_door(name, def)
 			end
 		end,
 
+		on_rotate = function(pos, node, user, mode, new_param2)
+			return on_rotate(pos, node, -1, user, name.."_b_1", mode)
+		end,
+
 		can_dig = check_player_priv,
 		sounds = def.sounds,
-        	sunlight_propagates = def.sunlight,
+		sunlight_propagates = def.sunlight,
+		on_blast = make_on_blast(name, -1, "_t_1", "_b_1")
 	})
 
 	minetest.register_node(name.."_b_2", {
@@ -234,9 +291,14 @@ function doors.register_door(name, def)
 			end
 		end,
 
+		on_rotate = function(pos, node, user, mode, new_param2)
+			return on_rotate(pos, node, 1, user, name.."_t_2", mode)
+		end,
+
 		can_dig = check_player_priv,
 		sounds = def.sounds,
-        	sunlight_propagates = def.sunlight
+		sunlight_propagates = def.sunlight,
+		on_blast = make_on_blast(name, 1, "_b_2", "_t_2")
 	})
 
 	minetest.register_node(name.."_t_2", {
@@ -266,9 +328,14 @@ function doors.register_door(name, def)
 			end
 		end,
 
+		on_rotate = function(pos, node, user, mode, new_param2)
+			return on_rotate(pos, node, -1, user, name.."_b_2", mode)
+		end,
+
 		can_dig = check_player_priv,
 		sounds = def.sounds,
-        	sunlight_propagates = def.sunlight
+		sunlight_propagates = def.sunlight,
+		on_blast = make_on_blast(name, -1, "_t_2", "_b_2")
 	})
 
 end
@@ -387,6 +454,8 @@ function doors.register_trapdoor(name, def)
 		end
 		minetest.set_node(pos, {name = newname, param1 = node.param1, param2 = node.param2})
 	end
+
+	def.on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple
 
 	-- Common trapdoor configuration
 	def.drawtype = "nodebox"
