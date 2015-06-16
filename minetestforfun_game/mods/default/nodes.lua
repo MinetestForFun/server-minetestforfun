@@ -1682,7 +1682,7 @@ local chest_formspec =
 	default.get_hotbar_bg(0, 4.85) ..
 	default.get_hotbar_bg(0, 5.85)
 
-function default.get_locked_chest_formspec(pos)
+local function get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," ..pos.z
 	local formspec =
 		"size[8,9]"..
@@ -1754,7 +1754,7 @@ minetest.register_node("default:chest_locked", {
 	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", default.get_locked_chest_formspec(pos))
+		meta:set_string("formspec", get_locked_chest_formspec(pos))
 		meta:set_string("infotext", "Locked Chest")
 		meta:set_string("owner", "")
 		local inv = meta:get_inventory()
@@ -1810,6 +1810,7 @@ minetest.register_node("default:chest_locked", {
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from locked chest at "..minetest.pos_to_string(pos) .. ".")
 	end,
+	--[[ Currently useless because the formspec is shown "on_construct" anyway
 	on_rightclick = function(pos, node, clicker)
 		local meta = minetest.get_meta(pos)
 		if has_locked_chest_privilege(meta, clicker) then
@@ -1820,6 +1821,7 @@ minetest.register_node("default:chest_locked", {
 			)
 		end
 	end,
+	--]]
 	on_blast = function() end,
 })
 
