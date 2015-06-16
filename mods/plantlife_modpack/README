@@ -47,7 +47,7 @@ either as previously supplied with this modpack, or in its standalone form,
 you'll want to delete the "junglegrass" directory from this modpack to get rid
 of the aliases-to-air that it supplies.
 
-Software Requirements: This mod requires Minetest 0.4.9 or later.  It is 
+Software Requirements: This mod requires Minetest 0.4.11 or later.  It is 
 unlikely to work with old versions.
 
 ------------------------------------------------------------------------------
