@@ -1,0 +1,13 @@
+0.1.0
+-----
+Initial release
+
+0.2.0
+-----
+- Change “saturation” to “satiation”
+- Rename global table to “hbhunger” to avoid collisions
+- General cleanup
+
+0.3.0
+-----
+- Play simple eating sound when something is eaten
