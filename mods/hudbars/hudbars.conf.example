@@ -1,0 +1,24 @@
+-- HUD bars example config file
+-------------------------------
+-- Currently you can customize the starting position of the first bottom two HUD bars
+-- and the vertical margin. That's all.
+-- Remove the two dashes to activate a setting. Lua syntax is used.
+-- The examples are all equal to the mod defaults
+-------------------------------------------------------------------------------------------------------
+
+
+-- Vertical space between two HUD bars
+-- hb.settings.vmargin = 24
+
+-- Pos of the first HUD bar the the left (“pos”, as in hud definition of hud_add of Minetest Lua API)
+-- hb.settings.pos_left = { x=0.5, y=1 }
+
+-- Pos of the first HUD bar the the right
+-- hb.settings.pos_right= { x = 0.5, y = 1 }
+
+-- Offset of the first HUD bar to the left (“offset”, as in HUD definition)
+-- hb.settings.start_offset_left = { x = -175, y = -70 }
+
+-- Offset of the first HUD bar to the right
+-- hb.settings_start_offset_right = { x = 15, y = -70 }
+

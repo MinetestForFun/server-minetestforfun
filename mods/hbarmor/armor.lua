@@ -5,18 +5,21 @@ minetest.after(0, function()
  end
 end)
 
-function hud.get_armor(player)
+function hbarmor.get_armor(player)
 	if not player or not armor.def then
-		return
+		return false
 	end
 	local name = player:get_player_name()
 	local def = armor.def[name] or nil
 	if def and def.state and def.count then
-		hud.set_armor(name, def.state, def.count)
+		hbarmor.set_armor(name, def.state, def.count)
+	else
+		return false
 	end
+	return true
 end
 
-function hud.set_armor(player_name, ges_state, items)
+function hbarmor.set_armor(player_name, ges_state, items)
 	local max_items = 4
 	if items == 5 then
 		max_items = items
@@ -28,7 +31,7 @@ function hud.set_armor(player_name, ges_state, items)
 		lvl = 0
 	end
 
-	hud.armor[player_name] = lvl* (items * (20 / max_items))
+	hbarmor.armor[player_name] = lvl* (items * (100 / max_items))
 
 
 end

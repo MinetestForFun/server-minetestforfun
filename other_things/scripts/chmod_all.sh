@@ -10,5 +10,6 @@ test -d "$mydir" && cd "$mydir/../../"
 
 # CHMOD TIME!
 chmod -R 755 .
+echo "All files have been chmod-ed to mode 755."
 
 #EOF

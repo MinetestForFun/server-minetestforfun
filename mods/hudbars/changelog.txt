@@ -1,0 +1,45 @@
+Note: This software uses semantic versioning,
+as of version 2.0.0 of the standard <http://semver.org/>.
+
+0.1.0
+-----
+- Initial release, forked from mod “Better HUD” [hud].
+
+0.2.0
+-----
+- Add API documentation
+
+0.3.0
+-----
+- Rename main table from “hud” to “hb” (affects function names!)
+- Arguments 3-4 of hb.change_hudbar can be nil for values which should not change
+- Add proper function hb.init_hudbar, replaces odd call to hud.hudtables[identifier].add_all
+- Update API documentation and fix mistakes
+- Use “hudbars.conf” instead of “hud.conf”
+
+0.4.0
+-----
+- New function: hb.get_hudbar_state to get information about the state of an active HUD bar, such as values, whether it is hidden, etc.
+- hb.change_hudbar has been optimized to call hud_change fewer times, which is hopefully good for networking
+- Rename hb.register_hudbar parameter “start_hide” to “start_hidden”
+- start_hidden parameter now finally works
+- Do not affect other HUD flags (crosshair, wielditem, etc.) when starting mod
+- Show error message when trying to call hb.init_hudbar or hb.change_hudbar with bad values
+- Update documentation
+- Lots of refactoring
+- Health and breath bar now use API
+
+1.0.0
+-----
+- Add new parameter start_hidden to hb.init_hudbar, specified whether HUD bar is hidden on start
+- Copy-editing of API.md and README.txt
+- Internal: Fix add_all weirdness
+
+1.0.1
+-----
+- Fix race condition causing crash at start of server
+
+1.0.2
+-----
+- Fix other HUD elements disappearing for rejoining players
+- Remove pointless delays for initializing the HUD for new or rejoining players

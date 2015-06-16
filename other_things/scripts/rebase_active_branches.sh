@@ -14,3 +14,8 @@ for branch in $( git branch ); do
 done
 
 git checkout master
+
+echo "Branches rebased."
+
+
+#EOF
