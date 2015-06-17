@@ -366,7 +366,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local p_pos = area:index(x,y,z)
 				local content_id = data[p_pos]
 				if content_id == c_mg_cherry_sapling then
-					default.grow_cherry_tree({x=x, y=y, z=z}, false, "default:cherry_tree", "default:cherry_blossom_leaves")
+					minetest.after(1, default.grow_cherry_tree,
+						{x=x, y=y, z=z},
+						false,
+						"default:cherry_tree",
+						"default:cherry_blossom_leaves")
 					trees_grown = trees_grown + 1
 				else
 					-- nope
@@ -375,7 +379,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 	local geninfo = string.format(" trees grown after: %.2fs", os.clock() - timer)
-	print (trees_grown..geninfo)
+	minetest.log("action", trees_grown..geninfo)
 end)
 
 function default.grow_cherry_tree(pos, is_apple_tree, trunk_node, leaves_node)
