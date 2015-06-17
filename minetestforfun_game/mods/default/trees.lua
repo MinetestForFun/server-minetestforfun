@@ -366,7 +366,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local p_pos = area:index(x,y,z)
 				local content_id = data[p_pos]
 				if content_id == c_mg_cherry_sapling then
-					mapgen.grow_tree({x=x, y=y, z=z}, false, "default:cherry_tree", "default:cherry_blossom_leaves")
+					default.grow_cherry_tree({x=x, y=y, z=z}, false, "default:cherry_tree", "default:cherry_blossom_leaves")
 					trees_grown = trees_grown + 1
 				else
 					-- nope
