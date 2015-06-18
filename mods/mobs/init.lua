@@ -24,6 +24,7 @@ dofile(minetest.get_modpath("mobs").."/stonemonster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/treemonster.lua") -- PilzAdam
 dofile(minetest.get_modpath("mobs").."/wolf.lua") -- PilzAdam
 --dofile(minetest.get_modpath("mobs").."/dog-can-help.lua") -- ???
+dofile(minetest.get_modpath("mobs").."/dog.lua") -- CProgrammerRU
 --dofile(minetest.get_modpath("mobs").."/lava_flan.lua") -- Zeg9 --Remplaced by Lava Slimes
 dofile(minetest.get_modpath("mobs").."/mese_monster.lua") -- Zeg9
 dofile(minetest.get_modpath("mobs").."/spider.lua") -- AspireMint
