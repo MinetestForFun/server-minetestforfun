@@ -12,7 +12,6 @@ luafiles=$(mucro '.lua'$ -r . -b)
 sed -i 's/[ \t]*$//' $luafiles
 
 # Done
-echo `git status`
 echo "Done"
 
 #EOF
