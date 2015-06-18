@@ -5,7 +5,7 @@ minetest.register_craftitem("default:stick", {
 	stack_max = 1000,
 	inventory_image = "default_stick.png",
 	wield_image = "default_stick.png^[transformR90",
-	groups = {stick = 1},
+	groups = {stick=1},
 })
 
 minetest.register_craftitem("default:paper", {
@@ -159,8 +159,8 @@ minetest.register_craftitem("default:bronze_ingot", {
 minetest.register_craftitem("default:gold_ingot", {
 	description = "Gold Ingot",
 	wield_scale = {x = 1, y = 1, z = 2},
-	inventory_image = "default_gold_ingot.png",
 	groups = {ingot = 1},
+	inventory_image = "default_gold_ingot.png"
 })
 
 minetest.register_craftitem("default:mese_crystal_fragment", {

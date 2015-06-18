@@ -22,4 +22,4 @@ LAVA_VISC = minetest.registered_nodes["default:lava_source"].liquid_viscosity
 LIGHT_MAX = default.LIGHT_MAX
 
 -- Formspecs
-default.gui_survival_form = default.gui_survival_form
+default.gui_suvival_form = default.gui_survival_form

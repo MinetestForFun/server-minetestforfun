@@ -1,3 +1,5 @@
+screwdriver = {}
+
 local function nextrange(x, max)
 	x = x + 1
 	if x > max then
@@ -5,8 +7,6 @@ local function nextrange(x, max)
 	end
 	return x
 end
-
-screwdriver = {}
 
 screwdriver.ROTATE_FACE = 1
 screwdriver.ROTATE_AXIS = 2

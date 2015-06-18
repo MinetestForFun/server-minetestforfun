@@ -785,7 +785,7 @@ function default.register_decorations()
 			octaves = 3,
 			persist = 0.6
 		},
-		biomes = {"grassland"},
+		biomes = {"default:grassland"},
 		y_min = -31000,
 		y_max = 31000,
 		decoration = "flowers:tulip",
@@ -974,7 +974,7 @@ elseif mg_params.mgname == "v6" then
 	default.register_ores()
 elseif mg_params.mgname == "v7" then
 	default.register_biomes()
-	default.register_ores()
+	default.register_decorations()
 end
 
 
@@ -1027,7 +1027,7 @@ function default.generate_nyancats(minp, maxp, seed)
 			local y0 = pr:next(minp.y, maxp.y)
 			local z0 = pr:next(minp.z, maxp.z)
 			local p0 = {x=x0, y=y0, z=z0}
-			default.make_nyancat(p0, pr:next(0,3), 10)
+			default.make_nyancat(p0, pr:next(0,3), pr:next(10,15))
 		end
 	end
 end

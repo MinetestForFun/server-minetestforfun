@@ -186,7 +186,7 @@ minetest.register_node("default:cobble", {
 	description = "Cobblestone",
 	tiles = {"default_cobble.png"},
 	is_ground_content = true,
-	groups = {cracky = 3, stone = 2},
+	groups = {cracky=3, stone=2},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -248,6 +248,7 @@ minetest.register_node("default:desert_cobble", {
 minetest.register_node("default:desert_stonebrick", {
 	description = "Desert Stone Brick",
 	tiles = {"default_desert_stone_brick.png"},
+	is_ground_content = false,
 	groups = {cracky=2, stone=1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -292,6 +293,7 @@ minetest.register_node("default:obsidian_cooled", {
 minetest.register_node("default:obsidianbrick", {
 	description = "Obsidian Brick",
 	tiles = {"default_obsidian_brick.png"},
+	is_ground_content = false,
 	sounds = default.node_sound_stone_defaults(),
 	groups = {cracky=1,level=2},
 })
@@ -517,6 +519,7 @@ minetest.register_node("default:tree", {
 minetest.register_node("default:wood", {
 	description = "Wooden Planks",
 	tiles = {"default_wood.png"},
+	is_ground_content = false,
 	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
@@ -616,6 +619,7 @@ minetest.register_node("default:jungletree", {
 minetest.register_node("default:junglewood", {
 	description = "Junglewood Planks",
 	tiles = {"default_junglewood.png"},
+	is_ground_content = false,
 	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
@@ -682,6 +686,7 @@ minetest.register_node("default:pinetree", {
 minetest.register_node("default:pinewood", {
 	description = "Pinewood Planks",
 	tiles = {"default_pinewood.png"},
+	is_ground_content = false,
 	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
 })
@@ -1872,7 +1877,8 @@ minetest.register_node("default:bookshelf", {
 		local stack = inv:get_stack(from_list, from_index)
 		local to_stack = inv:get_stack(to_list, to_index)
 		if to_list == "books" then
-			if stack:get_name() == "default:book" and to_stack:is_empty() then
+			if minetest.get_item_group(stack:get_name(), "book") ~= 0
+					and to_stack:is_empty() then
 				return 1
 			else
 				return 0
@@ -2139,6 +2145,7 @@ minetest.register_node("default:cloud", {
 	description = "Cloud",
 	sunlight_propagates = true,
 	tiles = {"default_cloud.png"},
+	is_ground_content = false,
 	sounds = default.node_sound_defaults(),
 	groups = {not_in_creative_inventory=1},
 })

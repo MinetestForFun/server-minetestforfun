@@ -505,5 +505,8 @@ farming.register_plant("farming:cotton", {
 	description = "Cotton seed",
 	inventory_image = "farming_cotton_seed.png",
 	steps = 8,
+	minlight = 13,
+	maxlight = default.LIGHT_MAX,
+	fertility = {"grassland", "desert"}
 })
 --]]
