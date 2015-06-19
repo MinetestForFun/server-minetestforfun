@@ -94,25 +94,33 @@ if RANDOM_MESSAGES == true then
 		if minetest.is_singleplayer() then
 			player_name = "You"
 		end
+
+		local death_message = ""
+
 		-- Death by lava
 		if node.groups.lava ~= nil then
-			minetest.chat_send_all(player_name ..  messages.lava[math.random(1,#messages.lava)] )
+			death_message = player_name ..  messages.lava[math.random(1,#messages.lava)]
 		-- Death by acid
 		elseif node.groups.acid ~= nil then
-			minetest.chat_send_all(player_name ..  messages.acid[math.random(1,#messages.acid)] )
+			death_message = player_name ..  messages.acid[math.random(1,#messages.acid)]
 		-- Death by drowning
 		elseif player:get_breath() == 0 and node.groups.water then
-			minetest.chat_send_all(player_name ..  messages.water[math.random(1,#messages.water)] )
+			death_message = player_name ..  messages.water[math.random(1,#messages.water)]
 		-- Death by fire
 		elseif node.name == "fire:basic_flame" then
-			minetest.chat_send_all(player_name ..  messages.fire[math.random(1,#messages.fire)] )
+			death_message = player_name ..  messages.fire[math.random(1,#messages.fire)]
 		-- Death in quicksand
 		elseif player:get_breath() == 0 and node.name == "default:sand_source" or node.name == "default:sand_flowing" then
-			minetest.chat_send_all(player_name .. messages.sand[math.random(1,#messages.sand)] )
+			death_message = player_name .. messages.sand[math.random(1,#messages.sand)]
 		-- Death by something else
 		else
-			minetest.chat_send_all(player_name ..  messages.other[math.random(1,#messages.other)] )
+			death_message = player_name ..  messages.other[math.random(1,#messages.other)]
 		end
+
+		-- Actually tell something
+		minetest.chat_send_all(death_message)
+		irc:say(death_message)
+
 		minetest.sound_play(sounds[math.random(1,#sounds)],{to_player=player:get_player_name(),gain=0.5*soundset.get_gain(player:get_player_name(),"other")})
 		sound_play_all(player:get_player_name())
 	end)
