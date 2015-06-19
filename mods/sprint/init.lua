@@ -16,7 +16,7 @@ SPRINT_TIMEOUT = 0.5 --Only used if SPRINT_METHOD = 0
 
 if minetest.get_modpath("hudbars") ~= nil then
 	hb.register_hudbar("sprint", 0xFFFFFF, "Stamina",
-		{ bar = "sprint_stamina_bar.png", icon = "sprint_stamina_icon.png" },
+		{ bar = "sprint_stamina_bar.png", icon = "stamina.png" },
 		SPRINT_STAMINA, SPRINT_STAMINA,
 		false, "%s: %.1f/%.1f")
 	SPRINT_HUDBARS_USED = true
