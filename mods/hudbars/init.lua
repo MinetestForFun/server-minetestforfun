@@ -6,7 +6,7 @@ hb.hudtables = {}
 hb.hudbars_count = 0
 
 hb.settings = {}
-
+hb.settings.custom = {} --MFF (crabman|19/06/15) add custom pos
 -- default settings
 hb.settings.max_bar_length = 160
 
@@ -37,7 +37,24 @@ end
 function hb.register_hudbar(identifier, text_color, label, textures, default_start_value, default_start_max, default_start_hidden, format_string)
 	local hudtable = {}
 	local pos, offset
-	if hb.hudbars_count % 2 == 0 then
+	
+	--MFF (crabman|19/06/15)|DEBUT add custom pos
+	if hb.settings.custom.custom and hb.settings.custom[identifier] ~= nil then
+		if hb.settings.custom[identifier].x == 0 then
+			pos = hb.settings.pos_left
+			offset = {
+				x = hb.settings.start_offset_left.x,
+				y = hb.settings.start_offset_left.y - hb.settings.vmargin * math.floor(hb.settings.custom[identifier].y)
+			}
+		else
+			pos = hb.settings.pos_right
+			offset = {
+				x = hb.settings.start_offset_right.x,
+				y = hb.settings.start_offset_right.y - hb.settings.vmargin * math.floor(hb.settings.custom[identifier].y)
+			}			
+		end
+	--MFF (crabman|19/06/15) /FIN
+	elseif hb.hudbars_count % 2 == 0 then
 		pos = hb.settings.pos_left
 		offset = {
 			x = hb.settings.start_offset_left.x,
@@ -263,17 +280,17 @@ function hb.get_hudbar_state(player, identifier)
 	return copy
 end
 
---register built-in HUD bars
-if minetest.setting_getbool("enable_damage") then
-	hb.register_hudbar("health", 0xFFFFFF, "Health", { bar = "hudbars_bar_health.png", icon = "hudbars_icon_health.png" }, 20, 20, false)
-	hb.register_hudbar("breath", 0xFFFFFF, "Breath", { bar = "hudbars_bar_breath.png", icon = "hudbars_icon_breath.png" }, 10, 10, true)
-end
-
 --load custom settings
 local set = io.open(minetest.get_modpath("hudbars").."/hudbars.conf", "r")
 if set then
 	dofile(minetest.get_modpath("hudbars").."/hudbars.conf")
 	set:close()
+end
+
+--register built-in HUD bars
+if minetest.setting_getbool("enable_damage") then
+	hb.register_hudbar("health", 0xFFFFFF, "Health", { bar = "hudbars_bar_health.png", icon = "hudbars_icon_health.png" }, 20, 20, false)
+	hb.register_hudbar("breath", 0xFFFFFF, "Breath", { bar = "hudbars_bar_breath.png", icon = "hudbars_icon_breath.png" }, 10, 10, true)
 end
 
 local function hide_builtin(player)
