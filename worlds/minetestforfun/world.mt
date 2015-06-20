@@ -144,7 +144,9 @@ load_mod_food = true
 load_mod_food_basic = true
 load_mod_fishing = true
 
-load_mod_hud = true
+load_mod_hbarmor = true
+load_mod_hbhunger = true
+load_mod_hudbars = true
 load_mod_gauges = true
 load_mod_sprint = true
 load_mod_mana = true
