@@ -76,13 +76,29 @@ soundset.get_gain = function(name, sound_type)
 	if gain == nil then
 		return 1
 	end
-	return gain/50
+	return gain/100
+end
+
+local inc = function(value)
+	value = value + 5
+	if value > 100 then
+		value = 100
+	end
+	return value
+end
+
+local dec = function(value)
+	value = value - 5
+	if value < 0 then
+		value = 0
+	end
+	return value
 end
 
 
 local formspec = "size[6,6]"..
 				"label[2,0;Sound Menu]"..
-				"label[0.3,1.2;MUSIC]"..
+				"label[0,1.2;MUSIC]"..
 				"image_button[1.6,1;1,1;soundset_dec.png;vmusic;-]"..
 				"label[2.7,1.2;%s]"..
 				"image_button[3.5,1;1,1;soundset_inc.png;vmusic;+]"..
@@ -129,47 +145,17 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			soundset.tmp[name] = nil
 			return
 		elseif fields["vmusic"] == "+" then
-			if fmusic < 100 then
-				fmusic = fmusic +5
-				if fmusic > 100 then
-					fmusic = 100
-				end
-			end
+			fmusic = inc(fmusic)
 		elseif fields["vmusic"] == "-" then
-			if fmusic > 0 then
-				fmusic = fmusic -5
-				if fmusic < 0 then
-					fmusic = 0
-				end
-			end
+			fmusic = dec(fmusic)
 		elseif fields["vambience"] == "+" then
-			if fambience < 100 then
-				fambience = fambience +5
-				if fambience > 100 then
-					fambience = 100
-				end
-			end
+			fambience = inc(fambience)
 		elseif fields["vambience"] == "-" then
-			if fambience > 0 then
-				fambience = fambience -5
-				if fambience < 0 then
-					fambience = 0
-				end
-			end
+			fambience = dec(fambience)
 		elseif fields["vother"] == "+" then
-			if fother < 100 then
-				fother = fother +5
-				if fother > 100 then
-					fother = 100
-				end
-			end
+			fother = inc(fother)
 		elseif fields["vother"] == "-" then
-			if fother > 0 then
-				fother = fother -5
-				if fother < 0 then
-					fother = 0
-				end
-			end
+			fother = dec(fother)
 		elseif fields["quit"] == "true" then
 			soundset.tmp[name] = nil
 			return
@@ -204,7 +190,6 @@ minetest.register_chatcommand("soundset", {
 		on_show_settings(name, soundset.gainplayers[name]["music"], soundset.gainplayers[name]["ambience"], soundset.gainplayers[name]["other"])
 	end
 })
-
 
 
 minetest.register_chatcommand("soundsets", {

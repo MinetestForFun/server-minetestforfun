@@ -310,7 +310,7 @@ function awards.give_achievement(name, award)
 
 		-- save playertable
 		awards.save()
-		minetest.sound_play("award_award_won", {to_player = name, gain = 0.5*soundset.get_gain(name,"other")})
+		minetest.sound_play("award_award_won", {to_player = name, gain = soundset.get_gain(name,"other")})
 	end
 end
 
