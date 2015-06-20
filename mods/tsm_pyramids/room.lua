@@ -95,7 +95,7 @@ function pyramids.make_room(pos)
 				if ix < 3 then p2 = 1 else p2 = 3 end
 				pyramids.fill_chest({x=loch.x+ix,y=loch.y-iy,z=loch.z+iz})
 			end
-			node_name = replace(n_str,iy)
+			local node_name = replace(n_str,iy)
 			minetest.set_node({x=loch.x+ix,y=loch.y-iy,z=loch.z+iz}, {name=node_name, param2=p2})
 			if node_name == "maptools:chest" then
 				table.insert(pyramids.saved_chests,1,{x=loch.x+ix,y=loch.y-iy,z=loch.z+iz})
