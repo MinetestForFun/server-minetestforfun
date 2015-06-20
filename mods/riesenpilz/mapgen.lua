@@ -1,7 +1,9 @@
 local c
 local function define_contents()
 	c = {
+		ignore = minetest.get_content_id("ignore"),
 		air = minetest.get_content_id("air"),
+
 		stone = minetest.get_content_id("default:stone"),
 		dirt = minetest.get_content_id("default:dirt"),
 		desert_sand = minetest.get_content_id("default:desert_sand"),
@@ -43,8 +45,8 @@ end
 
 
 local function find_ground(a,list)
-	for _,nam in ipairs(list) do
-		if a == nam then
+	for i = 1,#list do
+		if a == list[i] then
 			return true
 		end
 	end
@@ -52,25 +54,14 @@ local function find_ground(a,list)
 end
 
 
-local function fix_light(minp, maxp)
-	local manip = minetest.get_voxel_manip()
-	local emerged_pos1, emerged_pos2 = manip:read_from_map(minp, maxp)
-	local area = VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
-	local nodes = manip:get_data()
-
-	manip:set_data(nodes)
-	manip:write_to_map()
-	manip:update_map()
-end
-
 local data, area
 function riesenpilz_circle(nam, pos, radius, chance)
 	for _,p in pairs(vector.circle(radius)) do
 		if pr:next(1,chance) == 1 then
 			local p = vector.add(pos, p)
 			local p_p = area:indexp(p)
-			if data[p_p] == c.air
-			and data[area:index(p.x, p.y-1, p.z)] == c.ground then
+			if (data[p_p] == c.air or data[p_p] == c.ignore)
+			and find_ground(data[area:index(p.x, p.y-1, p.z)], c.GROUND) then
 				data[p_p] = nam
 			end
 		end
@@ -114,6 +105,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					biome_allowed = true
 					break
 				end
+			end
+			if biome_allowed then
+				break
 			end
 		end
 		if not biome_allowed then
@@ -198,36 +192,29 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 			if in_biome then
 
-				for b = minp.y,maxp.y,1 do	--remove usual stuff
-					local p_pos = area:index(x, b, z)
-					local d_p_pos = data[p_pos]
-					for _,nam in ipairs(c.USUAL_STUFF) do
-						if d_p_pos == nam then
-							data[p_pos] = c.air
-							break
-						end
-					end
-				end
-
 				local ground_y = nil --Definition des Bodens:
 --				for y=maxp.y,0,-1 do
 				for y=maxp.y,1,-1 do
-					if find_ground(data[area:index(x, y, z)], c.GROUND) then
+					local p_pos = area:index(x, y, z)
+					local d_p_pos = data[p_pos]
+					for _,nam in pairs(c.USUAL_STUFF) do --remove usual stuff
+						if d_p_pos == nam then
+							data[p_pos] = c.air
+							p_pos = nil
+							break
+						end
+					end
+					if p_pos --else search ground_y
+					and find_ground(d_p_pos, c.GROUND) then
 						ground_y = y
 						break
 					end
 				end
 				if ground_y then
-					local p_ground = area:index(x, ground_y, z)
-					local p_boden = area:index(x, ground_y+1, z)
-					local d_p_ground = data[p_ground]
-					local d_p_boden = data[p_boden]
-
-					data[p_ground] = c.ground
+					data[area:index(x, ground_y, z)] = c.ground
 					for i = -1,-5,-1 do
 						local p_pos = area:index(x, ground_y+i, z)
-						local d_p_pos = data[p_pos]
-						if d_p_pos == c.desert_sand then
+						if data[p_pos] == c.desert_sand then
 							data[p_pos] = c.dirt
 						else
 							break
@@ -235,7 +222,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 					local boden = {x=x,y=ground_y+1,z=z}
 					if pr:next(1,15) == 1 then
-						data[p_boden] = c.dry_shrub
+						data[area:index(x, ground_y+1, z)] = c.dry_shrub
 					elseif pr:next(1,80) == 1 then
 						riesenpilz_circle(c.riesenpilz_brown, boden, pr:next(3,4), 3)
 					elseif pr:next(1,85) == 1 then
@@ -248,16 +235,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						riesenpilz_circle(c.riesenpilz_lavashroom, boden, pr:next(5,6), 3)
 					elseif pr:next(1,5000) == 1 then
 						riesenpilz_circle(c.riesenpilz_glowshroom, boden, 3, 3)
-					--[[elseif pr:next(1,80) == 1 then
-						env:add_node(boden, {name="riesenpilz:brown"})
-					elseif pr:next(1,90) == 1 then
-						env:add_node(boden, {name="riesenpilz:red"})
-					elseif pr:next(1,100) == 1 then
-						env:add_node(boden, {name="riesenpilz:fly_agaric"})
-					elseif pr:next(1,4000) == 1 then
-						env:add_node(boden, {name="riesenpilz:lavashroom"})
-					elseif pr:next(1,5000) == 1 then
-						env:add_node(boden, {name="riesenpilz:glowshroom"})]]
 					elseif pr:next(1,380) == 1 then
 						tab[num] = {1, boden}
 						num = num+1
@@ -278,35 +255,41 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 		end
 	end
-	vm:set_data(data)
-	vm:write_to_map()
 	riesenpilz.inform("ground finished", 2, t1)
 
-	local t2 = os.clock()
-	local single_map_update = #tab > 3
-	if single_map_update then
-		riesenpilz.vm_update = false
-	end
-	for _,v in pairs(tab) do
-		local p = v[2]
-		local m = v[1]
-		if m == 1 then
-			riesenpilz_hybridpilz(p)
-		elseif m == 2 then
-			riesenpilz_brauner_minecraftpilz(p)
-		elseif m == 3 then
-			riesenpilz_minecraft_fliegenpilz(p)
-		elseif m == 4 then
-			riesenpilz_lavashroom(p)
-		elseif m == 5 then
-			riesenpilz_parasol(p)
+	local param2s
+	if num ~= 1 then
+		local t2 = os.clock()
+		for _,v in pairs(tab) do
+			local p = v[2]
+			local m = v[1]
+			if m == 1 then
+				riesenpilz.red(p, data, area)
+			elseif m == 2 then
+				riesenpilz.brown(p, data, area)
+			elseif m == 3 then
+				if not param2s then
+					param2s = vm:get_param2_data()
+				end
+				riesenpilz.fly_agaric(p, data, area, param2s)
+			elseif m == 4 then
+				riesenpilz.lavashroom(p, data, area)
+			elseif m == 5 then
+				riesenpilz.parasol(p, data, area)
+			end
 		end
+		riesenpilz.inform("giant shrooms generated", 2, t2)
 	end
-	if single_map_update then
-		riesenpilz.vm_update = true
-		fix_light(minp, maxp)
+
+	local t2 = os.clock()
+	vm:set_data(data)
+	if param2s then
+		vm:set_param2_data(param2s)
 	end
-	riesenpilz.inform("giant shrooms generated", 2, t2)
+	vm:set_lighting({day=0, night=0})
+	vm:calc_lighting()
+	vm:write_to_map()
+	riesenpilz.inform("data set", 2, t2)
 
 	riesenpilz.inform("done", 1, t1)
 end)

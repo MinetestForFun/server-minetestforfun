@@ -5,6 +5,9 @@ riesenpilz = {}
 dofile(minetest.get_modpath("riesenpilz").."/settings.lua")
 dofile(minetest.get_modpath("riesenpilz").."/functions.lua")
 
+
+--Growing Functions
+
 local function r_area(manip, width, height, pos)
 	local emerged_pos1, emerged_pos2 = manip:read_from_map(
 		{x=pos.x-width, y=pos.y, z=pos.z-width},
@@ -13,105 +16,104 @@ local function r_area(manip, width, height, pos)
 	return VoxelArea:new({MinEdge=emerged_pos1, MaxEdge=emerged_pos2})
 end
 
-riesenpilz.vm_update = true
 local function set_vm_data(manip, nodes, pos, t1, name)
 	manip:set_data(nodes)
 	manip:write_to_map()
 	riesenpilz.inform("a "..name.." mushroom grew at ("..pos.x.."|"..pos.y.."|"..pos.z..")", 3, t1)
-	if riesenpilz.vm_update then
-		local t1 = os.clock()
-		manip:update_map()
-		riesenpilz.inform("map updated", 3, t1)
-	end
+	local t1 = os.clock()
+	manip:update_map()
+	riesenpilz.inform("map updated", 3, t1)
 end
 
 
---Growing Functions
-
 local c
 
-function riesenpilz_hybridpilz(pos)
+function riesenpilz.red(pos, nodes, area, w)
+	local w = w or math.random(MAX_SIZE)
+	local h = w+2
 
-	local t1 = os.clock()
-	local manip = minetest.get_voxel_manip()
-	local area = r_area(manip, MAX_SIZE+1, MAX_SIZE+3, pos)
-	local nodes = manip:get_data()
-
-	local breite = math.random(MAX_SIZE)
-	local br = breite+1
-	local height = breite+2
-
-	for i = 0, height do
+	for i = 0, h do
 		nodes[area:index(pos.x, pos.y+i, pos.z)] = c.stem
 	end
 
-	for l = -br+1, br do
-		for k = -1, 1, 2 do
-			nodes[area:index(pos.x+br*k, pos.y+height, pos.z-l*k)] = c.head_red
-			nodes[area:index(pos.x+l*k, pos.y+height, pos.z+br*k)] = c.head_red
+	local br = w+1
+	for k = -1, 1, 2 do
+		for l = -br+1, br do
+			nodes[area:index(pos.x+br*k, pos.y+h, pos.z-l*k)] = c.head_red
+			nodes[area:index(pos.x+l*k, pos.y+h, pos.z+br*k)] = c.head_red
 		end
 	end
 
-	for k = -breite, breite do
-		for l = -breite, breite do
-			nodes[area:index(pos.x+l, pos.y+height+1, pos.z+k)] = c.head_red
-			nodes[area:index(pos.x+l, pos.y+height, pos.z+k)] = c.lamellas
+	for k = -w, w do
+		for l = -w, w do
+			nodes[area:index(pos.x+l, pos.y+h+1, pos.z+k)] = c.head_red
+			nodes[area:index(pos.x+l, pos.y+h, pos.z+k)] = c.lamellas
 		end
 	end
+end
+
+local function riesenpilz_hybridpilz(pos)
+	local t1 = os.clock()
+
+	local w = math.random(MAX_SIZE)
+
+	local manip = minetest.get_voxel_manip()
+	local area = r_area(manip, w+1, w+3, pos)
+	local nodes = manip:get_data()
+
+	riesenpilz.red(pos, nodes, area, w)
 
 	set_vm_data(manip, nodes, pos, t1, "red")
 end
 
 
-function riesenpilz_brauner_minecraftpilz(pos)
+function riesenpilz.brown(pos, nodes, area, br)
+	local br = br or math.random(MAX_SIZE-1)+1
+	local h = br+2
 
-	local t1 = os.clock()
-	local manip = minetest.get_voxel_manip()
-	local area = r_area(manip, MAX_SIZE+1, MAX_SIZE+2, pos)
-	local nodes = manip:get_data()
-
-	local random = math.random(MAX_SIZE-1)
-	local br	 = random+1
-	local breite = br+1
-	local height = br+2
-
-	for i in area:iterp(pos, {x=pos.x, y=pos.y+height, z=pos.z}) do
+	for i in area:iterp(pos, {x=pos.x, y=pos.y+h, z=pos.z}) do
 		nodes[i] = c.stem
 	end
 
+	local w = br+1
 	for l = -br, br do
-		for k = -breite, breite, breite*2 do
-			nodes[area:index(pos.x+k, pos.y+height+1, pos.z+l)] = c.head_brown
-			nodes[area:index(pos.x+l, pos.y+height+1, pos.z+k)] = c.head_brown
+		for k = -w, w, w*2 do
+			nodes[area:index(pos.x+k, pos.y+h+1, pos.z+l)] = c.head_brown
+			nodes[area:index(pos.x+l, pos.y+h+1, pos.z+k)] = c.head_brown
 		end
 		for k = -br, br do
-			nodes[area:index(pos.x+l, pos.y+height+1, pos.z+k)] = c.head_brown
+			nodes[area:index(pos.x+l, pos.y+h+1, pos.z+k)] = c.head_brown
 		end
 	end
+end
+
+local function riesenpilz_brauner_minecraftpilz(pos)
+	local t1 = os.clock()
+
+	local br = math.random(MAX_SIZE-1)+1
+
+	local manip = minetest.get_voxel_manip()
+	local area = r_area(manip, br+1, br+3, pos)
+	local nodes = manip:get_data()
+
+	riesenpilz.brown(pos, nodes, area, br)
 
 	set_vm_data(manip, nodes, pos, t1, "brown")
 end
 
 
-function riesenpilz_minecraft_fliegenpilz(pos)
+function riesenpilz.fly_agaric(pos, nodes, area, param2s)
+	local h = 3
 
-	local t1 = os.clock()
-	local manip = minetest.get_voxel_manip()
-	local area = r_area(manip, 2, 4, pos)
-	local nodes = manip:get_data()
-	local param2s = manip:get_param2_data()
-
-	local height = 3
-
-	for i = 0, height do
+	for i = 0, h do
 		nodes[area:index(pos.x, pos.y+i, pos.z)] = c.stem
 	end
 
 	for j = -1, 1 do
 		for k = -1, 1 do
-			nodes[area:index(pos.x+j, pos.y+height+1, pos.z+k)] = c.head_red
+			nodes[area:index(pos.x+j, pos.y+h+1, pos.z+k)] = c.head_red
 		end
-		for l = 1, height do
+		for l = 1, h do
 			local y = pos.y+l
 			for _,p in pairs({
 				{area:index(pos.x+j, y, pos.z+2), 0},
@@ -125,6 +127,17 @@ function riesenpilz_minecraft_fliegenpilz(pos)
 			end
 		end
 	end
+end
+
+local function riesenpilz_minecraft_fliegenpilz(pos)
+	local t1 = os.clock()
+
+	local manip = minetest.get_voxel_manip()
+	local area = r_area(manip, 2, 4, pos)
+	local nodes = manip:get_data()
+	local param2s = manip:get_param2_data()
+
+	riesenpilz.fly_agaric(pos, nodes, area, param2s)
 
 	manip:set_data(nodes)
 	manip:set_param2_data(param2s)
@@ -141,52 +154,48 @@ local function ran_node(a, b, ran)
 	return b
 end
 
-function riesenpilz_lavashroom(pos)
+function riesenpilz.lavashroom(pos, nodes, area, h)
+	local h = h or 3+math.random(MAX_SIZE-2)
 
-	local t1 = os.clock()
-	local manip = minetest.get_voxel_manip()
-	local area = r_area(manip, 4, MAX_SIZE+7, pos)
-	local nodes = manip:get_data()
-
-	local height = 3+math.random(MAX_SIZE-2)
-	nodes[area:index(pos.x, pos.y, pos.z)] = c.air
+	-- remove the mushroom
+	nodes[area:indexp(pos)] = c.air
 
 	for i = -1, 1, 2 do
-		local o = 2*i
-
-		for n = 0, height do
+		-- set the stem
+		for n = 0, h do
 			nodes[area:index(pos.x+i, pos.y+n, pos.z)] = c.stem_brown
 			nodes[area:index(pos.x, pos.y+n, pos.z+i)] = c.stem_brown
 		end
 
+		local o = 2*i
 		for l = -1, 1 do
 			for k = 2, 3 do
-				nodes[area:index(pos.x+k*i, pos.y+height+2, pos.z+l)] = c.head_brown_full
-				nodes[area:index(pos.x+l, pos.y+height+2, pos.z+k*i)] = c.head_brown_full
+				nodes[area:index(pos.x+k*i, pos.y+h+2, pos.z+l)] = c.head_brown_full
+				nodes[area:index(pos.x+l, pos.y+h+2, pos.z+k*i)] = c.head_brown_full
 			end
-			nodes[area:index(pos.x+l, pos.y+height+1, pos.z+o)] = c.head_brown_full
-			nodes[area:index(pos.x+o, pos.y+height+1, pos.z+l)] = c.head_brown_full
+			nodes[area:index(pos.x+l, pos.y+h+1, pos.z+o)] = c.head_brown_full
+			nodes[area:index(pos.x+o, pos.y+h+1, pos.z+l)] = c.head_brown_full
 		end
 
 		for m = -1, 1, 2 do
 			for k = 2, 3 do
 				for j = 2, 3 do
-					nodes[area:index(pos.x+j*i, pos.y+height+2, pos.z+k*m)] = ran_node(c.head_yellow, c.head_orange, 7)
+					nodes[area:index(pos.x+j*i, pos.y+h+2, pos.z+k*m)] = ran_node(c.head_yellow, c.head_orange, 7)
 				end
 			end
-			nodes[area:index(pos.x+i, pos.y+height+1, pos.z+m)] = c.head_brown_full
-			nodes[area:index(pos.x+m*2, pos.y+height+1, pos.z+o)] = c.head_brown_full
+			nodes[area:index(pos.x+i, pos.y+h+1, pos.z+m)] = c.head_brown_full
+			nodes[area:index(pos.x+m*2, pos.y+h+1, pos.z+o)] = c.head_brown_full
 		end
 
 		for l = -3+1, 3 do
-			nodes[area:index(pos.x+3*i, pos.y+height+5, pos.z-l*i)] = ran_node(c.head_yellow, c.head_orange, 5)
-			nodes[area:index(pos.x+l*i, pos.y+height+5, pos.z+3*i)] = ran_node(c.head_yellow, c.head_orange, 5)
+			nodes[area:index(pos.x+3*i, pos.y+h+5, pos.z-l*i)] = ran_node(c.head_yellow, c.head_orange, 5)
+			nodes[area:index(pos.x+l*i, pos.y+h+5, pos.z+3*i)] = ran_node(c.head_yellow, c.head_orange, 5)
 		end
 
 		for j = 0, 1 do
 			for l = -3, 3 do
-				nodes[area:index(pos.x+i*4, pos.y+height+3+j, pos.z+l)] = ran_node(c.head_yellow, c.head_orange, 6)
-				nodes[area:index(pos.x+l, pos.y+height+3+j, pos.z+i*4)] = ran_node(c.head_yellow, c.head_orange, 6)
+				nodes[area:index(pos.x+i*4, pos.y+h+3+j, pos.z+l)] = ran_node(c.head_yellow, c.head_orange, 6)
+				nodes[area:index(pos.x+l, pos.y+h+3+j, pos.z+i*4)] = ran_node(c.head_yellow, c.head_orange, 6)
 			end
 		end
 
@@ -194,40 +203,46 @@ function riesenpilz_lavashroom(pos)
 
 	for k = -2, 2 do
 		for l = -2, 2 do
-			nodes[area:index(pos.x+k, pos.y+height+6, pos.z+l)] = ran_node(c.head_yellow, c.head_orange, 4)
+			nodes[area:index(pos.x+k, pos.y+h+6, pos.z+l)] = ran_node(c.head_yellow, c.head_orange, 4)
 		end
 	end
+end
+
+local function riesenpilz_lavashroom(pos)
+	local t1 = os.clock()
+
+	local h = 3+math.random(MAX_SIZE-2)
+
+	local manip = minetest.get_voxel_manip()
+	local area = r_area(manip, 4, h+6, pos)
+	local nodes = manip:get_data()
+
+	riesenpilz.lavashroom(pos, nodes, area, h)
 
 	set_vm_data(manip, nodes, pos, t1, "lavashroom")
 end
 
 
-function riesenpilz_glowshroom(pos)
+function riesenpilz.glowshroom(pos, nodes, area, h)
+	local h = h or 2+math.random(MAX_SIZE)
 
-	local t1 = os.clock()
-	local manip = minetest.get_voxel_manip()
-	local area = r_area(manip, 2, MAX_SIZE+5, pos)
-	local nodes = manip:get_data()
-
-	local height = 2+math.random(MAX_SIZE)
-	local br = 2
-
-	for i = 0, height do
+	for i = 0, h do
 		nodes[area:index(pos.x, pos.y+i, pos.z)] = c.stem_blue
 	end
 
+	local br = 2
 	for i = -1, 1, 2 do
 
 		for k = -br, br, 2*br do
-			for l = 2, height do
+			for l = 2, h do
 				nodes[area:index(pos.x+i*br, pos.y+l, pos.z+k)] = c.head_blue
 			end
 			nodes[area:index(pos.x+i*br, pos.y+1, pos.z+k)] = c.head_blue_bright
 		end
 
 		for l = -br+1, br do
-			nodes[area:index(pos.x+i*br, pos.y+height, pos.z-l*i)] = c.head_blue
-			nodes[area:index(pos.x+l*i, pos.y+height, pos.z+br*i)] = c.head_blue
+			nodes[area:index(pos.x+i*br, pos.y+h, pos.z-l*i)] = c.head_blue
+			nodes[area:index(pos.x+l*i, pos.y+h, pos.z+br*i)] = c.head_blue
 		end
 
 	end
@@ -235,69 +250,83 @@ function riesenpilz_glowshroom(pos)
 	for l = 0, br do
 		for i = -br+l, br-l do
 			for k = -br+l, br-l do
-				nodes[area:index(pos.x+i, pos.y+height+1+l, pos.z+k)] = c.head_blue
+				nodes[area:index(pos.x+i, pos.y+h+1+l, pos.z+k)] = c.head_blue
 			end
 		end
 	end
+
+end
+
+local function riesenpilz_glowshroom(pos)
+	local t1 = os.clock()
+
+	local h = 2+math.random(MAX_SIZE)
+
+	local manip = minetest.get_voxel_manip()
+	local area = r_area(manip, 2, h+3, pos)
+	local nodes = manip:get_data()
+
+	riesenpilz.glowshroom(pos, nodes, area, h)
 
 	set_vm_data(manip, nodes, pos, t1, "glowshroom")
 end
 
 
-function riesenpilz_parasol(pos)
-	local t1 = os.clock()
-
-	local height = 6+math.random(MAX_SIZE)
-	local br = math.random(MAX_SIZE+1,MAX_SIZE+2)
-
-	local manip = minetest.get_voxel_manip()
-	local area = r_area(manip, br, height, pos)
-	local nodes = manip:get_data()
-
-	local rh = math.random(2,3)
-	local bhead1 = br-1
-	local bhead2 = math.random(1,br-2)
+function riesenpilz.parasol(pos, nodes, area, w, h)
+	local h = h or 6+math.random(MAX_SIZE)
 
 	--stem
-	for i in area:iterp(pos, {x=pos.x, y=pos.y+height-2, z=pos.z}) do
+	for i in area:iterp(pos, {x=pos.x, y=pos.y+h-2, z=pos.z}) do
 		nodes[i] = c.stem
 	end
+
+	local w = w or math.random(MAX_SIZE+1,MAX_SIZE+2)
+	local bhead1 = w-1
+	local bhead2 = math.random(1,w-2)
 
 	for _,j in pairs({
 		{bhead2, 0, c.head_brown_bright},
 		{bhead1, -1, c.head_binge}
 	}) do
-		for i in area:iter(pos.x-j[1], pos.y+height+j[2], pos.z-j[1], pos.x+j[1], pos.y+height+j[2], pos.z+j[1]) do
+		for i in area:iter(pos.x-j[1], pos.y+h+j[2], pos.z-j[1], pos.x+j[1], pos.y+h+j[2], pos.z+j[1]) do
 			nodes[i] = j[3]
 		end
 	end
 
+	local rh = math.random(2,3)
 	for k = -1, 1, 2 do
 		for l = 0, 1 do
 			nodes[area:index(pos.x+k, pos.y+rh, pos.z-l*k)] = c.head_white
 			nodes[area:index(pos.x+l*k, pos.y+rh, pos.z+k)] = c.head_white
 		end
-		for l = -br+1, br do
-			nodes[area:index(pos.x+br*k, pos.y+height-2, pos.z-l*k)] = c.head_binge
-			nodes[area:index(pos.x+l*k, pos.y+height-2, pos.z+br*k)] = c.head_binge
+		for l = -w+1, w do
+			nodes[area:index(pos.x+w*k, pos.y+h-2, pos.z-l*k)] = c.head_binge
+			nodes[area:index(pos.x+l*k, pos.y+h-2, pos.z+w*k)] = c.head_binge
 		end
 		for l = -bhead1+1, bhead1 do
-			nodes[area:index(pos.x+bhead1*k, pos.y+height-2, pos.z-l*k)] = c.head_white
-			nodes[area:index(pos.x+l*k, pos.y+height-2, pos.z+bhead1*k)] = c.head_white
+			nodes[area:index(pos.x+bhead1*k, pos.y+h-2, pos.z-l*k)] = c.head_white
+			nodes[area:index(pos.x+l*k, pos.y+h-2, pos.z+bhead1*k)] = c.head_white
 		end
 	end
+end
+
+local function riesenpilz_parasol(pos)
+	local t1 = os.clock()
+
+	local w = math.random(MAX_SIZE+1,MAX_SIZE+2)
+	local h = 6+math.random(MAX_SIZE)
+
+	local manip = minetest.get_voxel_manip()
+	local area = r_area(manip, w, h, pos)
+	local nodes = manip:get_data()
+
+	riesenpilz.parasol(pos, nodes, area, w, h)
 
 	set_vm_data(manip, nodes, pos, t1, "parasol")
 end
 
 
-function riesenpilz_apple(pos)
-
-	local t1 = os.clock()
-	local manip = minetest.get_voxel_manip()
-	local area = r_area(manip, 5, 14, pos)
-	local nodes = manip:get_data()
-
+function riesenpilz.apple(pos, nodes, area)
 	local size = 5
 	local a = size*2
 	local b = size-1
@@ -329,6 +358,16 @@ function riesenpilz_apple(pos)
 	end
 	nodes[area:index(pos.x+1, c, pos.z)] = c.brown
 	nodes[area:index(pos.x-3, c+1, pos.z+1)] = c.brown
+end
+
+local function riesenpilz_apple(pos)
+
+	local t1 = os.clock()
+	local manip = minetest.get_voxel_manip()
+	local area = r_area(manip, 5, 14, pos)
+	local nodes = manip:get_data()
+
+	riesenpilz.apple(pos, nodes, area)
 
 	manip:set_data(nodes)
 	manip:write_to_map()
@@ -427,7 +466,7 @@ local mushrooms_list = {
 			r = {min=5, max=6},
 			grounds = {cracky=3},
 			neighbours = {"default:lava_source"},
-			light = {min=10, max=14},
+			light = {min=10, max=12},
 			interval = 1010,
 			chance = 60,
 		},
@@ -642,19 +681,29 @@ for name,i in pairs(mushrooms_list) do
 							local f = minetest.get_node({x=p.x, y=p.y+y-1, z=p.z}).name
 							if f ~= "air" then
 
-							-- they grown on walkable, cubic nodes
+							-- they grown on specific nodes
 								local data = minetest.registered_nodes[f]
 								if data
 								and data.walkable
+								and data.groups
 								and (not data.drawtype
 									or data.drawtype == "normal"
 								) then
+									local ground_disallowed
+									for n,i in pairs(grounds) do
+										if data.groups[n] ~= i then
+											ground_disallowed = true
+											break
+										end
+									end
+									if not ground_disallowed then
 
-								-- they also need specific light strengths
-									local light = minetest.get_node_light(pos, 0.5)
-									if light >= lmin
-									and light <= lmax then
-										table.insert(ps, pos)
+									-- they also need specific light strengths
+										local light = minetest.get_node_light(pos, 0.5)
+										if light >= lmin
+										and light <= lmax then
+											table.insert(ps, pos)
+										end
 									end
 								end
 								break
@@ -688,7 +737,7 @@ end)
 
 
 
---Mushroom Blocks
+--Mushroom Nodes
 
 
 local pilznode_list = {
@@ -821,7 +870,7 @@ for _,i in pairs(pilznode_list) do
 	minetest.register_node(nodename, {
 		description = desctiption,
 		tiles = textures,
-		groups = {oddly_breakable_by_hand=3},
+		groups = {oddly_breakable_by_hand=3, fall_damage_add_percent=-80},
 		drop = drop,
 		sounds = sounds,
 	})
@@ -832,7 +881,7 @@ minetest.register_node("riesenpilz:head_red_side", {
 	tiles = {"riesenpilz_head.png",	"riesenpilz_lamellas.png",	"riesenpilz_head.png",
 					"riesenpilz_head.png",	"riesenpilz_head.png",	"riesenpilz_lamellas.png"},
 	paramtype2 = "facedir",
-	groups = {oddly_breakable_by_hand=3},
+	groups = {oddly_breakable_by_hand=3, fall_damage_add_percent=-80},
 	drop = {max_items = 1,
 		items = {{items = {"riesenpilz:fly_agaric"},rarity = 20,},
 		{items = {"riesenpilz:head_red"},rarity = 1,}}},

@@ -10,5 +10,5 @@ If you got ideas or found bugs, please tell them to me.
 
 
 TODO:  
-— add giant nethershroom  
+— add more giant mushrooms  
 — finish supporting the mushrooms mod

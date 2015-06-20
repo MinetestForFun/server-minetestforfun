@@ -6,10 +6,10 @@ function riesenpilz_circle(nam, pos, radius, rand, seed)
 			if math.floor(	math.sqrt(i^2+j^2)	+0.5) == radius then
 				random = PseudoRandom(ra)
 				p={x=pos.x+i, y=pos.y, z=pos.z+j}
-				if minetest.env:get_node(p).name == "air"
+				if minetest.get_node(p).name == "air"
 				and random:next(1,rand) == 1
-				and minetest.env:get_node({x=pos.x+i, y=pos.y-1, z=pos.z+j}).name ~= "air" then
-					minetest.env:add_node(p, {name=nam})
+				and minetest.get_node({x=pos.x+i, y=pos.y-1, z=pos.z+j}).name ~= "air" then
+					minetest.add_node(p, {name=nam})
 				end
 				ra = ra+1
 			end
@@ -32,10 +32,10 @@ function riesenpilz_circle(nam, pos, radius, chance)
 	for i = -radius, radius, 1 do
 		for j = -radius, radius, 1 do
 			if math.floor(	math.sqrt(i^2+j^2)	+0.5) == radius
-			and minetest.env:get_node({x=pos.x+i, y=pos.y, z=pos.z+j}).name == "air"
+			and minetest.get_node({x=pos.x+i, y=pos.y, z=pos.z+j}).name == "air"
 			and math.random(1,chance) == 1
-			and minetest.env:get_node({x=pos.x+i, y=pos.y-1, z=pos.z+j}).name == "riesenpilz:ground" then
-				minetest.env:add_node({x=pos.x+i, y=pos.y, z=pos.z+j}, {name=nam})
+			and minetest.get_node({x=pos.x+i, y=pos.y-1, z=pos.z+j}).name == "riesenpilz:ground" then
+				minetest.add_node({x=pos.x+i, y=pos.y, z=pos.z+j}, {name=nam})
 			end
 		end
 	end
@@ -43,7 +43,7 @@ end
 
 local function find_ground(pos, nodes)
 	for _, evground in ipairs(nodes) do
-		if minetest.env:get_node(pos).name == evground then
+		if minetest.get_node(pos).name == evground then
 			return true
 		end
 	end
