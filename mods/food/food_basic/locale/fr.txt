@@ -2,7 +2,7 @@
 
 Wheat = Blé
 Flour = Farine
-Potato = Patate
+Potato = Pomme de terre
 Tomato = Tomate
 Carrot = Carotte
 Orange = Orange
@@ -19,7 +19,7 @@ Pasta = Pâtes
 Bowl = Bol
 Butter = Beurre
 Cheese = Fromage
-Baked Potato = Patate cuite
+Baked Potato = Pomme de terre cuite
 Pasta Bake = Plat de pâtes
 Raw Pasta Bake = Plat de pâtes crues
 chicken Soup = Soupe de poulet
