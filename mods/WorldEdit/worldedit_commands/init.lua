@@ -70,12 +70,16 @@ function worldedit.player_axis(name)
 	return "z", dir.z > 0 and 1 or -1
 end
 
-function worldedit.mkdir(path)
+local function mkdir(path)
 	if minetest.mkdir then
 		minetest.mkdir(path)
 	else
 		os.execute('mkdir "' .. path .. '"')
 	end
+end
+
+local function check_filename(name)
+	return name:find("^[%w%s%^&'@{}%[%],%$=!%-#%(%)%%%.%+~_]+$") ~= nil
 end
 
 
@@ -885,17 +889,16 @@ minetest.register_chatcommand("/save", {
 			worldedit.player_notify(name, "invalid usage: " .. param)
 			return
 		end
-		if not param:find("^[a-zA-Z0-9_%-.]+$") then
+		if not check_filename(param) then
 			worldedit.player_notify(name, "Disallowed file name: " .. param)
 			return
 		end
-
 		local result, count = worldedit.serialize(worldedit.pos1[name],
 				worldedit.pos2[name])
 
 		local path = minetest.get_worldpath() .. "/schems"
 		-- Create directory if it does not already exist
-		worldedit.mkdir(path)
+		mkdir(path)
 
 		local filename = path .. "/" .. param .. ".we"
 		local file, err = io.open(filename, "wb")
@@ -923,8 +926,8 @@ minetest.register_chatcommand("/allocate", {
 			worldedit.player_notify(name, "invalid usage: " .. param)
 			return
 		end
-		if not string.find(param, "^[%w \t.,+-_=!@#$%%^&*()%[%]{};'\"]+$") then
-			worldedit.player_notify(name, "invalid file name: " .. param)
+		if not check_filename(param) then
+			worldedit.player_notify(name, "Disallowed file name: " .. param)
 			return
 		end
 
@@ -1056,14 +1059,14 @@ minetest.register_chatcommand("/mtschemcreate", {
 			worldedit.player_notify(name, "No filename specified")
 			return
 		end
-		if not param:find("^[a-zA-Z0-9_%-.]+$") then
+		if not check_filename(param) then
 			worldedit.player_notify(name, "Disallowed file name: " .. param)
 			return
 		end
 
 		local path = minetest.get_worldpath() .. "/schems"
 		-- Create directory if it does not already exist
-		worldedit.mkdir(path)
+		mkdir(path)
 
 		local filename = path .. "/" .. param .. ".mts"
 		local ret = minetest.create_schematic(worldedit.pos1[name],
@@ -1083,8 +1086,12 @@ minetest.register_chatcommand("/mtschemplace", {
 	description = "Load nodes from \"(world folder)/schems/<file>.mts\" with position 1 of the current WorldEdit region as the origin",
 	privs = {worldedit=true},
 	func = function(name, param)
-		if param == nil then
+		if param == "" then
 			worldedit.player_notify(name, "no filename specified")
+			return
+		end
+		if not check_filename(param) then
+			worldedit.player_notify(name, "Disallowed file name: " .. param)
 			return
 		end
 
