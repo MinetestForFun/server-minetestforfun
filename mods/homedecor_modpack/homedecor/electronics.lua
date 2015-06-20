@@ -25,7 +25,7 @@ homedecor.register("speaker_open", {
 		"homedecor_speaker_open_front.png",
 		"homedecor_generic_metal_black.png"
 	},
-	groups = { snappy = 3 },
+	groups = { snappy = 3, not_in_creative_inventory=1 },
 	sounds = default.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:speaker", param2 = node.param2})
