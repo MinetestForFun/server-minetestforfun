@@ -1,7 +1,7 @@
 -- NODES
 
 -- Pine Needles
-minetest.register_node("snow:needles",{
+local nodedef = {
 	description = "Pine Needles",
 	drawtype = "allfaces_optional",
 	visual_scale = 1.3,
@@ -9,6 +9,7 @@ minetest.register_node("snow:needles",{
 	waving = 1,
 	paramtype = "light",
 	groups = {snappy=3, leafdecay=5},
+	furnace_burntime = 1,
 	drop = {
 		max_items = 1,
 		items = {
@@ -18,14 +19,12 @@ minetest.register_node("snow:needles",{
 				rarity = 20,
 			},
 			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
 				items = {'snow:needles'},
 			}
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
-})
+}
 
 --[[
 If christmas_content is enabled, then this next part will override the pine needles' drop code
@@ -33,35 +32,19 @@ If christmas_content is enabled, then this next part will override the pine need
 The Xmas tree needles are registred and defined a farther down in this nodes.lua file.
 
 ~ LazyJ
-
---]]
-
+]]
 if snow.christmas_content then
-	--Christmas trees
-
-	minetest.override_item("snow:needles", {
-		drop = {
-			max_items = 1,
-			items = {
-				{
-					-- player will get xmas tree with 1/120 chance
-					items = {'snow:xmas_tree'},
-					rarity = 120,
-				},
-				{
-					-- player will get sapling with 1/20 chance
-					items = {'snow:sapling_pine'},
-					rarity = 20,
-				},
-				{
-					-- player will get leaves only if he get no saplings,
-					-- this is because max_items is 1
-					items = {'snow:needles'},
-				}
-			}
-		}
+	table.insert(nodedef.drop.items, 1, {
+		-- player will get xmas tree with 1/120 chance
+		items = {'snow:xmas_tree'},
+		rarity = 120,
 	})
 end
+
+minetest.register_node("snow:needles", table.copy(nodedef))
+
+
+
 
 
 	--Christmas easter egg
@@ -73,102 +56,28 @@ end
 	)
 
 
-
---[[
-Original, static Xmas lights. Keep so people can "turn off" the
-animation if it is too much for them. ~ LazyJ
-
---Decorated Pine leaves
-minetest.register_node("snow:needles_decorated", {
-	description = "Decorated Pine Needles",
-	drawtype = "allfaces_optional",
-	tiles = {"snow_needles_decorated.png"},
-	paramtype = "light",
-	groups = {snappy=3, leafdecay=3},
-		drop = {
-		max_items = 1,
-		items = {
-			{
-				-- player will get xmas tree with 1/20 chance
-				items = {'snow:xmas_tree'},
-				rarity = 50,
-			},
-			{
-				-- player will get sapling with 1/20 chance
-				items = {'snow:sapling_pine'},
-				rarity = 20,
-			},
-			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
-				items = {'snow:needles_decorated'},
-			}
-		}
-	},
-	sounds = default.node_sound_leaves_defaults(),
-})
---]]
-
-
-
--- Animated, "blinking lights" version. ~ LazyJ
-
 -- Decorated Pine Leaves
-minetest.register_node("snow:needles_decorated", {
-	description = "Decorated Pine Needles",
-	drawtype = "allfaces_optional",
-	light_source = 5,
-	inventory_image = minetest.inventorycube("snow_needles_decorated.png"),
-	--tiles = {"snow_needles_decorated.png"},
-	tiles = {
+
+nodedef.description ="Decorated "..nodedef.description
+nodedef.light_source = 5
+nodedef.waving = nil
+if snow.disable_deco_needle_ani then
+	nodedef.tiles = {"snow_needles_decorated.png"}
+else
+	-- Animated, "blinking lights" version. ~ LazyJ
+	nodedef.inventory_image = minetest.inventorycube("snow_needles_decorated.png")
+	nodedef.tiles = {
 		{name="snow_needles_decorated_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=20.0}}
-	},
-	paramtype = "light",
-	groups = {snappy=3, leafdecay=5},
-		drop = {
-		max_items = 1,
-		items = {
-			{
-				-- player will get xmas tree with 1/120 chance
-				items = {'snow:xmas_tree'},
-				rarity = 120,
-			},
-			{
-				-- player will get sapling with 1/20 chance
-				items = {'snow:sapling_pine'},
-				rarity = 20,
-			},
-			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
-				items = {'snow:needles_decorated'},
-			}
-		}
-	},
-	sounds = default.node_sound_leaves_defaults(),
-})
+	}
+end
+nodedef.drop.items[#nodedef.drop.items] = {items = {'snow:needles_decorated'}}
+
+minetest.register_node("snow:needles_decorated", nodedef)
 
 
+-- Saplings
 
-
--- Xmas Tree Sapling
-minetest.register_node("snow:xmas_tree", {
-	description = "Christmas Tree",
-	drawtype = "plantlike",
-	visual_scale = 1.0,
-	tiles = {"snow_xmas_tree.png"},
-	inventory_image = "snow_xmas_tree.png",
-	wield_image = "snow_xmas_tree.png",
-	paramtype = "light",
-	walkable = false,
-	groups = {snappy=2,dig_immediate=3},
-	sounds = default.node_sound_defaults(),
-})
-
-
-
--- Pine Sapling
-minetest.register_node("snow:sapling_pine", {
+nodedef = {
 	description = "Pine Sapling",
 	drawtype = "plantlike",
 	visual_scale = 1.0,
@@ -178,54 +87,61 @@ minetest.register_node("snow:sapling_pine", {
 	paramtype = "light",
 	walkable = false,
 	groups = {snappy=2,dig_immediate=3},
+	furnace_burntime = 10,
 	sounds = default.node_sound_defaults(),
+}
 
-})
+-- Pine Sapling
+minetest.register_node("snow:sapling_pine", table.copy(nodedef))
+
+-- Xmas Tree Sapling
+nodedef.description = "Christmas Tree"
+nodedef.tiles = {"snow_xmas_tree.png"}
+nodedef.inventory_image = "snow_xmas_tree.png"
+nodedef.wield_image = "snow_xmas_tree.png"
+
+minetest.register_node("snow:xmas_tree", nodedef)
 
 
-
--- Star on Xmas Trees
-minetest.register_node("snow:star", {
+nodedef = {
 	description = "Star",
-	--drawtype = "torchlike",
-	drawtype = "plantlike", -- Stars disappeared when viewed at the right angle. "Plantlike" solved the visual problem. ~ LazyJ
+	drawtype = "plantlike",
 	tiles = {"snow_star.png"},
 	inventory_image = "snow_star.png",
 	wield_image = "snow_star.png",
 	paramtype = "light",
 	walkable = false,
-	--groups = {snappy=2,dig_immediate=3},
-	groups = {cracky=1, crumbly=1, choppy=1, oddly_breakable_by_hand=1}, -- Don't want the ornament breaking too easily because you have to punch it to turn it on and off. ~ LazyJ
-	sounds = default.node_sound_glass_defaults({dig = {name="default_glass_footstep", gain=0.2}}), -- Breaking "glass" sound makes it sound like a real, broken, Xmas tree ornament (Sorry, Mom!).  ;)-  ~ LazyJ
+	-- Don't want the ornament breaking too easily because you have to punch it to turn it on and off. ~ LazyJ
+	groups = {cracky=1, crumbly=1, choppy=1, oddly_breakable_by_hand=1},
+	-- Breaking "glass" sound makes it sound like a real, broken, Xmas tree ornament (Sorry, Mom!).  ;)-  ~ LazyJ
+	sounds = default.node_sound_glass_defaults({dig = {name="default_glass_footstep", gain=0.2}}),
 	on_punch = function(pos, node) -- Added a "lit" star that can be punched on or off depending on your preference. ~ LazyJ
 		node.name = "snow:star_lit"
 		minetest.set_node(pos, node)
 		nodeupdate(pos)
 	end,
-})
+}
 
-
+-- Star on Xmas Trees
+minetest.register_node("snow:star", table.copy(nodedef))
 
 -- Star (Lit Version) on Xmas Trees
-minetest.register_node("snow:star_lit", {
-	description = "Star Lighted",
-	drawtype = "plantlike",
-	light_source = LIGHT_MAX,
-	tiles = {"snow_star_lit.png"},
-	wield_image = "snow_star.png",
-	paramtype = "light",
-	walkable = false,
-	drop = "snow:star",
-	groups = {cracky=1, crumbly=1, choppy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
-	sounds = default.node_sound_glass_defaults({dig = {name="default_glass_footstep", gain=0.2}}),
-	on_punch = function(pos, node)
-		node.name = "snow:star"
-		minetest.set_node(pos, node)
-		nodeupdate(pos)
-	end,
-})
+nodedef.description = nodedef.description.." Lighted"
+nodedef.light_source = LIGHT_MAX
+nodedef.tiles = {"snow_star_lit.png"}
+nodedef.drop = "snow:star"
+nodedef.groups.not_in_creative_inventory = 1
+nodedef.on_punch = function(pos, node)
+	node.name = "snow:star"
+	minetest.set_node(pos, node)
+	nodeupdate(pos)
+end
+
+minetest.register_node("snow:star_lit", nodedef)
 
 
+
+-- Plants
 
 -- Moss
 minetest.register_node("snow:moss", {
@@ -241,7 +157,100 @@ minetest.register_node("snow:moss", {
 	},
 	is_ground_content = true,
 	groups = {crumbly=3, attached_node=1},
+	furnace_burntime = 3,
 })
+
+-- Shrub(s)
+nodedef = {
+	description = "Snow Shrub",
+	tiles = {"snow_shrub.png"},
+	inventory_image = "snow_shrub.png",
+	wield_image = "snow_shrub.png",
+	drawtype = "plantlike",
+	paramtype = "light",
+	waving = 1,
+	sunlight_propagates = true,
+	walkable = false,
+	is_ground_content = true,
+	buildable_to = true,
+	groups = {snappy=3,flammable=3,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, -5/16, 0.3},
+	},
+	furnace_burntime = 5,
+}
+minetest.register_node("snow:shrub", table.copy(nodedef))
+
+nodedef.tiles = {"snow_shrub.png^snow_shrub_covering.png"}
+nodedef.inventory_image = "snow_shrub.png^snow_shrub_covering.png"
+nodedef.wield_image = "snow_shrub.png^snow_shrub_covering.png"
+nodedef.drop = "snow:shrub"
+nodedef.furnace_burntime = 3
+minetest.register_node("snow:shrub_covered", nodedef)
+
+-- Flowers
+if rawget(_G, "flowers") then
+	-- broken flowers
+	snow.known_plants = {}
+	for _,name in pairs({"dandelion_yellow", "geranium", "rose", "tulip", "dandelion_white", "viola"}) do
+		local flowername = "flowers:"..name
+		local newname = "snow:flower_"..name
+		local flower = minetest.registered_nodes[flowername]
+		minetest.register_node(newname, {
+			drawtype = "plantlike",
+			tiles = { "snow_" .. name .. ".png" },
+			sunlight_propagates = true,
+			paramtype = "light",
+			walkable = false,
+			drop = "",
+			groups = {snappy=3, attached_node = 1},
+			sounds = default.node_sound_leaves_defaults(),
+			selection_box = flower.selection_box
+		})
+		snow.known_plants[minetest.get_content_id(flowername)] = minetest.get_content_id(newname)
+	end
+end
+
+-- Leaves
+local leaves = minetest.registered_nodes["default:leaves"]
+nodedef = {
+	description = "Snow Leaves",
+	tiles = {"snow_leaves.png"},
+	waving = 1,
+	visual_scale = leaves.visual_scale,
+	drawtype = leaves.drawtype,
+	paramtype = leaves.paramtype,
+	groups = leaves.groups,
+	drop = leaves.drop,
+	sounds = leaves.sounds,
+}
+nodedef.groups.flammable = 1
+
+minetest.register_node("snow:leaves", nodedef)
+snow.known_plants[minetest.get_content_id("default:leaves")] = minetest.get_content_id("snow:leaves")
+
+local apple = minetest.registered_nodes["default:apple"]
+nodedef = {
+	description = "Snow Apple",
+	drawtype = "plantlike",
+	tiles = {"snow_apple.png"},
+	paramtype = "light",
+	walkable = false,
+	sunlight_propagates = apple.sunlight_propagates,
+	selection_box = apple.selection_box,
+	groups = apple.groups,
+	sounds = apple.sounds,
+	drop = apple.drop,
+}
+nodedef.groups.flammable = 1
+
+minetest.register_node("snow:apple", nodedef)
+snow.known_plants[minetest.get_content_id("default:apple")] = minetest.get_content_id("snow:apple")
+
+-- TODO
+snow.known_plants[minetest.get_content_id("default:jungleleaves")] = minetest.get_content_id("default:jungleleaves")
 
 
 
@@ -257,12 +266,13 @@ end
 
 
 
--- Snow Brick
-minetest.register_node("snow:snow_brick", {
+-- Bricks
+
+nodedef = {
 	description = "Snow Brick",
 	tiles = {"snow_snow_brick.png"},
 	is_ground_content = true,
-	freezemelt = "default:water_source",
+	--freezemelt = "default:water_source", -- deprecated
 	liquidtype = "none",
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -281,33 +291,32 @@ minetest.register_node("snow:snow_brick", {
  	-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could also
  	-- double as dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ
 	on_construct = snow_onto_dirt
+}
+
+-- Snow Brick
+minetest.register_node("snow:snow_brick", table.copy(nodedef))
+
+
+-- hard Ice Brick, original texture from LazyJ
+local ibdef = table.copy(nodedef)
+ibdef.description = "Ice Brick"
+ibdef.tiles = {"snow_ice_brick.png"}
+ibdef.use_texture_alpha = true
+ibdef.drawtype = "glasslike"
+ibdef.groups = {cracky=1, crumbly=1, choppy=1, melts=1}
+ibdef.sounds = default.node_sound_glass_defaults({
+	dug = {name="default_hard_footstep", gain=1}
 })
 
+minetest.register_node("snow:ice_brick", ibdef)
 
 
 -- Snow Cobble  ~ LazyJ
 -- Described as Icy Snow
-minetest.register_node("snow:snow_cobble", {
-	description = "Icy Snow",
-	tiles = {"snow_snow_cobble.png"},
-	is_ground_content = true,
-	liquidtype = "none",
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "facedir",
-	 -- I made this a little harder to dig than snow blocks because
-	 -- I imagine snow brick as being much more dense and solid than fluffy snow. ~ LazyJ
-	groups = {cracky=2, crumbly=2, choppy=2, oddly_breakable_by_hand=2, melts=1, icemaker=1, cooks_into_ice=1},
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_snow_footstep", gain=0.25},
-		dig = {name="default_dig_crumbly", gain=0.4},
-		dug = {name="default_snow_footstep", gain=0.75},
-		place = {name="default_place_node", gain=1.0}
-	}),
- 	-- The "on_construct" part below, thinking in terms of layers, dirt_with_snow could also
- 	-- double as dirt_with_frost which adds subtlety to the winterscape. ~ LazyJ
-	on_construct = snow_onto_dirt
-})
+nodedef.description = "Icy Snow"
+nodedef.tiles = {"snow_snow_cobble.png"}
+
+minetest.register_node("snow:snow_cobble", nodedef)
 
 
 

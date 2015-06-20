@@ -98,7 +98,7 @@ local function leave_sled(self, player)
 	local name = player:get_player_name()
 	players_sled[name] = false
 	self.driver = nil
-	player:set_detach()
+	self.object:set_detach()
 	default.player_attached[name] = false
 	default.player_set_animation(player, "stand" , 30)
 

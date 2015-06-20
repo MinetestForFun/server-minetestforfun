@@ -4,7 +4,7 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos, node)
-		minetest.add_node(pos,{name="default:snow"})
+		minetest.add_node(pos, {name="default:snow"})
 		minetest.set_node_level(pos, 7*(tonumber(node.name:sub(-1))))
 	end,
 })
@@ -42,15 +42,17 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"group:melts"},
-	neighbors = {"group:igniter","default:torch","default:furnace_active","group:hot"},
-	interval = 2,
+	neighbors = {"group:igniter", "default:torch", "default:furnace_active", "group:hot"},
+	interval = 10,
 	chance = 2,
 	action = function(pos, node)
 		local intensity = minetest.get_item_group(node.name,"melts")
 		if intensity == 1 then
-			minetest.add_node(pos,{name="default:water_source"})
+			minetest.set_node(pos, {name="default:water_source"})
 		elseif intensity == 2 then
-	 		minetest.add_node(pos,{name="default:water_flowing", param2=7})
+	 		minetest.set_node(pos, {name="default:water_flowing", param2=7})
+		elseif intensity == 3 then
+	 		minetest.set_node(pos, {name="default:water_flowing", param2=3})
 		--[[	LazyJ, you need to add param2, which defines the amount of the flowing water ~ HybridDog 2015_03_06
 			This was causing "melts=2" nodes to just disappear so I changed it to replace the
 			node with a water_source for a couple seconds and then replace the water_source with
@@ -76,7 +78,9 @@ minetest.register_abm({
 	 				end
 	 			end)
 		--]]
-	 	end
+	 	else
+			return
+		end
 		nodeupdate(pos)
 	end,
 })
@@ -184,7 +188,7 @@ minetest.register_abm({
 	nodenames = {"snow:xmas_tree"},
 	interval = 10,
 	chance = 50,
-	action = function(pos, node, active_object_count, active_object_count_wider)
+	action = function(pos, node)
 
 		-- 'If' there is air in each of the 8 nodes dirctly above the sapling,... ~LazyJ
 		for i = 1,8 do

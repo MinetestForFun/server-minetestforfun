@@ -74,17 +74,6 @@ function snow.make_pine(pos,snow,xmas)
 			minetest.add_node(pos, node)
 		end
 	end
-	--Clear ground.
-	for z = -1,1 do
-		for x = -1,1 do
-			local p = {x=pos.x+x,y=pos.y,z=pos.z+z}
-			local nd = minetest.get_node(p).name
-			if nd == "default:snow"
-			or nd == "default:snowblock" then
-				minetest.remove_node(p)
-			end
-		end
-	end
 	if xmas then
 		minetest.remove_node(pos)
 		minetest.spawn_tree(pos, xmas_tree)
@@ -126,18 +115,10 @@ function snow.voxelmanip_pine(pos,a,data)
 		for x = -1,1 do
 			local x = pos.x + x
 
-			--Clear ground.
-			local node = a:index(x,pos.y,z)
-			if data[node] == c_snow then
-				data[node] = c_air
-			end
-
 			--Make tree.
 			for i = 1,2 do
-				local node = a:index(x,pos.y+i,z)
-				data[node] = c_pine_needles
-				if snow
-				and x ~= 0
+				data[a:index(x,pos.y+i,z)] = c_pine_needles
+				if x ~= 0
 				and z ~= 0
 				and perlin1:get2d({x=x,y=z}) > 0.53 then
 					local abovenode = a:index(x,pos.y+i+1,z)
@@ -154,19 +135,17 @@ function snow.voxelmanip_pine(pos,a,data)
 		data[a:index(x-1,y,z)] = c_pine_needles
 		data[a:index(x,y,z+1)] = c_pine_needles
 		data[a:index(x,y,z-1)] = c_pine_needles
-		if snow then
-			if perlin1:get2d({x=x+1,y=z}) > 0.53 then
-				data[a:index(x+1,y+1,z)] = c_snow
-			end
-			if perlin1:get2d({x=x+1,y=z}) > 0.53 then
-				data[a:index(x-1,y+1,z)] = c_snow
-			end
-			if perlin1:get2d({x=x,y=z+1}) > 0.53 then
-				data[a:index(x,y+1,z+1)] = c_snow
-			end
-			if perlin1:get2d({x=x,y=z-1}) > 0.53 then
-				data[a:index(x,y+1,z-1)] = c_snow
-			end
+		if perlin1:get2d({x=x+1,y=z}) > 0.53 then
+			data[a:index(x+1,y+1,z)] = c_snow
+		end
+		if perlin1:get2d({x=x+1,y=z}) > 0.53 then
+			data[a:index(x-1,y+1,z)] = c_snow
+		end
+		if perlin1:get2d({x=x,y=z+1}) > 0.53 then
+			data[a:index(x,y+1,z+1)] = c_snow
+		end
+		if perlin1:get2d({x=x,y=z-1}) > 0.53 then
+			data[a:index(x,y+1,z-1)] = c_snow
 		end
 	end
 	for i=0, 4 do
@@ -174,8 +153,7 @@ function snow.voxelmanip_pine(pos,a,data)
 	end
 	data[a:index(pos.x,pos.y+5,pos.z)] = c_pine_needles
 	data[a:index(pos.x,pos.y+6,pos.z)] = c_pine_needles
-	if snow
-	and perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
+	if perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
 		data[a:index(pos.x,pos.y+7,pos.z)] = c_snow
 	end
 end
