@@ -30,35 +30,45 @@ minetest.register_craft({
 -- these ABMs can get heavy, so just enqueue the nodes
 
 -- Adding Blossoms
+-- Limit mass changes after block has not been loaded for some time:
+-- Run ABM with higher frequency, but don't enqueue all blocks
 minetest.register_abm({
     nodenames = { nature.blossom_leaves },
-    interval = nature.blossom_delay,
-    chance = nature.blossom_chance,
+    interval = nature.blossom_delay / nature.leaves_blossom_chance,
+    chance = nature.leaves_blossom_chance,
 
     action = function(pos, node, active_object_count, active_object_count_wider)
-			nature.enqueue_node(pos, node, true)
+			if math.random(nature.leaves_blossom_chance) == 1 then
+				nature.enqueue_node(pos, node, nature.blossom_node)
+			end
     end
 })
 
 -- Removing blossoms
+-- Limit mass changes after block has not been loaded for some time:
+-- Run ABM with higher frequency, but don't enqueue all blocks
 minetest.register_abm({
     nodenames = { nature.blossom_node },
-    interval = nature.blossom_delay,
-    chance = nature.blossom_chance,
+    interval = nature.blossom_delay / nature.blossom_leaves_chance,
+    chance = nature.blossom_leaves_chance,
 
     action = function(pos, node, active_object_count, active_object_count_wider)
-			nature.enqueue_node(pos, node, false)
+			if math.random(nature.blossom_leaves_chance) == 1 then
+				nature.enqueue_node(pos, node, nature.blossom_leaves)
+			end
     end
 })
 
 -- Spawning apples
+-- Limit mass changes after block has not been loaded for some time:
+-- spawn apples with 10% chance, but with 10 times higher frequency
 minetest.register_abm({
     nodenames = { nature.blossom_node },
-    interval = nature.blossom_delay,
+    interval = nature.blossom_delay / 10,
     chance = nature.apple_chance,
 
     action = function(pos, node, active_object_count, active_object_count_wider)
-		if nature.dtime < 0.2 and not minetest.find_node_near(pos, nature.apple_spread, { "default:apple" }) then
+		if math.random(10) == 0 and nature.dtime < 0.2 and not minetest.find_node_near(pos, nature.apple_spread, { "default:apple" }) then
 			spawn_apple_under(pos)
 		end
     end
