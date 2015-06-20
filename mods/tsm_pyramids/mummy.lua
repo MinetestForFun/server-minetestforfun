@@ -171,11 +171,11 @@ minetest.register_entity("tsm_pyramids:mummy_spawner", spawner_DEF)
 function mummy_update_visuals_def(self)
 	--local name = get_player_name()
 	-- visual = default_model_def
-	npc_anim = 0 -- Animation will be set further below immediately
+	self.npc_anim = 0 -- Animation will be set further below immediately
 	--npc_sneak[name] = false
 	local prop = {
-		mesh = mummy_mesh,
-		textures = mummy_texture,
+		mesh = self.mesh,
+		textures = self.textures,
 		--visual_size = {x=1, y=1, z=1},
 	}
 	self.object:set_properties(prop)
