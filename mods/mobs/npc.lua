@@ -67,7 +67,7 @@ mobs:register_mob("mobs:npc", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		local name = clicker:get_player_name()
-
+		if not name then return end
 		-- heal npc
 		if item:get_name() == "mobs:meat"
 		or item:get_name() == "farming:bread" then

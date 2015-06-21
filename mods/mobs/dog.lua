@@ -37,6 +37,8 @@ mobs:register_mob("mobs:dog", {
 	light_damage = 0,
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
+		local name = clicker:get_player_name()
+		if not name then return end
 		if item:get_name() == "mobs:meat_raw" then
 			local hp = self.object:get_hp()
 			-- return if full health
