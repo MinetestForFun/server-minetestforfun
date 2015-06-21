@@ -73,14 +73,21 @@ mobs:register_mob("mobs:npc", {
 		or item:get_name() == "farming:bread" then
 			-- feed and add health
 			local hp = self.object:get_hp()
-			if hp + 4 > self.hp_max then return end
-			self.object:set_hp(hp+4)
+			-- return if full health
+			if hp >= self.hp_max then
+				minetest.chat_send_player(name, "NPC at full health.")
+				return
+			end
+			hp = hp + 4	-- add restorative value
+			-- new health shouldn't exceed self.hp_max
+			if hp > self.hp_max then hp = self.hp_max end
+			self.object:set_hp(hp)
 			-- take item
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
-			self.object:set_hp(hp + 4)
+
 		-- right clicking with gold lump drops random item from mobs.npc_drops
 		elseif item:get_name() == "default:gold_lump" then
 			if not minetest.setting_getbool("creative_mode") then
