@@ -2112,7 +2112,7 @@ minetest.register_node("default:rail", {
                 -- but how to specify the dimensions for curved and sideways rails?
                 fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
-	groups = {bendy=2,dig_immediate=2,attached_node=1,connect_to_raillike=minetest.raillike_group("rail")},
+	groups = {bendy=2,dig_immediate=2,attached_node=1,connect_to_raillike=1}, -- //MFF Temporary fix (Mg|06/21/2015) connect_to_raillike=minetest.raillike_group("rail")},
 })
 
 minetest.register_node("default:brick", {
