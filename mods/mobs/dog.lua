@@ -39,12 +39,20 @@ mobs:register_mob("mobs:dog", {
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "mobs:meat_raw" then
 			local hp = self.object:get_hp()
-			if hp + 4 > self.hp_max then return end
+			-- return if full health
+			if hp >= self.hp_max then
+				minetest.chat_send_player(name, "Dog at full health.")
+				return
+			end
+			hp = hp + 4	-- add restorative value
+			-- new health shouldn't exceed self.hp_max
+			if hp > self.hp_max then hp = self.hp_max end
+			self.object:set_hp(hp)
+			-- Take item
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 				clicker:set_wielded_item(item)
 			end
-			self.object:set_hp(hp+4)
 		else
 			if self.owner == "" then
 				self.owner = clicker:get_player_name()
