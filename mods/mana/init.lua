@@ -302,7 +302,7 @@ else
 			hud_elem_type = "statbar",
 			position = {x=0.5,y=1},
 			size = {x=24, y=24},
-			text = "mana_icon_violet.png",
+			text = "mana_icon_purple.png",
 			number = mana.get(playername)/10,
 			alignment = {x=-1,y=-1},
 			offset = {x=80, y=-186},
