@@ -269,7 +269,7 @@ end)
 ]===]
 
 if minetest.get_modpath("hudbars") ~= nil then
-	hb.register_hudbar("mana", 0xFFFFFF, "Mana", { bar = "mana_bar.png", icon = "mana_icon.png", bgicon = "mana_bgicon.png" }, 0, mana.settings.default_max, false)
+	hb.register_hudbar("mana", 0xFFFFFF, "Mana", { bar = "mana_bar_purple.png", icon = "mana_icon_purple.png", bgicon = "mana_bgicon.png" }, 0, mana.settings.default_max, false)
 
 	function mana.hud_update(playername)
 		local player = minetest.get_player_by_name(playername)
