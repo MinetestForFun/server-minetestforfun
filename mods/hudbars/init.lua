@@ -13,8 +13,8 @@ hb.settings.max_bar_length = 160
 -- statbar positions
 hb.settings.pos_left = { x=0.5, y=1 }
 hb.settings.pos_right= { x = 0.5, y = 1 }
-hb.settings.start_offset_left = { x = -175, y = -70 }
-hb.settings.start_offset_right = { x = 15, y = -70 }
+hb.settings.start_offset_left = { x = -175, y = -100 }
+hb.settings.start_offset_right = { x = 15, y = -100 }
 
 hb.settings.vmargin = 24
 hb.settings.tick = 0.1
