@@ -98,7 +98,10 @@ for i in ipairs(flowers_list) do
 	homedecor.register("potted_"..flower, {
 		description = S("Potted flower ("..flowerdesc..")"),
 		mesh = "homedecor_flowerpot_small.obj",
-		tiles = {"homedecor_potted_"..flower..".png", "homedecor_potted.png"},
+		tiles = {
+			"flowers_"..flower..".png",
+			"homedecor_potted.png"
+		},
 		walkable = false,
 		groups = {snappy = 3},
 		sounds = default.node_sound_glass_defaults(),

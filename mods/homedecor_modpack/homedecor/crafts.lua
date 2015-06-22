@@ -125,7 +125,7 @@ minetest.register_craftitem("homedecor:soda_can", {
 })
 
 minetest.register_craftitem("homedecor:coin", {
-	description = "Gold Coin (only for machine)",		-- Modif MFF
+	description = "Gold Coin (for soda vending machine)",
 	inventory_image = "homedecor_coin.png",
 })
 
