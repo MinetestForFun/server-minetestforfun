@@ -402,7 +402,10 @@ minetest.register_node("default:gravel", {
 			{items = {"default:gravel"}},
 		},
 	},
-	sounds = default.node_sound_gravel_defaults(),
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name="default_gravel_footstep", gain=0.35},
+		dug = {name="default_gravel_footstep", gain=0.6},
+	}),
 })
 
 
