@@ -145,7 +145,7 @@ minetest.register_chatcommand("from_hell", {
 		local pos_togo = {x = 0, y = 35, z = -7}
 		if minetest.setting_getbool("static_spawnpoint") ~= nil then
 			local stsp_conf = minetest.setting_get("static_spawnpoint")
-			pos_togo = {x = stsp_conf:split(",")[1],y = stsp_conf:split(",")[2],z = stsp_conf:split(",")[3]}
+			pos_togo = {x = stsp_conf:split(",")[1]+0,y = stsp_conf:split(",")[2]+0,z = stsp_conf:split(",")[3]+0}
 		end
 		player:moveto(pos_togo)
 		return true

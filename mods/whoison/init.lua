@@ -111,7 +111,8 @@ minetest.register_chatcommand("timeonline",{
 		end
 	end
 })
-minetest.register_chatcommand("timeonline", core.chatcommands["played"])
+
+--minetest.register_chatcommand("timeonline", core.chatcommands["played"])
 
 function breakdowntime(t)
 	local countdown = t
