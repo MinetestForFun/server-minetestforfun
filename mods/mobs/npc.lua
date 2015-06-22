@@ -102,6 +102,18 @@ mobs:register_mob("mobs:npc", {
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
 			end
+			if self.diamond_count < 4 then return end
+			-- if owner switch between follow and stand
+			if self.owner and self.owner == clicker:get_player_name() then
+				self.damages = 4
+				if self.order == "follow" then
+					self.order = "stand"
+				else
+					self.order = "follow"
+				end
+			else
+				self.owner = clicker:get_player_name()
+			end
 		-- pick up npc
 		elseif item:get_name() == "mobs:magic_lasso"
 		and clicker:is_player()
@@ -121,20 +133,6 @@ mobs:register_mob("mobs:npc", {
 			-- cannot pick up if not tamed
 			elseif self.owner ~= name then
 				minetest.chat_send_player(name, "Not owner!")
-			end
-			if self.diamond_count < 4 then return end
-
-		else
-			-- if owner switch between follow and stand
-			if self.owner and self.owner == clicker:get_player_name() then
-				self.damages = 4
-				if self.order == "follow" then
-					self.order = "stand"
-				else
-					self.order = "follow"
-				end
-			else
-				self.owner = clicker:get_player_name()
 			end
 		end
 	end,
