@@ -119,8 +119,9 @@ if RANDOM_MESSAGES == true then
 
 		-- Actually tell something
 		minetest.chat_send_all(death_message)
-		irc:say(death_message)
-
+		if minetest.get_modpath("irc") ~= nil then
+			irc:say(death_message)
+		end
 		minetest.sound_play(sounds[math.random(1,#sounds)],{to_player=player:get_player_name(),gain=soundset.get_gain(player:get_player_name(),"other")})
 		sound_play_all(player:get_player_name())
 	end)
