@@ -1559,14 +1559,6 @@ minetest.register_node("default:sand_source", {
 	inventory_image = minetest.inventorycube("default_sand.png"),
 	drawtype = "liquid",
 	tiles = {"default_sand.png"},
-	special_tiles = {
-		-- New-style water source material (mostly unused)
-		{
-			name = "default_sand_source_animated.png",
-			animation = {type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 1.5},
-			backface_culling = false,
-		}
-	},
 	alpha = 255,
 	paramtype = "light",
 	walkable = false,
