@@ -380,8 +380,8 @@ function mobs:register_mob(name, def)
 					obj = oir:get_luaentity()
 					if obj and obj.type == "monster" then
 						-- attack monster
-						p = obj.object:getpos()
-						dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
+						local p = obj.object:getpos()
+						local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
 						if dist < min_dist then
 							min_dist = dist
 							min_player = obj.object
