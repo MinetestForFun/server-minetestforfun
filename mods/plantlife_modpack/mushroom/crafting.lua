@@ -22,8 +22,8 @@ minetest.register_craftitem("mushroom:brown_essence",{
 	description = "Healthy Brown Mushroom Essence",
 	inventory_image = "mushroom_essence.png",
 	wield_image = "mushroom_essence.png",
-	on_use = minetest.item_eat(5), --notre modif de gain de faim
-	groups = {vessel=1},
+	on_use = minetest.item_eat(5),	--notre modif de gain de faim
+	groups = {vessel=1},		-- Modif MFF (needed for vessels furniture)
 })
 
 minetest.register_craftitem("mushroom:poison",{
@@ -31,7 +31,7 @@ minetest.register_craftitem("mushroom:poison",{
 	inventory_image = "mushroom_poison.png",
 	wield_image = "mushroom_poison.png",
 	on_use = minetest.item_eat(-10),
-	groups = {vessel=1},
+	groups = {vessel=1},		-- Modif MFF (needed for vessels furniture)
 })
 
 -- recipes
