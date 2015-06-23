@@ -8,6 +8,7 @@ local privs = {}
 minetest.register_craftitem("broomstick:broomstick", {
 	description = "Broomstick",
 	inventory_image = "broomstick.png",
+	stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
 		local playername = user:get_player_name()
 		if mana.get(playername) >= broomstick_mana then
