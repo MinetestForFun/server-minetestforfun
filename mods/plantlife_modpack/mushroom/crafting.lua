@@ -23,6 +23,7 @@ minetest.register_craftitem("mushroom:brown_essence",{
 	inventory_image = "mushroom_essence.png",
 	wield_image = "mushroom_essence.png",
 	on_use = minetest.item_eat(5), --notre modif de gain de faim
+	groups = {vessel=1},
 })
 
 minetest.register_craftitem("mushroom:poison",{
@@ -30,6 +31,7 @@ minetest.register_craftitem("mushroom:poison",{
 	inventory_image = "mushroom_poison.png",
 	wield_image = "mushroom_poison.png",
 	on_use = minetest.item_eat(-10),
+	groups = {vessel=1},
 })
 
 -- recipes
