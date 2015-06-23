@@ -13,7 +13,7 @@ minetest.register_craftitem("broomstick:broomstick", {
 		local playername = user:get_player_name()
 		if mana.get(playername) >= broomstick_mana then
 			local has_already_a_broomstick = false
-			for i in ipairs(broomstick_actual_users) do
+			for _, i in ipairs(broomstick_actual_users) do
 				if i.name == playername then
 					has_already_a_broomstick = true
 				end
