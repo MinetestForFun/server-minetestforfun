@@ -43,7 +43,8 @@ minetest.register_craftitem("broomstick:broomstick", {
 					is_warning_said = false
 				})
 				-- Remove broomstick...
-				return ItemStack("")
+				local item_count = user:get_wielded_item():get_count()
+				return ItemStack("broomstick:broomstick ".. tostring(item_count-1))
 			else
 				minetest.chat_send_player(playername, "You already have a " ..
 					"broomstick ! Please wait until the end of your actual " ..
