@@ -214,7 +214,7 @@ minetest.register_craft({
 	output = 'fake_fire:flint_and_steel',
 	recipe = {
 		{ "", 		"default:obsidian_shard", 	"" 	},
-		{ "", 		"default:steel_ingot", 		"" 	},
+		{ "", 		"default:steel_ingot", 		"" 	},	-- Modif MFF (modified recipe)
 		{ "", 		"default:steel_ingot", 		"" 	}
 	},
 })
