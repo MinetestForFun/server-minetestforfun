@@ -4,6 +4,9 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Le serveur étant devenu stable, les MAJs vont se rarifier pour un temps /!\
 /!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
+---Next merge--- (Remerciements : ???)
+Ajout du mod "broomstick" de palige (permet d'utiliser un balai volant contre 210 de mana)
+
 ---21/06/2015--- (Remerciements : mgl512/Le_Docteur, LeMagnesium/Mg, crabman77/crabman, Obani)
 MAJ de "tsm_pyramids/mummy.lua" (bugfix de la texture des mommies)
 MAJ de "plantlife" (amélioration du code, bugfix)

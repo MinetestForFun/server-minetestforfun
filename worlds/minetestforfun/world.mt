@@ -152,6 +152,7 @@ load_mod_sprint = true
 load_mod_mana = true
 load_mod_solarmana = true
 load_mod_runes = false
+load_mod_broomstick = true
 load_mod_awards = true
 load_mod_fail = true
 
