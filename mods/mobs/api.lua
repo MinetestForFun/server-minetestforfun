@@ -669,7 +669,7 @@ function mobs:register_mob(name, def)
 					end
 					if self.timer > 3 then
 						local pos = vector.round(self.object:getpos())
-						entity_physics(pos, 3, self) -- hurt player/mobs caught in blast area
+						entity_physics(pos, 3, self) -- hurt player/mobs caught in blast area --/MFF (Crabman|06/23/2015)add self to use punch function
 						if minetest.find_node_near(pos, 1, {"group:water"})
 						or minetest.is_protected(pos, "") then
 							self.object:remove()
@@ -1106,7 +1106,7 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 			local n = minetest.get_node(p).name
 			-- do NOT destroy protection nodes but DO destroy nodes in protected area
 			if not n:find("protector:")
-			and not minetest.is_protected(p, "")
+			and not minetest.is_protected(p, "") --/MFF (Crabman|06/23/2015) re-added node protected in areas
 			and minetest.get_item_group(n, "unbreakable") ~= 1 then
 				-- if chest then drop items inside
 				if n == "default:chest" then
@@ -1180,7 +1180,7 @@ function calc_velocity(pos1, pos2, old_vel, power)
 end
 
 -- modified from TNT mod
-function entity_physics(pos, radius, self)
+function entity_physics(pos, radius, self) --/MFF (Crabman|06/23/2015)add self to use punch function
 	radius = radius * 2
 	local objs = minetest.get_objects_inside_radius(pos, radius)
 	local obj_pos, obj_vel, dist
@@ -1192,7 +1192,7 @@ function entity_physics(pos, radius, self)
 			obj:setvelocity(calc_velocity(pos, obj_pos, obj_vel, radius * 10))
 		end
 		--local damage = (4 / dist) * radius
-		obj:punch(self.object, 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=self.damage} })
+		obj:punch(self.object, 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=self.damage} })--/MFF (Crabman|06/23/2015) use punch
 		--obj:set_hp(obj:get_hp() - damage)
 	end
 end
