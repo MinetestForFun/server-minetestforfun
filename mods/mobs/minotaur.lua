@@ -9,8 +9,8 @@ mobs:register_mob("mobs:minotaur", {
 	attack_type = "dogfight",
 	damage = 11,
 	-- health & armor
-	hp_min = 50,
-	hp_max = 75,
+	hp_min = 80,
+	hp_max = 100,
 	armor = 70,
 	-- textures and model
 	collisionbox = {-0.9,-0.01,-0.9, 0.9,2.5,0.9},
@@ -35,7 +35,7 @@ mobs:register_mob("mobs:minotaur", {
 	jump = true,
 	floats = 1,
 	view_range = 16,
-	knock_back = 0,		--this is a test
+	knock_back = 0.05,	--this is a test
 	-- drops desert_sand and coins when dead
 	drops = {
 		{name = "maptools:gold_coin",
