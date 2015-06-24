@@ -11,7 +11,7 @@ mobs:register_mob("mobs:minotaur", {
 	-- health & armor
 	hp_min = 50,
 	hp_max = 75,
-	armor = 60,
+	armor = 70,
 	-- textures and model
 	collisionbox = {-0.9,-0.01,-0.9, 0.9,2.5,0.9},
 	visual = "mesh",
@@ -58,7 +58,7 @@ mobs:register_mob("mobs:minotaur", {
 	},
 })
 -- spawns on desert sand between -1 and 20 light, 1 in 20000 chance, 1 Minotaur in area up to 31000 in height
-mobs:register_spawn("mobs:minotaur", {"default:desert_sand"}, 20, -1, 50000, 1, 31000)
+mobs:register_spawn("mobs:minotaur", {"default:desert_sand"}, 20, -1, 30000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:minotaur", "Minotaur", "default_desert_sand.png", 1)
 
