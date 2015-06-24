@@ -210,10 +210,13 @@ minetest.register_tool("fake_fire:flint_and_steel", {
 
 -- CRAFTS
 minetest.register_craft({
-	type = "shapeless",
 	output = 'fake_fire:flint_and_steel',
-	recipe = {"default:obsidian_shard", "default:steel_ingot", "default:steel_ingot"}
-	-- /MFF (Mg|06/23/2015)
+	recipe = {
+		{"default:obsidian_shard"},
+		{"default:steel_ingot"},
+		{"default:steel_ingot"}
+	}
+	-- /MFF (Mg|06/24/2015)
 })
 
 minetest.register_craft({
