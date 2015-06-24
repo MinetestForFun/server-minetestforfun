@@ -1,3 +1,11 @@
+local armors_no_shields = {["3d_armor:helmet_leather_hunter"] = true,["3d_armor:chestplate_leather_hunter"] = true,
+							["3d_armor:leggings_leather_hunter"] = true,["3d_armor:boots_leather_hunter"] = true,
+							["3d_armor:hardened_leather"] = true,["3d_armor:helmet_reinforced_leather_hunter"] = true,
+							["3d_armor:chestplate_reinforced_leather_hunter"] = true,["3d_armor:leggings_reinforced_leather_hunter"] = true,
+							["3d_armor:boots_reinforced_leather_hunter"] = true,["3d_armor:reinforced_leather"] = true
+} -- modif MFF (crabman/24/06/2015)
+
+
 ARMOR_INIT_DELAY = 1
 ARMOR_INIT_TIMES = 1
 ARMOR_BONES_DELAY = 1
@@ -16,8 +24,8 @@ ARMOR_MATERIALS = {
 	mithril = "moreores:mithril_ingot",
 	crystal = "ethereal:crystal_ingot",
 	-- Hunter armors (A déc-ommenter quand activation de l'armure au total)
-	--hardened_leather = "3d_armor:hardened_leather"
-	--reinforced_leather = "3d_armor:reinforced_leather"
+	hardened_leather = "3d_armor:hardened_leather",
+	reinforced_leather = "3d_armor:reinforced_leather"
 	-- Wizard armors
 	--armor = "xxx",
 	--armor = "xxx",
@@ -446,6 +454,32 @@ minetest.register_on_joinplayer(function(player)
 			armor:update_inventory(player)
 		end,
 		allow_put = function(inv, listname, index, stack, player)
+			--DEBUT modif MFF (crabman/24/06/2015)
+			local name = stack:get_name()
+			local player_inv = player:get_inventory()
+			local size = player_inv:get_size(listname)
+			if name:find("shield") then
+				for i=1, size do
+					local stack = player_inv:get_stack(listname, i)
+					if stack:get_count() > 0 then
+						if armors_no_shields[stack:get_name()] ~= nil then
+							return 0
+						end
+					end
+				end
+			else
+				if armors_no_shields[name] ~= nil then
+					for i=1, size do
+						local stack = player_inv:get_stack(listname, i)
+						if stack:get_count() > 0 then
+							if stack:get_name():find("shields:") then
+								return 0
+							end
+						end
+					end
+				end
+			end
+			--FIN modif MFF (crabman/24/06/2015)
 			return 1
 		end,
 		allow_take = function(inv, listname, index, stack, player)
