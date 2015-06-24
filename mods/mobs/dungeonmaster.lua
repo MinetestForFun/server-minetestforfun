@@ -15,9 +15,9 @@ mobs:register_mob("mobs:dungeon_master", {
 	arrow = "mobs:fireball",
 	shoot_offset = 0,
 	-- health & armor
-	hp_min = 50,
-	hp_max = 60,
-	armor = 60,
+	hp_min = 60,
+	hp_max = 80,
+	armor = 70,
 	-- textures and model
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
