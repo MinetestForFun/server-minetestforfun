@@ -40,7 +40,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	run_velocity = 2,
 	jump = false,
 	view_range = 16,
-	knock_back = 0,		--this is a test
+	knock_back = 0.05,	--this is a test
 	-- drops mese or diamond when dead
 	drops = {
 		{name = "default:mese_crystal_fragment",
