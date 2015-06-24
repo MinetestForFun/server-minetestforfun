@@ -53,6 +53,6 @@ mobs:register_mob("mobs:sand_monster", {
 	},
 })
 -- spawns on desert sand between -1 and 20 light, 1 in 15000 chance, 1 sand monster in area up to 31000 in height
-mobs:register_spawn("mobs:sand_monster", {"default:desert_sand", "default:sand"}, 20, -1, 15000, 1, 31000)
+mobs:register_spawn("mobs:sand_monster", {"default:desert_sand", "default:sand"}, 20, -1, 20000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:sand_monster", "Sand Monster", "default_desert_sand.png", 1)
