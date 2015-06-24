@@ -30,6 +30,7 @@ mobs:register_mob("tsm_pyramids:mummy", {
 	view_range = 16,
 	jump = false,
 	floats = 0,
+	knock_back = 0.1,		--this is a test
 	-- drops papyrus when dead
 	drops = {
 		{name = "default:papyrus",
