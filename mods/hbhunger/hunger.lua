@@ -401,7 +401,7 @@ function hbhunger.handle_node_actions(pos, oldnode, player, ext)
 	if not pos and not oldnode then
 		new = HUNGER_EXHAUST_MOVE
 	end
-	exhaus = exhaus + new
+	exhaus = (exhaus or 0) + new
 	if exhaus > HUNGER_EXHAUST_LVL then
 		exhaus = 0
 		local h = tonumber(hbhunger.hunger[name])
