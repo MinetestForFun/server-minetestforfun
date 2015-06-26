@@ -165,4 +165,4 @@ local function register_disc(trackname, trackdesc, craftitem)
 		", id = " .. id .. " for file " .. trackname)
 end
 
-register_disc("jukebox_event.ogg", "Event song", "default:stone")
+register_disc("jukebox_event", "Event song", "default:stone")
