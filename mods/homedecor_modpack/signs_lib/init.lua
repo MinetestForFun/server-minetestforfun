@@ -1108,6 +1108,54 @@ minetest.register_craft( {
         },
 })
 
+minetest.register_craft( {
+        output = "signs:sign_wall_orange 4",
+        recipe = {
+			{ "dye:orange", "dye:black", "dye:orange" },
+			{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
+        },
+})
+
+minetest.register_craft( {
+        output = "signs:sign_wall_orange 2",
+        recipe = {
+			{ "dye:orange", "dye:black", "dye:orange" },
+			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
+        },
+})
+
+minetest.register_craft( {
+        output = "signs:sign_wall_blue 4",
+        recipe = {
+			{ "dye:blue", "dye:white", "dye:blue" },
+			{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
+        },
+})
+
+minetest.register_craft( {
+        output = "signs:sign_wall_blue 2",
+        recipe = {
+			{ "dye:blue", "dye:white", "dye:blue" },
+			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
+        },
+})
+
+minetest.register_craft( {
+        output = "signs:sign_wall_brown 4",
+        recipe = {
+			{ "dye:brown", "dye:white", "dye:brown" },
+			{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
+        },
+})
+
+minetest.register_craft( {
+        output = "signs:sign_wall_brown 2",
+        recipe = {
+			{ "dye:brown", "dye:white", "dye:brown" },
+			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
+        },
+})
+
 if minetest.setting_get("log_mods") then
 	minetest.log("action", S("signs loaded"))
 end
