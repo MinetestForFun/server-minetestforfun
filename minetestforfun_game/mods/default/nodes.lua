@@ -1824,6 +1824,7 @@ minetest.register_node("default:chest_locked", {
 	on_blast = function() end,
 })
 
+
 default.bookshelf_formspec =
 	"size[8,7;]" ..
 	default.gui_slots ..

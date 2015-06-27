@@ -11,7 +11,7 @@ local function read_file()
     	local t = f:read("*all")
     	f:close()
 	if t == "" or t == nil then return {} end
-	return minetest.deserialize(t)
+	return minetest.deserialize(t) or {}
 end
 
 local function write_file(tbl)
@@ -251,6 +251,10 @@ end
 -- end
 
 function luaentity.add_entity(pos, name)
+	if not luaentity.entities then
+		minetest.after(0, luaentity.add_entity, vector.new(pos), name)
+		return
+	end
 	local index = luaentity.entities_index
 	while luaentity.entities[index] do
 		index = index + 1

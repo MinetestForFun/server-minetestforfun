@@ -5,6 +5,10 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
 ---Next merge--- (Remerciements : ???)
+MaJ de "homedecor" (nouveaux panneaux colorés)
+MaJ de "plantlife"
+MaJ de "mesecons"
+MaJ de "pipeworks"
 Ajout du mod "broomstick" de palige (permet d'utiliser un balai volant contre 210 de mana)
 
 ---21/06/2015--- (Remerciements : mgl512/Le_Docteur, LeMagnesium/Mg, crabman77/crabman, Obani)
