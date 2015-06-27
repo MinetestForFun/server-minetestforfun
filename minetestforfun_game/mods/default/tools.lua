@@ -439,8 +439,20 @@ minetest.register_tool("default:sword_diamond", {
 		full_punch_interval = 0.6,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 30, maxlevel = 3},
+			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 50, maxlevel = 3},
 		},
 		damage_groups = {fleshy = 7},
+	}
+})
+minetest.register_tool("default:dungeon_master_s_blood_sword", { --Warrior Only
+	description = "Dungeon Master's Blood Sword",
+	inventory_image = "default_tool_dungeon_master_s_blood_sword.png",
+	tool_capabilities = {
+		full_punch_interval = 0.5,
+		max_drop_level = 1,
+		groupcaps = {
+			snappy = {times = {[1] = 1.9, [2] = 0.85, [3] = 0.125}, uses = 250, maxlevel = 3},
+		},
+		damage_groups = {fleshy = 10},
 	}
 })

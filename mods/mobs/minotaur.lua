@@ -40,10 +40,10 @@ mobs:register_mob("mobs:minotaur", {
 	drops = {
 		{name = "maptools:gold_coin",
 		chance = 40, min = 1, max = 1,},
-		{name = "mobs:minotaur_eye",	 	-- NOT IMPLEMENTED YET - used for runes mod
-		chance = 1, min = 1, max = 2,},
-		{name = "mobs:minotaur_horn",	 	-- NOT IMPLEMENTED YET - used for 3d_armor/throwing_enhanced mod
-		chance = 1, min = 1, max = 2,},
+		{name = "mobs:minotaur_eye",
+		chance = 2, min = 1, max = 2,},
+		{name = "mobs:minotaur_horn",
+		chance = 4, min = 1, max = 2,},
 	},
 	water_damage = 1,
 	lava_damage = 5,
@@ -61,7 +61,6 @@ mobs:register_mob("mobs:minotaur", {
 mobs:register_spawn("mobs:minotaur", {"default:desert_sand"}, 20, -1, 30000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:minotaur", "Minotaur", "default_desert_sand.png", 1)
-
 
 minetest.register_craftitem("mobs:minotaur_eye", {
 	description = "Minotaur Eye",

@@ -39,6 +39,8 @@ mobs:register_mob("mobs:zombie", {
 	drops = {
 		{name = "nether:apple",
 		chance = 4, min = 1, max = 1,},
+		{name = "mobs:zombie_tibia",
+		chance = 10, min = 1, max = 1,},
 		{name = "maptools:silver_coin",
 		chance = 1, min = 1, max = 1,},
 	},
@@ -61,3 +63,8 @@ mobs:register_spawn("mobs:zombie", {"nether:dirt_top"}, 5, -1, 6000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:zombie", "Zombie", "mobs_zombie_head.png", 1)
 
+minetest.register_craftitem("mobs:zombie_tibia", {
+	description = "Zombie Tibia",
+	inventory_image = "mobs_zombie_tibia.png",
+	groups = {magic = 1},
+})

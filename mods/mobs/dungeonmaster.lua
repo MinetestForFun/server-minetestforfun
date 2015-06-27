@@ -45,14 +45,18 @@ mobs:register_mob("mobs:dungeon_master", {
 	drops = {
 		{name = "default:mese_crystal_fragment",
 		chance = 1, min = 1, max = 3,},
-		{name = "default:diamond",
-		chance = 5, min = 1, max = 3,},
 		{name = "default:mese_crystal",
 		chance = 2, min = 1, max = 3,},
-		{name = "default:diamond_block",
-		chance = 30, min = 1, max = 1,},
+		{name = "mobs:dungeon_master_blood",
+		chance = 4, min = 1, max = 2,},
+		{name = "default:diamond",
+		chance = 5, min = 1, max = 3,},
+		{name = "mobs:dungeon_master_diamond",
+		chance = 8, min = 1, max = 1,},
 		{name = "maptools:gold_coin",
 		chance = 20, min = 1, max = 1,},
+		{name = "default:diamond_block",
+		chance = 30, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -97,4 +101,16 @@ mobs:register_arrow("mobs:fireball", {
 	hit_node = function(self, pos, node)
 		mobs:explosion(pos, 1, 1, 0)
 	end
+})
+
+minetest.register_craftitem("mobs:dungeon_master_blood", {
+	description = "Dungeon Master Blood",
+	inventory_image = "mobs_dungeon_master_blood.png",
+	groups = {magic = 1},
+})
+
+minetest.register_craftitem("mobs:dungeon_master_diamond", {
+	description = "Dungeon Master Diamond",
+	inventory_image = "mobs_dungeon_master_diamond.png",
+	groups = {magic = 1},
 })

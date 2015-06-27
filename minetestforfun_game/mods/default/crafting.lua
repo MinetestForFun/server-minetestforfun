@@ -436,6 +436,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:sword_nyan",
+	recipe = {
+		{"default:nyancat"},
+		{"default:nyancat"},
+		{"group:stick"},
+	}
+})
+
+minetest.register_craft({
 	output = 'default:sword_diamond',
 	recipe = {
 		{'default:diamond'},
@@ -444,12 +453,12 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
-	output = "default:sword_nyan",
+minetest.register_craft({ 			-- Ultimate Warrior weapon
+	output = 'default:dungeon_master_s_blood_sword',
 	recipe = {
-		{"default:nyancat"},
-		{"default:nyancat"},
-		{"group:stick"},
+		{"mobs:dungeon_master_blood", "nether:white", "mobs:dungeon_master_blood"},
+		{"mobs:dungeon_master_blood", "mobs:dungeon_master_diamond", "mobs:dungeon_master_blood"},
+		{"moreores:mithril_block", "mobs:zombie_tibia", "moreores:mithril_block"},
 	}
 })
 
