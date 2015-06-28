@@ -5,6 +5,7 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
 
 ---Next merge--- (Remerciements : ???)
+MaJ de "3d_armor" (drop des armurs fixé)
 MaJ de "homedecor" (nouveaux panneaux colorés)
 MaJ de "plantlife"
 MaJ de "mesecons"

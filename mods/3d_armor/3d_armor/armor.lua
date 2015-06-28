@@ -247,7 +247,7 @@ armor.update_armor = function(self, player, dtime)
 		return
 	end
 	local hp = player:get_hp() or 0
-	if ARMOR_FIRE_PROTECT == true then
+	if ARMOR_FIRE_PROTECT == true and dtime then
 		pos.y = pos.y + 1.4 -- head level
 		local node_head = minetest.get_node(pos).name
 		pos.y = pos.y - 1.2 -- feet level
@@ -596,17 +596,15 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 		if ARMOR_DESTROY == false then
 			minetest.after(ARMOR_BONES_DELAY, function()
 				local node = minetest.get_node(vector.round(pos))
-				if node then
-					if node.name == "bones:bones" then
-						local meta = minetest.get_meta(vector.round(pos))
-						local owner = meta:get_string("owner")
-						local inv = meta:get_inventory()
-						for _,stack in ipairs(drop) do
-							if name == owner and inv:room_for_item("main", stack) then
-								inv:add_item("main", stack)
-							else
-								armor.drop_armor(pos, stack)
-							end
+				if node and node.name == "bones:bones" then
+					local meta = minetest.get_meta(vector.round(pos))
+					local owner = meta:get_string("owner")
+					local inv = meta:get_inventory()
+					for _,stack in ipairs(drop) do
+						if name == owner and inv:room_for_item("main", stack) then
+							inv:add_item("main", stack)
+						else
+							armor.drop_armor(pos, stack)
 						end
 					end
 				else
