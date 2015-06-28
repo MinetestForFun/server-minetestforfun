@@ -367,7 +367,7 @@ minetest.register_node("nether:apple", {
 			return itemstack
 		end
 
-		local p_hunger = tonumber(hud.hunger[user:get_player_name()])
+		local p_hunger = tonumber(hbhunger.hunger[user:get_player_name()])
 		if not p_hunger then
 			return
 		end
@@ -375,8 +375,8 @@ minetest.register_node("nether:apple", {
 		if p_hunger > 30 then
 			p_hunger = 30
 		end
-		hud.hunger[user:get_player_name()] = p_hunger
-		hud.set_hunger(user)
+		hbhunger.hunger[user:get_player_name()] = p_hunger
+		hbhunger.set_hunger(user)
 
 		local amount = math.random(4, 6)
 		inv:add_item("main", {name="nether:blood_extracted", count=math.floor(amount/3)})
