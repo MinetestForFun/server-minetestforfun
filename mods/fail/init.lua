@@ -43,7 +43,7 @@ data.send_func = function(name, msg) minetest.chat_send_player(name, msg) end
 
 if data.PUB_MSG then
 	data.send_func = function (name, msg)
-		if irc then
+		if minetest.get_modpath("irc") then
 			irc:say(msg)
 		end
 		minetest.chat_send_all(msg)
