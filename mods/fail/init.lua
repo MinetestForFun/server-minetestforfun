@@ -42,13 +42,17 @@ end
 data.send_func = function(name, msg) minetest.chat_send_player(name, msg) end
 
 if data.PUB_MSG then
-	data.send_func = function (name, msg) minetest.chat_send_all(msg) end
+	data.send_func = function (name, msg)
+		if minetest.get_modpath("irc") then
+			irc:say(msg)
+		end
+		minetest.chat_send_all(msg)
+	end
 end
 
 data.is_player_available = minetest.get_player_by_name
 
 if data.STRICT_PLAYER_CHECK == false then
-
 	data.is_player_available = function (name)
 		return (io.open(minetest.get_worldpath().."/players/"..name) ~= nil)
 	end
