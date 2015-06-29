@@ -203,18 +203,27 @@ minetest.register_chatcommand("rules",{
 	privs = interact.priv,
 	func = function (name,params)
 	local player = minetest.get_player_by_name(name)
-		if interact.screen1 ~= false then
-			minetest.after(1, function()
-				minetest.show_formspec(name, "welcome", make_formspec(player))
-			end)
-		elseif interact.screen2 ~= false then
-			minetest.after(1, function()
-				minetest.show_formspec(name, "visit", make_formspec2(player))
-			end)
+		if not interact.blacklist[name] then
+			if interact.screen1 ~= false then
+				minetest.after(1, function()
+					minetest.show_formspec(name, "welcome", make_formspec(player))
+				end)
+			elseif interact.screen2 ~= false then
+				minetest.after(1, function()
+					minetest.show_formspec(name, "visit", make_formspec2(player))
+				end)
+			else
+				minetest.after(1, function()
+					minetest.show_formspec(name, "rules", make_formspec3(player))
+				end)
+			end
 		else
-			minetest.after(1, function()
-				minetest.show_formspec(name, "rules", make_formspec3(player))
-			end)
+			minetest.log("action", "[interact] Blacklisted player " .. name .. " tried to get back " ..
+				"his revoked privilege")
+			return false, "Sorry, you've been blacklisted by " ..
+				(interact.blacklist[name].emitter or "<unknown>") .. " on " ..
+				(interact.blacklist[name].date or "<unknown>") .. " . Thus, you can't use " ..
+				" this command to get interact back. Sorry."
 		end
 	end
 })
@@ -222,26 +231,111 @@ minetest.register_chatcommand("rules",{
 function start_formspecs(player)
 	local name = player:get_player_name()
 	if not minetest.get_player_privs(name).interact then
-		if interact.screen1 ~= false then
-			minetest.show_formspec(name, "welcome", make_formspec(player))
-		elseif interact.screen2 ~= false then
-			minetest.show_formspec(name, "visit", make_formspec2(player))
-		else
-			minetest.show_formspec(name, "rules", make_formspec3(player))
+		if not interact.blacklist[name] then
+			if interact.screen1 ~= false then
+				minetest.show_formspec(name, "welcome", make_formspec(player))
+			elseif interact.screen2 ~= false then
+				minetest.show_formspec(name, "visit", make_formspec2(player))
+			else
+				minetest.show_formspec(name, "rules", make_formspec3(player))
+			end
 		end
 	end
 end
 
 minetest.register_on_joinplayer(start_formspecs)
 
-minetest.register_chatcommand("rules", {
-	description = "Obtain interact privilege / Obtenir le privilege interact",
-	params = "",
-	privs = {},
-	func = function(name)
-		local player = minetest.get_player_by_name(name)
-		if player then
-			start_formspecs(player)
+
+-- Blacklist
+
+interact.blacklist = {}
+
+minetest.register_chatcommand("unblacklist", {
+	params = "<playername>",
+	description = "Remove a player from the interact blacklist",
+	privs = {basic_privs = true, interact = true},
+	func = function(name, param)
+		if param == "" then
+			return false, "Give a player's name to remove from the blacklist."
 		end
-	end,
+
+		if not interact.blacklist[param] then
+			return true, "Player " .. param " is not actually blacklisted."
+		end
+
+		if name == param then
+			return true, "Ahahaha. Well tried looser."
+		end
+
+		minetest.log("action", "[interact] " .. name .. " removed " .. param .. " from " ..
+			"blacklist (added on " .. (interact.blacklist[param].date or "<unknown>") ..
+			" by " .. (interact.blacklist[param].emitter or "<unknown>") .. ")")
+		interact.blacklist[param] = nil
+		return true, "Done."
+	end
 })
+
+minetest.register_chatcommand("blacklist", {
+	params = "<playername>",
+	description = "Blacklist a player. [S]He won't be able to use /rules.",
+	privs = {basic_privs = true, interact = true},
+	func = function(name, param)
+		if param == "" then
+			return false, "Give a player's name to blacklist."
+		end
+
+		local blackfile = io.open(minetest.get_worldpath() .. "/players/" .. param, "r")
+		if not blackfile then
+			return false, "Player doesn't exist."
+		end
+		io.close(blackfile)
+
+		if name == param then
+			return true, "You know this wouldn't work, right?"
+		end
+
+		if interact.blacklist[param] then
+			return true, "Player already blacklisted."
+		end
+
+		if minetest.get_player_privs(param).interact == true then
+			return true, "Warning: This player has interact! Use revoke before blacklisting."
+		end
+
+		interact.blacklist[param] = {
+			emitter = name,
+			date = os.date("%m/%d/%Y")
+		}
+		minetest.log("action", "[interact] " .. name .. " added " .. param .. " on /rules blacklist.")
+		return true, "Player " .. param .. " blacklisted."
+	end
+})
+
+function load_blacklist()
+	local file = io.open(minetest.get_worldpath().."/interact_blacklist.txt", "r")
+	if not file then
+		file = io.open(minetest.get_worldpath().."/interact_blacklist.txt", "w")
+		if not file then
+			minetest.log("error", "[interact] Error opening blacklist file")
+			return
+		end
+		minetest.log("action", "[interact] Blacklist created")
+	end
+	interact.blacklist = minetest.deserialize(file:read())
+	minetest.log("action", "[interact] Blacklist loaded")
+	file:close()
+end
+
+function save_blacklist()
+	local file = io.open(minetest.get_worldpath().."/interact_blacklist.txt", "w")
+	if not file then
+		minetest.log("error", "[interact] Error opening blacklist file")
+		return
+	end
+	file:write(minetest.serialize(interact.blacklist))
+	minetest.log("action", "[interact] Blacklist saved")
+	file:close()
+end
+
+minetest.register_on_shutdown(save_blacklist)
+load_blacklist()
