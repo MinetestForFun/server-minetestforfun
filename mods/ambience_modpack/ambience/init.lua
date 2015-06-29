@@ -223,10 +223,10 @@ local music = {
 	--{name="echos", length=2*60+26, gain=music_volume},
 	--{name="FoamOfTheSea", length=1*60+50, gain=music_volume},
 	{name="Ambivalent", length=2*60+31, gain=music_volume*.9},
-	{name="eastern_feeling", length=3*60+51, gain=music_volume},
+	--{name="eastern_feeling", length=3*60+51, gain=music_volume},
 	--{name="Mass_Effect_Uncharted_Worlds", length=2*60+29, gain=music_volume},
-	{name="EtherealShort", length=3*60+4, gain=music_volume*.7},
-	{name="Mute", length=3*60+43, gain=music_volume*.9},
+	--{name="EtherealShort", length=3*60+4, gain=music_volume*.7},
+	--{name="Mute", length=3*60+43, gain=music_volume*.9},
 	{name="FarawayShort", length=3*60+5, gain=music_volume*.7},
 	{name="dark_ambiance", length=44, gain=music_volume}
 }
