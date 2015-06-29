@@ -1,5 +1,6 @@
 jukebox = {}
 jukebox.tracks = {}
+jukebox.nbtracks = 0
 jukebox.particles = {}
 
 function make_particles(pos)
@@ -140,7 +141,7 @@ local function register_disc(trackname, trackdesc, craftitem)
 	trackdesc = trackdesc or "???"
 	craftitem = craftitem or "group:wood"
 
-	local id = #jukebox.tracks
+	local id = jukebox.nbtracks
 
 	minetest.register_craftitem("jukebox:disc_" .. id, {
 		description = "Music Disc : " .. trackdesc,
@@ -163,6 +164,8 @@ local function register_disc(trackname, trackdesc, craftitem)
 
 	minetest.log("action", "[jukebox] Registrered disc " .. trackdesc ..
 		", id = " .. id .. " for file " .. trackname)
+
+	jukebox.nbtracks = jukebox.nbtracks + 1
 end
 
 register_disc("jukebox_event", "Event song", "default:stone")
