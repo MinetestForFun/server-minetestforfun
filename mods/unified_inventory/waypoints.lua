@@ -112,6 +112,7 @@ unified_inventory.register_button("waypoints", {
 	type = "image",
 	image = "ui_waypoints_icon.png",
 	tooltip = S("Waypoints"),
+	show_with = false, --Modif MFF (Crabman 30/06/2015)
 })
 
 local function update_hud(player, waypoints, temp, i)
@@ -184,7 +185,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 		if fields["rename_waypoint"..i] then
 			hit = true
-			waypoints[i] = waypoints[i] or {}
+			temp[i] = temp[i] or {}
 			temp[i].edit = true
 			update_formspec = true
 		end

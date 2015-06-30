@@ -386,6 +386,55 @@ if minetest.get_modpath("food") ~= nil then
 end
 
 -- player-action based hunger changes
+
+local exhausting_items = {
+	["helmet"] = {
+		["wood"] = 1,
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
+	},
+	["chestplate"] = {
+		["wood"] = 1,
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
+	},
+	["leggings"] = {
+		["wood"] = 1,
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
+	},
+	["boots"] = {
+		["wood"] = 1,
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
+	},
+	["shield"] = {
+		["wood"] = 1,
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
+	}
+}
+
 function hbhunger.handle_node_actions(pos, oldnode, player, ext)
 	if not player or not player:is_player() then
 		return
@@ -403,6 +452,23 @@ function hbhunger.handle_node_actions(pos, oldnode, player, ext)
 		new = HUNGER_EXHAUST_MOVE
 	end
 	exhaus = exhaus + new
+
+	-- Armor's exhaus
+	if minetest.get_modpath("3d_armor") then
+		local name, inv, arminv, pos = armor:get_valid_player(player, "[exhaus]")
+		local armorinv = arminv:get_list("armor")
+--		table.foreach(armorinv, print)
+		for index, stack in ipairs(armorinv) do
+			if stack:get_count() > 0 then
+				local itemname = stack:get_name():split(":")[2]:split("_")[1]
+				local itemmaterial = stack:get_name():split(":")[2]:split("_")[2]
+				exhaus = exhaus + (exhausting_items[itemname][itemmaterial] or 0)/10 -- 0 is admin armor
+				-- Value is divided by 5 to give a larger scale to our values, without having to high nor
+				-- too low exhausting factor
+			end
+		end
+	end
+
 	if exhaus > HUNGER_EXHAUST_LVL then
 		exhaus = 0
 		local h = tonumber(hbhunger.hunger[name])

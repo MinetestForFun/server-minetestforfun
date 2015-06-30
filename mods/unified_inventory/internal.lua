@@ -30,10 +30,16 @@ function unified_inventory.get_formspec(player, page)
 	local pagedef = unified_inventory.pages[page]
 
 	local formspec = "size[14,10]"
-	local fsdata = nil
-
 	-- Background
 	formspec = formspec .. "background[-0.19,-0.25;14.4,10.75;ui_form_bg.png]"
+
+	if unified_inventory.lite_mode then
+		formspec = "size[11,7.7]"
+		formspec = formspec .. "background[-0.19,-0.2;11.4,8.4;ui_form_bg.png]"
+	end
+
+	local fsdata = nil
+
 	-- Current page
 	if unified_inventory.pages[page] then
 		fsdata = pagedef.get_formspec(player)
@@ -42,23 +48,39 @@ function unified_inventory.get_formspec(player, page)
 		return "" -- Invalid page name
 	end
 
+	local privs = minetest.get_player_privs(player_name) --Modif MFF (Crabman 30/06/2015) DEBUT,12 buttons max by row and not show if player has not privs requiered
+	local button_row = 0
+	local button_col = 0
+	local i = 1
+
 	-- Main buttons
-	for i, def in pairs(unified_inventory.buttons) do
-		local tooltip = def.tooltip or ""
-		if def.type == "image" then
-			formspec = formspec.."image_button["
-					..(0.65 * (i - 1))..",9;0.8,0.8;"
-					..minetest.formspec_escape(def.image)..";"
-					..minetest.formspec_escape(def.name)..";]"
-					.."tooltip["..minetest.formspec_escape(def.name)
-					..";"..tooltip.."]"
+	for _, def in pairs(unified_inventory.buttons) do
+		if (def.show_with == nil or def.show_with == false) or (privs[def.show_with] and privs[def.show_with] == true) then
+			if unified_inventory.lite_mode and i > 4 then
+				button_row = 1
+				button_col = 1
+			elseif not unified_inventory.lite_mode and i > 12 then
+				button_row = 1
+				i = 1
+			end
+			local tooltip = def.tooltip or ""
+			if def.type == "image" then
+				formspec = formspec.."image_button["
+						..( unified_inventory.main_button_x + 0.65 * (i - 1) - button_col * 0.65 * 4)
+						..","..(unified_inventory.main_button_y + button_row * 0.7)..";0.8,0.8;"
+						..minetest.formspec_escape(def.image)..";"
+						..minetest.formspec_escape(def.name)..";]"
+						.."tooltip["..minetest.formspec_escape(def.name)
+						..";"..tooltip.."]"
+			end
+		i = i + 1
 		end
-	end
+	end --Modif MFF (Crabman 30/06/2015) FIN
 
 	if fsdata.draw_inventory ~= false then
 		-- Player inventory
 		formspec = formspec.."listcolors[#00000000;#00000000]"
-		formspec = formspec .. "list[current_player;main;0,4.5;8,4;]"
+		formspec = formspec .. "list[current_player;main;0,"..(unified_inventory.formspec_y + 3.5)..";8,4;]"
 	end
 
 	if fsdata.draw_item_list == false then
@@ -67,67 +89,95 @@ function unified_inventory.get_formspec(player, page)
 
 	-- Controls to flip items pages
 	local start_x = 9.2
-	formspec = formspec
-		.. "image_button[" .. (start_x + 0.6 * 0)
-			.. ",9;.8,.8;ui_skip_backward_icon.png;start_list;]"
-		.. "tooltip[start_list;" .. minetest.formspec_escape(S("First page")) .. "]"
 
-		.. "image_button[" .. (start_x + 0.6 * 1)
-			.. ",9;.8,.8;ui_doubleleft_icon.png;rewind3;]"
-		.. "tooltip[rewind3;" .. minetest.formspec_escape(S("Back three pages")) .. "]"
+	if not unified_inventory.lite_mode then
+		formspec = formspec
+			.. "image_button[" .. (start_x + 0.6 * 0)
+				.. ",9;.8,.8;ui_skip_backward_icon.png;start_list;]"
+			.. "tooltip[start_list;" .. minetest.formspec_escape(S("First page")) .. "]"
 
-		.. "image_button[" .. (start_x + 0.6 * 2)
-			.. ",9;.8,.8;ui_left_icon.png;rewind1;]"
-		.. "tooltip[rewind1;" .. minetest.formspec_escape(S("Back one page")) .. "]"
+			.. "image_button[" .. (start_x + 0.6 * 1)
+				.. ",9;.8,.8;ui_doubleleft_icon.png;rewind3;]"
+			.. "tooltip[rewind3;" .. minetest.formspec_escape(S("Back three pages")) .. "]"
+			.. "image_button[" .. (start_x + 0.6 * 2)
+				.. ",9;.8,.8;ui_left_icon.png;rewind1;]"
+			.. "tooltip[rewind1;" .. minetest.formspec_escape(S("Back one page")) .. "]"
 
-		.. "image_button[" .. (start_x + 0.6 * 3)
-			.. ",9;.8,.8;ui_right_icon.png;forward1;]"
-		.. "tooltip[forward1;" .. minetest.formspec_escape(S("Forward one page")) .. "]"
+			.. "image_button[" .. (start_x + 0.6 * 3)
+				.. ",9;.8,.8;ui_right_icon.png;forward1;]"
+			.. "tooltip[forward1;" .. minetest.formspec_escape(S("Forward one page")) .. "]"
+			.. "image_button[" .. (start_x + 0.6 * 4)
+				.. ",9;.8,.8;ui_doubleright_icon.png;forward3;]"
+			.. "tooltip[forward3;" .. minetest.formspec_escape(S("Forward three pages")) .. "]"
 
-		.. "image_button[" .. (start_x + 0.6 * 4)
-			.. ",9;.8,.8;ui_doubleright_icon.png;forward3;]"
-		.. "tooltip[forward3;" .. minetest.formspec_escape(S("Forward three pages")) .. "]"
-
-		.. "image_button[" .. (start_x + 0.6 * 5)
-			.. ",9;.8,.8;ui_skip_forward_icon.png;end_list;]"
-		.. "tooltip[end_list;" .. minetest.formspec_escape(S("Last page")) .. "]"
+			.. "image_button[" .. (start_x + 0.6 * 5)
+				.. ",9;.8,.8;ui_skip_forward_icon.png;end_list;]"
+			.. "tooltip[end_list;" .. minetest.formspec_escape(S("Last page")) .. "]"
+	else
+		formspec = formspec
+			.. "image_button[" .. (8.2 + 0.65 * 0)
+				.. ",5.8;.8,.8;ui_skip_backward_icon.png;start_list;]"
+			.. "tooltip[start_list;" .. minetest.formspec_escape(S("First page")) .. "]"
+			.. "image_button[" .. (8.2 + 0.65 * 1)
+				.. ",5.8;.8,.8;ui_left_icon.png;rewind1;]"
+			.. "tooltip[rewind1;" .. minetest.formspec_escape(S("Back one page")) .. "]"
+			.. "image_button[" .. (8.2 + 0.65 * 2)
+				.. ",5.8;.8,.8;ui_right_icon.png;forward1;]"
+			.. "tooltip[forward1;" .. minetest.formspec_escape(S("Forward one page")) .. "]"
+			.. "image_button[" .. (8.2 + 0.65 * 3)
+				.. ",5.8;.8,.8;ui_skip_forward_icon.png;end_list;]"
+			.. "tooltip[end_list;" .. minetest.formspec_escape(S("Last page")) .. "]"
+	end
 
 	-- Search box
-	formspec = formspec .. "field[9.5,8.325;3,1;searchbox;;"
-		.. minetest.formspec_escape(unified_inventory.current_searchbox[player_name]) .. "]"
-	formspec = formspec .. "image_button[12.2,8.1;.8,.8;ui_search_icon.png;searchbutton;]"
-		.. "tooltip[searchbutton;" ..S("Search") .. "]"
+
+	if not unified_inventory.lite_mode then
+		formspec = formspec .. "field[9.5,8.325;3,1;searchbox;;"
+			.. minetest.formspec_escape(unified_inventory.current_searchbox[player_name]) .. "]"
+		formspec = formspec .. "image_button[12.2,8.1;.8,.8;ui_search_icon.png;searchbutton;]"
+			.. "tooltip[searchbutton;" ..S("Search") .. "]"
+	else
+		formspec = formspec .. "field[8.5,5.225;2.2,1;searchbox;;"
+			.. minetest.formspec_escape(unified_inventory.current_searchbox[player_name]) .. "]"
+		formspec = formspec .. "image_button[10.3,5;.8,.8;ui_search_icon.png;searchbutton;]"
+			.. "tooltip[searchbutton;" ..S("Search") .. "]"
+	end
+
+	local no_matches = "No matching items"
+	if unified_inventory.lite_mode then
+		no_matches = "No matches."
+	end
 
 	-- Items list
 	if #unified_inventory.filtered_items_list[player_name] == 0 then
-		formspec = formspec.."label[8.2,0;" .. S("No matching items") .. "]"
+		formspec = formspec.."label[8.2,"..unified_inventory.form_header_y..";" .. S(no_matches) .. "]"
 	else
 		local dir = unified_inventory.active_search_direction[player_name]
 		local list_index = unified_inventory.current_index[player_name]
-		local page = math.floor(list_index / (80) + 1)
+		local page = math.floor(list_index / (unified_inventory.items_per_page) + 1)
 		local pagemax = math.floor(
 			(#unified_inventory.filtered_items_list[player_name] - 1)
-				/ (80) + 1)
+				/ (unified_inventory.items_per_page) + 1)
 		local item = {}
-		for y = 0, 9 do
-		for x = 0, 7 do
-			local name = unified_inventory.filtered_items_list[player_name][list_index]
-			if minetest.registered_items[name] then
-				formspec = formspec.."item_image_button["
-						..(8.2 + x * 0.7)..","
-						..(1   + y * 0.7)..";.81,.81;"
-						..name..";item_button_"..dir.."_"
-						..unified_inventory.mangle_for_formspec(name)..";]"
-				list_index = list_index + 1
+		for y = 0, unified_inventory.pagerows - 1 do
+			for x = 0, unified_inventory.pagecols - 1 do
+				local name = unified_inventory.filtered_items_list[player_name][list_index]
+				if minetest.registered_items[name] then
+					formspec = formspec.."item_image_button["
+							..(8.2 + x * 0.7)..","
+							..(unified_inventory.formspec_y + unified_inventory.page_y + y * 0.7)..";.81,.81;"
+							..name..";item_button_"..dir.."_"
+							..unified_inventory.mangle_for_formspec(name)..";]"
+					list_index = list_index + 1
+				end
 			end
 		end
-		end
-		formspec = formspec.."label[8.2,0;"..S("Page") .. ": "
+		formspec = formspec.."label[8.2,"..unified_inventory.form_header_y..";"..S("Page") .. ": "
 			.. S("%s of %s"):format(page,pagemax).."]"
 	end
 	if unified_inventory.activefilter[player_name] ~= "" then
-		formspec = formspec.."label[8.2,0.4;" .. S("Filter") .. ":]"
-		formspec = formspec.."label[9,0.4;"..minetest.formspec_escape(unified_inventory.activefilter[player_name]).."]"
+		formspec = formspec.."label[8.2,"..(unified_inventory.form_header_y + 0.4)..";" .. S("Filter") .. ":]"
+		formspec = formspec.."label[9.1,"..(unified_inventory.form_header_y + 0.4)..";"..minetest.formspec_escape(unified_inventory.activefilter[player_name]).."]"
 	end
 	return formspec
 end
@@ -141,6 +191,7 @@ end
 
 --apply filter to the inventory list (create filtered copy of full one)
 function unified_inventory.apply_filter(player, filter, search_dir)
+	if not player then return false end
 	local player_name = player:get_player_name()
 	local lfilter = string.lower(filter)
 	local ffilter

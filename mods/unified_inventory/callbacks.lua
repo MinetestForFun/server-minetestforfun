@@ -68,11 +68,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 	-- Inventory page controls
 	local start = math.floor(
-		unified_inventory.current_index[player_name] / 80 + 1)
+		unified_inventory.current_index[player_name] / unified_inventory.items_per_page + 1)
 	local start_i = start
 	local pagemax = math.floor(
 		(#unified_inventory.filtered_items_list[player_name] - 1)
-		/ (80) + 1)
+		/ (unified_inventory.items_per_page) + 1)
 
 	if fields.start_list then
 		start_i = 1
@@ -101,7 +101,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if not (start_i	== start) then
 		minetest.sound_play("paperflip1",
 				{to_player=player_name, gain = 1.0})
-		unified_inventory.current_index[player_name] = (start_i - 1) * 80 + 1
+		unified_inventory.current_index[player_name] = (start_i - 1) * unified_inventory.items_per_page + 1
 		unified_inventory.set_inventory_formspec(player,
 				unified_inventory.current_page[player_name])
 	end

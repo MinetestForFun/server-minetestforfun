@@ -321,7 +321,12 @@ function load_blacklist()
 		end
 		minetest.log("action", "[interact] Blacklist created")
 	end
-	interact.blacklist = minetest.deserialize(file:read())
+	local line = file:read()
+	if not line then
+		interact.blacklist = {}
+	else
+		interact.blacklist = minetest.deserialize(line)
+	end
 	minetest.log("action", "[interact] Blacklist loaded")
 	file:close()
 end

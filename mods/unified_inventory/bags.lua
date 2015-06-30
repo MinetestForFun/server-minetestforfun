@@ -32,7 +32,8 @@ unified_inventory.register_page("bags", {
 unified_inventory.register_button("bags", {
 	type = "image",
 	image = "ui_bags_icon.png",
-	tooltip = S("Bags")
+	tooltip = S("Bags"),
+	show_with = false, --Modif MFF (Crabman 30/06/2015)
 })
 
 for i = 1, 4 do
@@ -133,7 +134,7 @@ minetest.register_tool("unified_inventory:bag_large", {
 minetest.register_craft({
 	output = "unified_inventory:bag_small",
 	recipe = {
-		{"",           "default:stick", ""},
+		{"",           "group:stick", ""},
 		{"group:wood", "group:wood",    "group:wood"},
 		{"group:wood", "group:wood",    "group:wood"},
 	},
@@ -143,8 +144,8 @@ minetest.register_craft({
 	output = "unified_inventory:bag_medium",
 	recipe = {
 		{"",              "",                            ""},
-		{"default:stick", "unified_inventory:bag_small", "default:stick"},
-		{"default:stick", "unified_inventory:bag_small", "default:stick"},
+		{"group:stick", "unified_inventory:bag_small", "group:stick"},
+		{"group:stick", "unified_inventory:bag_small", "group:stick"},
 	},
 })
 
@@ -152,8 +153,8 @@ minetest.register_craft({
 	output = "unified_inventory:bag_large",
 	recipe = {
 		{"",              "",                             ""},
-		{"default:stick", "unified_inventory:bag_medium", "default:stick"},
-		{"default:stick", "unified_inventory:bag_medium", "default:stick"},
+		{"group:stick", "unified_inventory:bag_medium", "group:stick"},
+		{"group:stick", "unified_inventory:bag_medium", "group:stick"},
     },
 })
 

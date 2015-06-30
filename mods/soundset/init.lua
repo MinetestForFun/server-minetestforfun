@@ -173,6 +173,7 @@ if (minetest.get_modpath("unified_inventory")) then
 		type = "image",
 		image = "soundset_menu_icon.png",
 		tooltip = "sounds menu ",
+		show_with = false, --Modif MFF (Crabman 30/06/2015)
 		action = function(player)
 			local name = player:get_player_name()
 			if not name then return end

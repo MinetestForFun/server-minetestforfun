@@ -216,6 +216,8 @@ end
 unified_inventory.register_button("runes", {
 	type = "image",
 	image = "runes_heal_major.png",
+	tooltip = "Rune inventory",
+	show_with = false, --Modif MFF (Crabman 30/06/2015)
 })
 unified_inventory.register_page("runes", {
 	get_formspec = function(player)
