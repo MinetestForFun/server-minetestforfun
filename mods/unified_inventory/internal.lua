@@ -48,28 +48,34 @@ function unified_inventory.get_formspec(player, page)
 		return "" -- Invalid page name
 	end
 
+	local privs = minetest.get_player_privs(player_name) --Modif MFF (Crabman 30/06/2015) DEBUT,12 buttons max by row and not show if player has not privs requiered
 	local button_row = 0
 	local button_col = 0
+	local i = 1
 
 	-- Main buttons
-	for i, def in pairs(unified_inventory.buttons) do
-
-		if unified_inventory.lite_mode and i > 4 then
-			button_row = 1
-			button_col = 1
+	for _, def in pairs(unified_inventory.buttons) do
+		if (def.show_with == nil or def.show_with == false) or (privs[def.show_with] and privs[def.show_with] == true) then
+			if unified_inventory.lite_mode and i > 4 then
+				button_row = 1
+				button_col = 1
+			elseif not unified_inventory.lite_mode and i > 12 then
+				button_row = 1
+				i = 1
+			end
+			local tooltip = def.tooltip or ""
+			if def.type == "image" then
+				formspec = formspec.."image_button["
+						..( unified_inventory.main_button_x + 0.65 * (i - 1) - button_col * 0.65 * 4)
+						..","..(unified_inventory.main_button_y + button_row * 0.7)..";0.8,0.8;"
+						..minetest.formspec_escape(def.image)..";"
+						..minetest.formspec_escape(def.name)..";]"
+						.."tooltip["..minetest.formspec_escape(def.name)
+						..";"..tooltip.."]"
+			end
+		i = i + 1
 		end
-
-		local tooltip = def.tooltip or ""
-		if def.type == "image" then
-			formspec = formspec.."image_button["
-					..( unified_inventory.main_button_x + 0.65 * (i - 1) - button_col * 0.65 * 4)
-					..","..(unified_inventory.main_button_y + button_row * 0.7)..";0.8,0.8;"
-					..minetest.formspec_escape(def.image)..";"
-					..minetest.formspec_escape(def.name)..";]"
-					.."tooltip["..minetest.formspec_escape(def.name)
-					..";"..tooltip.."]"
-		end
-	end
+	end --Modif MFF (Crabman 30/06/2015) FIN
 
 	if fsdata.draw_inventory ~= false then
 		-- Player inventory

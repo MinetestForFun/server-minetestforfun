@@ -33,13 +33,15 @@ trash:set_size("main", 1)
 unified_inventory.register_button("craft", {
 	type = "image",
 	image = "ui_craft_icon.png",
-	tooltip = S("Crafting Grid")
+	tooltip = S("Crafting Grid"),
+	show_with = false, --Modif MFF (Crabman 30/06/2015)
 })
 
 unified_inventory.register_button("craftguide", {
 	type = "image",
 	image = "ui_craftguide_icon.png",
-	tooltip = S("Crafting Guide")
+	tooltip = S("Crafting Guide"),
+	show_with = false, --Modif MFF (Crabman 30/06/2015)
 })
 
 if not unified_inventory.lite_mode then
@@ -47,6 +49,7 @@ if not unified_inventory.lite_mode then
 		type = "image",
 		image = "ui_sethome_icon.png",
 		tooltip = S("Set home position"),
+		show_with = "interact", --Modif MFF (Crabman 30/06/2015)
 		action = function(player)
 			if home.sethome(player:get_player_name()) == true then --modif  MFF
 				minetest.sound_play("dingdong",
@@ -59,6 +62,7 @@ if not unified_inventory.lite_mode then
 		type = "image",
 		image = "ui_gohome_icon.png",
 		tooltip = S("Go home"),
+		show_with = "interact", --Modif MFF (Crabman 30/06/2015)
 		action = function(player)
 			if home.tohome(player:get_player_name()) == true then --modif  MFF
 				minetest.sound_play("teleport",
@@ -71,6 +75,7 @@ if not unified_inventory.lite_mode then
 		type = "image",
 		image = "ui_sun_icon.png",
 		tooltip = S("Set time to day"),
+		show_with = "settime", --Modif MFF (Crabman 30/06/2015)
 		action = function(player)
 			local player_name = player:get_player_name()
 			if minetest.check_player_privs(player_name, {settime=true}) then
@@ -90,6 +95,7 @@ if not unified_inventory.lite_mode then
 		type = "image",
 		image = "ui_moon_icon.png",
 		tooltip = S("Set time to night"),
+		show_with = "settime", --Modif MFF (Crabman 30/06/2015)
 		action = function(player)
 			local player_name = player:get_player_name()
 			if minetest.check_player_privs(player_name, {settime=true}) then
@@ -110,6 +116,7 @@ unified_inventory.register_button("clear_inv", {
 	type = "image",
 	image = "ui_trash_icon.png",
 	tooltip = S("Clear inventory"),
+	show_with = "creative", --Modif MFF (Crabman 30/06/2015)
 	action = function(player)
 		local player_name = player:get_player_name()
 		if not unified_inventory.is_creative(player_name) then
