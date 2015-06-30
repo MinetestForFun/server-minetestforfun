@@ -184,7 +184,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 		if fields["rename_waypoint"..i] then
 			hit = true
-			waypoints[i] = waypoints[i] or {}
+			temp[i] = temp[i] or {}
 			temp[i].edit = true
 			update_formspec = true
 		end
