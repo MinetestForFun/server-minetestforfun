@@ -1,16 +1,26 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
-/!\ Le serveur étant devenu stable, les MAJs vont se rarifier pour un temps /!\
-/!\ En effet, nous profitons de cette stabilitée pour préparer une grosse MAJ qui boulversera à jamais le gameplay de Minetest /!\
+/!\ Nouveau mod pour les arcs, équilibré /!\
+/!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder /!\
 
----Next merge--- (Remerciements : ???)
-MaJ de "3d_armor" (drop des armurs fixé, ajout d'un paramètre de "poids" augmentant la faim en fonction de l'armure portée)
-MaJ de "homedecor" (nouveaux panneaux colorés)
-MaJ de "plantlife"
-MaJ de "mesecons"
-MaJ de "pipeworks"
-Ajout du mod "broomstick" de palige (permet d'utiliser un balai volant contre 210 de mana)
+---xx/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, mgl512/Le_Docteur, Gael-de-Sailly, crabman77/crabman)
+MAJ de "3d_armor" (nombreux bugfixs, ajout d'un paramètre de "poids" augmentant la faim en fonction de l'armure portée, les valeurs seront disponibles sur le site bientôt)
+MAJ de "nether" (crashfix de la nourriture du nether)
+MAJ de "MFF_game" (ajout en avant-première de la "Dungeon Master's Blood Sword", l'épée la plus puissante du jeu- inflige 10 de dégats et plus résistante que celle en Mithril -, elle sera dans un futur proche accessible uniquement aux joueurs de la classe guerrier)
+MAJ de "farming" (nombreux bugfix, et ajout de la possibilité de faire du colorant vert avec des haricots verts/green beans)
+MAJ de "mesecons" (arrivé du "wall_lever_light - on/off", amélioration de la "water_turbine", et bugfix)
+MAJ de "pipeworks" (bugfix)
+MAJ de "jukebox" (bugfix, est maintenant fonctionnel et en version stable)
+MAJ de "MFF_game" et "moreores" (Tous les outils, sauf nether et bows, sont passés en 32px, et ont des apparences spéciales voir texturés d'une façon drastiquement différentes selon les matériaux)
+MAJ de "ambience_modpack" (réduction du nombre de musiques d'ambiance à 3 musiques pour réduire la consommation de RAM côté Minetest client, ajout de la musique "Aube")
+MAJ de "hbhunger" (crashfix de l'exhaust)
+MAJ de "mobs" (Le Minotaure à moins d'armure mais plus de vie, il gagne aussi un très légé recule/knockback quand il est touché, tout comme les mommies et les Dungeon Masters, le taux de spawn des Minotaurs est maintenant 5 fois inférieur au taux de spawn des Sand Monsters)
+MAJ de "moreblocks" (les glass de ce mod peuvent être utiliser en "connected_glass")
+MAJ de "homedecor_modpack" (bugfix, nouveaux panneaux colorés orange/bleu/marron, et nouvelle recette pour le "flint_and_steel")
+MAJ de "timeonline" (crashfix)
+Ajout du mod "broomstick" (nombreux bugfixs, permet d'utiliser un balai volant contre 210 de mana, pas possible pour l'instant, mais bientot ;))
+MAJ de "mobs" (bugfix des loups, ils sont maintenant apprivoisable, réduction du taux de spawn des Sand Monsters, Minotaurs et Yétis, bugfix des NPCs qui sont de nouveaux apprivoisables, bugfix des creepers)
 
 ---21/06/2015--- (Remerciements : mgl512/Le_Docteur, LeMagnesium/Mg, crabman77/crabman, Obani)
 MAJ de "tsm_pyramids/mummy.lua" (bugfix de la texture des mommies)
