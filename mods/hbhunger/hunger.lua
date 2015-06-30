@@ -389,49 +389,49 @@ end
 
 local exhausting_items = {
 	["helmet"] = {
-		["wood"] = 0,
-		["cactus"] = 1,
-		["steel"] = 2,
-		["bronze"] = 4,
-		["gold"] = 7,
-		["diamond"] = 10,
-		["mithril"] = 15
+		["wood"] = 1,
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
 	},
 	["chestplate"] = {
-		["wood"] = 2,
-		["cactus"] = 4,
-		["steel"] = 6,
-		["bronze"] = 7,
-		["gold"] = 11,
-		["diamond"] = 15,
-		["mithril"] = 18
+		["wood"] = 1,
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
 	},
 	["leggings"] = {
 		["wood"] = 1,
 		["cactus"] = 2,
-		["steel"] = 5,
-		["bronze"] = 8,
-		["gold"] = 10,
-		["diamond"] = 13,
-		["mithril"] = 16
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
 	},
 	["boots"] = {
 		["wood"] = 1,
-		["cactus"] = 1,
-		["steel"] = 3,
-		["bronze"] = 4,
-		["gold"] = 7,
-		["diamond"] = 10,
-		["mithril"] = 13
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
 	},
 	["shield"] = {
-		["wood"] = 4,
-		["cactus"] = 6,
-		["steel"] = 8,
-		["bronze"] = 10,
-		["gold"] = 13,
-		["diamond"] = 16,
-		["mithril"] = 20
+		["wood"] = 1,
+		["cactus"] = 2,
+		["steel"] = 4,
+		["bronze"] = 5,
+		["gold"] = 6,
+		["diamond"] = 3,
+		["mithril"] = 1
 	}
 }
 
