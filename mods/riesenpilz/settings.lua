@@ -1,6 +1,6 @@
 --This file contains configuration options for riesenpilz mod.
 
-riesenpilz.enable_mapgen = true
+riesenpilz.enable_mapgen = false
 
 --Generate giant mushroom biomes everywhere
 riesenpilz.always_generate = false
