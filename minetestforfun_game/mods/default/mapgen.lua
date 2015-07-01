@@ -51,18 +51,18 @@ function default.register_ores()
 		ore_type         = "blob",
 		ore              = "default:clay",
 		wherein          = {"default:sand"},
-		clust_scarcity   = 24*24*24,
+		clust_scarcity   = 24 * 24 * 24,
 		clust_size       = 7,
 		y_min            = -15,
 		y_max            = 0,
 		noise_threshhold = 0,
 		noise_params     = {
-			offset=0.35,
-			scale=0.2,
-			spread={x=5, y=5, z=5},
-			seed=-316,
-			octaves=1,
-			persist=0.5
+			offset = 0.35,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = -316,
+			octaves = 1,
+			persist = 0.5
 		},
 	})
 
@@ -70,18 +70,18 @@ function default.register_ores()
 		ore_type         = "blob",
 		ore              = "default:sand",
 		wherein          = {"default:stone"},
-		clust_scarcity   = 24*24*24,
+		clust_scarcity   = 24 * 24 * 24,
 		clust_size       = 7,
 		y_min            = -63,
 		y_max            = 4,
 		noise_threshhold = 0,
 		noise_params     = {
-			offset=0.35,
-			scale=0.2,
-			spread={x=5, y=5, z=5},
-			seed=2316,
-			octaves=1,
-			persist=0.5
+			offset = 0.35,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 2316,
+			octaves = 1,
+			persist = 0.5
 		},
 	})
 
@@ -89,18 +89,18 @@ function default.register_ores()
 		ore_type         = "blob",
 		ore              = "default:dirt",
 		wherein          = {"default:stone"},
-		clust_scarcity   = 24*24*24,
+		clust_scarcity   = 24 * 24 * 24,
 		clust_size       = 7,
 		y_min            = -63,
 		y_max            = 31000,
 		noise_threshhold = 0,
 		noise_params     = {
-			offset=0.35,
-			scale=0.2,
-			spread={x=5, y=5, z=5},
-			seed=17676,
-			octaves=1,
-			persist=0.5
+			offset = 0.35,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 17676,
+			octaves = 1,
+			persist = 0.5
 		},
 	})
 
@@ -108,18 +108,18 @@ function default.register_ores()
 		ore_type         = "blob",
 		ore              = "default:gravel",
 		wherein          = {"default:stone"},
-		clust_scarcity   = 24*24*24,
+		clust_scarcity   = 24 * 24 * 24,
 		clust_size       = 7,
 		y_min            = -31000,
 		y_max            = 31000,
 		noise_threshhold = 0,
 		noise_params     = {
-			offset=0.35,
-			scale=0.2,
-			spread={x=5, y=5, z=5},
-			seed=766,
-			octaves=1,
-			persist=0.5
+			offset = 0.35,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 766,
+			octaves = 1,
+			persist = 0.5
 		},
 	})
 
@@ -127,7 +127,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_coal",
 		wherein        = "default:stone",
-		clust_scarcity = 9*9*9,
+		clust_scarcity = 9 * 9 * 9,
 		clust_num_ores = 8,
 		clust_size     = 3,
 		y_min          = -30000,
@@ -149,7 +149,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_coal",
 		wherein        = "default:stone",
-		clust_scarcity = 24*24*24,
+		clust_scarcity = 24 * 24 * 24,
 		clust_num_ores = 27,
 		clust_size     = 6,
 		y_min          = -30000,
@@ -161,7 +161,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_iron",
 		wherein        = "default:stone",
-		clust_scarcity = 11*11*11,
+		clust_scarcity = 11 * 11 * 11,
 		clust_num_ores = 3,
 		clust_size     = 2,
 		y_min          = -15,
@@ -172,7 +172,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_iron",
 		wherein        = "default:stone",
-		clust_scarcity = 10*10*10,
+		clust_scarcity = 10 * 10 * 10,
 		clust_num_ores = 5,
 		clust_size     = 3,
 		y_min     = -63,
@@ -183,7 +183,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_iron",
 		wherein        = "default:stone",
-		clust_scarcity = 9*9*9,
+		clust_scarcity = 9 * 9 * 9,
 		clust_num_ores = 5,
 		clust_size     = 3,
 		y_min          = -30000,
@@ -195,7 +195,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_iron",
 		wherein        = "default:stone",
-		clust_scarcity = 25*25*25,
+		clust_scarcity = 25 * 25 * 25,
 		clust_num_ores = 27,
 		clust_size     = 6,
 		y_min          = -30000,
@@ -207,7 +207,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_mese",
 		wherein        = "default:stone",
-		clust_scarcity = 18*18*18,
+		clust_scarcity = 18 * 18 * 18,
 		clust_num_ores = 3,
 		clust_size     = 2,
 		y_min          = -255,
@@ -219,7 +219,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_mese",
 		wherein        = "default:stone",
-		clust_scarcity = 14*14*14,
+		clust_scarcity = 14 * 14 * 14,
 		clust_num_ores = 5,
 		clust_size     = 3,
 		y_min          = -1024,
@@ -231,7 +231,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:mese",
 		wherein        = "default:stone",
-		clust_scarcity = 20*20*20,
+		clust_scarcity = 20 * 20 * 20,
 		clust_num_ores = 3,
 		clust_size     = 2,
 		y_min          = -30000,
@@ -325,7 +325,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_gold",
 		wherein        = "default:stone",
-		clust_scarcity = 15*15*15,
+		clust_scarcity = 15 * 15 * 15,
 		clust_num_ores = 3,
 		clust_size     = 2,
 		y_min          = -255,
@@ -337,7 +337,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_gold",
 		wherein        = "default:stone",
-		clust_scarcity = 13*13*13,
+		clust_scarcity = 13 * 13 * 13,
 		clust_num_ores = 5,
 		clust_size     = 3,
 		y_min          = -30000,
@@ -349,7 +349,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_diamond",
 		wherein        = "default:stone",
-		clust_scarcity = 17*17*17,
+		clust_scarcity = 17 * 17 * 17,
 		clust_num_ores = 4,
 		clust_size     = 3,
 		y_min          = -512,
@@ -361,7 +361,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_diamond",
 		wherein        = "default:stone",
-		clust_scarcity = 15*15*15,
+		clust_scarcity = 15 * 15 * 15,
 		clust_num_ores = 4,
 		clust_size     = 3,
 		y_min          = -30000,
@@ -373,7 +373,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_copper",
 		wherein        = "default:stone",
-		clust_scarcity = 12*12*12,
+		clust_scarcity = 12 * 12 * 12,
 		clust_num_ores = 4,
 		clust_size     = 3,
 		y_min          = -63,
@@ -395,7 +395,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:stone_with_copper",
 		wherein        = "default:stone",
-		clust_scarcity = 10*10*10,
+		clust_scarcity = 10 * 10 * 10,
 		clust_num_ores = 5,
 		clust_size     = 3,
 		y_min          = -30000,
@@ -652,7 +652,7 @@ function default.register_mgv6_decorations()
 		noise_params = {
 			offset = -0.3,
 			scale = 0.7,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 354,
 			octaves = 3,
 			persist = 0.7
@@ -675,7 +675,7 @@ function default.register_mgv6_decorations()
 		noise_params = {
 			offset = -0.012,
 			scale = 0.024,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 230,
 			octaves = 3,
 			persist = 0.6
@@ -697,7 +697,7 @@ function default.register_mgv6_decorations()
 			noise_params = {
 				offset = 0,
 				scale = 0.007,
-				spread = {x=100, y=100, z=100},
+				spread = {x = 100, y = 100, z = 100},
 				seed = 329,
 				octaves = 3,
 				persist = 0.6
@@ -717,7 +717,7 @@ function default.register_mgv6_decorations()
 		noise_params = {
 			offset = 0,
 			scale = 0.035,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 329,
 			octaves = 3,
 			persist = 0.6
@@ -762,7 +762,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = -0.02,
 			scale = 0.03,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 436,
 			octaves = 3,
 			persist = 0.6
@@ -780,7 +780,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = -0.02,
 			scale = 0.03,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 19822,
 			octaves = 3,
 			persist = 0.6
@@ -798,7 +798,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = -0.02,
 			scale = 0.03,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 1220999,
 			octaves = 3,
 			persist = 0.6
@@ -816,7 +816,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = -0.02,
 			scale = 0.03,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 36662,
 			octaves = 3,
 			persist = 0.6
@@ -834,7 +834,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = -0.02,
 			scale = 0.03,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 1133,
 			octaves = 3,
 			persist = 0.6
@@ -852,7 +852,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = -0.02,
 			scale = 0.03,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 73133,
 			octaves = 3,
 			persist = 0.6
@@ -872,7 +872,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = 0.04,
 			scale = 0.08,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 66440,
 			octaves = 3,
 			persist = 0.6
@@ -890,7 +890,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = 0.02,
 			scale = 0.08,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 66440,
 			octaves = 3,
 			persist = 0.6
@@ -908,7 +908,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = 0,
 			scale = 0.08,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 66440,
 			octaves = 3,
 			persist = 0.6
@@ -926,7 +926,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = -0.02,
 			scale = 0.08,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 66440,
 			octaves = 3,
 			persist = 0.6
@@ -944,7 +944,7 @@ function default.register_decorations()
 		noise_params = {
 			offset = -0.04,
 			scale = 0.08,
-			spread = {x=100, y=100, z=100},
+			spread = {x = 100, y = 100, z = 100},
 			seed = 66440,
 			octaves = 3,
 			persist = 0.6
@@ -986,7 +986,7 @@ end
 -- facedir: 0/1/2/3 (head node facedir value)
 -- length: length of rainbow tail
 function default.make_nyancat(pos, facedir, length)
-	local tailvec = {x=0, y=0, z=0}
+	local tailvec = {x = 0, y = 0, z = 0}
 	if facedir == 0 then
 		tailvec.z = 1
 	elseif facedir == 1 then
@@ -1000,12 +1000,12 @@ function default.make_nyancat(pos, facedir, length)
 		facedir = 0
 		tailvec.z = 1
 	end
-	local p = {x=pos.x, y=pos.y, z=pos.z}
-	minetest.set_node(p, {name="default:nyancat", param2=facedir})
-	for i=1,length do
+	local p = {x = pos.x, y = pos.y, z = pos.z}
+	minetest.set_node(p, {name = "default:nyancat", param2 = facedir})
+	for i = 1, length do
 		p.x = p.x + tailvec.x
 		p.z = p.z + tailvec.z
-		minetest.set_node(p, {name="default:nyancat_rainbow", param2=facedir})
+		minetest.set_node(p, {name = "default:nyancat_rainbow", param2 = facedir})
 	end
 end
 
@@ -1018,16 +1018,16 @@ function default.generate_nyancats(minp, maxp, seed)
 	end
 	local y_min = math.max(minp.y, height_min)
 	local y_max = math.min(maxp.y, height_max)
-	local volume = (maxp.x-minp.x+1)*(y_max-y_min+1)*(maxp.z-minp.z+1)
+	local volume = (maxp.x - minp.x + 1) * (y_max - y_min + 1) * (maxp.z - minp.z + 1)
 	local pr = PseudoRandom(seed + 9324342)
-	local max_num_nyancats = math.floor(volume / (15*15*15))
-	for i=1,max_num_nyancats do
+	local max_num_nyancats = math.floor(volume / (16 * 16 * 16))
+	for i = 1,max_num_nyancats do
 		if pr:next(0, 1000) == 0 then
 			local x0 = pr:next(minp.x, maxp.x)
 			local y0 = pr:next(minp.y, maxp.y)
 			local z0 = pr:next(minp.z, maxp.z)
-			local p0 = {x=x0, y=y0, z=z0}
-			default.make_nyancat(p0, pr:next(0,3), pr:next(10,15))
+			local p0 = { x =x0, y = y0, z = z0}
+			default.make_nyancat(p0, pr:next(0, 3), pr:next(10, 15))
 		end
 	end
 end

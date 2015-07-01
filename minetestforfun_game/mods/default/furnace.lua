@@ -38,6 +38,10 @@ local inactive_formspec =
 	"list[current_name;dst;4.75,0.96;2,2;]"..
 	"list[current_player;main;0,4.25;8,1;]"..
 	"list[current_player;main;0,5.5;8,3;8]"..
+	"listring[current_name;dst]"..
+	"listring[current_player;main]"..
+	"listring[current_name;src]"..
+	"listring[current_player;main]"..
 	default.get_hotbar_bg(0, 4.25)
 
 --
