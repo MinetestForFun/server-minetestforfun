@@ -89,7 +89,7 @@ local np_fissure = {
 local np_temp = {
 	offset = 0,
 	scale = 1,
-	spread = {x=1024, y=1024, z=1024},
+	spread = {x=256, y=128, z=256},
 	seed = 9130,
 	octaves = 3,
 	persist = 0.5
@@ -100,7 +100,7 @@ local np_temp = {
 local np_humid = {
 	offset = 0,
 	scale = 1,
-	spread = {x=1024, y=1024, z=1024},
+	spread = {x=256, y=128, z=256},
 	seed = -55500,
 	octaves = 3,
 	persist = 0.5
