@@ -6,6 +6,7 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder /!\
 
 ---xx/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, mgl512/Le_Docteur, Gael-de-Sailly, crabman77/crabman)
+MAJ de "money" (utilisation d'une version plus récente et optimisée, nouvelles textures)
 MAJ de "3d_armor" (nombreux bugfixs, ajout d'un paramètre de "poids" augmentant la faim en fonction de l'armure portée, les valeurs seront disponibles sur le site bientôt)
 MAJ de "nether" (crashfix de la nourriture du nether)
 MAJ de "MFF_game" (ajout en avant-première de la "Dungeon Master's Blood Sword", l'épée la plus puissante du jeu- inflige 10 de dégats et plus résistante que celle en Mithril -, elle sera dans un futur proche accessible uniquement aux joueurs de la classe guerrier)
