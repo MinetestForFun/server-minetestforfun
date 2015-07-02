@@ -38,9 +38,9 @@ mobs:register_mob("mobs:dog", {
 		{name = "mobs:meat_raw", chance = 1, min = 2, max = 3,},
 	},
 	-- damaged by
-	water_damage = 1,
+	water_damage = 0,
 	lava_damage = 5,
-	light_damage = 2,
+	light_damage = 0,
 	-- Special for pet
 	owner = "",
 	order = "follow",
