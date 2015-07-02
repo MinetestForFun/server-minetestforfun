@@ -53,24 +53,19 @@ mobs:register_mob("mobs:wolf", {
 	-- right clicking with "raw meat" 4 times will tame the wolf into a friendly dog
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
-		if item:get_name() == "mobs:meat_raw" and self.raw_meat_count == 4 then
+		if item:get_name() == "mobs:meat_raw" then
 			clicker:get_inventory():remove_item("main", "mobs:meat_raw")
-			local ent = minetest.add_entity(self.object:getpos(), "mobs:dog")
-			self.object:remove()
-			local dog_obj = ent:get_luaentity()
-			if not dog_obj then return end
-			dog_obj.tamed = true
-			dog_obj.textures = {"mobs_dog.png"}
-			dog_obj.damage = 3
-			dog_obj.walk_velocity = 4
-			dog_obj.run_velocity = 4
-			if dog_obj.owner == "" then
-				self.owner = clicker:get_player_name()
-			else return end
-		elseif item:get_name() == "mobs:meat_raw" and self.raw_meat_count ~= 4 then
 			self.raw_meat_count = (self.raw_meat_count or 0) + 1
-		else return end
+			if self.raw_meat_count > 4 then
+				local ent = minetest.add_entity(self.object:getpos(), "mobs:dog")
+				self.object:remove()
+				local dog_obj = ent:get_luaentity()
+				if not dog_obj then return end
+				dog_obj.tamed = true
+				dog_obj.owner = clicker:get_player_name()
+			end
 		end
+	end
 })
 mobs:register_spawn("mobs:wolf", {"default:dirt_with_grass"}, 3, -1, 9500, 1, 31000)
 mobs:register_egg("mobs:wolf", "Wolf", "mobs_wolf_inv.png", 1)

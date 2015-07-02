@@ -3,7 +3,7 @@
 
 mobs:register_mob("mobs:dog", {
 	-- animal, monster, npc, barbarian
-	type = "monster",
+	type = "npc",
 	-- agressive, does 4 damage to player when hit
 	passive = false,
 	attacks_monsters = true,
@@ -35,10 +35,8 @@ mobs:register_mob("mobs:dog", {
 	step = 1.2,
 	view_range = 16,
 	drops = {
-	{name = "mobs:meat_raw",
-	chance = 1,
-	min = 2,
-	max = 3,},
+		{name = "mobs:meat_raw", chance = 1, min = 2, max = 3,},
+	},
 	-- damaged by
 	water_damage = 1,
 	lava_damage = 5,
