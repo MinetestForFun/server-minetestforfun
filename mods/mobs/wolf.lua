@@ -39,7 +39,7 @@ mobs:register_mob("mobs:wolf", {
 		chance = 4, min = 1, max = 1,},
 	},
 	-- damaged by
-	water_damage = 1,
+	water_damage = 0,
 	lava_damage = 5,
 	light_damage = 2,
 	-- model animation
