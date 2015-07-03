@@ -5,6 +5,12 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Nouveau mod pour les arcs, équilibré /!\
 /!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder /!\
 
+---Informations---
+=> MAJ de "mobs" le 03/07/2015:
+Le fonctionnement du dressage des NPCs a été fixé de nombreuses fois et est désormais le suivant : cliquez-droit avec 5 diamants un
+NPC pour qu'il devienne dressé. Cliquer-droit sur lui le fera alternativement se bloquer sur sa position ou se débloquer pour vous
+suivre.
+
 ---xx/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, mgl512/Le_Docteur, Gael-de-Sailly, crabman77/crabman)
 MAJ de "money" (utilisation d'une version plus récente et optimisée, nouvelles textures)
 MAJ de "3d_armor" (nombreux bugfixs, ajout d'un paramètre de "poids" augmentant la faim en fonction de l'armure portée, les valeurs seront disponibles sur le site bientôt)
