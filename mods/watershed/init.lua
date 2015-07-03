@@ -128,6 +128,44 @@ local np_strata = {
 	persist = 0.5
 }
 
+-- 3D noises for caves, from Valleys Mapgen mod by Gael-de-Sailly
+
+local np_cave1 = {
+	offset = 0,
+	scale = 1,
+	spread = {x = 32, y = 32, z = 32},
+	seed = -4640,
+	octaves = 4,
+	persist = 0.5
+}
+
+local np_cave2 = {
+	offset = 0,
+	scale = 1,
+	seed = 8804,
+	spread = {x = 32, y = 32, z = 32},
+	octaves = 4,
+	persist = 0.5
+}
+
+local np_cave3 = {
+	offset = 0,
+	scale = 1,
+	seed = -4780,
+	spread = {x = 32, y = 32, z = 32},
+	octaves = 4,
+	persist = 0.5
+}
+
+local np_cave4 = {
+	offset = 0,
+	scale = 1,
+	seed = -9969,
+	spread = {x = 32, y = 32, z = 32},
+	octaves = 4,
+	persist = 0.5
+}
+
 -- 2D noises
 
 -- 2D noise for mid terrain / streambed height
@@ -253,6 +291,10 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	nobj_humid   = nobj_humid   or minetest.get_perlin_map(np_humid, chulensxyz)
 	nobj_seam    = nobj_seam    or minetest.get_perlin_map(np_seam, chulensxyz)
 	nobj_strata  = nobj_strata  or minetest.get_perlin_map(np_strata, chulensxyz)
+	nobj_cave1   = nobj_cave1  or minetest.get_perlin_map(np_cave1, chulensxyz)
+	nobj_cave2   = nobj_cave2  or minetest.get_perlin_map(np_cave2, chulensxyz)
+	nobj_cave3   = nobj_cave3  or minetest.get_perlin_map(np_cave3, chulensxyz)
+	nobj_cave4   = nobj_cave4  or minetest.get_perlin_map(np_cave4, chulensxyz)
 	
 	nobj_mid     = nobj_mid     or minetest.get_perlin_map(np_mid, chulensxz)
 	nobj_base    = nobj_base    or minetest.get_perlin_map(np_base, chulensxz)
@@ -265,6 +307,10 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	local nvals_humid   = nobj_humid:get3dMap_flat(minposxyz)
 	local nvals_seam    = nobj_seam:get3dMap_flat(minposxyz)
 	local nvals_strata  = nobj_strata:get3dMap_flat(minposxyz)
+	local nvals_cave1   = nobj_cave1:get3dMap_flat(minposxyz)
+	local nvals_cave2   = nobj_cave2:get3dMap_flat(minposxyz)
+	local nvals_cave3   = nobj_cave3:get3dMap_flat(minposxyz)
+	local nvals_cave4   = nobj_cave4:get3dMap_flat(minposxyz)
 	
 	local nvals_mid     = nobj_mid:get2dMap_flat(minposxz)
 	local nvals_base    = nobj_base:get2dMap_flat(minposxz)
@@ -292,6 +338,10 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 				local n_humid = nvals_humid[nixyz]
 				local n_seam = nvals_seam[nixyz]
 				local n_strata = nvals_strata[nixyz]
+				local n_cave1 = nvals_cave1[nixyz]
+				local n_cave2 = nvals_cave2[nixyz]
+				local n_cave3 = nvals_cave3[nixyz]
+				local n_cave4 = nvals_cave4[nixyz]
 				
 				local n_absmid = math.abs(nvals_mid[nixz])
 				local n_absbase = math.abs(nvals_base[nixz])
@@ -317,7 +367,8 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 				local bergdep = math.abs(n_seam) * BERGDEP -- iceberg depth
 				
 				local nofis = false -- set fissure bool
-				if math.abs(n_fissure) >= TFIS then
+				if math.abs(n_fissure) >= TFIS 
+				and n_cave1 ^ 2 + n_cave2 ^ 2 + n_cave3 ^ 2 + n_cave4 ^ 2 >= 0.07 then -- from Valleys Mapgen
 					nofis = true
 				end
 				
@@ -496,7 +547,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 						end
 					elseif y >= YWAT - bergdep and y <= YWAT + bergdep / 8 -- icesheet
 					and n_temp < ICETET and density < tstone
-					and math.abs(n_fissure) > 0.01 then
+					and nofis then
 						data[vi] = c_ice
 						under[si] = 12
 						stable[si] = 0
