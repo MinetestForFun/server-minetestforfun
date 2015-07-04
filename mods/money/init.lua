@@ -169,8 +169,8 @@ minetest.register_node("money:shop", {
 	sounds = default.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	after_place_node = function(pos, placer)
-	local meta = minetest.get_meta(pos)
-	meta:set_string("owner", placer:get_player_name())
+		local meta = minetest.get_meta(pos)
+		meta:set_string("owner", placer:get_player_name())
 		meta:set_string("infotext", "Untuned Shop (owned by " .. placer:get_player_name() .. ")")
 	end,
 	on_construct = function(pos)
@@ -655,4 +655,3 @@ minetest.register_node("money:admin_barter_shop", {
 --End.
 
 minetest.register_alias("admin_barter_shop", "money:admin_barter_shop")
-
