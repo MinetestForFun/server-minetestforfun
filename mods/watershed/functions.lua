@@ -221,137 +221,7 @@ if SINGLENODE then
 		minetest.set_mapgen_params({mgname="singlenode", flags="nolight"})
 	end)
 
-	-- Spawn player function. Requires chunksize = 80 nodes (the default)
-
-	function spawnplayer(player)
-		local TERCEN = -128
-		local TERSCA = 512
-		local XLSAMP = 0.1
-		local BASAMP = 0.3
-		local MIDAMP = 0.1
-		local CANAMP = 0.4
-		local ATANAMP = 1.1
-		local BLENEXP = 2
-		local xsp
-		local ysp
-		local zsp
-
-		local np_terrain = {
-			offset = 0,
-			scale = 1,
-			spread = {x=384, y=192, z=384},
-			seed = 593,
-			octaves = 5,
-			persist = 0.67
-		}
-		local np_mid = {
-			offset = 0,
-			scale = 1,
-			spread = {x=768, y=768, z=1},
-			seed = 85546,
-			octaves = 5,
-			persist = 0.5
-		}
-		local np_base = {
-			offset = 0,
-			scale = 1,
-			spread = {x=4096, y=4096, z=1},
-			seed = 8890,
-			octaves = 3,
-			persist = 0.33
-		}
-		local np_xlscale = {
-			offset = 0,
-			scale = 1,
-			spread = {x=8192, y=8192, z=1},
-			seed = -72,
-			octaves = 3,
-			persist = 0.33
-		}
-
-		local nobj_terrain = nil
-		local nobj_mid     = nil
-		local nobj_base    = nil
-		local nobj_xlscale = nil
-
-		for chunk = 1, 64 do
-			print ("[watershed] searching for spawn "..chunk)
-			local x0 = 80 * math.random(-32, 32) - 32
-			local z0 = 80 * math.random(-32, 32) - 32
-			local y0 = -32
-			local x1 = x0 + 79
-			local z1 = z0 + 79
-			local y1 = 47
-			local sidelen = 80
-			local chulensxyz = {x=sidelen, y=sidelen+2, z=sidelen}
-			local chulensxz = {x=sidelen, y=sidelen, z=1}
-			local minposxyz = {x=x0, y=y0-1, z=z0}
-			local minposxz = {x=x0, y=z0}
-
-			nobj_terrain = nobj_terrain or minetest.get_perlin_map(np_terrain, chulensxyz)
-			nobj_mid     = nobj_mid     or minetest.get_perlin_map(np_mid, chulensxz)
-			nobj_base    = nobj_base    or minetest.get_perlin_map(np_base, chulensxz)
-			nobj_xlscale = nobj_xlscale or minetest.get_perlin_map(np_xlscale, chulensxz)
-
-			local nvals_terrain = nobj_terrain:get3dMap_flat(minposxyz)
-			local nvals_mid     = nobj_mid:get2dMap_flat(minposxz)
-			local nvals_base    = nobj_base:get2dMap_flat(minposxz)
-			local nvals_xlscale = nobj_xlscale:get2dMap_flat(minposxz)
-
-			local nixz = 1
-			local nixyz = 1
-			for z = z0, z1 do
-				for y = y0, y1 do
-					for x = x0, x1 do
-						local n_absterrain = math.abs(nvals_terrain[nixyz])
-						local n_absmid = math.abs(nvals_mid[nixz])
-						local n_absbase = math.abs(nvals_base[nixz])
-						local n_xlscale = nvals_xlscale[nixz]
-						
-						local n_invbase = (1 - n_absbase)
-						local terblen = (math.max(n_invbase, 0)) ^ BLENEXP
-						local grad = math.atan((TERCEN - y) / TERSCA) * ATANAMP
-						local densitybase = n_invbase * BASAMP + n_xlscale * XLSAMP + grad
-						local densitymid = n_absmid * MIDAMP + densitybase
-						local canexp = 0.5 + terblen * 0.5
-						local canamp = terblen * CANAMP
-						local density = n_absterrain ^ canexp * canamp * n_absmid + densitymid
-						
-						if y >= 1 and density > -0.005 and density < 0 then
-							ysp = y + 1
-							xsp = x
-							zsp = z
-							break
-						end
-						nixz = nixz + 1
-						nixyz = nixyz + 1
-					end
-					if ysp then
-						break
-					end
-					nixz = nixz - 80
-				end
-				if ysp then
-					break
-				end
-				nixz = nixz + 80
-			end
-			if ysp then
-				break
-			end
-		end
-		print ("[watershed] spawn player ("..xsp.." "..ysp.." "..zsp..")")
-		player:setpos({x=xsp, y=ysp, z=zsp})
-	end
-
-	minetest.register_on_newplayer(function(player)
-		spawnplayer(player)
-	end)
-
-	minetest.register_on_respawnplayer(function(player)
-		spawnplayer(player)
-		return true
-	end)
+	-- Spawn player function is useless in minetestforfun
 end
 
 -- ABM
@@ -371,11 +241,7 @@ minetest.register_abm({
 
 -- Appletree sapling
 
-minetest.register_abm({
-	nodenames = {"watershed:appling"},
-	interval = 57,
-	chance = 3,
-	action = function(pos, node)
+	function default.grow_tree(pos)
 		local x = pos.x
 		local y = pos.y
 		local z = pos.z
@@ -389,16 +255,11 @@ minetest.register_abm({
 		vm:set_data(data)
 		vm:write_to_map()
 		vm:update_map()
-	end,
-})
+	end
 
 -- Pine sapling
 
-minetest.register_abm({
-	nodenames = {"watershed:pineling"},
-	interval = 59,
-	chance = 3,
-	action = function(pos, node)
+	function default.grow_pine_tree(pos)
 		local x = pos.x
 		local y = pos.y
 		local z = pos.z
@@ -412,39 +273,13 @@ minetest.register_abm({
 		vm:set_data(data)
 		vm:write_to_map()
 		vm:update_map()
-	end,
-})
+	end
 
--- Acacia sapling
-
-minetest.register_abm({
-	nodenames = {"watershed:acacialing"},
-	interval = 61,
-	chance = 3,
-	action = function(pos, node)
-		local x = pos.x
-		local y = pos.y
-		local z = pos.z
-		local vm = minetest.get_voxel_manip()
-		local pos1 = {x=x-4, y=y-3, z=z-4}
-		local pos2 = {x=x+4, y=y+6, z=z+4}
-		local emin, emax = vm:read_from_map(pos1, pos2)
-		local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
-		local data = vm:get_data()
-		watershed_acaciatree(x, y, z, area, data)
-		vm:set_data(data)
-		vm:write_to_map()
-		vm:update_map()
-	end,
-})
+-- Acacia sapling is already defined in Moretrees
 
 -- Jungletree sapling
 
-minetest.register_abm({
-	nodenames = {"watershed:jungling"},
-	interval = 63,
-	chance = 3,
-	action = function(pos, node)
+	function default.grow_jungle_tree(pos)
 		local x = pos.x
 		local y = pos.y
 		local z = pos.z
@@ -458,5 +293,4 @@ minetest.register_abm({
 		vm:set_data(data)
 		vm:write_to_map()
 		vm:update_map()
-	end,
-})
+	end
