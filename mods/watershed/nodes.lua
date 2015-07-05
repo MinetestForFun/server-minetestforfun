@@ -2,7 +2,7 @@ minetest.register_alias("watershed:appleleaf", "default:leaves")
 
 minetest.register_alias("watershed:appling", "default:sapling")
 
-minetest.register_alias("watershed:acaciatree", "moretrees:acacia_tree")
+minetest.register_alias("watershed:acaciatree", "moretrees:acacia_trunk")
 
 minetest.register_alias("watershed:acacialeaf", "moretrees:acacia_leaves")
 
@@ -177,20 +177,6 @@ minetest.register_craft({
         {"default:glass", "watershed:luxcrystal", "default:glass"},
         {"default:glass", "default:glass", "default:glass"},
     },
-})
-
-minetest.register_craft({
-	output = "watershed:acaciawood 4",
-	recipe = {
-		{"watershed:acaciatree"},
-	}
-})
-
-minetest.register_craft({
-	output = "watershed:pinewood 4",
-	recipe = {
-		{"watershed:pinetree"},
-	}
 })
 
 -- Buckets

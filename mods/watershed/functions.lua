@@ -130,41 +130,9 @@ function watershed_jungletree(x, y, z, area, data)
 end
 
 function watershed_acaciatree(x, y, z, area, data)
-	local c_wsactree = minetest.get_content_id("watershed:acaciatree")
-	local c_wsacleaf = minetest.get_content_id("watershed:acacialeaf")
-	for j = -3, 6 do
-		if j == 6 then
-			for i = -4, 4 do
-			for k = -4, 4 do
-				if not (i == 0 or k == 0) then
-					if math.random(7) ~= 2 then
-						local vil = area:index(x + i, y + j, z + k)
-						data[vil] = c_wsacleaf
-					end
-				end
-			end
-			end
-		elseif j == 5 then
-			for i = -2, 2, 4 do
-			for k = -2, 2, 4 do
-				local vit = area:index(x + i, y + j, z + k)
-				data[vit] = c_wsactree
-			end
-			end
-		elseif j == 4 then
-			for i = -1, 1 do
-			for k = -1, 1 do
-				if math.abs(i) + math.abs(k) == 2 then
-					local vit = area:index(x + i, y + j, z + k)
-					data[vit] = c_wsactree
-				end
-			end
-			end
-		else
-			local vit = area:index(x, y + j, z)
-			data[vit] = c_wsactree
-		end
-	end
+	local c_sapling = minetest.get_content_id("moretrees:acacia_sapling_ongen")
+	local vi = area:index(x, y, z)
+	data[vi] = c_sapling
 end
 
 function watershed_flower(data, vi, noise)
