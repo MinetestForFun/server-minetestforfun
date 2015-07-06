@@ -113,7 +113,7 @@ end
 local path = minetest.get_modpath("nether")
 dofile(path.."/weird_mapgen_noise.lua")
 dofile(path.."/items.lua")
-dofile(path.."/furnace.lua")
+--dofile(path.."/furnace.lua")
 dofile(path.."/pearl.lua")
 
 local function table_contains(t, v)
@@ -132,9 +132,9 @@ local function do_ws_func(depth, a, x)
 	local n = x/(16*SIZE)
 	local y = 0
 	for k=1,depth do
-		y = y + SIZE*(math.sin(math.pi * k^a * n)/(math.pi * k^a))
+		y = y + math.sin(math.pi * k^a * n)/(k^a)
 	end
-	return y
+	return SIZE*y/math.pi
 end
 
 local chunksize = minetest.setting_get("chunksize") or 5
