@@ -27,8 +27,8 @@ if not rawget(_G, "jit") and package.config:sub(1, 1) == "/" then
 	ie.package.path = ie.package.path..
 			";/usr/share/lua/5.1/?.lua"..
 			";/usr/share/lua/5.1/?/init.lua"
-if not rawget(_G, "jit") and package.config:sub(1, 1) == "/" then
 	ie.package.path = ie.package.path..
+			";/usr/lib/lua/5.1/?.so"
 end
 
 -- Temporarily set require so that LuaIRC can access it
