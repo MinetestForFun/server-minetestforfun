@@ -1,4 +1,4 @@
-local time_interval = 1.0
+local time_interval = 300.0
 local fifo_path = "/tmp/mt_players_fifo"
 
 function players_data()
