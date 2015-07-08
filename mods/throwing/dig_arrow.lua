@@ -69,8 +69,10 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 	if self.lastpos.x~=nil then
 		if node.name ~= "air" then
 			self.object:remove()
-			if node.diggable ~= false then
-				minetest.dig_node(pos)
+			if minetest.get_item_group(node.name, "unbreakable") == 0
+				and areas:canInteract(self.lastpos, self.player:get_player_name())
+				and node.diggable ~= false then
+				minetest.set_node(pos, {name = "air"})
 			end
 			local toughness = 0.65
 			if math.random() < toughness then
