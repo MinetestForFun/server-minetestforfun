@@ -52,5 +52,5 @@ mobs:register_mob("mobs:creeper", {
 		speed_normal = 15,		speed_run = 15,
 	},
 })
-mobs:register_spawn("mobs:creeper", {"default:dirt_with_grass"}, 20, 8, 12000, 1, 31000)
+mobs:register_spawn("mobs:creeper", {"default:dirt_with_grass"}, 20, 8, 18000, 1, 31000)
 mobs:register_egg("mobs:creeper", "Creeper", "mobs_creeper_inv.png", 1)
