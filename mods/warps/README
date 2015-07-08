@@ -1,0 +1,37 @@
+
+"Warps" - a simple warp mod for minetest.
+
+========
+
+/setwarp [name]
+/delwarp [name]
+/warp [name]
+/listwarps
+
+priv: warp_admin - set/change/delete warps
+priv: warp_user  - list, and use warps
+
+warps are stored in the world folder file "warps.txt".
+
+A warpstone can be given or found in the creative inventory (item
+id: warps:warpstone). This warpstone can be placed on the ground
+and be programmed to warp players who punch it to a certain warp
+location (one of the warps in /listwarps). Right-clicking the item
+as a warp_admin user will allow you to program the warpstone. The
+warpstone can be removed by shift-punching the warp stone.
+
+All warps are delayed by ~5 seconds. You have to stand still for
+that duration, otherwise the warp will be cancelled. This may avoid
+warp spamming and warping out of combat a bit. There's a bit
+of variation in time due to the timer resolution in minetest
+being rather large.
+
+========
+
+Copyright (C) 2015 - Auke Kok <sofar@foo-projects.org>
+
+"warps" is free software; you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation; either version 2.1
+of the license, or (at your option) any later version.
+
