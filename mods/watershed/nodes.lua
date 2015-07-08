@@ -20,17 +20,7 @@ minetest.register_alias("watershed:jungling", "default:junglesapling")
 
 minetest.register_alias("watershed:dirt", "default:dirt")
 
-minetest.register_node("watershed:icydirt", {
-	description = "Icy dirt",
-	tiles = {"watershed_icydirt.png"},
-	is_ground_content = false,
-	groups = {crumbly=1},
-	drop = "default:dirt",
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_snow_footstep", gain=0.15},
-		dug = {name="default_snow_footstep", gain=0.45},
-	}),
-})
+minetest.register_alias("watershed:icydirt", "default:dirt_with_grass")
 
 minetest.register_alias("watershed:grass", "default:dirt_with_grass")
 
@@ -42,23 +32,7 @@ minetest.register_alias("watershed:stone", "default:stone")
 
 minetest.register_alias("watershed:cactus", "default:cactus")
 
-minetest.register_node("watershed:goldengrass", {
-	description = "Golden Grass",
-	drawtype = "plantlike",
-	tiles = {"watershed_goldengrass.png"},
-	inventory_image = "watershed_goldengrass.png",
-	wield_image = "watershed_goldengrass.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	is_ground_content = false,
-	groups = {snappy=3,flammable=3,flora=1,attached_node=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
-	},
-})
+minetest.register_alias("watershed:goldengrass", "default:dry_shrub")
 
 minetest.register_node("watershed:drygrass", {
 	description = "Dry Dirt",
@@ -71,36 +45,9 @@ minetest.register_node("watershed:drygrass", {
 	}),
 })
 
-minetest.register_node("watershed:permafrost", {
-	description = "Permafrost",
-	tiles = {"watershed_permafrost.png"},
-	is_ground_content = false,
-	groups = {crumbly=1},
-	drop = "default:dirt",
-	sounds = default.node_sound_dirt_defaults(),
-})
+minetest.register_alias("watershed:permafrost", "default:dirt")
 
-minetest.register_node("watershed:vine", {
-	description = "Jungletree vine",
-	drawtype = "airlike",
-	paramtype = "light",
-	walkable = false,
-	climbable = true,
-	pointable = false,
-	diggable = false,
-	buildable_to = true,
-	is_ground_content = false,
-	groups = {not_in_creative_inventory=1},
-})
-
-minetest.register_node("watershed:freshice", {
-	description = "Fresh ice",
-	tiles = {"watershed_freshice.png"},
-	is_ground_content = false,
-	paramtype = "light",
-	groups = {cracky=3},
-	sounds = default.node_sound_glass_defaults(),
-})
+minetest.register_alias("watershed:freshice", "default:ice")
 
 minetest.register_alias("watershed:cloud", "default:cloud")
 
@@ -142,7 +89,6 @@ minetest.register_alias("watershed:acaciawood", "moretrees:acacia_wood")
 minetest.register_alias("watershed:pinewood", "default:pinewood")
 
 
-
 minetest.register_alias("watershed:freshwater", "default:river_water_source")
 
 minetest.register_alias("watershed:freshwaterflow", "default:river_water_flowing")
@@ -181,13 +127,7 @@ minetest.register_craft({
 
 -- Buckets
 
-bucket.register_liquid(
-	"watershed:freshwater",
-	"watershed:freshwaterflow",
-	"watershed:bucket_freshwater",
-	"watershed_bucketfreshwater.png",
-	"River Water Bucket"
-)
+minetest.register_alias("watershed:bucket_freshwater", "bucket:bucket_frashwater")
 
 minetest.register_alias("watershed:bucket_lava", "bucket:bucket_lava")
 
