@@ -52,6 +52,6 @@ mobs:register_mob("mobs:dirt_monster", {
 	},
 })
 -- spawn on normal;grey dirt between -1 and 5 light, 1 in 7000 change, 1 dirt monster in area up to 31000 in height
-mobs:register_spawn("mobs:dirt_monster", {"default:dirt_with_grass"}, 5, -1, 9500, 1, 31000)
+mobs:register_spawn("mobs:dirt_monster", {"default:dirt_with_grass", "watershed:drygrass"}, 5, -1, 9500, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:dirt_monster", "Dirt Monster", "default_dirt.png", 1)

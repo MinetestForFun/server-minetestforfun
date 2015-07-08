@@ -1,18 +1,20 @@
-# Reduces the amount of resources and fps used by snowfall.
-lighter_snowfall = false
-# Enables smooth transition of biomes
-smooth_biomes = true
-# The minumum height a snow biome will generate.
-min_height = 50		-- Modif MFF
-# Disable this to prevent sleds from being riden.
-sleds = true
+# Enables falling snow.
+enable_snowfall = true
 # Disable this to stop snow from being smoothed.
 smooth_snow = true
 # Disable this to remove christmas saplings from being found.
 christmas_content = true
-# Whether you are running a legacy minetest version (auto-detected).
-legacy = false
-# Enables debug output.
+# The minumum height a snow biome will generate (mgv7)
+min_height = 50
+# The gravity of thrown snowballs
+snowball_gravity = 0.91743119266055
+# Disable this to prevent sleds from being riden.
+sleds = true
+# Enables smooth transition of biomes (mgv6)
+smooth_biomes = true
+# Reduces the amount of resources and fps used by snowfall.
+lighter_snowfall = false
+# How fast players throw snowballs
+snowball_velocity = 19
+# Enables debug output. Currently it only prints mgv6 info.
 debug = false
-# Enables falling snow.
-enable_snowfall = true

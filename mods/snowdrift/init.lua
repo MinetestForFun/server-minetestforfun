@@ -26,14 +26,14 @@ local THOVER = false -- Instead use a temperature and humidity system with
 local SEEDT = 112 -- 112 These are default noise parameters from snow mod by Splizard
 local OCTAT = 3	 -- 3		use these for snowfall in those snow biomes
 local PERST = 0.5 -- 0.5
-local SCALT = 150 -- 150
+local SCALT = 256 -- 150, modified for Watershed
 local TET = -0.53 -- -0.53 Temperature threshold for snow. Negative because here this noise is temperature, in snow mod it's coldness
 
 -- Humidity noise parameters
 local SEEDH = 72384 -- 72384 These are default noise parameters for mapgen V6 humidity
 local OCTAH = 4 -- 4		note these cause rain in deserts
 local PERSH = 0.66 -- 0.66
-local SCALH = 500 -- 500
+local SCALH = 256 -- 500, modified for Watershed
 local HUT = 0 -- Humidity threshold for rain
 
 -- Stuff

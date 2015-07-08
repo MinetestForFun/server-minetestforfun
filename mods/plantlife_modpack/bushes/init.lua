@@ -199,7 +199,8 @@ plantslib:register_generate_plant({
 		"default:dirt_with_grass",
 		"stoneage:grass_with_silex",
 		"sumpf:peat",
-		"sumpf:sumpf"
+		"sumpf:sumpf",
+		"watershed:drygrass"
 	},
     max_count = 15,  --10,15
     rarity = 101 - 4,  --3,4
@@ -244,7 +245,8 @@ plantslib:register_generate_plant({
 		"default:dirt_with_grass",
 		"stoneage:grass_with_silex",
 		"sumpf:peat",
-		"sumpf:sumpf"
+		"sumpf:sumpf",
+		"watershed:drygrass"
 	},
     max_count = 55,  --10,15
     rarity = 101 - 4,  --3,4
