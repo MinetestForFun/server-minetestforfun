@@ -26,6 +26,7 @@ load_mod_worldedge = true
 load_mod_maze = true
 load_mod_compassgps = true
 
+load_mod_watershed = true
 load_mod_bushes_classic = true
 load_mod_flowers_plus = true
 load_mod_junglegrass = true
