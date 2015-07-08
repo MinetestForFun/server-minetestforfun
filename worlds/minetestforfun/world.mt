@@ -211,3 +211,4 @@ load_mod_chatplus = true
 load_mod_future_ban = false
 load_mod_textures = false
 load_mod_snowdrift = false
+load_mod_warps = true
