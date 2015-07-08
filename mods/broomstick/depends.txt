@@ -1,1 +1,4 @@
 mana
+default
+mobs
+farming

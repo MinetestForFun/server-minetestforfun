@@ -44,6 +44,8 @@ mobs:register_mob("mobs:minotaur", {
 		chance = 2, min = 1, max = 2,},
 		{name = "mobs:minotaur_horn",
 		chance = 4, min = 1, max = 2,},
+		{name = "mobs:minotaur_fur",
+		chance = 1, min = 1, max = 3,},
 	},
 	water_damage = 1,
 	lava_damage = 5,
@@ -72,4 +74,23 @@ minetest.register_craftitem("mobs:minotaur_horn", {
 	description = "Minotaur Horn",
 	inventory_image = "mobs_minotaur_horn.png",
 	groups = {magic = 1},
+})
+
+minetest.register_craftitem("mobs:minotaur_fur", {
+	description = "Minotaur Fur",
+	inventory_image = "mobs_minotaur_fur.png",
+	groups = {magic = 1},
+})
+
+minetest.register_craftitem("mobs:minautor_lots_of_fur", {
+	description = "Lot of Minotaur Fur",
+	inventory_image = "mobs_minautor_lots_of_fur.png",
+	groups = {magic = 1},
+})
+
+minetest.register_craft({
+	output = "mobs:minautor_lots_of_fur",
+	recipe = {{"mobs:minautor_fur", "mobs:minautor_fur"},
+		{"mobs:minautor_fur", "mobs:minautor_fur"},
+	},
 })
