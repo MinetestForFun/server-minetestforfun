@@ -56,12 +56,12 @@ local perlin_scale = 100
 local temperature_seeddiff = 112
 local temperature_octaves = 3
 local temperature_persistence = 0.5
-local temperature_scale = 150
+local temperature_scale = 256
 
-local humidity_seeddiff = 9130
-local humidity_octaves = 3
-local humidity_persistence = 0.5
-local humidity_scale = 250
+local humidity_seeddiff = 72384
+local humidity_octaves = 4
+local humidity_persistence = 0.66
+local humidity_scale = 256
 
 local time_scale = 1
 local time_speed = tonumber(minetest.setting_get("time_speed"))

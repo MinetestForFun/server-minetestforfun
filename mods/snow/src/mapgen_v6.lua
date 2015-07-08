@@ -14,7 +14,7 @@ local np_default = {
 local np_cold = {
 	offset = 0,
 	scale = 1,
-	spread = {x=150, y=150, z=150},
+	spread = {x=256, y=256, z=256},
 	seed = 112,
 	octaves = 3,
 	persist = 0.5

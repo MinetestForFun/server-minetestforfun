@@ -60,158 +60,162 @@ local flora = {
 	DUGCHA = 16, -- Dune grass
 }
 
+local np = {
+-- pack it in a single table to avoid "function has more than 60 upvalues"
+
 -- 3D noises
 
 -- 3D noise for terrain
 
-local np_terrain = {
+terrain = {
 	offset = 0,
 	scale = 1,
 	spread = {x=384, y=192, z=384},
 	seed = 593,
 	octaves = 5,
 	persist = 0.67
-}
+},
 
 -- 3D noise for fissures
 
-local np_fissure = {
+fissure = {
 	offset = 0,
 	scale = 1,
 	spread = {x=256, y=512, z=256},
 	seed = 20099,
 	octaves = 5,
 	persist = 0.5
-}
-
--- 3D noise for temperature
-
-local np_temp = {
-	offset = 0,
-	scale = 1,
-	spread = {x=256, y=128, z=256},
-	seed = 9130,
-	octaves = 3,
-	persist = 0.5
-}
-
--- 3D noise for humidity
-
-local np_humid = {
-	offset = 0,
-	scale = 1,
-	spread = {x=256, y=128, z=256},
-	seed = -55500,
-	octaves = 3,
-	persist = 0.5
-}
+},
 
 -- 3D noise for ore seam networks
 
-local np_seam = {
+seam = {
 	offset = 0,
 	scale = 1,
 	spread = {x=512, y=512, z=512},
 	seed = -992221,
 	octaves = 2,
 	persist = 0.5
-}
+},
 
 -- 3D noise for rock strata inclination
 
-local np_strata = {
+strata = {
 	offset = 0,
 	scale = 1,
 	spread = {x=512, y=512, z=512},
 	seed = 92219,
 	octaves = 3,
 	persist = 0.5
-}
+},
 
 -- 3D noises for caves, from Valleys Mapgen mod by Gael-de-Sailly
 
-local np_cave1 = {
+cave1 = {
 	offset = 0,
 	scale = 1,
 	spread = {x = 32, y = 32, z = 32},
 	seed = -4640,
 	octaves = 4,
 	persist = 0.5
-}
+},
 
-local np_cave2 = {
+cave2 = {
 	offset = 0,
 	scale = 1,
 	seed = 8804,
 	spread = {x = 32, y = 32, z = 32},
 	octaves = 4,
 	persist = 0.5
-}
+},
 
-local np_cave3 = {
+cave3 = {
 	offset = 0,
 	scale = 1,
 	seed = -4780,
 	spread = {x = 32, y = 32, z = 32},
 	octaves = 4,
 	persist = 0.5
-}
+},
 
-local np_cave4 = {
+cave4 = {
 	offset = 0,
 	scale = 1,
 	seed = -9969,
 	spread = {x = 32, y = 32, z = 32},
 	octaves = 4,
 	persist = 0.5
-}
+},
 
 -- 2D noises
 
 -- 2D noise for mid terrain / streambed height
 
-local np_mid = {
+mid = {
 	offset = 0,
 	scale = 1,
 	spread = {x=768, y=768, z=768},
 	seed = 85546,
 	octaves = 5,
 	persist = 0.5
-}
+},
 
 -- 2D noise for base terrain / riverbed height
 
-local np_base = {
+base = {
 	offset = 0,
 	scale = 1,
 	spread = {x=4096, y=4096, z=4096},
 	seed = 8890,
 	octaves = 3,
 	persist = 0.33
-}
+},
 
 -- 2D noise for extra large scale height variation
 
-local np_xlscale = {
+xlscale = {
 	offset = 0,
 	scale = 1,
 	spread = {x=8192, y=8192, z=8192},
 	seed = -72,
 	octaves = 3,
 	persist = 0.33
-}
+},
 
 -- 2D noise for magma surface
 
-local np_magma = {
+magma = {
 	offset = 0,
 	scale = 1,
 	spread = {x=128, y=128, z=128},
 	seed = -13,
 	octaves = 2,
 	persist = 0.5
-}
+},
 
+-- 2D noise for temperature, the same than in Plantlife and Snowdrift
+
+temp = {
+	offset = 0,
+	scale = 1,
+	spread = {x=256, y=256, z=256},
+	seed = 112,
+	octaves = 3,
+	persist = 0.5
+},
+
+-- 2D noise for humidity
+
+humid = {
+	offset = 0,
+	scale = 1,
+	spread = {x=256, y=256, z=256},
+	seed = 72384,
+	octaves = 4,
+	persist = 0.66
+},
+
+}
 
 -- Stuff
 
@@ -219,15 +223,19 @@ local np_magma = {
 
 local nobj_terrain = nil
 local nobj_fissure = nil
-local nobj_temp    = nil
-local nobj_humid   = nil
 local nobj_seam    = nil
 local nobj_strata  = nil
+local nobj_cave1   = nil
+local nobj_cave2   = nil
+local nobj_cave3   = nil
+local nobj_cave4   = nil
 	
 local nobj_mid     = nil
 local nobj_base    = nil
 local nobj_xlscale = nil
 local nobj_magma   = nil
+local nobj_temp    = nil
+local nobj_humid   = nil
 
 dofile(minetest.get_modpath("watershed").."/nodes.lua")
 dofile(minetest.get_modpath("watershed").."/functions.lua")
@@ -285,26 +293,24 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	local minposxyz = {x=x0, y=y0-1, z=z0}
 	local minposxz = {x=x0, y=z0} -- here x = map x, y = map z
 	-- 3D and 2D noise objects created once on first mapchunk generation only
-	nobj_terrain = nobj_terrain or minetest.get_perlin_map(np_terrain, chulensxyz)
-	nobj_fissure = nobj_fissure or minetest.get_perlin_map(np_fissure, chulensxyz)
-	nobj_temp    = nobj_temp    or minetest.get_perlin_map(np_temp, chulensxyz)
-	nobj_humid   = nobj_humid   or minetest.get_perlin_map(np_humid, chulensxyz)
-	nobj_seam    = nobj_seam    or minetest.get_perlin_map(np_seam, chulensxyz)
-	nobj_strata  = nobj_strata  or minetest.get_perlin_map(np_strata, chulensxyz)
-	nobj_cave1   = nobj_cave1  or minetest.get_perlin_map(np_cave1, chulensxyz)
-	nobj_cave2   = nobj_cave2  or minetest.get_perlin_map(np_cave2, chulensxyz)
-	nobj_cave3   = nobj_cave3  or minetest.get_perlin_map(np_cave3, chulensxyz)
-	nobj_cave4   = nobj_cave4  or minetest.get_perlin_map(np_cave4, chulensxyz)
+	nobj_terrain = nobj_terrain or minetest.get_perlin_map(np.terrain, chulensxyz)
+	nobj_fissure = nobj_fissure or minetest.get_perlin_map(np.fissure, chulensxyz)
+	nobj_seam    = nobj_seam    or minetest.get_perlin_map(np.seam, chulensxyz)
+	nobj_strata  = nobj_strata  or minetest.get_perlin_map(np.strata, chulensxyz)
+	nobj_cave1   = nobj_cave1  or minetest.get_perlin_map(np.cave1, chulensxyz)
+	nobj_cave2   = nobj_cave2  or minetest.get_perlin_map(np.cave2, chulensxyz)
+	nobj_cave3   = nobj_cave3  or minetest.get_perlin_map(np.cave3, chulensxyz)
+	nobj_cave4   = nobj_cave4  or minetest.get_perlin_map(np.cave4, chulensxyz)
 	
-	nobj_mid     = nobj_mid     or minetest.get_perlin_map(np_mid, chulensxz)
-	nobj_base    = nobj_base    or minetest.get_perlin_map(np_base, chulensxz)
-	nobj_xlscale = nobj_xlscale or minetest.get_perlin_map(np_xlscale, chulensxz)
-	nobj_magma   = nobj_magma   or minetest.get_perlin_map(np_magma, chulensxz)
+	nobj_mid     = nobj_mid     or minetest.get_perlin_map(np.mid, chulensxz)
+	nobj_base    = nobj_base    or minetest.get_perlin_map(np.base, chulensxz)
+	nobj_xlscale = nobj_xlscale or minetest.get_perlin_map(np.xlscale, chulensxz)
+	nobj_magma   = nobj_magma   or minetest.get_perlin_map(np.magma, chulensxz)
+	nobj_temp    = nobj_temp    or minetest.get_perlin_map(np.temp, chulensxyz)
+	nobj_humid   = nobj_humid   or minetest.get_perlin_map(np.humid, chulensxyz)
 	-- 3D and 2D perlinmaps created per mapchunk
 	local nvals_terrain = nobj_terrain:get3dMap_flat(minposxyz)
 	local nvals_fissure = nobj_fissure:get3dMap_flat(minposxyz)
-	local nvals_temp    = nobj_temp:get3dMap_flat(minposxyz)
-	local nvals_humid   = nobj_humid:get3dMap_flat(minposxyz)
 	local nvals_seam    = nobj_seam:get3dMap_flat(minposxyz)
 	local nvals_strata  = nobj_strata:get3dMap_flat(minposxyz)
 	local nvals_cave1   = nobj_cave1:get3dMap_flat(minposxyz)
@@ -316,6 +322,8 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	local nvals_base    = nobj_base:get2dMap_flat(minposxz)
 	local nvals_xlscale = nobj_xlscale:get2dMap_flat(minposxz)
 	local nvals_magma   = nobj_magma:get2dMap_flat(minposxz)
+	local nvals_temp    = nobj_temp:get2dMap_flat(minposxz)
+	local nvals_humid   = nobj_humid:get2dMap_flat(minposxz)
 	-- ungenerated chunk below?
 	local viu = area:index(x0, y0-1, z0)
 	local ungen = data[viu] == c_ignore
@@ -334,8 +342,6 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 				-- noise values for node
 				local n_absterrain = math.abs(nvals_terrain[nixyz])
 				local n_fissure = nvals_fissure[nixyz]
-				local n_temp = nvals_temp[nixyz]
-				local n_humid = nvals_humid[nixyz]
 				local n_seam = nvals_seam[nixyz]
 				local n_strata = nvals_strata[nixyz]
 				local n_cave1 = nvals_cave1[nixyz]
@@ -347,6 +353,8 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 				local n_absbase = math.abs(nvals_base[nixz])
 				local n_xlscale = nvals_xlscale[nixz]
 				local n_magma = nvals_magma[nixz]
+				local n_temp = nvals_temp[nixz]
+				local n_humid = nvals_humid[nixz]
 				-- get densities
 				local n_invbase = (1 - n_absbase)
 				local terblen = (math.max(n_invbase, 0)) ^ BLENEXP
@@ -667,7 +675,8 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 						local zrq = 16 * math.floor((z - z0) / 16)
 						local yrq = 79
 						local qixyz = zrq * 6400 + yrq * 80 + xrq + 1 -- quantised 3D index
-						if math.abs(nvals_fissure[qixyz]) < nvals_humid[qixyz] * 0.1 then
+						local qixz = zrq * 80 + xrq + 1
+						if math.abs(nvals_fissure[qixyz]) < nvals_humid[qixz] * 0.1 then
 							data[vi] = c_wscloud
 						end
 						stable[si] = 0
