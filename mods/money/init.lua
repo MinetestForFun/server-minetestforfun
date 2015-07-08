@@ -73,7 +73,7 @@ minetest.register_privilege("money_admin", {
 --End.
 
 --[[Registration "money" command.
---[[ minetest.register_chatcommand("money", {
+    minetest.register_chatcommand("money", {
 	privs = {money=true},
 	params = "[<account> | pay/take/set/inc/dec <account> <amount>]",
 	description = "Operations with money",
