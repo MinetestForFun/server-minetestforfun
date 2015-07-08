@@ -105,6 +105,19 @@ plantslib:register_generate_plant({
   abstract_molehills.place_molehill
 )
 
+plantslib:register_generate_plant({
+    surface = {"watershed:drygrass"},
+    max_count = Molehills_Max_Count,
+    rarity = 97,
+    min_elevation = 1,
+	max_elevation = 40,
+	avoid_nodes = {"group:tree","group:liquid","group:stone","group:falling_node"--[[,"air"]]},
+	avoid_radius = 4,
+    plantlife_limit = -0.3,
+  },
+  abstract_molehills.place_molehill
+)
+
 -----------------------------------------------------------------------------------------------
 minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
 -----------------------------------------------------------------------------------------------
