@@ -55,11 +55,17 @@ minetest.register_node("ferns:tree_fern_leaves", {
 	walkable = false,
 	groups = {snappy=3,flammable=2,attached_node=1},
 	drop = {
-		max_items = 1,
+		max_items = 2,
 		items = {
 			{
+				-- occasionally, drop a second sapling instead of leaves
+				-- (extra saplings can also be obtained by replanting and
+				--  reharvesting leaves)
 				items = {"ferns:sapling_tree_fern"},
-				rarity = 20,
+				rarity = 10,
+			},
+			{
+				items = {"ferns:sapling_tree_fern"},
 			},
 			{
 				items = {"ferns:tree_fern_leaves"},
@@ -80,11 +86,17 @@ minetest.register_node("ferns:tree_fern_leaves_02", {
 	walkable = false,
 	groups = {snappy=3,flammable=2,attached_node=1,not_in_creative_inventory=1},
 	drop = {
-		max_items = 1,
+		max_items = 2,
 		items = {
 			{
+				-- occasionally, drop a second sapling instead of leaves
+				-- (extra saplings can also be obtained by replanting and
+				--  reharvesting leaves)
 				items = {"ferns:sapling_tree_fern"},
-				rarity = 20,
+				rarity = 10,
+			},
+			{
+				items = {"ferns:sapling_tree_fern"},
 			},
 			{
 				items = {"ferns:tree_fern_leaves"},
