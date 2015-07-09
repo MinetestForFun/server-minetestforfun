@@ -18,11 +18,13 @@ Contributors
 - Ataron
   > Occasionnal debogger, texture creater.
 - Gael-de-Sailly
-  > Kittens carer, and debogger.
+  > Kittens carer, debogger and Mapgen creator.
 - davedevils
   > Gardener, creepers' father and chickens' friend.
 - Obani
   > Audio bit king.
+- gravgun
+  > Database warrior and mod maintenancer.
 
 minetestforfun_game sous-jeu et mods
 ===================
@@ -44,11 +46,13 @@ Contributeurs
 - Ataron
   > Déboggueur occasionnel, créateur de textures
 - Gael-de-Sailly
-  > Soigneur et deboggueur de chatons.
+  > Soigneur, deboggueur de chatons et créateur de générateur de carte.
 - davedevils
   > Jardinier, père des creeper et ami des poulets.
 - Obani
   > Roi du bit audio.
+- gravgun
+  > Guerrier des base de données et entretienneur de mods.
 
 Note to developpers
 ===================
