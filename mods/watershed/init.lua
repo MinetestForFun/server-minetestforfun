@@ -283,7 +283,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	local c_wspermafrost = minetest.get_content_id("watershed:permafrost")
 	local c_wslava = minetest.get_content_id("watershed:lava")
 	local c_wsfreshice = minetest.get_content_id("watershed:freshice")
-	local c_wscloud = minetest.get_content_id("watershed:cloud")
+	local c_wscloud = minetest.get_content_id("air") -- disable clouds
 	local c_wsluxore = minetest.get_content_id("watershed:luxore")
 	local c_wsicydirt = minetest.get_content_id("watershed:icydirt")
 	-- perlinmap stuff
