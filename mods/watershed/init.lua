@@ -229,7 +229,7 @@ local nobj_cave1   = nil
 local nobj_cave2   = nil
 local nobj_cave3   = nil
 local nobj_cave4   = nil
-	
+
 local nobj_mid     = nil
 local nobj_base    = nil
 local nobj_xlscale = nil
@@ -271,7 +271,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	local c_clay = minetest.get_content_id("default:clay")
 	local c_grass5 = minetest.get_content_id("default:grass_5")
 	local c_obsidian = minetest.get_content_id("default:obsidian")
-	
+
 	local c_wsfreshwater = minetest.get_content_id("watershed:freshwater")
 	local c_wsmixwater = minetest.get_content_id("watershed:mixwater")
 	local c_wsstone = minetest.get_content_id("watershed:stone")
@@ -301,7 +301,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	nobj_cave2   = nobj_cave2  or minetest.get_perlin_map(np.cave2, chulensxyz)
 	nobj_cave3   = nobj_cave3  or minetest.get_perlin_map(np.cave3, chulensxyz)
 	nobj_cave4   = nobj_cave4  or minetest.get_perlin_map(np.cave4, chulensxyz)
-	
+
 	nobj_mid     = nobj_mid     or minetest.get_perlin_map(np.mid, chulensxz)
 	nobj_base    = nobj_base    or minetest.get_perlin_map(np.base, chulensxz)
 	nobj_xlscale = nobj_xlscale or minetest.get_perlin_map(np.xlscale, chulensxz)
@@ -317,7 +317,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	local nvals_cave2   = nobj_cave2:get3dMap_flat(minposxyz)
 	local nvals_cave3   = nobj_cave3:get3dMap_flat(minposxyz)
 	local nvals_cave4   = nobj_cave4:get3dMap_flat(minposxyz)
-	
+
 	local nvals_mid     = nobj_mid:get2dMap_flat(minposxz)
 	local nvals_base    = nobj_base:get2dMap_flat(minposxz)
 	local nvals_xlscale = nobj_xlscale:get2dMap_flat(minposxz)
@@ -348,7 +348,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 				local n_cave2 = nvals_cave2[nixyz]
 				local n_cave3 = nvals_cave3[nixyz]
 				local n_cave4 = nvals_cave4[nixyz]
-				
+
 				local n_absmid = math.abs(nvals_mid[nixz])
 				local n_absbase = math.abs(nvals_base[nixz])
 				local n_xlscale = nvals_xlscale[nixz]
@@ -373,13 +373,13 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 				local tlava = TLAVA * (1 - n_magma ^ 4 * terblen ^ 16 * 0.6) -- lava threshold
 				local ysand = YSAV + n_fissure * SAMP + math.random() * 2 -- sandline
 				local bergdep = math.abs(n_seam) * BERGDEP -- iceberg depth
-				
+
 				local nofis = false -- set fissure bool
-				if math.abs(n_fissure) >= TFIS 
+				if math.abs(n_fissure) >= TFIS
 				and n_cave1 ^ 2 + n_cave2 ^ 2 + n_cave3 ^ 2 + n_cave4 ^ 2 >= 0.07 then -- from Valleys Mapgen
 					nofis = true
 				end
-				
+
 				local biome = false -- select biome for node
 				if n_temp < LOTET + (math.random() - 0.5) * BLEND then
 					if n_humid < LOHUT + (math.random() - 0.5) * BLEND then
@@ -406,7 +406,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 						biome = 5 -- grassland
 					end
 				end
-				
+
 				-- overgeneration and in-chunk generation
 				if y == y0 - 1 then -- node layer below chunk, initialise tables
 					under[si] = 0
@@ -626,7 +626,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 								end
 							end
 						elseif under[si] == 10 then -- dunes
-							if math.random(flora.DUGCHA) == 2 and y > YSAV 
+							if math.random(flora.DUGCHA) == 2 and y > YSAV
 							and biome >= 4 then
 								data[vi] = c_wsgoldengrass
 							end
@@ -727,7 +727,7 @@ minetest.register_chatcommand("regen",{
 		local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
 		local data = vm:get_data()
 
-		watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)	
+		watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 
 		vm:set_data(data)
 		minetest.generate_ores(vm, minp, maxp)
@@ -758,7 +758,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local x0 = minp.x
 	local y0 = minp.y
 	local z0 = minp.z
-	
+
 	print ("[watershed] generate mapchunk minp ("..x0.." "..y0.." "..z0..")")
 
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
@@ -774,7 +774,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:calc_lighting()
 	vm:write_to_map(data)
 	vm:update_liquids()
-	
+
 	local chugent = math.ceil((os.clock() - t1) * 1000)
 	print ("[watershed] "..chugent.." ms")
 end)
