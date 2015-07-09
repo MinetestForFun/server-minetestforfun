@@ -15,6 +15,10 @@
 # http://gitorious.org/calinou/carbone
 # https://github.com/Jordach/big_freaking_dig (some elements)
 
+# Minetest_game
+# [Stairs]
+# mff-edit: Optimized stair mesh
+
 # Mods
 [3D Armor]
 dir: 3d_armor
