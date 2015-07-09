@@ -781,3 +781,19 @@ end)
 
 default.register_ores()
 farming.register_mgv6_decorations()
+-- cherry tree
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "default:dirt_with_grass",
+	sidelen = 16,
+	noise_params = {
+		offset = 0,
+		scale = 0.005,
+		spread = {x=100, y=100, z=100},
+		seed = 278,
+		octaves = 2,
+		persist = 0.7
+	},
+	decoration = "default:mg_cherry_sapling",
+	height = 1,
+})
