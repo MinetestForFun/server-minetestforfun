@@ -1,18 +1,25 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
-/!\ Nouveau mapgen /!\
-/!\ Nouveau mod pour les arcs, équilibré /!\
-/!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder /!\
+/!\ Nouveau mod pour les arcs, équilibré => 90% complété /!\
+/!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder => 75% complété /!\
 
 ---Informations---
-=> MAJ de "mobs" le 03/07/2015:
-Le fonctionnement du dressage des NPCs a été fixé de nombreuses fois et est désormais le suivant : cliquez-droit avec 5 diamants un
-NPC pour qu'il devienne dressé. Cliquer-droit sur lui le fera alternativement se bloquer sur sa position ou se débloquer pour vous
-suivre.
+Le générateur de map actuel est en BETA, il ce peut que nous réinitialisons/reset la map quelque fois pour que nous résolvions les divers soucis rencontrés (cela ne durera pas longtemps)
 
----xx/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, mgl512/Le_Docteur, Gael-de-Sailly, crabman77/crabman)
-MAJ de "irc" (prise en charge de la sécurité des mods)
+---09/07/2015--- (Remerciements : Gael-de-Sailly, gravgun, Obani, LeMagnesium/Mg, , crabman77/crabman, mgl512/Le_Docteur)
+MAJ du mod "broomstick" (le Balai Volant/Broomstick est maintenant disponible ! Je vous invite à aller consulter son craft, vous pourrez voler 2 minutes en échange de 190 de mana, voila de quoi s'installer sur une île flottant dnas le ciel !)
+/!\ Ajout de la SuperVision/Monitoring du serveur, pour y accéder allez sur : Site officiel > LE JEU > Statut du Serveur /!\
+MAJ de "item_drop" (les ressources sont maintenant ramassable bien plus facilement, il n'est plus nécessaire de casser le bloc en dessous des ressources que vous désirez)
+Ajout du mod "warps" (ce sont des téléporteurs A SENS UNIQUE que les administrateurs/modérateurs pourront poser pour faciliter l'exploration de zones très lointaines du serveur)
+MAJ de "arrowsign" (amélioration de la texture des pancartes/signs flêchées, et elles sont maintenant en meshe node)
+MAJ de "mapfix" (amélioration du code)
+MAJ de "mobs" (Les chiens/dogs - ou loups/wolfs apprivoisés - sont maintenant plus puissant et debuggés, les chiens et les loups ne subissent plus de dégâts dans l'eau, ajout de la texture du Sang de DM/DM's Blood nécessaire au craft de la DM's Blood Sword)
+MAJ de "money" (c'est le mod permettant les échoppes via shop, l'interface est revu, avec illustration des objets vendu/achetés et donc bien plus facile d'utilisation, les textures des shops ont été aussi améliorées)
+MAJ de "ambience" (bugfix de la musique Interlude et Aube)
+Ajout du mod "Watershed" (notre nouveau générateur de map/mapgen, il a pour but une génération de terrains escarpés/montagneux, avec de nombreuses zones bien différentes les unes des autres, les caves et immenses fissures feront plaisir aux aventuriers, vous pourrez aussi trouvez de nombreuses îles flottantes, océans, nouvelles zones enneigés, etc...)
+MAJ de "minetestforfun_game" (nouveau sons quand vous marchez sur du gravel/gravier, amélioration de la Pelle en Mithril/Mithril Shovel, amélioration de la texture des signs, amélioration de la texture des seaux, passage des escaliers/stairs en meshe node)
+MAJ de "irc" (prise en charge de la sécurité des mods, meilleure compression de toutes les textures)
 MAJ de "money" (utilisation d'une version plus récente et optimisée, nouvelles textures)
 MAJ de "3d_armor" (nombreux bugfixs, ajout d'un paramètre de "poids" augmentant la faim en fonction de l'armure portée, les valeurs seront disponibles sur le site bientôt)
 MAJ de "nether" (crashfix de la nourriture du nether)
