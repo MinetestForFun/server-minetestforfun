@@ -756,6 +756,10 @@ minetest.register_chatcommand("regen",{
 		watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)	
 
 		vm:set_data(data)
+		minetest.generate_ores(vm, minp, maxp)
+		minetest.generate_decorations(vm, minp, maxp)
+		vm:set_lighting({day = 0, night = 0})
+		vm:calc_lighting()
 		vm:write_to_map()
 		vm:update_map()
 
@@ -790,6 +794,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 
 	vm:set_data(data)
+	minetest.generate_ores(vm, minp, maxp)
+	minetest.generate_decorations(vm, minp, maxp)
 	vm:set_lighting({day = 0, night = 0})
 	vm:calc_lighting()
 	vm:write_to_map(data)
