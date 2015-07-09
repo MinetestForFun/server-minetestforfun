@@ -805,3 +805,5 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	print ("[watershed] "..chugent.." ms")
 end)
 
+default.register_ores()
+farming.register_mgv6_decorations()
