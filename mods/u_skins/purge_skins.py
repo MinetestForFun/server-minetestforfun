@@ -27,8 +27,8 @@ for skin in skins_exclued:
 		sys.stderr.write("%s\n" % err)
 		continue
 	# for texture, preview and meta files
-	for f_skin in ( os.path.join(p_textures,"%s.png" % skin), 
-					os.path.join(p_textures,"%s_preview.png" % skin), 
+	for f_skin in ( os.path.join(p_textures,"%s.png" % skin),
+					os.path.join(p_textures,"%s_preview.png" % skin),
 					os.path.join(p_meta, "%s.txt" % skin) ):
 		if os.path.exists(f_skin):
 			try:

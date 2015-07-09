@@ -23,7 +23,7 @@ def addpage(page):
 				print("Error", r.status)
 				exit(r.status)
 		return
-	
+
 	data = r.read().decode()
 	l = json.loads(data)
 	if not l["success"]:
@@ -48,7 +48,7 @@ def addpage(page):
 				if r.status != 200:
 					print("Error", r.status)
 			continue
-		
+
 		data = r.read()
 		f = open(skinsdir + "character_" + str(i) + "_preview.png", "wb")
 		f.write(data)
