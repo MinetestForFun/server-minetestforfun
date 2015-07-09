@@ -470,36 +470,10 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 						elseif biome == 7 and density < TSTONE * 3 then -- desert stone as surface layer
 							data[vi] = c_wsredstone
 						elseif math.abs(n_seam) < TSEAM then
-							if densityper >= 0 and densityper <= ORETHI * 4 then -- ore seams
-								data[vi] = c_stocoal
-							elseif densityper >= 0.3 and densityper <= 0.3 + ORETHI * 4 then
-								data[vi] = c_stocoal
-							elseif densityper >= 0.5 and densityper <= 0.5 + ORETHI * 4 then
-								data[vi] = c_stocoal
-							elseif densityper >= 0.8 and densityper <= 0.8 + ORETHI * 4 then
-								data[vi] = c_stocoal
-							elseif densityper >= 0.55 and densityper <= 0.55 + ORETHI * 2 then
+							if densityper >= 0.55 and densityper <= 0.55 + ORETHI * 2 then
 								data[vi] = c_gravel
 							elseif densityper >= 0.1 and densityper <= 0.1 + ORETHI * 2 then
 								data[vi] = c_wsluxore
-							elseif densityper >= 0.2 and densityper <= 0.2 + ORETHI * 2
-							and math.random(2) == 2 then
-								data[vi] = c_stoiron
-							elseif densityper >= 0.65 and densityper <= 0.65 + ORETHI * 2
-							and math.random(2) == 2 then
-								data[vi] = c_stoiron
-							elseif densityper >= 0.4 and densityper <= 0.4 + ORETHI * 2
-							and math.random(3) == 2 then
-								data[vi] = c_stocopp
-							elseif densityper >= 0.6 and densityper <= 0.6 + ORETHI
-							and math.random(5) == 2 then
-								data[vi] = c_stogold
-							elseif densityper >= 0.7 and densityper <= 0.7 + ORETHI
-							and math.random(7) == 2 then
-								data[vi] = c_mese
-							elseif densityper >= 0.9 and densityper <= 0.9 + ORETHI
-							and math.random(11) == 2 then
-								data[vi] = c_stodiam
 							else
 								data[vi] = c_wsstone
 							end
