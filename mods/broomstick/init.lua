@@ -1,5 +1,5 @@
-local broomstick_time = 180 -- Seconds
-local broomstick_mana = 210
+local broomstick_time = 120 -- Seconds
+local broomstick_mana = 190
 local broomstick_actual_users = {}
 local had_fly_privilege = {}
 local privs = {}
