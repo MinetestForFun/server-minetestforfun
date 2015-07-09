@@ -13,7 +13,7 @@ local np_default = {
 
 local np_cold = {
 	offset = 0,
-	scale = 1,
+	scale = -1,
 	spread = {x=256, y=256, z=256},
 	seed = 112,
 	octaves = 3,
@@ -198,6 +198,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						break
 					end
 				end
+				if ground_y == maxp.y then -- avoid awful snow layers at chunk boundaries underground
+					ground_y = nil
+				end
 
 				if ground_y then
 					local vi = area:index(x, ground_y, z)
@@ -239,6 +242,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					ground_y = y
 					break
 				end
+			end
+			if ground_y == maxp.y then -- avoid awful snow layers at chunk boundaries underground
+				ground_y = nil
 			end
 
 			if ground_y then
