@@ -2,3 +2,4 @@ default
 stairs
 mobs
 worldedit
+watershed?
