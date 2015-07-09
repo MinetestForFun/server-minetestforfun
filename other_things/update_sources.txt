@@ -252,6 +252,8 @@ web: https://forum.minetest.net/viewtopic.php?id=5275
 [Item drop]
 dir: item_drop
 git: http://github.com/PilzAdam/item_drop.git
+mff-edit: Improved by gravgun (smooth pickup animation, cylinder radius)
+mff-edit-fr: Amélioré par gravgun (animation de récup, rayon en cylindre)
 
 [Jukebox]
 dir: jukebox
