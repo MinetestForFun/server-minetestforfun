@@ -139,16 +139,8 @@ minetest.override_item("default:sign_wall", {
 --Sign arrow
 minetest.register_node("arrow_signs:wall", {
 	description = "Arrow signs",
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ 0.25, -0.25, 0.5, -0.25, 0.5, 0.47},
-			{ 0.1875, -0.3125, 0.5, -0.1875, -0.25, 0.47},
-			{ 0.125, -0.3125, 0.5, -0.125, -0.375, 0.47},
-			{ 0.0625, -0.375, 0.5, -0.0625, -0.437, 0.47}
-		}
-	},
+	drawtype = "mesh",
+	mesh = "arrow_sign.obj",
 	selection_box = {
 		type = "fixed",
 		fixed = {
@@ -158,7 +150,7 @@ minetest.register_node("arrow_signs:wall", {
 			{ 0.0625, -0.375, 0.5, -0.0625, -0.437, 0.47}
 		}
 	},
-	tiles = {"arrow_sign_border_left.png","arrow_sign_border_right.png","arrow_sign_border_up.png","arrow_sign_border_down.png","arrow_sign.png","arrow_sign.png"},
+	tiles = {"arrow_sign.png", "arrow_sign_border_down.png", "arrow_sign_border_left.png", "arrow_sign_border_right.png", "arrow_sign_border_up.png"},
 	inventory_image = "arrow_sign.png",
 	paramtype = "light",
 	paramtype2 = "facedir",

@@ -42,6 +42,7 @@ mff-edit-fr: Ajout de megabuilder et openfarming
 [Arrow signs]
 dir: arrow_signs
 git: http://bitbucket.org/ardrido/arrow_signs.git
+mff-edit: Nodemesh sign
 
 [Awards]
 dir: awards
