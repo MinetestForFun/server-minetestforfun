@@ -165,7 +165,7 @@ mid = {
 base = {
 	offset = 0,
 	scale = 1,
-	spread = {x=4096, y=4096, z=4096},
+	spread = {x=1024, y=1024, z=1024},
 	seed = 8890,
 	octaves = 3,
 	persist = 0.33
@@ -176,7 +176,7 @@ base = {
 xlscale = {
 	offset = 0,
 	scale = 1,
-	spread = {x=8192, y=8192, z=8192},
+	spread = {x=4096, y=4096, z=4096},
 	seed = -72,
 	octaves = 3,
 	persist = 0.33
