@@ -19,6 +19,7 @@ local pickup_duration = 0.2
 local pickup_inv_duration = 1/pickup_duration-0.2
 
 minetest.register_globalstep(function(dtime)
+	local tstamp = minetest.get_us_time()
 	for _,player in ipairs(minetest.get_connected_players()) do
 		if player:get_hp() > 0 or not enable_damage then
 			local pos = player:getpos()
@@ -28,13 +29,10 @@ minetest.register_globalstep(function(dtime)
 			for _,object in ipairs(minetest.get_objects_inside_radius(pos, scan_range)) do
 				local luaEnt = object:get_luaentity()
 				if not object:is_player() and luaEnt and luaEnt.name == "__builtin:item" then
-					local ticky = luaEnt.item_drop_delay
+					local ticky = luaEnt.item_drop_min_tstamp
 					if ticky then
-						ticky = ticky - dtime
-						if ticky <= 0 then
-							luaEnt.item_drop_delay = nil
-						else
-							luaEnt.item_drop_delay = ticky
+						if tstamp >= ticky then
+							luaEnt.item_drop_min_tstamp = nil
 						end
 					elseif not luaEnt.item_drop_nopickup then
 						-- Point-line distance computation, heavily simplified since the wanted line,
@@ -142,7 +140,7 @@ function minetest.item_drop(itemstack, dropper, pos)
 			v.y = v.y*2 + 2
 			v.z = v.z*2
 			obj:setvelocity(v)
-			obj:get_luaentity().item_drop_delay = delay_before_playerdrop_pickup
+			obj:get_luaentity().item_drop_min_tstamp = minetest.get_us_time() + delay_before_playerdrop_pickup * 1000000
 		end
 	else
 		core.add_item(pos, itemstack)
