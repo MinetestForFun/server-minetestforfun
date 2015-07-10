@@ -45,13 +45,13 @@ class Convert_id(object):
 		if self.__players.has_key(player_id):
 			return self.__players[player_id]
 		else:
-			return("")
+			return None
 
 	def get_node_name(self, node_id):
 		if self.__nodes.has_key(node_id):
 			return self.__nodes[node_id]
 		else:
-			return("")
+			return None
 
 ########################################################################
 ## Utilities
@@ -64,7 +64,7 @@ def ston(a):
 	if a:
 		return str(a)
 	else:
-		return ""
+		return None
 
 def select_all_nodes(startstamp, endstamp):
 	try:
@@ -75,7 +75,7 @@ def select_all_nodes(startstamp, endstamp):
 		print(err)
 		sys.exit(1)
 	try:
-		cur.execute("SELECT * FROM action WHERE timestamp >=:startstamp AND timestamp < :endstamp", {"startstamp":startstamp, "endstamp":endstamp})
+		cur.execute("SELECT * FROM action WHERE (NOT nodeMeta OR newNode) AND timestamp >=:startstamp AND timestamp < :endstamp", {"startstamp":startstamp, "endstamp":endstamp})
 	except sqlite3.OperationalError as err:
 		print(err)
 		sys.exit(1)
@@ -96,7 +96,7 @@ def readU32(strm):
 
 def decode(chaine):
 	if not chaine :
-		return "[]"
+		return None
 	else:
 		strm = StringIO(chaine)
 		table = "["
@@ -114,7 +114,7 @@ def decode(chaine):
 			# Heureusement leur mode d'escape est quasi le même en Python que Lua
 			table += '%s="%s"' % (key, val.encode('string-escape').replace('"', '\\"'))
 			if n != nEntries-1:
-				table += ", "
+				table += ","
 		table += "]"
 		return table
 
@@ -122,33 +122,33 @@ def decode(chaine):
 
 def to_table(node):
 	# Init bracket and basic datas
-	table = '['
+	table = "["
 	table += 'id=%d' % node[0]
-	table += ',actor="%s"' % Id.get_player_name(node[1])
+	table += ',actor=%s' % Id.get_player_name(node[1])
 	table += ',type=%d' % node[3]
 	# Inventory Manipulation
-	table += ';list="%s"' % ston(node[4])
-	table += ',index="%s"' % ston(node[5])
-	table += ',add="%s"' % ston(node[6])
-	table += ',stacknode="%s"' % Id.get_node_name(node[7])
-	table += ',stackquantity="%s"' % ston(node[8])
+	table += ';list=%s' % node[4]
+	table += ',index=%s' % node[5]
+	table += ',add=%s' % node[6]
+	table += ',stacknode=%s' % Id.get_node_name(node[7])
+	table += ',stackquantity=%s' % node[8]
 	table += ',nodemeta=%s' % node[9]
 	# Position
-	table += ';x=%s, y=%s, z=%s' % (node[10], node[11], node[12])
+	table += ';x=%s,y=%s,z=%s' % (node[10], node[11], node[12])
 	# Old node
-	table += ';oldnode="%s"' % Id.get_node_name(node[13])
-	table += ',oldparam1="%s"' % node[14]
-	table += ',oldparam2="%s"' % ston(node[15])
+	table += ';oldnode=%s' % Id.get_node_name(node[13])
+	table += ',oldparam1=%s' % node[14]
+	table += ',oldparam2=%s' % ston(node[15])
 	table += ',oldmeta=%s' % decode(node[16])
 	# New node
-	table += ';newnode="%s"' % Id.get_node_name(node[17])
-	table += ',newparam1="%s"' % ston(node[18])
-	table += ',newparam2="%s"' % ston(node[19])
+	table += ';newnode=%s' % Id.get_node_name(node[17])
+	table += ',newparam1=%s' % ston(node[18])
+	table += ',newparam2=%s' % ston(node[19])
 	table += ',newmeta=%s' % decode(node[20])
 	# Ending
 	table += ']\n'
 	return (table)
-	
+
 def write_list(nodes, i):
 	try:
 		name = "rollback/database-output.%s.txt" % i
