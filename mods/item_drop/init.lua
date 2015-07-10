@@ -12,7 +12,7 @@ local pickup_range_squared = pickup_range*pickup_range
 local player_half_height = 0.9
 local scan_range = math.sqrt(player_half_height*player_half_height + pickup_range_squared)
 -- Node drops are insta-pickup, everything else (player drops) are not
-local delay_before_playerdrop_pickup = 2
+local delay_before_playerdrop_pickup = 1.5
 -- Time in which the node comes to the player
 local pickup_duration = 0.2
 -- Little treshold so the items aren't already on the player's middle
@@ -28,17 +28,15 @@ minetest.register_globalstep(function(dtime)
 			for _,object in ipairs(minetest.get_objects_inside_radius(pos, scan_range)) do
 				local luaEnt = object:get_luaentity()
 				if not object:is_player() and luaEnt and luaEnt.name == "__builtin:item" then
-					if not luaEnt.always_collect then
-						local ticky = luaEnt.item_drop_delay or delay_before_playerdrop_pickup
+					local ticky = luaEnt.item_drop_delay
+					if ticky then
 						ticky = ticky - dtime
 						if ticky <= 0 then
-							luaEnt.always_collect = true
 							luaEnt.item_drop_delay = nil
 						else
 							luaEnt.item_drop_delay = ticky
 						end
-					end
-					if luaEnt.always_collect and luaEnt.item_drop_nopickup == nil then
+					elseif not luaEnt.item_drop_nopickup then
 						-- Point-line distance computation, heavily simplified since the wanted line,
 						-- being the player, is completely upright (no variation on X or Z)
 						local pos2 = object:getpos()
@@ -87,7 +85,6 @@ minetest.register_globalstep(function(dtime)
 										luaEnt.item_drop_nopickup = nil
 									end
 								end, {player, object})
-
 							end
 						end
 					end
@@ -122,7 +119,6 @@ function minetest.handle_node_drops(pos, drops, digger)
 
 				obj = minetest.spawn_item(pos, name)
 				if obj ~= nil then
-					obj:get_luaentity().always_collect = true
 					obj:setvelocity({x=1/x, y=obj:getvelocity().y, z=1/z})
 				end
 			end
@@ -130,7 +126,31 @@ function minetest.handle_node_drops(pos, drops, digger)
 	end
 end
 
+local mt_item_drop = minetest.item_drop
+function minetest.item_drop(itemstack, dropper, pos)
+	if dropper.is_player then
+		local v = dropper:get_look_dir()
+		local p = {x=pos.x, y=pos.y+1.2, z=pos.z}
+		local cs = itemstack:get_count()
+		if dropper:get_player_control().sneak then
+			cs = 1
+		end
+		local item = itemstack:take_item(cs)
+		local obj = core.add_item(p, item)
+		if obj then
+			v.x = v.x*2
+			v.y = v.y*2 + 2
+			v.z = v.z*2
+			obj:setvelocity(v)
+			obj:get_luaentity().item_drop_delay = delay_before_playerdrop_pickup
+		end
+	else
+		core.add_item(pos, itemstack)
+	end
+	return itemstack
+end
 
 if minetest.setting_getbool("log_mods") then
+	minetest.log("action", "[item_drop] item_drop overriden: " .. tostring(mt_item_drop) .. " " .. tostring(minetest.item_drop))
 	minetest.log("action", "[item_drop] loaded.")
 end
