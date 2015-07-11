@@ -7,7 +7,7 @@ from cStringIO import StringIO
 home = os.environ.get("HOME")
 db = "%s/rollback/rollback.sqlite" % (home)
 
-#[id=16000;actor=crabman;type=2;list=main,index=13,add=1, stacknode=default:glass,stackquantity=9,nodemeta=0;x=None, y=None,z=None,oldnode=,oldparam1=None,oldparam2=None,oldmeta=None:newnode=,newparam1=None,newparam2=None,newmeta=None]
+#[id=6,actor=Mg,type=1;list=None,index=None,add=None,stacknode=None,stackquantity=None;x=252,y=59,z=-401;newnode=air,newparam1=15,newparam2=None,newmeta=None]
 
 class Convert_id(object):
 	def __init__(self, base):
@@ -75,7 +75,8 @@ def select_all_nodes(startstamp, endstamp):
 		print(err)
 		sys.exit(1)
 	try:
-		cur.execute("SELECT * FROM action WHERE (NOT nodeMeta OR newNode) AND timestamp >=:startstamp AND timestamp < :endstamp", {"startstamp":startstamp, "endstamp":endstamp})
+		# x because we need position
+		cur.execute("SELECT * FROM action WHERE x AND timestamp >=:startstamp AND timestamp < :endstamp", {"startstamp":startstamp, "endstamp":endstamp})
 	except sqlite3.OperationalError as err:
 		print(err)
 		sys.exit(1)
@@ -132,14 +133,8 @@ def to_table(node):
 	table += ',add=%s' % node[6]
 	table += ',stacknode=%s' % Id.get_node_name(node[7])
 	table += ',stackquantity=%s' % node[8]
-	table += ',nodemeta=%s' % node[9]
 	# Position
 	table += ';x=%s,y=%s,z=%s' % (node[10], node[11], node[12])
-	# Old node
-	table += ';oldnode=%s' % Id.get_node_name(node[13])
-	table += ',oldparam1=%s' % node[14]
-	table += ',oldparam2=%s' % ston(node[15])
-	table += ',oldmeta=%s' % decode(node[16])
 	# New node
 	table += ';newnode=%s' % Id.get_node_name(node[17])
 	table += ',newparam1=%s' % ston(node[18])
@@ -170,13 +165,18 @@ def write_list(nodes, i):
 if __name__ == '__main__':
 	Id = Convert_id(db)
 	#select all nodes player as set i where time >= time
-	timestamp = 1426978800
+	#timestamp = 1426978800
+	timestamp = 0
 	i = 0
-	while timestamp <= calendar.timegm(time.gmtime()):
+	while timestamp <= time.time():
 			all_nodes = select_all_nodes(timestamp, timestamp+24*60*60)
 			if len(all_nodes) > 0:
 				write_list(all_nodes, i)
 				i += 1
-				print("%s to %s => %s entries" % (timestamp, timestamp+24*60*60, len(all_nodes)))
+				print("%s (%s) to %s (%s) => %s entries" % (
+					time.strftime("%m/%d/%Y", time.gmtime(timestamp)), timestamp,
+					time.strftime("%m/%d/%Y", time.gmtime(timestamp+24*60*60)), timestamp+24*60*60,
+					len(all_nodes))
+				)
 			timestamp += 24*60*60
 
