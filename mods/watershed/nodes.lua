@@ -78,7 +78,8 @@ minetest.register_node("watershed:luxore", {
 
 minetest.register_node("watershed:light", {
 	description = "Light",
-	tiles = {"watershed_light.png"},
+	drawtype = "glasslike_framed_optional",
+	tiles = {"default_glass.png^watershed_luxcrystal_glass.png", "default_glass_detail.png^watershed_luxcrystal_glass.png"},
 	paramtype = "light",
 	light_source = 14,
 	groups = {cracky=3},
