@@ -63,6 +63,7 @@ minetest.override_item("default:cloud", {
 	diggable = false,
 	buildable_to = true,
 	post_effect_color = {a=23, r=241, g=248, b=255},
+	groups = {not_in_creative_inventory=1},
 })
 
 minetest.register_node("watershed:luxore", {
@@ -71,7 +72,7 @@ minetest.register_node("watershed:luxore", {
 	paramtype = "light",
 	light_source = 14,
 	groups = {cracky=3},
-	drop = "watershed:luxcrystal 8",
+	drop = "watershed:luxcrystal",
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -111,18 +112,9 @@ minetest.register_craftitem("watershed:luxcrystal", {
 -- Crafting
 
 minetest.register_craft({
-	type = "cooking",
-	output = "default:desert_stone",
-	recipe = "watershed:redcobble",
-})
-
-minetest.register_craft({
-    output = "watershed:light 8",
-    recipe = {
-        {"default:glass", "default:glass", "default:glass"},
-        {"default:glass", "watershed:luxcrystal", "default:glass"},
-        {"default:glass", "default:glass", "default:glass"},
-    },
+	output = "watershed:light",
+	type = "shapeless",
+	recipe = {"default:glass", "watershed:luxcrystal"},
 })
 
 -- Buckets
@@ -130,12 +122,3 @@ minetest.register_craft({
 minetest.register_alias("watershed:bucket_freshwater", "bucket:bucket_frashwater")
 
 minetest.register_alias("watershed:bucket_lava", "bucket:bucket_lava")
-
--- Fuel
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "watershed:bucket_lava",
-	burntime = 60,
-	replacements = {{"watershed:bucket_lava", "bucket:bucket_empty"}},
-})
