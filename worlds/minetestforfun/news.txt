@@ -7,7 +7,11 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 ---Informations---
 Le générateur de map actuel est maintenant STABLE, il ne sera plus réinitialisé/reset !
 
----??/??/2015--- (Remerciements : ???)
+---13/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, Gael-de-Sailly, gravgun, crabman77/crabman)
+MAJ du mod "item_drop" (ramassage plus facile et avec moins d'attente)
+MAJ du mod "watershed" (nouvelle textures, bugfix, amélioration en tout genre)
+MAJ du mod "mapfix" (amélioration du code)
+MAJ du mod "mobs" (nouvelle texture pour le Yeti, adaptation des apparition des monstres avec les nouvelles zones, presque tous les monstres infligent 1 de dégâts en moins)
 Ajout du mod "action_timers" (centralisation de la gestion des compteurs de temps pour spawn, sethome, home, et whereis)
 
 ---09/07/2015--- (Remerciements : Gael-de-Sailly, gravgun, Obani, LeMagnesium/Mg, , crabman77/crabman, mgl512/Le_Docteur)
