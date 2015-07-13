@@ -3,7 +3,7 @@ mobs = {}
 mobs.mod = "redo"
 
 -- Do mobs spawn in protected areas (0=yes, 1=no)
-mobs.protected = 0
+mobs.protected = 1
 
 -- Initial settings check
 local damage_enabled = minetest.setting_getbool("enable_damage")
