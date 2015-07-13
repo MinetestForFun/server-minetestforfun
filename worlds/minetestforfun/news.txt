@@ -7,6 +7,9 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 ---Informations---
 Le générateur de map actuel est maintenant STABLE, il ne sera plus réinitialisé/reset !
 
+---??/??/2015--- (Remerciements : ???)
+Ajout du mod "action_timers" (centralisation de la gestion des compteurs de temps pour spawn, sethome, home, et whereis)
+
 ---09/07/2015--- (Remerciements : Gael-de-Sailly, gravgun, Obani, LeMagnesium/Mg, , crabman77/crabman, mgl512/Le_Docteur)
 MAJ du mod "broomstick" (le Balai Volant/Broomstick est maintenant disponible ! Je vous invite à aller consulter son craft, vous pourrez voler 2 minutes en échange de 190 de mana, voila de quoi s'installer sur une île flottant dnas le ciel !)
 /!\ Ajout de la SuperVision/Monitoring du serveur, pour y accéder allez sur : Site officiel > LE JEU > Statut du Serveur /!\

@@ -214,3 +214,5 @@ load_mod_future_ban = false
 load_mod_textures = false
 load_mod_snowdrift = false
 load_mod_sounds = false
+
+load_mod_action_timers = true

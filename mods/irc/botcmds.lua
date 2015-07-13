@@ -1,5 +1,4 @@
-irc.whereis_timer = {}
-irc.whereis_timer_max_limit = 120
+local whereis_interval = 120
 irc.bot_commands = {}
 
 function irc:check_botcmd(msg)
@@ -117,19 +116,28 @@ irc:register_bot_command("whereis", {
 		if not player then
 			return false, "There is no player named '"..args.."'"
 		end
-		if irc.whereis_timer[user.nick] ~= nil then
-			local timer_player = os.difftime(os.time(),irc.whereis_timer[user.nick])
-			if timer_player < irc.whereis_timer_max_limit then
+
+		local function say_where_is()
+			local fmt = "Player %s is at (%.2f,%.2f,%.2f)"
+			local pos = player:getpos()
+			minetest.log("action","IRC user ".. user.nick.."!"..user.username.."@"..user.host.." asked for position of player "..player:get_player_name())
+			minetest.chat_send_player(player:get_player_name(),"IRC user ".. user.nick.."!"..user.username.."@"..user.host.." asked for your position")
+			return true, fmt:format(args, pos.x, pos.y, pos.z)
+		end
+
+		if not action_timers.api.get_timer("whereis_" .. user.nick) then
+			action_timers.api.register_timer("whereis_" .. user.nick, whereis_interval)
+			return say_where_is()
+		else
+			local res = action_timers.api.do_action("whereis_" .. user.nick, say_where_is)
+			if tonumber(res) then
 				local answer = "Command used too often, retry in %d seconds."
-				return false,answer:format(irc.whereis_timer_max_limit - timer_player)
+				return false,answer:format(math.floor(res))
+			else
+				print(res)
+				return res
 			end
 		end
-		local fmt = "Player %s is at (%.2f,%.2f,%.2f)"
-		local pos = player:getpos()
-		irc.whereis_timer[user.nick] = os.time()
-		minetest.log("action","IRC user ".. user.nick.."!"..user.username.."@"..user.host.." asked for position of player "..player:get_player_name())
-		minetest.chat_send_player(player:get_player_name(),"IRC user ".. user.nick.."!"..user.username.."@"..user.host.." asked for your position")
-		return true, fmt:format(args, pos.x, pos.y, pos.z)
 	end
 })
 
