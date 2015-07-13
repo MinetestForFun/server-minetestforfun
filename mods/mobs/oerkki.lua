@@ -58,7 +58,7 @@ mobs:register_mob("mobs:oerkki", {
 	replace_with = "air",
 	replace_offset = -1,
 })
--- spawns on stone between 5 and -1 light, 1 in 7000 chance, 1 in area starting at -10 and below
-mobs:register_spawn("mobs:oerkki", {"default:stone"}, 5, -1, 7000, 1, -10)
+-- spawns on stone/sandstone between 5 and -1 light, 1 in 7000 chance, 1 in area starting at -10 and below
+mobs:register_spawn("mobs:oerkki", {"default:stone", "default:sandstone"}, 5, -1, 7000, 1, -75)
 -- register spawn egg
 mobs:register_egg("mobs:oerkki", "Oerkki", "default_obsidian.png", 1)

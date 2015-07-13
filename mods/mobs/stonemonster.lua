@@ -57,7 +57,7 @@ mobs:register_mob("mobs:stone_monster", {
 		punch_start = 40,		punch_end = 63,
 	},
 })
--- spawns on stone between -1 and 5 light, 1 in 7000 chance, 1 in area below -5
-mobs:register_spawn("mobs:stone_monster", {"default:stone"}, 5, -1, 7000, 1, -5)
+-- spawns on stone between -1 and 5 light, 1 in 7000 chance, 1 in area below -25
+mobs:register_spawn("mobs:stone_monster", {"default:stone", "default:sandstone"}, 5, -1, 7000, 1, -25)
 -- register spawn egg
 mobs:register_egg("mobs:stone_monster", "Stone Monster", "default_stone.png", 1)

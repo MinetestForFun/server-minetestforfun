@@ -64,4 +64,3 @@ mobs:register_mob("mobs:goat", {
 mobs:register_spawn("mobs:goat", {"default:dirt_with_grass"}, 20, -1, 10000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:goat", "Goat", "default_grass.png", 1)
-

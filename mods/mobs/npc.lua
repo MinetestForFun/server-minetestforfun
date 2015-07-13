@@ -47,7 +47,7 @@ mobs:register_mob("mobs:npc", {
 	},
 	-- damaged by
 	water_damage = 0,
-	lava_damage = 2,
+	lava_damage = 6,
 	light_damage = 0,
 	-- follow diamond
 	follow = "default:diamond",
@@ -138,6 +138,6 @@ mobs:register_mob("mobs:npc", {
 	end,
 })
 -- spawning enable for now
-mobs:register_spawn("mobs:npc", {"default:dirt_with_grass"}, 20, -1, 20000, 1, 31000)
+mobs:register_spawn("mobs:npc", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, 20, -1, 50000, 1, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:npc", "Npc", "default_brick.png", 1)
