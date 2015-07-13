@@ -7,7 +7,7 @@ mobs:register_mob("mobs:dirt_monster", {
 	-- aggressive, deals 6 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 6,
+	damage = 5,
 	-- health & armor
 	hp_min = 25,
 	hp_max = 30,

@@ -6,7 +6,7 @@ mobs:register_mob("mobs:mese_monster", {
 	type = "monster",
 	-- agressive, deals 9 damage to player when hit
 	passive = false,
-	damage = 9,
+	damage = 8,
 	attack_type = "shoot",
 	shoot_interval = .5,
 	arrow = "mobs:mese_arrow",
@@ -76,14 +76,14 @@ mobs:register_arrow("mobs:mese_arrow", {
 	hit_player = function(self, player)
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=9},     --Modif MFF
+			damage_groups = {fleshy=8},     --Modif MFF
 		}, 0)
 	end,
 
 	hit_mob = function(self, player)
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=9},     --Modif MFF
+			damage_groups = {fleshy=4},     --Modif MFF
 		}, 0)
 	end,
 

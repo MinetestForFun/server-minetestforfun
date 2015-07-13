@@ -9,7 +9,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	type = "monster",
 	-- aggressive, shoots fireballs at player, deal 13 damages
 	passive = false,
-	damage = 13,
+	damage = 12,
 	attack_type = "shoot",
 	shoot_interval = 2.5,
 	arrow = "mobs:fireball",
@@ -86,14 +86,14 @@ mobs:register_arrow("mobs:fireball", {
 	hit_player = function(self, player)
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=13},
+			damage_groups = {fleshy=12},
 		}, 0)
 	end,
 
 	hit_mob = function(self, player)
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=8},
+			damage_groups = {fleshy=6},
 		}, 0)
 	end,
 

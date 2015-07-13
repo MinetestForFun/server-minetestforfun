@@ -7,7 +7,7 @@ mobs:register_mob("mobs:goat", {
 	-- aggressive, does 5 damage to player when threatened
 	passive = false,
 	attack_type = "dogfight",
-	damage = 5,
+	damage = 4,
 	-- health & armor
 	hp_min = 15,
 	hp_max = 20,

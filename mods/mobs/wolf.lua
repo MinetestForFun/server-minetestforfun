@@ -7,7 +7,7 @@ mobs:register_mob("mobs:wolf", {
 	-- agressive, does 4 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 5,					-- 3 damages if tamed
+	damage = 4,					-- 2 damages if tamed
 	-- health & armor
 	hp_min = 15, hp_max = 20, armor = 200,
 	-- textures and model

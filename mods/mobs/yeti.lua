@@ -6,7 +6,7 @@ mobs:register_mob("mobs:yeti", {
 	type = "monster",
 	-- agressive, deals 7 damage to player when hit
 	passive = false,
-	damage = 7,
+	damage = 6,
 	attack_type = "shoot",
 	shoot_interval = .75,
 	arrow = "mobs:snowball",
@@ -72,14 +72,14 @@ mobs:register_arrow("mobs:snowball", {
 	hit_player = function(self, player)
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=7},
+			damage_groups = {fleshy=6},
 		}, 0)
 	end,
 
 	hit_mob = function(self, player)
 		player:punch(self.object, 1.0,  {
 			full_punch_interval=1.0,
-			damage_groups = {fleshy=7},
+			damage_groups = {fleshy=3},
 		}, 0)
 	end,
 

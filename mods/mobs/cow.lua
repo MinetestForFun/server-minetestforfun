@@ -7,7 +7,7 @@ mobs:register_mob("mobs:cow", {
 	-- aggressive, does 5 damage to player when threatened
 	passive = false,
 	attack_type = "dogfight",
-	damage = 5,
+	damage = 4,
 	-- health & armor
 	hp_min = 25,
 	hp_max = 30,

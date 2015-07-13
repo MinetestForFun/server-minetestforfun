@@ -7,7 +7,7 @@ mobs:register_mob("mobs:minotaur", {
 	-- aggressive, deals 11 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 11,
+	damage = 10,
 	-- health & armor
 	hp_min = 80,
 	hp_max = 100,

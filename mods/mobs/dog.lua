@@ -8,7 +8,7 @@ mobs:register_mob("mobs:dog", {
 	passive = false,
 	attacks_monsters = true,
 	attack_type = "dogfight",
-	damage = 3, -- 2 damage less than wolf
+	damage = 2, -- 2 damage less than wolf
 	-- health & armor
 	hp_min = 15, hp_max = 20, armor = 200,
 	-- textures and model
