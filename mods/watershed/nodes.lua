@@ -54,7 +54,7 @@ minetest.register_alias("watershed:cloud", "default:cloud")
 minetest.override_item("default:cloud", {
 	description = "Cloud",
 	drawtype = "glasslike",
-	tiles = {"watershed_cloud.png"},
+	tiles = {"default_cloud.png"},
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = true,
