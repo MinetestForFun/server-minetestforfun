@@ -1,0 +1,2140 @@
+beds:bed_bottom 160 0 0
+beds:bed_bottom_black 10 10 10
+beds:bed_bottom_blue 0 90 168
+beds:bed_bottom_green 12 92 10
+beds:bed_bottom_grey 132 132 132
+beds:bed_bottom_orange 217 123 10
+beds:bed_bottom_red 131 21 21
+beds:bed_bottom_violet 129 10 180
+beds:bed_bottom_white 241 241 241
+beds:bed_bottom_yellow 215 214 0
+beds:bed_top 160 0 0
+beds:bed_top_black 11 11 11
+beds:bed_top_blue 0 90 168
+beds:bed_top_green 13 92 11
+beds:bed_top_grey 132 132 132
+beds:bed_top_orange 216 123 11
+beds:bed_top_red 131 22 22
+beds:bed_top_violet 129 11 180
+beds:bed_top_white 241 241 241
+beds:bed_top_yellow 215 214 0
+bones:bones 94 94 94
+buoy:generic_orange 255 240 34
+carts:powerrail 162 119 53
+christmas:leaves 33 54 30
+christmas:present_blue_green 62 186 50
+christmas:present_blue_orange 245 207 20
+christmas:present_blue_violet 189 36 157
+christmas:present_green_orange 245 207 20
+christmas:present_green_violet 189 36 157
+christmas:present_orange_green 62 186 50
+christmas:present_orange_violet 189 36 157
+christmas:star 236 252 55
+christmas:tree 45 36 24
+default:apple 200 0 0
+default:bookshelf 196 160 0
+default:brick 170 50 25
+default:bronzeblock 239 177 51
+default:cactus 0 215 0
+default:chest 128 79 0
+default:chest_locked 128 79 0
+default:clay 186 186 186
+default:cloud 255 255 255
+default:coalblock 61 61 61
+default:cobble 123 123 123
+default:copperblock 170 132 93
+default:desert_sand 210 180 50
+default:desert_stone 164 100 77
+default:desert_stonebrick 150 100 30
+default:diamondblock 160 238 234
+default:dirt 101 84 36
+default:dirt_with_grass 107 134 51
+default:dirt_with_grass_and_footsteps 102 129 38
+default:dirt_with_grass_footsteps 101 138 35
+default:dirt_with_snow 225 227 255
+default:dry_shrub 100 80 40
+default:fence_wood 103 78 42
+default:furnace 118 118 118
+default:furnace_active 118 118 118
+default:glass 183 183 222 128
+default:goldblock 242 217 0
+default:grass_1 107 134 51
+default:grass_2 107 134 51
+default:grass_3 107 134 51
+default:grass_4 107 134 51
+default:grass_5 107 134 51
+default:gravel 70 70 70
+default:ice 155 155 254
+default:junglegrass 62 101 25
+default:jungleleaves 43 48 23
+default:junglesapling 48 95 8
+default:jungletree 205 190 121
+default:junglewood 79 57 26
+default:ladder 154 110 40
+default:lava_flowing 255 100 0
+default:lava_source 255 100 0
+default:leaves 48 95 8
+default:mese 178 178 0
+default:mossycobble 88 134 42
+default:nyancat 255 153 255
+default:nyancat_rainbow 102 50 255
+default:obsidian 0 0 0
+default:obsidian_glass 183 183 222 128
+default:papyrus 58 105 18
+default:rail 162 119 53
+default:sand 210 194 156
+default:sandstone 200 183 143
+default:sandstonebrick 200 183 143
+default:sapling 48 95 8
+default:sign_wall 117 86 41
+default:snow 225 227 255
+default:snowblock 225 227 255
+default:steelblock 199 199 199
+default:stone 128 128 128
+default:stonebrick 128 128 128
+default:stone_with_coal 50 50 50
+default:stone_with_copper 183 138 87
+default:stone_with_diamond 128 128 128
+default:stone_with_gold 128 128 128
+default:stone_with_iron 128 128 128
+default:stone_with_mese 128 128 128
+default:torch 255 255 0
+default:tree 86 58 31
+default:water_flowing 39 66 106 128
+default:water_source 39 66 106 128
+default:wood 104 78 42
+doors:door_glass_t_1 183 183 222 128
+doors:door_steel_b_1 199 199 199
+doors:door_steel_b_2 199 199 199
+doors:door_steel_t_1 199 199 199
+doors:door_steel_t_2 199 199 199
+doors:door_wood_b_1 103 78 42
+doors:door_wood_b_2 103 78 42
+doors:door_wood_t_1 103 78 42
+doors:door_wood_t_2 103 78 42
+doors:trapdoor 103 78 42
+farming:big_pumpkin 219 127 7
+farming:big_pumpkin_corner 219 127 7
+farming:big_pumpkin_side 219 127 7
+farming:big_pumpkin_top 219 127 7
+farming:cotton_1 255 255 255
+farming:cotton_2 255 255 255
+farming:cotton 255 255 255
+farming:cotton_3 255 255 255
+farming:cotton_4 255 255 255
+farming:cotton_5 255 255 255
+farming:cotton_6 255 255 255
+farming:cotton_7 255 255 255
+farming:cotton_8 255 255 255
+farming_plus:banana 239 210 82
+farming_plus:banana_leaves 44 85 39
+farming_plus:banana_sapling 48 95 8
+farming_plus:carrot_1 255 201 14
+farming_plus:carrot_2 255 201 14
+farming_plus:carrot 255 201 14
+farming_plus:carrot_3 255 201 14
+farming_plus:cocoa 136 0 21
+farming_plus:cocoa_leaves  44 85 39
+farming_plus_ng:banana 239 210 82
+farming_plus_ng:banana_leaves 44 85 39
+farming_plus_ng:banana_sapling 48 95 8
+farming_plus_ng:big_pumpkin 219 127 7
+farming_plus_ng:big_pumpkin_corner 219 127 7
+farming_plus_ng:big_pumpkin_side 219 127 7
+farming_plus_ng:big_pumpkin_top 219 127 7
+farming_plus_ng:carrot_1 255 201 14
+farming_plus_ng:carrot_2 255 201 14
+farming_plus_ng:carrot 255 201 14
+farming_plus_ng:carrot_3 255 201 14
+farming_plus_ng:carrot_4 255 201 14
+farming_plus_ng:cocoa 136 0 21
+farming_plus_ng:cocoa_leaves  44 85 39
+farming_plus_ng:orange_1 237 155 33
+farming_plus_ng:orange_2 237 155 33
+farming_plus_ng:orange 237 155 33
+farming_plus_ng:orange_3 237 155 33
+farming_plus_ng:orange_4 237 155 33
+farming_plus_ng:potato_1 185 122 87
+farming_plus_ng:potato 185 122 87
+farming_plus_ng:potato_2 185 122 87
+farming_plus_ng:potato_3 185 122 87
+farming_plus_ng:pumpkin_1 219 127 7
+farming_plus_ng:pumpkin 219 127 7
+farming_plus_ng:pumpkin_2 219 127 7
+farming_plus_ng:pumpkin_face 219 127 7
+farming_plus_ng:pumpkin_face_light 255 255 36
+farming_plus_ng:rhubarb_1 237 28 36
+farming_plus_ng:rhubarb_2 237 28 36
+farming_plus_ng:rhubarb 237 28 36
+farming_plus_ng:scarecrow 219 129 13
+farming_plus_ng:scarecrow_bottom 219 129 13
+farming_plus_ng:scarecrow_light 255 255 36
+farming_plus_ng:strawberry_1 247 0 2
+farming_plus_ng:strawberry_2 247 0 2
+farming_plus_ng:strawberry 247 0 2
+farming_plus_ng:strawberry_3 247 0 2
+farming_plus_ng:strawberry_4 247 0 2
+farming_plus_ng:tomato_1 237 28 36
+farming_plus_ng:tomato_2 237 28 36
+farming_plus_ng:tomato 237 28 36
+farming_plus_ng:tomato_3 237 28 36
+farming_plus_ng:tomato_4 237 28 36
+farming_plus:orange_1 237 155 33
+farming_plus:orange_2 237 155 33
+farming_plus:orange 237 155 33
+farming_plus:orange_3 237 155 33
+farming_plus:potato_1 185 122 87
+farming_plus:potato 185 122 87
+farming_plus:rhubarb 237 28 36
+farming_plus:strawberry_1 247 0 2
+farming_plus:strawberry_2 247 0 2
+farming_plus:strawberry 247 0 2
+farming_plus:strawberry_3 247 0 2
+farming_plus:tomato_1 237 28 36
+farming_plus:tomato_2 237 28 36
+farming_plus:tomato 237 28 36
+farming_plus:tomato_3 237 28 36
+farming:pumpkin_1 219 127 7
+farming:pumpkin 219 127 7
+farming:pumpkin_2 219 127 7
+farming:pumpkin_face 219 127 7
+farming:pumpkin_face_light 255 255 36
+farming:scarecrow 219 129 13
+farming:scarecrow_bottom 219 129 13
+farming:scarecrow_light 255 255 36
+farming:soil 103 72 50
+farming:soil_wet 90 65 31
+farming:weed 171 229 48
+farming:wheat_1 197 129 54
+farming:wheat 197 129 54
+farming:wheat_2 197 129 54
+farming:wheat_3 197 129 54
+farming:wheat_4 197 129 54
+farming:wheat_5 197 129 54
+farming:wheat_6 197 129 54
+farming:wheat_7 197 129 54
+farming:wheat_8 197 129 54
+fire:basic_flame 252 195 62
+flowers:dandelion_white 211 215 207
+flowers:dandelion_yellow 237 212 0
+flowers:geranium 52 70 195
+flowers:potted_dandelion_white 116 43 25
+flowers:potted_dandelion_yellow 116 43 22
+flowers:potted_geranium 76 60 124
+flowers:potted_rose 115 40 22
+flowers:potted_tulip 114 41 22
+flowers:potted_viola 115 41 24
+flowers:rose 204 0 0
+flowers:seaweed 28 112 11
+flowers:tulip 206 92 0
+flowers:viola 117 80 123
+flowers:waterlily_225 49 110 2
+flowers:waterlily_45 150 179 101
+flowers:waterlily 46 108 0
+flowers:waterlily_675 165 194 103
+homedecor:air_conditioner 176 176 176
+homedecor:armchair_black 86 86 86
+homedecor:armchair_blue 50 85 189
+homedecor:armchair_dark_green 50 152 50
+homedecor:armchair_pink 216 100 129
+homedecor:armchair_red 108 18 18
+homedecor:armchair_violet 102 40 162
+homedecor:bars 67 67 67
+homedecor:ceiling_paint 255 255 255
+homedecor:ceiling_tile 255 255 255
+homedecor:chains 67 67 67
+homedecor:chair 104 78 42
+homedecor:curtain_blue 50 50 144
+homedecor:curtain_green 29 98 29
+homedecor:curtain_pink 218 115 149
+homedecor:curtain_red 105 31 31
+homedecor:curtain_violet 92 47 142
+homedecor:curtain_white 241 241 241
+homedecor:door_closet_mahogany_bottom_left 133 74 41
+homedecor:door_closet_mahogany_bottom_right 133 74 41
+homedecor:door_closet_mahogany_top_left 133 74 41
+homedecor:door_closet_mahogany_top_right 133 74 41
+homedecor:door_closet_oak_bottom_left 172 148 81
+homedecor:door_closet_oak_bottom_right 172 148 81
+homedecor:door_closet_oak_top_left 172 148 81
+homedecor:door_closet_oak_top_right 172 148 81
+homedecor:door_exterior_fancy_bottom_left 150 108 89
+homedecor:door_exterior_fancy_bottom_right 150 108 89
+homedecor:door_exterior_fancy_top_left 150 108 89
+homedecor:door_exterior_fancy_top_right 150 108 89
+homedecor:door_glass_bottom_left 183 183 222 128
+homedecor:door_glass_bottom_right 183 183 222 128
+homedecor:door_glass_top_left 217 217 217 128
+homedecor:door_glass_top_right 217 217 217 128
+homedecor:door_wood_glass_bottom_left 188 156 91 128
+homedecor:door_wood_glass_bottom_right 188 156 91 128
+homedecor:door_wood_glass_mahogany_bottom_left 141 97 69 128
+homedecor:door_wood_glass_mahogany_bottom_right 141 97 69 128
+homedecor:door_wood_glass_mahogany_top_left 141 97 69 128
+homedecor:door_wood_glass_mahogany_top_right 141 97 69 128
+homedecor:door_wood_glass_top_left 188 156 91 128
+homedecor:door_wood_glass_top_right 182 119 12 128
+homedecor:door_wood_glass_white_bottom_left 254 254 254 128
+homedecor:door_wood_glass_white_bottom_right 244 244 244 128
+homedecor:door_wood_glass_white_top_left 244 244 244 128
+homedecor:door_wood_glass_white_top_right 244 244 244 128
+homedecor:door_wood_plain_bottom_left 150 110 74
+homedecor:door_wood_plain_bottom_right 150 110 74
+homedecor:door_wood_plain_top_left 150 110 74
+homedecor:door_wood_plain_top_right 150 110 74
+homedecor:fence_barbed_wire 201 201 201
+homedecor:fence_barbed_wire_corner 146 112 75
+homedecor:fence_brass 183 159 80
+homedecor:fence_brass_with_sign 140 109 62
+homedecor:fence_chainlink 165 165 165
+homedecor:fence_chainlink_corner 205 205 205
+homedecor:fence_picket 163 119 78
+homedecor:fence_picket_corner 163 119 78
+homedecor:fence_picket_corner_white 0 0 0
+homedecor:fence_picket_white 245 245 245
+homedecor:fence_privacy 134 105 75
+homedecor:fence_privacy_corner 0 0 0
+homedecor:fence_wrought_iron 102 90 84
+homedecor:fence_wrought_iron_with_sign 102 90 84
+homedecor:flower_pot_black 0 0 0
+homedecor:flower_pot_green 72 84 53
+homedecor:flower_pot_terracotta 211 108 69
+homedecor:gate_barbed_wire_closed 142 108 71
+homedecor:gate_barbed_wire_open 142 108 71
+homedecor:gate_chainlink_closed 205 205 205
+homedecor:gate_chainlink_open 165 165 165
+homedecor:gate_picket_closed 163 119 78
+homedecor:gate_picket_open 163 119 78
+homedecor:gate_picket_white_closed 0 0 0
+homedecor:gate_picket_white_open 0 0 0
+homedecor:glass_table_large_b 181 181 181 128
+homedecor:glass_table_large_s 191 191 191 128
+homedecor:glass_table_large_t 181 181 181 128
+homedecor:glass_table_small_round_b  183 183 222 128
+homedecor:glass_table_small_round_s 207 207 207 128
+homedecor:glass_table_small_round_t 162 162 162 128
+homedecor:glass_table_small_square_b 162 162 162 128
+homedecor:glass_table_small_square_s 207 207 207 128
+homedecor:glass_table_small_square_t 162 162 162 128
+homedecor:glowlight_half_white 240 240 240
+homedecor:glowlight_half_yellow 255 255 170
+homedecor:glowlight_quarter_white 240 240 240
+homedecor:glowlight_quarter_yellow 255 255 170
+homedecor:glowlight_small_cube_white 254 254 254
+homedecor:glowlight_small_cube_yellow 255 255 254
+homedecor:kitchen_cabinet 162 142 96
+homedecor:kitchen_cabinet_half 119 90 46
+homedecor:kitchen_cabinet_half_locked 119 90 46
+homedecor:kitchen_cabinet_locked 162 142 96
+homedecor:kitchen_cabinet_with_sink 162 142 96
+homedecor:kitchen_cabinet_with_sink_locked 162 142 96
+homedecor:L_binding_bars 67 67 67
+homedecor:microwave_oven 146 146 146
+homedecor:microwave_oven_active 146 146 146
+homedecor:microwave_oven_active_locked 146 146 146
+homedecor:microwave_oven_locked 146 146 146
+homedecor:nightstand_mahogany_one_drawer 87 50 36
+homedecor:nightstand_mahogany_one_drawer_locked 87 50 36
+homedecor:nightstand_mahogany_two_drawers 87 50 36
+homedecor:nightstand_mahogany_two_drawers_locked 87 50 36
+homedecor:nightstand_oak_one_drawer 154 110 67
+homedecor:nightstand_oak_one_drawer_locked 154 110 67
+homedecor:nightstand_oak_two_drawers 150 108 60
+homedecor:nightstand_oak_two_drawers_locked 154 110 67
+homedecor:oven 231 231 231
+homedecor:oven_active 231 231 231
+homedecor:oven_active_locked 231 231 231
+homedecor:oven_locked 231 231 231
+homedecor:plasma_lamp 255 255 255
+homedecor:pole_brass 210 192 91
+homedecor:pole_wrought_iron 102 90 84
+homedecor:projection_screen 207 207 207
+homedecor:refrigerator 223 223 223
+homedecor:refrigerator_locked 223 223 223
+homedecor:rug_large 140 111 153
+homedecor:rug_small 162 162 162
+homedecor:shingle_inner_corner_asphalt 43 43 43
+homedecor:shingle_inner_corner_terracotta 211 108 69
+homedecor:shingle_inner_corner_wood 151 89 47
+homedecor:shingle_outer_corner_asphalt 43 43 43
+homedecor:shingle_outer_corner_terracotta 211 108 69
+homedecor:shingle_outer_corner_wood 151 89 47
+homedecor:shingles_asphalt 43 43 43
+homedecor:shingle_side_asphalt 43 43 43
+homedecor:shingle_side_terracotta 211 108 69
+homedecor:shingle_side_wood 151 89 47
+homedecor:shingles_terracotta 211 108 69
+homedecor:shingles_wood 151 89 47
+homedecor:shower_head 129 129 129
+homedecor:shower_tray 102 90 84
+homedecor:shutter_black 0 0 0
+homedecor:shutter_dark_grey 34 34 34
+homedecor:shutter_forest_green 48 79 40
+homedecor:shutter_grey 127 127 127
+homedecor:shutter_light_blue 110 140 192
+homedecor:shutter_mahogany 100 47 8
+homedecor:shutter_oak 167 122 57
+homedecor:shutter_red 188 49 49
+homedecor:shutter_violet 128 44 160
+homedecor:shutter_white 184 184 184
+homedecor:shutter_yellow 178 173 26
+homedecor:sink 102 90 84
+homedecor:skylight 192 192 227
+homedecor:skylight_frosted 245 245 244
+homedecor:speaker 36 27 18
+homedecor:speaker_small 36 27 18
+homedecor:stereo 48 48 48
+homedecor:table 104 78 42
+homedecor:table_lamp_hi 255 255 0
+homedecor:table_lamp_low 255 255 0
+homedecor:table_lamp_max 255 255 0
+homedecor:table_lamp_med 255 255 0
+homedecor:table_lamp_off 0 0 0
+homedecor:table_legs_brass 144 131 82
+homedecor:table_legs_wrought_iron 131 115 98
+homedecor:taps 129 129 129
+homedecor:television 47 47 47
+homedecor:toilet 230 231 232
+homedecor:toilet_open 240 241 241
+homedecor:torch_wall 255 209 79
+homedecor:utility_table_legs 151 112 75
+homedecor:utility_table_top 151 112 75
+homedecor:wood_table_large_b 148 109 65
+homedecor:wood_table_large_s 121 90 57
+homedecor:wood_table_large_t 148 109 65
+homedecor:wood_table_small_round_b 117 88 55
+homedecor:wood_table_small_round_s 121 90 57
+homedecor:wood_table_small_round_t 117 88 55
+homedecor:wood_table_small_square_b 154 114 75
+homedecor:wood_table_small_square_s 121 90 57
+homedecor:wood_table_small_square_t 154 114 75
+inbox:empty 140 140 140
+junglegrass:medium 83 135 36
+junglegrass:short 49 89 15
+junglegrass:shortest 55 92 21
+lamps:lamp_off 252 250 239
+mesecons_blinkyplant:blinky_plant 60 84 37
+mesecons_blinkyplant:blinky_plant_off 246 247 186
+mesecons_blinkyplant:blinky_plant_on 246 247 186
+mesecons_button:button_off 143 144 23
+mesecons_button:button_on 122 122 122
+mesecons_delayer:delayer_off_1 143 144 23
+mesecons_delayer:delayer_off_2 143 144 23
+mesecons_delayer:delayer_off_3 143 144 23
+mesecons_delayer:delayer_off_4 118 118 7
+mesecons_delayer:delayer_on_1 143 144 23
+mesecons_delayer:delayer_on_2 229 229 45
+mesecons_delayer:delayer_on_3 229 229 45
+mesecons_delayer:delayer_on_4 186 186 40
+mesecons_detector:object_detector_off 98 98 70
+mesecons_detector:object_detector_on 153 153 153
+mesecons_extrawires:corner_off 0 0 0
+mesecons_extrawires:corner_on 0 0 0
+mesecons_extrawires:crossover_01 0 0 2
+mesecons_extrawires:crossover_10 0 0 0
+mesecons_extrawires:crossover_off 0 0 0
+mesecons_extrawires:crossover_on 0 0 2
+mesecons_extrawires:mese_powered 200 202 0
+mesecons_extrawires:tjunction_off 0 0 0
+mesecons_extrawires:tjunction_on 0 0 2
+mesecons_extrawires:vertical_bottom_off 146 148 23
+mesecons_extrawires:vertical_bottom_on 237 237 46
+mesecons_extrawires:vertical_off 146 148 23
+mesecons_extrawires:vertical_on 237 237 46
+mesecons_extrawires:vertical_top_off 146 148 23
+mesecons_extrawires:vertical_top_on 237 237 46
+mesecons_gates:and_off 191 191 191
+mesecons_gates:and_on 191 191 191
+mesecons_gates:diode_off 143 144 23
+mesecons_gates:diode_on 191 191 191
+mesecons_gates:nand_off 191 191 191
+mesecons_gates:nand_on 191 191 191
+mesecons_gates:not_off 143 144 23
+mesecons_gates:not_on 143 144 23
+mesecons_gates:xor_off 191 191 191
+mesecons_gates:xor_on 191 191 191
+mesecons_hydroturbine:hydro_turbine_off 137 137 137
+mesecons_hydroturbine:hydro_turbine_on 137 137 137
+mesecons_insulated:insulated_off 6 30 70
+mesecons_insulated:insulated_on 0 103 255
+mesecons_lamp:lamp_off 203 203 203
+mesecons_lamp:lamp_on 252 250 239
+mesecons_lightstone:lightstone_blue_off 32 32 181
+mesecons_lightstone:lightstone_blue_on 32 32 181
+mesecons_lightstone:lightstone_darkgray_off 91 91 91
+mesecons_lightstone:lightstone_darkgray_on 113 113 113
+mesecons_lightstone:lightstone_gray_off 109 109 109
+mesecons_lightstone:lightstone_gray_on 109 109 109
+mesecons_lightstone:lightstone_green_off 0 134 0
+mesecons_lightstone:lightstone_green_on 0 134 0
+mesecons_lightstone:lightstone_red_off 129 0 0
+mesecons_lightstone:lightstone_red_on 129 0 0
+mesecons_lightstone:lightstone_yellow_off 222 220 72
+mesecons_lightstone:lightstone_yellow_on 254 252 105
+mesecons_luacontroller:luacontroller0000 186 186 186
+mesecons_luacontroller:luacontroller0001 186 186 186
+mesecons_luacontroller:luacontroller0010 186 186 186
+mesecons_luacontroller:luacontroller0011 186 186 186
+mesecons_luacontroller:luacontroller0100 186 186 186
+mesecons_luacontroller:luacontroller0101 186 186 186
+mesecons_luacontroller:luacontroller0110 186 186 186
+mesecons_luacontroller:luacontroller0111 186 186 186
+mesecons_luacontroller:luacontroller1000 186 186 186
+mesecons_luacontroller:luacontroller1001 186 186 186
+mesecons_luacontroller:luacontroller1010 186 186 186
+mesecons_luacontroller:luacontroller1011 186 186 186
+mesecons_luacontroller:luacontroller1100 186 186 186
+mesecons_luacontroller:luacontroller1101 186 186 186
+mesecons_luacontroller:luacontroller1110 186 186 186
+mesecons_luacontroller:luacontroller1111 186 186 186
+mesecons_luacontroller:luacontroller_burnt 186 186 186
+mesecons_microcontroller:microcontroller0000 186 186 186
+mesecons_microcontroller:microcontroller0001 186 186 186
+mesecons_microcontroller:microcontroller0010 186 186 186
+mesecons_microcontroller:microcontroller0011 186 186 186
+mesecons_microcontroller:microcontroller0100 186 186 186
+mesecons_microcontroller:microcontroller0101 186 186 186
+mesecons_microcontroller:microcontroller0110 186 186 186
+mesecons_microcontroller:microcontroller0111 186 186 186
+mesecons_microcontroller:microcontroller1000 186 186 186
+mesecons_microcontroller:microcontroller1001 186 186 186
+mesecons_microcontroller:microcontroller1010 186 186 186
+mesecons_microcontroller:microcontroller1011 186 186 186
+mesecons_microcontroller:microcontroller1100 186 186 186
+mesecons_microcontroller:microcontroller1101 186 186 186
+mesecons_microcontroller:microcontroller1110 186 186 186
+mesecons_microcontroller:microcontroller1111 186 186 186
+mesecons_movestones:movestone 120 120 120
+mesecons_movestones:sticky_movestone 120 120 120
+mesecons_noteblock:noteblock 88 86 87
+mesecons_pistons:piston_down_normal_off 160 160 160
+mesecons_pistons:piston_down_normal_on 160 160 160
+mesecons_pistons:piston_down_pusher_normal 123 124 124
+mesecons_pistons:piston_down_pusher_sticky 123 124 124
+mesecons_pistons:piston_down_sticky_off 160 160 160
+mesecons_pistons:piston_down_sticky_on 160 160 160
+mesecons_pistons:piston_normal_off 125 125 125
+mesecons_pistons:piston_normal_on 125 125 125
+mesecons_pistons:piston_pusher_normal 157 157 157
+mesecons_pistons:piston_pusher_sticky 98 98 70
+mesecons_pistons:piston_sticky_off 125 125 125
+mesecons_pistons:piston_sticky_on 98 98 70
+mesecons_pistons:piston_up_normal_off 123 124 124
+mesecons_pistons:piston_up_normal_on 160 160 160
+mesecons_pistons:piston_up_pusher_normal 123 124 124
+mesecons_pistons:piston_up_pusher_sticky 123 124 124
+mesecons_pistons:piston_up_sticky_off 123 124 124
+mesecons_pistons:piston_up_sticky_on 160 160 160
+mesecons_powerplant:power_plant 246 247 186
+mesecons_pressureplates:pressure_plate_stone_off 98 98 70
+mesecons_pressureplates:pressure_plate_stone_on 98 98 70
+mesecons_pressureplates:pressure_plate_wood_off 98 98 70
+mesecons_pressureplates:pressure_plate_wood_on 149 149 25
+mesecons_random:ghoststone 78 74 71
+mesecons_random:removestone 50 48 45
+mesecons_receiver:receiver_off 147 148 23
+mesecons_receiver:receiver_on 238 238 46
+mesecons_solarpanel:solar_panel_off 42 63 105
+mesecons_solarpanel:solar_panel_on 42 63 105
+mesecons_switch:mesecon_switch_off 108 108 108
+mesecons_switch:mesecon_switch_on 101 254 101
+mesecons_torch:mesecon_torch_off 255 255 0
+mesecons_torch:mesecon_torch_on 255 255 0
+mesecons_walllever:wall_lever_off 175 127 58
+mesecons_walllever:wall_lever_on 175 127 58
+mesecons:wire_00000000_off 146 148 23
+mesecons:wire_00000000_on 237 237 46
+mesecons:wire_00010000_off 146 148 23
+mesecons:wire_00010000_on 229 229 45
+mesecons:wire_00010001_off 146 148 23
+mesecons:wire_00010001_on 229 229 45
+mesecons:wire_00100000_off 143 144 23
+mesecons:wire_00100000_on 229 229 45
+mesecons:wire_00100010_off 143 144 23
+mesecons:wire_00100010_on 237 237 46
+mesecons:wire_00110000_off 143 144 23
+mesecons:wire_00110000_on 229 229 45
+mesecons:wire_00110001_off 143 144 23
+mesecons:wire_00110001_on 229 229 45
+mesecons:wire_00110010_off 146 148 23
+mesecons:wire_00110010_on 229 229 45
+mesecons:wire_00110011_off 146 148 23
+mesecons:wire_00110011_on 237 237 46
+mesecons:wire_01000000_off 146 148 23
+mesecons:wire_01000000_on 237 237 46
+mesecons:wire_01000100_off 143 144 23
+mesecons:wire_01000100_on 229 229 45
+mesecons:wire_01010000_off 143 144 23
+mesecons:wire_01010000_on 229 229 45
+mesecons:wire_01010001_off 143 144 23
+mesecons:wire_01010001_on 229 229 45
+mesecons:wire_01010100_off 143 144 23
+mesecons:wire_01010100_on 229 229 45
+mesecons:wire_01010101_off 146 148 23
+mesecons:wire_01010101_on 229 229 45
+mesecons:wire_01100000_off 143 144 23
+mesecons:wire_01100000_on 229 229 45
+mesecons:wire_01100010_off 146 148 23
+mesecons:wire_01100010_on 229 229 45
+mesecons:wire_01100100_off 143 144 23
+mesecons:wire_01100100_on 229 229 45
+mesecons:wire_01100110_off 146 148 23
+mesecons:wire_01100110_on 229 229 45
+mesecons:wire_01110000_off 143 144 23
+mesecons:wire_01110000_on 229 229 45
+mesecons:wire_01110001_off 141 143 22
+mesecons:wire_01110001_on 229 229 45
+mesecons:wire_01110010_off 141 143 22
+mesecons:wire_01110010_on 229 229 45
+mesecons:wire_01110011_off 141 143 22
+mesecons:wire_01110011_on 227 227 44
+mesecons:wire_01110100_off 141 143 22
+mesecons:wire_01110100_on 229 229 45
+mesecons:wire_01110101_off 143 144 23
+mesecons:wire_01110101_on 229 229 45
+mesecons:wire_01110110_off 141 143 22
+mesecons:wire_01110110_on 227 227 44
+mesecons:wire_01110111_off 141 143 22
+mesecons:wire_01110111_on 227 227 44
+mesecons:wire_10000000_off 143 144 23
+mesecons:wire_10000000_on 229 229 45
+mesecons:wire_10001000_off 146 148 23
+mesecons:wire_10001000_on 237 237 46
+mesecons:wire_10010000_off 143 144 23
+mesecons:wire_10010000_on 229 229 45
+mesecons:wire_10010001_off 143 144 23
+mesecons:wire_10010001_on 229 229 45
+mesecons:wire_10011000_off 146 148 23
+mesecons:wire_10011000_on 229 229 45
+mesecons:wire_10011001_off 146 148 23
+mesecons:wire_10011001_on 229 229 45
+mesecons:wire_10100000_off 143 144 23
+mesecons:wire_10100000_on 229 229 45
+mesecons:wire_10100010_off 143 144 23
+mesecons:wire_10100010_on 229 229 45
+mesecons:wire_10101000_off 143 144 23
+mesecons:wire_10101000_on 229 229 45
+mesecons:wire_10101010_off 146 148 23
+mesecons:wire_10101010_on 237 237 46
+mesecons:wire_10110000_off 143 144 23
+mesecons:wire_10110000_on 229 229 45
+mesecons:wire_10110001_off 143 144 23
+mesecons:wire_10110001_on 229 229 45
+mesecons:wire_10110010_off 141 143 22
+mesecons:wire_10110010_on 227 227 44
+mesecons:wire_10110011_off 141 143 22
+mesecons:wire_10110011_on 227 227 44
+mesecons:wire_10111000_off 143 144 23
+mesecons:wire_10111000_on 229 229 45
+mesecons:wire_10111001_off 141 143 22
+mesecons:wire_10111001_on 227 227 44
+mesecons:wire_10111010_off 141 143 22
+mesecons:wire_10111010_on 229 229 45
+mesecons:wire_10111011_off 141 143 22
+mesecons:wire_10111011_on 227 227 44
+mesecons:wire_11000000_off 229 229 45
+mesecons:wire_11000000_on 229 229 45
+mesecons:wire_11000100_off 143 144 23
+mesecons:wire_11000100_on 229 229 45
+mesecons:wire_11001000_off 143 144 23
+mesecons:wire_11001000_on 229 229 45
+mesecons:wire_11001100_off 143 144 23
+mesecons:wire_11001100_on 229 229 45
+mesecons:wire_11010000_off 143 144 23
+mesecons:wire_11010000_on 229 229 45
+mesecons:wire_11010001_off 141 143 22
+mesecons:wire_11010001_on 227 227 44
+mesecons:wire_11010100_off 141 143 22
+mesecons:wire_11010100_on 227 227 44
+mesecons:wire_11010101_off 141 143 22
+mesecons:wire_11010101_on 229 229 45
+mesecons:wire_11011000_off 141 143 22
+mesecons:wire_11011000_on 229 229 45
+mesecons:wire_11011001_off 141 143 22
+mesecons:wire_11011001_on 229 229 45
+mesecons:wire_11011100_off 141 143 22
+mesecons:wire_11011100_on 227 227 44
+mesecons:wire_11011101_off 141 143 22
+mesecons:wire_11011101_on 227 227 44
+mesecons:wire_11100000_off 143 144 23
+mesecons:wire_11100000_on 229 229 45
+mesecons:wire_11100010_off 143 144 23
+mesecons:wire_11100010_on 229 229 45
+mesecons:wire_11100100_off 141 143 22
+mesecons:wire_11100100_on 229 229 45
+mesecons:wire_11100110_off 141 143 22
+mesecons:wire_11100110_on 227 227 44
+mesecons:wire_11101000_off 143 144 23
+mesecons:wire_11101000_on 229 229 45
+mesecons:wire_11101010_off 141 143 22
+mesecons:wire_11101010_on 229 229 45
+mesecons:wire_11101100_off 141 143 22
+mesecons:wire_11101100_on 227 227 44
+mesecons:wire_11101110_off 141 143 22
+mesecons:wire_11101110_on 227 227 44
+mesecons:wire_11110000_off 143 144 23
+mesecons:wire_11110000_on 229 229 45
+mesecons:wire_11110001_off 143 144 23
+mesecons:wire_11110001_on 229 229 45
+mesecons:wire_11110010_off 141 143 22
+mesecons:wire_11110010_on 227 227 44
+mesecons:wire_11110011_off 141 143 22
+mesecons:wire_11110011_on 227 227 44
+mesecons:wire_11110100_off 143 144 23
+mesecons:wire_11110100_on 229 229 45
+mesecons:wire_11110101_off 143 144 23
+mesecons:wire_11110101_on 229 229 45
+mesecons:wire_11110110_off 141 143 22
+mesecons:wire_11110110_on 227 227 44
+mesecons:wire_11110111_off 141 143 22
+mesecons:wire_11110111_on 227 227 44
+mesecons:wire_11111000_off 143 144 23
+mesecons:wire_11111000_on 227 227 44
+mesecons:wire_11111001_off 141 143 22
+mesecons:wire_11111001_on 229 229 45
+mesecons:wire_11111010_off 143 144 23
+mesecons:wire_11111010_on 229 229 45
+mesecons:wire_11111011_off 141 143 22
+mesecons:wire_11111011_on 227 227 44
+mesecons:wire_11111100_off 141 143 22
+mesecons:wire_11111100_on 227 227 44
+mesecons:wire_11111101_off 141 143 22
+mesecons:wire_11111101_on 227 227 44
+mesecons:wire_11111110_off 141 143 22
+mesecons:wire_11111110_on 227 227 44
+mesecons:wire_11111111_off 141 143 22
+mesecons:wire_11111111_on 229 229 45
+mg:dirt_with_dry_grass 114 99 53
+mg:pineleaves 16 30 14
+mg:pinesapling 12 12 5
+mg:pinetree 26 21 14
+mg:pinewood 120 93 66
+mg:savannaleaves 70 62 41
+mg:savannasapling 32 36 13
+mg:savannatree 52 51 37
+mg:savannawood 128 113 57
+moreblocks:all_faces_jungle_tree 120 106 78
+moreblocks:all_faces_tree 66 52 35
+moreblocks:cactus_brick 206 212 202
+moreblocks:cactus_checker 130 138 130
+moreblocks:circle_stone_bricks 91 88 87
+moreblocks:circular_saw 78 64 44
+moreblocks:clean_glass 192 192 227 128
+moreblocks:coal_checker 133 133 133
+moreblocks:coal_glass 130 130 130 128
+moreblocks:coal_stone 70 70 70
+moreblocks:coal_stone_bricks 79 76 75
+moreblocks:empty_bookshelf 128 100 57
+moreblocks:fence_jungle_wood 105 68 44
+moreblocks:glow_glass 255 226 114 128
+moreblocks:iron_checker 142 142 142
+moreblocks:iron_glass 222 222 222 128
+moreblocks:iron_stone 134 134 134
+moreblocks:iron_stone_bricks 104 98 97
+moreblocks:micro_brick_1 156 157 151
+moreblocks:micro_brick_12 156 157 151
+moreblocks:micro_brick_14 156 157 151
+moreblocks:micro_brick_15 156 157 151
+moreblocks:micro_brick 156 157 151
+moreblocks:micro_brick_2 156 157 151
+moreblocks:micro_brick_4 156 157 151
+moreblocks:micro_bronzeblock_1 116 70 26
+moreblocks:micro_bronzeblock 116 70 26
+moreblocks:micro_bronzeblock_12 116 70 26
+moreblocks:micro_bronzeblock_14 116 70 26
+moreblocks:micro_bronzeblock_15 116 70 26
+moreblocks:micro_bronzeblock_2 116 70 26
+moreblocks:micro_bronzeblock_4 116 70 26
+moreblocks:micro_cactus_checker_1 130 138 130
+moreblocks:micro_cactus_checker_12 130 138 130
+moreblocks:micro_cactus_checker 130 138 130
+moreblocks:micro_cactus_checker_14 130 138 130
+moreblocks:micro_cactus_checker_15 130 138 130
+moreblocks:micro_cactus_checker_2 130 138 130
+moreblocks:micro_cactus_checker_4 130 138 130
+moreblocks:micro_circle_stone_bricks_12 91 88 87
+moreblocks:micro_circle_stone_bricks_14 91 88 87
+moreblocks:micro_circle_stone_bricks_15 91 88 87
+moreblocks:micro_circle_stone_bricks_1 91 88 87
+moreblocks:micro_circle_stone_bricks_2 91 88 87
+moreblocks:micro_circle_stone_bricks_4 91 88 87
+moreblocks:micro_circle_stone_bricks 91 88 87
+moreblocks:micro_coal_checker_1 133 133 133
+moreblocks:micro_coal_checker_12 133 133 133
+moreblocks:micro_coal_checker 133 133 133
+moreblocks:micro_coal_checker_14 133 133 133
+moreblocks:micro_coal_checker_15 133 133 133
+moreblocks:micro_coal_checker_2 133 133 133
+moreblocks:micro_coal_checker_4 133 133 133
+moreblocks:micro_coal_glass_1 130 130 130 128
+moreblocks:micro_coal_glass_12 130 130 130 128
+moreblocks:micro_coal_glass 130 130 130 128
+moreblocks:micro_coal_glass_14 130 130 130 128
+moreblocks:micro_coal_glass_15 130 130 130 128
+moreblocks:micro_coal_glass_2 130 130 130 128
+moreblocks:micro_coal_glass_4 130 130 130 128
+moreblocks:micro_coal_stone_12 70 70 70
+moreblocks:micro_coal_stone_14 70 70 70
+moreblocks:micro_coal_stone_15 70 70 70
+moreblocks:micro_coal_stone_1 70 70 70
+moreblocks:micro_coal_stone_2 70 70 70
+moreblocks:micro_coal_stone_4 70 70 70
+moreblocks:micro_coal_stone 70 70 70
+moreblocks:micro_coal_stone_bricks_12 79 76 75
+moreblocks:micro_coal_stone_bricks_14 79 76 75
+moreblocks:micro_coal_stone_bricks_15 79 76 75
+moreblocks:micro_coal_stone_bricks_1 79 76 75
+moreblocks:micro_coal_stone_bricks_2 79 76 75
+moreblocks:micro_coal_stone_bricks_4 79 76 75
+moreblocks:micro_coal_stone_bricks 79 76 75
+moreblocks:micro_cobble_1 133 133 133
+moreblocks:micro_cobble_12 133 133 133
+moreblocks:micro_cobble 133 133 133
+moreblocks:micro_cobble_14 133 133 133
+moreblocks:micro_cobble_15 133 133 133
+moreblocks:micro_cobble_2 133 133 133
+moreblocks:micro_cobble_4 133 133 133
+moreblocks:micro_copperblock 110 86 60
+moreblocks:micro_copperblock_1 110 86 60
+moreblocks:micro_copperblock_12 110 86 60
+moreblocks:micro_copperblock_14 110 86 60
+moreblocks:micro_copperblock_15 110 86 60
+moreblocks:micro_copperblock_2 110 86 60
+moreblocks:micro_copperblock_4 110 86 60
+moreblocks:micro_desert_stone_1 122 74 57
+moreblocks:micro_desert_stone_12 122 74 57
+moreblocks:micro_desert_stone 122 74 57
+moreblocks:micro_desert_stone_14 122 74 57
+moreblocks:micro_desert_stone_15 122 74 57
+moreblocks:micro_desert_stone_2 122 74 57
+moreblocks:micro_desert_stone_4 122 74 57
+moreblocks:micro_desert_stonebrick 105 64 49
+moreblocks:micro_desert_stonebrick_1 105 64 49
+moreblocks:micro_desert_stonebrick_12 105 64 49
+moreblocks:micro_desert_stonebrick_14 105 64 49
+moreblocks:micro_desert_stonebrick_15 105 64 49
+moreblocks:micro_desert_stonebrick_2 105 64 49
+moreblocks:micro_desert_stonebrick_4 105 64 49
+moreblocks:micro_diamondblock 103 195 201
+moreblocks:micro_diamondblock_1 103 195 201
+moreblocks:micro_diamondblock_12 103 195 201
+moreblocks:micro_diamondblock_14 103 195 201
+moreblocks:micro_diamondblock_15 103 195 201
+moreblocks:micro_diamondblock_2 103 195 201
+moreblocks:micro_diamondblock_4 103 195 201
+moreblocks:micro_glass_1 192 192 227 128
+moreblocks:micro_glass_12 192 192 227 128
+moreblocks:micro_glass_14 192 192 227 128
+moreblocks:micro_glass_15 192 192 227 128
+moreblocks:micro_glass 192 192 227 128
+moreblocks:micro_glass_2 192 192 227 128
+moreblocks:micro_glass_4 192 192 227 128
+moreblocks:micro_glow_glass_12 255 226 114 128
+moreblocks:micro_glow_glass_1 255 226 114 128
+moreblocks:micro_glow_glass_14 255 226 114 128
+moreblocks:micro_glow_glass_15 255 226 114 128
+moreblocks:micro_glow_glass_2 255 226 114 128
+moreblocks:micro_glow_glass 255 226 114 128
+moreblocks:micro_glow_glass_4 255 226 114 128
+moreblocks:micro_goldblock_1 126 116 35
+moreblocks:micro_goldblock_12 126 116 35
+moreblocks:micro_goldblock 126 116 35
+moreblocks:micro_goldblock_14 126 116 35
+moreblocks:micro_goldblock_15 126 116 35
+moreblocks:micro_goldblock_2 126 116 35
+moreblocks:micro_goldblock_4 126 116 35
+moreblocks:micro_invisible 0 0 0
+moreblocks:micro_invisible_1 0 0 0
+moreblocks:micro_invisible_12 0 0 0
+moreblocks:micro_invisible_14 0 0 0
+moreblocks:micro_invisible_15 0 0 0
+moreblocks:micro_invisible_2 0 0 0
+moreblocks:micro_invisible_4 0 0 0
+moreblocks:micro_iron_checker_1 142 142 142
+moreblocks:micro_iron_checker_12 142 142 142
+moreblocks:micro_iron_checker_14 142 142 142
+moreblocks:micro_iron_checker 142 142 142
+moreblocks:micro_iron_checker_15 142 142 142
+moreblocks:micro_iron_checker_2 142 142 142
+moreblocks:micro_iron_checker_4 142 142 142
+moreblocks:micro_iron_glass_1 222 222 222 128
+moreblocks:micro_iron_glass_12 222 222 222 128
+moreblocks:micro_iron_glass_14 222 222 222 128
+moreblocks:micro_iron_glass_15 222 222 222 128
+moreblocks:micro_iron_glass 222 222 222 128
+moreblocks:micro_iron_glass_2 222 222 222 128
+moreblocks:micro_iron_glass_4 222 222 222 128
+moreblocks:micro_iron_stone_1 134 134 134
+moreblocks:micro_iron_stone_12 134 134 134
+moreblocks:micro_iron_stone 134 134 134
+moreblocks:micro_iron_stone_14 134 134 134
+moreblocks:micro_iron_stone_15 134 134 134
+moreblocks:micro_iron_stone_2 134 134 134
+moreblocks:micro_iron_stone_4 134 134 134
+moreblocks:micro_iron_stone_bricks 104 98 97
+moreblocks:micro_iron_stone_bricks_1 104 98 97
+moreblocks:micro_iron_stone_bricks_12 104 98 97
+moreblocks:micro_iron_stone_bricks_14 104 98 97
+moreblocks:micro_iron_stone_bricks_15 104 98 97
+moreblocks:micro_iron_stone_bricks_2 104 98 97
+moreblocks:micro_iron_stone_bricks_4 104 98 97
+moreblocks:micro_jungletree_1 120 106 78
+moreblocks:micro_jungletree 120 106 78
+moreblocks:micro_jungletree_12 120 106 78
+moreblocks:micro_jungletree_14 120 106 78
+moreblocks:micro_jungletree_15 120 106 78
+moreblocks:micro_jungletree_2 120 106 78
+moreblocks:micro_jungletree_4 120 106 78
+moreblocks:micro_junglewood_12 51 35 12
+moreblocks:micro_jungle_wood_12 51 35 12
+moreblocks:micro_junglewood_14 51 35 12
+moreblocks:micro_jungle_wood_14 51 35 12
+moreblocks:micro_junglewood_1 51 35 12
+moreblocks:micro_jungle_wood_1 51 35 12
+moreblocks:micro_junglewood_15 51 35 12
+moreblocks:micro_jungle_wood_15 51 35 12
+moreblocks:micro_junglewood_2 51 35 12
+moreblocks:micro_jungle_wood_2 51 35 12
+moreblocks:micro_junglewood_4 51 35 12
+moreblocks:micro_jungle_wood_4 51 35 12
+moreblocks:micro_junglewood 51 35 12
+moreblocks:micro_jungle_wood 51 35 12
+moreblocks:micro_mossycobble 102 116 85
+moreblocks:micro_mossycobble_1 102 116 85
+moreblocks:micro_mossycobble_12 102 116 85
+moreblocks:micro_mossycobble_14 102 116 85
+moreblocks:micro_mossycobble_15 102 116 85
+moreblocks:micro_mossycobble_2 102 116 85
+moreblocks:micro_mossycobble_4 102 116 85
+moreblocks:micro_obsidian_1 16 16 16
+moreblocks:micro_obsidian_12 16 16 16
+moreblocks:micro_obsidian_14 16 16 16
+moreblocks:micro_obsidian_15 16 16 16
+moreblocks:micro_obsidian 16 16 16
+moreblocks:micro_obsidian_2 16 16 16
+moreblocks:micro_obsidian_4 16 16 16
+moreblocks:micro_obsidian_glass_1 16 17 17 128
+moreblocks:micro_obsidian_glass_12 16 17 17 128
+moreblocks:micro_obsidian_glass_14 16 17 17 128
+moreblocks:micro_obsidian_glass_15 16 17 17 128
+moreblocks:micro_obsidian_glass 16 17 17 128
+moreblocks:micro_obsidian_glass_2 16 17 17 128
+moreblocks:micro_obsidian_glass_4 16 17 17 128
+moreblocks:micro_plankstone_12 66 51 23
+moreblocks:micro_plankstone_14 66 51 23
+moreblocks:micro_plankstone_15 66 51 23
+moreblocks:micro_plankstone_1 66 51 23
+moreblocks:micro_plankstone_2 66 51 23
+moreblocks:micro_plankstone_4 66 51 23
+moreblocks:micro_plankstone 66 51 23
+moreblocks:micro_sandstone_1 180 162 121
+moreblocks:micro_sandstone_12 180 162 121
+moreblocks:micro_sandstone_14 180 162 121
+moreblocks:micro_sandstone_15 180 162 121
+moreblocks:micro_sandstone 180 162 121
+moreblocks:micro_sandstone_2 180 162 121
+moreblocks:micro_sandstone_4 180 162 121
+moreblocks:micro_sandstonebrick_1 160 144 108
+moreblocks:micro_sandstonebrick_12 160 144 108
+moreblocks:micro_sandstonebrick_14 160 144 108
+moreblocks:micro_sandstonebrick_15 160 144 108
+moreblocks:micro_sandstonebrick 160 144 108
+moreblocks:micro_sandstonebrick_2 160 144 108
+moreblocks:micro_sandstonebrick_4 160 144 108
+moreblocks:micro_split_stone_tile_12 97 97 97
+moreblocks:micro_split_stone_tile_14 97 97 97
+moreblocks:micro_split_stone_tile_15 97 97 97
+moreblocks:micro_split_stone_tile_1 97 97 97
+moreblocks:micro_split_stone_tile_2 97 97 97
+moreblocks:micro_split_stone_tile_4 97 97 97
+moreblocks:micro_split_stone_tile 97 97 97
+moreblocks:micro_steelblock_1 153 153 153
+moreblocks:micro_steelblock_12 153 153 153
+moreblocks:micro_steelblock_14 153 153 153
+moreblocks:micro_steelblock_15 153 153 153
+moreblocks:micro_steelblock 153 153 153
+moreblocks:micro_steelblock_2 153 153 153
+moreblocks:micro_steelblock_4 153 153 153
+moreblocks:micro_stone_12 91 88 87
+moreblocks:micro_stone_14 91 88 87
+moreblocks:micro_stone_15 91 88 87
+moreblocks:micro_stone_1 91 88 87
+moreblocks:micro_stone_2 91 88 87
+moreblocks:micro_stone_4 91 88 87
+moreblocks:micro_stone 91 88 87
+moreblocks:micro_stonebrick 104 100 99
+moreblocks:micro_stonebrick_1 104 100 99
+moreblocks:micro_stonebrick_12 104 100 99
+moreblocks:micro_stonebrick_14 104 100 99
+moreblocks:micro_stonebrick_15 104 100 99
+moreblocks:micro_stonebrick_2 104 100 99
+moreblocks:micro_stonebrick_4 104 100 99
+moreblocks:micro_stone_tile_12 97 97 97
+moreblocks:micro_stone_tile_14 97 97 97
+moreblocks:micro_stone_tile_15 97 97 97
+moreblocks:micro_stone_tile_1 97 97 97
+moreblocks:micro_stone_tile_2 97 97 97
+moreblocks:micro_stone_tile_4 97 97 97
+moreblocks:micro_stone_tile 97 97 97
+moreblocks:micro_super_glow_glass_12 255 255 120 128
+moreblocks:micro_super_glow_glass_1 255 255 120 128
+moreblocks:micro_super_glow_glass_14 255 255 120 128
+moreblocks:micro_super_glow_glass_15 255 255 120 128
+moreblocks:micro_super_glow_glass_2 255 255 120 128
+moreblocks:micro_super_glow_glass 255 255 120 128
+moreblocks:micro_super_glow_glass_4 255 255 120 128
+moreblocks:micro_tree_12 66 52 35
+moreblocks:micro_tree_14 66 52 35
+moreblocks:micro_tree_15 66 52 35
+moreblocks:micro_tree_1 66 52 35
+moreblocks:micro_tree_2 66 52 35
+moreblocks:micro_tree_4 66 52 35
+moreblocks:micro_tree 66 52 35
+moreblocks:micro_wood_1 128 100 57
+moreblocks:micro_wood_12 128 100 57
+moreblocks:micro_wood 128 100 57
+moreblocks:micro_wood_14 128 100 57
+moreblocks:micro_wood_15 128 100 57
+moreblocks:micro_wood_2 128 100 57
+moreblocks:micro_wood_4 128 100 57
+moreblocks:micro_wood_tile_12 78 65 44
+moreblocks:micro_wood_tile_14 78 65 44
+moreblocks:micro_wood_tile_15 78 65 44
+moreblocks:micro_wood_tile_1 78 65 44
+moreblocks:micro_wood_tile_2 78 65 44
+moreblocks:micro_wood_tile_4 78 65 44
+moreblocks:micro_wood_tile 78 65 44
+moreblocks:micro_wood_tile_center_1 128 100 57
+moreblocks:micro_wood_tile_center_12 128 100 57
+moreblocks:micro_wood_tile_center 128 100 57
+moreblocks:micro_wood_tile_center_14 128 100 57
+moreblocks:micro_wood_tile_center_15 128 100 57
+moreblocks:micro_wood_tile_center_2 128 100 57
+moreblocks:micro_wood_tile_center_4 128 100 57
+moreblocks:micro_wood_tile_full_12 78 64 44
+moreblocks:micro_wood_tile_full_14 78 64 44
+moreblocks:micro_wood_tile_full_15 78 64 44
+moreblocks:micro_wood_tile_full_1 78 64 44
+moreblocks:micro_wood_tile_full_2 78 64 44
+moreblocks:micro_wood_tile_full_4 78 64 44
+moreblocks:micro_wood_tile_full 78 64 44
+moreblocks:panel_brick_1 156 157 151
+moreblocks:panel_brick_12 156 157 151
+moreblocks:panel_brick_14 156 157 151
+moreblocks:panel_brick_15 156 157 151
+moreblocks:panel_brick 156 157 151
+moreblocks:panel_brick_2 156 157 151
+moreblocks:panel_brick_4 156 157 151
+moreblocks:panel_bronzeblock_1 116 70 26
+moreblocks:panel_bronzeblock 116 70 26
+moreblocks:panel_bronzeblock_12 116 70 26
+moreblocks:panel_bronzeblock_14 116 70 26
+moreblocks:panel_bronzeblock_15 116 70 26
+moreblocks:panel_bronzeblock_2 116 70 26
+moreblocks:panel_bronzeblock_4 116 70 26
+moreblocks:panel_cactus_checker_1 130 138 130
+moreblocks:panel_cactus_checker_12 130 138 130
+moreblocks:panel_cactus_checker 130 138 130
+moreblocks:panel_cactus_checker_14 130 138 130
+moreblocks:panel_cactus_checker_15 130 138 130
+moreblocks:panel_cactus_checker_2 130 138 130
+moreblocks:panel_cactus_checker_4 130 138 130
+moreblocks:panel_circle_stone_bricks_12 91 88 87
+moreblocks:panel_circle_stone_bricks_14 91 88 87
+moreblocks:panel_circle_stone_bricks_15 91 88 87
+moreblocks:panel_circle_stone_bricks_1 91 88 87
+moreblocks:panel_circle_stone_bricks_2 91 88 87
+moreblocks:panel_circle_stone_bricks_4 91 88 87
+moreblocks:panel_circle_stone_bricks 91 88 87
+moreblocks:panel_coal_checker_1 133 133 133
+moreblocks:panel_coal_checker_12 133 133 133
+moreblocks:panel_coal_checker 133 133 133
+moreblocks:panel_coal_checker_14 133 133 133
+moreblocks:panel_coal_checker_15 133 133 133
+moreblocks:panel_coal_checker_2 133 133 133
+moreblocks:panel_coal_checker_4 133 133 133
+moreblocks:panel_coal_glass_1 130 130 130 128
+moreblocks:panel_coal_glass_12 130 130 130 128
+moreblocks:panel_coal_glass 130 130 130 128
+moreblocks:panel_coal_glass_14 130 130 130 128
+moreblocks:panel_coal_glass_15 130 130 130 128
+moreblocks:panel_coal_glass_2 130 130 130 128
+moreblocks:panel_coal_glass_4 130 130 130 128
+moreblocks:panel_coal_stone_12 70 70 70
+moreblocks:panel_coal_stone_14 70 70 70
+moreblocks:panel_coal_stone_15 70 70 70
+moreblocks:panel_coal_stone_1 70 70 70
+moreblocks:panel_coal_stone_2 70 70 70
+moreblocks:panel_coal_stone_4 70 70 70
+moreblocks:panel_coal_stone 70 70 70
+moreblocks:panel_coal_stone_bricks_12 79 76 75
+moreblocks:panel_coal_stone_bricks_14 79 76 75
+moreblocks:panel_coal_stone_bricks_15 79 76 75
+moreblocks:panel_coal_stone_bricks_1 79 76 75
+moreblocks:panel_coal_stone_bricks_2 79 76 75
+moreblocks:panel_coal_stone_bricks_4 79 76 75
+moreblocks:panel_coal_stone_bricks 79 76 75
+moreblocks:panel_cobble_1 133 133 133
+moreblocks:panel_cobble_12 133 133 133
+moreblocks:panel_cobble 133 133 133
+moreblocks:panel_cobble_14 133 133 133
+moreblocks:panel_cobble_15 133 133 133
+moreblocks:panel_cobble_2 133 133 133
+moreblocks:panel_cobble_4 133 133 133
+moreblocks:panel_copperblock 110 86 60
+moreblocks:panel_copperblock_1 110 86 60
+moreblocks:panel_copperblock_12 110 86 60
+moreblocks:panel_copperblock_14 110 86 60
+moreblocks:panel_copperblock_15 110 86 60
+moreblocks:panel_copperblock_2 110 86 60
+moreblocks:panel_copperblock_4 110 86 60
+moreblocks:panel_desert_stone_1 122 74 57
+moreblocks:panel_desert_stone_12 122 74 57
+moreblocks:panel_desert_stone 122 74 57
+moreblocks:panel_desert_stone_14 122 74 57
+moreblocks:panel_desert_stone_15 122 74 57
+moreblocks:panel_desert_stone_2 122 74 57
+moreblocks:panel_desert_stone_4 122 74 57
+moreblocks:panel_desert_stonebrick 105 64 49
+moreblocks:panel_desert_stonebrick_1 105 64 49
+moreblocks:panel_desert_stonebrick_12 105 64 49
+moreblocks:panel_desert_stonebrick_14 105 64 49
+moreblocks:panel_desert_stonebrick_15 105 64 49
+moreblocks:panel_desert_stonebrick_2 105 64 49
+moreblocks:panel_desert_stonebrick_4 105 64 49
+moreblocks:panel_diamondblock 103 195 201
+moreblocks:panel_diamondblock_1 103 195 201
+moreblocks:panel_diamondblock_12 103 195 201
+moreblocks:panel_diamondblock_14 103 195 201
+moreblocks:panel_diamondblock_15 103 195 201
+moreblocks:panel_diamondblock_2 103 195 201
+moreblocks:panel_diamondblock_4 103 195 201
+moreblocks:panel_glass_1 192 192 227 128
+moreblocks:panel_glass_12 192 192 227 128
+moreblocks:panel_glass_14 192 192 227 128
+moreblocks:panel_glass_15 192 192 227 128
+moreblocks:panel_glass 192 192 227 128
+moreblocks:panel_glass_2 192 192 227 128
+moreblocks:panel_glass_4 192 192 227 128
+moreblocks:panel_glow_glass_12 255 226 114 128
+moreblocks:panel_glow_glass_1 255 226 114 128
+moreblocks:panel_glow_glass_14 255 226 114 128
+moreblocks:panel_glow_glass_15 255 226 114 128
+moreblocks:panel_glow_glass_2 255 226 114 128
+moreblocks:panel_glow_glass 255 226 114 128
+moreblocks:panel_glow_glass_4 255 226 114 128
+moreblocks:panel_goldblock_1 126 116 35
+moreblocks:panel_goldblock_12 126 116 35
+moreblocks:panel_goldblock 126 116 35
+moreblocks:panel_goldblock_14 126 116 35
+moreblocks:panel_goldblock_15 126 116 35
+moreblocks:panel_goldblock_2 126 116 35
+moreblocks:panel_goldblock_4 126 116 35
+moreblocks:panel_invisible 0 0 0
+moreblocks:panel_invisible_1 0 0 0
+moreblocks:panel_invisible_12 0 0 0
+moreblocks:panel_invisible_14 0 0 0
+moreblocks:panel_invisible_15 0 0 0
+moreblocks:panel_invisible_2 0 0 0
+moreblocks:panel_invisible_4 0 0 0
+moreblocks:panel_iron_checker_1 142 142 142
+moreblocks:panel_iron_checker_12 142 142 142
+moreblocks:panel_iron_checker_14 142 142 142
+moreblocks:panel_iron_checker 142 142 142
+moreblocks:panel_iron_checker_15 142 142 142
+moreblocks:panel_iron_checker_2 142 142 142
+moreblocks:panel_iron_checker_4 142 142 142
+moreblocks:panel_iron_glass_1 222 222 222 128
+moreblocks:panel_iron_glass_12 222 222 222 128
+moreblocks:panel_iron_glass_14 222 222 222 128
+moreblocks:panel_iron_glass_15 222 222 222 128
+moreblocks:panel_iron_glass 222 222 222 128
+moreblocks:panel_iron_glass_2 222 222 222 128
+moreblocks:panel_iron_glass_4 222 222 222 128
+moreblocks:panel_iron_stone_1 134 134 134
+moreblocks:panel_iron_stone_12 134 134 134
+moreblocks:panel_iron_stone 134 134 134
+moreblocks:panel_iron_stone_14 134 134 134
+moreblocks:panel_iron_stone_15 134 134 134
+moreblocks:panel_iron_stone_2 134 134 134
+moreblocks:panel_iron_stone_4 134 134 134
+moreblocks:panel_iron_stone_bricks 104 98 97
+moreblocks:panel_iron_stone_bricks_1 104 98 97
+moreblocks:panel_iron_stone_bricks_12 104 98 97
+moreblocks:panel_iron_stone_bricks_14 104 98 97
+moreblocks:panel_iron_stone_bricks_15 104 98 97
+moreblocks:panel_iron_stone_bricks_2 104 98 97
+moreblocks:panel_iron_stone_bricks_4 104 98 97
+moreblocks:panel_jungletree_1 120 106 78
+moreblocks:panel_jungletree 120 106 78
+moreblocks:panel_jungletree_12 120 106 78
+moreblocks:panel_jungletree_14 120 106 78
+moreblocks:panel_jungletree_15 120 106 78
+moreblocks:panel_jungletree_2 120 106 78
+moreblocks:panel_jungletree_4 120 106 78
+moreblocks:panel_junglewood_12 51 35 12
+moreblocks:panel_jungle_wood_12 51 35 12
+moreblocks:panel_junglewood_14 51 35 12
+moreblocks:panel_jungle_wood_14 51 35 12
+moreblocks:panel_junglewood_1 51 35 12
+moreblocks:panel_jungle_wood_1 51 35 12
+moreblocks:panel_junglewood_15 51 35 12
+moreblocks:panel_jungle_wood_15 51 35 12
+moreblocks:panel_junglewood_2 51 35 12
+moreblocks:panel_jungle_wood_2 51 35 12
+moreblocks:panel_junglewood_4 51 35 12
+moreblocks:panel_jungle_wood_4 51 35 12
+moreblocks:panel_junglewood 51 35 12
+moreblocks:panel_jungle_wood 51 35 12
+moreblocks:panel_mossycobble 102 116 85
+moreblocks:panel_mossycobble_1 102 116 85
+moreblocks:panel_mossycobble_12 102 116 85
+moreblocks:panel_mossycobble_14 102 116 85
+moreblocks:panel_mossycobble_15 102 116 85
+moreblocks:panel_mossycobble_2 102 116 85
+moreblocks:panel_mossycobble_4 102 116 85
+moreblocks:panel_obsidian_1 16 16 16
+moreblocks:panel_obsidian_12 16 16 16
+moreblocks:panel_obsidian_14 16 16 16
+moreblocks:panel_obsidian_15 16 16 16
+moreblocks:panel_obsidian 16 16 16
+moreblocks:panel_obsidian_2 16 16 16
+moreblocks:panel_obsidian_4 16 16 16
+moreblocks:panel_obsidian_glass_1 16 17 17 128
+moreblocks:panel_obsidian_glass_12 16 17 17 128
+moreblocks:panel_obsidian_glass_14 16 17 17 128
+moreblocks:panel_obsidian_glass_15 16 17 17 128
+moreblocks:panel_obsidian_glass 16 17 17 128
+moreblocks:panel_obsidian_glass_2 16 17 17 128
+moreblocks:panel_obsidian_glass_4 16 17 17 128
+moreblocks:panel_plankstone_12 66 51 23
+moreblocks:panel_plankstone_14 66 51 23
+moreblocks:panel_plankstone_15 66 51 23
+moreblocks:panel_plankstone_1 66 51 23
+moreblocks:panel_plankstone_2 66 51 23
+moreblocks:panel_plankstone_4 66 51 23
+moreblocks:panel_plankstone 66 51 23
+moreblocks:panel_sandstone_1 180 162 121
+moreblocks:panel_sandstone_12 180 162 121
+moreblocks:panel_sandstone_14 180 162 121
+moreblocks:panel_sandstone_15 180 162 121
+moreblocks:panel_sandstone 180 162 121
+moreblocks:panel_sandstone_2 180 162 121
+moreblocks:panel_sandstone_4 180 162 121
+moreblocks:panel_sandstonebrick_1 160 144 108
+moreblocks:panel_sandstonebrick_12 160 144 108
+moreblocks:panel_sandstonebrick_14 160 144 108
+moreblocks:panel_sandstonebrick_15 160 144 108
+moreblocks:panel_sandstonebrick 160 144 108
+moreblocks:panel_sandstonebrick_2 160 144 108
+moreblocks:panel_sandstonebrick_4 160 144 108
+moreblocks:panel_split_stone_tile_12 97 97 97
+moreblocks:panel_split_stone_tile_14 97 97 97
+moreblocks:panel_split_stone_tile_15 97 97 97
+moreblocks:panel_split_stone_tile_1 97 97 97
+moreblocks:panel_split_stone_tile_2 97 97 97
+moreblocks:panel_split_stone_tile_4 97 97 97
+moreblocks:panel_split_stone_tile 97 97 97
+moreblocks:panel_steelblock_1 153 153 153
+moreblocks:panel_steelblock_12 153 153 153
+moreblocks:panel_steelblock_14 153 153 153
+moreblocks:panel_steelblock_15 153 153 153
+moreblocks:panel_steelblock 153 153 153
+moreblocks:panel_steelblock_2 153 153 153
+moreblocks:panel_steelblock_4 153 153 153
+moreblocks:panel_stone_12 91 88 87
+moreblocks:panel_stone_14 91 88 87
+moreblocks:panel_stone_15 91 88 87
+moreblocks:panel_stone_1 91 88 87
+moreblocks:panel_stone_2 91 88 87
+moreblocks:panel_stone_4 91 88 87
+moreblocks:panel_stone 91 88 87
+moreblocks:panel_stonebrick 104 100 99
+moreblocks:panel_stonebrick_1 104 100 99
+moreblocks:panel_stonebrick_12 104 100 99
+moreblocks:panel_stonebrick_14 104 100 99
+moreblocks:panel_stonebrick_15 104 100 99
+moreblocks:panel_stonebrick_2 104 100 99
+moreblocks:panel_stonebrick_4 104 100 99
+moreblocks:panel_stone_tile_12 97 97 97
+moreblocks:panel_stone_tile_14 97 97 97
+moreblocks:panel_stone_tile_15 97 97 97
+moreblocks:panel_stone_tile_1 97 97 97
+moreblocks:panel_stone_tile_2 97 97 97
+moreblocks:panel_stone_tile_4 97 97 97
+moreblocks:panel_stone_tile 97 97 97
+moreblocks:panel_super_glow_glass_12 255 255 120 128
+moreblocks:panel_super_glow_glass_1 255 255 120 128
+moreblocks:panel_super_glow_glass_14 255 255 120 128
+moreblocks:panel_super_glow_glass_15 255 255 120 128
+moreblocks:panel_super_glow_glass_2 255 255 120 128
+moreblocks:panel_super_glow_glass 255 255 120 128
+moreblocks:panel_super_glow_glass_4 255 255 120 128
+moreblocks:panel_tree_12 66 52 35
+moreblocks:panel_tree_14 66 52 35
+moreblocks:panel_tree_15 66 52 35
+moreblocks:panel_tree_1 66 52 35
+moreblocks:panel_tree_2 66 52 35
+moreblocks:panel_tree_4 66 52 35
+moreblocks:panel_tree 66 52 35
+moreblocks:panel_wood_1 128 100 57
+moreblocks:panel_wood_12 128 100 57
+moreblocks:panel_wood 128 100 57
+moreblocks:panel_wood_14 128 100 57
+moreblocks:panel_wood_15 128 100 57
+moreblocks:panel_wood_2 128 100 57
+moreblocks:panel_wood_4 128 100 57
+moreblocks:panel_wood_tile_12 78 65 44
+moreblocks:panel_wood_tile_14 78 65 44
+moreblocks:panel_wood_tile_15 78 65 44
+moreblocks:panel_wood_tile_1 78 65 44
+moreblocks:panel_wood_tile_2 78 65 44
+moreblocks:panel_wood_tile_4 78 65 44
+moreblocks:panel_wood_tile 78 65 44
+moreblocks:panel_wood_tile_center_1 128 100 57
+moreblocks:panel_wood_tile_center_12 128 100 57
+moreblocks:panel_wood_tile_center 128 100 57
+moreblocks:panel_wood_tile_center_14 128 100 57
+moreblocks:panel_wood_tile_center_15 128 100 57
+moreblocks:panel_wood_tile_center_2 128 100 57
+moreblocks:panel_wood_tile_center_4 128 100 57
+moreblocks:panel_wood_tile_full_12 78 64 44
+moreblocks:panel_wood_tile_full_14 78 64 44
+moreblocks:panel_wood_tile_full_15 78 64 44
+moreblocks:panel_wood_tile_full_1 78 64 44
+moreblocks:panel_wood_tile_full_2 78 64 44
+moreblocks:panel_wood_tile_full_4 78 64 44
+moreblocks:panel_wood_tile_full 78 64 44
+moreblocks:plankstone 66 51 23
+moreblocks:rope 36 76 9
+moreblocks:slab_brick_1 156 157 151
+moreblocks:slab_brick_14 156 157 151
+moreblocks:slab_brick_15 156 157 151
+moreblocks:slab_brick 156 157 151
+moreblocks:slab_brick_2 156 157 151
+moreblocks:slab_brick_quarter 156 157 151
+moreblocks:slab_brick_three_quarter 156 157 151
+moreblocks:slab_bronzeblock_1 116 70 26
+moreblocks:slab_bronzeblock 116 70 26
+moreblocks:slab_bronzeblock_14 116 70 26
+moreblocks:slab_bronzeblock_15 116 70 26
+moreblocks:slab_bronzeblock_2 116 70 26
+moreblocks:slab_bronzeblock_quarter 116 70 26
+moreblocks:slab_bronzeblock_three_quarter 116 70 26
+moreblocks:slab_cactus_checker_1 130 138 130
+moreblocks:slab_cactus_checker 130 138 130
+moreblocks:slab_cactus_checker_14 130 138 130
+moreblocks:slab_cactus_checker_15 130 138 130
+moreblocks:slab_cactus_checker_2 130 138 130
+moreblocks:slab_cactus_checker_quarter 130 138 130
+moreblocks:slab_cactus_checker_three_quarter 130 138 130
+moreblocks:slab_circle_stone_bricks_14 91 88 87
+moreblocks:slab_circle_stone_bricks_15 91 88 87
+moreblocks:slab_circle_stone_bricks_1 91 88 87
+moreblocks:slab_circle_stone_bricks_2 91 88 87
+moreblocks:slab_circle_stone_bricks 91 88 87
+moreblocks:slab_circle_stone_bricks_quarter 91 88 87
+moreblocks:slab_circle_stone_bricks_three_quarter 91 88 87
+moreblocks:slab_coal_checker_1 133 133 133
+moreblocks:slab_coal_checker 133 133 133
+moreblocks:slab_coal_checker_14 133 133 133
+moreblocks:slab_coal_checker_15 133 133 133
+moreblocks:slab_coal_checker_2 133 133 133
+moreblocks:slab_coal_checker_quarter 133 133 133
+moreblocks:slab_coal_checker_three_quarter 133 133 133
+moreblocks:slab_coal_glass_1 130 130 130 128
+moreblocks:slab_coal_glass 130 130 130 128
+moreblocks:slab_coal_glass_14 130 130 130 128
+moreblocks:slab_coal_glass_15 130 130 130 128
+moreblocks:slab_coal_glass_2 130 130 130 128
+moreblocks:slab_coal_glass_quarter 130 130 130 128
+moreblocks:slab_coal_glass_three_quarter 130 130 130 128
+moreblocks:slab_coal_stone_14 70 70 70
+moreblocks:slab_coal_stone_15 70 70 70
+moreblocks:slab_coal_stone_1 70 70 70
+moreblocks:slab_coal_stone_2 70 70 70
+moreblocks:slab_coal_stone 70 70 70
+moreblocks:slab_coal_stone_bricks_14 79 76 75
+moreblocks:slab_coal_stone_bricks_15 79 76 75
+moreblocks:slab_coal_stone_bricks_1 79 76 75
+moreblocks:slab_coal_stone_bricks_2 79 76 75
+moreblocks:slab_coal_stone_bricks 79 76 75
+moreblocks:slab_coal_stone_bricks_quarter 79 76 75
+moreblocks:slab_coal_stone_bricks_three_quarter 79 76 75
+moreblocks:slab_coal_stone_quarter 70 70 70
+moreblocks:slab_coal_stone_three_quarter 70 70 70
+moreblocks:slab_cobble_1 133 133 133
+moreblocks:slab_cobble 133 133 133
+moreblocks:slab_cobble_14 133 133 133
+moreblocks:slab_cobble_15 133 133 133
+moreblocks:slab_cobble_2 133 133 133
+moreblocks:slab_cobble_quarter 133 133 133
+moreblocks:slab_cobble_three_quarter 133 133 133
+moreblocks:slab_copperblock 110 86 60
+moreblocks:slab_copperblock_1 110 86 60
+moreblocks:slab_copperblock_14 110 86 60
+moreblocks:slab_copperblock_15 110 86 60
+moreblocks:slab_copperblock_2 110 86 60
+moreblocks:slab_copperblock_quarter 110 86 60
+moreblocks:slab_copperblock_three_quarter 110 86 60
+moreblocks:slab_desert_stone_1 122 74 57
+moreblocks:slab_desert_stone 122 74 57
+moreblocks:slab_desert_stone_14 122 74 57
+moreblocks:slab_desert_stone_15 122 74 57
+moreblocks:slab_desert_stone_2 122 74 57
+moreblocks:slab_desert_stonebrick 105 64 49
+moreblocks:slab_desert_stonebrick_1 105 64 49
+moreblocks:slab_desert_stonebrick_14 105 64 49
+moreblocks:slab_desert_stonebrick_15 105 64 49
+moreblocks:slab_desert_stonebrick_2 105 64 49
+moreblocks:slab_desert_stonebrick_quarter 105 64 49
+moreblocks:slab_desert_stonebrick_three_quarter 105 64 49
+moreblocks:slab_desert_stone_quarter 122 74 57
+moreblocks:slab_desert_stone_three_quarter 122 74 57
+moreblocks:slab_diamondblock 103 195 201
+moreblocks:slab_diamondblock_1 103 195 201
+moreblocks:slab_diamondblock_14 103 195 201
+moreblocks:slab_diamondblock_15 103 195 201
+moreblocks:slab_diamondblock_2 103 195 201
+moreblocks:slab_diamondblock_quarter 103 195 201
+moreblocks:slab_diamondblock_three_quarter 103 195 201
+moreblocks:slab_glass_1 192 192 227 128
+moreblocks:slab_glass_14 192 192 227 128
+moreblocks:slab_glass_15 192 192 227 128
+moreblocks:slab_glass 192 192 227 128
+moreblocks:slab_glass_2 192 192 227 128
+moreblocks:slab_glass_quarter 192 192 227 128
+moreblocks:slab_glass_three_quarter 192 192 227 128
+moreblocks:slab_glow_glass_1 255 226 114 128
+moreblocks:slab_glow_glass_14 255 226 114 128
+moreblocks:slab_glow_glass_15 255 226 114 128
+moreblocks:slab_glow_glass_2 255 226 114 128
+moreblocks:slab_glow_glass 255 226 114 128
+moreblocks:slab_glow_glass_quarter 255 226 114 128
+moreblocks:slab_glow_glass_three_quarter 255 226 114 128
+moreblocks:slab_goldblock_1 126 116 35
+moreblocks:slab_goldblock 126 116 35
+moreblocks:slab_goldblock_14 126 116 35
+moreblocks:slab_goldblock_15 126 116 35
+moreblocks:slab_goldblock_2 126 116 35
+moreblocks:slab_goldblock_quarter 126 116 35
+moreblocks:slab_goldblock_three_quarter 126 116 35
+moreblocks:slab_invisible 0 0 0
+moreblocks:slab_invisible_1 0 0 0
+moreblocks:slab_invisible_14 0 0 0
+moreblocks:slab_invisible_15 0 0 0
+moreblocks:slab_invisible_2 0 0 0
+moreblocks:slab_invisible_quarter 0 0 0
+moreblocks:slab_invisible_three_quarter 0 0 0
+moreblocks:slab_iron_checker_1 142 142 142
+moreblocks:slab_iron_checker_14 142 142 142
+moreblocks:slab_iron_checker 142 142 142
+moreblocks:slab_iron_checker_15 142 142 142
+moreblocks:slab_iron_checker_2 142 142 142
+moreblocks:slab_iron_checker_quarter 142 142 142
+moreblocks:slab_iron_checker_three_quarter 142 142 142
+moreblocks:slab_iron_glass_1 222 222 222 128
+moreblocks:slab_iron_glass_14 222 222 222 128
+moreblocks:slab_iron_glass_15 222 222 222 128
+moreblocks:slab_iron_glass 222 222 222 128
+moreblocks:slab_iron_glass_2 222 222 222 128
+moreblocks:slab_iron_glass_quarter 222 222 222 128
+moreblocks:slab_iron_glass_three_quarter 222 222 222 128
+moreblocks:slab_iron_stone_1 134 134 134
+moreblocks:slab_iron_stone 134 134 134
+moreblocks:slab_iron_stone_14 134 134 134
+moreblocks:slab_iron_stone_15 134 134 134
+moreblocks:slab_iron_stone_2 134 134 134
+moreblocks:slab_iron_stone_bricks 104 98 97
+moreblocks:slab_iron_stone_bricks_1 104 98 97
+moreblocks:slab_iron_stone_bricks_14 104 98 97
+moreblocks:slab_iron_stone_bricks_15 104 98 97
+moreblocks:slab_iron_stone_bricks_2 104 98 97
+moreblocks:slab_iron_stone_bricks_quarter 104 98 97
+moreblocks:slab_iron_stone_bricks_three_quarter 104 98 97
+moreblocks:slab_iron_stone_quarter 134 134 134
+moreblocks:slab_iron_stone_three_quarter 134 134 134
+moreblocks:slab_jungletree_1 120 106 78
+moreblocks:slab_jungletree 120 106 78
+moreblocks:slab_jungletree_14 120 106 78
+moreblocks:slab_jungletree_15 120 106 78
+moreblocks:slab_jungletree_2 120 106 78
+moreblocks:slab_jungletree_quarter 120 106 78
+moreblocks:slab_jungletree_three_quarter 120 106 78
+moreblocks:slab_junglewood_14 51 35 12
+moreblocks:slab_jungle_wood_14 51 35 12
+moreblocks:slab_junglewood_1 51 35 12
+moreblocks:slab_jungle_wood_1 51 35 12
+moreblocks:slab_junglewood_15 51 35 12
+moreblocks:slab_jungle_wood_15 51 35 12
+moreblocks:slab_junglewood_2 51 35 12
+moreblocks:slab_jungle_wood_2 51 35 12
+moreblocks:slab_junglewood 51 35 12
+moreblocks:slab_jungle_wood 51 35 12
+moreblocks:slab_junglewood_quarter 51 35 12
+moreblocks:slab_jungle_wood_quarter 51 35 12
+moreblocks:slab_junglewood_three_quarter 51 35 12
+moreblocks:slab_jungle_wood_three_quarter 51 35 12
+moreblocks:slab_mossycobble 102 116 85
+moreblocks:slab_mossycobble_1 102 116 85
+moreblocks:slab_mossycobble_14 102 116 85
+moreblocks:slab_mossycobble_15 102 116 85
+moreblocks:slab_mossycobble_2 102 116 85
+moreblocks:slab_mossycobble_quarter 102 116 85
+moreblocks:slab_mossycobble_three_quarter 102 116 85
+moreblocks:slab_obsidian_1 16 16 16
+moreblocks:slab_obsidian_14 16 16 16
+moreblocks:slab_obsidian_15 16 16 16
+moreblocks:slab_obsidian 16 16 16
+moreblocks:slab_obsidian_2 16 16 16
+moreblocks:slab_obsidian_glass_1 16 17 17 128
+moreblocks:slab_obsidian_glass_14 16 17 17 128
+moreblocks:slab_obsidian_glass_15 16 17 17 128
+moreblocks:slab_obsidian_glass 16 17 17 128
+moreblocks:slab_obsidian_glass_2 16 17 17 128
+moreblocks:slab_obsidian_glass_quarter 16 17 17 128
+moreblocks:slab_obsidian_glass_three_quarter 16 17 17 128
+moreblocks:slab_obsidian_quarter 16 16 16
+moreblocks:slab_obsidian_three_quarter 16 16 16
+moreblocks:slab_plankstone_14 66 51 23
+moreblocks:slab_plankstone_15 66 51 23
+moreblocks:slab_plankstone_1 66 51 23
+moreblocks:slab_plankstone_2 66 51 23
+moreblocks:slab_plankstone 66 51 23
+moreblocks:slab_plankstone_quarter 66 51 23
+moreblocks:slab_plankstone_three_quarter 66 51 23
+moreblocks:slab_sandstone_1 180 162 121
+moreblocks:slab_sandstone_14 180 162 121
+moreblocks:slab_sandstone_15 180 162 121
+moreblocks:slab_sandstone 180 162 121
+moreblocks:slab_sandstone_2 180 162 121
+moreblocks:slab_sandstonebrick_1 160 144 108
+moreblocks:slab_sandstonebrick_14 160 144 108
+moreblocks:slab_sandstonebrick_15 160 144 108
+moreblocks:slab_sandstonebrick 160 144 108
+moreblocks:slab_sandstonebrick_2 160 144 108
+moreblocks:slab_sandstonebrick_quarter 160 144 108
+moreblocks:slab_sandstonebrick_three_quarter 160 144 108
+moreblocks:slab_sandstone_quarter 180 162 121
+moreblocks:slab_sandstone_three_quarter 180 162 121
+moreblocks:slab_split_stone_tile_14 97 97 97
+moreblocks:slab_split_stone_tile_15 97 97 97
+moreblocks:slab_split_stone_tile_1 97 97 97
+moreblocks:slab_split_stone_tile_2 97 97 97
+moreblocks:slab_split_stone_tile 97 97 97
+moreblocks:slab_split_stone_tile_quarter 97 97 97
+moreblocks:slab_split_stone_tile_three_quarter 97 97 97
+moreblocks:slab_steelblock_1 153 153 153
+moreblocks:slab_steelblock_14 153 153 153
+moreblocks:slab_steelblock_15 153 153 153
+moreblocks:slab_steelblock 153 153 153
+moreblocks:slab_steelblock_2 153 153 153
+moreblocks:slab_steelblock_quarter 153 153 153
+moreblocks:slab_steelblock_three_quarter 153 153 153
+moreblocks:slab_stone_14 91 88 87
+moreblocks:slab_stone_15 91 88 87
+moreblocks:slab_stone_1 91 88 87
+moreblocks:slab_stone_2 91 88 87
+moreblocks:slab_stone 91 88 87
+moreblocks:slab_stonebrick 104 100 99
+moreblocks:slab_stonebrick_1 104 100 99
+moreblocks:slab_stonebrick_14 104 100 99
+moreblocks:slab_stonebrick_15 104 100 99
+moreblocks:slab_stonebrick_2 104 100 99
+moreblocks:slab_stonebrick_quarter 104 100 99
+moreblocks:slab_stonebrick_three_quarter 104 100 99
+moreblocks:slab_stone_quarter 91 88 87
+moreblocks:slab_stone_three_quarter 91 88 87
+moreblocks:slab_stone_tile_14 97 97 97
+moreblocks:slab_stone_tile_15 97 97 97
+moreblocks:slab_stone_tile_1 97 97 97
+moreblocks:slab_stone_tile_2 97 97 97
+moreblocks:slab_stone_tile 97 97 97
+moreblocks:slab_stone_tile_quarter 97 97 97
+moreblocks:slab_stone_tile_three_quarter 97 97 97
+moreblocks:slab_super_glow_glass_1 255 255 120 128
+moreblocks:slab_super_glow_glass_14 255 255 120 128
+moreblocks:slab_super_glow_glass_15 255 255 120 128
+moreblocks:slab_super_glow_glass_2 255 255 120 128
+moreblocks:slab_super_glow_glass 255 255 120 128
+moreblocks:slab_super_glow_glass_quarter 255 255 120 128
+moreblocks:slab_super_glow_glass_three_quarter 255 255 120 128
+moreblocks:slab_tree_14 66 52 35
+moreblocks:slab_tree_15 66 52 35
+moreblocks:slab_tree_1 66 52 35
+moreblocks:slab_tree_2 66 52 35
+moreblocks:slab_tree 66 52 35
+moreblocks:slab_tree_quarter 66 52 35
+moreblocks:slab_tree_three_quarter 66 52 35
+moreblocks:slab_wood_1 128 100 57
+moreblocks:slab_wood 128 100 57
+moreblocks:slab_wood_14 128 100 57
+moreblocks:slab_wood_15 128 100 57
+moreblocks:slab_wood_2 128 100 57
+moreblocks:slab_wood_quarter 128 100 57
+moreblocks:slab_wood_three_quarter 128 100 57
+moreblocks:slab_wood_tile_14 78 65 44
+moreblocks:slab_wood_tile_15 78 65 44
+moreblocks:slab_wood_tile_1 78 65 44
+moreblocks:slab_wood_tile_2 78 65 44
+moreblocks:slab_wood_tile 78 65 44
+moreblocks:slab_wood_tile_center_1 128 100 57
+moreblocks:slab_wood_tile_center 128 100 57
+moreblocks:slab_wood_tile_center_14 128 100 57
+moreblocks:slab_wood_tile_center_15 128 100 57
+moreblocks:slab_wood_tile_center_2 128 100 57
+moreblocks:slab_wood_tile_center_quarter 128 100 57
+moreblocks:slab_wood_tile_center_three_quarter 128 100 57
+moreblocks:slab_wood_tile_full_14 78 64 44
+moreblocks:slab_wood_tile_full_15 78 64 44
+moreblocks:slab_wood_tile_full_1 78 64 44
+moreblocks:slab_wood_tile_full_2 78 64 44
+moreblocks:slab_wood_tile_full 78 64 44
+moreblocks:slab_wood_tile_full_quarter 78 64 44
+moreblocks:slab_wood_tile_full_three_quarter 78 64 44
+moreblocks:slab_wood_tile_quarter 78 65 44
+moreblocks:slab_wood_tile_three_quarter 78 65 44
+moreblocks:split_stone_tile 97 97 97
+moreblocks:stair_brick 156 157 151
+moreblocks:stair_brick_alt_1 156 157 151
+moreblocks:stair_brick_alt 156 157 151
+moreblocks:stair_brick_alt_2 156 157 151
+moreblocks:stair_brick_alt_4 156 157 151
+moreblocks:stair_brick_half 156 157 151
+moreblocks:stair_brick_inner 156 157 151
+moreblocks:stair_brick_outer 156 157 151
+moreblocks:stair_brick_right_half 156 157 151
+moreblocks:stair_bronzeblock 116 70 26
+moreblocks:stair_bronzeblock_alt_1 116 70 26
+moreblocks:stair_bronzeblock_alt 116 70 26
+moreblocks:stair_bronzeblock_alt_2 116 70 26
+moreblocks:stair_bronzeblock_alt_4 116 70 26
+moreblocks:stair_bronzeblock_half 116 70 26
+moreblocks:stair_bronzeblock_inner 116 70 26
+moreblocks:stair_bronzeblock_outer 116 70 26
+moreblocks:stair_bronzeblock_right_half 116 70 26
+moreblocks:stair_cactus_checker 130 138 130
+moreblocks:stair_cactus_checker_alt_1 130 138 130
+moreblocks:stair_cactus_checker_alt 130 138 130
+moreblocks:stair_cactus_checker_alt_2 130 138 130
+moreblocks:stair_cactus_checker_alt_4 130 138 130
+moreblocks:stair_cactus_checker_half 130 138 130
+moreblocks:stair_cactus_checker_inner 130 138 130
+moreblocks:stair_cactus_checker_outer 130 138 130
+moreblocks:stair_cactus_checker_right_half 130 138 130
+moreblocks:stair_circle_stone_bricks 91 88 87
+moreblocks:stair_circle_stone_bricks_alt_1 91 88 87
+moreblocks:stair_circle_stone_bricks_alt_2 91 88 87
+moreblocks:stair_circle_stone_bricks_alt_4 91 88 87
+moreblocks:stair_circle_stone_bricks_alt 91 88 87
+moreblocks:stair_circle_stone_bricks_half 91 88 87
+moreblocks:stair_circle_stone_bricks_inner 91 88 87
+moreblocks:stair_circle_stone_bricks_outer 91 88 87
+moreblocks:stair_circle_stone_bricks_right_half 91 88 87
+moreblocks:stair_coal_checker 133 133 133
+moreblocks:stair_coal_checker_alt_1 133 133 133
+moreblocks:stair_coal_checker_alt 133 133 133
+moreblocks:stair_coal_checker_alt_2 133 133 133
+moreblocks:stair_coal_checker_alt_4 133 133 133
+moreblocks:stair_coal_checker_half 133 133 133
+moreblocks:stair_coal_checker_inner 133 133 133
+moreblocks:stair_coal_checker_outer 133 133 133
+moreblocks:stair_coal_checker_right_half 133 133 133
+moreblocks:stair_coal_glass 130 130 130 128
+moreblocks:stair_coal_glass_alt_1 130 130 130 128
+moreblocks:stair_coal_glass_alt 130 130 130 128
+moreblocks:stair_coal_glass_alt_2 130 130 130 128
+moreblocks:stair_coal_glass_alt_4 130 130 130 128
+moreblocks:stair_coal_glass_half 130 130 130 128
+moreblocks:stair_coal_glass_inner 130 130 130 128
+moreblocks:stair_coal_glass_outer 130 130 130 128
+moreblocks:stair_coal_glass_right_half 130 130 130 128
+moreblocks:stair_coal_stone 70 70 70
+moreblocks:stair_coal_stone_alt_1 70 70 70
+moreblocks:stair_coal_stone_alt_2 70 70 70
+moreblocks:stair_coal_stone_alt_4 70 70 70
+moreblocks:stair_coal_stone_alt 70 70 70
+moreblocks:stair_coal_stone_bricks 79 76 75
+moreblocks:stair_coal_stone_bricks_alt_1 79 76 75
+moreblocks:stair_coal_stone_bricks_alt_2 79 76 75
+moreblocks:stair_coal_stone_bricks_alt_4 79 76 75
+moreblocks:stair_coal_stone_bricks_alt 79 76 75
+moreblocks:stair_coal_stone_bricks_half 79 76 75
+moreblocks:stair_coal_stone_bricks_inner 79 76 75
+moreblocks:stair_coal_stone_bricks_outer 79 76 75
+moreblocks:stair_coal_stone_bricks_right_half 79 76 75
+moreblocks:stair_coal_stone_half 70 70 70
+moreblocks:stair_coal_stone_inner 70 70 70
+moreblocks:stair_coal_stone_outer 70 70 70
+moreblocks:stair_coal_stone_right_half 70 70 70
+moreblocks:stair_cobble 133 133 133
+moreblocks:stair_cobble_alt_1 133 133 133
+moreblocks:stair_cobble_alt 133 133 133
+moreblocks:stair_cobble_alt_2 133 133 133
+moreblocks:stair_cobble_alt_4 133 133 133
+moreblocks:stair_cobble_half 133 133 133
+moreblocks:stair_cobble_inner 133 133 133
+moreblocks:stair_cobble_outer 133 133 133
+moreblocks:stair_cobble_right_half 133 133 133
+moreblocks:stair_copperblock 110 86 60
+moreblocks:stair_copperblock_alt 110 86 60
+moreblocks:stair_copperblock_alt_1 110 86 60
+moreblocks:stair_copperblock_alt_2 110 86 60
+moreblocks:stair_copperblock_alt_4 110 86 60
+moreblocks:stair_copperblock_half 110 86 60
+moreblocks:stair_copperblock_inner 110 86 60
+moreblocks:stair_copperblock_outer 110 86 60
+moreblocks:stair_copperblock_right_half 110 86 60
+moreblocks:stair_desert_stone 122 74 57
+moreblocks:stair_desert_stone_alt_1 122 74 57
+moreblocks:stair_desert_stone_alt 122 74 57
+moreblocks:stair_desert_stone_alt_2 122 74 57
+moreblocks:stair_desert_stone_alt_4 122 74 57
+moreblocks:stair_desert_stonebrick 105 64 49
+moreblocks:stair_desert_stonebrick_alt 105 64 49
+moreblocks:stair_desert_stonebrick_alt_1 105 64 49
+moreblocks:stair_desert_stonebrick_alt_2 105 64 49
+moreblocks:stair_desert_stonebrick_alt_4 105 64 49
+moreblocks:stair_desert_stonebrick_half 105 64 49
+moreblocks:stair_desert_stonebrick_inner 105 64 49
+moreblocks:stair_desert_stonebrick_outer 105 64 49
+moreblocks:stair_desert_stonebrick_right_half 105 64 49
+moreblocks:stair_desert_stone_half 122 74 57
+moreblocks:stair_desert_stone_inner 122 74 57
+moreblocks:stair_desert_stone_outer 122 74 57
+moreblocks:stair_desert_stone_right_half 122 74 57
+moreblocks:stair_diamondblock 103 195 201
+moreblocks:stair_diamondblock_alt 103 195 201
+moreblocks:stair_diamondblock_alt_1 103 195 201
+moreblocks:stair_diamondblock_alt_2 103 195 201
+moreblocks:stair_diamondblock_alt_4 103 195 201
+moreblocks:stair_diamondblock_half 103 195 201
+moreblocks:stair_diamondblock_inner 103 195 201
+moreblocks:stair_diamondblock_outer 103 195 201
+moreblocks:stair_diamondblock_right_half 103 195 201
+moreblocks:stair_glass 192 192 227 128 128
+moreblocks:stair_glass_alt_1 192 192 227 128
+moreblocks:stair_glass_alt 192 192 227 128
+moreblocks:stair_glass_alt_2 192 192 227 128
+moreblocks:stair_glass_alt_4 192 192 227 128
+moreblocks:stair_glass_half 192 192 227 128
+moreblocks:stair_glass_inner 192 192 227 128
+moreblocks:stair_glass_outer 192 192 227 128
+moreblocks:stair_glass_right_half 192 192 227 128
+moreblocks:stair_glow_glass 255 226 114 128
+moreblocks:stair_glow_glass_alt_1 255 226 114 128
+moreblocks:stair_glow_glass_alt_2 255 226 114 128
+moreblocks:stair_glow_glass_alt 255 226 114 128
+moreblocks:stair_glow_glass_alt_4 255 226 114 128
+moreblocks:stair_glow_glass_half 255 226 114 128
+moreblocks:stair_glow_glass_inner 255 226 114 128
+moreblocks:stair_glow_glass_outer 255 226 114 128
+moreblocks:stair_glow_glass_right_half 255 226 114 128
+moreblocks:stair_goldblock 126 116 35
+moreblocks:stair_goldblock_alt_1 126 116 35
+moreblocks:stair_goldblock_alt 126 116 35
+moreblocks:stair_goldblock_alt_2 126 116 35
+moreblocks:stair_goldblock_alt_4 126 116 35
+moreblocks:stair_goldblock_half 126 116 35
+moreblocks:stair_goldblock_inner 126 116 35
+moreblocks:stair_goldblock_outer 126 116 35
+moreblocks:stair_goldblock_right_half 126 116 35
+moreblocks:stair_invisible 0 0 0
+moreblocks:stair_invisible_alt 0 0 0
+moreblocks:stair_invisible_alt_1 0 0 0
+moreblocks:stair_invisible_alt_2 0 0 0
+moreblocks:stair_invisible_alt_4 0 0 0
+moreblocks:stair_invisible_half 0 0 0
+moreblocks:stair_invisible_inner 0 0 0
+moreblocks:stair_invisible_outer 0 0 0
+moreblocks:stair_invisible_right_half 0 0 0
+moreblocks:stair_iron_checker 142 142 142
+moreblocks:stair_iron_checker_alt_1 142 142 142
+moreblocks:stair_iron_checker_alt 142 142 142
+moreblocks:stair_iron_checker_alt_2 142 142 142
+moreblocks:stair_iron_checker_alt_4 142 142 142
+moreblocks:stair_iron_checker_half 142 142 142
+moreblocks:stair_iron_checker_inner 142 142 142
+moreblocks:stair_iron_checker_outer 142 142 142
+moreblocks:stair_iron_checker_right_half 142 142 142
+moreblocks:stair_iron_glass 222 222 222 128
+moreblocks:stair_iron_glass_alt_1 222 222 222 128
+moreblocks:stair_iron_glass_alt 222 222 222 128
+moreblocks:stair_iron_glass_alt_2 222 222 222 128
+moreblocks:stair_iron_glass_alt_4 222 222 222 128
+moreblocks:stair_iron_glass_half 222 222 222 128
+moreblocks:stair_iron_glass_inner 222 222 222 128
+moreblocks:stair_iron_glass_outer 222 222 222 128
+moreblocks:stair_iron_glass_right_half 222 222 222 128
+moreblocks:stair_iron_stone 134 134 134
+moreblocks:stair_iron_stone_alt_1 134 134 134
+moreblocks:stair_iron_stone_alt 134 134 134
+moreblocks:stair_iron_stone_alt_2 134 134 134
+moreblocks:stair_iron_stone_alt_4 134 134 134
+moreblocks:stair_iron_stone_bricks 104 98 97
+moreblocks:stair_iron_stone_bricks_alt 104 98 97
+moreblocks:stair_iron_stone_bricks_alt_1 104 98 97
+moreblocks:stair_iron_stone_bricks_alt_2 104 98 97
+moreblocks:stair_iron_stone_bricks_alt_4 104 98 97
+moreblocks:stair_iron_stone_bricks_half 104 98 97
+moreblocks:stair_iron_stone_bricks_inner 104 98 97
+moreblocks:stair_iron_stone_bricks_outer 104 98 97
+moreblocks:stair_iron_stone_bricks_right_half 104 98 97
+moreblocks:stair_iron_stone_half 134 134 134
+moreblocks:stair_iron_stone_inner 134 134 134
+moreblocks:stair_iron_stone_outer 134 134 134
+moreblocks:stair_iron_stone_right_half 134 134 134
+moreblocks:stair_jungletree 120 106 78
+moreblocks:stair_jungletree_alt_1 120 106 78
+moreblocks:stair_jungletree_alt 120 106 78
+moreblocks:stair_jungletree_alt_2 120 106 78
+moreblocks:stair_jungletree_alt_4 120 106 78
+moreblocks:stair_jungletree_half 120 106 78
+moreblocks:stair_jungletree_inner 120 106 78
+moreblocks:stair_jungletree_outer 120 106 78
+moreblocks:stair_jungletree_right_half 120 106 78
+moreblocks:stair_junglewood 51 35 12
+moreblocks:stair_jungle_wood 51 35 12
+moreblocks:stair_junglewood_alt_1 51 35 12
+moreblocks:stair_jungle_wood_alt_1 51 35 12
+moreblocks:stair_junglewood_alt_2 51 35 12
+moreblocks:stair_jungle_wood_alt_2 51 35 12
+moreblocks:stair_junglewood_alt_4 51 35 12
+moreblocks:stair_jungle_wood_alt_4 51 35 12
+moreblocks:stair_junglewood_alt 51 35 12
+moreblocks:stair_jungle_wood_alt 51 35 12
+moreblocks:stair_junglewood_half 51 35 12
+moreblocks:stair_jungle_wood_half 51 35 12
+moreblocks:stair_junglewood_inner 51 35 12
+moreblocks:stair_jungle_wood_inner 51 35 12
+moreblocks:stair_junglewood_outer 51 35 12
+moreblocks:stair_jungle_wood_outer 51 35 12
+moreblocks:stair_junglewood_right_half 51 35 12
+moreblocks:stair_jungle_wood_right_half 51 35 12
+moreblocks:stair_mossycobble 102 116 85
+moreblocks:stair_mossycobble_alt 102 116 85
+moreblocks:stair_mossycobble_alt_1 102 116 85
+moreblocks:stair_mossycobble_alt_2 102 116 85
+moreblocks:stair_mossycobble_alt_4 102 116 85
+moreblocks:stair_mossycobble_half 102 116 85
+moreblocks:stair_mossycobble_inner 102 116 85
+moreblocks:stair_mossycobble_outer 102 116 85
+moreblocks:stair_mossycobble_right_half 102 116 85
+moreblocks:stair_obsidian 16 16 16
+moreblocks:stair_obsidian_alt_1 16 16 16
+moreblocks:stair_obsidian_alt 16 16 16
+moreblocks:stair_obsidian_alt_2 16 16 16
+moreblocks:stair_obsidian_alt_4 16 16 16
+moreblocks:stair_obsidian_glass 16 17 17 128
+moreblocks:stair_obsidian_glass_alt_1 16 17 17 128
+moreblocks:stair_obsidian_glass_alt 16 17 17 128
+moreblocks:stair_obsidian_glass_alt_2 16 17 17 128
+moreblocks:stair_obsidian_glass_alt_4 16 17 17 128
+moreblocks:stair_obsidian_glass_half 16 17 17 128
+moreblocks:stair_obsidian_glass_inner 16 17 17 128
+moreblocks:stair_obsidian_glass_outer 16 17 17 128
+moreblocks:stair_obsidian_glass_right_half 16 17 17 128
+moreblocks:stair_obsidian_half 16 16 16
+moreblocks:stair_obsidian_inner 16 16 16
+moreblocks:stair_obsidian_outer 16 16 16
+moreblocks:stair_obsidian_right_half 16 16 16
+moreblocks:stair_plankstone 66 51 23
+moreblocks:stair_plankstone_alt_1 66 51 23
+moreblocks:stair_plankstone_alt_2 66 51 23
+moreblocks:stair_plankstone_alt_4 66 51 23
+moreblocks:stair_plankstone_alt 66 51 23
+moreblocks:stair_plankstone_half 66 51 23
+moreblocks:stair_plankstone_inner 66 51 23
+moreblocks:stair_plankstone_outer 66 51 23
+moreblocks:stair_plankstone_right_half 66 51 23
+moreblocks:stair_sandstone 180 162 121
+moreblocks:stair_sandstone_alt_1 180 162 121
+moreblocks:stair_sandstone_alt 180 162 121
+moreblocks:stair_sandstone_alt_2 180 162 121
+moreblocks:stair_sandstone_alt_4 180 162 121
+moreblocks:stair_sandstonebrick 160 144 108
+moreblocks:stair_sandstonebrick_alt_1 160 144 108
+moreblocks:stair_sandstonebrick_alt 160 144 108
+moreblocks:stair_sandstonebrick_alt_2 160 144 108
+moreblocks:stair_sandstonebrick_alt_4 160 144 108
+moreblocks:stair_sandstonebrick_half 160 144 108
+moreblocks:stair_sandstonebrick_inner 160 144 108
+moreblocks:stair_sandstonebrick_outer 160 144 108
+moreblocks:stair_sandstonebrick_right_half 160 144 108
+moreblocks:stair_sandstone_half 180 162 121
+moreblocks:stair_sandstone_inner 180 162 121
+moreblocks:stair_sandstone_outer 180 162 121
+moreblocks:stair_sandstone_right_half 180 162 121
+moreblocks:stair_split_stone_tile 97 97 97
+moreblocks:stair_split_stone_tile_alt_1 97 97 97
+moreblocks:stair_split_stone_tile_alt_2 97 97 97
+moreblocks:stair_split_stone_tile_alt_4 97 97 97
+moreblocks:stair_split_stone_tile_alt 97 97 97
+moreblocks:stair_split_stone_tile_half 97 97 97
+moreblocks:stair_split_stone_tile_inner 97 97 97
+moreblocks:stair_split_stone_tile_outer 97 97 97
+moreblocks:stair_split_stone_tile_right_half 97 97 97
+moreblocks:stair_steelblock 153 153 153
+moreblocks:stair_steelblock_alt_1 153 153 153
+moreblocks:stair_steelblock_alt 153 153 153
+moreblocks:stair_steelblock_alt_2 153 153 153
+moreblocks:stair_steelblock_alt_4 153 153 153
+moreblocks:stair_steelblock_half 153 153 153
+moreblocks:stair_steelblock_inner 153 153 153
+moreblocks:stair_steelblock_outer 153 153 153
+moreblocks:stair_steelblock_right_half 153 153 153
+moreblocks:stair_stone 91 88 87
+moreblocks:stair_stone_alt_1 91 88 87
+moreblocks:stair_stone_alt_2 91 88 87
+moreblocks:stair_stone_alt_4 91 88 87
+moreblocks:stair_stone_alt 91 88 87
+moreblocks:stair_stonebrick 104 100 99
+moreblocks:stair_stonebrick_alt 104 100 99
+moreblocks:stair_stonebrick_alt_1 104 100 99
+moreblocks:stair_stonebrick_alt_2 104 100 99
+moreblocks:stair_stonebrick_alt_4 104 100 99
+moreblocks:stair_stonebrick_half 104 100 99
+moreblocks:stair_stonebrick_inner 104 100 99
+moreblocks:stair_stonebrick_outer 104 100 99
+moreblocks:stair_stonebrick_right_half 104 100 99
+moreblocks:stair_stone_half 91 88 87
+moreblocks:stair_stone_inner 91 88 87
+moreblocks:stair_stone_outer 91 88 87
+moreblocks:stair_stone_right_half 91 88 87
+moreblocks:stair_stone_tile 97 97 97
+moreblocks:stair_stone_tile_alt_1 97 97 97
+moreblocks:stair_stone_tile_alt_2 97 97 97
+moreblocks:stair_stone_tile_alt_4 97 97 97
+moreblocks:stair_stone_tile_alt 97 97 97
+moreblocks:stair_stone_tile_half 97 97 97
+moreblocks:stair_stone_tile_inner 97 97 97
+moreblocks:stair_stone_tile_outer 97 97 97
+moreblocks:stair_stone_tile_right_half 97 97 97
+moreblocks:stair_super_glow_glass 255 255 120 128
+moreblocks:stair_super_glow_glass_alt_1 255 255 120 128
+moreblocks:stair_super_glow_glass_alt_2 255 255 120 128
+moreblocks:stair_super_glow_glass_alt 255 255 120 128
+moreblocks:stair_super_glow_glass_alt_4 255 255 120 128
+moreblocks:stair_super_glow_glass_half 255 255 120 128
+moreblocks:stair_super_glow_glass_inner 255 255 120 128
+moreblocks:stair_super_glow_glass_outer 255 255 120 128
+moreblocks:stair_super_glow_glass_right_half 255 255 120 128
+moreblocks:stair_tree 66 52 35
+moreblocks:stair_tree_alt_1 66 52 35
+moreblocks:stair_tree_alt_2 66 52 35
+moreblocks:stair_tree_alt_4 66 52 35
+moreblocks:stair_tree_alt 66 52 35
+moreblocks:stair_tree_half 66 52 35
+moreblocks:stair_tree_inner 66 52 35
+moreblocks:stair_tree_outer 66 52 35
+moreblocks:stair_tree_right_half 66 52 35
+moreblocks:stair_wood 128 100 57
+moreblocks:stair_wood_alt_1 128 100 57
+moreblocks:stair_wood_alt 128 100 57
+moreblocks:stair_wood_alt_2 128 100 57
+moreblocks:stair_wood_alt_4 128 100 57
+moreblocks:stair_wood_half 128 100 57
+moreblocks:stair_wood_inner 128 100 57
+moreblocks:stair_wood_outer 128 100 57
+moreblocks:stair_wood_right_half 128 100 57
+moreblocks:stair_wood_tile 78 65 44
+moreblocks:stair_wood_tile_alt_1 78 65 44
+moreblocks:stair_wood_tile_alt_2 78 65 44
+moreblocks:stair_wood_tile_alt_4 78 65 44
+moreblocks:stair_wood_tile_alt 78 65 44
+moreblocks:stair_wood_tile_center 128 100 57
+moreblocks:stair_wood_tile_center_alt_1 128 100 57
+moreblocks:stair_wood_tile_center_alt 128 100 57
+moreblocks:stair_wood_tile_center_alt_2 128 100 57
+moreblocks:stair_wood_tile_center_alt_4 128 100 57
+moreblocks:stair_wood_tile_center_half 128 100 57
+moreblocks:stair_wood_tile_center_inner 128 100 57
+moreblocks:stair_wood_tile_center_outer 128 100 57
+moreblocks:stair_wood_tile_center_right_half 128 100 57
+moreblocks:stair_wood_tile_full 78 64 44
+moreblocks:stair_wood_tile_full_alt_1 78 64 44
+moreblocks:stair_wood_tile_full_alt_2 78 64 44
+moreblocks:stair_wood_tile_full_alt_4 78 64 44
+moreblocks:stair_wood_tile_full_alt 78 64 44
+moreblocks:stair_wood_tile_full_half 78 64 44
+moreblocks:stair_wood_tile_full_inner 78 64 44
+moreblocks:stair_wood_tile_full_outer 78 64 44
+moreblocks:stair_wood_tile_full_right_half 78 64 44
+moreblocks:stair_wood_tile_half 78 65 44
+moreblocks:stair_wood_tile_inner 78 65 44
+moreblocks:stair_wood_tile_outer 78 65 44
+moreblocks:stair_wood_tile_right_half 78 65 44
+moreblocks:stone_tile 97 97 97
+moreblocks:super_glow_glass 255 255 120 128
+moreblocks:trap_glass 147 147 51 128
+moreblocks:trap_glow_glass 255 226 114 128
+moreblocks:trap_stone 151 151 50
+moreblocks:trap_super_glow_glass 255 226 114 128
+moreblocks:wood_tile 78 65 44
+moreblocks:wood_tile_center 128 100 57
+moreblocks:wood_tile_down 128 100 57
+moreblocks:wood_tile_flipped 128 100 57
+moreblocks:wood_tile_full 78 64 44
+moreblocks:wood_tile_left 128 100 57
+moreblocks:wood_tile_right 125 98 57
+moreblocks:wood_tile_up 128 100 57
+nether:brick 40 18 18
+nether:glowstone 221 197 141
+nether:portal 0 0 0
+nether:rack 40 16 16
+nether:sand 40 21 21
+nuke:hardcore_iron_tnt 158 158 157
+nuke:hardcore_mese_tnt 173 173 0
+nuke:iron_tnt 158 158 157
+nuke:mese_tnt 173 173 0
+plasmascreen:screen1 255 255 255
+plasmascreen:screen2 255 255 255
+plasmascreen:screen3 255 255 255
+plasmascreen:screen4 255 255 255
+plasmascreen:screen5 255 255 255
+plasmascreen:screen6 255 255 255
+poisonivy:climbing 91 143 24
+poisonivy:seedling 127 190 34
+poisonivy:sproutling 111 166 30
+pyramids:deco_stone2 255 255 255
+pyramids:deco_stone3 255 255 255
+pyramids:spawner_mummy 255 255 255
+pyramids:trap 200 183 143
+pyramids:trap_2 200 183 143
+signs:sign_post 117 86 41
+signs:sign_yard 117 86 41
+simple_beds:bed_bottom 255 255 255
+simple_beds:bed_bottom 255 255 255
+simple_beds:bed_bottom 255 255 255
+simple_beds:bed_top 255 255 255
+simple_beds:bed_top 255 255 255
+simple_beds:bed_top 255 255 255
+snow:dirt_with_snow 225 227 255
+snow:ice 155 155 254
+snow:moss 51 64 29
+snow:needles 6 49 18
+snow:needles_decorated 7 50 19
+snow:sapling_pine 3 54 20
+snow:snow2 225 227 255
+snow:snow 225 227 255
+snow:snow3 225 227 255
+snow:snow4 225 227 255
+snow:snow5 225 227 255
+snow:snow6 225 227 255
+snow:snow7 225 227 255
+snow:snow8 225 227 255
+snow:snow_block 225 227 255
+snow:snow_brick 223 225 253
+snow:star 214 142 0
+snow:xmas_tree 87 88 28
+stairs:slab_brick 156 157 151
+stairs:slab_bronzeblock 116 70 26
+stairs:slab_cactus_checker 130 138 130
+stairs:slab_circle_stone_bricks 91 88 87
+stairs:slab_coal_checker 133 133 133
+stairs:slab_coal_glass 130 130 130 128
+stairs:slab_coal_stone 70 70 70
+stairs:slab_coal_stone_bricks 79 76 75
+stairs:slab_cobble  128 128 128
+stairs:slab_copperblock 110 86 60
+stairs:slab_desert_stone 122 74 57
+stairs:slab_desert_stonebrick 105 64 49
+stairs:slab_diamondblock 103 195 201
+stairs:slab_glass 192 192 227 128
+stairs:slab_glow_glass 255 226 114 128
+stairs:slab_goldblock 126 116 35
+stairs:slab_invisible 0 0 0
+stairs:slab_iron_checker 142 142 142
+stairs:slab_iron_glass 222 222 222 128
+stairs:slab_iron_stone 134 134 134
+stairs:slab_iron_stone_bricks 104 98 97
+stairs:slab_jungletree 120 106 78
+stairs:slab_jungle_wood 51 35 12
+stairs:slab_junglewood 79 57 26
+stairs:slab_mossycobble 102 116 85
+stairs:slab_obsidian 16 16 16
+stairs:slab_obsidian_glass 16 17 17 128
+stairs:slab_plankstone 66 51 23
+stairs:slab_sandstone 200 183 143
+stairs:slab_sandstonebrick 160 144 108
+stairs:slab_split_stone_tile 97 97 97
+stairs:slab_steelblock 153 153 153
+stairs:slab_stone 128 128 128
+stairs:slab_stonebrick 128 128 128
+stairs:slab_stone_tile 97 97 97
+stairs:slab_super_glow_glass 255 255 120 128
+stairs:slab_tree 66 52 35
+stairs:slab_wood 104 78 42
+stairs:slab_wood_tile 78 65 44
+stairs:slab_wood_tile_center 128 100 57
+stairs:slab_wood_tile_full 78 64 44
+stairs:stair_brick 156 157 151
+stairs:stair_bronzeblock 116 70 26
+stairs:stair_cactus_checker 130 138 130
+stairs:stair_circle_stone_bricks 91 88 87
+stairs:stair_coal_checker 133 133 133
+stairs:stair_coal_glass 130 130 130 128
+stairs:stair_coal_stone 70 70 70
+stairs:stair_coal_stone_bricks 79 76 75
+stairs:stair_cobble 128 128 128
+stairs:stair_cobbleupside_down 128 128 128
+stairs:stair_copperblock 110 86 60
+stairs:stair_desert_stone 122 74 57
+stairs:stair_desert_stonebrick 150 100 30
+stairs:stair_diamondblock 103 195 201
+stairs:stair_glass 192 192 227 128
+stairs:stair_glow_glass 255 226 114 128
+stairs:stair_goldblock 126 116 35
+stairs:stair_invisible 0 0 0
+stairs:stair_iron_checker 142 142 142
+stairs:stair_iron_glass 222 222 222 128
+stairs:stair_iron_stone 134 134 134
+stairs:stair_iron_stone_bricks 104 98 97
+stairs:stair_jungletree 120 106 78
+stairs:stair_jungle_wood 51 35 12
+stairs:stair_junglewood 79 57 26
+stairs:stair_junglewoodupside_down 79 57 26
+stairs:stair_mossycobble 102 116 85
+stairs:stair_obsidian 16 16 16
+stairs:stair_obsidian_glass 16 17 17 128
+stairs:stair_plankstone 66 51 23
+stairs:stair_sandstone 200 183 143
+stairs:stair_sandstonebrick 160 144 108
+stairs:stair_split_stone_tile 97 97 97
+stairs:stair_steelblock 153 153 153
+stairs:stair_stone 128 128 128
+stairs:stair_stonebrick 128 128 128
+stairs:stair_stonebrickupside_down 128 128 128
+stairs:stair_stone_tile 97 97 97
+stairs:stair_super_glow_glass 255 255 120 128
+stairs:stair_tree 66 52 35
+stairs:stair_wood 104 78 42
+stairs:stair_wood_tile 78 65 44
+stairs:stair_wood_tile_center 128 100 57
+stairs:stair_wood_tile_full 78 64 44
+tnt:tnt 255 0 0
+travelnet:elevator 176 122 34
+travelnet:elevator_door_glass_open 215 215 236 128
+travelnet:elevator_top 176 122 34
+travelnet:travelnet 220 180 44
+vessels:drinking_glass 220 220 220 128
+vessels:glass_bottle 211 212 211 128
+vessels:steel_bottle 109 109 109
+wool:black 20 20 20
+wool:blue 0 78 152
+wool:brown 95 49 0
+wool:cyan 0 255 255
+wool:dark_green 36 109 0
+wool:dark_grey 65 65 65
+wool:green 99 230 28
+wool:grey 132 132 132
+wool:magenta 210 3 121
+wool:orange 220 91 24
+wool:pink 255 144 144
+wool:red 180 20 20
+wool:violet 96 2 177
+wool:white 241 241 241
+wool:yellow 255 255 0
+xpanes:pane_1 183 183 222
+xpanes:pane_4 183 183 222
+xpanes:pane_5 183 183 222
