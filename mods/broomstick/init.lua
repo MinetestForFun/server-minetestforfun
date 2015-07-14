@@ -116,7 +116,7 @@ minetest.register_craftitem("broomstick:broomstick", {
 minetest.register_craft({
 	output = "broomstick:broomstick",
 	recipe = {{"","","farming:string",},
-		{"default:stick","default:stick","mobs:minautor_lots_of_fur",},
+		{"default:stick","default:stick","mobs:minotaur_lots_of_fur",},
 		{"","","farming:string",},},
 })
 
