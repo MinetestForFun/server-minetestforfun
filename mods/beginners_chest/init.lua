@@ -7,7 +7,7 @@
 
 	Mod ßý Mg, based on an idea of MinetestForFun/Darcidride
 ]]--
-
+--[[
 local chests = {
   [1] = {
     position = {x = 43, y = 48, z = -87},
@@ -169,3 +169,4 @@ minetest.register_globalstep(function(dtime)
 	end
 
 end)
+]]--
