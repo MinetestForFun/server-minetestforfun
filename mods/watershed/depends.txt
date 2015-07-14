@@ -1,3 +1,5 @@
 default
 bucket
 stairs
+moretrees
+flowers
