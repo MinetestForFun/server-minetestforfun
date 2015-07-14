@@ -82,15 +82,15 @@ minetest.register_craftitem("mobs:minotaur_fur", {
 	groups = {magic = 1},
 })
 
-minetest.register_craftitem("mobs:minautor_lots_of_fur", {
+minetest.register_craftitem("mobs:minotaur_lots_of_fur", {
 	description = "Lot of Minotaur Fur",
-	inventory_image = "mobs_minautor_lots_of_fur.png",
+	inventory_image = "mobs_minotaur_lots_of_fur.png",
 	groups = {magic = 1},
 })
 
 minetest.register_craft({
-	output = "mobs:minautor_lots_of_fur",
-	recipe = {{"mobs:minautor_fur", "mobs:minautor_fur"},
-		{"mobs:minautor_fur", "mobs:minautor_fur"},
+	output = "mobs:minotaur_lots_of_fur",
+	recipe = {{"mobs:minotaur_fur", "mobs:minotaur_fur"},
+		{"mobs:minotaur_fur", "mobs:minotaur_fur"},
 	},
 })
