@@ -251,7 +251,7 @@ end
 function hb.unhide_hudbar(player, identifier)
 	local name = player:get_player_name()
 	local hudtable = hb.get_hudtable(identifier)
-	if(hudtable.hudstate[name].hidden) then
+	if(hudtable.hudstate[name] and hudtable.hudstate[name].hidden) then
 		local name = player:get_player_name()
 		local value = hudtable.hudstate[name].value
 		local max = hudtable.hudstate[name].max
