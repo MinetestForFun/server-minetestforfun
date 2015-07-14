@@ -62,10 +62,14 @@ minetest.register_globalstep(function(dtime)
 
 			if pos.z >= edge then
 				newpos = {x = pos.x, y = 10, z = -newedge}
-				newpos.y = get_surface_pos(newpos).y+1 -- /MFF (Mg|19/05//15)
+				if get_surface_pos(newpos) then
+					newpos.y = get_surface_pos(newpos).y+1 -- /MFF (Mg|19/05//15)
+				end -- /MFF (Mg|14/07/15)
 			elseif pos.z <= -edge then
 				newpos = {x = pos.x, y = 10, z = newedge}
-				newpos.y = get_surface_pos(newpos).y+1 -- /MFF (Mg|19/05/15)
+				if get_surface_pos(newpos) then
+					newpos.y = get_surface_pos(newpos).y+1 -- /MFF (Mg|19/05/15)
+				end -- /MFF (Mg|14/07/15)
 			end
 
 			-- Teleport the player
