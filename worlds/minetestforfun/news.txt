@@ -7,6 +7,11 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 ---Informations---
 Le générateur de map actuel est maintenant STABLE, il ne sera plus réinitialisé/reset !
 
+---14/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, Gael-de-Sailly, gravgun, crabman77/crabman)
+MAJ du mod "worldedge" (crashfix)
+MAJ de "watershed" (ajout de textures manquantes)
+MAJ de "xfences" (ajout d'une texture manquante)
+
 ---13/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, Gael-de-Sailly, gravgun, crabman77/crabman)
 MAJ du mod "item_drop" (ramassage plus facile et avec moins d'attente)
 MAJ du mod "watershed" (nouvelle textures, bugfix, amélioration en tout genre)
