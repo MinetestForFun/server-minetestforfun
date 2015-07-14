@@ -101,6 +101,7 @@ mobs:register_mob("mobs:npc", {
 			self.diamond_count = (self.diamond_count or 0) + 1
 			if not minetest.setting_getbool("creative_mode") then
 				item:take_item()
+				clicker:set_wielded_item(item)
 			end
 			if self.diamond_count < 4 then return end
 			-- if owner switch between follow and stand

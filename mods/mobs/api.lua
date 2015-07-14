@@ -467,9 +467,9 @@ function mobs:register_mob(name, def)
 				end
 			end
 
-			if self.type == "npc" and self.order == "follow" and self.state ~= "attack" then
+			if self.type == "npc" and self.order == "follow" and self.owner and  self.owner ~= "" and self.state ~= "attack" then
 				-- npc stop following player if not owner
-				if self.following and self.type == "npc" and self.owner and self.owner ~= self.following:get_player_name() then
+				if self.following and self.owner and self.owner ~= self.following:get_player_name() then
 					self.following = nil
 				end
 			else
