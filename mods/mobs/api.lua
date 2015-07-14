@@ -467,7 +467,7 @@ function mobs:register_mob(name, def)
 				end
 			end
 
-			if self.type == "npc" and self.order == "follow" and self.owner and  self.owner ~= "" and self.state ~= "attack" then
+			if self.type == "npc" and self.order == "follow" and self.owner and self.owner ~= "" and self.state ~= "attack" then --/MFF (Crabman|07/14/2015) follow diamond if has not owner
 				-- npc stop following player if not owner
 				if self.following and self.owner and self.owner ~= self.following:get_player_name() then
 					self.following = nil
@@ -503,7 +503,7 @@ function mobs:register_mob(name, def)
 						self.object:setyaw(yaw)
 
 						-- anyone but standing npc's can move along
-						if dist > 2 and self.order ~= "stand" then
+						if dist > 4 and self.order ~= "stand" then --/MFF (Crabman|07/14/2015) follow but at distance
 							if (self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0)
 							or (self.object:getvelocity().y == 0 and self.jump_chance > 0) then
 								self.direction = {x = math.sin(yaw)*-1, y = -20, z = math.cos(yaw)}
