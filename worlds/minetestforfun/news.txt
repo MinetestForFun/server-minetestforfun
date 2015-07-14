@@ -8,19 +8,21 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 Le générateur de map actuel est maintenant STABLE, il ne sera plus réinitialisé/reset !
 
 ---14/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, Gael-de-Sailly, gravgun, crabman77/crabman)
-MAJ du mod "worldedge" (crashfix)
+MAJ de "hudbar" (crashfix)
+MAJ de "mobs" (deux fois moins de Minotaur, bugfix des drops du Minotaur, nombreux bugfix à propos des NPC et Wolf/Dog)
+MAJ de "worldedge" (crashfix)
 MAJ de "watershed" (ajout de textures manquantes)
 MAJ de "xfences" (ajout d'une texture manquante)
 
 ---13/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, Gael-de-Sailly, gravgun, crabman77/crabman)
-MAJ du mod "item_drop" (ramassage plus facile et avec moins d'attente)
-MAJ du mod "watershed" (nouvelle textures, bugfix, amélioration en tout genre)
-MAJ du mod "mapfix" (amélioration du code)
-MAJ du mod "mobs" (nouvelle texture pour le Yeti, adaptation des apparition des monstres avec les nouvelles zones, presque tous les monstres infligent 1 de dégâts en moins)
+MAJ de "item_drop" (ramassage plus facile et avec moins d'attente)
+MAJ de "watershed" (nouvelle textures, bugfix, amélioration en tout genre)
+MAJ de "mapfix" (amélioration du code)
+MAJ de "mobs" (nouvelle texture pour le Yeti, adaptation des apparition des monstres avec les nouvelles zones, presque tous les monstres infligent 1 de dégâts en moins)
 Ajout du mod "action_timers" (centralisation de la gestion des compteurs de temps pour spawn, sethome, home, et whereis)
 
 ---09/07/2015--- (Remerciements : Gael-de-Sailly, gravgun, Obani, LeMagnesium/Mg, , crabman77/crabman, mgl512/Le_Docteur)
-MAJ du mod "broomstick" (le Balai Volant/Broomstick est maintenant disponible ! Je vous invite à aller consulter son craft, vous pourrez voler 2 minutes en échange de 190 de mana, voila de quoi s'installer sur une île flottant dnas le ciel !)
+MAJ de "broomstick" (le Balai Volant/Broomstick est maintenant disponible ! Je vous invite à aller consulter son craft, vous pourrez voler 2 minutes en échange de 190 de mana, voila de quoi s'installer sur une île flottant dnas le ciel !)
 /!\ Ajout de la SuperVision/Monitoring du serveur, pour y accéder allez sur : Site officiel > LE JEU > Statut du Serveur /!\
 MAJ de "item_drop" (les ressources sont maintenant ramassable bien plus facilement, il n'est plus nécessaire de casser le bloc en dessous des ressources que vous désirez)
 Ajout du mod "warps" (ce sont des téléporteurs A SENS UNIQUE que les administrateurs/modérateurs pourront poser pour faciliter l'exploration de zones très lointaines du serveur)
