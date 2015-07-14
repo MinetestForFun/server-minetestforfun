@@ -10,14 +10,14 @@ if ARMOR_MATERIALS.reinforced_leather then
 	minetest.register_tool(":3d_armor:chestplate_reinforced_leather_hunter", {
 		description = "Hunter's Reinforced Leather Chestplate",
 		inventory_image = "3d_armor_inv_chestplate_reinforced_leather_hunter.png",
-		groups = {armor_torso = 10, armor_heal = 0, armor_use = 40},
+		groups = {armor_torso = 11, armor_heal = 0, armor_use = 40},
 		wear = 0,
 	})
 	-- Register leggings :
 	minetest.register_tool(":3d_armor:leggings_reinforced_leather_hunter", {
 		description = "Hunter's Reinforced Leather Leggings",
 		inventory_image = "3d_armor_inv_leggings_reinforced_leather_hunter.png",
-		groups = {armor_legs = 10, armor_heal = 0, armor_use = 40},
+		groups = {armor_legs = 11, armor_heal = 0, armor_use = 40},
 		wear = 0,
 	})
 	-- Register boots :
