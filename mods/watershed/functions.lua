@@ -181,21 +181,6 @@ if SINGLENODE then
 	-- Spawn player function is useless in minetestforfun
 end
 
--- ABM
-
--- Lava-water cooling
-
-minetest.register_abm({
-	nodenames = {"group:lava"},
-	neighbors = {"group:water"},
-	interval = 11,
-	chance = 64,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		minetest.add_node(pos, {name="default:obsidian"})
-		minetest.sound_play("default_cool_lava", {pos = pos,  gain = 0.25})
-	end,
-})
-
 -- Appletree sapling
 
 	function default.grow_tree(pos)

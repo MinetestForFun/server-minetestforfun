@@ -118,8 +118,3 @@ minetest.register_craft({
 	recipe = {"default:glass", "watershed:luxcrystal"},
 })
 
--- Buckets
-
-minetest.register_alias("watershed:bucket_freshwater", "bucket:bucket_frashwater")
-
-minetest.register_alias("watershed:bucket_lava", "bucket:bucket_lava")
