@@ -66,25 +66,9 @@ minetest.override_item("default:cloud", {
 	groups = {not_in_creative_inventory=1},
 })
 
-minetest.register_node("watershed:luxore", {
-	description = "Lux ore",
-	tiles = {"watershed_luxore.png"},
-	paramtype = "light",
-	light_source = 14,
-	groups = {cracky=3},
-	drop = "watershed:luxcrystal",
-	sounds = default.node_sound_glass_defaults(),
-})
+minetest.register_alias("watershed:luxore", "default:stone")
 
-minetest.register_node("watershed:light", {
-	description = "Light",
-	drawtype = "glasslike_framed_optional",
-	tiles = {"default_glass.png^watershed_luxcrystal_glass.png", "default_glass_detail.png^watershed_luxcrystal_glass.png"},
-	paramtype = "light",
-	light_source = 14,
-	groups = {cracky=3},
-	sounds = default.node_sound_glass_defaults(),
-})
+minetest.register_alias("watershed:light", "lantern:lamp")
 
 minetest.register_alias("watershed:acaciawood", "moretrees:acacia_wood")
 
@@ -105,16 +89,7 @@ minetest.register_alias("watershed:mixwaterflow", "default:river_water_flowing")
 
 -- Items
 
-minetest.register_craftitem("watershed:luxcrystal", {
-	description = "Lux crystal",
-	inventory_image = "watershed_luxcrystal.png",
-})
+minetest.register_alias("watershed:luxcrystal", "default:cobble")
 
 -- Crafting
-
-minetest.register_craft({
-	output = "watershed:light",
-	type = "shapeless",
-	recipe = {"default:glass", "watershed:luxcrystal"},
-})
 

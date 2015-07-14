@@ -52,8 +52,9 @@ local flora = {
 	GRACHA = 36, -- Grassland grasses
 	JUTCHA = 16, -- Jungletree
 	JUGCHA = 16, -- Junglegrass
-	CACCHA = 2209, -- Cactus
-	DRYCHA = 121, -- Dry shrub
+	CACCHA = 800, -- Cactus
+	CACCHA_DRYGRASS = 1600,
+	DRYCHA = 150, -- Dry shrub
 	ACACHA = 1369, -- Acacia tree
 	GOGCHA = 9, -- Golden grass
 	PAPCHA = 4, -- Papyrus
@@ -466,7 +467,13 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 						or (densityper >= 0.77 and densityper <= 0.79)
 						or (densityper >= 0.84 and densityper <= 0.87)
 						or (densityper >= 0.95 and densityper <= 0.98) then
-							data[vi] = c_sandstone
+							if y < -80 then
+								data[vi] = c_sandstone
+							elseif y < -80 and y > -84 and math.random() > 0.5 then
+								data[vi] = c_sandstone
+							else
+								data[vi] = c_wsstone
+							end
 						elseif biome == 7 and density < TSTONE * 3 then -- desert stone as surface layer
 							data[vi] = c_wsredstone
 						elseif math.abs(n_seam) < TSEAM then
@@ -580,7 +587,9 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 							end
 						elseif under[si] == 4 then
 							data[viu] = c_wsdrygrass
-							if math.random(flora.DRYCHA) == 2 then
+							if math.random(flora.CACCHA_DRYGRASS) == 2 then
+								watershed_cactus(x, y, z, area, data)
+							elseif math.random(flora.DRYCHA) == 2 then
 								data[vi] = c_dryshrub
 							end
 						elseif under[si] == 5 then
