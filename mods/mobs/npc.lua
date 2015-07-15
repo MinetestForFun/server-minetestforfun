@@ -108,13 +108,6 @@ mobs:register_mob("mobs:npc", {
 					self.owner = clicker:get_player_name()
 				end
 			end
-		-- pick up npc
-		elseif item:get_name() == "mobs:magic_lasso"
-		and clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:npc") then
-
 		else
 			-- if owner switch between follow and stand
 			if self.owner and self.owner == clicker:get_player_name() then

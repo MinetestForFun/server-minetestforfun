@@ -1418,13 +1418,13 @@ function entity_physics(pos, radius, self) --/MFF (Crabman|06/23/2015)add self t
 	for _, obj in pairs(objs) do
 		obj_pos = obj:getpos()
 		obj_vel = obj:getvelocity()
-		dist = math.max(1, vector.distance(pos, obj_pos))
+		--dist = math.max(1, vector.distance(pos, obj_pos))
 		if obj_vel ~= nil then
 			obj:setvelocity(calc_velocity(pos, obj_pos, obj_vel, radius * 10))
 		end
-		local damage = (4 / dist) * radius
+		--local damage = (4 / dist) * radius
 		obj:punch(self.object, 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=self.damage} })--/MFF (Crabman|06/23/2015) use punch
-		obj:set_hp(obj:get_hp() - damage)
+		--obj:set_hp(obj:get_hp() - damage)
 	end
 end
 
