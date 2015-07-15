@@ -355,6 +355,7 @@ minetest.register_node("default:mg_cherry_sapling", {
 local c_mg_cherry_sapling = minetest.get_content_id("default:mg_cherry_sapling")
 
 minetest.register_on_generated(function(minp, maxp, seed)
+	if minp.y < -19600 then return end -- no generate in nether
 	local timer = os.clock()
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local data = vm:get_data()
