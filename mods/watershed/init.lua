@@ -720,7 +720,7 @@ minetest.register_chatcommand("regen",{
 		local x1 = x0 + 79
 		local y1 = y0 + 79
 		local z1 = z0 + 79
-		if y0 < -19600 then return end -- no generate in nether
+
 		if y0 < YMIN or y1 > YMAX then
 			return
 		end
@@ -753,7 +753,6 @@ minetest.register_chatcommand("regen",{
 -- On generated function
 
 minetest.register_on_generated(function(minp, maxp, seed)
-	if minp.y < -19600 then return end -- no generate in nether
 	if minp.y < YMIN or maxp.y > YMAX then
 		return
 	end
