@@ -117,23 +117,7 @@ mobs:register_mob("mobs:cow", {
 	end,
 })
 
---[[			-- pick up if owner
-			if self.owner == name then
-				clicker:get_inventory():add_item("main", "mobs:cow")
-				self.object:remove()
-				tool:add_wear(3000) -- 22 uses
-				clicker:set_wielded_item(tool)
-			-- cannot pick up if not tamed
-			elseif not self.owner or self.owner == "" then
-				minetest.chat_send_player(name, "Not tamed!")
-			-- cannot pick up if not owner
-			elseif self.owner ~= name then
-				minetest.chat_send_player(name, "Not owner!")
-			end
---]]
-		end
-	end,
-})
+
 -- spawn on default;green;prairie grass between 0 and 20 light, 1 in 11000 chance, 1 cow in area up to 31000 in height
 mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 31000)
 -- register spawn egg
