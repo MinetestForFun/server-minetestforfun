@@ -467,9 +467,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 						or (densityper >= 0.77 and densityper <= 0.79)
 						or (densityper >= 0.84 and densityper <= 0.87)
 						or (densityper >= 0.95 and densityper <= 0.98) then
-							if y < -80 then
-								data[vi] = c_sandstone
-							elseif y < -80 and y > -84 and math.random() > 0.5 then
+							if y > -84 and (y >= -80 or math.random() > 0.5) then
 								data[vi] = c_sandstone
 							else
 								data[vi] = c_wsstone
