@@ -35,7 +35,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "runes:grim_reaper_amulet",
 	recipe = {
-		{"", "runes:hellfire_amulet_amulet", ""},
+		{"", "runes:hellfire_amulet", ""},
 		{"nether:white", "runes:black_magic_block", "nether:white"},
 		{"", "moreores:mithril_block", ""},
 	}
@@ -44,7 +44,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "runes:black_magic_block",
 	recipe = {
-		{"nether:white", "runes:hellfire_amulet_amulet", "default:obsidian"},
+		{"nether:white", "runes:hellfire_amulet", "default:obsidian"},
 		{"default:nyancat", "nether:tree", "default:mese"},
 		{"default:obsidian", "moreores:mithril_block", "nether:white"},
 	}
