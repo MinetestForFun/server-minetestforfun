@@ -15,7 +15,7 @@ mobs:register_mob("mobs:stone_monster", {
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
-	mesh = "mobs_stone_monster.x",
+	mesh = "mobs_stone_monster.b3d",
 	textures = {
 		{"mobs_stone_monster.png"},
 	},

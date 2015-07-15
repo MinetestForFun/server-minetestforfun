@@ -46,13 +46,7 @@ mobs:register_mob("mobs:bee", {
 	},
 	-- right click to pick up bee
 	on_rightclick = function(self, clicker)
-		if clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:bee") then
-			clicker:get_inventory():add_item("main", "mobs:bee")
-			self.object:remove()
-		end
+		mobs:capture_mob(self, clicker, 25, 80, 0, true, nil)
 	end,
 })
 -- spawn on group:flowers between 4 and 20 light, 1 in 5000 chance, 1 bee in area up to 31000 in height

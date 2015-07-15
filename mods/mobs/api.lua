@@ -1,4 +1,4 @@
--- Mobs Api (29th May 2015)
+-- Mobs Api (29th June 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -9,6 +9,7 @@ mobs.protected = 0
 local damage_enabled = minetest.setting_getbool("enable_damage")
 local peaceful_only = minetest.setting_getbool("only_peaceful_mobs")
 local enable_blood = minetest.setting_getbool("mobs_enable_blood") or true
+mobs.protected = tonumber(minetest.setting_get("mobs_spawn_protected")) or 0
 
 function mobs:register_mob(name, def)
 	minetest.register_entity(name, {
@@ -16,13 +17,14 @@ function mobs:register_mob(name, def)
 		name = name,
 		fly = def.fly,
 		fly_in = def.fly_in or "air",
-		owner = def.owner,
+		owner = def.owner or "",
 		order = def.order or "",
 		on_die = def.on_die,
+		do_custom = def.do_custom,
 		jump_height = def.jump_height or 6,
 		jump_chance = def.jump_chance or 0,
 		rotate = def.rotate or 0, -- 0=front, 1.5=side, 3.0=back, 4.5=side2
-		lifetimer = def.lifetimer or 600,
+		lifetimer = def.lifetimer or 600, -- default is 180 now
 		hp_min = def.hp_min or 5,
 		hp_max = def.hp_max or 10,
 		physical = true,
@@ -76,13 +78,15 @@ function mobs:register_mob(name, def)
 		hornytimer = 0,
 		child = false,
 		gotten = false,
-		owner = "",
 		health = 0,
 
 		do_attack = function(self, player, dist)
 			if self.state ~= "attack" then
 				if math.random(0,100) < 90  and self.sounds.war_cry then
-					minetest.sound_play(self.sounds.war_cry,{object = self.object})
+					minetest.sound_play(self.sounds.war_cry,{
+						object = self.object,
+						max_hear_distance = self.sounds.distance
+					})
 				end
 				self.state = "attack"
 				self.attack.player = player
@@ -244,7 +248,10 @@ function mobs:register_mob(name, def)
 			end
 
 			if self.sounds.random and math.random(1, 100) <= 1 then
-				minetest.sound_play(self.sounds.random, {object = self.object})
+				minetest.sound_play(self.sounds.random, {
+					object = self.object,
+					max_hear_distance = self.sounds.distance
+				})
 			end
 
 			local do_env_damage = function(self)
@@ -303,7 +310,10 @@ function mobs:register_mob(name, def)
 								v.z = v.z * 2.2
 								self.object:setvelocity(v)
 								if self.sounds.jump then
-									minetest.sound_play(self.sounds.jump, {object = self.object})
+									minetest.sound_play(self.sounds.jump, {
+										object = self.object,
+										max_hear_distance = self.sounds.distance
+									})
 								end
 							end
 						end
@@ -467,9 +477,14 @@ function mobs:register_mob(name, def)
 				end
 			end
 
-			if self.type == "npc" and self.order == "follow" and self.owner and self.owner ~= "" and self.state ~= "attack" then --/MFF (Crabman|07/14/2015) follow diamond if has not owner
+			-- custom function (defined in mob lua file)
+			if self.do_custom then
+				self.do_custom(self)
+			end
+
+			if self.type == "npc" and self.order == "follow" and self.state ~= "attack" then
 				-- npc stop following player if not owner
-				if self.following and self.owner and self.owner ~= self.following:get_player_name() then
+				if self.following and self.type == "npc" and self.owner and self.owner ~= self.following:get_player_name() then
 					self.following = nil
 				end
 			else
@@ -503,7 +518,7 @@ function mobs:register_mob(name, def)
 						self.object:setyaw(yaw)
 
 						-- anyone but standing npc's can move along
-						if dist > 4 and self.order ~= "stand" then --/MFF (Crabman|07/14/2015) follow but at distance
+						if dist > 4 and self.order ~= "stand" then --/MFF (Crabman|07/14/2015) follow but at distance, default value is 2
 							if (self.jump and self.get_velocity(self) <= 0.5 and self.object:getvelocity().y == 0)
 							or (self.object:getvelocity().y == 0 and self.jump_chance > 0) then
 								self.direction = {x = math.sin(yaw)*-1, y = -20, z = math.cos(yaw)}
@@ -579,6 +594,15 @@ function mobs:register_mob(name, def)
 			elseif self.state == "walk" then
 				local s = self.object:getpos()
 				local lp = minetest.find_node_near(s, 1, {"group:water"})
+
+-- water swimmers cannot move out of water
+if self.fly and self.fly_in == "default:water_source" and not lp then
+	print ("out of water")
+	self.set_velocity(self, 0)
+	self.state = "flop" -- change to undefined state so nothing more happens
+	self:set_animation("stand")
+	return
+end
 				-- if water nearby then turn away
 				if lp then
 					local vec = {x=lp.x-s.x, y=lp.y-s.y, z=lp.z-s.z}
@@ -674,7 +698,11 @@ function mobs:register_mob(name, def)
 						or minetest.is_protected(pos, "") then
 							self.object:remove()
 							if self.sounds.explode ~= "" then
-								minetest.sound_play(self.sounds.explode, {pos = pos, gain = 1.0, max_hear_distance = 16})
+								minetest.sound_play(self.sounds.explode, {
+									pos = pos,
+									gain = 1.0,
+									max_hear_distance = 16
+								})
 							end
 							pos.y = pos.y + 1
 							effect(pos, 15, "tnt_smoke.png", 5)
@@ -760,7 +788,10 @@ function mobs:register_mob(name, def)
 						s2.y = s2.y + 1.5
 						if minetest.line_of_sight(p2,s2) == true then
 							if self.sounds.attack then
-								minetest.sound_play(self.sounds.attack, {object = self.object})
+								minetest.sound_play(self.sounds.attack, {
+									object = self.object,
+									max_hear_distance = self.sounds.distance
+								})
 							end
 							self.attack.player:punch(self.object, 1.0,  {
 								full_punch_interval=1.0,
@@ -776,11 +807,6 @@ function mobs:register_mob(name, def)
 
 			elseif self.state == "attack" and self.attack_type == "shoot" then
 
-				if not self.attack.player or not self.attack.player:is_player() then
-					self.state = "stand"
-					self:set_animation("stand")
-					return
-				end
 				local s = self.object:getpos()
 				local p = self.attack.player:getpos()
 				p.y = p.y - .5
@@ -789,9 +815,6 @@ function mobs:register_mob(name, def)
 				if dist > self.view_range or self.attack.player:get_hp() <= 0 then
 					self.state = "stand"
 					self.set_velocity(self, 0)
-					if self.type ~= "npc" then
-						self.attack = {player=nil, dist=nil}
-					end
 					self:set_animation("stand")
 					return
 				else
@@ -812,7 +835,10 @@ function mobs:register_mob(name, def)
 					self:set_animation("punch")
 
 					if self.sounds.attack then
-						minetest.sound_play(self.sounds.attack, {object = self.object})
+						minetest.sound_play(self.sounds.attack, {
+							object = self.object,
+							max_hear_distance = self.sounds.distance
+						})
 					end
 
 					local p = self.object:getpos()
@@ -843,6 +869,8 @@ function mobs:register_mob(name, def)
 			self.object:setvelocity({x=0, y=self.object:getvelocity().y, z=0})
 			self.old_y = self.object:getpos().y
 			self.object:setyaw(math.random(1, 360)/180*math.pi)
+
+			if not self.sounds.distance then self.sounds.distance = 10 end
 
 			if staticdata then
 				local tmp = minetest.deserialize(staticdata)
@@ -950,10 +978,12 @@ function mobs:register_mob(name, def)
 				local s = math.random(0,#weapon:get_definition().sounds)
 				minetest.sound_play(weapon:get_definition().sounds[s], {
 					object=hitter,
+					max_hear_distance = 8
 				})
 			else
 				minetest.sound_play("default_punch", {
 					object = hitter,
+					max_hear_distance = 5
 				})
 			end
 
@@ -1093,7 +1123,15 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 	local c_brick = minetest.get_content_id("default:obsidianbrick")
 	local c_chest = minetest.get_content_id("default:chest_locked")
 	if sound and sound ~= "" then
-		minetest.sound_play(sound, {pos = pos, gain = 1.0, max_hear_distance = 16})
+		minetest.sound_play(sound, {
+			pos = pos,
+			gain = 1.0,
+			max_hear_distance = 16
+		})
+	end
+	-- if area protected then no blast damage
+	if minetest.is_protected(pos, "") then
+		return
 	end
 	for z = -radius, radius do
 	for y = -radius, radius do
@@ -1141,7 +1179,10 @@ function check_for_death(self)
 	local hp = self.object:get_hp()
 	if hp > 0 then
 		if self.sounds.damage ~= nil then
-			minetest.sound_play(self.sounds.damage,{object = self.object})
+			minetest.sound_play(self.sounds.damage,{
+				object = self.object,
+				max_hear_distance = self.sounds.distance
+			})
 			self.health = hp
 		end
 		return
@@ -1159,7 +1200,10 @@ function check_for_death(self)
 		end
 	end
 	if self.sounds.death ~= nil then
-		minetest.sound_play(self.sounds.death,{object = self.object})
+		minetest.sound_play(self.sounds.death,{
+			object = self.object,
+			max_hear_distance = self.sounds.distance
+		})
 	end
 	if self.on_die then
 		pos.y = pos.y - 0.5
@@ -1187,13 +1231,13 @@ function entity_physics(pos, radius, self) --/MFF (Crabman|06/23/2015)add self t
 	for _, obj in pairs(objs) do
 		obj_pos = obj:getpos()
 		obj_vel = obj:getvelocity()
-		--dist = math.max(1, vector.distance(pos, obj_pos))
+		dist = math.max(1, vector.distance(pos, obj_pos))
 		if obj_vel ~= nil then
 			obj:setvelocity(calc_velocity(pos, obj_pos, obj_vel, radius * 10))
 		end
-		--local damage = (4 / dist) * radius
+		local damage = (4 / dist) * radius
 		obj:punch(self.object, 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=self.damage} })--/MFF (Crabman|06/23/2015) use punch
-		--obj:set_hp(obj:get_hp() - damage)
+		obj:set_hp(obj:get_hp() - damage)
 	end
 end
 
@@ -1276,4 +1320,54 @@ function mobs:register_egg(mob, desc, background, addegg)
 			return itemstack
 		end,
 	})
+end
+
+-- capture critter (thanks to blert2112 for idea)
+function mobs:capture_mob(self, clicker, chance_hand, chance_net, chance_lasso, force_take, replacewith)
+	if clicker:is_player() and clicker:get_inventory() and not self.child then
+		-- get name of clicked mob
+		local mobname = self.name
+		-- if not nil change what will be added to inventory
+		if replacewith then
+			mobname = replacewith
+		end
+--print ("taking by force is", force_take)
+		local name = clicker:get_player_name()
+		if self.owner == "" and force_take == false then
+			minetest.chat_send_player(name, "Not tamed!")
+			return
+		-- cannot pick up if not owner
+		elseif self.owner ~= name and force_take == false then
+			minetest.chat_send_player(name, "Not owner!")
+			return
+		end
+
+		if clicker:get_inventory():room_for_item("main", mobname) then
+			-- was mob clicked with hand, net, or lasso?
+			local tool = clicker:get_wielded_item()
+			local chance = 0
+			if tool:is_empty() then
+				chance = chance_hand
+			elseif tool:get_name() == "mobs:net" then
+				chance = chance_net
+				tool:add_wear(4000) -- 17 uses
+				clicker:set_wielded_item(tool)
+			elseif tool:get_name() == "mobs:magic_lasso" then
+				-- pick up if owner
+				chance = chance_lasso
+				tool:add_wear(650) -- 100 uses
+				clicker:set_wielded_item(tool)
+			end
+			-- return if no chance
+			if chance == 0 then return end
+			-- calculate chance.. was capture successful?
+			if math.random(100) <= chance then
+				-- successful capture.. add to inventory
+				clicker:get_inventory():add_item("main", mobname)
+				self.object:remove()
+			else
+				minetest.chat_send_player(name, "Missed!")
+			end
+		end
+	end
 end

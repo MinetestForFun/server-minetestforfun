@@ -25,6 +25,7 @@ mobs:register_mob("mobs:npc", {
 	drawtype = "front",
 	textures = {
 		{"mobs_npc.png"},
+		{"mobs_npc2.png"}, -- female by nuttmeg20
 	},
 	visual_size = {x=1, y=1},
 	-- sounds
@@ -116,20 +117,7 @@ mobs:register_mob("mobs:npc", {
 		and self.child == false
 		and clicker:get_inventory():room_for_item("main", "mobs:npc") then
 
-			-- pick up if owner
-			if self.owner == name then
-				clicker:get_inventory():add_item("main", "mobs:npc")
-				self.object:remove()
-				item:add_wear(3000) -- 22 uses
-				clicker:set_wielded_item(item)
-			-- cannot pick up if not tamed
-			elseif not self.owner or self.owner == "" then
-				minetest.chat_send_player(name, "Not tamed!")
-			-- cannot pick up if not tamed
-			elseif self.owner ~= name then
-				minetest.chat_send_player(name, "Not owner!")
-			end
-		else --/MFF (Crabman|07/14/2015) follow|stop
+		else
 			-- if owner switch between follow and stand
 			if self.owner and self.owner == clicker:get_player_name() then
 				if self.order == "follow" then
@@ -137,8 +125,12 @@ mobs:register_mob("mobs:npc", {
 				else
 					self.order = "follow"
 				end
+			else
+				self.owner = clicker:get_player_name()
 			end
 		end
+
+		mobs:capture_mob(self, clicker, 0, 5, 80, false, nil)
 	end,
 })
 -- spawning enable for now

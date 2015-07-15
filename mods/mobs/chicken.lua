@@ -53,15 +53,9 @@ mobs:register_mob("mobs:chicken", {
 	-- follows wheat
 	follow = "farming:seed_wheat",
 	view_range = 8,
-	-- replace air with egg (lay)
-	replacements = {
-		{
-			replace_rate = 2000,
-			replace_what = {"air"},
-			replace_with = "mobs:egg",
-		}
-	},
-	-- right click to pick up chicken
+	replace_rate = 2000,
+	replace_what = {"air"},
+	replace_with = "mobs:egg",
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()
 		local name = clicker:get_player_name()
@@ -86,7 +80,7 @@ mobs:register_mob("mobs:chicken", {
 				end
 				self.tamed = true
 				-- make owner
-				if not self.owner or self.owner == "" then
+				if self.owner == "" then
 					self.owner = name
 				end
 				minetest.sound_play("mobs_chicken", {
@@ -98,23 +92,7 @@ mobs:register_mob("mobs:chicken", {
 			return
 		end
 
-		if clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:chicken") then
-
-			-- pick up if owner
-			if self.owner == name then
-				clicker:get_inventory():add_item("main", "mobs:chicken")
-				self.object:remove()
-			-- cannot pick up if not tamed
-			elseif not self.owner or self.owner == "" then
-				minetest.chat_send_player(name, "Not tamed!")
-			-- cannot pick up if not owner
-			elseif self.owner ~= name then
-				minetest.chat_send_player(name, "Not owner!")
-			end
-		end
+		mobs:capture_mob(self, clicker, 30, 50, 80, false, nil)
 	end,
 })
 -- spawn on default or bamboo grass between 8 and 20 light, 1 in 10000 change, 1 chicken in area up to 31000 in height

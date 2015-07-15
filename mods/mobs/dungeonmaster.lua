@@ -21,7 +21,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	-- textures and model
 	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
 	visual = "mesh",
-	mesh = "mobs_dungeon_master.x",
+	mesh = "mobs_dungeon_master.b3d",
 	textures = {
 		{"mobs_dungeon_master.png"},
 		{"mobs_dungeon_master_cobblestone.png"},

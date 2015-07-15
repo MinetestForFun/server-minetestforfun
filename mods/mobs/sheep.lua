@@ -13,7 +13,7 @@ mobs:register_mob("mobs:sheep", {
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	visual = "mesh",
-	mesh = "mobs_sheep.x",
+	mesh = "mobs_sheep.b3d",
 	textures = {
 		{"mobs_sheep.png"},
 	},
@@ -21,7 +21,7 @@ mobs:register_mob("mobs:sheep", {
 	visual_size = {x=1,y=1},
 	-- specific texture and mesh for gotten
 	gotten_texture = {"mobs_sheep_shaved.png"},
-	gotten_mesh = "mobs_sheep_shaved.x",
+	gotten_mesh = "mobs_sheep_shaved.b3d",
 	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
@@ -81,7 +81,7 @@ mobs:register_mob("mobs:sheep", {
 				self.gotten = false -- can be shaved again
 				self.tamed = true
 				-- make owner
-				if not self.owner or self.owner == "" then
+				if self.owner == "" then
 					self.owner = name
 				end
 				self.object:set_properties({
@@ -114,30 +114,12 @@ mobs:register_mob("mobs:sheep", {
 			end
 			self.object:set_properties({
 				textures = {"mobs_sheep_shaved.png"},
-				mesh = "mobs_sheep_shaved.x",
+				mesh = "mobs_sheep_shaved.b3d",
 			})
+			return
 		end
 
-		if item:get_name() == "mobs:magic_lasso"
-		and clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:sheep") then
-
-			-- pick up if owner
-			if self.owner == name then
-				clicker:get_inventory():add_item("main", "mobs:sheep")
-				self.object:remove()
-				item:add_wear(3000) -- 22 uses
-				clicker:set_wielded_item(item)
-			-- cannot pick up if not tamed
-			elseif not self.owner or self.owner == "" then
-				minetest.chat_send_player(name, "Not tamed!")
-			-- cannot pick up if not tamed
-			elseif self.owner ~= name then
-				minetest.chat_send_player(name, "Not owner!")
-			end
-		end
+		mobs:capture_mob(self, clicker, 0, 5, 60, false, nil)
 	end,
 })
 -- spawn on default;green grass between 20 and 8 light, 1 in 9000 chance, 1 sheep in area up to 31000 in height
@@ -157,7 +139,7 @@ minetest.register_tool("mobs:shears", {
 		},
 		damage_groups = {fleshy=0},
 	}
-})										-- Modif MFF /FIN
+})							-- Modif MFF /FIN
 
 minetest.register_craft({
 	output = 'mobs:shears',

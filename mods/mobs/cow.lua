@@ -18,7 +18,7 @@ mobs:register_mob("mobs:cow", {
 	mesh = "mobs_cow.x",
 	textures = {
 		{"mobs_cow.png"},
-		--{"mobs_cow_brown.png"}, -- d�-commenter quand "mobs_cow_brown.png" sera compatible
+		--{"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
 	},
 	blood_texture = "mobs_blood.png",
 	visual_size = {x=1,y=1},
@@ -52,23 +52,11 @@ mobs:register_mob("mobs:cow", {
 		run_start = 105,		run_end = 135,
 		punch_start = 70,		punch_end = 100,
 	},
-	-- follows wheat
-	follow = "farming:wheat", view_range = 8,
-	-- replace grass/wheat with air (eat) 	-- Modif MFF /DEBUT
-	replacements = {
-		{
-			replace_rate = 50,
-			replace_what = {"default:grass_3", "default:grass_4",
-							"default:grass_5", "farming:wheat_8"},
-			replace_with = "air",
-		},
-		{
-			replace_rate = 2000,
-			replace_what = {"air"},
-			replace_with = "mobs:dung",
-		}
-	},										-- Modif MFF /FIN
-	-- right-click cow with empty bucket to get milk, then feed 8 wheat to replenish milk
+	follow = "farming:wheat",
+	view_range = 8,
+	replace_rate = 50,
+	replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "farming:wheat_8"},
+	replace_with = "air",
 	on_rightclick = function(self, clicker)
 		local tool = clicker:get_wielded_item()
 		local name = clicker:get_player_name()
@@ -89,6 +77,7 @@ mobs:register_mob("mobs:cow", {
 				minetest.add_item(pos, {name = "mobs:bucket_milk"})
 			end
 			self.gotten = true -- milked
+			return
 		end
 
 		if tool:get_name() == "farming:wheat" then
@@ -112,7 +101,7 @@ mobs:register_mob("mobs:cow", {
 				self.gotten = false -- ready to be milked again
 				self.tamed = true
 				-- make owner
-				if not self.owner or self.owner == "" then
+				if self.owner == "" then
 					self.owner = name
 				end
 				minetest.sound_play("mobs_cow", {
@@ -125,13 +114,11 @@ mobs:register_mob("mobs:cow", {
 			return
 		end
 
-		if tool:get_name() == "mobs:magic_lasso"
-		and clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:cow") then
+		mobs:capture_mob(self, clicker, 0, 5, 60, false, nil)
+	end,
+})
 
-			-- pick up if owner
+--[[			-- pick up if owner
 			if self.owner == name then
 				clicker:get_inventory():add_item("main", "mobs:cow")
 				self.object:remove()
@@ -147,7 +134,7 @@ mobs:register_mob("mobs:cow", {
 
 		end
 	end,
-})
+})--]]
 -- spawn on default;green;prairie grass between 0 and 20 light, 1 in 11000 chance, 1 cow in area up to 31000 in height
 mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 31000)
 -- register spawn egg
@@ -208,7 +195,6 @@ minetest.register_craft({
 })
 
 -- Dung
--- O_o?
 
 minetest.register_node("mobs:dung", {
 	description = "Cow dung",

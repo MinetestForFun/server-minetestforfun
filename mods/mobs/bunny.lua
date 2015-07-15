@@ -17,6 +17,7 @@ mobs:register_mob("mobs:bunny", {
 		{"mobs_bunny_grey.png"},
 		{"mobs_bunny_brown.png"},
 		{"mobs_bunny_white.png"},
+		{"mobs_bunny_evil.png"},
 	},
 	-- sounds
 	sounds = {},
@@ -65,12 +66,13 @@ mobs:register_mob("mobs:bunny", {
 				self.food = 0
 				self.tamed = true
 				-- make owner
-				if not self.owner or self.owner == "" then
+				if self.owner == "" then
 					self.owner = name
 				end
 			end
 			return
 		end
+
 		-- Monty Python tribute
 		if item:get_name() == "mobs:lava_orb" then
 			-- take item
@@ -87,23 +89,7 @@ mobs:register_mob("mobs:bunny", {
 			return
 		end
 
-		if clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:bunny") then
-
-			-- pick up if owner
-			if self.owner == name then
-				clicker:get_inventory():add_item("main", "mobs:bunny")
-				self.object:remove()
-			-- cannot pick up if not tamed
-			elseif not self.owner or self.owner == "" then
-				minetest.chat_send_player(name, "Not tamed!")
-			-- cannot pick up if not owner
-			elseif self.owner ~= name then
-				minetest.chat_send_player(name, "Not owner!")
-			end
-		end
+		mobs:capture_mob(self, clicker, 30, 50, 80, false, nil)
 	end,
 	attack_type = "dogfight",
 	damage = 5,

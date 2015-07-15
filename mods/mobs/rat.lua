@@ -13,7 +13,7 @@ mobs:register_mob("mobs:rat", {
 	-- textures and model
 	collisionbox = {-0.2, -0.01, -0.2, 0.2, 0.2, 0.2},
 	visual = "mesh",
-	mesh = "mobs_rat.x",
+	mesh = "mobs_rat.b3d",
 	textures = {
 		{"mobs_rat.png"},
 		{"mobs_rat_brown.png"},
@@ -35,14 +35,14 @@ mobs:register_mob("mobs:rat", {
 	light_damage = 0,
 	-- right click to pick up rat
 	on_rightclick = function(self, clicker)
-		if clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:rat") then
-			clicker:get_inventory():add_item("main", "mobs:rat")
-			self.object:remove()
-		end
+		mobs:capture_mob(self, clicker, 25, 80, 0, true, nil)
 	end,
+--[[
+	do_custom = function(self)
+		local pos = self.object:getpos()
+		print("rat pos", pos.x, pos.y, pos.z)
+	end,
+]]
 })
 -- spawn on stone between 1 and 20 light, 1 in 7000 chance, 1 per area up to 31000 in height
 mobs:register_spawn("mobs:rat", {"default:stone", "default:sandstone"}, 20, 0, 10000, 1, 31000)

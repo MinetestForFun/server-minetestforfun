@@ -77,7 +77,7 @@ mobs:register_mob("mobs:pumba", {
 				end
 				self.tamed = true
 				-- make owner
-				if not self.owner or self.owner == "" then
+				if self.owner == "" then
 					self.owner = name
 				end
 				minetest.sound_play("mobs_pig", {
@@ -90,26 +90,7 @@ mobs:register_mob("mobs:pumba", {
 			return
 		end
 
-		if item:get_name() == "mobs:magic_lasso"
-		and clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:pumba") then
-
-			-- pick up if owner
-			if self.owner == name then
-				clicker:get_inventory():add_item("main", "mobs:pumba")
-				self.object:remove()
-				item:add_wear(3000) -- 22 uses
-				clicker:set_wielded_item(item)
-			-- cannot pick up if not tamed
-			elseif not self.owner or self.owner == "" then
-				minetest.chat_send_player(name, "Not tamed!")
-			-- cannot pick up if not tamed
-			elseif self.owner ~= name then
-				minetest.chat_send_player(name, "Not owner!")
-			end
-		end
+		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
 	end,
 })
 -- spawns on dirt or junglegrass, between 8 and 20 light, 1 in 10000 chance, 1 in area up to 31000 in height

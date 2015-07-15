@@ -28,7 +28,7 @@ mobs:register_mob("mobs:kitten", {
 	-- speed and jump
 	walk_velocity = 0.6,
 	jump = false,
-	--	drops string and coins
+	--	drops string
 	drops = {
 		{name = "farming:string",
 		chance = 2, min = 1, max = 1},
@@ -63,7 +63,7 @@ mobs:register_mob("mobs:kitten", {
 				self.food = 0
 				self.tamed = true
 				-- make owner
-				if not self.owner or self.owner == "" then
+				if self.owner == "" then
 					self.owner = name
 				end
 				minetest.sound_play("mobs_kitten", {
@@ -76,23 +76,7 @@ mobs:register_mob("mobs:kitten", {
 			return
 		end
 
-		if clicker:is_player()
-		and clicker:get_inventory()
-		and self.child == false
-		and clicker:get_inventory():room_for_item("main", "mobs:kitten") then
-
-			-- pick up if owner
-			if self.owner == name then
-				clicker:get_inventory():add_item("main", "mobs:kitten")
-				self.object:remove()
-			-- cannot pick up if not tamed
-			elseif not self.owner or self.owner == "" then
-				minetest.chat_send_player(name, "Not tamed!")
-			-- cannot pick up if not owner
-			elseif self.owner ~= name then
-				minetest.chat_send_player(name, "Not owner!")
-			end
-		end
+		mobs:capture_mob(self, clicker, 50, 50, 90, false, nil)
 	end
 })
 

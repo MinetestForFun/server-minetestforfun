@@ -1,37 +1,39 @@
+local path = minetest.get_modpath("mobs")
+
 -- Mob Api
 
-dofile(minetest.get_modpath("mobs").."/api.lua")
+dofile(path.."/api.lua")
 
 -- Animals
 
-dofile(minetest.get_modpath("mobs").."/chicken.lua") -- JKmurray
-dofile(minetest.get_modpath("mobs").."/cow.lua") -- KrupnoPavel
-dofile(minetest.get_modpath("mobs").."/rat.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/sheep.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/warthog.lua") -- KrupnoPavel
-dofile(minetest.get_modpath("mobs").."/bee.lua") -- KrupnoPavel
-dofile(minetest.get_modpath("mobs").."/bunny.lua") -- ExeterDad
-dofile(minetest.get_modpath("mobs").."/kitten.lua") -- Jordach/BFD
-dofile(minetest.get_modpath("mobs").."/goat.lua") -- ???
+dofile(path.."/chicken.lua") -- JKmurray
+dofile(path.."/cow.lua") -- KrupnoPavel
+dofile(path.."/rat.lua") -- PilzAdam
+dofile(path.."/sheep.lua") -- PilzAdam
+dofile(path.."/warthog.lua") -- KrupnoPavel
+dofile(path.."/bee.lua") -- KrupnoPavel
+dofile(path.."/bunny.lua") -- ExeterDad
+dofile(path.."/kitten.lua") -- Jordach/BFD
+dofile(path.."/goat.lua") -- ???
 
 -- Monsters
 
-dofile(minetest.get_modpath("mobs").."/dirtmonster.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/dungeonmaster.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/oerkki.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/sandmonster.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/stonemonster.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/treemonster.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/wolf.lua") -- PilzAdam
-dofile(minetest.get_modpath("mobs").."/dog.lua") -- CProgrammerRU
---dofile(minetest.get_modpath("mobs").."/lava_flan.lua") -- Zeg9 --Remplaced by Lava Slimes
-dofile(minetest.get_modpath("mobs").."/mese_monster.lua") -- Zeg9
-dofile(minetest.get_modpath("mobs").."/spider.lua") -- AspireMint
-dofile(minetest.get_modpath("mobs").."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
-dofile(minetest.get_modpath("mobs").."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
-dofile(minetest.get_modpath("mobs").."/zombie.lua") -- ???
-dofile(minetest.get_modpath("mobs").."/yeti.lua") -- ???
-dofile(minetest.get_modpath("mobs").."/minotaur.lua") -- Kalabasa
+dofile(path.."/dirtmonster.lua") -- PilzAdam
+dofile(path.."/dungeonmaster.lua") -- PilzAdam
+dofile(path.."/oerkki.lua") -- PilzAdam
+dofile(path.."/sandmonster.lua") -- PilzAdam
+dofile(path.."/stonemonster.lua") -- PilzAdam
+dofile(path.."/treemonster.lua") -- PilzAdam
+dofile(path.."/wolf.lua") -- PilzAdam
+dofile(path.."/dog.lua") -- CProgrammerRU
+--dofile(path.."/lava_flan.lua") -- Zeg9 --Remplaced by Lava Slimes
+dofile(path.."/mese_monster.lua") -- Zeg9
+dofile(path.."/spider.lua") -- AspireMint
+dofile(path.."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
+dofile(path.."/lavaslimes.lua") -- davedevils/TomasJLuis/TenPlus1
+dofile(path.."/zombie.lua") -- ???
+dofile(path.."/yeti.lua") -- ???
+dofile(path.."/minotaur.lua") -- Kalabasa
 
 -- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead
@@ -46,47 +48,13 @@ if minetest.setting_get("log_mods") then minetest.log("action", "Slimes loaded")
 -- end slimes mobs compatibility changes
 
 -- NPC
-dofile(minetest.get_modpath("mobs").."/npc.lua") -- TenPlus1
+dofile(path.."/npc.lua") -- TenPlus1
 
 -- Creeper (fast impl by davedevils)
-dofile(minetest.get_modpath("mobs").."/creeper.lua")
+dofile(path.."/creeper.lua")
 
--- Meat & Cooked Meat
-
-minetest.register_craftitem("mobs:meat_raw", {
-	description = "Raw Meat",
-	inventory_image = "mobs_meat_raw.png",
-	on_use = minetest.item_eat(3),
-})
-
-minetest.register_craftitem("mobs:meat", {
-	description = "Meat",
-	inventory_image = "mobs_meat.png",
-	on_use = minetest.item_eat(8),
-})
-
-minetest.register_craft({
-	type = "cooking",
-	output = "mobs:meat",
-	recipe = "mobs:meat_raw",
-	cooktime = 5,
-})
-
--- Golden Lasso
-
-minetest.register_tool("mobs:magic_lasso", {
-	description = "Magic Lasso (right-click animal to put in inventory)",
-	inventory_image = "mobs_magic_lasso.png",
-})
-
-minetest.register_craft({
-	output = "mobs:magic_lasso",
-	recipe = {
-		{"farming:string", "default:gold_lump", "farming:string"},
-		{"default:gold_lump", "default:diamondblock", "default:gold_lump"},
-		{"farming:string", "default:gold_lump", "farming:string"},
-	}
-})
+-- Mob Items
+dofile(path.."/crafts.lua")
 
 if minetest.setting_get("log_mods") then
 	minetest.log("action", "mobs loaded")

@@ -15,7 +15,7 @@ mobs:register_mob("mobs:oerkki", {
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
-	mesh = "mobs_oerkki.x",
+	mesh = "mobs_oerkki.b3d",
 	textures = {
 		{"mobs_oerkki.png"},
 		{"mobs_oerkki2.png"},
