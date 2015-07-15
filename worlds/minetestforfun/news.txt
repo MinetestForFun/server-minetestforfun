@@ -2,10 +2,15 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
 /!\ Nouveau mod pour les arcs, équilibré => 90% complété /!\
-/!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder => 75% complété /!\
+/!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder => 80% complété /!\
 
 ---Informations---
 Le générateur de map actuel est maintenant STABLE, il ne sera plus réinitialisé/reset !
+Venez visiter notre nouveau site (www.)minetestforfun.com !
+
+---15/07/2015--- (Remerciements : crabman77/crabman, gravgun, LeMagnesium/Mg)
+MAJ de "3d_armor" (augmentation général des valeurs d'armures, nivellement plus intéressant, voir le tableau sur le site pour les détails, le bouclier en mithril octroie maintenant une régénération de vie lente)
+MAJ de "watershed" (bugfix, équilibrage du mapgen et augmentation du nombre de Cactus, suppression des minerais/items à base de Lux crystal, réduction de la sandstone généré dans les caves)
 
 ---14/07/2015--- (Remerciements : LeMagnesium/Mg, Obani, Gael-de-Sailly, gravgun, crabman77/crabman)
 MAJ de "hudbar" (crashfix)
