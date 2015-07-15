@@ -13,13 +13,13 @@ mobs:register_mob("mobs:dungeon_master", {
 	attack_type = "shoot",
 	shoot_interval = 2.5,
 	arrow = "mobs:fireball",
-	shoot_offset = 0,
+	shoot_offset = 1,
 	-- health & armor
 	hp_min = 60,
 	hp_max = 80,
 	armor = 70,
 	-- textures and model
-	collisionbox = {-0.7, -0.01, -0.7, 0.7, 2.6, 0.7},
+	collisionbox = {-0.7, -1, -0.7, 0.7, 1.6, 0.7},
 	visual = "mesh",
 	mesh = "mobs_dungeon_master.b3d",
 	textures = {
@@ -27,7 +27,6 @@ mobs:register_mob("mobs:dungeon_master", {
 		{"mobs_dungeon_master_cobblestone.png"},
 		{"mobs_dungeon_master_strangewhite.png"},
 	},
-	visual_size = {x=8, y=8},
 	blood_texture = "mobs_blood.png",
 	-- sounds
 	makes_footstep_sound = true,

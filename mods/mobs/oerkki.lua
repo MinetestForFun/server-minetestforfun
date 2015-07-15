@@ -13,14 +13,13 @@ mobs:register_mob("mobs:oerkki", {
 	hp_max = 50,
 	armor = 90,
 	-- textures and model
-	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
+	collisionbox = {-0.4, -1, -0.4, 0.4, 0.9, 0.4},
 	visual = "mesh",
 	mesh = "mobs_oerkki.b3d",
 	textures = {
 		{"mobs_oerkki.png"},
 		{"mobs_oerkki2.png"},
 	},
-	visual_size = {x=5, y=5},
 	blood_texture = "mobs_blood.png",
 	-- sounds
 	makes_footstep_sound = false,

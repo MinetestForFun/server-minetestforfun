@@ -20,7 +20,6 @@ mobs:register_mob("mobs:lava_flan", {
 		{"zmobs_lava_flan.png"},
 	},
 	blood_texture = "fire_basic_flame.png",
-	visual_size = {x=1, y=1},
 	-- sounds
 	makes_footstep_sound = false,
 	sounds = {

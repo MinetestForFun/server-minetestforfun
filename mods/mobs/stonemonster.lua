@@ -19,7 +19,6 @@ mobs:register_mob("mobs:stone_monster", {
 	textures = {
 		{"mobs_stone_monster.png"},
 	},
-	visual_size = {x=3, y=2.6},
 	blood_texture = "default_stone.png",
 	-- sounds
 	makes_footstep_sound = true,

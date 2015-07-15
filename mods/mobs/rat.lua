@@ -11,7 +11,7 @@ mobs:register_mob("mobs:rat", {
 	hp_max = 4,
 	armor = 200,
 	-- textures and model
-	collisionbox = {-0.2, -0.01, -0.2, 0.2, 0.2, 0.2},
+	collisionbox = {-0.2, -1, -0.2, 0.2, -0.8, 0.2},
 	visual = "mesh",
 	mesh = "mobs_rat.b3d",
 	textures = {

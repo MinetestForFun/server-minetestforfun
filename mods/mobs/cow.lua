@@ -21,7 +21,6 @@ mobs:register_mob("mobs:cow", {
 		--{"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
 	},
 	blood_texture = "mobs_blood.png",
-	visual_size = {x=1,y=1},
 	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
@@ -107,7 +106,7 @@ mobs:register_mob("mobs:cow", {
 				minetest.sound_play("mobs_cow", {
 					object = self.object,
 					gain = 1.0,
-					max_hear_distance = 32,
+					max_hear_distance = 16,
 					loop = false,
 				})
 			end
@@ -131,10 +130,10 @@ mobs:register_mob("mobs:cow", {
 			elseif self.owner ~= name then
 				minetest.chat_send_player(name, "Not owner!")
 			end
-
+--]]
 		end
 	end,
-})--]]
+})
 -- spawn on default;green;prairie grass between 0 and 20 light, 1 in 11000 chance, 1 cow in area up to 31000 in height
 mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 31000)
 -- register spawn egg

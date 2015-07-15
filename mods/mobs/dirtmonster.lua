@@ -13,13 +13,12 @@ mobs:register_mob("mobs:dirt_monster", {
 	hp_max = 30,
 	armor = 90,
 	-- textures and model
-	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
+	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
 	visual = "mesh",
-	mesh = "mobs_stone_monster.x",
+	mesh = "mobs_stone_monster.b3d",
 	textures = {
 		{"mobs_dirt_monster.png"},
 	},
-	visual_size = {x=3, y=2.6},
 	blood_texture = "default_dirt.png",
 	-- sounds
 	makes_footstep_sound = true,

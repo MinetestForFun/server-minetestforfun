@@ -69,7 +69,7 @@ mobs:register_egg("mobs:mese_monster", "Mese Monster", "default_mese_block.png",
 -- mese arrow (weapon)
 mobs:register_arrow("mobs:mese_arrow", {
 	visual = "sprite",
-	visual_size = {x=.5, y=.5},
+	visual_size = {x = 0.5, y = 0.5},
 	textures = {"default_mese_crystal_fragment.png"},
 	velocity = 6,
 

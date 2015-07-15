@@ -27,7 +27,6 @@ mobs:register_mob("mobs:npc", {
 		{"mobs_npc.png"},
 		{"mobs_npc2.png"}, -- female by nuttmeg20
 	},
-	visual_size = {x=1, y=1},
 	-- sounds
 	makes_footstep_sound = true,
 	sounds = {},
@@ -69,7 +68,7 @@ mobs:register_mob("mobs:npc", {
 		local item = clicker:get_wielded_item()
 		local name = clicker:get_player_name()
 		if not name then return end
-		-- heal npc
+		-- feed toheal npc
 		if item:get_name() == "mobs:meat"
 		or item:get_name() == "farming:bread" then
 			-- feed and add health
@@ -80,7 +79,6 @@ mobs:register_mob("mobs:npc", {
 				return
 			end
 			hp = hp + 4	-- add restorative value
-			-- new health shouldn't exceed self.hp_max
 			if hp > self.hp_max then hp = self.hp_max end
 			self.object:set_hp(hp)
 			-- take item

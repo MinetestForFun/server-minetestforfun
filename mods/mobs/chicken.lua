@@ -12,6 +12,7 @@ mobs:register_mob("mobs:chicken", {
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
 	mesh = "mobs_chicken.x",
+	-- seems a lot of textures but this fixes the problem with the model
 	textures = {
 		{"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png",
 		"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png"},
@@ -84,7 +85,8 @@ mobs:register_mob("mobs:chicken", {
 					self.owner = name
 				end
 				minetest.sound_play("mobs_chicken", {
-					object = self.object,gain = 1.0,
+					object = self.object,
+					gain = 1.0,
 					max_hear_distance = 15,
 					loop = false,
 				})

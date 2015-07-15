@@ -13,13 +13,12 @@ mobs:register_mob("mobs:tree_monster", {
 	hp_max = 50,
 	armor = 80,
 	-- textures and model
-	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
+	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
 	visual = "mesh",
 	mesh = "mobs_tree_monster.b3d",
 	textures = {
 		{"mobs_tree_monster.png"},
 	},
-	visual_size = {x=4.5,y=4.5},
 	blood_texture = "default_wood.png",
 	-- sounds
 	makes_footstep_sound = true,

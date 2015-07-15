@@ -105,6 +105,7 @@ minetest.register_craftitem("mobs:pork_raw", {
 	on_use = minetest.item_eat(4),
 })
 
+-- cooked porkchop
 minetest.register_craftitem("mobs:pork_cooked", {
 	description = "Cooked Porkchop",
 	inventory_image = "mobs_pork_cooked.png",
