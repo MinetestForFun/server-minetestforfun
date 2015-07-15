@@ -19,10 +19,10 @@ function load_news()
 
 	for i,line in ipairs(commit) do
 		if string.len(news[nb]) < caracteres_max then
-			news[nb] = news[nb]..minetest.formspec_escape(line.."\n\n\n")
+			news[nb] = news[nb]..minetest.formspec_escape(line.."\n\n")
 		else
 			nb = nb + 1
-			news[nb] = minetest.formspec_escape(line.."\n\n\n")
+			news[nb] = minetest.formspec_escape(line.."\n\n")
 		end
 	end
 end
