@@ -6,7 +6,7 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Informations---
 Venez visiter notre nouveau site (www.)minetestforfun.com !
-Pour mieux comprendre ce qui est arrivé récemment au serveur venez lire ceci http://minetestforfun.com/index.php/news/evenements/32-reset-de-la-carte-du-monde
+Pour mieux comprendre ce qui est arrivé récemment au serveur venez lire ceci http://minetestforfun.com/news/evenements/32-reset-de-la-carte-du-monde
 
 ---15/07/2015--- (Remerciements : crabman77/crabman, gravgun, LeMagnesium/Mg)
 MAJ de "3d_armor" (augmentation général des valeurs d'armures, nivellement plus intéressant, voir le tableau sur le site pour les détails, le bouclier en mithril octroie maintenant une régénération de vie lente)
@@ -635,7 +635,7 @@ MAJ de "hud/hunger" (unification des valeurs de faim terminée)
 ---30/11/2014---
 MAJ de "u_skins" (suppression des skins inappropriés pour un serveur JcJ, ils avaient été remis suite à une erreur de manipulation)
 MAJ de "mobs" (nouvelle texture pour le dirt_monster, le phacochère, l'oerkki)
-EVENEMENT => Venez voter pour la prochaine texture du Dungeon Master ! (section EVENEMENT du site, ou directement à cette adresse : http://minetest.qbuissondebon.info/index.php/news/evenements)
+EVENEMENT => Venez voter pour la prochaine texture du Dungeon Master ! (section EVENEMENT du site, ou directement à cette adresse : http://minetestforfun.com/news/evenements)
 
 ---29/11/2014---
 MAJ de "mesecons" (nombreux bugfix)
