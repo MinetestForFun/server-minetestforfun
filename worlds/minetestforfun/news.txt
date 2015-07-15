@@ -8,6 +8,12 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 Venez visiter notre nouveau site (www.)minetestforfun.com !
 Pour mieux comprendre ce qui est arrivé récemment au serveur venez lire ceci http://minetestforfun.com/news/evenements/32-reset-de-la-carte-du-monde
 
+---16/07/2015--- (Remerciements : gravgun, crabman77/crabman, LeMagnesium/Mg)
+MAJ de "mobs" (nombreuses améliorations diverses et bugfixs, ajout du "Filet/Net" pour attraper certains "insectes/petits animaux" à la place du "Lasso", ajout d'un NPC de sexe féminin, ajout d'un nouvelle texture nommée "Evil" pour les lapins, vosu ne pouvez plus prendre/apprivoiser d'animaux appartenant à un autre joueur, les projectiles des monstres sont debug, vous pouvez maintenant colorer vos moutons avec des "colorant/dye")
+MAJ de "watershed" (le nether est bugfixé et ce génère maintenant correctement, le nether est donc désormais ouvert !)
+MAJ de "news" (bugfix du double saut de ligne)
+MAJ de "interact" (le Quizz pour les nouveaux joueurs est maintenant traduit en français et anglais)
+
 ---15/07/2015--- (Remerciements : crabman77/crabman, gravgun, LeMagnesium/Mg)
 MAJ de "3d_armor" (augmentation général des valeurs d'armures, nivellement plus intéressant, voir le tableau sur le site pour les détails, le bouclier en mithril octroie maintenant une régénération de vie lente)
 MAJ de "watershed" (bugfix, équilibrage du mapgen et augmentation du nombre de Cactus, suppression des minerais/items à base de Lux crystal, réduction de la sandstone généré dans les caves)
