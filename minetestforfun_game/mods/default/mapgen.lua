@@ -1011,6 +1011,7 @@ end
 
 
 function default.generate_nyancats(minp, maxp, seed)
+	if minp.y < -19600 then return end -- no generate in nether
 	local height_min = -30000
 	local height_max = 30000
 	if maxp.y < height_min or minp.y > height_max then
