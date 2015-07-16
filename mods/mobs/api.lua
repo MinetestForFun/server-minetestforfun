@@ -961,6 +961,7 @@ end
 
 				local s = self.object:getpos()
 				local p = self.attack.player:getpos()
+				if not s or not p then return end
 				p.y = p.y - .5
 				s.y = s.y + .5
 				local dist = ((p.x - s.x) ^ 2 + (p.y - s.y) ^ 2 + (p.z - s.z) ^ 2) ^ 0.5
