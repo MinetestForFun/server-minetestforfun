@@ -16,13 +16,13 @@ mobs:register_mob("mobs:yeti", {
 	hp_max = 30,
 	armor = 90,
 	-- textures and model
-	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
+	collisionbox = {-0.42,-1.2,-0.42, 0.42,0.96,0.42},
 	visual = "mesh",
 	mesh = "character.b3d",
 	textures = {
 		{"mobs_yeti.png"},
 	},
-	visual_size = {x=1, y=1},
+	visual_size = {x=1.2, y=1.2},
 	blood_texture = "mobs_blood.png",
 	-- sounds
 	makes_footstep_sound = true,
