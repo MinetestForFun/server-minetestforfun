@@ -59,7 +59,7 @@ mobs:register_mob("mobs:zombie", {
 })
 
 -- spawn in nether forest between -1 and 5 light, 1 in 6000 change, 1 zombie in area up to 31000 in height
-mobs:register_spawn("mobs:zombie", {"nether:dirt_top"}, 5, -1, 6600, 1, 31000)
+mobs:spawn_specific("mobs:zombie", {"nether:dirt_top"}, {"air"}, -1, 5, 30, 6600, 1, -31000, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:zombie", "Zombie", "mobs_zombie_head.png", 1)
 

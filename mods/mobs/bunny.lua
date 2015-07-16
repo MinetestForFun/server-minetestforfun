@@ -94,6 +94,5 @@ mobs:register_mob("mobs:bunny", {
 	attack_type = "dogfight",
 	damage = 5,
 })
-
-mobs:register_spawn("mobs:bunny", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 31000)
+mobs:spawn_specific("mobs:bunny", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000)
 mobs:register_egg("mobs:bunny", "Bunny", "mobs_bunny_inv.png", 0)

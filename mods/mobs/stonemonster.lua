@@ -13,7 +13,7 @@ mobs:register_mob("mobs:stone_monster", {
 	hp_max = 35,
 	armor = 60,
 	-- textures and model
-	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
+	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
 	visual = "mesh",
 	mesh = "mobs_stone_monster.b3d",
 	textures = {
@@ -57,6 +57,6 @@ mobs:register_mob("mobs:stone_monster", {
 	},
 })
 -- spawns on stone between -1 and 5 light, 1 in 7000 chance, 1 in area below -25
-mobs:register_spawn("mobs:stone_monster", {"default:stone", "default:sandstone"}, 5, -1, 7000, 1, -25)
+mobs:spawn_specific("mobs:stone_monster", {"default:stone", "default:sandstone"}, {"air"}, -1, 5, 30, 7000, 1, -31000, -25)
 -- register spawn egg
 mobs:register_egg("mobs:stone_monster", "Stone Monster", "default_stone.png", 1)

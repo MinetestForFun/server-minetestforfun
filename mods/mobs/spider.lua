@@ -58,7 +58,7 @@ mobs:register_mob("mobs:spider", {
 	},
 })
 -- spawn on jungleleaves/jungletree, between 0 and 5 light, 1 in 10000 chance, 1 in area up to 31000 in height
-mobs:register_spawn("mobs:spider", {"default:jungleleaves", "default:jungletree"}, 20, -1, 7000, 1, 31000)
+mobs:spawn_specific("mobs:spider", {"default:jungleleaves", "default:jungletree"}, {"air"}, -1, 20, 30, 7000, 1, -31000, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:spider", "Spider", "mobs_cobweb.png", 1)
 

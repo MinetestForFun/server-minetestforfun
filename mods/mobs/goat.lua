@@ -61,6 +61,6 @@ mobs:register_mob("mobs:goat", {
 	replace_with = "air",
 })
 -- spawn on dirt_with_grass between -1 and 20 light, 1 in 20000 chance, 1 goat in area up to 31000 in height
-mobs:register_spawn("mobs:goat", {"default:dirt_with_grass"}, 20, -1, 10000, 1, 31000)
+mobs:spawn_specific("mobs:goat", {"default:dirt_with_grass"}, {"air"}, -1, 20, 30, 10000, 1, -31000, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:goat", "Goat", "default_grass.png", 1)

@@ -98,7 +98,7 @@ mobs:register_mob("mobs:chicken", {
 	end,
 })
 -- spawn on default or bamboo grass between 8 and 20 light, 1 in 10000 change, 1 chicken in area up to 31000 in height
-mobs:register_spawn("mobs:chicken", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 31000)
+mobs:spawn_specific("mobs:chicken", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:chicken", "Chicken", "mobs_chicken_inv.png", 0)
 

@@ -152,7 +152,7 @@ mobs:register_mob("mobs:sheep", {
 	end,
 })
 -- spawn on default;green grass between 20 and 8 light, 1 in 9000 chance, 1 sheep in area up to 31000 in height
-mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 10000, 1, 31000)
+mobs:spawn_specific("mobs:sheep", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000)
 -- register spawn egg
 mobs:register_egg("mobs:sheep", "Sheep", "wool_white.png", 1)
 

@@ -158,9 +158,9 @@ mobs:register_mob("mobs:greenbig", {
 mobs:register_egg("mobs:greenbig", "Big Green Slime", "mobs_green_slime_egg.png", 1)
 
 --mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
-mobs:spawn_specific("mobs:greenbig", {"default:acid_source"},{"default:acid_flowing"}, 20, -1, 30, 4000, 1, -32000, 32000)
-mobs:spawn_specific("mobs:greenmedium", {"default:acid_source"},{"default:acid_flowing"}, 20, -1, 30, 4000, 2, -32000, 32000)
---mobs:spawn_specific("mobs:greensmall", {"default:acid_source"},{"default:acid_flowing"}, 20, -1, 30, 10000, 2, -32000, 32000)
+mobs:spawn_specific("mobs:greenbig", {"default:acid_source"},{"default:acid_flowing"}, -1, 20, 30, 4000, 1, -32000, 32000)
+mobs:spawn_specific("mobs:greenmedium", {"default:acid_source"},{"default:acid_flowing"},-1, 20, 30, 4000, 2, -32000, 32000)
+--mobs:spawn_specific("mobs:greensmall", {"default:acid_source"},{"default:acid_flowing"},-1,  20, 30, 10000, 2, -32000, 32000)
 
 --mobs:register_spawn(name, nodes, max_light, min_light, chance, active_object_count, max_height)
 --mobs:register_spawn("mobs:greenmedium", {"default:mossycobble"}, 20, 4, 10000, 8, 32000)
