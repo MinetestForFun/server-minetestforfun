@@ -1,2 +1,5 @@
 default
+fire?
+bakedclay?
+ethereal?
 soundset
