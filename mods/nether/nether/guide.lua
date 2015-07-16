@@ -372,10 +372,10 @@ minetest.register_chatcommand("nether_help", {
 			minetest.chat_send_player(name, "Something went wrong.")
 			return false
 		end
-		if player:getpos().y > nether.start then
+--[[		if player:getpos().y > nether.start then
 			minetest.chat_send_player(name, "Usually you don't neet this guide here. You can view it in the nether.")
 			return false
-		end
+		end --]]
 		minetest.chat_send_player(name, "Showing guide...")
 		show_guide(name)
 		return true
