@@ -4,7 +4,7 @@ Solar Mana Mod [solarmana]
 A mana regeneration controller: only regenerate mana in sunlight
 or on special nodes.
 
-Version: 0.3.0
+Version: 0.4.0
 Licence: LGPL 2.1 or later
 
 Report bugs or request help on the forum topic.
@@ -20,6 +20,9 @@ sunlight for regeneration to kick in.
 Since many magic users prefer their homes and offices to actually
 have a roof, standing on specific node types (currently wooden
 planks and gold blocks) will also regenerate mana.
+
+Now with support for slower, and negative, regeneration. Just
+for fun, standing on stone will drain your mana...
 
 Dependencies
 ------------
