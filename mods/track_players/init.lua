@@ -1,4 +1,4 @@
-local time_interval = 1.0
+local time_interval = 60.0
 local fifo_path = "/home/quentinbd/minetest/worlds/minetestforfun/mt_players_fifo"
 
 function players_data()
