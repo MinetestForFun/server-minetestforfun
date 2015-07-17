@@ -866,7 +866,8 @@ function nether.grow_tree(pos, generated)
 		p = area:indexp(p)
 		if soft_node(nodes[p]) then
 			nodes[p] = c.nether_leaves
-			param2s[p] = math.random(0,44)
+			param2s[p] = math.random(0,179)
+			--param2s[p] = math.random(0,44)
 		end
 	end
 
@@ -874,7 +875,6 @@ function nether.grow_tree(pos, generated)
 		p = area:indexp(p)
 		if soft_node(nodes[p]) then
 			nodes[p] = c.nether_apple
-			--param2s[p] = math.random(0,44)
 		end
 	end
 
