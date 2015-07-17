@@ -11,6 +11,12 @@ pclasses = {}
 -- API
 pclasses.api = {}
 
+-- Configuration
+pclasses.conf = {}
+pclasses.conf.default_class = "adventurer"
+pclasses.conf.save_interval = 3 * 60
+pclasses.conf.datafile = minetest.get_worldpath() .. "/pclasses"
+
 -- Classes
 pclasses.classes = {}
 
@@ -46,7 +52,7 @@ function pclasses.api.register_class(cname)
 		return
 	end
 
-	local c_id = pclasses.api.create_class()
+	local c_id = pclasses.api.create_class_id()
 	pclasses.classes[c_id] = {name = cname}
 	return c_id
 end
@@ -69,7 +75,7 @@ end
 
 -- Get single player
 function pclasses.api.get_player_class(pname)
-	return pclasses.datas.player[pname]
+	return pclasses.datas.players[pname]
 end
 
 -- Get all players for a class
@@ -91,4 +97,50 @@ function pclasses.api.set_player_class(pname, cname)
 		return true
 	end
 	return false
+end
+
+---------------------------
+-- Backup and load system
+--
+
+-- Startup
+local pfile = io.open(pclasses.conf.datafile, "r")
+if pfile then
+	local line = pfile:read()
+	if line then
+		pclasses.datas.players = minetest.deserialize(line)
+	end
+	pfile.close()
+end
+
+-- Frequent backup
+local function save_datas()
+	local pfile = io.open(pclasses.conf.datafile, "w")
+	pfile:write(minetest.serialize(pclasses.datas.players))
+	pfile.close()
+	minetest.log("action", "[PClasses] Datas saved")
+end
+
+local save_timer = 0
+minetest.register_globalstep(function(dtime)
+	save_timer = save_timer + dtime
+	if save_timer >= pclasses.conf.save_interval then
+		save_datas()
+		save_timer = 0
+	end
+end)
+
+-----------------------------
+-- Default class assignment
+--
+if pclasses.conf.default_class then
+	local id = pclasses.api.register_class(pclasses.conf.default_class)
+	if id then
+		minetest.register_on_joinplayer(function(player)
+			if not pclasses.api.get_player_class(player:get_player_name()) then
+				pclasses.api.set_player_class(player:get_player_name(),
+					pclasses.conf.default_class)
+			end
+		end)
+	end
 end
