@@ -8,7 +8,7 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 Venez visiter notre nouveau site "minetestforfun.com" !
 Pour mieux comprendre ce qui est arrivé récemment au serveur nous vous invitons à lire le dernier article de la section "NEWS > Evénements" de notre site.
 
----16/07/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun, Ataron, paly2/Palige)
+---18/07/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun, Ataron, paly2/Palige)
 MAJ de "track_player" (la position des joueurs est maintenant récupérée toute les 60secondes, celle-ci est utilisée pour l'actualisation du mapper, auparavant toutes les 1 secondes ce qui surchargeait inutilement le serveur)
 MAJ de "nether" (la commande "/nether_help" est maintenant faisable en surface et petite amélioration de textures du nether)
 MAJ de "solarmana" (bugfixs et ajout du drain de mana qui n'est pas utilisé pour l'instant)
