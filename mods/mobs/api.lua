@@ -455,6 +455,7 @@ function mobs:register_mob(name, def)
 			and self.attacks_monsters
 			and self.state ~= "attack" then
 				local s = self.object:getpos()
+				local p, dist
 				local obj = nil
 				for _, oir in pairs(minetest.get_objects_inside_radius(s,self.view_range)) do
 					obj = oir:get_luaentity()
