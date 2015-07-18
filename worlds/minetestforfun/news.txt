@@ -5,8 +5,14 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder => 80% complété /!\
 
 ---Informations---
-Venez visiter notre nouveau site (www.)minetestforfun.com !
-Pour mieux comprendre ce qui est arrivé récemment au serveur venez lire ceci http://minetestforfun.com/news/evenements/32-reset-de-la-carte-du-monde
+Venez visiter notre nouveau site "minetestforfun.com" !
+Pour mieux comprendre ce qui est arrivé récemment au serveur nous vous invitons à lire le dernier article de la section "NEWS > Evénements" de notre site.
+
+---16/07/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun, Ataron, paly2/Palige)
+MAJ de "track_player" (la position des joueurs est maintenant récupérée toute les 60secondes, celle-ci est utilisée pour l'actualisation du mapper, auparavant toutes les 1 secondes ce qui surchargeait inutilement le serveur)
+MAJ de "nether" (la commande "/nether_help" est maintenant faisable en surface et petite amélioration de textures du nether)
+MAJ de "solarmana" (bugfixs et ajout du drain de mana qui n'est pas utilisé pour l'instant)
+MAJ de "mobs" (nombreux bugfixs, corrections des modèles, correction des hitboxs, le monstre Yeti est maintenant plus grand, les monstres voient leur fonction de "spawn" améliorée, le crash créé si l'on tape sur un monstre avec un pickaxe en mushroom(nether) a été fixé, les dernières textures pour les composants issues des monstres sont ajoutées)
 
 ---16/07/2015--- (Remerciements : gravgun, crabman77/crabman, LeMagnesium/Mg)
 MAJ de "mobs" (nombreuses améliorations diverses et bugfixs, ajout du "Filet/Net" pour attraper certains "insectes/petits animaux" à la place du "Lasso", ajout d'un NPC de sexe féminin, ajout d'un nouvelle texture nommée "Evil" pour les lapins, vosu ne pouvez plus prendre/apprivoiser d'animaux appartenant à un autre joueur, les projectiles des monstres sont debug, vous pouvez maintenant colorer vos moutons avec des "colorant/dye")
