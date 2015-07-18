@@ -1130,8 +1130,8 @@ end
 		on_punch = function(self, hitter, tflp, tool_capabilities, dir)
 			-- weapon wear
 			local weapon = hitter:get_wielded_item()
-			if weapon:get_definition().tool_capabilities ~= nil and weapon:get_definition().tool_capabilities.full_punch_interval ~= nil then
-				local wear = ( weapon:get_definition().tool_capabilities.full_punch_interval / 75 ) * 9000
+			if weapon:get_definition().tool_capabilities ~= nil then
+				local wear = ( (weapon:get_definition().tool_capabilities.full_punch_interval or 1.4) / 75 ) * 9000
 				weapon:add_wear(wear)
 				hitter:set_wielded_item(weapon)
 			end
