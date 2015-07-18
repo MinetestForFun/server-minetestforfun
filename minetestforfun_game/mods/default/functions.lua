@@ -248,7 +248,7 @@ end
 function default.grow_papyrus(pos, node)
 	pos.y = pos.y - 1
 	local name = minetest.get_node(pos).name
-	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" then
+	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" and name ~= "default:sand" and name ~= "default:desert_sand" then
 		return
 	end
 	if not minetest.find_node_near(pos, 3, {"group:water"}) then
@@ -280,7 +280,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"default:papyrus"},
-	neighbors = {"default:dirt", "default:dirt_with_grass", "default:dirt_with_snow", "default:sand", "default:desert_sand"},
+	neighbors = {"default:dirt", "default:dirt_with_grass", "default:sand", "default:desert_sand"},
 	interval = 60,
 	chance = 25,
 	action = function(...)
@@ -405,7 +405,6 @@ minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack
 	if newnode.name ~= "default:torch" or minetest.get_item_group(oldnode.name, "water") == 0 then
 		return
 	end
-	minetest.remove_node(pos, newnode)
 	minetest.set_node(pos, oldnode)
 	minetest.add_item(pos, "default:torch")
 end)
