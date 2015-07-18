@@ -94,7 +94,7 @@ function mobs:register_mob(name, def)
 				self.attack.dist = dist
 			end
 		end,
-		
+
 		set_velocity = function(self, v)
 			v = (v or 0)
 			if def.drawtype
@@ -106,7 +106,7 @@ function mobs:register_mob(name, def)
 			local z = math.cos(yaw) * v
 			self.object:setvelocity({x = x, y = self.object:getvelocity().y, z = z})
 		end,
-		
+
 		get_velocity = function(self)
 			local v = self.object:getvelocity()
 			return (v.x ^ 2 + v.z ^ 2) ^ (0.5)
@@ -122,9 +122,9 @@ function mobs:register_mob(name, def)
 			local d = { x = vx / ds, z = vz / ds }
 			local p = { x = pos.x / ps, z = pos.z / ps }
 			local an = ( d.x * p.x ) + ( d.z * p.z )
-			
+
 			a = math.deg( math.acos( an ) )
-			
+
 			if a > ( self.fov / 2 ) then
 				return false
 			else
@@ -185,7 +185,7 @@ function mobs:register_mob(name, def)
 				end
 			end
 		end,
-		
+
 		on_step = function(self, dtime)
 
 			if self.type == "monster"
@@ -268,7 +268,7 @@ function mobs:register_mob(name, def)
 					end
 				end
 			end
-			
+
 			-- knockback timer
 			if self.pause_timer > 0 then
 				self.pause_timer = self.pause_timer - dtime
@@ -277,7 +277,7 @@ function mobs:register_mob(name, def)
 				end
 				return
 			end
-			
+
 			-- attack timer
 			self.timer = self.timer + dtime
 			if self.state ~= "attack" then
@@ -294,7 +294,7 @@ function mobs:register_mob(name, def)
 					max_hear_distance = self.sounds.distance
 				})
 			end
-			
+
 			local do_env_damage = function(self)
 
 				local pos = self.object:getpos()
@@ -334,7 +334,7 @@ function mobs:register_mob(name, def)
 				end
 
 			end
-			
+
 			local do_jump = function(self)
 				if self.fly then
 					return
@@ -360,7 +360,7 @@ function mobs:register_mob(name, def)
 						})
 --print ("in front:", nod.name, pos.y)
 						if nod and nod.name and
-						(nod.name ~= "air" 
+						(nod.name ~= "air"
 						or self.walk_chance == 0) then
 							local def = minetest.registered_items[nod.name]
 							if (def
@@ -385,7 +385,7 @@ function mobs:register_mob(name, def)
 					self.jumptimer = 0
 				end
 			end
-			
+
 			-- environmental damage timer
 			self.env_damage_timer = self.env_damage_timer + dtime
 			if self.state == "attack"
@@ -395,7 +395,7 @@ function mobs:register_mob(name, def)
 			elseif self.state ~= "attack" then
 				do_env_damage(self)
 			end
-			
+
 			-- find someone to attack
 			if self.type == "monster"
 			and damage_enabled
@@ -421,7 +421,7 @@ function mobs:register_mob(name, def)
 							type = obj.type
 						end
 					end
-					
+
 					if type == "player"
 					or type == "npc" then
 						s = self.object:getpos()
@@ -446,7 +446,7 @@ function mobs:register_mob(name, def)
 					self.do_attack(self, min_player, min_dist)
 				end
 			end
-			
+
 			-- npc, find closest monster to attack
 			local min_dist = self.view_range + 1
 			local min_player = nil
@@ -658,7 +658,7 @@ function mobs:register_mob(name, def)
 
 					if self.type == "npc" then
 						local o = minetest.get_objects_inside_radius(self.object:getpos(), 3)
-						
+
 						local yaw = 0
 						for _,o in ipairs(o) do
 							if o:is_player() then
@@ -674,7 +674,7 @@ function mobs:register_mob(name, def)
 						if lp.x > s.x then
 							yaw = yaw + math.pi
 						end
-					else 
+					else
 						yaw = self.object:getyaw() + ((math.random(0, 360) - 180) / 180 * math.pi)
 					end
 					self.object:setyaw(yaw)
@@ -751,7 +751,7 @@ end
 				end
 
 			-- exploding mobs
-			elseif self.state == "attack" and self.attack_type == "explode" then 
+			elseif self.state == "attack" and self.attack_type == "explode" then
 				if not self.attack.player
 				or not self.attack.player:is_player() then
 					self.state = "stand"
@@ -776,7 +776,7 @@ end
 					self:set_animation("walk")
 					self.attack.dist = dist
 				end
-				
+
 				local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
 				yaw = math.atan(vec.z / vec.x) + math.pi / 2 + self.rotate -- local
 				if p.x > s.x then
@@ -904,7 +904,7 @@ end
 				else
 					self.attack.dist = dist
 				end
-				
+
 				local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
 				yaw = (math.atan(vec.z / vec.x) + math.pi / 2) + self.rotate -- local
 				if p.x > s.x then
@@ -977,7 +977,7 @@ end
 				else
 					self.attack.dist = dist
 				end
-				
+
 				local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
 				yaw = (math.atan(vec.z/vec.x)+math.pi/2) + self.rotate
 				if p.x > s.x then
@@ -985,7 +985,7 @@ end
 				end
 				self.object:setyaw(yaw)
 				self.set_velocity(self, 0)
-				
+
 				if self.shoot_interval
 				and self.timer > self.shoot_interval
 				and math.random(1, 100) <= 60 then
@@ -1206,7 +1206,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 		action = function(pos, node, _, active_object_count_wider)
 			-- do not spawn if too many active entities in area
 			if active_object_count_wider > active_object_count
-			or not mobs.spawning_mobs[name] 
+			or not mobs.spawning_mobs[name]
 			or not pos then
 				return
 			end

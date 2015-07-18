@@ -46,7 +46,7 @@ function pclasses.api.id_for_class(cname)
 end
 
 -- Register the class (basic registration)
-function pclasses.api.register_class(cname)
+function pclasses.api.register_class(cname, assign_f)
 	if not cname then
 		minetest.log("error", "[PClasses] Error registering unamed class")
 		return
@@ -54,6 +54,9 @@ function pclasses.api.register_class(cname)
 
 	local c_id = pclasses.api.create_class_id()
 	pclasses.classes[c_id] = {name = cname}
+	if assign_f then
+		pclasses.classes[c_id].match_function = assign_f
+	end
 	return c_id
 end
 
@@ -129,6 +132,7 @@ minetest.register_globalstep(function(dtime)
 		save_timer = 0
 	end
 end)
+minetest.register_on_shutdown(save_datas)
 
 -----------------------------
 -- Default class assignment
@@ -144,3 +148,40 @@ if pclasses.conf.default_class then
 		end)
 	end
 end
+
+
+------------
+-- Classes
+--
+
+pclasses.api.register_class("warrior", function(player)
+	local inv = minetest.get_inventory({type = "detached", name = player:get_player_name() .. "_armor"})
+	local shift_class = false
+	if not inv or inv:is_empty("armor") then
+		return shift_class
+	end
+	shift_class = true
+	for _,piece in pairs({"helmet", "leggings", "boots", "helmet"}) do
+		shift_class = shift_class and inv:contains_item("armor", "3d_armor:" .. piece .. "_warrior")
+	end
+end)
+
+function pclasses.api.assign_class(player)
+	-- Look for every sign needed to deduct a player's class
+	-- Starting from the most important class to the less one
+
+	print(pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player))
+	if pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player)
+		and pclasses.api.get_player_class(player:get_player_name()) ~= "warrior" then
+		pclasses.api.set_player_class(player:get_player_name(), "warrior")
+		minetest.chat_send_player(player:get_player_name(), "You are now a warrior")
+
+	elseif pclasses.api.get_player_class(player:get_player_name()) ~= "adventurer" then
+		pclasses.api.set_player_class(player:get_player_name(), "adventurer")
+		minetest.chat_send_player(player:get_player_name(), "You are now an adventurer")
+	end
+end
+
+minetest.register_on_respawnplayer(pclasses.api.assign_class)
+minetest.register_on_joinplayer(pclasses.api.assign_class)
+minetest.register_on_leaveplayer(pclasses.api.assign_class)

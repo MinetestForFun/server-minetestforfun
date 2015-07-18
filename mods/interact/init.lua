@@ -19,7 +19,7 @@ function interact.get_player_language(plr)
 		return interact.player_languages[plr]
 	end
 	return interact.player_languages[plr:get_player_name()]
-end	
+end
 
 interact.forms = {
 	languageselect = function(player)
