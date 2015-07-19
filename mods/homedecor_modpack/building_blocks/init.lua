@@ -502,14 +502,14 @@ minetest.register_craftitem("building_blocks:tar_base", {
 })
 
 --Tar
-minetest.register_craft({
+--[[minetest.register_craft({
 	output = 'building_blocks:knife 1',
 	recipe = {
 		{"group:tar_block"},
 		{"group:stick"},
 	}
 })
-
+--]]			-- Modif MFF, remove this useless tool
 minetest.register_alias("tar", "building_blocks:Tar")
 minetest.register_alias("fakegrass", "building_blocks:fakegrass")
 minetest.register_alias("tar_knife", "building_blocks:knife")
