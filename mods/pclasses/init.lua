@@ -23,6 +23,7 @@ pclasses.classes = {}
 -- Data
 pclasses.datas = {}
 pclasses.datas.players = {}
+pclasses.datas.reserved_items = {}
 pclasses.datas.hud_ids = {} -- HUD maybe?
 
 
@@ -138,7 +139,7 @@ minetest.register_on_shutdown(save_datas)
 -- Default class assignment
 --
 if pclasses.conf.default_class then
-	local id = pclasses.api.register_class(pclasses.conf.default_class)
+	local id = pclasses.api.register_class(pclasses.conf.default_class, function() return true end)
 	if id then
 		minetest.register_on_joinplayer(function(player)
 			if not pclasses.api.get_player_class(player:get_player_name()) then
@@ -161,7 +162,7 @@ pclasses.api.register_class("warrior", function(player)
 		return shift_class
 	end
 	shift_class = true
-	for _,piece in pairs({"helmet", "leggings", "boots", "helmet"}) do
+	for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
 		shift_class = shift_class and inv:contains_item("armor", "3d_armor:" .. piece .. "_warrior")
 	end
 	return shift_class
@@ -174,7 +175,7 @@ pclasses.api.register_class("hunter", function(player)
 		return shift_class
 	end
 	shift_class = true
-	for _,piece in pairs({"helmet", "leggings", "boots", "helmet"}) do
+	for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
 		shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_reinforced_leather_hunter")
 			or inv:contains_item("armor", "3d_armor:" .. piece .. "_hardened_leather_hunter")) -- Why two different armors?!
 	end
@@ -185,15 +186,17 @@ function pclasses.api.assign_class(player)
 	-- Look for every sign needed to deduct a player's class
 	-- Starting from the most important class to the less one
 
-	if pclasses.classes[pclasses.api.id_for_class("hunter")].match_function(player)
-		and pclasses.api.get_player_class(player:get_player_name()) ~= "hunter" then
-		pclasses.api.set_player_class(player:get_player_name(), "hunter")
-		minetest.chat_send_player(player:get_player_name(), "You are now a hunter")
+	if pclasses.classes[pclasses.api.id_for_class("hunter")].match_function(player) then
+		if pclasses.api.get_player_class(player:get_player_name()) ~= "hunter" then
+			pclasses.api.set_player_class(player:get_player_name(), "hunter")
+			minetest.chat_send_player(player:get_player_name(), "You are now a hunter")
+		end
 
-	elseif pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player)
-		and pclasses.api.get_player_class(player:get_player_name()) ~= "warrior" then
-		pclasses.api.set_player_class(player:get_player_name(), "warrior")
-		minetest.chat_send_player(player:get_player_name(), "You are now a warrior")
+	elseif pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player) then
+		if pclasses.api.get_player_class(player:get_player_name()) ~= "warrior" then
+			pclasses.api.set_player_class(player:get_player_name(), "warrior")
+			minetest.chat_send_player(player:get_player_name(), "You are now a warrior")
+		end
 
 	elseif pclasses.api.get_player_class(player:get_player_name()) ~= "adventurer" then
 		pclasses.api.set_player_class(player:get_player_name(), "adventurer")
@@ -204,3 +207,54 @@ end
 minetest.register_on_respawnplayer(pclasses.api.assign_class)
 minetest.register_on_joinplayer(function(player) minetest.after(1, pclasses.api.assign_class, player) end)
 minetest.register_on_leaveplayer(pclasses.api.assign_class)
+
+-------------------
+-- Reserved items
+--
+function pclasses.api.reserve_item(cname, itemstring)
+	pclasses.datas.reserved_items[itemstring] = pclasses.datas.reserved_items or {}
+	table.insert(pclasses.datas.reserved_items[itemstring], 1, cname)
+end
+
+pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
+pclasses.api.reserve_item("warrior", "default:dungeon_master_s_blood_sword")
+pclasses.api.reserve_item("warrior", "3d_armor:chestplate_mithril")
+pclasses.api.reserve_item("warrior", "3d_armor:helmet_mithril")
+pclasses.api.reserve_item("warrior", "3d_armor:leggins_mithril")
+pclasses.api.reserve_item("warrior", "3d_armor:boots_mithril")
+pclasses.api.reserve_item("warrior", "shields:shields_mithril")
+
+pclasses.api.reserve_item("hunter", "throwing:bow_horn")
+
+
+
+minetest.register_globalstep(function(dtime)
+	for id, ref in ipairs(minetest.get_connected_players()) do
+		local name = ref:get_player_name()
+		local inv = minetest.get_inventory({type="player", name = name})
+		for i = 1, inv:get_size("main") do
+			local stack = inv:get_stack("main", i)
+			if pclasses.datas.reserved_items[stack:get_name()] then
+				local drop_stack = true
+				for class in pairs(pclasses.datas.reserved_items) do
+					if pclasses.api.get_player_class(name) == class then
+						drop_stack = false
+					end
+				end
+				if drop_stack then
+					inv:set_stack("main", i, "")
+					local pos = ref:getpos()
+					pos.y = pos.y+2
+					pos.x = pos.x + math.random(-10,10)
+					pos.z = pos.z + math.random(-10,10)
+					minetest.after(1, function()
+						local item = minetest.add_item(pos, stack)
+						if item then
+							item:setvelocity({x = math.random(-10,10), y = math.random(1,7), z = math.random(-10,10)})
+						end
+					end)
+				end
+			end
+		end
+	end
+end)
