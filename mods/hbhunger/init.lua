@@ -9,7 +9,7 @@ hbhunger.hunger_out = {}
 -- HUD item ids
 local hunger_hud = {}
 
-HUNGER_HUD_TICK = 0.1
+HUNGER_HUD_TICK = 1.0
 
 --Some hunger settings
 hbhunger.exhaustion = {} -- Exhaustion is experimental!
