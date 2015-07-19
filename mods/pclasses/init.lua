@@ -164,14 +164,33 @@ pclasses.api.register_class("warrior", function(player)
 	for _,piece in pairs({"helmet", "leggings", "boots", "helmet"}) do
 		shift_class = shift_class and inv:contains_item("armor", "3d_armor:" .. piece .. "_warrior")
 	end
+	return shift_class
+end)
+
+pclasses.api.register_class("hunter", function(player)
+	local inv = minetest.get_inventory({type = "detached", name = player:get_player_name() .. "_armor"})
+	local shift_class = false
+	if not inv or inv:is_empty("armor") then
+		return shift_class
+	end
+	shift_class = true
+	for _,piece in pairs({"helmet", "leggings", "boots", "helmet"}) do
+		shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_reinforced_leather_hunter")
+			or inv:contains_item("armor", "3d_armor:" .. piece .. "_hardened_leather_hunter")) -- Why two different armors?!
+	end
+	return shift_class
 end)
 
 function pclasses.api.assign_class(player)
 	-- Look for every sign needed to deduct a player's class
 	-- Starting from the most important class to the less one
 
-	print(pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player))
-	if pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player)
+	if pclasses.classes[pclasses.api.id_for_class("hunter")].match_function(player)
+		and pclasses.api.get_player_class(player:get_player_name()) ~= "hunter" then
+		pclasses.api.set_player_class(player:get_player_name(), "hunter")
+		minetest.chat_send_player(player:get_player_name(), "You are now a hunter")
+
+	elseif pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player)
 		and pclasses.api.get_player_class(player:get_player_name()) ~= "warrior" then
 		pclasses.api.set_player_class(player:get_player_name(), "warrior")
 		minetest.chat_send_player(player:get_player_name(), "You are now a warrior")
@@ -183,5 +202,5 @@ function pclasses.api.assign_class(player)
 end
 
 minetest.register_on_respawnplayer(pclasses.api.assign_class)
-minetest.register_on_joinplayer(pclasses.api.assign_class)
+minetest.register_on_joinplayer(function(player) minetest.after(1, pclasses.api.assign_class, player) end)
 minetest.register_on_leaveplayer(pclasses.api.assign_class)
