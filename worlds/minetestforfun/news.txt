@@ -13,7 +13,7 @@ MAJ de "invtweak" (bugfix de la destruction aléatoire des outils quand vous les
 MAJ de "homedecor_modpack/building_blocks" (suppression du "tar_knife" car totalement inutile)
 MAJ de "hud/hbhunger" (l'actualisation de la faim ce fait toute les secondes - auparavant toutes les 0.1 sec - ceci pour réduire la charge serveur, la régénération de vie est maintenant plus lente car les clases vont bientot arrivés et nous préparons l'équilibrage de celles-ci)
 MAJ de "track_player" (la position des joueurs est maintenant récupérée toute les 30 secondes)
-MAJ de "mobs" (les monstres ne spawent plus dans les zones protégées, le Tree Monster gagne un légé taux de drop de "Super Apple" ce qui cet ennemi plus attractif, bugfix du knockback)
+MAJ de "mobs" (le taux de spawn du Minotaur a été divisé par 2, les monstres ne spawent plus dans les zones protégées, le Tree Monster gagne un légé taux de drop de "Super Apple" ce qui cet ennemi plus attractif, bugfix du knockback)
 
 ---18/07/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun, Ataron, paly2/Palige)
 MAJ de "track_player" (la position des joueurs est maintenant récupérée toute les 60secondes, celle-ci est utilisée pour l'actualisation du mapper, auparavant toutes les 1 secondes ce qui surchargeait inutilement le serveur)
