@@ -163,7 +163,7 @@ pclasses.api.register_class("warrior", function(player)
 	end
 	shift_class = true
 	for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
-		shift_class = shift_class and inv:contains_item("armor", "3d_armor:" .. piece .. "_warrior")
+		shift_class = shift_class and inv:contains_item("armor", "3d_armor:" .. piece .. "_mithril")
 	end
 	return shift_class
 end)
@@ -218,11 +218,6 @@ end
 
 pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
 pclasses.api.reserve_item("warrior", "default:dungeon_master_s_blood_sword")
-pclasses.api.reserve_item("warrior", "3d_armor:chestplate_mithril")
-pclasses.api.reserve_item("warrior", "3d_armor:helmet_mithril")
-pclasses.api.reserve_item("warrior", "3d_armor:leggins_mithril")
-pclasses.api.reserve_item("warrior", "3d_armor:boots_mithril")
-pclasses.api.reserve_item("warrior", "shields:shields_mithril")
 
 pclasses.api.reserve_item("hunter", "throwing:bow_horn")
 
