@@ -168,25 +168,25 @@ if ARMOR_MATERIALS.mithril then
 	minetest.register_tool("3d_armor:helmet_mithril", {
 		description = "Mithril Helmet",
 		inventory_image = "3d_armor_inv_helmet_mithril.png",
-		groups = {armor_head=9, armor_heal=0, armor_use=50},
+		groups = {armor_head=9, armor_heal=0.5, armor_use=50},
 		wear = 0,
 	})
 	minetest.register_tool("3d_armor:chestplate_mithril", {
 		description = "Mithril Chestplate",
 		inventory_image = "3d_armor_inv_chestplate_mithril.png",
-		groups = {armor_torso=15, armor_heal=0, armor_use=50},
+		groups = {armor_torso=15, armor_heal=0.5, armor_use=50},
 		wear = 0,
 	})
 	minetest.register_tool("3d_armor:leggings_mithril", {
 		description = "Mithril Leggings",
 		inventory_image = "3d_armor_inv_leggings_mithril.png",
-		groups = {armor_legs=15, armor_heal=0, armor_use=50},
+		groups = {armor_legs=15, armor_heal=0.5, armor_use=50},
 		wear = 0,
 	})
 	minetest.register_tool("3d_armor:boots_mithril", {
 		description = "Mithril Boots",
 		inventory_image = "3d_armor_inv_boots_mithril.png",
-		groups = {armor_feet=9, armor_heal=0, armor_use=50},
+		groups = {armor_feet=9, armor_heal=0.5, armor_use=50},
 		wear = 0,
 	})
 end

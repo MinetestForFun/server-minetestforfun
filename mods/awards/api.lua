@@ -314,6 +314,23 @@ function awards.give_achievement(name, award)
 	end
 end
 
+
+--MFF crabman(20/07/2015) add button inventory
+if (minetest.get_modpath("unified_inventory")) then
+	unified_inventory.register_button("menu_award", {
+		type = "image",
+		image = "miniminer.png",
+		tooltip = "List My Award",
+		show_with = false,
+		action = function(player)
+			local name = player:get_player_name()
+			if not name then return end
+			awards.showto(name, name, nil, false)
+		end,
+	})
+end
+
+
 -- List a player's achievements
 minetest.register_chatcommand("list_awards", {
 	params = "obsolete",
