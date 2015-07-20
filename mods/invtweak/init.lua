@@ -219,73 +219,55 @@ if auto_refill == true then
 end
 
 local wielded = {}
-wielded.name = {}
-wielded.wear = {}
+wielded["name"] = {}
+wielded["wear"] = {}
+wielded["index"] = {}
 
 minetest.register_on_punchnode(function(pos, node, puncher)
 	if not puncher or minetest.setting_getbool("creative_mode") then
 		return
 	end
 	local name = puncher:get_player_name()
-
+	if not name then return end
 	local item = puncher:get_wielded_item()
+	if not item then return end
+	local index = puncher:get_wield_index()
 	local tname = item:get_name()
 	local def = minetest.registered_tools[tname]
 
-	wielded.name[name] = tname
-
-	if not item or not tname or tname == "" or not def then
+	if not tname or tname == "" or not def then -- if empty or not tools
+		wielded["name"][name] = ""
 		return
 	end
+	wielded["name"][name] = tname
+	wielded["index"][name] = index
 	local typ = def.type
-	if not typ or typ ~= "tool" then
-		return
+	if not typ or typ ~= "tool" then --if tools, true
+		wielded["wear"][name] = false
+	else
+		wielded["wear"][name] = true
 	end
-	wielded.wear[name] = item:get_wear()
-	-- TODO: re-add for custom tools like lighter
 end)
 
 minetest.register_on_dignode(function(pos, oldnode, digger)
 	if not digger then return end
-
 	local name = digger:get_player_name()
+	if not name then return end
 	local item = digger:get_wielded_item()
+	if not item then return end
 	local index = digger:get_wield_index()
 	local tname = item:get_name()
-	local def = minetest.registered_tools[tname]
+	if tname ~= "" then return end --new not empty, return
 
+	local old_name = wielded["name"][name]
+	if old_name == nil or old_name == "" then return end -- old empty, not replace
 
-	if not item then
-		return
-	end
-	if tname ~= "" then
-		if not def then
-			return
-		end
-	end
-
-	local old_name = wielded.name[name]
-	if tname == old_name and tname == "" then
-		return
-	end
-
-	local old = wielded.wear[name]
-	if not old and tname == "" then
-		old = 0
-	end
-	local new = item:get_wear()
-
-	if old ~= new then
-		if old and old > 0 and new == 0 then
-			wielded.wear[name] = new
-			minetest.sound_play("invtweak_tool_break", {
-				pos = digger:getpos(),
-				gain = 0.9,
-				max_hear_distance = 5
-			})
-			if auto_refill == true then
-				minetest.after(0.01, refill, digger, old_name, index)
-			end
+	local old_wear = wielded["wear"][name]
+	local old_index = wielded["index"][name]
+	if index == old_index and old_wear == true then -- if identical index and old is tools, replace
+		minetest.sound_play("invtweak_tool_break", {pos = digger:getpos(), gain = 0.9, max_hear_distance = 5})
+		if auto_refill == true then
+			minetest.after(0.01, refill, digger, old_name, index)
 		end
 	end
 end)
