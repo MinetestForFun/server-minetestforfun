@@ -56,3 +56,6 @@ minetest.register_alias("darkage:adobe", "farming:straw")
 
 -- Remove "wiki:wiki"
 minetest.register_alias("wiki:wiki", "default:bookshelf")
+
+-- Remove "building_blocks:knife"
+minetest.register_alias("building_blocks:knife", "default:sword_steel")
