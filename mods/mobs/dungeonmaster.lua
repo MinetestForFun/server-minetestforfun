@@ -42,20 +42,18 @@ mobs:register_mob("mobs:dungeon_master", {
 	knock_back = 0.05,	--this is a test
 	-- drops mese or diamond when dead
 	drops = {
-		{name = "default:mese_crystal_fragment",
-		chance = 1, min = 1, max = 3,},
-		{name = "default:mese_crystal",
-		chance = 2, min = 1, max = 3,},
 		{name = "mobs:dungeon_master_blood",
-		chance = 4, min = 1, max = 2,},
+		chance = 2, min = 1, max = 2,},
 		{name = "default:diamond",
-		chance = 5, min = 1, max = 3,},
+		chance = 4, min = 1, max = 3,},
+		{name = "default:mese_crystal",
+		chance = 4, min = 3, max = 6,},
 		{name = "mobs:dungeon_master_diamond",
-		chance = 8, min = 1, max = 1,},
+		chance = 6, min = 1, max = 1,},
 		{name = "maptools:gold_coin",
 		chance = 20, min = 1, max = 1,},
 		{name = "default:diamond_block",
-		chance = 30, min = 1, max = 1,},
+		chance = 33, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
