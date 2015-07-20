@@ -21,11 +21,13 @@ ARMOR_MATERIALS = {
 	bronze = "default:bronze_ingot",
 	diamond = "default:diamond",
 	gold = "default:gold_ingot",
-	mithril = "moreores:mithril_ingot",
 	crystal = "ethereal:crystal_ingot",
 	-- Hunter armors (A déc-ommenter quand activation de l'armure au total)
 	hardened_leather = "3d_armor:hardened_leather",
-	reinforced_leather = "3d_armor:reinforced_leather"
+	reinforced_leather = "3d_armor:reinforced_leather",
+	-- Warrior armors
+	mithril = "moreores:mithril_ingot",
+	black_mithril = "3d_armor:black_mithril"
 	-- Wizard armors
 	--armor = "xxx",
 	--armor = "xxx",
