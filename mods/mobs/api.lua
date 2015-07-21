@@ -1199,7 +1199,7 @@ end
 
 mobs.spawning_mobs = {}
 
-function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
+function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height, spawn_in_area)
 	mobs.spawning_mobs[name] = true
 	minetest.register_abm({
 		nodenames = nodes,
@@ -1219,7 +1219,8 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 
 			-- mobs cannot spawn inside protected areas if enabled
 			if mobs.protected == 1
-			and minetest.is_protected(pos, "") then
+			and minetest.is_protected(pos, "")
+			and not spawn_in_area then
 				return
 			end
 
