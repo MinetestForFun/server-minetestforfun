@@ -212,11 +212,13 @@ function mobs:register_mob(name, def)
 			and self.child == false
 			and math.random(1,self.replace_rate) == 1 then
 				local pos = self.object:getpos()
+				local nodeunder = minetest.get_node_or_nil({x=pos.x, y=pos.y-1, z=pos.z})
 				pos.y = pos.y + self.replace_offset
 				-- print ("replace node = ".. minetest.get_node(pos).name, pos.y)
 				if self.replace_what
 				and self.object:getvelocity().y == 0
-				and #minetest.find_nodes_in_area(pos, pos, self.replace_what) > 0 then
+				and #minetest.find_nodes_in_area(pos, pos, self.replace_what) > 0 --then
+				and nodeunder and nodeunder.name ~= "air" then
 				--and self.state == "stand" then
 					minetest.set_node(pos, {name = self.replace_with})
 				end
@@ -1197,7 +1199,7 @@ end
 
 mobs.spawning_mobs = {}
 
-function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
+function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height, spawn_in_area)
 	mobs.spawning_mobs[name] = true
 	minetest.register_abm({
 		nodenames = nodes,
@@ -1217,7 +1219,8 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 
 			-- mobs cannot spawn inside protected areas if enabled
 			if mobs.protected == 1
-			and minetest.is_protected(pos, "") then
+			and minetest.is_protected(pos, "")
+			and not spawn_in_area then
 				return
 			end
 

@@ -51,7 +51,7 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 				if obj:get_luaentity() ~= nil then
 					if obj:get_luaentity().name ~= "throwing:arrow_" .. kind .. "_entity" and obj:get_luaentity().name ~= "__builtin:item" then
 						local speed = vector.length(self.object:getvelocity())
-						local damage = ((speed + eq)^1.2)/10
+						local damage = ((speed + eq)^1.2)/10 -- Modif MFF, damage tweakable here
 						obj:punch(self.object, 1.0, {
 							full_punch_interval=1.0,
 							damage_groups={fleshy=damage},

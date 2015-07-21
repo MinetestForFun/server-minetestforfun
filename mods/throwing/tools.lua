@@ -38,6 +38,24 @@ if not DISABLE_ROYAL_BOW then
 		})
 end
 
+--function throwing_register_bow (name, desc, scale, stiffness, reload_time, toughness, is_cross, craft)
+if not DISABLE_MINOTAUR_HORN_BOW then
+	throwing_register_bow ('bow_minotaur_horn', 'Minotaur Horn Bow', {x=1, y=1.5, z=0.5}, 30, 1, 1000, false, {
+			{'farming:string', 'mobs:minotaur_horn', 'mobs:minotaur_horn'},
+			{'farming:string', '', 'moreores:mithril_ingot'},
+			{'farming:string', 'mobs:minotaur_horn', 'mobs:minotaur_horn'},
+		})
+end
+
+-- NOT YET CHOOSEN, material ? craft ? name ?
+--[[if not DISABLE_xxx_BOW then
+	throwing_register_bow ('bow_xxx', 'xxx Bow', {x=1, y=1.5, z=0.5}, 35, 0.8, 1250, false, {
+			{'farming:string', 'group:wood', 'default:diamond'},
+			{'farming:string', '', 'default:gold_ingot'},
+			{'farming:string', 'group:wood', 'default:diamond'},
+		})
+end--]]
+
 if not DISABLE_CROSSBOW then
 	throwing_register_bow ('crossbow', 'Crossbow', {x=1, y=1.3, z=0.5}, 28, 5, 80, true, {
 			{'group:wood', 'farming:string', ''},

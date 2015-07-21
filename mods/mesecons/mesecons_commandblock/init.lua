@@ -107,11 +107,16 @@ local function resolve_commands(commands, pos)
 			farthest = player:get_player_name()
 		end
 	end
-	local random = players[math.random(#players)]:get_player_name()
-	commands = commands:gsub("@nearest", nearest)
-	commands = commands:gsub("@farthest", farthest)
-	commands = commands:gsub("@random", random)
-	return commands
+	local randomp = players[math.random(#players)]
+	if randomp then
+		local random = randomp:get_player_name()
+		commands = commands:gsub("@nearest", nearest)
+		commands = commands:gsub("@farthest", farthest)
+		commands = commands:gsub("@random", random)
+		return commands
+	else
+		return ""
+	end
 end
 
 local function commandblock_action_on(pos, node)

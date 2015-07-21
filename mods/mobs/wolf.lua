@@ -67,5 +67,5 @@ mobs:register_mob("mobs:wolf", {
 		end
 	end
 })
-mobs:spawn_specific("mobs:wolf", {"default:dirt_with_grass"}, {"air"}, -1, 3, 30, 10000, 1, -31000, 31000)
+mobs:spawn_specific("mobs:wolf", {"default:dirt_with_grass"}, {"air"}, -1, 3, 30, 10000, 1, -31000, 31000, false)
 mobs:register_egg("mobs:wolf", "Wolf", "mobs_wolf_inv.png", 1)

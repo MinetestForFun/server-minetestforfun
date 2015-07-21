@@ -60,7 +60,7 @@ mobs:register_mob("mobs:minotaur", {
 	},
 })
 -- spawns on desert sand between -1 and 20 light, 1 in 20000 chance, 1 Minotaur in area up to 31000 in height
-mobs:spawn_specific("mobs:minotaur", {"watershed:drygrass"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000)
+mobs:spawn_specific("mobs:minotaur", {"watershed:drygrass"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000, false)
 -- register spawn egg
 mobs:register_egg("mobs:minotaur", "Minotaur", "default_desert_sand.png", 1)
 
