@@ -165,6 +165,7 @@ load_mod_dropondie = true
 load_mod_item_drop = true
 
 load_mod_throwing = true
+load_mod_pclasses = true
 load_mod_3d_armor = true
 load_mod_technic_armor = false
 load_mod_leather_armor_hunter = false
