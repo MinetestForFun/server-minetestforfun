@@ -26,8 +26,8 @@ mobs:register_mob("mobs:creeper", {
 		explode= "tnt_explode",
 	},
 	-- speed and jump
-	walk_velocity = 2,
-	run_velocity = 4,
+	walk_velocity = 1.5,
+	run_velocity = 3.5,
 	jump = true,
 	view_range = 16,
 	-- drops mese or diamond when dead
