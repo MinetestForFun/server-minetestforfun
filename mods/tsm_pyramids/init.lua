@@ -138,6 +138,8 @@ end
 
 
 minetest.register_on_generated(function(minp, maxp, seed)
+	minetest.after(3, function(minp, maxp, seed)
+
 	if maxp.y < 0 then return end
 	math.randomseed(seed)
 	local cnt = 0
@@ -178,6 +180,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		if minetest.find_node_near(p2, 25, {"default:water_source"}) ~= nil or minetest.find_node_near(p2, 22, {"default:dirt_with_grass"}) ~= nil or minetest.find_node_near(p2, 52, {"maptools:sandstone_brick"}) ~= nil then return end
 
 		if math.random(0,10) > 7 then return end
-		minetest.after(0.8,make,p2)
+		make(p2)
 	end
+
+	end, minp, maxp, seed)
 end)
