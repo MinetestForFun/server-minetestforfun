@@ -1,7 +1,6 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
-/!\ Nouveau mod pour les arcs, équilibré => 90% complété /!\
 /!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder => 85% complété /!\
 
 ---Informations---
@@ -9,6 +8,7 @@ Venez visiter notre nouveau site "minetestforfun.com" ! (nouveaux logos/bannièr
 Pour mieux comprendre ce qui est arrivé récemment au serveur nous vous invitons à lire le dernier article de la section "NEWS > Evénements" de notre site.
 
 ---??/07/2015--- (Remerciements : crabman77/crabman, Cyberpangolin, LeMagnesium/Mg, gravgun)
+/!\ Activation du nouveau mod "throwing" en BETA (à la place de l'ancien) /!\
 MAJ de "awards" (ajout d'un bouton d'accès à vos awards depuis l'inventaire)
 MAJ de "3d_armor" (tous les boucliers ont une nouvelles texture en 32px)
 Ajout du mod "automappercolors" (permet la génération automatique de toute les couleurs du mapper au démarrage du serveur)
