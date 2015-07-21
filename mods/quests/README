@@ -1,0 +1,82 @@
+quests 1.1
+
+quests is a simple quest framework for minetest that lets you define your own quests and handels the representation.
+
+Dependencies:
+intllib (optional)
+unified_inventory or inventory_plus (optional)
+central_message (optional)
+
+License: WTFPL
+Sounds: CC-BY
+Textures: CC-BY
+
+-------------------------------------------------------------------------------
+
+You can see a full list of your active quests with the chatcommand /quests
+
+API:
+quests.register_quest(questname,quest)
+-- registers a quest for later use
+--
+-- questname is the name of the quest to identify it later
+--      it should follow the naming conventions: "modname:questname"
+-- quest is a table in the following format
+--      {
+--        title,                -- is shown to the player and should contain usefull information about the quest.
+--        description,          -- a small description of the mod.
+--        max,                  -- is the desired maximum. If max is 1, no maximum is displayed. defaults to 1
+--        autoaccept,           -- is true or false, wether the result of the quest should be dealt by this mode or the registering mod.
+--        callback              -- when autoaccept is true, at the end of the quest, it gets removed and callback is called.
+--                              -- function(playername, questname, metadata)
+--      }
+--
+-- returns true, when the quest was successfully registered
+-- returns falls, when there was already such a quest
+
+quests.start_quest(playername, questname)
+-- starts a quest for a specified player
+--
+-- playername - the name of the player
+-- questname  - the name of the quest, which was registered with quests.register_quest
+-- metadata   - optional additional data
+--
+-- returns false on failure
+-- returns true if the quest was started
+
+quests.update_quest(playername, questname, value)
+-- when something happens that has effect on a quest, a mod should call this method
+-- playername is the name of the player
+-- questname is the quest which gets updated
+-- the quest gets updated by value
+-- this method calls a previously specified callback if autoaccept is true
+-- returns true if the quest is finished
+-- returns false if there is no such quest or the quest continues
+
+quests.accept_quest(playername, questname)
+-- When the mod handels the end of quests himself, e.g. you have to talk to somebody to finish the quest,
+-- you have to call this method to end a quest
+-- returns true, when the quest is completed
+-- returns false, when the quest is still ongoing
+
+quests.abort_quest(playername, questname)
+-- call this method, when you want to end a quest even when it was not finished
+-- example: the player failed
+--
+-- returns false if the quest was not aborted
+-- returns true when the quest was aborted
+
+quests.show_hud(playername)
+-- shows the hud to player playername
+
+quests.hide_hud(playername)
+-- hides the hud for player playername
+
+quests.show_formspec(playername)
+-- shows the player playername his/her questlog
+
+quests.get_metadata(playername, questname)
+-- get metadata of the quest if the quest exists, else return nil
+
+quests.set_metadata(playername, questname, metadata)
+-- set metadata of the quest
