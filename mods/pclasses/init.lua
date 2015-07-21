@@ -164,6 +164,7 @@ pclasses.api.register_class("warrior", function(player)
 	shift_class = true
 	for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
 		shift_class = shift_class and inv:contains_item("armor", "3d_armor:" .. piece .. "_mithril")
+			or inv:contains_item("armor", "3d_armor:" .. piece .. "_black_mithril_plated"))
 	end
 	return shift_class
 end)
@@ -177,7 +178,7 @@ pclasses.api.register_class("hunter", function(player)
 	shift_class = true
 	for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
 		shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_reinforced_leather_hunter")
-			or inv:contains_item("armor", "3d_armor:" .. piece .. "_hardened_leather_hunter")) -- Why two different armors?!
+			or inv:contains_item("armor", "3d_armor:" .. piece .. "_hardened_leather_hunter"))
 	end
 	return shift_class
 end)
