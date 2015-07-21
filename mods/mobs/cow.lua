@@ -6,6 +6,7 @@ mobs:register_mob("mobs:cow", {
 	type = "animal",
 	-- aggressive, does 5 damage to player when threatened
 	passive = false,
+	group_attack = true,
 	attack_type = "dogfight",
 	damage = 4,
 	-- health & armor

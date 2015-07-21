@@ -317,6 +317,7 @@ function mobs:register_mob(name, def)
 				local nod = minetest.get_node_or_nil(pos)
 				if not nod then return end ;  -- print ("standing in "..nod.name)
 				local nodef = minetest.registered_nodes[nod.name]
+				if not nodef then return end
 				pos.y = pos.y + 1
 
 				-- water
@@ -1185,8 +1186,10 @@ end
 				local obj = nil
 				for _, oir in pairs(minetest.get_objects_inside_radius(hitter:getpos(), 5)) do
 					obj = oir:get_luaentity()
-					if obj then
+					if obj
+					and obj.name == self.name then
 						if obj.group_attack == true
+						and not obj.tamed
 						and obj.state ~= "attack" then
 							obj.do_attack(obj, hitter, 1)
 						end
