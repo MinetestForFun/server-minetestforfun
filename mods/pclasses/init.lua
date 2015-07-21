@@ -163,7 +163,7 @@ pclasses.api.register_class("warrior", function(player)
 	end
 	shift_class = true
 	for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
-		shift_class = shift_class and inv:contains_item("armor", "3d_armor:" .. piece .. "_mithril")
+		shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_mithril")
 			or inv:contains_item("armor", "3d_armor:" .. piece .. "_black_mithril_plated"))
 	end
 	return shift_class
