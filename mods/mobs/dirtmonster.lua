@@ -27,8 +27,8 @@ mobs:register_mob("mobs:dirt_monster", {
 	},
 	-- speed and jump
 	view_range = 16,
-	walk_velocity = 3,
-	run_velocity = 5,
+	walk_velocity = 2.5,
+	run_velocity = 4,
 	jump = true,
 	-- drops dirt and coins when dead
 	drops = {
