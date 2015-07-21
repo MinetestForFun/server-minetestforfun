@@ -17,11 +17,13 @@ minetest.register_on_leaveplayer(function(player)
 end)
 
 function throwing_shoot_arrow (itemstack, player, stiffness, is_cross)
+	if not player then return end
 	local arrow = itemstack:get_metadata()
 	itemstack:set_metadata("")
 	player:set_wielded_item(itemstack)
 	local playerpos = player:getpos()
 	local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, arrow)
+	if not obj then return end
 	local dir = player:get_look_dir()
 	obj:setvelocity({x=dir.x*stiffness, y=dir.y*stiffness, z=dir.z*stiffness})
 	obj:setacceleration({x=dir.x*-3, y=-10, z=dir.z*-3})
@@ -44,6 +46,7 @@ function throwing_unload (itemstack, player, unloaded, wear)
 				if not minetest.setting_getbool("creative_mode") then
 					player:get_inventory():add_item("main", arrow[1])
 				end
+				break
 			end
 		end
 	end

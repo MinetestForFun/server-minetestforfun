@@ -55,12 +55,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 						damage_groups={fleshy=damage},
 					}, nil)
 					self.object:remove()
-					local toughness = 0.9
-					if math.random() < toughness then
-						minetest.add_item(self.lastpos, 'throwing:arrow_dig')
-					else
-						minetest.add_item(self.lastpos, 'default:stick')
-					end
+					minetest.add_item(self.lastpos, "throwing:arrow_dig")
 				end
 			end
 		end
@@ -68,18 +63,15 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 
 	if self.lastpos.x~=nil then
 		if node.name ~= "air" then
-			self.object:remove()
+
 			if minetest.get_item_group(node.name, "unbreakable") == 0
 				and areas:canInteract(self.lastpos, self.player:get_player_name())
 				and node.diggable ~= false then
 				minetest.set_node(pos, {name = "air"})
 			end
-			local toughness = 0.65
-			if math.random() < toughness then
-				minetest.add_item(self.lastpos, 'default:pick_steel')
-			else
-				minetest.add_item(self.lastpos, 'default:stick')
-			end
+			minetest.add_item(self.lastpos, node.name)
+			minetest.add_item(self.lastpos, "throwing:arrow_dig")
+			self.object:remove()
 		end
 	end
 	self.lastpos={x=pos.x, y=pos.y, z=pos.z}
