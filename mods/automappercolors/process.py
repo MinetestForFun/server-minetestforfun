@@ -8,11 +8,13 @@ import sys, os, re
 from PIL import Image
 
 predefined = {
-    #"^default:water_([a-z]+)": {'r': 39, 'g': 66, 'b': 106, 'a': 128, 't': 224},
     #"^default:river_water_([a-z]+)": {'r': 39, 'g': 66, 'b': 106, 'a': 128, 't': 224},
     #"^default:lava_([a-z]+)": {'r': 255, 'g': 100, 'b': 0},
     "^default:([a-z_]*)glass": {'a': 64, 't': 16},
-    "^default:torch": {'r': 255, 'g': 255}
+    "^default:torch": {'r': 255, 'g': 255},
+    "^default:ice": {'r': 74, 'g': 105, 'b': 159, 'a': 159},
+    "^default:water_([a-z]+)": {'r': 38, 'g': 68, 'b': 157},
+    "^default:dirt_with_grass": {'r': 72, 'g': 154, 'b': 21}
 }
 
 predef_compiled = {}
