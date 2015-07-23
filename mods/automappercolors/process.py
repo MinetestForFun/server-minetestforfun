@@ -11,10 +11,10 @@ predefined = {
     #"^default:river_water_([a-z]+)": {'r': 39, 'g': 66, 'b': 106, 'a': 128, 't': 224},
     #"^default:lava_([a-z]+)": {'r': 255, 'g': 100, 'b': 0},
     "^default:([a-z_]*)glass": {'a': 64, 't': 16},
-    "^default:torch": {'r': 255, 'g': 255},
+    "^default:torch": {'r': 255, 'g': 255, 'b': 0, 'a': 255},
     "^default:ice": {'r': 74, 'g': 105, 'b': 159, 'a': 159},
-    "^default:water_([a-z]+)": {'r': 38, 'g': 68, 'b': 157},
-    "^default:dirt_with_grass": {'r': 72, 'g': 154, 'b': 21}
+    "^default:water_([a-z]+)": {'r': 43, 'g': 97, 'b': 183, 'a': 128},
+    "^default:dirt_with_grass": {'r': 107, 'g': 134, 'b': 51, 'a': 255}
 }
 
 predef_compiled = {}
@@ -39,26 +39,26 @@ else:
             nodename = ldata[0]
             tex = ldata[1][:-1] # Strip newline char
             try:
+                r_override = None
+                g_override = None
+                b_override = None
                 a_override = None
                 t_override = None
                 compute = True
-                ccumul = [0, 0, 0, 0]
                 for k in predef_compiled:
                     if k.match(nodename) is not None:
                         v = predef_compiled[k]
                         if 'r' in v:
-                            ccumul[0] = v['r']
-                            compute = False
+                            r_override = ccumul[0] = v['r']
                         if 'g' in v:
-                            ccumul[1] = v['g']
-                            compute = False
+                            g_override = ccumul[1] = v['g']
                         if 'b' in v:
-                            ccumul[2] = v['b']
-                            compute = False
+                            b_override = ccumul[2] = v['b']
                         if 'a' in v:
-                            a_override = v['a']
+                            a_override = a = v['a']
                         if 't' in v:
-                            t_override = v['t']
+                            t_override = t = v['t']
+                        compute = not('r' in v and 'g' in v and 'b' in v and 'a' in v)
 
                 if compute:
                     inp = Image.open(pngpaths[tex])
@@ -69,6 +69,7 @@ else:
                     ind = inp2.load()
                     inpfp.close()
                     pixcount = 0
+                    ccumul = [0, 0, 0, 0]
                     for x in range(inp.size[0]):
                         for y in range(inp.size[1]):
                             pxl = ind[x, y]
@@ -79,6 +80,12 @@ else:
                     if ccumul[3] > 0:
                         for i in range(3):
                             ccumul[i] /= ccumul[3]/255
+                    if r_override is not None:
+                        ccumul[0] = r_override
+                    if g_override is not None:
+                        ccumul[1] = g_override
+                    if b_override is not None:
+                        ccumul[2] = b_override
                     if a_override is None:
                         a = ccumul[3]/(inp.size[0]*inp.size[1])
                     else:
