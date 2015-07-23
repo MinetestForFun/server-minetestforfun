@@ -4,16 +4,18 @@
 minetest.register_node("seawrecks:woodship", {
 	description = "Sand for the wooden ship",
 	tiles = {"default_sand.png"},
+	inventory_image = "seawrecks_woodship_inventory.png",
 	is_ground_content = true,
-	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
+	groups = {crumbly=3, falling_node=1, sand=1, soil=1},
 	sounds = default.node_sound_sand_defaults(),
 })
 
 minetest.register_node("seawrecks:uboot", {
 	description = "Dirt for the U-boot",
 	tiles = {"default_dirt.png"},
+	inventory_image = "seawrecks_uboot_inventory.png",
 	is_ground_content = true,
-	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
+	groups = {crumbly=3,soil=1},
 	sounds = default.node_sound_dirt_defaults(),
 })
 
@@ -147,7 +149,7 @@ minetest.register_ore({
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "seawrecks:uboot",
-	wherein        = "default:dirt",
+	wherein        = "default:sand",
 	clust_scarcity = 30*30*30,
 	clust_num_ores = 1,
 	clust_size     = 12,
