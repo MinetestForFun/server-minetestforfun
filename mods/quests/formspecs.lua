@@ -24,7 +24,7 @@ function quests.create_formspec(playername, tab, integrated)
 		questlist = quests.failed_quests[playername] or {}
 	end
 	quests.formspec_lists[playername].tab = tab
-		
+
 	local no_quests = true
 	for questname,questspecs in pairs(questlist) do
 		if (questspecs.finished == nil) then
@@ -75,7 +75,7 @@ function quests.create_config(playername, integrated)
 		formspec = formspec .. "true"
 	else
 		formspec = formspec ..  "false"
-	end 
+	end
 	formspec = formspec .. "]checkbox[.25,1.25;quests_config_central_message;" .. S("Central messages") .. ";"
 	if(quests.hud[playername] ~= nil and quests.hud[playername].central_message_enabled) then
 		formspec = formspec .. "true"
@@ -122,7 +122,7 @@ function quests.create_info(playername, questname, integrated)
 	if (not integrated) then
 		formspec = formspec .. "size[9,6.5]"
 	end
-	formspec = formspec .. "label[0.5,0.5;" 
+	formspec = formspec .. "label[0.5,0.5;"
 
 	if (questname) then
 		formspec = formspec .. quests.registered_quests[questname].title .. "]" ..
@@ -141,7 +141,7 @@ function quests.create_info(playername, questname, integrated)
 end
 
 -- show the player playername his/her questlog
-function quests.show_formspec(playername) 
+function quests.show_formspec(playername)
 	minetest.show_formspec(playername, "quests:questlog", quests.create_formspec(playername))
 end
 
@@ -192,7 +192,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		if (quests.formspec_lists[playername].id == nil) then
 			return
 		end
-		quests.abort_quest(playername, quests.formspec_lists[playername]["list"][quests.formspec_lists[playername].id]) 
+		quests.abort_quest(playername, quests.formspec_lists[playername]["list"][quests.formspec_lists[playername].id])
 		if (formname == "quests:questlog") then
 			minetest.show_formspec(playername, "quests:questlog", quests.create_formspec(playername))
 		else
@@ -217,7 +217,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 -- config
 	if (fields["quests_config_enable"]) then
 		quests.hud[playername].autohide = false
-		if (fields["quests_config_enable"] == "true") then	
+		if (fields["quests_config_enable"] == "true") then
 			quests.show_hud(playername)
 		else
 			quests.hide_hud(playername)
@@ -257,7 +257,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if (fields["quests_config_return"]) then
 		if (formname == "quests:config") then
 			minetest.show_formspec(playername, "quests:questlog", quests.create_formspec(playername))
-		else 
+		else
 			unified_inventory.set_inventory_formspec(player, "quests")
 		end
 	end
@@ -267,17 +267,17 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		if (quests.formspec_lists[playername].id == nil) then
 			return
 		end
-		quests.abort_quest(playername, quests.formspec_lists[playername]["list"][quests.formspec_lists[playername].id]) 
+		quests.abort_quest(playername, quests.formspec_lists[playername]["list"][quests.formspec_lists[playername].id])
 		if (formname == "quests:info") then
 			minetest.show_formspec(playername, "quests:questlog", quests.create_formspec(playername))
-		else 
+		else
 			unified_inventory.set_inventory_formspec(player, "quests")
 		end
 	end
 	if (fields["quests_info_return"]) then
 		if (formname == "quests:info") then
 			minetest.show_formspec(playername, "quests:questlog", quests.create_formspec(playername))
-		else 
+		else
 			unified_inventory.set_inventory_formspec(player, "quests")
 		end
 	end

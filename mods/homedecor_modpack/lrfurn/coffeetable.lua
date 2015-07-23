@@ -24,27 +24,36 @@ minetest.register_node("lrfurn:coffeetable_back", {
 				}
 	},
 
-	on_construct = function(pos)
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		if minetest.is_protected(pos, placer:get_player_name()) then return true end
 		local node = minetest.get_node(pos)
 		local param2 = node.param2
-		node.name = "lrfurn:coffeetable_front"
-		if param2 == 0 then
-			pos.z = pos.z+1
-		elseif param2 == 1 then
-			pos.x = pos.x+1
-		elseif param2 == 2 then
-			pos.z = pos.z-1
-		elseif param2 == 3 then
-			pos.x = pos.x-1
-		end
-		if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).name == "air" ) then
+
+		if lrfurn.check_forward(pos, fdir, false, placer) then
+
+			node.name = "lrfurn:coffeetable_front"
+			if param2 == 0 then
+				pos.z = pos.z+1
+			elseif param2 == 1 then
+				pos.x = pos.x+1
+			elseif param2 == 2 then
+				pos.z = pos.z-1
+			elseif param2 == 3 then
+				pos.x = pos.x-1
+			end
 			minetest.set_node(pos, node)
+		else
+			minetest.chat_send_player(placer:get_player_name(), "No room to place the coffee table!")
+			minetest.set_node(pos, {name = "air"})
+			return true
 		end
+
 	end,
 
-	on_destruct = function(pos)
-		local node = minetest.get_node(pos)
-		local param2 = node.param2
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		if minetest.is_protected(pos, digger:get_player_name()) then return true end
+
+		local param2 = oldnode.param2
 		if param2 == 0 then
 			pos.z = pos.z+1
 		elseif param2 == 1 then
@@ -54,10 +63,12 @@ minetest.register_node("lrfurn:coffeetable_back", {
 		elseif param2 == 3 then
 			pos.x = pos.x-1
 		end
-		if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).name == "lrfurn:coffeetable_front" ) then
-			if( minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2 ) then
+
+		if minetest.is_protected(pos, digger:get_player_name()) then return true end
+
+		if (minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).name == "lrfurn:coffeetable_front")
+		  and (minetest.get_node({x=pos.x, y=pos.y, z=pos.z}).param2 == param2) then
 				minetest.remove_node(pos)
-			end
 		end
 	end,
 })

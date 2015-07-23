@@ -96,7 +96,7 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
 	end
 end)
 
--- TODO load data 
+-- TODO load data
 --[[
 for playername in players do
 	mff.quests.start_all_periodicity_timers(playername)

@@ -42,15 +42,19 @@ for i in ipairs(sofas_list) do
 		selection_box = sofa_sbox,
 		node_box = sofa_cbox,
 		on_rotate = screwdriver.disallow,
-        on_place = function(itemstack, placer, pointed_thing)
-			local pos = pointed_thing.above
+
+		after_place_node = function(pos, placer, itemstack, pointed_thing)
+			if minetest.is_protected(pos, placer:get_player_name()) then return true end
+
 			local fdir = minetest.dir_to_facedir(placer:get_look_dir(), false)
 
-			if lrfurn.check_forward(pos, fdir, true) then
+			if lrfurn.check_forward(pos, fdir, false, placer) then
 				minetest.set_node(pos, {name = "lrfurn:sofa_"..colour, param2 = fdir})
 				itemstack:take_item()
 			else
 				minetest.chat_send_player(placer:get_player_name(), "No room to place the sofa!")
+				minetest.set_node(pos, { name = "air" })
+
 			end
 			return itemstack
 		end,

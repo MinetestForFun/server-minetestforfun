@@ -17,7 +17,7 @@ end
 
 
 quests.formspec_lists = {}
-function quests.round(num, n) 
+function quests.round(num, n)
 	local mult = 10^(n or 0)
 	return math.floor(num * mult + .5) / mult
 end
@@ -45,7 +45,7 @@ end
 
 
 -- write the quests to file
-minetest.register_on_shutdown(function() 
+minetest.register_on_shutdown(function()
 	minetest.log("action", "Writing quests to file")
 	for playername, quest in pairs(quests.active_quests) do
 		for questname, questspecs in pairs(quest) do

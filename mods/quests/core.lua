@@ -139,7 +139,7 @@ end
 function quests.abort_quest(playername, questname)
 	if (questname == nil) then
 		return false
-	end	
+	end
 	if (quests.failed_quests[playername] == nil) then
 		quests.failed_quests[playername] = {}
 	end

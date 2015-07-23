@@ -149,22 +149,32 @@ if not minetest.get_modpath("mesecons") then
 end
 
 -- alternate crafting if technic is/isn't installed
-
 if not minetest.get_modpath("technic") then
-
 	minetest.register_craftitem(":technic:brass_ingot", {
-		    description = S("Brass Ingot"),
-		    inventory_image = "homedecor_brass_ingot.png",
+		description = S("Brass Ingot"),
+		inventory_image = "homedecor_brass_ingot.png",
 	})
 
-	minetest.register_craft( {
-		type = "shapeless",
-		    output = "technic:brass_ingot 2",
-		recipe = {
-			"moreores:silver_ingot",
-			"default:copper_ingot",
-		},
-	})
+	if minetest.get_modpath("moreores") then
+		minetest.register_craft( {
+			type = "shapeless",
+			output = "technic:brass_ingot 2",
+			recipe = {
+				"moreores:silver_ingot",
+				"default:copper_ingot",
+			},
+		})
+	else
+		minetest.register_craft( {
+			type = "shapeless",
+			output = "technic:brass_ingot 3",
+			recipe = {
+				"default:steel_ingot",
+				"default:copper_ingot",
+				"default:gold_ingot",
+			},
+		})
+	end
 end
 
 minetest.register_alias("homedecor:brass_ingot", "technic:brass_ingot")

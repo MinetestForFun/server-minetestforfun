@@ -809,8 +809,9 @@ minetest.register_craftitem("nether:hotbed", {
 	end
 })
 
--- Nether Pickaxe
-minetest.register_tool("nether:pick_mushroom", {		-- Modif MFF the entire tool
+
+	-- Modif MFF the entire tool
+minetest.register_tool("nether:pick_mushroom", {
 	description = "Nether Mushroom Pickaxe",
 	inventory_image = "nether_pick_mushroom.png",
 	tool_capabilities = {

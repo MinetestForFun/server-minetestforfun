@@ -8,7 +8,7 @@ unified_inventory.register_button("quests", {
 })
 
 unified_inventory.register_page("quests", {
-	get_formspec = function(player) 
+	get_formspec = function(player)
 		local playername = player:get_player_name()
 		local formspec = quests.create_formspec(playername, "1", true)
 		return {formspec = formspec, draw_inventory=false}
@@ -16,7 +16,7 @@ unified_inventory.register_page("quests", {
 })
 
 unified_inventory.register_page("quests_successfull", {
-	get_formspec = function(player) 
+	get_formspec = function(player)
 		local playername = player:get_player_name()
 		local formspec = quests.create_formspec(playername, "2", true)
 		return {formspec = formspec, draw_inventory=false}
@@ -24,7 +24,7 @@ unified_inventory.register_page("quests_successfull", {
 })
 
 unified_inventory.register_page("quests_failed", {
-	get_formspec = function(player) 
+	get_formspec = function(player)
 		local playername = player:get_player_name()
 		local formspec = quests.create_formspec(playername, "3", true)
 		return {formspec = formspec, draw_inventory=false}
