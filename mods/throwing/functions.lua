@@ -123,12 +123,24 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 		recipe = craft
 	})
 
+	craft_width = 1
+	-- Since # isn't stable especially when there are nils in the table, count by hand
+	for _,v in ipairs(craft) do
+		for i,__ in ipairs(v) do
+			if i > craft_width then
+				craft_width = i
+			end
+		end
+	end
+	rev_craft = {}
+	for i,y in ipairs(craft) do
+		rev_craft[i] = {}
+		for j,x in ipairs(y) do
+			rev_craft[i][craft_width-j+1] = x
+		end
+	end
 	minetest.register_craft({
 		output = 'throwing:' .. name,
-		recipe = {
-			{craft[1][3], craft[1][2], craft[1][1]},
-			{craft[2][3], craft[2][2], craft[2][1]},
-			{craft[3][3], craft[3][2], craft[3][1]},
-		}
+		recipe = rev_craft
 	})
 end
