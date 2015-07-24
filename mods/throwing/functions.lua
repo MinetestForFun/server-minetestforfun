@@ -123,7 +123,7 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 		recipe = craft
 	})
 
-	craft_width = 1
+	local craft_width = 1
 	-- Since # isn't stable especially when there are nils in the table, count by hand
 	for _,v in ipairs(craft) do
 		for i,__ in ipairs(v) do
@@ -132,7 +132,7 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 			end
 		end
 	end
-	rev_craft = {}
+	local rev_craft = {}
 	for i,y in ipairs(craft) do
 		rev_craft[i] = {}
 		for j,x in ipairs(y) do
