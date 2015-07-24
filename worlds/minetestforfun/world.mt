@@ -52,6 +52,7 @@ load_mod_mushroom = true
 
 load_mod_nether = true
 load_mod_vector_extras = true
+load_mod_glow = true
 load_mod_riesenpilz = true
 load_mod_seacobble = true
 load_mod_seacoral = true
