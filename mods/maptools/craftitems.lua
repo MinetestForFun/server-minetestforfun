@@ -1,4 +1,4 @@
-*--[[
+--[[
 Map Tools: item definitions
 
 Copyright (c) 2012-2015 Calinou and contributors.
