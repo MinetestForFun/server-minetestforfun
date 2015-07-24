@@ -52,8 +52,8 @@ minetest.register_craft({
 
 -- 9CC -> 1SC
 minetest.register_craft({
-	output = "maptools:silver_coin"
-	input = {
+	output = "maptools:silver_coin",
+	recipe = {
 		{"maptools:copper_coin", "maptools:copper_coin", "maptools:copper_coin"},
 		{"maptools:copper_coin", "maptools:copper_coin", "maptools:copper_coin"},
 		{"maptools:copper_coin", "maptools:copper_coin", "maptools:copper_coin"},
@@ -62,8 +62,8 @@ minetest.register_craft({
 
 -- 9SC -> 1GC
 minetest.register_craft({
-	output = "maptools:gold_coin"
-	input = {
+	output = "maptools:gold_coin",
+	recipe = {
 		{"maptools:silver_coin", "maptools:silver_coin", "maptools:silver_coin"},
 		{"maptools:silver_coin", "maptools:silver_coin", "maptools:silver_coin"},
 		{"maptools:silver_coin", "maptools:silver_coin", "maptools:silver_coin"},
@@ -73,15 +73,15 @@ minetest.register_craft({
 -- 1GC -> 9SC
 minetest.register_craft({
 	output = "maptools:silver_coin 9",
-	input = {
+	recipe = {
 		{"maptools:gold_coin"}
 	}
-}
+})
 
 -- 1SC -> 9CC
 minetest.register_craft({
 	output = "maptools:copper_coin 9",
-	input = {
+	recipe = {
 		{"maptools:silver_coin"}
 	}
 })
