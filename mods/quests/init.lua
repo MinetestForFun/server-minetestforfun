@@ -1,5 +1,6 @@
 -- reading previous quests
 local file = io.open(minetest.get_worldpath().."/quests", "r")
+quests = {}
 if file then
 	minetest.log("action", "Reading quests...")
 	quests = minetest.deserialize(file:read("*all"))

@@ -17,9 +17,9 @@ mff.QPREFIX = "mff_quests:"
 
 mff.quests.quests = {
 	testdiggydiggyhole = {
-		title = "Dig 10 nodes",
+		title = "Dig 10 stone nodes",
 		max = 10,
-		desc = "As long as you can not dig, you are not a real miner.",
+		desc = "As long as you can not dig stone, you are not a real miner.",
 		periodicity = 10,
 		objective = {
 			dig = {"default:stone"}
@@ -84,6 +84,7 @@ end
 
 -- For quests where you have to dig something, the updates happen here
 minetest.register_on_dignode(function(pos, oldnode, digger)
+	if not digger then return end -- Already happened before
 	local qstatus = mff.quests.quest_status[digger:get_player_name()]
 	for qname, quest in pairs(mff.quests.quests) do
 		if qstatus[qname] ~= nil and qstatus[qname] >= 0 then
