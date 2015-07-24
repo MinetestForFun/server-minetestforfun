@@ -1,8 +1,8 @@
-local armors_no_shields = {["3d_armor:helmet_leather_hunter"] = true,["3d_armor:chestplate_leather_hunter"] = true,
-							["3d_armor:leggings_leather_hunter"] = true,["3d_armor:boots_leather_hunter"] = true,
-							["3d_armor:hardened_leather"] = true,["3d_armor:helmet_reinforced_leather_hunter"] = true,
-							["3d_armor:chestplate_reinforced_leather_hunter"] = true,["3d_armor:leggings_reinforced_leather_hunter"] = true,
-							["3d_armor:boots_reinforced_leather_hunter"] = true,["3d_armor:reinforced_leather"] = true
+local armors_no_shields = {["3d_armor:helmet_leather"] = true,["3d_armor:chestplate_leather"] = true,
+							["3d_armor:leggings_leather"] = true,["3d_armor:boots_leather"] = true,
+							["3d_armor:hardenedleather"] = true,["3d_armor:helmet_reinforcedleather"] = true,
+							["3d_armor:chestplate_reinforcedleather"] = true,["3d_armor:leggings_reinforcedleather"] = true,
+							["3d_armor:boots_reinforcedleather"] = true,["3d_armor:reinforcedleather"] = true
 } -- modif MFF (crabman/24/06/2015)
 
 
@@ -23,11 +23,11 @@ ARMOR_MATERIALS = {
 	gold = "default:gold_ingot",
 	crystal = "ethereal:crystal_ingot",
 	-- Hunter armors (A déc-ommenter quand activation de l'armure au total)
-	hardened_leather = "3d_armor:hardened_leather",
-	reinforced_leather = "3d_armor:reinforced_leather",
+	hardenedleather = "3d_armor:hardenedleather",
+	reinforcedleather = "3d_armor:reinforcedleather",
 	-- Warrior armors
 	mithril = "moreores:mithril_ingot",
-	black_mithril = "3d_armor:black_mithril"
+	blackmithril = "3d_armor:blackmithril"
 	-- Wizard armors
 	--armor = "xxx",
 	--armor = "xxx",
