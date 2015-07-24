@@ -59,3 +59,8 @@ minetest.register_alias("wiki:wiki", "default:bookshelf")
 
 -- Remove "building_blocks:knife"
 minetest.register_alias("building_blocks:knife", "default:sword_steel")
+
+-- Removal of [glow] mod
+minetest.register_alias("glow:stone", "homedecor:glowlight_half_yellow")
+minetest.register_alias("glow:lamp", "lantern:lantern")
+minetest.register_alias("glow:lantern", "lantern:lantern")
