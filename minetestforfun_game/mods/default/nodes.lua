@@ -420,6 +420,7 @@ minetest.register_node("default:clay", {
 			{items = {"default:clay_lump 8"}},
 		},
 	},
+	stack_max = 200, -- /MFF(Mg|07/24/25)
 	sounds = default.node_sound_dirt_defaults(),
 })
 

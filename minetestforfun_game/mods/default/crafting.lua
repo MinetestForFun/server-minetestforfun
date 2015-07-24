@@ -899,6 +899,7 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
+	cooktime = 2, -- //MFF(Mg|07/24/15)
 	output = "default:clay_brick",
 	recipe = "default:clay_lump",
 })
