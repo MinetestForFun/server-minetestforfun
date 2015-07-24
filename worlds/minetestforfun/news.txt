@@ -9,6 +9,7 @@ Pour mieux comprendre ce qui est arrivé récemment au serveur nous vous inviton
 
 ---??/07/2015--- (Remerciements : crabman77/crabman, Cyberpangolin, LeMagnesium/Mg, gravgun)
 /!\ Activation du nouveau mod "throwing" en BETA (à la place de l'ancien) /!\
+MaJ de "maptools" (ajout de recettes de craft pour les coins)
 MAJ de "awards" (ajout d'un bouton d'accès à vos awards depuis l'inventaire)
 MAJ de "3d_armor" (tous les boucliers ont une nouvelles texture en 32px)
 Ajout du mod "automappercolors" (permet la génération automatique de toute les couleurs du mapper au démarrage du serveur)

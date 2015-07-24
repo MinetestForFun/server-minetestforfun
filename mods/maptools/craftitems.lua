@@ -45,3 +45,46 @@ minetest.register_craft({
 	recipe = "maptools:infinitefuel",
 	burntime = 1000000000,
 })
+
+-- Coin based craft recipes
+-- //MFF_BEG(Mg|07/24/15)
+--
+
+-- 9CC -> 1SC
+minetest.register_craft({
+	output = "maptools:silver_coin",
+	recipe = {
+		{"maptools:copper_coin", "maptools:copper_coin", "maptools:copper_coin"},
+		{"maptools:copper_coin", "maptools:copper_coin", "maptools:copper_coin"},
+		{"maptools:copper_coin", "maptools:copper_coin", "maptools:copper_coin"},
+	}
+})
+
+-- 9SC -> 1GC
+minetest.register_craft({
+	output = "maptools:gold_coin",
+	recipe = {
+		{"maptools:silver_coin", "maptools:silver_coin", "maptools:silver_coin"},
+		{"maptools:silver_coin", "maptools:silver_coin", "maptools:silver_coin"},
+		{"maptools:silver_coin", "maptools:silver_coin", "maptools:silver_coin"},
+	}
+})
+
+-- 1GC -> 9SC
+minetest.register_craft({
+	output = "maptools:silver_coin 9",
+	recipe = {
+		{"maptools:gold_coin"}
+	}
+})
+
+-- 1SC -> 9CC
+minetest.register_craft({
+	output = "maptools:copper_coin 9",
+	recipe = {
+		{"maptools:silver_coin"}
+	}
+})
+
+--
+-- //MFF_END(Mg|07/24/15)

@@ -1329,7 +1329,8 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 		p.x = pos.x + x
 		p.y = pos.y + y
 		p.z = pos.z + z
-		if data[vi] ~= c_air and data[vi] ~= c_ignore
+		if p.y >= 19600
+		and data[vi] ~= c_air and data[vi] ~= c_ignore
 		and data[vi] ~= c_obsidian and data[vi] ~= c_brick
 		and data[vi] ~= c_chest then
 			local n = minetest.get_node(p).name

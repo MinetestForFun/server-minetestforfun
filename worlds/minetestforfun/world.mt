@@ -135,7 +135,6 @@ load_mod_trm_pyramids = true
 load_mod_treasurer = true
 load_mod_lavatemple = true
 
-load_mod_beginners_chest = true
 load_mod_forceload = true
 load_mod_more_chests = true
 load_mod_connected_chests = true

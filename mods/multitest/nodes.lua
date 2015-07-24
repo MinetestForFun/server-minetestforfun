@@ -59,6 +59,7 @@ minetest.register_node("multitest:checkered_floor", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+--[[
 minetest.register_node("multitest:lamp", {
 	description = "Lamp",
 	tiles = {"multitest_lamp.png"},
@@ -68,6 +69,8 @@ minetest.register_node("multitest:lamp", {
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
 	sounds = default.node_sound_glass_defaults(),
 })
+]]
+minetest.register_alias("multitest:lamp", "lantern:lantern")
 
 minetest.register_node("multitest:andesite", {
 	description = "Andesite",
