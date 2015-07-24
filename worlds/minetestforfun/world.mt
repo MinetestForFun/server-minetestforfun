@@ -52,7 +52,6 @@ load_mod_mushroom = true
 
 load_mod_nether = true
 load_mod_vector_extras = true
-load_mod_glow = true
 load_mod_riesenpilz = true
 load_mod_seacobble = true
 load_mod_seacoral = true
@@ -135,7 +134,6 @@ load_mod_trm_pyramids = true
 load_mod_treasurer = true
 load_mod_lavatemple = true
 
-load_mod_beginners_chest = true
 load_mod_forceload = true
 load_mod_more_chests = true
 load_mod_connected_chests = true
