@@ -2,7 +2,7 @@ function watershed_appletree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_apple = minetest.get_content_id("default:apple")
 	local c_wsappleaf = minetest.get_content_id("watershed:appleleaf")
-	for j = -2, 4 do
+	for j = 0, 4 do
 		if j == 3 or j == 4 then
 			for i = -2, 2 do
 			for k = -2, 2 do
@@ -34,7 +34,7 @@ function watershed_pinetree(x, y, z, area, data)
 	local c_wspitree = minetest.get_content_id("watershed:pinetree")
 	local c_wsneedles = minetest.get_content_id("watershed:needles")
 	local c_snowblock = minetest.get_content_id("default:snowblock")
-	for j = -4, 14 do
+	for j = 0, 14 do
 		if j == 3 or j == 6 or j == 9 or j == 12 then
 			for i = -2, 2 do
 			for k = -2, 2 do
@@ -91,7 +91,7 @@ function watershed_jungletree(x, y, z, area, data)
 	local c_wsjunleaf = minetest.get_content_id("watershed:jungleleaf")
 	local top = math.random(17,23)
 	local branch = math.floor(top * 0.6)
-	for j = -5, top do
+	for j = 0, top do
 		if j == top or j == top - 1 or j == branch + 1 or j == branch + 2 then
 			for i = -2, 2 do -- leaves
 			for k = -2, 2 do
@@ -148,7 +148,7 @@ end
 
 function watershed_cactus(x, y, z, area, data)
 	local c_wscactus = minetest.get_content_id("watershed:cactus")
-	for j = -2, 4 do
+	for j = 0, 4 do
 	for i = -2, 2 do
 		if i == 0 or j == 2 or (j == 3 and math.abs(i) == 2) then
 			local vic = area:index(x + i, y + j, z)
