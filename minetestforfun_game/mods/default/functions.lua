@@ -228,8 +228,8 @@ function default.grow_cactus(pos, node)
 		return
 	end
 	pos.y = pos.y - 1
-	local name = minetest.get_node(pos).name
-	if minetest.get_item_group(name, "sand") == 0 and name ~= "watershed:drygrass" then
+	local name = minetest.get_node(pos).name --MFF
+	if minetest.get_item_group(name, "sand") == 0 and name ~= "watershed:drygrass" then --MFF
 		return
 	end
 	pos.y = pos.y + 1
@@ -249,7 +249,7 @@ end
 function default.grow_papyrus(pos, node)
 	pos.y = pos.y - 1
 	local name = minetest.get_node(pos).name
-	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" and name ~= "default:sand" and name ~= "default:desert_sand" then
+	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" and name ~= "default:sand" and name ~= "default:desert_sand" then --MFF
 		return
 	end
 	if not minetest.find_node_near(pos, 3, {"group:water"}) then
@@ -271,7 +271,7 @@ end
 
 minetest.register_abm({
 	nodenames = {"default:cactus"},
-	neighbors = {"group:sand", "watershed:drygrass"},
+	neighbors = {"group:sand", "watershed:drygrass"}, --MFF
 	interval = 60,
 	chance = 25,
 	action = function(...)
@@ -281,7 +281,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"default:papyrus"},
-	neighbors = {"default:dirt", "default:dirt_with_grass", "default:sand", "default:desert_sand"},
+	neighbors = {"default:dirt", "default:dirt_with_grass", "default:sand", "default:desert_sand"}, --MFF
 	interval = 60,
 	chance = 25,
 	action = function(...)
