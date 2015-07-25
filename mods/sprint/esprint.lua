@@ -10,6 +10,34 @@ distributed without any warranty.
 local players = {}
 local staminaHud = {}
 
+-- Lil' helping functions
+sprint.set_maxstamina = function(pname, mstamina)
+	if players[pname] and mstamine > 0 then
+		players[pname].maxStamina = mstamina
+	end
+end
+
+sprint.get_maxstamina = function(pname)
+	if players[pname] then
+		return players[pname].maxStamina
+	end
+end
+
+sprint.increase_maxstamina = function(pname, sincrease)
+	local stamina = sprint.get_maxstamina(pname)
+	if stamina then
+		sprint.set_maxstamina(pname, stamina + sincrease)
+	end
+end
+
+sprint.dicrease_maxstamina = function(pname, sdicrease)
+	local stamina = sprint.get_maxstamina(pname)
+	if stamina then
+		sprint.set_maxstamina(pname, stamina - sdicrease)
+	end
+end
+
+
 minetest.register_on_joinplayer(function(player)
 	local playerName = player:get_player_name()
 
@@ -18,6 +46,7 @@ minetest.register_on_joinplayer(function(player)
 		timeOut = 0,
 		stamina = SPRINT_STAMINA,
 		shouldSprint = false,
+		maxStamina = SPRINT_STAMINA
 	}
 	if SPRINT_HUDBARS_USED then
 		hb.init_hudbar(player, "sprint")
@@ -115,12 +144,12 @@ minetest.register_globalstep(function(dtime)
 			end
 
 			--Increase player's stamina if he/she is not sprinting and his/her stamina is less than SPRINT_STAMINA
-			if playerInfo["sprinting"] == false and playerInfo["stamina"] < SPRINT_STAMINA then
+			if playerInfo["sprinting"] == false and playerInfo["stamina"] < playerInfo["maxStamina"] then
 				playerInfo["stamina"] = playerInfo["stamina"] + dtime
 			end
 			-- Cap stamina at SPRINT_STAMINA
-			if playerInfo["stamina"] > SPRINT_STAMINA then
-				playerInfo["stamina"] = SPRINT_STAMINA
+			if playerInfo["stamina"] > playerInfo["stamina"] then
+				playerInfo["stamina"] = playerInfo["stamina"]
 			end
 
 			--Update the players's hud sprint stamina bar
@@ -128,7 +157,7 @@ minetest.register_globalstep(function(dtime)
 			if SPRINT_HUDBARS_USED then
 				hb.change_hudbar(player, "sprint", playerInfo["stamina"])
 			else
-				local numBars = (playerInfo["stamina"]/SPRINT_STAMINA)*20
+				local numBars = (playerInfo["stamina"]/playerInfo["maxStamina"])*20
 				player:hud_change(playerInfo["hud"], "number", numBars)
 			end
 		end

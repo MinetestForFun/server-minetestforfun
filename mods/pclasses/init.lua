@@ -10,6 +10,7 @@ pclasses = {}
 
 -- API
 pclasses.api = {}
+pclasses.api.util = {}
 
 -- Configuration
 pclasses.conf = {}
@@ -136,6 +137,17 @@ if pclasses.conf.default_class then
 	end
 end
 
+pclasses.api.util.does_wear_full_armor = function(pname, material, noshield)
+	local inv = minetest.get_inventory({type = "detached", name = pname .. "_armor"})
+	if not inv or inv:is_empty() then
+		return false
+	end
+	local full_armor = true
+	for _, piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
+		full_armor = full_armor and inv:contains_item("armor", "3d_armor:" .. piece .. "_" .. material)
+	end
+	return full_armor and (inv:contains_item("armor", "shields:shield_" .. material) or noshield)
+end
 
 ------------
 -- Classes
@@ -143,23 +155,24 @@ end
 
 pclasses.api.register_class("warrior", {
 	determination = function(player)
-		local inv = minetest.get_inventory({type = "detached", name = player:get_player_name() .. "_armor"})
-		local shift_class = false
-		if not inv or inv:is_empty("armor") then
-			return shift_class
-		end
-		shift_class = true
-		for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
-			shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_mithril")
-				or inv:contains_item("armor", "3d_armor:" .. piece .. "_blackmithril"))
-		end
-		return shift_class
+		return pclasses.api.util.does_wear_full_armor(player:get_player_name(), "harnededleather", true)
+			or pclasses.api.util.does_wear_full_armor(player:get_player_name(), "reinforcedleather", true)
 	end,
 	on_assigned = function(pname)
 		minetest.sound_play("pclasses_full_warrior")
 		minetest.chat_send_player(pname, "You are now a warrior")
+		local reinforced = pclasses.api.util.does_wear_full_armor(pname, "reinforcedleather", true)
+		if reinforced then
+			sprint.increase_maxstamina(pname, 20)
+		else
+			sprint.increase_maxstamina(pname, 10)
+		end
+	end,
+	on_unassigned = function(pname)
+		sprint.set_default_maxstamina(pname)
 	end,
 })
+
 
 pclasses.api.register_class("hunter", {
 	determination = function(player)
@@ -188,17 +201,26 @@ function pclasses.api.assign_class(player)
 	local pname = player:get_player_name()
 	if pclasses.api.get_class_by_name("hunter").determination(player) then
 		if pclasses.api.get_player_class(pname) ~= "hunter" then
+			if pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned then
+				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
+			end
 			pclasses.api.set_player_class(pname, "hunter")
 			pclasses.api.get_class_by_name("hunter").on_assigned(pname)
 		end
 
 	elseif pclasses.api.get_class_by_name("warrior").determination(player) then
 		if pclasses.api.get_player_class(pname) ~= "warrior" then
+			if pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned then
+				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
+			end
 			pclasses.api.set_player_class(pname, "warrior")
 			pclasses.api.get_class_by_name("warrior").on_assigned(pname)
 		end
 	elseif pclasses.conf.default_class then
 		if pclasses.api.get_player_class(pname) ~= pclasses.conf.default_class then
+			if pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned then
+				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
+			end
 			pclasses.api.set_player_class(pname, pclasses.conf.default_class)
 			pclasses.api.get_class_by_name(pclasses.conf.default_class).on_assigned(pname)
 		end
