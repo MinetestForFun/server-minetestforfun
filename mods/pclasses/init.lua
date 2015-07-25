@@ -29,51 +29,32 @@ pclasses.datas.hud_ids = {} -- HUD maybe?
 
 -- Various utility functions
 
--- Get an ID number dedicated to the class
-function pclasses.api.create_class_id()
-	return table.getn(pclasses.classes)+1
-end
-
-function pclasses.api.id_for_class(cname)
-	if cname then
-		for k,v in ipairs(pclasses.classes) do
-			if v and v.name and v.name == cname then
-				return k
-			end
-		end
-		return 0
-	end
-	return nil
-end
-
 -- Register the class (basic registration)
-function pclasses.api.register_class(cname, assign_f)
+function pclasses.api.register_class(cname, def)
 	if not cname then
 		minetest.log("error", "[PClasses] Error registering unamed class")
 		return
+	elseif not def then
+		minetest.log("error", "[PClasses] Error registering class " ..
+			cname .. ". Reason : no definition table.")
+		return
+	elseif not def.determination then
+		minetest.log("error", "[PClasses] Error registreing class " ..
+			cname .. ". Reason : no determination function.")
+		return
 	end
 
-	local c_id = pclasses.api.create_class_id()
-	pclasses.classes[c_id] = {name = cname}
-	if assign_f then
-		pclasses.classes[c_id].match_function = assign_f
-	end
-	return c_id
+	pclasses.classes[cname] = def
+	return true
 end
 
 ------------------------
 -- Getters and Setters
 --
 
--- Get class specs
---  by id
-function pclasses.api.get_class_by_id(id)
-	return pclasses.classes[id]
-end
-
--- by name
+-- Get class specs by name
 function pclasses.api.get_class_by_name(cname)
-	return pclasses.classes[pclasses.api.id_for_class(cname)]
+	return pclasses.classes[cname]
 end
 
 
@@ -139,8 +120,13 @@ minetest.register_on_shutdown(save_datas)
 -- Default class assignment
 --
 if pclasses.conf.default_class then
-	local id = pclasses.api.register_class(pclasses.conf.default_class, function() return true end)
-	if id then
+	local res = pclasses.api.register_class(pclasses.conf.default_class, {
+		determination = function() return true end,
+		on_assigned = function(pname)
+				minetest.chat_send_player(pname, "You are now an adventurer")
+		end
+	})
+	if res then
 		minetest.register_on_joinplayer(function(player)
 			if not pclasses.api.get_player_class(player:get_player_name()) then
 				pclasses.api.set_player_class(player:get_player_name(),
@@ -155,55 +141,67 @@ end
 -- Classes
 --
 
-pclasses.api.register_class("warrior", function(player)
-	local inv = minetest.get_inventory({type = "detached", name = player:get_player_name() .. "_armor"})
-	local shift_class = false
-	if not inv or inv:is_empty("armor") then
+pclasses.api.register_class("warrior", {
+	determination = function(player)
+		local inv = minetest.get_inventory({type = "detached", name = player:get_player_name() .. "_armor"})
+		local shift_class = false
+		if not inv or inv:is_empty("armor") then
+			return shift_class
+		end
+		shift_class = true
+		for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
+			shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_mithril")
+				or inv:contains_item("armor", "3d_armor:" .. piece .. "_blackmithril"))
+		end
 		return shift_class
-	end
-	shift_class = true
-	for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
-		shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_mithril")
-			or inv:contains_item("armor", "3d_armor:" .. piece .. "_blackmithril"))
-	end
-	return shift_class
-end)
+	end,
+	on_assigned = function(pname)
+		minetest.sound_play("pclasses_full_warrior")
+		minetest.chat_send_player(pname, "You are now a warrior")
+	end,
+})
 
-pclasses.api.register_class("hunter", function(player)
-	local inv = minetest.get_inventory({type = "detached", name = player:get_player_name() .. "_armor"})
-	local shift_class = false
-	if not inv or inv:is_empty("armor") then
+pclasses.api.register_class("hunter", {
+	determination = function(player)
+		local inv = minetest.get_inventory({type = "detached", name = player:get_player_name() .. "_armor"})
+		local shift_class = false
+		if not inv or inv:is_empty("armor") then
+			return shift_class
+		end
+		shift_class = true
+		for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
+			shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_reinforcedleather")
+				or inv:contains_item("armor", "3d_armor:" .. piece .. "_hardenedleather"))
+		end
 		return shift_class
+	end,
+	on_assigned = function(pname)
+		minetest.chat_send_player(pname, "You are now a hunter")
+		minetest.sound_play("pclasses_full_hunter")
 	end
-	shift_class = true
-	for _,piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
-		shift_class = shift_class and (inv:contains_item("armor", "3d_armor:" .. piece .. "_reinforcedleather")
-			or inv:contains_item("armor", "3d_armor:" .. piece .. "_hardenedleather"))
-	end
-	return shift_class
-end)
+})
 
 function pclasses.api.assign_class(player)
 	-- Look for every sign needed to deduct a player's class
 	-- Starting from the most important class to the less one
 
-	if pclasses.classes[pclasses.api.id_for_class("hunter")].match_function(player) then
-		if pclasses.api.get_player_class(player:get_player_name()) ~= "hunter" then
-			pclasses.api.set_player_class(player:get_player_name(), "hunter")
-			minetest.chat_send_player(player:get_player_name(), "You are now a hunter")
-			minetest.sound_play("pclasses_full_hunter")
+	local pname = player:get_player_name()
+	if pclasses.api.get_class_by_name("hunter").determination(player) then
+		if pclasses.api.get_player_class(pname) ~= "hunter" then
+			pclasses.api.set_player_class(pname, "hunter")
+			pclasses.api.get_class_by_name("hunter").on_assigned(pname)
 		end
 
-	elseif pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player) then
-		if pclasses.api.get_player_class(player:get_player_name()) ~= "warrior" then
-			pclasses.api.set_player_class(player:get_player_name(), "warrior")
-			minetest.chat_send_player(player:get_player_name(), "You are now a warrior")
-			minetest.sound_play("pclasses_full_warrior")
+	elseif pclasses.api.get_class_by_name("warrior").determination(player) then
+		if pclasses.api.get_player_class(pname) ~= "warrior" then
+			pclasses.api.set_player_class(pname, "warrior")
+			pclasses.api.get_class_by_name("warrior").on_assigned(pname)
 		end
-
-	elseif pclasses.api.get_player_class(player:get_player_name()) ~= "adventurer" then
-		pclasses.api.set_player_class(player:get_player_name(), "adventurer")
-		minetest.chat_send_player(player:get_player_name(), "You are now an adventurer")
+	elseif pclasses.conf.default_class then
+		if pclasses.api.get_player_class(pname) ~= pclasses.conf.default_class then
+			pclasses.api.set_player_class(pname, pclasses.conf.default_class)
+			pclasses.api.get_class_by_name(pclasses.conf.default_class).on_assigned(pname)
+		end
 	end
 end
 
