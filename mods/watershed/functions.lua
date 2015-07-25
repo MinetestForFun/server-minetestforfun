@@ -2,8 +2,14 @@ function watershed_appletree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_apple = minetest.get_content_id("default:apple")
 	local c_wsappleaf = minetest.get_content_id("watershed:appleleaf")
-	for j = 0, 4 do
-		if j == 3 or j == 4 then
+
+	-- MFF: Higher default tree with a bit of randomness
+	local tree_top = 5 + math.random(0, 1)
+	local leaves_height =  tree_top - 1
+	local branches_height = leaves_height - 1
+
+	for j = 0, tree_top do	-- MFF: Higher tree, same design
+		if j >= leaves_height then
 			for i = -2, 2 do
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j, z + k)
@@ -14,7 +20,7 @@ function watershed_appletree(x, y, z, area, data)
 				end
 			end
 			end
-		elseif j == 2 then
+		elseif j == branches_height then
 			for i = -1, 1 do
 			for k = -1, 1 do
 				if math.abs(i) + math.abs(k) == 2 then
