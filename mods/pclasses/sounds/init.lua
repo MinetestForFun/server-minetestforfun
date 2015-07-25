@@ -1,3 +1,0 @@
--- I'm adding this file, just to pretend to do something in order to make
--- Minetest think this is a mod and make my local server start..
--- Sincerly, Mg

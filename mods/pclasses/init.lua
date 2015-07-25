@@ -191,12 +191,14 @@ function pclasses.api.assign_class(player)
 		if pclasses.api.get_player_class(player:get_player_name()) ~= "hunter" then
 			pclasses.api.set_player_class(player:get_player_name(), "hunter")
 			minetest.chat_send_player(player:get_player_name(), "You are now a hunter")
+			minetest.sound_play("pclasses_full_hunter")
 		end
 
 	elseif pclasses.classes[pclasses.api.id_for_class("warrior")].match_function(player) then
 		if pclasses.api.get_player_class(player:get_player_name()) ~= "warrior" then
 			pclasses.api.set_player_class(player:get_player_name(), "warrior")
 			minetest.chat_send_player(player:get_player_name(), "You are now a warrior")
+			minetest.sound_play("pclasses_full_warrior")
 		end
 
 	elseif pclasses.api.get_player_class(player:get_player_name()) ~= "adventurer" then
@@ -220,8 +222,8 @@ end
 pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
 pclasses.api.reserve_item("warrior", "default:dungeon_master_s_blood_sword")
 
-pclasses.api.reserve_item("hunter", "throwing:bow_horn")
-
+pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn")
+pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_born_improved")
 
 
 minetest.register_globalstep(function(dtime)
