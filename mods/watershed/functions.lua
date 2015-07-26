@@ -1,3 +1,17 @@
+--[[ MFF: Prevent trees from destroying existing blocks
+     This is the list of "safe" blocks in which a tree can grow
+     They were moved outside the local safety function for speed (I hope)
+--]]
+local c_air = minetest.get_content_id("air")
+local c_ignore = minetest.get_content_id("ignore")
+
+-- MFF: The local function to do safety checks
+local function safely_set_block(t, k, v)
+	if t[k] == c_air or t[k] == c_ignore then
+		t[k] = v
+	end
+end
+
 function watershed_appletree(x, y, z, area, data)
 	local c_tree = minetest.get_content_id("default:tree")
 	local c_apple = minetest.get_content_id("default:apple")
@@ -14,9 +28,11 @@ function watershed_appletree(x, y, z, area, data)
 			for k = -2, 2 do
 				local vil = area:index(x + i, y + j, z + k)
 				if math.random(64) == 2 then
-					data[vil] = c_apple
+					-- MFF: Prevent trees from destroying existing blocks
+					safely_set_block(data, vil, c_apple)
 				elseif math.random(5) ~= 2 then
-					data[vil] = c_wsappleaf
+					-- MFF: Prevent trees from destroying existing blocks
+					safely_set_block(data, vil, c_wsappleaf)
 				end
 			end
 			end
@@ -25,13 +41,20 @@ function watershed_appletree(x, y, z, area, data)
 			for k = -1, 1 do
 				if math.abs(i) + math.abs(k) == 2 then
 					local vit = area:index(x + i, y + j, z + k)
-					data[vit] = c_tree
+					-- MFF: Prevent trees from destroying existing blocks
+					safely_set_block(data, vit, c_tree)
 				end
 			end
 			end
 		else
 			local vit = area:index(x, y + j, z)
-			data[vit] = c_tree
+			-- MFF: Prevent trees from destroying existing blocks
+			if j == 0 then
+				-- MFF: the positioon of the sapling itself, replace it without checking.
+				data[vit] = c_tree
+			else
+				safely_set_block(data, vit, c_tree)
+			end
 		end
 	end
 end
@@ -46,10 +69,11 @@ function watershed_pinetree(x, y, z, area, data)
 			for k = -2, 2 do
 				if math.abs(i) == 2 or math.abs(k) == 2 then
 					if math.random(7) ~= 2 then
+						-- MFF: Prevent trees from destroying existing blocks
 						local vil = area:index(x + i, y + j, z + k)
-						data[vil] = c_wsneedles
+						safely_set_block(data, vil, c_wsneedles)
 						local vila = area:index(x + i, y + j + 1, z + k)
-						data[vila] = c_snowblock
+						safely_set_block(data, vila, c_snowblock)
 					end
 				end
 			end
@@ -59,10 +83,11 @@ function watershed_pinetree(x, y, z, area, data)
 			for k = -1, 1 do
 				if not (i == 0 and j == 0) then
 					if math.random(11) ~= 2 then
+						-- MFF: Prevent trees from destroying existing blocks
 						local vil = area:index(x + i, y + j, z + k)
-						data[vil] = c_wsneedles
+						safely_set_block(data, vil, c_wsneedles)
 						local vila = area:index(x + i, y + j + 1, z + k)
-						data[vila] = c_snowblock
+						safely_set_block(data, vila, c_snowblock)
 					end
 				end
 			end
@@ -71,25 +96,32 @@ function watershed_pinetree(x, y, z, area, data)
 			for i = -1, 1 do
 			for k = -1, 1 do
 				if not (i == 0 and j == 0) then
+					-- MFF: Prevent trees from destroying existing blocks
 					local vil = area:index(x + i, y + j, z + k)
-					data[vil] = c_wsneedles
+					safely_set_block(data, vil,c_wsneedles)
 					local vila = area:index(x + i, y + j + 1, z + k)
-					data[vila] = c_wsneedles
+					safely_set_block(data, vila, c_wsneedles)
 					local vilaa = area:index(x + i, y + j + 2, z + k)
-					data[vilaa] = c_snowblock
+					safely_set_block(data, vilaa, c_snowblock)
 				end
 			end
 			end
 		end
+		-- MFF: Prevent trees from destroying existing blocks
 		local vit = area:index(x, y + j, z)
-		data[vit] = c_wspitree
+		if j == 0 then 
+			data[vit] = c_wspitree	-- No safety check for the sapling itself
+		else
+			safely_set_block(data, vit, c_wspitree)
+		end
 	end
 	local vil = area:index(x, y + 15, z)
 	local vila = area:index(x, y + 16, z)
 	local vilaa = area:index(x, y + 17, z)
-	data[vil] = c_wsneedles
-	data[vila] = c_wsneedles
-	data[vilaa] = c_snowblock
+	-- MFF: Prevent trees from destroying existing blocks
+	safely_set_block(data, vil, c_wsneedles)
+	safely_set_block(data, vila, c_wsneedles)
+	safely_set_block(data, vilaa, c_snowblock)
 end
 
 function watershed_jungletree(x, y, z, area, data)
@@ -103,7 +135,8 @@ function watershed_jungletree(x, y, z, area, data)
 			for k = -2, 2 do
 				local vi = area:index(x + i, y + j, z + k)
 				if math.random(5) ~= 2 then
-					data[vi] = c_wsjunleaf
+					-- MFF: Prevent trees from destroying existing blocks
+					safely_set_block(data, vi, c_wsjunleaf)
 				end
 			end
 			end
@@ -112,14 +145,20 @@ function watershed_jungletree(x, y, z, area, data)
 			for k = -1, 1 do
 				if math.abs(i) + math.abs(k) == 2 then
 					local vi = area:index(x + i, y + j, z + k)
-					data[vi] = c_juntree
+					-- MFF: Prevent trees from destroying existing blocks
+					safely_set_block(data, vi, c_juntree)
 				end
 			end
 			end
 		end
 		if j <= top - 3 then -- trunk
 			local vi = area:index(x, y + j, z)
-			data[vi] = c_juntree
+			-- MFF: Prevent trees from destroying existing blocks
+			if j == 0 then
+				data[vi] = c_juntree	-- No safety check for the sapling itself
+			else
+				safely_set_block(data, vi, c_juntree)
+			end
 		end
 	end
 end
