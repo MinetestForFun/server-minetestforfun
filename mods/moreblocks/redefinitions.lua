@@ -32,14 +32,14 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
-	output = "default:rail 16", -- /MFF (Mg|06/10/15)
+--[[minetest.register_craft({
+	output = "default:rail 16", -- /MFF (Mg|06/10/15) => (Ombridride|26/07/15)
 	recipe = {
 		{"default:steel_ingot", "", "default:steel_ingot"},
 		{"default:steel_ingot", "default:stick", "default:steel_ingot"},
 		{"default:steel_ingot", "", "default:steel_ingot"},
 	}
-})
+})--]]
 
 minetest.register_craft({
 	type = "toolrepair",
