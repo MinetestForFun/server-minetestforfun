@@ -9,7 +9,7 @@ mobs.protected = 1
 local damage_enabled = minetest.setting_getbool("enable_damage")
 local peaceful_only = minetest.setting_getbool("only_peaceful_mobs")
 local enable_blood = minetest.setting_getbool("mobs_enable_blood") or true
-mobs.protected = tonumber(minetest.setting_get("mobs_spawn_protected")) or 0
+mobs.protected = tonumber(minetest.setting_get("mobs_spawn_protected")) or mobs.protected
 
 function mobs:register_mob(name, def)
 	minetest.register_entity(name, {
