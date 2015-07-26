@@ -320,7 +320,7 @@ local function update_hud(player)
 
 		if breath == 11 then
 			hb.hide_hudbar(player, "breath")
-		else
+		elseif breath then
 			hb.unhide_hudbar(player, "breath")
 			hb.change_hudbar(player, "breath", math.min(breath, 10))
 		end
