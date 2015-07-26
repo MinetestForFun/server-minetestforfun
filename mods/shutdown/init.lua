@@ -34,7 +34,7 @@ minetest.register_globalstep(function(dtime)
 	elseif heure == "4" and minute == "29" then
 		minetest.chat_send_all("=== ARRET DU SERVEUR - DE NOUVEAU EN LIGNE DANS 30 MIN ===")
 		minetest.chat_send_all("=== SERVER SHUTTING DOWN - ONLINE AGAIN IN 30 MIN ===")
-		minetest.request_shutdown()
+--		minetest.request_shutdown()
 	end
 
 end)
