@@ -97,7 +97,16 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	-- turn the node into soil, wear out item and play sound
 	minetest.set_node(pt.under, {name="farming:soil"})
 	minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5,})
-	itemstack:add_wear(65535/(uses-1))
+
+	if not minetest.setting_getbool("creative_mode") then --MFF DEBUT crabman(26/07/2015) not wearout if creative mod and invtweak refill break tools
+		local tool_name = itemstack:get_name()
+		itemstack:add_wear(65535/(uses-1))
+		if itemstack:get_wear() == 0 and minetest.get_modpath("invtweak") then
+			local index = user:get_wield_index()
+			minetest.sound_play("invtweak_tool_break", {pos = user:getpos(), gain = 0.9, max_hear_distance = 5})
+			minetest.after(0.20, refill, user, tool_name, index)
+		end
+	end --MFF FIN
 	return itemstack
 end
 

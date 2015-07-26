@@ -449,22 +449,24 @@ else
 	local function hoe_on_use(itemstack, user, pointed_thing, uses)
 		local pt = pointed_thing
 		-- check if pointing at a node
-		if not pt then
+		if not pt or pt.type ~= "node" then
 			return
-		end
-		if pt.type ~= "node" then
-				return
 		end
 
 		local under = minetest.get_node(pt.under)
+		local upos = pointed_thing.under
+
+		if minetest.is_protected(upos, user:get_player_name()) then
+			minetest.record_protection_violation(upos, user:get_player_name())
+			return
+		end
+
 		local p = {x=pt.under.x, y=pt.under.y+1, z=pt.under.z}
 		local above = minetest.get_node(p)
 
 		-- return if any of the nodes is not registered
-		if not minetest.registered_nodes[under.name] then
-			return
-			end
-		if not minetest.registered_nodes[above.name] then
+		if not minetest.registered_nodes[under.name]
+		or not minetest.registered_nodes[above.name] then
 			return
 		end
 
@@ -477,13 +479,9 @@ else
 		if minetest.get_item_group(under.name, "soil") ~= 1 then
 			return
 		end
-
-		-- turn the node into soil, play sound, get worm and wear out item
+		-- turn the node into soil, wear out item and play sound
 		minetest.set_node(pt.under, {name="farming:soil"})
-		minetest.sound_play("default_dig_crumbly", {
-			pos = pt.under,
-			gain = 0.5,
-		})
+		minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5,})
 
 		if math.random(1, 100) < WORM_CHANCE then
 			if WORM_IS_MOB == true then
@@ -495,7 +493,15 @@ else
 				end
 			end
 		end
-		itemstack:add_wear(65535/(uses-1))
+		if not minetest.setting_getbool("creative_mode") then
+			local tool_name = itemstack:get_name()
+			itemstack:add_wear(65535/(uses-1))
+			if itemstack:get_wear() == 0 and minetest.get_modpath("invtweak") then
+				local index = user:get_wield_index()
+				minetest.sound_play("invtweak_tool_break", {pos = user:getpos(), gain = 0.9, max_hear_distance = 5})
+				minetest.after(0.20, refill, user, tool_name, index)
+			end
+		end
 		return itemstack
 	end
 
