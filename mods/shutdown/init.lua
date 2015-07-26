@@ -21,22 +21,19 @@ minetest.register_globalstep(function(dtime)
 	timer = 0
 	local heure = os.date("%H")
 	local minute = os.date("%M")
-	local jour = os.date("%u")
-	-- Warn only on monday, thursday, and saturday
-	if jour ~= 1 and jour~= 4 and jour ~= 6 then return end
-
-	if heure == "4" and minute == "00" then        --modifier ici à  vos besoin
-		minetest.chat_send_all("Rappel, arret du serveur pour sauvegarde dans 30min.")
-		minetest.chat_send_all("Attention, server will shutdown in 30 minutes for backup.")
-	elseif heure == "4" and minute == "15" then         --modifier ici à  vos besoin
-		minetest.chat_send_all("Rappel, arret du serveur pour sauvegarde dans 15min.")
-		minetest.chat_send_all("Attention, server will shutdown in 15 minutes for backup.")
-	elseif heure == "4" and minute == "25" then         --modifier ici à  vos besoin
-		minetest.chat_send_all("Rappel, arret du serveur pour sauvegarde dans 5min --- Veuillez vous deconnecter!!!")
-		minetest.chat_send_all("Attention, server will shutdown in 5 minutes for backup --- Please logout!!!")
-	elseif heure == "4" and minute == "29" then           --modifier ici à  vos besoin
-		minetest.chat_send_all("=== ARRET DU SERVEUR ===")
-		minetest.chat_send_all("=== SERVER SHUTTING DOWN ===")
+	-- Warn every days
+	if heure == "4" and minute == "00" then
+		minetest.chat_send_all("Rappel : Redémarrage journalier du serveur dans 30 minutes. (Dure 30 minutes)")
+		minetest.chat_send_all("Reminder : Daily reboot of the server in 30 minutes. (Lasts 30 minutes)")
+	elseif heure == "4" and minute == "15" then
+		minetest.chat_send_all("Rappel : Redémarrage journalier du serveur dans 15 minutes. (Dure 30 minutes)")
+		minetest.chat_send_all("Reminder : Daily reboot of the server in 15 minutes. (Lasts 30 minutes)")
+	elseif heure == "4" and minute == "25" then
+		minetest.chat_send_all("Rappel : Redémarrage journalier du serveur dans 5 minutes - Pensez à vous deconnecter !")
+		minetest.chat_send_all("Reminder : Daily reboot of the server in 5 minutes - Think about logout!")
+	elseif heure == "4" and minute == "29" then
+		minetest.chat_send_all("=== ARRET DU SERVEUR - DE NOUVEAU EN LIGNE DANS 30 MIN ===")
+		minetest.chat_send_all("=== SERVER SHUTTING DOWN - ONLINE AGAIN IN 30 MIN ===")
 		minetest.request_shutdown()
 	end
 
