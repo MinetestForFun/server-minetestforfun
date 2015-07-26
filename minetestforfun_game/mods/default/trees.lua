@@ -346,10 +346,20 @@ end
 
 minetest.register_node("default:mg_cherry_sapling", {
 	description = "Impossible to get node.",
-	drawtype = "airlike",
+	visual_scale = 1.0,
+	inventory_image = "default_cherry_sapling.png",
+	wield_image = "default_cherry_sapling.png",
+	drawtype = "plantlike",
 	paramtype = "light",
-	tiles = {"xfences_space.png"},
-	groups = {not_in_creative_inventory=1},
+	tiles = {"default_cherry_sapling.png"},
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
+	},
+	groups = {snappy=2, dig_immediate=3, not_in_creative_inventory=1, attached_node=1},
+	drop = "default:cherry_sapling", 
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 local c_mg_cherry_sapling = minetest.get_content_id("default:mg_cherry_sapling")
