@@ -161,12 +161,7 @@ pclasses.api.register_class("warrior", {
 	on_assigned = function(pname)
 		minetest.sound_play("pclasses_full_warrior")
 		minetest.chat_send_player(pname, "You are now a warrior")
-		local reinforced = pclasses.api.util.does_wear_full_armor(pname, "reinforcedleather", true)
-		if reinforced then
-			sprint.increase_maxstamina(pname, 20)
-		else
-			sprint.increase_maxstamina(pname, 10)
-		end
+		sprint.set_max_stamina(pname, 20)
 	end,
 	on_unassigned = function(pname)
 		sprint.set_default_maxstamina(pname)
@@ -191,7 +186,16 @@ pclasses.api.register_class("hunter", {
 	on_assigned = function(pname)
 		minetest.chat_send_player(pname, "You are now a hunter")
 		minetest.sound_play("pclasses_full_hunter")
-	end
+		local reinforced = pclasses.api.util.does_wear_full_armor(pname, "reinforcedleather", true)
+		if reinforced then
+			sprint.increase_maxstamina(pname, 20)
+		else
+			sprint.increase_maxstamina(pname, 10)
+		end
+	end,
+	on_unassigned = function(pname)
+		sprint.set_default_maxstamina(pname)
+	end,
 })
 
 function pclasses.api.assign_class(player)
