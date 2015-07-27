@@ -1,4 +1,4 @@
-if ARMOR_MATERIALS.black_mithril then
+if ARMOR_MATERIALS.blackmithril then
 	-- Register helmets :
 	minetest.register_tool(":3d_armor:helmet_blackmithril", {
 		description = "Black Mithril Helmet",

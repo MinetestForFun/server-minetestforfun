@@ -1,4 +1,4 @@
-if ARMOR_MATERIALS.hardened_leather then
+if ARMOR_MATERIALS.hardenedleather then
 	-- Register helmets :
 	minetest.register_tool(":3d_armor:helmet_hardenedleather", {
 		description = "Hardened Leather Helmet",
