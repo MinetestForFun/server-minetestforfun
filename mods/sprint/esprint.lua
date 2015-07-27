@@ -12,7 +12,7 @@ local staminaHud = {}
 
 -- Lil' helping functions
 sprint.set_maxstamina = function(pname, mstamina)
-	if players[pname] and mstamine > 0 then
+	if players[pname] and mstamina > 0 then
 		players[pname].maxStamina = mstamina
 	end
 end
@@ -148,8 +148,8 @@ minetest.register_globalstep(function(dtime)
 				playerInfo["stamina"] = playerInfo["stamina"] + dtime
 			end
 			-- Cap stamina at SPRINT_STAMINA
-			if playerInfo["stamina"] > playerInfo["stamina"] then
-				playerInfo["stamina"] = playerInfo["stamina"]
+			if playerInfo["stamina"] > playerInfo["maxStamina"] then
+				playerInfo["stamina"] = playerInfo["maxStamina"]
 			end
 
 			--Update the players's hud sprint stamina bar
