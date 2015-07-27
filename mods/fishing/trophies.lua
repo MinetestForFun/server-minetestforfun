@@ -1,26 +1,19 @@
 -----------------------------------------------------------------------------------------------
--- Fishing - Mossmanikin's version - Trophies 0.0.2
+-- Fishing - crabman77's version
+-- Rewrited from original Fishing - Mossmanikin's version - Trophies 0.0.2
 -- License (code & textures): 	WTFPL
 -- Contains code from: 		default
 -- Supports:				animal_clownfish, animal_fish_blue_white
 -----------------------------------------------------------------------------------------------
 
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if (minetest.get_modpath("intllib")) then
-  dofile(minetest.get_modpath("intllib").."/intllib.lua")
-  S = intllib.Getter(minetest.get_current_modname())
-else
-  S = function ( s ) return s end
-end
 
-local TRoPHY = {
---	  MoD						 iTeM				 NaMe				iCoN
-    {"fishing",  				"fish_raw",			"Fish",				"fishing_fish.png"},
-	{"fishing",  				"pike",				"Northern Pike",	"fishing_pike.png"},
-	{"fishing",  				"shark",			"Shark",			"fishing_shark.png"},
-	{"animal_clownfish",		"clownfish",		"Clownfish",		"animal_clownfish_clownfish_item.png"},
-	{"animal_fish_blue_white",	"fish_blue_white",	"Blue white fish",	"animal_fish_blue_white_fish_blue_white_item.png"},
+local trophy = {
+--	  mod						 item				 name				icon
+    {"fishing",  				"fish_raw",				"Fish",				"fishing_fish_raw.png"},
+	{"fishing",  				"pike_raw",				"Northern Pike",	"fishing_pike_raw.png"},
+	{"fishing",  				"shark_raw",			"Shark",			"fishing_shark_raw.png"},
+	{"fishing",		            "clownfish_raw",		"Clownfish",		"fishing_clownfish_raw.png"},
+	{"fishing",	                "bluewhite_raw",	        "Bluewhite",	        "fishing_bluewhite_raw.png"},
 }
 
 local function has_trophy_privilege(meta, player)
@@ -30,14 +23,14 @@ local function has_trophy_privilege(meta, player)
 	return true
 end
 
-for i in pairs(TRoPHY) do
-	local 	MoD = 			TRoPHY[i][1]
-	local 	iTeM = 			TRoPHY[i][2]
-	local 	NaMe = 			TRoPHY[i][3]
-	local 	iCoN = 			TRoPHY[i][4]
-	minetest.register_node("fishing:trophy_"..iTeM, {
-		description = S(NaMe.." Trophy"),
-		inventory_image = "default_chest_top.png^"..iCoN.."^fishing_trophy_label.png",
+for i in pairs(trophy) do
+	local 	mod = 			trophy[i][1]
+	local 	item = 			trophy[i][2]
+	local 	name = 			trophy[i][3]
+	local 	icon = 			trophy[i][4]
+	minetest.register_node("fishing:trophy_"..item, {
+		description = fishing_setting.func.S(name.." Trophy"),
+		inventory_image = "default_chest_top.png^"..icon.."^fishing_trophy_label.png",
 		drawtype = "nodebox",
 		tiles = {
 			"default_chest_top.png", -- top
@@ -45,7 +38,7 @@ for i in pairs(TRoPHY) do
 			"default_chest_top.png", -- right
 			"default_chest_top.png", -- left
 			"default_chest_top.png", -- back
-			"default_chest_top.png^"..iCoN.."^fishing_trophy_label.png", -- front
+			"default_chest_top.png^"..icon.."^fishing_trophy_label.png", -- front
 		},
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -68,11 +61,11 @@ for i in pairs(TRoPHY) do
 		after_place_node = function(pos, placer)
 			local meta = minetest.get_meta(pos)
 			meta:set_string("owner",  placer:get_player_name() or "")
-			meta:set_string("infotext",  S("This Huge "..NaMe.." was caught by the Famous Angler %s !"):format((placer:get_player_name() or "")))
+			meta:set_string("infotext",  fishing_setting.func.S("This Huge "..name.." was caught by the Famous Angler %s !"):format((placer:get_player_name() or "")))
 		end,
 		on_construct = function(pos)
 			local meta = minetest.get_meta(pos)
-			meta:set_string("infotext", NaMe)
+			meta:set_string("infotext", name)
 			meta:set_string("owner", "")
 		end,
 		can_dig = function(pos,player)
@@ -81,10 +74,11 @@ for i in pairs(TRoPHY) do
 		end,
 	})
 
+--[[
 	minetest.register_craft({
 		type = "shapeless",
-		output = "fishing:trophy_"..iTeM,
-		recipe = {MoD..":"..iTeM, "default:sign_wall"},
+		output = "fishing:trophy_"..item,
+		recipe = {mod..":"..item, "default:sign_wall"},
 	})
-
+--]]
 end
