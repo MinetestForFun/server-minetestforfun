@@ -49,7 +49,7 @@ end
 local function save_datas()
 	local pfile = io.open(pclasses.conf.datafile, "w")
 	pfile:write(minetest.serialize(pclasses.datas.players))
-	pfile.close()
+	pfile:close()
 	minetest.log("action", "[PClasses] Datas saved")
 end
 
