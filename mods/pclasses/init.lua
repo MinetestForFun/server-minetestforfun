@@ -139,7 +139,7 @@ end
 
 pclasses.api.util.does_wear_full_armor = function(pname, material, noshield)
 	local inv = minetest.get_inventory({type = "detached", name = pname .. "_armor"})
-	if not inv or inv:is_empty() then
+	if not inv or inv:is_empty("armor") then
 		return false
 	end
 	local full_armor = true
