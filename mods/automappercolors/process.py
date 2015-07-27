@@ -15,6 +15,18 @@ predefined = {
     "^default:ice": {'r': 74, 'g': 105, 'b': 159, 'a': 159},
     "^default:water_([a-z]+)": {'r': 43, 'g': 97, 'b': 183, 'a': 128},
     "^default:dirt_with_grass": {'r': 107, 'g': 134, 'b': 51, 'a': 255}
+    "^flowers:cotton_plant": {'r': 199, 'g': 218, 'b': 158}
+    "^flowers:seaweed": {'r': 48, 'g': 114, 'b': 107}
+    "^flowers:waterlily": {'r': 119, 'g': 166, 'b': 100}
+    "^flowers:waterlily_225": {'r': 119, 'g': 166, 'b': 100}
+    "^flowers:waterlily_45": {'r': 119, 'g': 166, 'b': 100}
+    "^flowers:waterlily_675": {'r': 119, 'g': 166, 'b': 100}
+    "^flowers:dandelion_white": {'r': 161, 'g': 174, 'b': 149}
+    "^flowers:dandelion_yellow": {'r': 144, 'g': 138, 'b': 0}
+    "^flowers:geranium": {'r': 75, 'g': 101, 'b': 84}
+    "^flowers:rose": {'r': 153, 'g': 9, 'b': 0}
+    "^flowers:tulip": {'r': 175, 'g': 114, 'b': 0}
+    "^flowers:viola": {'r': 84, 'g': 90, 'b': 64}
 }
 
 predef_compiled = {}
