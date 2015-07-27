@@ -1133,6 +1133,7 @@ end
 
 		on_punch = function(self, hitter, tflp, tool_capabilities, dir)
 			-- weapon wear
+			hitter:set_detach() --MFF (crabman|27/7/2015) anti usebug, immortal if attached
 			local weapon = hitter:get_wielded_item()
 			if weapon:get_definition().tool_capabilities ~= nil then
 				local wear = ( (weapon:get_definition().tool_capabilities.full_punch_interval or 1.4) / 75 ) * 9000
