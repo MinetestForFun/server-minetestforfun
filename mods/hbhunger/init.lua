@@ -108,7 +108,16 @@ minetest.register_globalstep(function(dtime)
 
 		local h = tonumber(hbhunger.hunger[name])
 		local hp = player:get_hp()
-		if timer > 10 then
+		local timerquot = 1
+
+		if pclasses.api.get_player_class(name) == "warrior" then
+			timerquot = 2
+		elseif pclasses.api.util.does_wear_full_armor(name, "mithril", false) then
+			timerquot = 1.5
+		end
+
+
+		if timer > 10/timerquot then
 			-- heal player by 1 hp if not dead and satiation is > 15 (of 30)
 			if h > 15 and hp > 0 and player:get_breath() > 0 then
 				player:set_hp(hp+1)
