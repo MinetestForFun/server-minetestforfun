@@ -24,7 +24,7 @@ minetest.register_node("fishing:bobber_box", {
 		"fishing_bobber.png",
 		"fishing_bobber.png",
 		"fishing_bobber.png^[transformFX"
-	}, -- 
+	}, --
 	groups = {not_in_creative_inventory=1},
 })
 

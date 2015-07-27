@@ -12,7 +12,7 @@ minetest.register_node("fishing:material_info", {
 	is_ground_content = false,
 	sounds = default.node_sound_wood_defaults(),
 
-	
+
 	on_rightclick = function(pos, _, clicker)
 		local formspec = "size[6,8]label[1.7,0;Fishing Info Center]"
 		local y = 1

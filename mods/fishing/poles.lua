@@ -35,7 +35,7 @@ local bobbermax = pole["bobber_max"]
 				--if contest then player must have only 2 boober
 				local bobber_nb = 0
 				local bobber_max
-				if fishing_setting.contest["contest"] ~= nil and fishing_setting.contest["contest"] == true then 
+				if fishing_setting.contest["contest"] ~= nil and fishing_setting.contest["contest"] == true then
 					bobber_max = fishing_setting.contest["bobber_nb"]
 				else
 					bobber_max = bobbermax
@@ -68,7 +68,7 @@ local bobbermax = pole["bobber_max"]
 				for _,k in  pairs({ 1, 0, -1}) do
 					for _,l in pairs({ -1, 0, 1}) do
 						local node_name = minetest.get_node({x=pt.under.x+l, y=pt.under.y, z=pt.under.z+k}).name
-						if node and string.find(node_name, "water_source") ~= nil 
+						if node and string.find(node_name, "water_source") ~= nil
 						and minetest.get_node({x=pt.under.x+l, y=pt.under.y+1, z=pt.under.z+k}).name == "air" then
 							local empty = true
 							for o, obj in pairs(bobbers) do

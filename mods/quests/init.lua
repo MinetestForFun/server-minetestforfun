@@ -18,7 +18,7 @@ end
 
 
 quests.formspec_lists = {}
-function quests.round(num, n) 
+function quests.round(num, n)
 	local mult = 10^(n or 0)
 	return math.floor(num * mult + .5) / mult
 end

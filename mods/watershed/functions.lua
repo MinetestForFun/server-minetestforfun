@@ -109,7 +109,7 @@ function watershed_pinetree(x, y, z, area, data)
 		end
 		-- MFF: Prevent trees from destroying existing blocks
 		local vit = area:index(x, y + j, z)
-		if j == 0 then 
+		if j == 0 then
 			data[vit] = c_wspitree	-- No safety check for the sapling itself
 		else
 			safely_set_block(data, vit, c_wspitree)

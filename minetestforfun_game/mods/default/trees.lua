@@ -358,7 +358,7 @@ minetest.register_node("default:mg_cherry_sapling", {
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
 	},
 	groups = {snappy=2, dig_immediate=3, not_in_creative_inventory=1, attached_node=1},
-	drop = "default:cherry_sapling", 
+	drop = "default:cherry_sapling",
 	sounds = default.node_sound_leaves_defaults(),
 })
 

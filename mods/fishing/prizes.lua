@@ -32,7 +32,7 @@ local stuff = {
 	{"shields",					"shield_enhanced_cactus",	"random",			"a very old Shield."},
 	{"default",					"sword_bronze",				"random",			"a very old Sword."},
 	{"default",					"sword_mese",				"random",			"a very old Sword."},
-	{"default",					"sword_nyan",				"random",			"a very old Sword."}	
+	{"default",					"sword_nyan",				"random",			"a very old Sword."}
 }
 fishing_setting.prizes["stuff"] = fishing_setting.func.ignore_mod(stuff)
 

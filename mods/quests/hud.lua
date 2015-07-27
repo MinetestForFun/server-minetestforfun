@@ -225,7 +225,7 @@ function quests.update_hud(playername)
 	local diff = table_diff(old_hud, new_hud)
 	-- Copy the HUD IDs from the old table to the new one, to avoid loosing them
 	for questname, hud_elms in pairs(old_hud) do
-		for elm_name, elm_def in pairs(hud_elms) do 
+		for elm_name, elm_def in pairs(hud_elms) do
 			if new_hud[questname] and new_hud[questname][elm_name] then
 				new_hud[questname][elm_name].id = elm_def.id
 			end
@@ -238,7 +238,7 @@ function quests.update_hud(playername)
 					player:hud_remove(elm_def.id)
 				end
 			else
-				for elm_name, elm_def in pairs(hud_elms) do 
+				for elm_name, elm_def in pairs(hud_elms) do
 					if not old_hud[questname] or not old_hud[questname][elm_name] or not old_hud[questname][elm_name].id then
 						new_hud[questname][elm_name].id = player:hud_add(elm_def)
 					else

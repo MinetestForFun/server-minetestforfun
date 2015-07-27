@@ -22,7 +22,7 @@ minetest.register_node("fishing:bobber_shark_box", {
 		"fishing_bobber_shark.png",
 		"fishing_bobber_shark.png",
 		"fishing_bobber_shark.png^[transformFX"
-	}, -- 
+	}, --
 	groups = {not_in_creative_inventory=1},
 })
 
@@ -42,7 +42,7 @@ local FISHING_BOBBER_SHARK_ENTITY={
 	baitball = 0,
 	prize = "",
 	bait = "",
-	
+
 --  DESTROY BOBBER WHEN PUNCHING IT
 	on_punch = function (self, puncher, time_from_last_punch, tool_capabilities, dir)
 		if not puncher:is_player() then return end
@@ -60,8 +60,8 @@ local FISHING_BOBBER_SHARK_ENTITY={
 		minetest.sound_play("fishing_bobber1", { pos = self.object:getpos(), gain = 0.5, })
 		self.object:remove()
 	end,
-	
-	
+
+
 --	WHEN RIGHTCLICKING THE BOBBER THE FOLLOWING HAPPENS (CLICK AT THE RIGHT TIME WHILE HOLDING A FISHING POLE)
 	on_rightclick = function (self, clicker)
 		local item = clicker:get_wielded_item()
@@ -90,7 +90,7 @@ local FISHING_BOBBER_SHARK_ENTITY={
 			-- weither player has fishing pole or not
 			minetest.sound_play("fishing_bobber1", { pos = self.object:getpos(), gain = 0.5, })
 			self.object:remove()
-		
+
 		elseif item_name == "fishing:baitball_shark" then
 			if not fishing_setting.is_creative_mode then
 				inv:remove_item("main", "fishing:baitball_shark")
@@ -108,8 +108,8 @@ local FISHING_BOBBER_SHARK_ENTITY={
 			minetest.sound_play("fishing_baitball", {pos = self.object:getpos(), gain = 0.2, })
 		end
 	end,
-	
-	
+
+
 -- AS SOON AS THE BOBBER IS PLACED IT WILL ACT LIKE
 	on_step = function(self, dtime)
 		local pos = self.object:getpos()
@@ -131,12 +131,12 @@ local FISHING_BOBBER_SHARK_ENTITY={
 			self.object:remove()
 			return
 		end
-		
+
 		--rotate bobber
 		if math.random(1, 4) == 1 then
 			self.object:setyaw(self.object:getyaw()+((math.random(0,360)-180)/2880*math.pi))
 		end
-		
+
 		self.timer = self.timer + 1
 		if self.timer < self.randomtime then
 			-- if fish or others items, move bobber to simulate fish on the line
@@ -151,9 +151,9 @@ local FISHING_BOBBER_SHARK_ENTITY={
 					self.old_pos2 = true
 				end
 			end
-			return	
+			return
 		end
-		
+
 		--change item on line
 		self.timer = 0
 		self.prize = ""
@@ -164,7 +164,7 @@ local FISHING_BOBBER_SHARK_ENTITY={
 			self.randomtime = math.random(20,60)*10
 			return
 		end
-		
+
 		self.randomtime = math.random(1,5)*10
 		local chance = math.random(1, 100)
 		--if 1 you catch a treasure, maybe ...
@@ -182,7 +182,7 @@ local FISHING_BOBBER_SHARK_ENTITY={
 				self.prize = fishing_setting.prizes["plants"][math.random(1,#fishing_setting.prizes["plants"])]
 			end
 		end
-		
+
 		if self.prize ~= "" then
 			pos.y = self.old_pos.y-0.2
 			self.object:moveto(pos, false)

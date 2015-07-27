@@ -80,7 +80,7 @@ end
 -- * Simple quests are made of a single objective
 -- * Taked quests are made of tasks, allowing simultaneous progress
 --   within the quest as well as branching quest objectives
--- 
+--
 -- Both quest types are defined by a table, and they share common information:
 --     {
 --       title,            -- Self-explanatory. Should describe the objective for simple quests.
@@ -94,7 +94,7 @@ end
 --       abortcallback,    -- Called when a player cancels the quest.  function(playername, questname, metadata)
 --       repeating         -- Delay in seconds before the quest becomes available again. If nil, 0 or false, doesn't restart.
 --     }
--- 
+--
 -- In addition, simple quests have a number-type `max` element indicating the max progress of the quest.
 -- As for tasked quests, they have a table-type `tasks` element which value is like this:
 --     tasks = {
@@ -106,11 +106,11 @@ end
 --       },
 --       another_task = {
 --         [...],
---     
+--
 --         requires = {"start"},
 --         -- Table of task names which one must be completed for this task to unlock.
 --         --   To to task completion groups (i.e. where ALL must be compileted), pass said names in a (sub)table.
---     
+--
 --         availablecallback,
 --         -- Called when the task becomes available. Not called when there are no task requirements (i.e. task is available from the start).
 --         --   function(playername, questname, taskname, enablingtaskname, metadata)
@@ -123,10 +123,10 @@ end
 --       something = {
 --         [...],
 --         requires = {"start"},
---     
+--
 --         disables_on = {"another_task"},
 --         -- Same as `requires`, but *disables* the task (it then does not count towards quest completion)
---     
+--
 --         disablecallback,
 --         -- Called when the task becomes disabled. Not called when the task is disabled upon quest start.
 --         --   function(playername, questname, taskname, disablingtaskname, metadata)
@@ -160,7 +160,7 @@ function quests.register_quest(questname, quest)
 		autoaccept       = not(quest.autoaccept == false),
 		completecallback = quest.completecallback or empty_callback,
 		abortcallback    = quest.abortcallback or empty_callback,
-		repeating        = quest.repeating or 0 
+		repeating        = quest.repeating or 0
 	}
 	local new_quest = quests.registered_quests[questname]
 	if quest.max ~= nil then -- Simple quest

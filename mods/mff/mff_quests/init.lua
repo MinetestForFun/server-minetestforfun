@@ -117,7 +117,7 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
 		if quest.tasks then
 			for tname, task in pairs(quest.tasks) do
 				if quests.is_task_visible(pname, mff.QPREFIX .. qname, tname)
-					and not quests.is_task_disabled(pname, mff.QPREFIX .. qname, tname) 
+					and not quests.is_task_disabled(pname, mff.QPREFIX .. qname, tname)
 					and task.objective.dig then
 					if table.contains(task.objective.dig, oldnode.name) then
 						quests.update_quest_task(pname, mff.QPREFIX .. qname, tname, 1)
@@ -130,7 +130,7 @@ end)
 
 minetest.register_on_joinplayer(function (player)
 	local playername = player:get_player_name()
-	for _, qname in ipairs({"still_testing_quests", "still_testing_quests2", "still_testing_quests3"}) do 
+	for _, qname in ipairs({"still_testing_quests", "still_testing_quests2", "still_testing_quests3"}) do
 		if not quests.quest_restarting_in(playername, mff.QPREFIX .. qname) then
 			mff.quests.start_quest(playername, qname)
 		end

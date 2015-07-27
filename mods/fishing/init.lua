@@ -24,7 +24,7 @@ fishing_setting.file_trophies = minetest.get_worldpath() .. "/fishing_trophies.t
 fishing_setting.file_contest = minetest.get_worldpath() .. "/fishing_contest.txt"
 fishing_setting.settings = {}
 fishing_setting.contest = {}
---for random object 
+--for random object
 random_objects = {}
 fishing_setting.baits = {}
 fishing_setting.hungry = {}
@@ -43,7 +43,7 @@ dofile(path .."functions.lua")
 
 --default_settings
 fishing_setting.settings["message"] = MESSAGES
-fishing_setting.settings["worm_is_mob"] = WORM_IS_MOB 
+fishing_setting.settings["worm_is_mob"] = WORM_IS_MOB
 fishing_setting.settings["worm_chance"] = WORM_CHANCE
 fishing_setting.settings["new_worm_source"] = NEW_WORM_SOURCE
 fishing_setting.settings["wear_out"] = WEAR_OUT
@@ -81,7 +81,7 @@ fishing_setting.func.load_contest()
 minetest.register_globalstep(function(dtime)
 	if fishing_setting.contest["contest"] ~= nil and fishing_setting.contest["contest"] == true then
 		fishing_setting.contest["duration"] = fishing_setting.contest["duration"] - dtime
-		
+
 		if fishing_setting.contest["duration"] < 30 and fishing_setting.contest["warning_said"] ~= true then
 			minetest.chat_send_all(fishing_setting.func.S("WARNING, Fishing contest will finish in 30 seconds."))
 			fishing_setting.contest["warning_said"] = true
