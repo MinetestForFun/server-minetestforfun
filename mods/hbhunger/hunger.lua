@@ -395,7 +395,8 @@ local exhausting_items = {
 		["bronze"] = 5,
 		["gold"] = 6,
 		["diamond"] = 3,
-		["mithril"] = 1
+		["mithril"] = 1,
+		["blackmithril"] = 2
 	},
 	["chestplate"] = {
 		["wood"] = 1,
@@ -404,7 +405,8 @@ local exhausting_items = {
 		["bronze"] = 5,
 		["gold"] = 6,
 		["diamond"] = 3,
-		["mithril"] = 1
+		["mithril"] = 1,
+		["blackmithril"] = 2
 	},
 	["leggings"] = {
 		["wood"] = 1,
@@ -413,7 +415,8 @@ local exhausting_items = {
 		["bronze"] = 5,
 		["gold"] = 6,
 		["diamond"] = 3,
-		["mithril"] = 1
+		["mithril"] = 1,
+		["blackmithril"] = 2
 	},
 	["boots"] = {
 		["wood"] = 1,
@@ -422,7 +425,8 @@ local exhausting_items = {
 		["bronze"] = 5,
 		["gold"] = 6,
 		["diamond"] = 3,
-		["mithril"] = 1
+		["mithril"] = 1,
+		["blackmithril"] = 2
 	},
 	["shield"] = {
 		["wood"] = 1,
@@ -431,7 +435,8 @@ local exhausting_items = {
 		["bronze"] = 5,
 		["gold"] = 6,
 		["diamond"] = 3,
-		["mithril"] = 1
+		["mithril"] = 1,
+		["blackmithril"] = 2
 	}
 }
 
