@@ -98,21 +98,21 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 end
 
 if not DISABLE_STONE_ARROW then
-	throwing_register_arrow_standard ('stone', 'Stone', 0, 0.88, 'group:stone')
+	throwing_register_arrow_standard ('stone', 'Stone', 0, 0.25, 'group:stone')
 end
 
 if not DISABLE_STEEL_ARROW then
-	throwing_register_arrow_standard ('steel', 'Steel', 4, 0.94, 'default:steel_ingot')
+	throwing_register_arrow_standard ('steel', 'Steel', 4, 0.33, 'default:steel_ingot')
 end
 
 if not DISABLE_OBSIDIAN_ARROW then
-	throwing_register_arrow_standard ('obsidian', 'Obsidian', 8, 0.97, 'default:obsidian')
+	throwing_register_arrow_standard ('obsidian', 'Obsidian', 8, 0.50, 'default:obsidian')
 end
 
 if not DISABLE_DIAMOND_ARROW then
-	throwing_register_arrow_standard ('diamond', 'Diamond', 12, 0.88, 'default:diamond')
+	throwing_register_arrow_standard ('diamond', 'Diamond', 12, 0.57, 'default:diamond')
 end
 
 if not DISABLE_MITHRIL_ARROW then
-	throwing_register_arrow_standard ('mithril', 'Mithril', 12, 0.88, 'moreores:mithril_ingot')
+	throwing_register_arrow_standard ('mithril', 'Mithril', 12, 0.66, 'moreores:mithril_ingot')
 end
