@@ -126,7 +126,7 @@ pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
 pclasses.api.reserve_item("warrior", "default:dungeon_master_s_blood_sword")
 
 pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn")
-pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_born_improved")
+pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn_improved")
 
 
 minetest.register_globalstep(function(dtime)
@@ -137,7 +137,7 @@ minetest.register_globalstep(function(dtime)
 			local stack = inv:get_stack("main", i)
 			if pclasses.datas.reserved_items[stack:get_name()] then
 				local drop_stack = true
-				for class in pairs(pclasses.datas.reserved_items) do
+				for _, class in pairs(pclasses.datas.reserved_items) do
 					if pclasses.api.get_player_class(name) == class then
 						drop_stack = false
 					end
