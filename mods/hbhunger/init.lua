@@ -113,9 +113,9 @@ minetest.register_globalstep(function(dtime)
 		local timerquot = 1			-- By default regen 0.5 hearth every 10sec
 
 		if pclasses.api.get_player_class(name) == "warrior" then
-			timerquot = 2			-- Black_Mithril armor = 0.5 hearth every 5sec
+			timerquot = 2			-- Black_Mithril armor = 0.5 hearth every 5.0sec
 		elseif pclasses.api.util.does_wear_full_armor(name, "mithril", false) then
-			timerquot = 1.5			-- Mithril armor = 0.5 hearth every 7.5sec
+			timerquot = 1.33		-- Mithril armor = 0.5 hearth every 7.5sec
 		end
 
 
