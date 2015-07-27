@@ -102,13 +102,17 @@ if not DISABLE_STONE_ARROW then
 end
 
 if not DISABLE_STEEL_ARROW then
-	throwing_register_arrow_standard ('steel', 'Steel', 5, 0.94, 'default:steel_ingot')
-end
-
-if not DISABLE_DIAMOND_ARROW then
-	throwing_register_arrow_standard ('diamond', 'Diamond', 10, 0.97, 'default:diamond')
+	throwing_register_arrow_standard ('steel', 'Steel', 4, 0.94, 'default:steel_ingot')
 end
 
 if not DISABLE_OBSIDIAN_ARROW then
-	throwing_register_arrow_standard ('obsidian', 'Obsidian', 15, 0.88, 'default:obsidian')
+	throwing_register_arrow_standard ('obsidian', 'Obsidian', 8, 0.97, 'default:obsidian')
+end
+
+if not DISABLE_DIAMOND_ARROW then
+	throwing_register_arrow_standard ('diamond', 'Diamond', 12, 0.88, 'default:diamond')
+end
+
+if not DISABLE_MITHRIL_ARROW then
+	throwing_register_arrow_standard ('mithril', 'Mithril', 12, 0.88, 'moreores:mithril_ingot')
 end
