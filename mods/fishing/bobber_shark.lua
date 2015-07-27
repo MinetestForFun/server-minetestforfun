@@ -167,19 +167,16 @@ local FISHING_BOBBER_SHARK_ENTITY={
 
 		self.randomtime = math.random(1,5)*10
 		local chance = math.random(1, 100)
-		--if 1 you catch a treasure, maybe ...
+		--if 1 you catch a treasure
 		if chance == 1 then
-			--You are lucky ? :)
 			if math.random(1, 100) <= fishing_setting.settings["treasure_chance"] and fishing_setting.settings["treasure_enable"] then
 				self.prize = fishing_setting.prizes["treasure"][math.random(1,#fishing_setting.prizes["treasure"])]
-			else
-				self.prize = fishing_setting.prizes["stuff"][math.random(1,#fishing_setting.prizes["stuff"])]
 			end
 		elseif chance <= fishing_setting.settings["fish_chance"] then
 			self.prize = fishing_setting.prizes["shark"][math.random(1,#fishing_setting.prizes["shark"])]
 		else
 			if math.random(1, 100) <= 10 then
-				self.prize = fishing_setting.prizes["plants"][math.random(1,#fishing_setting.prizes["plants"])]
+				self.prize = fishing_setting.func.get_loot()
 			end
 		end
 

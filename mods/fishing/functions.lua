@@ -107,6 +107,22 @@ function fishing_setting.func.hungry_random()
 end
 
 
+
+function fishing_setting.func.get_loot()
+	local c = math.random(1, 67)
+	for i in pairs(fishing_setting.prizes["stuff"]) do
+		local min = fishing_setting.prizes["stuff"][i][5]
+		local chance = fishing_setting.prizes["stuff"][i][6]
+		local max = min + chance - 1
+		if c <= max and c >= min then
+			return fishing_setting.prizes["stuff"][i]
+		end
+	end
+	return ""
+end 
+
+
+
 -- Show notification when a player catches treasure
 function fishing_setting.func.notify(f_name, treasure)
 	local title = fishing_setting.func.S("Lucky %s, he caught the treasure, %s!"):format(f_name, treasure[4])

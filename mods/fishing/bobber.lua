@@ -172,7 +172,7 @@ local FISHING_BOBBER_ENTITY={
 			self.prize = fishing_setting.prizes["fish"][math.random(1,#fishing_setting.prizes["fish"])]
 		else
 			if math.random(1, 100) <= 10 then
-				self.prize = fishing_setting.prizes["plants"][math.random(1,#fishing_setting.prizes["plants"])]
+				self.prize = fishing_setting.func.get_loot()
 			end
 		end
 
