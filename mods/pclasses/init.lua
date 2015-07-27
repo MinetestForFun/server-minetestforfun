@@ -42,7 +42,7 @@ if pfile then
 	if line then
 		pclasses.datas.players = minetest.deserialize(line)
 	end
-	pfile.close()
+	pfile:close()
 end
 
 -- Frequent backup
