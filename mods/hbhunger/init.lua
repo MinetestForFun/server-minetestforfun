@@ -94,8 +94,6 @@ minetest.register_on_respawnplayer(function(player)
 	hbhunger.exhaustion[name] = 0
 end)
 
-
-<Mg> Avec Mithril armor : 7.5 seconds.
 local main_timer = 0
 local timer = 0
 local timer2 = 0
