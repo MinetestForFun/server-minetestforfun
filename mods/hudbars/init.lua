@@ -328,6 +328,7 @@ local function update_hud(player)
 		--health
 		hb.change_hudbar(player, "health", player:get_hp())
 	end
+	hb.change_hudbar(player, "sprint", sprint.players[player:get_player_name()].stamina, sprint.players[player:get_player_name()].maxStamina)
 end
 
 minetest.register_on_joinplayer(function(player)

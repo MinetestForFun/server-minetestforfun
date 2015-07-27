@@ -7,19 +7,19 @@ to this software to the public domain worldwide. This software is
 distributed without any warranty.
 ]]
 
-local players = {}
+sprint.players = {}
 local staminaHud = {}
 
 -- Lil' helping functions
 sprint.set_maxstamina = function(pname, mstamina)
-	if players[pname] and mstamina > 0 then
-		players[pname].maxStamina = mstamina
+	if sprint.players[pname] and mstamina > 0 then
+		sprint.players[pname].maxStamina = mstamina
 	end
 end
 
 sprint.get_maxstamina = function(pname)
-	if players[pname] then
-		return players[pname].maxStamina
+	if sprint.players[pname] then
+		return sprint.players[pname].maxStamina
 	end
 end
 
@@ -37,11 +37,18 @@ sprint.dicrease_maxstamina = function(pname, sdicrease)
 	end
 end
 
+sprint.set_default_maxstamina = function(pname)
+	if sprint.players[pname] then
+		sprint.players[pname].maxStamina = SPRINT_STAMINA
+	end
+end
+
+
 
 minetest.register_on_joinplayer(function(player)
 	local playerName = player:get_player_name()
 
-	players[playerName] = {
+	sprint.players[playerName] = {
 		sprinting = false,
 		timeOut = 0,
 		stamina = SPRINT_STAMINA,
@@ -51,7 +58,7 @@ minetest.register_on_joinplayer(function(player)
 	if SPRINT_HUDBARS_USED then
 		hb.init_hudbar(player, "sprint")
 	else
-		players[playerName].hud = player:hud_add({
+		sprint.players[playerName].hud = player:hud_add({
 			hud_elem_type = "statbar",
 			position = {x=0.5,y=1},
 			size = {x=24, y=24},
@@ -65,22 +72,22 @@ minetest.register_on_joinplayer(function(player)
 end)
 minetest.register_on_leaveplayer(function(player)
 	local playerName = player:get_player_name()
-	players[playerName] = nil
+	sprint.players[playerName] = nil
 end)
 local gameTime = 0
 minetest.register_globalstep(function(dtime)
 	--Get the gametime
 	gameTime = gameTime + dtime
 
-	--Loop through all connected players
-	for playerName,playerInfo in pairs(players) do
+	--Loop through all connected sprint.players
+	for playerName,playerInfo in pairs(sprint.players) do
 		local player = minetest.get_player_by_name(playerName)
 		if player ~= nil then
 			--Check if the player should be sprinting
 			if player:get_player_control()["aux1"] and player:get_player_control()["up"] then
-				players[playerName]["shouldSprint"] = true
+				sprint.players[playerName]["shouldSprint"] = true
 			else
-				players[playerName]["shouldSprint"] = false
+				sprint.players[playerName]["shouldSprint"] = false
 			end
 			--Stop sprinting if the player is pressing the LMB or RMB
 			if player:get_player_control()["LMB"] or player:get_player_control()["RMB"] then
@@ -119,9 +126,9 @@ minetest.register_globalstep(function(dtime)
 				end
 			end
 			--Adjust player states
-			if players[playerName]["shouldSprint"] == true and playerInfo["timeOut"] == 0 then --Stopped
+			if sprint.players[playerName]["shouldSprint"] == true and playerInfo["timeOut"] == 0 then --Stopped
 				setSprinting(playerName, true)
-			elseif players[playerName]["shouldSprint"] == false then
+			elseif sprint.players[playerName]["shouldSprint"] == false then
 				setSprinting(playerName, false)
 			end
 
@@ -152,7 +159,7 @@ minetest.register_globalstep(function(dtime)
 				playerInfo["stamina"] = playerInfo["maxStamina"]
 			end
 
-			--Update the players's hud sprint stamina bar
+			--Update the sprint.players's hud sprint stamina bar
 
 			if SPRINT_HUDBARS_USED then
 				hb.change_hudbar(player, "sprint", playerInfo["stamina"])
@@ -169,8 +176,8 @@ end)
 
 function setSprinting(playerName, sprinting) --Sets the state of a player (0=stopped/moving, 1=sprinting)
 	local player = minetest.get_player_by_name(playerName)
-	if players[playerName] then
-		players[playerName]["sprinting"] = sprinting
+	if sprint.players[playerName] then
+		sprint.players[playerName]["sprinting"] = sprinting
 		if sprinting == true then
 			player:set_physics_override({speed=SPRINT_SPEED,jump=SPRINT_JUMP})
 		elseif sprinting == false then
