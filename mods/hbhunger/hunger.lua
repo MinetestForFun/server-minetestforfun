@@ -132,6 +132,11 @@ if minetest.get_modpath("fishing") ~= nil then
 	overwrite("fishing:shark_cooked", 6)
 	overwrite("fishing:pike", 2)
 	overwrite("fishing:pike_cooked", 6)
+	
+	overwrite("fishing:clownfish_raw", 2) --new fishing
+	overwrite("fishing:bluewhite_raw", 2) --new fishing
+	overwrite("fishing:shark_raw", 2)  --new fishing
+	overwrite("fishing:pike_raw", 2) --new fishing
 end
 
 if minetest.get_modpath("glooptest") ~= nil then
