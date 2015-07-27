@@ -55,7 +55,9 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 						damage_groups={fleshy=damage},
 					}, nil)
 					self.object:remove()
-					minetest.add_item(self.lastpos, "throwing:arrow_dig")
+					if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
+						minetest.add_item(self.lastpos, "throwing:arrow_dig")
+					end
 				end
 			end
 		end

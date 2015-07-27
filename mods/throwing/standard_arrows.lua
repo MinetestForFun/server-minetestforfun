@@ -58,7 +58,9 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 						}, nil)
 						self.object:remove()
 						if math.random() < toughness then
-							minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
+							if math.random(0,100) % 2 == 0 then
+								minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
+							end
 						else
 							minetest.add_item(self.lastpos, 'default:stick')
 						end

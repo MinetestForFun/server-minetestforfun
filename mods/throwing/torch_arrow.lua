@@ -58,7 +58,9 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 					self.object:remove()
 					local toughness = 0.9
 					if math.random() < toughness then
-						minetest.add_item(self.lastpos, 'throwing:arrow_torch')
+						if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
+							minetest.add_item(self.lastpos, 'throwing:arrow_torch')
+						end
 					else
 						minetest.add_item(self.lastpos, 'default:stick')
 					end
