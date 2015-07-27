@@ -1,0 +1,3 @@
+[submodule "mods/quests"]
+	path = mods/quests
+	url = https://github.com/MinetestForFun/quests.git
