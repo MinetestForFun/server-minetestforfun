@@ -163,9 +163,18 @@ load_mod_u_skins = true
 load_mod_dropondie = true
 load_mod_item_drop = true
 
+load_mod_mff_core = true
+load_mod_mff_introspect = true
+load_mod_mff_quests = true
+load_mod_quests = true
+load_mod_action_timers = true
+
 load_mod_throwing = true
 load_mod_pclasses = true
 load_mod_3d_armor = true
+load_mod_harnededleather = true
+load_mod_reinforcedleather = true
+load_mod_blackmithril = true
 load_mod_technic_armor = false
 load_mod_hardenedleather = false
 load_mod_magicmithril = false
@@ -215,4 +224,4 @@ load_mod_textures = false
 load_mod_snowdrift = false
 load_mod_sounds = false
 
-load_mod_action_timers = true
+load_mod_rofl = false
