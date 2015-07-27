@@ -21,6 +21,7 @@ else
 		data.cookies[line:split(" ")[1]] = line:split(" ")[2]+0
 	until 1 == 0 -- Ok, not the best way to create a loop..
 end
+io.close(pntf)
 minetest.log("action","[FailPoints] CooKies baked")
 
 -- Global callbacks
