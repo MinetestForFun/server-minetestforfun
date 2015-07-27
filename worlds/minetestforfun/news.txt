@@ -4,12 +4,25 @@ News de FR - MinetestForFun (Survival - PVP - Hardcore)
 /!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder => 85% complété /!\
 
 ---Informations---
-Venez visiter notre nouveau site "minetestforfun.com" ! (nouveaux logos/bannières)
-Pour mieux comprendre ce qui est arrivé récemment au serveur nous vous invitons à lire le dernier article de la section "NEWS > Evénements" de notre site.
+Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debug :))
+Venez visiter notre nouveau site "minetestforfun.com" !
 
----??/07/2015--- (Remerciements : crabman77/crabman, Cyberpangolin, LeMagnesium/Mg, gravgun)
-/!\ Activation du nouveau mod "throwing" en BETA (à la place de l'ancien) /!\
-MaJ de "maptools" (ajout de recettes de craft pour les coins)
+---27/07/2015--- (Remerciements : LeMagnesium/Mg, gravgun, crabman77/crabman, paly2/Palige)
+MAJ de "fishing" (ajout du nouveau mod fishing, suppression de l'ancien. Ce nouveau mod de pêche ajoute une foullitude de nouveautés)
+MAJ de "automappercolors" (modification de diverses couleurs, et ajouts des flowers/fleurs au mapper)
+MAJ de "jukebox" (ajout de 3 musiques)
+MAJ de "mobs" (bugfixs, notamment de la hitbox de la vache, fix de l'usebug qui donnait la possibilité de tuer des monstres dans son boat/bateau ou cart/chariot)
+Ajout du modpack "mff" (implémentation des quests/quêtes au sein du serveur, pour l'instant il n'existe que quelques quêtes journalières)
+Ajout du mod "3d_armor_classes" (ajout des armures de classes, allez voir le tableau sur le site pour voir leurs valeurs respectives)
+MAJ de "moreblocks" (suppression d'un recette démentielle pour faire le bloc "Dirt With Grass")
+Ajout du mod "shutdown" (modifié, permet l'affichage de plusieurs messages préventif avant le redémarrage automatique toutes les nuits vers 4h30 du matin)
+Ajout du mod "pclasses" (gère les états des classes "Hunter" et "Warrior", créé rien que pour le serveur)
+MAJ de "MFF_game" et "moreores" (nouvelles textures pour les épées)
+MAJ de "watershed" (Suppression des "racines" des arbres/cactus/etc détruisant les nodes en dessous du sapling, bugfix des cheery_tree/cerisiers)
+MAJ de "3d_armor" (Nouvelles textures 32px pour les shields, bugfix des previews dans l'inventaire, ajout de l'armure admin et mithril refaite et en 32px)
+MAJ de "MFF_game" (le clay est de nouveau stackable jusqu'a 200 unités)
+MAJ de "throwing" (activation du nouveau mod throwing, à la place de l'ancien mod. Nouvelles textures et mécanismes, nouveau gameplay, debugs massif)
+MAJ de "maptools" (ajout de recettes de craft pour les coins)
 MAJ de "awards" (ajout d'un bouton d'accès à vos awards depuis l'inventaire)
 MAJ de "3d_armor" (tous les boucliers ont une nouvelles texture en 32px)
 Ajout du mod "automappercolors" (permet la génération automatique de toute les couleurs du mapper au démarrage du serveur)
@@ -18,7 +31,7 @@ MAJ de "invtweak" (bugfix de la destruction aléatoire des outils quand vous les
 MAJ de "homedecor_modpack/building_blocks" (suppression du "tar_knife" car totalement inutile)
 MAJ de "hud/hbhunger" (l'actualisation de la faim ce fait toute les secondes - auparavant toutes les 0.1 sec - ceci pour réduire la charge serveur, la régénération de vie est maintenant plus lente car les clases vont bientot arrivés et nous préparons l'équilibrage de celles-ci)
 MAJ de "track_player" (la position des joueurs est maintenant récupérée toute les 30 secondes)
-MAJ de "mobs" (le taux de spawn du Minotaur a été divisé par 2, les monstres ne spawent plus dans les zones protégées, le Tree Monster gagne un légé taux de drop de "Super Apple" ce qui cet ennemi plus attractif, bugfix du knockback, les objets Dungeon Master Blood et Diamond ce dropent maintenant plus facilement)
+MAJ de "mobs" (le taux de spawn du Minotaur a été divisé par 2, les monstres ne spawent plus dans les zones protégées (au dessus de -50), le Tree Monster gagne un légé taux de drop de "Super Apple" ce qui cet ennemi plus attractif, bugfix du knockback, les objets Dungeon Master Blood et Diamond ce dropent maintenant plus facilement)
 
 ---18/07/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun, Ataron, paly2/Palige)
 MAJ de "track_player" (la position des joueurs est maintenant récupérée toute les 60secondes, celle-ci est utilisée pour l'actualisation du mapper, auparavant toutes les 1 secondes ce qui surchargeait inutilement le serveur)
