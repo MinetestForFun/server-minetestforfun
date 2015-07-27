@@ -200,8 +200,8 @@ else
 		minetest.set_node(pt.under, {name="farming:soil"})
 		minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5,})
 
-		if math.random(1, 100) < WORM_CHANCE then
-			if WORM_IS_MOB == true then
+		if math.random(1, 100) < fishing_setting.settings["worm_chance"] then
+			if fishing_setting.settings["worm_is_mob"] == true then
 				minetest.add_entity({x=pt.under.x, y=pt.under.y+0.4, z=pt.under.z}, "fishing:bait_worm_entity")
 			else
 				local inv = user:get_inventory()
