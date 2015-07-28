@@ -142,11 +142,11 @@ local FISHING_BOBBER_SHARK_ENTITY={
 			-- if fish or others items, move bobber to simulate fish on the line
 			if self.prize ~= "" and math.random(1,3) == 1 then
 				if self.old_pos2 == true then
-					pos.y = pos.y-0.0525
+					pos.y = pos.y-0.0425
 					self.object:moveto(pos, false)
 					self.old_pos2 = false
 				else
-					pos.y = pos.y+0.0525
+					pos.y = pos.y+0.0425
 					self.object:moveto(pos, false)
 					self.old_pos2 = true
 				end
