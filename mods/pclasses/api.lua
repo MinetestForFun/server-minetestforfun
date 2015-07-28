@@ -153,12 +153,12 @@ minetest.register_globalstep(function(dtime)
 					inv:set_stack("main", i, "")
 					local pos = ref:getpos()
 					pos.y = pos.y+2
-					pos.x = pos.x + math.random(-10,10)
-					pos.z = pos.z + math.random(-10,10)
+					pos.x = pos.x + math.random(-6,6)
+					pos.z = pos.z + math.random(-6,6)
 					minetest.after(1, function()
 						local item = minetest.add_item(pos, stack)
 						if item then
-							item:setvelocity({x = math.random(-10,10), y = math.random(1,7), z = math.random(-10,10)})
+							item:setvelocity({x = math.random(-5,5), y = math.random(1,7), z = math.random(-5,5)})
 						end
 					end)
 				end
