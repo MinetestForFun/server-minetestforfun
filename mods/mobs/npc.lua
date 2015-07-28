@@ -3,8 +3,10 @@
 
 mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:apple", "default:sapling", "default:junglesapling",
 					"shields:shield_enhanced_wood", "3d_armor:chestplate_cactus", "3d_armor:boots_bronze",
-					"default:sword_steel", "default:sword_gold", "default:pick_steel", "default:shovel_steel",
-					"default:bronze_ingot", "bucket:bucket_water" }
+					"default:sword_steel", "default:pick_steel", "default:shovel_steel", "default:bronze_ingot",
+					"bucket:bucket_water", "default:stick", "cavestuff:pebble_1", "building_blocks:stick",
+					"default:cobble", "default:gravel", "default:clay_lump", "default:sand", "default:dirt_with_grass",
+					"default:dirt", "default:chest", "default:torch"}
 
 mobs.npc_max_hp = 20
 
