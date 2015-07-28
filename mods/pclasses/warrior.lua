@@ -20,3 +20,6 @@ pclasses.api.register_class("warrior", {
 		sprint.set_default_maxstamina(pname)
 	end,
 })
+
+pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
+pclasses.api.reserve_item("warrior", "default:dungeon_master_s_blood_sword")

@@ -82,7 +82,17 @@ function pclasses.api.assign_class(player)
 	-- Starting from the most important class to the less one
 
 	local pname = player:get_player_name()
-	if pclasses.classes["hunter"].determination(player) then
+
+	if pclasses.classes["admin"].determination(player) then
+		if pclasses.api.get_player_class(pname) ~= "admin" then
+			if pclasses.classes[pclasses.api.get_player_class(pname)].on_unassigned then
+				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
+			end
+			pclasses.api.set_player_class(pname, "admin")
+			pclasses.api.get_class_by_name("admin").on_assigned(pname)
+		end
+
+	elseif pclasses.classes["hunter"].determination(player) then
 		if pclasses.api.get_player_class(pname) ~= "hunter" then
 			if pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned then
 				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
@@ -121,13 +131,6 @@ function pclasses.api.reserve_item(cname, itemstring)
 	pclasses.datas.reserved_items[itemstring] = pclasses.datas.reserved_items or {}
 	table.insert(pclasses.datas.reserved_items[itemstring], 1, cname)
 end
-
-pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
-pclasses.api.reserve_item("warrior", "default:dungeon_master_s_blood_sword")
-
-pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn")
-pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn_improved")
-
 
 minetest.register_globalstep(function(dtime)
 	for id, ref in ipairs(minetest.get_connected_players()) do

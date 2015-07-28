@@ -26,3 +26,7 @@ pclasses.api.register_class("hunter", {
 		sprint.set_default_maxstamina(pname)
 	end,
 })
+
+
+pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn")
+pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn_improved")

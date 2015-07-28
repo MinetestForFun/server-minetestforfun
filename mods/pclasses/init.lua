@@ -89,4 +89,5 @@ end
 
 dofile(minetest.get_modpath("pclasses") .. "/warrior.lua")
 dofile(minetest.get_modpath("pclasses") .. "/hunter.lua")
+dofile(minetest.get_modpath("pclasses") .. "/admin.lua")
 
