@@ -8,7 +8,7 @@
 
 pclasses.api.register_class("warrior", {
 	determination = function(player)
-		return pclasses.api.util.does_wear_full_armor(player:get_player_name(), "blackmithril", true)
+		return pclasses.api.util.does_wear_full_armor(player:get_player_name(), "blackmithril", false)
 	end,
 	on_assigned = function(pname)
 		minetest.sound_play("pclasses_full_warrior")

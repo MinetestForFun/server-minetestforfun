@@ -100,7 +100,7 @@ if ARMOR_MATERIALS.mithril then
 	})
 end
 
-if ARMOR_MATERIALS.black_mithril then
+if ARMOR_MATERIALS.blackmithril then
 	minetest.register_tool("shields:shield_black_mithril_warrior", {
 		description = "Black Mithril Shield",
 		inventory_image = "shields_inv_shield_black_mithril_warrior.png",
