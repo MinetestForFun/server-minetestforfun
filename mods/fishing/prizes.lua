@@ -22,7 +22,7 @@ local stuff = {
 	{"seaplants",				"kelpgreen",				0,					"a Green Kelp.",				26,			5},
 	{"3d_armor",				"boots_steel",				"random",			"some very old Boots.",			31,			2},
 	{"3d_armor",				"leggings_gold",			"random",			"some very old Leggings.",		33,			5},
-	{"3d_armor",				"chestplate_bronze",		"random",			"a very old ChestPlate.",		38,			5}, 	
+	{"3d_armor",				"chestplate_bronze",		"random",			"a very old ChestPlate.",		38,			5},
 	{"fishing",					"pole_wood",				"randomtools",		"an old Fishing Pole.",			43,			10},
 	{"3d_armor",				"boots_wood",				"random",			"some very old Boots.",			53,			5},
 	{"maptools",				"gold_coin",				0,					"a Gold Coin.",					58,			1},

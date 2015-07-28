@@ -97,17 +97,18 @@ for i in ipairs(flowers_list) do
 
 	homedecor.register("potted_"..flower, {
 		description = S("Potted flower ("..flowerdesc..")"),
-		mesh = "homedecor_flowerpot_small.obj",
+		mesh = "homedecor_potted_plant.obj",
 		tiles = {
-			"flowers_"..flower..".png",
-			"homedecor_potted.png"
+			"homedecor_flower_pot_terracotta.png",
+			"default_dirt.png^[colorize:#000000:175",
+			"flowers_"..flower..".png"
 		},
 		walkable = false,
 		groups = {snappy = 3},
 		sounds = default.node_sound_glass_defaults(),
 		selection_box = {
 			type = "fixed",
-			fixed = { -0.2, -0.5, -0.2, 0.2, 0.4, 0.2 }
+			fixed = { -0.2, -0.5, -0.2, 0.2, 0.3, 0.2 }
 		}
 	})
 

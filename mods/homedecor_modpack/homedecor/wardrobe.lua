@@ -75,7 +75,7 @@ homedecor.register("wardrobe", {
 				break
 			elseif fields["fe"..skins[i]] then
 				if armor_mod then
-					armor.textures[playerName].skin = "fe"..skins[i]..".png"
+					armor.textures[playerName].skin = "homedecor_clothes_fe"..skins[i]..".png"
 					armor:update_player_visuals(sender)
 					break
 				end

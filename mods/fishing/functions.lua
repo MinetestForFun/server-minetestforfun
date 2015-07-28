@@ -119,7 +119,7 @@ function fishing_setting.func.get_loot()
 		end
 	end
 	return ""
-end 
+end
 
 
 
