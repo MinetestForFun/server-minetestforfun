@@ -14,6 +14,9 @@ local staminaHud = {}
 sprint.set_maxstamina = function(pname, mstamina)
 	if sprint.players[pname] and mstamina > 0 then
 		sprint.players[pname].maxStamina = mstamina
+		if sprint.players[pname].stamina > sprint.players[pname].maxStamina then
+			sprint.players[pname].stamina = sprint.players[pname].maxStamina
+		end
 	end
 end
 
@@ -40,6 +43,10 @@ end
 sprint.set_default_maxstamina = function(pname)
 	if sprint.players[pname] then
 		sprint.players[pname].maxStamina = SPRINT_STAMINA
+		if sprint.players[pname].stamina > sprint.players[pname].maxStamina then
+			sprint.players[pname].stamina = sprint.players[pname].maxStamina
+		end		
+		
 	end
 end
 
