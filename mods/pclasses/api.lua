@@ -120,9 +120,13 @@ function pclasses.api.assign_class(player)
 	end
 end
 
-minetest.register_on_respawnplayer(pclasses.api.assign_class)
-minetest.register_on_joinplayer(function(player) minetest.after(1, pclasses.api.assign_class, player) end)
-minetest.register_on_leaveplayer(pclasses.api.assign_class)
+minetest.register_globalstep(function(dtime)
+	for id, ref in ipairs(minetest.get_connected_players()) do
+		pclasses.api.assign_class(ref)
+	end
+end)
+
+
 
 -------------------
 -- Reserved items
