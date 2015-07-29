@@ -1,11 +1,25 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
 ---Bientôt---
-/!\ Ajout des classes "Hunter" et "Warrior" qui ne vont plus tarder => 85% complété /!\
+Upgrade du serveur en 0.4.13-Stable (Bientôt disponible officiellement)
+Génération de minerais de plus en plus intéressante entre -2048 -> -19600 (fin actuel du bénéfice maximum -> début nether)
 
 ---Informations---
-Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debug :))
+Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debugs :))
 Venez visiter notre nouveau site "minetestforfun.com" !
+
+---30/07/2015--- (Remerciements : crabman77/crabman, gravgun, LeMagnesium/Mg, Cyberpangolin, Obani)
+MAJ de "random_messages" (ajouts de quelques messages)
+MAJ de "mobs" (Ajout de sons pour le NPC, séparation du NPC_mal et NPC_female, le NPC_female a des drops légèrement différents dont des flowers/fleurs)
+MAJ de "3d_armor_classes" (Ajout du nom de la classe dans le champ description des objets de classe, permet une recherche facile depuis l'inventaire en tapant le nom de la classe dans le champ recherche)
+MAJ de "hbhunger" (crashfixs)
+MAJ de "throwing" (Nombreux crashfixs/bugfixs, les "Mithril_arrow" sont maintenant uniquement utilisable par les Hunters, les dégâts des flêches sont maintenant équilibrés)
+MAJ de "factions" (crashfix)
+MAJ de "3d_armor" (correction des shields/boucliers)
+Suppression du mod "awards" (sera remplacer petit à petit par le modpack quests)
+MAJ de "pclasses" (bugfixs, amélioration du code, les objets que vous ne pouvez pas portées sont maintenant jetés moins loin au sol)
+MAJ de "homedecor_modpack" (ajout de textures manquantes)
+MAJ de "fishing" (le bobber/flotteur est maintenant légèrement plus haut et donc plus facilement cliquable)
 
 ---27/07/2015--- (Remerciements : LeMagnesium/Mg, gravgun, crabman77/crabman, paly2/Palige)
 MAJ de "fishing" (ajout du nouveau mod fishing, suppression de l'ancien. Ce nouveau mod de pêche ajoute une foullitude de nouveautés)
