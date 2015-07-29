@@ -746,7 +746,9 @@ function factions.load()
 			for id,object in pairs(factions.data.objects) do
 				for name,value in pairs(factions.data.objects[id].factions) do
 					if value then
-						factions.dynamic_data.membertable[name][id] = true
+						if factions.dynamic_data.membertable[name] then -- One of the indexes above is nil. Which one? No idea. //MFF(Mg|07/29/15)
+							factions.dynamic_data.membertable[name][id] = true
+						end
 					end
 				end
 			end
