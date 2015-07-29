@@ -445,7 +445,7 @@ minetest.register_tool("default:sword_diamond", {
 	}
 })
 minetest.register_tool("default:dungeon_master_s_blood_sword", { --Warrior Only
-	description = "Dungeon Master's Blood Sword",
+	description = "Dungeon Master's Blood Sword (Warrior)",
 	inventory_image = "default_tool_dungeon_master_s_blood_sword.png",
 	tool_capabilities = {
 		full_punch_interval = 0.5,

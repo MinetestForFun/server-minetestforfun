@@ -40,7 +40,7 @@ end
 
 --function throwing_register_bow (name, desc, scale, stiffness, reload_time, toughness, is_cross, craft)
 if not DISABLE_MINOTAUR_HORN_BOW then
-	throwing_register_bow ('bow_minotaur_horn', 'Minotaur Horn Bow', {x=1, y=1.5, z=0.5}, 35, 1.5, 1000, false, {
+	throwing_register_bow ('bow_minotaur_horn', 'Minotaur Horn Bow (Hunter)', {x=1, y=1.5, z=0.5}, 35, 1.5, 1000, false, {
 			{'farming:string', 'mobs:minotaur_horn', 'mobs:minotaur_horn'},
 			{'farming:string', '', 'moreores:mithril_ingot'},
 			{'farming:string', 'mobs:minotaur_horn', 'mobs:minotaur_horn'},
@@ -49,7 +49,7 @@ end
 
 --function throwing_register_bow (name, desc, scale, stiffness, reload_time, toughness, is_cross, craft)
 if not DISABLE_MINOTAUR_HORN_IMPROVED_BOW then
-	throwing_register_bow ('bow_minotaur_horn_improved', 'Minotaur Horn Improved Bow', {x=1, y=1.5, z=0.5}, 50, 1.5, 2000, false, {
+	throwing_register_bow ('bow_minotaur_horn_improved', 'Minotaur Horn Improved Bow (Hunter)', {x=1, y=1.5, z=0.5}, 50, 1.5, 2000, false, {
 			{'throwing:bow_minotaur_horn', 'throwing:string_mithril'},
 		})
 end

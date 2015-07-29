@@ -320,6 +320,7 @@ local oredefs = {
 				damage_groups = {fleshy = 5},
 				full_punch_interval = 0.5,
 			},
+			description = "Mithril (Warrior)",
 			sword = {
 				groupcaps = {
 					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel= 1},
