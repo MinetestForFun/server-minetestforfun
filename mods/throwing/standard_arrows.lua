@@ -26,7 +26,8 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 				{7.5/17, -2.5/17, -2.5/17, 8.5/17, -3.5/17, -3.5/17},
 			}
 		},
-		tiles = {"throwing_arrow_" .. kind .. ".png", "throwing_arrow_" .. kind .. ".png", "throwing_arrow_" .. kind .. "_back.png", "throwing_arrow_" .. kind .. "_front.png", "throwing_arrow_" .. kind .. "_2.png", "throwing_arrow_" .. kind .. ".png"},
+		tiles = {"throwing_arrow_" .. kind .. ".png", "throwing_arrow_" .. kind .. ".png", "throwing_arrow_" .. kind .. "_back.png", "throwing_arrow_" .. kind .. "_front.png",
+		"throwing_arrow_" .. kind .. "_2.png", "throwing_arrow_" .. kind .. ".png"},
 		groups = {not_in_creative_inventory=1},
 	})
 
@@ -72,7 +73,8 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 		end
 
 		if self.lastpos.x~=nil then
-			if node.name ~= "air" and not string.find(node.name, 'water') and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
+			if node.name ~= "air" and not string.find(node.name, 'water') and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass')
+			and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
 				if math.random() < toughness then
 					minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
 				else
@@ -119,5 +121,5 @@ if not DISABLE_DIAMOND_ARROW then
 end
 
 if not DISABLE_MITHRIL_ARROW then
-	throwing_register_arrow_standard ('mithril', 'Mithril (Hunter)', 12, 0.66, 'moreores:mithril_ingot')
+	throwing_register_arrow_standard ('mithril', 'Mithril (Hunter)', 15, 0.66, 'moreores:mithril_ingot')
 end
