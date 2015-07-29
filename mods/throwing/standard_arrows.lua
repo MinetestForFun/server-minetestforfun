@@ -52,11 +52,9 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 			for k, obj in pairs(objs) do
 				if obj:get_luaentity() ~= nil then
 					if obj:get_luaentity().name ~= "throwing:arrow_" .. kind .. "_entity" and obj:get_luaentity().name ~= "__builtin:item" then
-						local speed = vector.length(self.object:getvelocity())
-						local damage = ((speed + eq)^1.2)/10 -- Modif MFF, damage tweakable here
 						obj:punch(self.object, 1.0, {
 							full_punch_interval=1.0,
-							damage_groups={fleshy=damage},
+							damage_groups={fleshy=eq},
 						}, nil)
 						if math.random() < toughness then
 							if math.random(0,100) % 2 == 0 then
@@ -105,21 +103,21 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 end
 
 if not DISABLE_STONE_ARROW then
-	throwing_register_arrow_standard ('stone', 'Stone', 0, 0.25, 'group:stone')
+	throwing_register_arrow_standard ('stone', 'Stone', 1, 0.25, 'group:stone')
 end
 
 if not DISABLE_STEEL_ARROW then
-	throwing_register_arrow_standard ('steel', 'Steel', 4, 0.33, 'default:steel_ingot')
+	throwing_register_arrow_standard ('steel', 'Steel', 2, 0.33, 'default:steel_ingot')
 end
 
 if not DISABLE_OBSIDIAN_ARROW then
-	throwing_register_arrow_standard ('obsidian', 'Obsidian', 8, 0.50, 'default:obsidian')
+	throwing_register_arrow_standard ('obsidian', 'Obsidian', 3, 0.50, 'default:obsidian')
 end
 
 if not DISABLE_DIAMOND_ARROW then
-	throwing_register_arrow_standard ('diamond', 'Diamond', 12, 0.57, 'default:diamond')
+	throwing_register_arrow_standard ('diamond', 'Diamond', 4, 0.57, 'default:diamond')
 end
 
 if not DISABLE_MITHRIL_ARROW then
-	throwing_register_arrow_standard ('mithril', 'Mithril (Hunter)', 15, 0.66, 'moreores:mithril_ingot')
+	throwing_register_arrow_standard ('mithril', 'Mithril (Hunter)', 5, 0.66, 'moreores:mithril_ingot')
 end
