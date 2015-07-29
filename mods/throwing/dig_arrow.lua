@@ -37,6 +37,7 @@ local THROWING_ARROW_ENTITY={
 	textures = {"throwing:arrow_dig_box"},
 	lastpos={},
 	collisionbox = {0,0,0,0,0,0},
+	player = "",
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
@@ -54,26 +55,27 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 						full_punch_interval=1.0,
 						damage_groups={fleshy=damage},
 					}, nil)
-					self.object:remove()
 					if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
 						minetest.add_item(self.lastpos, "throwing:arrow_dig")
 					end
+					self.object:remove()
+					return
 				end
 			end
 		end
 	end
 
 	if self.lastpos.x~=nil then
-		if node.name ~= "air" then
-
-			if minetest.get_item_group(node.name, "unbreakable") == 0
-				and areas:canInteract(self.lastpos, self.player:get_player_name())
+		if node.name ~= "air" and not string.find(node.name, "water") then
+			if node.name ~= "ignore" and minetest.get_item_group(node.name, "unbreakable") == 0
+				and not minetest.is_protected(self.lastpos, self.player)
 				and node.diggable ~= false then
 				minetest.set_node(pos, {name = "air"})
+				minetest.add_item(self.lastpos, node.name)
 			end
-			minetest.add_item(self.lastpos, node.name)
 			minetest.add_item(self.lastpos, "throwing:arrow_dig")
 			self.object:remove()
+			return
 		end
 	end
 	self.lastpos={x=pos.x, y=pos.y, z=pos.z}

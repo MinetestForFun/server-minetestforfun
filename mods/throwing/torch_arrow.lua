@@ -38,6 +38,7 @@ local THROWING_ARROW_ENTITY={
 	lastpos={},
 	collisionbox = {0,0,0,0,0,0},
 	node = "",
+	player = "",
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
@@ -55,7 +56,6 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 						full_punch_interval=1.0,
 						damage_groups={fleshy=damage},
 					}, nil)
-					self.object:remove()
 					local toughness = 0.9
 					if math.random() < toughness then
 						if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
@@ -64,6 +64,8 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 					else
 						minetest.add_item(self.lastpos, 'default:stick')
 					end
+					self.object:remove()
+					return
 				end
 			end
 		end
@@ -71,8 +73,11 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 
 	if self.lastpos.x~=nil then
 		if node.name ~= "air" then
-			self.object:remove()
-			if not string.find(node.name, "water") and not string.find(node.name, "lava") and not string.find(node.name, "torch") then
+			local player = minetest.get_player_by_name(self.player)
+			if not player then self.object:remove() return end
+			if not string.find(node.name, "water") and not string.find(node.name, "lava")
+			 and not string.find(node.name, "torch") and minetest.get_item_group(node.name, "unbreakable") == 0
+			 and not minetest.is_protected(self.lastpos, self.player) and node.diggable ~= false then
 				local dir=vector.direction(self.lastpos, pos)
 				local wall=minetest.dir_to_wallmounted(dir)
 				minetest.add_node(self.lastpos, {name="default:torch", param2 = wall})
@@ -84,6 +89,8 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 					minetest.add_item(self.lastpos, 'default:stick')
 				end
 			end
+			self.object:remove()
+			return
 		end
 	end
 	self.lastpos={x=pos.x, y=pos.y, z=pos.z}

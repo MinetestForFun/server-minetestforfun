@@ -50,23 +50,31 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 		for k, obj in pairs(objs) do
 			if obj:get_luaentity() ~= nil then
 				if obj:get_luaentity().name ~= "throwing:arrow_teleport_entity" and obj:get_luaentity().name ~= "__builtin:item" then
-					self.object:remove()
 					if self.player ~= "" then
-						self.player:setpos(pos)
-						self.player:get_inventory():add_item("main", ItemStack("default:stick 2"))
+						local player = minetest.get_player_by_name(self.player)
+						if player then
+							player:setpos(pos)
+							player:get_inventory():add_item("main", ItemStack("default:stick 2"))
+						end
 					end
+					self.object:remove()
+					return
 				end
 			end
 		end
 	end
 
-	if self.lastpos.x~=nil then
+	if self.lastpos.x~= nil then
 		if node.name ~= "air" then
-			self.object:remove()
 			if self.player ~= "" then
-				self.player:setpos(self.lastpos)
-				self.player:get_inventory():add_item("main", ItemStack("default:stick 2"))
+				local player = minetest.get_player_by_name(self.player)
+				if player then
+					player:setpos(self.lastpos)
+					player:get_inventory():add_item("main", ItemStack("default:stick 2"))
+				end
 			end
+			self.object:remove()
+			return
 		end
 	end
 	self.lastpos={x=pos.x, y=pos.y, z=pos.z}

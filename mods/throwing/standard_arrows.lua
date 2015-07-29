@@ -38,6 +38,7 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 		textures = {"throwing:arrow_" .. kind .. "_box"},
 		lastpos={},
 		collisionbox = {0,0,0,0,0,0},
+		player = "",
 	}
 
 	THROWING_ARROW_ENTITY.on_step = function(self, dtime)
@@ -56,7 +57,6 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 							full_punch_interval=1.0,
 							damage_groups={fleshy=damage},
 						}, nil)
-						self.object:remove()
 						if math.random() < toughness then
 							if math.random(0,100) % 2 == 0 then
 								minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
@@ -64,19 +64,22 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 						else
 							minetest.add_item(self.lastpos, 'default:stick')
 						end
+						self.object:remove()
+						return
 					end
 				end
 			end
 		end
 
 		if self.lastpos.x~=nil then
-			if node.name ~= "air" and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
-				self.object:remove()
+			if node.name ~= "air" and not string.find(node.name, 'water') and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
 				if math.random() < toughness then
 					minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
 				else
 					minetest.add_item(self.lastpos, 'default:stick')
 				end
+				self.object:remove()
+				return
 			end
 		end
 		self.lastpos={x=pos.x, y=pos.y, z=pos.z}

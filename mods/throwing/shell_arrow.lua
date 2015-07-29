@@ -37,6 +37,7 @@ local THROWING_ARROW_ENTITY={
 	textures = {"throwing:arrow_shell_box"},
 	lastpos={},
 	collisionbox = {0,0,0,0,0,0},
+	player = "",
 }
 
 local radius = 1
@@ -85,8 +86,9 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 						full_punch_interval=1.0,
 						damage_groups={fleshy=damage},
 					}, nil)
-					self.object:remove()
 					boom(pos)
+					self.object:remove()
+					return
 				end
 			end
 		end
@@ -94,8 +96,9 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 
 	if self.lastpos.x~=nil then
 		if node.name ~= "air" and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
-			self.object:remove()
 			boom(self.lastpos)
+			self.object:remove()
+			return
 		end
 	end
 	self.lastpos={x=pos.x, y=pos.y, z=pos.z}

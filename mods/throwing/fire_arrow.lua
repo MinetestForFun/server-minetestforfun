@@ -37,6 +37,7 @@ local THROWING_ARROW_ENTITY={
 	textures = {"throwing:arrow_fire_box"},
 	lastpos={},
 	collisionbox = {0,0,0,0,0,0},
+	player = "",
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
@@ -54,10 +55,11 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 						full_punch_interval=1.0,
 						damage_groups={fleshy=damage},
 					}, nil)
-					self.object:remove()
 					if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
 						minetest.add_item(self.lastpos, 'default:stick')
 					end
+					self.object:remove()
+					return
 				end
 			end
 		end
@@ -67,6 +69,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 		if node.name ~= "air" and node.name ~= "throwing:light" then
 			minetest.set_node(self.lastpos, {name="fire:basic_flame"})
 			self.object:remove()
+			return
 		end
 		if math.floor(self.lastpos.x+0.5) ~= math.floor(pos.x+0.5) or math.floor(self.lastpos.y+0.5) ~= math.floor(pos.y+0.5) or math.floor(self.lastpos.z+0.5) ~= math.floor(pos.z+0.5) then
 			if minetest.get_node(self.lastpos).name == "throwing:light" then

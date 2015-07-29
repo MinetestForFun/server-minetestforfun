@@ -38,6 +38,7 @@ local function throwing_register_fireworks(color, desc)
 		textures = {"throwing:arrow_fireworks_" .. color .. "_box"},
 		lastpos={},
 		collisionbox = {0,0,0,0,0,0},
+		player = "",
 	}
 
 	local radius = 0.5
@@ -104,20 +105,23 @@ local function throwing_register_fireworks(color, desc)
 							full_punch_interval=1.0,
 							damage_groups={fleshy=damage},
 						}, nil)
-						self.object:remove()
 						boom(pos)
+						self.object:remove()
+						return
 					end
 				end
 			end
 		end
 		if self.timer > 2 then
-			self.object:remove()
 			boom(self.lastpos)
+			self.object:remove()
+			return
 		end
 		if self.lastpos.x~=nil then
 			if node.name ~= "air" and node.name ~= "throwing:firework_trail" then
-				self.object:remove()
 				boom(self.lastpos)
+				self.object:remove()
+				return
 			end
 		end
 		if node.name == 'air' then
