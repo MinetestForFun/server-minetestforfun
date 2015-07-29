@@ -10,7 +10,7 @@ mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:a
 
 mobs.npc_max_hp = 20
 
-mobs:register_mob("mobs:npc", {
+mobs:register_mob("mobs:npc_female", {
 	-- animal, monster, npc
 	type = "npc",
 	-- aggressive, deals 6 damage to player/monster when hit
@@ -27,16 +27,11 @@ mobs:register_mob("mobs:npc", {
 	mesh = "character.b3d",
 	drawtype = "front",
 	textures = {
-		{"mobs_npc.png"},
+		{"mobs_npc_female.png"}, -- female by nuttmeg20
 	},
 	-- sounds
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_npc",
-		damage = "mobs_npc_hit",
-		attack = "mobs_npc_attack",
-		death = "mobs_npc_death",
-	},
+	sounds = {},
 	-- speed and jump
 	walk_velocity = 3,
 	run_velocity = 3,
@@ -47,8 +42,12 @@ mobs:register_mob("mobs:npc", {
 		chance = 1, min = 1, max = 3},
 		{name = "default:apple",
 		chance = 2, min = 1, max = 2},
+		{name = "flowers:tulip",
+		chance = 4, min = 1, max = 2},
+		{name = "flowers:rose",
+		chance = 4, min = 1, max = 2},
 		{name = "default:axe_stone",
-		chance = 3, min = 1, max = 1},
+		chance = 6, min = 1, max = 1},
 		{name = "maptools:silver_coin",
 		chance = 10, min = 1, max = 1,},
 	},
@@ -132,6 +131,6 @@ mobs:register_mob("mobs:npc", {
 	end,
 })
 -- spawning enable for now
-mobs:spawn_specific("mobs:npc", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:npc_female", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000, true)
 -- register spawn egg
-mobs:register_egg("mobs:npc", "Npc", "default_brick.png", 1)
+mobs:register_egg("mobs:npc_female", "Npc", "default_brick.png", 1)

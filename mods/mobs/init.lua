@@ -49,6 +49,7 @@ if minetest.setting_get("log_mods") then minetest.log("action", "Slimes loaded")
 
 -- NPC
 dofile(path.."/npc.lua") -- TenPlus1
+dofile(path.."/npc_female.lua") -- ???
 
 -- Creeper (fast impl by davedevils)
 dofile(path.."/creeper.lua")
