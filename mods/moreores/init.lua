@@ -286,7 +286,7 @@ local oredefs = {
 		tools = {}
 	},
 	mithril = {
-		description = "Mithril (Warrior) ",
+		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
 		oredef = {clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
 			clust_num_ores = moreores_mithril_ore_per_chunk,
@@ -398,3 +398,7 @@ end
 if minetest.setting_getbool("log_mods") then
 	minetest.log("action", S("[moreores] loaded."))
 end
+
+-- Sword overwrite
+minetest.override_item("moreores:sword_mithril", {description = "Mithril Sword (Warrior)"})
+
