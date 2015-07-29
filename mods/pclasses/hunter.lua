@@ -30,3 +30,4 @@ pclasses.api.register_class("hunter", {
 
 pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn")
 pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn_improved")
+pclasses.api.reserve_item("hunter", "throwing:arrow_mithril")
