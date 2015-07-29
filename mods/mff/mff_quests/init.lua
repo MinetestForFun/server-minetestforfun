@@ -5,9 +5,9 @@ mff.QNOPREFIX = function(s) return s:sub(mff.QPREFIX:len()+1) end
 mff.quests.quests = {
 	still_testing_quests = {
 		title = "Stone digger",
-		description = "TEST QUEST!\nGet a mithril ingot at the end!",
+		description = "TEST QUEST!\nGet a Super Apple at the end!",
 		repeating = 60*60*24,
-		awards = {["moreores:mithril_ingot"] = 1},
+		awards = {["maptools:superapple"] = 1},
 		tasks = {
 			diggy = {
 				title = "Dig 99 stone",
@@ -30,9 +30,9 @@ mff.quests.quests = {
 	},
 	still_testing_quests2 = {
 		title = "Coal digger",
-		description = "TEST QUEST!\nGet a mithril ingot at the end!",
+		description = "TEST QUEST!\nGet a Diamond at the end!",
 		repeating = 60*60*24,
-		awards = {["moreores:mithril_ingot"] = 1},
+		awards = {["default:diamond"] = 1},
 		tasks = {
 			diggy = {
 				title = "Dig 19 coal",
