@@ -469,7 +469,7 @@ function hbhunger.handle_node_actions(pos, oldnode, player, ext)
 		local armorinv = arminv:get_list("armor")
 --		table.foreach(armorinv, print)
 		for index, stack in ipairs(armorinv) do
-			if stack:get_count() > 0 then
+			if stack:get_count() > 0 and (stack:get_name():split(":")[1] == "3d_armor" or stack:get_name():split(":")[1] == "shields") then
 				local itemname = stack:get_name():split(":")[2]:split("_")[1]
 				local itemmaterial = stack:get_name():split(":")[2]:split("_")[2]
 				exhaus = exhaus + (exhausting_items[itemname][itemmaterial] or 0)/10 -- 0 is admin armor
