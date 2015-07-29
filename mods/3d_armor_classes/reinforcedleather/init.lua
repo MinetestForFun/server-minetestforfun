@@ -1,7 +1,7 @@
 if ARMOR_MATERIALS.reinforcedleather then
 	-- Register helmets :
 	minetest.register_tool(":3d_armor:helmet_reinforcedleather", {
-		description = "Hunter's Reinforced Leather Helmet (Hunter)",
+		description = "Reinforced Leather Helmet (Hunter)",
 		inventory_image = "3d_armor_inv_helmet_reinforcedleather.png",
 		groups = {armor_head = 6, armor_heal = 0, armor_use = 40},
 		wear = 0,

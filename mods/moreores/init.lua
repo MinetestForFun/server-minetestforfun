@@ -286,7 +286,7 @@ local oredefs = {
 		tools = {}
 	},
 	mithril = {
-		description = "Mithril",
+		description = "Mithril (Warrior) ",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
 		oredef = {clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
 			clust_num_ores = moreores_mithril_ore_per_chunk,
@@ -320,7 +320,6 @@ local oredefs = {
 				damage_groups = {fleshy = 5},
 				full_punch_interval = 0.5,
 			},
-			description = "Mithril (Warrior)",
 			sword = {
 				groupcaps = {
 					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel= 1},
