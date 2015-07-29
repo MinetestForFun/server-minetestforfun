@@ -1,14 +1,4 @@
--- Convert admin stuff into wooden stuff
-minetest.register_alias("3d_armor:helmet_admin", "3d_armor:helmet_wood")
-minetest.register_alias("3d_armor:chestplate_admin", "3d_armor:chestplate_wood")
-minetest.register_alias("3d_armor:leggings_admin", "3d_armor:leggings_wood")
-minetest.register_alias("3d_armor:boots_admin", "3d_armor:boots_wood")
-minetest.register_alias("shields:shield_admin", "shields:shield_wood")
-
-minetest.register_alias("maptools:pick_admin", "default:pick_wood")
-minetest.register_alias("maptools:pick_admin_with_drops", "default:pick_wood")
-
--- Supprime les doublons avec Moreores du subgame carbone
+-- Removed duplicated items from the carbone subgame because of Moreores mod
 -- Stone
 minetest.register_alias("default:stone_with_tin", "default:stone")
 minetest.register_alias("default:stone_with_silver", "default:stone")
