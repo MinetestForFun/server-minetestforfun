@@ -69,11 +69,11 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 		if node.name ~= "air" and not string.find(node.name, "water") then
 			if node.name ~= "ignore" and minetest.get_item_group(node.name, "unbreakable") == 0
 				and not minetest.is_protected(self.lastpos, self.player)
-				and node.diggable ~= false then
+				and node.diggable ~= false
+				and areas:canInteract(pos, "") then
 				minetest.set_node(pos, {name = "air"})
 				minetest.add_item(self.lastpos, node.name)
 			end
-			minetest.add_item(self.lastpos, "throwing:arrow_dig")
 			self.object:remove()
 			return
 		end

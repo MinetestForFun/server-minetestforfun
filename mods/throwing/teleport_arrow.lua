@@ -54,7 +54,6 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 						local player = minetest.get_player_by_name(self.player)
 						if player then
 							player:setpos(pos)
-							player:get_inventory():add_item("main", ItemStack("default:stick 2"))
 						end
 					end
 					self.object:remove()
@@ -70,7 +69,6 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				local player = minetest.get_player_by_name(self.player)
 				if player then
 					player:setpos(self.lastpos)
-					player:get_inventory():add_item("main", ItemStack("default:stick 2"))
 				end
 			end
 			self.object:remove()
