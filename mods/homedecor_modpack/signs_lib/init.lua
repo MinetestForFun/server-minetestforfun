@@ -437,7 +437,7 @@ signs_lib.update_sign = function(pos, fields, owner)
 
 	local meta = minetest.get_meta(pos)
 	local stored_text = meta:get_string("text") or ""
-	current_keyword = mki_interact_keyword or current_keyword
+	current_keyword = rawget(_G, "mki_interact_keyword") or current_keyword
 
 	if fields then -- ...we're editing the sign.
 		if fields.text and string.find(dump(fields.text), "@KEYWORD") then
