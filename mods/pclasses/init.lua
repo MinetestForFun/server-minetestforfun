@@ -22,10 +22,10 @@ pclasses.conf.datafile = minetest.get_worldpath() .. "/pclasses"
 pclasses.classes = {}
 
 -- Data
-pclasses.datas = {}
-pclasses.datas.players = {}
-pclasses.datas.reserved_items = {}
-pclasses.datas.hud_ids = {} -- HUD maybe?
+pclasses.data = {}
+pclasses.data.players = {}
+pclasses.data.reserved_items = {}
+pclasses.data.hud_ids = {} -- HUD maybe?
 
 dofile(minetest.get_modpath("pclasses") .. "/api.lua")
 
@@ -39,10 +39,7 @@ if pclasses.conf.default_class then
 	dofile(minetest.get_modpath("pclasses") .. "/" .. pclasses.conf.default_class .. ".lua")
 	if pclasses.api.get_class_by_name(pclasses.conf.default_class) then
 		minetest.register_on_joinplayer(function(player)
-			if not pclasses.api.get_player_class(player:get_player_name()) then
-				pclasses.api.set_player_class(player:get_player_name(),
-					pclasses.conf.default_class)
-			end
+			pclasses.api.assign_class(player)
 		end)
 	end
 end

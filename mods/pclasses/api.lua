@@ -35,14 +35,14 @@ end
 
 -- Get single player
 function pclasses.api.get_player_class(pname)
-	return pclasses.datas.players[pname]
+	return pclasses.data.players[pname]
 end
 
 -- Get all players for a class
 function pclasses.api.get_class_players(cname)
 	local pnames = {}
 	if pclasses.api.get_class_by_name(cname) then
-		for p,c in ipairs(pclasses.datas.players) do
+		for p,c in ipairs(pclasses.data.players) do
 			if c == cname then
 				table.insert(pnames, table.getn(pnames)+1)
 			end
@@ -53,7 +53,13 @@ end
 -- Set single player
 function pclasses.api.set_player_class(pname, cname)
 	if pclasses.api.get_class_by_name(cname) then
-		pclasses.datas.players[pname] = cname
+		if pclasses.api.get_player_class(pname) ~= cname then
+			if pclasses.api.get_player_class(pname) and pclasses.classes[pclasses.api.get_player_class(pname)].on_unassigned then
+				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
+			end
+			pclasses.data.players[pname] = cname
+			pclasses.api.get_class_by_name(cname).on_assigned(pname)
+		end
 		return true
 	end
 	return false
@@ -84,39 +90,16 @@ function pclasses.api.assign_class(player)
 	local pname = player:get_player_name()
 
 	if pclasses.classes["admin"].determination(player) then
-		if pclasses.api.get_player_class(pname) ~= "admin" then
-			if pclasses.classes[pclasses.api.get_player_class(pname)].on_unassigned then
-				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
-			end
-			pclasses.api.set_player_class(pname, "admin")
-			pclasses.api.get_class_by_name("admin").on_assigned(pname)
-		end
+		pclasses.api.set_player_class(pname, "admin")
 
 	elseif pclasses.classes["hunter"].determination(player) then
-		if pclasses.api.get_player_class(pname) ~= "hunter" then
-			if pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned then
-				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
-			end
-			pclasses.api.set_player_class(pname, "hunter")
-			pclasses.api.get_class_by_name("hunter").on_assigned(pname)
-		end
+		pclasses.api.set_player_class(pname, "hunter")
 
 	elseif pclasses.api.get_class_by_name("warrior").determination(player) then
-		if pclasses.api.get_player_class(pname) ~= "warrior" then
-			if pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned then
-				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
-			end
-			pclasses.api.set_player_class(pname, "warrior")
-			pclasses.api.get_class_by_name("warrior").on_assigned(pname)
-		end
+		pclasses.api.set_player_class(pname, "warrior")
+
 	elseif pclasses.conf.default_class then
-		if pclasses.api.get_player_class(pname) ~= pclasses.conf.default_class then
-			if pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned then
-				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
-			end
-			pclasses.api.set_player_class(pname, pclasses.conf.default_class)
-			pclasses.api.get_class_by_name(pclasses.conf.default_class).on_assigned(pname)
-		end
+		pclasses.api.set_player_class(pname, pclasses.conf.default_class)
 	end
 end
 
@@ -132,8 +115,8 @@ end)
 -- Reserved items
 --
 function pclasses.api.reserve_item(cname, itemstring)
-	pclasses.datas.reserved_items[itemstring] = pclasses.datas.reserved_items or {}
-	table.insert(pclasses.datas.reserved_items[itemstring], 1, cname)
+	pclasses.data.reserved_items[itemstring] = pclasses.data.reserved_items[itemstring] or {}
+	table.insert(pclasses.data.reserved_items[itemstring], 1, cname)
 end
 
 minetest.register_globalstep(function(dtime)
@@ -142,9 +125,9 @@ minetest.register_globalstep(function(dtime)
 		local inv = minetest.get_inventory({type="player", name = name})
 		for i = 1, inv:get_size("main") do
 			local stack = inv:get_stack("main", i)
-			if pclasses.datas.reserved_items[stack:get_name()] then
+			if pclasses.data.reserved_items[stack:get_name()] then
 				local drop_stack = true
-				for _, class in pairs(pclasses.datas.reserved_items) do
+				for index, class in pairs(pclasses.data.reserved_items[stack:get_name()]) do
 					if pclasses.api.get_player_class(name) == class then
 						drop_stack = false
 					end
