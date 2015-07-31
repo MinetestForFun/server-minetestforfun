@@ -2,7 +2,8 @@
 
 areas.hud = {}
 
-minetest.register_globalstep(function(dtime)
+local function tick()
+	minetest.after(1, tick)
 	for _, player in pairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
 		local pos = vector.round(player:getpos())
@@ -38,7 +39,9 @@ minetest.register_globalstep(function(dtime)
 			hud.oldAreas = areaString
 		end
 	end
-end)
+end
+
+tick()
 
 minetest.register_on_leaveplayer(function(player)
 	areas.hud[player:get_player_name()] = nil
