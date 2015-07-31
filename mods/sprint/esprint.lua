@@ -17,6 +17,7 @@ sprint.set_maxstamina = function(pname, mstamina)
 		if sprint.players[pname].stamina > sprint.players[pname].maxStamina then
 			sprint.players[pname].stamina = sprint.players[pname].maxStamina
 		end
+		hb.change_hudbar(minetest.get_player_by_name(pname), "sprint", sprint.players[pname].stamina, sprint.players[pname].maxStamina)
 	end
 end
 
@@ -33,21 +34,19 @@ sprint.increase_maxstamina = function(pname, sincrease)
 	end
 end
 
-sprint.dicrease_maxstamina = function(pname, sdicrease)
+sprint.decrease_maxstamina = function(pname, sdicrease)
 	local stamina = sprint.get_maxstamina(pname)
 	if stamina then
 		sprint.set_maxstamina(pname, stamina - sdicrease)
 	end
 end
+-- When you write shit english, don't write shit code.
+-- Writing it in your native language would be less of a pain.
+--   - gravgun
+sprint.dicrease_maxstamina = sprint.decrease_maxstamina
 
 sprint.set_default_maxstamina = function(pname)
-	if sprint.players[pname] then
-		sprint.players[pname].maxStamina = SPRINT_STAMINA
-		if sprint.players[pname].stamina > sprint.players[pname].maxStamina then
-			sprint.players[pname].stamina = sprint.players[pname].maxStamina
-		end		
-		
-	end
+	sprint.set_maxstamina(pname, SPRINT_STAMINA)
 end
 
 
