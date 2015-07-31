@@ -106,9 +106,9 @@ function food.item_eat(amt)
 		return diet.item_eat(amt)
 	elseif minetest.get_modpath("hud") and hud and hud.item_eat then
 		return hud.item_eat(amt)
-	elseif minetest.get_modpath("hphunger") then
-		if hphunger then
-			return hphunger.item_eat(amt)
+	elseif minetest.get_modpath("hbhunger") then
+		if hbhunger then
+			return hbhunger.item_eat(amt)
 		else
 			return hunger.item_eat(amt)
 		end

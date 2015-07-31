@@ -296,6 +296,7 @@ end
 if minetest.get_modpath("farming") and farming.mod == "redo" then
    overwrite("farming:bread", 5)
    overwrite("farming:potato", 1)
+   overwrite("farming:orange", 4)
    overwrite("farming:baked_potato", 5)
    overwrite("farming:cucumber", 3)
    overwrite("farming:tomato", 3)
