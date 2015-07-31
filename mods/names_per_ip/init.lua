@@ -105,14 +105,12 @@ function ipnames.save_data()
 	io.close(file)
 end
 
-minetest.register_globalstep(function(t)
-	ipnames.save_time = ipnames.save_time + t
-	if ipnames.save_time < ipnames.save_interval then
-		return
-	end
-	ipnames.save_time = 0
+local function tick()
+	minetest.after(ipnames.save_interval, tick)
 	ipnames.save_data()
-end)
+end
+
+tick()
 
 minetest.register_on_shutdown(function() ipnames.save_data() end)
 
