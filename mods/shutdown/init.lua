@@ -28,14 +28,7 @@ end
 
 local timer = 0
 
-minetest.register_globalstep(function(dtime)
-	timer = timer+dtime
-	-- if timer < X then  = X seconde temps que s'affiche les message
-	-- Default 300 seconde = 5 minute
-	if timer < 60 then
-		return
-	end
-	timer = 0
+local function tick()
 	local heure = os.date("%H")
 	local minute = os.date("%M")
 	-- Warn every days
@@ -59,4 +52,7 @@ minetest.register_globalstep(function(dtime)
 	--		minetest.request_shutdown()
 		end
 	end
-end)
+	minetest.after(60, tick)
+end
+
+tick()
