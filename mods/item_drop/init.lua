@@ -18,7 +18,8 @@ local pickup_duration = 0.2
 -- Little treshold so the items aren't already on the player's middle
 local pickup_inv_duration = 1/pickup_duration-0.2
 
-minetest.register_globalstep(function(dtime)
+local function tick()
+	minetest.after(0.2, tick)
 	local tstamp = minetest.get_us_time()
 	for _,player in ipairs(minetest.get_connected_players()) do
 		if player:get_hp() > 0 or not enable_damage then
@@ -29,7 +30,7 @@ minetest.register_globalstep(function(dtime)
 			if inv then
 				for _,object in ipairs(minetest.get_objects_inside_radius(pos, scan_range)) do
 					local luaEnt = object:get_luaentity()
-					if and luaEnt and luaEnt.name == "__builtin:item" then
+					if luaEnt and luaEnt.name == "__builtin:item" then
 						local ticky = luaEnt.item_drop_min_tstamp
 						if ticky then
 							if tstamp >= ticky then
@@ -63,7 +64,7 @@ minetest.register_globalstep(function(dtime)
 									-- Mark the object as already picking up
 									luaEnt.item_drop_nopickup = true
 
-									minetest.after(pickup_duration, function(args)
+									minetest.after(pickup_duration, function()
 										local lua = luaEnt
 										if object == nil or lua == nil or lua.itemstring == nil then
 											return
@@ -83,7 +84,7 @@ minetest.register_globalstep(function(dtime)
 											})
 											luaEnt.item_drop_nopickup = nil
 										end
-									end, {player, object})
+									end)
 								end
 							end
 						end
@@ -92,7 +93,7 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 	end
-end)
+end
 
 function minetest.handle_node_drops(pos, drops, digger)
 	local inv
@@ -154,3 +155,5 @@ if minetest.setting_getbool("log_mods") then
 	minetest.log("action", "[item_drop] item_drop overriden: " .. tostring(mt_item_drop) .. " " .. tostring(minetest.item_drop))
 	minetest.log("action", "[item_drop] loaded.")
 end
+
+tick()
