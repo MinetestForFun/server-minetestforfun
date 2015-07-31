@@ -143,16 +143,12 @@ minetest.register_craft({
 	}
 })
 
+local function tick()
+	minetest.after(5, tick)
+	--print("Verifying...")
+	flm:verify()
+	flm:clean()
+end
 
-local count = 0
-minetest.register_globalstep(function(dtime)
-	count = count + dtime
-	elapsed_time = elapsed_time + dtime
-	if count > 5 then
-		count = 0
-		--print("Verifying...")
-		flm:verify()
-		flm:clean()
-	end
-end)
+tick()
 
