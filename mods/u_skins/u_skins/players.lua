@@ -10,15 +10,12 @@ u_skins.load_players = function()
 end
 u_skins.load_players()
 
-local ttime = 0
-minetest.register_globalstep(function(t)
-	ttime = ttime + t
-	if ttime < 120 then --every 2min'
-		return
-	end
-	ttime = 0
+local function tick()
+	minetest.after(120, tick) --every 2min'
 	u_skins.save()
-end)
+end
+
+minetest.after(120, tick)
 
 minetest.register_on_shutdown(function() u_skins.save() end)
 
