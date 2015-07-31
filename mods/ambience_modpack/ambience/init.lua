@@ -738,14 +738,8 @@ local stop_sound = function(still_playing, player)
 
 end
 
-local timer = 0
-minetest.register_globalstep(function(dtime)
-	timer = timer+dtime
-	if timer < 1 then
-		return
-	end
-	timer = 0
-
+local function tick()
+	minetest.after(1, tick)
 	for _,player in ipairs(minetest.get_connected_players()) do
 		ambiences = get_ambience(player)
 		stop_sound(ambiences, player)
@@ -773,8 +767,9 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 	end
-end)
+end
 
+tick()
 
 minetest.register_on_joinplayer(function(player)
 	local player_name = player:get_player_name()
