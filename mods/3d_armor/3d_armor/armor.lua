@@ -27,7 +27,7 @@ ARMOR_MATERIALS = {
 	reinforcedleather = "3d_armor:reinforcedleather",
 	-- Warrior armors
 	mithril = "moreores:mithril_ingot",
-	blackmithril = "3d_armor:blackmithril"
+	blackmithril = "3d_armor:blackmithril_ingot"
 	-- Wizard armors
 	--armor = "xxx",
 	--armor = "xxx",

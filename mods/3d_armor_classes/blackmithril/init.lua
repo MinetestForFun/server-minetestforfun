@@ -29,9 +29,15 @@ if ARMOR_MATERIALS.blackmithril then
 	})
 end
 
+minetest.register_craftitem(":3d_armor:blackmithril_ingot", {
+	description = "Black Mithril Ingot",
+	inventory_image = "3d_armor_blackmithril_ingot.png",
+	stack_max = 99,
+})
+
 -- Black Mithril craft recipe
 minetest.register_craft({
-	output = "3d_armor:blackmithril",
+	output = "3d_armor:blackmithril_ingot",
 	recipe = {
 		{"nether:white",		"mobs:dungeon_master_blood", 	"default:obsidian"	},
 		{"default:mithril_ingot", 	"mobs:dungeon_master_diamond",	"default:mithril_ingot"	},

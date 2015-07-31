@@ -29,6 +29,12 @@ if ARMOR_MATERIALS.reinforcedleather then
 	})
 end
 
+minetest.register_craftitem(":3d_armor:reinforcedleather", {
+	description = "Reinforced Leather Ingot",
+	inventory_image = "3d_armor_reinforcedleather.png",
+	stack_max = 99,
+})
+
 -- Reinforced Leather craft recipe
 minetest.register_craft({
 	output = "3d_armor:reinforcedleather",
