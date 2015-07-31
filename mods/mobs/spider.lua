@@ -92,8 +92,8 @@ minetest.register_node("mobs:spider_cobweb", {
 minetest.register_craft( {
 	output = "mobs:spider_cobweb",
 	recipe = {
-		{ "", 			"farming:string",	"farming:string"},
-		{ "farming:string", 	"", 			"farming:string"},
-		{ "",	 		"farming:string", 	"farming:string"}
+		{ "", 			"",	"farming:string"},
+		{ "farming:string", 	"", 		""	},
+		{ "",	 		"", 	"farming:string"}
 	},
 })
