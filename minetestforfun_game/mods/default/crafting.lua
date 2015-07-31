@@ -910,6 +910,13 @@ minetest.register_craft({
 	recipe = "default:clay",
 })
 
+--minetest.register_craft({
+--	type = "cooking",
+--	cooktime = 5,
+--	output = "default:coal_lump",
+--	recipe = "group:wood", need "group:tree_trunk"
+--})
+
 --
 -- Fuels
 --
