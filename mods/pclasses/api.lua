@@ -103,14 +103,6 @@ function pclasses.api.assign_class(player)
 	end
 end
 
-minetest.register_globalstep(function(dtime)
-	for id, ref in ipairs(minetest.get_connected_players()) do
-		pclasses.api.assign_class(ref)
-	end
-end)
-
-
-
 -------------------
 -- Reserved items
 --
@@ -118,9 +110,14 @@ function pclasses.api.reserve_item(cname, itemstring)
 	pclasses.data.reserved_items[itemstring] = pclasses.data.reserved_items[itemstring] or {}
 	table.insert(pclasses.data.reserved_items[itemstring], 1, cname)
 end
+-------------------------------------------
+-- Determination and reserved items tick --
+-------------------------------------------
 
-minetest.register_globalstep(function(dtime)
+local function tick()
 	for id, ref in ipairs(minetest.get_connected_players()) do
+		pclasses.api.assign_class(ref)
+
 		local name = ref:get_player_name()
 		local inv = minetest.get_inventory({type="player", name = name})
 		for i = 1, inv:get_size("main") do
@@ -148,4 +145,7 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 	end
-end)
+	minetest.after(2, tick)
+end
+
+tick()
