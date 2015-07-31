@@ -44,45 +44,46 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 
 	THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 		self.timer=self.timer+dtime
-		local pos = self.object:getpos()
-		local node = minetest.get_node(pos)
-
-		if self.timer>0.2 then
-			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
-			for k, obj in pairs(objs) do
-				if obj:get_luaentity() ~= nil then
-					if obj:get_luaentity().name ~= "throwing:arrow_" .. kind .. "_entity" and obj:get_luaentity().name ~= "__builtin:item" then
-						obj:punch(self.object, 1.0, {
-							full_punch_interval=1.0,
-							damage_groups={fleshy=eq},
-						}, nil)
-						if math.random() < toughness then
-							if math.random(0,100) % 2 == 0 then
-								minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
+		local newpos = self.object:getpos()
+		for _, pos in pairs(get_trajectoire(self, newpos)) do
+			local node = minetest.get_node(pos)
+			
+			if self.timer>0.2 then
+				local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
+				for k, obj in pairs(objs) do
+					if obj:get_luaentity() ~= nil then
+						if obj:get_luaentity().name ~= "throwing:arrow_" .. kind .. "_entity" and obj:get_luaentity().name ~= "__builtin:item" then
+							obj:punch(self.object, 1.0, {
+								full_punch_interval=1.0,
+								damage_groups={fleshy=eq},
+								}, nil)
+							if math.random() < toughness then
+								if math.random(0,100) % 2 == 0 then
+									minetest.add_item(pos, 'throwing:arrow_' .. kind)
+								end
+							else
+								minetest.add_item(pos, 'default:stick')
 							end
-						else
-							minetest.add_item(self.lastpos, 'default:stick')
+							self.object:remove()
+							return
 						end
-						self.object:remove()
-						return
 					end
 				end
 			end
-		end
 
-		if self.lastpos.x~=nil then
-			if node.name ~= "air" and not string.find(node.name, 'water') and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass')
+
+			if node.name ~= "air" and not string.find(node.name, 'water_') and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass')
 			and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
 				if math.random() < toughness then
-					minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
+					minetest.add_item(pos, 'throwing:arrow_' .. kind)
 				else
-					minetest.add_item(self.lastpos, 'default:stick')
+					minetest.add_item(pos, 'default:stick')
 				end
 				self.object:remove()
 				return
 			end
 		end
-		self.lastpos={x=pos.x, y=pos.y, z=pos.z}
+		self.lastpos={x=newpos.x, y=newpos.y, z=newpos.z}
 	end
 
 	minetest.register_entity("throwing:arrow_" .. kind .. "_entity", THROWING_ARROW_ENTITY)

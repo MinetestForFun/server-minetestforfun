@@ -40,45 +40,43 @@ local THROWING_ARROW_ENTITY={
 	player = "",
 }
 
+
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 	self.timer=self.timer+dtime
-	local pos = self.object:getpos()
-	local node = minetest.get_node(pos)
-
-	if self.timer>0.2 then
-		local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 1)
-		for k, obj in pairs(objs) do
-			if obj:get_luaentity() ~= nil then
-				if obj:get_luaentity().name ~= "throwing:arrow_dig_entity" and obj:get_luaentity().name ~= "__builtin:item" then
-					local damage = 1.5
-					obj:punch(self.object, 1.0, {
-						full_punch_interval=1.0,
-						damage_groups={fleshy=damage},
-					}, nil)
-					if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
-						minetest.add_item(self.lastpos, "throwing:arrow_dig")
+	local newpos = self.object:getpos()
+	for _, pos in pairs(get_trajectoire(self, newpos)) do
+		local node = minetest.get_node(pos)
+		if self.timer>0.2 then
+			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 1)
+			for k, obj in pairs(objs) do
+				if obj:get_luaentity() ~= nil then
+					if obj:get_luaentity().name ~= "throwing:arrow_dig_entity" and obj:get_luaentity().name ~= "__builtin:item" then
+						local damage = 1.5
+						obj:punch(self.object, 1.0, {
+							full_punch_interval=1.0,
+								damage_groups={fleshy=damage},
+						}, nil)
+						if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
+							minetest.add_item(pos, "throwing:arrow_dig")
+						end
+						self.object:remove()
+						return
 					end
-					self.object:remove()
-					return
 				end
 			end
 		end
-	end
-
-	if self.lastpos.x~=nil then
-		if node.name ~= "air" and not string.find(node.name, "water") then
+		if node.name ~= "air" and not string.find(node.name, "water_") then
 			if node.name ~= "ignore" and minetest.get_item_group(node.name, "unbreakable") == 0
-				and not minetest.is_protected(self.lastpos, self.player)
-				and node.diggable ~= false
-				and areas:canInteract(pos, "") then
+				and not minetest.is_protected(pos, self.player)
+				and node.diggable ~= false then
 				minetest.set_node(pos, {name = "air"})
-				minetest.add_item(self.lastpos, node.name)
+				minetest.add_item(pos, node.name)
 			end
 			self.object:remove()
 			return
 		end
 	end
-	self.lastpos={x=pos.x, y=pos.y, z=pos.z}
+	self.lastpos={x=newpos.x, y=newpos.y, z=newpos.z}
 end
 
 minetest.register_entity("throwing:arrow_dig_entity", THROWING_ARROW_ENTITY)
