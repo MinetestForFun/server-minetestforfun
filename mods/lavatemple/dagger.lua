@@ -1,6 +1,7 @@
 -- Based on compass mod by Echo
 
-minetest.register_globalstep(function(dtime)
+local function tick()
+	minetest.after(1, tick)
 	local players  = minetest.get_connected_players()
 	for i,player in ipairs(players) do
 		local target = lavatemple.mapgen_data.pos;
@@ -27,7 +28,9 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 	end
-end)
+end
+
+tick()
 
 local images = {
 	"lavatemple_dagger_0.png",
