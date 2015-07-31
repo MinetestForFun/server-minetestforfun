@@ -8,8 +8,6 @@ ipnames = {}
 ipnames.data = {}
 ipnames.tmp_data = {}
 ipnames.changes = false
-ipnames.save_interval = 120
-ipnames.save_time = 0
 ipnames.file = minetest.get_worldpath().."/ipnames.txt"
 
 ipnames.name_per_ip_limit = tonumber(minetest.setting_get("max_names_per_ip")) or 5
@@ -73,6 +71,7 @@ minetest.register_on_joinplayer(function(player)
 	ipnames.data[name] = ipnames.tmp_data[name]
 	ipnames.tmp_data[name] = nil
 	ipnames.changes = true
+	ipnames.save_data()
 end)
 
 function ipnames.load_data()
@@ -105,12 +104,6 @@ function ipnames.save_data()
 	io.close(file)
 end
 
-local function tick()
-	minetest.after(ipnames.save_interval, tick)
-	ipnames.save_data()
-end
-
-tick()
 
 minetest.register_on_shutdown(function() ipnames.save_data() end)
 
