@@ -19,7 +19,7 @@ local pickup_duration = 0.2
 local pickup_inv_duration = 1/pickup_duration-0.2
 
 local function tick()
-	minetest.after(0.2, tick)
+	minetest.after(0.25, tick)
 	local tstamp = minetest.get_us_time()
 	for _,player in ipairs(minetest.get_connected_players()) do
 		if player:get_hp() > 0 or not enable_damage then
