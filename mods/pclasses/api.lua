@@ -13,11 +13,8 @@ function pclasses.api.register_class(cname, def)
 		minetest.log("error", "[PClasses] Error registering class " ..
 			cname .. ". Reason : no definition table.")
 		return
-	elseif not def.determination then
-		minetest.log("error", "[PClasses] Error registreing class " ..
-			cname .. ". Reason : no determination function.")
-		return
 	end
+	pclasses.register_class_switch_orb(cname, def.orb_color)
 
 	pclasses.classes[cname] = def
 	return true
@@ -79,36 +76,12 @@ pclasses.api.util.does_wear_full_armor = function(pname, material, noshield)
 	return full_armor and (inv:contains_item("armor", "shields:shield_" .. material) or noshield)
 end
 
-----------------------------
--- Determination callback --
-----------------------------
-
-function pclasses.api.assign_class(player)
-	-- Look for every sign needed to deduct a player's class
-	-- Starting from the most important class to the less one
-
-	local pname = player:get_player_name()
-
-	if pclasses.classes["admin"].determination(player) then
-		pclasses.api.set_player_class(pname, "admin")
-
-	elseif pclasses.classes["hunter"].determination(player) then
-		pclasses.api.set_player_class(pname, "hunter")
-
-	elseif pclasses.api.get_class_by_name("warrior").determination(player) then
-		pclasses.api.set_player_class(pname, "warrior")
-
-	elseif pclasses.conf.default_class then
-		pclasses.api.set_player_class(pname, pclasses.conf.default_class)
-	end
-end
-
 -------------------
 -- Reserved items
 --
 function pclasses.api.reserve_item(cname, itemstring)
 	pclasses.data.reserved_items[itemstring] = pclasses.data.reserved_items[itemstring] or {}
-	table.insert(pclasses.data.reserved_items[itemstring], 1, cname)
+	table.insert(pclasses.data.reserved_items[itemstring], cname)
 end
 -------------------------------------------
 -- Determination and reserved items tick --
@@ -116,8 +89,6 @@ end
 
 local function tick()
 	for id, ref in ipairs(minetest.get_connected_players()) do
-		pclasses.api.assign_class(ref)
-
 		local name = ref:get_player_name()
 		local inv = minetest.get_inventory({type="player", name = name})
 		for i = 1, inv:get_size("main") do
