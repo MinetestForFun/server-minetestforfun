@@ -26,63 +26,65 @@ minetest.register_globalstep(function(dtime)
 			pos.y = pos.y + 0.9
 			local inv = player:get_inventory()
 
-			for _,object in ipairs(minetest.get_objects_inside_radius(pos, scan_range)) do
-				local luaEnt = object:get_luaentity()
-				if not object:is_player() and luaEnt and luaEnt.name == "__builtin:item" then
-					local ticky = luaEnt.item_drop_min_tstamp
-					if ticky then
-						if tstamp >= ticky then
-							luaEnt.item_drop_min_tstamp = nil
-						end
-					elseif not luaEnt.item_drop_nopickup then
-						-- Point-line distance computation, heavily simplified since the wanted line,
-						-- being the player, is completely upright (no variation on X or Z)
-						local pos2 = object:getpos()
-						-- No sqrt, avoid useless computation
-						-- (just take the radius, compare it to the square of what you want)
-						-- Pos order doesn't really matter, we're squaring the result
-						-- (but don't change it, we use the cached values afterwards)
-						local dX = pos.x-pos2.x
-						local dZ = pos.z-pos2.z
-						local playerDistance = dX*dX+dZ*dZ
-						if playerDistance <= pickup_range_squared then
-							local itemStack = ItemStack(luaEnt.itemstring)
-							if inv and inv:room_for_item("main", itemStack) then
-								local pos1 = pos
-								pos1.y = pos1.y-player_half_height+0.5
-								local vec = {x=dX, y=pos1.y-pos2.y, z=dZ}
-								vec.x = vec.x*pickup_inv_duration
-								vec.y = vec.y*pickup_inv_duration
-								vec.z = vec.z*pickup_inv_duration
-								object:setvelocity(vec)
-								luaEnt.physical_state = false
-								luaEnt.object:set_properties({
-									physical = false
-								})
-								-- Mark the object as already picking up
-								luaEnt.item_drop_nopickup = true
+			if inv then
+				for _,object in ipairs(minetest.get_objects_inside_radius(pos, scan_range)) do
+					local luaEnt = object:get_luaentity()
+					if and luaEnt and luaEnt.name == "__builtin:item" then
+						local ticky = luaEnt.item_drop_min_tstamp
+						if ticky then
+							if tstamp >= ticky then
+								luaEnt.item_drop_min_tstamp = nil
+							end
+						elseif not luaEnt.item_drop_nopickup then
+							-- Point-line distance computation, heavily simplified since the wanted line,
+							-- being the player, is completely upright (no variation on X or Z)
+							local pos2 = object:getpos()
+							-- No sqrt, avoid useless computation
+							-- (just take the radius, compare it to the square of what you want)
+							-- Pos order doesn't really matter, we're squaring the result
+							-- (but don't change it, we use the cached values afterwards)
+							local dX = pos.x-pos2.x
+							local dZ = pos.z-pos2.z
+							local playerDistance = dX*dX+dZ*dZ
+							if playerDistance <= pickup_range_squared then
+								local itemStack = ItemStack(luaEnt.itemstring)
+								if inv:room_for_item("main", itemStack) then
+									local pos1 = pos
+									pos1.y = pos1.y-player_half_height+0.5
+									local vec = {x=dX, y=pos1.y-pos2.y, z=dZ}
+									vec.x = vec.x*pickup_inv_duration
+									vec.y = vec.y*pickup_inv_duration
+									vec.z = vec.z*pickup_inv_duration
+									object:setvelocity(vec)
+									luaEnt.physical_state = false
+									luaEnt.object:set_properties({
+										physical = false
+									})
+									-- Mark the object as already picking up
+									luaEnt.item_drop_nopickup = true
 
-								minetest.after(pickup_duration, function(args)
-									local lua = luaEnt
-									if object == nil or lua == nil or lua.itemstring == nil then
-										return
-									end
-									if inv:room_for_item("main", itemStack) then
-										inv:add_item("main", itemStack)
-										if luaEnt.itemstring ~= "" then
-											minetest.sound_play("item_drop_pickup", {pos = pos, gain = 0.3, max_hear_distance = 8})
+									minetest.after(pickup_duration, function(args)
+										local lua = luaEnt
+										if object == nil or lua == nil or lua.itemstring == nil then
+											return
 										end
-										luaEnt.itemstring = ""
-										object:remove()
-									else
-										object:setvelocity({x = 0,y = 0,z = 0})
-										luaEnt.physical_state = true
-										luaEnt.object:set_properties({
-											physical = true
-										})
-										luaEnt.item_drop_nopickup = nil
-									end
-								end, {player, object})
+										if inv:room_for_item("main", itemStack) then
+											inv:add_item("main", itemStack)
+											if luaEnt.itemstring ~= "" then
+												minetest.sound_play("item_drop_pickup", {pos = pos, gain = 0.3, max_hear_distance = 8})
+											end
+											luaEnt.itemstring = ""
+											object:remove()
+										else
+											object:setvelocity({x = 0,y = 0,z = 0})
+											luaEnt.physical_state = true
+											luaEnt.object:set_properties({
+												physical = true
+											})
+											luaEnt.item_drop_nopickup = nil
+										end
+									end, {player, object})
+								end
 							end
 						end
 					end
