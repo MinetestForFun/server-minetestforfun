@@ -53,6 +53,8 @@ function pclasses.api.vacuum_graveyard(player)
 	local grave_inv = minetest.get_inventory({type = "detached", name = pname .. "_graveyard"})
 	local player_inv = minetest.get_inventory({type = "player", name = pname})
 
+	if not grave_inv then return end
+
 	for i = 1,7*8 do
 		local stack = grave_inv:get_stack("graveyard", i)
 		if pclasses.api.util.can_have_item(pname, stack:get_name()) then

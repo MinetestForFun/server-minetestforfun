@@ -95,7 +95,7 @@ end
 
 minetest.register_privilege("class_shifter", "Able to shift between classes")
 
-minetest.register_chatcommand("shift_class", {
+minetest.register_chatcommand("switch_class", {
 	args = "<class>",
 	privs = {class_shifter = true},
 	func = function(name, param)
@@ -125,13 +125,13 @@ local function tick()
 			if pclasses.data.reserved_items[stack:get_name()] then
 				if not pclasses.api.util.can_have_item(name, stack:get_name()) then
 					inv:set_stack("main", i, "")
-					local grave_inv = minetest.get_inventory({type = "detached", name = name .. "_graveyard"})
-					if grave_inv:room_for_item("graveyard", stack) then
+					local grave_inv = pclasses.api.create_graveyard_inventory(ref)
+					if grave_inv and grave_inv:room_for_item("graveyard", stack) then
 						grave_inv:add_item("graveyard", stack)
 						inv:add_item("graveyard", stack)
 						-- ^ Because add_item doesn't trigger on_put, nonsense
 					else
-						minetest.add_item(pos, stack)
+						minetest.add_item(ref:getpos(), stack)
 					end
 				end
 			end
