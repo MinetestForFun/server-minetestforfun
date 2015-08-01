@@ -8,6 +8,9 @@ Génération de minerais de plus en plus intéressante entre -2048 -> -19600 (fi
 Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debugs :))
 Venez visiter notre nouveau site "minetestforfun.com" !
 
+---01/08/2015--- (Remerciements : crabman77/crabman, gravgun, LeMagnesium/Mg)
+/!\ Configuration serveur : Ajout de 3Go de RAM, 10Go de HDD /!\
+
 ---30/07/2015--- (Remerciements : crabman77/crabman, gravgun, LeMagnesium/Mg, Cyberpangolin, Obani)
 MAJ de "quests" (récompense des quêtes revu à la baisse selon la difficultée d'accomplissement, la phase "BETA test" étant réussit, on réduit les récompenses surdimentionnés)
 MAJ de "random_messages" (ajouts de quelques messages)
