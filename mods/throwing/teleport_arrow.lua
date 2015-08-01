@@ -31,7 +31,6 @@ minetest.register_node("throwing:arrow_teleport_box", {
 
 local THROWING_ARROW_ENTITY={
 	physical = false,
-	timer=0,
 	visual = "wielditem",
 	visual_size = {x=0.1, y=0.1},
 	textures = {"throwing:arrow_teleport_box"},
@@ -41,41 +40,38 @@ local THROWING_ARROW_ENTITY={
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
-	self.timer=self.timer+dtime
-	local pos = self.object:getpos()
-	local node = minetest.get_node(pos)
-
-	if self.timer>0.2 then
-		local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
-		for k, obj in pairs(objs) do
-			if obj:get_luaentity() ~= nil then
-				if obj:get_luaentity().name ~= "throwing:arrow_teleport_entity" and obj:get_luaentity().name ~= "__builtin:item" then
+	local newpos = self.object:getpos()
+	if self.lastpos.x ~= nil then
+		for _, pos in pairs(throwing_get_trajectoire(self, newpos)) do
+			local node = minetest.get_node(pos)
+			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
+			for k, obj in pairs(objs) do
+				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
 					if self.player ~= "" then
 						local player = minetest.get_player_by_name(self.player)
 						if player then
-							player:setpos(pos)
+							player:setpos(self.lastpos)
 						end
 					end
 					self.object:remove()
 					return
 				end
 			end
-		end
-	end
 
-	if self.lastpos.x~= nil then
-		if node.name ~= "air" then
-			if self.player ~= "" then
-				local player = minetest.get_player_by_name(self.player)
-				if player then
-					player:setpos(self.lastpos)
+			if node.name ~= "air" then
+				if self.player ~= "" then
+					local player = minetest.get_player_by_name(self.player)
+					if player then
+						player:setpos(self.lastpos)
+					end
 				end
+				self.object:remove()
+				return
 			end
-			self.object:remove()
-			return
+			self.lastpos={x=pos.x, y=pos.y, z=pos.z}
 		end
 	end
-	self.lastpos={x=pos.x, y=pos.y, z=pos.z}
+	self.lastpos={x=newpos.x, y=newpos.y, z=newpos.z}
 end
 
 minetest.register_entity("throwing:arrow_teleport_entity", THROWING_ARROW_ENTITY)

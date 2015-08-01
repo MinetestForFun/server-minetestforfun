@@ -75,16 +75,15 @@ local function throwing_register_fireworks(color, desc)
 
 	THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 		self.timer=self.timer+dtime
-		local pos = self.object:getpos()
-		local node = minetest.get_node(pos)
+		local newpos = self.object:getpos()
 		if self.timer < 0.07 then
-			minetest.sound_play("throwing_firework_launch", {pos=pos, gain=0.8, max_hear_distance=2*64})
+			minetest.sound_play("throwing_firework_launch", {pos=newpos, gain=0.8, max_hear_distance=2*64})
 		end
 		minetest.add_particlespawner({
 			amount = 16,
 			time = 0.1,
-			minpos = pos,
-			maxpos = pos,
+			minpos = newpos,
+			maxpos = newpos,
 			minvel = {x=-5, y=-5, z=-5},
 			maxvel = {x=5,  y=5,  z=5},
 			minacc = vector.new(),
@@ -95,11 +94,11 @@ local function throwing_register_fireworks(color, desc)
 			maxsize = 1,
 			texture = "throwing_sparkle.png",
 		})
-		if self.timer>0.2 then
-			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
-			for k, obj in pairs(objs) do
-				if obj:get_luaentity() ~= nil then
-					if obj:get_luaentity().name ~= "throwing:arrow_fireworks_" .. color .. "_entity" and obj:get_luaentity().name ~= "__builtin:item" then
+		if self.lastpos.x ~= nil then
+			for _, pos in pairs(throwing_get_trajectoire(self, newpos)) do
+				local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
+				for k, obj in pairs(objs) do
+					if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
 						local damage = 2
 						obj:punch(self.object, 1.0, {
 							full_punch_interval=1.0,
@@ -111,25 +110,20 @@ local function throwing_register_fireworks(color, desc)
 					end
 				end
 			end
-		end
-		if self.timer > 2 then
-			boom(self.lastpos)
-			self.object:remove()
-			return
-		end
-		if self.lastpos.x~=nil then
-			if node.name ~= "air" and node.name ~= "throwing:firework_trail" then
+			local node = minetest.get_node(newpos)
+			if self.timer > 2 or node.name ~= "air" and node.name ~= "throwing:firework_trail" then
 				boom(self.lastpos)
 				self.object:remove()
 				return
 			end
+			if node.name == 'air' then
+				minetest.add_node(newpos, {name="throwing:firework_trail"})
+				minetest.get_node_timer(newpos):start(0.1)
+			end
 		end
-		if node.name == 'air' then
-			minetest.add_node(pos, {name="throwing:firework_trail"})
-			minetest.get_node_timer(pos):start(0.1)
-		end
-		self.lastpos={x=pos.x, y=pos.y, z=pos.z}
+		self.lastpos={x=newpos.x, y=newpos.y, z=newpos.z}
 	end
+
 
 	minetest.register_entity("throwing:arrow_fireworks_" .. color .. "_entity", THROWING_ARROW_ENTITY)
 

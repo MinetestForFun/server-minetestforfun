@@ -244,26 +244,24 @@ end
 -- Back to the arrow
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
-	self.timer=self.timer+dtime
-	local pos = self.object:getpos()
-	local node = minetest.get_node(pos)
-
-	if self.timer>0.2 then
-		local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
-		for k, obj in pairs(objs) do
-			if obj:get_luaentity() ~= nil then
-				if obj:get_luaentity().name ~= "throwing:arrow_tnt_entity" and obj:get_luaentity().name ~= "__builtin:item" then
-					self.object:remove()
+	local newpos = self.object:getpos()
+	if self.lastpos.x ~= nil then
+		for _, pos in pairs(throwing_get_trajectoire(self, newpos)) do
+			local node = minetest.get_node(pos)
+			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
+			for k, obj in pairs(objs) do
+				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
 					boom(pos)
+					self.object:remove()
+					return
 				end
 			end
-		end
-	end
 
-	if self.lastpos.x~=nil then
-		if node.name ~= "air" then
-			self.object:remove()
-			boom(self.lastpos)
+			if node.name ~= "air" then
+				boom(pos)
+				self.object:remove()
+				return
+			end
 		end
 	end
 	self.lastpos={x=pos.x, y=pos.y, z=pos.z}

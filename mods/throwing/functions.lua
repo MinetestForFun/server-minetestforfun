@@ -16,8 +16,17 @@ minetest.register_on_leaveplayer(function(player)
 	players[playerName] = nil
 end)
 
+function throwing_is_player(name, obj)
+	return (obj:is_player() and obj:get_player_name() ~= name)
+end
 
-function get_trajectoire(self, newpos)
+function throwing_is_entity(obj)
+	return (obj:get_luaentity() ~= nil
+			and not string.find(obj:get_luaentity().name, "throwing:arrow_")
+			and obj:get_luaentity().name ~= "__builtin:item"
+			and obj:get_luaentity().name ~= "gauges:hp_bar")
+end
+function throwing_get_trajectoire(self, newpos)
 	if self.lastpos.x == nil then
 		return {newpos}
 	end
@@ -55,6 +64,7 @@ function throwing_shoot_arrow (itemstack, player, stiffness, is_cross)
 		obj:get_luaentity().player = player:get_player_name()
 		obj:get_luaentity().inventory = player:get_inventory()
 		obj:get_luaentity().stack = player:get_inventory():get_stack("main", player:get_wield_index()-1)
+		obj:get_luaentity().lastpos = {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}
 	end
 	return true
 end

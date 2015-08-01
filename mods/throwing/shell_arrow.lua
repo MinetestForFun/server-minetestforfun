@@ -71,15 +71,13 @@ end
 -- Back to the arrow
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
-	self.timer=self.timer+dtime
-	local pos = self.object:getpos()
-	local node = minetest.get_node(pos)
-
-	if self.timer>0.2 then
-		local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
-		for k, obj in pairs(objs) do
-			if obj:get_luaentity() ~= nil then
-				if obj:get_luaentity().name ~= "throwing:arrow_shell_entity" and obj:get_luaentity().name ~= "__builtin:item" then
+	local newpos = self.object:getpos()
+	if self.lastpos.x ~= nil then
+		for _, pos in pairs(throwing_get_trajectoire(self, newpos)) do
+			local node = minetest.get_node(pos)
+			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
+			for k, obj in pairs(objs) do
+				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
 					local speed = vector.length(self.object:getvelocity())
 					local damage = ((speed + 5)^1.2)/10 + 12
 					obj:punch(self.object, 1.0, {
@@ -91,17 +89,16 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 					return
 				end
 			end
-		end
-	end
 
-	if self.lastpos.x~=nil then
-		if node.name ~= "air" and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
-			boom(self.lastpos)
-			self.object:remove()
-			return
+			if node.name ~= "air" and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
+				boom(self.lastpos)
+				self.object:remove()
+				return
+			end
+			self.lastpos={x=pos.x, y=pos.y, z=pos.z}
 		end
 	end
-	self.lastpos={x=pos.x, y=pos.y, z=pos.z}
+	self.lastpos={x=newpos.x, y=newpos.y, z=newpos.z}
 end
 
 minetest.register_entity("throwing:arrow_shell_entity", THROWING_ARROW_ENTITY)

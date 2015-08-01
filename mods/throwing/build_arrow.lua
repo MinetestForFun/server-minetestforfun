@@ -31,7 +31,6 @@ minetest.register_node("throwing:arrow_build_box", {
 
 local THROWING_ARROW_ENTITY={
 	physical = false,
-	timer=0,
 	visual = "wielditem",
 	visual_size = {x=0.1, y=0.1},
 	textures = {"throwing:arrow_build_box"},
@@ -44,51 +43,47 @@ local THROWING_ARROW_ENTITY={
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
-	self.timer=self.timer+dtime
 	local newpos = self.object:getpos()
-	for _, pos in pairs(get_trajectoire(self, newpos)) do
-		local node = minetest.get_node(pos)
-		if self.timer>0.2 then
+	if self.lastpos.x ~= nil then
+		for _, pos in pairs(throwing_get_trajectoire(self, newpos)) do
+			local node = minetest.get_node(pos)
 			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 1)
 			for k, obj in pairs(objs) do
-				if obj:get_luaentity() ~= nil then
-					if obj:get_luaentity().name ~= "throwing:arrow_build_entity" and obj:get_luaentity().name ~= "__builtin:item" then
-						if self.inventory and self.stack and not minetest.setting_getbool("creative_mode") then
-							self.inventory:remove_item("main", {name=self.stack:get_name()})
-						end
-						if self.stack then
-							minetest.add_item(pos, {name=self.stack:get_name()})
-						end
-						local toughness = 0.95
-						if math.random() < toughness then
-							minetest.add_item(pos, 'throwing:arrow_build')
-						else
-							minetest.add_item(pos, 'default:stick')
-						end
-						self.object:remove()
-						return
+				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
+					if self.inventory and self.stack and not minetest.setting_getbool("creative_mode") then
+						self.inventory:remove_item("main", {name=self.stack:get_name()})
 					end
+					if self.stack then
+						minetest.add_item(pos, {name=self.stack:get_name()})
+					end
+					local toughness = 0.95
+					if math.random() < toughness then
+						minetest.add_item(pos, 'throwing:arrow_build')
+					else
+						minetest.add_item(pos, 'default:stick')
+					end
+					self.object:remove()
+					return
 				end
 			end
-		end
-		if self.lastpos.x~= nil then
+
 			if node.name ~= "air" then
-				if self.inventory and self.stack and not minetest.setting_getbool("creative_mode") then
-					self.inventory:remove_item("main", {name=self.stack:get_name()})
-				end
-				if self.stack then
-					if not minetest.is_protected(self.lastpos, self.player) and not string.find(node.name, "water_") and not string.find(node.name, "lava") and not string.find(node.name, "torch") and self.stack:get_definition().type == "node" and self.stack:get_name() ~= "default:torch" then
+				if node.name ~= "ignore" and self.inventory and self.stack then
+					if not minetest.is_protected(self.lastpos, "") and not string.find(node.name, "water_") and not string.find(node.name, "lava") and not string.find(node.name, "torch") and self.stack:get_definition().type == "node" and self.stack:get_name() ~= "default:torch" then
 						minetest.place_node(self.lastpos, {name=self.stack:get_name()})
 					else
 						minetest.add_item(self.lastpos, {name=self.stack:get_name()})
+					end
+					if not minetest.setting_getbool("creative_mode") then
+						self.inventory:remove_item("main", {name=self.stack:get_name()})
 					end
 				end
 				minetest.add_item(self.lastpos, 'default:shovel_steel')
 				self.object:remove()
 				return
 			end
+			self.lastpos={x=pos.x, y=pos.y, z=pos.z}
 		end
-		self.lastpos={x=pos.x, y=pos.y, z=pos.z}
 	end
 	self.lastpos={x=newpos.x, y=newpos.y, z=newpos.z}
 end
