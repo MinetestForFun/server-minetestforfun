@@ -56,6 +56,7 @@ function pclasses.api.set_player_class(pname, cname)
 			end
 			pclasses.data.players[pname] = cname
 			pclasses.api.get_class_by_name(cname).on_assigned(pname)
+			pclasses.api.vacuum_graveyard(minetest.get_player_by_name(pname))
 		end
 		return true
 	end
@@ -75,6 +76,32 @@ pclasses.api.util.does_wear_full_armor = function(pname, material, noshield)
 	end
 	return full_armor and (inv:contains_item("armor", "shields:shield_" .. material) or noshield)
 end
+
+function pclasses.api.util.can_have_item(pname, itemname)
+	if not pclasses.data.reserved_items[itemname] then
+		return true
+	end
+	for index, class in pairs(pclasses.data.reserved_items[itemname]) do
+		if pclasses.api.get_player_class(pname) == class then
+			return true
+		end
+	end
+	return false
+end
+
+-- TEMPORARY CLASS SHIFT SYSTEM
+-- Used to test on local servers
+--
+
+minetest.register_privilege("class_shifter", "Able to shift between classes")
+
+minetest.register_chatcommand("shift_class", {
+	args = "<class>",
+	privs = {class_shifter = true},
+	func = function(name, param)
+		pclasses.api.set_player_class(name, param)
+	end
+})
 
 -------------------
 -- Reserved items
@@ -96,13 +123,7 @@ local function tick()
 		for i = 1, inv:get_size("main") do
 			local stack = inv:get_stack("main", i)
 			if pclasses.data.reserved_items[stack:get_name()] then
-				local drop_stack = true
-				for index, class in pairs(pclasses.data.reserved_items[stack:get_name()]) do
-					if pclasses.api.get_player_class(name) == class then
-						drop_stack = false
-					end
-				end
-				if drop_stack then
+				if not pclasses.api.util.can_have_item(name, stack:get_name()) then
 					inv:set_stack("main", i, "")
 					local grave_inv = minetest.get_inventory({type = "detached", name = name .. "_graveyard"})
 					if grave_inv:room_for_item("graveyard", stack) then

@@ -48,3 +48,22 @@ unified_inventory.register_page("graveyard", {
 	end
 })
 
+function pclasses.api.vacuum_graveyard(player)
+	local pname = player:get_player_name()
+	local grave_inv = minetest.get_inventory({type = "detached", name = pname .. "_graveyard"})
+	local player_inv = minetest.get_inventory({type = "player", name = pname})
+
+	for i = 1,7*8 do
+		local stack = grave_inv:get_stack("graveyard", i)
+		if pclasses.api.util.can_have_item(pname, stack:get_name()) then
+			grave_inv:set_stack("graveyard", i, nil)
+			player_inv:set_stack("graveyard", i, nil)
+			if player_inv:room_for_item("main", stack) then
+				player_inv:add_item("main", stack)
+			else
+				minetest.add_item(pos, stack)
+			end
+		end
+	end
+end
+
