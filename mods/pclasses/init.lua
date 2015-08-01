@@ -17,7 +17,7 @@ pclasses.conf = {}
 pclasses.conf.default_class = "adventurer"
 pclasses.conf.save_interval = 3 * 60
 pclasses.conf.datafile = minetest.get_worldpath() .. "/pclasses"
-
+pclasses.conf.gravefile = minetest.get_worldpath() .. "/graveyards"
 -- Classes
 pclasses.classes = {}
 
@@ -28,15 +28,18 @@ pclasses.data.reserved_items = {}
 pclasses.data.hud_ids = {} -- HUD maybe?
 
 dofile(minetest.get_modpath("pclasses") .. "/api.lua")
+dofile(minetest.get_modpath("pclasses") .. "/inventory.lua")
 dofile(minetest.get_modpath("pclasses") .. "/nodes.lua")
 
 function pclasses.data.load()
-	local file = io.open(minetest.get_worldpath().."/quests", "r")
+	local file = io.open(pclasses.conf.datafile, "r")
 	if file then
 		local loaded = minetest.deserialize(file:read("*all"))
 		file:close()
-		pclasses.data.players = loaded.players or pclasses.data.players
-		minetest.log("action", "[PClasses] Loaded data")
+		if loaded then
+			pclasses.data.players = loaded.players or pclasses.data.players
+			minetest.log("action", "[PClasses] Loaded data")
+		end
 	end
 end
 
@@ -54,8 +57,8 @@ function pclasses.data.save()
 end
 
 local function data_save_loop()
-	minetest.after(save_interval, data_save_loop)
 	pclasses.data.save()
+	minetest.after(pclasses.conf.save_interval, data_save_loop)
 end
 
 pclasses.data.load()
@@ -66,12 +69,18 @@ pclasses.data.load()
 
 if pclasses.conf.default_class then
 	dofile(minetest.get_modpath("pclasses") .. "/" .. pclasses.conf.default_class .. ".lua")
-	if pclasses.api.get_class_by_name(pclasses.conf.default_class) then
-		minetest.register_on_joinplayer(function(player)
-			local pname = player:get_player_name()
-			if pclasses.api.get_player_class(pname) == nil then
-				pclasses.api.set_player_class(pname, pclasses.conf.default_class)
-			end
-		end)
-	end
 end
+
+minetest.register_on_joinplayer(function(player)
+	local pname = player:get_player_name()
+	if pclasses.api.get_class_by_name(pclasses.conf.default_class) and pclasses.api.get_player_class(pname) == nil then
+		 pclasses.api.set_player_class(pname, pclasses.conf.default_class)
+	end
+	pclasses.api.create_graveyard_inventory(player)
+end)
+
+minetest.register_on_shutdown(function()
+	pclasses.data.save()
+end)
+
+data_save_loop()

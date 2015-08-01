@@ -83,6 +83,8 @@ function pclasses.api.reserve_item(cname, itemstring)
 	pclasses.data.reserved_items[itemstring] = pclasses.data.reserved_items[itemstring] or {}
 	table.insert(pclasses.data.reserved_items[itemstring], cname)
 end
+
+
 -------------------------------------------
 -- Determination and reserved items tick --
 -------------------------------------------
@@ -102,16 +104,14 @@ local function tick()
 				end
 				if drop_stack then
 					inv:set_stack("main", i, "")
-					local pos = ref:getpos()
-					pos.y = pos.y+2
-					pos.x = pos.x + math.random(-6,6)
-					pos.z = pos.z + math.random(-6,6)
-					minetest.after(1, function()
-						local item = minetest.add_item(pos, stack)
-						if item then
-							item:setvelocity({x = math.random(-5,5), y = math.random(1,7), z = math.random(-5,5)})
-						end
-					end)
+					local grave_inv = minetest.get_inventory({type = "detached", name = name .. "_graveyard"})
+					if grave_inv:room_for_item("graveyard", stack) then
+						grave_inv:add_item("graveyard", stack)
+						inv:add_item("graveyard", stack)
+						-- ^ Because add_item doesn't trigger on_put, nonsense
+					else
+						minetest.add_item(pos, stack)
+					end
 				end
 			end
 		end
