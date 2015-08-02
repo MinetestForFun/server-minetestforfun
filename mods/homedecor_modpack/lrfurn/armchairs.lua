@@ -62,15 +62,6 @@ for i in ipairs(armchairs_list) do
 		}
 	})
 
-	minetest.register_craft({
-		output = "lrfurn:armchair_"..colour,
-		recipe = {
-			{"wool:"..colour, "", "", },
-			{"group:wood_slab", "", "", },
-			{"group:stick", "", "", }
-		}
-	})
-
 end
 
 if minetest.setting_get("log_mods") then
