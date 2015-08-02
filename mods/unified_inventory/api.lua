@@ -19,7 +19,20 @@ minetest.after(0.01, function()
 				local recipes = minetest.get_all_craft_recipes(name)
 				if recipes then
 					for _, recipe in ipairs(recipes) do
-						unified_inventory.register_craft(recipe)
+
+						local unknowns
+
+						for _,chk in pairs(recipe.items) do
+							local groupchk = string.find(chk, "group:")
+							if (not groupchk and not minetest.registered_items[chk])
+							  or (groupchk and not unified_inventory.get_group_item(string.gsub(chk, "group:", "")).item) then
+								unknowns = true
+							end
+						end
+
+						if not unknowns then
+							unified_inventory.register_craft(recipe)
+						end
 					end
 				end
 			end

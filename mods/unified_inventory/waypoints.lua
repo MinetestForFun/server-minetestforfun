@@ -1,9 +1,4 @@
-local S
-if intllib then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local S = unified_inventory.gettext
 
 local hud_colors = {
 	{"#FFFFFF", 0xFFFFFF, S("White")},

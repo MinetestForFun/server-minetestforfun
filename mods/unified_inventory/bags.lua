@@ -3,13 +3,7 @@
 -- Copyright (c) 2012 cornernote, Brett O'Donnell <cornernote@gmail.com>
 -- License: GPLv3
 
-local S
-if (minetest.get_modpath("intllib")) then
-	dofile(minetest.get_modpath("intllib").."/intllib.lua")
-	S = intllib.Getter(minetest.get_current_modname())
-else
-	S = function(s) return s end
-end
+local S = unified_inventory.gettext
 
 unified_inventory.register_page("bags", {
 	get_formspec = function(player)

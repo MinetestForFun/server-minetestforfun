@@ -1,10 +1,4 @@
-local S
-if (minetest.get_modpath("intllib")) then
-	dofile(minetest.get_modpath("intllib").."/intllib.lua")
-	S = intllib.Getter(minetest.get_current_modname())
-else
-	S = function(s) return s end
-end
+local S = unified_inventory.gettext
 
 -- This pair of encoding functions is used where variable text must go in
 -- button names, where the text might contain formspec metacharacters.
@@ -63,6 +57,7 @@ function unified_inventory.get_formspec(player, page)
 				button_row = 1
 				i = 1
 			end
+
 			local tooltip = def.tooltip or ""
 			if def.type == "image" then
 				formspec = formspec.."image_button["
@@ -214,7 +209,11 @@ function unified_inventory.apply_filter(player, filter, search_dir)
 	end
 	unified_inventory.filtered_items_list[player_name]={}
 	for name, def in pairs(minetest.registered_items) do
-		if (def.groups.not_in_creative_inventory or 0) == 0 and (def.description or "") ~= "" and ffilter(name, def) then
+		if (def.groups.not_in_creative_inventory or 0) == 0
+		  and (def.description or "") ~= ""
+		  and ffilter(name, def)
+		  and (unified_inventory.is_creative(player_name)
+		       or unified_inventory.crafts_for.recipe[def.name]) then
 			table.insert(unified_inventory.filtered_items_list[player_name], name)
 		end
 	end

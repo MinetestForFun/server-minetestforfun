@@ -83,3 +83,4 @@ dofile(modpath.."/item_names.lua")
 if minetest.get_modpath("datastorage") and not unified_inventory.lite_mode then
 	dofile(modpath.."/waypoints.lua")
 end
+
