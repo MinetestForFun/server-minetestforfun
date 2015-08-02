@@ -223,128 +223,132 @@ local yp = {x = pos.x, y = pos.y + 3, z = pos.z}
 	if minetest.get_node(pos).name == "seawrecks:woodship" and
 	(minetest.get_node(yp).name == "default:water_source" or
 	minetest.get_node(yp).name == "noairblocks:water_sourcex") then
-		minetest.add_node(pos, {name = "default:sand"})
-
+		local rot
+		if math.random(1, 2) == 1 then
+			rot = {"x", "z"}
+		else
+			rot = {"z", "x"}
+		end
 		pos.y = pos.y + 1
-		pos.x = pos.x - 6
+		pos[rot[1]] = pos[rot[1]] - 6
 
 		for a = 1, 11 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:tree"})
 		end
 
-		pos.z = pos.z + 1
-		pos.x = pos.x - 10
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 10
 
 		for a = 1, 9 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:tree"})
 		end
 
-		pos.z = pos.z - 2
-		pos.x = pos.x - 9
+		pos[rot[2]] = pos[rot[2]] - 2
+		pos[rot[1]] = pos[rot[1]] - 9
 
 		for a = 1, 9 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:tree"})
 		end
 
 
 		pos.y = pos.y + 1
-		pos.x = pos.x - 8
-		pos.z = pos.z - 1
+		pos[rot[1]] = pos[rot[1]] - 8
+		pos[rot[2]] = pos[rot[2]] - 1
 
 		for a = 1, 7 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:tree"})
 		end
 
-		pos.z = pos.z + 4
-		pos.x = pos.x - 7
+		pos[rot[2]] = pos[rot[2]] + 4
+		pos[rot[1]] = pos[rot[1]] - 7
 
 		for a = 1, 7 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:tree"})
 		end
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:tree"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x - 2
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] - 2
 		minetest.add_node(pos, {name = "default:tree"})
 
-		pos.z = pos.z + 2
-		pos.x = pos.x - 8
+		pos[rot[2]] = pos[rot[2]] + 2
+		pos[rot[1]] = pos[rot[1]] - 8
 		minetest.add_node(pos, {name = "default:tree"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:tree"})
 
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:tree"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 2
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 2
 		minetest.add_node(pos, {name = "default:tree"})
 
 
 		pos.y = pos.y + 1
-		pos.z = pos.z - 1
+		pos[rot[2]] = pos[rot[2]] - 1
 
 		for a = 1, 7 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.z = pos.z + 4
-		pos.x = pos.x - 7
+		pos[rot[2]] = pos[rot[2]] + 4
+		pos[rot[1]] = pos[rot[1]] - 7
 
 		for a = 1, 7 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z + 2
-		pos.x = pos.x - 8
+		pos[rot[2]] = pos[rot[2]] + 2
+		pos[rot[1]] = pos[rot[1]] - 8
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 
 		for a = 1, 3 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 4
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 4
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z + 1
-		pos.x = pos.x + 3
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] + 3
 		minetest.add_node(pos, {name = "default:wood"})
 
 		pos.y = pos.y + 1
@@ -354,14 +358,14 @@ local yp = {x = pos.x, y = pos.y + 3, z = pos.z}
 		minetest.add_node(pos, {name = "default:wood"})
 
 		pos.y = pos.y + 3
-		pos.z = pos.z - 4
+		pos[rot[2]] = pos[rot[2]] - 4
 
 		for a = 1, 7 do
-		pos.z = pos.z + 1
+		pos[rot[2]] = pos[rot[2]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.z = pos.z - 3
+		pos[rot[2]] = pos[rot[2]] - 3
 
 		for a = 1, 2 do
 		pos.y = pos.y + 1
@@ -369,25 +373,23 @@ local yp = {x = pos.x, y = pos.y + 3, z = pos.z}
 		end
 
 		pos.y = pos.y + 1
-		pos.z = pos.z - 3
+		pos[rot[2]] = pos[rot[2]] - 3
 
 		for a = 1, 5 do
-		pos.z = pos.z + 1
+		pos[rot[2]] = pos[rot[2]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
 		pos.y = pos.y + 1
-		pos.z = pos.z - 2
+		pos[rot[2]] = pos[rot[2]] - 2
 		minetest.add_node(pos, {name = "default:wood"})
 
 		pos.y = pos.y - 7
-		pos.z = pos.z + 1
-		pos.x = pos.x - 2
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 2
 		minetest.add_node(pos, {name = "seawrecks:woodshipchest"})
-
-	else
-		return
 	end
+	minetest.add_node(pos, {name = "default:sand"})
 end
 })
 
@@ -400,560 +402,562 @@ local yp = {x = pos.x, y = pos.y + 8, z = pos.z}
 	if minetest.get_node(pos).name == "seawrecks:uboot" and
 	(minetest.get_node(yp).name == "default:water_source" or
 	minetest.get_node(yp).name == "noairblocks:water_sourcex") then
-		minetest.add_node(pos, {name = "default:dirt"})
-
+		local rot
+		if math.random(1, 2) == 1 then
+			rot = {"x", "z"}
+		else
+			rot = {"z", "x"}
+		end
 		pos.y = pos.y + 1
-		pos.x = pos.x - 15
+		pos[rot[1]] = pos[rot[1]] - 15
 
 		for a = 1, 31 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:cobble"})
 		end
 
-		pos.z = pos.z + 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 
 		for a = 1, 31 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:cobble"})
 		end
 
-		pos.z = pos.z + 1
-		pos.x = pos.x +1
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] +1
 
 		for a = 1, 27 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z - 3
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 3
+		pos[rot[1]] = pos[rot[1]] + 1
 
 		for a = 1, 27 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 2
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 2
 
 		for a = 1, 21 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z + 5
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] + 5
+		pos[rot[1]] = pos[rot[1]] + 1
 
 		for a = 1, 21 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
 		pos.y = pos.y + 1
-		pos.z = pos.z + 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 
 		for a = 1, 21 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z - 7
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 7
+		pos[rot[1]] = pos[rot[1]] + 1
 
 		for a = 1, 21 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z + 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x + 24
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z + 5
+		pos[rot[1]] = pos[rot[1]] + 24
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x - 22
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] + 5
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x + 29
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z - 3
+		pos[rot[1]] = pos[rot[1]] - 22
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x - 28
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z + 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.x = pos.x + 32
+		pos[rot[1]] = pos[rot[1]] + 29
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z + 1
+		pos[rot[2]] = pos[rot[2]] - 3
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.x = pos.x - 32
+		pos[rot[1]] = pos[rot[1]] - 28
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[1]] = pos[rot[1]] + 32
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[2]] = pos[rot[2]] + 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[1]] = pos[rot[1]] - 32
 		minetest.add_node(pos, {name = "default:stone"})
 
 		pos.y = pos.y + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.x = pos.x + 32
+		pos[rot[1]] = pos[rot[1]] + 32
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z - 1
+		pos[rot[2]] = pos[rot[2]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.x = pos.x - 32
+		pos[rot[1]] = pos[rot[1]] - 32
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
-		pos.x = pos.x + 1
-		minetest.add_node(pos, {name = "default:wood"})
-
-		pos.x = pos.x + 28
-		minetest.add_node(pos, {name = "default:wood"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z + 3
+		pos[rot[1]] = pos[rot[1]] + 28
 		minetest.add_node(pos, {name = "default:wood"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:wood"})
-
-		pos.x = pos.x - 28
-		minetest.add_node(pos, {name = "default:wood"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z + 1
-		pos.x = pos.x + 2
+		pos[rot[2]] = pos[rot[2]] + 3
 		minetest.add_node(pos, {name = "default:wood"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:wood"})
+
+		pos[rot[1]] = pos[rot[1]] - 28
+		minetest.add_node(pos, {name = "default:wood"})
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:wood"})
+
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] + 2
+		minetest.add_node(pos, {name = "default:wood"})
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.x = pos.x + 22
+		pos[rot[1]] = pos[rot[1]] + 22
 		minetest.add_node(pos, {name = "default:wood"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z + 1
-		pos.x = pos.x - 2
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 2
 		for a = 1, 3 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
 
 		for a = 1, 3 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
 
 		for a = 1, 3 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
 
 		for a = 1, 9 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.z = pos.z - 6
-		pos.x = pos.x - 3
+		pos[rot[2]] = pos[rot[2]] - 6
+		pos[rot[1]] = pos[rot[1]] - 3
 		minetest.add_node(pos, {name = "default:wood"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.x = pos.x + 22
+		pos[rot[1]] = pos[rot[1]] + 22
 		minetest.add_node(pos, {name = "default:wood"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x - 2
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] - 2
 
 		for a = 1, 3 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:obsidian_glass"})
-
-		for a = 1, 3 do
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:wood"})
-		end
-
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
 
 		for a = 1, 3 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:obsidian_glass"})
+
+		for a = 1, 3 do
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:wood"})
+		end
+
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:obsidian_glass"})
 
 		for a = 1, 9 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
 		pos.y = pos.y + 1
-		pos.z = pos.z + 7
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] + 7
+		pos[rot[1]] = pos[rot[1]] - 1
 		for a = 1, 21 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z - 7
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 7
+		pos[rot[1]] = pos[rot[1]] + 1
 
 		for a = 1, 21 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z + 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x + 24
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z + 5
+		pos[rot[1]] = pos[rot[1]] + 24
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x - 22
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] + 5
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x + 29
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z - 3
+		pos[rot[1]] = pos[rot[1]] - 22
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x - 28
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z + 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.x = pos.x + 32
+		pos[rot[1]] = pos[rot[1]] + 29
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z + 1
+		pos[rot[2]] = pos[rot[2]] - 3
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.x = pos.x - 32
+		pos[rot[1]] = pos[rot[1]] - 28
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[1]] = pos[rot[1]] + 32
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[2]] = pos[rot[2]] + 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[1]] = pos[rot[1]] - 32
 		minetest.add_node(pos, {name = "default:stone"})
 
 		pos.y = pos.y + 1
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
-		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x + 28
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z - 1
+		pos[rot[1]] = pos[rot[1]] + 28
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x - 28
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 2
+		pos[rot[2]] = pos[rot[2]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.x = pos.x + 22
+		pos[rot[1]] = pos[rot[1]] - 28
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z + 3
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 2
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-
-		pos.x = pos.x - 22
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
-		minetest.add_node(pos, {name = "default:stone"})
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 
-		pos.z = pos.z + 1
-		pos.x = pos.x + 2
+		pos[rot[1]] = pos[rot[1]] + 22
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] + 1
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] + 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[2]] = pos[rot[2]] + 3
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[1]] = pos[rot[1]] - 22
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+		pos[rot[1]] = pos[rot[1]] - 1
+		minetest.add_node(pos, {name = "default:stone"})
+
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] + 2
 		for a = 1, 21 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z - 5
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 5
+		pos[rot[1]] = pos[rot[1]] + 1
 		for a = 1, 21 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
 		pos.y = pos.y + 1
-		pos.z = pos.z + 2
-		pos.x = pos.x - 4
+		pos[rot[2]] = pos[rot[2]] + 2
+		pos[rot[1]] = pos[rot[1]] - 4
 		for a = 1, 3 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.x = pos.x + 21
+		pos[rot[1]] = pos[rot[1]] + 21
 		for a = 1, 3 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z + 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		for a = 1, 3 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.x = pos.x - 21
+		pos[rot[1]] = pos[rot[1]] - 21
 		for a = 1, 3 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z + 2
-		pos.x = pos.x + 3
+		pos[rot[2]] = pos[rot[2]] + 2
+		pos[rot[1]] = pos[rot[1]] + 3
 		for a = 1, 4 do
-		pos.z = pos.z - 1
+		pos[rot[2]] = pos[rot[2]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z - 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		for a = 1, 4 do
-		pos.z = pos.z + 1
+		pos[rot[2]] = pos[rot[2]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.x = pos.x + 6
+		pos[rot[1]] = pos[rot[1]] + 6
 		for a = 1, 13 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z - 3
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] - 3
+		pos[rot[1]] = pos[rot[1]] + 1
 		for a = 1, 13 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:stone"})
 		end
 
-		pos.z = pos.z + 1
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		for a = 1, 13 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:tree"})
 		end
 
-		pos.z = pos.z + 1
-		pos.x = pos.x + 1
+		pos[rot[2]] = pos[rot[2]] + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		for a = 1, 13 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:tree"})
 		end
 
-		pos.z = pos.z - 3
+		pos[rot[2]] = pos[rot[2]] - 3
 		for a = 1, 6 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.z = pos.z + 5
-		pos.x = pos.x - 1
+		pos[rot[2]] = pos[rot[2]] + 5
+		pos[rot[1]] = pos[rot[1]] - 1
 		for a = 1, 6 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
 		pos.y = pos.y + 1
 		for a = 1, 4 do
-		pos.z = pos.z - 1
+		pos[rot[2]] = pos[rot[2]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x - 5
-		pos.z = pos.z - 1
+		pos[rot[1]] = pos[rot[1]] - 5
+		pos[rot[2]] = pos[rot[2]] - 1
 		for a = 1, 4 do
-		pos.z = pos.z + 1
+		pos[rot[2]] = pos[rot[2]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
 		for a = 1, 4 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x + 1
-		pos.z = pos.z - 3
+		pos[rot[1]] = pos[rot[1]] + 1
+		pos[rot[2]] = pos[rot[2]] - 3
 		for a = 1, 4 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
 		pos.y = pos.y + 1
-		pos.x = pos.x - 1
-		pos.z = pos.z - 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		pos[rot[2]] = pos[rot[2]] - 1
 		for a = 1, 4 do
-		pos.z = pos.z + 1
+		pos[rot[2]] = pos[rot[2]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x + 5
-		pos.z = pos.z + 1
+		pos[rot[1]] = pos[rot[1]] + 5
+		pos[rot[2]] = pos[rot[2]] + 1
 		for a = 1, 4 do
-		pos.z = pos.z - 1
+		pos[rot[2]] = pos[rot[2]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
 		for a = 1, 4 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x - 1
-		pos.z = pos.z + 3
+		pos[rot[1]] = pos[rot[1]] - 1
+		pos[rot[2]] = pos[rot[2]] + 3
 		for a = 1, 4 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
 		pos.y = pos.y + 1
-		pos.x = pos.x - 1
-		pos.z = pos.z - 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		pos[rot[2]] = pos[rot[2]] - 1
 		for a = 1, 2 do
-		pos.x = pos.x - 1
+		pos[rot[1]] = pos[rot[1]] - 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
-		pos.x = pos.x - 1
-		pos.z = pos.z - 1
+		pos[rot[1]] = pos[rot[1]] - 1
+		pos[rot[2]] = pos[rot[2]] - 1
 		for a = 1, 2 do
-		pos.x = pos.x + 1
+		pos[rot[1]] = pos[rot[1]] + 1
 		minetest.add_node(pos, {name = "default:wood"})
 		end
 
 		pos.y = pos.y - 7
-		pos.x = pos.x +16
-		pos.z = pos.z +3
+		pos[rot[1]] = pos[rot[1]] +16
+		pos[rot[2]] = pos[rot[2]] +3
 		minetest.set_node(pos, {name = "seawrecks:ubootchest"})
-
-	else
-		return
 	end
+	minetest.add_node(pos, {name = "default:sand"})
 end
 })
