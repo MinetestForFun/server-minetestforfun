@@ -169,7 +169,7 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	local volume = (maxp.x-minp.x+1)*(y_max-y_min+1)*(maxp.z-minp.z+1)
 	local pr = PseudoRandom(seed)
 	local num_chunks = math.floor(chunks_per_volume * volume)
-	local inverse_chance = math.floor(chunk_size*chunk_size*chunk_size / ore_per_chunk)
+	local inverse_chance = math.floor(chunk_size*chunk_size*chunk_size / ore_per_chunk) * 10
 	for i=1,num_chunks do
 		local y0 = pr:next(y_min, y_max-chunk_size+1)
 		if y0 >= height_min and y0 <= height_max then
