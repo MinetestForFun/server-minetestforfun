@@ -58,7 +58,7 @@ function pclasses.api.vacuum_graveyard(player)
 
 	for i = 1,7*8 do
 		local stack = grave_inv:get_stack("graveyard", i)
-		if pclasses.api.util.can_have_item(pname, stack:get_name()) then
+		if pclasses.data.reserved_items[stack:get_name()] and pclasses.api.util.can_have_item(pname, stack:get_name()) then
 			grave_inv:set_stack("graveyard", i, nil)
 			player_inv:set_stack("graveyard", i, nil)
 			if player_inv:room_for_item("main", stack) then
