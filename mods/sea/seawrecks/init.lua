@@ -81,7 +81,12 @@ minetest.register_node("seawrecks:ubootchest", {
 		local meta = minetest.get_meta(pos)
 
 		local kind_of_price = math.random(0,2)
-		local amount_of_price = math.random(1, 20)
+		local amount_of_price
+		if math.random(1,100) >= 75 then
+			amount_of_price = math.random(1, 20)
+		else
+			amount_of_price = math.random(1, 5)
+		end
 		local ingot_price = {"default:steel_ingot","default:copper_ingot","default:gold_ingot","moreores:tin_ingot","moreores:silver_ingot"}
 		local price_group = {"",""}
 		local choosen_ingot = math.random(1, #ingot_price)
