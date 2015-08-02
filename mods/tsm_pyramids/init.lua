@@ -144,11 +144,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	math.randomseed(seed)
 	local cnt = 0
 
-	local perlin1 = minetest.env:get_perlin(perl1.SEED1, perl1.OCTA1, perl1.PERS1, perl1.SCAL1)
+	local perlin1 = minetest.get_perlin(perl1.SEED1, perl1.OCTA1, perl1.PERS1, perl1.SCAL1)
 	local noise1 = perlin1:get2d({x=minp.x,y=minp.y})--,z=minp.z})
 
-	if noise1 > 0.25 or noise1 < -0.26 then
-	 local mpos = {x=math.random(minp.x,maxp.x), y=math.random(minp.y,maxp.y), z=math.random(minp.z,maxp.z)}
+	if noise1 > 0.25 or noise1 < -0.26 and math.random(1,100) % 2 == 0 then -- Coward attempt to divide per 2 the spawn rate
+		local mpos = {x=math.random(minp.x,maxp.x), y=math.random(minp.y,maxp.y), z=math.random(minp.z,maxp.z)}
 
 		local p2 = minetest.find_node_near(mpos, 25, {"default:desert_sand"})
 		while p2 == nil and cnt < 5 do
