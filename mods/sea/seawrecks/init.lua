@@ -223,6 +223,7 @@ local yp = {x = pos.x, y = pos.y + 3, z = pos.z}
 	if minetest.get_node(pos).name == "seawrecks:woodship" and
 	(minetest.get_node(yp).name == "default:water_source" or
 	minetest.get_node(yp).name == "noairblocks:water_sourcex") then
+		minetest.add_node(pos, {name = "default:sand"})
 		local rot
 		if math.random(1, 2) == 1 then
 			rot = {"x", "z"}
@@ -388,8 +389,9 @@ local yp = {x = pos.x, y = pos.y + 3, z = pos.z}
 		pos[rot[2]] = pos[rot[2]] + 1
 		pos[rot[1]] = pos[rot[1]] - 2
 		minetest.add_node(pos, {name = "seawrecks:woodshipchest"})
+	else
+		minetest.add_node(pos, {name = "default:sand"})
 	end
-	minetest.add_node(pos, {name = "default:sand"})
 end
 })
 
@@ -402,6 +404,7 @@ local yp = {x = pos.x, y = pos.y + 8, z = pos.z}
 	if minetest.get_node(pos).name == "seawrecks:uboot" and
 	(minetest.get_node(yp).name == "default:water_source" or
 	minetest.get_node(yp).name == "noairblocks:water_sourcex") then
+		minetest.add_node(pos, {name = "default:sand"})
 		local rot
 		if math.random(1, 2) == 1 then
 			rot = {"x", "z"}
@@ -957,7 +960,8 @@ local yp = {x = pos.x, y = pos.y + 8, z = pos.z}
 		pos[rot[1]] = pos[rot[1]] +16
 		pos[rot[2]] = pos[rot[2]] +3
 		minetest.set_node(pos, {name = "seawrecks:ubootchest"})
+	else
+		minetest.add_node(pos, {name = "default:sand"})
 	end
-	minetest.add_node(pos, {name = "default:sand"})
 end
 })
