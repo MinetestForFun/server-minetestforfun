@@ -31,6 +31,7 @@ pclasses.api.create_graveyard_inventory = function(player)
 		local stack = player_inv:get_stack("graveyard", i)
 		grave_inv:set_stack("graveyard", i, stack)
 	end
+	return grave_inv
 end
 
 unified_inventory.register_button("graveyard", {
