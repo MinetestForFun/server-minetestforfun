@@ -69,10 +69,3 @@ if not DISABLE_ARBALEST then
 			{'default:steel_ingot', 'farming:string', 'default:stick'},
 		})
 end
-
--- Craft recipe of the "Mithril String"
-minetest.register_craft({
-output = "throwing:string_mithril",
-type = "shapeless",
-recipe = {"moreores:mithril_ingot", "farming:string"},
-})
