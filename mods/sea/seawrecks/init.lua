@@ -31,6 +31,21 @@ minetest.register_node("seawrecks:woodshipchest", {
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
+
+		local kind_of_price = math.random(0,2)
+		local amount_of_price = math.random(1, 5)
+		local ingot_price = {"default:steel_ingot","default:copper_ingot","default:gold_ingot","moreores:tin_ingot","moreores:silver_ingot"}
+		local price_group = {"",""}
+		local choosen_ingot = math.random(1, #ingot_price)
+		price_group[1] = ingot_price[choosen_ingot].." "..amount_of_price
+		if (kind_of_price == 0) then -- Ingots AND mese
+			price_group[2] = "default:mese_crystal "..math.random(1, 2)
+		elseif (kind_of_price == 1) then -- Ingots AND diamond
+			price_group[2] = "default:diamond "..math.random(1,3)
+		else
+			price_group[2] = ""
+		end
+
 		meta:set_string("formspec",
 			"size[8,9]"..
 			"list[current_name;main;0,0;8,4;]"..
@@ -40,7 +55,7 @@ minetest.register_node("seawrecks:woodshipchest", {
 		inv:set_size("main", 8*4)
 meta:from_table({
 	inventory = {
-	main = {[1] = "default:tree 99", [2] = "default:jungletree 99", [3] = "default:wood 99", [4] = "default:junglewood 99", [5] = "default:sapling 99", [6] = "default:junglesapling 99", [7] = "default:grass_1 99", [8] = "default:junglegrass 99", [32] = ""}
+	main = {[1] = price_group[1], [2] = price_group[2], [32] = ""}
 	},
 	fields = {
 	formspec = "size[8,9;]list[context;main;0,0;8,4;]list[current_player;main;0,5;8,4;]",
@@ -81,12 +96,7 @@ minetest.register_node("seawrecks:ubootchest", {
 		local meta = minetest.get_meta(pos)
 
 		local kind_of_price = math.random(0,2)
-		local amount_of_price
-		if math.random(1,100) >= 75 then
-			amount_of_price = math.random(1, 20)
-		else
-			amount_of_price = math.random(1, 5)
-		end
+		local amount_of_price = math.random(1, 20)
 		local ingot_price = {"default:steel_ingot","default:copper_ingot","default:gold_ingot","moreores:tin_ingot","moreores:silver_ingot"}
 		local price_group = {"",""}
 		local choosen_ingot = math.random(1, #ingot_price)
