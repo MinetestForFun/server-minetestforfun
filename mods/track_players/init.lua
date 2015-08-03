@@ -1,5 +1,5 @@
 local time_interval = 5.0
-local fifo_path = "/home/quentinbd/minetest/worlds/minetestforfun/mt_players_fifo"
+local fifo_path = "/home/quentinbd/mff/worlds/minetestforfun/mt_players_fifo"
 
 function players_data()
     local ps = {}
