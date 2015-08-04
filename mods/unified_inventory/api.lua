@@ -27,6 +27,9 @@ minetest.after(0.01, function()
 							if (not groupchk and not minetest.registered_items[chk])
 							  or (groupchk and not unified_inventory.get_group_item(string.gsub(chk, "group:", "")).item) then
 								unknowns = true
+								if minetest.setting_getbool("show_unknown_craftrecipes") then
+									minetest.log("error", "Recipe for item " .. recipe.output .. " contains unknown item " .. chk)
+								end
 							end
 						end
 

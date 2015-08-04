@@ -405,7 +405,7 @@ minetest.register_alias("farming_plus:rubber_sapling", "moretrees:rubber_tree_sa
 minetest.register_alias("farming:rubber_sapling", "moretrees:rubber_tree_sapling")
 
 minetest.register_alias("default:junglesapling","moretrees:jungletree_sapling")
-minetest.register_alias("moretrees:jungletree_trunk_sideways", "moreblocks:horizontal_jungle_tree")
+minetest.register_alias("moretrees:jungletree_trunk_sideways", "default:jungletree") -- Item Changed. moreblocks:horizontal_jungle_tree is unknown. //MFF(Mg|08/04/15)
 minetest.register_alias("moretrees:jungletree_trunk", "default:jungletree")
 minetest.register_alias("moretrees:jungletree_planks", "default:junglewood")
 

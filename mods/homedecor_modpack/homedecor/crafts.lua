@@ -950,7 +950,7 @@ minetest.register_craft( {
 
 -- cotton versions:
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
 	type = "shapeless",
         output = "homedecor:rug_small 8",
        	recipe = {
@@ -959,7 +959,7 @@ minetest.register_craft( {
 			"cotton:blue",
 			"cotton:black"
 	},
-})
+})]] -- Disabled. All recipe's items are unknown. //MFF(Mg|08/04/15)
 
 minetest.register_craft( {
 	output = "homedecor:rug_persian 8",
@@ -2091,13 +2091,13 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
     output = "homedecor:dishwasher_marble",
     recipe = {
 		{ "technic:slab_marble_1" },
 		{ "homedecor:dishwasher" },
     },
-})
+})]] -- Disabled. Item technic:slab_marble_1 is unknown. //MFF(Mg|08/04/15)
 
 minetest.register_craft( {
     output = "homedecor:dishwasher_granite",

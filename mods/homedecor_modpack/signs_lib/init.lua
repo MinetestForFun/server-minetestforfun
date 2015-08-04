@@ -1063,13 +1063,13 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "signs:sign_wall_blue 2",
         recipe = {
 			{ "dye:blue", "dye:white", "dye:blue" },
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
-})
+})]] -- Disabled. steel:sheet_metal is unknown //MFF(Mg|08/04/15)
 
 minetest.register_craft( {
         output = "signs:sign_wall_brown 4",
@@ -1079,13 +1079,13 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "signs:sign_wall_brown 2",
         recipe = {
 			{ "dye:brown", "dye:white", "dye:brown" },
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
-})
+})]] -- Disabled. steel:sheet_metal is unknown //MFF(Mg|08/04/15)
 
 if minetest.setting_get("log_mods") then
 	minetest.log("action", S("signs loaded"))
