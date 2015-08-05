@@ -185,7 +185,7 @@ function meta:think()
 	self.lastThought = socket.gettime()
 end
 
-local handlers = rawget(G_, "handlers")
+local handlers = rawget(_G, "handlers")
 
 function meta:handle(msg)
 	local handler = irc.handlers[msg.command]
