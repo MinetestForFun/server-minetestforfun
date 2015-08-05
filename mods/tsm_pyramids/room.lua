@@ -35,12 +35,19 @@ code["t"] = "trap"
 
 function loadchests()
 	local file = io.open(minetest.get_worldpath().."/pyramids_chests.txt","r")
-	if not file or file:read() == nil then return end
-	file:seek("set",0)
-	pyramids.saved_chests = minetest.deserialize(file:read())
-	io.close(file)
-	minetest.log("action","[tsm_pyramids] Chest loaded")
+	if file then
+		local saved_chests = minetest.deserialize(file:read())
+		io.close(file)
+		if savetable and type(saved_chests) == "table" then
+			minetest.log("action","[tsm_pyramids] Chest loaded")
+			return saved_chests
+		else
+			minetest.log("error","[tsm_pyramids] Loading Chest failed")
+		end
+	end
+	return {}
 end
+
 
 function savechests()
 	local file = io.open(minetest.get_worldpath().."/pyramids_chests.txt","w")
@@ -50,7 +57,7 @@ function savechests()
 	minetest.log("action","[tsm_pyramids] Chests saved")
 end
 
-loadchests()
+pyramids.saved_chests = loadchests()
 minetest.register_on_shutdown(function()
 	savechests()
 end)
