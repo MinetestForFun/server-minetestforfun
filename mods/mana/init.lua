@@ -157,7 +157,7 @@ end
 
 
 -- Load the playerlist from a previous session, if available.
-do
+function mana.load_file()
 	local filepath = minetest.get_worldpath().."/mana.mt"
 	local file = io.open(filepath, "r")
 	if file then
@@ -166,11 +166,16 @@ do
 		io.close(file)
 		if(string ~= nil) then
 			local savetable = minetest.deserialize(string)
-			mana.playerlist = savetable.playerlist
-			minetest.log("action", "[mana] mana.mt successfully read.")
+			if savetable and type(savetable) == "table" and savetable.playerlist and type(savetable.playerlist) == "table" then
+				minetest.log("action", "[mana] mana.mt successfully read.")
+				return savetable.playerlist
+			end
 		end
 	end
+	return {}
 end
+
+mana.playerlist = mana.load_file()
 
 function mana.save_to_file()
 	local savetable = {}
