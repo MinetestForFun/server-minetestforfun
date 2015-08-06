@@ -961,14 +961,14 @@ minetest.register_craft( {
 	},
 })]] -- Disabled. All recipe's items are unknown. //MFF(Mg|08/04/15)
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
 	output = "homedecor:rug_persian 8",
 	recipe = {
 		{ "", "cotton:yellow", "" },
 		{ "cotton:red", "cotton:blue", "cotton:red" },
 		{ "", "cotton:yellow", "" }
 	},
-})
+})]] -- Disabled. All recipe's items are unknown. //MFF(Mg|08/04/15)
 
 -- fuel recipes for same
 
