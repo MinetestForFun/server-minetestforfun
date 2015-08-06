@@ -233,7 +233,7 @@ for i in ipairs(moretrees.treelist) do
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
 			local fdir = node.param2 or 0
-				nfdir = dirs2[fdir+1]
+			local nfdir = dirs2[fdir+1]
 			minetest.add_node(pos, {name = "moretrees:"..treename.."_trunk", param2 = nfdir})
 		end,
 	})
