@@ -967,13 +967,13 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "signs:sign_wall_green 2",
         recipe = {
 			{ "dye:dark_green", "dye:white", "dye:dark_green" },
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
-})
+}) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
 
 minetest.register_craft( {
         output = "signs:sign_wall_yellow 4",
@@ -983,13 +983,13 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "signs:sign_wall_yellow 2",
         recipe = {
 			{ "dye:yellow", "dye:black", "dye:yellow" },
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
-})
+}) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
 
 minetest.register_craft( {
         output = "signs:sign_wall_red 4",
@@ -999,13 +999,14 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "signs:sign_wall_red 2",
         recipe = {
 			{ "dye:red", "dye:white", "dye:red" },
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
-})
+}) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
+
 
 minetest.register_craft( {
         output = "signs:sign_wall_white_red 4",
@@ -1015,13 +1016,14 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "signs:sign_wall_white_red 2",
         recipe = {
 			{ "dye:white", "dye:red", "dye:white" },
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
-})
+}) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
+
 
 minetest.register_craft( {
         output = "signs:sign_wall_white_black 4",
@@ -1031,13 +1033,14 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "signs:sign_wall_white_black 2",
         recipe = {
 			{ "dye:white", "dye:black", "dye:white" },
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
-})
+}) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
+
 
 minetest.register_craft( {
         output = "signs:sign_wall_orange 4",
@@ -1047,13 +1050,13 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "signs:sign_wall_orange 2",
         recipe = {
 			{ "dye:orange", "dye:black", "dye:orange" },
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
-})
+}) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
 
 minetest.register_craft( {
         output = "signs:sign_wall_blue 4",

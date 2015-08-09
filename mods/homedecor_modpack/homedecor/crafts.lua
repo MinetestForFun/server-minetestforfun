@@ -1028,7 +1028,7 @@ minetest.register_craft( {
 
 -- cotton version
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
         output = "homedecor:speaker_small",
       		recipe = {
 		{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
@@ -1042,7 +1042,7 @@ minetest.register_craft( {
 		{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
 		{ "cotton:black", "group:wood", "group:wood" },
 	},
-})
+}) ]]-- Removed. We do not have the cotton mod. //MFF(Mg|08/09/15)
 
 -- Curtains
 
@@ -1264,13 +1264,13 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+--[[minetest.register_craft({
         output = "homedecor:kitchen_cabinet_marble",
         recipe = {
 			{"technic:slab_marble_1"},
 			{"homedecor:kitchen_cabinet"},
 	}
-})
+}) ]]-- Craft removed. Item "technic:slab_marble_1" is unknown //MFF(Mg|08/09/15)
 
 minetest.register_craft({
         output = "homedecor:kitchen_cabinet_granite",
@@ -1987,14 +1987,14 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
     output = "homedecor:washing_machine",
     recipe = {
 		{ "default:steel_ingot", "default:steel_ingot", "homedecor:ic" },
 		{ "default:steel_ingot", "bucket:bucket_water", "default:steel_ingot" },
 		{ "default:steel_ingot", "technic:motor", "default:steel_ingot" }
     },
-})
+}) ]]-- Recipe disabled. Item "technich:motor" is unknown. //MFF(Mg|08/09/15)
 
 minetest.register_craft( {
     output = "homedecor:dryer",
@@ -2005,14 +2005,14 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
     output = "homedecor:dryer",
     recipe = {
 		{ "default:steel_ingot", "default:steel_ingot", "homedecor:ic" },
 		{ "default:steel_ingot", "bucket:bucket_empty", "technic:motor" },
 		{ "default:steel_ingot", "homedecor:heating_element", "default:steel_ingot" }
     },
-})
+}) ]]-- Recipe disabled. Item "technich:motor" is unknown. //MFF(Mg|08/09/15)
 
 minetest.register_craft( {
     output = "homedecor:ironing_board",
@@ -2034,14 +2034,15 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+--[[minetest.register_craft( {
     output = "homedecor:dishwasher",
     recipe = {
 		{ "homedecor:ic", "homedecor:fence_chainlink", "default:steel_ingot",  },
 		{ "default:steel_ingot", "homedecor:shower_head", "technic:motor" },
 		{ "default:steel_ingot", "homedecor:heating_element", "bucket:bucket_water" }
     },
-})
+}) ]]-- Recipe disabled. Item "technich:motor" is unknown. //MFF(Mg|08/09/15)
+
 
 minetest.register_craft( {
     output = "homedecor:dishwasher_wood",
@@ -2335,14 +2336,15 @@ minetest.register_craft({
     },
 })
 
-minetest.register_craft({
+--[[minetest.register_craft({
     output = "homedecor:air_conditioner",
     recipe = {
 		{ "default:steel_ingot", "building_blocks:grate", "default:steel_ingot" },
 		{ "default:steel_ingot", "technic:motor", "default:steel_ingot" },
 		{ "default:steel_ingot", "technic:motor", "default:steel_ingot" },
     },
-})
+}) ]]-- Recipe disabled. Item "technich:motor" is unknown. //MFF(Mg|08/09/15)
+
 
 minetest.register_craft({
     output = "homedecor:ceiling_fan",
@@ -2353,14 +2355,14 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+--[[minetest.register_craft({
     output = "homedecor:ceiling_fan",
     recipe = {
 		{ "technic:motor" },
 		{ "homedecor:fan_blades" },
 		{ "homedecor:glowlight_small_cube_white" }
 	}
-})
+}) ]]-- Removed. Item "technic:motor" is unknown //MFF(Mg|08/09/15)
 
 minetest.register_craft({
     output = "homedecor:welcome_mat_grey 2",
@@ -2427,14 +2429,14 @@ minetest.register_craft({
     },
 })
 
-minetest.register_craft({
+--[[minetest.register_craft({
     output = "homedecor:dvd_player 2",
     recipe = {
 		{ "", "homedecor:plastic_sheeting", "" },
 		{ "default:obsidian_glass", "technic:motor", "technic:motor" },
 		{ "default:mese_crystal_fragment", "homedecor:ic", "homedecor:power_crystal" },
     },
-})
+}) ]]-- Craft recipe removed. Item "technic:motor" is unknown //MFF(Mg|08/09/15)
 
 minetest.register_craft({
 	type = "shapeless",

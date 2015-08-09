@@ -25,7 +25,7 @@ minetest.register_node("homedecor:skylight_frosted", {
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
-local materials = {"asphalt", "terracotta", "wood"}
+local materials = {"asphalt", "terracotta", "wood", "glass"}
 
 for _, s in ipairs(materials) do
 minetest.register_node("homedecor:shingles_"..s, {
