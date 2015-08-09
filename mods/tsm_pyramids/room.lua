@@ -38,7 +38,7 @@ function loadchests()
 	if file then
 		local saved_chests = minetest.deserialize(file:read())
 		io.close(file)
-		if savetable and type(saved_chests) == "table" then
+		if saved_chests and type(saved_chests) == "table" then
 			minetest.log("action","[tsm_pyramids] Chest loaded")
 			return saved_chests
 		else
