@@ -95,39 +95,41 @@ local function tick()
 	minetest.after(1, tick)
 	for playername,hudids in pairs(inventory_icon.hudids) do
 		local player = minetest.get_player_by_name(playername)
-		local occupied, size = inventory_icon.get_inventory_state(player:get_inventory(), "main")
-		local icon, color
-		if occupied >= size then
-			icon = "inventory_icon_backpack_full.png"
-		else
-			icon = "inventory_icon_backpack_free.png"
-		end
-		player:hud_change(hudids.main.icon, "text", icon)
-		player:hud_change(hudids.main.text, "text", string.format("%d/%d", occupied, size))
+		if player then
+			local occupied, size = inventory_icon.get_inventory_state(player:get_inventory(), "main")
+			local icon, color
+			if occupied >= size then
+				icon = "inventory_icon_backpack_full.png"
+			else
+				icon = "inventory_icon_backpack_free.png"
+			end
+			player:hud_change(hudids.main.icon, "text", icon)
+			player:hud_change(hudids.main.text, "text", string.format("%d/%d", occupied, size))
 
-		if minetest.get_modpath("unified_inventory") ~= nil then
-			local bags_inv = minetest.get_inventory({type = "detached", name = playername.."_bags"})
-			for i=1,4 do
-				local bag = bags_inv:get_stack("bag"..i, 1)
-				local scale, text, icon
-				if bag:is_empty() then
-					scale = { x = 0, y = 0 }
-					text = ""
-					icon = "inventory_icon_bags_small.png"
-				else
-					scale = { x = 1, y = 1 }
-					local occupied, size = inventory_icon.get_inventory_state(player:get_inventory(), "bag"..i.."contents")
-					text = string.format("%d/%d", occupied, size)
-					icon = inventory_icon.replace_icon(minetest.registered_items[bag:get_name()].inventory_image)
-					if occupied >= size then
-						icon = icon .. "^" .. inventory_icon.COLORIZE_STRING
+			if minetest.get_modpath("unified_inventory") ~= nil then
+				local bags_inv = minetest.get_inventory({type = "detached", name = playername.."_bags"})
+				for i=1,4 do
+					local bag = bags_inv:get_stack("bag"..i, 1)
+					local scale, text, icon
+					if bag:is_empty() then
+						scale = { x = 0, y = 0 }
+						text = ""
+						icon = "inventory_icon_bags_small.png"
+					else
+						scale = { x = 1, y = 1 }
+						local occupied, size = inventory_icon.get_inventory_state(player:get_inventory(), "bag"..i.."contents")
+						text = string.format("%d/%d", occupied, size)
+						icon = inventory_icon.replace_icon(minetest.registered_items[bag:get_name()].inventory_image)
+						if occupied >= size then
+							icon = icon .. "^" .. inventory_icon.COLORIZE_STRING
+						end
 					end
-				end
-				player:hud_change(inventory_icon.hudids[playername].bags[i].icon, "text", icon)
-				player:hud_change(inventory_icon.hudids[playername].bags[i].icon, "scale", scale)
+					player:hud_change(inventory_icon.hudids[playername].bags[i].icon, "text", icon)
+					player:hud_change(inventory_icon.hudids[playername].bags[i].icon, "scale", scale)
 
-				player:hud_change(inventory_icon.hudids[playername].bags[i].text, "text", text)
-				player:hud_change(inventory_icon.hudids[playername].bags[i].text, "scale", scale)
+					player:hud_change(inventory_icon.hudids[playername].bags[i].text, "text", text)
+					player:hud_change(inventory_icon.hudids[playername].bags[i].text, "scale", scale)
+				end
 			end
 		end
 	end
