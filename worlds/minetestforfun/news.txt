@@ -8,6 +8,22 @@ Génération de minerais de plus en plus intéressante entre -2048 -> -19600 (fi
 Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debugs :))
 Venez visiter notre nouveau site "minetestforfun.com" !
 
+---??/08/2015--- (Remerciements : crabman77/crabman, LeMagnesium/Mg, Obani)
+MAJ de "MFF_game" (Ajustement de la texture du "Steel Block" et "Steel Ingot" pour être plus sombre et diférente de l'équivalent en "Argent/Silver")
+MAJ de "homedecor_modpack" (beaucoup de recettes faites à partir d'objets non présent dans le jeu ont été supprimés)
+MAJ de "unified_inventory" (amélioration du code)
+MAJ de "tsm_pramids" (chance de trouver une pyramide divisé par 2)
+MAJ de "sea_modpack" (chance de trouvé des épaves de petits bateaux réduit par 10, bugfix des coffres des petits bateaux, bugfix du nombres d'épaves de grands bateaux)
+/!\ Le serveur redémarre maintenant aussi matériellement lors du redémarrage entre 4h30 et 5h pour nettoyage complet du système /!\
+Suppression du mod "forceload" (non utilisé)
+Suppression du mod "futur_ban" (non utilisé)
+MAJ de tous les mods contenant des globalsteps (amélioration DRASTIQUE des performances du serveur)
+MAJ de "throwing" (les arrows/flêches "dig" et "teleport" n'ont plus qu'une seule utilisation et debug pour que les flêches touchent les joueurs correctements et transperce certains éléments de décors comme les herbes/feuillages/etc...)
+MAJ de pclasses (ajout du "Graveyard" qui est un sac accessible depuis un icone de l'inventaire, il a pour rôle de récupèrer les objets lorsque vous changez de classe, ceci pour ne pas perdre vos objets ! Aussi, nous avons bugfixé la sauvegarde/changement de classe)
+MAJ de "3d_armor" (résolution du bug des textures des armures, ajout de la texture et de la recette du "Black Mithril Ingot", nouvelle recette plus facile pour le "Black Mithril Ingot")
+Nouveau Logo pour l'organisation "MinetestForFun" sur Github
+MAJ de "shutdown" (ajout d'un son lors des alertes avant le redémarrage du serveur avant 4h30 et à 4h30)
+
 ---03/08/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun)
 MAJ de la WorldMap (Ajout de markers pour les maisons d'Obani, jabali, farfadet46, Crabman et JAPP)
 
