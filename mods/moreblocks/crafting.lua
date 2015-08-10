@@ -463,3 +463,30 @@ if minetest.setting_getbool("moreblocks.circular_saw_crafting") ~= false then --
 		}
 	})
 end
+
+-- MODIFICATION MADE FOR MFF //MFF(Mg|08/09/15)
+
+
+minetest.register_craft({
+	output = "moreblocks:horizontal_jungle_tree 2",
+	recipe = {
+		{"default:jungletree", "", "default:jungletree"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:jungletree 2",
+	recipe = {
+		{"moreblocks:horizontal_jungle_tree"},
+		{"moreblocks:horizontal_jungle_tree"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:junglewood 4",
+	recipe = {
+		{"moreblocks:horizontal_jungle_tree"},
+	}
+})
+
+-- END OF MODIFICATIONS

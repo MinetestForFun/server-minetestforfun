@@ -59,18 +59,13 @@ minetest.register_alias("moreblocks:allfacestree","moreblocks:all_faces_tree")
 local horizontal_tree_convert_facedir = {7, 12, 9, 18}
 
 minetest.register_abm({
-	nodenames = {"moreblocks:horizontal_tree","moreblocks:horizontal_jungle_tree"},
+	nodenames = {"moreblocks:horizontal_tree"},
 	interval = 1,
 	chance = 1,
 	action = function(pos, node)
-		if node.name == "moreblocks:horizontal_tree" then
-			node.name = "default:tree"
-		else
-			node.name = "default:jungletree"
-		end
 		node.param2 = node.param2 < 3 and node.param2 or 0
 		minetest.set_node(pos, {
-			name = node.name,
+			name = "default:tree",
 			param2 = horizontal_tree_convert_facedir[node.param2 + 1]
 		})
 	end,

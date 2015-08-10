@@ -83,10 +83,10 @@ minetest.register_abm(
 --- Health
 
 minetest.register_craft({
-	output = 'NodeItem "bobblocks:health_off" 1',
+	output = "bobblocks:health_off",
+	type = "shapeless",
 	recipe = {
-		{'node "default:dirt" 1', 'node "default:paper" 1', 'node "default:apple" 2'},
-
+		"default:dirt", "default:paper", "default:apple", "default:apple"
 	},
 })
 

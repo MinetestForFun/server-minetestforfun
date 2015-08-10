@@ -111,14 +111,14 @@ minetest.register_craft({
 })
 
 --Chiseled Quartz(for stairsplus)
-minetest.register_craft({
+--[[minetest.register_craft({
 	output = 'quartz:chiseled 2',
 	recipe = {
 		{'quartz:slab_block', '', ''},
 		{'quartz:slab_block', '', ''},
 		{'', '', ''},
 	}
-})
+}) ]]-- Disabled. Item "quartz:slab_block" is unknown //MFF(Mg|08/09/15)
 
 --Quartz Pillar
 minetest.register_craft({

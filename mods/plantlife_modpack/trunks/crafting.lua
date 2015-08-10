@@ -35,7 +35,7 @@ minetest.register_craft({
 })
 minetest.register_craft({
 	output = "trunks:twig_1 4",
-	recipe = {{"bushes:bushbranches2a"}}
+	recipe = {{"bushes:bushbranches2"}}
 })
 minetest.register_craft({
 	output = "trunks:twig_1 4",

@@ -67,12 +67,13 @@ moretrees.cutting_tools = {
 	"default:axe_diamond",
 	"default:axe_mese",
 	"default:axe_steel",
-	"glooptest:axe_alatro",
-	"glooptest:axe_arol",
+--	"glooptest:axe_alatro",
+--	"glooptest:axe_arol",
 	"moreores:axe_mithril",
 	"moreores:axe_silver",
-	"titanium:axe",
+--	"titanium:axe",
 }
+-- Cutting tools disabled. They are unknown //MFF(Mg|08/09/15)
 
 dofile(modpath.."/tree_models.lua")
 dofile(modpath.."/node_defs.lua")
