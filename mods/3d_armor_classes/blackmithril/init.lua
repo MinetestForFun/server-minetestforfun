@@ -33,6 +33,7 @@ minetest.register_craftitem(":3d_armor:blackmithril_ingot", {
 	description = "Black Mithril Ingot",
 	inventory_image = "3d_armor_blackmithril_ingot.png",
 	stack_max = 99,
+	groups = {ingot = 1}
 })
 
 -- Black Mithril craft recipe

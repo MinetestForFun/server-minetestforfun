@@ -146,6 +146,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 		minetest.register_craftitem(ingot, {
 			description = S("%s Ingot"):format(S(description)),
 			inventory_image = img_base .. "_ingot.png",
+			groups = {ingot = 1}
 		})
 		minetest.register_alias(mineral_name .. "_ingot", ingot)
 	end
