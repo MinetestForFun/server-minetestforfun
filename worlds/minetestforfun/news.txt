@@ -9,8 +9,8 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---??/08/2015--- (Remerciements : crabman77/crabman, LeMagnesium/Mg, Obani)
-Suppression de "bone"
-MAJ de "throwing" (Nouvelle arbalète automatique pour les hunters)
+Suppression de "bone" (devenu obsolète, et peu d'utilité ou utilisé pour passer du temps sur son debug)
+MAJ de "throwing" (Nouvelle arbalète automatique - grâce à son système logique en Mese - pour les Hunters uniquement)
 MAJ de "MFF_game" (Ajustement de la texture du "Steel Block" et "Steel Ingot" pour être plus sombre et diférente de l'équivalent en "Argent/Silver")
 MAJ de "homedecor_modpack" (beaucoup de recettes faites à partir d'objets non présent dans le jeu ont été supprimés)
 MAJ de "unified_inventory" (amélioration du code)
