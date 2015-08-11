@@ -20,6 +20,10 @@ Grahpics & sounds: CC-BY 3.0 (see http://creativecommons.org/licenses/by/3.0/leg
 
 Changelog:
 
+Update 1.3:
+- Added automated arbalest, the ultimate weapon 
+- New arbalest texture coherent with steel color
+
 Update 1.2:
 - Added arbalest
 - Defaults initialized

@@ -69,3 +69,11 @@ if not DISABLE_ARBALEST then
 			{'default:steel_ingot', 'farming:string', 'default:stick'},
 		})
 end
+
+if not DISABLE_AUTOMATED_ARBALEST then
+	throwing_register_bow ('arbalest_auto', 'Automated arbalest', {x=1, y=1.3, z=0.5}, 40, 3.5, 60, true, {
+			{'default:steel_ingot', 'farming:string', 'default:mese_crystal'},
+			{'default:steel_ingot', 'farming:string', 'default:steel_ingot'},
+			{'default:steel_ingot', 'farming:string', 'default:mese_crystal'},
+		})
+end

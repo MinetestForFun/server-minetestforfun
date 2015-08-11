@@ -31,6 +31,7 @@ minetest.register_node("throwing:arrow_build_box", {
 
 local THROWING_ARROW_ENTITY={
 	physical = false,
+	timer=0,
 	visual = "wielditem",
 	visual_size = {x=0.1, y=0.1},
 	textures = {"throwing:arrow_build_box"},
@@ -43,6 +44,7 @@ local THROWING_ARROW_ENTITY={
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
+	self.timer=self.timer+dtime
 	local newpos = self.object:getpos()
 	if self.lastpos.x ~= nil then
 		for _, pos in pairs(throwing_get_trajectoire(self, newpos)) do
