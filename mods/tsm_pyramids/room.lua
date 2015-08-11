@@ -66,8 +66,13 @@ minetest.register_globalstep(function(dtime)
 	pyramids.timer = pyramids.timer + dtime
 	if pyramids.timer < pyramids.max_time then return end
 	pyramids.timer = 0
-	for _,k in ipairs(pyramids.saved_chests) do
-		pyramids.fill_chest(k)
+	-- It might happen that chests are not loaded
+	if pyramids.saved_chests then
+		for _,k in ipairs(pyramids.saved_chests) do
+			pyramids.fill_chest(k)
+		end
+	else
+		pyramids.saved_chests = loadchests() or {}
 	end
 	minetest.log("action","[tsm_pyramids] Chests reloaded")
 end)
