@@ -124,7 +124,6 @@ load_mod_factions = true
 load_mod_invtweak = true
 
 load_mod_screwdriver = true
-load_mod_bone = true
 load_mod_carts = true
 load_mod_sponge = true
 
