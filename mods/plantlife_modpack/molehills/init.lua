@@ -92,7 +92,7 @@ abstract_molehills.place_molehill = function(pos)
 	end
 end
 
-plantslib:register_generate_plant({
+biome_lib:register_generate_plant({
     surface = {"default:dirt_with_grass"},
     max_count = Molehills_Max_Count,
     rarity = Molehills_Rarity,
@@ -105,7 +105,7 @@ plantslib:register_generate_plant({
   abstract_molehills.place_molehill
 )
 
-plantslib:register_generate_plant({
+biome_lib:register_generate_plant({
     surface = {"watershed:drygrass"},
     max_count = Molehills_Max_Count,
     rarity = 97,

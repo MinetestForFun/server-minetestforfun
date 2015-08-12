@@ -7,7 +7,7 @@ Last revision: 2015-02-16
 Functions
 =========
 
-There are three main functions defined by the main "plants_lib" mod:
+There are three main functions defined by the main "biome_lib" mod:
 
 spawn_on_surfaces()
 register_generate_plant()
@@ -19,8 +19,8 @@ at any time.  They are briefly described below these main functions, but see
 init.lua for details.
 
 Most functions in plants lib are declared locally to avoid namespace
-collisions with other mods.  They are accessible via the "plantslib" method,
-e.g. plantslib:spawn_on_surfaces() and so forth.
+collisions with other mods.  They are accessible via the "biome_lib" method,
+e.g. biome_lib:spawn_on_surfaces() and so forth.
 
 =====
 spawn_on_surfaces(biome)
@@ -219,7 +219,7 @@ checking is disabled.  Same holds true for the nneighbors bit above that.
 
 
 =====
-plantslib:register_generate_plant(biome, nodes_or_function_or_treedef)
+biome_lib:register_generate_plant(biome, nodes_or_function_or_treedef)
 
 To register an object to be spawned at mapgen time rather than via an ABM,
 call this function with two parameters:  a table with your object's biome
@@ -335,7 +335,7 @@ will be called in the form:
 
 
 =====
-plantslib:grow_plants(options)
+biome_lib:grow_plants(options)
 
 The third function, grow_plants() is used to turn the spawned nodes above
 into something else over time.  This function has no return value, and accepts
@@ -448,22 +448,22 @@ just checks if DEBUG is true and outputs the phrase "[Plantlife] " followed by
 the supplied string, via the print() function, if so.
 
 =====
-plantslib:generate_tree(pos, treemodel)
-plantslib:grow_tree(pos, treemodel)
+biome_lib:generate_tree(pos, treemodel)
+biome_lib:grow_tree(pos, treemodel)
 
 In the case of the growing code and the mapgen-based tree generator code, 
 generating a tree is done via the above two calls, which in turn immediately
 call the usual spawn_tree() functions.  This rerouting exists as a way for
-other mods to hook into plants_lib's tree-growing functions in general,
+other mods to hook into biome_lib's tree-growing functions in general,
 perhaps to execute something extra whenever a tree is spawned.
 
-plantslib:generate_tree(pos, treemodel) is called any time a tree is spawned
+biome_lib:generate_tree(pos, treemodel) is called any time a tree is spawned
 at map generation time.  'pos' is the position of the block on which the tree
 is to be placed.  'treemodel' is the standard L-Systems tree definition table
 expected by the spawn_tree() function.  Refer to the 'trunk' field in that
 table to derive the name of the tree being spawned.
 
-plantslib:grow_tree(pos, treemodel) does the same sort of thing whenever a 
+biome_lib:grow_tree(pos, treemodel) does the same sort of thing whenever a 
 tree is spawned within the abm-based growing code, for example when growing a
 sapling into a tree.
 
@@ -493,7 +493,7 @@ Perlin noise used.
 The first one is for a "fertile ground" layer, which I tend to refer to as the
 generic "stuff can potentially grow here" layer.  Its values are hard-coded:
 
-	plantslib.plantlife_seed_diff = 329
+	biome_lib.plantlife_seed_diff = 329
 	perlin_octaves = 3
 	perlin_persistence = 0.6
 	perlin_scale = 100

@@ -3,6 +3,7 @@ local S = moretrees.intllib
 for i in ipairs(moretrees.treelist) do
 	local treename = moretrees.treelist[i][1]
 
+	-- MODIFICATION MADE FOR MFF //MFF(Mg|08/12/15)
 	if minetest.registered_items["moretrees:" .. treename .. "_trunk_sideways"] then
 		minetest.register_craft({
 			output = "moretrees:"..treename.."_trunk 2",

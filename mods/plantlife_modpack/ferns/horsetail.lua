@@ -3,9 +3,9 @@
 -----------------------------------------------------------------------------------------------
 -- by Mossmanikin
 -- License (everything): 	WTFPL
--- Contains code from: 		plants_lib
+-- Contains code from: 		biome_lib
 -- Looked at code from:		default, flowers, trees
--- Dependencies: 			plants_lib
+-- Dependencies: 			biome_lib
 -- Supports:				dryplants, stoneage, sumpf
 -----------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ create_nodes()
 -- Spawning
 -----------------------------------------------------------------------------------------------
 if abstract_ferns.config.enable_horsetails_spawning == true then
-	plantslib:spawn_on_surfaces({
+	biome_lib:spawn_on_surfaces({
 		spawn_delay = 1200,
 		spawn_plants = node_names,
 		spawn_chance = 400,
@@ -102,7 +102,7 @@ end
 -----------------------------------------------------------------------------------------------
 
 if abstract_ferns.config.enable_horsetails_on_grass == true then
-	plantslib:register_generate_plant({
+	biome_lib:register_generate_plant({
 		surface = {
 			"default:dirt_with_grass",
 			"sumpf:sumpf"
@@ -134,7 +134,7 @@ if abstract_ferns.config.enable_horsetails_on_grass == true then
 end
 
 if abstract_ferns.config.enable_horsetails_on_stones == true then
-	plantslib:register_generate_plant({
+	biome_lib:register_generate_plant({
 		surface = {
 			"default:gravel", -- roots go deep
 			"default:mossycobble",

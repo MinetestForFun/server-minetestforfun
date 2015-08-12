@@ -73,7 +73,7 @@ abstract_woodsoils.place_soil = function(pos)
 	end
 end
 
-plantslib:register_generate_plant({
+biome_lib:register_generate_plant({
     surface = {
 		"group:tree",
 		"ferns:fern_03",
@@ -94,7 +94,7 @@ plantslib:register_generate_plant({
   "abstract_woodsoils.place_soil"
 )
 
-plantslib:register_generate_plant({
+biome_lib:register_generate_plant({
     surface = {
 		"moretrees:apple_tree_sapling_ongen",
 		"moretrees:beech_sapling_ongen",

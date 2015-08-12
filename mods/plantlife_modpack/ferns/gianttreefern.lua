@@ -3,7 +3,7 @@
 -----------------------------------------------------------------------------------------------
 -- by Mossmanikin
 -- License (everything): 	WTFPL
--- Contains code from: 		plants_lib
+-- Contains code from: 		biome_lib
 -- Looked at code from:		4seasons, default
 -- Supports:				vines
 -----------------------------------------------------------------------------------------------
@@ -285,7 +285,7 @@ minetest.register_abm({
 
 -- in jungles
 if abstract_ferns.config.enable_giant_treeferns_in_jungle == true then
-	plantslib:register_generate_plant({
+	biome_lib:register_generate_plant({
 		surface = {
 			"default:dirt_with_grass",
 			"default:sand",
@@ -310,7 +310,7 @@ end
 
 -- for oases & tropical beaches
 if abstract_ferns.config.enable_giant_treeferns_in_oases == true then
-	plantslib:register_generate_plant({
+	biome_lib:register_generate_plant({
 		surface = {
 			"default:sand"--,
 			--"default:desert_sand"

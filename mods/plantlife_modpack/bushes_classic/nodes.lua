@@ -1,4 +1,4 @@
-local S = plantslib.intllib
+local S = biome_lib.intllib
 
 plantlife_bushes = {}
 
@@ -118,7 +118,7 @@ plantlife_bushes.after_place_node = function(pos, placer, itemstack)
 	meta:set_string("bush_type", name_parts[1])
 end
 
--- regrow berries (uses a base abm instead of plants_lib because of the use of metadata).
+-- regrow berries (uses a base abm instead of biome_lib because of the use of metadata).
 
 minetest.register_abm({
 	nodenames = {"bushes:fruitless_bush"},

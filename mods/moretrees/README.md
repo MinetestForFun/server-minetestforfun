@@ -8,4 +8,4 @@ jungle trees mod, and big contributions by RealBadAngel.
 Brought together into one mod and made L-systems compatible by Vanessa
 Ezekowitz.
 
-Dependencies: <a href="https://github.com/VanessaE/plantlife">plants_lib</a> and default
+Dependencies: <a href="https://forum.minetest.net/viewtopic.php?f=11&t=12999">biome_lib</a> and default

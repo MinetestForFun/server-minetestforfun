@@ -91,7 +91,7 @@ moretrees.willow_biome = {
 }
 
 moretrees.acacia_biome = {
-	surface = { "default:dirt_with_grass", "default:desert_sand" },
+	surface = { "default:dirt_with_grass", "default:dirt_with_dry_grass", "default:desert_sand" },
 	avoid_nodes = moretrees.avoidnodes,
 	avoid_radius = 15,
 	seed_diff = 1,

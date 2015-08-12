@@ -91,7 +91,7 @@ vines.register_vine = function( name, defs, biome )
     end
   })
 
-  plantslib:spawn_on_surfaces( biome )
+  biome_lib:spawn_on_surfaces( biome )
 
   local override_nodes = function( nodes, defs )
     local function override( index, registered )

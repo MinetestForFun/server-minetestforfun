@@ -22,7 +22,7 @@ that is necessary for them to spawn on, so they won't grow if placed on e.g.
 cobble or homedecor flower pot, etc.  This doesn't affect wall-climbing poison
 ivy, since it uses a different growth pattern.
 
-All plants use multiple controls provided by plants_lib, to keep where they
+All plants use multiple controls provided by biome_lib, to keep where they
 grow under control - no more random spread of plants!  In addition, the density
 of the plants in any region they appear in has been fixed and brought under
 control.

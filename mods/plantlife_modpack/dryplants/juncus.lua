@@ -5,7 +5,7 @@
 -- textures & ideas partly by Neuromancer
 
 -- License (everything): 	WTFPL
--- Contains code from: 		plants_lib
+-- Contains code from: 		biome_lib
 -- Looked at code from:		default
 -----------------------------------------------------------------------------------------------
 
@@ -84,7 +84,7 @@ minetest.register_node("dryplants:juncus_02", {
 -- GENERATE SMALL JUNCUS
 -----------------------------------------------------------------------------------------------
 -- near water or swamp
-plantslib:register_generate_plant({
+biome_lib:register_generate_plant({
     surface = {
 		"default:dirt_with_grass",
 		--"default:desert_sand",
@@ -105,7 +105,7 @@ plantslib:register_generate_plant({
   abstract_dryplants.grow_juncus
 )
 -- at dunes/beach
-plantslib:register_generate_plant({
+biome_lib:register_generate_plant({
     surface = {
 		--"default:dirt_with_grass",
 		--"default:desert_sand",

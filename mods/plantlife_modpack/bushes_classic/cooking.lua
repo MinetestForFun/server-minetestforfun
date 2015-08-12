@@ -1,4 +1,4 @@
-local S = plantslib.intllib
+local S = biome_lib.intllib
 
 -- Basket
 

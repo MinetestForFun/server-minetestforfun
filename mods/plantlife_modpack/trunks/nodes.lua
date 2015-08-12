@@ -303,6 +303,7 @@ local TRuNKS = {
 --	  MoD 						 TRuNK
     {"default",  				"tree"						},
 	{"default",					"jungletree"				},
+	{"default",					"pinetree"					},
 
 	{"trees",					"tree_conifer"				},
 	{"trees",					"tree_mangrove"				},
@@ -314,7 +315,6 @@ local TRuNKS = {
 	{"moretrees",				"fir_trunk"					},
 	{"moretrees",				"oak_trunk"					},
 	{"moretrees",				"palm_trunk"				},
-	{"moretrees",				"pine_trunk"				},
 	{"moretrees",				"rubber_tree_trunk"			},
 	{"moretrees",				"rubber_tree_trunk_empty"	},
 	{"moretrees",				"sequoia_trunk"				},
@@ -359,3 +359,5 @@ for i in pairs(TRuNKS) do
 	end
 end
 end
+
+minetest.register_alias("trunks:pine_trunkroot", "trunks:pine_treeroot")

@@ -4,7 +4,7 @@
 -- by Mossmanikin
 
 -- License (everything): 	WTFPL
--- Contains code from: 		plants_lib
+-- Contains code from: 		biome_lib
 -- Looked at code from:		default				
 -----------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ abstract_dryplants.grow_grass = function(pos)
 	end
 end
 
-plantslib:register_generate_plant({
+biome_lib:register_generate_plant({
     surface = {
 		"default:dirt_with_grass",
 		"stoneage:grass_with_silex",

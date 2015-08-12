@@ -1,2 +1,2 @@
 default
-plants_lib
+biome_lib

@@ -52,6 +52,17 @@ else
 end
 moretrees.intllib = S
 
+-- clone node
+
+function moretrees.clone_node(name)
+	local node2 = {}
+	local node = minetest.registered_nodes[name]
+	for k,v in pairs(node) do
+		node2[k]=v
+	end
+	return node2
+end
+
 -- infinite stacks checking
 
 if minetest.get_modpath("unified_inventory") or not minetest.setting_getbool("creative_mode") then
@@ -118,57 +129,57 @@ end
 
 
 if moretrees.enable_beech then
-	plantslib:register_generate_plant(moretrees.beech_biome, moretrees.spawn_beech_object)
+	biome_lib:register_generate_plant(moretrees.beech_biome, moretrees.spawn_beech_object)
 end
 
 if moretrees.enable_apple_tree then
-	plantslib:register_generate_plant(moretrees.apple_tree_biome, moretrees.spawn_apple_tree_object)
+	biome_lib:register_generate_plant(moretrees.apple_tree_biome, moretrees.spawn_apple_tree_object)
 end
 
 if moretrees.enable_oak then
-	plantslib:register_generate_plant(moretrees.oak_biome, moretrees.spawn_oak_object)
+	biome_lib:register_generate_plant(moretrees.oak_biome, moretrees.spawn_oak_object)
 end
 
 if moretrees.enable_sequoia then
-	plantslib:register_generate_plant(moretrees.sequoia_biome, moretrees.spawn_sequoia_object)
+	biome_lib:register_generate_plant(moretrees.sequoia_biome, moretrees.spawn_sequoia_object)
 end
 
 if moretrees.enable_palm then
-	plantslib:register_generate_plant(moretrees.palm_biome, moretrees.spawn_palm_object)
+	biome_lib:register_generate_plant(moretrees.palm_biome, moretrees.spawn_palm_object)
 end
 
 if moretrees.enable_pine then
-	plantslib:register_generate_plant(moretrees.pine_biome, moretrees.spawn_pine_object)
+	biome_lib:register_generate_plant(moretrees.pine_biome, moretrees.spawn_pine_object)
 end
 
 if moretrees.enable_rubber_tree then
-	plantslib:register_generate_plant(moretrees.rubber_tree_biome, moretrees.spawn_rubber_tree_object)
+	biome_lib:register_generate_plant(moretrees.rubber_tree_biome, moretrees.spawn_rubber_tree_object)
 end
 
 if moretrees.enable_willow then
-	plantslib:register_generate_plant(moretrees.willow_biome, moretrees.spawn_willow_object)
+	biome_lib:register_generate_plant(moretrees.willow_biome, moretrees.spawn_willow_object)
 end
 
 if moretrees.enable_acacia then
-	plantslib:register_generate_plant(moretrees.acacia_biome, moretrees.spawn_acacia_object)
+	biome_lib:register_generate_plant(moretrees.acacia_biome, moretrees.spawn_acacia_object)
 end
 
 if moretrees.enable_birch then
-	plantslib:register_generate_plant(moretrees.birch_biome, moretrees.spawn_birch_object)
+	biome_lib:register_generate_plant(moretrees.birch_biome, moretrees.spawn_birch_object)
 end
 
 if moretrees.enable_spruce then
-	plantslib:register_generate_plant(moretrees.spruce_biome, moretrees.spawn_spruce_object)
+	biome_lib:register_generate_plant(moretrees.spruce_biome, moretrees.spawn_spruce_object)
 end
 
 if moretrees.enable_jungle_tree then
-	plantslib:register_generate_plant(moretrees.jungletree_biome, moretrees.spawn_jungletree_object)
+	biome_lib:register_generate_plant(moretrees.jungletree_biome, moretrees.spawn_jungletree_object)
 end
 
 if moretrees.enable_fir then
-	plantslib:register_generate_plant(moretrees.fir_biome, moretrees.spawn_fir_object)
+	biome_lib:register_generate_plant(moretrees.fir_biome, moretrees.spawn_fir_object)
 	if minetest.get_modpath("snow") then
-		plantslib:register_generate_plant(moretrees.fir_biome_snow, moretrees.spawn_fir_snow_object)
+		biome_lib:register_generate_plant(moretrees.fir_biome_snow, moretrees.spawn_fir_snow_object)
 	end
 end
 

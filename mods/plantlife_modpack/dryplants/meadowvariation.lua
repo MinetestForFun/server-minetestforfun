@@ -4,7 +4,7 @@
 -- by Mossmanikin
 
 -- License (everything): 	WTFPL
--- Contains code from: 		plants_lib
+-- Contains code from: 		biome_lib
 -- Looked at code from:		default
 -----------------------------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ abstract_dryplants.grow_grass_variation = function(pos)
 	minetest.set_node(right_here, {name="dryplants:grass_short"})
 end
 
-plantslib:register_generate_plant({
+biome_lib:register_generate_plant({
     surface = {
 		"default:dirt_with_grass",
 	},

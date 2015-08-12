@@ -9,7 +9,7 @@ local mname		= "dryplants"
 -- License (everything): 	WTFPL
 -- Contains code from: 		default, farming 
 -- Looked at code from:		darkage, sickle, stairs
--- Dependencies: 			default, farming, plants_lib
+-- Dependencies: 			default, farming, biome_lib
 -- Supports:				
 -----------------------------------------------------------------------------------------------
 abstract_dryplants = {}

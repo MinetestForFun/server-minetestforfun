@@ -18,13 +18,15 @@ moretrees.enable_beech			= true
 
 -- set this to true to make moretrees spawn saplings at mapgen time instead
 -- of fully-grown trees, which will grow into full trees very quickly.  With
--- older versions of plants_lib, doing this will reduce mapgen lag.
+-- older versions of biome_lib, doing this will reduce mapgen lag.
 
 moretrees.spawn_saplings		= true
 
--- Set this to true to allow usage of the stairsplus mod in moreblocks
+-- Set this to true to allow defining stairs/slabs/etc.  If Moreblocks is
+-- installed, this will use that mod's Stairs Plus component.  Otherwise, it 
+-- will use the default stairs mod in minetest_game, if present
 
-moretrees.enable_stairsplus		= true
+moretrees.enable_stairs			= true
 
 -- Set this to true if you want the plantlike drawtype for leaves, which 
 -- improves some peoples' framerates without resorting to making leaf nodes opaque.

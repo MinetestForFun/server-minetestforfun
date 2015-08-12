@@ -47,7 +47,7 @@ table.
 |description|   string|The vine's tooltip description|
 |average_length|int|   The average length of vines|
 
-For biome definitions please see the [plants_lib API documentation](https://github.com/VanessaE/plantlife_modpack/blob/master/API.txt)
+For biome definitions please see the [biome_lib API documentation](https://github.com/VanessaE/biome_lib/blob/master/API.txt)
 
 ## Notice
 Vines use after_destruct on registered leave nodes to remove vines from which
