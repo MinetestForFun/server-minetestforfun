@@ -110,7 +110,7 @@ function food.item_eat(amt)
 		if hbhunger then
 			return hbhunger.item_eat(amt)
 		else
-			return hunger.item_eat(amt)
+			return hbhunger.item_eat(amt)
 		end
 	else
 		return minetest.item_eat(amt)
