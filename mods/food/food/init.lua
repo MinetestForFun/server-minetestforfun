@@ -107,11 +107,12 @@ function food.item_eat(amt)
 	elseif minetest.get_modpath("hud") and hud and hud.item_eat then
 		return hud.item_eat(amt)
 	elseif minetest.get_modpath("hbhunger") then
-		if hbhunger then
-			return hbhunger.item_eat(amt)
-		else
+		if hbhunger and hbhunger.item_eat then -- hbhunger is nil when world is loaded with damage disabled
 			return hbhunger.item_eat(amt)
 		end
+		return function(...) end
+	elseif minetest.get_modpath("hunger") and hunger and hunger.item_eat then
+		return hunger.item_eat(amt)
 	else
 		return minetest.item_eat(amt)
 	end
