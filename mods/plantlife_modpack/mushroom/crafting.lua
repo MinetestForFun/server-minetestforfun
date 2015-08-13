@@ -4,12 +4,14 @@ minetest.register_craftitem("mushroom:spore1",{
 	description = "Unidentified Mushroom Spore",
 	inventory_image = "mushroom_spore.png",
 	wield_image = "mushroom_spore.png",
+	stack_max = 100,
 })
 
 minetest.register_craftitem("mushroom:spore2",{
 	description = "Unidentified Mushroom Spore",
 	inventory_image = "mushroom_spore.png",
 	wield_image = "mushroom_spore.png",
+	stack_max = 100,
 })
 
 minetest.register_craftitem("mushroom:identifier",{
