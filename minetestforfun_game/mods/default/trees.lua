@@ -420,7 +420,7 @@ function default.grow_cherry_tree(pos, is_apple_tree, trunk_node, leaves_node)
 end
 
 minetest.register_abm({
-	nodenames = {"default:cherry_sapling"},
+	nodenames = {"default:cherry_sapling", "default:mg_cherry_sapling"},
 	interval = 80,
 	chance = 3,
 	action = function(pos, node)

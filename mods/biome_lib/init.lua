@@ -10,7 +10,7 @@
 
 biome_lib = {}
 
-plantslib = setmetatable({}, { __index=function(t,k) print("Use of deprecated function:", k) return biomes_lib[k] end })
+plantslib = setmetatable({}, { __index=function(t,k) minetest.log("warning", "Use of deprecated function:", k) return biomes_lib[k] end })
 
 biome_lib.blocklist_aircheck = {}
 biome_lib.blocklist_no_aircheck = {}
@@ -44,7 +44,7 @@ local DEBUG = false --... except if you want to spam the console with debugging 
 
 function biome_lib:dbg(msg)
 	if DEBUG then
-		print("[Plantlife] "..msg)
+		minetest.log("info", "[Plantlife] "..msg)
 		minetest.log("verbose", "[Plantlife] "..msg)
 	end
 end
@@ -448,8 +448,8 @@ end)
 -- to prevent unpopulated map areas
 
 minetest.register_on_shutdown(function()
-	print("[biome_lib] Stand by, playing out the rest of the aircheck mapblock log")
-	print("(there are "..#biome_lib.blocklist_aircheck.." entries)...")
+	minetest.log("action", "[biome_lib] Stand by, playing out the rest of the aircheck mapblock log")
+	minetest.log("action", "(there are "..#biome_lib.blocklist_aircheck.." entries)...")
 	while true do
 		biome_lib:generate_block_with_air_checking(0.1)
 		if #biome_lib.blocklist_aircheck == 0 then return end
@@ -457,8 +457,8 @@ minetest.register_on_shutdown(function()
 end)
 
 minetest.register_on_shutdown(function()
-	print("[biome_lib] Stand by, playing out the rest of the no-aircheck mapblock log")
-	print("(there are "..#biome_lib.blocklist_aircheck.." entries)...")
+	minetest.log("action", "[biome_lib] Stand by, playing out the rest of the no-aircheck mapblock log")
+	minetest.log("action", "(there are "..#biome_lib.blocklist_aircheck.." entries)...")
 	while true do
 		biome_lib:generate_block_no_aircheck(0.1)
 		if #biome_lib.blocklist_no_aircheck == 0 then return end
@@ -728,10 +728,10 @@ function biome_lib:get_nodedef_field(nodename, fieldname)
 	return minetest.registered_nodes[nodename][fieldname]
 end
 
-print("[Biome Lib] Loaded")
+minetest.log("action", "[Biome Lib] Loaded")
 
 minetest.after(0, function()
-	print("[Biome Lib] Registered a total of "..(#biome_lib.surfaceslist_aircheck)+(#biome_lib.surfaceslist_no_aircheck).." surface types to be evaluated, spread")
-	print("[Biome Lib] across "..#biome_lib.actionslist_aircheck.." actions with air-checking and "..#biome_lib.actionslist_no_aircheck.." actions without.")
+	minetest.log("action", "[Biome Lib] Registered a total of "..(#biome_lib.surfaceslist_aircheck)+(#biome_lib.surfaceslist_no_aircheck).." surface types to be evaluated, spread")
+	minetest.log("action", "[Biome Lib] across "..#biome_lib.actionslist_aircheck.." actions with air-checking and "..#biome_lib.actionslist_no_aircheck.." actions without.")
 end)
 
