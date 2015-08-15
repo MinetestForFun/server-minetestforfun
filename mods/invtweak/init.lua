@@ -193,7 +193,7 @@ end
 function refill(player, stck_name, index)
 	local inv = player:get_inventory()
 	for i,stack in ipairs(inv:get_list("main")) do
-		if stack:get_name() == stck_name then
+		if i ~= index and stack:get_name() == stck_name then
 			inv:set_stack("main", index, stack)
 			stack:clear()
 			inv:set_stack("main", i, stack)
