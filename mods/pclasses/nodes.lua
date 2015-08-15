@@ -49,7 +49,7 @@ minetest.register_entity("pclasses:item", {
 	on_activate = function(self, staticdata)
 		self.itemname = staticdata:split("|")[1]
 		self.class = staticdata:split("|")[2]
---		self.object:set_armor_groups({immortal=1})
+		self.object:set_armor_groups({immortal=1})
 		self:set_item(self.itemname)
 	end,
 	get_staticdata = function(self)
