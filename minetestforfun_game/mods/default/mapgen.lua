@@ -1414,7 +1414,7 @@ function default.make_nyancat(pos, facedir, length)
 end
 
 function default.generate_nyancats(minp, maxp, seed)
-	local height_min = -30000
+	local height_min = -19600
 	local height_max = 30000
 	if maxp.y < height_min or minp.y > height_max then
 		return
