@@ -65,7 +65,6 @@ Spruce Cone = Fichtenzapfen
 Pine Cone = Kiefernzapfen
 Fir Cone = Tannenzapfen
 Jungle Sapling = Tropenbaumsetzling
-Jungle Tree Leaves (Green) = Tropenbaumlaub (gruen)
 Jungle Tree Leaves (Yellow) = Tropenbaumlaub (gelb)
 Jungle Tree Leaves (Red) = Tropenbaumlaub (rot)
 Douglas Fir Leaves (Bright) = Douglasiennadeln (breit)

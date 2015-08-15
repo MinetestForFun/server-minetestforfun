@@ -13,8 +13,7 @@
 -- by RealBadAngel.
 --
 -- License: WTFPL for all parts (code and textures, including those copied
--- from the jungletree and conifers mods) except the default jungle tree trunk
--- texture, which is CC-By-SA.
+-- from the the old jungletree and conifers mods).
 
 moretrees = {}
 
@@ -120,13 +119,12 @@ else
 	moretrees.spawn_rubber_tree_object = moretrees.rubber_tree_model
 	moretrees.spawn_willow_object = moretrees.willow_model
 	moretrees.spawn_acacia_object = moretrees.acacia_model
-	moretrees.spawn_birch_object = "moretrees:grow_birch"
-	moretrees.spawn_spruce_object = "moretrees:grow_spruce"
-	moretrees.spawn_jungletree_object = "moretrees:grow_jungletree"
-	moretrees.spawn_fir_object = "moretrees:grow_fir"
-	moretrees.spawn_fir_snow_object = "moretrees:grow_fir_snow"
+	moretrees.spawn_birch_object = "moretrees.grow_birch"
+	moretrees.spawn_spruce_object = "moretrees.grow_spruce"
+	moretrees.spawn_jungletree_object = "moretrees.grow_jungletree"
+	moretrees.spawn_fir_object = "moretrees.grow_fir"
+	moretrees.spawn_fir_snow_object = "moretrees.grow_fir_snow"
 end
-
 
 if moretrees.enable_beech then
 	biome_lib:register_generate_plant(moretrees.beech_biome, moretrees.spawn_beech_object)
@@ -185,7 +183,7 @@ end
 
 -- Code to spawn a birch tree
 
-function moretrees:grow_birch(pos)
+function moretrees.grow_birch(pos)
 	minetest.remove_node(pos)
 	if math.random(1,2) == 1 then
 		minetest.spawn_tree(pos, moretrees.birch_model1)
@@ -196,7 +194,7 @@ end
 
 -- Code to spawn a spruce tree
 
-function moretrees:grow_spruce(pos)
+function moretrees.grow_spruce(pos)
 	minetest.remove_node(pos)
 	if math.random(1,2) == 1 then
 		minetest.spawn_tree(pos, moretrees.spruce_model1)
@@ -221,7 +219,7 @@ moretrees.ct_rules_b1 = "[-FBf][+FBf]"
 moretrees.ct_rules_a2 = "FF[FF][&&-FBF][&&+FBF][&&---FBF][&&+++FBF]F/A"
 moretrees.ct_rules_b2 = "[-fB][+fB]"
 
-function moretrees:grow_jungletree(pos)
+function moretrees.grow_jungletree(pos)
 	local r1 = math.random(2)
 	local r2 = math.random(3)
 	if r1 == 1 then
@@ -261,7 +259,7 @@ end
 
 -- code to spawn fir trees
 
-function moretrees:grow_fir(pos)
+function moretrees.grow_fir(pos)
 	if math.random(2) == 1 then
 		moretrees.fir_model.leaves="moretrees:fir_leaves"
 	else
@@ -288,7 +286,7 @@ end
 
 -- same thing, but a smaller version that grows only in snow biomes
 
-function moretrees:grow_fir_snow(pos)
+function moretrees.grow_fir_snow(pos)
 	if math.random(2) == 1 then
 		moretrees.fir_model.leaves="moretrees:fir_leaves"
 	else

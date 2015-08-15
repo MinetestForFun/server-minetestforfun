@@ -65,7 +65,6 @@ Spruce Cone =
 Pine Cone = 
 Fir Cone = 
 Jungle Sapling = 
-Jungle Tree Leaves (Green) = 
 Jungle Tree Leaves (Yellow) = 
 Jungle Tree Leaves (Red) = 
 Douglas Fir Leaves (Bright) = 

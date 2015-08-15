@@ -202,6 +202,7 @@ local TRuNKS = {
 --	  MoD 						 TRuNK						NR
     {"default",  				"tree",				 		 1},
 	{"default",					"jungletree",				 2},
+	{"default",					"pine_tree",				12},
 
 	{"trees",					"tree_conifer",		 		 3},
 	{"trees",					"tree_mangrove",			 4},
@@ -213,7 +214,6 @@ local TRuNKS = {
 	{"moretrees",				"fir_trunk",				 9},
 	{"moretrees",				"oak_trunk",				10},
 	{"moretrees",				"palm_trunk",				11},
-	{"moretrees",				"pine_trunk",				12},
 	{"moretrees",				"rubber_tree_trunk",		13},
 	{"moretrees",				"rubber_tree_trunk_empty",	14},
 	{"moretrees",				"sequoia_trunk",			15},
@@ -462,6 +462,7 @@ biome_lib:register_generate_plant({
     surface = {
 		"default:tree",
 		"default:jungletree",
+		"default:pine_tree",
 		"trees:tree_conifer",
 		"trees:tree_mangrove",
 		--"trees:tree_palm",
@@ -471,7 +472,6 @@ biome_lib:register_generate_plant({
 		"moretrees:fir_trunk",
 		"moretrees:oak_trunk",
 		--"moretrees:palm_trunk",
-		"moretrees:pine_trunk",
 		"moretrees:rubber_tree_trunk",
 		"moretrees:rubber_tree_trunk_empty",
 		"moretrees:sequoia_trunk",

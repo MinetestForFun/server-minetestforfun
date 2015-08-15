@@ -38,18 +38,6 @@ moretrees.plantlike_leaves		= false
 
 moretrees.enable_leafdecay		= true
 
--- Enable this one if you want this mod's leafdecay code to affect the old
--- default trees too; this setting is independent of the one above.  You'll
--- want to manually disable the default leafdecay code in minetest_game if
--- you enable this, otherwise you'll have two sets of leaf decay code running
--- at the same time, which will just waste CPU for no benefit.
-
-moretrees.enable_default_leafdecay	= true
-
--- Enable this one for default *jungle* leaves
-
-moretrees.enable_default_jungle_leafdecay	= true
-
 -- Enable this if you want moretrees to redefine default apples so that they
 -- fall when leaves decay/are dug.
 
@@ -60,10 +48,6 @@ moretrees.enable_redefine_apple		= true
 moretrees.leafdecay_delay		= 2
 moretrees.leafdecay_chance		= 100
 moretrees.leafdecay_radius		= 5
-
-moretrees.default_jungle_leafdecay_delay = 2
-moretrees.default_jungle_leafdecay_chance = 100
-moretrees.default_jungle_leafdecay_radius = 5
 
 moretrees.palm_leafdecay_radius		= 15
 

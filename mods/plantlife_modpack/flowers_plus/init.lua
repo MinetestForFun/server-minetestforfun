@@ -220,55 +220,6 @@ for i in ipairs(algae_list) do
 	})
 end
 
--- register all potted plant nodes, crafts, and most backward-compat aliases
--- Description, base node name, item to craft flowerpot with
-
--- /MFF BEGIN (Mg|06/04/15 4:31PM)
---[[local flowers_list = {
-	{ "Rose",				"rose", 			"flowers:rose" },
-	{ "Tulip",				"tulip", 			"flowers:tulip" },
-	{ "Yellow Dandelion",	"dandelion_yellow",	"flowers:dandelion_yellow" },
-	{ "White Dandelion",	"dandelion_white",	"flowers:dandelion_white" },
-	{ "Blue Geranium",		"geranium",			"flowers:geranium" },
-	{ "Viola",				"viola",			"flowers:viola" },
-	{ "Cactus",				"cactus",			"default:cactus" },
-	{ "Bonsai",				"bonsai",			"default:sapling" }
-}
-
-for i in ipairs(flowers_list) do
-	local flowerdesc	= flowers_list[i][1]
-	local flower		= flowers_list[i][2]
-	local craftwith		= flowers_list[i][3]
-
-	minetest.register_node(":flowers:potted_"..flower, {
-		description = S("Potted "..flowerdesc),
-		drawtype = "mesh",
-		mesh = "flowers_potted.obj",
-		tiles = { "flowers_potted_"..flower..".png", "flowers_potted.png" },
-		sunlight_propagates = true,
-		paramtype = "light",
-		walkable = false,
-		groups = { snappy = 3, flammable=2 },
-		sounds = default.node_sound_glass_defaults(),
-		selection_box = {
-			type = "fixed",
-			fixed = { -0.2, -0.5, -0.2, 0.2, 0.4, 0.2 },
-		},
-	})
-
-	minetest.register_craft( {
-		type = "shapeless",
-		output = "flowers:potted_"..flower,
-		recipe = {
-			craftwith,
-			"flowers:flower_pot"
-		}
-	})
-
-	minetest.register_alias("flowers:flower_"..flower.."_pot", "flowers:potted_"..flower)
-end
-]]-- /MFF END (Mg|06/04/15 4:32PM)
-
 local box = {
 	type="fixed",
 	fixed = { { -0.2, -0.5, -0.2, 0.2, 0.5, 0.2 } },

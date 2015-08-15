@@ -27,8 +27,9 @@ bushes_classic.bushes_descriptions = {
 
 bushes_classic.spawn_list = {}
 
-dofile(minetest.get_modpath('bushes_classic') .. '/cooking.lua')
-dofile(minetest.get_modpath('bushes_classic') .. '/nodes.lua')
+local modpath = minetest.get_modpath('bushes_classic')
+dofile(modpath..'/cooking.lua')
+dofile(modpath..'/nodes.lua')
 
 biome_lib:spawn_on_surfaces({
 	spawn_delay = 3600,

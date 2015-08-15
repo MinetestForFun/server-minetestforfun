@@ -165,42 +165,22 @@ local del1 = 0
 local count = 0
 
 default.cool_lava_source = function(pos)
-	local del2 = tonumber(os.clock())
-	if del2-del1 < 0.1
-	and count > 1 then
-		cool_wf_vm(pos, "default:lava_source", "default:obsidian_cooled")
-		count = 0
-	else
-		minetest.set_node(pos, {name = "default:obsidian_cooled"})
-		minetest.sound_play("default_cool_lava", {pos = pos, gain = 0.2})
-		if del2-del1 < 0.1 then
-			count = count + 1
-		end
-	end
-	del1 = del2
+	minetest.set_node(pos, {name = "default:obsidian"})
+	minetest.sound_play("default_cool_lava",
+		{pos = pos, max_hear_distance = 16, gain = 0.25})
 end
 
 default.cool_lava_flowing = function(pos)
-	local del2 = tonumber(os.clock())
-	if del2-del1 < 0.1
-	and count > 1 then
-		cool_wf_vm(pos, "default:lava_flowing", "default:cobble_cooled")
-		count = 0
-	else
-		minetest.set_node(pos, {name = "default:cobble_cooled"})
-		minetest.sound_play("default_cool_lava", {pos = pos, gain = 0.2})
-		if del2-del1 < 0.1 then
-			count = count + 1
-		end
-	end
-	del1 = del2
+	minetest.set_node(pos, {name = "default:stone"})
+	minetest.sound_play("default_cool_lava",
+		{pos = pos, max_hear_distance = 16, gain = 0.25})
 end
 
 minetest.register_abm({
 	nodenames = {"default:lava_flowing"},
 	neighbors = {"group:water"},
-	interval = 2,
-	chance = 1,
+	interval = 1,
+	chance = 2,
 	action = function(...)
 		default.cool_lava_flowing(...)
 	end,
@@ -209,8 +189,8 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"default:lava_source"},
 	neighbors = {"group:water"},
-	interval = 2,
-	chance = 1,
+	interval = 1,
+	chance = 2,
 	action = function(...)
 		default.cool_lava_source(...)
 	end,
@@ -224,12 +204,11 @@ minetest.register_abm({
 -- wrapping the functions in abm action is necessary to make overriding them possible
 
 function default.grow_cactus(pos, node)
-	if node.param2 >= 4 then
+	if node.param2 ~= 0 then
 		return
 	end
 	pos.y = pos.y - 1
-	local name = minetest.get_node(pos).name --MFF
-	if minetest.get_item_group(name, "sand") == 0 and name ~= "watershed:drygrass" then --MFF
+	if minetest.get_item_group(minetest.get_node(pos).name, "sand") == 0 then
 		return
 	end
 	pos.y = pos.y + 1
@@ -249,7 +228,7 @@ end
 function default.grow_papyrus(pos, node)
 	pos.y = pos.y - 1
 	local name = minetest.get_node(pos).name
-	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" and name ~= "default:sand" and name ~= "default:desert_sand" then --MFF
+	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" then
 		return
 	end
 	if not minetest.find_node_near(pos, 3, {"group:water"}) then
@@ -406,6 +385,7 @@ minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack
 	if newnode.name ~= "default:torch" or minetest.get_item_group(oldnode.name, "water") == 0 then
 		return
 	end
+	minetest.remove_node(pos, newnode)
 	minetest.set_node(pos, oldnode)
 	minetest.add_item(pos, "default:torch")
 end)
@@ -436,9 +416,9 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
-	nodenames = {"default:dirt_with_grass"},
-	interval = 30,
-	chance = 2,
+	nodenames = {"default:dirt_with_grass", "default:dirt_with_dry_grass"},
+	interval = 2,
+	chance = 20,
 	action = function(pos, node)
 		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 		local name = minetest.get_node(above).name

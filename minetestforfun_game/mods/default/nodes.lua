@@ -1,5 +1,15 @@
 -- mods/default/nodes.lua
 
+
+--[[ Node name convention:
+
+Although many node names are in combined-word form, the required form for new
+node names is words separated by underscores. If both forms are used in written
+language (for example pinewood and pine wood) the underscore form should be used.
+
+--]]
+
+
 --[[ Index:
 
 Stone
@@ -28,6 +38,7 @@ Soft / Non-Stone
 
 default:dirt
 default:dirt_with_grass
+default:dirt_with_dry_grass
 default:dirt_with_grass_footsteps
 default:dirt_with_snow
 
@@ -59,10 +70,15 @@ default:junglewood
 default:jungleleaves
 default:junglesapling
 
-default:pinetree
-default:pinewood
+default:pine_tree
+default:pine_wood
 default:pine_needles
 default:pine_sapling
+
+default:acacia_tree
+default:acacia_wood
+default:acacia_leaves
+default:acacia_sapling
 
 default:cherry_tree
 default:cherry_log
@@ -104,11 +120,18 @@ default:cactus
 default:papyrus
 default:dry_shrub
 default:junglegrass
+
 default:grass_1
 default:grass_2
 default:grass_3
 default:grass_4
 default:grass_5
+
+default:dry_grass_1
+default:dry_grass_2
+default:dry_grass_3
+default:dry_grass_4
+default:dry_grass_5
 
 Liquids
 -------
@@ -331,6 +354,19 @@ minetest.register_node("default:dirt_with_grass", {
 	}),
 })
 
+minetest.register_node("default:dirt_with_dry_grass", {
+	description = "Dirt with Dry Grass",
+	tiles = {"default_dry_grass.png",
+		"default_dirt.png",
+		"default_dirt.png^default_dry_grass_side.png"
+	},
+	groups = {crumbly = 3, soil = 1},
+	drop = 'default:dirt',
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name = "default_grass_footstep", gain = 0.4},
+	}),
+})
+
 minetest.register_node("default:dirt_with_grass_footsteps", {
 	description = "Dirt with Grass and Footsteps",
 	tiles = {"default_grass_footsteps.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
@@ -455,19 +491,19 @@ minetest.register_node("default:snow", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, -0.5,  0.5, -0.5+2/16, 0.5},
+			{-0.5, -0.5, -0.5, 0.5, -0.25, 0.5},
 		},
 	},
 	groups = {crumbly=3,falling_node=1, melts = 1, float = 1},
 	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_snow_footstep", gain=0.25},
-		dug = {name="default_snow_footstep", gain=0.75},
+		footstep = {name = "default_snow_footstep", gain = 0.25},
+		dug = {name = "default_snow_footstep", gain = 0.75},
 	}),
 
 	on_construct = function(pos)
 		pos.y = pos.y - 1
 		if minetest.get_node(pos).name == "default:dirt_with_grass" then
-			minetest.set_node(pos, {name="default:dirt_with_snow"})
+			minetest.set_node(pos, {name = "default:dirt_with_snow"})
 		end
 	end,
 })
@@ -553,6 +589,7 @@ minetest.register_node("default:leaves", {
 	waving = 1,
 	visual_scale = 1.3,
 	tiles = {"default_leaves.png"},
+	special_tiles = {"default_leaves_simple.png"},
 	paramtype = "light",
 	walkable = false,
 	is_ground_content = false,
@@ -633,6 +670,7 @@ minetest.register_node("default:jungleleaves", {
 	drawtype = "allfaces_optional",
 	waving = 1,
 	tiles = {"default_jungleleaves.png"},
+	special_tiles = {"default_jungleleaves_simple.png"},
 	paramtype = "light",
 	is_ground_content = false,
 	walkable = false,
@@ -676,22 +714,23 @@ minetest.register_node("default:junglesapling", {
 
 
 
-minetest.register_node("default:pinetree", {
+minetest.register_node("default:pine_tree", {
 	description = "Pine Tree",
-	tiles = {"default_pinetree_top.png", "default_pinetree_top.png", "default_pinetree.png"},
+	tiles = {"default_pine_tree_top.png", "default_pine_tree_top.png",
+		"default_pine_tree.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 
 	on_place = minetest.rotate_node
 })
 
-minetest.register_node("default:pinewood", {
-	description = "Pinewood Planks",
-	tiles = {"default_pinewood.png"},
+minetest.register_node("default:pine_wood", {
+	description = "Pine Wood Planks",
+	tiles = {"default_pine_wood.png"},
 	is_ground_content = false,
-	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 3, wood = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -703,20 +742,12 @@ minetest.register_node("default:pine_needles",{
 	waving = 1,
 	paramtype = "light",
 	is_ground_content = false,
-	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
 	drop = {
 		max_items = 1,
 		items = {
-			{
-				-- player will get sapling with 1/20 chance
-				items = {"default:pine_sapling"},
-				rarity = 20,
-			},
-			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
-				items = {"default:pine_needles"},
-			}
+			{items = {"default:pine_sapling"}, rarity = 20},
+			{items = {"default:pine_needles"}}
 		}
 	},
 	sounds = default.node_sound_leaves_defaults(),
@@ -732,13 +763,74 @@ minetest.register_node("default:pine_sapling", {
 	inventory_image = "default_pine_sapling.png",
 	wield_image = "default_pine_sapling.png",
 	paramtype = "light",
+	sunlight_propagates = true,
 	walkable = false,
 	is_ground_content = true,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
 	},
-	groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1,sapling=1},
+	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
+		attached_node = 1, sapling = 1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_node("default:acacia_tree", {
+	description = "Acacia Tree",
+	tiles = {"default_acacia_tree_top.png", "default_acacia_tree_top.png",
+		"default_acacia_tree.png"},
+	paramtype2 = "facedir",
+	is_ground_content = false,
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	sounds = default.node_sound_wood_defaults(),
+
+	on_place = minetest.rotate_node
+})
+
+minetest.register_node("default:acacia_wood", {
+	description = "Acacia Wood Planks",
+	tiles = {"default_acacia_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 3, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_node("default:acacia_leaves", {
+	description = "Acacia Leaves",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"default_acacia_leaves.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:acacia_sapling"}, rarity = 20},
+			{items = {"default:acacia_leaves"}}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+
+	after_place_node = default.after_place_leaves,
+})
+
+minetest.register_node("default:acacia_sapling", {
+	description = "Acacia Tree Sapling",
+	drawtype = "plantlike",
+	visual_scale = 1.0,
+	tiles = {"default_acacia_sapling.png"},
+	inventory_image = "default_acacia_sapling.png",
+	wield_image = "default_acacia_sapling.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
+	},
+	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
+		attached_node = 1, sapling = 1},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -1200,6 +1292,54 @@ for i=2,5 do
 		is_ground_content = true,
 		drop = "default:grass_1",
 		groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
+		sounds = default.node_sound_leaves_defaults(),
+		selection_box = {
+			type = "fixed",
+			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+		},
+	})
+end
+
+minetest.register_node("default:dry_grass_1", {
+	description = "Dry Grass",
+	drawtype = "plantlike",
+	waving = 1,
+	tiles = {"default_dry_grass_1.png"},
+	inventory_image = "default_dry_grass_3.png",
+	wield_image = "default_dry_grass_3.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy=3,flammable=3,flora=1,attached_node=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+	},
+
+	on_place = function(itemstack, placer, pointed_thing)
+		-- place a random dry grass node
+		local stack = ItemStack("default:dry_grass_"..math.random(1,5))
+		local ret = minetest.item_place(stack, placer, pointed_thing)
+		return ItemStack("default:dry_grass_1 "..itemstack:get_count()-(1-ret:get_count()))
+	end,
+})
+
+for i=2,5 do
+	minetest.register_node("default:dry_grass_"..i, {
+		description = "Dry Grass",
+		drawtype = "plantlike",
+		waving = 1,
+		tiles = {"default_dry_grass_"..i..".png"},
+		inventory_image = "default_dry_grass_"..i..".png",
+		wield_image = "default_dry_grass_"..i..".png",
+		paramtype = "light",
+		sunlight_propagates = true,
+		walkable = false,
+		buildable_to = true,
+		groups = {snappy=3,flammable=3,flora=1,attached_node=1,not_in_creative_inventory=1},
+		drop = "default:dry_grass_1",
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
 			type = "fixed",

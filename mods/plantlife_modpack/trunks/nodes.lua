@@ -303,7 +303,7 @@ local TRuNKS = {
 --	  MoD 						 TRuNK
     {"default",  				"tree"						},
 	{"default",					"jungletree"				},
-	{"default",					"pinetree"					},
+	{"default",					"pine_tree"					},
 
 	{"trees",					"tree_conifer"				},
 	{"trees",					"tree_mangrove"				},

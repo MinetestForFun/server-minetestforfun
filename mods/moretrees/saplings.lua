@@ -78,7 +78,7 @@ biome_lib:grow_plants({
 biome_lib:grow_plants({
 	grow_delay = moretrees.sapling_interval,
 	grow_chance = moretrees.sapling_chance,
-	grow_plant = "moretrees:jungletree_sapling",
+	grow_plant = "default:junglesapling",
 	grow_nodes = moretrees.jungletree_biome.surface,
 	grow_function = "moretrees:grow_jungletree"
 })

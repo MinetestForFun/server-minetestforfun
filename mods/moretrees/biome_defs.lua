@@ -118,18 +118,24 @@ moretrees.rubber_tree_biome = {
 }
 
 moretrees.jungletree_biome = {
-	surface = "default:dirt_with_grass",
-	avoid_nodes = moretrees.avoidnodes,
-	avoid_radius = 5,
+	surface = {
+		"default:dirt",
+		"default:dirt_with_grass",
+		"woodsoils:dirt_with_leaves_1",
+		"woodsoils:grass_with_leaves_1",
+		"woodsoils:grass_with_leaves_2"
+	},
+	avoid_nodes = {"moretrees:jungletree_trunk"},
+	max_count = 12,
+	avoid_radius = 3,
+	rarity = 85,
 	seed_diff = 329,
-	min_elevation = -5,
-	max_elevation = 10,
-	temp_min = 0.25,
-	near_nodes = {"default:water_source"},
-	near_nodes_size = 20,
-	near_nodes_count = 7,
-	rarity = 10,
-	max_count = 10,
+	min_elevation = 1,
+	near_nodes = {"default:jungletree"},
+	near_nodes_size = 6,
+	near_nodes_vertical = 2,
+	near_nodes_count = 1,
+	plantlife_limit = -0.9,
 }
 
 moretrees.spruce_biome = {
@@ -180,4 +186,3 @@ moretrees.fir_biome_snow = {
 	delete_above = true,
 	spawn_replace_node = true
 }
-
