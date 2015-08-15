@@ -192,6 +192,8 @@ end
 -- tool break sound  + autorefill
 function refill(player, stck_name, index)
 	local inv = player:get_inventory()
+	local old_stack = inv:get_stack("main", index)
+	if old_stack:get_name() == stck_name then return end
 	for i,stack in ipairs(inv:get_list("main")) do
 		if i ~= index and stack:get_name() == stck_name then
 			inv:set_stack("main", index, stack)
