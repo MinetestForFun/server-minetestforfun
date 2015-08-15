@@ -204,11 +204,12 @@ minetest.register_abm({
 -- wrapping the functions in abm action is necessary to make overriding them possible
 
 function default.grow_cactus(pos, node)
-	if node.param2 ~= 0 then
+	if node.param2 >= 4 then
 		return
 	end
 	pos.y = pos.y - 1
-	if minetest.get_item_group(minetest.get_node(pos).name, "sand") == 0 then
+	local name = minetest.get_node(pos).name --MFF
+	if minetest.get_item_group(name, "sand") == 0 and name ~= "watershed:drygrass" then --MFF
 		return
 	end
 	pos.y = pos.y + 1
@@ -228,7 +229,7 @@ end
 function default.grow_papyrus(pos, node)
 	pos.y = pos.y - 1
 	local name = minetest.get_node(pos).name
-	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" then
+	if name ~= "default:dirt_with_grass" and name ~= "default:dirt" and name ~= "default:sand" and name ~= "default:desert_sand" then --MFF
 		return
 	end
 	if not minetest.find_node_near(pos, 3, {"group:water"}) then
