@@ -77,27 +77,26 @@ local tdc = {
 minetest.register_entity('3dchest:3dchest', tdc)						-- normal
 
 minetest.register_node("3dchest:chest", {
-		description = "Chest",
-		tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-			"default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
-		paramtype2 = "facedir",
-		-- temporary workaround
-		wield_image = "default_chest_front.png", --minetest.inventorycube("default_chest_top.png", "default_chest_side.png", "default_chest_front.png"),
-		inventory_image = minetest.inventorycube("default_chest_top.png", "default_chest_front.png", "default_chest_side.png"),
-		drawtype = "nodebox",
-		node_box = {
+	description = "Chest",
+	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
+		"default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+	paramtype2 = "facedir",
+	wield_image = minetest.inventorycube("default_chest_top.png", "default_chest_front.png", "default_chest_side.png"),
+	inventory_image = minetest.inventorycube("default_chest_top.png", "default_chest_front.png", "default_chest_side.png"),
+	drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+			fixed = {-0.01, -0.01, -0.01, 0.01, 0.01, 0.01},
+	},
+	selection_box = {
 			type = "fixed",
-				fixed = {-0.01, -0.01, -0.01, 0.01, 0.01, 0.01},
-		},
-		selection_box = {
-				type = "fixed",
-				fixed = {
-					{-0.501, -0.501, -0.501, 0.501, 0.501, 0.501},
-				}
-		},
-		paramtype = "light",
-		walkable = false,
-		groups = {choppy=2, dig_immediate = 2},
+			fixed = {
+				{-0.501, -0.501, -0.501, 0.501, 0.501, 0.501},
+			}
+	},
+	paramtype = "light",
+	walkable = false,
+	groups = {choppy=2, dig_immediate = 2},
 	legacy_facedir_simple = true,
 	
 	on_construct = function(pos)
@@ -212,7 +211,7 @@ minetest.register_node("3dchest:chest", {
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
 	end,
 
-   on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local selves = minetest.get_objects_inside_radius(pos, 0.1)
 		local self
 		for _,obj in pairs(selves) do
@@ -225,6 +224,20 @@ minetest.register_node("3dchest:chest", {
 		local name = '3dchest:3dchest'
 		local pll = clicker:get_player_name()
 		local formspec = meta:get_string('formspect')
+		local dir = (meta:get_int("dir")+2)%4
+		local directions = {
+			[0] = {x = pos.x, y = pos.y, z = pos.z + 1},
+			[1] = {x = pos.x - 1, y = pos.y, z = pos.z},
+			[2] = {x = pos.x, y = pos.y, z = pos.z - 1},
+			[3] = {x = pos.x + 1, y = pos.y, z = pos.z}
+		}
+		local backnode = minetest.get_node(directions[dir])
+		local upnode = minetest.get_node({x = directions[dir].x, y = directions[dir].y + 1, z = directions[dir].z})
+		if (not backnode or (backnode and backnode.name ~= "air")) 
+			or (not upnode or (upnode and upnode.name ~= "air")) then
+			minetest.chat_send_player(clicker:get_player_name(), "Cannot open chest's lid, move it.")
+			return
+		end
 
 		if not self then
 			minetest.show_formspec(pll, name..'_'..minetest.serialize(pos), formspec)
