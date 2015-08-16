@@ -14,7 +14,7 @@ function pclasses.api.register_class(cname, def)
 			cname .. ". Reason : no definition table.")
 		return
 	end
-	pclasses.register_class_switch_orb(cname, def.orb_color)
+	pclasses.register_class_switch(cname, def.switch_color)
 
 	pclasses.classes[cname] = def
 	return true

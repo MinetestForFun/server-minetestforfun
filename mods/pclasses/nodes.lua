@@ -64,7 +64,7 @@ local classes_items = {
 	["adventurer"] = "unified_inventory:bag_large"
 }
 
-function pclasses.register_class_switch_orb(cname, color)
+function pclasses.register_class_switch(cname, color)
 	color = color or { r = 255, g = 255, b = 255 }
 	local txtcolor = string.format("#%02x%02x%02x", color.r, color.g, color.b)
 	local overlay = "pclasses_class_switch_orb_overlay.png"

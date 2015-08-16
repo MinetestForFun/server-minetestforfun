@@ -16,6 +16,7 @@ pclasses.api.register_class("warrior", {
 	on_unassigned = function(pname)
 		sprint.set_default_maxstamina(pname)
 	end,
+	switch_color = {r = 00, g = 00, b = 114}
 })
 
 pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
