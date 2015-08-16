@@ -666,6 +666,12 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:dirt 4",
+	type = "shapeless",
+	recipe = {"default:gravel", "default:gravel", "default:gravel", "default:gravel"}
+})
+
+minetest.register_craft({
 	output = "default:gravel",
 	recipe = {
 		{"default:cobble"},
