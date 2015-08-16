@@ -3,6 +3,15 @@ if not time then
 	time = 600
 end
 
+unwalkable_nodes = {}
+
+minetest.after(0, function()
+	for itemname, node in pairs(minetest.registered_nodes) do
+		if node.walkable == false then
+			table.insert(unwalkable_nodes, 1, itemname)
+		end
+	end
+end)
 
 minetest.register_entity(":__builtin:item", {
 	initial_properties = {
@@ -180,6 +189,16 @@ minetest.register_entity(":__builtin:item", {
 				self.object:set_properties({
 					physical = true
 				})
+			end
+		end
+
+		-- Eject if not walkable
+		local upnode = minetest.get_node({x = p.x, y = math.ceil(p.y), z = p.z}).name
+		if minetest.registered_nodes[upnode] and minetest.registered_nodes[upnode].walkable then
+			local minp, maxp = {x=p.x-1, y=math.ceil(p.y), z=p.z-1}, {x=p.x+1, y=math.ceil(p.y)+1, z=p.z+1}
+			local nodes = minetest.find_nodes_in_area(minp, maxp, unwalkable_nodes)
+			if table.getn(nodes) > 0 then
+				self.object:setpos(nodes[math.random(1,#nodes)])
 			end
 		end
 	end,

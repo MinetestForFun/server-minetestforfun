@@ -27,6 +27,3 @@ dofile(minetest.get_modpath("_misc").."/uncraft_woll.lua")
 
 -- List players
 dofile(minetest.get_modpath("_misc").."/list_players.lua")
-
--- Eject entites when putting a node
-dofile(minetest.get_modpath("_misc").."/eject_entities.lua")
