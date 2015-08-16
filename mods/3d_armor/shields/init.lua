@@ -132,3 +132,4 @@ end
 minetest.after(0, function()
 	table.insert(armor.elements, "shield")
 end)
+

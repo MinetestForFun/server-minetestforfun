@@ -53,7 +53,7 @@ function default.register_ores()
 
 	-- Clay
 
-	minetest.register_ore({ 
+	minetest.register_ore({
 		ore_type         = "blob",
 		ore              = "default:clay",
 		wherein          = {"default:sand"},
@@ -74,7 +74,7 @@ function default.register_ores()
 
 	-- Sand
 
-	minetest.register_ore({ 
+	minetest.register_ore({
 		ore_type         = "blob",
 		ore              = "default:sand",
 		wherein          = {"default:stone"},

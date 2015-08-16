@@ -68,13 +68,11 @@ end
 
 -- override hot nodes so they do not hurt player anywhere but mod
 if ARMOR_FIRE_PROTECT == true then
-	minetest.after(2, function()
-		for _, row in ipairs(ARMOR_FIRE_NODES) do
-			if minetest.registered_nodes[row[1]] then
-				minetest.override_item(row[1], {damage_per_second = 0})
-			end
+	for _, row in ipairs(ARMOR_FIRE_NODES) do
+		if minetest.registered_nodes[row[1]] then
+			minetest.override_item(row[1], {damage_per_second = 0})
 		end
-	end)
+	end
 end
 
 local time = 0
@@ -90,7 +88,7 @@ armor = {
 		.."list[current_player;craftpreview;7,2;1,1;]",
 	textures = {},
 	default_skin = "character",
-	version = "0.4.3",
+	version = "0.4.4",
 }
 
 if minetest.get_modpath("inventory_plus") then
@@ -254,13 +252,13 @@ armor.set_player_armor = function(self, player)
 	self:update_player_visuals(player)
 end
 
-armor.update_armor = function(self, player, dtime)
+armor.update_armor = function(self, player)
 	local name, player_inv, armor_inv, pos = armor:get_valid_player(player, "[update_armor]")
 	if not name then
 		return
 	end
 	local hp = player:get_hp() or 0
-	if ARMOR_FIRE_PROTECT == true and dtime then
+	if ARMOR_FIRE_PROTECT == true then
 		pos.y = pos.y + 1.4 -- head level
 		local node_head = minetest.get_node(pos).name
 		pos.y = pos.y - 1.2 -- feet level
@@ -270,7 +268,7 @@ armor.update_armor = function(self, player, dtime)
 			-- check for fire protection, if not enough then get hurt
 			if row[1] == node_head or row[1] == node_feet then
 				if hp > 0 and armor.def[name].fire < row[2] then
-					hp = hp - row[3] * dtime
+					hp = hp - row[3] * ARMOR_UPDATE_TIME
 					player:set_hp(hp)
 					break
 				end
@@ -634,7 +632,7 @@ minetest.register_globalstep(function(dtime)
 	time = time + dtime
 	if time > ARMOR_UPDATE_TIME then
 		for _,player in ipairs(minetest.get_connected_players()) do
-			armor:update_armor(player, time)
+			armor:update_armor(player)
 		end
 		time = 0
 	end
