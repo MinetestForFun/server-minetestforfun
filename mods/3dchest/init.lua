@@ -98,7 +98,7 @@ minetest.register_node("3dchest:chest", {
 	walkable = false,
 	groups = {choppy=2, dig_immediate = 2},
 	legacy_facedir_simple = true,
-	
+
 	on_construct = function(pos)
 			local param2 = minetest.get_node(pos).param2
 			local meta = minetest.get_meta(pos)
@@ -233,7 +233,7 @@ minetest.register_node("3dchest:chest", {
 		}
 		local backnode = minetest.get_node(directions[dir])
 		local upnode = minetest.get_node({x = directions[dir].x, y = directions[dir].y + 1, z = directions[dir].z})
-		if (not backnode or (backnode and backnode.name ~= "air")) 
+		if (not backnode or (backnode and backnode.name ~= "air"))
 			or (not upnode or (upnode and upnode.name ~= "air")) then
 			minetest.chat_send_player(clicker:get_player_name(), "Cannot open chest's lid, move it.")
 			return
