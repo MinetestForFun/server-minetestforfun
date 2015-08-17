@@ -1,13 +1,14 @@
 News de FR - MinetestForFun (Survival - PVP - Hardcore)
 
----Bientôt---
-Upgrade du serveur en 0.4.13-Stable (Bientôt disponible officiellement)
-Génération de minerais de plus en plus intéressante entre -2048 -> -19600 (fin actuel du bénéfice maximum -> début nether)
+---Planned on the Server---
+Server upgrade to 0.4.13-Stable (shortly available)
+Minerals generation more and more interresting between -2048 --to--> -19600 (actual end of the better minerals chance -> Nether beginning)
 
----Informations---
+---Important News---
 Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debugs :))
 Venez visiter notre nouveau site "minetestforfun.com" !
 
+---Mods News---
 ---17/08/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun)
 MAJ de "mff_pclasses" (ajout de piedestals colorés avec objets définissant les classes)
 MAJ de "invtweak" (bugfix de la fonction qui "redonne en main" les stacks de blocs vidés, car les blocs n'étaient pas toujours rendu en main)
