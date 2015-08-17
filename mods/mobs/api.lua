@@ -233,6 +233,9 @@ function mobs:register_mob(name, def)
 				local nod = minetest.get_node_or_nil(pos)
 				if nod then nod = nod.name else nod = "default:dirt" end
 				local nodef = minetest.registered_nodes[nod]
+				if not nodef then
+					nodef = {groups = {}}
+				end
 
 				local v = self.object:getvelocity()
 				if v.y > 0.1 then
