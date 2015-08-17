@@ -21,7 +21,10 @@ pclasses.api.register_class("hunter", {
 	on_unassigned = function(pname)
 		sprint.set_default_maxstamina(pname)
 	end,
-	switch_color = {r = 60, g = 75, b = 00}
+	switch_params = {
+		color = {r = 30, g = 170, b = 00},
+		tile = "default_wood.png"
+	}
 })
 
 

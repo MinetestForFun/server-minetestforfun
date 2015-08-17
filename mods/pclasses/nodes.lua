@@ -61,16 +61,18 @@ local classes_items = {
 	["hunter"] = "throwing:bow_minotaur_horn_improved",
 	["warrior"] = "default:dungeon_master_s_blood_sword",
 	["admin"] = "maptools:pick_admin",
-	["adventurer"] = "unified_inventory:bag_large"
+	["adventurer"] = "unified_inventory:bag_large",
+	["wizard"] = "default:book"
 }
 
-function pclasses.register_class_switch(cname, color)
-	color = color or { r = 255, g = 255, b = 255 }
+function pclasses.register_class_switch(cname, params)
+	local color = params.color or { r = 255, g = 255, b = 255 }
 	local txtcolor = string.format("#%02x%02x%02x", color.r, color.g, color.b)
 	local overlay = "pclasses_class_switch_orb_overlay.png"
+	print((params.tile or overlay))
 	minetest.register_node(":pclasses:class_switch_" .. cname, {
 		description = "Class switch orb (" .. cname .. ")",
-		tiles = {overlay .. "^[colorize:" .. txtcolor .. "^" .. overlay},
+		tiles = {(params.tile or overlay) .. "^[colorize:" .. txtcolor .. ":200"},
 		drawtype = "nodebox",
 		node_box = { type = "fixed", fixed = {
 			{-7/16, -8/16, -7/16, 7/16, -7/16, 7/16}, -- bottom plate

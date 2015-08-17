@@ -10,7 +10,9 @@ pclasses.api.register_class("admin", {
 	on_assigned = function(pname)
 		minetest.chat_send_player(pname, "Hello admin.")
 	end,
-	switch_color = {r = 255, g = 00, b = 224}
+	switch_params = {
+		color = {r = 255, g = 00, b = 224}
+	}
 })
 
 pclasses.api.reserve_item("admin", "3d_armor:helmet_admin")
