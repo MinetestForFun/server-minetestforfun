@@ -60,7 +60,7 @@ mobs:register_mob("mobs:tree_monster", {
 -- spawn on leaves and beech_leaves, between 0 and 5 light, 1 in 8000 chance, 1 in area up to 31000 in height
 mobs:spawn_specific("mobs:tree_monster", {"default:leaves", "moretrees:beech_leaves"}, {"air"}, 0, 5, 30, 8000, 1, -31000, 31000, false)
 -- register spawn egg
-mobs:register_egg("mobs:tree_monster", "Tree Monster", "default_tree_top.png", 1)
+mobs:register_egg("mobs:tree_monster", "Tree Monster", "mobs_tree_monster_inv.png", 1)
 
 -- ethereal sapling compatibility
 if not minetest.get_modpath("ethereal") then

@@ -61,7 +61,7 @@ mobs:register_mob("mobs:zombie", {
 -- spawn in nether forest between -1 and 5 light, 1 in 6000 change, 1 zombie in area up to 31000 in height
 mobs:spawn_specific("mobs:zombie", {"nether:dirt_top"}, {"air"}, -1, 5, 30, 6600, 1, -31000, 31000, false)
 -- register spawn egg
-mobs:register_egg("mobs:zombie", "Zombie", "mobs_zombie_head.png", 1)
+mobs:register_egg("mobs:zombie", "Zombie", "mobs_zombie_inv.png", 1)
 
 minetest.register_craftitem("mobs:zombie_tibia", {
 	description = "Zombie Tibia",
