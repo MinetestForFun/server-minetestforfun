@@ -8,7 +8,7 @@ Génération de minerais de plus en plus intéressante entre -2048 -> -19600 (fi
 Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debugs :))
 Venez visiter notre nouveau site "minetestforfun.com" !
 
----17/08/2015--- (Remerciements : crabman77/crabman, LeMagnesium/Mg, Obani)
+---17/08/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun)
 MAJ de "mff_pclasses" (ajout de piedestals colorés avec objets définissant les classes)
 MAJ de "invtweak" (bugfix de la fonction qui "redonne en main" les stacks de blocs vidés, car les blocs n'étaient pas toujours rendu en main)
 Ajout du mod "builtin_items" (Si un bloc est posé sur des objets, les objets seront éjectés pour être ramassés plus facilement)
