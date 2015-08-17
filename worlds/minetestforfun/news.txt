@@ -1,5 +1,3 @@
-News de FR - MinetestForFun (Survival - PVP - Hardcore)
-
 ---Planned on the Server---
 Server upgrade to 0.4.13-Stable (shortly available)
 Minerals generation more and more interresting between -2048 --to--> -19600 (actual end of the better minerals chance -> Nether beginning)
