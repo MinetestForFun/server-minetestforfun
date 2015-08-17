@@ -9,6 +9,7 @@ Licensed under the zlib license. See LICENSE.md for more information.
 minetest.register_alias("sweeper", "moreblocks:sweeper")
 minetest.register_alias("circular_saw", "moreblocks:circular_saw")
 minetest.register_alias("jungle_stick", "moreblocks:jungle_stick")
+minetest.register_alias("moreblocks:panel_clay_brick", "moreblocks:panel_brick")
 
 -- Old block/item replacement:
 minetest.register_alias("moreblocks:oerkkiblock", "default:mossycobble")
