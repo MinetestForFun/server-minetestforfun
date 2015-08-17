@@ -84,7 +84,7 @@ function pclasses.register_class_switch(cname, color)
 		sunlight_propagates = true,
 		light_source = 10,
 		sounds = default.node_sound_glass_defaults(),
-		groups = {not_in_creative_inventory=1, cracky = 1},
+		groups = {cracky = 1},
 		after_place_node = function(pos)
 			pos.y = pos.y + 1
 			local obj = minetest.add_entity(pos, "pclasses:item")
