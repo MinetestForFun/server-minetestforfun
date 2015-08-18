@@ -29,6 +29,9 @@ mobs:register_mob("mobs:npc_female", {
 	textures = {
 		{"mobs_npc_female.png"}, -- female by nuttmeg20
 	},
+	child_texture = {
+		{"mobs_npc_baby.png"}, -- derpy baby by AmirDerAssassine
+	},
 	-- sounds
 	makes_footstep_sound = true,
 	sounds = {},
@@ -56,7 +59,7 @@ mobs:register_mob("mobs:npc_female", {
 	lava_damage = 6,
 	light_damage = 0,
 	-- follow diamond
-	follow = "default:diamond",
+	follow = {"farming:bread", "mobs:meat", "default:diamond"},
 	view_range = 16,
 	-- set owner and order
 	owner = "",
@@ -73,36 +76,7 @@ mobs:register_mob("mobs:npc_female", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		local name = clicker:get_player_name()
-		if not name then return end
-		-- feed toheal npc
-		if item:get_name() == "mobs:meat"
-		or item:get_name() == "farming:bread" then
-			-- feed and add health
-			local hp = self.object:get_hp()
-			-- return if full health
-			if hp >= self.hp_max then
-				minetest.chat_send_player(name, "NPC at full health.")
-				return
-			end
-			hp = hp + 4	-- add restorative value
-			if hp > self.hp_max then hp = self.hp_max end
-			self.object:set_hp(hp)
-			-- take item
-			if not minetest.setting_getbool("creative_mode") then
-				item:take_item()
-				clicker:set_wielded_item(item)
-			end
-
-		-- right clicking with gold lump drops random item from mobs.npc_drops
-		elseif item:get_name() == "default:gold_lump" then
-			if not minetest.setting_getbool("creative_mode") then
-				item:take_item()
-				clicker:set_wielded_item(item)
-			end
-			local pos = self.object:getpos()
-			pos.y = pos.y + 0.5
-			minetest.add_item(pos, {name = mobs.npc_drops[math.random(1,#mobs.npc_drops)]})
-		elseif item:get_name() == "default:diamond" then --/MFF (Crabman|07/14/2015) tamed with diamond
+		if item:get_name() == "default:diamond" then --/MFF (Crabman|07/14/2015) tamed with diamond
 			if (self.diamond_count or 0) < 4 then
 				self.diamond_count = (self.diamond_count or 0) + 1
 				if not minetest.setting_getbool("creative_mode") then
@@ -114,22 +88,32 @@ mobs:register_mob("mobs:npc_female", {
 					self.owner = clicker:get_player_name()
 				end
 			end
-		else
+			return
+		-- feed to heal npc
+		elseif not mobs:feed_tame(self, clicker, 8, true) then
+			-- right clicking with gold lump drops random item from mobs.npc_drops
+			if item:get_name() == "default:gold_lump" then
+				if not minetest.setting_getbool("creative_mode") then
+					item:take_item()
+					clicker:set_wielded_item(item)
+				end
+				local pos = self.object:getpos()
+				pos.y = pos.y + 0.5
+				minetest.add_item(pos, {name = mobs.npc_drops[math.random(1,#mobs.npc_drops)]})
+				return
 			-- if owner switch between follow and stand
-			if self.owner and self.owner == clicker:get_player_name() then
+			elseif self.owner and self.owner == clicker:get_player_name() then
 				if self.order == "follow" then
 					self.order = "stand"
 				else
 					self.order = "follow"
 				end
-			else
-				self.owner = clicker:get_player_name()
 			end
+			mobs:capture_mob(self, clicker, 0, 5, 80, false, nil)
 		end
-
-		mobs:capture_mob(self, clicker, 0, 5, 80, false, nil)
 	end,
 })
+
 -- spawning enable for now
 mobs:spawn_specific("mobs:npc_female", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000, true)
 -- register spawn egg

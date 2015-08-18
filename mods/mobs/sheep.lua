@@ -143,7 +143,7 @@ for _, col in ipairs(all_colours) do
 
 end
 
-mobs:spawn_specific("mobs:sheep", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:sheep_white", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
 
 -- compatibility (item and entity)
 minetest.register_alias("mobs:sheep", "mobs:sheep_white")
