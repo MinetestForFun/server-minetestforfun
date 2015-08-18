@@ -3,39 +3,24 @@
 
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 
--- Handle mod security if needed
-local ie, req_ie = _G, minetest.request_insecure_environment
-if req_ie then ie = req_ie() end
-if not ie then
-	error("The IRC mod requires access to insecure functions in order "..
-		"to work.  Please add the irc mod to your secure.trusted_mods "..
-		"setting or disable the irc mod.")
-end
-
-ie.package.path =
+package.path =
 		-- To find LuaIRC's init.lua
 		modpath.."/?/init.lua;"
 		-- For LuaIRC to find its files
 		..modpath.."/?.lua;"
-		..ie.package.path
-		..";/usr/lib/*/lua/5.1/socket/*.so"
+		..package.path
 
 -- The build of Lua that Minetest comes with only looks for libraries under
 -- /usr/local/share and /usr/local/lib but LuaSocket is often installed under
 -- /usr/share and /usr/lib.
-if not rawget(_G, "jit") and package.config:sub(1, 1) == "/" then
-	ie.package.path = ie.package.path..
+if not rawget(_G,"jit") and package.config:sub(1, 1) == "/" then
+	package.path = package.path..
 			";/usr/share/lua/5.1/?.lua"..
 			";/usr/share/lua/5.1/?/init.lua"
-	ie.package.path = ie.package.path..
-			";/usr/lib/lua/5.1/?.so"
+   	package.cpath = package.cpath..
+ --			";/usr/lib/lua/5.1/?.so"
+			";/usr/lib/x86_64-linux-gnu/lua/5.1/?.so"
 end
-
--- Temporarily set require so that LuaIRC can access it
-local old_require = require
-require = ie.require
-local lib = ie.require("irc")
-require = old_require
 
 irc = {
 	version = "0.2.0",
@@ -45,7 +30,7 @@ irc = {
 	recent_message_count = 0,
 	joined_players = {},
 	modpath = modpath,
-	lib = lib,
+	lib = require("irc"),
 }
 
 -- Compatibility
@@ -53,7 +38,7 @@ mt_irc = irc
 
 dofile(modpath.."/config.lua")
 dofile(modpath.."/messages.lua")
-loadfile(modpath.."/hooks.lua")(ie)
+dofile(modpath.."/hooks.lua")
 dofile(modpath.."/callback.lua")
 dofile(modpath.."/chatcmds.lua")
 dofile(modpath.."/botcmds.lua")
@@ -119,6 +104,9 @@ function irc:connect()
 		return
 	end
 
+	print("== This is a debug line, please check for it ==")
+	print(self.config.NSPass)
+	print("=== DEBUG FINISHED ===")
 	if self.config.NSPass then
 		self:say("NickServ", "IDENTIFY "..self.config.NSPass)
 	end

@@ -1,28 +1,12 @@
 -- This file is licensed under the terms of the BSD 2-clause license.
 -- See LICENSE.txt for details.
 
-local ie = ...
-
 -- MIME is part of LuaSocket
-local b64e = ie.require("mime").b64
+local b64e = require("mime").b64
 
 irc.hooks = {}
 irc.registered_hooks = {}
 
-local accent_chars = { {"À", "A"},{"Á", "A"},{"Â", "A"},{"Ã", "A"},{"Ä", "A"},{"Å", "A"},{"Ç", "C"},{"È", "E"},{"É", "E"},{"Ê", "E"},
-				{"Ë", "E"},{"�", "I"},{"Í", "I"},{"�", "I"},{"Ï", "I"},{"Ñ", "N"},{"Ò", "O"},{"Ó", "O"},{"Ô", "O"},{"Õ", "O"},
-				{"Ö", "O"},{"�", "O"},{"Ù", "U"},{"Ú", "U"},{"Û", "U"},{"Ü", "U"},{"�", "Y"},{"à", "a"},{"á", "a"},{"â", "a"},
-				{"ã", "a"},{"ä", "a"},{"å", "a"},{"ç", "c"},{"è", "e"},{"é", "e"},{"ê", "e"},{"ë", "e"},{"ì", "i"},{"í", "i"},
-				{"î", "i"},{"ï", "i"},{"ñ", "n"},{"ò", "o"},{"ó", "o"},{"ô", "o"},{"õ", "o"},{"ö", "o"},{"�", "o"},{"ù", "u"},
-				{"ú", "u"},{"û", "u"},{"ü", "u"},{"�", "Y"}
-				}
-
-local function subaccent(text)
-	for _, c in pairs(accent_chars) do
-		text = text:gsub(c[1], c[2])
-	end
-	return text
-end
 
 -- TODO: Add proper conversion from CP1252 to UTF-8.
 local stripped_chars = {"\2", "\31"}
@@ -34,7 +18,7 @@ stripped_chars = "["..table.concat(stripped_chars, "").."]"
 local function normalize(text)
 	-- Strip colors
 	text = text:gsub("\3[0-9][0-9,]*", "")
-	text = subaccent(text)
+
 	return text:gsub(stripped_chars, "")
 end
 
@@ -254,7 +238,7 @@ function irc.hooks.preregister(conn)
 	conn:send("CAP REQ sasl")
 	conn:send("AUTHENTICATE PLAIN")
 	conn:send("AUTHENTICATE "..authString)
-	conn:send("CAP END")
+	--LuaIRC will send CAP END
 end
 
 

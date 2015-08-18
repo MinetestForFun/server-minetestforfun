@@ -13,7 +13,7 @@ end
 function set:add(connection)
 	local socket = connection.socket
 	insert(self.sockets, socket)
-
+	
 	self.connections[socket] = connection
 	insert(self.connections, connection)
 end
@@ -32,13 +32,13 @@ end
 
 function set:select()
 	local read, write, err = select(self.sockets, nil, self.timeout)
-
+	
 	if read then
 		for k, socket in ipairs(read) do
 			read[k] = self.connections[socket]
 		end
 	end
-
+	
 	return read, err
 end
 

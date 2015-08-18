@@ -103,12 +103,6 @@ function msg_meta:fromRFC1459(line)
 
 	local pos
 	self.command, pos = line:match("(%S+)()")
-	-- /MFF BEGIN
-	if not pos then
-		minetest.log("error", "[IRC] This crash message was intended to see the value of a breaking variable. line = " .. (line or "nil"))
-		return
-	end
-	-- /MFF END (Mg|06/01/2015)
 	line = line:sub(pos)
 
 	self.args = self.args or {}
