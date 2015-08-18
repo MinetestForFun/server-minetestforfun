@@ -1,3 +1,8 @@
+-- leather
+minetest.register_craftitem("mobs:leather", {
+	description = "Leather",
+	inventory_image = "mobs_leather.png",
+})
 
 -- raw meat
 minetest.register_craftitem("mobs:meat_raw", {
@@ -47,5 +52,19 @@ minetest.register_craft({
 		{"default:stick", "", "default:stick"},
 		{"default:stick", "", "default:stick"},
 		{"farming:string", "default:stick", "farming:string"},
+	}
+})
+
+-- shears (right click to shear animal)
+minetest.register_tool("mobs:shears", {
+	description = "Steel Shears (right-click to shear)",
+	inventory_image = "mobs_shears.png",
+})
+
+minetest.register_craft({
+	output = 'mobs:shears',
+	recipe = {
+		{'', 'default:steel_ingot', ''},
+		{'', 'group:stick', 'default:steel_ingot'},
 	}
 })

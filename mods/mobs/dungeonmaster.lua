@@ -39,7 +39,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	run_velocity = 2,
 	jump = false,
 	view_range = 16,
-	knock_back = 0.05,	--this is a test
+	knock_back = 0.05,	-- Very small knockback
 	-- drops mese or diamond when dead
 	drops = {
 		{name = "mobs:dungeon_master_blood",
@@ -75,22 +75,22 @@ mobs:register_egg("mobs:dungeon_master", "Dungeon Master", "mobs_dongeon_master_
 -- fireball (weapon)
 mobs:register_arrow("mobs:fireball", {
 	visual = "sprite",
-	visual_size = {x=1, y=1},
+	visual_size = {x = 1, y = 1},
 	textures = {"mobs_fireball.png"},
 	velocity = 6,
 
 	-- direct hit, no fire... just plenty of pain
 	hit_player = function(self, player)
 		player:punch(self.object, 1.0,  {
-			full_punch_interval=1.0,
-			damage_groups = {fleshy=12},
+			full_punch_interval = 1.0,
+			damage_groups = {fleshy = 12},
 		}, 0)
 	end,
 
 	hit_mob = function(self, player)
 		player:punch(self.object, 1.0,  {
-			full_punch_interval=1.0,
-			damage_groups = {fleshy=12},
+			full_punch_interval = 1.0,
+			damage_groups = {fleshy = 12},
 		}, 0)
 	end,
 

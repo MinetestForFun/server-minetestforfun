@@ -11,7 +11,7 @@ mobs:register_mob("mobs:stone_monster", {
 	-- health & armor
 	hp_min = 30,
 	hp_max = 35,
-	armor = 60,
+	armor = 70,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
 	visual = "mesh",

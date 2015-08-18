@@ -36,7 +36,7 @@ mobs:register_mob("mobs:lava_flan", {
 	-- chance of dropping lava orb when dead
 	drops = {
 		{name = "mobs:lava_orb",
-		chance = 15, min = 1, max = 1,},
+		chance = 15, min = 1, max = 1},
 	},
 	-- damaged by
 	water_damage = 5,
@@ -52,7 +52,7 @@ mobs:register_mob("mobs:lava_flan", {
 	},
 	-- do things when die
 	on_die = function(self, pos)
-		minetest.set_node(pos, {name="fire:basic_flame"})
+		minetest.set_node(pos, {name = "fire:basic_flame"})
 	end,
 })
 -- spawns in lava between -1 and 20 light, 1 in 2000 chance, 3 in area below 31000 in height

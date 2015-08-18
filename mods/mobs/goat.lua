@@ -55,7 +55,7 @@ mobs:register_mob("mobs:goat", {
 	},
 	-- follows wheat
 	follow = "farming:wheat",
-	view_range = 8,
+	view_range = 10,
 	-- replace grass/wheat with air (eat)
 	replace_rate = 50,
 	replace_what = {"group:flora"},

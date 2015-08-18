@@ -32,9 +32,9 @@ mobs:register_mob("mobs:pumba", {
 	walk_velocity = 2,
 	run_velocity = 3,
 	jump = true,
-	-- follows apple
-	follow = "default:apple",
-	view_range = 8,
+	-- follows apple and potato
+	follow = {"default:apple", "farming:potato"},
+	view_range = 10,
 	-- drops raw pork when dead
 	drops = {
 		{name = "mobs:pork_raw",
@@ -55,42 +55,7 @@ mobs:register_mob("mobs:pumba", {
 	},
 	-- can be tamed by feeding 8 wheat (will not attack when tamed)
 	on_rightclick = function(self, clicker)
-		local item = clicker:get_wielded_item()
-		local name = clicker:get_player_name()
-
-		if item:get_name() == "default:apple" then
-			-- take item
-			if not minetest.setting_getbool("creative_mode") then
-				item:take_item()
-				clicker:set_wielded_item(item)
-			end
-			-- make child grow quicker
-			if self.child == true then
-				self.hornytimer = self.hornytimer + 10
-				return
-			end
-			-- feed and tame
-			self.food = (self.food or 0) + 1
-			if self.food > 7 then
-				self.food = 0
-				if self.hornytimer == 0 then
-					self.horny = true
-				end
-				self.tamed = true
-				-- make owner
-				if self.owner == "" then
-					self.owner = name
-				end
-				minetest.sound_play("mobs_pig", {
-					object = self.object,
-					gain = 1.0,
-					max_hear_distance = 16,
-					loop = false,
-				})
-			end
-			return
-		end
-
+		mobs:feed_tame(self, clicker, 8, true)
 		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
 	end,
 })

@@ -37,11 +37,11 @@ mobs:register_mob("mobs:oerkki", {
 		{name = "default:obsidian",
 		chance = 3, min = 1, max = 2,},
 		{name = "maptools:silver_coin",
-		chance = 1, min = 1, max = 1,},
+		chance = 1, min = 1, max = 1},
 	},
 	-- damaged by
 	water_damage = 2,
-	lava_damage = 2,
+	lava_damage = 4,
 	light_damage = 1,
 	-- model animation
 	animation = {

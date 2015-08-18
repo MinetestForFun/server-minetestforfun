@@ -11,7 +11,7 @@ mobs:register_mob("mobs:kitten", {
 	-- textures and model
 	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
-	visual_size = {x=0.5, y=0.5},
+	visual_size = {x = 0.5, y = 0.5},
 	mesh = "mobs_kitten.b3d",
 	textures = {
 		{"mobs_kitten_striped.png"},
@@ -42,40 +42,12 @@ mobs:register_mob("mobs:kitten", {
 		stand_start = 97,		stand_end = 192,
 		walk_start = 0,			walk_end = 96,
 	},
-	-- follows rat
-	follow = "mobs:rat",
-	view_range = 8,
+	-- follows Rat and Raw Fish
+	follow = {"mobs:rat", "ethereal:fish_raw"},
+	view_range = 10,
 	-- feed with raw fish to tame or right click to pick up
 	on_rightclick = function(self, clicker)
-		local item = clicker:get_wielded_item()
-		local name = clicker:get_player_name()
-
-		if item:get_name() == "fishing:fish_raw"
-		or item:get_name() == "ethereal:fish_raw" then
-			-- take item
-			if not minetest.setting_getbool("creative_mode") then
-				item:take_item()
-				clicker:set_wielded_item(item)
-			end
-			-- feed and tame
-			self.food = (self.food or 0) + 1
-			if self.food > 3 then
-				self.food = 0
-				self.tamed = true
-				-- make owner
-				if self.owner == "" then
-					self.owner = name
-				end
-				minetest.sound_play("mobs_kitten", {
-					object = self.object,
-					gain = 1.0,
-					max_hear_distance = 10,
-					loop = false,
-				})
-			end
-			return
-		end
-
+		mobs:feed_tame(self, clicker, 4, true)
 		mobs:capture_mob(self, clicker, 50, 50, 90, false, nil)
 	end
 })

@@ -28,7 +28,7 @@ mobs:register_mob("mobs:bunny", {
 	-- drops meat when dead
 	drops = {
 		{name = "mobs:meat_raw",
-		chance = 1, min = 1, max = 2,},
+		chance = 1, min = 1, max = 2},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -42,51 +42,30 @@ mobs:register_mob("mobs:bunny", {
 		punch_start = 16,		punch_end = 24,
 	},
 	-- follows carrot from farming redo
-	follow = "farming:carrot",
-	view_range = 8,
+	follow = {"farming:carrot", "farming_plus:carrot_item"},
+	view_range = 10,
 	-- eat carrots
 	replace_rate = 80,
 	replace_what = {"farming:carrot_7", "farming:carrot_8", "farming_plus:carrot"},
 	replace_with = "air",
 	-- right click to pick up rabbit
 	on_rightclick = function(self, clicker)
-		local item = clicker:get_wielded_item()
-		local name = clicker:get_player_name()
-
-		if item:get_name() == "farming_plus:carrot_item"
-		or item:get_name() == "farming:carrot" then
-			-- take item
-			if not minetest.setting_getbool("creative_mode") then
-				item:take_item()
-				clicker:set_wielded_item(item)
-			end
-			-- feed and tame
-			self.food = (self.food or 0) + 1
-			if self.food > 3 then
-				self.food = 0
-				self.tamed = true
-				-- make owner
-				if self.owner == "" then
-					self.owner = name
+		if not mobs:feed_tame(self, clicker, 4, true) then
+			-- Monty Python tribute
+			local item = clicker:get_wielded_item()
+			if item:get_name() == "mobs:lava_orb" then
+				if not minetest.setting_getbool("creative_mode") then
+					item:take_item()
+					clicker:set_wielded_item(item)
 				end
+				self.object:set_properties({
+					textures = {"mobs_bunny_evil.png"},
+				})
+				self.type = "monster"
+				self.state = "attack"
+				self.object:set_hp(20)
+				return
 			end
-			return
-		end
-
-		-- Monty Python tribute
-		if item:get_name() == "mobs:lava_orb" then
-			-- take item
-			if not minetest.setting_getbool("creative_mode") then
-				item:take_item()
-				clicker:set_wielded_item(item)
-			end
-			self.object:set_properties({
-				textures = {"mobs_bunny_evil.png"},
-			})
-			self.type = "monster"
-			self.state = "attack"
-			self.object:set_hp(20)
-			return
 		end
 
 		mobs:capture_mob(self, clicker, 30, 50, 80, false, nil)

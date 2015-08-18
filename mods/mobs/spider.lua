@@ -36,7 +36,7 @@ mobs:register_mob("mobs:spider", {
 	view_range = 16,
 	floats = 0,
 	-- drops string with a chance of sandstone or crystal spike if Ethereal installed
-    drops = {
+    	drops = {
 		{name = "farming:string",
 		chance = 2, min = 1, max = 3,},
 		{name = "mobs:meat_raw",
@@ -58,7 +58,7 @@ mobs:register_mob("mobs:spider", {
 	},
 })
 -- spawn on jungleleaves/jungletree, between 0 and 5 light, 1 in 10000 chance, 1 in area up to 31000 in height
-mobs:spawn_specific("mobs:spider", {"default:jungleleaves", "default:jungletree"}, {"air"}, -1, 20, 30, 7000, 1, -31000, 31000, false)
+mobs:spawn_specific("mobs:spider", {"default:jungleleaves", "default:jungletree"}, {"air"}, -1, 20, 30, 7500, 1, -31000, 31000, false)
 -- register spawn egg
 mobs:register_egg("mobs:spider", "Spider", "mobs_cobweb.png", 1)
 
@@ -83,7 +83,7 @@ minetest.register_node("mobs:spider_cobweb", {
 	liquid_renewable = false,
 	liquid_range = 0,
 	walkable = false,
-	groups = {snappy=1,liquid=3},
+	groups = {snappy = 1, liquid = 3},
 	drop = "farming:cotton",
 	sounds = default.node_sound_leaves_defaults(),
 })

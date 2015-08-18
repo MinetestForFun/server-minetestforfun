@@ -52,48 +52,13 @@ mobs:register_mob("mobs:chicken", {
 		walk_end = 40,
 	},
 	-- follows wheat
-	follow = "farming:seed_wheat",
+	follow = {"farming:seed_wheat", "farming:seed_cotton"},
 	view_range = 8,
-	replace_rate = 2000,
+	replace_rate = 2500,
 	replace_what = {"air"},
 	replace_with = "mobs:egg",
 	on_rightclick = function(self, clicker)
-		local tool = clicker:get_wielded_item()
-		local name = clicker:get_player_name()
-
-		if tool:get_name() == "farming:seed_wheat" then
-			-- take item
-			if not minetest.setting_getbool("creative_mode") then
-				tool:take_item(1)
-				clicker:set_wielded_item(tool)
-			end
-			-- make child grow quicker
-			if self.child == true then
-				self.hornytimer = self.hornytimer + 10
-				return
-			end
-			-- feed and tame
-			self.food = (self.food or 0) + 1
-			if self.food > 7 then
-				self.food = 0
-				if self.hornytimer == 0 then
-					self.horny = true
-				end
-				self.tamed = true
-				-- make owner
-				if self.owner == "" then
-					self.owner = name
-				end
-				minetest.sound_play("mobs_chicken", {
-					object = self.object,
-					gain = 1.0,
-					max_hear_distance = 15,
-					loop = false,
-				})
-			end
-			return
-		end
-
+		mobs:feed_tame(self, clicker, 8, true)
 		mobs:capture_mob(self, clicker, 30, 50, 80, false, nil)
 	end,
 })
@@ -121,7 +86,7 @@ minetest.register_node("mobs:egg", {
 	groups = {snappy=2, dig_immediate=3},
 	after_place_node = function(pos, placer, itemstack)
 		if placer:is_player() then
-			minetest.set_node(pos, {name="mobs:egg", param2=1})
+			minetest.set_node(pos, {name = "mobs:egg", param2 = 1})
 		end
 	end
 })

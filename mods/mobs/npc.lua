@@ -29,6 +29,9 @@ mobs:register_mob("mobs:npc", {
 	textures = {
 		{"mobs_npc.png"},
 	},
+	child_texture = {
+		{"mobs_npc_baby.png"}, -- derpy baby by AmirDerAssassine
+	},
 	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
@@ -57,7 +60,7 @@ mobs:register_mob("mobs:npc", {
 	lava_damage = 6,
 	light_damage = 0,
 	-- follow diamond
-	follow = "default:diamond",
+	follow = {"farming:bread", "mobs:meat", "default:diamond"},
 	view_range = 16,
 	-- set owner and order
 	owner = "",
@@ -72,37 +75,13 @@ mobs:register_mob("mobs:npc", {
 	},
 	-- right clicking with "cooked meat" or "bread" will give npc more health
 	on_rightclick = function(self, clicker)
-		local item = clicker:get_wielded_item()
-		local name = clicker:get_player_name()
-		if not name then return end
-		-- feed toheal npc
-		if item:get_name() == "mobs:meat"
-		or item:get_name() == "farming:bread" then
-			-- feed and add health
-			local hp = self.object:get_hp()
-			-- return if full health
-			if hp >= self.hp_max then
-				minetest.chat_send_player(name, "NPC at full health.")
-				return
-			end
-			hp = hp + 4	-- add restorative value
-			if hp > self.hp_max then hp = self.hp_max end
-			self.object:set_hp(hp)
-			-- take item
-			if not minetest.setting_getbool("creative_mode") then
-				item:take_item()
-				clicker:set_wielded_item(item)
-			end
 
-		-- right clicking with gold lump drops random item from mobs.npc_drops
-		elseif item:get_name() == "default:gold_lump" then
-			if not minetest.setting_getbool("creative_mode") then
-				item:take_item()
-				clicker:set_wielded_item(item)
-			end
-			local pos = self.object:getpos()
-			pos.y = pos.y + 0.5
-			minetest.add_item(pos, {name = mobs.npc_drops[math.random(1,#mobs.npc_drops)]})
+		-- feed to heal npc
+		if not mobs:feed_tame(self, clicker, 8, true) then
+			local item = clicker:get_wielded_item()
+			local name = clicker:get_player_name()
+
+			-- right clicking with gold lump drops random item from mobs.npc_drops
 		elseif item:get_name() == "default:diamond" then --/MFF (Crabman|07/14/2015) tamed with diamond
 			if (self.diamond_count or 0) < 4 then
 				self.diamond_count = (self.diamond_count or 0) + 1
@@ -113,18 +92,21 @@ mobs:register_mob("mobs:npc", {
 				if self.diamond_count >= 4 then
 					self.damages = 3
 					self.owner = clicker:get_player_name()
-				end
-			end
-		else
-			-- if owner switch between follow and stand
-			if self.owner and self.owner == clicker:get_player_name() then
-				if self.order == "follow" then
-					self.order = "stand"
-				else
-					self.order = "follow"
-				end
+				local pos = self.object:getpos()
+				pos.y = pos.y + 0.5
+				minetest.add_item(pos, {
+					name = mobs.npc_drops[math.random(1, #mobs.npc_drops)]
+				})
+
 			else
-				self.owner = clicker:get_player_name()
+				-- if owner switch between follow and stand
+				if self.owner and self.owner == clicker:get_player_name() then
+					if self.order == "follow" then
+						self.order = "stand"
+					else
+						self.order = "follow"
+					end
+				end
 			end
 		end
 

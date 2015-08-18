@@ -28,6 +28,9 @@ This mod contains the following additions:
 
 Changelog:
 
+1.16- Mobs follow multiple items now, Npc's can breed
+1.15- Added Feeding/Taming/Breeding function, right-click to pick up any sheep with X mark on them and replace with new one to fix compatibility.
+1.14- All .self variables saved in staticdata, Fixed self.health bug
 1.13- Added capture function (thanks blert2112) chance of picking up mob with hand; net; magic lasso, replaced some .x models with newer .b3d one's
 1.12- Added animal ownership so that players cannot steal your tamed animals
 1.11- Added flying mobs (and swimming), fly=true and fly_in="air" or "deafult:water_source" for fishy

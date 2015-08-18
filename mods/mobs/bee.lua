@@ -28,7 +28,7 @@ mobs:register_mob("mobs:bee", {
 	-- drops honey when killed
 	drops = {
 		{name = "mobs:honey",
-		chance = 1, min = 1, max = 2,},
+		chance = 1, min = 1, max = 2},
 	},
 	-- damage
 	water_damage = 1,
@@ -66,7 +66,7 @@ minetest.register_node("mobs:beehive", {
 	description = "Beehive",
 	drawtype = "plantlike",
 	visual_scale = 1.0,
-	tiles ={"mobs_beehive.png"},
+	tiles = {"mobs_beehive.png"},
 	inventory_image = "mobs_beehive.png",
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -76,11 +76,11 @@ minetest.register_node("mobs:beehive", {
 	sounds = default.node_sound_defaults(),
 	after_place_node = function(pos, placer, itemstack)
 		if placer:is_player() then
-			minetest.set_node(pos, {name="mobs:beehive", param2=1})
+			minetest.set_node(pos, {name = "mobs:beehive", param2 = 1})
 			minetest.add_entity(pos, "mobs:bee")
 		end
 	end,
-
+	
 })
 
 minetest.register_craft({
@@ -94,7 +94,7 @@ minetest.register_craft({
 minetest.register_node("mobs:honey_block", {
 	description = "Honey Block",
 	tiles = {"mobs_honey_block.png"},
-	groups = {snappy=3,flammable=2},
+	groups = {snappy = 3, flammable = 2},
 	sounds = default.node_sound_dirt_defaults(),
 })
 
