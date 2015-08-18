@@ -95,7 +95,10 @@ end
 
 function mff.quests.handle_quest_end(playername, questname, metadata)
 	for item, count in pairs(mff.quests.quests[mff.QNOPREFIX(questname)].awards) do
-		minetest.add_item(minetest.get_player_by_name(playername):getpos(), {name=item, count=count, wear=0, metadata=""})
+		local p = minetest.get_player_by_name(playername)
+		if p then
+			minetest.add_item(p:getpos(), {name=item, count=count, wear=0, metadata=""})
+		end
 	end
 end
 
