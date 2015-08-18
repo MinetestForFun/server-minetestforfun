@@ -220,6 +220,9 @@ moretrees.ct_rules_a2 = "FF[FF][&&-FBF][&&+FBF][&&---FBF][&&+++FBF]F/A"
 moretrees.ct_rules_b2 = "[-fB][+fB]"
 
 function moretrees.grow_jungletree(pos)
+	if not pos or not pos.x or not pos.y or not pos.z then
+		return
+	end --//MFF(Mg|08/18/15)
 	local r1 = math.random(2)
 	local r2 = math.random(3)
 	if r1 == 1 then
