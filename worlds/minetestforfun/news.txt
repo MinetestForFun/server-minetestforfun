@@ -6,8 +6,16 @@ Minerals generation more and more interresting between -2048 --to--> -19600 (act
 Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debugs :))
 Venez visiter notre nouveau site "minetestforfun.com" !
 
----Mods News---
----17/08/2015--- (Remerciements : LeMagnesium/Mg, crabman77/crabman, gravgun)
+---Patch Notes---
+---18/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
+Update of "mff_quests" (crashfix of the HUD)
+Update of "pclasses" (bugfix and improved class pedestals)
+Update of "news" and "rules" (darker background)
+Update of "moretrees" (crashfix and no more unknow nodes)
+Update of "mobs" (Don't remove the new 3D/animated chests content if broken by Creepers/Dungeon Masters, and fix a fatal error about mobs in unknown nodes)
+Update of "mff_pclasses" (small tweaks about the class pedestals color and material)
+
+---17/08/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, gravgun)
 MAJ de "mff_pclasses" (ajout de piedestals colorés avec objets définissant les classes)
 MAJ de "invtweak" (bugfix de la fonction qui "redonne en main" les stacks de blocs vidés, car les blocs n'étaient pas toujours rendu en main)
 Ajout du mod "builtin_items" (Si un bloc est posé sur des objets, les objets seront éjectés pour être ramassés plus facilement)
