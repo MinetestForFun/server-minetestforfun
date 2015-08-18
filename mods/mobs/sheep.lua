@@ -139,11 +139,11 @@ for _, col in ipairs(all_colours) do
 		end
 	})
 
-	mobs:register_egg("mobs:sheep_"..col, "Sheep ("..col..")", "wool_"..col..".png", 1)
+	mobs:register_egg("mobs:sheep_"..col, "Sheep ("..col..")", "mobs_sheep_"..col.."_inv.png", 1)
 
 end
 
-mobs:register_spawn("mobs:sheep_white", {"default:dirt_with_grass", "ethereal:green_dirt"}, 20, 10, 15000, 1, 31000)
+mobs:spawn_specific("mobs:sheep", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
 
 -- compatibility (item and entity)
 minetest.register_alias("mobs:sheep", "mobs:sheep_white")

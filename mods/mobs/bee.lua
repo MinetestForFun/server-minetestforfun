@@ -52,7 +52,7 @@ mobs:register_mob("mobs:bee", {
 -- spawn on group:flowers between 4 and 20 light, 1 in 5000 chance, 1 bee in area up to 31000 in height
 mobs:spawn_specific("mobs:bee", {"group:flower"}, {"air"}, 4, 20, 30, 5000, 1, -31000, 31000, true)
 -- register spawn egg
-mobs:register_egg("mobs:bee", "Bee", "mobs_bee_inv.png", 0)
+mobs:register_egg("mobs:bee", "Bee", "mobs_bee_inv.png", 1)
 
 -- honey
 minetest.register_craftitem("mobs:honey", {

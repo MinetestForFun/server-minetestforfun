@@ -56,7 +56,7 @@ mobs:register_mob("mobs:greensmall", {
 	-- model animation
 	-- no model animation
 })
-mobs:register_egg("mobs:greensmall", "Small Green Slime", "mobs_green_slime_egg.png", 1)
+mobs:register_egg("mobs:greensmall", "Small Green Slime", "mobs_green_slime_medium_inv.png", 1)
 
 -- register medium green slime
 mobs:register_mob("mobs:greenmedium", {
@@ -105,7 +105,7 @@ mobs:register_mob("mobs:greenmedium", {
 		end
 	end,
 })
-mobs:register_egg("mobs:greenmedium", "Medium Green Slime", "mobs_green_slime_egg.png", 1)
+mobs:register_egg("mobs:greenmedium", "Medium Green Slime", "mobs_green_slime_medium_inv.png", 1)
 
 -- register big green slime
 mobs:register_mob("mobs:greenbig", {
@@ -155,7 +155,7 @@ mobs:register_mob("mobs:greenbig", {
 		end
 	end,
 })
-mobs:register_egg("mobs:greenbig", "Big Green Slime", "mobs_green_slime_egg.png", 1)
+mobs:register_egg("mobs:greenbig", "Big Green Slime", "mobs_green_slime_big_inv.png", 1)
 
 --mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
 mobs:spawn_specific("mobs:greenbig", {"default:acid_source"},{"default:acid_flowing"}, -1, 20, 30, 4000, 1, -32000, 32000, false)

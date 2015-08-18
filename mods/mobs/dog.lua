@@ -86,4 +86,4 @@ mobs:register_mob("mobs:dog", {
 		speed_normal = 15, speed_run = 15,
 	},
 })
-mobs:register_egg("mobs:dog", "Dog", "wool_brown.png", 1)
+mobs:register_egg("mobs:dog", "Dog", "mobs_dog_inv.png", 1)

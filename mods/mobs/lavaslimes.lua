@@ -58,7 +58,7 @@ mobs:register_mob("mobs:lavasmall", {
 	-- model animation
 	-- no model animation
 })
-mobs:register_egg("mobs:lavasmall", "Small Lava Slime", "mobs_lava_slime_egg.png", 1)
+mobs:register_egg("mobs:lavasmall", "Small Lava Slime", "mobs_lava_slime_medium_inv.png", 1)
 
 -- register medium lava slime
 mobs:register_mob("mobs:lavamedium", {
@@ -109,7 +109,7 @@ mobs:register_mob("mobs:lavamedium", {
 		end
 	end,
 })
-mobs:register_egg("mobs:lavamedium", "Medium Lava Slime", "mobs_lava_slime_egg.png", 1)
+mobs:register_egg("mobs:lavamedium", "Medium Lava Slime", "mobs_lava_slime_medium_inv.png", 1)
 
 -- register big lava slime
 mobs:register_mob("mobs:lavabig", {
@@ -162,7 +162,7 @@ mobs:register_mob("mobs:lavabig", {
 		end
 	end,
 })
-mobs:register_egg("mobs:lavabig", "Big Lava Slime", "mobs_lava_slime_egg.png", 1)
+mobs:register_egg("mobs:lavabig", "Big Lava Slime", "mobs_lava_slime_big_inv.png", 1)
 
 --mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
 mobs:spawn_specific("mobs:lavabig", {"default:lava_source"},{"default:lava_flowing"}, -1, 20, 30, 4000, 1, -32000, 32000, false)

@@ -65,7 +65,7 @@ mobs:register_mob("mobs:chicken", {
 -- spawn on default or bamboo grass between 8 and 20 light, 1 in 10000 change, 1 chicken in area up to 31000 in height
 mobs:spawn_specific("mobs:chicken", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
 -- register spawn egg
-mobs:register_egg("mobs:chicken", "Chicken", "mobs_chicken_inv.png", 0)
+mobs:register_egg("mobs:chicken", "Chicken", "mobs_chicken_inv.png", 1)
 
 -- egg
 minetest.register_node("mobs:egg", {
