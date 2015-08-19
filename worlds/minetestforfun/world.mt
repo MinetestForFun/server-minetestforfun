@@ -47,7 +47,7 @@ load_mod_columnia = true
 load_mod_clams = true
 load_mod_stairsshine = true
 load_mod_whiteshell = true
-load_mod_mushroom = true
+load_mod_3dmushrooms = true
 
 load_mod_nether = true
 load_mod_vector_extras = true
@@ -133,7 +133,6 @@ load_mod_trm_pyramids = true
 load_mod_treasurer = true
 load_mod_lavatemple = true
 
-load_mod_forceload = true
 load_mod_more_chests = true
 load_mod_3dchest = true
 load_mod_connected_chests = true
@@ -218,7 +217,6 @@ load_mod_beds = true
 load_mod_builtin_item = true
 load_mod_chatplus = true
 
-load_mod_future_ban = false
 load_mod_textures = false
 load_mod_snowdrift = false
 load_mod_sounds = false
