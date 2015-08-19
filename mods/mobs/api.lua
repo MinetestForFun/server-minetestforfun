@@ -606,10 +606,9 @@ function mobs:register_mob(name, def)
 
 			if self.type == "npc"
 			and self.order == "follow"
-			and self.state ~= "attack" then
+			and self.state ~= "attack" and self.owner ~= "" then --/MFF (Crabman|07/14/2015) follow diamond if has not owner
 				-- npc stop following player if not owner
 				if self.following
-				and self.type == "npc"
 				and self.owner
 				and self.owner ~= self.following:get_player_name() then
 					self.following = nil
@@ -1110,7 +1109,7 @@ end
 			self.object:set_hp( self.health )
 			self.object:set_armor_groups({fleshy = self.armor})
 			self.state = "stand"
-			self.order = "stand"
+			--self.order = "stand"
 			self.following = nil
 			self.old_y = self.object:getpos().y
 			self.object:setyaw(math.random(1, 360) / 180 * math.pi)
