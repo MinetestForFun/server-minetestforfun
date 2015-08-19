@@ -24,6 +24,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		for f in pairs(fields) do
 			if string.find(f, "mobs:") then
 				local pos = player:getpos()
+				pos.y = pos.y+1
 				minetest.add_entity(pos, f)
 				return
 			end	
