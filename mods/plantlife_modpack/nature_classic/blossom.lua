@@ -16,7 +16,7 @@ minetest.register_node(":"..nature.blossom_node, {
     drawtype = "allfaces_optional",
     tiles = nature.blossom_textures,
     paramtype = "light",
-    groups = { snappy = 3, leafdecay = 3, flammable = 2 },
+    groups = { snappy = 3, leafdecay = 3, flammable = 2, leafdecay = 3 },
     sounds = default.node_sound_leaves_defaults(),
 	waving = 1
 })

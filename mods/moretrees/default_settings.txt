@@ -14,13 +14,13 @@ moretrees.enable_birch			= true
 moretrees.enable_spruce			= true
 moretrees.enable_jungle_tree	= true
 moretrees.enable_fir			= true
-moretrees.enable_beech			= true
+moretrees.enable_beech			= false
 
 -- set this to true to make moretrees spawn saplings at mapgen time instead
--- of fully-grown trees, which will grow into full trees very quickly.  With
--- older versions of biome_lib, doing this will reduce mapgen lag.
+-- of fully-grown trees, which will grow into full trees after a very short
+-- delay.  This reduces mapgen lag in some situations.
 
-moretrees.spawn_saplings		= true
+moretrees.spawn_saplings		= false
 
 -- Set this to true to allow defining stairs/slabs/etc.  If Moreblocks is
 -- installed, this will use that mod's Stairs Plus component.  Otherwise, it 
@@ -34,26 +34,21 @@ moretrees.enable_stairs			= true
 
 moretrees.plantlike_leaves		= false
 
--- Set this to true to enable leaf decay of all trees except the default ones.
-
-moretrees.enable_leafdecay		= true
-
 -- Enable this if you want moretrees to redefine default apples so that they
 -- fall when leaves decay/are dug.
 
 moretrees.enable_redefine_apple		= true
 
--- various settings to configure default and default-jungle leaf decay.
+-- Set this to true to enable leaf decay of all trees except the default ones.
+
+moretrees.enable_leafdecay		= true
+
+-- various related settings to configure leaf decay.
 
 moretrees.leafdecay_delay		= 2
-moretrees.leafdecay_chance		= 100
+moretrees.leafdecay_chance		= 5
 moretrees.leafdecay_radius		= 5
-
-moretrees.palm_leafdecay_radius		= 15
-
-moretrees.default_leafdecay_delay	= 3
-moretrees.default_leafdecay_chance	= 50
-moretrees.default_leafdecay_radius	= 4
+moretrees.palm_leafdecay_radius		= 10
 
 -- Change these settings if you want default trees to be gradually cut down
 -- above the elevation where firs normally generate.

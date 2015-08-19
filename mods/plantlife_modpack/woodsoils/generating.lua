@@ -103,7 +103,6 @@ biome_lib:register_generate_plant({
 		"moretrees:jungletree_sapling_ongen",
 		"moretrees:oak_sapling_ongen",
 		"moretrees:palm_sapling_ongen",
-		"moretrees:pine_sapling_ongen",
 		"moretrees:rubber_tree_sapling_ongen",
 		"moretrees:sequoia_sapling_ongen",
 		"moretrees:spruce_sapling_ongen",
