@@ -38,7 +38,7 @@ minetest.register_node("watershed:drygrass", {
 	description = "Dry Dirt",
 	tiles = {"watershed_drygrass.png"},
 	is_ground_content = false,
-	groups = {crumbly=1,soil=1},
+	groups = {crumbly=1},
 	drop = "default:dirt",
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.4},
