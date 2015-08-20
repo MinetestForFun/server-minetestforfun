@@ -8,8 +8,8 @@ Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
 
----??/??/????--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
-Update of "pclasses" (armors are now inspected when switching class, to confiscate any piece that may be reserved for another class)
+---20/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
+Update of "pclasses" (armors are now inspected when switching class, to confiscate any piece that may be reserved for another class, do not forget to look at your graveyard inventory to move/see your older classes armors/weapons)
 Update of "fishing" (code cleanup, fix bobber issues, and worms cannot be eaten anymore)
 Update of "3dmushrooms" (activate the mod to enable aliases to old mushrooms)
 Update of "plantlife" (new modifications regarding recent changes in minetest_game and moretrees)
