@@ -18,6 +18,7 @@ pclasses.conf.default_class = "adventurer"
 pclasses.conf.save_interval = 3 * 60
 pclasses.conf.datafile = minetest.get_worldpath() .. "/pclasses"
 pclasses.conf.gravefile = minetest.get_worldpath() .. "/graveyards"
+
 -- Classes
 pclasses.classes = {}
 

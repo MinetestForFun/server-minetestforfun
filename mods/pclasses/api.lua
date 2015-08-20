@@ -116,26 +116,40 @@ end
 -- Determination and reserved items tick --
 -------------------------------------------
 
-local function tick()
-	for id, ref in ipairs(minetest.get_connected_players()) do
-		local name = ref:get_player_name()
-		local inv = minetest.get_inventory({type="player", name = name})
-		for i = 1, inv:get_size("main") do
-			local stack = inv:get_stack("main", i)
-			if pclasses.data.reserved_items[stack:get_name()] then
-				if not pclasses.api.util.can_have_item(name, stack:get_name()) then
-					inv:set_stack("main", i, "")
-					local grave_inv = pclasses.api.create_graveyard_inventory(ref)
-					if grave_inv and grave_inv:room_for_item("graveyard", stack) then
-						grave_inv:add_item("graveyard", stack)
-						inv:add_item("graveyard", stack)
-						-- ^ Because add_item doesn't trigger on_put, nonsense
-					else
-						minetest.add_item(ref:getpos(), stack)
-					end
+local function vacuum_inventory(name, inv, invname)
+	local ref = minetest.get_player_by_name(name)
+	for i = 1, inv:get_size(invname) do
+		local stack = inv:get_stack(invname, i)
+		if pclasses.data.reserved_items[stack:get_name()] then
+			if not pclasses.api.util.can_have_item(name, stack:get_name()) then
+				inv:set_stack(invname, i, "")
+				local grave_inv = pclasses.api.create_graveyard_inventory(ref)
+				if grave_inv and grave_inv:room_for_item("graveyard", stack) then
+					grave_inv:add_item("graveyard", stack)
+					inv:add_item("graveyard", stack)
+					-- ^ Because add_item doesn't trigger on_put, nonsense
+				else
+					minetest.add_item(ref:getpos(), stack)
 				end
 			end
 		end
+	end
+end
+
+
+local function tick()
+	for id, ref in ipairs(minetest.get_connected_players()) do
+		local name = ref:get_player_name()
+		local armor_inv = minetest.get_inventory({type = "detached", name = name .. "_armor"})
+		local inv = ref:get_inventory()
+		vacuum_inventory(name, inv, "main")
+		vacuum_inventory(name, inv, "armor")
+		-- Hack the hack
+		for i = 1, armor_inv:get_size("armor") do
+			armor_inv:set_stack("armor", i, inv:get_stack("armor", i))
+		end
+		armor:set_player_armor(ref)
+		armor:update_inventory(ref)
 	end
 	minetest.after(2, tick)
 end

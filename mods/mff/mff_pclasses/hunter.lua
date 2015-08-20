@@ -23,7 +23,8 @@ pclasses.api.register_class("hunter", {
 	end,
 	switch_params = {
 		color = {r = 30, g = 170, b = 00},
-		tile = "default_wood.png"
+		tile = "default_wood.png",
+		holo_item = "throwing:bow_minotaur_horn_improved"
 	}
 })
 

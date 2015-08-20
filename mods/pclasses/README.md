@@ -15,39 +15,42 @@ Yet another class mod for Minetest.
 ### pclasses.api
  - All functions used to declare, get, set classes
 
+### pclasses.api.util
+ - Some utility functions
+
+### pclasses.conf
+ - Some configuration values
+
 ### pclasses.classes
  - All classes and their specs
 
-### pclasses.datas
- - Miscellaneous datas
+### pclasses.data
+ - Miscellaneous data
 
-#### pclasses.datas.players
+#### pclasses.data.players
  - List of all players' class. Index is player's name and value is the class's name
 
-#### pclasses.datas.hud_ids
+#### pclasses.data.hud_ids
  - Surely useful in the future with a hypothetical hud to show current class
 
 
 # Functions
 
-### pclasses.api.create_class_id
- - Arguments : None
- - Indicates the next free id/index in the classes' table
+### pclasses.api.register_class
+ - Arguments : cname, def
+ - Registers a class and its specifications
+ - Def is a definition table that can contain many functions/values :
+    - `on_assigned` which is a function, receiving as argument the player name
+    - `on_unassigned` which is a function, receiving as argument the player name
+    - `switch_params`, which is a table, containing parameters for the switch pedestal :
+      - `holo_item` is mandatory. It's the itemstring of the item to be put over the pedestal
+      - `color` is optional. Default is white. It's a RGB table.
+      - `tile` is optional. Default is none. It's a string of the texture to be applied over the pedestal
 
-### pclasses.api.id_for_class
- - Arguments : cname (class' name)
- - Returns the id/index corresponding the class in the classes' table
- - Returns 0 if not found, nil if no name given
-
-### pclasses.api.register_class(cname)
- - Argument : cname
- - Registers a class in the classes' table
- - Pretty useless at the moment
- - Returns class' id or nil if any error
-
-### pclasses.api.get_class_by_id
- - Argument : id
- - Return the class' specs (table) corresponding an id or nil when not found
+### pclasses.register_class_switch
+ - Arguments : cname, params
+ - Used internally to create switch pedestals
+ - `params` is the `def` table given to `pclasses.api.register_class`, documented above
 
 ### pclasses.api.get_class_by_name
  - Argument : cname
@@ -64,4 +67,27 @@ Yet another class mod for Minetest.
 ### pclasses.api.set_player_class
  - Arguments : pname, cname
  - Assign a player the cname class
+ - Returns true if achieved, false if not
 
+### pclasses.api.util.does_wear_full_armor
+ - Arguments : pname, material, noshield
+ - Returns true if player `pname` is wearing the full armor made out of `material`
+ - `noshield` must be true when the full armor has no shield
+
+### pclasses.api.util.can_have_item
+ - Arguments : pname, itemname
+ - Returns true if player `pname` can have items `itemstring` in his main inventory, according to his class
+
+### pclasses.api.reserve_item
+ - Arguments : cname, itemstring
+ - Adds an entry in the reserved items' table. Players will need to belong to class `cname` in order to have items `itemstring` in their main inventory
+ - Note : You can reserve the same item for two classes, any player of either of both can then have the item
+
+### pclasses.api.create_graveyard_inventory
+ - Argument : player
+ - Creates a detached inventory dedicated to 'dead' items (confiscated reserved items)
+ - Used internally, should not be used outside of pclasses
+
+### pclasses.api.vacuum_graveyard
+ - Argument : player
+ - Check all of `player`'s graveyard inventory to get them back items they obtained to right to have

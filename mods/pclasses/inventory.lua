@@ -5,8 +5,12 @@
 -- Inventory for 'dead' items
 pclasses.api.create_graveyard_inventory = function(player)
 	local pname = player:get_player_name()
+	local grave_inv = minetest.get_inventory({type = "detached", name = pname .. "_graveyard"})
+	if grave_inv then
+		return grave_inv
+	end
 	local player_inv = minetest.get_inventory({type = "player", name = pname})
-	local grave_inv = minetest.create_detached_inventory(pname .. "_graveyard", {
+	grave_inv = minetest.create_detached_inventory(pname .. "_graveyard", {
 		on_take = function(inv, listname, index, stack, player)
 			player_inv:set_stack(listname, index, nil)
 		end,
@@ -64,7 +68,7 @@ function pclasses.api.vacuum_graveyard(player)
 			if player_inv:room_for_item("main", stack) then
 				player_inv:add_item("main", stack)
 			else
-				minetest.add_item(pos, stack)
+				minetest.add_item(player:getpos(), stack)
 			end
 		end
 	end

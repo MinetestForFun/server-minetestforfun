@@ -11,14 +11,15 @@ pclasses.api.register_class("warrior", {
 		minetest.sound_play("pclasses_full_warrior")
 		minetest.chat_send_player(pname, "You are now a warrior")
 		sprint.set_maxstamina(pname, 20)
-		minetest.log("action", "[PClasses] Player " .. pname .. " become a warrior")
+		minetest.log("action", "[PClasses] Player " .. pname .. " becomes a warrior")
 	end,
 	on_unassigned = function(pname)
 		sprint.set_default_maxstamina(pname)
 	end,
 	switch_params = {
 		color = {r = 06, g = 06, b = 30},
-		tile = "default_steel_block.png"
+		tile = "default_steel_block.png",
+		holo_item = "default:dungeon_master_s_blood_sword"
 	}
 })
 

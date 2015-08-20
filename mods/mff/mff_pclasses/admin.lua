@@ -11,7 +11,8 @@ pclasses.api.register_class("admin", {
 		minetest.chat_send_player(pname, "Hello admin.")
 	end,
 	switch_params = {
-		color = {r = 255, g = 00, b = 224}
+		color = {r = 255, g = 00, b = 224},
+		holo_item = "maptools:pick_admin"
 	}
 })
 
@@ -19,6 +20,6 @@ pclasses.api.reserve_item("admin", "3d_armor:helmet_admin")
 pclasses.api.reserve_item("admin", "3d_armor:chestplate_admin")
 pclasses.api.reserve_item("admin", "3d_armor:leggings_admin")
 pclasses.api.reserve_item("admin", "3d_armor:boots_admin")
-pclasses.api.reserve_item("admin", "shields:shields_admin")
+pclasses.api.reserve_item("admin", "shields:shield_admin")
 pclasses.api.reserve_item("admin", "maptools:pick_admin")
 pclasses.api.reserve_item("admin", "maptools:pick_admin_with_drops")
