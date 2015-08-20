@@ -30,15 +30,15 @@ for i in pairs(trophy) do
 	local 	icon = 			trophy[i][4]
 	minetest.register_node("fishing:trophy_"..item, {
 		description = fishing_setting.func.S(name.." Trophy"),
-		inventory_image = "default_chest_top.png^"..icon.."^fishing_trophy_label.png",
+		inventory_image = "fishing_trophy_plank.png^"..icon.."^fishing_trophy_label.png",
 		drawtype = "nodebox",
 		tiles = {
-			"default_chest_top.png", -- top
-			"default_chest_top.png", -- bottom
-			"default_chest_top.png", -- right
-			"default_chest_top.png", -- left
-			"default_chest_top.png", -- back
-			"default_chest_top.png^"..icon.."^fishing_trophy_label.png", -- front
+			"fishing_trophy_plank.png", -- top
+			"fishing_trophy_plank.png", -- bottom
+			"fishing_trophy_plank.png", -- right
+			"fishing_trophy_plank.png", -- left
+			"fishing_trophy_plank.png", -- back
+			"fishing_trophy_plank.png^"..icon.."^fishing_trophy_label.png", -- front
 		},
 		paramtype = "light",
 		paramtype2 = "facedir",

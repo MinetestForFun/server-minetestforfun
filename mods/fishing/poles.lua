@@ -20,7 +20,7 @@ for _,pole in pairs(fishing_setting.poles) do
 		description = pole.desc,
 		groups = {},
 		inventory_image = "fishing_pole_".. pole.name ..".png",
-		wield_image = "fishing_pole_".. pole.name ..".png^[transformFXR270",
+		wield_image = "fishing_pole_".. pole.name ..".png",
 		stack_max = 1,
 		liquids_pointable = true,
 
