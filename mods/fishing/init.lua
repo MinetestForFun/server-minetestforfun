@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------------
 local title		= "Fishing - Crabman77's version"
-local version 	= "0.0.1"
+local version 	= "0.0.2"
 local mname		= "fishing"
 -----------------------------------------------------------------------------------------------
 -- original by wulfsdad (http://forum.minetest.net/viewtopic.php?id=4375)
@@ -68,7 +68,6 @@ dofile(path .."bobber_shark.lua")
 dofile(path .."fishes.lua")
 dofile(path .."trophies.lua")
 dofile(path .."poles.lua")
---dofile(path .."material.lua")
 
 --random hungry bait
 fishing_setting.func.hungry_random()

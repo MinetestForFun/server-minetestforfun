@@ -15,7 +15,6 @@ minetest.register_craftitem("fishing:bait_worm", {
 	description = fishing_setting.func.S("Worm"),
 	groups = { fishing_bait=1 },
 	inventory_image = "fishing_bait_worm.png",
-	on_use = minetest.item_eat(1),
 	on_place = function(itemstack, placer, pointed_thing)
 		local pt = pointed_thing
 		minetest.add_entity({x=pt.under.x, y=pt.under.y+0.6, z=pt.under.z}, "fishing:bait_worm_entity")
