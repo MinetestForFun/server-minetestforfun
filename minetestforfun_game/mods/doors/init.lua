@@ -464,6 +464,29 @@ minetest.register_craft({
 	}
 })
 
+-- doors prison MFF
+doors.register_door("doors:door_prison", {
+	description = "Prison Door",
+	inventory_image = "doors_prison_inv.png",
+	groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1},
+	tiles_bottom = {"doors_prison_b.png", "doors_black.png"},
+	tiles_top = {"doors_prison_t.png", "doors_black.png"},
+	only_placer_can_open = true,
+	sounds = default.node_sound_stone_defaults(),
+	sunlight = false,
+})
+
+minetest.register_craft({
+	output = "doors:door_prison",
+	recipe = {
+		{"darkage:iron_stick", "darkage:iron_stick"},
+		{"darkage:iron_stick", "darkage:iron_stick"},
+		{"darkage:iron_stick", "darkage:iron_stick"}
+
+	}
+})
+
+
 
 ----trapdoor----
 

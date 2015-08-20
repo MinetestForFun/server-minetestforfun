@@ -587,4 +587,23 @@ minetest.register_craft({
 	}
 })
 
+doors3.register_door("doors:door3_prison", {
+	description = "Prison Door 3",
+	inventory_image = "doors3_prison_inv.png",
+	groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1},
+	tiles_bottom = {"doors_prison_b.png", "doors_black.png"},
+	tiles_middle = {"doors_prison_t.png", "doors_black.png"},
+	tiles_top = {"doors_prison_t.png", "doors_black.png"},
+	only_placer_can_open = true,
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
+})
 
+minetest.register_craft({
+	output = "doors:door3_prison",
+	recipe = {
+		{"", "", ""},
+		{"", "doors:door_prison", ""},
+		{"", "doors:door_prison", ""}
+	}
+})
