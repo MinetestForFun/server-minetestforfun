@@ -7,6 +7,15 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
+
+---??/??/????--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
+Update of "pclasses" (armors are now inspected when switching class, to confiscate any piece that may be reserved for another class)
+Update of "fishing" (code cleanup, fix bobber issues, and worms cannot be eaten anymore)
+Update of "3dmushrooms" (activate the mod to enable aliases to old mushrooms)
+Update of "plantlife" (new modifications regarding recent changes in minetest_game and moretrees)
+Update of "moretrees" (new modifications regarding recent changes in minetest_game and plantlife)
+Update of "mobs" (api updated, follow/stand system fixed, new baby npc added)
+
 ---18/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
 Update of "mff_quests" (crashfix of the HUD)
 Update of "pclasses" (bugfix and improved class pedestals)
