@@ -1637,22 +1637,6 @@ function mobs:feed_tame(self, clicker, feed_count, breed)
 	if not self.follow then return false end
 
 	local item = clicker:get_wielded_item()
-	local follow_item = false
-	local t = type(self.follow)
-
-	-- single item
-	if t == "string"
-	and item:get_name() == self.follow then
-		follow_item = true
-
-	-- multiple items
-	elseif t == "table" then
-		for no = 1, #self.follow do
-			if self.follow[no] == item:get_name() then
-				follow_item = true
-			end
-		end
-	end
 
 	-- can eat/tame with item in hand
 	if follow_holding(self, clicker) then
