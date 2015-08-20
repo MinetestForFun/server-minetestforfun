@@ -48,20 +48,23 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 				local node = minetest.get_node(pos)
 				local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
 				for k, obj in pairs(objs) do
+					local objpos = obj:getpos()
 					if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
-						obj:punch(self.object, 1.0, {
-								full_punch_interval=1.0,
-								damage_groups={fleshy=eq},
-								}, nil)
-						if math.random() < toughness then
-							if math.random(0,100) % 2 == 0 then
-								minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
+						if (pos.x - objpos.x < 0.5 and pos.x - objpos.x > -0.5) and (pos.z - objpos.z < 0.5 and pos.z - objpos.z > -0.5) then
+							obj:punch(self.object, 1.0, {
+									full_punch_interval=1.0,
+									damage_groups={fleshy=eq},
+									}, nil)
+							if math.random() < toughness then
+								if math.random(0,100) % 2 == 0 then
+									minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
+								end
+							else
+								minetest.add_item(self.lastpos, 'default:stick')
 							end
-						else
-							minetest.add_item(self.lastpos, 'default:stick')
+							self.object:remove()
+							return
 						end
-						self.object:remove()
-						return
 					end
 				end
 				if node.name ~= "air" and not string.find(node.name, 'water_') and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then

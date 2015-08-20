@@ -41,22 +41,26 @@ local THROWING_ARROW_ENTITY={
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 	local newpos = self.object:getpos()
-	if self.lastpos.x~=nil then
+	if self.lastpos.x ~= nil then
 		for _, pos in pairs(throwing_get_trajectoire(self, newpos)) do
 			local node = minetest.get_node(pos)
 			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
 			for k, obj in pairs(objs) do
+				local objpos = obj:getpos()
 				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
-					local damage = 4
-					obj:punch(self.object, 1.0, {
-						full_punch_interval=1.0,
-						damage_groups={fleshy=damage},
-					}, nil)
-					if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
-						minetest.add_item(pos, 'default:stick')
+					if (pos.x - objpos.x < 0.5 and pos.x - objpos.x > -0.5) and (pos.z - objpos.z < 0.5 and pos.z - objpos.z > -0.5) then
+
+						local damage = 4
+						obj:punch(self.object, 1.0, {
+							full_punch_interval=1.0,
+							damage_groups={fleshy=damage},
+						}, nil)
+						if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
+							minetest.add_item(pos, 'default:stick')
+						end
+						self.object:remove()
+						return
 					end
-					self.object:remove()
-					return
 				end
 			end
 
@@ -67,18 +71,19 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				self.object:remove()
 				return
 			end
-			if math.floor(self.lastpos.x+0.5) ~= math.floor(pos.x+0.5) or math.floor(self.lastpos.y+0.5) ~= math.floor(pos.y+0.5) or math.floor(self.lastpos.z+0.5) ~= math.floor(pos.z+0.5) then
-				if minetest.get_node(self.lastpos).name == "throwing:light" then
-					minetest.remove_node(self.lastpos)
-				end
-				if minetest.get_node(pos).name == "air" then
-					minetest.set_node(pos, {name="throwing:light"})
-				end
+
+			if minetest.get_node(pos).name == "air" then
+				minetest.set_node(pos, {name="throwing:light"})
 			end
+			if minetest.get_node(self.lastpos).name == "throwing:light" then
+				minetest.remove_node(self.lastpos)
+			end
+			self.lastpos={x=pos.x, y=pos.y, z=pos.z}
 		end
 	end
 	self.lastpos={x=newpos.x, y=newpos.y, z=newpos.z}
 end
+
 
 minetest.register_entity("throwing:arrow_fire_entity", THROWING_ARROW_ENTITY)
 

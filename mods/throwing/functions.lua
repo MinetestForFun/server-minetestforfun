@@ -24,7 +24,8 @@ function throwing_is_entity(obj)
 	return (obj:get_luaentity() ~= nil
 			and not string.find(obj:get_luaentity().name, "throwing:arrow_")
 			and obj:get_luaentity().name ~= "__builtin:item"
-			and obj:get_luaentity().name ~= "gauges:hp_bar")
+			and obj:get_luaentity().name ~= "gauges:hp_bar"
+			and obj:get_luaentity().name ~= "signs:text")
 end
 function throwing_get_trajectoire(self, newpos)
 	if self.lastpos.x == nil then
