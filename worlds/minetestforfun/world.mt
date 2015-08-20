@@ -217,7 +217,6 @@ load_mod_beds = true
 load_mod_builtin_item = true
 load_mod_chatplus = true
 
-load_mod_textures = false
 load_mod_snowdrift = false
 load_mod_sounds = false
 
