@@ -486,7 +486,25 @@ minetest.register_craft({
 	}
 })
 
+-- MFF gardengate white
+doors.register_door("doors:door_gardengate_white", {
+	description = "Garden Gate White Door",
+	inventory_image = "doors_gardengate_white_inv.png",
+	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
+	tiles_bottom = {"doors_gardengate_white_b.png", "doors_white.png"},
+	tiles_top = {"doors_gardengate_white_t.png", "doors_invisible.png"},
+	sounds = default.node_sound_wood_defaults(),
+	sunlight = false,
+})
 
+minetest.register_craft({
+	output = "doors:door_gardengate_white 2",
+	recipe = {
+		{"dye:white", "group:stick", ""},
+		{"group:stick", "group:stick", "group:stick"},
+		{"group:wood", "group:wood", "group:wood"}
+	}
+})
 
 ----trapdoor----
 
