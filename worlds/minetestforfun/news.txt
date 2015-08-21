@@ -7,7 +7,6 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
-
 ---21/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
 Update of "doors" (add new doors craft and textures, 2x1 nodes and 3x1 nodes)
 Update of "throwing" (Bow now have a more accurate shot)
