@@ -134,7 +134,6 @@ load_mod_treasurer = true
 load_mod_lavatemple = true
 
 load_mod_more_chests = true
-load_mod_3dchest = true
 load_mod_connected_chests = true
 load_mod_chesttools = true
 
