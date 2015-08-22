@@ -7,15 +7,20 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
+---23/08/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman)
+Removed of "3dchest" (too many work to debug/adapt it, we can't work so hard for just an animated 1x1 or 2x1 chest)
+Update of "moretrees " (Fix sapling growth)
+Update of "moreblocks" (Fix the bricks nodes drops from the moreblocks circulsaw)
+
 ---21/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
-Update of "doors" (add new doors craft and textures, 2x1 nodes and 3x1 nodes)
+Update of "doors" (Add new doors craft and textures, 2x1 nodes and 3x1 nodes)
 Update of "throwing" (Bow now have a more accurate shot)
-Update of "pclasses" (armors are now inspected when switching class, to confiscate any piece that may be reserved for another class, do not forget to look at your graveyard inventory to move/see your older classes armors/weapons)
-Update of "fishing" (code cleanup, fix bobber issues, and worms cannot be eaten anymore, fix the pole wielded texture)
-Update of "3dmushrooms" (activate the mod to enable aliases to old mushrooms)
-Update of "plantlife" (new modifications regarding recent changes in minetest_game and moretrees)
-Update of "moretrees" (new modifications regarding recent changes in minetest_game and plantlife)
-Update of "mobs" (api updated, follow/stand system fixed, new baby npc added)
+Update of "pclasses" (Armors are now inspected when switching class, to confiscate any piece that may be reserved for another class, do not forget to look at your graveyard inventory to move/see your older classes armors/weapons)
+Update of "fishing" (Code cleanup, fix bobber issues, and worms cannot be eaten anymore, fix the pole wielded texture)
+Update of "3dmushrooms" (Activate the mod to enable aliases to old mushrooms)
+Update of "plantlife" (New modifications regarding recent changes in minetest_game and moretrees)
+Update of "moretrees" (New modifications regarding recent changes in minetest_game and plantlife)
+Update of "mobs" (API updated, follow/stand system fixed, new baby npc added)
 
 ---18/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
 Update of "mff_quests" (crashfix of the HUD)
