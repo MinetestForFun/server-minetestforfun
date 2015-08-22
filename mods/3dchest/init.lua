@@ -252,3 +252,12 @@ minetest.register_node("3dchest:chest", {
 		end
 	end,
 })
+
+minetest.register_craft({
+	output = "3dchest:chest",
+	recipe = {
+		{"default:tree", "default:tree", "default:tree"},
+		{"default:wood", "", "default:wood"},
+		{"default:wood", "default:wood", "default:wood"},
+	}
+})
