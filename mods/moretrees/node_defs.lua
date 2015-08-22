@@ -424,8 +424,8 @@ minetest.register_alias("moretrees:acacia_planks",				"default:acacia_wood")
 minetest.register_alias("moretrees:acacia_sapling",				"default:acacia_sapling")
 minetest.register_alias("moretrees:acacia_leaves",				"default:acacia_leaves")
 
-minetest.register_alias("moretrees:pine_trunk",					"default:pinetree")
-minetest.register_alias("moretrees:pine_planks",				"default:pinewood")
+minetest.register_alias("moretrees:pine_trunk",					"default:pine_tree")
+minetest.register_alias("moretrees:pine_planks",				"default:pine_wood")
 minetest.register_alias("moretrees:pine_sapling",				"default:pine_sapling")
 minetest.register_alias("moretrees:pine_leaves",				"default:pine_needles")
 
