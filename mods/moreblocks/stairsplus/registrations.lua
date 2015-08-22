@@ -45,7 +45,7 @@ for _, name in pairs(default_nodes) do
 		end
 		local drop
 		if type(ndef.drop) == "string" then
-			drop = ndef.drop:sub(9)
+			drop = ndef.drop:split(" ")[1]:sub(9)
 		end
 		stairsplus:register_all("moreblocks", name, nodename, {
 			description = ndef.description,
