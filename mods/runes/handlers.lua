@@ -82,7 +82,7 @@ set_manamax = function(runelevel, itemstack, user, pointed_thing)
 end
 
 
-set_manamax = function(itemstack, user, pointed_thing)
+set_manamax = function(level, itemstack, user, pointed_thing)
 	if user and user:is_player() then
 		mana.set(user:get_player_name(),mana.getmax(user:get_player_name()))
 		if not minetest.get_player_privs(user:get_player_name()).server then

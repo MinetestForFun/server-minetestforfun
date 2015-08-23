@@ -10,7 +10,7 @@
 
 biome_lib = {}
 
-plantslib = setmetatable({}, { __index=function(t,k) minetest.log("warning", "Use of deprecated function:", k) return biomes_lib[k] end })
+plantslib = setmetatable({}, { __index=function(t,k) minetest.log("warning", "Use of deprecated function:", k) return biome_lib[k] end })
 
 biome_lib.blocklist_aircheck = {}
 biome_lib.blocklist_no_aircheck = {}
