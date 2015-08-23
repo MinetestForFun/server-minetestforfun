@@ -47,7 +47,7 @@ mobs:register_mob("mobs:minotaur", {
 		{name = "mobs:minotaur_fur",
 		chance = 1, min = 1, max = 3,},
 	},
-	water_damage = 1,
+	water_damage = 0,
 	lava_damage = 5,
 	light_damage = 0,
 	-- model animation
