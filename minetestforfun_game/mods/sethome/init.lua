@@ -8,6 +8,7 @@ home.time = 20 * 60
 home.sethome = function(name)
 	local player = minetest.get_player_by_name(name)
 	local pos = player:getpos()
+	pos.y = pos.y+1
 	local p_status = "real"
 	if pos.y < -19600 then
 		p_status = "nether"
