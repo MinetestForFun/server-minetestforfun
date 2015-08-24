@@ -34,7 +34,7 @@ mv /home/quentinbd/minetest-stable-0.4/ /home/quentinbd/mff-hg/
 # Compilation
 cd /home/quentinbd/mff-hg/
 # build sqlite3
-cmake . -DRUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr
+cmake . -DRUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1 -DENABLE_LUAJIT=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr
 make -j$(grep -c processor /proc/cpuinfo)
 # build redis + irc
 #cmake . -DENABLE_REDIS=1 -DRUN_RUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr
