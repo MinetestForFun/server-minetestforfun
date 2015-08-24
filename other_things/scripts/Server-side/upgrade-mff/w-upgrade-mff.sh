@@ -41,7 +41,7 @@ cd /home/quentinbd/mff/
 #cmake . -DENABLE_REDIS=1 -DRUN_RUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1
 #make -j$(grep -c processor /proc/cpuinfo)
 # build redis + irc
-cmake . -DENABLE_REDIS=1 -DRUN_RUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr
+cmake . -DBUILD_CLIENT=0 -DBUILD_SERVER=1 -DENABLE_REDIS=1 -DRUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr
 make -j$(grep -c processor /proc/cpuinfo)
 
 # Ajout des fichiers critiques au nouveau dossier minetest
