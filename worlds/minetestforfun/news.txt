@@ -1,8 +1,9 @@
 ---Planned on the Server---
-Server upgrade to 0.4.13-Stable (shortly available)
 Minerals generation more and more interresting between -2048 --to--> -19600 (actual end of the better minerals chance -> Nether beginning)
 
 ---Important News---
+The server has just been updated to minetest 0.4.13! When connecting, be sure to use the latest 0.4.13 client.
+Le serveur vient juste de passer en version 0.4.13! Soyez surs d'utiliser le dernier client (0.4.13) pour vous connecter.
 Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debugs :))
 Venez visiter notre nouveau site "minetestforfun.com" !
 
