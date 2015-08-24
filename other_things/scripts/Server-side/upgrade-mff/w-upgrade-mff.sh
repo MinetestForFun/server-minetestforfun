@@ -23,10 +23,11 @@ rm -Rv /home/quentinbd/mff/
 # Réinstallaton de minetest
 cd /home/quentinbd/
 #git clone https://github.com/minetest/minetest.git
-# DEBUT - Utilisation de la version 0.4 stable
-git clone https://github.com/minetest/minetest/archive/stable-0.4.zip
-unzip /home/quentinbd/minetest-stable-0.4.zip
-mv /home/quentinbd/minetest-stable-0.4/ /home/quentinbd/mff/
+# DEBUT - Utilisation de la dernière version 0.4 stable
+git clone https://github.com/minetest/minetest.git
+#unzip /home/quentinbd/minetest-stable-0.4.zip
+#mv /home/quentinbd/minetest-stable-0.4/ /home/quentinbd/mff/
+mv /home/quentinbd/minetest/ /home/quentinbd/mff/
 # FIN - Utilisation de la version 0.4 stable
 cd /home/quentinbd/mff/games/
 git clone https://github.com/minetest/minetest_game.git
