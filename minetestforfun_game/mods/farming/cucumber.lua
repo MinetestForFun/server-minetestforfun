@@ -17,12 +17,14 @@ minetest.register_node("farming:cucumber_1", {
 	drawtype = "plantlike",
 	tiles = {"farming_cucumber_1.png"},
 	paramtype = "light",
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -34,8 +36,11 @@ minetest.register_node("farming:cucumber_2", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -47,12 +52,15 @@ minetest.register_node("farming:cucumber_3", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Last stage of Cucumber growth doesnnot have growing=1 so abm never has to check these
+-- Last stage of growth does not have growing group so abm never checks these
 
 minetest.register_node("farming:cucumber_4", {
 	drawtype = "plantlike",
@@ -61,14 +69,16 @@ minetest.register_node("farming:cucumber_4", {
 	waving = 1,
 	walkable = false,
 	buildable_to = true,
-	is_ground_content = true,
 	drop = {
 		items = {
-			{items = {'farming:cucumber'},rarity=1},
-			{items = {'farming:cucumber 2'},rarity=2},
+			{items = {'farming:cucumber'}, rarity = 1},
+			{items = {'farming:cucumber 2'}, rarity = 2},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })

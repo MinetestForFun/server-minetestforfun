@@ -22,6 +22,14 @@ minetest.register_craftitem("farming:beans", {
 	end
 })
 
+-- Beans can be used for green dye
+minetest.register_craft({
+	output = "dye:green",
+	recipe = {
+		{'farming:beans'},
+	}
+})
+
 -- Beanpole
 
 minetest.register_node("farming:beanpole", {
@@ -36,19 +44,28 @@ minetest.register_node("farming:beanpole", {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:beanpole'},rarity=1},
+			{items = {'farming:beanpole'}, rarity = 1},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,not_in_creative_inventory=1,attached_node=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, attached_node = 1,
+		not_in_creative_inventory = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 	on_place = function(itemstack, placer, pointed_thing)
 		local nod = minetest.get_node_or_nil(pointed_thing.under)
-		if nod and minetest.get_item_group(nod.name, "soil") < 2 then return end
-		local top = {x=pointed_thing.above.x, y=pointed_thing.above.y+1, z=pointed_thing.above.z}
+		if nod and minetest.get_item_group(nod.name, "soil") < 2 then
+			return
+		end
+		local top = {
+			x = pointed_thing.above.x,
+			y = pointed_thing.above.y + 1,
+			z = pointed_thing.above.z
+		}
 		nod = minetest.get_node_or_nil(top)
 		if nod and nod.name ~= "air" then return end
-		minetest.set_node(pointed_thing.above, {name="farming:beanpole"})
+		minetest.set_node(pointed_thing.above, {name = "farming:beanpole"})
 		if not minetest.setting_getbool("creative_mode") then
 			itemstack:take_item()
 		end
@@ -77,11 +94,14 @@ minetest.register_node("farming:beanpole_1", {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:beanpole'},rarity=1},
+			{items = {'farming:beanpole'}, rarity = 1},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=3,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 3, not_in_creative_inventory = 1,
+		attached_node = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -95,11 +115,14 @@ minetest.register_node("farming:beanpole_2", {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:beanpole'},rarity=1},
+			{items = {'farming:beanpole'}, rarity = 1},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -113,11 +136,14 @@ minetest.register_node("farming:beanpole_3", {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:beanpole'},rarity=1},
+			{items = {'farming:beanpole'}, rarity = 1},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -132,35 +158,40 @@ minetest.register_node("farming:beanpole_4", {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:beanpole'},rarity=1},
+			{items = {'farming:beanpole'}, rarity = 1},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Last stage of Green Bean growth does not have growing=1 so abm never has to check these
+-- Last stage of growth does not have growing group so abm never checks these
 
 minetest.register_node("farming:beanpole_5", {
 	drawtype = "plantlike",
 	tiles = {"farming_beanpole_5.png"},
 	visual_scale = 1.45,
 	paramtype = "light",
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:beanpole'},rarity=1},
-			{items = {'farming:beans 3'},rarity=1},
-			{items = {'farming:beans 2'},rarity=2},
-			{items = {'farming:beans 2'},rarity=3},
+			{items = {'farming:beanpole'}, rarity = 1},
+			{items = {'farming:beans 3'}, rarity = 1},
+			{items = {'farming:beans 2'}, rarity = 2},
+			{items = {'farming:beans 2'}, rarity = 3},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -176,12 +207,15 @@ minetest.register_node("farming:beanbush", {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:beans 1'},rarity=1},
-			{items = {'farming:beans 1'},rarity=2},
-			{items = {'farming:beans 1'},rarity=3},
+			{items = {'farming:beans 1'}, rarity = 1},
+			{items = {'farming:beans 1'}, rarity = 2},
+			{items = {'farming:beans 1'}, rarity = 3},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory=1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })

@@ -16,7 +16,7 @@ erf = function(x)
 	if x == 0 then return 0; end
 	local xSq  = x * x
 	local aXSq = A * xSq
-	local v = math.sqrt(1.0 - math.exp(-xSq * (B + aXSq)/(1.0 + aXSq)))
+	local v = math.sqrt(1.0 - math.exp(-xSq * (B + aXSq) / (1.0 + aXSq)))
 	return (x > 0 and v) or -v
 end
 

@@ -18,12 +18,14 @@ minetest.register_node("farming:tomato_1", {
 	tiles = {"farming_tomato_1.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -32,12 +34,14 @@ minetest.register_node("farming:tomato_2", {
 	tiles = {"farming_tomato_2.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -50,8 +54,11 @@ minetest.register_node("farming:tomato_3", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -64,8 +71,11 @@ minetest.register_node("farming:tomato_4", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -78,8 +88,11 @@ minetest.register_node("farming:tomato_5", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -92,8 +105,11 @@ minetest.register_node("farming:tomato_6", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -104,19 +120,21 @@ minetest.register_node("farming:tomato_7", {
 	waving = 1,
 	walkable = false,
 	buildable_to = true,
-	is_ground_content = true,
 	drop = {
 		items = {
-			{items = {'farming:tomato'},rarity=1},
-			{items = {'farming:tomato'},rarity=3},
+			{items = {'farming:tomato'}, rarity = 1},
+			{items = {'farming:tomato'}, rarity = 3},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Last stage of Carrot growth doesnnot have growing=1 so abm never has to check these
+-- Last stage of growth does not have growing group so abm never checks these
 
 minetest.register_node("farming:tomato_8", {
 	drawtype = "plantlike",
@@ -125,14 +143,16 @@ minetest.register_node("farming:tomato_8", {
 	waving = 1,
 	walkable = false,
 	buildable_to = true,
-	is_ground_content = true,
 	drop = {
 		items = {
-			{items = {'farming:tomato 3'},rarity=1},
-			{items = {'farming:tomato 3'},rarity=2},
+			{items = {'farming:tomato 3'}, rarity = 1},
+			{items = {'farming:tomato 3'}, rarity = 2},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })

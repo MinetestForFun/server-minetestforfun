@@ -33,12 +33,14 @@ minetest.register_node("farming:melon_1", {
 	tiles = {"farming_melon_1.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -47,12 +49,14 @@ minetest.register_node("farming:melon_2", {
 	tiles = {"farming_melon_2.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -65,8 +69,11 @@ minetest.register_node("farming:melon_3", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -79,8 +86,11 @@ minetest.register_node("farming:melon_4", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -93,8 +103,11 @@ minetest.register_node("farming:melon_5", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -105,8 +118,11 @@ minetest.register_node("farming:melon_6", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -117,12 +133,15 @@ minetest.register_node("farming:melon_7", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Last stage of Melon growth doesnnot have growing=1 so abm never has to check these
+-- Last stage of growth does not have growing group so abm never checks these
 
 minetest.register_node("farming:melon_8", {
 	--drawtype = "nodebox",
@@ -130,12 +149,11 @@ minetest.register_node("farming:melon_8", {
 	tiles = {"farming_melon_top.png", "farming_melon_top.png", "farming_melon_side.png"},
 	paramtype = "light",
 	walkable = true,
-	is_ground_content = true,
 	drop = {
 		items = {
-			{items = {'farming:melon_slice 9'},rarity=1},
+			{items = {'farming:melon_slice 9'}, rarity = 1},
 		}
 	},
-	groups = {snappy=1,oddly_breakable_by_hand=1,flammable=2,plant=1},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 2, plant = 1},
 	sounds = default.node_sound_wood_defaults(),
 })

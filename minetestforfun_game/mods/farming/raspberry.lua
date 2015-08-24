@@ -34,12 +34,14 @@ minetest.register_node("farming:raspberry_1", {
 	tiles = {"farming_raspberry_1.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -52,8 +54,11 @@ minetest.register_node("farming:raspberry_2", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -66,12 +71,15 @@ minetest.register_node("farming:raspberry_3", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Last stage of Raspberry growth does not have growing=1 so abm never has to check these
+-- Last stage of growth does not have growing group so abm never checks these
 
 minetest.register_node("farming:raspberry_4", {
 	drawtype = "plantlike",
@@ -81,15 +89,17 @@ minetest.register_node("farming:raspberry_4", {
 	waving = 1,
 	walkable = false,
 	buildable_to = true,
-	is_ground_content = true,
 	drop = {
 		items = {
-			{items = {'farming:raspberries 2'},rarity=1},
-			{items = {'farming:raspberries'},rarity=2},
-			{items = {'farming:raspberries'},rarity=3},
+			{items = {'farming:raspberries 2'}, rarity = 1},
+			{items = {'farming:raspberries'}, rarity = 2},
+			{items = {'farming:raspberries'}, rarity = 3},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })

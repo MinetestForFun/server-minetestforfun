@@ -22,7 +22,7 @@ function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	end
 
 	-- add the node and remove 1 item from the itemstack
-	minetest.add_node(pt.above, {name=plantname})
+	minetest.add_node(pt.above, {name = plantname})
 	if not minetest.setting_getbool("creative_mode") then
 		itemstack:take_item()
 	end
@@ -85,12 +85,17 @@ minetest.register_node("farming:cocoa_1", {
 	walkable = true,
 	drop = {
 		items = {
-			{items = {'farming:cocoa_beans 1'},rarity=2},
+			{items = {'farming:cocoa_beans 1'}, rarity = 2},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27},},
-	-- MODIFICATION MADE FOR MFF ^
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,growing=1},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27}
+	},
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, growing = 1,
+		not_in_creative_inventory=1, leafdecay = 1, leafdecay_drop = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -101,11 +106,17 @@ minetest.register_node("farming:cocoa_2", {
 	walkable = true,
 	drop = {
 		items = {
-			{items = {'farming:cocoa_beans 1'},rarity=1},
+			{items = {'farming:cocoa_beans 1'}, rarity = 1},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,growing=1},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+	},
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, growing = 1,
+		not_in_creative_inventory=1, leafdecay = 1, leafdecay_drop = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -118,12 +129,18 @@ minetest.register_node("farming:cocoa_3", {
 	walkable = true,
 	drop = {
 		items = {
-			{items = {'farming:cocoa_beans 2'},rarity=1},
-			{items = {'farming:cocoa_beans 1'},rarity=2},
+			{items = {'farming:cocoa_beans 2'}, rarity = 1},
+			{items = {'farming:cocoa_beans 1'}, rarity = 2},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+	},
+	groups = {
+		snappy = 3, flammable = 2, plant = 1,
+		not_in_creative_inventory = 1, leafdecay = 1, leafdecay_drop = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -145,10 +162,15 @@ minetest.register_abm({
 		else return
 		end
 
-		if minetest.get_node(pos).name == "air" and minetest.get_node_light(pos) > 12 then
---			print ("COCOA", pos.x, pos.y, pos.z)
-			minetest.set_node(pos,{name="farming:cocoa_"..tostring(math.random(1,3))})
-		end
+		local nod = minetest.get_node_or_nil(pos)
+		if nod then nod = nod.name else return end
 
+		if nod == "air"
+		and minetest.get_node_light(pos) > 12 then
+--			print ("COCOA", pos.x, pos.y, pos.z)
+			minetest.set_node(pos, {
+				name = "farming:cocoa_"..tostring(math.random(1, 3))
+			})
+		end
 	end,
 })

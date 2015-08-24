@@ -27,7 +27,7 @@ minetest.register_node("farming:drinking_cup", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.25, 0.25}
 	},
-	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
 	sounds = default.node_sound_glass_defaults(),
 })
 
@@ -58,7 +58,7 @@ minetest.register_node("farming:coffee_cup", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.25, 0.25}
 	},
-	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
 	on_use = minetest.item_eat(2, "farming:drinking_cup"),
 	sounds = default.node_sound_glass_defaults(),
 })
@@ -99,7 +99,7 @@ minetest.register_node("farming:coffee_cup_hot", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.25, 0.25}
 	},
-	groups = {vessel=1,dig_immediate=3,attached_node=1},
+	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
 	on_use = minetest.item_eat(3, "farming:drinking_cup"),
 	sounds = default.node_sound_glass_defaults(),
 })
@@ -111,12 +111,14 @@ minetest.register_node("farming:coffee_1", {
 	tiles = {"farming_coffee_1.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -129,8 +131,11 @@ minetest.register_node("farming:coffee_2", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -143,8 +148,11 @@ minetest.register_node("farming:coffee_3", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -157,12 +165,15 @@ minetest.register_node("farming:coffee_4", {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Last stage of Coffee growth doesnnot have growing=1 so abm never has to check these
+-- Last stage of growth doesn not have growing group so abm never checks these
 
 minetest.register_node("farming:coffee_5", {
 	drawtype = "plantlike",
@@ -172,15 +183,17 @@ minetest.register_node("farming:coffee_5", {
 	waving = 1,
 	walkable = false,
 	buildable_to = true,
-	is_ground_content = true,
 	drop = {
 		items = {
-			{items = {'farming:coffee_beans 2'},rarity=1},
-			{items = {'farming:coffee_beans 2'},rarity=2},
-			{items = {'farming:coffee_beans 2'},rarity=3},
+			{items = {'farming:coffee_beans 2'}, rarity = 1},
+			{items = {'farming:coffee_beans 2'}, rarity = 2},
+			{items = {'farming:coffee_beans 2'}, rarity = 3},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory=1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })

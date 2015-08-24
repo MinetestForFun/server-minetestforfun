@@ -19,7 +19,7 @@ minetest.register_node("farming:seed_cotton", {
 	paramtype2 = "wallmounted",
 	walkable = false,
 	sunlight_propagates = true,
-	selection_box = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
+	selection_box = farming.select,
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:cotton_1")
 	end,
@@ -39,10 +39,8 @@ minetest.register_alias("farming:string", "farming:cotton")
 minetest.register_craft({
 	output = "wool:white",
 	recipe = {
-		{"farming:string", "farming:string", "farming:string"},
-		{"farming:string", "farming:string", "farming:string"},
-		{"farming:string", "farming:string", "farming:string"},
-		-- ^ /MFF (Mg|05/26/2015)
+		{"farming:string", "farming:string"},
+		{"farming:string", "farming:string"},
 	}
 })
 
@@ -53,12 +51,14 @@ minetest.register_node("farming:cotton_1", {
 	tiles = {"farming_cotton_1.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop =  "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -67,12 +67,14 @@ minetest.register_node("farming:cotton_2", {
 	tiles = {"farming_cotton_2.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	waving = 1,
 	walkable = false,
 	buildable_to = true,
 	drop =  "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -85,8 +87,11 @@ minetest.register_node("farming:cotton_3", {
 	walkable = false,
 	buildable_to = true,
 	drop =  "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -99,8 +104,11 @@ minetest.register_node("farming:cotton_4", {
 	walkable = false,
 	buildable_to = true,
 	drop =  "",
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -114,11 +122,14 @@ minetest.register_node("farming:cotton_5", {
 	buildable_to = true,
 	drop =  {
 		items = {
-			{items = {"farming:seed_cotton"},rarity=1},
+			{items = {"farming:seed_cotton"}, rarity = 1},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -131,12 +142,15 @@ minetest.register_node("farming:cotton_6", {
 	buildable_to = true,
 	drop =  {
 		items = {
-			{items = {"farming:cotton"},rarity=1},
-			{items = {"farming:cotton"},rarity=2},
+			{items = {"farming:cotton"}, rarity = 1},
+			{items = {"farming:cotton"}, rarity = 2},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
@@ -149,18 +163,21 @@ minetest.register_node("farming:cotton_7", {
 	buildable_to = true,
 	drop =  {
 		items = {
-			{items = {"farming:cotton"},rarity=1},
-			{items = {"farming:cotton"},rarity=2},
-			{items = {"farming:seed_cotton"},rarity=1},
-			{items = {"farming:seed_cotton"},rarity=2},
+			{items = {"farming:cotton"}, rarity = 1},
+			{items = {"farming:cotton"}, rarity = 2},
+			{items = {"farming:seed_cotton"}, rarity = 1},
+			{items = {"farming:seed_cotton"}, rarity = 2},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1,growing=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1, growing = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })
 
--- Define last stage of Cotton growth separate and without growing=1 so abm never has to check these
+-- Last stage of growth does not have growing group so abm never checks these
 
 minetest.register_node("farming:cotton_8", {
 	drawtype = "plantlike",
@@ -171,15 +188,18 @@ minetest.register_node("farming:cotton_8", {
 	buildable_to = true,
 	drop =  {
 		items = {
-			{items = {"farming:string"},rarity=1},
-			{items = {"farming:string"},rarity=2},
-			{items = {"farming:string"},rarity=3},
-			{items = {"farming:seed_cotton"},rarity=1},
-			{items = {"farming:seed_cotton"},rarity=2},
-			{items = {"farming:seed_cotton"},rarity=3},
+			{items = {"farming:string"}, rarity = 1},
+			{items = {"farming:string"}, rarity = 2},
+			{items = {"farming:string"}, rarity = 3},
+			{items = {"farming:seed_cotton"}, rarity = 1},
+			{items = {"farming:seed_cotton"}, rarity = 2},
+			{items = {"farming:seed_cotton"}, rarity = 3},
 		}
 	},
-	selection_box = {type = "fixed",fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},},
-	groups = {snappy=3,flammable=2,plant=1,not_in_creative_inventory=1,attached_node=1},
+	selection_box = farming.select,
+	groups = {
+		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		not_in_creative_inventory = 1
+	},
 	sounds = default.node_sound_leaves_defaults(),
 })

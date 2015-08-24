@@ -12,4 +12,3 @@ minetest.register_craft({
 	output = "farming:sugar 2",
 	recipe = "default:papyrus",
 })
-

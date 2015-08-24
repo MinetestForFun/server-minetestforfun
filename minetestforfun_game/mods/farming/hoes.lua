@@ -32,6 +32,7 @@ farming.register_hoe = function(name, def)
 		end
 	})
 	-- Register its recipe
+	-- Registration using material made for MFF
 	if def.material == nil then
 		minetest.register_craft({
 			output = name:sub(2),
@@ -95,9 +96,8 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	end
 
 	-- turn the node into soil, wear out item and play sound
-	minetest.set_node(pt.under, {name="farming:soil"})
-	minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5,})
-
+	minetest.set_node(pt.under, {name = "farming:soil"})
+	minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5})
 	if not minetest.setting_getbool("creative_mode") then --MFF DEBUT crabman(26/07/2015) not wearout if creative mod and invtweak refill break tools
 		local tool_name = itemstack:get_name()
 		itemstack:add_wear(65535/(uses-1))
@@ -111,6 +111,7 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 end
 
 -- Define Hoes
+-- Material fields added for MFF
 
 farming.register_hoe(":farming:hoe_wood", {
 	description = "Wooden Hoe",
