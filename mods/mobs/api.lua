@@ -1058,12 +1058,12 @@ end
 			end
 
 			-- select random texture, set model and size
-			--if not self.base_texture then
+			if not self.base_texture then
 				self.base_texture = def.textures[math.random(1, #def.textures)]
 				self.base_mesh = def.mesh
-				self.base_size = def.visual_size
-				self.base_colbox = def.collisionbox
-			--end
+				self.base_size = self.visual_size
+				self.base_colbox = self.collisionbox
+			end
 
 			-- set texture, model and size
 			local textures = self.base_texture
