@@ -1,5 +1,58 @@
 doors3 = {}
 
+
+function doors3.get_pos(pos, dir, p1, b)
+	local pos2 = {x=pos.x, y=pos.y, z=pos.z}
+	if b == 0 then
+		if p1 == 1 then
+			if dir == 1 then
+				pos2.z=pos2.z-1
+			elseif dir == 2 then
+				pos2.x=pos2.x-1
+			elseif dir == 3 then
+				pos2.z=pos2.z+1
+			else
+				pos2.x=pos2.x+1
+			end
+		else
+			if dir == 1 then
+				pos2.x=pos2.x+1
+			elseif dir == 2 then
+				pos2.z=pos2.z-1
+			elseif dir == 3 then
+				pos2.x=pos2.x-1
+			else
+				pos2.z=pos2.z+1
+			end
+		end
+	else
+		if p1 == 1 then
+			if dir == 1 then
+				pos2.x=pos2.x+1--ok
+			elseif dir == 2 then
+				pos2.z=pos2.z-1
+			elseif dir == 3 then
+				pos2.x=pos2.x-1
+			else
+				pos2.z=pos2.z+1--ok
+			end
+		else
+			if dir == 1 then
+				pos2.z=pos2.z+1
+			elseif dir == 2 then
+				pos2.x=pos2.x+1--ok
+			elseif dir == 3 then
+				pos2.z=pos2.z-1
+			else
+				pos2.x=pos2.x-1
+			end
+		end
+	end
+	return pos2
+end
+
+
+
 -- Registers a door
 function doors3.register_door(name, def)
 	def.groups.not_in_creative_inventory = 1
@@ -61,8 +114,7 @@ function doors3.register_door(name, def)
 				return itemstack
 			end
 
-			if minetest.is_protected(pt, placer:get_player_name()) or
-					minetest.is_protected(pt2, placer:get_player_name()) then
+			if minetest.is_protected(pt, placer:get_player_name()) or minetest.is_protected(pt2, placer:get_player_name()) then
 				minetest.record_protection_violation(pt, placer:get_player_name())
 				return itemstack
 			end
@@ -115,11 +167,11 @@ function doors3.register_door(name, def)
 	local tm = def.tiles_middle
 	local tb = def.tiles_bottom
 
-	local function after_dig_node(pos, dir, name, num, digger)
+	local function after_dig_node(pos, letter, name, num, digger)
 		local p
-		if dir == 0 then -- bottom
+		if letter == "b" then -- bottom
 			p = { {y=1, l="m"}, {y=2, l="t"} }
-		elseif dir == 1 then -- middle
+		elseif letter == "m" then -- middle
 			p = { {y=-1, l="b"}, {y=1, l="t"} }
 		else -- top
 			p = { {y=-2, l="b"}, {y=-1, l="m"} }
@@ -140,15 +192,15 @@ function doors3.register_door(name, def)
 		end
 	end
 
-	local function make_on_blast(base_name, dir, num)
+	local function make_on_blast(base_name, letter, num)
 		if def.only_placer_can_open then
 			return function() end
 		else
 			return function(pos, intensity)
 				local p
-				if dir == 0 then -- bottom
+				if letter == "b" then -- bottom
 					p = { {y=1, l="m"}, {y=2, l="t"} }
-				elseif dir == 1 then -- middle
+				elseif letter == "m" then -- middle
 					p = { {y=-1, l="b"}, {y=1, l="t"} }
 				else -- top
 					p = { {y=-2, l="b"}, {y=-1, l="m"} }
@@ -161,11 +213,11 @@ function doors3.register_door(name, def)
 	end
 
 
-	local function on_rightclick(pos, dir, name, oldnum, params)
+	local function on_rightclick(pos, letter, name, oldnum, params, clicker, oldparam2)
 		local p
-		if dir == 0 then -- bottom
+		if letter == "b" then -- bottom
 			p = { {y=0, l="b"}, {y=1, l="m"}, {y=2, l="t"} }
-		elseif dir == 1 then -- middle
+		elseif letter == "m" then -- middle
 			p = { {y=-1, l="b"}, {y=0, l="m"}, {y=1, l="t"} }
 		else -- top
 			p = { {y=-2, l="b"}, {y=-1, l="m"}, {y=0, l="t"} }
@@ -177,6 +229,7 @@ function doors3.register_door(name, def)
 		else
 			newnum = 1
 		end
+
 		for _,t in pairs(p) do
 			local pos1 = {x=pos.x, y=pos.y+t["y"], z=pos.z}
 			if minetest.get_node(pos1).name == name.."_"..t["l"].."_"..oldnum then
@@ -192,10 +245,21 @@ function doors3.register_door(name, def)
 			snd_1 = def.sound_open_door
 			snd_2 = def.sound_close_door
 		end
-		if minetest.get_meta(pos):get_int("right") ~= 0 then
+		local b = minetest.get_meta(pos):get_int("right")
+		if b ~= 0 then
 			minetest.sound_play(snd_1, {pos = pos, gain = 0.3, max_hear_distance = 10})
 		else
 			minetest.sound_play(snd_2, {pos = pos, gain = 0.3, max_hear_distance = 10})
+		end
+
+		local pos2 = doors3.get_pos(pos, oldparam2, params[1], b)
+		local node = minetest.get_node_or_nil(pos2)
+		if node and node.name and node.name == name.."_"..letter.."_"..newnum then
+			if minetest.get_meta(pos2):get_int("right") ~= b then
+				if minetest.registered_nodes[node.name].on_rightclick then
+					return minetest.registered_nodes[node.name].on_rightclick(pos2, node, clicker)
+				end
+			end
 		end
 	end
 
@@ -209,7 +273,7 @@ function doors3.register_door(name, def)
 		return meta:get_string("doors_owner") == pn
 	end
 
-                 --on_rotate(pos, node, 1, user, name.."_t_1", mode)
+
 	local function on_rotate(pos, node, dir, user, name, num, mode, new_param2)
 		if not check_player_priv(pos, user) then
 			return false
@@ -266,12 +330,12 @@ function doors3.register_door(name, def)
 		groups = def.groups,
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
-			after_dig_node(pos, 0, name, 1, digger)
+			after_dig_node(pos, "b", name, 1, digger)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, 0, name, 1, {1,2,3,0})
+				on_rightclick(pos, "b", name, 1, {1,2,3,0}, clicker, node.param2)
 			end
 		end,
 
@@ -282,7 +346,7 @@ function doors3.register_door(name, def)
 		can_dig = check_player_priv,
 		sounds = def.sounds,
 		sunlight_propagates = def.sunlight,
-		on_blast = make_on_blast(name, 0, 1)
+		on_blast = make_on_blast(name, "b", 1)
 	})
 
 
@@ -304,12 +368,12 @@ function doors3.register_door(name, def)
 		groups = def.groups,
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
-			after_dig_node(pos, 1, name, 1, digger)
+			after_dig_node(pos, "m", name, 1, digger)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, 1, name, 1, {1,2,3,0})
+				on_rightclick(pos, "m", name, 1, {1,2,3,0}, clicker, node.param2)
 			end
 		end,
 
@@ -320,7 +384,7 @@ function doors3.register_door(name, def)
 		can_dig = check_player_priv,
 		sounds = def.sounds,
 		sunlight_propagates = def.sunlight,
-		on_blast = make_on_blast(name, 1, 1)
+		on_blast = make_on_blast(name, "m", 1)
 	})
 
 
@@ -343,12 +407,12 @@ function doors3.register_door(name, def)
 		groups = def.groups,
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
-			after_dig_node(pos, 2, name, 1, digger)
+			after_dig_node(pos, "t", name, 1, digger)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, 2, name, 1, {1,2,3,0})
+				on_rightclick(pos, "t", name, 1, {1,2,3,0}, clicker, node.param2)
 			end
 		end,
 
@@ -359,11 +423,8 @@ function doors3.register_door(name, def)
 		can_dig = check_player_priv,
 		sounds = def.sounds,
 		sunlight_propagates = def.sunlight,
-		on_blast = make_on_blast(name, 2, 1)
+		on_blast = make_on_blast(name, "t", 1)
 	})
-
-
-
 
 
 
@@ -385,12 +446,12 @@ function doors3.register_door(name, def)
 		groups = def.groups,
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
-			after_dig_node(pos, 0, name, 2, digger)
+			after_dig_node(pos, "b", name, 2, digger)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, 0, name, 2, {3,0,1,2})
+				on_rightclick(pos, "b", name, 2, {3,0,1,2}, clicker, node.param2)
 			end
 		end,
 
@@ -401,7 +462,7 @@ function doors3.register_door(name, def)
 		can_dig = check_player_priv,
 		sounds = def.sounds,
 		sunlight_propagates = def.sunlight,
-		on_blast = make_on_blast(name, 0, 2)
+		on_blast = make_on_blast(name, "b", 2)
 	})
 
 
@@ -423,12 +484,12 @@ function doors3.register_door(name, def)
 		groups = def.groups,
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
-			after_dig_node(pos, 1, name, 2, digger)
+			after_dig_node(pos, "m", name, 2, digger)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, 1, name, 2, {3,0,1,2})
+				on_rightclick(pos, "m", name, 2, {3,0,1,2}, clicker, node.param2)
 			end
 		end,
 
@@ -439,7 +500,7 @@ function doors3.register_door(name, def)
 		can_dig = check_player_priv,
 		sounds = def.sounds,
 		sunlight_propagates = def.sunlight,
-		on_blast = make_on_blast(name, 1, 2)
+		on_blast = make_on_blast(name, "m", 2)
 	})
 
 
@@ -462,12 +523,12 @@ function doors3.register_door(name, def)
 		groups = def.groups,
 
 		after_dig_node = function(pos, oldnode, oldmetadata, digger)
-			after_dig_node(pos, 2, name, 2, digger)
+			after_dig_node(pos, "t", name, 2, digger)
 		end,
 
 		on_rightclick = function(pos, node, clicker)
 			if check_player_priv(pos, clicker) then
-				on_rightclick(pos, 2, name, 2, {3,0,1,2})
+				on_rightclick(pos, "t", name, 2, {3,0,1,2}, clicker, node.param2)
 			end
 		end,
 
@@ -478,7 +539,7 @@ function doors3.register_door(name, def)
 		can_dig = check_player_priv,
 		sounds = def.sounds,
 		sunlight_propagates = def.sunlight,
-		on_blast = make_on_blast(name, 2, 2)
+		on_blast = make_on_blast(name, "t", 2)
 	})
 
 end
@@ -566,7 +627,6 @@ minetest.register_craft({
 })
 
 -- From BFD: Cherry planks doors
-
 doors3.register_door("doors:door3_cherry", {
 	description = "Cherry Door 3",
 	inventory_image = "doors3_wood_cherry_inv.png",
