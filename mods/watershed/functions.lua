@@ -281,3 +281,7 @@ end
 		vm:write_to_map()
 		vm:update_map()
 	end
+
+default.grow_new_apple_tree = default.grow_tree
+default.grow_new_jungle_tree = default.grow_jungle_tree
+default.grow_new_pine_tree = default.grow_pine_tree
