@@ -10,8 +10,8 @@ git checkout stable-0.4
 # Sauvegarde des fichiers critiques
 #cp -Rv /home/quentinbd/mff-hg/games/minetestforfun_game/ /home/quentinbd/upgrade-mff/olds/
 #cp -Rv /home/quentinbd/mff-hg/mods/ /home/quentinbd/upgrade-mff/olds/
-#cp -Rv /home/quentinbd/mff-hg/worlds/ /home/quentinbd/upgrade-mff/olds/
-#cp /home/quentinbd/mff-hg/minetest.conf /home/quentinbd/upgrade-mff/olds/
+cp -Rv /home/quentinbd/mff-hg/worlds/ /home/quentinbd/upgrade-mff-hg/olds/
+cp /home/quentinbd/mff-hg/minetest.conf /home/quentinbd/upgrade-mff-hg/olds/
 
 # Sauvegarde et compression du dossier minetest (au cas ou)
 #cd /home/quentinbd/upgrade-mff/
@@ -24,9 +24,8 @@ rm -Rv /home/quentinbd/mff-hg/
 cd /home/quentinbd/
 #git clone https://github.com/minetest/minetest.git
 # DEBUT - Utilisation de la version 0.4 stable
-wget https://github.com/minetest/minetest/archive/stable-0.4.zip
-unzip /home/quentinbd/stable-0.4.zip
-mv /home/quentinbd/minetest-stable-0.4/ /home/quentinbd/mff-hg/
+git clone https://github.com/minetest/minetest.git
+mv /home/quentinbd/minetest/ /home/quentinbd/mff-hg/
 # FIN - Utilisation de la version 0.4 stable
 #cd /home/quentinbd/mff-hg/games/
 #git clone https://github.com/minetest/minetest_game.git
@@ -43,8 +42,8 @@ make -j$(grep -c processor /proc/cpuinfo)
 # Ajout des fichiers critiques au nouveau dossier minetest
 #cp -Rv /home/quentinbd/upgrade-mff/olds/minetestforfun_game/ /home/quentinbd/mff-hg/games/
 #cp -Rv /home/quentinbd/upgrade-mff/olds/mods/ /home/quentinbd/mff-hg/
-#cp -Rv /home/quentinbd/upgrade-mff/olds/worlds/ /home/quentinbd/mff-hg/
-#cp /home/quentinbd/upgrade-mff/olds/minetest.conf /home/quentinbd/mff-hg/
+cp -Rv /home/quentinbd/upgrade-mff/olds/worlds/ /home/quentinbd/mff-hg/
+cp /home/quentinbd/upgrade-mff/olds/minetest.conf /home/quentinbd/mff-hg/
 
 # Donne les droits à quentinbd
 chmod -R 755 /home/quentinbd/mff-hg/
