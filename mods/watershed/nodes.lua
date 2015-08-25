@@ -8,7 +8,7 @@ minetest.register_alias("watershed:acacialeaf", "moretrees:acacia_leaves")
 
 minetest.register_alias("watershed:acacialing", "moretrees:acacia_sapling")
 
-minetest.register_alias("watershed:pinetree", "default:pinetree")
+minetest.register_alias("watershed:pinetree", "default:pine_tree")
 
 minetest.register_alias("watershed:needles", "default:pine_needles")
 
