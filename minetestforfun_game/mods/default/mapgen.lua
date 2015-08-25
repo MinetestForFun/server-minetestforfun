@@ -620,7 +620,7 @@ function default.register_ores()
 		ore_type       = "scatter",
 		ore            = "default:acid_source",
 		wherein        = "default:gravel",
-		clust_scarcity = 20 * 20 * 20,
+		clust_scarcity = 26 * 26 * 26,
 		clust_num_ores = 64,
 		clust_size     = 5,
 		y_min          = -30000,
