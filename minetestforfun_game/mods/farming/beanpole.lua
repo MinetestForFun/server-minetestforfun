@@ -17,6 +17,9 @@ minetest.register_craftitem("farming:beans", {
 		end
 		if not minetest.setting_getbool("creative_mode") then
 			itemstack:take_item()
+			if itemstack:get_count() == 0 then--MFF DEBUT crabman(26/08/2015) refill placed plant
+				minetest.after(0.20, farming.refill_plant, placer, "farming:beans", placer:get_wield_index())
+			end --MFF FIN
 		end
 		return itemstack
 	end
