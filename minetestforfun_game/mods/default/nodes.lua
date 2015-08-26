@@ -199,7 +199,6 @@ minetest.register_node("default:stone", {
 	drop = {
 		items = {
 			{items = {"default:cobble"}},
-			{items = {"maptools:copper_coin"}, rarity = 30},
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
