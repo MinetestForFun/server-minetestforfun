@@ -59,6 +59,7 @@ minetest.register_chatcommand("clear_graveyard", {
 	func = function(name, param)
 		local grave_inv = minetest.get_inventory({type = "detached", name = name .. "_graveyard"})
 		grave_inv:set_list("graveyard", {})
+		minetest.get_player_by_name(name):get_inventory():set_list("graveyard", {})
 		return true, "Graveyard flushed"
 	end,
 })
