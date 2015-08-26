@@ -48,9 +48,19 @@ unified_inventory.register_page("graveyard", {
 	get_formspec = function(player)
 		local pname = player:get_player_name()
 		local form = "label[0,0;Graveyard]" ..
-			"list[detached:" .. pname .. "_graveyard;graveyard;1,1;7,8]"
+			"list[detached:" .. pname .. "_graveyard;graveyard;0.5,0.7;7,8]"
 		return {formspec = form, draw_inventory = false}
 	end
+})
+
+minetest.register_chatcommand("clear_graveyard", {
+	description = "Clear Graveyard Inventory",
+	privs = {},
+	func = function(name, param)
+		local grave_inv = minetest.get_inventory({type = "detached", name = name .. "_graveyard"})
+		grave_inv:set_list("graveyard", {})
+		return true, "Graveyard flushed"
+	end,
 })
 
 function pclasses.api.vacuum_graveyard(player)
