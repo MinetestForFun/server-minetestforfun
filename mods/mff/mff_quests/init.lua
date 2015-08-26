@@ -3,7 +3,7 @@ mff.QPREFIX = "mff_quests:"
 mff.QNOPREFIX = function(s) return s:sub(mff.QPREFIX:len()+1) end
 
 quests.set_hud_position(1, 0)
-quests.set_hud_position(-200, 70)
+quests.set_hud_offset(-200, 190)
 
 mff.quests.quests = {
 	still_testing_quests = {
