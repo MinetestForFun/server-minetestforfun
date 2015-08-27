@@ -8,12 +8,15 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
+---??/??/????--- (Thanks to : LeMagnesium/Mg)
+Addition of "peace_areas" (prevent players from punching each other in the spawn area)
+
 ---24/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
 Update of "mobs" (Minotaur monster isn't anymore damaged by water)
 Update of "biome_lib " (Fix again the sapling growth)
 
 ---23/08/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman)
-Removed of "3dchest" (too many work to debug/adapt it, we can't work so hard for just an animated 1x1 or 2x1 chest)
+Removal of "3dchest" (too many work to debug/adapt it, we can't work so hard for just an animated 1x1 or 2x1 chest)
 Update of "moretrees" (Fix sapling growth)
 Update of "moreblocks" (Fix the bricks nodes drops from the moreblocks circulsaw)
 

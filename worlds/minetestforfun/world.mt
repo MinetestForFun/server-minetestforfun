@@ -24,6 +24,7 @@ load_mod_automappercolors = true
 load_mod_mapfix = true
 load_mod_worldedge = true
 load_mod_maze = true
+load_mod_peace_areas = true
 
 load_mod_watershed = true
 load_mod_bushes_classic = true
