@@ -55,24 +55,24 @@ minetest.register_craft({
 -- Mix recipes
 -- Just mix everything to everything somehow sanely
 
-dyelocal.mixbases = {"magenta", "red", "orange", "brown", "yellow", "green", "dark_green", "cyan", "blue", "violet", "black", "dark_grey", "grey", "white"}
+dyelocal.mixbases = {"magenta", "red", "orange", "brown", "yellow", "green", "dark_green", "cyan", "blue", "violet", "black", "dark_grey", "grey", "white", "light_grey"}
 
 dyelocal.mixes = {
-	--       magenta,  red,    orange,   brown,    yellow,  green,  dark_green, cyan,    blue,   violet,   black,  dark_grey,  grey,   white
-	white = {"pink",  "pink", "orange", "orange", "yellow", "green", "green",  "grey",  "cyan", "violet",  "grey",  "grey",   "white", "white"},
-	grey  = {"pink",  "pink", "orange", "orange", "yellow", "green", "green",  "grey",  "cyan",  "pink",  "dark_grey","grey", "grey"},
-	dark_grey={"brown","brown", "brown", "brown", "brown","dark_green","dark_green","blue","blue","violet","black", "black"},
-	black = {"black", "black", "black",  "black", "black",  "black", "black",  "black", "black", "black",  "black"},
-	violet= {"magenta","magenta","red",  "brown", "red",    "cyan",  "brown",  "blue",  "violet","violet"},
-	blue  = {"violet", "magenta","brown","brown","dark_green","cyan","cyan",   "cyan",  "blue"},
-	cyan  = {"blue","brown","dark_green","dark_grey","green","cyan","dark_green","cyan"},
-	dark_green={"brown","brown","brown", "brown", "green",  "green", "dark_green"},
-	green = {"brown", "yellow","yellow","dark_green","green","green"},
-	yellow= {"red",  "orange", "yellow","orange", "yellow"},
-	brown = {"brown", "brown","orange", "brown"},
-	orange= {"red",  "orange","orange"},
-	red   = {"magenta","red"},
-	magenta={"magenta"},
+	--       	 magenta,   red,       orange,       brown,    	   yellow,	 green,  	dark_green,   cyan,    blue,     violet,   black,  	dark_grey, grey,         white,   light_grey
+	white = 	{"pink",    "pink",    "orange",     "orange",     "yellow",     "green",	"green",      "grey",  "cyan",   "violet", "grey",  	"grey",    "light_grey", "white", "white"},
+	grey  = 	{"pink",    "pink",    "orange",     "orange",     "yellow",     "green",	"green",      "grey",  "cyan",   "pink",   "dark_grey",	"grey",    "grey"},
+	dark_grey =	{"brown",   "brown",   "brown",      "brown",      "brown",      "dark_green",	"dark_green", "blue",  "blue",   "violet", "black",	"black"},
+	black = 	{"black",   "black",   "black",      "black",      "black",      "black",	"black",      "black", "black",  "black",  "black"},
+	violet= 	{"magenta", "magenta", "red",        "brown",      "red",        "cyan",	"brown",      "blue",  "violet", "violet"},
+	blue  = 	{"violet",  "magenta", "brown",      "brown",      "dark_green", "cyan",	"cyan",       "cyan",  "blue"},
+	cyan  = 	{"blue",    "brown",   "dark_green", "dark_grey",  "green",      "cyan",	"dark_green", "cyan"},
+	dark_green = 	{"brown",   "brown",   "brown",      "brown",      "green",      "green",	"dark_green"},
+	green = 	{"brown",   "yellow",  "yellow",     "dark_green", "green",      "green"},
+	yellow= 	{"red",	    "orange",  "yellow",     "orange",     "yellow"},
+	brown = 	{"brown",   "brown",   "orange",     "brown"},
+	orange= 	{"red",     "orange",  "orange"},
+	red   = 	{"magenta", "red"},
+	magenta =	{"magenta"},
 }
 
 for one,results in pairs(dyelocal.mixes) do

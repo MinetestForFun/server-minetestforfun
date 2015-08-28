@@ -7,6 +7,7 @@ peace_areas = {areas = {}}
 
 minetest.register_on_punchplayer(function(player, hitter)
 	local pos = player:getpos() 
+	if pos == nil then return end
 	for name, positions in pairs(peace_areas.areas) do
 		local pos1 = positions["pos1"]
 		local pos2 = positions["pos2"]
