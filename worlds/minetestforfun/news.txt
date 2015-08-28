@@ -1,5 +1,4 @@
 ---Planned on the Server---
-Minerals generation more and more interresting between -2048 --to--> -19600 (actual end of the better minerals chance -> Nether beginning)
 
 ---Important News---
 The server has just been updated to minetest 0.4.13! When connecting, be sure to use the latest 0.4.13 client.
@@ -8,8 +7,17 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
----??/??/????--- (Thanks to : LeMagnesium/Mg)
-Addition of "peace_areas" (prevent players from punching each other in the spawn area)
+---28/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly)
+Addition of "peace_areas" (Prevent players from punching each other in the "Spawn Tower" area, now you can't damaged other players in the "Spawn Tower")
+Update of "nodes.lua" (Fix the usebug with the copper coins drops of default:stone)
+Update of "graveyard" (you can now clear it with the chatcommand "/clear_graveyard", be carful when you use it !)
+Update of "mff_quests" (Crashfixs and improved the position on the HUD)
+Update of "mobs" (Crashfix when hitting a mob)
+Update of "watershed" (Fix a lot of things because of the new MT_game mapgen tweaks)
+Update of "doors" (Doors are now synchronized when you opened or closed them)
+Update of "mapgen.lua" (Divided by 2 the acid sources chance)
+Update of "farming" (Tidy and improve the code, add the refill feature)
+Update of "sethome" (Fix the "undernode" glitch when you're teleported to your home point)
 
 ---24/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
 Update of "mobs" (Minotaur monster isn't anymore damaged by water)
