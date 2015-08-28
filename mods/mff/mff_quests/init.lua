@@ -117,7 +117,7 @@ end
 -- questname, questdef, taskname (nil?), taskdef (nil?), objective_container (that is, either questdef or taskdef), pointer_to_function_to_update_the_objective_progress_with_only_one_parameter_the_others_being_automagically_passed_to_the_quests_API_so_that_we_dont_have_to_write_ifs_and_elses_everywhere_to_handle_both_quest_and_tasks_cases_because_it_would_give_crap_code
 
 minetest.register_on_dignode(function(pos, oldnode, digger)
-	if not digger then return end
+	if not digger or digger.is_fake_player then return end
 	local pname = digger:get_player_name()
 	for qname, quest in pairs(mff.quests.quests) do
 		if quest.tasks then
