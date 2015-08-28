@@ -1,3 +1,6 @@
 [submodule "mods/quests"]
 	path = mods/quests
 	url = https://github.com/MinetestForFun/quests.git
+[submodule "mods/fishing"]
+	path = mods/fishing
+	url = https://github.com/MinetestForFun/fishing.git
