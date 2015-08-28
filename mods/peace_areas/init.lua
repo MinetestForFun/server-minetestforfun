@@ -37,7 +37,7 @@ minetest.register_on_punchplayer(function(player, hitter)
 	end
 end)
 
-function peace_areas.register_house(area_name, def)
+function peace_areas.register_area(area_name, def)
 	peace_areas.areas[area_name] = def
 end
 
