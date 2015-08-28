@@ -32,6 +32,17 @@ minetest.register_ore({
     height_max     = -5,
 })
 
+minetest.register_ore({
+    ore_type       = "scatter",
+    ore            = "quartz:quartz_ore",
+    wherein        = "default:stone",
+    clust_scarcity = 30*30*30,
+    clust_num_ores = 64,
+    clust_size     = 5,
+    height_min     = -10240,
+    height_max     = -8192,
+})
+
 --Quartz Block
 minetest.register_node("quartz:block", {
 	description = "Quartz Block",
