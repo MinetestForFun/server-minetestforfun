@@ -17,8 +17,6 @@ end
 
 local modpath = minetest.get_modpath("moreores")
 
-dofile(modpath .. "/_config.txt")
-
 -- `mg` support:
 if minetest.get_modpath("mg") then
 	dofile(modpath .. "/mg.lua")
@@ -165,12 +163,6 @@ local function add_ore(modname, description, mineral_name, oredef)
 		})
 	end
 
-	oredef.oredef.ore_type = "scatter"
-	oredef.oredef.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef.wherein = "default:stone"
-
-	minetest.register_ore(oredef.oredef)
-
 	for tool_name, tooldef in pairs(oredef.tools) do
 		local tdef = {
 			description = "",
@@ -232,12 +224,6 @@ local oredefs = {
 	silver = {
 		description = "Silver",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
-		oredef = {clust_scarcity = moreores_silver_chunk_size * moreores_silver_chunk_size * moreores_silver_chunk_size,
-			clust_num_ores = moreores_silver_ore_per_chunk,
-			clust_size     = moreores_silver_chunk_size,
-			height_min     = moreores_silver_min_depth,
-			height_max     = moreores_silver_max_depth
-			},
 		tools = {
 			pick = {
 				groupcaps = {
@@ -278,23 +264,11 @@ local oredefs = {
 	tin = {
 		description = "Tin",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores_tin_chunk_size * moreores_tin_chunk_size * moreores_tin_chunk_size,
-			clust_num_ores = moreores_tin_ore_per_chunk,
-			clust_size     = moreores_tin_chunk_size,
-			height_min     = moreores_tin_min_depth,
-			height_max     = moreores_tin_max_depth
-			},
 		tools = {}
 	},
 	mithril = {
 		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
-			clust_num_ores = moreores_mithril_ore_per_chunk,
-			clust_size     = moreores_mithril_chunk_size,
-			height_min     = moreores_mithril_min_depth,
-			height_max     = moreores_mithril_max_depth
-			},
 		tools = {
 			pick = {
 				groupcaps = {
@@ -337,6 +311,8 @@ local oredefs = {
 for orename,def in pairs(oredefs) do
 	add_ore(modname, def.description, orename, def)
 end
+
+dofile(modpath .. "/ores.lua")
 
 --[[
 -- Copper rail (special node):
