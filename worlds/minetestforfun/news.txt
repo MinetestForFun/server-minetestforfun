@@ -1,4 +1,7 @@
 ---Planned on the Server---
+Add water monsters and unic bosses, also we created a new model for the cows
+Spawning monsters egg for some monsters
+Spiders will deal a smaller amount of damage BUT they will poison you ! (poison will deal damage over time through the armor)
 
 ---Important News---
 The server has just been updated to minetest 0.4.13! When connecting, be sure to use the latest 0.4.13 client.
