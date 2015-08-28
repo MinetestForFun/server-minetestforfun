@@ -171,6 +171,17 @@ function default.register_ores()
 		flags          = "absheight",
 	})
 
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_coal",
+		wherein        = "default:stone",
+		clust_scarcity = 32 * 32 * 32,
+		clust_num_ores = 40,
+		clust_size     = 4,
+		y_max          = 64,
+		y_min          = -30000,
+	})
+
 	-- Iron
 
 	minetest.register_ore({
@@ -219,7 +230,18 @@ function default.register_ores()
 		flags          = "absheight",
 	})
 
-	--Mese
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_iron",
+		wherein        = "default:stone",
+		clust_scarcity = 48 * 48 * 48,
+		clust_num_ores = 40,
+		clust_size     = 4,
+		y_max          = 64,
+		y_min          = -30000,
+	})
+
+	-- Mese
 
 	minetest.register_ore({
 		ore_type       = "scatter",
@@ -271,18 +293,6 @@ function default.register_ores()
 
 	minetest.register_ore({
 		ore_type       = "scatter",
-		ore            = "default:meze",
-		wherein        = "default:stone",
-		clust_scarcity = 40 * 40 * 40,
-		clust_num_ores = 3,
-		clust_size     = 2,
-		y_min          = 0,
-		y_max          = 64,
-		flags          = "absheight",
-	})
-
-	minetest.register_ore({
-		ore_type       = "scatter",
 		ore            = "default:mese",
 		wherein        = "default:desert_stone",
 		clust_scarcity = 40 * 40 * 40,
@@ -293,6 +303,20 @@ function default.register_ores()
 		flags          = "absheight",
 	})
 
+	-- Beware of Meze
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:meze",
+		wherein        = "default:stone",
+		clust_scarcity = 40 * 40 * 40,
+		clust_num_ores = 3,
+		clust_size     = 2,
+		y_min          = 0,
+		y_max          = 64,
+		flags          = "absheight",
+	})
+
 	minetest.register_ore({
 		ore_type       = "scatter",
 		ore            = "default:meze",
@@ -305,39 +329,6 @@ function default.register_ores()
 		flags          = "absheight",
 	})
 
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "maptools:superapple",
-		wherein        = "default:apple",
-		clust_scarcity = 6 * 6 * 6,
-		clust_num_ores = 5,
-		clust_size     = 2,
-		y_min          = 0,
-		y_max          = 64,
-	})
-
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "maptools:superapple",
-		wherein        = "default:jungleleaves",
-		clust_scarcity = 16 * 16 * 16,
-		clust_num_ores = 5,
-		clust_size     = 2,
-		y_min          = 0,
-		y_max          = 64,
-	})
-
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "default:stone_with_coin",
-		wherein        = "default:stone",
-		clust_scarcity = 26 * 26 * 26,
-		clust_num_ores = 1,
-		clust_size     = 1,
-		y_min          = -30000,
-		y_max          = 0,
-		flags          = "absheight",
-	})
 
 	-- Gold
 
@@ -391,6 +382,17 @@ function default.register_ores()
 		flags          = "absheight",
 	})
 
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_diamond",
+		wherein        = "default:stone",
+		clust_scarcity = 30 * 30 * 30,
+		clust_num_ores = 64,
+		clust_size     = 5,
+		y_max          = -1024,
+		y_min          = -30000,
+	})
+
 	-- Copper
 
 	minetest.register_ore({
@@ -427,36 +429,42 @@ function default.register_ores()
 		flags          = "absheight",
 	})
 
+	-- Gold Coins
+
 	minetest.register_ore({
 		ore_type       = "scatter",
-		ore            = "default:stone_with_coal",
+		ore            = "default:stone_with_coin",
 		wherein        = "default:stone",
-		clust_scarcity = 32 * 32 * 32,
-		clust_num_ores = 40,
-		clust_size     = 4,
-		y_max          = 64,
+		clust_scarcity = 26 * 26 * 26,
+		clust_num_ores = 1,
+		clust_size     = 1,
 		y_min          = -30000,
+		y_max          = 0,
+		flags          = "absheight",
 	})
+
+	-- Super Apples
+
 	minetest.register_ore({
 		ore_type       = "scatter",
-		ore            = "default:stone_with_iron",
-		wherein        = "default:stone",
-		clust_scarcity = 48 * 48 * 48,
-		clust_num_ores = 40,
-		clust_size     = 4,
+		ore            = "maptools:superapple",
+		wherein        = "default:apple",
+		clust_scarcity = 6 * 6 * 6,
+		clust_num_ores = 5,
+		clust_size     = 2,
+		y_min          = 0,
 		y_max          = 64,
-		y_min          = -30000,
 	})
 
 	minetest.register_ore({
 		ore_type       = "scatter",
-		ore            = "default:stone_with_diamond",
-		wherein        = "default:stone",
-		clust_scarcity = 30 * 30 * 30,
-		clust_num_ores = 64,
-		clust_size     = 5,
-		y_max          = -1024,
-		y_min          = -30000,
+		ore            = "maptools:superapple",
+		wherein        = "default:jungleleaves",
+		clust_scarcity = 16 * 16 * 16,
+		clust_num_ores = 5,
+		clust_size     = 2,
+		y_min          = 0,
+		y_max          = 64,
 	})
 
 	if minetest.setting_get("mg_name") == "indev" then
