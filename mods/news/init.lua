@@ -35,7 +35,7 @@ local function show_formspec(player, page)
 	if not name then return end
 	local nb_pages = #news
 	local formspec = "size[12,10;]"
-	formspec = formspec.."background[-0.22,-0.25;13,11;background.jpg]"
+	formspec = formspec.."background[-0.22,-0.60;13,11.3;news_background.jpg]"
 
 	if page > nb_pages then
 		page = nb_pages
