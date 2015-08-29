@@ -53,6 +53,21 @@ minetest.register_globalstep(function(dtime)
 		local name = player:get_player_name()
 		if not waiting_list[name] then
 			local pos = vector.round(player:getpos())
+
+			-- Sanity check for insane coordinates
+			if pos.x > 31000 or pos.y > 31000 or pos.z > 31000
+				or pos.x < -31000 or pos.y < -31000 or pos.z < -31000 then
+				-- Move to spawn asap
+				-- The server probably set invalid/insane coordinates. We have not saved the previous ones,
+				-- So we need to teleport the player to the spawn to save them from an endless loop of
+				-- Teleportation.
+				local spawn = minetest.string_to_pos(minetest.setting_get("static_spawnpoint") or "0,0,0")
+				minetest.chat_send_player(player:get_player_name(), "An internal error has occured. Your coordinates were corrupted. You are now teleported to the spawn." ..
+					" Please report it to any staff member.")
+				minetest.log("error", "[WorldEdge] Corrupted position detected for player " .. player:get_player_name())
+				player:setpos(spawn)
+			else -- Indent skipped, too many lines to change... We'll wait for "continue" to be introduced in Lua5.2
+
 			local newpos = nil
 			if pos.x >= edge then
 				newpos = {x = -newedge, y = 10, z = pos.z}
@@ -83,6 +98,7 @@ minetest.register_globalstep(function(dtime)
 					obj = obj
 				}
 				obj:setpos(newpos)
+			end
 			end
 		end
 	end
