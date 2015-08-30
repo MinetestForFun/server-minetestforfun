@@ -164,7 +164,7 @@ dofile(homedecor.modpath.."/beds.lua")
 dofile(homedecor.modpath.."/books.lua")
 dofile(homedecor.modpath.."/exterior.lua")
 dofile(homedecor.modpath.."/trash_cans.lua")
-dofile(homedecor.modpath.."/wardrobe.lua")
+--dofile(homedecor.modpath.."/wardrobe.lua") --MFF crabman(30/07/2015) disabled wardrobe, duplicate with u_skin
 
 dofile(homedecor.modpath.."/handlers/locked.lua")
 
