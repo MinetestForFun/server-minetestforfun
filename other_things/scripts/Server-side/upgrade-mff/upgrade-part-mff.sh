@@ -1,8 +1,8 @@
 # on récupère la dernière version du jeu
 cd /home/quentinbd/
-git clone https://github.com/MinetestForFun/minetest-minetestforfun-server.git
-echo "Clone de minetest-minetestforfun-server réussit."
-cd /home/quentinbd/minetest-minetestforfun-server/
+git clone https://github.com/MinetestForFun/server-minetestforfun.git
+echo "Clone de server-minetestforfun réussit."
+cd /home/quentinbd/server-minetestforfun/
 git submodule update --init --recursive
 
 # on sauvegarde les anciens minetest/games et minetest/mods
@@ -18,21 +18,21 @@ echo "Sauvegarde de /mods et /games correctement effectuée."
 rm -R /home/quentinbd/mff/games/
 rm -R /home/quentinbd/mff/mods/
 mkdir /home/quentinbd/mff/games/
-cp -R /home/quentinbd/minetest-minetestforfun-server/minetestforfun_game/ /home/quentinbd/mff/games/
-cp -R /home/quentinbd/minetest-minetestforfun-server/mods/ /home/quentinbd/mff/
+cp -R /home/quentinbd/server-minetestforfun/minetestforfun_game/ /home/quentinbd/mff/games/
+cp -R /home/quentinbd/server-minetestforfun/mods/ /home/quentinbd/mff/
 echo "Nouveaux /mods et /games correctement déplacés"
 
 # on MAJ les news, random_messages et le world.mt
 rm /home/quentinbd/mff/worlds/minetestforfun/news.txt
 rm /home/quentinbd/mff/worlds/minetestforfun/random_messages
 rm /home/quentinbd/mff/worlds/minetestforfun/world.mt
-cp /home/quentinbd/minetest-minetestforfun-server/worlds/minetestforfun/news.txt /home/quentinbd/mff/worlds/minetestforfun/
-cp /home/quentinbd/minetest-minetestforfun-server/worlds/minetestforfun/random_messages /home/quentinbd/mff/worlds/minetestforfun/
-cp /home/quentinbd/minetest-minetestforfun-server/worlds/minetestforfun/world.mt /home/quentinbd/mff/worlds/minetestforfun/
+cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/news.txt /home/quentinbd/mff/worlds/minetestforfun/
+cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/random_messages /home/quentinbd/mff/worlds/minetestforfun/
+cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/world.mt /home/quentinbd/mff/worlds/minetestforfun/
 echo "Nouvelles news.txt, world.mt  et random_messages correctement déplacé"
 
 # Suppression du dossier cloné
-rm -Rf /home/quentinbd/minetest-minetestforfun-server/
+rm -Rf /home/quentinbd/server-minetestforfun/
 echo "Bravo ! minetest/mods et minetest/games maintenant à jour"
 
 # TEMPORAIRE - ré-ajout de l'ancien mod irc
@@ -49,5 +49,5 @@ echo "TEMPORAIRE - ré-ajout de l'ancien mod irc"
 
 # On ré-attribut les droits à quentinbd et en 755
 chown -R quentinbd:quentinbd /home/quentinbd/
-chown -R 755 /home/quentinbd/
+chmod -R 755 /home/quentinbd/
 echo "ré-attribution des droits à quentinbd:quentinbd"
