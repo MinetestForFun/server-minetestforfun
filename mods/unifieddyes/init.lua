@@ -31,13 +31,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 -- Boilerplate to support localized strings if intllib mod is installed.
 local S
-if (minetest.get_modpath("intllib")) then
-  dofile(minetest.get_modpath("intllib").."/intllib.lua")
-  S = intllib.Getter(minetest.get_current_modname())
+if minetest.get_modpath("intllib") then
+	S = intllib.Getter()
 else
-  S = function ( s ) return s end
+	S = function(s) return s end
 end
-
 
 -- Items/recipes needed to generate the few base colors that are not
 -- provided by the standard dyes mod.
@@ -51,12 +49,8 @@ minetest.register_craftitem(":dye:lime", {
 })
 
 minetest.register_craft( {
-       type = "shapeless",
        output = "dye:lime 2",
-       recipe = {
-               "dye:yellow",
-               "dye:green",
-		},
+       recipe = {{"dye:yellow", "dye:green"}}
 })
 
 -- Aqua
@@ -68,12 +62,8 @@ minetest.register_craftitem(":dye:aqua", {
 })
 
 minetest.register_craft( {
-       type = "shapeless",
        output = "dye:aqua 2",
-       recipe = {
-               "dye:cyan",
-               "dye:green",
-		},
+       recipe = {{"dye:green", "dye:cyan"}},
 })
 
 -- Sky blue
@@ -85,12 +75,8 @@ minetest.register_craftitem(":dye:skyblue", {
 })
 
 minetest.register_craft( {
-       type = "shapeless",
        output = "dye:skyblue 2",
-       recipe = {
-               "dye:cyan",
-               "dye:blue",
-		},
+       recipe = {{"dye:cyan", "dye:blue"}},
 })
 
 -- Red-violet
@@ -102,12 +88,8 @@ minetest.register_craftitem(":dye:redviolet", {
 })
 
 minetest.register_craft( {
-       type = "shapeless",
        output = "dye:redviolet 2",
-       recipe = {
-               "dye:red",
-               "dye:magenta",
-		},
+       recipe = {{"dye:magenta", "dye:red"}},
 })
 
 
@@ -120,15 +102,11 @@ minetest.register_craftitem(":dye:light_grey", {
 })
 
 minetest.register_craft( {
-       type = "shapeless",
        output = "dye:light_grey 2",
-       recipe = {
-               "dye:grey",
-               "dye:white",
-		},
+       recipe = {{"dye:grey", "dye:white"}},
 })
 
--- Extra craft for black dye
+--[[ Extra craft for black dye
 
 minetest.register_craft( {
        type = "shapeless",
@@ -136,7 +114,7 @@ minetest.register_craft( {
        recipe = {
                "default:coal_lump",
 		},
-})
+})]]
 
 -- Extra craft for dark grey dye
 
@@ -218,12 +196,8 @@ for i = 1, 12 do
 	local hue2 = HUES2[i]
 
 	minetest.register_craft( {
-        type = "shapeless",
         output = "unifieddyes:dark_" .. hue .. "_s50 2",
-        recipe = {
-                "dye:" .. hue,
-                "dye:dark_grey",
-	        },
+        recipe = {{"dye:" .. hue, "dye:dark_grey"}},
 	})
 
 	minetest.register_craft( {
@@ -261,12 +235,8 @@ for i = 1, 12 do
 	end
 
 	minetest.register_craft( {
-        type = "shapeless",
         output = "unifieddyes:medium_" .. hue .. "_s50 2",
-        recipe = {
-                "dye:" .. hue,
-                "dye:grey",
-	        },
+        recipe = {{"dye:" .. hue, "dye:grey"}},
 	})
 
 	minetest.register_craft( {
@@ -280,12 +250,10 @@ for i = 1, 12 do
 	})
 
 	minetest.register_craft( {
-        type = "shapeless",
-        output = "unifieddyes:medium_" .. hue .. " 2",
-        recipe = {
-                "dye:" .. hue,
-                "dye:black",
-	        },
+        	output = "unifieddyes:medium_" .. hue .. " 2",
+        	recipe = {
+        	        {"dye:" .. hue, "dye:black"},
+		}
 	})
 
 	minetest.register_craft( {
@@ -311,12 +279,8 @@ for i = 1, 12 do
 
 	if hue ~= "red" then
 		minetest.register_craft( {
-		type = "shapeless",
 		output = "unifieddyes:light_" .. hue .. " 2",
-		recipe = {
-			"dye:" .. hue,
-			"dye:white",
-			},
+		recipe = {{"dye:" .. hue, "dye:white"}},
 		})
 	end
 

@@ -844,12 +844,6 @@ minetest.register_craft({
 	recipe = {"default:apple", "default:mese", "default:mese"},
 })
 
-minetest.register_craft({
-	type = "shapeless",
-	output = "dye:dark_grey 4",
-	recipe = {"default:coal_lump"},
-})
-
 --
 -- Crafting (tool repair)
 --

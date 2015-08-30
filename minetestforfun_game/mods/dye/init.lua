@@ -39,11 +39,13 @@ for _, row in ipairs(dyelocal.dyes) do
 		description = description,
 		groups = groups
 	})
-	minetest.register_craft({
-		type = "shapeless",
-		output = item_name.." 4",
-		recipe = {"group:flower,color_"..name},
-	})
+	if name == "black" then
+		minetest.register_craft({
+			type = "shapeless",
+			output = item_name.." 4",
+			recipe = {"group:flower,color_"..name},
+		})
+	end
 end
 -- manually add coal->black dye
 minetest.register_craft({
@@ -75,13 +77,15 @@ dyelocal.mixes = {
 	magenta =	{"magenta"},
 }
 
-for one,results in pairs(dyelocal.mixes) do
-	for i,result in ipairs(results) do
-		local another = dyelocal.mixbases[i]
-		minetest.register_craft({
-			type = "shapeless",
-			output = 'dye:'..result..' 2',
-			recipe = {'dye:'..one, 'dye:'..another},
-		})
+minetest.after(1, function()
+	for one,results in pairs(dyelocal.mixes) do
+		for i,result in ipairs(results) do
+			local another = dyelocal.mixbases[i]
+			minetest.register_craft({
+				type = "shapeless",
+				output = 'dye:'..result..' 2',
+				recipe = {'dye:'..one, 'dye:'..another},
+			})
+		end
 	end
-end
+end)
