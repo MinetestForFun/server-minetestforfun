@@ -25,6 +25,15 @@ function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	minetest.add_node(pt.above, {name = plantname})
 	if not minetest.setting_getbool("creative_mode") then
 		itemstack:take_item()
+		-- check for refill
+		if itemstack:get_count() == 0 then
+			minetest.after(0.20,
+				farming.refill_plant,
+				placer,
+				"farming:cocoa_beans",
+				placer:get_wield_index()
+			)
+		end -- END refill
 	end
 	return itemstack
 end
