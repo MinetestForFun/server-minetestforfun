@@ -64,7 +64,6 @@ load_mod_seastone = true
 load_mod_seastonebrick = true
 load_mod_seawrecks = true
 load_mod_noairblocks = true
-load_mod_snow = true
 load_mod_christmas_craft = true
 
 load_mod_homedecor = true
