@@ -1,0 +1,67 @@
+CHANGELOG:
+------------
+
+Version 3.2
+
+	Update compatibility to the latest minetest.
+	
+Version 0.3.1
+
+	Paramat's rewrite of mapgenv6.lua: bugfixes, use noisemaps for big speed increase
+
+Version 3.0
+	LazyJ's big changes (see LazyJ-changelog.txt)
+	
+	Ice freezes-over.
+	
+	Better leveled snow.
+	
+	PLUS MORE! (see commit log)
+
+Version 2.0
+
+    Uses default namespace.
+    
+    Sleds.
+    
+    Bugfixes.
+    
+Version 1.8
+
+    Mapgen_v7 support.
+    
+    Better config system.
+    
+    Falling snow.
+
+Version 1.4
+
+    New biomes, snowy and plain
+    
+    Christmas Trees
+    
+    Snowfall
+    
+Version 1.3
+
+    Smooth transitions
+    
+    Snow Bricks
+
+Version 1.2
+
+    Pine trees
+    
+    Moss
+    
+    Alpine biomes
+	
+    Dry shrubs
+
+Version 1.1
+
+    Better mapgen
+
+Version 1.0
+
+    Initial release
