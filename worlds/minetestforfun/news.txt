@@ -10,7 +10,18 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
----28/08/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly)
+---28/08/2015--- (Thanks to : LeMagnesium/Mg, fabienwang, crabman77/crabman, Gael-de-Sailly)
+Removal of "snow" (Now into the game, no need mod anymore)
+Update of "homedecor_modpack" (Disabled the wardrobe because it was a duplicate feature with our "u_skins" mod)
+Update of "farming" (Added the refill feature to the cocoa, and minor bugfix)
+Update of "3d_armor" (Fixed a bug wich destroys an armor piece if you try to wear the two same pieces)
+Update of "nether" (Renewed the delation of the chatcommands, because of a bad early merge)
+Update of "soundset" (Crashfix)
+Update of "news" (New better and darker background texture with our logo)
+Update of "money" (Now bugfixed. Fully usable, better code and new textures)
+Update of "worldedge" (Bugfix of the rare random teleportation)
+Update of "warps" (crashfix)
+Update of "dye" (fix some bugged craft recipes)
 Addition of "peace_areas" (Prevent players from punching each other in the "Spawn Tower" area, now you can't damaged other players in the "Spawn Tower")
 Update of "nodes.lua" (Fix the usebug with the copper coins drops of default:stone)
 Update of "graveyard" (you can now clear it with the chatcommand "/clear_graveyard", be carful when you use it !)
