@@ -72,7 +72,7 @@ soundset.get_gain = function(name, sound_type)
 	if name == nil or name == "" then
 		return 1
 	end
-	if not soundset.gainplayers[name] then return gain end
+	if not soundset.gainplayers[name] then return 1 end
 	local gain = soundset.gainplayers[name][sound_type]
 	if gain == nil then
 		return 1
