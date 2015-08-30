@@ -469,7 +469,7 @@ minetest.register_on_joinplayer(function(player)
 			local name = stack:get_name()
 			local player_inv = player:get_inventory()
 			local size = player_inv:get_size(listname)
-			if minetest.get_item_group(name, "armor_use") == 0 then
+			if not (name:split(":")[1] == "3d_armor" or name:split(":")[1] == "shields") then
 				return 0
 			end
 			if name:find("shield") then
