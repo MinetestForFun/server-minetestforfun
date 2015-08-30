@@ -89,65 +89,6 @@ local function player_exists(name)
 	return false
 end
 
--- Chatcommands (edited) written by sss
-minetest.register_chatcommand("to_hell", {
-	params = "",
-	description = "Send someone to hell",
-	func = function(name, pname)
-		if not minetest.get_player_privs(name).nether then
-			local self_player = minetest.get_player_by_name(name)
-			if self_player then
-				return false, "You can't send anyone to hell."
-			else
-				return false, "Something went wrong."
-			end
-		end
-		if not player_exists(pname) then
-			pname = name
-		end
-		local player = minetest.get_player_by_name(pname)
-		if not player then
-			minetest.chat_send_player(name, "Something went wrong.")
-			return false
-		end
-		minetest.chat_send_player(pname, "Go to hell !!!")
-		player_to_nether(player)
-		return true
-	end
-})
-
-minetest.register_chatcommand("from_hell", {
-	params = "",
-	description = "Extract from hell",
-	func = function(name, pname)
-		if not minetest.get_player_privs(name).nether then
-			local self_player = minetest.get_player_by_name(name)
-			if self_player then
-				return false, "You can't extract anyone from hell"
-			else
-				return false, "Something went wrong."
-			end
-		end
-		if not player_exists(pname) then
-			pname = name
-		end
-		local player = minetest.get_player_by_name(pname)
-		if not player then
-			minetest.chat_send_player(name, "Something went wrong.")
-			return false
-		end
-		minetest.chat_send_player(pname, "You are free now")
-		player_from_nether(player)
-		local pos_togo = {x = 0, y = 35, z = -7}
-		if minetest.setting_getbool("static_spawnpoint") ~= nil then
-			local stsp_conf = minetest.setting_get("static_spawnpoint")
-			pos_togo = {x = stsp_conf:split(",")[1]+0,y = stsp_conf:split(",")[2]+0,z = stsp_conf:split(",")[3]+0}
-		end
-		player:moveto(pos_togo)
-		return true
-	end
-})
-
 minetest.register_on_respawnplayer(function(player)
 	local pname = player:get_player_name()
 	if not table.icontains(players_in_nether, pname) then
