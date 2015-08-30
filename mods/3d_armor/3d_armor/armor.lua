@@ -469,6 +469,9 @@ minetest.register_on_joinplayer(function(player)
 			local name = stack:get_name()
 			local player_inv = player:get_inventory()
 			local size = player_inv:get_size(listname)
+			if minetest.get_item_group(name, "armor_use") == 0 then
+				return 0
+			end
 			if name:find("shield") then
 				for i=1, size do
 					local stack = player_inv:get_stack(listname, i)
