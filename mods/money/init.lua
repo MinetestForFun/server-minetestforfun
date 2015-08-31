@@ -30,8 +30,7 @@ minetest.register_privilege("money_admin", {
 --Barter shop.
 minetest.register_node("money:barter_shop", {
 	description = "Barter Shop",
-	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-		"default_chest_side.png", "default_chest_side.png", "default_chest_side.png^money_barter_shop_lock.png"},
+	tiles = {"money_barter_shop.png"},
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 	sounds = default.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
@@ -163,8 +162,7 @@ minetest.register_alias("barter_shop", "money:barter_shop")
 -- Admin barter shop
 minetest.register_node("money:admin_barter_shop", {
 	description = "Admin Barter Shop",
-	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
-		"default_chest_side.png", "default_chest_side.png", "default_chest_side.png^money_admin_barter_shop_lock.png"},
+	tiles = {"money_admin_barter_shop.png"},
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
 	sounds = default.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
