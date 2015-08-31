@@ -74,7 +74,7 @@ biome_lib:register_generate_plant({
 )
 
 biome_lib:register_generate_plant({
-    surface = {"watershed:drygrass"},
+    surface = {"default:dirt_with_dry_grass"},
     max_count = Molehills_Max_Count,
     rarity = 97,
     min_elevation = 1,

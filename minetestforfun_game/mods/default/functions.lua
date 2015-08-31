@@ -209,7 +209,7 @@ function default.grow_cactus(pos, node)
 	end
 	pos.y = pos.y - 1
 	local name = minetest.get_node(pos).name --MFF
-	if minetest.get_item_group(name, "sand") == 0 and name ~= "watershed:drygrass" then --MFF
+	if minetest.get_item_group(name, "sand") == 0 and name ~= "default:dirt_with_dry_grass" then --MFF
 		return
 	end
 	pos.y = pos.y + 1
@@ -251,7 +251,7 @@ end
 
 minetest.register_abm({
 	nodenames = {"default:cactus"},
-	neighbors = {"group:sand", "watershed:drygrass"}, --MFF
+	neighbors = {"group:sand", "default:dirt_with_dry_grass"}, --MFF
 	interval = 60,
 	chance = 25,
 	action = function(...)
