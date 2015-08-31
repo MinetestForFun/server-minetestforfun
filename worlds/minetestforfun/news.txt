@@ -11,7 +11,7 @@ Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
 ---01/09/2015--- (Thanks to : Gael-de-Sailly, crabman77/crabman, LeMagnesium/Mg)
-Update of "mobs" (Reduce the sound size)
+Update of "mobs" (Reduce the sounds size)
 Update of "watershed" (Used "default:dirt_with_dry_grass" instead of "watershed:drygrass" because "MT_game" now includes this dirt)
 Update of "snow" (Fixed the unknow nodes/textures)
 Update of "money" (New shops textures)
