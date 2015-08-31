@@ -10,6 +10,12 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
+---01/09/2015--- (Thanks to : Gael-de-Sailly, crabman77/crabman, LeMagnesium/Mg)
+Update of "mobs" (Reduce the sound size)
+Update of "watershed" (Used "default:dirt_with_dry_grass" instead of "watershed:drygrass" because "MT_game" now includes this dirt)
+Update of "snow" (Fixed the unknow nodes/textures)
+Update of "money" (New shops textures)
+
 ---28/08/2015--- (Thanks to : LeMagnesium/Mg, fabienwang, crabman77/crabman, Gael-de-Sailly)
 Removal of "snow" (Now into the game, no need mod anymore)
 Update of "homedecor_modpack" (Disabled the wardrobe because it was a duplicate feature with our "u_skins" mod)
