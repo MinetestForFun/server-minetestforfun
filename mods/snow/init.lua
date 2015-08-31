@@ -62,6 +62,7 @@ dofile(minetest.get_modpath("snow").."/src/util.lua")
 -- To get Xmas tree saplings, the "christmas_content", true or false, in "util.lua" has to be determined first.
 -- That means "nodes.lua", where the saplings are controlled, has to come after "util.lua". ~ LazyJ
 dofile(minetest.get_modpath("snow").."/src/nodes.lua")
+dofile(minetest.get_modpath("snow").."/aliases.lua")
 dofile(minetest.get_modpath("snow").."/src/basic_stairs_slabs.lua")
 -- dofile(minetest.get_modpath("snow").."/src/mapgen.lua")
 dofile(minetest.get_modpath("snow").."/src/sled.lua")
