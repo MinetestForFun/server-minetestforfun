@@ -60,6 +60,4 @@ dofile(path.."/crafts.lua")
 -- Mob menu spawner special MFF
 dofile(path.."/mff_menu.lua")
 
-if minetest.setting_get("log_mods") then
-	minetest.log("action", "mobs loaded")
-end
+print ("[MOD] Mobs Redo loaded")

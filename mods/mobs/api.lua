@@ -1,4 +1,4 @@
--- Mobs Api (18th August 2015)
+-- Mobs Api (28th August 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -606,7 +606,8 @@ function mobs:register_mob(name, def)
 
 			if self.type == "npc"
 			and self.order == "follow"
-			and self.state ~= "attack" and self.owner ~= "" then --/MFF (Crabman|07/14/2015) follow diamond if has not owner
+			and self.state ~= "attack"
+			and self.owner ~= "" then
 				-- npc stop following player if not owner
 				if self.following
 				and self.owner
@@ -1319,7 +1320,6 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 	if not fire then fire = 0 end
 	if not smoke then smoke = 0 end
 	local pos = vector.round(pos)
-	local radius = 1
 	local vm = VoxelManip()
 	local minp, maxp = vm:read_from_map(vector.subtract(pos, radius), vector.add(pos, radius))
 	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
@@ -1350,21 +1350,27 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 		p.y = pos.y + y
 		p.z = pos.z + z
 		if p.y >= 19600 --MFF
-		and data[vi] ~= c_air and data[vi] ~= c_ignore
-		and data[vi] ~= c_obsidian and data[vi] ~= c_brick
+		and data[vi] ~= c_air
+		and data[vi] ~= c_ignore
+		and data[vi] ~= c_obsidian
+		and data[vi] ~= c_brick
 		and data[vi] ~= c_chest then
 			local n = minetest.get_node(p).name
 			if not minetest.is_protected(p, "") --/MFF (Crabman|06/23/2015) re-added node protected in areas
 			and minetest.get_item_group(n, "unbreakable") ~= 1 then
 				-- if chest then drop items inside
-				if n == "default:chest" or n == "3dchest:chest" then
+				if n == "default:chest"
+				or n == "3dchest:chest" then
 					local meta = minetest.get_meta(p)
 					local inv  = meta:get_inventory()
 					for i = 1,32 do
 						local m_stack = inv:get_stack("main", i)
-						local obj = minetest.add_item(pos, m_stack)
+						local obj = minetest.add_item(p, m_stack)
 						if obj then
-							obj:setvelocity({x = math.random(-2, 2), y = 7, z = math.random(-2, 2)})
+							obj:setvelocity({
+							x = math.random(-2, 2),
+							y = 7,
+							z = math.random(-2, 2)})
 						end
 					end
 				end
@@ -1506,7 +1512,9 @@ function mobs:register_arrow(name, def)
 					end
 					if self.hit_mob
 					and player:get_luaentity().name ~= self.object:get_luaentity().name
-					and player:get_luaentity().name ~= "__builtin:item" then
+					and player:get_luaentity().name ~= "__builtin:item"
+					and player:get_luaentity().name ~= "gauges:hp_bar"
+					and player:get_luaentity().name ~= "signs:text" then
 						self.hit_mob(self, player)
 						self.object:remove() ; -- print ("hit mob")
 						return
@@ -1604,26 +1612,20 @@ end
 -- follow what I'm holding ?
 function follow_holding(self, clicker)
 	local item = clicker:get_wielded_item()
-	local follow_item = false
 	local t = type(self.follow)
 
 	-- single item
 	if t == "string"
 	and item:get_name() == self.follow then
-		follow_item = true
+		return true
 
 	-- multiple items
 	elseif t == "table" then
 		for no = 1, #self.follow do
 			if self.follow[no] == item:get_name() then
-				follow_item = true
+				return true
 			end
 		end
-	end
-
-	-- true if can eat/tame with item
-	if follow_item == true then
-		return true
 	end
 
 	return false
