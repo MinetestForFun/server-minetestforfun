@@ -55,6 +55,7 @@ local function go_next(pos, velocity, stack)
 	end
 	for _, vect in ipairs(can_go) do
 		local npos = vector.add(pos, vect)
+		minetest.load_position(npos)
 		local node = minetest.get_node(npos)
 		local reg_node = minetest.registered_nodes[node.name]
 		if reg_node then

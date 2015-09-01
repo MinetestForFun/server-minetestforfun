@@ -18,3 +18,5 @@ pipeworks.enable_mese_sand_tube = true
 pipeworks.enable_one_way_tube = true
 pipeworks.enable_priority_tube = true
 pipeworks.enable_cyclic_mode = true
+
+pipeworks.delete_item_on_clearobject = true
