@@ -60,4 +60,4 @@ dofile(path.."/crafts.lua")
 -- Mob menu spawner special MFF
 dofile(path.."/mff_menu.lua")
 
-print ("[MOD] Mobs Redo loaded")
+minetest.log("action", "[MOD] Mobs Redo loaded")

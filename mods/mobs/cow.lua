@@ -143,29 +143,25 @@ minetest.register_craft({
 	}
 })
 
--- Dung
-
+-- Dung (from factory's fertilizer)
 minetest.register_node("mobs:dung", {
-	description = "Cow dung",
-	tiles = {"mobs_dung.png"},
-	inventory_image  = "mobs_dung.png",
-	visual_scale = 0.7,
-	drawtype = "plantlike",
-	wield_image = "mobs_dung.png",
-	paramtype = "light",
-	walkable = false,
-	is_ground_content = true,
-	sunlight_propagates = true,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
-	},
-	groups = {snappy=2, dig_immediate=3},
-	after_place_node = function(pos, placer, itemstack)
-		if placer:is_player() then
-			minetest.set_node(pos, {name="mobs:dung", param2=1})
-		end
-	end
+        tiles = {"default_dirt.png"},
+        inventory_image = "mobs_dung.png",
+        description = "Cow dung",
+        drawtype = "nodebox",
+        paramtype = "light",
+        is_ground_content = true,
+        groups = {snappy = 3, attached_node = 1},
+        node_box = {
+                type = "fixed",
+                fixed = {
+                        {-0.1875, -0.5, -0.1875, 0.1875, -0.4375, 0.1875},
+                        {-0.125, -0.4375, -0.125, 0.125, -0.375, 0.125},
+                        {0, -0.375, -0.0625, 0.0625, -0.3125, 0.0625},
+                        {0, -0.3125, -0.0625, 0.0625, -0.25, 0},
+                        {-0.0625, -0.375, -0.0625, 0, -0.3125, 0},
+                }
+        }
 })
 
 minetest.register_craft({
