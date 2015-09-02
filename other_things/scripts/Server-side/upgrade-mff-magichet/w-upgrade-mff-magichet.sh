@@ -6,7 +6,7 @@ rm -Rv /home/quentinbd/upgrade-mff-magichet/olds
 rm -Rv /home/quentinbd/upgrade-mff-magichet/mff-magichet.tar.gz
 
 # Sauvegarde des fichiers critiques
-cp -Rv /home/quentinbd/mff-magichet/games/minetestforfun_game/ /home/quentinbd/upgrade-mff-magichet/olds/
+cp -Rv /home/quentinbd/mff-magichet/games/minetestforfun_magichet/ /home/quentinbd/upgrade-mff-magichet/olds/
 cp -Rv /home/quentinbd/mff-magichet/mods/ /home/quentinbd/upgrade-mff-magichet/olds/
 cp -Rv /home/quentinbd/mff-magichet/worlds/ /home/quentinbd/upgrade-mff-magichet/olds/
 cp /home/quentinbd/mff-magichet/minetest.conf /home/quentinbd/upgrade-mff-magichet/olds/
@@ -34,7 +34,7 @@ cmake . -DBUILD_CLIENT=0 -DBUILD_SERVER=1 -DRUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -D
 make -j$(grep -c processor /proc/cpuinfo)
 
 # Ajout des fichiers critiques au nouveau dossier minetest
-cp -Rv /home/quentinbd/upgrade-mff-magichet/olds/minetestforfun_game/ /home/quentinbd/mff-magichet/games/
+cp -Rv /home/quentinbd/upgrade-mff-magichet/olds/minetestforfun_magichet/ /home/quentinbd/mff-magichet/games/
 cp -Rv /home/quentinbd/upgrade-mff-magichet/olds/mods/ /home/quentinbd/mff-magichet/
 cp -Rv /home/quentinbd/upgrade-mff-magichet/olds/worlds/ /home/quentinbd/mff-magichet/
 cp /home/quentinbd/upgrade-mff-magichet/olds/minetest.conf /home/quentinbd/mff-magichet/

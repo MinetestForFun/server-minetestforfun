@@ -18,7 +18,7 @@ while true
 	/home/quentinbd/mff-magichet/bin/minetestserver \
 		--world /home/quentinbd/mff-magichet/worlds/minetestforfun-magichet/ \
 		--config /home/quentinbd/mff-magichet/minetest.conf \
-		--gameid Magichet \
+		--gameid minetestforfun_magichet \
 		--port 30091 \
 #		--logfile $DEBUG
 

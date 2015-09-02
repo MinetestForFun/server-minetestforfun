@@ -18,7 +18,7 @@ while true
 	/home/quentinbd/mff-hg/bin/minetestserver \
 		--world /home/quentinbd/mff-hg/worlds/minetestforfun-hg/ \
 		--config /home/quentinbd/mff-hg/minetest.conf \
-		--gameid Hungry Games \
+		--gameid minetestforfun_hg \
 		--port 30042 \
 #		--logfile $DEBUG
 

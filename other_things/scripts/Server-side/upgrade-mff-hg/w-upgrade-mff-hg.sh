@@ -6,7 +6,7 @@ rm -Rv /home/quentinbd/upgrade-mff-hg/olds
 rm -Rv /home/quentinbd/upgrade-mff-hg/mff-hg.tar.gz
 
 # Sauvegarde des fichiers critiques
-cp -Rv /home/quentinbd/mff-hg/games/minetestforfun_game/ /home/quentinbd/upgrade-mff-hg/olds/
+cp -Rv /home/quentinbd/mff-hg/games/minetestforfun_hg/ /home/quentinbd/upgrade-mff-hg/olds/
 cp -Rv /home/quentinbd/mff-hg/mods/ /home/quentinbd/upgrade-mff-hg/olds/
 cp -Rv /home/quentinbd/mff-hg/worlds/ /home/quentinbd/upgrade-mff-hg/olds/
 cp /home/quentinbd/mff-hg/minetest.conf /home/quentinbd/upgrade-mff-hg/olds/

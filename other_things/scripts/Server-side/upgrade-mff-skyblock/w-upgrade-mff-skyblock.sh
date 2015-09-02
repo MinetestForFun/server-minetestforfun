@@ -6,7 +6,7 @@ rm -Rv /home/quentinbd/upgrade-mff-skyblock/olds
 rm -Rv /home/quentinbd/upgrade-mff-skyblock/mff-skyblock.tar.gz
 
 # Sauvegarde des fichiers critiques
-cp -Rv /home/quentinbd/mff-skyblock/games/minetestforfun_game/ /home/quentinbd/upgrade-mff-skyblock/olds/
+cp -Rv /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/ /home/quentinbd/upgrade-mff-skyblock/olds/
 cp -Rv /home/quentinbd/mff-skyblock/mods/ /home/quentinbd/upgrade-mff-skyblock/olds/
 cp -Rv /home/quentinbd/mff-skyblock/worlds/ /home/quentinbd/upgrade-mff-skyblock/olds/
 cp /home/quentinbd/mff-skyblock/minetest.conf /home/quentinbd/upgrade-mff-skyblock/olds/
@@ -34,7 +34,7 @@ cmake . -DBUILD_CLIENT=0 -DBUILD_SERVER=1 -DRUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -D
 make -j$(grep -c processor /proc/cpuinfo)
 
 # Ajout des fichiers critiques au nouveau dossier minetest
-cp -Rv /home/quentinbd/upgrade-mff-skyblock/olds/minetestforfun_game/ /home/quentinbd/mff-skyblock/games/
+cp -Rv /home/quentinbd/upgrade-mff-skyblock/olds/minetestforfun_skyblock/ /home/quentinbd/mff-skyblock/games/
 cp -Rv /home/quentinbd/upgrade-mff-skyblock/olds/mods/ /home/quentinbd/mff-skyblock/
 cp -Rv /home/quentinbd/upgrade-mff-skyblock/olds/worlds/ /home/quentinbd/mff-skyblock/
 cp /home/quentinbd/upgrade-mff-skyblock/olds/minetest.conf /home/quentinbd/mff-skyblock/
