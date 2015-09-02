@@ -1,7 +1,5 @@
 # passer sur branche master ou stable github
 cd /home/quentinbd/mff/
-#git checkout master
-git checkout stable-0.4
 
 # Suppression des anciens fichiers
 rm -Rv /home/quentinbd/upgrade-mff/olds
@@ -22,25 +20,16 @@ rm -Rv /home/quentinbd/mff/
 
 # Réinstallaton de minetest
 cd /home/quentinbd/
-#git clone https://github.com/minetest/minetest.git
 # DEBUT - Utilisation de la dernière version 0.4 stable
-git clone https://github.com/minetest/minetest.git
-#unzip /home/quentinbd/minetest-stable-0.4.zip
-#mv /home/quentinbd/minetest-stable-0.4/ /home/quentinbd/mff/
-mv /home/quentinbd/minetest/ /home/quentinbd/mff/
+wget https://codeload.github.com/minetest/minetest/zip/stable-0.4
+unzip /home/quentinbd/stable-0.4
+mv /home/quentinbd/minetest-stable-0.4/ /home/quentinbd/mff/
+rm -v /home/quentinbd/stable-0.4
 # FIN - Utilisation de la version 0.4 stable
-cd /home/quentinbd/mff/games/
-git clone https://github.com/minetest/minetest_game.git
 
 # Compilation
 cd /home/quentinbd/mff/
-# build sqlite3
-#cmake . -DRUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1
-#make -j$(grep -c processor /proc/cpuinfo)
-# build redis
-#cmake . -DENABLE_REDIS=1 -DRUN_RUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1
-#make -j$(grep -c processor /proc/cpuinfo)
-# build redis + irc
+# Build REDIS + IRC
 cmake . -DBUILD_CLIENT=0 -DBUILD_SERVER=1 -DENABLE_REDIS=1 -DRUN_IN_PLACE=1 -DENABLE_GETTEXT=1 -DENABLE_FREETYPE=1 -DENABLE_LUAJIT=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr -DENABLE_CURL=1
 make -j$(grep -c processor /proc/cpuinfo)
 
@@ -51,4 +40,5 @@ cp -Rv /home/quentinbd/upgrade-mff/olds/worlds/ /home/quentinbd/mff/
 cp /home/quentinbd/upgrade-mff/olds/minetest.conf /home/quentinbd/mff/
 
 # Donne les droits à quentinbd
+chmod -R 755 /home/quentinbd/mff/
 chown -R quentinbd:quentinbd /home/quentinbd/
