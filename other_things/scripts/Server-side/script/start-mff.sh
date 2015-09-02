@@ -18,7 +18,7 @@ while true
 	/home/quentinbd/mff/bin/minetestserver \
 		--world /home/quentinbd/mff/worlds/minetestforfun/ \
 		--config /home/quentinbd/mff/minetest.conf \
-		--gameid minetestforfun_game \
+		--gameid MinetestForFun Game \
 		--port 30001 \
 #		--logfile $DEBUG
 
