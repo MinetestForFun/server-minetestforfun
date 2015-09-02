@@ -1,4 +1,4 @@
-minetestforfun_game subgame and mods
+MinetestForFun Game server version of MinetestForFun Team
 ===================
 
 You can find here the subgame and the mods of the server MinetestForFun.
