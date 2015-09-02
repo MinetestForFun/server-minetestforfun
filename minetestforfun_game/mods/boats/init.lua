@@ -1,4 +1,3 @@
-
 --
 -- Helper functions
 --
@@ -290,6 +289,7 @@ minetest.register_craft({
 	},
 })
 
+
 minetest.register_craft({
 	output = "boats:boat",
 	recipe = {
@@ -297,4 +297,3 @@ minetest.register_craft({
 		{"group:wood", "group:wood", "group:wood"},
 	},
 })
-
