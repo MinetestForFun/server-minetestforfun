@@ -1,2 +1,0 @@
-default
-inventory_plus

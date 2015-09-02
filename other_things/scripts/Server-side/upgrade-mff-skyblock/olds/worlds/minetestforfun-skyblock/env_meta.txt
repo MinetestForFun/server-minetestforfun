@@ -1,3 +1,0 @@
-game_time = 241
-time_of_day = 9000
-EnvArgsEnd

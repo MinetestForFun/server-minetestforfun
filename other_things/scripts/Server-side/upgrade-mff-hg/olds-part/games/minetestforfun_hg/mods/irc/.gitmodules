@@ -1,3 +1,0 @@
-[submodule "src/LuaIRC"]
-	path = irc
-	url = https://github.com/ShadowNinja/LuaIRC.git
