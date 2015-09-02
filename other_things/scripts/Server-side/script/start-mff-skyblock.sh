@@ -19,7 +19,7 @@ while true
 		--world /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/ \
 		--config /home/quentinbd/mff-skyblock/minetest.conf \
 		--gameid Skyblock \
-		--port 30052 \
+		--port 30054 \
 #		--logfile $DEBUG
 
 	sleep 25
