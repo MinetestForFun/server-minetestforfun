@@ -1,0 +1,7 @@
+
+# Language: Español
+# Author: Diego Martínez <lkaezadl3@gmail.com>
+
+You died from starvation. = Has muerto de hambre.
+Hunger = Hambre
+You are hungry. = Tienes hambre.

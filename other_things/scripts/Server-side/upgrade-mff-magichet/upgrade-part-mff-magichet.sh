@@ -15,23 +15,27 @@ cp -R /home/quentinbd/mff-magichet/games/ /home/quentinbd/upgrade-mff-magichet/o
 echo "Sauvegarde de /mods et /games correctement effectuée."
 
 # On MAJ les nouveaux minetest/games et minetest/mods
-rm -R /home/quentinbd/mff-magichet/games/
 rm -R /home/quentinbd/mff-magichet/mods/
+rm -R /home/quentinbd/mff-magichet/games/
 mkdir /home/quentinbd/mff-magichet/games/
-cp -R /home/quentinbd/server-minetestforfun-magichet/hungry_game/ /home/quentinbd/mff/games/
-cp -R /home/quentinbd/server-minetestforfun-magichet/mods/ /home/quentinbd/mff/
+mkdir /home/quentinbd/server-minetestforfun-magichet/games
+mkdir /home/quentinbd/mff-magichet/games/minetestforfun_magichet/
+mkdir /home/quentinbd/mff-magichet/games/minetestforfun_magichet/mods/
+cp -R /home/quentinbd/server-minetestforfun-magichet/mods/ /home/quentinbd/mff-magichet/games/minetestforfun_magichet/
 echo "Nouveaux /mods et /games correctement déplacés"
 
-# On MAJ le minetest.conf, world.mt, et le random_messages
+# On MAJ le minetest.conf, game.conf, world.mt, et le random_messages
 mkdir /home/quentinbd/mff-magichet/worlds/minetestforfun-magichet/
 rm /home/quentinbd/mff-magichet/minetest.conf
-rm /home/quentinbd/mff-magichet/games/hungry_games/worlds/minetestforfun-magichet/world.mt
-rm /home/quentinbd/mff-magichet/games/hungry_games/worlds/minetestforfun-magichet/random_messages
+rm /home/quentinbd/mff-magichet/worlds/minetestforfun-magichet/world.mt
+rm /home/quentinbd/mff-magichet/worlds/minetestforfun-magichet/random_messages
 # On les remet
+cp /home/quentinbd/server-minetestforfun-magichet/minetest.conf /home/quentinbd/mff-magichet/games/minetestforfun_magichet/
 cp /home/quentinbd/server-minetestforfun-magichet/minetest.conf /home/quentinbd/mff-magichet/
-cp /home/quentinbd/server-minetestforfun-magichet/worlds/minetestforfun-magichet/world.mt /home/quentinbd/mff-magichet/games/hungry_games/worlds/minetestforfun-magichet/
-cp /home/quentinbd/server-minetestforfun-magichet/worlds/minetestforfun-magichet/random_messages /home/quentinbd/mff-magichet/games/hungry_games/worlds/minetestforfun-magichet/
-echo "Nouveau 'random_messages/world.mt/minetest.conf/top_config.txt' correctement déplacé"
+cp /home/quentinbd/server-minetestforfun-magichet/game.conf /home/quentinbd/mff-magichet/games/minetestforfun_magichet/
+#cp /home/quentinbd/server-minetestforfun-magichet/worlds/minetestforfun-magichet/world.mt /home/quentinbd/mff-magichet/worlds/minetestforfun-magichet/
+cp /home/quentinbd/server-minetestforfun-magichet/worlds/minetestforfun-magichet/random_messages /home/quentinbd/mff-magichet/worlds/minetestforfun-magichet/
+echo "Nouveau 'minetest.conf, game.conf, world.mt, et le random_messages' correctement déplacé"
 
 # Suppression du dossier cloné
 rm -Rf /home/quentinbd/server-minetestforfun-magichet/

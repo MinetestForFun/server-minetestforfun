@@ -1,0 +1,9 @@
+
+# Language: Español
+# Author: Diego Martínez <lkaezadl3@gmail.com>
+
+You died from dehydration. = Has muerto de deshidratacion.
+You are thirsty. = Tienes sed.
+Thirst = Sed
+Glass of Water = Vaso de Agua
+Drinking Glass (empty) = Vaso de Agua (vacío)

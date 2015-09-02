@@ -6,6 +6,7 @@ rm -Rv /home/quentinbd/upgrade-mff-skyblock/olds
 rm -Rv /home/quentinbd/upgrade-mff-skyblock/mff-skyblock.tar.gz
 
 # Sauvegarde des fichiers critiques
+mkdir /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/
 cp -Rv /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/ /home/quentinbd/upgrade-mff-skyblock/olds/
 cp -Rv /home/quentinbd/mff-skyblock/mods/ /home/quentinbd/upgrade-mff-skyblock/olds/
 cp -Rv /home/quentinbd/mff-skyblock/worlds/ /home/quentinbd/upgrade-mff-skyblock/olds/

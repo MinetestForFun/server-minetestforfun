@@ -1,0 +1,11 @@
+
+# Language: Español
+# Author: Diego Martínez
+
+###init.lua###
+Hazard Suit = Traje de Peligro
+
+###toxicwaste.lua###
+Toxic Waste Flowing = Flujo de Desechos Toxicos
+Toxic Waste Source = Desechos Toxicos
+Toxic Waste Bucket = Cubo de Desechos Toxicos

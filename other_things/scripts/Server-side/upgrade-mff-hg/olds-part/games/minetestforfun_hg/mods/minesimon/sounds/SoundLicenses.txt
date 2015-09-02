@@ -1,0 +1,10 @@
+
+minesimon_lost.ogg , "bump 2.wav" Calethos, the Sampling+ License., https://freesound.org/people/Calethos/sounds/31113/
+
+minesimon_note_1.ogg, "SI.wav", Jaz_the_MAN_2, Creative Commons 0, https://freesound.org/people/Jaz_the_MAN_2/sounds/316913
+ 
+minesimon_note_2.ogg, "DO (octave).wav", Jaz_the_MAN_2, Creative Commons 0,https://freesound.org/people/Jaz_the_MAN_2/sounds/316901/
+ 
+minesimon_note_3.ogg,  "LA.wav", Jaz_the_MAN_2, Creative Commons 0 , https://freesound.org/people/Jaz_the_MAN_2/sounds/316902/
+  
+minesimon_note_4.ogg,  "RE.wav", Jaz_the_MAN_2, Creative Commons 0 , https://freesound.org/people/Jaz_the_MAN_2/sounds/316908/

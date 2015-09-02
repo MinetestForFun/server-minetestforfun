@@ -15,23 +15,27 @@ cp -R /home/quentinbd/mff-skyblock/games/ /home/quentinbd/upgrade-mff-skyblock/o
 echo "Sauvegarde de /mods et /games correctement effectuée."
 
 # On MAJ les nouveaux minetest/games et minetest/mods
-rm -R /home/quentinbd/mff-skyblock/games/
 rm -R /home/quentinbd/mff-skyblock/mods/
+rm -R /home/quentinbd/mff-skyblock/games/
 mkdir /home/quentinbd/mff-skyblock/games/
-cp -R /home/quentinbd/server-minetestforfun-skyblock/hungry_game/ /home/quentinbd/mff/games/
-cp -R /home/quentinbd/server-minetestforfun-skyblock/mods/ /home/quentinbd/mff/
+mkdir /home/quentinbd/server-minetestforfun-skyblock/games
+mkdir /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/
+mkdir /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/mods/
+cp -R /home/quentinbd/server-minetestforfun-skyblock/mods/ /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/
 echo "Nouveaux /mods et /games correctement déplacés"
 
-# On MAJ le minetest.conf, world.mt, et le random_messages
+# On MAJ le minetest.conf, game.conf, world.mt, et le random_messages
 mkdir /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/
 rm /home/quentinbd/mff-skyblock/minetest.conf
-rm /home/quentinbd/mff-skyblock/games/hungry_games/worlds/minetestforfun-skyblock/world.mt
-rm /home/quentinbd/mff-skyblock/games/hungry_games/worlds/minetestforfun-skyblock/random_messages
+rm /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/world.mt
+rm /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/random_messages
 # On les remet
+cp /home/quentinbd/server-minetestforfun-skyblock/minetest.conf /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/
 cp /home/quentinbd/server-minetestforfun-skyblock/minetest.conf /home/quentinbd/mff-skyblock/
-cp /home/quentinbd/server-minetestforfun-skyblock/worlds/minetestforfun-skyblock/world.mt /home/quentinbd/mff-skyblock/games/hungry_games/worlds/minetestforfun-skyblock/
-cp /home/quentinbd/server-minetestforfun-skyblock/worlds/minetestforfun-skyblock/random_messages /home/quentinbd/mff-skyblock/games/hungry_games/worlds/minetestforfun-skyblock/
-echo "Nouveau 'random_messages/world.mt/minetest.conf/top_config.txt' correctement déplacé"
+cp /home/quentinbd/server-minetestforfun-skyblock/game.conf /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/
+#cp /home/quentinbd/server-minetestforfun-skyblock/worlds/minetestforfun-skyblock/world.mt /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/
+cp /home/quentinbd/server-minetestforfun-skyblock/worlds/minetestforfun-skyblock/random_messages /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/
+echo "Nouveau 'minetest.conf, game.conf, world.mt, et le random_messages' correctement déplacé"
 
 # Suppression du dossier cloné
 rm -Rf /home/quentinbd/server-minetestforfun-skyblock/

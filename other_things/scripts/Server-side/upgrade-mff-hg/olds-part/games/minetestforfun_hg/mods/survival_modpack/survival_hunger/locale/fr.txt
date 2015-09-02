@@ -1,0 +1,7 @@
+
+# Language: Français
+# Author: Jat
+
+You died from starvation. = Vous êtes mort de faim.
+Hunger = Faim
+You are hungry. = Vous avez faim.

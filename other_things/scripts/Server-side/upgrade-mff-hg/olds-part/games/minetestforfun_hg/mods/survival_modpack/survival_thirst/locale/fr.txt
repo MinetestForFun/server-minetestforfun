@@ -1,0 +1,9 @@
+
+# Language: Français
+# Author: Jat
+
+You died from dehydration. = Vous étez mort de déshydratation.
+You are thirsty. = Vous avez soif.
+Thirst = Soif
+Glass of Water = Verre d'eau
+Drinking Glass (empty) = Verre d'eau (vide)

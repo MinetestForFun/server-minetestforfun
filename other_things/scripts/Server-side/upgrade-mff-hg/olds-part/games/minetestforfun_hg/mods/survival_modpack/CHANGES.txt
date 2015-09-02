@@ -1,0 +1,20 @@
+
+Version 0.1.2:
+  - common: Lava Suit mod is now into Survival Modpack, in the form of
+     Hazard Suit.
+  - hazards: Now we override the default lava nodes to damage players when
+     they don't have the suit, instead of healing when player has the suit.
+     Thanks to PilzAdam for the suggestion.
+  - hazards: There is now a `register_material' function to define new
+     hazardous materials from other mods.
+
+Version 0.1.1:
+  - hunger: Changed way in which eating is detected.
+  - hunger: Fixed bug where default:apple was not taken as food.
+  - lib: Code refactoring and new API.
+  - common: Added thirst.
+  - common: Added meters/gauges.
+  - common: States are now preserved across sessions.
+
+Version 0.1.0:
+  - Added hunger and drowning.

@@ -1,0 +1,34 @@
+
+# Language: 
+# Author: 
+
+###init.lua###
+Display %s = 
+Display all player stats = 
+
+###chatcmds.lua###
+<command> <args>... = 
+Configuration of survival_lib = 
+No subcommand specified. =
+Unknown subcommand . =  
+Missing privileges: %s =
+
+<subcommand> =
+Get help about a subcommand = 
+Available commands: %s =
+
+<state> =
+Enable a state = 
+Unknown state `%s'. = 
+State `%s' enabled. = 
+No state specified. =
+
+Disable a state = 
+State `%s' disabled. =
+
+Get the enabled/disabled flag of a state = 
+State `%s' is %s. = 
+Enabled = 
+Disabled = 
+
+List available states and enabled/disabled flags = 

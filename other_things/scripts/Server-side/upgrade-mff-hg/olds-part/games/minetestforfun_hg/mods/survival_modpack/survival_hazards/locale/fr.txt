@@ -1,0 +1,11 @@
+
+# Language: Français
+# Author: Jat
+
+###init.lua###
+Hazard Suit = Combinaison de protection en milieu hostile
+
+###toxicwaste.lua###
+Toxic Waste Flowing = Flot de déchets toxiques
+Toxic Waste Source = Source de déchets toxiques
+Toxic Waste Bucket = Seau de déchets toxiques

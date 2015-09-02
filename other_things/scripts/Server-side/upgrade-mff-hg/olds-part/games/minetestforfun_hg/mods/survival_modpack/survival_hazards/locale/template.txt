@@ -1,0 +1,11 @@
+
+# Language: 
+# Author: 
+
+###init.lua###
+Hazard Suit = 
+
+###toxicwaste.lua###
+Toxic Waste Flowing = 
+Toxic Waste Source = 
+Toxic Waste Bucket = 
