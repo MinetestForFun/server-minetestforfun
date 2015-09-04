@@ -10,6 +10,9 @@ dofile(minetest.get_modpath("death_messages").."/settings.txt")
 
 local messages = {}
 
+-- Another one to avoid double death messages
+local whacked = {}
+
 -- Fill this table with sounds
 local sounds   = {
 	[1] = "death_messages_player_1",
@@ -77,6 +80,13 @@ messages.other = {
 	" a vu la lumière."
 }
 
+-- Whacking death messages
+messages.whacking = {
+	"%s got whacked by %s",
+	"%s's grave was dug by %s",
+	-- Need to fill
+}
+
 
 local function sound_play_all(dead)
 	for _, p in ipairs(minetest.get_connected_players()) do
@@ -87,6 +97,22 @@ local function sound_play_all(dead)
 	end
 end
 
+minetest.register_on_punchplayer(function(player, hitter, time,
+	tool_caps, dir, damage)
+	if player:get_hp() - damage <= 0 and hitter:is_player() and not whacked[player:get_player_name()] then
+		death_message = string.format(messages.whacking[math.random(1,#messages.whacking)], player:get_player_name(), hitter:get_player_name())
+		if minetest.get_modpath("irc") ~= nil then
+			irc:say(death_message)
+		end
+		minetest.chat_send_all(death_message)
+		whacked[player:get_player_name()] = true
+	end
+end)
+
+minetest.register_on_respawnplayer(function(player)
+	whacked[player:get_player_name()] = nil
+end)
+
 if RANDOM_MESSAGES == true then
 	minetest.register_on_dieplayer(function(player)
 		local player_name = player:get_player_name()
@@ -96,6 +122,8 @@ if RANDOM_MESSAGES == true then
 		end
 
 		local death_message = ""
+
+		if whacked[player_name] then return end
 
 		-- Death by lava
 		if node.groups.lava ~= nil then
