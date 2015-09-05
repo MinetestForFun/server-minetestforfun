@@ -530,6 +530,7 @@ function nether_port(player, pos)
 	if not netherport(pos) then
 		return
 	end
+	minetest.sound_play("nether_teleporter", {to_player=player:get_player_name()}) --MFF crabman (5/09/2015) fix positional sound don't work to player
 	minetest.sound_play("nether_teleporter", {pos=pos})
 	if pos.y < nether.start then
 		player_from_nether(player)
