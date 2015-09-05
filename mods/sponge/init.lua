@@ -9,17 +9,17 @@ minetest.register_node("sponge:sponge", {
 	buildable_to = false,
 	stack_max = 99,
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3},
-	   	on_place = function(itemstack, placer, pointed_thing)
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		local pn = placer:get_player_name()
 		if pointed_thing.type ~= "node" then
-			return itemstack
+			return
 		end
 		if minetest.is_protected(pointed_thing.above, pn) then
-			return itemstack
+			return
 		end
-			local change = false
-			local on_water = false
-			local pos = pointed_thing.above
+		local change = false
+		local on_water = false
+		local pos = pointed_thing.above
 		-- verifier si il est dans l'eau ou a cotée
 		if string.find(minetest.get_node(pointed_thing.above).name, "water_source")
 		or  string.find(minetest.get_node(pointed_thing.above).name, "water_flowing") then
@@ -50,31 +50,26 @@ minetest.register_node("sponge:sponge", {
 			end
 		end
 
-			if on_water == true then
-				for i=-3,3 do
-					for j=-3,3 do
-						for k=-3,3 do
-							p = {x=pos.x+i, y=pos.y+j, z=pos.z+k}
-							n = minetest.get_node(p)
-							-- On Supprime l'eau
-							if (n.name=="default:water_flowing") or (n.name == "default:water_source")then
-								minetest.add_node(p, {name="air"})
-								change = true
-							end
+		if on_water == true then
+			for i=-3,3 do
+				for j=-3,3 do
+					for k=-3,3 do
+						p = {x=pos.x+i, y=pos.y+j, z=pos.z+k}
+						n = minetest.get_node(p)
+						-- On Supprime l'eau
+						if (n.name=="default:water_flowing") or (n.name == "default:water_source")then
+							minetest.add_node(p, {name="air"})
+							change = true
 						end
 					end
 				end
 			end
-			p = {x=pos.x, y=pos.y, z=pos.z}
-			n = minetest.get_node(p)
-			if change == true then
-				minetest.add_node(pointed_thing.above, {name = "sponge:sponge_wet"})
-			else
-				minetest.add_node(pointed_thing.above, {name = "sponge:sponge"})
-			end
-		itemstack:take_item()
-		return itemstack
-
+		end
+		if change then
+			minetest.add_node(pointed_thing.above, {name = "sponge:sponge_wet"})
+		end
+		p = {x=pos.x, y=pos.y, z=pos.z}
+		n = minetest.get_node(p)
 	end
 })
 
@@ -97,10 +92,10 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-output = "sponge:sponge",
-recipe = {
-{"", "dye:black", ""},
-{"dye:yellow", "wool:white", "dye:yellow"},
-{"", "farming:wheat", ""},
-},
+	output = "sponge:sponge",
+	recipe = {
+		{"", "dye:black", ""},
+		{"dye:yellow", "wool:white", "dye:yellow"},
+		{"", "farming:wheat", ""},
+	},
 })
