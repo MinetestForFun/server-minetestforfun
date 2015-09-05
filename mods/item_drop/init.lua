@@ -1,8 +1,22 @@
-
+item_drop = {}
 local enable_damage = minetest.setting_getbool("enable_damage")
 local creative_mode = minetest.setting_getbool("creative_mode")
 
 -- Following edits by gravgun
+
+item_drop.drop_callbacks = {}
+item_drop.pickup_callbacks = {}
+
+-- on_drop(dropper, drop_entity, itemstack)
+function item_drop.add_drop_callback(on_drop)
+	table.insert(item_drop.drop_callbacks, on_drop)
+end
+
+-- on_pickup(picker, itemstack)
+function item_drop.add_pickup_callback(on_pickup)
+	table.insert(item_drop.pickup_callbacks, on_pickup)
+end
+
 -- Idea is to have a radius pickup range around the player, whatever the height
 -- We need to have a radius that will at least contain 1 node distance at the player's feet
 -- Using simple trigonometry, we get that we need a radius of
@@ -12,19 +26,19 @@ local pickup_range_squared = pickup_range*pickup_range
 local player_half_height = 0.9
 local scan_range = math.sqrt(player_half_height*player_half_height + pickup_range_squared)
 -- Node drops are insta-pickup, everything else (player drops) are not
-local delay_before_playerdrop_pickup = 1.5
+local delay_before_playerdrop_pickup = 1
 -- Time in which the node comes to the player
-local pickup_duration = 0.2
+local pickup_duration = 0.1
 -- Little treshold so the items aren't already on the player's middle
-local pickup_inv_duration = 1/pickup_duration-0.2
+local pickup_inv_duration = 1/pickup_duration*0.7
 
 local function tick()
-	minetest.after(0.25, tick)
+	minetest.after(0.1, tick)
 	local tstamp = minetest.get_us_time()
 	for _,player in ipairs(minetest.get_connected_players()) do
 		if player:get_hp() > 0 or not enable_damage then
 			local pos = player:getpos()
-			pos.y = pos.y + 0.9
+			pos.y = pos.y + player_half_height
 			local inv = player:get_inventory()
 
 			if inv then
@@ -50,9 +64,7 @@ local function tick()
 							if playerDistance <= pickup_range_squared then
 								local itemStack = ItemStack(luaEnt.itemstring)
 								if inv:room_for_item("main", itemStack) then
-									local pos1 = pos
-									pos1.y = pos1.y-player_half_height+0.5
-									local vec = {x=dX, y=pos1.y-pos2.y, z=dZ}
+									local vec = {x=dX, y=pos.y-pos2.y, z=dZ}
 									vec.x = vec.x*pickup_inv_duration
 									vec.y = vec.y*pickup_inv_duration
 									vec.z = vec.z*pickup_inv_duration
@@ -76,6 +88,9 @@ local function tick()
 											end
 											luaEnt.itemstring = ""
 											object:remove()
+											for i, cb in ipairs(item_drop.pickup_callbacks) do
+												cb(player, itemstack)
+											end
 										else
 											object:setvelocity({x = 0,y = 0,z = 0})
 											luaEnt.physical_state = true
@@ -144,6 +159,9 @@ function minetest.item_drop(itemstack, dropper, pos)
 			v.z = v.z*2
 			obj:setvelocity(v)
 			obj:get_luaentity().item_drop_min_tstamp = minetest.get_us_time() + delay_before_playerdrop_pickup * 1000000
+			for i, cb in ipairs(item_drop.drop_callbacks) do
+				cb(dropper, obj, itemstack)
+			end
 		end
 	else
 		core.add_item(pos, itemstack)
