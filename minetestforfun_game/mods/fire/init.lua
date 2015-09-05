@@ -156,8 +156,8 @@ end
 
 -- Rarely ignite things from far
 
---[[ Currently disabled to reduce the chance of uncontrollable spreading
-	fires that disrupt servers. Also for less lua processing load.
+-- Currently disabled to reduce the chance of uncontrollable spreading
+--	fires that disrupt servers. Also for less lua processing load.
 
 minetest.register_abm({
 	nodenames = {"group:igniter"},
