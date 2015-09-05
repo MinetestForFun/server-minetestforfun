@@ -52,12 +52,9 @@ end
 random_messages.set_interval()
 random_messages.read_messages()
 
-local TIMER = 0
-minetest.register_globalstep(function(dtime)
-	TIMER = TIMER + dtime;
-	if TIMER > MESSAGE_INTERVAL then
-		random_messages.show_message()
-		TIMER = 0
-	end
-end)
+local function tick()
+	random_messages.show_message()
+	minetest.after(MESSAGE_INTERVAL, tick)
+end
+minetest.after(MESSAGE_INTERVAL, tick)
 
