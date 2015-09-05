@@ -7,11 +7,12 @@ dofile(minetest.get_modpath("death_messages").."/settings.txt")
 -----------------------------------------------------------------------------------------------
 
 -- A table of quips for death messages
-
 local messages = {}
 
 -- Another one to avoid double death messages
 local whacked = {}
+
+local logfile = minetest.get_worldpath() .. "/death_logs.txt"
 
 -- Fill this table with sounds
 local sounds   = {
@@ -90,6 +91,9 @@ messages.whacking = {
 
 local function broadcast_death(msg)
 	minetest.chat_send_all(msg)
+	local logfilep = io.open(logfile, "a")
+	logfilep:write(os.date("[%Y-%m-%d %H:%M:%S] ") .. msg .. "\n")
+	logfilep:close()
 	if irc then
 		irc:say(msg)
 	end
