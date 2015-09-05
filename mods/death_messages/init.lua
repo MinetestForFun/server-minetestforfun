@@ -88,6 +88,41 @@ messages.whacking = {
 	-- Need to fill
 }
 
+messages.monsters_whacking = {
+	"%s got whacked by a %s. / %s s'est pris une raclee de la part d'un %s",
+	-- Need to fill
+}
+
+-- Monsters
+
+local monsters = {
+	["mobs:fireball"] = "dungeon master",
+	["mobs:spider"] = "spider",
+	["mobs:sand_monster"] = "sand monster",
+	["mobs:cow"] = "cow",
+	["mobs:creeper"] = "creeper",
+	["mobs:dog"] = "dog",
+	["mobs:greenbig"] = "big green slim",
+	["mobs:greenmedium"] = "medium green slim",
+	["mobs:greensmall"] = "small green slim",
+	["mobs:lavabig"] = "big lava slim",
+	["mobs:lavamedium"] = "medium lava slim",
+	["mobs:lavasmall"] = "small lava slim",
+	["mobs:yeti"] = "yeti",
+	["mobs:snowball"] = "yeti",
+	["mobs:npc"] = "npc",
+	["mobs:npc_female"] = "female npc",
+	["mobs:oerkki"] = "oerkki",
+	["mobs:stone_monster"] = "stone monster",
+	["mobs:dirt_monster"] = "dirt monster",
+	["mobs:goat"] = "goat",
+	["mobs:wolf"] = "wolf",
+	["mobs:tree_monster"] = "tree monster",
+	["mobs:mese_arrow"] = "mese monster",
+	["mobs:zombie"] = "zombie",
+	["mobs:minotaur"] = "minotaur",
+	["mobs:pumba"] = "warthog",
+}
 
 local function broadcast_death(msg)
 	minetest.chat_send_all(msg)
@@ -110,10 +145,16 @@ end
 
 minetest.register_on_punchplayer(function(player, hitter, time,
 	tool_caps, dir, damage)
-	if player:get_hp() - damage <= 0 and hitter:is_player() and not whacked[player:get_player_name()] then
-		death_message = string.format(messages.whacking[math.random(1,#messages.whacking)], player:get_player_name(), hitter:get_player_name(), player:get_player_name(), hitter:get_player_name())
+	if player:get_hp() - damage <= 0 and not whacked[player:get_player_name()] then
+		local player_name = player:get_player_name()
+		if hitter:is_player() then
+			death_message = string.format(messages.whacking[math.random(1,#messages.whacking)], player_name, hitter:get_player_name(), player_name, hitter:get_player_name())
+		else
+			local entity_name = monsters[hitter:get_entity_name()] or "monster"
+			death_message = string.format(messages.monsters_whacking[math.random(1, #messages.monsters_whacking)], player_name, entity_name, player_name, entity_name)
+		end
 		broadcast_death(death_message)
-		whacked[player:get_player_name()] = true
+		whacked[player_name] = true
 	end
 end)
 
