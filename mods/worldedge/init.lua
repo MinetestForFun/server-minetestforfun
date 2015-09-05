@@ -19,13 +19,7 @@ local waiting_list = {}
 	}
 ]]
 
-minetest.register_globalstep(function(dtime)
-	count = count + dtime
-	if count < 3 then
-		return
-	end
-	count = 0
-
+local function tick()
 	for k, v in pairs(waiting_list) do
 		if v.player and v.player:is_player() then
 			local pos = get_surface_pos(v.pos)
@@ -102,7 +96,9 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 	end
-end)
+	minetest.after(3, tick)
+end
+tick()
 
 function get_surface_pos(pos)
 	local minp = {
