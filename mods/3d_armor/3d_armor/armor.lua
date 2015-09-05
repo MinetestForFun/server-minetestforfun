@@ -178,7 +178,7 @@ armor.set_player_armor = function(self, player)
 	local textures = {}
 	local physics_o = {speed=1,gravity=1,jump=1}
 	local material = {type=nil, count=1}
-	local preview = armor:get_preview(name) or "character_preview.png"
+	local preview = ""
 	for _,v in ipairs(self.elements) do
 		elements[v] = false
 	end
@@ -193,7 +193,11 @@ armor.set_player_armor = function(self, player)
 					if level then
 						local texture = item:gsub("%:", "_")
 						table.insert(textures, texture..".png")
-						preview = preview.."^"..texture.."_preview.png"
+						if stack:get_name():find("shield") then -- //MFF(Mg|09/05/15)
+							preview = preview.."^"..texture.."_preview.png"
+						else
+							preview = texture .. "_preview.png^" .. preview
+						end
 						armor_level = armor_level + level
 						state = state + stack:get_wear()
 						items = items + 1
@@ -221,6 +225,7 @@ armor.set_player_armor = function(self, player)
 			end
 		end
 	end
+	preview = (armor:get_preview(name) or "character_preview.png") .. "^" .. preview -- //MFF(Mg|09/05/15)
 	if minetest.get_modpath("shields") then
 		armor_level = armor_level * 0.9
 	end
