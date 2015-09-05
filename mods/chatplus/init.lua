@@ -326,52 +326,50 @@ minetest.register_chatcommand("mail", {
 	end,
 })
 
-minetest.register_globalstep(function(dtime)
-	chatplus.count = chatplus.count + dtime
-	if chatplus.count > 5 then
-		chatplus.count = 0
-		-- loop through player list
-		for key,value in pairs(chatplus.players) do
-			if (
-				chatplus.loggedin and
-				chatplus.loggedin[key] and
-				chatplus.loggedin[key].player and
-				value and
-				value.inbox and
-				chatplus.loggedin[key].player.hud_add and
-				chatplus.loggedin[key].lastcount ~= #value.inbox
-			) then
-				if chatplus.loggedin[key].msgicon then
-					chatplus.loggedin[key].player:hud_remove(chatplus.loggedin[key].msgicon)
-				end
-
-				if chatplus.loggedin[key].msgicon2 then
-					chatplus.loggedin[key].player:hud_remove(chatplus.loggedin[key].msgicon2)
-				end
-
-				if #value.inbox>0 then
-					chatplus.loggedin[key].msgicon = chatplus.loggedin[key].player:hud_add({
-						hud_elem_type = "image",
-						name = "MailIcon",
-						position = {x=0.52, y=0.52},
-						text="chatplus_mail.png",
-						scale = {x=1,y=1},
-						alignment = {x=0.5, y=0.5},
-					})
-					chatplus.loggedin[key].msgicon2 = chatplus.loggedin[key].player:hud_add({
-						hud_elem_type = "text",
-						name = "MailText",
-						position = {x=0.55, y=0.52},
-						text=#value.inbox,
-						scale = {x=1,y=1},
-						alignment = {x=0.5, y=0.5},
-					})
-				end
-				chatplus.loggedin[key].lastcount = #value.inbox
+local function tick()
+	-- loop through player list
+	for key,value in pairs(chatplus.players) do
+		if (
+			chatplus.loggedin and
+			chatplus.loggedin[key] and
+			chatplus.loggedin[key].player and
+			value and
+			value.inbox and
+			chatplus.loggedin[key].player.hud_add and
+			chatplus.loggedin[key].lastcount ~= #value.inbox
+		) then
+			if chatplus.loggedin[key].msgicon then
+				chatplus.loggedin[key].player:hud_remove(chatplus.loggedin[key].msgicon)
 			end
+
+			if chatplus.loggedin[key].msgicon2 then
+				chatplus.loggedin[key].player:hud_remove(chatplus.loggedin[key].msgicon2)
+			end
+
+			if #value.inbox>0 then
+				chatplus.loggedin[key].msgicon = chatplus.loggedin[key].player:hud_add({
+					hud_elem_type = "image",
+					name = "MailIcon",
+					position = {x=0.52, y=0.52},
+					text="chatplus_mail.png",
+					scale = {x=1,y=1},
+					alignment = {x=0.5, y=0.5},
+				})
+				chatplus.loggedin[key].msgicon2 = chatplus.loggedin[key].player:hud_add({
+					hud_elem_type = "text",
+					name = "MailText",
+					position = {x=0.55, y=0.52},
+					text=#value.inbox,
+					scale = {x=1,y=1},
+					alignment = {x=0.5, y=0.5},
+				})
+			end
+			chatplus.loggedin[key].lastcount = #value.inbox
 		end
 	end
-end)
+	minetest.after(5, tick)
+end
+tick()
 
 chatplus.register_handler(function(from,to,msg)
 	if chatplus.setting("distance") <= 0 then
