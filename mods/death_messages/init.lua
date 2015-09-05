@@ -59,7 +59,7 @@ messages.acid = {
 	"%s discovered that their body in acid, it's like sugar in water. / %s a decouvert que son corps dans l'acide, c'est comme du sucre dans de l'eau.",
 	"%s thought they were swimming in apple juice. / %s a cru qu'il/elle se baignait dans du jus de pomme.",
 	"%s gave their body to make an infusion / %s a donne son corps pour faire une infusion.",
-	"%s drowned in the wrong liquid. / %s a bu la mauvaise tasse.",
+	"%s drowned into the wrong liquid. / %s a bu la mauvaise tasse.",
 	"%s tried to test their body's solubility in acid. / %s a voulu tester la solubilite de son corps dans l'acide."
 }
 
@@ -74,7 +74,7 @@ messages.sand = {
 -- Other death messages
 messages.other = {
 	"%s did something fatal to them. / %s a fait quelque chose qui lui a ete fatal.",
-	"%s is dead. / %s est mort(e).",
+	"%s died. / %s est mort(e).",
 	"%s left this world. / %s n'est plus de ce monde.",
 	"%s reached miner's heaven. / %s a rejoint le paradis des mineurs.",
 	"%s lost their life. / %s a perdu la vie.",
