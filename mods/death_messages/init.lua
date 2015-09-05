@@ -22,7 +22,7 @@ local sounds   = {
 -- Lava death messages
 messages.lava = {
 	"%s thought lava was cool. / %s pensait que la lave etait cool.",
-	"%s felt an urgent need to touch lava. / %s s'est sentit oblige de toucher la lave.",
+	"%s felt an urgent need to touch lava. / %s s'est senti oblige de toucher la lave.",
 	"%s fell in lava. / %s  est tombe dans la lave.",
 	"%s died in lava. / %s  est mort(e) dans de la lave.",
 	"%s didn't know lava was very hot. / %s ne savait pas que la lave etait vraiment chaude.",
@@ -33,38 +33,38 @@ messages.lava = {
 messages.water = {
 	"%s lacked oxygen. / %s a manque d'air.",
 	"%s tried to impersonate an anchor. / %s a essaye d'usurper l'identite d'une ancre.",
-	"%s forgot they were not a fish. / %s a oublie qu'il n'etait pas un poisson.",
-	"%s forgot they needed to breath underwater. / %s a oublier qu'il lui fallait respirer sous l'eau.",
-	"%s isn't good at swimming. / %s n'est pas bon en natation.",
+	"%s forgot he/she were not a fish. / %s a oublie qu'il/elle n'etait pas un poisson.",
+	"%s forgot he/she needed to breath underwater. / %s a oublie qu'il lui fallait respirer sous l'eau.",
+	"%s isn't good at swimming. / %s n'est pas bon(ne) en natation.",
 	"%s looked for the secret of the Unicorn. / %s a cherche le secret de la licorne.",
-	"%s forgot their scaphander. / %s a oublie son scaphandre."
+	"%s forgot his/her scaphander. / %s a oublie son scaphandre."
 }
 
 -- Burning death messages
 messages.fire = {
-	"%s was a bit too hot. / %s a eut un peu trop chaud.",
+	"%s was a bit too hot. / %s a eu un peu trop chaud.",
 	"%s was too close to the fire. / %s a ete trop pres du feu.",
 	"%s just got roasted. / %s vient de se faire rotir.",
 	"%s got burnt. / %s a ete carbonise.",
-	"%s thought they were the human torch. / %s s'est prit pour la torche.",
+	"%s thought he/she were the human torch. / %s s'est prit pour la torche.",
 	"%s started a fire. / %s a allume le feu."
 }
 
 -- Acid death messages
 messages.acid = {
-	"%s has now parts of them missing. / %s a desormais des parties en moins.",
-	"%s discovered that acid is fun. / %s a decouvert que l'acide c'est fun.",
-	"%s put their head where it melted. / %s a mis sa tete la ou elle a fondu.",
-	"%s dicovered that their body in acid, it's like sugar in water. / %s a decouvert que son corps dans l'acide, c'est comme du sucre dans de l'eau.",
-	"%s thought they were swimming in apple juice. / %s a cru qu'il se baignait dans du jus de pomme.",
-	"%s gave their body to make an infusion / %s a donne son corps pour faire une infusion.",
+	"%s has now parts of him/her missing. / %s a desormais des parties en moins.",
+	"%s discovered that acid is fun. / %s a decouvert que l'acide, c'est fun.",
+	"%s put his/her head where it melted. / %s a mis sa tete la ou elle a fondu.",
+	"%s discovered that his/her body in acid, it's like sugar in water. / %s a decouvert que son corps dans l'acide, c'est comme du sucre dans de l'eau.",
+	"%s thought he/she were swimming in apple juice. / %s a cru qu'il/elle se baignait dans du jus de pomme.",
+	"%s gave his/her body to make an infusion / %s a donne son corps pour faire une infusion.",
 	"%s drowned in the wrong liquid. / %s a bu la mauvaise tasse.",
-	"%s tried to test their body's solubility in acid. / %s a voulu tester la solubilite de son corps dans l'acide."
+	"%s tried to test his/her body's solubility in acid. / %s a voulu tester la solubilite de son corps dans l'acide."
 }
 
 -- Quicksands death messages
 messages.sand = {
-	"%s leanrt that sand is less fluid than water. / %s a appris que le sable etait moins fluide que l'eau.",
+	"%s learnt that sand is less fluid than water. / %s a appris que le sable est moins fluide que l'eau.",
 	"%s joined the mummies. / %s a rejoint les momies.",
 	"%s got themselves buried. / %s s'est fait(e) ensevelir.",
 	"%s chose to become a fossil. / %s a choisi la voie de la fossilisation."
@@ -72,11 +72,11 @@ messages.sand = {
 
 -- Other death messages
 messages.other = {
-	"%s did something fatal to them. / %s a fait quelque chose qui lui a ete fatale.",
+	"%s did something fatal to him/her. / %s a fait quelque chose qui lui a ete fatal.",
 	"%s is dead. / %s est mort(e).",
 	"%s left this world. / %s n'est plus de ce monde.",
 	"%s reached miner's heaven. / %s a rejoint le paradis des mineurs.",
-	"%s lost their life. / %s a perdu la vie.",
+	"%s lost his/her life. / %s a perdu la vie.",
 	"%s saw the light. / %s a vu la lumière."
 }
 
