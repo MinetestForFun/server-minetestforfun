@@ -34,11 +34,11 @@ messages.lava = {
 messages.water = {
 	"%s lacked oxygen. / %s a manque d'air.",
 	"%s tried to impersonate an anchor. / %s a essaye d'usurper l'identite d'une ancre.",
-	"%s forgot he/she were not a fish. / %s a oublie qu'il/elle n'etait pas un poisson.",
-	"%s forgot he/she needed to breath underwater. / %s a oublie qu'il lui fallait respirer sous l'eau.",
+	"%s forgot they were not a fish. / %s a oublie qu'il/elle n'etait pas un poisson.",
+	"%s forgot they needed to breath underwater. / %s a oublie qu'il lui fallait respirer sous l'eau.",
 	"%s isn't good at swimming. / %s n'est pas bon(ne) en natation.",
 	"%s looked for the secret of the Unicorn. / %s a cherche le secret de la licorne.",
-	"%s forgot his/her scaphander. / %s a oublie son scaphandre."
+	"%s forgot their scaphander. / %s a oublie son scaphandre."
 }
 
 -- Burning death messages
@@ -47,20 +47,20 @@ messages.fire = {
 	"%s was too close to the fire. / %s a ete trop pres du feu.",
 	"%s just got roasted. / %s vient de se faire rotir.",
 	"%s got burnt. / %s a ete carbonise.",
-	"%s thought he/she were the human torch. / %s s'est prit pour la torche.",
+	"%s thought they were the human torch. / %s s'est prit pour la torche.",
 	"%s started a fire. / %s a allume le feu."
 }
 
 -- Acid death messages
 messages.acid = {
-	"%s has now parts of him/her missing. / %s a desormais des parties en moins.",
+	"%s has now parts of them missing. / %s a desormais des parties en moins.",
 	"%s discovered that acid is fun. / %s a decouvert que l'acide, c'est fun.",
-	"%s put his/her head where it melted. / %s a mis sa tete la ou elle a fondu.",
-	"%s discovered that his/her body in acid, it's like sugar in water. / %s a decouvert que son corps dans l'acide, c'est comme du sucre dans de l'eau.",
-	"%s thought he/she were swimming in apple juice. / %s a cru qu'il/elle se baignait dans du jus de pomme.",
-	"%s gave his/her body to make an infusion / %s a donne son corps pour faire une infusion.",
+	"%s put their head where it melted. / %s a mis sa tete la ou elle a fondu.",
+	"%s discovered that their body in acid, it's like sugar in water. / %s a decouvert que son corps dans l'acide, c'est comme du sucre dans de l'eau.",
+	"%s thought they were swimming in apple juice. / %s a cru qu'il/elle se baignait dans du jus de pomme.",
+	"%s gave their body to make an infusion / %s a donne son corps pour faire une infusion.",
 	"%s drowned in the wrong liquid. / %s a bu la mauvaise tasse.",
-	"%s tried to test his/her body's solubility in acid. / %s a voulu tester la solubilite de son corps dans l'acide."
+	"%s tried to test their body's solubility in acid. / %s a voulu tester la solubilite de son corps dans l'acide."
 }
 
 -- Quicksands death messages
@@ -73,11 +73,11 @@ messages.sand = {
 
 -- Other death messages
 messages.other = {
-	"%s did something fatal to him/her. / %s a fait quelque chose qui lui a ete fatal.",
+	"%s did something fatal to them. / %s a fait quelque chose qui lui a ete fatal.",
 	"%s is dead. / %s est mort(e).",
 	"%s left this world. / %s n'est plus de ce monde.",
 	"%s reached miner's heaven. / %s a rejoint le paradis des mineurs.",
-	"%s lost his/her life. / %s a perdu la vie.",
+	"%s lost their life. / %s a perdu la vie.",
 	"%s saw the light. / %s a vu la lumière."
 }
 
