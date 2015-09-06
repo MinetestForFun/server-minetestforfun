@@ -1813,7 +1813,7 @@ local chest_formspec =
 	"listring[current_name;main]" ..
 	"listring[current_player;main]" ..
 	default.get_hotbar_bg(0, 4.85) ..
-	default.get_hotbar_bg(0, 5.85)
+	default.get_hotbar_bg(0, 6.85)
 
 local function get_locked_chest_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," .. pos.z
