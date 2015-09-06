@@ -634,6 +634,17 @@ columnia.register_column_ia("wood", "default:wood",
 		"Wooden Column Linkdown",
 		default.node_sound_wood_defaults())
 
+columnia.register_column_ia("tree", "default:tree",
+		{choppy = 2, oddly_breakable_by_hande = 1, flammable = 2},
+		{"default_tree.png"},
+		"Tree Column",
+		"Tree Column Top",
+		"Tree Column Bottom",
+		"Tree Column Crosslink",
+		"Tree Column Link",
+		"Tree Column Linkdown",
+		default.node_sound_wood_defaults())
+
 columnia.register_column_ia("junglewood", "default:junglewood",
 		{snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 		{"default_junglewood.png"},
