@@ -203,6 +203,7 @@ load_mod_irc_commands = true
 load_mod_soundset = true
 load_mod_ambience = true
 load_mod_jukebox = true
+load_mod_music = true
 
 load_mod_areas = true
 load_mod_markers = true
