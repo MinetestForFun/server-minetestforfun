@@ -448,6 +448,14 @@ function homedecor.flip_door(pos, node, player, name, side, isClosed)
 	local rside = nil
 	local nfdir = nil
 	local ofdir = node.param2 or 0
+	-- //MFF_BEGIN(Mg|09/06/15)
+	local upnode = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name
+
+	if upnode ~= "air" then
+		minetest.add_item(pos, upnode)
+	end
+	-- //MFF_END(Mg|06/09/15)
+		
 	if side == "left" then
 		rside = "right"
 		nfdir=ofdir - 1
