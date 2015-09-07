@@ -73,23 +73,30 @@ messages.sand = {
 
 -- Other death messages
 messages.other = {
-	"%s did something fatal to them. / %s a fait quelque chose qui lui a ete fatal.",
+	"%s did something fatal to them. / %s a fait quelque chose qui lui a ete fatale.",
 	"%s died. / %s est mort(e).",
 	"%s left this world. / %s n'est plus de ce monde.",
 	"%s reached miner's heaven. / %s a rejoint le paradis des mineurs.",
 	"%s lost their life. / %s a perdu la vie.",
-	"%s saw the light. / %s a vu la lumière."
+	"%s saw the light. / %s a vu la lumière.",
+	"%s fell from a bit too high. / %s est tombé d'un peu trop haut.",
+	"%s slipped on a banana skin. / %s a glissé sur une peau de banane.",
+	"%s wanted to test their super powers. / %s a voulu tester ses super pouvoirs.",
 }
 
 -- Whacking death messages
 messages.whacking = {
-	"%s got whacked by %s / %s s'est pris une raclee de la part de %s",
-	"%s's grave was dug by %s / La tombe de %s a ete creusee par %s",
+	"%s got whacked by %s. / %s s'est pris une raclee de la part de %s.",
+	"%s's grave was dug by %s. / La tombe de %s a ete creusee par %s.",
+	"%s got recycled by %s. / %s s'est fait recycler par %s."
+	"%s surely annoyed %s. / %s embetait surement %s."
 	-- Need to fill
 }
 
 messages.monsters_whacking = {
-	"%s got whacked by a %s. / %s s'est pris une raclee de la part d'un %s",
+	"%s got whacked by a %s. / %s s'est pris une raclee de la part d'un %s.",
+	"%s Darwin said : %s was less adapted than a %s. / Darwin a dit : %s était moins adapté qu'un %s.",
+	"%s was transformed into a doormat by a %s. / %s s'est fait transformer en paillasson par %s.",
 	-- Need to fill
 }
 
