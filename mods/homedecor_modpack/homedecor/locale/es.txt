@@ -167,8 +167,6 @@ Two-drawer Nightstand = Mesa de Noche de dos Cajones
 
 ### oven.lua ###
 Oven = Estufa
-## 1: Item name
-Could not insert '%s' = No se pudo insertar '%s'
 ## 1: Percentage
 Oven active: %d%% = Estufa activa: %d%%
 Oven out of fuel = Estufa sin combustible

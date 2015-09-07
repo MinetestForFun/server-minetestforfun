@@ -29,6 +29,7 @@ for _, mat in ipairs(counter_materials) do
 		infotext=S("Kitchen Cabinet"),
 		inventory = {
 			size=24,
+			lockable=true,
 		},
 	})
 end
@@ -51,6 +52,7 @@ homedecor.register("kitchen_cabinet_half", {
 	infotext=S("Kitchen Cabinet"),
 	inventory = {
 		size=12,
+		lockable=true,
 	},
 })
 
@@ -68,6 +70,7 @@ homedecor.register("kitchen_cabinet_with_sink", {
 	infotext=S("Under-sink cabinet"),
 	inventory = {
 		size=16,
+		lockable=true,
 	},
 	node_box = {
 		type = "fixed",

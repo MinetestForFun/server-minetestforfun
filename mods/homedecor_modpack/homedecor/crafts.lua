@@ -483,7 +483,7 @@ minetest.register_craft( {
         output = "homedecor:shingles_asphalt 6",
         recipe = {
                 { "building_blocks:gravel_spread", "dye:black", "building_blocks:gravel_spread" },
-                { "default:sand", "dye:black", "default:sand" },
+                { "group:sand", "dye:black", "group:sand" },
                 { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
         },
 })
@@ -1070,7 +1070,7 @@ end
 local mats = {
 	{ "brass", "homedecor:pole_brass" },
 	{ "wrought_iron", "homedecor:pole_wrought_iron" },
-	{ "wood", "default:stick" }
+	{ "wood", "group:stick" }
 }
 
 for i in ipairs(mats) do
@@ -1959,9 +1959,9 @@ minetest.register_craft( {
 minetest.register_craft( {
 	output = "homedecor:door_woodglass_left",
 	recipe = {
-		{ "default:wood", "default:glass", "" },
-		{ "default:wood", "default:glass", "technic:brass_ingot" },
-		{ "default:wood", "default:wood", "" },
+		{ "group:wood", "default:glass", "" },
+		{ "group:wood", "default:glass", "technic:brass_ingot" },
+		{ "group:wood", "group:wood", "" },
 	},
 })
 
@@ -1971,8 +1971,8 @@ minetest.register_craft( {
 	output = "homedecor:door_woodglass2_left",
 	recipe = {
 		{ "default:glass", "default:glass", "" },
-		{ "default:wood", "default:wood", "default:iron_lump" },
-		{ "default:wood", "default:wood", "" },
+		{ "group:wood", "group:wood", "default:iron_lump" },
+		{ "group:wood", "group:wood", "" },
 	},
 })
 
@@ -2042,7 +2042,6 @@ minetest.register_craft( {
 		{ "default:steel_ingot", "homedecor:heating_element", "bucket:bucket_water" }
     },
 }) ]]-- Recipe disabled. Item "technich:motor" is unknown. //MFF(Mg|08/09/15)
-
 
 minetest.register_craft( {
     output = "homedecor:dishwasher_wood",
@@ -2224,7 +2223,7 @@ minetest.register_craft({
 minetest.register_craft({
     output = "homedecor:towel_rod",
     recipe = {
-		{ "default:wood", "group:stick", "default:wood" },
+		{ "group:wood", "group:stick", "group:wood" },
 		{ "", "building_blocks:terrycloth_towel", "" },
     },
 })
@@ -2344,7 +2343,6 @@ minetest.register_craft({
 		{ "default:steel_ingot", "technic:motor", "default:steel_ingot" },
     },
 }) ]]-- Recipe disabled. Item "technich:motor" is unknown. //MFF(Mg|08/09/15)
-
 
 minetest.register_craft({
     output = "homedecor:ceiling_fan",
@@ -2655,7 +2653,7 @@ minetest.register_craft( {
         recipe = {
 			{ "homedecor:shingles_wood", "homedecor:shingles_wood", "homedecor:shingles_wood" },
 			{ "group:wood", "group:stick", "group:wood" },
-			{ "default:cobble", "", "default:cobble" }
+			{ "group:stone", "", "group:stone" }
         },
 })
 
@@ -3345,6 +3343,55 @@ minetest.register_craft( {
 	output = "homedecor:flower_pot_small 3",
 	recipe = { { "homedecor:flower_pot_terracotta" } }
 })
+
+minetest.register_craft({
+	output = "homedecor:shrubbery_green 3",
+	recipe = {
+		{ "group:leaves", "group:leaves", "group:leaves" },
+		{ "group:leaves", "group:leaves", "group:leaves" },
+		{ "group:stick", "group:stick", "group:stick" }
+	}
+})
+
+for _, color in ipairs(homedecor.shrub_colors) do
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = "homedecor:shrubbery_large_"..color,
+		recipe = {
+			"homedecor:shrubbery_"..color
+		}
+	})
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = "homedecor:shrubbery_"..color,
+		recipe = {
+			"homedecor:shrubbery_large_"..color
+		}
+	})
+
+	if color ~= "green" then
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:shrubbery_large_"..color,
+			recipe = {
+				"homedecor:shrubbery_large_green",
+				"dye:"..color
+			}
+		})
+
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:shrubbery_"..color,
+			recipe = {
+				"homedecor:shrubbery_green",
+				"dye:"..color
+			}
+		})
+
+	end
+end
 
 for i in ipairs(homedecor.banister_materials) do
 

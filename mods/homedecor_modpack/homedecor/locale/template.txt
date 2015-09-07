@@ -203,8 +203,6 @@ Two-drawer Nightstand =
 ### oven.lua ###
 Oven =
 Microwave Oven =
-## 1: Item descrition
-Could not insert '%s' =
 ## 1: Item description, 2: Percentage
 %s active: %d%% =
 ## 1: Item description

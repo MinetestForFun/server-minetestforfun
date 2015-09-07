@@ -1,1 +1,7 @@
+# temporary files
 *~
+
+# eclipse project files
+.project
+.settings
+.buildpath

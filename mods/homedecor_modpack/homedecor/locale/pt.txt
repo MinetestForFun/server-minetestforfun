@@ -171,8 +171,6 @@ Two-drawer Nightstand = Criado-mudo com duas gavetas
 
 ### oven.lua ###
 Oven = Forno
-## 1: Item name
-Could not insert '%s' = Não foi possível inserir '%s'
 ## 1: Percentage
 Oven active: %d%% = Forno ativo: %d%%
 Oven out of fuel = O forno está sem combustível

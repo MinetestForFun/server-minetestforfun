@@ -154,8 +154,6 @@ Two-drawer Nightstand = Table de chevet avec deux tiroirs
 
 ### oven.lua ###
 Oven = Four
-## 1: Item name
-Could not insert '%s' = Ne peut insérer '%s'
 ## 1: Percentage
 Oven active: %d%% = Four actif : %d%%
 Oven out of fuel = Four sans carburant

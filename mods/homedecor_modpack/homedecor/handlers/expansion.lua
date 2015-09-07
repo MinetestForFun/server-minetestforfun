@@ -54,12 +54,10 @@ local function stack(itemstack, placer, fdir, pos, def, pos2, node1, node2)
 		node2 = node2 or "air" -- this can be used to clear buildable_to nodes even though we are using a multinode mesh
 		minetest.set_node(pos2, { name = node2, param2 = (node2 ~= "air" and fdir) or nil })
 
-		-- temporary check if this is a locked node to set its infotext
-		local nodename = itemstack:get_name()
-		if string.find(nodename, "_locked") then
-			local meta = minetest.get_meta(pos)
-			meta:set_string("owner", placer_name)
-			meta:set_string("infotext", S("Locked %s (owned by %s)"):format(minetest.registered_nodes[nodename].infotext, placer_name))
+		-- call after_place_node of the placed node if available
+		local ctrl_node_def = minetest.registered_nodes[node1]
+		if ctrl_node_def and ctrl_node_def.after_place_node then
+			ctrl_node_def.after_place_node(pos, placer)
 		end
 
 		if not homedecor.expect_infinite_stacks then

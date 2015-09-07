@@ -4,8 +4,23 @@
 
 -- a box is defined as {x1, y1, z1, x2, y2, z2}
 homedecor.box = {
+	-- slab starting from -x (after rotation: left)
+	slab_x = function(depth) return { -0.5, -0.5, -0.5, -0.5+depth, 0.5, 0.5 } end,
+	-- bottom slab (starting from -y) with height optionally shifted upwards
 	slab_y = function(height, shift) return { -0.5, -0.5+(shift or 0), -0.5, 0.5, -0.5+height+(shift or 0), 0.5 } end,
-	slab_z = function(depth) return { -0.5, -0.5, -0.5+depth, 0.5, 0.5, 0.5 } end,
+	-- slab starting from -z (+z with negative depth)
+	slab_z = function(depth)
+		-- for consistency with the other functions here, we have to assume that a "z" slab starts from -z and extends by depth,
+		-- but since conventionally a lot of nodes place slabs against +z for player convenience, we define
+		-- a "negative" depth as a depth extending from the other side, i.e. +z
+		if depth > 0 then
+			-- slab starting from -z
+			return { -0.5, -0.5, -0.5, 0.5, 0.5, -0.5+depth }
+		else
+			-- slab starting from +z (z1=0.5-(-depth))
+			return { -0.5, -0.5, 0.5+depth, 0.5, 0.5, 0.5 }
+		end
+	end,
 	bar_y = function(radius) return {-radius, -0.5, -radius, radius, 0.5, radius} end,
 	cuboid = function(radius_x, radius_y, radius_z) return {-radius_x, -radius_y, -radius_z, radius_x, radius_y, radius_z} end,
 }
@@ -16,6 +31,14 @@ homedecor.nodebox = {
 	-- { type="regular" },
 	regular = { type="regular" },
 	null = { type = "fixed", fixed = { 0, 0, 0, 0, 0, 0 } },
+	corner_xz = function(depth_x, depth_z) return {
+		type="fixed",
+		fixed={
+			homedecor.box.slab_x(depth_x),
+			homedecor.box.slab_z(depth_z),
+		-- { -0.5, -0.5, -0.5, 0.5-depth, 0.5, -0.5+depth } -- slab_x without the overlap, but actually looks a bit worse
+		}
+	} end,
 }
 
 local mt = {}

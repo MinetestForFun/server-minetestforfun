@@ -1007,7 +1007,6 @@ minetest.register_craft( {
         },
 }) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
 
-
 minetest.register_craft( {
         output = "signs:sign_wall_white_red 4",
         recipe = {
@@ -1024,7 +1023,6 @@ minetest.register_craft( {
         },
 }) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
 
-
 minetest.register_craft( {
         output = "signs:sign_wall_white_black 4",
         recipe = {
@@ -1040,7 +1038,6 @@ minetest.register_craft( {
 			{ "steel:sheet_metal", "steel:sheet_metal", "steel:sheet_metal" }
         },
 }) ]]-- Removed. Item "steel:sheet_metal" is unknown //MFF(Mg|08/09/15)
-
 
 minetest.register_craft( {
         output = "signs:sign_wall_orange 4",

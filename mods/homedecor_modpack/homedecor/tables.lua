@@ -187,29 +187,3 @@ homedecor.register("utility_table_legs", {
 		fixed = { -0.37, -0.5, -0.37, 0.37, 0.5, 0.37 }
 	},
 })
-
-local desk_cbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, -0.5, 1.5, 0.5, 0.5 }
-}
-
-homedecor.register("desk", {
-	description = "Desk",
-	mesh = "homedecor_desk.obj",
-	tiles = {
-		homedecor.plain_wood,
-		"homedecor_desk_drawers.png",
-		"homedecor_generic_metal_black.png",
-	},
-	inventory_image = "homedecor_desk_inv.png",
-	selection_box = desk_cbox,
-	collision_box = desk_cbox,
-	sounds = default.node_sound_wood_defaults(),
-	groups = { snappy = 3 },
-	expand = { right="air" },
-	inventory = {
-		size=24,
-	},
-})
-
-minetest.register_alias("homedecor:desk_r", "air")

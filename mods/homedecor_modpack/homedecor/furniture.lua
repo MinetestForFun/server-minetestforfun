@@ -152,40 +152,6 @@ homedecor.register("wall_shelf", {
 	}
 })
 
-local ofchairs_sbox = {
-		type = "fixed",
-		fixed = { -8/16, -8/16, -8/16, 8/16, 29/32, 8/16 }
-	}
-
-local ofchairs_cbox = {
-		type = "fixed",
-		fixed = {
-			{ -5/16,   1/16, -7/16,  5/16,   4/16,  7/16 }, -- seat
-			{ -5/16,   4/16,  4/16,  5/16,  29/32, 15/32 }, -- seatback
-			{ -1/16, -11/32, -1/16,  1/16,   1/16,  1/16 }, -- cylinder
-			{ -8/16,  -8/16, -8/16,  8/16, -11/32,  8/16 }  -- legs/wheels
-		}
-	}
-
-local ofchairs = {"basic", "upscale"}
-
-for _, c in ipairs(ofchairs) do
-
-homedecor.register("office_chair_"..c, {
-	description = "Office chair ("..c..")",
-	drawtype = "mesh",
-	tiles = { "homedecor_office_chair_"..c..".png" },
-	mesh = "homedecor_office_chair_"..c..".obj",
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = ofchairs_sbox,
-	collision_box = ofchairs_cbox,
-	expand = { top = "air" },
-	on_rotate = screwdriver.rotate_simple
-})
-
-end
-
 -- Aliases for 3dforniture mod.
 
 minetest.register_alias("3dforniture:table", "homedecor:table")

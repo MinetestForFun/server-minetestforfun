@@ -7,7 +7,7 @@ minetest.register_craft({
 	recipe = {
 		{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
 		{ "homedecor:plastic_sheeting", "default:glass", "homedecor:plastic_sheeting" },
-		{ "homedecor:plastic_sheeting", "default:wood", "homedecor:plastic_sheeting" }
+		{ "homedecor:plastic_sheeting", "group:wood", "homedecor:plastic_sheeting" }
 	}
 })
 
@@ -15,7 +15,7 @@ minetest.register_craft({
 	output = "computer:slaystation",
 	recipe = {
 		{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
-		{ "homedecor:plastic_sheeting", "default:wood", "homedecor:plastic_sheeting" }
+		{ "homedecor:plastic_sheeting", "group:wood", "homedecor:plastic_sheeting" }
 	}
 })
 
@@ -49,7 +49,7 @@ minetest.register_craft({
 	output = "computer:admiral64",
 	recipe = {
 		{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
-		{ "default:wood", "default:wood", "default:wood" }
+		{ "group:wood", "group:wood", "group:wood" }
 	}
 })
 

@@ -400,7 +400,7 @@ for i in ipairs(gates_list) do
 	minetest.register_node("homedecor:gate_"..gate.."_closed", def)
 
     -- this is either a terrible idea or a great one
-    def = homedecor.table_copy(def)
+    def = table.copy(def)
     def.groups.not_in_creative_inventory = 1
     def.selection_box.fixed = { 0.4, -0.5, -0.5, 0.5, 0.5, 0.5 }
     def.node_box.fixed = gate_models_open[i]

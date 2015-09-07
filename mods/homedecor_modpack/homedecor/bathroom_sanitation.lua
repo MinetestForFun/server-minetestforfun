@@ -195,10 +195,7 @@ homedecor.register("shower_tray", {
 			{  0.45, -0.45, -0.45, 0.5, -0.4, 0.45 }
 		},
 	},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 0.5, -0.4, 0.5 },
-	},
+	selection_box = homedecor.nodebox.slab_y(0.1),
 	groups = {cracky=2},
 	sounds = default.node_sound_stone_defaults(),
 	on_destruct = function(pos)

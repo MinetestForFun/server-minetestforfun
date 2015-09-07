@@ -202,8 +202,6 @@ Two-drawer Nightstand = Nachttisch mit zwei Schubladen
 ### oven.lua ###
 Oven = Herd
 Microwave Oven = Mikrowelle
-## 1: Item descrition
-Could not insert '%s' = Kann '%s' nicht einfuegen
 ## 1: Item description, 2: Percentage
 %s active: %d%% = %s ist aktiv: %d%%
 ## 1: Item description

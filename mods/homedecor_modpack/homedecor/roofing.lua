@@ -1,5 +1,45 @@
 local S = homedecor.gettext
 
+minetest.register_node("homedecor:skylight", {
+	description = S("Glass Skylight"),
+	drawtype = "raillike",
+	tiles = { "default_glass.png" },
+	wield_image = "default_glass.png",
+	inventory_image = "homedecor_skylight_inv.png",
+	groups = { snappy = 3 },
+	paramtype = "light",
+	sounds = default.node_sound_glass_defaults(),
+	selection_box = homedecor.nodebox.slab_y(0.1),
+})
+
+minetest.register_node("homedecor:skylight_frosted", {
+	description = S("Glass Skylight Frosted"),
+	drawtype = "raillike",
+	tiles = { "homedecor_skylight_frosted.png" },
+	wield_image = "homedecor_skylight_frosted.png",
+	inventory_image = "homedecor_skylight_frosted_inv.png",
+	use_texture_alpha = true,
+	groups = { snappy = 3 },
+	paramtype = "light",
+	sounds = default.node_sound_glass_defaults(),
+	selection_box = homedecor.nodebox.slab_y(0.1),
+})
+
+for _, s in pairs({"asphalt", "terracotta", "wood"}) do
+	minetest.register_node("homedecor:shingles_"..s, {
+		description = S("Shingles ("..s..")"),
+		drawtype = "raillike",
+		tiles = { "homedecor_shingles_"..s..".png" },
+		wield_image = "homedecor_shingles_"..s..".png",
+		inventory_image = "homedecor_shingles_"..s.."_inv.png",
+		paramtype = "light",
+		walkable = false,
+		groups = { snappy = 3 },
+		sounds = default.node_sound_wood_defaults(),
+		selection_box = homedecor.nodebox.slab_y(0.1),
+	})
+end
+
 local slope_cbox = {
 	type = "fixed",
 	fixed = {
@@ -34,7 +74,6 @@ local icorner_cbox = {
 }
 
 homedecor.register_outer_corner = function(modname, subname, groups, slope_image, description)
-
 	local tiles = slope_image
 
 	if type(slope_image) ~= "table" then
@@ -57,7 +96,6 @@ homedecor.register_outer_corner = function(modname, subname, groups, slope_image
 end
 
 homedecor.register_inner_corner = function(modname, subname, groups, slope_image, description)
-
 	local tiles = slope_image
 
 	if type(slope_image) ~= "table" then
@@ -79,7 +117,6 @@ homedecor.register_inner_corner = function(modname, subname, groups, slope_image
 end
 
 homedecor.register_slope = function(modname, subname, recipeitem, groups, slope_image, description)
-
 	local tiles = slope_image
 
 	if type(slope_image) ~= "table" then
@@ -219,25 +256,19 @@ end
 
 -- corners
 
-homedecor.register_roof(
-	"homedecor",
-	"wood",
+homedecor.register_roof("homedecor", "wood",
 	{ snappy = 3 },
 	{ "homedecor_shingles_wood.png" },
 	"Wood Shingles"
 )
 
-homedecor.register_roof(
-	"homedecor",
-	"asphalt",
+homedecor.register_roof("homedecor", "asphalt",
 	{ snappy = 3 },
 	{ "homedecor_shingles_asphalt.png" },
 	"Asphalt Shingles"
 )
 
-homedecor.register_roof(
-	"homedecor",
-	"terracotta",
+homedecor.register_roof("homedecor", "terracotta",
 	{ snappy = 3 },
 	{ "homedecor_shingles_terracotta.png" },
 	"Terracotta Shingles"
@@ -245,39 +276,43 @@ homedecor.register_roof(
 
 -- register just the slopes
 
-homedecor.register_slope(
-	"homedecor",
-	"wood",
+homedecor.register_slope("homedecor", "wood",
 	"homedecor:shingles_wood",
 	{ snappy = 3 },
 	{ "homedecor_shingles_wood.png" },
 	"Wood Shingles"
 )
 
-homedecor.register_slope(
-	"homedecor",
-	"asphalt",
+homedecor.register_slope("homedecor", "asphalt",
 	"homedecor:shingles_asphalt",
 	{ snappy = 3 },
 	{ "homedecor_shingles_asphalt.png" },
 	"Asphalt Shingles"
 )
 
-homedecor.register_slope(
-	"homedecor",
-	"terracotta",
+homedecor.register_slope("homedecor", "terracotta",
 	"homedecor:shingles_terracotta",
 	{ snappy = 3 },
 	{ "homedecor_shingles_terracotta.png" },
 	"Terracotta Shingles"
 )
 
-homedecor.register_slope(
-	"homedecor",
-	"glass",
+homedecor.register_slope("homedecor", "glass",
 	"homedecor:shingles_glass",
 	{ snappy = 3 },
 	{ "homedecor_shingles_glass.png", "homedecor_shingles_wood.png" },
 	"Glass Shingles"
 )
 
+
+homedecor.register("chimney", {
+	description = "Chimney",
+	mesh = "homedecor_chimney.obj",
+	tiles = {
+		"homedecor_chimney_tb.png",
+		"default_brick.png"
+	},
+	selection_box = homedecor.nodebox.bar_y(0.25),
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults()
+})

@@ -35,7 +35,7 @@ homedecor.register("refrigerator_white", {
 	infotext=S("Refrigerator"),
 	inventory = {
 		size=50,
-		lockable=true
+		lockable=true,
 	},
 	on_rotate = screwdriver.rotate_simple
 })
@@ -53,7 +53,7 @@ minetest.register_alias("homedecor:refrigerator_steel_bottom_locked", "homedecor
 minetest.register_alias("homedecor:refrigerator_steel_top_locked", "air")
 
 -- kitchen "furnaces"
-homedecor.register_furnace("homedecor:oven", {
+homedecor.register_furnace("oven", {
 	description = S("Oven"),
 	tile_format = "homedecor_oven_%s%s.png",
 	output_slots = 4,
@@ -61,7 +61,7 @@ homedecor.register_furnace("homedecor:oven", {
 	cook_speed = 1.25,
 })
 
-homedecor.register_furnace("homedecor:oven_steel", {
+homedecor.register_furnace("oven_steel", {
 	description = S("Oven (stainless steel)"),
 	tile_format = "homedecor_oven_steel_%s%s.png",
 	output_slots = 4,
@@ -69,7 +69,7 @@ homedecor.register_furnace("homedecor:oven_steel", {
 	cook_speed = 1.25,
 })
 
-homedecor.register_furnace("homedecor:microwave_oven", {
+homedecor.register_furnace("microwave_oven", {
 	description = S("Microwave Oven"),
 	tiles = {
 		"homedecor_microwave_top.png", "homedecor_microwave_top.png^[transformR180",
@@ -85,11 +85,9 @@ homedecor.register_furnace("homedecor:microwave_oven", {
 	output_width = 2,
 	cook_speed = 1.5,
 	extra_nodedef_fields = {
-		drawtype = "nodebox",
-		paramtype = "light",
 		node_box = {
 			type = "fixed",
-			fixed = { { -0.5, -0.5, -0.125, 0.5, 0.125, 0.5 } },
+			fixed = { -0.5, -0.5, -0.125, 0.5, 0.125, 0.5 },
 		},
 	},
 })
@@ -129,6 +127,7 @@ local fdir_to_steampos = {
 
 minetest.register_abm({
 	nodenames = "homedecor:coffee_maker",
+	label = "sfx",
 	interval = 2,
 	chance = 1,
 	action = function(pos, node)

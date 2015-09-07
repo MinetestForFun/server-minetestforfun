@@ -144,6 +144,7 @@ homedecor.register("telephone", {
 
 minetest.register_abm({
 	nodenames = "homedecor:telephone",
+	label = "sfx",
 	interval = 30,
 	chance = 15,
 	action = function(pos, node)

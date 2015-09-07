@@ -42,7 +42,6 @@ homedecor.register("desk_fan", {
 		local entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("active", "no")
-		print (meta:get_string("active"))
 		if entity_remove[1] == nil then
 			minetest.add_entity({x=pos.x, y=pos.y, z=pos.z}, "homedecor:mesh_desk_fan") --+(0.0625*10)
 			entity_remove = minetest.get_objects_inside_radius(pos, 0.1)
@@ -62,10 +61,8 @@ homedecor.register("desk_fan", {
 		local speedy_meta = minetest.get_meta(pos)
 		if speedy_meta:get_string("active") == "no" then
 			speedy_meta:set_string("active", "yes")
-			print (speedy_meta:get_string("active"))
 		elseif speedy_meta:get_string("active") == "yes" then
 			speedy_meta:set_string("active", "no")
-			print (speedy_meta:get_string("active"))
 		end
 
 		if entity_anim[1] == nil then
@@ -145,11 +142,7 @@ homedecor.register("space_heater", {
 	}
 })
 
-local r_cbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, 0.25, 0.5, 0.5, 0.5 }
-}
-
+local r_cbox = homedecor.nodebox.slab_z(-0.25)
 homedecor.register("radiator", {
 	mesh = "homedecor_radiator.obj",
 	tiles = {
