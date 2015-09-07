@@ -73,7 +73,7 @@ messages.sand = {
 
 -- Other death messages
 messages.other = {
-	"%s did something fatal to them. / %s a fait quelque chose qui lui a ete fatale.",
+	"%s did something fatal to them. / %s a fait quelque chose qui lui a ete fatal.",
 	"%s died. / %s est mort(e).",
 	"%s left this world. / %s n'est plus de ce monde.",
 	"%s reached miner's heaven. / %s a rejoint le paradis des mineurs.",
@@ -96,7 +96,7 @@ messages.whacking = {
 messages.monsters_whacking = {
 	"%s got whacked by a %s. / %s s'est pris une raclee de la part d'un %s.",
 	"%s Darwin said : %s was less adapted than a %s. / Darwin a dit : %s était moins adapté qu'un %s.",
-	"%s was transformed into a doormat by a %s. / %s s'est fait transformer en paillasson par %s.",
+	"%s was transformed into a doormat by a %s. / %s s'est fait transformer en paillasson par un %s.",
 	-- Need to fill
 }
 
