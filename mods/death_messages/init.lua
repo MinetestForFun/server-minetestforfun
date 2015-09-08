@@ -157,7 +157,7 @@ minetest.register_on_punchplayer(function(player, hitter, time,
 		if hitter:is_player() then
 			death_message = string.format(messages.whacking[math.random(1,#messages.whacking)], player_name, hitter:get_player_name(), player_name, hitter:get_player_name())
 		else
-			local entity_name = monsters[hitter:get_entity_name()] or "monster"
+			local entity_name = monsters[hitter:get_luaentity().name] or "monster"
 			death_message = string.format(messages.monsters_whacking[math.random(1, #messages.monsters_whacking)], player_name, entity_name, player_name, entity_name)
 		end
 		broadcast_death(death_message)
