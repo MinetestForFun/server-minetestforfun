@@ -40,7 +40,7 @@ local musics = {
 	{name="EtherealShort", length=3*60+4, gain=music_volume*.7},
 	--{name="Mute", length=3*60+43, gain=music_volume*.9},
 	--{name="FarawayShort", length=3*60+5, gain=music_volume*.7},
-	--{name="dark_ambiance", length=44, gain=music_volume}
+	{name="dark_ambiance", length=44, gain=music_volume}
 }
 
 
