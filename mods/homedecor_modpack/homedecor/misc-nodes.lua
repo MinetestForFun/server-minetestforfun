@@ -273,7 +273,7 @@ homedecor.register("pool_table", {
 	groups = {snappy=3},
 	selection_box = pooltable_cbox,
 	collision_box = pooltable_cbox,
-	expand = { forward="air" },
+	expand = { forward="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
 	on_rotate = screwdriver.disallow
 })
@@ -297,7 +297,7 @@ homedecor.register("piano", {
 	groups = { snappy = 3 },
 	selection_box = piano_cbox,
 	collision_box = piano_cbox,
-	expand = { right="air" },
+	expand = { right="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
 	on_rotate = screwdriver.disallow
 })
@@ -377,7 +377,7 @@ homedecor.register("tool_cabinet", {
 	on_rotate = screwdriver.rotate_simple,
 	groups = { snappy=3 },
 	selection_box = homedecor.nodebox.slab_y(2),
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	inventory = {
 		size=24,
 	}

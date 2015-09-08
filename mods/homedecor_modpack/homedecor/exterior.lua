@@ -25,6 +25,7 @@ homedecor.register("barbecue", {
 	selection_box = bbq_cbox,
 	collision_box = bbq_cbox,
 	sounds = default.node_sound_stone_defaults(),
+	-- no need for placeholder it appears
 	expand = { top="air" },
 })
 
@@ -52,7 +53,7 @@ homedecor.register("bench_large_1", {
 	description = "Garden Bench (style 1)",
 	inventory_image = "homedecor_bench_large_1_inv.png",
 	groups = { snappy = 3 },
-	expand = { right="air" },
+	expand = { right="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = bl1_sbox,
 	node_box = bl1_cbox,
@@ -83,7 +84,7 @@ homedecor.register("bench_large_2", {
 	groups = {snappy=3},
 	selection_box = bl2_sbox,
 	node_box = bl2_cbox,
-	expand = { right="air" },
+	expand = { right="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
 	on_rotate = screwdriver.disallow
 })
@@ -101,7 +102,7 @@ homedecor.register("deckchair", {
 	tiles = {"homedecor_deckchair.png"},
 	description = "Deck Chair",
 	groups = { snappy = 3 },
-	expand = { forward="air" },
+	expand = { forward="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
@@ -116,7 +117,7 @@ homedecor.register("deckchair_striped_blue", {
 	tiles = {"homedecor_deckchair_striped_blue.png"},
 	description = "Deck Chair",
 	groups = { snappy = 3 },
-	expand = { forward="air" },
+	expand = { forward="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
@@ -135,7 +136,7 @@ homedecor.register("doghouse", {
 	selection_box = homedecor.nodebox.slab_y(1.5),
 	collision_box = homedecor.nodebox.slab_y(1.5),
 	groups = {snappy=3},
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
 	on_rotate = screwdriver.rotate_simple
 })
@@ -323,7 +324,7 @@ homedecor.register("well", {
 	groups = { snappy = 3 },
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	sounds = default.node_sound_stone_defaults(),
 	on_rotate = screwdriver.rotate_simple
 })

@@ -477,7 +477,7 @@ local function reg_lamp(suffix, nxt, tilesuffix, light, color)
 			node.name = "homedecor:standing_lamp"..lampcolor.."_"..repl[suffix]
 			minetest.set_node(pos, node)
 		end,
-		expand = { top="air" },
+		expand = { top="placeholder" },
 	})
 
 	minetest.register_alias("homedecor:standing_lamp_bottom"..lampcolor.."_"..suffix, "homedecor:standing_lamp"..lampcolor.."_"..suffix)

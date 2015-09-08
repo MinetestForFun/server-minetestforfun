@@ -32,7 +32,7 @@ homedecor.register("coat_tree", {
 	description = "Coat tree",
 	groups = {snappy=3},
 	sounds = default.node_sound_wood_defaults(),
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	walkable = false,
 	selection_box = {
 		type = "fixed",

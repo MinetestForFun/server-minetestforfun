@@ -23,36 +23,60 @@ homedecor.fdir_to_fwd = {
 	{ -1,  0 },
 }
 
--- selects which node was pointed at based on it being known, and either clickable or buildable_to
+local placeholder_node = "homedecor:expansion_placeholder"
+minetest.register_node(placeholder_node, {
+	description = "Expansion placeholder (you hacker you!)",
+	groups = { not_in_creative_inventory=1 },
+	drawtype = "airlike",
+	paramtype = "light",
+	walkable = false,
+	selection_box = { type = "fixed", fixed = { 0, 0, 0, 0, 0, 0 } },
+	is_ground_content = false,
+	sunlight_propagates = true,
+	buildable_to = false,
+})
+
+--- select which node was pointed at based on it being known, not ignored, buildable_to
+-- returns nil if no node could be selected
 local function select_node(pointed_thing)
 	local pos = pointed_thing.under
-	local def = minetest.registered_nodes[minetest.get_node(pos).name]
+	local node = minetest.get_node_or_nil(pos)
+	local def = node and minetest.registered_nodes[node.name]
 
-	if not def or (not def.on_rightclick and not def.buildable_to) then
+	if not def or not def.buildable_to then
 		pos = pointed_thing.above
-		def = minetest.registered_nodes[minetest.get_node(pos).name]
+		node = minetest.get_node_or_nil(pos)
+		def = node and minetest.registered_nodes[node.name]
 	end
-	return pos, def
+	return def and pos, def
 end
 
--- abstract function checking if 2 given nodes can and may be build to a place
-local function is_buildable_to(placer_name, pos, def, pos2)
-	local def = def or minetest.registered_nodes[minetest.get_node(pos).name]
-	local def2 = minetest.registered_nodes[minetest.get_node(pos2).name]
-
-	return def and def.buildable_to and def2 and def2.buildable_to
-		and not minetest.is_protected(pos, placer_name)
-		and not minetest.is_protected(pos2, placer_name)
+--- check if all nodes can and may be build to
+local function is_buildable_to(placer_name, ...)
+	for _, pos in ipairs({...}) do
+		local node = minetest.get_node_or_nil(pos)
+		local def = node and minetest.registered_nodes[node.name]
+		if not (def and def.buildable_to) or minetest.is_protected(pos, placer_name) then
+			return false
+		end
+	end
+	return true
 end
 
 -- place one or two nodes if and only if both can be placed
 local function stack(itemstack, placer, fdir, pos, def, pos2, node1, node2)
 	local placer_name = placer:get_player_name() or ""
-	if is_buildable_to(placer_name, pos, def, pos2) then
+	if is_buildable_to(placer_name, pos, pos2) then
 		local fdir = fdir or minetest.dir_to_facedir(placer:get_look_dir())
 		minetest.set_node(pos, { name = node1, param2 = fdir })
 		node2 = node2 or "air" -- this can be used to clear buildable_to nodes even though we are using a multinode mesh
-		minetest.set_node(pos2, { name = node2, param2 = (node2 ~= "air" and fdir) or nil })
+		-- do not assume by default, as we still might want to allow overlapping in some cases
+		local has_facedir = node2 ~= "air"
+		if node2 == "placeholder" then
+			has_facedir = false
+			node2 = placeholder_node
+		end
+		minetest.set_node(pos2, { name = node2, param2 = (has_facedir and fdir) or nil })
 
 		-- call after_place_node of the placed node if available
 		local ctrl_node_def = minetest.registered_nodes[node1]
@@ -62,20 +86,27 @@ local function stack(itemstack, placer, fdir, pos, def, pos2, node1, node2)
 
 		if not homedecor.expect_infinite_stacks then
 			itemstack:take_item()
-			return itemstack
 		end
 	end
+	return itemstack
+end
+
+local function rightclick_pointed_thing(pos, placer, itemstack)
+	local node = minetest.get_node_or_nil(pos)
+	if not node then return false end
+	local def = minetest.registered_nodes[node.name]
+	if not def or not def.on_rightclick then return false end
+	return def.on_rightclick(pos, node, placer, itemstack) or itemstack
 end
 
 -- Stack one node above another
 -- leave the last argument nil if it's one 2m high node
 function homedecor.stack_vertically(itemstack, placer, pointed_thing, node1, node2)
-	local pos, def = select_node(pointed_thing)
-	if not def then return end -- rare corner case, but happened in #205
+	local rightclick_result = rightclick_pointed_thing(pointed_thing.under, placer, itemstack)
+	if rightclick_result then return rightclick_result end
 
-	if def.on_rightclick then
-		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
-	end
+	local pos, def = select_node(pointed_thing)
+	if not pos then return itemstack end
 
 	local top_pos = { x=pos.x, y=pos.y+1, z=pos.z }
 
@@ -86,12 +117,11 @@ end
 -- like  homedecor.stack_vertically but tests first if it was placed as a right wing, then uses node1_right and node2_right instead
 
 function homedecor.stack_wing(itemstack, placer, pointed_thing, node1, node2, node1_right, node2_right)
-	local pos, def = select_node(pointed_thing)
-	if not def then return end -- rare corner case, but happened in #205
+	local rightclick_result = rightclick_pointed_thing(pointed_thing.under, placer, itemstack)
+	if rightclick_result then return rightclick_result end
 
-	if def.on_rightclick then
-		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
-	end
+	local pos, def = select_node(pointed_thing)
+	if not pos then return itemstack end
 
 	local forceright = placer:get_player_control()["sneak"]
 	local fdir = minetest.dir_to_facedir(placer:get_look_dir())
@@ -106,12 +136,11 @@ function homedecor.stack_wing(itemstack, placer, pointed_thing, node1, node2, no
 end
 
 function homedecor.stack_sideways(itemstack, placer, pointed_thing, node1, node2, dir)
-	local pos, def = select_node(pointed_thing)
-	if not def then return end -- rare corner case, but happened in #205
+	local rightclick_result = rightclick_pointed_thing(pointed_thing.under, placer, itemstack)
+	if rightclick_result then return rightclick_result end
 
-	if def.on_rightclick then
-		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
-	end
+	local pos, def = select_node(pointed_thing)
+	if not pos then return itemstack end
 
 	local fdir = minetest.dir_to_facedir(placer:get_look_dir())
 	local fdir_transform = dir and homedecor.fdir_to_right or homedecor.fdir_to_fwd
@@ -196,11 +225,11 @@ function homedecor.unextend_bed(pos, color)
 end
 
 function homedecor.place_banister(itemstack, placer, pointed_thing)
-	local pos, def = select_node(pointed_thing)
+	local rightclick_result = rightclick_pointed_thing(pointed_thing.under, placer, itemstack)
+	if rightclick_result then return rightclick_result end
 
-	if def.on_rightclick then
-		return def.on_rightclick(pointed_thing.under, minetest.get_node(pos), placer, itemstack)
-	end
+	local pos, def = select_node(pointed_thing)
+	if not pos then return itemstack end
 
 	local fdir = minetest.dir_to_facedir(placer:get_look_dir())
 
@@ -212,12 +241,12 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 
 	if not (adef and adef.buildable_to) then
 		minetest.chat_send_player(placer_name, "Not enough room - the upper space is occupied!" )
-		return
+		return itemstack
 	end
 
 	if minetest.is_protected(abovepos, placer_name) then
 		minetest.chat_send_player(placer_name, "Someone already owns that spot." )
-		return
+		return itemstack
 	end
 
 	local lxd = homedecor.fdir_to_left[fdir+1][1]
@@ -259,12 +288,12 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 	-- try to place a diagonal one on the side of blocks stacked like stairs
 	-- or follow an existing diagonal with another.
 	if (left_below_node and string.find(left_below_node.name, "banister_.-_diagonal_right")
-	  and below_node and is_buildable_to(placer_name, below_pos, nil, below_pos))
-	  or not is_buildable_to(placer_name, right_fwd_above_pos, nil, right_fwd_above_pos) then
+	  and below_node and is_buildable_to(placer_name, below_pos, below_pos))
+	  or not is_buildable_to(placer_name, right_fwd_above_pos, right_fwd_above_pos) then
 		new_place_name = string.gsub(new_place_name, "_horizontal", "_diagonal_right")
 	elseif (right_below_node and string.find(right_below_node.name, "banister_.-_diagonal_left")
-	  and below_node and is_buildable_to(placer_name, below_pos, nil, below_pos))
-	  or not is_buildable_to(placer_name, left_fwd_above_pos, nil, left_fwd_above_pos) then
+	  and below_node and is_buildable_to(placer_name, below_pos, below_pos))
+	  or not is_buildable_to(placer_name, left_fwd_above_pos, left_fwd_above_pos) then
 		new_place_name = string.gsub(new_place_name, "_horizontal", "_diagonal_left")
 
 	-- try to follow a diagonal with the corresponding horizontal
@@ -278,12 +307,12 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 
 	-- try to place a horizontal in-line with the nearest diagonal, at the top
 	elseif left_fwd_below_node and string.find(left_fwd_below_node.name, "homedecor:banister_.*_diagonal")
-	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then
+	  and is_buildable_to(placer_name, fwd_pos, fwd_pos) then
 		fdir = left_fwd_below_node.param2
 		pos = fwd_pos
 		new_place_name = string.gsub(left_fwd_below_node.name, "_diagonal_.-$", "_horizontal")
 	elseif right_fwd_below_node and string.find(right_fwd_below_node.name, "homedecor:banister_.*_diagonal")
-	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then
+	  and is_buildable_to(placer_name, fwd_pos, fwd_pos) then
 		fdir = right_fwd_below_node.param2
 		pos = fwd_pos
 		new_place_name = string.gsub(right_fwd_below_node.name, "_diagonal_.-$", "_horizontal")
@@ -298,12 +327,12 @@ function homedecor.place_banister(itemstack, placer, pointed_thing)
 
 	-- try to place a horizontal in-line with the nearest diagonal, at the bottom
 	elseif left_fwd_node and string.find(left_fwd_node.name, "homedecor:banister_.*_diagonal")
-	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then
+	  and is_buildable_to(placer_name, fwd_pos, fwd_pos) then
 		fdir = left_fwd_node.param2
 		pos = fwd_pos
 		new_place_name = string.gsub(left_fwd_node.name, "_diagonal_.-$", "_horizontal")
 	elseif right_fwd_node and string.find(right_fwd_node.name, "homedecor:banister_.*_diagonal")
-	  and is_buildable_to(placer_name, fwd_pos, nil, fwd_pos) then
+	  and is_buildable_to(placer_name, fwd_pos, fwd_pos) then
 		fdir = right_fwd_node.param2
 		pos = fwd_pos
 		new_place_name = string.gsub(right_fwd_node.name, "_diagonal_.-$", "_horizontal")

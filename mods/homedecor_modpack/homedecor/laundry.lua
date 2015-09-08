@@ -54,7 +54,7 @@ homedecor.register("ironing_board", {
 		"wool_grey.png",
 		"homedecor_generic_metal_black.png^[brighten"
 	},
-	expand = {right = "air"},
+	expand = {right = "placeholder"},
 	groups = { snappy = 3 },
 	selection_box = ib_cbox,
 	collision_box = ib_cbox

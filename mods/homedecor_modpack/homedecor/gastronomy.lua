@@ -185,7 +185,7 @@ homedecor.register("soda_machine", {
 	groups = {snappy=3},
 	selection_box = svm_cbox,
 	collision_box = svm_cbox,
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
 	on_rotate = screwdriver.rotate_simple,
 	on_punch = function(pos, node, puncher, pointed_thing)

@@ -91,7 +91,7 @@ homedecor.register("grandfather_clock", {
 	selection_box = gf_cbox,
 	collision_box = gf_cbox,
 	sounds = default.node_sound_wood_defaults(),
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	on_rotate = screwdriver.rotate_simple
 })
 

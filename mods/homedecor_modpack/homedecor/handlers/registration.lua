@@ -1,5 +1,6 @@
 homedecor = homedecor or {}
 local S = homedecor.gettext
+local placeholder_node = "homedecor:expansion_placeholder"
 
 --wrapper around minetest.register_node that sets sane defaults and interprets some specialized settings
 function homedecor.register(name, original_def)
@@ -41,6 +42,12 @@ function homedecor.register(name, original_def)
 	def.after_unexpand = nil
 
 	if expand then
+		-- dissallow rotating only half the expanded node by default
+		-- unless we know better
+		def.on_rotate = def.on_rotate
+			or (def.mesh and expand.top and screwdriver.rotate_simple)
+			or screwdriver.disallow
+
 		def.on_place = def.on_place or function(itemstack, placer, pointed_thing)
 			if expand.top then
 				return homedecor.stack_vertically(itemstack, placer, pointed_thing, itemstack:get_name(), expand.top)
@@ -53,7 +60,8 @@ function homedecor.register(name, original_def)
 		def.after_dig_node = def.after_dig_node or function(pos, oldnode, oldmetadata, digger)
 			if expand.top and expand.forward ~= "air" then
 				local top_pos = { x=pos.x, y=pos.y+1, z=pos.z }
-				if minetest.get_node(top_pos).name == expand.top then
+				local node = minetest.get_node(top_pos).name
+				if node == expand.top or node == placeholder_node then
 					minetest.remove_node(top_pos)
 				end
 			end
@@ -63,13 +71,15 @@ function homedecor.register(name, original_def)
 
 			if expand.right and expand.forward ~= "air" then
 				local right_pos = { x=pos.x+homedecor.fdir_to_right[fdir+1][1], y=pos.y, z=pos.z+homedecor.fdir_to_right[fdir+1][2] }
-				if minetest.get_node(right_pos).name == expand.right then
+				local node = minetest.get_node(right_pos).name
+				if node == expand.right or node == placeholder_node then
 					minetest.remove_node(right_pos)
 				end
 			end
 			if expand.forward and expand.forward ~= "air" then
 				local forward_pos = { x=pos.x+homedecor.fdir_to_fwd[fdir+1][1], y=pos.y, z=pos.z+homedecor.fdir_to_fwd[fdir+1][2] }
-				if minetest.get_node(forward_pos).name == expand.forward then
+				local node = minetest.get_node(forward_pos).name
+				if node == expand.forward or node == placeholder_node then
 					minetest.remove_node(forward_pos)
 				end
 			end

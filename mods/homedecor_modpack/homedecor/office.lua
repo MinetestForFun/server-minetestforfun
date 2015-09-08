@@ -34,7 +34,7 @@ homedecor.register("desk", {
 	collision_box = desk_cbox,
 	sounds = default.node_sound_wood_defaults(),
 	groups = { snappy = 3 },
-	expand = { right="air" },
+	expand = { right="placeholder" },
 	inventory = {
 		size=24,
 		lockable=true,
@@ -112,7 +112,7 @@ for _, c in pairs({"basic", "upscale"}) do
 		sounds = default.node_sound_wood_defaults(),
 		selection_box = ofchairs_sbox,
 		collision_box = ofchairs_cbox,
-		expand = { top = "air" },
+		expand = { top = "placeholder" },
 		on_rotate = screwdriver.rotate_simple
 	})
 end

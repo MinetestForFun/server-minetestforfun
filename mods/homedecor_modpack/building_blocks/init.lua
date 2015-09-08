@@ -164,7 +164,7 @@ minetest.register_node("building_blocks:Fireplace", {
 	},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = LIGHT_MAX,
+	light_source = default.LIGHT_MAX,
 	sunlight_propagates = true,
 	is_ground_content = true,
 	groups = {cracky=2},

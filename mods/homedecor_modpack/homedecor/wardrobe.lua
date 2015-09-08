@@ -18,7 +18,7 @@ homedecor.register("wardrobe", {
 	selection_box = wd_cbox,
 	collision_box = wd_cbox,
 	sounds = default.node_sound_wood_defaults(),
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	on_rotate = screwdriver.rotate_simple,
 	infotext = "Wardrobe",
 	inventory = {

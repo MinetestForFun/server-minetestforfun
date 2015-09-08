@@ -12,7 +12,7 @@ homedecor.register("refrigerator_steel", {
 	sounds = default.node_sound_stone_defaults(),
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	infotext=S("Refrigerator"),
 	inventory = {
 		size=50,
@@ -31,7 +31,7 @@ homedecor.register("refrigerator_white", {
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
 	sounds = default.node_sound_stone_defaults(),
-	expand = { top="air" },
+	expand = { top="placeholder" },
 	infotext=S("Refrigerator"),
 	inventory = {
 		size=50,

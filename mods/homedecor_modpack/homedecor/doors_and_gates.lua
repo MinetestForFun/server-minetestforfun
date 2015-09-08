@@ -448,14 +448,6 @@ function homedecor.flip_door(pos, node, player, name, side, isClosed)
 	local rside = nil
 	local nfdir = nil
 	local ofdir = node.param2 or 0
-	-- //MFF_BEGIN(Mg|09/06/15)
-	local upnode = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name
-
-	if upnode ~= "air" then
-		minetest.add_item(pos, upnode)
-	end
-	-- //MFF_END(Mg|06/09/15)
-		
 	if side == "left" then
 		rside = "right"
 		nfdir=ofdir - 1
@@ -612,21 +604,18 @@ homedecor.register("door_japanese_closed", {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.0625, 0.5, 1.5, 0},
 	},
-	expand = { top = "air" },
+	expand = { top = "placeholder" },
 	on_rightclick = function(pos, node, clicker)
 		minetest.set_node(pos, {name = "homedecor:door_japanese_open", param2 = node.param2})
 	end
 })
 
-minetest.register_node("homedecor:door_japanese_open", {
+homedecor.register("door_japanese_open", {
 	tiles = {
 		"homedecor_generic_wood_luxury.png",
 		"homedecor_japanese_paper.png"
 	},
-	drawtype = "mesh",
 	mesh = "homedecor_door_japanese_open.obj",
-	paramtype = "light",
-	paramtype2 = "facedir",
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	sounds = default.node_sound_wood_defaults(),
 	on_rotate = screwdriver.disallow,
@@ -638,6 +627,7 @@ minetest.register_node("homedecor:door_japanese_open", {
 		type = "fixed",
 		fixed = {-1.5, -0.5, -0.0625, -0.5, 1.5, 0},
 	},
+	expand = { top = "placeholder" },
 	on_rightclick = function(pos, node, clicker)
 		minetest.set_node(pos, {name = "homedecor:door_japanese_closed", param2 = node.param2})
 	end,
