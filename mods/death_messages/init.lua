@@ -88,7 +88,7 @@ messages.other = {
 messages.whacking = {
 	"%s got whacked by %s. / %s s'est pris une raclee de la part de %s.",
 	"%s's grave was dug by %s. / La tombe de %s a ete creusee par %s.",
-	"%s got recycled by %s. / %s s'est fait recycler par %s."
+	"%s got recycled by %s. / %s s'est fait recycler par %s.",
 	"%s surely annoyed %s. / %s embetait surement %s."
 	-- Need to fill
 }
