@@ -10,7 +10,7 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
----10/09/2015--- (Thanks to : LeMagnesium/Mg, gravgun, crabman77/crabman, fabienswag)
+---10/09/2015--- (Thanks to : LeMagnesium/Mg, gravgun, crabman77/crabman, fabienwang)
 Update of "hudbars" (crashfix)
 Update of "homedecor_modpack" (Many things improved like a huge parts of the craft recipe now work with "group" ressources, also omproved every tree textures)
 Addition of "music" (Added 3 musics which are played sometimes, this mod is a great addition of the "ambience_modpack")
