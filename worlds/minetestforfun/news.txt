@@ -10,8 +10,22 @@ Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider no
 Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
+---10/09/2015--- (Thanks to : LeMagnesium/Mg, gravgun, crabman77/crabman, fabienswag)
+Update of "hudbars" (crashfix)
+Update of "homedecor_modpack" (Many things improved like a huge parts of the craft recipe now work with "group" ressources, also omproved every tree textures)
+Addition of "music" (Added 3 musics which are played sometimes, this mod is a great addition of the "ambience_modpack")
+Update of "MFF/chests" (Fixed the formspec bug wince the update of "MFF_game")
+Update of "3d_armor" (Fixed a bug with shields on the preview, and improved all textures in 32px)
+Update of "death_messages" (Added death messages for "Players Vs Players" with the name of who killed who, and translated all messages in english+french, we also added new death messages when you die from monsters)
+The website homepage is now translated in english.
+Update of all sounds of the server, now there are more smaller, so when you enter the server the loading time is reduced !
+Update of "mff_game" (Updated our game with "MT_game")
+Update of "flowers" (Fixed the dyes craft)
+Removal of "snowdrift" (Since 0.4.13-stable, useless)
+Removal of "jumping" (Too bugged since 0.4.13-stable)
+
 ---01/09/2015--- (Thanks to : Gael-de-Sailly, crabman77/crabman, LeMagnesium/Mg)
-Update of "mobs" (Reduce the sounds size)
+Update of "mobs" (Reduced the sounds size)
 Update of "watershed" (Used "default:dirt_with_dry_grass" instead of "watershed:drygrass" because "MT_game" now includes this dirt)
 Update of "snow" (Fixed the unknow nodes/textures)
 Update of "money" (New shops textures)
