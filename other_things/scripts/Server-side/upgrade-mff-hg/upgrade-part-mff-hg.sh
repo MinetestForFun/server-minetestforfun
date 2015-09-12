@@ -34,11 +34,10 @@ rm /home/quentinbd/mff-hg/worlds/minetestforfun-hg/top_config.txt
 cp /home/quentinbd/server-minetestforfun-hungry_games/minetest.conf /home/quentinbd/mff-hg/games/minetestforfun_hg/
 cp /home/quentinbd/server-minetestforfun-hungry_games/minetest.conf /home/quentinbd/mff-hg/
 cp /home/quentinbd/server-minetestforfun-hungry_games/game.conf /home/quentinbd/mff-hg/games/minetestforfun_hg/
-cp /home/quentinbd/server-minetestforfun-hungry_games/minetest.conf /home/quentinbd/mff-hg/
 #cp /home/quentinbd/server-minetestforfun-hungry_games/worlds/minetestforfun-hg/world.mt /home/quentinbd/mff-hg/worlds/minetestforfun-hg/
 cp /home/quentinbd/server-minetestforfun-hungry_games/worlds/minetestforfun-hg/random_messages /home/quentinbd/mff-hg/worlds/minetestforfun-hg/
 cp /home/quentinbd/server-minetestforfun-hungry_games/worlds/minetestforfun-hg/top_config.txt /home/quentinbd/mff-hg/worlds/minetestforfun-hg/
-echo "Nouveau 'minetest.conf, game.conf, world.mt, et le random_messages' correctement déplacé"
+echo "Nouveau 'minetest.conf, game.conf et le random_messages' correctement déplacé"
 
 # Suppression du dossier cloné
 rm -Rf /home/quentinbd/server-minetestforfun-hungry_games/

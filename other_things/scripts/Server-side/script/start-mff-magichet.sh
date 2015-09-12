@@ -1,9 +1,9 @@
 #!/bin/bash
 
 DEBUG='/home/quentinbd/script/debug-mff-magichet.txt'
-MOREDEBUG='/home/quentinbd/script/moredebug-mff-megichet.txt'
+MOREDEBUG='/home/quentinbd/script/moredebug-mff-magichet.txt'
 
-cd /home/quentinbd/mff-hg
+cd /home/quentinbd/mff-magichet
 
 while true
 	do
