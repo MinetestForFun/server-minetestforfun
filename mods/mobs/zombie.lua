@@ -38,7 +38,7 @@ mobs:register_mob("mobs:zombie", {
 -- drops nether fruit and silver coin when dead
 	drops = {
 		{name = "nether:apple",
-		chance = 4, min = 1, max = 1,},
+		chance = 2, min = 1, max = 2,},
 		{name = "mobs:zombie_tibia",
 		chance = 10, min = 1, max = 1,},
 		{name = "maptools:silver_coin",
