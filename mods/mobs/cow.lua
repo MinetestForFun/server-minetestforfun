@@ -18,8 +18,9 @@ mobs:register_mob("mobs:cow", {
 	visual = "mesh",
 	mesh = "mobs_cow.b3d",
 	textures = {
-		{"mobs_cow.png"},
-		--{"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
+		{"mobs_cow_lightbrown.png"},
+		{"mobs_cow_brown.png"},
+		{"mobs_cow_white.png"},
 	},
 	blood_texture = "mobs_blood.png",
 	-- sounds
@@ -79,7 +80,7 @@ mobs:register_mob("mobs:cow", {
 				self.gotten = true -- milked
 				return
 			end
-		end	
+		end
 		mobs:capture_mob(self, clicker, 0, 5, 60, false, nil)
 	end,
 })
