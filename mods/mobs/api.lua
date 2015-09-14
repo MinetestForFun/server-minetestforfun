@@ -1,4 +1,4 @@
--- Mobs Api (28th August 2015)
+-- Mobs Api (9th September 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -110,24 +110,21 @@ function mobs:register_mob(name, def)
 			return (v.x ^ 2 + v.z ^ 2) ^ (0.5)
 		end,
 --[[
-		in_fov = function(self,pos)
+		in_fov = function(self, pos)
 			-- checks if POS is in self's FOV
 			local yaw = self.object:getyaw() + self.rotate
 			local vx = math.sin(yaw)
 			local vz = math.cos(yaw)
 			local ds = math.sqrt(vx ^ 2 + vz ^ 2)
 			local ps = math.sqrt(pos.x ^ 2 + pos.z ^ 2)
-			local d = { x = vx / ds, z = vz / ds }
-			local p = { x = pos.x / ps, z = pos.z / ps }
-			local an = ( d.x * p.x ) + ( d.z * p.z )
+			local d = {x = vx / ds, z = vz / ds}
+			local p = {x = pos.x / ps, z = pos.z / ps}
+			local an = (d.x * p.x) + (d.z * p.z)
 
-			a = math.deg( math.acos( an ) )
-
-			if a > ( self.fov / 2 ) then
+			if math.deg(math.acos(an)) > (self.fov / 2) then
 				return false
-			else
-				return true
 			end
+			return true
 		end,
 ]]
 		set_animation = function(self, type)
@@ -186,8 +183,8 @@ function mobs:register_mob(name, def)
 
 		on_step = function(self, dtime)
 
-			if self.type == "monster"
-			and peaceful_only then
+			if (self.type == "monster" and peaceful_only)
+			or not within_limits(self.object:getpos(), 0) then
 				self.object:remove()
 				return
 			end
@@ -198,7 +195,8 @@ function mobs:register_mob(name, def)
 				self.lifetimer = self.lifetimer - dtime
 				if self.lifetimer <= 0
 				and self.state ~= "attack" then
-					minetest.log("action","lifetimer expired, removed "..self.name)
+					minetest.log("action",
+						"lifetimer expired, removed "..self.name)
 					effect(self.object:getpos(), 15, "tnt_smoke.png")
 					self.object:remove()
 					return
@@ -330,7 +328,9 @@ function mobs:register_mob(name, def)
 
 				-- lava or fire
 				if self.lava_damage ~= 0
-				and (nodef.groups.lava or nod.name == "fire:basic_flame") then
+				and (nodef.groups.lava
+					or nod.name == "fire:basic_flame"
+					or nod.name == "xanadu:safe_fire") then
 					self.object:set_hp(self.object:get_hp() - self.lava_damage)
 					effect(pos, 5, "fire_basic_flame.png")
 					if check_for_death(self) then return end
@@ -528,23 +528,23 @@ function mobs:register_mob(name, def)
 				for i,obj in ipairs(ents) do
 					ent = obj:get_luaentity()
 
-				-- check for same animal with different colour
-				local canmate = false
-				if ent then
-					if ent.name == self.name then
-						canmate = true
-					else
-						local entname = string.split(ent.name,":")
-						local selfname = string.split(self.name,":")
-						if entname[1] == selfname[1] then
-							entname = string.split(entname[2],"_")
-							selfname = string.split(selfname[2],"_")
+					-- check for same animal with different colour
+					local canmate = false
+					if ent then
+						if ent.name == self.name then
+							canmate = true
+						else
+							local entname = string.split(ent.name,":")
+							local selfname = string.split(self.name,":")
 							if entname[1] == selfname[1] then
-								canmate = true
+								entname = string.split(entname[2],"_")
+								selfname = string.split(selfname[2],"_")
+								if entname[1] == selfname[1] then
+									canmate = true
+								end
 							end
 						end
 					end
-				end
 
 					if ent
 					and canmate == true
@@ -1150,8 +1150,9 @@ end
 			-- weapon wear
 			hitter:set_detach() --MFF (crabman|27/7/2015) anti usebug, immortal if attached
 			local weapon = hitter:get_wielded_item()
+			local punch_interval = tool_capabilities.full_punch_interval or 1.4
 			if weapon:get_definition().tool_capabilities ~= nil then
-				local wear = ( (weapon:get_definition().tool_capabilities.full_punch_interval or 1.4) / 75 ) * 9000
+				local wear = (punch_interval / 75) * 9000
 				weapon:add_wear(wear)
 				hitter:set_wielded_item(weapon)
 			end
@@ -1338,8 +1339,9 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 			max_hear_distance = 16
 		})
 	end
-	-- if area protected then no blast damage
-	if minetest.is_protected(pos, "") then
+	-- if area protected or at map limits then no blast damage
+	if minetest.is_protected(pos, "")
+	or not within_limits(pos, radius) then
 		return
 	end
 	for z = -radius, radius do
@@ -1481,11 +1483,15 @@ function mobs:register_arrow(name, def)
 
 		on_step = function(self, dtime)
 			self.timer = (self.timer or 0) + 1
-			if self.timer > 150 then self.object:remove() return end
+			local pos = self.object:getpos()
+			if self.timer > 150
+			or not within_limits(pos, 0) then
+				self.object:remove()
+				return
+			end
 
 			local engage = 10 - (self.velocity / 2) -- clear entity before arrow becomes active
-			local pos = self.object:getpos()
-			local node = minetest.get_node_or_nil(self.object:getpos())
+			local node = minetest.get_node_or_nil(pos)
 			if node then node = node.name else node = "air" end
 
 			if self.hit_node
@@ -1537,7 +1543,7 @@ function mobs:register_egg(mob, desc, background, addegg)
 		inventory_image = invimg,
 		on_place = function(itemstack, placer, pointed_thing)
 			local pos = pointed_thing.above
-			if pointed_thing.above
+			if pos and within_limits(pos, 0)
 			and not minetest.is_protected(pos, placer:get_player_name()) then
 				pos.y = pos.y + 0.5
 				local mob = minetest.add_entity(pos, mob)
@@ -1632,7 +1638,7 @@ function follow_holding(self, clicker)
 end
 
 -- feeding, taming and breeding (thanks blert2112)
-function mobs:feed_tame(self, clicker, feed_count, breed)
+function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 
 	if not self.follow then return false end
 
@@ -1640,7 +1646,7 @@ function mobs:feed_tame(self, clicker, feed_count, breed)
 
 	-- can eat/tame with item in hand
 	if follow_holding(self, clicker) then
---print ("mmm, tasty")
+
 		-- take item
 		if not minetest.setting_getbool("creative_mode") then
 			item:take_item()
@@ -1649,9 +1655,17 @@ function mobs:feed_tame(self, clicker, feed_count, breed)
 
 		-- heal health
 		local hp = self.object:get_hp()
-		hp = math.min(hp + 4, self.hp_max)
-		self.object:set_hp(hp)
-		self.health = hp
+		--if hp < self.hp_max then
+			hp = hp + 4
+			if hp >= self.hp_max then
+				hp = self.hp_max
+				minetest.chat_send_player(clicker:get_player_name(),
+					self.name:split(":")[2]
+					.. " at full health")
+			end
+			self.object:set_hp(hp)
+			self.health = hp
+		--end
 
 		-- make children grow quicker
 		if self.child == true then
@@ -1667,9 +1681,11 @@ function mobs:feed_tame(self, clicker, feed_count, breed)
 				self.horny = true
 			end
 			self.gotten = false
-			self.tamed = true
-			if not self.owner or self.owner == "" then
-				self.owner = clicker:get_player_name()
+			if tame then
+				self.tamed = true
+				if not self.owner or self.owner == "" then
+					self.owner = clicker:get_player_name()
+				end
 			end
 
 			-- make sound when fed so many times
@@ -1685,3 +1701,17 @@ function mobs:feed_tame(self, clicker, feed_count, breed)
 		return false
 	end
 end
+
+-- check if within map limits (-30911 to 30927)
+function within_limits(pos, radius)
+	if  (pos.x - radius) > -30913
+	and (pos.x + radius) <  30928
+	and (pos.y - radius) > -30913
+	and (pos.y + radius) <  30928
+	and (pos.z - radius) > -30913
+	and (pos.z + radius) <  30928 then
+		return true -- within limits
+	end
+	return false -- beyond limits
+end
+

@@ -81,17 +81,17 @@ mobs:register_arrow("mobs:fireball", {
 
 	-- direct hit, no fire... just plenty of pain
 	hit_player = function(self, player)
-		player:punch(self.object, 1.0,  {
+		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 12},
-		}, 0)
+		}, nil)
 	end,
 
 	hit_mob = function(self, player)
-		player:punch(self.object, 1.0,  {
+		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 12},
-		}, 0)
+		}, nil)
 	end,
 
 	-- node hit, bursts into flame (cannot blast through obsidian or protection redo mod items)
