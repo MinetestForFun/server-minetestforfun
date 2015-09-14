@@ -16,7 +16,7 @@ mobs:register_mob("mobs:cow", {
 	-- textures and model
 	collisionbox = {-0.8, 0, -0.8, 0.8, 1.6, 0.8}, --Modif MFF (debug)
 	visual = "mesh",
-	mesh = "mobs_cow.x",
+	mesh = "mobs_cow.b3d",
 	textures = {
 		{"mobs_cow.png"},
 		--{"mobs_cow_brown.png"}, -- dé-commenter quand "mobs_cow_brown.png" sera compatible
