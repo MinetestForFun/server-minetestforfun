@@ -4,5 +4,5 @@
 chmod 600 /home/quentinbd/.ssh/id_rsa
 chmod 600 /home/quentinbd/.ssh/id_rsa.pub
 # Begin the RSYNC
-rsync -azrv --delete /home/quentinbd/minetest/worlds/minetestforfun/news.txt quentinbd@192.168.1.20:/var/www/wordpress/wp-content/uploads/news/
+rsync -azrv --delete /home/quentinbd/mff/worlds/minetestforfun/news.txt quentinbd@192.168.1.20:/var/www/wordpress/wp-content/uploads/news/
 echo "Transfert réussi de news.txt sur le wordpress"
