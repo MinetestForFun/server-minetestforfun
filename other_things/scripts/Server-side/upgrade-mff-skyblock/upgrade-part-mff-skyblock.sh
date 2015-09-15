@@ -24,17 +24,19 @@ mkdir /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/mods/
 cp -R /home/quentinbd/server-minetestforfun-skyblock/mods/ /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/
 echo "Nouveaux /mods et /games correctement déplacés"
 
-# On MAJ le minetest.conf, game.conf, world.mt, et le random_messages
+# On MAJ le minetest.conf, game.conf, world.mt, le forbidden_names, et le random_messages
 mkdir /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/
 rm /home/quentinbd/mff-skyblock/minetest.conf
 rm /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/world.mt
 rm /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/random_messages
+rm /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/forbidden_names.txt
 # On les remet
 cp /home/quentinbd/server-minetestforfun-skyblock/minetest.conf /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/
 cp /home/quentinbd/server-minetestforfun-skyblock/minetest.conf /home/quentinbd/mff-skyblock/
 cp /home/quentinbd/server-minetestforfun-skyblock/game.conf /home/quentinbd/mff-skyblock/games/minetestforfun_skyblock/
 #cp /home/quentinbd/server-minetestforfun-skyblock/worlds/minetestforfun-skyblock/world.mt /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/
 cp /home/quentinbd/server-minetestforfun-skyblock/worlds/minetestforfun-skyblock/random_messages /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/
+cp /home/quentinbd/server-minetestforfun-skyblock/worlds/minetestforfun-skyblock/forbidden_names.txt /home/quentinbd/mff-skyblock/worlds/minetestforfun-skyblock/
 echo "Nouveau 'minetest.conf, game.conf, world.mt, et le random_messages' correctement déplacé"
 
 # Suppression du dossier cloné

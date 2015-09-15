@@ -22,7 +22,7 @@ cp -R /home/quentinbd/server-minetestforfun/minetestforfun_game/ /home/quentinbd
 cp -R /home/quentinbd/server-minetestforfun/mods/ /home/quentinbd/mff/
 echo "Nouveaux /mods et /games correctement déplacés"
 
-# On MAJ le minetest.conf, world.mt, random_messages et le news.txt
+# On MAJ le minetest.conf, world.mt, random_messages, forbidden_names, et le news.txt
 mkdir /home/quentinbd/mff/worlds/minetestforfun/
 rm /home/quentinbd/mff-hg/minetest.conf
 rm /home/quentinbd/mff/worlds/minetestforfun/world.mt
@@ -33,6 +33,7 @@ cp /home/quentinbd/server-minetestforfun/minetest.conf /home/quentinbd/mff/
 cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/world.mt /home/quentinbd/mff/worlds/minetestforfun/
 cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/random_messages /home/quentinbd/mff/worlds/minetestforfun/
 cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/news.txt /home/quentinbd/mff/worlds/minetestforfun/
+cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/forbidden_names.txt /home/quentinbd/mff/worlds/minetestforfun/
 echo "Nouvelles news.txt, world.mt  et random_messages correctement déplacé"
 
 # TEMPORAIRE - ré-ajout de l'ancien mod irc
