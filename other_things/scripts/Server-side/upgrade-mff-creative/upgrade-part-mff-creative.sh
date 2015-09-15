@@ -24,7 +24,7 @@ mkdir /home/quentinbd/mff-creative/games/minetestforfun_creative/mods/
 cp -R /home/quentinbd/server-minetestforfun-creative/mods/ /home/quentinbd/mff-creative/games/minetestforfun_creative/
 echo "Nouveaux /mods et /games correctement déplacés"
 
-# On MAJ le minetest.conf, game.conf, world.mt, et le random_messages
+# On MAJ le minetest.conf, game.conf, world.mt, forbidden_names, et le random_messages
 mkdir /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
 rm /home/quentinbd/mff-creative/minetest.conf
 rm /home/quentinbd/mff-creative/worlds/minetestforfun-creative/world.mt
@@ -35,6 +35,7 @@ cp /home/quentinbd/server-minetestforfun-creative/minetest.conf /home/quentinbd/
 cp /home/quentinbd/server-minetestforfun-creative/game.conf /home/quentinbd/mff-creative/games/minetestforfun_creative/
 #cp /home/quentinbd/server-minetestforfun-creative/worlds/minetestforfun-creative/world.mt /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
 cp /home/quentinbd/server-minetestforfun-creative/worlds/minetestforfun-creative/random_messages /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
+cp /home/quentinbd/server-minetestforfun-creative/worlds/minetestforfun-creative/forbidden_names.txt /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
 echo "Nouveau 'minetest.conf, game.conf, world.mt, et le random_messages' correctement déplacé"
 
 # Suppression du dossier cloné
