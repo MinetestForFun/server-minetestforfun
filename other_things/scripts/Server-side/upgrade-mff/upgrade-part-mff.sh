@@ -17,17 +17,18 @@ echo "Sauvegarde de /mods et /games correctement effectuée."
 # On MAJ les nouveaux minetest/games et minetest/mods
 rm -R /home/quentinbd/mff/games/
 rm -R /home/quentinbd/mff/mods/
-mkdir /home/quentinbd/mff/games/
+mkdir -p /home/quentinbd/mff/games/
 cp -R /home/quentinbd/server-minetestforfun/minetestforfun_game/ /home/quentinbd/mff/games/
 cp -R /home/quentinbd/server-minetestforfun/mods/ /home/quentinbd/mff/
 echo "Nouveaux /mods et /games correctement déplacés"
 
 # On MAJ le minetest.conf, world.mt, random_messages, forbidden_names, et le news.txt
-mkdir /home/quentinbd/mff/worlds/minetestforfun/
+mkdir -p /home/quentinbd/mff/worlds/minetestforfun/
 rm /home/quentinbd/mff-hg/minetest.conf
 rm /home/quentinbd/mff/worlds/minetestforfun/world.mt
 rm /home/quentinbd/mff/worlds/minetestforfun/random_messages
 rm /home/quentinbd/mff/worlds/minetestforfun/news.txt
+rm /home/quentinbd/mff/worlds/minetestforfun/forbidden_names.txt
 # On les remet
 cp /home/quentinbd/server-minetestforfun/minetest.conf /home/quentinbd/mff/
 cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/world.mt /home/quentinbd/mff/worlds/minetestforfun/

@@ -17,15 +17,15 @@ echo "Sauvegarde de /mods et /games correctement effectuée."
 # On MAJ les nouveaux minetest/games et minetest/mods
 rm -R /home/quentinbd/mff-creative/mods/
 rm -R /home/quentinbd/mff-creative/games/
-mkdir /home/quentinbd/mff-creative/games/
-mkdir /home/quentinbd/server-minetestforfun-creative/games
-mkdir /home/quentinbd/mff-creative/games/minetestforfun_creative/
-mkdir /home/quentinbd/mff-creative/games/minetestforfun_creative/mods/
+mkdir -p /home/quentinbd/mff-creative/games/
+mkdir -p /home/quentinbd/server-minetestforfun-creative/games
+mkdir -p /home/quentinbd/mff-creative/games/minetestforfun_creative/
+mkdir -p /home/quentinbd/mff-creative/games/minetestforfun_creative/mods/
 cp -R /home/quentinbd/server-minetestforfun-creative/mods/ /home/quentinbd/mff-creative/games/minetestforfun_creative/
 echo "Nouveaux /mods et /games correctement déplacés"
 
-# On MAJ le minetest.conf, game.conf, world.mt, forbidden_names, et le random_messages
-mkdir /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
+# On MAJ le minetest.conf, game.conf, world.mt, random_messages, et le forbidden_names
+mkdir -p /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
 rm /home/quentinbd/mff-creative/minetest.conf
 rm /home/quentinbd/mff-creative/worlds/minetestforfun-creative/world.mt
 rm /home/quentinbd/mff-creative/worlds/minetestforfun-creative/random_messages
@@ -36,7 +36,7 @@ cp /home/quentinbd/server-minetestforfun-creative/game.conf /home/quentinbd/mff-
 #cp /home/quentinbd/server-minetestforfun-creative/worlds/minetestforfun-creative/world.mt /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
 cp /home/quentinbd/server-minetestforfun-creative/worlds/minetestforfun-creative/random_messages /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
 cp /home/quentinbd/server-minetestforfun-creative/worlds/minetestforfun-creative/forbidden_names.txt /home/quentinbd/mff-creative/worlds/minetestforfun-creative/
-echo "Nouveau 'minetest.conf, game.conf, world.mt, et le random_messages' correctement déplacé"
+echo "Nouveau minetest.conf, game.conf, world.mt, random_messages, et le forbidden_names correctement déplacé"
 
 # Suppression du dossier cloné
 rm -Rf /home/quentinbd/server-minetestforfun-creative/

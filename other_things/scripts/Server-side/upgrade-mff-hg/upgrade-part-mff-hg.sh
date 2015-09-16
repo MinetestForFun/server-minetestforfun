@@ -17,15 +17,15 @@ echo "Sauvegarde de /mods et /games correctement effectuée."
 # On MAJ les nouveaux minetest/games et minetest/mods
 rm -R /home/quentinbd/mff-hg/mods/
 rm -R /home/quentinbd/mff-hg/games/
-mkdir /home/quentinbd/mff-hg/games/
-mkdir /home/quentinbd/server-minetestforfun-hungry_games/games
-mkdir /home/quentinbd/mff-hg/games/minetestforfun_hg/
-mkdir /home/quentinbd/mff-hg/games/minetestforfun_hg/mods/
+mkdir -p /home/quentinbd/mff-hg/games/
+mkdir -p /home/quentinbd/server-minetestforfun-hungry_games/games
+mkdir -p /home/quentinbd/mff-hg/games/minetestforfun_hg/
+mkdir -p /home/quentinbd/mff-hg/games/minetestforfun_hg/mods/
 cp -R /home/quentinbd/server-minetestforfun-hungry_games/mods/ /home/quentinbd/mff-hg/games/minetestforfun_hg/
 echo "Nouveaux /mods et /games correctement déplacés"
 
-# On MAJ le minetest.conf, game.conf, world.mt, le forbidden_names, et le random_messages
-mkdir /home/quentinbd/mff-hg/worlds/minetestforfun-hg/
+# On MAJ le minetest.conf, world.mt, random_messages, top_config.txt, et le forbidden_names
+mkdir -p /home/quentinbd/mff-hg/worlds/minetestforfun-hg/
 rm /home/quentinbd/mff-hg/minetest.conf
 rm /home/quentinbd/mff-hg/worlds/minetestforfun-hg/world.mt
 rm /home/quentinbd/mff-hg/worlds/minetestforfun-hg/random_messages
@@ -39,7 +39,7 @@ cp /home/quentinbd/server-minetestforfun-hungry_games/game.conf /home/quentinbd/
 cp /home/quentinbd/server-minetestforfun-hungry_games/worlds/minetestforfun-hg/random_messages /home/quentinbd/mff-hg/worlds/minetestforfun-hg/
 cp /home/quentinbd/server-minetestforfun-hungry_games/worlds/minetestforfun-hg/top_config.txt /home/quentinbd/mff-hg/worlds/minetestforfun-hg/
 cp /home/quentinbd/server-minetestforfun-hungry_games/worlds/minetestforfun-hg/forbidden_names.txt /home/quentinbd/mff-hg/worlds/minetestforfun-hg/
-echo "Nouveau 'minetest.conf, game.conf et le random_messages' correctement déplacé"
+echo "Nouveau minetest.conf, world.mt, random_messages, top_config.txt, et le forbidden_names correctement déplacé"
 
 # Suppression du dossier cloné
 rm -Rf /home/quentinbd/server-minetestforfun-hungry_games/
