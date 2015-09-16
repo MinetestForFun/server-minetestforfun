@@ -1,13 +1,10 @@
 ---Planned on the Server---
-Add water monsters and unic bosses, also we created a new model for the cows
+Add water monsters and unic bosses
 Spawning monsters egg for some monsters
 Spiders will deal a smaller amount of damage BUT they will poison you ! (poison will deal damage over time through the armor)
 
 ---Important News---
-The server has just been updated to minetest 0.4.13! When connecting, be sure to use the latest 0.4.13 client.
-Le serveur vient juste de passer en version 0.4.13! Soyez surs d'utiliser le dernier client (0.4.13) pour vous connecter.
-Ca y est, les classes Warrior et Hunter sont là ! (Venez les tester et aider nous à les debugs :))
-Venez visiter notre nouveau site "minetestforfun.com" !
+Come and visit our website "minetestforfun.com" ! Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
 ---10/09/2015--- (Thanks to : LeMagnesium/Mg, gravgun, crabman77/crabman, fabienwang)
