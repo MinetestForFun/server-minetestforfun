@@ -11,6 +11,13 @@ Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
 ---10/09/2015--- (Thanks to : LeMagnesium/Mg, gravgun, crabman77/crabman, fabienwang)
+Update of "death_messages" (Crashfix)
+The map will be now saved every 60seconds to avoid big rollback when the server reboot (before, it was 300 seconds)
+Update of "mobs" (Tidy the code, small bugfixs and the "Nether Fruit" drop chance from zombies has been increased, also add the new cow and texture models !)
+Update of "3d_armor" (Fixed again the preview and wearing armor textures)
+Update of "forbidden_names" (Fixed this mod, it works now)
+
+---10/09/2015--- (Thanks to : LeMagnesium/Mg, gravgun, crabman77/crabman, fabienwang)
 Update of "hudbars" (crashfix)
 Update of "homedecor_modpack" (Many things improved like a huge parts of the craft recipe now work with "group" ressources, also omproved every tree textures)
 Addition of "music" (Added 3 musics which are played sometimes, this mod is a great addition of the "ambience_modpack")
