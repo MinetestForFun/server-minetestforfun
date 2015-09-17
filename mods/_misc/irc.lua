@@ -75,7 +75,6 @@ end)
 minetest.register_chatcommand("irc",{
 	params = "",
 	description = "Montre les regles de l'irc",
-	privs = {spawn=true},
 	func = function (name,params)
 	local player = minetest.get_player_by_name(name)
 		minetest.after(1, function()
