@@ -4,3 +4,6 @@
 [submodule "mods/fishing"]
 	path = mods/fishing
 	url = https://github.com/MinetestForFun/fishing.git
+[submodule "mods/mff/mff_hud"]
+	path = mods/mff/mff_hud
+	url = https://github.com/MinetestForFun/mff_hud.git
