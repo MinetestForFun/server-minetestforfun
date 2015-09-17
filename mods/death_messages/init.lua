@@ -95,7 +95,7 @@ messages.whacking = {
 
 messages.monsters_whacking = {
 	"%s got whacked by a %s. / %s s'est pris une raclee de la part d'un %s.",
-	"%s Darwin said : %s was less adapted than a %s. / Darwin a dit : %s etait moins adapte qu'un %s.",
+	"Darwin said : %s was less adapted than a %s. / Darwin a dit : %s etait moins adapte qu'un %s.",
 	"%s was transformed into a doormat by a %s. / %s s'est fait transformer en paillasson par un %s.",
 	-- Need to fill
 }
