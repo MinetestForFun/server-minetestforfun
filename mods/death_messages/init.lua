@@ -154,6 +154,7 @@ minetest.register_on_punchplayer(function(player, hitter, time,
 	tool_caps, dir, damage)
 	if player:get_hp() - damage <= 0 and not whacked[player:get_player_name()] then
 		local player_name = player:get_player_name()
+		local death_message
 		if hitter:is_player() then
 			death_message = string.format(messages.whacking[math.random(1,#messages.whacking)], player_name, hitter:get_player_name(), player_name, hitter:get_player_name())
 		else
