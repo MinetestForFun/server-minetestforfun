@@ -7,3 +7,6 @@
 [submodule "mods/mff/mff_hud"]
 	path = mods/mff/mff_hud
 	url = https://github.com/MinetestForFun/mff_hud.git
+[submodule "mods/irc_modpack"]
+	path = mods/irc_modpack
+	url = https://github.com/MinetestForFun/irc_modpack.git
