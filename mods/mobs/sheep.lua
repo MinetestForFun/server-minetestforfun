@@ -155,7 +155,7 @@ minetest.register_entity("mobs:sheep", {
 	visual = "mesh",
 	mesh = "mobs_sheep.b3d",
 	visual_size = {x = 1, y = 1},
-	textures = {"mobs_sheep.png"},
+	textures = {"mobs_sheep_white.png"},
 	velocity = {x = 0, y = 0, z = 0},
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
 	is_visible = true,
