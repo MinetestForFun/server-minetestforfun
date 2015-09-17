@@ -34,7 +34,12 @@ mobs:register_mob("mobs:npc_female", {
 	},
 	-- sounds
 	makes_footstep_sound = true,
-	sounds = {},
+	sounds = {
+		random = "mobs_fnpc", 				-- 2 sounds
+		damage = "mobs_fnpc_hit", 		-- 2 sounds
+		attack = "mobs_fnpc_attack",	-- 1 sound
+		death = "mobs_fnpc_death",		-- 1 sound
+	},
 	-- speed and jump
 	walk_velocity = 3,
 	run_velocity = 3,
@@ -115,6 +120,6 @@ mobs:register_mob("mobs:npc_female", {
 })
 
 -- spawning enable for now
-mobs:spawn_specific("mobs:npc_female", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 300000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:npc_female", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000, true)
 -- register spawn egg
 mobs:register_egg("mobs:npc_female", "Npc", "mobs_npc_female_inv.png", 1)
