@@ -7,7 +7,13 @@ Spiders will deal a smaller amount of damage BUT they will poison you ! (poison 
 Come and visit our website "minetestforfun.com" ! Venez visiter notre nouveau site "minetestforfun.com" !
 
 ---Patch Notes---
----10/09/2015--- (Thanks to : LeMagnesium/Mg, gravgun, crabman77/crabman, fabienwang)
+---18/09/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Cyberpangolin)
+Update of "peaceful_areas" (Added a new feature -thanks to b91b for the idea- : If you die into an "Event areas", you will respawn in a special spawn point)
+Update of "peaceful_areas" (Crashfix)
+Update of "death_messages" (Crashfix again and add Mummy to the monsters messages)
+Update of "mobs" (Fixed the Sheep/White_Sheep textures, new sounds for the Female NPC, also the Femal NPC & NPC spawn 3 times lesser now)
+
+---15/09/2015--- (Thanks to : LeMagnesium/Mg, gravgun, crabman77/crabman, fabienwang)
 Update of "death_messages" (Crashfix)
 The map will be now saved every 60seconds to avoid big rollback when the server reboot (before, it was 300 seconds)
 Update of "mobs" (Tidy the code, small bugfixs and the "Nether Fruit" drop chance from zombies has been increased, also add the new cow and texture models !)
