@@ -1,10 +1,10 @@
 ---Planned on the Server---
-Add water monsters and unic bosses
+Add water monsters and Unic bosses
 Spawning monsters egg for some monsters
 Spiders will deal a smaller amount of damage BUT they will poison you ! (poison will deal damage over time through the armor)
 
 ---Important News---
-Come and visit our website "minetestforfun.com" ! Venez visiter notre nouveau site "minetestforfun.com" !
+Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
 ---Patch Notes---
 ---18/09/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Cyberpangolin)
