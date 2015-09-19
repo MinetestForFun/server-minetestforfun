@@ -1,6 +1,7 @@
 -- Some aliases for compatibility switches and some to make "/give" commands
 -- a little easier
 
+minetest.register_alias("snow:needles", "default:pine_needles")
 minetest.register_alias("snow:snow", "default:snow")
 minetest.register_alias("default_snow", "default:snow")
 minetest.register_alias("snow:snowball", "default:snow")
