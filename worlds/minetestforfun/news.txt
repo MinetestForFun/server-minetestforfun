@@ -7,6 +7,9 @@ Spiders will deal a smaller amount of damage BUT they will poison you ! (poison 
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
 ---Patch Notes---
+---20/09/2015--- (Thanks to : LeMagnesium/Mg)
+Update of "snow" (Crashfix and tried again to fix the unknow node)
+
 ---18/09/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Cyberpangolin)
 Update of "peaceful_areas" (Added a new feature -thanks to b91b for the idea- : If you die into an "Event areas", you will respawn in a special spawn point)
 Update of "peaceful_areas" (Crashfix)
