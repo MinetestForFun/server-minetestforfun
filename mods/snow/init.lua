@@ -48,7 +48,7 @@ http://github.com/Splizard/minetest-mod-snow/
 -- dofile(minetest.get_modpath("snow").."/falling_snow.lua")
 
 -- Original init.lua File Broken into Smaller Files
-dofile(minetest.get_modpath("snow").."/src/abms.lua")
+-- dofile(minetest.get_modpath("snow").."/src/abms.lua")
 dofile(minetest.get_modpath("snow").."/src/aliases.lua")
 dofile(minetest.get_modpath("snow").."/src/crafting.lua")
 dofile(minetest.get_modpath("snow").."/src/snowball.lua")
