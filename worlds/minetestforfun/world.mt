@@ -218,6 +218,7 @@ load_mod_builtin_item = true
 load_mod_chatplus = true
 
 load_mod_snowdrift = false
+load_mod_snow = true
 load_mod_sounds = false
 
 load_mod_rofl = false
