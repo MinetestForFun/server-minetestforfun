@@ -22,11 +22,12 @@ end
 
 function throwing_is_entity(obj)
 	return (obj:get_luaentity() ~= nil
-			and not string.find(obj:get_luaentity().name, "throwing:arrow_")
+			and not string.find(obj:get_luaentity().name, "throwing:")
 			and obj:get_luaentity().name ~= "__builtin:item"
 			and obj:get_luaentity().name ~= "gauges:hp_bar"
 			and obj:get_luaentity().name ~= "signs:text")
 end
+
 function throwing_get_trajectoire(self, newpos)
 	if self.lastpos.x == nil then
 		return {newpos}
@@ -174,4 +175,21 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 		output = 'throwing:' .. name,
 		recipe = rev_craft
 	})
+end
+
+-- Spears
+
+function throwing_shoot_spear (itemstack, player)
+	local spear = itemstack:get_name() .. '_entity'
+	local playerpos = player:getpos()
+	local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, spear)
+	local dir = player:get_look_dir()
+	obj:setvelocity({x=dir.x*14, y=dir.y*14, z=dir.z*14})
+	obj:setacceleration({x=-dir.x*1, y=-9.8, z=-dir.z*1})
+	obj:setyaw(player:get_look_yaw()+math.pi)
+	obj:get_luaentity().wear = itemstack:get_wear()
+	obj:get_luaentity().player = player:get_player_name()
+	obj:get_luaentity().lastpos = {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}
+	minetest.sound_play("throwing_bow_sound", {pos=playerpos})
+	return true
 end

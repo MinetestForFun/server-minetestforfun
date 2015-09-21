@@ -66,7 +66,11 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				end
 			end
 
-			if node.name ~= "air" then
+
+			if node.name == 'air' then
+				minetest.add_node(pos, {name="throwing:torch_trail"})
+				minetest.get_node_timer(pos):start(0.1)
+			elseif node.name ~= "air" and not string.find(node.name, "trail") and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
 				local player = minetest.get_player_by_name(self.player)
 				if not player then self.object:remove() return end
 				if node.name ~= "ignore" and not string.find(node.name, "water_") and not string.find(node.name, "lava")
@@ -106,4 +110,15 @@ minetest.register_craft({
 	recipe = {
 		{'group:coal', 'default:stick', 'default:stick'},
 	}
+})
+
+minetest.register_node("throwing:torch_trail", {
+	drawtype = "airlike",
+	light_source = default.LIGHT_MAX-1,
+	walkable = false,
+	drop = "",
+	groups = {dig_immediate=3},
+	on_timer = function(pos, elapsed)
+		minetest.remove_node(pos)
+	end,
 })

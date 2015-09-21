@@ -90,7 +90,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				end
 			end
 
-			if node.name ~= "air" and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
+			if node.name ~= "air" and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
 				boom(self.lastpos)
 				self.object:remove()
 				return

@@ -61,7 +61,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 					return
 				end
 			end
-			if node.name ~= "air" and not string.find(node.name, "water_") then
+			if node.name ~= "air" and not string.find(node.name, "water_") and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
 				if node.name ~= "ignore" and minetest.get_item_group(node.name, "unbreakable") == 0
 					and not minetest.is_protected(pos, self.player)
 					and node.diggable ~= false then

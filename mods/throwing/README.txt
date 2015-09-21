@@ -9,8 +9,9 @@ How to install:
 http://wiki.minetest.com/wiki/Installing_Mods
 
 How to use the mod:
-Select the bow and place the arrows into the slot next to it; shoot with left mouse click. 
+Select a bow and place the arrows into the slot next to it; shoot with left mouse click. 
 Every shoot will take 1 arrow from your inventory and wears out the bow.
+Select a spear and attack with left mouse click; it will be used as a melee weapon if pointing any target, otherwise it will be thrown.
 
 License:
 This mod was originally published by Jeija and reworked by PilzAdam
@@ -19,6 +20,15 @@ Grahpics & sounds: CC-BY 3.0 (see http://creativecommons.org/licenses/by/3.0/leg
 
 
 Changelog:
+
+Update 1.4.1:
+- Fixed spears not retaining wear
+- Improved textures
+- Torch arrows have light trail
+
+Update 1.4:
+- Added spears, capable of melee and ranged attacks
+- Improved arrows textures
 
 Update 1.3:
 - Added automated arbalest, the ultimate weapon 

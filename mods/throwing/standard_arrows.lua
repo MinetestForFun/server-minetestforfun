@@ -67,7 +67,7 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 						end
 					end
 				end
-				if node.name ~= "air" and not string.find(node.name, 'water_') and not string.find(node.name, 'default:grass') and not string.find(node.name, 'default:junglegrass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') then
+				if node.name ~= "air" and not string.find(node.name, 'water_') and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
 					if math.random() < toughness then
 						minetest.add_item(self.lastpos, 'throwing:arrow_' .. kind)
 					else
