@@ -91,7 +91,7 @@ mobs:register_mob("mobs:npc", {
 			end
 			return
 		-- feed to heal npc
-		elseif not mobs:feed_tame(self, clicker, 8, true) then
+		elseif not mobs:feed_tame(self, clicker, 8, true, true) then
 			-- right clicking with gold lump drops random item from mobs.npc_drops
 			if item:get_name() == "default:gold_lump" then
 				if not minetest.setting_getbool("creative_mode") then

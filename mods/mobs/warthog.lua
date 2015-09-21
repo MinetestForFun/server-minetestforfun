@@ -55,7 +55,7 @@ mobs:register_mob("mobs:pumba", {
 	},
 	-- can be tamed by feeding 8 wheat (will not attack when tamed)
 	on_rightclick = function(self, clicker)
-		mobs:feed_tame(self, clicker, 8, true)
+		mobs:feed_tame(self, clicker, 8, true, true)
 		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
 	end,
 })

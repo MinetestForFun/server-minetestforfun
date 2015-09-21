@@ -68,7 +68,7 @@ for _, col in ipairs(all_colours) do
 			end
 
 			--are we feeding?
-			if mobs:feed_tame(self, clicker, 8, true) then
+			if mobs:feed_tame(self, clicker, 8, true, true) then
 				--if full grow fuzz
 				if self.gotten == false then
 					self.object:set_properties({

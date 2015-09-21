@@ -58,7 +58,7 @@ mobs:register_mob("mobs:chicken", {
 	replace_what = {"air"},
 	replace_with = "mobs:egg",
 	on_rightclick = function(self, clicker)
-		mobs:feed_tame(self, clicker, 8, true)
+		mobs:feed_tame(self, clicker, 8, true, true)
 		mobs:capture_mob(self, clicker, 30, 50, 80, false, nil)
 	end,
 })

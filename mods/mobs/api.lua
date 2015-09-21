@@ -1,4 +1,4 @@
--- Mobs Api (9th September 2015)
+-- Mobs Api (17th September 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -236,7 +236,7 @@ function mobs:register_mob(name, def)
 				if v.y > 0.1 then
 					self.object:setacceleration({
 						x = 0,
-						y= self.fall_speed,
+						y = self.fall_speed,
 						z = 0
 					})
 				end
@@ -347,7 +347,7 @@ function mobs:register_mob(name, def)
 				if self.jumptimer < 3 then
 					local pos = self.object:getpos()
 					pos.y = (pos.y + self.collisionbox[2]) - 0.2
-					local nod = minetest.get_node(pos)
+					local nod = minetest.get_node_or_nil(pos)
 --print ("standing on:", nod.name, pos.y)
 					if not nod
 					or not minetest.registered_nodes[nod.name]
@@ -355,7 +355,7 @@ function mobs:register_mob(name, def)
 						return
 					end
 					if self.direction then
- 						pos.y = pos.y + 0.5
+						pos.y = pos.y + 0.5
 						local nod = minetest.get_node_or_nil({
 							x = pos.x + self.direction.x,
 							y = pos.y,
