@@ -181,7 +181,7 @@ minetest.register_node("multitest:door_mat", {
 })
 
 minetest.register_node("multitest:sponge_block", {
-	description = "Sponge block",
+	description = "Sponge Block (Decorative)",
 	tiles = {"multitest_sponge_block.png"},
 	groups = {oddly_breakable_by_hand=3,},
 })
