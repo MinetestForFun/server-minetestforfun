@@ -24,7 +24,7 @@ echo "Nouveaux /mods et /games correctement déplacés"
 
 # On MAJ le minetest.conf, world.mt, random_messages, forbidden_names, et le news.txt
 mkdir -p /home/quentinbd/mff/worlds/minetestforfun/
-rm /home/quentinbd/mff-hg/minetest.conf
+rm /home/quentinbd/mff/minetest.conf
 rm /home/quentinbd/mff/worlds/minetestforfun/world.mt
 rm /home/quentinbd/mff/worlds/minetestforfun/random_messages
 rm /home/quentinbd/mff/worlds/minetestforfun/news.txt
