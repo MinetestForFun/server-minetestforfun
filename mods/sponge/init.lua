@@ -28,7 +28,8 @@ minetest.register_node("sponge:sponge", {
 			p = {x=pos.x+i, y=pos.y, z=pos.z}
 			n = minetest.get_node(p)
 			-- On verifie si il y a de l'eau
-			if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
+			if (n.name=="default:water_flowing") or (n.name == "default:water_source") 
+				or (n.name == "default:river_water_flowing") or (n.name == "default:river_water_source") then
 				on_water = true
 			end
 		end
@@ -36,7 +37,8 @@ minetest.register_node("sponge:sponge", {
 			p = {x=pos.x, y=pos.y+i, z=pos.z}
 			n = minetest.get_node(p)
 			-- On verifie si il y a de l'eau
-			if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
+			if (n.name=="default:water_flowing") or (n.name == "default:water_source")
+				or (n.name == "default:river_water_flowing") or (n.name == "default:river_water_source") then
 				on_water = true
 			end
 		end
@@ -44,7 +46,8 @@ minetest.register_node("sponge:sponge", {
 			p = {x=pos.x, y=pos.y, z=pos.z+i}
 			n = minetest.get_node(p)
 			-- On verifie si il y a de l'eau
-			if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
+			if (n.name=="default:water_flowing") or (n.name == "default:water_source")
+				or (n.name == "default:river_water_flowing") or (n.name == "default:river_water_source") then
 				on_water = true
 			end
 		end
@@ -56,7 +59,8 @@ minetest.register_node("sponge:sponge", {
 						p = {x=pos.x+i, y=pos.y+j, z=pos.z+k}
 						n = minetest.get_node(p)
 						-- On Supprime l'eau
-						if (n.name=="default:water_flowing") or (n.name == "default:water_source")then
+						if (n.name=="default:water_flowing") or (n.name == "default:water_source")
+							or (n.name == "default:river_water_flowing") or (n.name == "default:river_water_source") then
 							minetest.add_node(p, {name="air"})
 							change = true
 						end
