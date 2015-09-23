@@ -25,11 +25,6 @@ local chests = {
 
 		local meta = minetest.get_meta(pu)
 		meta:set_string("owner", owner)
-		meta:set_string("formspec",
-			"size[13,9]"..
-			"list[current_name;main;0,0;13,5;]"..
-			"list[current_player;main;2.5,5.2;8,4;]"
-		)
 		meta:set_string("infotext", "Big Locked Chest (owned by "..
 				meta:get_string("owner")..")")
 		local inv = meta:get_inventory()
