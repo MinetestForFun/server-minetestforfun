@@ -15,7 +15,10 @@ dofile(path.."/bee.lua") -- KrupnoPavel
 dofile(path.."/bunny.lua") -- ExeterDad
 dofile(path.."/kitten.lua") -- Jordach/BFD
 dofile(path.."/goat.lua") -- ???
+
+-- Fish
 dofile(path.."/shark.lua") -- blert2112 (animal_modpack)
+dofile(path.."/jellyfish.lua") -- blert2112
 
 -- Monsters
 
