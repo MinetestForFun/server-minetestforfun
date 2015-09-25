@@ -27,9 +27,9 @@ local l_spawn_chance	= 60000
 mobs:register_mob("mobs:shark_lg", {
 	type = "monster",
 	attack_type = "dogfight",
-	damage = 10,
+	damage = 6,
 	hp_min = 20,
-	hp_max = 25,
+	hp_max = 30,
 	armor = 150,
 	collisionbox = {-0.75, -0.5, -0.75, 0.75, 0.5, 0.75},
 	visual = "mesh",
