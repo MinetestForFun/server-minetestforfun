@@ -47,7 +47,7 @@ function throwing_register_spear_standard (kind, desc, eq, toughness, craft)
 		lastpos={},
 		collisionbox = {0,0,0,0,0,0},
 		player = "",
-		wear = "",
+		wear = 0,
 	}
 	
 	THROWING_SPEAR_ENTITY.on_step = function(self, dtime)

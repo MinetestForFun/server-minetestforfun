@@ -102,6 +102,7 @@ function throwing_reload (itemstack, player, pos, is_cross, loaded)
 					end
 					local meta = arrow[2]
 					player:set_wielded_item({name=loaded, wear=wear, metadata=meta})
+					break
 				end
 			end
 		end
