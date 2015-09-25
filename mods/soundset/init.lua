@@ -129,10 +129,10 @@ end
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname == "soundset:settings" then
 		local name = player:get_player_name()
-		if not name then return end
-		local fmusic = soundset.tmp[name]["music"]
-		local fambience = soundset.tmp[name]["ambience"]
-		local fother = soundset.tmp[name]["other"]
+		if not name or name == "" then return end
+		local fmusic = soundset.tmp[name]["music"] or 50
+		local fambience = soundset.tmp[name]["ambience"] or 50
+		local fother = soundset.tmp[name]["other"] or 50
 		if fields["abort"] == "Ok" then
 			if soundset.gainplayers[name]["music"] ~= fmusic or soundset.gainplayers[name]["ambience"] ~= fambience or soundset.gainplayers[name]["other"] ~= fother then
 				soundset.gainplayers[name]["music"] = fmusic
