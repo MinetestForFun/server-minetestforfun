@@ -9,8 +9,8 @@ mobs:register_mob("mobs:stone_monster", {
 	attack_type = "dogfight",
 	damage = 7,
 	-- health & armor
-	hp_min = 30,
-	hp_max = 35,
+	hp_min = 20,
+	hp_max = 25,
 	armor = 70,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
