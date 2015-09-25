@@ -17,7 +17,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	-- health & armor
 	hp_min = 60,
 	hp_max = 80,
-	armor = 70,
+	armor = 80,
 	-- textures and model
 	collisionbox = {-0.7, -1, -0.7, 0.7, 1.6, 0.7},
 	visual = "mesh",
