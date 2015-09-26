@@ -16,7 +16,7 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
-	if not minetest.check_player_privs(name, {interact=true}) and players[name] == nil then
+	if minetest.check_player_privs(name, {shout=false}) and players[name] == nil then
 		minetest.after(5, tick, name)
 		players[name] = true
 	end
