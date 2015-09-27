@@ -81,7 +81,7 @@ function throwing_register_spear_standard (kind, desc, eq, toughness, craft)
 						end
 					end
 				end
-				if node.name ~= "air" and not string.find(node.name, 'flowers:') and not string.find(node.name, 'fire:') and (node.drawtype and not string.find(node.drawtype, 'plantlike')) then
+				if node.name ~= "air" and not string.find(node.name, 'water_') and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
 					minetest.add_item(self.lastpos, {name='throwing:spear_' .. kind, count=1, wear=self.wear+65535/toughness, metadata=""})
 					--if math.random() < toughness then
 						--minetest.add_item(self.lastpos, 'throwing:spear_' .. kind)
