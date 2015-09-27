@@ -1,19 +1,19 @@
 --Menu mobs spawner
 mobs.shown_spawner_menu = function(player_name)
-	local formspec = {"size[7,9]label[2.7,0;Mobs Spawner]"}
+	local formspec = {"size[8,9]label[2.7,0;Mobs Spawner]"}
 	if mobs["spawning_mobs"] ~= nil then
 		local Y = 1
 		local X = 1
 		for name, etat in pairs(mobs["spawning_mobs"]) do
 			table.insert(formspec, "item_image_button["..X..","..Y..";1,1;"..name..";"..name..";]")
 			X = X+1
-			if X > 5 then
+			if X > 6 then
 				X = 1
 				Y = Y+1.2
 			end
 		end
 	end
-	table.insert(formspec, "button_exit[2.9,8.5;1.2,1;close;Close]")
+	table.insert(formspec, "button_exit[3.9,8.5;1.2,1;close;Close]")
 	minetest.show_formspec(player_name, "mobs:spawner", table.concat(formspec))
 end
 
