@@ -1,5 +1,5 @@
 ---Planned on the Server---
-Add water monsters and Unic bosses
+Add Unic bosses
 Spawning monsters egg for some monsters
 Spiders will deal a smaller amount of damage BUT they will poison you ! (poison will deal damage over time through the armor)
 
@@ -9,12 +9,12 @@ Come and visit our website "minetestforfun.com" ! Venez visiter notre site "mine
 ---Patch Notes---
 
 ---28/09/2015--- (Thanks to : crabman77/crabman)
-Update of "fishing" (Add ability to fish in river water)
-Update of "mobs" (Tweak some health values and add sharks)
-Update of "sponge" (Add ability to suck river water)
-Update of "connected_chests" (Fix locked big chests)
-Update of "MinetestForFunGame" (Update waterlilies)
-Update of "throwing"
+Update of "fishing" (Added different fishs for ocean water and river water, also new trophies from this fishes)
+Update of "mobs" (Minotaurs and Stone Monsters are now a little less hard to kill, and we add Sharks agressive monsters into ocean water)
+Update of "sponge" (Added the ability to suck river water)
+Update of "connected_chests" (Fixed locked big chests)
+Update of "MinetestForFunGame" (Updated waterlilies)
+Update of "throwing" (Added spear weapons, only for Hunter class)
 
 ---20/09/2015--- (Thanks to : LeMagnesium/Mg)
 Update of "snow" (Crashfix and tried again to fix the unknow node)
