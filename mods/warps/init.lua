@@ -46,7 +46,7 @@ do_warp_queue = function()
 	local t = minetest.get_us_time()
 	for i = table.getn(warps_queue),1,-1 do
 		local e = warps_queue[i]
-		if e.p:getpos().x == e.pos.x and e.p:getpos().y == e.pos.y and e.p:getpos().z == e.pos.z then
+		if e and e.p and e.p:getpos() and e.p:getpos().x == e.pos.x and e.p:getpos().y == e.pos.y and e.p:getpos().z == e.pos.z then
 			if t > e.t then
 				warp(e.p, e.w)
 				table.remove(warps_queue, i)

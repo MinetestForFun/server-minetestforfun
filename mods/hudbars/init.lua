@@ -194,7 +194,7 @@ function hb.change_hudbar(player, identifier, new_value, new_max_value)
 			max_changed = true
 		end
 	else
-		new_max_value = hudtable.hudstate[name].max
+		new_max_value = (hudtable.hudstate[name] or {max = 0}).max
 	end
 
 	local main_error_text =
