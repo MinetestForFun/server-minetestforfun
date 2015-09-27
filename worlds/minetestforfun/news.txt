@@ -7,6 +7,15 @@ Spiders will deal a smaller amount of damage BUT they will poison you ! (poison 
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
 ---Patch Notes---
+
+---28/09/2015--- (Thanks to : crabman77/crabman)
+Update of "fishing" (Add ability to fish in river water)
+Update of "mobs" (Tweak some health values and add sharks)
+Update of "sponge" (Add ability to suck river water)
+Update of "connected_chests" (Fix locked big chests)
+Update of "MinetestForFunGame" (Update waterlilies)
+Update of "throwing"
+
 ---20/09/2015--- (Thanks to : LeMagnesium/Mg)
 Update of "snow" (Crashfix and tried again to fix the unknow node)
 
