@@ -5,7 +5,7 @@ function throwing_register_spear_standard (kind, desc, eq, toughness, craft)
 		wield_scale= {x=2,y=1.5,z=1.5};
 		on_use = function(itemstack, user, pointed_thing)
 			if pointed_thing.type == "object" then
-				local damage = ((eq + 20)^1.2)/10
+				local damage = eq --((eq + 20)^1.2)/10 --MFF crabman(28/09/2015) damage valeur equal eq
 				pointed_thing.ref:punch(user, 1.0, {
 					full_punch_interval=1.0,
 					damage_groups={fleshy=damage},
@@ -64,8 +64,8 @@ function throwing_register_spear_standard (kind, desc, eq, toughness, craft)
 					local objpos = obj:getpos()
 					if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
 						if (pos.x - objpos.x < 0.5 and pos.x - objpos.x > -0.5) and (pos.z - objpos.z < 0.5 and pos.z - objpos.z > -0.5) then
-							local speed = vector.length(self.object:getvelocity())
-							local damage = ((speed + eq +5)^1.2)/10					
+							--local speed = vector.length(self.object:getvelocity()) --MFF crabman(28/09/2015) damage valeur equal eq	
+							local damage = eq --((speed + eq +5)^1.2)/10	 --MFF crabman(28/09/2015) damage valeur equal eq		
 							obj:punch(self.object, 1.0, {
 								full_punch_interval=1.0,
 								damage_groups={fleshy=damage},
@@ -115,22 +115,22 @@ function throwing_register_spear_standard (kind, desc, eq, toughness, craft)
 end
 
 if not DISABLE_STONE_SPEAR then
-	throwing_register_spear_standard ('stone', 'Stone (Hunter)', 0, 20, 'group:stone')
+	throwing_register_spear_standard ('stone', 'Stone (Hunter)', 3, 25, 'group:stone') --MFF crabman(28/09/2015) damage and wear
 end
 
 if not DISABLE_STEEL_SPEAR then
-	throwing_register_spear_standard ('steel', 'Steel (Hunter)', 5, 30, 'default:steel_ingot')
+	throwing_register_spear_standard ('steel', 'Steel (Hunter)', 4, 30, 'default:steel_ingot') --MFF crabman(28/09/2015) damage and wear
 end
 
 if not DISABLE_DIAMOND_SPEAR then
-	throwing_register_spear_standard ('diamond', 'Diamond (Hunter)', 10, 40, 'default:diamond')
+	throwing_register_spear_standard ('diamond', 'Diamond (Hunter)', 7, 50, 'default:diamond') --MFF crabman(28/09/2015) damage and wear
 end
 
 if not DISABLE_OBSIDIAN_SPEAR then
-	throwing_register_spear_standard ('obsidian', 'Obsidian (Hunter)', 15, 30, 'default:obsidian')
+	throwing_register_spear_standard ('obsidian', 'Obsidian (Hunter)', 5, 40, 'default:obsidian') --MFF crabman(28/09/2015) damage and wear
 end
 
 if not DISABLE_MITHRIL_SPEAR then
-	throwing_register_spear_standard ('mithril', 'Mithril (Hunter)', 20, 50, 'moreores:mithril_ingot')
+	throwing_register_spear_standard ('mithril', 'Mithril (Hunter)', 8, 200, 'moreores:mithril_ingot') --MFF crabman(28/09/2015) damage and wear
 end
 
