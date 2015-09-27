@@ -14,6 +14,7 @@ Update of "sponge" (Added the ability to suck river water)
 Update of "connected_chests" (Fixed locked big chests)
 Update of "MinetestForFunGame" (Updated waterlilies)
 Update of "throwing" (Added spear weapons, only for Hunter class)
+(New) Spear weapons tips : attack with left mouse click; it will be used as a melee weapon if pointing any target, otherwise it will be thrown.
 
 ---20/09/2015--- (Thanks to : LeMagnesium/Mg)
 Update of "snow" (Crashfix and tried again to fix the unknow node)
