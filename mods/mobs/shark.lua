@@ -21,7 +21,7 @@ local l_model			= "mobs_shark.b3d"
 local l_egg_texture		= "mobs_shark_shark_item.png"
 local l_spawn_in		= {"default:water_flowing","default:water_source"}
 local l_spawn_near		= {"default:water_flowing","default:water_source","seawrecks:woodship","seawrecks:uboot"}
-local l_spawn_chance	= 60000
+local l_spawn_chance	= 500000
 
 -- large
 mobs:register_mob("mobs:shark_lg", {
@@ -70,9 +70,9 @@ mobs:register_egg("mobs:shark_lg", "Shark (large)", l_egg_texture, 0)
 mobs:register_mob("mobs:shark_md", {
 	type = "monster",
 	attack_type = "dogfight",
-	damage = 8,
-	hp_min = 15,
-	hp_max = 20,
+	damage = 5,
+	hp_min = 20,
+	hp_max = 25,
 	armor = 125,
 	collisionbox = {-0.57, -0.38, -0.57, 0.57, 0.38, 0.57},
 	visual = "mesh",
@@ -95,32 +95,3 @@ mobs:register_mob("mobs:shark_md", {
 --name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 mobs:spawn_specific("mobs:shark_md", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -31000, 0)
 mobs:register_egg("mobs:shark_md", "Shark (medium)", l_egg_texture, 0)
-
-mobs:register_mob("mobs:shark_sm", {
-	type = "monster",
-	attack_type = "dogfight",
-	damage = 6,
-	hp_min = 10,
-	hp_max = 15,
-	armor = 100,
-	collisionbox = {-0.38, -0.25, -0.38, 0.38, 0.25, 0.38},
-	visual = "mesh",
-	visual_size = {x=0.5, y=0.5},
-	mesh = l_model,
-	textures = l_skins,
-	makes_footstep_sound = false,
-	walk_velocity = 2,
-	run_velocity = 4,
-	fly = true,
-	fly_in = "default:water_source",
-	fall_speed = -1,
-	rotate = 270,
-	view_range = 10,
-	water_damage = 0,
-	lava_damage = 10,
-	light_damage = 0,
-	animation = l_anims
-})
---name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs:shark_sm", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -31000, 0)
-mobs:register_egg("mobs:shark_sm", "Shark (small)", l_egg_texture, 0)
