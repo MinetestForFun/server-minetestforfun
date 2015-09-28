@@ -624,8 +624,8 @@ minetest.register_node("fences:fencegate_open", {
 	selection_box = {
 		type = "fixed",
 		fixed = {
-				{-1/2, -1/2+5/16, -1/16, -1/2+2/16, 1/2, 1/2},   --links
-				{1/2, -1/2+5/16, -1/16, 1/2, 1/2, 1/2-2/16},   --rechts
+				{-0.5, -0.5+5/16, -1/16, -1/2+2/16, 1/2, 1/2},   --links
+				{ 0.5, -1/2+5/16, -1/16, 1/2-2/16, 1/2, 1/2},   --rechts
 			}
 	},
 	--on_punch = function(pos, node, puncher)
