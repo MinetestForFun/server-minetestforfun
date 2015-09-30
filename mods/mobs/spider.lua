@@ -7,6 +7,7 @@ mobs:register_mob("mobs:spider", {
 	-- agressive, does 6 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
+	reach = 2,
 	damage = 5,
 	-- health & armor
 	hp_min = 30,

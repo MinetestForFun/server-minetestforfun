@@ -8,6 +8,7 @@ mobs:register_mob("mobs:pumba", {
 	passive = false,
 	group_attack = true,
 	attack_type = "dogfight",
+	reach = 2,
 	damage = 4,
 	-- health & armor
 	hp_min = 15,

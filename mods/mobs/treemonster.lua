@@ -7,6 +7,7 @@ mobs:register_mob("mobs:tree_monster", {
 	-- aggressive, deals 9 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
+	reach = 2,
 	damage = 8,
 	-- health & armor
 	hp_min = 40,

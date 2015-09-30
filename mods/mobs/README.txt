@@ -28,6 +28,7 @@ This mod contains the following additions:
 
 Changelog:
 
+1.17- Added 'dogshoot' attack type, shoots when out of reach, melee attack when in reach, also api tweaks and self.reach added
 1.16- Mobs follow multiple items now, Npc's can breed
 1.15- Added Feeding/Taming/Breeding function, right-click to pick up any sheep with X mark on them and replace with new one to fix compatibility.
 1.14- All .self variables saved in staticdata, Fixed self.health bug

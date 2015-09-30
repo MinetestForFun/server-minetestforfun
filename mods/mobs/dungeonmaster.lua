@@ -10,7 +10,8 @@ mobs:register_mob("mobs:dungeon_master", {
 	-- aggressive, shoots fireballs at player, deal 13 damages
 	passive = false,
 	damage = 12,
-	attack_type = "shoot",
+	attack_type = "dogshoot",
+	reach = 3,
 	shoot_interval = 2.5,
 	arrow = "mobs:fireball",
 	shoot_offset = 1,
@@ -32,7 +33,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_dungeonmaster",
-		attack = "mobs_fireball",
+		shoot_attack = "mobs_fireball",
 	},
 	-- speed and jump
 	walk_velocity = 1,

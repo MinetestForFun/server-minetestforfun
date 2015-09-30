@@ -6,6 +6,7 @@ mobs:register_mob("mobs:bunny", {
 	type = "animal",
 	-- is it aggressive
 	passive = true,
+	reach = 1,
 	-- health & armor
 	hp_min = 3, hp_max = 6, armor = 200,
 	-- textures and model
@@ -62,7 +63,6 @@ mobs:register_mob("mobs:bunny", {
 					textures = {"mobs_bunny_evil.png"},
 				})
 				self.type = "monster"
-				self.state = "attack"
 				self.object:set_hp(20)
 				return
 			end

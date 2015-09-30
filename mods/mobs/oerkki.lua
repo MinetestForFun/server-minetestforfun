@@ -7,6 +7,7 @@ mobs:register_mob("mobs:oerkki", {
 	-- aggressive, deals 7 damage when player hit
 	passive = false,
 	attack_type = "dogfight",
+	reach = 2,
 	damage = 6,
 	-- health & armor
 	hp_min = 40,
@@ -25,7 +26,7 @@ mobs:register_mob("mobs:oerkki", {
 	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_oerkki",
-		attack = "mobs_oerkki_attack",
+		shoot_attack = "mobs_oerkki_attack",
 	},
 	-- speed and jump
 	walk_velocity = 2,

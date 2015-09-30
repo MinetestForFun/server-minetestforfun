@@ -90,6 +90,7 @@ mobs:register_mob("mobs:npc_female", {
 				end
 				if self.diamond_count >= 4 then
 					self.damages = 3
+					self.tamed = true
 					self.owner = clicker:get_player_name()
 				end
 			end
