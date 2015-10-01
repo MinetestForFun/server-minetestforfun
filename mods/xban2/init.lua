@@ -140,12 +140,12 @@ function xban.get_record(player)
 	end
 	local record = { }
 	for _, rec in ipairs(e.record) do
-		local msg
+		local msg = rec.reason or "No reason given."
 		if rec.expires then
-			msg = ("%s, Expires: %s"):format(
-			  rec.reason, os.date("%c", e.expires))
-		else
-			msg = rec.reason
+			msg = msg..(", Expires: %s"):format(os.date("%c", e.expires))
+		end
+		if rec.source then
+			msg = msg..", Source: "..rec.source
 		end
 		table.insert(record, ("[%s]: %s"):format(os.date("%c", e.time), msg))
 	end
@@ -320,6 +320,8 @@ minetest.register_on_shutdown(save_db)
 minetest.after(SAVE_INTERVAL, save_db)
 load_db()
 xban.db = db
+
+minetest.after(1, check_temp_bans)
 
 dofile(xban.MP.."/dbimport.lua")
 dofile(xban.MP.."/gui.lua")
