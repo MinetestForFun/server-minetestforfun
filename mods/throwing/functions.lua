@@ -33,12 +33,13 @@ function throwing_get_trajectoire(self, newpos)
 		return {newpos}
 	end
 	local coord = {}
-	local nx = (self.lastpos["x"] - newpos["x"])/3
-	local ny = (self.lastpos["y"] - newpos["y"])/3
-	local nz = (self.lastpos["z"] - newpos["z"])/3
+	local nx = (newpos["x"] - self.lastpos["x"])/3
+	local ny = (newpos["y"] - self.lastpos["y"])/3
+	local nz = (newpos["z"] - self.lastpos["z"])/3
+
 	if nx and ny and nz then
-		table.insert(coord, {x=self.lastpos["x"]-nx, y=self.lastpos["y"]-ny ,z=self.lastpos["z"]-nz })
-		table.insert(coord, {x=newpos["x"]+nx, y=newpos["y"]+ny ,z=newpos["z"]+nz })
+		table.insert(coord, {x=self.lastpos["x"]+nx, y=self.lastpos["y"]+ny ,z=self.lastpos["z"]+nz })
+		table.insert(coord, {x=newpos["x"]-nx, y=newpos["y"]-ny ,z=newpos["z"]-nz })
 	end
 	table.insert(coord, newpos)
 	return coord
