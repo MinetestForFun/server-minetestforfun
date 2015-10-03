@@ -88,7 +88,8 @@ minetest.register_node("jukebox:box", {
 				gain = soundset.get_gain(clicker:get_player_name(),
 					"music"),
 				max_hear_distance = 25,
-				loop = 1,
+				pos = pos,
+				loop = true,
 			}))
 			make_particles(pos)
 		else
@@ -110,7 +111,7 @@ minetest.register_node("jukebox:box", {
 		inv:set_size("main", 1)
 	end,	
 	on_destruct = function(pos)
-		local meta = minetest.env:get_meta(pos)
+		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		if not inv:is_empty("main") then
 			local drop_pos = minetest.find_node_near(pos, 1, "air")
@@ -169,3 +170,4 @@ local function register_disc(trackname, trackdesc, craftitem)
 end
 
 register_disc("jukebox_event", "Event song", "default:stone")
+register_disc("jukebox_trololo", "Trololo", "default:obsidian_shard")
