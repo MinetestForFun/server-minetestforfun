@@ -130,6 +130,8 @@ local monsters = {
 	["mobs:minotaur"] = "minotaur",
 	["mobs:pumba"] = "warthog",
 	["tsm_pyramids:mummy"] = "mummy",
+	["mobs:shark_lg"] = "large shark",
+	["mobs:shark_md"] = "medium shark",
 }
 
 local function broadcast_death(msg)
