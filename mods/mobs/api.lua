@@ -1112,7 +1112,7 @@ end
 		-- weapon wear
 		hitter:set_detach() --MFF (crabman|27/7/2015) anti usebug, immortal if attached
 		local weapon = hitter:get_wielded_item()
-		local punch_interval = tool_capabilities.full_punch_interval or 1.4
+		local punch_interval = (tool_capabilities or {full_punch_interval = 1.4}).full_punch_interval
 		if weapon:get_definition().tool_capabilities ~= nil then
 			local wear = (punch_interval / 75) * 9000
 			weapon:add_wear(wear)
