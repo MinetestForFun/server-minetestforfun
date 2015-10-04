@@ -18,12 +18,12 @@ minetest.register_chatcommand("mapfix", {
 		local pos = minetest.get_player_by_name(name):getpos()
 		local size = tonumber(param) or 40
 		local privs = minetest.check_player_privs(name, {server=true})
-		local time = os.clock()
+		local time = os.time()
 
 		if not privs then
 			if size > 50 and not privs then
 				return false, "You need the server privilege to exceed the radius of " .. max_size .. " blocks"
-			elseif time - previous < 15 then
+			elseif time - previous < delay then
 				return false, "Wait at least " .. delay .. " seconds from the previous \"/mapfix\"."
 			end
 			previous = time
