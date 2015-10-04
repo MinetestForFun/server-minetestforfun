@@ -1,15 +1,16 @@
 
 -- local variables
 local l_colors = {
-	"#604000:175",	--brown
-	"#ffffff:150",	--white
-	"#404040:150",	--dark_grey
-	"#a0a0a0:150"	--grey
+	"#111010:200",	--dark_grey
+	"#101020:225",	--dark_blue
+	"#404030:225",	--cold_grey
+	"#404040:210",	--light_grey
+	"#202020:210"	--grey
 }
 local l_skins = {
-	{"(shark_first.png^[colorize:"..l_colors[3]..")^(shark_second.png^[colorize:"..l_colors[4]..")^shark_third.png"},
-	{"(shark_first.png^[colorize:"..l_colors[1]..")^(shark_second.png^[colorize:"..l_colors[2]..")^shark_third.png"},
-	{"(shark_first.png^[colorize:"..l_colors[4]..")^(shark_second.png^[colorize:"..l_colors[2]..")^shark_third.png"}
+	{"(shark_first.png^[colorize:"..l_colors[1]..")^(shark_second.png^[colorize:"..l_colors[5]..")^shark_third.png"},
+	{"(shark_first.png^[colorize:"..l_colors[2]..")^(shark_second.png^[colorize:"..l_colors[5]..")^shark_third.png"},
+	{"(shark_first.png^[colorize:"..l_colors[3]..")^(shark_second.png^[colorize:"..l_colors[4]..")^shark_third.png"}
 }
 local l_anims = {
 	speed_normal = 24,	speed_run = 24,
