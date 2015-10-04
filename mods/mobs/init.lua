@@ -36,6 +36,9 @@ dofile(path.."/zombie.lua") -- ???
 dofile(path.."/yeti.lua") -- ???
 dofile(path.."/minotaur.lua") -- Kalabasa
 
+-- The bosses
+dofile(path.."/bosses.lua")
+
 -- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead
 if not minetest.get_modpath("mesecons_materials") then

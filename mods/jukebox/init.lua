@@ -65,7 +65,7 @@ minetest.register_node("jukebox:box", {
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-				
+
 	},
 	on_rightclick = function(pos, node, clicker, itemstack)
 		local meta = minetest.get_meta(pos)
@@ -109,7 +109,7 @@ minetest.register_node("jukebox:box", {
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		inv:set_size("main", 1)
-	end,	
+	end,
 	on_destruct = function(pos)
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()

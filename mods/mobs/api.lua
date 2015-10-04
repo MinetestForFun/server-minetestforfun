@@ -1147,11 +1147,11 @@ end
 		end
 
 		-- knock back effect
-		if self.knock_back > 0 then
+		if tflp and self.knock_back > 0 then
 			local kb = self.knock_back
 			local r = self.recovery_time
 			local v = self.object:getvelocity()
-			if tflp < tool_capabilities.full_punch_interval then
+			if tflp < punch_interval then
 				if kb > 0 then
 					kb = kb * ( tflp / tool_capabilities.full_punch_interval )
 				end
