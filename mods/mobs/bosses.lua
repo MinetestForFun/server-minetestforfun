@@ -49,7 +49,7 @@ mobs:register_mob("mobs:pumpking", {
 	end
 })
 
-mobs:register_egg("mobs:pumpking", "Pumpkin King", "farming_pumpkin_side.png", 1)
+mobs:register_egg("mobs:pumpking", "Pumpkin King", "mobs_pumpking_inv.png", 1)
 
 mobs:register_mob("mobs:pumpboom", {
 	type = "monster",
