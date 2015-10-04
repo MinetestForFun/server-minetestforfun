@@ -171,3 +171,9 @@ end
 
 register_disc("jukebox_event", "Event song", "default:stone")
 register_disc("jukebox_trololo", "Trololo", "default:obsidian_shard")
+register_disc("jukebox_song_1", "Sweet Rock", "default:dirt")
+register_disc("jukebox_song_2", "Bomber Boom", "default:grass")
+register_disc("jukebox_song_3", "Pumpking's Dance", "default:glass")
+register_disc("jukebox_song_4", "Mecha Fight", "default:ice")
+register_disc("jukebox_song_5", "Chillout", "default:snowblock")
+register_disc("jukebox_song_6", "Space Mistery", "default:cobble")
