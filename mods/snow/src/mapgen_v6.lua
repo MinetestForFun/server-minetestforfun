@@ -363,7 +363,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							break
 						end
 					end
-				elseif alpine then
+--[[				elseif alpine then
 					-- make stone pillars out of trees and other stuff
 					for y = ground_y, math.max(-6, minp.y-6), -1 do
 						local stone = area:index(x, y, z)
@@ -374,7 +374,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 					-- put snow onto it
 					snow_tab[num] = {ground_y, z, x, test}
-					num = num+1
+					num = num+1					--]] -- MFF (06/10/2015)
 				elseif c_ground ~= c.desert_sand then
 					if is_snowable(c_ground) then
 						-- put snow onto it
