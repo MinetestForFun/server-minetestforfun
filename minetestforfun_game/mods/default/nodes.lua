@@ -1036,7 +1036,6 @@ minetest.register_node("default:stone_with_mese", {
 		},
 	},
 	sounds = default.node_sound_stone_defaults(),
-	light_source = 1,
 })
 
 minetest.register_node("default:mese", {
