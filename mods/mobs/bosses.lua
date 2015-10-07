@@ -1,5 +1,4 @@
 -- Pumpking by Blert2112
-
 mobs:register_mob("mobs:pumpking", {
 	type = "monster",
 	visual = "mesh",
@@ -20,14 +19,14 @@ mobs:register_mob("mobs:pumpking", {
 	sounds = {
 		random = "mobs_king"
 	},
-	hp_min = 85,
-	hp_max = 90,
-	armor = 30,
-	knock_back = 1,
-	light_damage = 10,
-	water_damage = 5,
-	lava_damage = 5,
-	fall_damage = 20,
+	hp_min = 150,
+	hp_max = 200,
+	armor = 60,
+	knock_back = 0.1,
+	light_damage = 0,
+	water_damage = 0,
+	lava_damage = 0,
+	fall_damage = 0,
 	damage = 8,
 	attack_type = "dogfight",
 	view_range = 25,
@@ -35,7 +34,7 @@ mobs:register_mob("mobs:pumpking", {
 	drops = {
 		{name = "farming:jackolantern", chance = 1, min = 1, max = 1}
 	},
-	lifetimer = 180,		-- 3 minutes
+	lifetimer = 300,		-- 10 minutes
 	shoot_interval = 135,	-- (lifetimer - (lifetimer / 4)), borrowed for do_custom timer
 	do_custom = function(self)
 		if self.lifetimer <= self.shoot_interval then
@@ -71,13 +70,13 @@ mobs:register_mob("mobs:pumpboom", {
 	sounds = {
 		random = "mobs_pump"
 	},
-	hp_min = 2,
-	hp_max = 5,
-	armor = 200,
-	light_damage = 2,
-	water_damage = 2,
-	lava_damage = 2,
-	fall_damage = 3,
+	hp_min = 5,
+	hp_max = 10,
+	armor = 100,
+	light_damage = 0,
+	water_damage = 0,
+	lava_damage = 0,
+	fall_damage = 0,
 	damage = 4,
 	attack_type = "explode",
 	group_attack = true,
@@ -107,7 +106,7 @@ minetest.register_node("mobs:pumpking_spawner", {
 })
 minetest.register_abm({
 	nodenames = {"mobs:pumpking_spawner"},
-	interval = 180.0,
+	interval = 300.0,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		minetest.add_entity(pos, "mobs:pumpking")
