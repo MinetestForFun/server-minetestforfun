@@ -96,5 +96,5 @@ mobs:register_mob("mobs:shark_md", {
 	animation = l_anims
 })
 --name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs:shark_md", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -31000, -25)
+mobs:spawn_specific("mobs:shark_md", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -50, -1)
 mobs:register_egg("mobs:shark_md", "Shark (medium)", l_egg_texture, 0)
