@@ -463,9 +463,10 @@ minetest.register_on_joinplayer(function(player)
 		end,
 		on_move = function(inv, from_list, from_index, to_list, to_index, count, player)
 			local plaver_inv = player:get_inventory()
+			local old_stack = inv:get_stack(from_list, from_index)
 			local stack = inv:get_stack(to_list, to_index)
 			player_inv:set_stack(to_list, to_index, stack)
-			player_inv:set_stack(from_list, from_index, nil)
+			player_inv:set_stack(from_list, from_index, old_stack)
 			armor:set_player_armor(player)
 			armor:update_inventory(player)
 		end,
@@ -636,13 +637,13 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 	end)
 end
 
-minetest.register_globalstep(function(dtime)
-	time = time + dtime
-	if time > ARMOR_UPDATE_TIME then
-		for _,player in ipairs(minetest.get_connected_players()) do
-			armor:update_armor(player)
-		end
-		time = 0
+
+local function tick()
+	for _,player in ipairs(minetest.get_connected_players()) do
+		armor:update_armor(player)
 	end
-end)
+	minetest.after(ARMOR_UPDATE_TIME, tick)
+end
+
+tick()
 
