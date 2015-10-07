@@ -65,7 +65,7 @@ mobs:register_mob("mobs:shark_lg", {
 	end
 })
 --name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs:shark_lg", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -31000, -25)
+mobs:spawn_specific("mobs:shark_lg", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -50, -1)
 mobs:register_egg("mobs:shark_lg", "Shark (large)", l_egg_texture, 0)
 
 -- medium
