@@ -19,23 +19,24 @@ mobs:register_mob("mobs:pumpking", {
 	sounds = {
 		random = "mobs_king"
 	},
-	hp_min = 150,
+	hp_min = 190,
 	hp_max = 200,
-	armor = 60,
+	armor = 70,
 	knock_back = 0.1,
 	light_damage = 0,
 	water_damage = 0,
 	lava_damage = 0,
 	fall_damage = 0,
 	damage = 8,
+	reach = 4,
 	attack_type = "dogfight",
 	view_range = 25,
 	stepheight = 1.1,
 	drops = {
 		{name = "farming:jackolantern", chance = 1, min = 1, max = 1}
 	},
-	lifetimer = 300,		-- 10 minutes
-	shoot_interval = 135,	-- (lifetimer - (lifetimer / 4)), borrowed for do_custom timer
+	lifetimer = 300,		-- 5 minutes
+	shoot_interval = 1000,	-- (lifetimer - (lifetimer / 4)), borrowed for do_custom timer
 	do_custom = function(self)
 		if self.lifetimer <= self.shoot_interval then
 			p = self.object:getpos()
@@ -45,9 +46,6 @@ mobs:register_mob("mobs:pumpking", {
 				p, "mobs:pumpboom")
 			self.shoot_interval = self.shoot_interval - 45
 		end
-	end,
-	on_die = function(self)
-		minetest.chat_send_all("A group of players killed a Pumpking!")
 	end
 })
 
