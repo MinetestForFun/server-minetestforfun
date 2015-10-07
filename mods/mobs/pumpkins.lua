@@ -79,11 +79,11 @@ mobs:register_mob("mobs:pumpboom", {
 	water_damage = 0,
 	lava_damage = 0,
 	fall_damage = 0,
-	damage = 6,
+	damage = 4,
 	attack_type = "explode",
 	group_attack = true,
 	view_range = 15,
-	walk_velocity = 2.5,
+	walk_velocity = 2,
 	run_velocity = 4,
 	drops = {
 		{name = "farming:pumpkin_seed", chance = 1, min = 1, max = 4}
@@ -126,7 +126,7 @@ minetest.register_node("mobs:pumpboom_spawner", {
 
 minetest.register_abm({
 	nodenames = {"mobs:pumpking_spawner"},
-	interval = 300.0,
+	interval = 600.0,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		minetest.add_entity(pos, "mobs:pumpking")
@@ -136,7 +136,7 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"mobs:pumpboom_spawner"},
 	interval = 30.0,
-	chance = 3,
+	chance = 4,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		pos.y = pos.y + 1
 		minetest.add_entity(pos, "mobs:pumpboom")
