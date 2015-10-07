@@ -45,6 +45,9 @@ mobs:register_mob("mobs:pumpking", {
 				p, "mobs:pumpboom")
 			self.shoot_interval = self.shoot_interval - 45
 		end
+	end,
+	on_die = function(self)
+		minetest.chat_send_all("A group of players killed a Pumpking!")
 	end
 })
 
