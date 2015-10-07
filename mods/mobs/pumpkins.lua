@@ -37,19 +37,10 @@ mobs:register_mob("mobs:pumpking", {
 	},
 	lifetimer = 300,		-- 5 minutes
 	shoot_interval = 1000,	-- (lifetimer - (lifetimer / 4)), borrowed for do_custom timer
-	do_custom = function(self)
-		if self.lifetimer <= self.shoot_interval then
-			p = self.object:getpos()
-			p.y = p.y + 1
-			minetest.add_entity(p, "mobs:pumpboom")
-			minetest.after(5.0, function(pos, str) minetest.add_entity(pos, str) end,
-				p, "mobs:pumpboom")
-			self.shoot_interval = self.shoot_interval - 45
-		end
+	on_die = function(self)
+		minetest.chat_send_all("A group of players killed a Pumpking!")
 	end
 })
-
-mobs:register_egg("mobs:pumpking", "Pumpkin King", "mobs_pumpking_inv.png", 1)
 
 mobs:register_mob("mobs:pumpboom", {
 	type = "monster",
@@ -59,7 +50,7 @@ mobs:register_mob("mobs:pumpboom", {
 		{"mobs_pumpboom.png"}
 	},
 	visual_size = {x=3, y=3},
-	collisionbox = {-0.80, -0.3, -0.80, 0.80, 0.80, 0.80},
+	collisionbox = {-0.70, -0.3, -0.70, 0.70, 0.70, 0.70},
 	rotate = 270,
 	animation = {
 		speed_normal = 15,	speed_run = 30,
@@ -105,11 +96,39 @@ minetest.register_node("mobs:pumpking_spawner", {
 		dug = {name="mobs_king", gain=0.25}
 	})
 })
+
+minetest.register_node("mobs:pumpboom_spawner", {
+	description = "Pump Boom Spawner",
+	tiles = {
+		"farming_pumpkin_top.png",
+		"farming_pumpkin_top.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_face_off.png"
+	},
+	is_ground_content = false,
+	groups = {cracky=3, stone=1, mob_spawner=1},
+	sounds = default.node_sound_stone_defaults({
+		dug = {name="mobs_boom", gain=0.25}
+	})
+})
+
 minetest.register_abm({
 	nodenames = {"mobs:pumpking_spawner"},
 	interval = 300.0,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		minetest.add_entity(pos, "mobs:pumpking")
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"mobs:pumpboom_spawner"},
+	interval = 30.0,
+	chance = 3,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		pos.y = pos.y + 1
+		minetest.add_entity(pos, "mobs:pumpboom")
 	end
 })
