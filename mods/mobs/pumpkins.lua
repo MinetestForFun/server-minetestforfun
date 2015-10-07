@@ -1,4 +1,4 @@
--- Pumpking by Blert2112
+-- PumpKing by Blert2112
 mobs:register_mob("mobs:pumpking", {
 	type = "monster",
 	visual = "mesh",
@@ -33,12 +33,22 @@ mobs:register_mob("mobs:pumpking", {
 	view_range = 25,
 	stepheight = 1.1,
 	drops = {
+		-- Ressource & Decoration drops
 		{name = "farming:jackolantern", chance = 1, min = 1, max = 1}
+		{name = "default:diamond_block", chance = 2, min = 1, max = 3}
+		-- Hunter drops
+		{name = "3d_armor:helmet_hardenedleather", chance = 10, min = 1, max = 1}
+		{name = "3d_armor:chestplate_hardenedleather", chance = 10, min = 1, max = 1}
+		{name = "throwing:bow_minotaur_horn", chance = 33, min = 1, max = 1}
+		-- Warrior drops
+		{name = "3d_armor:helmet_mithril", chance = 10, min = 1, max = 1}
+		{name = "3d_armor:chestplate_mithril", chance = 10, min = 1, max = 1}
+		{name = "moreores:sword_mithril", chance = 33, min = 1, max = 1}
 	},
 	lifetimer = 300,		-- 5 minutes
-	shoot_interval = 1000,	-- (lifetimer - (lifetimer / 4)), borrowed for do_custom timer
+	--shoot_interval = 1000,	-- (lifetimer - (lifetimer / 4)), borrowed for do_custom timer
 	on_die = function(self)
-		minetest.chat_send_all("A group of players killed a Pumpking!")
+		minetest.chat_send_all("A group of players killed a PumpKing!")
 	end
 })
 
@@ -69,11 +79,11 @@ mobs:register_mob("mobs:pumpboom", {
 	water_damage = 0,
 	lava_damage = 0,
 	fall_damage = 0,
-	damage = 4,
+	damage = 6,
 	attack_type = "explode",
 	group_attack = true,
 	view_range = 15,
-	walk_velocity = 2,
+	walk_velocity = 2.5,
 	run_velocity = 4,
 	drops = {
 		{name = "farming:pumpkin_seed", chance = 1, min = 1, max = 4}
