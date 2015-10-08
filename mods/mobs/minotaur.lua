@@ -7,10 +7,10 @@ mobs:register_mob("mobs:minotaur", {
 	-- aggressive, deals 11 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 8,
+	damage = 7,
 	-- health & armor
-	hp_min = 80,
-	hp_max = 100,
+	hp_min = 60,
+	hp_max = 70,
 	armor = 90,
 	-- textures and model
 	collisionbox = {-0.9,-0.01,-0.9, 0.9,2.5,0.9},
@@ -30,8 +30,8 @@ mobs:register_mob("mobs:minotaur", {
 		-- death = "mobs_zombie_death",
 	-- },
 	-- speed and jump
-	walk_velocity = 3,
-	run_velocity = 4,
+	walk_velocity = 2.5,
+	run_velocity = 3.5,
 	jump = true,
 	floats = 1,
 	view_range = 16,
