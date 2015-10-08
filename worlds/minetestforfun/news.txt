@@ -1,12 +1,23 @@
 ---Planned on the Server---
-Add Unic bosses
+Add an another Unic boss : The Ent
 Spawning monsters egg for some monsters
-Spiders will deal a smaller amount of damage BUT they will poison you ! (poison will deal damage over time through the armor)
 
 ---Important News---
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
 ---Patch Notes---
+---08/10/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Gael-de-Sailly, Obani)
+Update of "mesecons_modpack" (Some little improved and now the hydroturbine will work with "water_river")
+Update of "snow" (Disabled the stone feature wich isn't over so not very beautiful)
+Addition of "soccer" (You can now craft a soccer ball and play football with other players)
+Update of "3d_armor" (Fixed the armor disappear bug)
+Update of "MFF_Game" (Code improves of Beds/Boats/Buckets)
+Update of "mapfix" (Little code improves)
+Update of "xban2" (Little code improves)
+Update of "mobs" (Crashfix resolved, Dungeon Master/Shark/Minotaur/Stone Monster now less powerful, Add the PumpKing Boss and his PumpBoom, reduced the volume of the NPC Female sounds)
+Update of "throwing" (Better Arrows trajectory, improved the spear textures)
+Update of "fences" (Fixed the select box)
+
 ---28/09/2015--- (Thanks to : crabman77/crabman)
 Update of "fishing" (Added different fishs for ocean water and river water, also new trophies from this fishes)
 Update of "mobs" (Minotaurs and Stone Monsters are now a little less hard to kill, and we add Sharks agressive monsters into ocean water)
