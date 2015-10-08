@@ -88,7 +88,7 @@ mobs:register_mob("mobs:pumpboom", {
 	walk_velocity = 2,
 	run_velocity = 4,
 	drops = {
-		{name = "farming:pumpkin_seed", chance = 4, min = 2, max = 4}
+		{name = "farming:pumpkin_seed", chance = 8, min = 4, max = 8}
 	}
 })
 
@@ -128,7 +128,7 @@ minetest.register_node("mobs:pumpboom_spawner", {
 
 minetest.register_abm({
 	nodenames = {"mobs:pumpking_spawner"},
-	interval = 600.0,
+	interval = 300.0,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		minetest.add_entity(pos, "mobs:pumpking")
