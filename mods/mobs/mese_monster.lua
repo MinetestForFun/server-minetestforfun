@@ -6,7 +6,7 @@ mobs:register_mob("mobs:mese_monster", {
 	type = "monster",
 	-- agressive, deals 9 damage to player when hit
 	passive = false,
-	damage = 8,
+	damage = 7,
 	attack_type = "shoot",
 	shoot_interval = 1.0,
 	arrow = "mobs:mese_arrow",
