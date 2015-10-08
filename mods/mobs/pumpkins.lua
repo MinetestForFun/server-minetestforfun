@@ -81,7 +81,7 @@ mobs:register_mob("mobs:pumpboom", {
 	water_damage = 0,
 	lava_damage = 0,
 	fall_damage = 0,
-	damage = 7,
+	damage = 8,
 	attack_type = "explode",
 	group_attack = true,
 	view_range = 15,
