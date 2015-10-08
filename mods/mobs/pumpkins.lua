@@ -34,16 +34,16 @@ mobs:register_mob("mobs:pumpking", {
 	stepheight = 1.1,
 	drops = {
 		-- Ressource & Decoration drops
-		{name = "farming:jackolantern", chance = 1, min = 1, max = 1}
-		{name = "default:diamond_block", chance = 2, min = 1, max = 3}
+		{name = "farming:jackolantern", chance = 1, min = 1, max = 1},
+		{name = "default:diamond_block", chance = 2, min = 1, max = 3},
 		-- Hunter drops
-		{name = "3d_armor:helmet_hardenedleather", chance = 10, min = 1, max = 1}
-		{name = "3d_armor:chestplate_hardenedleather", chance = 10, min = 1, max = 1}
-		{name = "throwing:bow_minotaur_horn", chance = 33, min = 1, max = 1}
+		{name = "3d_armor:helmet_hardenedleather", chance = 10, min = 1, max = 1},
+		{name = "3d_armor:chestplate_hardenedleather", chance = 10, min = 1, max = 1},
+		{name = "throwing:bow_minotaur_horn", chance = 33, min = 1, max = 1},
 		-- Warrior drops
-		{name = "3d_armor:helmet_mithril", chance = 10, min = 1, max = 1}
-		{name = "3d_armor:chestplate_mithril", chance = 10, min = 1, max = 1}
-		{name = "moreores:sword_mithril", chance = 33, min = 1, max = 1}
+		{name = "3d_armor:helmet_mithril", chance = 10, min = 1, max = 1},
+		{name = "3d_armor:chestplate_mithril", chance = 10, min = 1, max = 1},
+		{name = "moreores:sword_mithril", chance = 33, min = 1, max = 1},
 	},
 	lifetimer = 300,		-- 5 minutes
 	--shoot_interval = 1000,	-- (lifetimer - (lifetimer / 4)), borrowed for do_custom timer
