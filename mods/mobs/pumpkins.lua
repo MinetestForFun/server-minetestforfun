@@ -88,7 +88,7 @@ mobs:register_mob("mobs:pumpboom", {
 	walk_velocity = 2,
 	run_velocity = 4,
 	drops = {
-		{name = "farming:pumpkin_seed", chance = 1, min = 1, max = 4}
+		{name = "farming:pumpkin_seed", chance = 4, min = 2, max = 4}
 	}
 })
 
