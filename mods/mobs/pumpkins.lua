@@ -136,7 +136,7 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"mobs:pumpboom_spawner"},
 	interval = 30.0,
-	chance = 6,
+	chance = 8,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		pos.y = pos.y + 1
 		minetest.add_entity(pos, "mobs:pumpboom")
