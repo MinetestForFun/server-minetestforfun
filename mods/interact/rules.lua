@@ -30,37 +30,37 @@ Cliquez sur le bouton "Accepter" pour pouvoir construire et interagir sur le ser
 --The checkboxes for the first 4 questions are in config.lua
 interact.s4_question1 = {
 	en = "Can I use a bug to crash the server so it restarts?",
-	fr = "Puis-je utiliser un bug pour faire crasher le serveur afin qu'il redémarre?"
+	fr = "Puis-je utiliser un bug pour faire crasher le serveur afin qu'il redémarre ?"
 }
 interact.s4_question2 = {
-	en = "Can I ask to be a member of the staff?",
-	fr = "Puis-je demander à faire partie de l'équipe d'administration?"
+	en = "Can I ask to be a member of the staff ?",
+	fr = "Puis-je demander à faire partie de l'équipe d'administration ?"
 }
 interact.s4_question3 = {
-	en = "Am I alllowed to grief a non-protected zone?",
-	fr = "Ai-je le droit de grieffer une zone non-protégée?"
+	en = "Are the spam and flood forbidden?",
+	fr = "Le spam et flood sont ils interdit ?"
 }
 interact.s4_question4 = {
 	en = "Can I freely join the IRC channel?",
-	fr = "Puis-je joindre librement l'IRC?"
+	fr = "Puis-je joindre librement l'IRC ?"
 }
 interact.s4_multi_question = {
 	en = "Which of these is a rule?",
-	fr = "Laquelle des affirmations est une règle?"
+	fr = "Laquelle des affirmations est une règle ?"
 }
 
 --The answers to the multiple choice questions. Only one of these should be true.
 interact.s4_multi1 = {
-	en = "No griefing",
-	fr = "Pas de grief"
+	en = "Cheating allowed",
+	fr = "Triche autorisé"
 }
 interact.s4_multi2 = {
-	en = "No PvP",
-	fr = "Pas de PvP"
+	en = "PvP forbidden",
+	fr = "PvP interdit"
 }
 interact.s4_multi3 = {
-	en = "Object thief allowed",
-	fr = "Vol d'objets autorisé"
+	en = "Swearing/racism forbidden",
+	fr = "Insulte/racisme interdit"
 }
 
 --Which answer is needed for the quiz questions. interact.quiz1-4 takes true or false.
