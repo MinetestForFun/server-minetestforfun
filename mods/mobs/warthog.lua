@@ -60,7 +60,7 @@ mobs:register_mob("mobs:pumba", {
 		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
 	end,
 })
--- spawns on dirt or junglegrass, between 8 and 20 light, 1 in 10000 chance, 1 in area up to 31000 in height
+-- spawns on dirt or junglegrass, between 8 and 20 light, 1 in 15000 chance, 1 in area up to 31000 in height
 mobs:spawn_specific("mobs:pumba", {"default:dirt", "default:junglegrass", "default:dirt_with_dry_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
 -- register spawn egg
 mobs:register_egg("mobs:pumba", "Warthog", "mobs_warthog_inv.png", 1)
