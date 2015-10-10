@@ -1,4 +1,4 @@
--- Mobs Api (27th September 2015)
+-- Mobs Api (5th October 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -265,7 +265,9 @@ minetest.register_entity(name, {
 					if d > 5 then
 						self.object:set_hp(self.object:get_hp() - math.floor(d - 5))
 						effect(self.object:getpos(), 5, "tnt_smoke.png")
-						check_for_death(self)
+						if check_for_death(self) then
+							return
+						end
 					end
 					self.old_y = self.object:getpos().y
 				end
@@ -318,8 +320,8 @@ end
 			end
 
 if self.water_damage ~= 0 or self.lava_damage ~= 0 then
-			pos.y = pos.y + self.collisionbox[2] -- foot level
-			local nod = node_ok(pos, "air") -- print ("standing in "..nod.name)
+			pos.y = (pos.y + self.collisionbox[2]) + 0.1 -- foot level
+			local nod = node_ok(pos, "air") ;  -- print ("standing in "..nod.name)
 			local nodef = minetest.registered_nodes[nod.name]
 			if not nodef then return end
 			pos.y = pos.y + 1
@@ -841,7 +843,6 @@ end
 					entity_physics(pos, 3, self) -- hurt player/mobs caught in blast area --/MFF (Crabman|06/23/2015)add self to use punch function
 					if minetest.find_node_near(pos, 1, {"group:water"})
 					or minetest.is_protected(pos, "") then
-						self.object:remove()
 						if self.sounds.explode ~= "" then
 							minetest.sound_play(self.sounds.explode, {
 								pos = pos,
@@ -849,12 +850,13 @@ end
 								max_hear_distance = 16
 							})
 						end
+						self.object:remove()
 						effect(pos, 15, "tnt_smoke.png", 5)
 						return
 					end
-					self.object:remove()
 					pos.y = pos.y - 1
 					mobs:explosion(pos, 2, 0, 1, self.sounds.explode)
+					self.object:remove()
 				end
 			end
 
@@ -1009,6 +1011,7 @@ end
 		if self.type == "monster"
 		and peaceful_only then
 			self.object:remove()
+			return
 		end
 
 		-- load entity variables
@@ -1019,6 +1022,8 @@ end
 					self[_] = stat
 				end
 			end
+		else
+			return
 		end
 
 		-- select random texture, set model and size
@@ -1089,6 +1094,7 @@ end
 		if mobs.remove and self.remove_ok and not self.tamed then
 			print ("REMOVED", self.remove_ok, self.name)
 			self.object:remove()
+			return nil
 		end
 		self.remove_ok = true
 		self.attack = nil
@@ -1363,7 +1369,6 @@ function check_for_death(self)
 		return false
 	end
 	local pos = self.object:getpos()
-	self.object:remove()
 	local obj = nil
 	for _,drop in ipairs(self.drops) do
 		if math.random(1, drop.chance) == 1 then
@@ -1372,7 +1377,7 @@ function check_for_death(self)
 			if obj then
 				obj:setvelocity({
 					x = math.random(-1, 1),
-					y = 5,
+					y = 6,
 					z = math.random(-1, 1)
 				})
 			end
@@ -1387,6 +1392,7 @@ function check_for_death(self)
 	if self.on_die then
 		self.on_die(self, pos)
 	end
+	self.object:remove()
 	return true
 end
 

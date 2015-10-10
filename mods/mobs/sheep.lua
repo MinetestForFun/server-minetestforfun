@@ -160,10 +160,23 @@ minetest.register_entity("mobs:sheep", {
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
 	is_visible = true,
 	speed = 0,
+	timer = 0,
 
 	on_rightclick = function(self, clicker)
 		clicker:get_inventory():add_item("main", "mobs:sheep_white")
 		self.object:remove()
+	end,
+
+	on_step = function(self, dtime)
+		self.timer = self.timer + dtime
+		if self.timer >= 1 then
+			self.timer = 0
+			self.object:setacceleration({
+				x = 0,
+				y = -10,
+				z = 0
+			})
+		end
 	end,
 
 })
