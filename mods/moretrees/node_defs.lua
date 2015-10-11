@@ -120,10 +120,11 @@ for i in ipairs(moretrees.treelist) do
 		local droprarity = 100
 		local decay = moretrees.leafdecay_radius
 
-		if treename == "palm" then
-			droprarity = 20
-			decay = moretrees.palm_leafdecay_radius
-		end
+-- //MFF(Mg|10/11/15)
+--		if treename == "palm" then
+--			droprarity = 20
+--			decay = moretrees.palm_leafdecay_radius
+--		end
 
 		local moretrees_leaves_inventory_image = nil
 		local moretrees_new_leaves_waving = nil
