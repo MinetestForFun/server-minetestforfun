@@ -18,18 +18,24 @@ local default_nodes = { -- Default stairs/slabs/panels/microblocks:
 	"diamondblock",
 	"desert_stone",
 	"desert_cobble",
+	"meselamp",
 	"glass",
 	"tree",
 	"wood",
 	"jungletree",
 	"junglewood",
-	"pinetree",
-	"pinewood",
+	"pine_tree",
+	"pine_wood",
+	"cherry_tree",
+	"cherry_plank",
+	"acacia_tree",
+	"acacia_wood",
 	"obsidian",
 	"obsidian_glass",
 	"stonebrick",
 	"desert_stonebrick",
 	"sandstonebrick",
+	"obsidianbrick",
 }
 
 for _, name in pairs(default_nodes) do
@@ -54,7 +60,7 @@ for _, name in pairs(default_nodes) do
 			sounds = ndef.sounds,
 			tiles = ndef.tiles,
 			sunlight_propagates = true,
+			light_source = ndef.light_source
 		})
 	end
 end
-

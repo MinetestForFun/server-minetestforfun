@@ -45,6 +45,12 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:dirt_with_grass",
+	type = "shapeless",
+	recipe = {"default:mese", "default:dirt"},
+})
+
+minetest.register_craft({
 	output = "default:mossycobble",
 	type = "shapeless",
 	recipe = {"default:junglegrass", "default:cobble"},

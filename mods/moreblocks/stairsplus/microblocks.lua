@@ -112,6 +112,18 @@ function stairsplus:register_micro(modname, subname, recipeitem, fields)
 
 	minetest.register_craft({
 		type = "shapeless",
+		output = modname .. ":micro_" .. subname .. " 4",
+		recipe = {modname .. ":stair_" .. subname .. "_alt"},
+	})
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = modname .. ":micro_" .. subname .. " 3",
+		recipe = {modname .. ":stair_" .. subname .. "_right_half"},
+	})
+
+	minetest.register_craft({
+		type = "shapeless",
 		output = modname .. ":micro_" .. subname .. " 2",
 		recipe = {modname .. ":panel_" .. subname},
 	})

@@ -12,6 +12,8 @@ minetest.register_alias("jungle_stick", "moreblocks:jungle_stick")
 
 -- Wrong drops
 
+-- //MFF(Mg|10/11/15)
+
 -- Microblocks
 for _,i in pairs({"", "_1", "_2", "_4", "_12", "_14", "_15"}) do
 	minetest.register_alias("moreblocks:micro_clay_brick" .. i, "moreblocks:micro_brick" .. i)
