@@ -169,6 +169,7 @@ load_mod_quests = true
 load_mod_action_timers = true
 
 load_mod_throwing = true
+load_mod_spears = true
 load_mod_pclasses = true
 load_mod_mff_pclasses = true
 load_mod_3d_armor = true
