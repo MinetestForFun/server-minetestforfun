@@ -351,7 +351,12 @@ minetest.register_abm({
 				default.leafdecay_trunk_find_allow_accumulator - 1
 		-- Assume ignore is a trunk, to make the thing
 		-- work at the border of the active area
-		local p1 = minetest.find_node_near(p0, d, {"ignore", "group:tree"})
+		local p1
+		if n0.name == "moretrees:palm_leaves" then
+			p1 = minetest.find_node_near(p0, d, {"ignore", "moretrees:palm_trunk"})
+		else
+			p1 = minetest.find_node_near(p0, d, {"ignore", "group:tree"})
+		end
 		if p1 then
 			do_preserve = true
 			if default.leafdecay_enable_cache then
