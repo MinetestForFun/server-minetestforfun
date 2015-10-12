@@ -45,6 +45,15 @@ function throwing_get_trajectoire(self, newpos)
 	return coord
 end
 
+function throwing_touch(pos, objpos)
+	local rx = pos.x - objpos.x
+	local ry = pos.y - (objpos.y+1)
+	local rz = pos.z - objpos.z
+	if (ry < 1 and ry > -1) and (rx < 0.4 and rx > -0.4) and (rz < 0.4 and rz > -0.4) then
+		return true
+	end
+	return false
+end
 
 function throwing_shoot_arrow (itemstack, player, stiffness, is_cross)
 	if not player then return end
@@ -179,19 +188,3 @@ function throwing_register_bow (name, desc, scale, stiffness, reload_time, tough
 	})
 end
 
--- Spears
-
-function throwing_shoot_spear (itemstack, player)
-	local spear = itemstack:get_name() .. '_entity'
-	local playerpos = player:getpos()
-	local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, spear)
-	local dir = player:get_look_dir()
-	obj:setvelocity({x=dir.x*14, y=dir.y*14, z=dir.z*14})
-	obj:setacceleration({x=-dir.x*1, y=-9.8, z=-dir.z*1})
-	obj:setyaw(player:get_look_yaw()+math.pi)
-	obj:get_luaentity().wear = itemstack:get_wear()
-	obj:get_luaentity().player = player:get_player_name()
-	obj:get_luaentity().lastpos = {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}
-	minetest.sound_play("throwing_bow_sound", {pos=playerpos})
-	return true
-end

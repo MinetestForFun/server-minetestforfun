@@ -32,7 +32,6 @@ dofile(minetest.get_modpath("throwing").."/crafts.lua")
 
 dofile(minetest.get_modpath("throwing").."/standard_arrows.lua")
 
-dofile(minetest.get_modpath("throwing").."/spears.lua")
 
 if minetest.get_modpath('fire') and minetest.get_modpath('bucket') and not DISABLE_FIRE_ARROW then
 	dofile(minetest.get_modpath("throwing").."/fire_arrow.lua")

@@ -49,19 +49,30 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 1)
 			for k, obj in pairs(objs) do
 				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
-					local damage = 1.5
-					obj:punch(self.object, 1.0, {
-						full_punch_interval=1.0,
+					if throwing_touch(pos, objpos) then
+						local puncher = self.object
+						if self.player and minetest.get_player_by_name(self.player) then
+							puncher = minetest.get_player_by_name(self.player)
+						end
+						local damage = 1.5
+						obj:punch(puncher, 1.0, {
+							full_punch_interval=1.0,
 							damage_groups={fleshy=damage},
-					}, nil)
-					if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
-						minetest.add_item(pos, "throwing:arrow_dig")
+						}, nil)
+						if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
+							minetest.add_item(pos, "throwing:arrow_dig")
+						end
+						self.object:remove()
+						return
 					end
-					self.object:remove()
-					return
 				end
 			end
-			if node.name ~= "air" and not string.find(node.name, "water_") and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
+			if node.name ~= "air"
+			and not string.find(node.name, "water_")
+			and not (string.find(node.name, 'grass') and not string.find(node.name, 'dirt'))
+			and not (string.find(node.name, 'farming:') and not string.find(node.name, 'soil'))
+			and not string.find(node.name, 'flowers:')
+			and not string.find(node.name, 'fire:') then
 				if node.name ~= "ignore" and minetest.get_item_group(node.name, "unbreakable") == 0
 					and not minetest.is_protected(pos, self.player)
 					and node.diggable ~= false then

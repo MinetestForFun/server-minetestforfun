@@ -48,10 +48,13 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			for k, obj in pairs(objs) do
 				local objpos = obj:getpos()
 				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
-					if (pos.x - objpos.x < 0.5 and pos.x - objpos.x > -0.5) and (pos.z - objpos.z < 0.5 and pos.z - objpos.z > -0.5) then
-
+					if throwing_touch(pos, objpos) then
+						local puncher = self.object
+						if self.player and minetest.get_player_by_name(self.player) then
+							puncher = minetest.get_player_by_name(self.player)
+						end
 						local damage = 4
-						obj:punch(self.object, 1.0, {
+						obj:punch(puncher, 1.0, {
 							full_punch_interval=1.0,
 							damage_groups={fleshy=damage},
 						}, nil)
@@ -64,7 +67,13 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				end
 			end
 
-			if node.name ~= "air" and node.name ~= "throwing:light" and node.name ~= "fire:basic_flame" and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
+			if node.name ~= "air"
+			and node.name ~= "throwing:light"
+			and node.name ~= "fire:basic_flame"
+			and not (string.find(node.name, 'grass') and not string.find(node.name, 'dirt'))
+			and not (string.find(node.name, 'farming:') and not string.find(node.name, 'soil'))
+			and not string.find(node.name, 'flowers:')
+			and not string.find(node.name, 'fire:') then
 				if node.name ~= "ignore" then
 					minetest.set_node(self.lastpos, {name="fire:basic_flame"})
 				end

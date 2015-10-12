@@ -69,9 +69,18 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				end
 			end
 
-			if node.name ~= "air" and not string.find(node.name, "water_") and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:')  and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
+			if node.name ~= "air"
+			and not string.find(node.name, "water_")
+			and not (string.find(node.name, 'grass') and not string.find(node.name, 'dirt'))
+			and not (string.find(node.name, 'farming:') and not string.find(node.name, 'soil'))
+			and not string.find(node.name, 'flowers:')
+			and not string.find(node.name, 'fire:') then
 				if node.name ~= "ignore" and self.inventory and self.stack then
-					if not minetest.is_protected(self.lastpos, "") and not string.find(node.name, "water_") and not string.find(node.name, "lava") and not string.find(node.name, "torch") and self.stack:get_definition().type == "node" and self.stack:get_name() ~= "default:torch" then
+					if not minetest.is_protected(self.lastpos, "")
+					and not string.find(node.name, "lava")
+					and not string.find(node.name, "torch")
+					and self.stack:get_definition().type == "node"
+					and self.stack:get_name() ~= "default:torch" then
 						minetest.place_node(self.lastpos, {name=self.stack:get_name()})
 					else
 						minetest.add_item(self.lastpos, {name=self.stack:get_name()})

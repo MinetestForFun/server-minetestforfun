@@ -58,7 +58,11 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				end
 			end
 
-			if node.name ~= "air" and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
+			if node.name ~= "air"
+			and not (string.find(node.name, 'grass') and not string.find(node.name, 'dirt'))
+			and not (string.find(node.name, 'farming:') and not string.find(node.name, 'soil'))
+			and not string.find(node.name, 'flowers:')
+			and not string.find(node.name, 'fire:') then
 				if self.player ~= "" then
 					local player = minetest.get_player_by_name(self.player)
 					if player then

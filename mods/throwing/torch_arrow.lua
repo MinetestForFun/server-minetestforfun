@@ -48,21 +48,27 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 0.5)
 			for k, obj in pairs(objs) do
 				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
-					local damage = 0.5
-					obj:punch(self.object, 1.0, {
-						full_punch_interval=1.0,
-						damage_groups={fleshy=damage},
-					}, nil)
-					local toughness = 0.9
-					if math.random() < toughness then
-						if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
-							minetest.add_item(pos, 'throwing:arrow_torch')
+					if throwing_touch(pos, objpos) then
+						local puncher = self.object
+						if self.player and minetest.get_player_by_name(self.player) then
+							puncher = minetest.get_player_by_name(self.player)
 						end
-					else
-						minetest.add_item(pos, 'default:stick')
+						local damage = 0.5
+						obj:punch(puncher, 1.0, {
+							full_punch_interval=1.0,
+							damage_groups={fleshy=damage},
+						}, nil)
+						local toughness = 0.9
+						if math.random() < toughness then
+							if math.random(0,100) % 2 == 0 then -- 50% of chance to drop //MFF (Mg|07/27/15)
+								minetest.add_item(pos, 'throwing:arrow_torch')
+							end
+						else
+							minetest.add_item(pos, 'default:stick')
+						end
+						self.object:remove()
+						return
 					end
-					self.object:remove()
-					return
 				end
 			end
 
@@ -70,7 +76,12 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			if node.name == 'air' then
 				minetest.add_node(pos, {name="throwing:torch_trail"})
 				minetest.get_node_timer(pos):start(0.1)
-			elseif node.name ~= "air" and not string.find(node.name, "trail") and not string.find(node.name, 'grass') and not string.find(node.name, 'flowers:') and not string.find(node.name, 'farming:') and not string.find(node.name, 'fire:') then
+			elseif node.name ~= "air"
+			and not string.find(node.name, "trail")
+			and not (string.find(node.name, 'grass') and not string.find(node.name, 'dirt'))
+			and not (string.find(node.name, 'farming:') and not string.find(node.name, 'soil'))
+			and not string.find(node.name, 'flowers:')
+			and not string.find(node.name, 'fire:') then
 				local player = minetest.get_player_by_name(self.player)
 				if not player then self.object:remove() return end
 				if node.name ~= "ignore" and not string.find(node.name, "water_") and not string.find(node.name, "lava")
