@@ -1,7 +1,9 @@
 local function default_refill(stack)
 	stack:set_count(stack:get_stack_max())
 	local itemdef = minetest.registered_items[stack:get_name()]
-	if itemdef and (itemdef.wear_represents or "mechanical_wear") == "mechanical_wear" and stack:get_wear() ~= 0 then
+	if itemdef
+	and (itemdef.wear_represents or "mechanical_wear") == "mechanical_wear"
+	and stack:get_wear() ~= 0 then
 		stack:set_wear(0)
 	end
 	return stack
@@ -12,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 	unified_inventory.players[player_name] = {}
 	unified_inventory.current_index[player_name] = 1
 	unified_inventory.filtered_items_list[player_name] =
-			unified_inventory.items_list
+	unified_inventory.items_list
 	unified_inventory.activefilter[player_name] = ""
 	unified_inventory.active_search_direction[player_name] = "nochange"
 	unified_inventory.apply_filter(player, "", "nochange")
@@ -21,7 +23,7 @@ minetest.register_on_joinplayer(function(player)
 	unified_inventory.current_item[player_name] = nil
 	unified_inventory.current_craft_direction[player_name] = "recipe"
 	unified_inventory.set_inventory_formspec(player,
-			unified_inventory.default)
+	unified_inventory.default)
 
 	-- Refill slot
 	local refill = minetest.create_detached_inventory(player_name.."refill", {
@@ -46,13 +48,17 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
+	local player_name = player:get_player_name()
+
+	local ui_peruser,draw_lite_mode = unified_inventory.get_per_player_formspec(player_name)
+
 	if formname ~= "" then
 		return
 	end
-	local player_name = player:get_player_name()
 
 	-- always take new search text, even if not searching on it yet
-	if fields.searchbox ~= nil and fields.searchbox ~= unified_inventory.current_searchbox[player_name] then
+	if fields.searchbox
+	and fields.searchbox ~= unified_inventory.current_searchbox[player_name] then
 		unified_inventory.current_searchbox[player_name] = fields.searchbox
 		unified_inventory.set_inventory_formspec(player, unified_inventory.current_page[player_name])
 	end
@@ -68,11 +74,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 	-- Inventory page controls
 	local start = math.floor(
-		unified_inventory.current_index[player_name] / unified_inventory.items_per_page + 1)
+		unified_inventory.current_index[player_name] / ui_peruser.items_per_page + 1)
 	local start_i = start
 	local pagemax = math.floor(
 		(#unified_inventory.filtered_items_list[player_name] - 1)
-		/ (unified_inventory.items_per_page) + 1)
+		/ (ui_peruser.items_per_page) + 1)
 
 	if fields.start_list then
 		start_i = 1
@@ -98,15 +104,15 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if start_i > pagemax then
 		start_i = pagemax
 	end
-	if not (start_i	== start) then
+	if start_i ~= start then
 		minetest.sound_play("paperflip1",
 				{to_player=player_name, gain = 1.0})
-		unified_inventory.current_index[player_name] = (start_i - 1) * unified_inventory.items_per_page + 1
+		unified_inventory.current_index[player_name] = (start_i - 1) * ui_peruser.items_per_page + 1
 		unified_inventory.set_inventory_formspec(player,
 				unified_inventory.current_page[player_name])
 	end
 
-	local clicked_item = nil
+	local clicked_item
 	for name, value in pairs(fields) do
 		if string.sub(name, 1, 12) == "item_button_" then
 			local new_dir, mangled_item = string.match(name, "^item_button_([a-z]+)_(.*)$")
@@ -116,7 +122,8 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				unified_inventory.apply_filter(player, clicked_item, new_dir)
 				return
 			end
-			if new_dir == "recipe" or new_dir == "usage" then
+			if new_dir == "recipe"
+			or new_dir == "usage" then
 				unified_inventory.current_craft_direction[player_name] = new_dir
 			end
 			break
@@ -126,22 +133,20 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		minetest.sound_play("click",
 				{to_player=player_name, gain = 0.1})
 		local page = unified_inventory.current_page[player_name]
-		if not unified_inventory.is_creative(player_name) then
+		local player_creative = unified_inventory.is_creative(player_name)
+		if not player_creative then
 			page = "craftguide"
 		end
 		if page == "craftguide" then
 			unified_inventory.current_item[player_name] = clicked_item
 			unified_inventory.alternate[player_name] = 1
-			unified_inventory.set_inventory_formspec(player,
-					"craftguide")
-		else
-			if unified_inventory.is_creative(player_name) then
-				local inv = player:get_inventory()
-				local stack = ItemStack(clicked_item)
-				stack:set_count(stack:get_stack_max())
-				if inv:room_for_item("main", stack) then
-					inv:add_item("main", stack)
-				end
+			unified_inventory.set_inventory_formspec(player, "craftguide")
+		elseif player_creative then
+			local inv = player:get_inventory()
+			local stack = ItemStack(clicked_item)
+			stack:set_count(stack:get_stack_max())
+			if inv:room_for_item("main", stack) then
+				inv:add_item("main", stack)
 			end
 		end
 	end
@@ -156,27 +161,29 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 
 	-- alternate button
-	if fields.alternate then
-		minetest.sound_play("click",
-				{to_player=player_name, gain = 0.1})
-		local item_name = unified_inventory.current_item[player_name]
-		if item_name then
-			local alternates = 0
-			local alternate = unified_inventory.alternate[player_name]
-			local crafts = unified_inventory.crafts_for[unified_inventory.current_craft_direction[player_name]][item_name]
-			if crafts ~= nil then
-				alternates = #crafts
-			end
-			if alternates > 1 then
-				alternate = alternate + 1
-				if alternate > alternates then
-					alternate = 1
-				end
-				unified_inventory.alternate[player_name] = alternate
-				unified_inventory.set_inventory_formspec(player,
-						unified_inventory.current_page[player_name])
-			end
-		end
+	if not fields.alternate then
+		return
 	end
+	minetest.sound_play("click",
+			{to_player=player_name, gain = 0.1})
+	local item_name = unified_inventory.current_item[player_name]
+	if not item_name then
+		return
+	end
+	local crafts = unified_inventory.crafts_for[unified_inventory.current_craft_direction[player_name]][item_name]
+	if not crafts then
+		return
+	end
+	local alternates = #crafts
+	if alternates <= 1 then
+		return
+	end
+	local alternate = unified_inventory.alternate[player_name] + 1
+	if alternate > alternates then
+		alternate = 1
+	end
+	unified_inventory.alternate[player_name] = alternate
+	unified_inventory.set_inventory_formspec(player,
+			unified_inventory.current_page[player_name])
 end)
 

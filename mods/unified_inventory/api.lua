@@ -130,7 +130,7 @@ end
 
 -- register_craft
 function unified_inventory.register_craft(options)
-	if  options.output == nil then
+	if not options.output then
 		return
 	end
 	local itemstack = ItemStack(options.output)
@@ -140,7 +140,7 @@ function unified_inventory.register_craft(options)
 	if options.type == "normal" and options.width == 0 then
 		options = { type = "shapeless", items = options.items, output = options.output, width = 0 }
 	end
-	if unified_inventory.crafts_for.recipe[itemstack:get_name()] == nil then
+	if not unified_inventory.crafts_for.recipe[itemstack:get_name()] then
 		unified_inventory.crafts_for.recipe[itemstack:get_name()] = {}
 	end
 	table.insert(unified_inventory.crafts_for.recipe[itemstack:get_name()],options)
@@ -233,9 +233,7 @@ end
 
 
 function unified_inventory.is_creative(playername)
-	if minetest.check_player_privs(playername, {creative=true}) or
-	   minetest.setting_getbool("creative_mode") then
-		return true
-	end
+	return minetest.check_player_privs(playername, {creative=true})
+	or minetest.setting_getbool("creative_mode")
 end
 

@@ -27,18 +27,21 @@ unified_inventory.register_button("bags", {
 	type = "image",
 	image = "ui_bags_icon.png",
 	tooltip = S("Bags"),
+	hide_lite=true,
 	show_with = false, --Modif MFF (Crabman 30/06/2015)
 })
 
-for i = 1, 4 do
-	unified_inventory.register_page("bag"..i, {
+
+	unified_inventory.register_page("bag1", {
 		get_formspec = function(player)
-			local stack = player:get_inventory():get_stack("bag"..i, 1)
+			local stack = player:get_inventory():get_stack("bag1", 1)
 			local image = stack:get_definition().inventory_image
 			local formspec = "image[7,0;1,1;"..image.."]"
-			formspec = formspec.."label[0,0;Bag "..i.."]"
+			formspec = formspec.."label[0,0;Bag 1]"
 			formspec = formspec.."listcolors[#00000000;#00000000]"
-			formspec = formspec.."list[current_player;bag"..i.."contents;0,1;8,3;]"
+			formspec = formspec.."list[current_player;bag1contents;0,1;8,3;]"
+			formspec = formspec.."listring[current_name;bag1contents]"
+			formspec = formspec.."listring[current_player;main]"
 			local slots = stack:get_definition().groups.bagslots
 			if slots == 8 then
 				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_sm_form.png]"
@@ -50,7 +53,69 @@ for i = 1, 4 do
 			return {formspec=formspec}
 		end,
 	})
-end
+	unified_inventory.register_page("bag2", {
+		get_formspec = function(player)
+			local stack = player:get_inventory():get_stack("bag2", 1)
+			local image = stack:get_definition().inventory_image
+			local formspec = "image[7,0;1,1;"..image.."]"
+			formspec = formspec.."label[0,0;Bag 2]"
+			formspec = formspec.."listcolors[#00000000;#00000000]"
+			formspec = formspec.."list[current_player;bag2contents;0,1;8,3;]"
+			formspec = formspec.."listring[current_name;bag2contents]"
+			formspec = formspec.."listring[current_player;main]"
+			local slots = stack:get_definition().groups.bagslots
+			if slots == 8 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_sm_form.png]"
+			elseif slots == 16 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_med_form.png]"
+			elseif slots == 24 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_lg_form.png]"
+			end
+			return {formspec=formspec}
+		end,
+	})
+	unified_inventory.register_page("bag3", {
+		get_formspec = function(player)
+			local stack = player:get_inventory():get_stack("bag3", 1)
+			local image = stack:get_definition().inventory_image
+			local formspec = "image[7,0;1,1;"..image.."]"
+			formspec = formspec.."label[0,0;Bag 3]"
+			formspec = formspec.."listcolors[#00000000;#00000000]"
+			formspec = formspec.."list[current_player;bag3contents;0,1;8,3;]"
+			formspec = formspec.."listring[current_name;bag3contents]"
+			formspec = formspec.."listring[current_player;main]"
+			local slots = stack:get_definition().groups.bagslots
+			if slots == 8 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_sm_form.png]"
+			elseif slots == 16 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_med_form.png]"
+			elseif slots == 24 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_lg_form.png]"
+			end
+			return {formspec=formspec}
+		end,
+	})
+	unified_inventory.register_page("bag4", {
+		get_formspec = function(player)
+			local stack = player:get_inventory():get_stack("bag4", 1)
+			local image = stack:get_definition().inventory_image
+			local formspec = "image[7,0;1,1;"..image.."]"
+			formspec = formspec.."label[0,0;Bag 4]"
+			formspec = formspec.."listcolors[#00000000;#00000000]"
+			formspec = formspec.."list[current_player;bag4contents;0,1;8,3;]"
+			formspec = formspec.."listring[current_name;bag4contents]"
+			formspec = formspec.."listring[current_player;main]"
+			local slots = stack:get_definition().groups.bagslots
+			if slots == 8 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_sm_form.png]"
+			elseif slots == 16 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_med_form.png]"
+			elseif slots == 24 then
+				formspec = formspec.."background[0.06,0.99;7.92,7.52;ui_bags_lg_form.png]"
+			end
+			return {formspec=formspec}
+		end,
+	})
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "" then
@@ -128,9 +193,9 @@ minetest.register_tool("unified_inventory:bag_large", {
 minetest.register_craft({
 	output = "unified_inventory:bag_small",
 	recipe = {
-		{"",           "group:stick", ""},
-		{"group:wood", "group:wood",    "group:wood"},
-		{"group:wood", "group:wood",    "group:wood"},
+		{"",           "farming:cotton", ""},
+		{"group:wool", "group:wool",    "group:wool"},
+		{"group:wool", "group:wool",    "group:wool"},
 	},
 })
 
@@ -138,8 +203,8 @@ minetest.register_craft({
 	output = "unified_inventory:bag_medium",
 	recipe = {
 		{"",              "",                            ""},
-		{"group:stick", "unified_inventory:bag_small", "group:stick"},
-		{"group:stick", "unified_inventory:bag_small", "group:stick"},
+		{"farming:cotton", "unified_inventory:bag_small", "farming:cotton"},
+		{"farming:cotton", "unified_inventory:bag_small", "farming:cotton"},
 	},
 })
 
@@ -147,8 +212,8 @@ minetest.register_craft({
 	output = "unified_inventory:bag_large",
 	recipe = {
 		{"",              "",                             ""},
-		{"group:stick", "unified_inventory:bag_medium", "group:stick"},
-		{"group:stick", "unified_inventory:bag_medium", "group:stick"},
+		{"farming:cotton", "unified_inventory:bag_medium", "farming:cotton"},
+		{"farming:cotton", "unified_inventory:bag_medium", "farming:cotton"},
     },
 })
 

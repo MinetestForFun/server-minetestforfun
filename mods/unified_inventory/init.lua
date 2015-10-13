@@ -47,20 +47,6 @@ unified_inventory = {
 	form_header_y = 0
 }
 
-if unified_inventory.lite_mode then
-	unified_inventory.pagecols = 4
-	unified_inventory.pagerows = 6
-	unified_inventory.page_y = 0.25
-	unified_inventory.formspec_y = 0.47
-	unified_inventory.main_button_x = 8.2
-	unified_inventory.main_button_y = 6.5
-	unified_inventory.craft_result_x = 2.8
-	unified_inventory.craft_result_y = 3.4
-	unified_inventory.form_header_y = -0.1
-end
-
-unified_inventory.items_per_page = unified_inventory.pagecols * unified_inventory.pagerows
-
 -- Disable default creative inventory
 if rawget(_G, "creative_inventory") then
 	function creative_inventory.set_creative_formspec(player, start_i, pagenum)
@@ -73,14 +59,11 @@ dofile(modpath.."/api.lua")
 dofile(modpath.."/internal.lua")
 dofile(modpath.."/callbacks.lua")
 dofile(modpath.."/register.lua")
-
-if not unified_inventory.lite_mode then
-	dofile(modpath.."/bags.lua")
-end
+dofile(modpath.."/bags.lua")
 
 dofile(modpath.."/item_names.lua")
 
-if minetest.get_modpath("datastorage") and not unified_inventory.lite_mode then
+if minetest.get_modpath("datastorage") then
 	dofile(modpath.."/waypoints.lua")
 end
 
