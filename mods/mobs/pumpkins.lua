@@ -84,6 +84,7 @@ mobs:register_mob("mobs:pumpboom", {
 	damage = 8,
 	attack_type = "explode",
 	group_attack = true,
+	do_not_project_items = true,
 	view_range = 15,
 	walk_velocity = 2,
 	run_velocity = 4,
@@ -103,7 +104,7 @@ minetest.register_node("mobs:pumpking_spawner", {
 		"farming_pumpkin_face_on.png"
 	},
 	is_ground_content = false,
-	groups = {cracky=3, stone=1, mob_spawner=1},
+	groups = {unbkreakable = 1, mob_spawner=1},
 	sounds = default.node_sound_stone_defaults({
 		dug = {name="mobs_king", gain=0.25}
 	})
@@ -120,7 +121,7 @@ minetest.register_node("mobs:pumpboom_spawner", {
 		"farming_pumpkin_face_off.png"
 	},
 	is_ground_content = false,
-	groups = {cracky=3, stone=1, mob_spawner=1},
+	groups = {unbreakable = 1, mob_spawner=1},
 	sounds = default.node_sound_stone_defaults({
 		dug = {name="mobs_boom", gain=0.25}
 	})

@@ -287,7 +287,9 @@ function entity_physics(pos, radius, self) --/MFF (Crabman|06/23/2015)add self t
 		obj_vel = obj:getvelocity()
 		--dist = math.max(1, vector.distance(pos, obj_pos))
 		if obj_vel ~= nil then
-			obj:setvelocity(calc_velocity(pos, obj_pos, obj_vel, radius * 10))
+			if not (obj:get_entity_name() == "__builtin:item" and  self.do_not_project_items) then
+				obj:setvelocity(calc_velocity(pos, obj_pos, obj_vel, radius * 10))
+			end
 		end
 		--local damage = math.floor((4 / dist) * radius)
 		obj:punch(self.object, 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=self.damage} })--/MFF (Crabman|06/23/2015) use punch
@@ -419,6 +421,7 @@ minetest.register_entity(name, {
 	health = 0,
 	reach = def.reach or 3,
 	htimer = 0,
+	do_not_project_items = def.do_not_project_items or false,
 
 	on_step = function(self, dtime)
 
