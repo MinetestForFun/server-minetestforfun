@@ -1447,7 +1447,7 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 		p.x = pos.x + x
 		p.y = pos.y + y
 		p.z = pos.z + z
-		if p.y >= 19600 --MFF
+		if p.y >= -19600 --MFF
 		and data[vi] ~= c_air
 		and data[vi] ~= c_ignore
 		and data[vi] ~= c_obsidian
