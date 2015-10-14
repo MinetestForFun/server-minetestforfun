@@ -100,7 +100,7 @@ function unified_inventory.get_formspec(player, page)
 	end
 
 	local i = 1 --Modif MFF (Crabman 13/10/2015) 12 buttons max by row
-	for i, def in pairs(filtered_inv_buttons) do --Modif MFF (Crabman 13/10/2015)
+	for _, def in pairs(filtered_inv_buttons) do --Modif MFF (Crabman 13/10/2015)
 
 		if draw_lite_mode and i > 4 then
 			button_row = 1
