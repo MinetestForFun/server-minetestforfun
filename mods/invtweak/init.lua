@@ -194,13 +194,15 @@ function refill(player, stck_name, index)
 	local inv = player:get_inventory()
 	local old_stack = inv:get_stack("main", index)
 	if old_stack:get_name() == stck_name then return end
-	for i,stack in ipairs(inv:get_list("main")) do
-		if i ~= index and stack:get_name() == stck_name then
-			inv:set_stack("main", index, stack)
-			stack:clear()
-			inv:set_stack("main", i, stack)
-			minetest.log("action", "Inventory Tweaks: refilled stack("..stck_name..") of "  .. player:get_player_name()  )
-			return
+	if inv:get_list("main") then
+		for i,stack in ipairs(inv:get_list("main")) do
+			if i ~= index and stack:get_name() == stck_name then
+				inv:set_stack("main", index, stack)
+				stack:clear()
+				inv:set_stack("main", i, stack)
+				minetest.log("action", "Inventory Tweaks: refilled stack("..stck_name..") of "  .. player:get_player_name()  )
+				return
+			end
 		end
 	end
 end
