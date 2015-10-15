@@ -93,6 +93,24 @@ minetest.register_craft({
 		{"default:wood", "default:junglewood"},
 	}
 })
+if minetest.get_modpath("moreblocks") then
+	minetest.register_craft({
+		output = 'building_blocks:sticks 2',
+		recipe = {
+			{'group:stick', ''           , 'group:stick'},
+			{'group:stick', 'group:stick', 'group:stick'},
+			{'group:stick', 'group:stick', 'group:stick'},
+		}
+	})
+else
+	minetest.register_craft({
+		output = 'building_blocks:sticks',
+		recipe = {
+			{'group:stick', 'group:stick'},
+			{'group:stick', 'group:stick'},
+		}
+	})
+end
 
 minetest.register_craft({
 	output = 'building_blocks:sticks',

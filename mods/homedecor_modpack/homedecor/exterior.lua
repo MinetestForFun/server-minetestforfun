@@ -241,6 +241,9 @@ homedecor.register("swing", {
 		type = "fixed",
 		fixed = { -0.3125, 0.33, -0.125, 0.3125, 0.5, 0.1875 }
 	},
+	hint = {
+		place_on = "bottom"
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		local isceiling, pos = homedecor.find_ceiling(itemstack, placer, pointed_thing)
 		if isceiling then
@@ -249,13 +252,13 @@ homedecor.register("swing", {
 			for i = 0, 4 do	-- search up to 5 spaces downward from the ceiling for the first non-buildable-to node...
 				height = i
 				local testpos = { x=pos.x, y=pos.y-i-1, z=pos.z }
-				local testnode = minetest.get_node(testpos)
-				local testreg = core.registered_nodes[testnode.name]
+				local testnode = minetest.get_node_or_nil(testpos)
+				local testreg = testnode and core.registered_nodes[testnode.name]
 
-				if not testreg.buildable_to then
+				if not testreg or not testreg.buildable_to then
 					if i < 1 then
 						minetest.chat_send_player(placer:get_player_name(), "No room under there to hang a swing.")
-						return
+						return itemstack
 					else
 						break
 					end
@@ -274,12 +277,11 @@ homedecor.register("swing", {
 
 			if not homedecor.expect_infinite_stacks then
 				itemstack:take_item()
-				return itemstack
 			end
-
 		else
 			minetest.chat_send_player(placer:get_player_name(), "You have to point at the bottom side of an overhanging object to place a swing.")
 		end
+		return itemstack
 	end,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		for i = 0, 4 do
@@ -351,36 +353,20 @@ if minetest.get_modpath("bucket") then
 	})
 end
 
-local shrub_model = {
-	type = "fixed",
-	fixed = {
-		{-0.312500,-0.500000,0.250000,-0.187500,-0.437500,0.375000}, --NodeBox 1
-		{0.187500,-0.500000,-0.125000,0.312500,-0.437500,0.000000}, --NodeBox 2
-		{0.000000,-0.500000,-0.312500,0.125000,-0.437500,-0.187500}, --NodeBox 3
-		{-0.375000,-0.500000,-0.062500,-0.250000,-0.437500,0.062500}, --NodeBox 4
-		{0.000000,-0.500000,-0.250000,0.125000,-0.437500,-0.125000}, --NodeBox 5
-		{0.187500,-0.437500,-0.187500,0.375000,-0.375000,0.062500}, --NodeBox 6
-		{-0.062500,-0.437500,0.125000,0.187500,-0.375000,0.375000}, --NodeBox 7
-		{-0.062500,-0.437500,-0.375000,0.187500,-0.375000,-0.062500}, --NodeBox 8
-		{-0.375000,-0.437500,0.187500,-0.125000,-0.375000,0.431179}, --NodeBox 9
-		{-0.437500,-0.437500,-0.125000,-0.187500,-0.375000,0.125000}, --NodeBox 10
-		{-0.437500,-0.375000,-0.437500,0.439966,-0.312500,0.420887}, --NodeBox 11
-		{-0.500000,-0.312500,-0.500000,0.500000,0.500000,0.500000}, --NodeBox 12
-		{0.000000,-0.500000,0.187500,0.125000,-0.437500,0.312500}, --NodeBox 13
-	}
-}
-
 homedecor.shrub_colors = {
 	"green",
 	"red",
 	"yellow"
 }
 
+local shrub_cbox = { -0.5, -0.5, -0.5, 0.5, 0.5, 0.5 }
+
 for _, color in ipairs(homedecor.shrub_colors) do
 	minetest.register_node("homedecor:shrubbery_large_"..color, {
 		description = S("Shrubbery ("..color..")"),
-		drawtype = "allfaces_optional",
-		tiles = {"homedecor_shrubbery_"..color.."_top.png"},
+		drawtype = "mesh",
+		mesh = "homedecor_cube.obj",
+		tiles = {"homedecor_shrubbery_"..color..".png"},
 		paramtype = "light",
 		is_ground_content = false,
 		groups = {snappy=3, flammable=2},
@@ -389,17 +375,19 @@ for _, color in ipairs(homedecor.shrub_colors) do
 
 	minetest.register_node("homedecor:shrubbery_"..color, {
 		description = S("Shrubbery ("..color..")"),
-		drawtype = "nodebox",
+		drawtype = "mesh",
+		mesh = "homedecor_shrubbery.obj",
 		tiles = {
-			"homedecor_shrubbery_"..color.."_top.png",
-			"homedecor_shrubbery_bottom.png",
-			"homedecor_shrubbery_"..color.."_sides.png"
+			"homedecor_shrubbery_"..color..".png",
+			"homedecor_shrubbery_"..color.."_bottom.png",
+			"homedecor_shrubbery_roots.png"
 		},
 		paramtype = "light",
 		is_ground_content = false,
 		groups = {snappy=3, flammable=2},
 		sounds = default.node_sound_leaves_defaults(),
-		node_box = shrub_model
+		selection_box = shrub_cbox,
+		collision_box = shrub_cbox,
 	})
 end
 

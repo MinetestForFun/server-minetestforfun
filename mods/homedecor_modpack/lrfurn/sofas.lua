@@ -1,14 +1,4 @@
-local sofas_list = {
-	{ "Red Sofa", "red"},
-	{ "Orange Sofa", "orange"},
-	{ "Yellow Sofa", "yellow"},
-	{ "Green Sofa", "green"},
-	{ "Blue Sofa", "blue"},
-	{ "Violet Sofa", "violet"},
-	{ "Black Sofa", "black"},
-	{ "Grey Sofa", "grey"},
-	{ "White Sofa", "white"},
-}
+
 
 local sofa_sbox = {
 	type = "fixed",
@@ -17,22 +7,22 @@ local sofa_sbox = {
 
 local sofa_cbox = {
 	type = "fixed",
-	fixed = {
+	fixed = { 
 		{-0.5, -0.5, -0.5, 0.5, 0, 1.5 },
 		{-0.5, -0.5, 0.5, -0.4, 0.5, 1.5 }
 	}
 }
 
-for i in ipairs(sofas_list) do
-	local sofadesc = sofas_list[i][1]
-	local colour = sofas_list[i][2]
+for i in ipairs(lrfurn.colors) do
+	local colour = lrfurn.colors[i][1]
+	local hue = lrfurn.colors[i][2]
 
 	minetest.register_node("lrfurn:sofa_"..colour, {
-		description = sofadesc,
+		description = "Sofa ("..colour..")",
 		drawtype = "mesh",
 		mesh = "lrfurn_sofa_short.obj",
 		tiles = {
-			"lrfurn_sofa_"..colour..".png",
+			"lrfurn_bg_white.png^[colorize:"..hue.."^lrfurn_sofa_overlay.png",
 			"lrfurn_sofa_bottom.png"
 		},
 		paramtype = "light",

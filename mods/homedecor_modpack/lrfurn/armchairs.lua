@@ -1,14 +1,3 @@
-local armchairs_list = {
-	{ "Red Armchair", "red"},
-	{ "Orange Armchair", "orange"},
-	{ "Yellow Armchair", "yellow"},
-	{ "Green Armchair", "green"},
-	{ "Blue Armchair", "blue"},
-	{ "Violet Armchair", "violet"},
-	{ "Black Armchair", "black"},
-	{ "Grey Armchair", "grey"},
-	{ "White Armchair", "white"},
-}
 
 local armchair_cbox = {
 	type = "fixed",
@@ -18,16 +7,16 @@ local armchair_cbox = {
 	}
 }
 
-for i in ipairs(armchairs_list) do
-	local armchairdesc = armchairs_list[i][1]
-	local colour = armchairs_list[i][2]
+for i in ipairs(lrfurn.colors) do
+	local colour = lrfurn.colors[i][1]
+	local hue = lrfurn.colors[i][2]
 
 	minetest.register_node("lrfurn:armchair_"..colour, {
-		description = armchairdesc,
+		description = "Armchair ("..colour..")",
 		drawtype = "mesh",
 		mesh = "lrfurn_armchair.obj",
 		tiles = {
-			"lrfurn_sofa_"..colour..".png",
+			"lrfurn_bg_white.png^[colorize:"..hue.."^lrfurn_sofa_overlay.png",
 			"lrfurn_sofa_bottom.png"
 		},
 		paramtype = "light",

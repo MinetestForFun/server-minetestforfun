@@ -1,15 +1,21 @@
 local S = homedecor.gettext
 
 local bedcolors = {
-	{ "red",       "#d00000:150" },
-	{ "green",     "#00d000:150" },
-	{ "blue",      "#0000d0:150" },
-	{ "violet",    "#7000e0:150" },
-	{ "brown",     "#603010:175" },
-	{ "darkgrey",  "#101010:150" },
-	{ "orange",    "#ff3000:150" },
-	{ "yellow",    "#ffe000:150" },
-	{ "pink",      "#ff80b0:150" }
+	{ "black",       "#000000:200" }, --new cg72
+	{ "brown",       "#603010:175" },
+	{ "blue",        "#0000d0:150" },
+	{ "cyan",        "#009fa7:150" }, --new cg72
+	{ "darkgrey",    "#101010:175" },
+	{ "dark_green",  "#007000:150" },
+	{ "green",       "#00d000:150" }, --new cg72
+	{ "grey",        "#101010:100" }, --new cg72
+	{ "magenta",     "#e0048b:150" }, --new cg72
+	{ "orange",      "#ff3000:150" },
+	{ "pink",        "#ff80b0:150" },	
+	{ "red",         "#d00000:150" },
+	{ "violet",      "#7000e0:150" },
+	{ "white",       "#000000:000" }, --new cg72
+	{ "yellow",      "#ffe000:150" }
 }
 
 local bed_sbox = {

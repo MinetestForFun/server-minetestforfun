@@ -568,7 +568,6 @@ function signs_lib.determine_sign_type(itemstack, placer, pointed_thing, locked)
 		local fdir = minetest.dir_to_facedir(dir)
 
 		local pt_name = minetest.get_node(under).name
-		minetest.log("action", dump(pt_name))
 		local signname = itemstack:get_name()
 
 		if fences_with_sign[pt_name] and signname == "default:sign_wall" then
@@ -858,22 +857,22 @@ function signs_lib.register_fence_with_sign(fencename, fencewithsignname)
     def_sign = signs_lib.table_copy(def_sign)
     fences_with_sign[fencename] = fencewithsignname
 
-    def.on_place = function(itemstack, placer, pointed_thing, ...)
-		local node_above = minetest.get_node(pointed_thing.above)
-		local node_under = minetest.get_node(pointed_thing.under)
-		local def_above = minetest.registered_nodes[node_above.name]
-		local def_under = minetest.registered_nodes[node_under.name]
+    def_sign.on_place = function(itemstack, placer, pointed_thing, ...)
+		local node_above = minetest.get_node_or_nil(pointed_thing.above)
+		local node_under = minetest.get_node_or_nil(pointed_thing.under)
+		local def_above = node_above and minetest.registered_nodes[node_above.name]
+		local def_under = node_under and minetest.registered_nodes[node_under.name]
 		local fdir = minetest.dir_to_facedir(placer:get_look_dir())
 		local playername = placer:get_player_name()
 
 		if minetest.is_protected(pointed_thing.under, playername) then
 			minetest.record_protection_violation(pointed_thing.under, playername)
-			return
+			return itemstack
 		end
 
 		if minetest.is_protected(pointed_thing.above, playername) then
 			minetest.record_protection_violation(pointed_thing.above, playername)
-			return
+			return itemstack
 		end
 
 		if def_under and def_under.on_rightclick then
@@ -884,15 +883,14 @@ function signs_lib.register_fence_with_sign(fencename, fencewithsignname)
 				itemstack:take_item()
 			end
 			placer:set_wielded_item(itemstack)
-			return itemstack
-		elseif not def_above or def_above.buildable_to then
+		elseif def_above and def_above.buildable_to then
 			minetest.add_node(pointed_thing.above, {name = fencename, param2 = fdir})
 			if not signs_lib.expect_infinite_stacks then
 				itemstack:take_item()
 			end
 			placer:set_wielded_item(itemstack)
-			return itemstack
 		end
+		return itemstack
 	end
 	def_sign.on_construct = function(pos, ...)
 		signs_lib.construct_sign(pos)
@@ -915,7 +913,7 @@ function signs_lib.register_fence_with_sign(fencename, fencewithsignname)
 	minetest.register_node(":"..fencename, def)
 	minetest.register_node(":"..fencewithsignname, def_sign)
 	table.insert(signs_lib.sign_node_list, fencewithsignname)
-	minetest.log("action", S("Registered %s and %s"):format(fencename, fencewithsignname))
+	minetest.log("debug", S("Registered %s and %s"):format(fencename, fencewithsignname))
 end
 
 build_char_db()

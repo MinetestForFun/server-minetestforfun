@@ -59,15 +59,15 @@ for c in ipairs(bookcolors) do
 		on_place = function(itemstack, placer, pointed_thing)
 			local plname = placer:get_player_name()
 			local pos = pointed_thing.under
-			local node = minetest.get_node(pos)
-			local n = minetest.registered_nodes[node.name]
-			if not n.buildable_to then
+			local node = minetest.get_node_or_nil(pos)
+			local def = node and minetest.registered_nodes[node.name]
+			if not def or not def.buildable_to then
 				pos = pointed_thing.above
-				node = minetest.get_node(pos)
-				n = minetest.registered_nodes[node.name]
-				if not n.buildable_to then return end
+				node = minetest.get_node_or_nil(pos)
+				def = node and minetest.registered_nodes[node.name]
+				if not def or not def.buildable_to then return itemstack end
 			end
-			if minetest.is_protected(pos, plname) then return end
+			if minetest.is_protected(pos, plname) then return itemstack end
 			local fdir = minetest.dir_to_facedir(placer:get_look_dir())
 			minetest.set_node(pos, {
 				name = "homedecor:book_"..color,
@@ -89,7 +89,7 @@ for c in ipairs(bookcolors) do
 			if data.title and data.title ~= "" then
 				meta:set_string("infotext", data.title)
 			end
-			if not minetest.setting_getbool("creative_mode") then
+			if not homedecor.expect_infinite_stacks then
 				itemstack:take_item()
 			end
 			return itemstack

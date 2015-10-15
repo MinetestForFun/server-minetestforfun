@@ -515,6 +515,7 @@ end
 homedecor.register("spiral_staircase", {
 	description = "Spiral Staircase",
 	mesh = "homedecor_spiral_staircase.obj",
+	wield_scale = { x=0.4, y=0.4, z=0.4 },
 	tiles = {
 		"homedecor_generic_metal_wrought_iron.png",
 	},
@@ -545,7 +546,7 @@ homedecor.register("spiral_staircase", {
 			{0.4375, 2.125, -1.5, 0.5, 3.3125, 0.5}, -- NodeBox30
 		}
 	},
-	groups = {choppy=2},
+	groups = {cracky = 1},
 	sounds = default.node_sound_wood_defaults(),
 	on_rotate = screwdriver.rotate_simple,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
