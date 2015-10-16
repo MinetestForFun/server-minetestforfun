@@ -38,10 +38,8 @@ function action_timers.api.do_action(name, func, params)
 
 	action_timers.timers[name] = action_timers.limits[name]
 	if not params then
-		print("func()")
 		return func()
 	else
-		print("func(unpack(params))")
 		return func(unpack(params))
 	end
 end
@@ -60,3 +58,21 @@ minetest.register_globalstep(function(dtime)
 end)
 
 minetest.log("action", "[ACTimers] Loaded")
+
+
+function action_timers.wrapper(pname, name, timername, value, func, params)
+	if not action_timers.api.get_timer(timername) then
+		action_timers.api.register_timer(timername, value)
+		return func(unpack(params))
+	else
+		local res = action_timers.api.do_action(timername, func, params)
+		if tonumber(res) then
+			minetest.chat_send_player(pname, "Please retry later, you used " .. name .. " last time less than " .. value .. " seconds ago.")
+			minetest.chat_send_player(pname, "Retry in: " .. math.floor(res) .. " seconds.")
+			minetest.log("action", "[action_timers] Player " .. pname .. " tried to use'" .. name .. "' within forbidden interval.")
+			return false
+		elseif res == true then
+			return res
+		end
+	end
+end

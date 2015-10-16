@@ -42,7 +42,14 @@ minetest.register_entity("pclasses:item", {
 		self.object:set_properties(prop)
 	end,
 	on_rightclick = function(self, clicker)
-		pclasses.api.set_player_class(clicker:get_player_name(), self.class)
+		action_timers.wrapper(
+			clicker:get_player_name(),
+			"class switch",
+			"class_switch_" .. clicker:get_player_name(),
+			3600,
+			pclasses.api.set_player_class,
+			{clicker:get_player_name(), self.class}
+		)
 	end,
 	on_activate = function(self, staticdata)
 		local tab = minetest.deserialize(staticdata)
