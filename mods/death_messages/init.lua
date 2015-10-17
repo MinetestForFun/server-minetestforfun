@@ -132,6 +132,8 @@ local monsters = {
 	["tsm_pyramids:mummy"] = "mummy",
 	["mobs:shark_lg"] = "large shark",
 	["mobs:shark_md"] = "medium shark",
+	["mobs:pumpking"] = "pumpking",
+	["mobs:pumpboom"] = "pumpboom",
 }
 
 local function broadcast_death(msg)
