@@ -21,12 +21,12 @@ minetest.register_node("eventobjects:surprise_node", {
 	},
 	special_tiles = {
 		{
-			image = "eventobjects_surprise_node_top.png",
+			image = "eventobjects_surprise_node_animated.png",
 			backface_culling=false,
 			animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 0.6}
 		},
 		{
-			image = "eventobjects_surprise_node_top.png",
+			image = "eventobjects_surprise_node_animated.png",
 			backface_culling=true,
 			animation={type = "vertical_frames", aspect_w= 16, aspect_h = 16, length = 0.6}
 		}
