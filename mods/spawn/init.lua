@@ -18,21 +18,6 @@ minetest.register_chatcommand("spawn", {
 			end
 		end
 
-		-- Checking timers
-		if not action_timers.api.get_timer("spawn_" .. name) then
-			action_timers.api.register_timer("spawn_" .. name, SPAWN_INTERVAL)
-			return go_to_spawn()
-		else
-			local res = action_timers.api.do_action("spawn_" .. name, go_to_spawn)
-			print(res)
-			if tonumber(res) then
-				minetest.chat_send_player(name, "Please retry later, you used spawn last time less than ".. SPAWN_INTERVAL .." seconds ago.")
-				minetest.chat_send_player(name, "Retry in: ".. math.floor(res) .." seconds.")
-				minetest.log("action","Player ".. name .." tried to respawn within forbidden interval.")
-				return false
-			else
-				return res
-			end
-		end
+		action_timers.wrapper(name, "spawn", "spawn_" .. name, SPAWN_INTERVAL, go_to_spawn, {})
 	end
 })

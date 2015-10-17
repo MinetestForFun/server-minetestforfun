@@ -23,23 +23,7 @@ home.sethome = function(name)
 			return true
 	end
 
-	if not action_timers.api.get_timer("sethome_" .. name) then
-		if home.homepos[p_status][name] ~= pos then
-			home.homepos[p_status][name] = pos
-		end
-		action_timers.api.register_timer("sethome_" .. name, home.time)
-		return assign_home()
-	else
-		local res = action_timers.api.do_action("sethome_" .. name, assign_home)
-		if tonumber(res) then
-			minetest.chat_send_player(name, "Please retry later, you used sethome last time less than ".. home.time .." seconds ago.")
-			minetest.chat_send_player(name, "Retry in: ".. math.floor(res) .." seconds.")
-			minetest.log("action","Player ".. name .." tried to sethome within forbidden interval.")
-			return false
-		elseif res == true then
-			return res
-		end
-	end
+	action_timers.wrapper(name, "sethome", "sethome_" .. name, home.time, assign_home, {})
 end
 
 home.tohome = function(name)
@@ -61,20 +45,7 @@ home.tohome = function(name)
 		        return true
 		end
 
-		if not action_timers.api.get_timer("home_" .. name) then
-			action_timers.api.register_timer("home_" .. name, home.time)
-			return go_to_home()
-		else
-			local res = action_timers.api.do_action("home_" .. name, go_to_home)
-			if tonumber(res) then
-				minetest.chat_send_player(name, "Please retry later, you used home last time less than ".. home.time .." seconds ago.")
-				minetest.chat_send_player(name, "Retry in: ".. math.floor(res) .." seconds.")
-				minetest.log("action","Player ".. name .." tried to teleport home within forbidden interval.")
-				return false
-			elseif res == true then
-				return res
-			end
-		end
+		action_timers.wrapper(name, "home", "home_" .. name, home.time, go_to_home, {})
     else
 		minetest.chat_send_player(name, "Set a home using /sethome")
 		return false
