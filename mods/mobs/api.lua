@@ -1456,7 +1456,8 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 			local n = node_ok(p).name
 
 			if not minetest.is_protected(p, "") --/MFF (Crabman|06/23/2015) re-added node protected in areas
-			and minetest.get_item_group(n, "unbreakable") ~= 1 then
+			and minetest.get_item_group(n, "unbreakable") ~= 1
+			and minetest.get_item_group(n, "nether") == 0 then
 				-- if chest then drop items inside
 				if n == "default:chest"
 				or n == "3dchest:chest" then
