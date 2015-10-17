@@ -53,6 +53,16 @@ mff.quests.quests = {
 				}
 			}
 		}
+	},
+	levermaniac = {
+		title = "Levermaniac",
+		description = "For some reason you've become obsessed with Mesecons's lever, causing you to insanely switch the levers on and off at an amazing speed.\nDoctors have diagnosed a strange brain damage, but said you'd be rewarded with a Super Apple if you can assist them in their research about the disease.\nThey simply ask you to flip a lever 5 times, but won't come to inspect and study you afterwards, which may suggest they also are brain damaged.",
+		repeating = 60*60*24,
+		max = 5,
+		awards = {["maptools:superapple"] = 1},
+		objective = {
+			punch = {"mesecons_walllever:wall_lever"}
+		}
 	}
 }
 
@@ -81,7 +91,10 @@ end
 -- Register the quests defined above
 for qname, quest in pairs(mff.quests.quests) do
 	quest.completecallback = mff.quests.handle_quest_end
-	local ret = quests.register_quest(mff.QPREFIX .. qname, quest)
+	local ret, err = quests.register_quest(mff.QPREFIX .. qname, quest)
+	if not ret then
+		minetest.log("error", "mff_quests: failed registering " .. qname .. ": " .. err)
+	end
 end
 
 -- The callback function parameters are as follows:
@@ -94,16 +107,18 @@ local function iterate_through_objectives(pname, callback)
 	for qname, quest in pairs(mff.quests.quests) do
 		if quest.tasks then
 			for tname, task in pairs(quest.tasks) do
-				if not quests.is_task_disabled(pname, mff.QPREFIX .. qname, tname) then
+				if quests.is_task_disabled(pname, mff.QPREFIX .. qname, tname) == false then
 					callback(qname, quest, tname, task, task, task.objective, function (value)
 						quests.update_quest_task(pname, mff.QPREFIX .. qname, tname, value)
 					end)
 				end
 			end
 		else
-			callback(qname, quest, nil, nil, quest, quest.objective, function (value)
-				quests.update_quest(pname, mff.QPREFIX .. qname, value)
-			end)
+			if quests.get_quest_progress(pname, mff.QPREFIX .. qname) ~= nil then
+				callback(qname, quest, nil, nil, quest, quest.objective, function (value)
+					quests.update_quest(pname, mff.QPREFIX .. qname, value)
+				end)
+			end
 		end
 	end
 end
@@ -154,7 +169,7 @@ end)
 
 minetest.register_on_joinplayer(function (player)
 	local playername = player:get_player_name()
-	for _, qname in ipairs({"still_testing_quests", "still_testing_quests2", "still_testing_quests3"}) do
+	for _, qname in ipairs({"still_testing_quests", "still_testing_quests2", "still_testing_quests3", "levermaniac"}) do
 		if not quests.quest_restarting_in(playername, mff.QPREFIX .. qname) then
 			mff.quests.start_quest(playername, qname)
 		end
