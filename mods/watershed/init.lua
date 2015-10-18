@@ -244,6 +244,7 @@ dofile(minetest.get_modpath("watershed").."/functions.lua")
 
 -- Mapchunk generation function
 
+local global_seed
 function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	local c_air = minetest.get_content_id("air")
 	local c_ignore = minetest.get_content_id("ignore")
@@ -698,6 +699,8 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 		end
 		nixz = nixz + sidelen
 	end
+
+	darkage_mapgen(data, area, {x=x0, y=y0, z=z0}, {x=x1, y=y1, z=z1}, global_seed) -- Generate darkage ores
 end
 
 
@@ -753,6 +756,7 @@ minetest.register_chatcommand("regen",{
 -- On generated function
 
 minetest.register_on_generated(function(minp, maxp, seed)
+	global_seed = seed
 	if minp.y < YMIN or maxp.y > YMAX then
 		return
 	end
