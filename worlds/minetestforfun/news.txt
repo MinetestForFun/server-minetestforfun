@@ -5,7 +5,13 @@ Spawning monsters egg for some monsters
 ---Important News---
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
----Patch Notes---
+---Patch Notes------xx/10/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly, gravgun)
+Update of "darkage" (Increased the generation speed)
+Update of "quests" (Crashfix & try to add a new daily quest)
+Update of "death_messages" (Added Sharks/PumpKing/Pumpboom death messages)
+Update of "homedecor_modpack" (Improved the moreblocks compatibility & some little improved)
+Update of "mff_hud" (Bugfix)
+
 ---08/10/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Gael-de-Sailly, Obani)
 Update of "mesecons_modpack" (Some little improved and now the hydroturbine will work with "water_river")
 Update of "snow" (Disabled the stone feature wich isn't over so not very beautiful)
