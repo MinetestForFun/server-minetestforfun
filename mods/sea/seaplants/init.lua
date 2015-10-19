@@ -1,5 +1,7 @@
 -- NODES
 
+local sea_light_source = 5
+
 minetest.register_node("seaplants:kelpgreen", {
 	description = "Green Kelp",
 	drawtype = "plantlike",
@@ -10,6 +12,7 @@ minetest.register_node("seaplants:kelpgreen", {
 	walkable = false,
 	climbable = true,
 	drowning = 1,
+	light_source = sea_light_source,
 	is_ground_content = true,
 	selection_box = {
 		type = "fixed",
@@ -32,6 +35,7 @@ minetest.register_node("seaplants:kelpgreenmiddle", {
 	climbable = true,
 	drowning = 1,
 	is_ground_content = true,
+	light_source = sea_light_source,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
@@ -52,6 +56,7 @@ minetest.register_node("seaplants:kelpbrown", {
 	walkable = false,
 	climbable = true,
 	drowning = 1,
+	light_source = sea_light_source,
 	is_ground_content = true,
 	selection_box = {
 		type = "fixed",
@@ -74,6 +79,7 @@ minetest.register_node("seaplants:kelpbrownmiddle", {
 	climbable = true,
 	drowning = 1,
 	is_ground_content = true,
+	light_source = sea_light_source,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
@@ -95,6 +101,7 @@ minetest.register_node("seaplants:seagrassgreen", {
 	climbable = true,
 	drowning = 1,
 	is_ground_content = true,
+	light_source = sea_light_source,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.3, 0.3}
@@ -116,6 +123,7 @@ minetest.register_node("seaplants:seagrassred", {
 	climbable = true,
 	drowning = 1,
 	is_ground_content = true,
+	light_source = sea_light_source,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.3, 0.3}
@@ -132,6 +140,7 @@ minetest.register_node("seaplants:seaplantssandkelpgreen", {
 	is_ground_content = true,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
+	light_source = sea_light_source,
 	sounds = default.node_sound_sand_defaults(),
 })
 
@@ -142,12 +151,14 @@ minetest.register_node("seaplants:seaplantsdirtkelpgreen", {
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
 	drop = 'default:dirt',
 	sounds = default.node_sound_dirt_defaults(),
+	light_source = sea_light_source,
 })
 
 minetest.register_node("seaplants:seaplantssandkelpbrown", {
 	description = "Sea plants sand kelp brown",
 	tiles = {"default_sand.png"},
 	is_ground_content = true,
+	light_source = sea_light_source,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
@@ -156,6 +167,7 @@ minetest.register_node("seaplants:seaplantssandkelpbrown", {
 minetest.register_node("seaplants:seaplantsdirtkelpbrown", {
 	description = "Sea plants dirt kelp brown",
 	tiles = {"default_dirt.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
 	drop = 'default:dirt',
@@ -166,6 +178,7 @@ minetest.register_node("seaplants:seaplantssandseagrassgreen", {
 	description = "Sea plants sand seagrass green",
 	tiles = {"default_sand.png"},
 	is_ground_content = true,
+	light_source = sea_light_source,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
@@ -174,6 +187,7 @@ minetest.register_node("seaplants:seaplantssandseagrassgreen", {
 minetest.register_node("seaplants:seaplantsdirtseagrassgreen", {
 	description = "Sea plants dirt seagrass green",
 	tiles = {"default_dirt.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
 	drop = 'default:dirt',
@@ -183,6 +197,7 @@ minetest.register_node("seaplants:seaplantsdirtseagrassgreen", {
 minetest.register_node("seaplants:seaplantssandseagrassred", {
 	description = "Sea plants sand seagrass red",
 	tiles = {"default_sand.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
@@ -192,6 +207,7 @@ minetest.register_node("seaplants:seaplantssandseagrassred", {
 minetest.register_node("seaplants:seaplantsdirtseagrassred", {
 	description = "Sea plants dirt seagrass red",
 	tiles = {"default_dirt.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
 	drop = 'default:dirt',

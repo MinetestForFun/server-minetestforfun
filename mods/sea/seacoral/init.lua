@@ -1,5 +1,6 @@
 -- NODES
 
+local sea_light_source = 5
 
 minetest.register_node("seacoral:coralcyan", {
 	description = "Cyan Coral",
@@ -12,6 +13,7 @@ minetest.register_node("seacoral:coralcyan", {
 	climbable = true,
 	drowning = 1,
 	is_ground_content = true,
+	light_source = sea_light_source,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.3, -0.3, 0.3, 0.3, 0.3}
@@ -29,6 +31,7 @@ minetest.register_node("seacoral:coralmagenta", {
 	wield_image = "seacoral_coralmagenta.png",
 	paramtype = "light",
 	walkable = false,
+	light_source = sea_light_source,
 	climbable = true,
 	drowning = 1,
 	is_ground_content = true,
@@ -44,6 +47,7 @@ minetest.register_node("seacoral:coralmagenta", {
 minetest.register_node("seacoral:coralaqua", {
 	description = "Aqua Coral",
 	drawtype = "plantlike",
+	light_source = sea_light_source,
 	tiles = {"seacoral_coralaqua.png"},
 	inventory_image = "seacoral_coralaqua.png",
 	wield_image = "seacoral_coralaqua.png",
@@ -67,6 +71,7 @@ minetest.register_node("seacoral:corallime", {
 	tiles = {"seacoral_corallime.png"},
 	inventory_image = "seacoral_corallime.png",
 	wield_image = "seacoral_corallime.png",
+	light_source = sea_light_source,
 	paramtype = "light",
 	walkable = false,
 	climbable = true,
@@ -90,6 +95,7 @@ minetest.register_node("seacoral:coralskyblue", {
 	paramtype = "light",
 	walkable = false,
 	climbable = true,
+	light_source = sea_light_source,
 	drowning = 1,
 	is_ground_content = true,
 	selection_box = {
@@ -111,6 +117,7 @@ minetest.register_node("seacoral:coralredviolet", {
 	walkable = false,
 	climbable = true,
 	drowning = 1,
+	light_source = sea_light_source,
 	is_ground_content = true,
 	selection_box = {
 		type = "fixed",
@@ -124,6 +131,7 @@ minetest.register_node("seacoral:coralredviolet", {
 minetest.register_node("seacoral:seacoralsandcyan", {
 	description = "Sea coral sand cyan",
 	tiles = {"default_sand.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
@@ -133,6 +141,7 @@ minetest.register_node("seacoral:seacoralsandcyan", {
 minetest.register_node("seacoral:seacoraldirtcyan", {
 	description = "Sea coral dirt cyan",
 	tiles = {"default_dirt.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
 	drop = 'default:dirt',
@@ -143,6 +152,7 @@ minetest.register_node("seacoral:seacoralsandmagenta", {
 	description = "Sea coral sand magenta",
 	tiles = {"default_sand.png"},
 	is_ground_content = true,
+	light_source = sea_light_source,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
@@ -150,6 +160,7 @@ minetest.register_node("seacoral:seacoralsandmagenta", {
 
 minetest.register_node("seacoral:seacoraldirtmagenta", {
 	description = "Sea coral dirt magenta",
+	light_source = sea_light_source,
 	tiles = {"default_dirt.png"},
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
@@ -160,6 +171,7 @@ minetest.register_node("seacoral:seacoraldirtmagenta", {
 minetest.register_node("seacoral:seacoralsandaqua", {
 	description = "Sea coral sand aqua",
 	tiles = {"default_sand.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
@@ -169,6 +181,7 @@ minetest.register_node("seacoral:seacoralsandaqua", {
 minetest.register_node("seacoral:seacoraldirtaqua", {
 	description = "Sea coral dirt aqua",
 	tiles = {"default_dirt.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
 	drop = 'default:dirt',
@@ -179,6 +192,7 @@ minetest.register_node("seacoral:seacoralsandlime", {
 	description = "Sea coral sand lime",
 	tiles = {"default_sand.png"},
 	is_ground_content = true,
+	light_source = sea_light_source,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
@@ -188,6 +202,7 @@ minetest.register_node("seacoral:seacoraldirtlime", {
 	description = "Sea coral dirt lime",
 	tiles = {"default_dirt.png"},
 	is_ground_content = true,
+	light_source = sea_light_source,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
 	drop = 'default:dirt',
 	sounds = default.node_sound_dirt_defaults(),
@@ -197,6 +212,7 @@ minetest.register_node("seacoral:seacoralsandskyblue", {
 	description = "Sea coral sand skyblue",
 	tiles = {"default_sand.png"},
 	is_ground_content = true,
+	light_source = sea_light_source,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
 	sounds = default.node_sound_sand_defaults(),
@@ -207,6 +223,7 @@ minetest.register_node("seacoral:seacoraldirtskyblue", {
 	tiles = {"default_dirt.png"},
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
+	light_source = sea_light_source,
 	drop = 'default:dirt',
 	sounds = default.node_sound_dirt_defaults(),
 })
@@ -214,6 +231,7 @@ minetest.register_node("seacoral:seacoraldirtskyblue", {
 minetest.register_node("seacoral:seacoralsandredviolet", {
 	description = "Sea coral sand redviolet",
 	tiles = {"default_sand.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3, falling_node=1, sand=1, soil=1, not_in_creative_inventory=1},
 	drop = 'default:sand',
@@ -223,6 +241,7 @@ minetest.register_node("seacoral:seacoralsandredviolet", {
 minetest.register_node("seacoral:seacoraldirtredviolet", {
 	description = "Sea coral dirt redviolet",
 	tiles = {"default_dirt.png"},
+	light_source = sea_light_source,
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1, not_in_creative_inventory=1},
 	drop = 'default:dirt',
