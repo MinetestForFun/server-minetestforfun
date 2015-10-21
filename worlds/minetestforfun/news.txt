@@ -5,7 +5,8 @@ Spawning monsters egg for some monsters
 ---Important News---
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
----Patch Notes------xx/10/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly, gravgun)
+---Patch Notes------22/10/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly, gravgun)
+Update of "sea" (seaplants & seacoral now glow a little it makes underwater more friendly, you can now clearly see sharks when they eat your leggs. YES devs are soo kind !)
 Update of "darkage" (Increased the generation speed)
 Update of "quests" (Crashfix & try to add a new daily quest)
 Update of "death_messages" (Added Sharks/PumpKing/Pumpboom death messages)
