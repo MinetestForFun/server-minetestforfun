@@ -12,13 +12,6 @@ function spears_register_spear(kind, desc, eq, toughness, craft)
 			end
 			return itemstack
 		end,
-		on_place = function(itemstack, user, pointed_thing)
-			minetest.add_item(pointed_thing.above, itemstack)
-			if not minetest.setting_getbool("creative_mode") then
-				itemstack:take_item()
-			end
-			return itemstack
-		end,
 		tool_capabilities = {
 			full_punch_interval = 1.5,
 			max_drop_level=1,
