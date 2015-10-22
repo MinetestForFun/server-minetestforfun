@@ -78,7 +78,7 @@ pclasses.api.util.does_wear_full_armor = function(pname, material, noshield)
 end
 
 function pclasses.api.util.can_have_item(pname, itemname)
-	if not pclasses.data.reserved_items[itemname] then
+	if not pclasses.data.reserved_items[itemname] or (pclasses.conf.superuser_class and pclasses.api.get_player_class(pname) == pclasses.conf.superuser_class) then
 		return true
 	end
 	for index, class in pairs(pclasses.data.reserved_items[itemname]) do
