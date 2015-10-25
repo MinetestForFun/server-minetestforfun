@@ -3,9 +3,6 @@
 
 local max_frequency_all = 1000 -- larger number means more frequent sounds (100-2000)
 local SOUNDVOLUME = 1
-local ambiences
-local played_on_start = false
-local tempy = {}
 
 -- compatibility with soundset mod
 local get_volume
@@ -108,6 +105,14 @@ local largefire = {
 	{name="fire_large",		length=8}
 }
 
+local get_num_nodes = function(pos, nodes)
+	return #minetest.find_nodes_in_area(
+		{x=pos.x-6,y=pos.y-2, z=pos.z-6},
+		{x=pos.x+6,y=pos.y+3, z=pos.z+6},
+		nodes
+	)
+end
+
 -- check where player is and which sounds are played
 local get_ambience = function(player)
 
@@ -115,46 +120,21 @@ local get_ambience = function(player)
 	local pos = player:getpos()
 
 	-- what is around me?
-	pos.y = pos.y + 1.4 -- head level
-	local nod_head = minetest.get_node(pos).name
-
-	pos.y = pos.y - 1.2 -- feet level
-	local nod_feet = minetest.get_node(pos).name
-
-	pos.y = pos.y - 0.2 -- reset pos
-
-	--= START Ambiance
-
-	if nod_head == "default:water_source"
-	or nod_head == "default:water_flowing" then
+	local nod_head = minetest.get_node({x=pos.x,y=pos.y+1.4, z=pos.z}).name
+	if string.find(nod_head, "water_") then
 		return {underwater=underwater}
 	end
-
-	if nod_feet == "default:water_source"
-	or nod_feet == "default:water_flowing" then
+	local nod_feet = minetest.get_node({x=pos.x,y=pos.y+0.2, z=pos.z}).name
+	if string.find(nod_feet, "water_") then
 		return {splash=splash}
 	end
 
-	local num_fire, num_lava, num_water_source, num_water_flowing, num_desert = 0,0,0,0,0
-
-	-- get block of nodes we need to check
-	tempy = minetest.find_nodes_in_area({x=pos.x-6,y=pos.y-2, z=pos.z-6},
-										{x=pos.x+6,y=pos.y+2, z=pos.z+6},
-										{"fire:basic_flame", "bakedclay:safe_fire", "default:lava_flowing", "default:lava_source",
-										"default:water_flowing", "default:water_source", "default:desert_sand", "default:desert_stone",})
-
-	-- count separate instances in block
-	for _, npos in ipairs(tempy) do
-		local node = minetest.get_node(npos).name
-		if node == "fire:basic_flame" or node == "bakedclay:safe_fire" then num_fire = num_fire + 1 end
-		if node == "default:lava_flowing" or node == "default:lava_source" then num_lava = num_lava + 1 end
-		if node == "default:water_flowing" then num_water_flowing = num_water_flowing + 1 end
-		if node == "default:water_source" then num_water_source = num_water_source + 1 end
-		if node == "default:desert_sand" or node == "default:desert_stone" then num_desert = num_desert + 1 end
-	end ; --print (num_fire, num_lava, num_water_flowing, num_water_source, num_desert)
+	--= START Ambiance
 
 	-- is fire redo mod active?
 	if fire and fire.mod and fire.mod == "redo" then
+		local num_fire = get_num_nodes(pos, {"fire:basic_flame", "bakedclay:safe_fire"})
+		--print("num_fire:"..dump(num_fire))
 		if num_fire > 8 then
 			return {largefire=largefire}
 		elseif num_fire > 0 then
@@ -162,22 +142,32 @@ local get_ambience = function(player)
 		end
 	end
 
+	local num_lava = get_num_nodes(pos, {"default:lava_flowing", "default:lava_source"})
+	--print("num_lava:"..dump(num_lava))
 	if num_lava > 5 then
 		return {lava=lava}
 	end
 
+	local num_water_flowing = get_num_nodes(pos, {"default:water_flowing", "default:river_water_flowing"})
+	--print("num_water_flowing:"..dump(num_water_flowing))
 	if num_water_flowing > 30 then
 		return {flowing_water=flowing_water}
 	end
 
-	if pos.y < 7 and pos.y > 0 and num_water_source > 100 then
-		return {beach=beach}
+	if pos.y < 7 and pos.y > 0 then
+		local num_water_source = get_num_nodes(pos, {"default:water_source", "default:river_water_source"})
+		--print("num_water_source:"..dump(num_water_source))
+		if num_water_source > 100 then
+			return {beach=beach}
+		end
 	end
 
+	local num_desert = get_num_nodes(pos, {"default:desert_sand", "default:desert_stone"})
+	--print("num_desert:"..dump(num_desert))
 	if num_desert > 150 then
 		return {desert=desert}
 	end
-	
+
 	if pos.y > 60 then
 		return {high_up=high_up}
 	end
@@ -253,21 +243,18 @@ local still_playing = function(still_playing, player)
 	if not still_playing.largefire then			stop_sound(largefire, player) end
 end
 
+
 local function tick()
 	for _,player in ipairs(minetest.get_connected_players()) do
---local t1 = os.clock()
-		ambiences = get_ambience(player)
---print ("[AMBIENCE] "..math.ceil((os.clock() - t1) * 1000).." ms")
-
-		still_playing(ambiences, player)
-		if get_volume(player:get_player_name(), "ambience") > 0 then
+		local playername = player:get_player_name()
+		local gain = get_volume(playername, "ambience")		
+		if gain > 0 then
+			--local t1 = os.clock()
+			local ambiences = get_ambience(player)
+			--print ("[AMBIENCE] "..math.ceil((os.clock() - t1) * 1000).." ms")
+			still_playing(ambiences, player)
 			for _,ambience in pairs(ambiences) do
 				if math.random(1, 1000) <= ambience.frequency then
-					if ambience.on_start and played_on_start == false then
-						played_on_start = true
-						minetest.sound_play(ambience.on_start,
-						{to_player=player:get_player_name(),gain=get_volume(player:get_player_name(), "ambience")})
-					end
 					play_sound(player, ambience, math.random(1, #ambience))
 				end
 			end
