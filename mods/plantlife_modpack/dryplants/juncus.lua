@@ -44,6 +44,12 @@ minetest.register_node("dryplants:juncus", {
 		fixed = {-7/16, -1/2, -7/16, 7/16, 0, 7/16},
 	},
 	on_place = function(itemstack, placer, pointed_thing)
+		local playername = placer:get_player_name()
+		if minetest.is_protected(pointed_thing.above, playername) or 
+			minetest.is_protected(pointed_thing.under, playername) then 
+			minetest.chat_send_player(playername, "Someone else owns that spot.")
+			return
+		end
 		local pos = pointed_thing.under
 		local juncus_type = math.random(2,3)
 		local right_here = {x=pos.x, y=pos.y+1, z=pos.z}

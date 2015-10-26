@@ -2,7 +2,7 @@ minetest.register_node("vines:rope_block", {
   description = "Rope",
   sunlight_propagates = true,
   paramtype = "light",
-  tile_images = {
+  tiles = {
     "default_wood.png^vines_rope.png",
     "default_wood.png^vines_rope.png",
     "default_wood.png",
@@ -36,7 +36,7 @@ minetest.register_node("vines:rope", {
   sunlight_propagates = true,
   paramtype = "light",
   drop = "",
-  tile_images = { "vines_rope.png" },
+  tiles = { "vines_rope.png" },
   drawtype = "plantlike",
   groups = {flammable=2, not_in_creative_inventory=1},
   sounds =  default.node_sound_leaves_defaults(),
@@ -53,7 +53,7 @@ minetest.register_node("vines:rope_end", {
   sunlight_propagates = true,
   paramtype = "light",
   drop = "",
-  tile_images = { "vines_rope_end.png" },
+  tiles = { "vines_rope_end.png" },
   drawtype = "plantlike",
   groups = {flammable=2, not_in_creative_inventory=1},
   sounds =  default.node_sound_leaves_defaults(),
