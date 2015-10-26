@@ -22,7 +22,7 @@ function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	end
 
 	-- add the node and remove 1 item from the itemstack
-	minetest.add_node(pt.above, {name = plantname})
+	minetest.set_node(pt.above, {name = plantname})
 	if not minetest.setting_getbool("creative_mode") then
 		itemstack:take_item()
 		-- check for refill
@@ -99,7 +99,7 @@ minetest.register_node("farming:cocoa_1", {
 	},
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.27, -0.45, -0.27, 0.27, 0.45, 0.27}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	groups = {
 		snappy = 3, flammable = 2, plant = 1, growing = 1,

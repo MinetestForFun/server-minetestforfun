@@ -79,7 +79,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:bread", {
 	description = "Bread",
 	inventory_image = "farming_bread.png",
-	on_use = minetest.item_eat(4),
+	on_use = minetest.item_eat(4), --MFF 4
 })
 
 minetest.register_craft({

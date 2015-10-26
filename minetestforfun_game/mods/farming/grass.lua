@@ -1,9 +1,9 @@
 
 -- Override default grass and have it drop Wheat Seeds
 
-for i=1,5 do
+for i = 1, 5 do
 
-	minetest.override_item("default:grass_"..i, {
+	minetest.override_item("default:grass_" .. i, {
 		drop = {
 			max_items = 1,
 			items = {

@@ -1,23 +1,23 @@
 -- normal soil
 minetest.register_node("farming:soil", {
 	description = "Soil",
-	tiles = {"farming_soil.png", "default_dirt.png"},
+	tiles = {"default_dirt.png^farming_soil.png", "default_dirt.png"},
 	drop = "default:dirt",
 	groups = {crumbly = 3, not_in_creative_inventory = 1, soil = 2},
 	sounds = default.node_sound_dirt_defaults(),
 })
 
--- sand is not soil, change existing sand-soil to use normal soil
-minetest.register_alias("farming:desert_sand_soil", "farming:soil")
-
 -- wet soil
 minetest.register_node("farming:soil_wet", {
 	description = "Wet Soil",
-	tiles = {"farming_soil_wet.png", "farming_soil_wet_side.png"},
+	tiles = {"default_dirt.png^farming_soil_wet.png", "default_dirt.png^farming_soil_wet_side.png"},
 	drop = "default:dirt",
 	groups = {crumbly = 3, not_in_creative_inventory = 1, soil = 3},
 	sounds = default.node_sound_dirt_defaults(),
 })
+
+-- sand is not soil, change existing sand-soil to use normal soil
+minetest.register_alias("farming:desert_sand_soil", "farming:soil")
 minetest.register_alias("farming:desert_sand_soil_wet", "farming:soil_wet")
 
 -- if water near soil then change to wet soil

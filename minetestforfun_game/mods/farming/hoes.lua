@@ -76,7 +76,7 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 		return
 	end
 
-	local p = {x=pt.under.x, y=pt.under.y+1, z=pt.under.z}
+	local p = {x = pt.under.x, y = pt.under.y + 1, z = pt.under.z}
 	local above = minetest.get_node(p)
 
 	-- return if any of the nodes is not registered

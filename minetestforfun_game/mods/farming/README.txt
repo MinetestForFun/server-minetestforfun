@@ -13,6 +13,9 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 Changelog:
 
+1.22 - Added grape bushes at high climates which can be cultivated into grape vines using trellis (9 sticks).
+1.21 - Added auto-refill code for planting crops (thanks crabman77), also fixed a few bugs
+1.20b- Tidied code, made api compatible with new 0.4.13 changes and changed to soil texture overlays
 1.20 - NEW growing routine added that allows crops to grow while player is away doing other things (thanks prestidigitator)
 1.14 - Added Green Beans from Crops mod (thanks sofar), little bushels in the wild but need to be grown using beanpoles crafted with 4 sticks (2 either side)
 1.13 - Fixed seed double-placement glitch.  Mapgen now uses 0.4.12+ for plant generation
