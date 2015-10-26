@@ -2,19 +2,9 @@
 --plants to place in openfarming
 local plants = { ["farming:blueberries"]=1, ["farming:carrot"]=1, ["farming:coffee_beans"]=1, ["farming:corn"]=1, ["farming:cucumber"]=1,
 				 ["farming:melon_slice"]=1, ["farming:potato"]=1, ["farming:pumpkin_slice"]=1, ["farming:raspberries"]=1, ["farming:rhubarb"]=1,
-				 ["farming:tomato"]=1, ["farming:seed_cotton"]=1, ["farming:seed_wheat"]=1,["default:papyrus"]=1
+				 ["farming:tomato"]=1, ["farming:seed_cotton"]=1, ["farming:seed_wheat"]=1,["default:papyrus"]=1, ["farming:trellis"]=1,
+				 ["farming:grapes"]=1, ["farming:beanpole"]=1, ["farming:beans"]=1,
 				}
-
---tools to dig in openfarming
-local in_hand = { ["hand"]=1, ["mobs:shears"]=1,
-				  ["default:sword_bronze"]=1, ["default:sword_diamond"]=1, ["default:sword_gold"]=1, ["default:sword_mese"]=1, ["default:sword_nyan"]=1,
-				  ["default:sword_steel"]=1, ["default:sword_stone"]=1, ["default:sword_wood"]=1, ["moreores:sword_mithril"]=1, ["moreores:sword_silver"]=1,
-				  ["nether:sword_netherrack"]=1, ["nether:sword_netherrack_blue"]=1, ["nether:sword_white"]=1,
-				  ["default:axe_bronze"]=1, ["default:axe_diamond"]=1, ["default:axe_gold"]=1, ["default:axe_mese"]=1, ["default:axe_nyan"]=1,
-				  ["default:axe_steel"]=1, ["default:axe_stone"]=1, ["default:axe_wood"]=1, ["moreores:axe_mithril"]=1, ["moreores:axe_silver"]=1,
-				  ["nether:axe_netherrack"]=1, ["nether:axe_netherrack_blue"]=1, ["nether:axe_white"]=1
-				}
-
 
 -- Returns a list of areas that include the provided position
 function areas:getAreasAtPos(pos)
@@ -50,13 +40,13 @@ function areas:canInteract(pos, name)
 			local wstack = player:get_wielded_item():get_name()
 			if wstack == "" then wstack = "hand" end
 
-			--on_place
-			if node == "air" and plants[wstack] ~= nil then
+			--on_dig
+			if minetest.get_item_group(node, "plant") == 1 and (wstack == "hand" or minetest.registered_tools[wstack]) then
 				return true
 			end
 
-			--on_dig
-			if minetest.get_item_group(node, "plant") == 1 and in_hand[wstack] ~= nil then
+			--on_place
+			if node == "air" and plants[wstack] ~= nil then
 				return true
 			end
 
