@@ -47,6 +47,7 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 			local node = minetest.get_node(pos)
 			local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 0.5)
 			for k, obj in pairs(objs) do
+				local objpos = obj:getpos()
 				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
 					if throwing_touch(pos, objpos) then
 						local puncher = self.object
