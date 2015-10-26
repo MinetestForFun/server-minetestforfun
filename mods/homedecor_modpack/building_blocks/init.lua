@@ -575,8 +575,8 @@ minetest.register_tool("building_blocks:knife", {
 	tool_capabilities = {
 		max_drop_level=0,
 		groupcaps={
-			choppy={times={[2]=7.50, [3]=2.80}, maxwear=0.01, maxlevel=1},
-			fleshy={times={[2]=5.50, [3]=2.80}, maxwear=0.01, maxlevel=1}
+			choppy={times={[2]=7.50, [3]=2.80}, uses = 100, maxlevel=1},
+			fleshy={times={[2]=5.50, [3]=2.80}, uses = 100, maxlevel=1}
 		}
 	},
 })

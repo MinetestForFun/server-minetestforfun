@@ -279,8 +279,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -290,8 +290,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -301,8 +301,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -312,8 +312,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -323,8 +323,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -334,8 +334,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -345,8 +345,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -356,8 +356,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -367,8 +367,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -378,8 +378,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -389,8 +389,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 minetest.register_ore({
@@ -400,8 +400,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	height_max     = -4,
-	height_min     = -8,
+	y_max          = -4,
+	y_min          = -8,
 })
 
 local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, chunk_size, ore_per_chunk, height_min, height_max)

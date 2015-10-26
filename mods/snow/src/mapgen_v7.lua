@@ -6,8 +6,8 @@ minetest.register_biome({
 	node_filler    = "default:dirt",
 	depth_filler   = 2,
 
-	height_min     = snow.min_height,
-	height_max     = snow.min_height+60,
+	y_min          = snow.min_height,
+	y_max          = snow.min_height+60,
 	heat_point     = 10.0,
 	humidity_point = 40.0,
 })
@@ -20,8 +20,8 @@ minetest.register_biome({
 	node_filler    = "default:dirt",
 	depth_filler   = 2,
 
-	height_min     = snow.min_height,
-	height_max     = snow.min_height+60,
+	y_min          = snow.min_height,
+	y_max          = snow.min_height+60,
 	heat_point     = 10.0,
 	humidity_point = 55.0,
 })
@@ -34,8 +34,8 @@ minetest.register_biome({
 	node_filler    = "default:dirt",
 	depth_filler   = 2,
 
-	height_min     = snow.min_height,
-	height_max     = snow.min_height+60,
+	y_min          = snow.min_height,
+	y_max          = snow.min_height+60,
 	heat_point     = 10.0,
 	humidity_point = 70.0,
 })
@@ -47,8 +47,8 @@ minetest.register_biome({
 	depth_top      = 1,
 	node_filler    = "default:stone",
 
-	height_min     = snow.min_height+60,
-	height_max     = 31000,
+	y_min          = snow.min_height+60,
+	y_max          = 31000,
 	heat_point     = 10.0,
 	humidity_point = 40.0,
 })
@@ -61,8 +61,8 @@ minetest.register_biome({
 	node_filler    = "default:stone",
 	depth_filler   = 0,
 
-	height_min     = -31000,
-	height_max     = 2,
+	y_min          = -31000,
+	y_max          = 2,
 	heat_point     = 10.0,
 	humidity_point = 40.0,
 })

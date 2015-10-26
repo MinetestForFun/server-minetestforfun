@@ -8,8 +8,8 @@ minetest.register_tool("vines:shears", {
     full_punch_interval = 1.0,
     max_drop_level=0,
     groupcaps={
-      snappy={times={[3]=0.2}, maxwear=0.05, maxlevel=3},
-      wool={times={[3]=0.2}, maxwear=0.05, maxlevel=3}
+      snappy={times={[3]=0.2}, uses = 1/0.05, maxlevel=3},
+      wool={times={[3]=0.2}, uses = 1/0.05, maxlevel=3}
     }
   },
 })

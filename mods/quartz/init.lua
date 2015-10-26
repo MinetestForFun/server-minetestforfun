@@ -28,8 +28,8 @@ minetest.register_ore({
     clust_scarcity = 10*10*10,
     clust_num_ores = 6,
     clust_size     = 5,
-    height_min     = -31000,
-    height_max     = -5,
+    y_min          = -31000,
+    y_max          = -5,
 })
 
 minetest.register_ore({
@@ -39,8 +39,8 @@ minetest.register_ore({
     clust_scarcity = 30*30*30,
     clust_num_ores = 64,
     clust_size     = 5,
-    height_min     = -10240,
-    height_max     = -8192,
+    y_min          = -10240,
+    y_max          = -8192,
 })
 
 --Quartz Block
