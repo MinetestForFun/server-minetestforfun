@@ -13,6 +13,31 @@ minetest.after(0, function()
 	end
 end)
 
+local get_flowing_dir = function(self)
+	local pos = self.object:getpos()
+	local param2 = minetest.get_node(pos).param2
+	for i,d in ipairs({-1, 1, -1, 1}) do
+		if i<3 then
+			pos.x = pos.x+d
+		else
+			pos.z = pos.z+d
+		end
+
+		local name = minetest.get_node(pos).name
+		local par2 = minetest.get_node(pos).param2
+		if name == "default:water_flowing" and par2 < param2 then
+			return pos
+		end
+
+		if i<3 then
+			pos.x = pos.x-d
+		else
+			pos.z = pos.z-d
+		end
+	end
+	return nil
+end
+
 minetest.register_entity(":__builtin:item", {
 	initial_properties = {
 		hp_max = 1,
@@ -100,13 +125,15 @@ minetest.register_entity(":__builtin:item", {
 		self.timer = self.timer + dtime
 		if time ~= 0 and (self.timer > time) then
 			self.object:remove()
+			return
 		end
 
 		local p = self.object:getpos()
 
 		local name = minetest.get_node(p).name
-		if (minetest.registered_nodes[name] and minetest.registered_nodes[name].damage_per_second > 0) or name == "maptools:igniter" then
-			minetest.sound_play("builtin_item_lava", {pos = self.object:getpos(), gain = 0.5})
+		if not minetest.registered_nodes[name] then return end
+		if minetest.registered_nodes[name].damage_per_second > 0 or name == "maptools:igniter" then
+			minetest.sound_play("builtin_item_lava", {pos = p, gain = 0.5})
 			self.object:remove()
 			return
 		end
@@ -117,45 +144,21 @@ minetest.register_entity(":__builtin:item", {
 			self.object:setacceleration({x = 0, y = -10, z = 0})
 		end
 		--]]
-		if not minetest.registered_nodes[name] then return end
+
 		if minetest.registered_nodes[name].liquidtype == "flowing" then
-			local get_flowing_dir = function(self)
-				local pos = self.object:getpos()
-				local param2 = minetest.get_node(pos).param2
-				for i,d in ipairs({-1, 1, -1, 1}) do
-					if i<3 then
-						pos.x = pos.x+d
-					else
-						pos.z = pos.z+d
-					end
-
-					local name = minetest.get_node(pos).name
-					local par2 = minetest.get_node(pos).param2
-					if name == "default:water_flowing" and par2 < param2 then
-						return pos
-					end
-
-					if i<3 then
-						pos.x = pos.x-d
-					else
-						pos.z = pos.z-d
-					end
-				end
-			end
-
 			local vec = get_flowing_dir(self)
 			if vec then
 				local v = self.object:getvelocity()
-				if vec and vec.x-p.x > 0 then
+				if v and vec.x-p.x > 0 then
 					self.object:setacceleration({x = 0, y = 0, z = 0})
 					self.object:setvelocity({x = 1, y = -0.22, z = 0})
-				elseif vec and vec.x-p.x < 0 then
+				elseif v and vec.x-p.x < 0 then
 					self.object:setacceleration({x = 0, y = 0, z = 0})
 					self.object:setvelocity({x = -1, y = -0.22, z = 0})
-				elseif vec and vec.z-p.z > 0 then
+				elseif v and vec.z-p.z > 0 then
 					self.object:setacceleration({x = 0, y = 0, z = 0})
 					self.object:setvelocity({x = 0, y = -0.22, z = 1})
-				elseif vec and vec.z-p.z < 0 then
+				elseif v and vec.z-p.z < 0 then
 					self.object:setacceleration({x = 0, y = 0, z = 0})
 					self.object:setvelocity({x = 0, y = -0.22, z = -1})
 				end
