@@ -38,10 +38,10 @@ cp /home/quentinbd/server-minetestforfun/worlds/minetestforfun/forbidden_names.t
 echo "Nouvelles news.txt, world.mt  et random_messages correctement déplacé"
 
 # TEMPORAIRE - ré-ajout de l'ancien mod irc
-rm -R /home/quentinbd/mff/mods/irc/
-cp -R /home/quentinbd/server-minetestforfun/other_things/irc-old-save/ /home/quentinbd/mff/mods/
-mv /home/quentinbd/mff/mods/irc-old-save/ /home/quentinbd/mff/mods/irc/
-echo "TEMPORAIRE - ré-ajout de l'ancien mod irc"
+#rm -R /home/quentinbd/mff/mods/irc/
+#cp -R /home/quentinbd/server-minetestforfun/other_things/irc-old-save/ /home/quentinbd/mff/mods/
+#mv /home/quentinbd/mff/mods/irc-old-save/ /home/quentinbd/mff/mods/irc/
+#echo "TEMPORAIRE - ré-ajout de l'ancien mod irc"
 
 # Suppression du dossier cloné
 rm -Rf /home/quentinbd/server-minetestforfun/
