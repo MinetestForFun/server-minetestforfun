@@ -2,7 +2,7 @@
 -- Spider by AspireMint (fishyWET (CC-BY-SA 3.0 license for texture)
 
 mobs:register_mob("mobs:spider", {
-	-- animal, monster, npc, barbarian
+	docile_by_day = true,
 	type = "monster",
 	-- agressive, does 6 damage to player when hit
 	passive = false,

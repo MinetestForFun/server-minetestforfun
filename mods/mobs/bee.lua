@@ -21,8 +21,7 @@ mobs:register_mob("mobs:bee", {
 	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_bee",
-	},
-	-- speed and jump
+	},	
 	walk_velocity = 1,
 	jump = true,
 	-- drops honey when killed
@@ -77,7 +76,9 @@ minetest.register_node("mobs:beehive", {
 	after_place_node = function(pos, placer, itemstack)
 		if placer:is_player() then
 			minetest.set_node(pos, {name = "mobs:beehive", param2 = 1})
-			minetest.add_entity(pos, "mobs:bee")
+			if math.random(1, 5) == 1 then
+				minetest.add_entity(pos, "mobs:bee")
+			end
 		end
 	end,
 	
