@@ -227,7 +227,8 @@ local oredefs = {
 		tools = {
 			pick = {
 				groupcaps = {
-					cracky = {times = {[1] = 3.0, [2] = 1.20, [3] = 0.70}, uses = 90, maxlevel= 2}
+					cracky = {times = {[1] = 3.0, [2] = 1.20, [3] = 0.70}, uses = 90, maxlevel= 2},
+					crumbly = {times = {[1] = 1.75, [2] = 0.80, [3] = 0.65}, uses = 90, maxlevel= 2}
 				},
 				damage_groups = {fleshy = 3},
 				full_punch_interval = 0.8,
@@ -272,7 +273,8 @@ local oredefs = {
 		tools = {
 			pick = {
 				groupcaps = {
-					cracky = {times = {[1] = 1.50, [2] = 0.80, [3] = 0.35}, uses = 200, maxlevel= 3}
+					cracky = {times = {[1] = 1.50, [2] = 0.80, [3] = 0.35}, uses = 200, maxlevel= 3},
+					crumbly = {times = {[1] = 1.00, [2] = 0.60, [3] = 0.25}, uses = 200, maxlevel= 3}
 				},
 				damage_groups = {fleshy = 5},
 				full_punch_interval = 0.5,
