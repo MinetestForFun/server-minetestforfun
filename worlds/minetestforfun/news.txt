@@ -5,7 +5,20 @@ Spawning monsters egg for some monsters
 ---Important News---
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
----Patch Notes------22/10/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly, gravgun)
+---Patch Notes---
+---27/10/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly)
+Update of "" ()
+Update of "mobs" (Spiders are now aggressive only at night, when it's day they attack you if you attack them. Yeti now punch you when you are near him)
+Update of "mapgen.lua" (Diamonds big chuncks are now generated at -4096 instead of -1024 before)
+Update of "areas" (Speed up a little the mod)
+Update of "farming" (Added grape bushes at high climates which can be cultivated into grape vines using trellis (9 sticks), changed to soil texture overlays and fixed a few bugs)
+Update of "builtin_item" (crashfix when a player dig stones)
+Server configuration : Fixed the deleted items when you die with your inventory/bags full
+Update of "spears" (can now be placed on pedestals/itemframes)
+Update of "pclasses" (Bugfix the "admin" class)
+Update of "fishing" (Speed up a little the mod)
+
+---22/10/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly, gravgun)
 Update of "sea" (seaplants & seacoral now glow a little it makes underwater more friendly, you can now clearly see sharks when they eat your leggs. YES devs are soo kind !)
 Update of "darkage" (Increased the generation speed)
 Update of "quests" (Crashfix & try to add a new daily quest)
