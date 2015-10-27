@@ -387,7 +387,7 @@ function default.register_ores()
 		ore            = "default:stone_with_diamond",
 		wherein        = "default:stone",
 		clust_scarcity = 30 * 30 * 30,
-		clust_num_ores = 64,
+		clust_num_ores = 32,
 		clust_size     = 5,
 		y_max          = -1024,
 		y_min          = -30000,
