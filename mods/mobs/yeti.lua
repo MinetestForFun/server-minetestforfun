@@ -7,7 +7,8 @@ mobs:register_mob("mobs:yeti", {
 	-- agressive, deals 7 damage to player when hit
 	passive = false,
 	damage = 6,
-	attack_type = "shoot",
+	attack_type = "dogshoot",
+	reach = 2,
 	shoot_interval = .75,
 	arrow = "mobs:snowball",
 	shoot_offset = 2,
@@ -28,7 +29,7 @@ mobs:register_mob("mobs:yeti", {
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_dirtmonster",
-		attack = "mobs_stonemonster_attack",
+		shoot_attack = "mobs_stonemonster_attack",
 		death = "mobs_zombie_death",
 	},
 	-- speed and jump
@@ -70,16 +71,16 @@ mobs:register_arrow("mobs:snowball", {
 	velocity = 6,
 
 	hit_player = function(self, player)
-		player:punch(self.object, 1.0,  {
-			full_punch_interval=1.0,
-			damage_groups = {fleshy=6},
+		player:punch(self.object, 1.0, {
+			full_punch_interval = 1.0,
+			damage_groups = {fleshy = 6},
 		}, 0)
 	end,
 
 	hit_mob = function(self, player)
-		player:punch(self.object, 1.0,  {
-			full_punch_interval=1.0,
-			damage_groups = {fleshy=3},
+		player:punch(self.object, 1.0, {
+			full_punch_interval = 1.0,
+			damage_groups = {fleshy = 3},
 		}, 0)
 	end,
 
