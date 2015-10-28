@@ -72,19 +72,11 @@ minetest.register_entity(":__builtin:item", {
 		end
 		local prop = {
 			is_visible = true,
-			visual = "sprite",
-			textures = {"unknown_item.png"}
+			visual = "wielditem",
+			textures = {(itemname or "unknown_item.png")},
+			visual_size = {x=0.25, y=0.25},
+			automatic_rotate = math.pi * 0.5,
 		}
-		if item_texture and item_texture ~= "" then
-			prop.visual = "wielditem"
-			prop.textures = {itemname}
-			prop.visual_size = {x=0.25, y=0.25}
-		else
-			prop.visual = "wielditem"
-			prop.textures = {itemname}
-			prop.visual_size = {x=0.25, y=0.25}
-			prop.automatic_rotate = math.pi * 0.5
-		end
 		self.object:set_properties(prop)
 	end,
 
@@ -123,7 +115,7 @@ minetest.register_entity(":__builtin:item", {
 			self.timer = 0
 		end
 		self.timer = self.timer + dtime
-		if time ~= 0 and (self.timer > time) then
+		if self.itemstring == "" or (time ~= 0 and (self.timer > time)) then
 			self.object:remove()
 			return
 		end
