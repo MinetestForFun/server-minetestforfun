@@ -3,8 +3,10 @@ minetest.log("action","[mod soundset] Loading...")
 soundset = {}
 soundset.file = minetest.get_worldpath() .. "/sounds_config.txt"
 soundset.gainplayers = {}
-soundset.tmp = {}
-
+local tmp = {}
+tmp["music"] = {}
+tmp["ambience"]  = {}
+tmp["other"] = {}
 
 local function save_sounds_config()
 	local input = io.open(soundset.file, "w")
@@ -116,23 +118,25 @@ local formspec = "size[6,6]"..
 
 
 local on_show_settings = function(name, music, ambience, other)
-	if not soundset.tmp[name] then
-		soundset.tmp[name] = {}
-	end
-	soundset.tmp[name]["music"] = music
-	soundset.tmp[name]["ambience"] = ambience
-	soundset.tmp[name]["other"] = other
+	tmp["music"][name] = music
+	tmp["ambience"][name] = ambience
+	tmp["other"][name] = other
 	minetest.show_formspec( name, "soundset:settings", string.format(formspec, tostring(music), tostring(ambience), tostring(other) ))
 end
 
+local clear_tmp = function(name)
+	tmp["music"][name] = nil
+	tmp["ambience"][name] = nil
+	tmp["other"][name] = nil
+end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname == "soundset:settings" then
 		local name = player:get_player_name()
 		if not name or name == "" then return end
-		local fmusic = soundset.tmp[name]["music"] or 50
-		local fambience = soundset.tmp[name]["ambience"] or 50
-		local fother = soundset.tmp[name]["other"] or 50
+		local fmusic = tmp["music"][name] or 50
+		local fambience = tmp["ambience"][name] or 50
+		local fother = tmp["other"][name] or 50
 		if fields["abort"] == "Ok" then
 			if soundset.gainplayers[name]["music"] ~= fmusic or soundset.gainplayers[name]["ambience"] ~= fambience or soundset.gainplayers[name]["other"] ~= fother then
 				soundset.gainplayers[name]["music"] = fmusic
@@ -140,10 +144,10 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				soundset.gainplayers[name]["other"] = fother
 				save_sounds_config()
 			end
-			soundset.tmp[name] = nil
+			clear_tmp(name)
 			return
 		elseif fields["abort"] == "Abort" then
-			soundset.tmp[name] = nil
+			clear_tmp(name)
 			return
 		elseif fields["vmusic"] == "+" then
 			fmusic = inc(fmusic)
@@ -158,7 +162,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		elseif fields["vother"] == "-" then
 			fother = dec(fother)
 		elseif fields["quit"] == "true" then
-			soundset.tmp[name] = nil
+			clear_tmp(name)
 			return
 		else
 			return
