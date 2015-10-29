@@ -109,6 +109,7 @@ local function punch_filter(data, filtpos, filtnode)
 	local owner = filtmeta:get_string("owner")
 	local fakePlayer = {
 		get_player_name = delay(owner),
+		is_fake_player = ":pipeworks",
 	} -- TODO: use a mechanism as the wielder one
 	local dir = minetest.facedir_to_right_dir(filtnode.param2)
 	local frompos = vector.subtract(filtpos, dir)

@@ -104,6 +104,38 @@ local function wielder_on(data, wielder_pos, wielder_node)
 		set_attach = delay(),
 		set_detach = delay(),
 		set_bone_position = delay(),
+		hud_change = delay(),
+		get_breath = delay(11),
+		-- TODO "implement" all these
+		-- set_armor_groups
+		-- get_armor_groups
+		-- get_animation
+		-- get_attach
+		-- get_bone_position
+		-- get_properties
+		-- get_player_velocity
+		-- set_look_pitch
+		-- set_look_yaw
+		-- set_breath
+		-- set_physics_override
+		-- get_physics_override
+		-- hud_add
+		-- hud_remove
+		-- hud_get
+		-- hud_set_flags
+		-- hud_get_flags
+		-- hud_set_hotbar_itemcount
+		-- hud_get_hotbar_itemcount
+		-- hud_set_hotbar_image
+		-- hud_get_hotbar_image
+		-- hud_set_hotbar_selected_image
+		-- hud_get_hotbar_selected_image
+		-- hud_replace_builtin
+		-- set_sky
+		-- get_sky
+		-- override_day_night_ratio
+		-- get_day_night_ratio
+		-- set_local_animation
 	}
 	local pointed_thing = { type="node", under=under_pos, above=above_pos }
 	data.act(virtplayer, pointed_thing)
