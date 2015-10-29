@@ -227,7 +227,10 @@ armor.set_player_armor = function(self, player)
 			end
 		end
 	end
-	preview = (armor:get_preview(name) or "character_preview.png") .. "^" .. preview -- //MFF(Mg|09/05/15)
+	if preview ~= "" then
+		preview = "^" .. preview
+	end
+	preview = armor:get_preview(name) .. preview -- //MFF(Mg|09/05/15)
 	if minetest.get_modpath("shields") then
 		armor_level = armor_level * 0.9
 	end
@@ -337,7 +340,10 @@ end
 armor.get_preview = function(self, name)
 	if skin_mod == "skins" then
 		return armor:get_player_skin(name).."_preview.png"
+	elseif skin_mod == "u_skins"then
+		return string.gsub(armor.textures[name].skin, ".png", "_preview.png")
 	end
+	return "character_preview.png"
 end
 
 armor.get_armor_formspec = function(self, name)

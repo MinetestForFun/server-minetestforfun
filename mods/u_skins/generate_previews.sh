@@ -23,7 +23,7 @@ do
 	out_file=output/"$out_name"_preview.png
 	if $IMAGEMAGICK
 	then
-		convert -strip -resize 32x64 $i $out_file
+		convert -strip -resize 128x256 $i $out_file
 	else
 		mv $i $out_file
 	fi
