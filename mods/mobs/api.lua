@@ -13,7 +13,7 @@ mobs.remove = minetest.setting_getbool("remove_far_mobs")
 
 local pi = math.pi
 
-local do_attack = function(self, player)
+do_attack = function(self, player)
 
 	if self.state ~= "attack" then
 
@@ -30,7 +30,7 @@ local do_attack = function(self, player)
 	end
 end
 
-local set_velocity = function(self, v)
+set_velocity = function(self, v)
 
 	v = (v or 0)
 
@@ -50,7 +50,7 @@ local set_velocity = function(self, v)
 	})
 end
 
-local get_velocity = function(self)
+get_velocity = function(self)
 
 	local v = self.object:getvelocity()
 	return (v.x ^ 2 + v.z ^ 2) ^ (0.5)
@@ -193,7 +193,7 @@ function check_for_death(self)
 end
 
 -- check if within map limits (-30911 to 30927)
-local function within_limits(pos, radius)
+function within_limits(pos, radius)
 
 	if  (pos.x - radius) > -30913
 	and (pos.x + radius) <  30928
@@ -207,7 +207,8 @@ local function within_limits(pos, radius)
 	return false -- beyond limits
 end
 
-local do_env_damage = function(self)
+-- environmental damage (water, lava, fire, light)
+do_env_damage = function(self)
 
 	-- feed/tame text timer (so mob full messages dont spam chat)
 	if self.htimer > 0 then
@@ -260,7 +261,8 @@ local do_env_damage = function(self)
 	check_for_death(self)
 end
 
-local do_jump = function(self)
+-- jump if facing a solid node (not fences)
+do_jump = function(self)
 
 	if self.fly then
 		return
@@ -308,9 +310,9 @@ local do_jump = function(self)
 	end
 end
 
-local in_fov = function(self, pos)
+-- check if POS is in mobs field of view
+in_fov = function(self, pos)
 
-	-- check if POS is in mobs field of view
 	local yaw = self.object:getyaw() + self.rotate
 	local vx = math.sin(yaw)
 	local vz = math.cos(yaw)
@@ -327,7 +329,7 @@ local in_fov = function(self, pos)
 	return true
 end
 
--- modified from TNT mod
+-- blast damage to entities nearby (modified from TNT mod)
 function entity_physics(pos, radius, self) --/MFF (Crabman|06/23/2015)add self to use punch function
 
 	radius = radius * 2
@@ -338,20 +340,21 @@ function entity_physics(pos, radius, self) --/MFF (Crabman|06/23/2015)add self t
 	for _, obj in pairs(objs) do
 
 		obj_pos = obj:getpos()
+		--MFF DEBUT pumpkins
 		obj_vel = obj:getvelocity()
-		--dist = math.max(1, vector.distance(pos, obj_pos))
 		if obj_vel ~= nil then
 			if not (obj:get_entity_name() == "__builtin:item" and  self.do_not_project_items) then
 				obj:setvelocity(calc_velocity(pos, obj_pos, obj_vel, radius * 10))
 			end
-		end
+		end --MFF FIN pumpkins
+		--dist = math.max(1, vector.distance(pos, obj_pos))
 		--local damage = math.floor((4 / dist) * radius)
-		obj:punch(self.object, 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=self.damage} })--/MFF (Crabman|06/23/2015) use punch
 		--obj:set_hp(obj:get_hp() - damage)
+		obj:punch(self.object, 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=self.damage} })--/MFF (Crabman|06/23/2015) use punch
 	end
 end
 
--- get node at location but with fallback for nil or unknown
+-- get node but use fallback for nil or unknown
 function node_ok(pos, fallback)
 
 	fallback = fallback or "default:dirt"
@@ -393,6 +396,7 @@ function follow_holding(self, clicker)
 end
 
 local function breed(self)
+
 	-- horny animal can mate for 40 seconds,
 	-- afterwards horny animal cannot mate again for 200 seconds
 	if self.horny == true
@@ -419,22 +423,23 @@ local function breed(self)
 			})
 			-- jump when grown so not to fall into ground
 			local v = self.object:getvelocity()
-			v.x = 0
-			v.y = self.jump_height
-			v.z = 0
-			self.object:setvelocity(v)
+			self.object:setvelocity({
+				x = 0,
+				y = self.jump_height,
+				z = 0
+			})
 		end
 	end
 
-	-- find another same animal who is also horny and mate
+	-- find another same animal who is also horny and mate if close enough
 	if self.horny == true
 	and self.hornytimer <= 40 then
 		local pos = self.object:getpos()
 		effect({x = pos.x, y = pos.y + 1, z = pos.z}, 4, "heart.png")
-		local ents = minetest.get_objects_inside_radius(pos, self.view_range)
+		local ents = minetest.get_objects_inside_radius(pos, 3)
 		local num = 0
 		local ent = nil
-		for i,obj in ipairs(ents) do
+		for i, obj in ipairs(ents) do
 			ent = obj:get_luaentity()
 
 			-- check for same animal with different colour
@@ -466,6 +471,7 @@ local function breed(self)
 			if num > 1 then
 				self.hornytimer = 41
 				ent.hornytimer = 41
+				-- spawn baby
 				minetest.after(7, function(dtime)
 					local mob = minetest.add_entity(pos, self.name)
 					local ent2 = mob:get_luaentity()
@@ -605,7 +611,7 @@ minetest.register_entity(name, {
 	health = 0,
 	reach = def.reach or 3,
 	htimer = 0,
-	do_not_project_items = def.do_not_project_items or false,
+	do_not_project_items = def.do_not_project_items or false, --MFF pumpkins
 	child_texture = def.child_texture,
 	docile_by_day = def.docile_by_day or false,
 	time_of_day = 0.5,
@@ -617,10 +623,10 @@ minetest.register_entity(name, {
 
 		-- when lifetimer expires remove mob (except npc and tamed)
 		if self.type ~= "npc"
-		and not self.tamed then
+		and not self.tamed
+		and self.state ~= "attack" then
 			self.lifetimer = self.lifetimer - dtime
-			if self.lifetimer <= 0
-			and self.state ~= "attack" then
+			if self.lifetimer <= 0 then
 				minetest.log("action",
 					"lifetimer expired, removed " .. self.name)
 				effect(pos, 15, "tnt_smoke.png")
@@ -695,6 +701,10 @@ minetest.register_entity(name, {
 			end
 			self.timer = 0
 		end
+		-- never go over 100
+		if self.timer > 100 then
+			self.timer = 1
+		end
 
 		-- mob plays random sound at times
 		if self.sounds.random
@@ -716,6 +726,7 @@ minetest.register_entity(name, {
 				self.do_custom(self)
 			end
 		elseif self.state ~= "attack" then
+			self.env_damage_timer = 0
 			do_env_damage(self)
 			-- custom function
 			if self.do_custom then
@@ -1529,7 +1540,6 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 		and data[vi] ~= c_brick
 		and data[vi] ~= c_chest then
 			local n = node_ok(p).name
-
 			if not minetest.is_protected(p, "") --/MFF (Crabman|06/23/2015) re-added node protected in areas
 			and minetest.get_item_group(n, "unbreakable") ~= 1
 			and minetest.get_item_group(n, "nether") == 0 then
@@ -1738,13 +1748,14 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 		-- heal health
 		local hp = self.object:get_hp()
 		hp = hp + 4
-		if hp >= self.hp_max
-		and self.htimer < 1 then
+		if hp >= self.hp_max then
 			hp = self.hp_max
-			minetest.chat_send_player(clicker:get_player_name(),
-				self.name:split(":")[2]
-				.. " at full health (" .. tostring(hp) .. ")")
-			self.htimer = 5
+			if self.htimer < 1 then
+				minetest.chat_send_player(clicker:get_player_name(),
+					self.name:split(":")[2]
+					.. " at full health (" .. tostring(hp) .. ")")
+				self.htimer = 5
+			end
 		end
 		self.object:set_hp(hp)
 		self.health = hp
