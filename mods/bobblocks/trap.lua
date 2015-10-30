@@ -64,7 +64,7 @@ minetest.register_abm(
 -- Nodes
 minetest.register_node("bobblocks:trap_grass", {
 	description = "Trap Grass",
-    tile_images = {"default_grass.png"},
+    tiles = {"default_grass.png"},
 	paramtype2 = "facedir",
 	legacy_facedir_simple = true,
     groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
@@ -77,7 +77,7 @@ local function spikenode(name, desc, texture, drop, groups, drawtype)
 minetest.register_node("bobblocks:trap_"..name, {
 	description = desc,
     drawtype = drawtype,
-	tile_images = {"bobblocks_"..texture..".png"},
+	tiles = {"bobblocks_"..texture..".png"},
 	inventory_image = ("bobblocks_"..texture..".png"),
     paramtype = "light",
     walkable = false,
@@ -104,7 +104,7 @@ minetest.register_node("bobblocks:spike_major_reverse", {
 	description = "Trap Spike Major Reverse",
     drawtype = "plantlike",
     visual_scale = 1,
-	tile_images = {"bobblocks_majorspike_reverse.png"},
+	tiles = {"bobblocks_majorspike_reverse.png"},
 	inventory_image = ("bobblocks_majorspike_reverse.png"),
     paramtype = "light",
     walkable = false,

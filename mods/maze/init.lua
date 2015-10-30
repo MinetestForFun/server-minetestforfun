@@ -399,7 +399,7 @@ local maze_closer = {} -- list of all closer stones
 
 -- closer stone definition
 minetest.register_node("maze:closer", {
-	tile_images = {"default_cobble.png"},
+	tiles = {"default_cobble.png"},
 	inventory_image = minetest.inventorycube("default_cobble.png"),
 	drop = '',
 	material = { diggability = "not"},

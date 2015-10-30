@@ -7,7 +7,7 @@ print (" ---- mods override is Loading! ---- ")
 --	description = "Leaves",
 --	drawtype = "allfaces_optional",
 --	visual_scale = 1.3,
---	tile_images = {"4seasons_leaves_with_snow.png"},
+--	tiles = {"4seasons_leaves_with_snow.png"},
 --	paramtype = "light",
 --	groups = {snappy=3, leafdecay=3, flammable=2},
 --	drop = {

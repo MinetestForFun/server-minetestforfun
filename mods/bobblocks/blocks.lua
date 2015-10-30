@@ -19,7 +19,7 @@ end
 
 minetest.register_node("bobblocks:btm", {
 	description = "Bobs TransMorgifier v5",
-	tile_images = {"bobblocks_btm_sides.png", "bobblocks_btm_sides.png", "bobblocks_btm_sides.png",
+	tiles = {"bobblocks_btm_sides.png", "bobblocks_btm_sides.png", "bobblocks_btm_sides.png",
 		"bobblocks_btm_sides.png", "bobblocks_btm_sides.png", "bobblocks_btm.png"},
 	inventory_image = "bobblocks_btm.png",
 	paramtype2 = "facedir",
@@ -39,7 +39,7 @@ for _, colour in ipairs(bobblock_colours) do
 minetest.register_node("bobblocks:"..colour.."block", {
 	description = colour.." Block",
 	drawtype = "glasslike",
-	tile_images = {"bobblocks_"..colour.."block.png"},
+	tiles = {"bobblocks_"..colour.."block.png"},
 	inventory_image = minetest.inventorycube("bobblocks_"..colour.."block.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -60,7 +60,7 @@ minetest.register_node("bobblocks:"..colour.."block", {
 
 minetest.register_node("bobblocks:"..colour.."block_off", {
 	description = colour.." Block",
-	tile_images = {"bobblocks_"..colour.."block.png"},
+	tiles = {"bobblocks_"..colour.."block.png"},
 	is_ground_content = true,
 	alpha = 160,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
@@ -82,7 +82,7 @@ minetest.register_node("bobblocks:"..colour.."block_off", {
 minetest.register_node("bobblocks:"..colour.."pole", {
 	description = colour.." Pole",
 	drawtype = "fencelike",
-	tile_images = {"bobblocks_"..colour.."block.png"},
+	tiles = {"bobblocks_"..colour.."block.png"},
 	inventory_image = ("bobblocks_inv"..colour.."pole.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -102,7 +102,7 @@ minetest.register_node("bobblocks:"..colour.."pole", {
 minetest.register_node("bobblocks:"..colour.."pole_off", {
 	description = colour.." Pole",
 	drawtype = "fencelike",
-	tile_images = {"bobblocks_"..colour.."block.png"},
+	tiles = {"bobblocks_"..colour.."block.png"},
 	inventory_image = ("bobblocks_inv"..colour.."pole.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -136,7 +136,7 @@ end
 minetest.register_node("bobblocks:greyblock", {
 	description = "Grey Block",
 	drawtype = "glasslike",
-	tile_images = {"bobblocks_greyblock.png"},
+	tiles = {"bobblocks_greyblock.png"},
 	inventory_image = minetest.inventorycube("bobblocks_greyblock.png"),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -152,7 +152,7 @@ minetest.register_node("bobblocks:greyblock", {
 
 minetest.register_node("bobblocks:greyblock_off", {
 	description = "Grey Block",
-	tile_images = {"bobblocks_greyblock.png"},
+	tiles = {"bobblocks_greyblock.png"},
 	is_ground_content = true,
 	alpha = 160,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
@@ -167,7 +167,7 @@ minetest.register_node("bobblocks:greyblock_off", {
 minetest.register_node("bobblocks:greypole", {
 	description = "Grey Pole",
 	drawtype = "fencelike",
-	tile_images = {"bobblocks_greyblock.png"},
+	tiles = {"bobblocks_greyblock.png"},
 	inventory_image = ("bobblocks_invgreypole.png"),
 	paramtype = "light",
 	sunlight_propagates = true,

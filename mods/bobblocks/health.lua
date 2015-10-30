@@ -32,7 +32,7 @@ end
 
 minetest.register_node("bobblocks:health_off", {
 	description = "Health Pack 1 Off",
-    tile_images = {"bobblocks_health_off.png"},
+    tiles = {"bobblocks_health_off.png"},
     inventory_image = "bobblocks_health_off.png",
 	paramtype2 = "facedir",
 	legacy_facedir_simple = true,
@@ -48,7 +48,7 @@ minetest.register_node("bobblocks:health_off", {
 
 minetest.register_node("bobblocks:health_on", {
 	description = "Health Pack 1 On",
-    tile_images = {"bobblocks_health_on.png"},
+    tiles = {"bobblocks_health_on.png"},
 	paramtype2 = "facedir",
 	legacy_facedir_simple = true,
     light_source = default.LIGHT_MAX-1,
