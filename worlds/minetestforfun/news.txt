@@ -6,8 +6,14 @@ Spawning monsters egg for some monsters
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
 ---Patch Notes---
+---??/11/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman)
+Update of "moreores" (Fixed a Pickaxe bug when you dig bushes)
+Update of "soundset" (Fixed a crash due to an important lag client side)
+Update of "builtin_item" (Improved the code, all items rotate when there are dropped)
+Update of "3d_armor" (Fixed the preview of all armors/skins)
+Update of "mobs" (Fixed mob feeding function bug from going over hp_max, can only breed animals when horny and close together (3 nodes), code tidy)
+
 ---27/10/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, Gael-de-Sailly)
-Update of "" ()
 Update of "mobs" (Spiders are now aggressive only at night, when it's day they attack you if you attack them. Yeti now punch you when you are near him)
 Update of "mapgen.lua" (Diamonds big chuncks are now generated at -4096 instead of -1024 before)
 Update of "areas" (Speed up a little the mod)
