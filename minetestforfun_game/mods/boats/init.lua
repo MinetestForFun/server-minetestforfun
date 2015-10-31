@@ -90,10 +90,10 @@ boats.register_boat = function(parameters)
 		end)
 		if not minetest.setting_getbool("creative_mode") then
 			local inv = puncher:get_inventory()
-			if inv:room_for_item("main", "boats:boat") then
-				inv:add_item("main", "boats:boat")
+			if inv:room_for_item("main", "boats:" .. parameters.name) then
+				inv:add_item("main", "boats:" .. parameters.name)
 			else
-				minetest.add_item(self.object:getpos(), "boats:boat")
+				minetest.add_item(self.object:getpos(), "boats:" .. parameters.name)
 			end
 		end
 	end
