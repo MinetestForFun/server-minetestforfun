@@ -112,7 +112,7 @@ minetest.register_abm({nodenames = {"group:vacuum_tube"},
 			chance = 1,
 			label = "Vacuum tubes",
 			action = function(pos, node, active_object_count, active_object_count_wider)
-				if node.name == "pipeworks:sand_tube" then
+				if node.name:find("pipeworks:sand_tube") then
 					vacuum(pos, 2)
 				else
 					local radius = minetest.get_meta(pos):get_int("dist")
