@@ -110,7 +110,12 @@ local function tick()
 	end
 end
 
+local mt_handle_node_drops = minetest.handle_node_drops
 function minetest.handle_node_drops(pos, drops, digger)
+	if digger and digger.is_fake_player then -- Pipeworks' wielders
+		mt_handle_node_drops(pos, drops, digger)
+		return
+	end
 	local inv
 	if creative_mode and digger and digger:is_player() then
 		inv = digger:get_inventory()
