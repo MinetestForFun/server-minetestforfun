@@ -1,6 +1,40 @@
 item_drop = {}
 local enable_damage = minetest.setting_getbool("enable_damage")
 local creative_mode = minetest.setting_getbool("creative_mode")
+local TICK_UPDATE = 0.1
+
+
+local die_timeout = 20
+local die_time = {}
+local die_respawned = {}
+
+minetest.register_on_joinplayer(function(player)
+	local player_name = player:get_player_name()
+	die_time[player_name] = 0
+	die_respawned[player_name] = false
+end)
+
+minetest.register_on_leaveplayer(function(player)
+	local player_name = player:get_player_name()
+	minetest.after(3, function()
+		die_time[player_name] = nil
+		die_respawned[player_name] = nil
+	end)
+end)
+
+minetest.register_on_dieplayer(function(player)
+	local player_name = player:get_player_name()
+	if not player_name then return end
+	die_respawned[player_name] = false
+	die_time[player_name] = die_timeout
+end)
+
+minetest.register_on_respawnplayer(function(player)
+	local player_name = player:get_player_name()
+	if not player_name then return end
+	die_respawned[player_name] = true
+end)
+
 
 -- Following edits by gravgun
 
@@ -33,81 +67,88 @@ local pickup_duration = 0.1
 local pickup_inv_duration = 1/pickup_duration*0.7
 
 local function tick()
-	minetest.after(0.1, tick)
 	local tstamp = minetest.get_us_time()
 	for _,player in ipairs(minetest.get_connected_players()) do
-		if player:get_hp() > 0 or not enable_damage then
-			local pos = player:getpos()
-			pos.y = pos.y + player_half_height
-			local inv = player:get_inventory()
+		local player_name = player:get_player_name()
+		if die_time[player_name] < 1 then
+			if player:get_hp() > 0 or not enable_damage then
+				local pos = player:getpos()
+				pos.y = pos.y + player_half_height
+				local inv = player:get_inventory()
 
-			if inv then
-				for _,object in ipairs(minetest.get_objects_inside_radius(pos, scan_range)) do
-					local luaEnt = object:get_luaentity()
-					if luaEnt and luaEnt.name == "__builtin:item" then
-						local ticky = luaEnt.item_drop_min_tstamp
-						if ticky then
-							if tstamp >= ticky then
-								luaEnt.item_drop_min_tstamp = nil
-							end
-						elseif not luaEnt.item_drop_nopickup then
-							-- Point-line distance computation, heavily simplified since the wanted line,
-							-- being the player, is completely upright (no variation on X or Z)
-							local pos2 = object:getpos()
-							-- No sqrt, avoid useless computation
-							-- (just take the radius, compare it to the square of what you want)
-							-- Pos order doesn't really matter, we're squaring the result
-							-- (but don't change it, we use the cached values afterwards)
-							local dX = pos.x-pos2.x
-							local dZ = pos.z-pos2.z
-							local playerDistance = dX*dX+dZ*dZ
-							if playerDistance <= pickup_range_squared then
-								local itemStack = ItemStack(luaEnt.itemstring)
-								if inv:room_for_item("main", itemStack) then
-									local vec = {x=dX, y=pos.y-pos2.y, z=dZ}
-									vec.x = vec.x*pickup_inv_duration
-									vec.y = vec.y*pickup_inv_duration
-									vec.z = vec.z*pickup_inv_duration
-									object:setvelocity(vec)
-									luaEnt.physical_state = false
-									luaEnt.object:set_properties({
-										physical = false
-									})
-									-- Mark the object as already picking up
-									luaEnt.item_drop_nopickup = true
+				if inv then
+					for _,object in ipairs(minetest.get_objects_inside_radius(pos, scan_range)) do
+						local luaEnt = object:get_luaentity()
+						if luaEnt and luaEnt.name == "__builtin:item" then
+							local ticky = luaEnt.item_drop_min_tstamp
+							if ticky then
+								if tstamp >= ticky then
+									luaEnt.item_drop_min_tstamp = nil
+								end
+							elseif not luaEnt.item_drop_nopickup then
+								-- Point-line distance computation, heavily simplified since the wanted line,
+								-- being the player, is completely upright (no variation on X or Z)
+								local pos2 = object:getpos()
+								-- No sqrt, avoid useless computation
+								-- (just take the radius, compare it to the square of what you want)
+								-- Pos order doesn't really matter, we're squaring the result
+								-- (but don't change it, we use the cached values afterwards)
+								local dX = pos.x-pos2.x
+								local dZ = pos.z-pos2.z
+								local playerDistance = dX*dX+dZ*dZ
+								if playerDistance <= pickup_range_squared then
+									local itemStack = ItemStack(luaEnt.itemstring)
+									if inv:room_for_item("main", itemStack) then
+										local vec = {x=dX, y=pos.y-pos2.y, z=dZ}
+										vec.x = vec.x*pickup_inv_duration
+										vec.y = vec.y*pickup_inv_duration
+										vec.z = vec.z*pickup_inv_duration
+										object:setvelocity(vec)
+										luaEnt.physical_state = false
+										luaEnt.object:set_properties({
+											physical = false
+										})
+										-- Mark the object as already picking up
+										luaEnt.item_drop_nopickup = true
 
-									minetest.after(pickup_duration, function()
-										local lua = luaEnt
-										if object == nil or lua == nil or lua.itemstring == nil then
-											return
-										end
-										if inv:room_for_item("main", itemStack) then
-											inv:add_item("main", itemStack)
-											if luaEnt.itemstring ~= "" then
-												minetest.sound_play("item_drop_pickup", {pos = pos, gain = 0.3, max_hear_distance = 8})
+										minetest.after(pickup_duration, function()
+											local lua = luaEnt
+											if object == nil or lua == nil or lua.itemstring == nil then
+												return
 											end
-											luaEnt.itemstring = ""
-											object:remove()
-											for i, cb in ipairs(item_drop.pickup_callbacks) do
-												cb(player, itemstack)
+											if inv:room_for_item("main", itemStack) then
+												inv:add_item("main", itemStack)
+												if luaEnt.itemstring ~= "" then
+													minetest.sound_play("item_drop_pickup", {pos = pos, gain = 0.3, max_hear_distance = 8})
+												end
+												luaEnt.itemstring = ""
+												object:remove()
+												for i, cb in ipairs(item_drop.pickup_callbacks) do
+													cb(player, itemstack)
+												end
+											else
+												object:setvelocity({x = 0,y = 0,z = 0})
+												luaEnt.physical_state = true
+												luaEnt.object:set_properties({
+													physical = true
+												})
+												luaEnt.item_drop_nopickup = nil
 											end
-										else
-											object:setvelocity({x = 0,y = 0,z = 0})
-											luaEnt.physical_state = true
-											luaEnt.object:set_properties({
-												physical = true
-											})
-											luaEnt.item_drop_nopickup = nil
-										end
-									end)
+										end)
+									end
 								end
 							end
 						end
 					end
 				end
 			end
+		else
+			if die_respawned[player_name] then
+				die_time[player_name] = (die_time[player_name] or die_timeout) - TICK_UPDATE
+			end
 		end
 	end
+	minetest.after(TICK_UPDATE, tick)
 end
 
 local mt_handle_node_drops = minetest.handle_node_drops
