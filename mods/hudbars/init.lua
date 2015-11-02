@@ -209,7 +209,7 @@ function hb.change_hudbar(player, identifier, new_value, new_max_value)
 		minetest.log("error", main_error_text.."new_value ("..new_value..") is smaller than 0!")
 	end
 
-	if hudtable.hudstate[name].hidden == false then
+	if hudtable.hudstate[name] and hudtable.hudstate[name].hidden == false then
 		if max_changed then
 			if hudtable.hudstate[name].max == 0 then
 				player:hud_change(hudtable.hudids[name].bg, "scale", {x=0,y=0})
