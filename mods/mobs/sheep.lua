@@ -168,6 +168,7 @@ minetest.register_entity("mobs:sheep", {
 	end,
 
 	on_step = function(self, dtime)
+
 		self.timer = self.timer + dtime
 		if self.timer >= 1 then
 			self.timer = 0
@@ -180,17 +181,3 @@ minetest.register_entity("mobs:sheep", {
 	end,
 
 })
-
--- -- shears (right click sheep to shear wool)
--- minetest.register_tool("mobs:shears", {
--- 	description = "Steel Shears (right-click sheep to shear)",
--- 	inventory_image = "mobs_shears.png",
--- 	tool_capabilities = {				-- Modif MFF /DEBUT
--- 		full_punch_interval = 1,
--- 		max_drop_level=1,
--- 		groupcaps={
--- 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=30, maxlevel=2},
--- 		},
--- 		damage_groups = {fleshy=0},
--- 	}
--- })							-- Modif MFF /FIN

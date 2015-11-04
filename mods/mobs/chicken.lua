@@ -54,18 +54,122 @@ mobs:register_mob("mobs:chicken", {
 	-- follows wheat
 	follow = {"farming:seed_wheat", "farming:seed_cotton"},
 	view_range = 8,
-	replace_rate = 2500,
-	replace_what = {"air"},
-	replace_with = "mobs:egg",
+
 	on_rightclick = function(self, clicker)
 		mobs:feed_tame(self, clicker, 8, true, true)
 		mobs:capture_mob(self, clicker, 30, 50, 80, false, nil)
+	end,
+
+	do_custom = function(self)
+		if not self.child
+		and math.random(1, 500) == 1 then
+			local pos = self.object:getpos()
+			minetest.add_item(pos, "mobs:egg")
+			minetest.sound_play("default_place_node_hard", {
+				pos = pos,
+				gain = 1.0,
+				max_hear_distance = 5,
+			})
+		end
 	end,
 })
 -- spawn on default or bamboo grass between 8 and 20 light, 1 in 10000 change, 1 chicken in area up to 31000 in height
 mobs:spawn_specific("mobs:chicken", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
 -- register spawn egg
 mobs:register_egg("mobs:chicken", "Chicken", "mobs_chicken_inv.png", 1)
+-- egg entity
+
+mobs:register_arrow("mobs:egg_entity", {
+	visual = "sprite",
+	visual_size = {x=.5, y=.5},
+	textures = {"mobs_chicken_egg.png"},
+	velocity = 6,
+
+	hit_player = function(self, player)
+		player:punch(self.object, 1.0, {
+			full_punch_interval = 1.0,
+			damage_groups = {fleshy = 1},
+		}, nil)
+	end,
+
+	hit_mob = function(self, player)
+		player:punch(self.object, 1.0, {
+			full_punch_interval = 1.0,
+			damage_groups = {fleshy = 1},
+		}, nil)
+	end,
+
+	hit_node = function(self, pos, node)
+
+		local num = math.random(1, 10)
+		if num == 1 then
+			pos.y = pos.y + 1
+			local nod = minetest.get_node_or_nil(pos)
+			if not nod
+			or not minetest.registered_nodes[nod.name]
+			or minetest.registered_nodes[nod.name].walkable == true then
+				return
+			end
+			local mob = minetest.add_entity(pos, "mobs:chicken")
+			local ent2 = mob:get_luaentity()
+			mob:set_properties({
+				textures = ent2.child_texture[1],
+				visual_size = {
+					x = ent2.base_size.x / 2,
+					y = ent2.base_size.y / 2
+				},
+				collisionbox = {
+					ent2.base_colbox[1] / 2,
+					ent2.base_colbox[2] / 2,
+					ent2.base_colbox[3] / 2,
+					ent2.base_colbox[4] / 2,
+					ent2.base_colbox[5] / 2,
+					ent2.base_colbox[6] / 2
+				},
+			})
+			ent2.child = true
+			ent2.tamed = true
+			ent2.owner = self.playername
+		end
+	end
+})
+
+-- snowball throwing item
+
+local egg_GRAVITY = 9
+local egg_VELOCITY = 19
+
+-- shoot snowball
+local mobs_shoot_egg = function (item, player, pointed_thing)
+	local playerpos = player:getpos()
+	minetest.sound_play("default_place_node_hard", {
+		pos = playerpos,
+		gain = 1.0,
+		max_hear_distance = 5,
+	})
+	local obj = minetest.add_entity({
+		x = playerpos.x,
+		y = playerpos.y +1.5,
+		z = playerpos.z
+	}, "mobs:egg_entity")
+	local dir = player:get_look_dir()
+	obj:get_luaentity().velocity = egg_VELOCITY -- needed for api internal timing
+	obj:setvelocity({
+		x = dir.x * egg_VELOCITY,
+		y = dir.y * egg_VELOCITY,
+		z = dir.z * egg_VELOCITY
+	})
+	obj:setacceleration({
+		x = dir.x * -3,
+		y = -egg_GRAVITY,
+		z = dir.z * -3
+	})
+	-- pass player name to egg for chick ownership
+	local ent2 = obj:get_luaentity()
+	ent2.playername = player:get_player_name()
+	item:take_item()
+	return item
+end
 
 -- egg
 minetest.register_node("mobs:egg", {
@@ -83,12 +187,13 @@ minetest.register_node("mobs:egg", {
 		type = "fixed",
 		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
 	},
-	groups = {snappy=2, dig_immediate=3},
+	groups = {snappy = 2, dig_immediate = 3},
 	after_place_node = function(pos, placer, itemstack)
 		if placer:is_player() then
 			minetest.set_node(pos, {name = "mobs:egg", param2 = 1})
 		end
-	end
+	end,
+	on_use = mobs_shoot_egg
 })
 
 -- fried egg
@@ -104,7 +209,7 @@ minetest.register_craft({
 	output = "mobs:chicken_egg_fried",
 })
 
--- chicken (raw and cooked)
+-- raw chicken
 minetest.register_craftitem("mobs:chicken_raw", {
 description = "Raw Chicken",
 	inventory_image = "mobs_chicken_raw.png",
