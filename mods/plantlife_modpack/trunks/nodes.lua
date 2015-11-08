@@ -345,7 +345,7 @@ for i in pairs(TRuNKS) do
 			selection_box = {type = "fixed", fixed = roots_cube},
 			node_box = {type = "fixed", fixed = roots_sheet},
 			groups = {
-				tree=1,
+				tree_root=1,
 				snappy=1,
 				choppy=2,
 				oddly_breakable_by_hand=1,
