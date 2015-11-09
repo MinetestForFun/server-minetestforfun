@@ -27,18 +27,24 @@ messages.lava = {
 	"%s fell in lava. / %s  est tombe dans la lave.",
 	"%s died in lava. / %s  est mort(e) dans de la lave.",
 	"%s didn't know lava was very hot. / %s ne savait pas que la lave etait vraiment chaude.",
-	"%s destroyed Sauron's ring. / %s a detruit l'anneau de Sauron."
+	"%s destroyed Sauron's ring. / %s a detruit l'anneau de Sauron.",
+	"%s melted into a ball of fire. / %s est devenu une boule de feu",
+	"%s couldn't resist that warm glow of lava. / %s n'a pas pu se retenir face a cette chaude lueur de lave.",
+	"%s dug straight down. / %s a creusé a la verticale.",
 }
 
 -- Drowning death messages
 messages.water = {
 	"%s lacked oxygen. / %s a manque d'air.",
+	"%s ran out of air. / %s n'avait plus d'air.",
 	"%s tried to impersonate an anchor. / %s a essaye d'usurper l'identite d'une ancre.",
 	"%s forgot they were not a fish. / %s a oublie qu'il/elle n'etait pas un poisson.",
 	"%s forgot they needed to breath underwater. / %s a oublie qu'il lui fallait respirer sous l'eau.",
 	"%s isn't good at swimming. / %s n'est pas bon(ne) en natation.",
 	"%s looked for the secret of the Unicorn. / %s a cherche le secret de la licorne.",
-	"%s forgot their scaphander. / %s a oublie son scaphandre."
+	"%s forgot their scaphander. / %s a oublie son scaphandre.",
+	"%s failed at swimming lessons. / %s a rate ses cours de natation.",
+	"%s blew one too many bubbles. / %s a expiré une bulle de trop.",
 }
 
 -- Burning death messages
@@ -48,7 +54,12 @@ messages.fire = {
 	"%s just got roasted. / %s vient de se faire rotir.",
 	"%s got burnt. / %s a ete carbonise.",
 	"%s thought they were the human torch. / %s s'est prit pour la torche.",
-	"%s started a fire. / %s a allume le feu."
+	"%s started a fire. / %s a allume le feu.",
+	"%s burned to a crisp. / %s a brulé comme une chips.",
+	"%s got a little too warm. / %s a eu un peu trop chaud.",
+	"%s got too close to the camp fire. / %s s'est approche(e) trop pres du feu de camp.",
+	"%s just got roasted, hotdog style. / %s vient de se faire rotir facon hotdog.",
+	"%s was set aflame. More light that way. / %s s'est embrase(e). Ca fait plus de lumiere.",
 }
 
 -- Acid death messages
@@ -82,6 +93,9 @@ messages.other = {
 	"%s fell from a bit too high. / %s est tombe d'un peu trop haut.",
 	"%s slipped on a banana skin. / %s a glisse sur une peau de banane.",
 	"%s wanted to test their super powers. / %s a voulu tester ses super pouvoirs.",
+	"%s gave up on life. / %s a decide de mourir.",
+	"%s is somewhat dead now. / %s est plus ou moins mort(e) maintenant.",
+	"%s passed out -permanently. / %s s'est evanoui(e) -pour toujours.",
 }
 
 -- Whacking death messages
