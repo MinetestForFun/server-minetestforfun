@@ -1,9 +1,11 @@
 MinetestForFun Game server version of MinetestForFun Team
 ===================
 
+![banner_classic](http://i.imgur.com/5ADfUeK.png)
+
 You can find here the subgame and the mods of the server MinetestForFun.
 
-If you want help us, don't hesitate and take a look at our ToDoList [here](https://lite5.framapad.org/p/r.446ce575dd27b3c3e8a8efb34f28ac2d).
+If you want help us, don't hesitate and take a look at our issues.
 
 Contributors
 ===================
@@ -31,7 +33,7 @@ minetestforfun_game sous-jeu et mods
 
 Vous pouvez trouver ici le sous-jeu et les mods du serveur MinetestForFun.
 
-Si vous voulez nous aider, n'hésitez pas et jetez un coup d'oeil à notre ToDoList [ici](https://lite5.framapad.org/p/r.446ce575dd27b3c3e8a8efb34f28ac2d).
+Si vous voulez nous aider, n'hésitez pas et jetez un coup d'oeil à nos tickets.
 
 Contributeurs
 ===================
