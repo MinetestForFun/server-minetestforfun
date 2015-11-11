@@ -129,9 +129,9 @@ minetest.register_node("mobs:pumpboom_spawner", {
 
 --(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height, spawn_in_area)
 -- spawn on mobs:pumpking_spawner between 1 and 20 light, interval 300, 1 chance, 1 pumpking_spawner in area up to 31000 in height
-mobs:spawn_specific("mobs:pumpking", {"mobs:pumpking_spawner"}, {"air"}, 1, 20, 300, 1, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:pumpking", {"mobs:pumpking_spawner"}, {"air"}, 1, 20, 300, 1, 100, -31000, 31000, true)
 
--- spawn on mobs:pumpboom_spawner between 1 and 20 light, 4 interval, 1 chance, 1 pumpboom in area up to 31000 in height
-mobs:spawn_specific("mobs:pumpboom", {"mobs:pumpboom_spawner"}, {"air"}, 1, 20, 10, 4, 1, -31000, 31000, true)
+-- spawn on mobs:pumpboom_spawner between 1 and 20 light, 4 interval, 1 chance, 100 pumpboom in area up to 31000 in height
+mobs:spawn_specific("mobs:pumpboom", {"mobs:pumpboom_spawner"}, {"air"}, 1, 20, 10, 4, 100, -31000, 31000, true)
 
 
