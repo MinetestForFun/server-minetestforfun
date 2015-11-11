@@ -6,7 +6,15 @@ Spawning monsters egg for some monsters
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
 ---Patch Notes---
----??/11/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman)
+---11/11/2015--- (Thanks to : LeMagnesium/Mg)
+Update of "boats" (Tidy the code)
+Update of "mobs" (Chickens now drop egg items instead of placing the egg, also throwing eggs result in 1/8 chance of spawning chick and begin the Ent Boss code but not ready yet)
+Addition of "serverguide" (This is a book which contain the rules and many other informations about the server like mod descriptions, tips, etc... Write "/guide" to see it, you can also craft it)
+Update of "plantlife_modpack/trunks" (Fixed the tree roots group, this add more consistence with them)
+Update of "MFF_game" (Many little mapgen tweaks)
+Update of "death_messages" (Added 16 new death messages)
+
+---02/11/2015--- (Thanks to : LeMagnesium/Mg, crabman77/crabman)
 Update of "moreores" (Fixed a Pickaxe bug when you dig bushes)
 Update of "soundset" (Fixed a crash due to an important lag client side)
 Update of "builtin_item" (Improved the code, all items rotate when there are dropped)
