@@ -84,4 +84,13 @@ mobs:register_mob("mobs:ent", {
 	step = 1,
 
 })
-mobs:register_spawn("mobs:ent", {"default:junglegrass"}, 20, -1, 6000, 3, 31000)
+
+minetest.register_node("mobs:ent_spawner", {
+	description = "Ent Spawner",
+	tiles = {"default_tree_top.png", "default_tree_top.png", "default_tree.png"},
+	is_ground_content = false,
+	groups = {unbreakable = 1, mob_spawner=1},
+})
+
+-- spawn on mobs:ent_spawner between 1 and 20 light, 4 interval, 1 chance, 1 ent in area up to 31000 in height
+mobs:spawn_specific("mobs:ent", {"mobs:ent_spawner"}, {"air"}, 1, 20, 10, 4, 1, -31000, 31000, true)
