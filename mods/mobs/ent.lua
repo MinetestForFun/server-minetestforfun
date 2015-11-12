@@ -87,10 +87,22 @@ mobs:register_mob("mobs:ent", {
 
 minetest.register_node("mobs:ent_spawner", {
 	description = "Ent Spawner",
-	tiles = {"default_tree_top.png", "default_tree_top.png", "default_tree.png"},
+	tiles = {"default_tree_top.png", "default_tree_top.png", "default_tree.png^mobs_chicken_egg.png"},
 	is_ground_content = false,
 	groups = {unbreakable = 1, mob_spawner=1},
 })
 
+minetest.register_node("mobs:tree_monster_spawner", {
+	description = "Tree Monster Spawner",
+	tiles = {"default_wood.png^mobs_chicken_egg.png"},
+	is_ground_content = false,
+	groups = {unbreakable = 1, mob_spawner=1},
+})
+
+-- Boss
 -- spawn on mobs:ent_spawner between 1 and 20 light, 4 interval, 1 chance, 1 ent in area up to 31000 in height
-mobs:spawn_specific("mobs:ent", {"mobs:ent_spawner"}, {"air"}, 1, 20, 10, 4, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:ent", {"mobs:ent_spawner"}, {"air"}, 1, 20, 300, 1, 100, -31000, 31000, true)
+
+-- Minions
+-- spawn on mobs:pumpboom_spawner between 1 and 20 light, 4 interval, 1 chance, 1 pumpboom in area up to 31000 in height
+mobs:spawn_specific("mobs:tree_monster", {"mobs:tree_monster_spawner"}, {"air"}, 1, 20, 10, 4, 100, -31000, 31000, true)
