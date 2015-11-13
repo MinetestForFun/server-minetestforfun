@@ -10,7 +10,7 @@ local S = moreblocks.intllib
 -- Node will be called <modname>:panel_<subname>
 
 function register_panel(modname, subname, recipeitem, groups, images, description, drop, light)
-	return stairsplus:register_panel(modname, subname, recipeitem, {
+	stairsplus:register_panel(modname, subname, recipeitem, {
 		groups = groups,
 		tiles = images,
 		description = description,
@@ -68,20 +68,23 @@ function stairsplus:register_panel(modname, subname, recipeitem, fields)
 
 	local desc = S("%s Panel"):format(fields.description)
 	for alternate, def in pairs(defs) do
+		for k, v in pairs(fields) do
+			def[k] = v
+		end
 		def.drawtype = "nodebox"
 		def.paramtype = "light"
 		def.paramtype2 = "facedir"
 		def.on_place = minetest.rotate_node
-		for k, v in pairs(fields) do
-			def[k] = v
-		end
 		def.description = desc
+		def.groups = stairsplus:prepare_groups(fields.groups)
 		if fields.drop then
 			def.drop = modname.. ":panel_" ..fields.drop..alternate
 		end
 		minetest.register_node(":" ..modname.. ":panel_" ..subname..alternate, def)
 	end
 	minetest.register_alias(modname.. ":panel_" ..subname.. "_bottom", modname.. ":panel_" ..subname)
+
+	circular_saw.known_nodes[recipeitem] = {modname, subname}
 
 	-- Some saw-less recipes:
 
