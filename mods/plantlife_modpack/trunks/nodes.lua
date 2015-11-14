@@ -327,35 +327,40 @@ for i in pairs(TRuNKS) do
 	local 	TRuNK = 		TRuNKS[i][2]
 	if minetest.get_modpath(MoD) ~= nil then
 
-		local des = minetest.registered_nodes[MoD..":"..TRuNK].description
+		local node = minetest.registered_nodes[MoD..":"..TRuNK]
+		if node then
+			local des = node.description
 
-		minetest.register_node("trunks:"..TRuNK.."root", {
-			description = des.." Root",
-			paramtype = "light",
-			paramtype2 = "facedir",
-			tiles = {
---[[top]]		MoD.."_"..TRuNK..".png",
---[[bottom]]	MoD.."_"..TRuNK..".png",
---[[right]]		MoD.."_"..TRuNK..".png^trunks_root_mask.png^[makealpha:0,0,0",
---[[left]]		MoD.."_"..TRuNK..".png^trunks_root_mask.png^[transformFX^[makealpha:0,0,0",
---[[back]]		MoD.."_"..TRuNK..".png",
---[[front]]		MoD.."_"..TRuNK..".png"
-			},
-			drawtype = "nodebox",
-			selection_box = {type = "fixed", fixed = roots_cube},
-			node_box = {type = "fixed", fixed = roots_sheet},
-			groups = {
-				tree_root=1,
-				snappy=1,
-				choppy=2,
-				oddly_breakable_by_hand=1,
-				flammable=2--,
-				--not_in_creative_inventory=1 -- atm in inv for testing
-			},
-			--drop = "trunks:twig_1", -- not sure about this yet
-			sounds = default.node_sound_wood_defaults(),
-		})
+			minetest.register_node("trunks:"..TRuNK.."root", {
+				description = des.." Root",
+				paramtype = "light",
+				paramtype2 = "facedir",
+				tiles = {
+--[[top]]			MoD.."_"..TRuNK..".png",
+--[[bottom]]			MoD.."_"..TRuNK..".png",
+--[[right]]			MoD.."_"..TRuNK..".png^trunks_root_mask.png^[makealpha:0,0,0",
+--[[left]]			MoD.."_"..TRuNK..".png^trunks_root_mask.png^[transformFX^[makealpha:0,0,0",
+--[[back]]			MoD.."_"..TRuNK..".png",
+--[[front]]			MoD.."_"..TRuNK..".png"
+				},
+				drawtype = "nodebox",
+				selection_box = {type = "fixed", fixed = roots_cube},
+				node_box = {type = "fixed", fixed = roots_sheet},
+				groups = {
+					tree_root=1,
+					snappy=1,
+					choppy=2,
+					oddly_breakable_by_hand=1,
+					flammable=2--,
+					--not_in_creative_inventory=1 -- atm in inv for testing
+				},
+				--drop = "trunks:twig_1", -- not sure about this yet
+				sounds = default.node_sound_wood_defaults(),
+			})
 
+		else
+			print(string.format("[Trunks] warning: tree type '%s:%s' not found", MoD, TRuNK))
+		end
 	end
 end
 end

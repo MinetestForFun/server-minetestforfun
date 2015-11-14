@@ -61,14 +61,14 @@ minetest.register_abm({
 
 -- Spawning apples
 -- Limit mass changes after block has not been loaded for some time:
--- spawn apples with 10% chance, but with 10 times higher frequency
+-- spawn apples with 25% chance, but with 4 times higher frequency
 minetest.register_abm({
     nodenames = { nature.blossom_node },
-    interval = nature.blossom_delay / 10,
+    interval = nature.apple_delay / 4,
     chance = nature.apple_chance,
 
     action = function(pos, node, active_object_count, active_object_count_wider)
-		if math.random(10) == 0 and nature.dtime < 0.2 and not minetest.find_node_near(pos, nature.apple_spread, { "default:apple" }) then
+		if math.random(4) == 1 and nature.dtime < 0.2 and not minetest.find_node_near(pos, nature.apple_spread, { "default:apple" }) then
 			spawn_apple_under(pos)
 		end
     end

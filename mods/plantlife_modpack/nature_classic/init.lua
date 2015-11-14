@@ -23,6 +23,7 @@ end
 nature.leaves_blossom_chance = 15
 nature.blossom_leaves_chance = 5
 nature.blossom_delay = 3600
+nature.apple_delay = 3600
 nature.apple_chance = 10
 nature.apple_spread = 2
 
