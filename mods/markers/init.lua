@@ -5,26 +5,9 @@
 
 markers = {}
 
--- stores up to 4 marker positions for each player
-markers.positions = {}
-
--- store the positions of that many markers for each player (until server restart)
-markers.MAX_MARKERS  = 50;
-
--- the protection against digging of the marker by other players expires after this time
-markers.EXPIRE_AFTER = 60*60*24;
-
--- self-protected areas can not get higher than 100 blocks
-markers.MAX_HEIGHT   = 100;
-
--- only areas up to this size (in square meters) can be protected
-markers.MAX_SIZE     = 1024; -- 32m * 32m = 1024 m^2
-
-
+dofile(minetest.get_modpath("markers").."/config.lua");
 dofile(minetest.get_modpath("markers").."/areas.lua");
-
 dofile(minetest.get_modpath("markers").."/marker_stone.lua");
-
 dofile(minetest.get_modpath("markers").."/land_title_register.lua");
 
 
@@ -331,8 +314,8 @@ markers.get_marker_formspec = function(player, pos, error_msg)
                     "button_exit[2,6.0;2,0.5;abort;OK]";
     else
        formspec =   formspec..
-                    'label[0.5,2.0;Buying this area will cost you ]'..
-                    'label[4.7,2.0;'..markers.calculate_area_price_text( coords[1], coords[2], name )..'.]'..
+--                    'label[0.5,2.0;Buying this area will cost you ]'..
+--                    'label[4.7,2.0;'..markers.calculate_area_price_text( coords[1], coords[2], name )..'.]'..
 
                     'label[0.5,3.0;Your area ought to go..]'..
                     'label[0.5,3.5;this many blocks up:]'..
@@ -348,7 +331,7 @@ markers.get_marker_formspec = function(player, pos, error_msg)
 
                     "button_exit[2,6.0;2,0.5;abort;Abort]"..
                     -- code the position in the "Buy area" field
-                    "button_exit[6,6.0;2,0.5;"..minetest.pos_to_string(pos)..";Buy area]";
+                    "button_exit[6,6.0;2,0.5;"..minetest.pos_to_string(pos)..";Protect area]";
     end
 
    return formspec;
@@ -469,7 +452,7 @@ markers.form_input_handler = function( player, formname, fields)
       --- decode the position of the marker (which is hidden in the Buy-buttons name
       local pos = {};
       for k, v in pairs( fields ) do
-         if( v == 'Buy area' ) then
+         if( v == 'Protect area' ) then
             pos = minetest.string_to_pos( k );
          end
       end
