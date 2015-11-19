@@ -246,7 +246,6 @@ minetest.register_node("ferns:fern_trunk_big", {
         local node = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z})
         if node.name == "ferns:fern_trunk_big" or node.name == "ferns:fern_trunk_big_top" then
             minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z})
-            minetest.add_item(pos,"ferns:fern_trunk_big")
         end
     end,
 })
