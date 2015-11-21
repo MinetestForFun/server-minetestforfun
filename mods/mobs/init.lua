@@ -44,7 +44,7 @@ dofile(path.."/ent.lua")
 -- cannot find mesecons?, craft glue instead
 if not minetest.get_modpath("mesecons_materials") then
 	minetest.register_craftitem(":mesecons_materials:glue", {
-		image = "jeija_glue.png",
+		image = "mesecons_glue.png",
 		description = "Glue",
 	})
 end
