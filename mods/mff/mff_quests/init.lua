@@ -54,6 +54,7 @@ mff.quests.quests = {
 			}
 		}
 	},
+	--[[ Disabled, Mesecons levers now use right click
 	levermaniac = {
 		title = "Levermaniac",
 		description = "For some reason you've become obsessed with Mesecons's lever, causing you to insanely switch the levers on and off at an amazing speed.\nDoctors have diagnosed a strange brain damage, but said you'd be rewarded with a Super Apple if you can assist them in their research about the disease.\nThey simply ask you to flip a lever 5 times, but won't come to inspect and study you afterwards, which may suggest they also are brain damaged.",
@@ -63,7 +64,7 @@ mff.quests.quests = {
 		objective = {
 			punch = {"mesecons_walllever:wall_lever"}
 		}
-	}
+	}]]
 }
 
 function table.contains(table, element)
