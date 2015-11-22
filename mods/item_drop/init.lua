@@ -16,10 +16,8 @@ end)
 
 minetest.register_on_leaveplayer(function(player)
 	local player_name = player:get_player_name()
-	minetest.after(3, function()
-		die_time[player_name] = nil
-		die_respawned[player_name] = nil
-	end)
+	die_time[player_name] = nil
+	die_respawned[player_name] = nil
 end)
 
 minetest.register_on_dieplayer(function(player)
@@ -70,7 +68,7 @@ local function tick()
 	local tstamp = minetest.get_us_time()
 	for _,player in ipairs(minetest.get_connected_players()) do
 		local player_name = player:get_player_name()
-		if die_time[player_name] < 1 then
+		if die_time[player_name] and die_time[player_name] < 1 then
 			if player:get_hp() > 0 or not enable_damage then
 				local pos = player:getpos()
 				pos.y = pos.y + player_half_height
