@@ -129,7 +129,23 @@ function fire.flame_should_extinguish(pos)
 end
 
 
--- Enable ABMs according to 'disable fire' setting
+--[[ Extinguish all flames quickly with water, snow, ice
+
+minetest.register_abm({
+	nodenames = {"fire:basic_flame", "fire:permanent_flame"},
+	neighbors = {"group:puts_out_fire"},
+	interval = 3,
+	chance = 2,
+	catch_up = false,
+	action = function(p0, node, _, _)
+		minetest.remove_node(p0)
+		minetest.sound_play("fire_extinguish_flame",
+			{pos = p0, max_hear_distance = 16, gain = 0.25})
+	end,
+})
+
+
+]]-- Enable the following ABMs according to 'disable fire' setting
 
 if minetest.setting_getbool("disable_fire") then
 
@@ -139,6 +155,7 @@ if minetest.setting_getbool("disable_fire") then
 		nodenames = {"fire:basic_flame"},
 		interval = 3,
 		chance = 2,
+		catch_up = false,
 		action = function(p0, node, _, _)
 			minetest.remove_node(p0)
 		end,
@@ -167,6 +184,7 @@ else
 		neighbors = {"group:igniter"},
 		interval = 7,
 		chance = 16,
+		catch_up = false,
 		action = function(p0, node, _, _)
 			-- If there is water or stuff like that around node, don't ignite
 			if fire.flame_should_extinguish(p0) then
@@ -185,6 +203,7 @@ else
 		nodenames = {"fire:basic_flame"},
 		interval = 5,
 		chance = 16,
+		catch_up = false,
 		action = function(p0, node, _, _)
 			-- If there are no flammable nodes around flame, remove flame
 			if not minetest.find_node_near(p0, 1, {"group:flammable"}) then
