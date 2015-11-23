@@ -5,7 +5,7 @@ local INTERVAL = 5
 local MINDIST = 0.2
 
 -- If player does not move within this time, kick player (in seconds).
-local TIMEOUT = 3600 -- 5 minutes
+local TIMEOUT = 3600 -- 60 minutes
 
 local time_afk = { }
 local last_pos = { }
