@@ -81,20 +81,20 @@ armor = {
 	player_hp = {},
 	elements = {"head", "torso", "legs", "feet"},
 	physics = {"jump","speed","gravity"},
-	formspec = "size[8,8.5]list[detached:player_name_armor;armor;0,1;2,3;]"
-		.."image[2,0.75;2,4;armor_preview]"
+	formspec = "size[8,8.5]image[2,0.75;2,4;armor_preview]"
 		.."list[current_player;main;0,4.5;8,4;]"
 		.."list[current_player;craft;4,1;3,3;]"
-		.."list[current_player;craftpreview;7,2;1,1;]",
+		.."list[current_player;craftpreview;7,2;1,1;]"
+		.."listring[current_player;main]"
+		.."listring[current_player;craft]",
 	textures = {},
 	default_skin = "character",
-	version = "0.4.4",
+	version = "0.4.5",
 }
 
 if minetest.get_modpath("inventory_plus") then
 	inv_mod = "inventory_plus"
 	armor.formspec = "size[8,8.5]button[0,0;2,0.5;main;Back]"
-		.."list[detached:player_name_armor;armor;0,1;2,3;]"
 		.."image[2.5,0.75;2,4;armor_preview]"
 		.."label[5,1;Level: armor_level]"
 		.."label[5,1.5;Heal:  armor_heal]"
@@ -113,24 +113,18 @@ elseif minetest.get_modpath("unified_inventory") then
 		show_with = false, --Modif MFF (Crabman 30/06/2015)
 	})
 	unified_inventory.register_page("armor", {
-		get_formspec = function(player)
+		get_formspec = function(player, perplayer_formspec)
+			local fy = perplayer_formspec.formspec_y
 			local name = player:get_player_name()
-			local formspec = "background[0.06,0.99;7.92,7.52;3d_armor_ui_form.png]"
+			local formspec = "background[0.06,"..fy..";7.92,7.52;3d_armor_ui_form.png]"
 				.."label[0,0;Armor]"
-				.."list[detached:"..name.."_armor;armor;0,1;2,3;]"
-				.."image[2.5,0.75;2,4;"..armor.textures[name].preview.."]"
-				.."label[5,1;Level: "..armor.def[name].level.."]"
-				.."label[5,1.5;Heal:  "..armor.def[name].heal.."]"
-				.."label[5,2;Fire:  "..armor.def[name].fire.."]"
-			if minetest.setting_getbool("unified_inventory_lite") then
-				formspec = "background[0.06,0.49;7.92,7.52;3d_armor_ui_form.png]"
-					.."label[0,0;Armor]"
-					.."list[detached:"..name.."_armor;armor;0,0.5;2,3;]"
-					.."image[2.5,0.25;2,4;"..armor.textures[name].preview.."]"
-					.."label[5,0.5;Level: "..armor.def[name].level.."]"
-					.."label[5,1;Heal:  "..armor.def[name].heal.."]"
-					.."label[5,1.5;Fire:  "..armor.def[name].fire.."]"
-			end
+				.."list[detached:"..name.."_armor;armor;0,"..fy..";2,3;]"
+				.."image[2.5,"..(fy - 0.25)..";2,4;"..armor.textures[name].preview.."]"
+				.."label[5.0,"..(fy + 0.0)..";Level: "..armor.def[name].level.."]"
+				.."label[5.0,"..(fy + 0.5)..";Heal:  "..armor.def[name].heal.."]"
+				.."label[5.0,"..(fy + 1.0)..";Fire:  "..armor.def[name].fire.."]"
+				.."listring[current_player;main]"
+				.."listring[detached:"..name.."_armor;armor]"
 			return {formspec=formspec}
 		end,
 	})
@@ -359,7 +353,7 @@ armor.get_armor_formspec = function(self, name)
 		minetest.log("error", "3d_armor: Armor def["..name.."] is nil [get_armor_formspec]")
 		return ""
 	end
-	local formspec = armor.formspec:gsub("player_name", name)
+	local formspec = armor.formspec.."list[detached:"..name.."_armor;armor;0,1;2,3;]"
 	formspec = formspec:gsub("armor_preview", armor.textures[name].preview)
 	formspec = formspec:gsub("armor_level", armor.def[name].level)
 	formspec = formspec:gsub("armor_heal", armor.def[name].heal)
@@ -379,6 +373,8 @@ armor.update_inventory = function(self, player)
 	else
 		local formspec = armor:get_armor_formspec(name)
 		if inv_mod == "inventory_plus" then
+			formspec = formspec.."listring[current_player;main]"
+				.."listring[detached:"..name.."_armor;armor]"
 			local page = player:get_inventory_formspec()
 			if page:find("detached:"..name.."_armor") then
 				inventory_plus.set_inventory_formspec(player, formspec)
