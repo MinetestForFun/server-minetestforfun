@@ -6,6 +6,19 @@ Spawning monsters egg for some monsters
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
 ---Patch Notes---
+---24/11/2015--- (Thanks to : crabman77/crabman, gravgun, LeMagnesium/Mg)
+Update of "mobs" (Add Ent sounds, fix mobs tamed/follow problems, )
+Update of "mff_hud" (Tidy the code)
+Update of "markers" (Tidy the code)
+Update of "mesecons" (Add memory size limit, add the gates "NOR" and "OR")
+Update of "plantlife_modpack/ferns" (Fix double drop of giant fern trunks)
+Update of "moreblocks" (Tidy the code)
+Update of "quests" (Bugfix & Crashfix and removed the LeverManiac daily quest)
+Update of "item_drop" (Crashfix)
+Update of "MFF_Game" (Update our game with "Minetest_Game", tweak the stone_with_iron generation, more near the surface and less deeper)
+Update of "3d_armor" (Tidy the code)
+Update of "quests" (Bugfix and better error reporting)
+
 ---11/11/2015--- (Thanks to : LeMagnesium/Mg)
 Update of "boats" (Tidy the code)
 Update of "mobs" (Chickens now drop egg items instead of placing the egg, also throwing eggs result in 1/8 chance of spawning chick and begin the Ent Boss code but not ready yet)
