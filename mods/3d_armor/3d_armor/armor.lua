@@ -192,7 +192,7 @@ armor.set_player_armor = function(self, player)
 						local texture = item:gsub("%:", "_")
 						table.insert(textures, texture..".png")
 						if preview == "" then
-							preview = texture .. "_preview.png"	
+							preview = texture .. "_preview.png"
 						elseif stack:get_name():find("shield") then -- //MFF(Mg|09/05/15)
 							preview = preview.. "^" .. texture.."_preview.png"
 						else
@@ -606,10 +606,13 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 		local drop = {}
 		for i=1, player_inv:get_size("armor") do
 			local stack = armor_inv:get_stack("armor", i)
-			if stack:get_count() > 0 then
+			if stack:get_count() > 0 and (not pclasses.data.reserved_items[player_inv:get_stack("main", i):get_name()] or
+	            not pclasses.api.util.can_have_item(name, player_inv:get_stack("main", i):get_name())) then
 				table.insert(drop, stack)
 				armor_inv:set_stack("armor", i, nil)
 				player_inv:set_stack("armor", i, nil)
+			else
+				print(dump(stack))
 			end
 		end
 		armor:set_player_armor(player)
@@ -654,4 +657,3 @@ local function tick()
 end
 
 tick()
-

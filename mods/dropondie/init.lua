@@ -31,8 +31,11 @@ minetest.register_on_dieplayer(function(player)
    local player_inv = player:get_inventory()
 
    for i=1,player_inv:get_size("main") do
-      drop(pos, player_inv:get_stack("main", i))
-      player_inv:set_stack("main", i, nil)
+        if not pclasses.data.reserved_items[player_inv:get_stack("main", i):get_name()] or
+            not pclasses.api.util.can_have_item(player:get_player_name(), player_inv:get_stack("main", i):get_name()) then
+                drop(pos, player_inv:get_stack("main", i))
+                player_inv:set_stack("main", i, nil)
+        end
    end
 
    for i=1,player_inv:get_size("craft") do
