@@ -20,7 +20,8 @@ pclasses.api.create_graveyard_inventory = function(player)
 			player_inv:set_stack(from_list, from_index, nil)
 		end,
 		allow_take = function(inv, listname, index, stack, player)
-			return 0
+			player_inv:set_stack(listname, index, nil)
+			return stack:get_count()
 		end,
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
 			return 0
@@ -84,4 +85,3 @@ function pclasses.api.vacuum_graveyard(player)
 		end
 	end
 end
-
