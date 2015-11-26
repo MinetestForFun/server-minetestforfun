@@ -25,3 +25,8 @@ pclasses.api.register_class("warrior", {
 
 pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
 pclasses.api.reserve_item("warrior", "default:dungeon_master_s_blood_sword")
+pclasses.api.reserve_item("warrior", "3d_armor:helmet_blackmithril")
+pclasses.api.reserve_item("warrior", "3d_armor:chestplate_blackmithril")
+pclasses.api.reserve_item("warrior", "3d_armor:boots_blackmithril")
+pclasses.api.reserve_item("warrior", "3d_armor:leggings_black_mithril")
+pclasses.api.reserve_item("warrior", "shields:shield_blackmithril")

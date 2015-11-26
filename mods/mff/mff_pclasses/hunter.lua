@@ -39,3 +39,7 @@ pclasses.api.reserve_item("hunter", "spears:spear_obsidian")
 pclasses.api.reserve_item("hunter", "spears:spear_diamond")
 pclasses.api.reserve_item("hunter", "spears:spear_mithril")
 
+for _, i in pairs({"helmet", "chestplate", "boots", "leggings"}) do
+	pclasses.api.reserve_item("hunter", "3d_armor:" .. i .. "_hardenedleather")
+	pclasses.api.reserve_item("hunter", "3d_armor:" .. i .. "_reinforcedleather")
+end
