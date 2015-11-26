@@ -223,7 +223,7 @@ unified_inventory.register_page("runes", {
 	get_formspec = function(player)
 		local name = player:get_player_name()
 		local formspec = "background[0,0.2;8,4;runes_rune_inventory.png]"..
-			"background[0,4.5;8,4;ui_wooden_chest_inventory.png]"..
+			"background[0,4.5;8,4;ui_main_inventory.png]"..
 			"size[8,10]"..
 			"list[detached:"..name.."_runes;runes;0,0.2;8,4;]"
 		return {formspec=formspec}
