@@ -32,4 +32,4 @@ for _, i in pairs({"helmet", "chestplate", "boots", "leggings"}) do
 end
 
 pclasses.api.reserve_item("warrior", "shields:shield_mithril")
-pclasses.api.reserve_item("warrior", "shields:shield_mithril")
+pclasses.api.reserve_item("warrior", "shields:shield_blackmithril")

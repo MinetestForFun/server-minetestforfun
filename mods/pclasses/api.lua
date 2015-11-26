@@ -56,6 +56,15 @@ function pclasses.api.set_player_class(pname, cname)
 			end
 			pclasses.data.players[pname] = cname
 			pclasses.api.get_class_by_name(cname).on_assigned(pname)
+
+			local ref = minetest.get_player_by_name(pname)
+			local armor_inv = minetest.get_inventory({type = "detached", name = pname .. "_armor"})
+			local inv = ref:get_inventory()
+			vacuum_inventory(pname, inv, "armor", true)
+			vacuum_inventory(pname, armor_inv, "armor", false) -- Don't move to the graveyard
+			armor:set_player_armor(ref)
+			armor:update_inventory(ref)
+
 			pclasses.api.vacuum_graveyard(minetest.get_player_by_name(pname))
 		end
 		return true
@@ -116,7 +125,7 @@ end
 -- Determination and reserved items tick --
 -------------------------------------------
 
-local function vacuum_inventory(name, inv, invname, bury)
+function vacuum_inventory(name, inv, invname, bury)
 	local ref = minetest.get_player_by_name(name)
 	for i = 1, inv:get_size(invname) do
 		local stack = inv:get_stack(invname, i)
@@ -141,15 +150,8 @@ end
 local function tick()
 	for id, ref in ipairs(minetest.get_connected_players()) do
 		local name = ref:get_player_name()
-		local armor_inv = minetest.get_inventory({type = "detached", name = name .. "_armor"})
 		local inv = ref:get_inventory()
-
 		vacuum_inventory(name, inv, "main", true)
-		vacuum_inventory(name, inv, "armor", true)
-		vacuum_inventory(name, armor_inv, "armor", false) -- Don't move to the graveyard
-
-		armor:set_player_armor(ref)
-		armor:update_inventory(ref)
 	end
 	minetest.after(2, tick)
 end

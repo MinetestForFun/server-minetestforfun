@@ -486,6 +486,10 @@ minetest.register_on_joinplayer(function(player)
 			if not (name:split(":")[1] == "3d_armor" or name:split(":")[1] == "shields") then
 				return 0
 			end
+			if not pclasses.api.util.can_have_item(player:get_player_name(), name) then
+				return 0
+			end
+
 			if name:find("shield") then
 				for i=1, size do
 					local stack = player_inv:get_stack(listname, i)
