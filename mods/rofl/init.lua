@@ -1,145 +1,151 @@
 --------------------------------------
--- Rollbacks, go Out of those FiLes!
--- ROFL
+-- <put meaning here>
+-- ROFLMAO
+-- Licence : CC0
+-- Last modified : 27/11/15
+-- By : Mg
+--
 --
 
-local filepath = minetest.get_worldpath() .. "/rollback/"
-local patchsegs = 0
-local patchtotp = 100
+local bufferfiles = minetest.get_worldpath() .. "/roflmao/"
+minetest.mkdir(bufferfiles)
 
-local function none(v)
-	if not v or v == "None" then
-		return nil
-	else
-		return v
+rofl = {}
+rofl.version = "ROFLMAO"
+
+rofl.files = {}
+
+rofl.conf = {}
+rofl.conf.Tick = 20 -- Tick interval
+rofl.conf.Rpertick = 2000 -- Max reading operations per tick
+rofl.conf.Wpertick = 5000 -- Max writing operations per tick
+rofl.conf.Apertick = 1000 -- Max application operations per tick
+rofl.conf.Lpertick = 7500 -- Max loading operations per tick
+
+rofl.buffers = {}
+rofl.buffers.RCache = {} -- Reading
+rofl.buffers.WCache = {} -- Writing
+rofl.buffers.LCache = {} -- Loading -- not in use
+rofl.buffers.ACache = {} -- Application
+
+
+
+function rofl.capture(f, pos1, pos2)
+	local posU = {x = math.max(pos1.x, pos2.x), y = math.max(pos1.y, pos2.y), z = math.max(pos1.z, pos2.z)}
+	local posD = {x = math.min(pos1.x, pos2.x), y = math.min(pos1.y, pos2.y), z = math.min(pos1.z, pos2.z)}
+
+	local n = 0
+	for x = posD.x, posU.x do
+		for y = posD.y, posU.y do
+			for z = posD.z, posU.z do
+				local node = minetest.get_node_or_nil({x = x, y = y, z = z})
+				if not node or node.name == "ignore" then
+					return false
+				else
+					table.insert(rofl.buffers.WCache, {f, x-posD.x .. ";" .. y-posD.y .. ";" .. z-posD.z .. "|" .. minetest.serialize(node) .. "\n"})
+					n = n + 1
+				end
+			end
+		end
 	end
+	return n
 end
 
-local function metaread(v)
-
---[[
-
-	Eg. : channel-in="keyboard",channel-out="terminal",formspec="field[text;;${command}]"
-
-]]
-
-	if not v or v == "None" or v == "[]" then return nil end
-	v = string.sub(v,2,string.len(v)-1)
-	-- Meta extraction
-	local cursor = 0
-	local metas = {}
-	while cursor <= string.len(v) do
-		local key, value
-		local keybeg, keyend, valbeg, valend = cursor, cursor, cursor, cursor
-
-		keyend = string.find(v, "=\"", cursor)-1
-		key = string.sub(v,keybeg,keyend)
-
-		valbeg = keyend+3
-		valend = (string.find(v, "\",", valbeg) or string.len(v))-1
-		value = string.sub(v,valbeg,valend)
-
-		cursor = valend+3
-		metas[key] = value
-	end
-	return metas
-end
-
-local function parser(fields)
-
-end
-
-minetest.register_chatcommand("rofl", {
-	description = "Save MFF",
-	privs = {server = true},
+minetest.register_chatcommand("roflCapture", {
+	params = "<pos1> <pos2> <name>",
+	description = "Capture nodes contained in area pos1 to pos2",
+	privs = {server=true},
 	func = function(name, param)
-		-- Alert
-		minetest.chat_send_all("*** Server Freezing")
+		local f, p1, p2 = unpack(param:split(" "))
 
-		-- The main loop
-		local i = 0
-		if tonumber(param) then
-			i = tonumber(param)
+		if not f then
+			return false, "Invalid buffer name"
+		elseif not minetest.string_to_pos(p1) then
+			return false, "Invalid pos1"
+		elseif not minetest.string_to_pos(p2) then
+			return false, "Invalid pos2"
 		end
-		local vm = minetest.get_voxel_manip()
-		while true do
-			local file = io.open(filepath .. "/database-output." .. i .. ".txt", "r")
-			if not file then
-				break
-			end
-			minetest.log("action", "[ROFL] Opened file database-output." .. i .. ".txt ... Extracting datas")
-			-- [
-			--	id=155,actor=Mg,type=1;
-			--	list=None,index=None,add=None,stacknode=None,stackquantity=None,nodemeta=None;
-			--	x=-18,y=29,z=31;
-			--	newnode=air,newparam1=13,newparam2=None,newmeta=None
-			-- ]
-			for fields in file:lines() do
-				local id = tonumber(string.sub(fields, string.find(fields, "id=")+string.len("id="), string.find(fields, ",actor")-1))
-				local actor = string.sub(fields, string.find(fields, "actor=")+string.len("actor="), string.find(fields, ",type")-1)
-				local action_type = tonumber(string.sub(fields, string.find(fields, "type=")+string.len("type="), string.find(fields, ";list")-1))
+		p1 = minetest.string_to_pos(p1)
+		p2 = minetest.string_to_pos(p2)
 
-				local list = none(string.sub(fields, string.find(fields, "list=")+string.len("list="), string.find(fields, ",index")-1))
-				local index = none(tonumber(string.sub(fields, string.find(fields, "index=")+string.len("index="), string.find(fields, ",add")-1)))
-				local add = none(tonumber(string.sub(fields, string.find(fields, "add=")+string.len("add="), string.find(fields, ",stacknode")-1)))
-				local stacknode = none(string.sub(fields, string.find(fields, "stacknode=")+string.len("stacknode="), string.find(fields, ",stackquantity")-1))
-				local stackquantity = none(tonumber(string.sub(fields, string.find(fields, "stackquantity=")+string.len("stackquantity="), string.find(fields, ";x=")-1)))
-
-				local x = none(tonumber(string.sub(fields, string.find(fields, ";x=")+string.len(";x="), string.find(fields, ",y=")-1)))
-				local y = none(tonumber(string.sub(fields, string.find(fields, ",y=")+string.len(",y="), string.find(fields, ",z=")-1)))
-				local z = none(tonumber(string.sub(fields, string.find(fields, ",z=")+string.len(",z="), string.find(fields, ";newnode=")-1)))
-
-				local newnode = none(string.sub(fields, string.find(fields, "newnode=")+string.len("newnode="), string.find(fields, ",newparam1")-1))
-				local newparam1 = none(tonumber(string.sub(fields, string.find(fields, "newparam1=")+string.len("newparam1="), string.find(fields, ",newparam2")-1)))
-				local newparam2 = none(tonumber(string.sub(fields, string.find(fields, "newparam2=")+string.len("newparam2="), string.find(fields, ",newmeta=")-1)))
-				local newmeta = none(metaread(string.sub(fields, string.find(fields, ",newmeta=")+string.len(",newmeta="), string.len(fields)-1)))
-
-				minetest.log("action","[ROFL] Applying id = " .. id)
-				if patchsegs % patchtotp == 0 then
-					minetest.get_player_by_name(name):setpos({x = x, y = y, z = z})
-					patchsegs = 0
-				end
-				if action_type == 1 then -- TYPE_SETNODE
-					local forced = minetest.forceload_block({x = x, y = y, z = z})
-					if forced then
-						minetest.set_node({x = x, y = y, z = z}, {name = newnode, param1 = newparam1, param2 = newparam2})
-						minetest.forceload_free_block({x = x, y = y, z = z})
-					else
-						minetest.log("error", "[ROFL] Couldn't forceplace block " .. minetest.pos_to_string({x = x, y = y, z = z}))
-					end
-					if newmeta then
-						local meta = minetest.get_meta({x = x, y = y, z = z})
-						for key,value in ipairs(newmeta) do
-							if tonumber(value) then
-								meta:set_int(key, value)
-							else
-								meta:set_string(key,value)
-							end
-						end
-					end
-
-				elseif action_type == 2 then -- TYPE_MODIFY_INVENTORY_STACK
-					local inv = minetest.get_meta({x = x, y = y, z = z}):get_inventory()
-					local stack = inv:get_stack(list, index)
-					if add == 1 then
-						stack:set_name(stacknode)
-						stack:set_count(stackquantity)
-					else
-						stack:take_item(stackquantity)
-					end
-					inv:set_stack(list, index, stack)
-
-				else -- TYPE_NOTHING
-					print("W.T.F. is type " .. (action_type or "nil"))
-				end
-				patchsegs = patchsegs + 1
-			end
-			i = i + 1
-			io.close(file)
-			if tonumber(param) then
-				break
-			end
+		local k = rofl.capture(f, p1, p2)
+		if k then
+			return true, "Successfully captured area from " ..
+				core.pos_to_string(p1, 1) .. " to " .. core.pos_to_string(p2, 1) ..
+				" in file " .. f .. " : " .. k .. " nodes"
+		else
+			return false, "Failed to capture the area"
 		end
-		minetest.chat_send_all("*** Server Up")
 	end,
 })
+
+minetest.register_on_shutdown(function()
+	if table.getn(rofl.buffers.WCache) > 0 then
+		minetest.log("warning", "{ROFL} WCache is not empty! Canceling all pending writing operations")
+		rofl.buffers.WCache = {}
+	end
+
+	if table.getn(rofl.buffers.ACache) > 0 then
+		minetest.log("warning", "{ROFL} ACache is not empty! Canceling all pending application operations")
+		rofl.buffers.ACache = {}
+	end
+
+	for fname, f in pairs(rofl.files) do
+		f:close()
+		minetest.log("action", "{ROFL} Closing filebuf " .. fname)
+	end
+end)
+
+function tick()
+	local t = os.time()
+
+	-- Writing
+	if table.getn(rofl.buffers.WCache) > 0 then
+		minetest.log("action", "{ROFL} WCache has " .. table.getn(rofl.buffers.WCache) .. " elements")
+		minetest.log("action", "{ROFL} Doing up to " .. rofl.conf.Wpertick .. " writing operations")
+
+		for x = 1, rofl.conf.Wpertick do
+			if not rofl.buffers.WCache[1] then break end
+
+			if not rofl.files[rofl.buffers.WCache[1][1]] then
+				rofl.files[rofl.buffers.WCache[1][1]] = io.open(bufferfiles .. rofl.buffers.WCache[1][1] .. ".buf", "w")
+			end
+
+			rofl.files[rofl.buffers.WCache[1][1]]:write(rofl.buffers.WCache[1][2])
+			table.remove(rofl.buffers.WCache, 1)
+		end
+
+		if table.getn(rofl.buffers.WCache) == 0 then
+			minetest.log("action", "{ROFL} Operations finished")
+			for fname, f in pairs(rofl.files) do
+				f:close()
+				minetest.log("action", "{ROFL} Closing filebuf " .. fname)
+			end
+			rofl.files = {}
+		end
+	end
+
+	-- Applying
+	if table.getn(rofl.buffers.ACache) > 0 then
+		minetest.log("action", "{ROFL} ACache has " .. table.getn(rofl.buffers.WCache) .. " elements")
+		minetest.log("action", "{ROFL} Doing up to " .. rofl.conf.Wpertick .. " writing operations")
+
+		for x = 1, rofl.conf.Apertick do
+			if not rofl.buffers.ACache[1] then break end
+			buffer:write(rofl.buffers.ACache[1])
+			table.remove(rofl.buffers.ACache, 1)
+		end
+
+		if table.getn(rofl.buffers.ACache) == 0 then
+			minetest.log("action", "{ROFL} Operations finished")
+		end
+	end
+
+	local t2 = os.time()
+	if os.difftime(t2, t) > 0 then
+		minetest.log("action", "{ROFL} Tick took " .. os.difftime(t2, t) .. "s")
+	end
+	minetest.after(rofl.conf.Tick, tick)
+end
+
+minetest.after(1, tick)
