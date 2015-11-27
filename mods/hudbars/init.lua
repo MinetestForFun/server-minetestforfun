@@ -180,14 +180,6 @@ function hb.change_hudbar(player, identifier, new_value, new_max_value)
 	local hudtable = hb.get_hudtable(identifier)
 	local value_changed, max_changed = false, false
 
-	if new_value ~= nil and hudtable.hudstate[name] then
-		if new_value ~= hudtable.hudstate[name].value then
-			hudtable.hudstate[name].value = new_value
-			value_changed = true
-		end
-	elseif hudtable.hudstate[name] then
-		new_value = hudtable.hudstate[name].value
-	end
 	if new_max_value ~= nil then
 		if new_max_value ~= hudtable.hudstate[name].max then
 			hudtable.hudstate[name].max = new_max_value
@@ -195,6 +187,18 @@ function hb.change_hudbar(player, identifier, new_value, new_max_value)
 		end
 	else
 		new_max_value = (hudtable.hudstate[name] or {max = 0}).max
+	end
+
+	if new_value ~= nil and hudtable.hudstate[name] then
+		if new_value ~= hudtable.hudstate[name].value then
+			if new_value > new_max_value then
+				new_value = new_max_value
+			end
+			hudtable.hudstate[name].value = new_value
+			value_changed = true
+		end
+	elseif hudtable.hudstate[name] then
+		new_value = hudtable.hudstate[name].value
 	end
 
 	local main_error_text =
