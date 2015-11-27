@@ -1,8 +1,7 @@
-local armors_no_shields = {["3d_armor:helmet_leather"] = true,["3d_armor:chestplate_leather"] = true,
-							["3d_armor:leggings_leather"] = true,["3d_armor:boots_leather"] = true,
-							["3d_armor:hardenedleather"] = true,["3d_armor:helmet_reinforcedleather"] = true,
-							["3d_armor:chestplate_reinforcedleather"] = true,["3d_armor:leggings_reinforcedleather"] = true,
-							["3d_armor:boots_reinforcedleather"] = true,["3d_armor:reinforcedleather"] = true
+local armors_no_shields = { ["3d_armor:helmet_hardenedleather"] = true,["3d_armor:chestplate_hardenedleather"] = true,
+							["3d_armor:leggings_hardenedleather"] = true,["3d_armor:boots_hardenedleather"] = true,
+							["3d_armor:helmet_reinforcedleather"] = true,["3d_armor:chestplate_reinforcedleather"] = true,
+							["3d_armor:leggings_reinforcedleather"] = true,["3d_armor:boots_reinforcedleather"] = true,
 } -- modif MFF (crabman/24/06/2015)
 
 
@@ -483,11 +482,24 @@ minetest.register_on_joinplayer(function(player)
 			local name = stack:get_name()
 			local player_inv = player:get_inventory()
 			local size = player_inv:get_size(listname)
-			if not (name:split(":")[1] == "3d_armor" or name:split(":")[1] == "shields") then
+			if not ( (name:split(":")[1] == "3d_armor" and stack:get_definition().groups["armor_heal"]) or name:split(":")[1] == "shields") then
 				return 0
 			end
+
+			-- if player class != item class
 			if not pclasses.api.util.can_have_item(player:get_player_name(), name) then
 				return 0
+			end
+
+			--MFF (crabman/27/11/2015) no same item type. *helmet*
+			local ptype = name:split(":")[2]:split("_")[1]
+			for i=1, size do
+				local stack = player_inv:get_stack(listname, i)
+				if stack:get_count() > 0 then
+					if stack:get_name():find(ptype) then
+						return 0
+					end
+				end
 			end
 
 			if name:find("shield") then
