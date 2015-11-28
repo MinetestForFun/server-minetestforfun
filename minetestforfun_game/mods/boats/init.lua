@@ -168,7 +168,7 @@ function boats.on_step(self, dtime)
 			else
 				new_acce = {x = 0, y = 5, z = 0}
 			end
-			new_velo = get_velocity(self.v, self.object:getyaw(), y)
+			new_velo = boats.get_velocity(self.v, self.object:getyaw(), y)
 			self.object:setpos(self.object:getpos())
 		else
 			new_acce = {x = 0, y = 0, z = 0}
