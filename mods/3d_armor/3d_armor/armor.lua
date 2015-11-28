@@ -622,13 +622,11 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 		local drop = {}
 		for i=1, player_inv:get_size("armor") do
 			local stack = armor_inv:get_stack("armor", i)
-			if stack:get_count() > 0 and (not pclasses.data.reserved_items[player_inv:get_stack("main", i):get_name()] or
-	            not pclasses.api.util.can_have_item(name, player_inv:get_stack("main", i):get_name())) then
+			if stack:get_count() > 0 and (not pclasses.data.reserved_items[armor_inv:get_stack("armor", i):get_name()] or
+	            not pclasses.api.util.can_have_item(name, armor_inv:get_stack("armor", i):get_name())) then
 				table.insert(drop, stack)
 				armor_inv:set_stack("armor", i, nil)
 				player_inv:set_stack("armor", i, nil)
-			else
-				print(dump(stack))
 			end
 		end
 		armor:set_player_armor(player)
