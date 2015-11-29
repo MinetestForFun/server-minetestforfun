@@ -23,7 +23,7 @@ home.sethome = function(name)
 			return true
 	end
 
-	action_timers.wrapper(name, "sethome", "sethome_" .. name, home.time, assign_home, {})
+	return action_timers.wrapper(name, "sethome", "sethome_" .. name, home.time, assign_home, {})
 end
 
 home.tohome = function(name)
@@ -45,7 +45,7 @@ home.tohome = function(name)
 		        return true
 		end
 
-		action_timers.wrapper(name, "home", "home_" .. name, home.time, go_to_home, {})
+		return action_timers.wrapper(name, "home", "home_" .. name, home.time, go_to_home, {})
     else
 		minetest.chat_send_player(name, "Set a home using /sethome")
 		return false
