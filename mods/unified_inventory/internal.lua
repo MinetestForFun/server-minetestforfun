@@ -134,6 +134,16 @@ function unified_inventory.get_formspec(player, page)
 		return table.concat(formspec, "")
 	end
 
+	if not unified_inventory.hidden_guide[player_name] then --MFF crabman(29/11/2015) hide guide, textfield bug
+		formspec[n] = "image_button[13.2,0.1;.8,.8;ui_on_icon.png;hidebutton;]"
+				.. "tooltip[hidebutton;" ..S("Hide guide") .. "]"
+		n = n+1
+	else
+		formspec[n] = "image_button[13.2,0.1;.8,.8;ui_off_icon.png;hidebutton;]"
+				.. "tooltip[hidebutton;" ..S("Show guide") .. "]"
+		return table.concat(formspec, "")
+	end
+
 	-- Controls to flip items pages
 	local start_x = 9.2
 

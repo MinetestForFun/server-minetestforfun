@@ -56,6 +56,16 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		return
 	end
 
+	if fields.hidebutton then --MFF crabman(29/11/2015) hide guide, textfield bug
+		if not unified_inventory.hidden_guide[player_name] then
+			unified_inventory.hidden_guide[player_name] = true
+		else
+			unified_inventory.hidden_guide[player_name] = false
+		end
+		unified_inventory.set_inventory_formspec(player, unified_inventory.current_page[player_name])
+		return
+	end
+
 	-- always take new search text, even if not searching on it yet
 	if fields.searchbox
 	and fields.searchbox ~= unified_inventory.current_searchbox[player_name] then

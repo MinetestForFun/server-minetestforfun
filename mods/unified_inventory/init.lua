@@ -22,6 +22,7 @@ unified_inventory = {
 	filtered_items_list = {},
 	pages = {},
 	buttons = {},
+	hidden_guide = {}, --MFF crabman(29/11/2015) hide guide, textfield bug
 
 	-- Homepos stuff
 	home_pos = {},
