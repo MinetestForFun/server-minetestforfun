@@ -235,7 +235,6 @@ function tick()
 		for x = 1, rofl.conf.Apertick do
 			if not rofl.buffers.ACache[1] then break end
 
-			print(minetest.pos_to_string(rofl.buffers.ACache[1][1]) .. " : " .. rofl.buffers.ACache[1][2].name)
 			minetest.set_node(rofl.buffers.ACache[1][1], rofl.buffers.ACache[1][2])
 			table.remove(rofl.buffers.ACache, 1)
 		end
