@@ -17,7 +17,6 @@ Update of "boats" (Crashfix)
 Update of "unified_inventory" (Add a button to hide/show craftguide)
 Update of "sethome" (Bugfix, the sounds are now played everytimes when you click this buttons)
 
-
 ---Patch Notes---
 ---24/11/2015--- (Thanks to : crabman77/crabman, gravgun, LeMagnesium/Mg)
 Update of "mobs" (Add Ent sounds, fix mobs tamed/follow problems)
