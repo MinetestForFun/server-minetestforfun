@@ -6,8 +6,21 @@ Spawning monsters egg for some monsters
 Come and visit our website "minetestforfun.com" ! Venez visiter notre site "minetestforfun.com" !
 
 ---Patch Notes---
+---05/12/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
+Update of "3d_armor" (Fix the dropped class items, it will not the case anymore, fix all preview model for classes armors)
+Update of "dropondie" (Fix the dropped class items, it will not the case anymore)
+Update of "spears" (Fix some bugs, mod now faster)
+Update of "jukebox" (A new sound was added)
+Update of "hudbars" (Fix an out of range armor value)
+Update of "rofl" ()
+Update of "boats" (Crashfix)
+Update of "unified_inventory" (Add a button to hide/show craftguide)
+Update of "sethome" (Bugfix, the sounds are now played everytimes when you click this buttons)
+
+
+---Patch Notes---
 ---24/11/2015--- (Thanks to : crabman77/crabman, gravgun, LeMagnesium/Mg)
-Update of "mobs" (Add Ent sounds, fix mobs tamed/follow problems, )
+Update of "mobs" (Add Ent sounds, fix mobs tamed/follow problems)
 Update of "mff_hud" (Tidy the code)
 Update of "markers" (Tidy the code)
 Update of "mesecons" (Add memory size limit, add the gates "NOR" and "OR")
