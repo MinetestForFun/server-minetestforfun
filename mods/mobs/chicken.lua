@@ -7,7 +7,9 @@ mobs:register_mob("mobs:chicken", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 4, hp_max = 8, armor = 200,
+	hp_min = 5,
+	hp_max = 10,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
@@ -53,7 +55,7 @@ mobs:register_mob("mobs:chicken", {
 	},
 	-- follows wheat
 	follow = {"farming:seed_wheat", "farming:seed_cotton"},
-	view_range = 8,
+	view_range = 5,
 
 	on_rightclick = function(self, clicker)
 		mobs:feed_tame(self, clicker, 8, true, true)
@@ -74,7 +76,7 @@ mobs:register_mob("mobs:chicken", {
 	end,
 })
 -- spawn on default or bamboo grass between 8 and 20 light, 1 in 10000 change, 1 chicken in area up to 31000 in height
-mobs:spawn_specific("mobs:chicken", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:chicken", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true)
 -- register spawn egg
 mobs:register_egg("mobs:chicken", "Chicken", "mobs_chicken_inv.png", 1)
 -- egg entity

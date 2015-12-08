@@ -54,9 +54,9 @@ for _, col in ipairs(all_colours) do
 			walk_start = 81,		walk_end = 100,
 		},
 		follow = {"farming:wheat", "default:grass_5"},
-		view_range = 10,
+		view_range = 8,
 		-- replace grass/wheat with air (eat)
-		replace_rate = 50,
+		replace_rate = 10,
 		replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "farming:wheat_8"},
 		replace_with = "air",
 		-- right click sheep to shear sheep and get wood, feed 8 wheat for wool to grow back
@@ -143,7 +143,7 @@ for _, col in ipairs(all_colours) do
 
 end
 
-mobs:spawn_specific("mobs:sheep_white", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:sheep_white", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true)
 
 -- compatibility (item and entity)
 minetest.register_alias("mobs:sheep", "mobs:sheep_white")
