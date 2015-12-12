@@ -1,4 +1,4 @@
--- Mobs Api (6th December 2015)
+-- Mobs Api (9th December 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -6,6 +6,7 @@ mobs.mod = "redo"
 local damage_enabled = minetest.setting_getbool("enable_damage")
 local peaceful_only = minetest.setting_getbool("only_peaceful_mobs")
 local disable_blood = minetest.setting_getbool("mobs_disable_blood")
+
 mobs.protected = tonumber(minetest.setting_get("mobs_spawn_protected")) or 1
 mobs.remove = minetest.setting_getbool("remove_far_mobs")
 
@@ -37,7 +38,9 @@ set_velocity = function(self, v)
 	local z = 0
 
 	if v and v ~= 0 then
+
 		local yaw = (self.object:getyaw() + self.rotate) or 0
+
 		x = math.sin(yaw) * -v
 		z = math.cos(yaw) * v
 	end
@@ -52,6 +55,7 @@ end
 get_velocity = function(self)
 
 	local v = self.object:getvelocity()
+
 	return (v.x ^ 2 + v.z ^ 2) ^ (0.5)
 end
 
@@ -65,49 +69,61 @@ set_animation = function(self, type)
 
 	if type == "stand"
 	and self.animation.current ~= "stand" then
+
 		if self.animation.stand_start
 		and self.animation.stand_end
 		and self.animation.speed_normal then
+
 			self.object:set_animation({
 				x = self.animation.stand_start,
 				y = self.animation.stand_end},
+
 				self.animation.speed_normal, 0)
 			self.animation.current = "stand"
 		end
 
 	elseif type == "walk"
-	and self.animation.current ~= "walk"  then
+	and self.animation.current ~= "walk" then
+
 		if self.animation.walk_start
 		and self.animation.walk_end
 		and self.animation.speed_normal then
+
 			self.object:set_animation({
 				x = self.animation.walk_start,
 				y = self.animation.walk_end},
 				self.animation.speed_normal, 0)
+
 			self.animation.current = "walk"
 		end
 
 	elseif type == "run"
-	and self.animation.current ~= "run"  then
+	and self.animation.current ~= "run" then
+
 		if self.animation.run_start
 		and self.animation.run_end
 		and self.animation.speed_run then
+
 			self.object:set_animation({
 				x = self.animation.run_start,
 				y = self.animation.run_end},
 				self.animation.speed_run, 0)
+
 			self.animation.current = "run"
 		end
 
 	elseif type == "punch"
-	and self.animation.current ~= "punch"  then
+	and self.animation.current ~= "punch" then
+
 		if self.animation.punch_start
 		and self.animation.punch_end
 		and self.animation.speed_normal then
+
 			self.object:set_animation({
 				x = self.animation.punch_start,
 				y = self.animation.punch_end},
 				self.animation.speed_normal, 0)
+
 			self.animation.current = "punch"
 		end
 	end
@@ -244,6 +260,7 @@ do_env_damage = function(self)
 	and (minetest.get_node_light(pos) or 0) > 12 then
 
 		self.object:set_hp(self.object:get_hp() - self.light_damage)
+
 		effect(pos, 5, "tnt_smoke.png")
 	end
 
@@ -533,7 +550,9 @@ local function breed(self)
 					ent2.tamed = true
 					ent2.owner = self.owner
 				end)
+
 				num = 0
+
 				break
 			end
 		end
@@ -547,6 +566,7 @@ function replace(self, pos)
 	and math.random(1, self.replace_rate) == 1 then
 
 		local pos = self.object:getpos()
+
 		pos.y = pos.y + self.replace_offset
 
 -- print ("replace node = ".. minetest.get_node(pos).name, pos.y)
@@ -570,10 +590,13 @@ end
 function day_docile(self)
 
 	if self.docile_by_day == false then
+
 		return false
+
 	elseif self.docile_by_day == true
 	and self.time_of_day > 0.2
 	and self.time_of_day < 0.8 then
+
 		return true
 	end
 end
@@ -827,6 +850,7 @@ minetest.register_entity(name, {
 					type = "player"
 				else
 					obj = oir:get_luaentity()
+
 					if obj then
 						player = obj.object
 						type = obj.type
@@ -839,9 +863,10 @@ minetest.register_entity(name, {
 					s = self.object:getpos()
 					p = player:getpos()
 					sp = s
+					-- aim higher to make looking up hills more realistic
 					p.y = p.y + 1
-					sp.y = sp.y + 1 -- aim higher to make looking up hills more realistic
-					dist = ((p.x - s.x) ^ 2 + (p.y - s.y) ^ 2 + (p.z - s.z) ^ 2) ^ 0.5
+					sp.y = sp.y + 1
+					dist = vector.distance(p, s)
 
 					if dist < self.view_range then
 					-- field of view check goes here
@@ -883,7 +908,7 @@ minetest.register_entity(name, {
 					-- attack monster
 					p = obj.object:getpos()
 
-					dist = ((p.x - s.x) ^ 2 + (p.y - s.y) ^ 2 + (p.z - s.z) ^ 2) ^ 0.5
+					dist = vector.distance(p, s)
 
 					if dist < min_dist then
 						min_dist = dist
@@ -912,7 +937,7 @@ minetest.register_entity(name, {
 
 				s = self.object:getpos()
 				p = player:getpos()
-				dist = ((p.x - s.x) ^ 2 + (p.y - s.y) ^ 2 + (p.z - s.z) ^ 2) ^ 0.5
+				dist = vector.distance(p, s)
 
 				if dist < self.view_range then
 					self.following = player
@@ -958,7 +983,7 @@ minetest.register_entity(name, {
 
 			if p then
 
-				local dist = ((p.x - s.x) ^ 2 + (p.y - s.y) ^ 2 + (p.z - s.z) ^ 2) ^ 0.5
+				local dist = vector.distance(p, s)
 
 				-- dont follow if out of range
 				if dist > self.view_range then
@@ -1135,7 +1160,7 @@ minetest.register_entity(name, {
 		-- calculate distance from mob and enemy
 		local s = self.object:getpos()
 		local p = self.attack:getpos() or s
-		local dist = ((p.x - s.x) ^ 2 + (p.y - s.y) ^ 2 + (p.z - s.z) ^ 2) ^ 0.5
+		local dist = vector.distance(p, s)
 
 		-- stop attacking if no player or out of range
 		if dist > self.view_range
@@ -1372,7 +1397,7 @@ minetest.register_entity(name, {
 			p.y = p.y - .5
 			s.y = s.y + .5
 
-			local dist = ((p.x - s.x) ^ 2 + (p.y - s.y) ^ 2 + (p.z - s.z) ^ 2) ^ 0.5
+			local dist = vector.distance(p, s)
 			local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
 
 			yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
@@ -1405,8 +1430,11 @@ minetest.register_entity(name, {
 				p.y = p.y + (self.collisionbox[2] + self.collisionbox[5]) / 2
 
 				local obj = minetest.add_entity(p, self.arrow)
+				local ent = obj:get_luaentity()
+
 				local amount = (vec.x ^ 2 + vec.y ^ 2 + vec.z ^ 2) ^ 0.5
-				local v = obj:get_luaentity().velocity
+				local v = ent.velocity
+				ent.switch = 1
 
 				 -- offset makes shoot aim accurate
 				vec.y = vec.y + self.shoot_offset
@@ -1729,10 +1757,13 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 			local mob = minetest.add_entity(pos, name)
 			--local ent = mob:get_luaentity()
 
-			if mob then
-				print ("Spawned "..name.." at "..minetest.pos_to_string(pos).." on "..node.name.." near "..neighbors[1])
+			if mob == false then
+				print ("[mobs]" .. name .. " failed to spawn at "
+				.. minetest.pos_to_string(pos))
 			else
-				print (name.." failed to spawn at "..minetest.pos_to_string(pos))
+--				print ("[mobs] Spawned " .. name .. " at "
+--				.. minetest.pos_to_string(pos) .. " on "
+--				.. node.name .. " near " .. neighbors[1])
 			end
 
 		end
@@ -1870,6 +1901,7 @@ function mobs:register_arrow(name, def)
 		drop = def.drop or false,
 		collisionbox = {0, 0, 0, 0, 0, 0}, -- remove box around arrows
 		timer = 0,
+		switch = 0,
 
 		on_step = function(self, dtime)
 
@@ -1877,7 +1909,8 @@ function mobs:register_arrow(name, def)
 
 			local pos = self.object:getpos()
 
-			if self.timer > 150
+			if self.switch == 0
+			or self.timer > 150
 			or not within_limits(pos, 0) then
 
 				self.object:remove() ; -- print ("removed arrow")
@@ -2067,7 +2100,9 @@ end
 -- feeding, taming and breeding (thanks blert2112)
 function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 
-	if not self.follow then return false end
+	if not self.follow then
+		return false
+	end
 
 	-- can eat/tame with item in hand
 	if follow_holding(self, clicker) then

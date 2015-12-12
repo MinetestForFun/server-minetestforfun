@@ -37,6 +37,7 @@ mobs:register_mob("mobs:mese_monster", {
 	jump_height = 8,
 	fall_damage = 0,
 	fall_speed = -6,
+	stepheight = 3,
 	-- drops mese when dead
 	drops = {
 		{name = "default:mese_crystal",
@@ -79,14 +80,14 @@ mobs:register_arrow("mobs:mese_arrow", {
 	velocity = 6,
 
 	hit_player = function(self, player)
-		player:punch(self.object, 1.0,  {
+		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 8},     --Modif MFF
 		}, nil)
 	end,
 
 	hit_mob = function(self, player)
-		player:punch(self.object, 1.0,  {
+		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 8},     --Modif MFF
 		}, nil)
