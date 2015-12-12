@@ -357,6 +357,17 @@ do_jump = function(self)
 	end
 end
 
+function calc_velocity(pos1, pos2, old_vel, power)
+	local vel = vector.direction(pos1, pos2)
+	vel = vector.normalize(vel)
+	vel = vector.multiply(vel, power)
+	local dist = vector.distance(pos1, pos2)
+	dist = math.max(dist, 1)
+	vel = vector.divide(vel, dist)
+	vel = vector.add(vel, old_vel)
+	return vel
+end
+
 -- blast damage to entities nearby (modified from TNT mod)
 function entity_physics(pos, radius, self) --/MFF (Crabman|06/23/2015)add self to use punch function
 
