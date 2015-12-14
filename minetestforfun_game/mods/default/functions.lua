@@ -382,9 +382,7 @@ minetest.register_abm({
 				end
 			end
 			-- Remove node
-			local n = minetest.get_node(p0).name
 			minetest.remove_node(p0)
-			minetest.add_item(p0, {name = n})
 			nodeupdate(p0)
 		end
 	end
