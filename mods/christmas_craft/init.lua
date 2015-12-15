@@ -335,6 +335,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},      rarity = 80,},
 				{items = {'default:brick'},     rarity = 80,},
 				{items = {'default:dirt_with_grass'}, rarity = 80,},
+				{items = {'christmas_craft:Christmas_present'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -366,6 +367,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_green'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -397,6 +399,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_red'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -428,6 +431,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_blue'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -459,6 +463,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_yellow'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -490,6 +495,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_red'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -521,6 +527,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_violet'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -552,6 +559,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_orange'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
@@ -583,6 +591,7 @@ minetest.register_node("christmas_craft:silver_baubles", {
 				{items = {'default:chest_locked'},	rarity = 20,},
 				{items = {'default:brick'},	rarity = 25,},
 				{items = {'default:dirt_with_grass'},	rarity = 30,},
+				{items = {'christmas_craft:Christmas_present_pink'}, rarity = 1,},
 			}},
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
