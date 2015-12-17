@@ -26,7 +26,8 @@ predefined = {
     "^flowers:geranium": {'r': 75, 'g': 101, 'b': 84},
     "^flowers:rose": {'r': 153, 'g': 9, 'b': 0},
     "^flowers:tulip": {'r': 175, 'g': 114, 'b': 0},
-    "^flowers:viola": {'r': 84, 'g': 90, 'b': 64}
+    "^flowers:viola": {'r': 84, 'g': 90, 'b': 64},
+    "^glass_arena:wall": {'r': 255, 'g': 0, 'b': 0}
 }
 
 predef_compiled = {}
@@ -89,9 +90,10 @@ else:
                             ccumul[1] += (pxl[1]*pxl[3])/255
                             ccumul[2] += (pxl[2]*pxl[3])/255
                             ccumul[3] += pxl[3]
-                    if ccumul[3] > 0:
+                    a = ccumul[3]/255
+                    if a > 0:
                         for i in range(3):
-                            ccumul[i] /= ccumul[3]/255
+                            ccumul[i] /= a
                     if r_override is not None:
                         ccumul[0] = r_override
                     if g_override is not None:
