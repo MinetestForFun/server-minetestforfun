@@ -45,11 +45,16 @@ mobs:register_mob("mobs:lava_flan", {
 	light_damage = 0,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 0,		stand_end = 8,
-		walk_start = 10,		walk_end = 18,
-		run_start = 20,			run_end = 28,
-		punch_start = 20,		punch_end = 28,
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 8,
+		walk_start = 10,
+		walk_end = 18,
+		run_start = 20,
+		run_end = 28,
+		punch_start = 20,
+		punch_end = 28,
 	},
 	-- do things when die
 	on_die = function(self, pos)

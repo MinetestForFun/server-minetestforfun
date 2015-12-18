@@ -64,6 +64,7 @@ mobs:register_mob("mobs:cow", {
 	replace_rate = 10,
 	replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "farming:wheat_8"},
 	replace_with = "air",
+	fear_height = 2,
 	on_rightclick = function(self, clicker)
 		if not mobs:feed_tame(self, clicker, 8, true, true) then
 			local tool = clicker:get_wielded_item()

@@ -51,11 +51,16 @@ mobs:register_mob("mobs:tree_monster", {
 	fall_damage = 0,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 0,		stand_end = 24,
-		walk_start = 25,		walk_end = 47,
-		run_start = 48,			run_end = 62,
-		punch_start = 48,		punch_end = 62,
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 24,
+		walk_start = 25,
+		walk_end = 47,
+		run_start = 48,
+		run_end = 62,
+		punch_start = 48,
+		punch_end = 62,
 	},
 })
 -- spawn on leaves and beech_leaves, between 0 and 5 light, 1 in 8000 chance, 1 in area up to 31000 in height

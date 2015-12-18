@@ -18,7 +18,8 @@ for _, col in ipairs(all_colours) do
 		hp_max = 15,
 		armor = 200,
 		-- textures and model
-		collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
+		--collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
+		collisionbox = {-0.5, -1, -0.5, 0.5, 0.3, 0.5},
 		visual = "mesh",
 		mesh = "mobs_sheep.b3d",
 		textures = {
@@ -49,9 +50,12 @@ for _, col in ipairs(all_colours) do
 		light_damage = 0,
 		-- model animation
 		animation = {
-			speed_normal = 15,		speed_run = 15,
-			stand_start = 0,		stand_end = 80,
-			walk_start = 81,		walk_end = 100,
+			speed_normal = 15,
+			speed_run = 15,
+			stand_start = 0,
+			stand_end = 80,
+			walk_start = 81,
+			walk_end = 100,
 		},
 		follow = {"farming:wheat", "default:grass_5"},
 		view_range = 8,
@@ -61,6 +65,7 @@ for _, col in ipairs(all_colours) do
 		replace_with = "air",
 		-- right click sheep to shear sheep and get wood, feed 8 wheat for wool to grow back
 		replace_offset = -1,
+		fear_height = 3,
 		on_rightclick = function(self, clicker)
 			local shpcolor = string.split(self.name,"_")[2]
 			if shpcolor =="dark" then
@@ -89,7 +94,7 @@ for _, col in ipairs(all_colours) do
 					if minetest.get_modpath("wool") then
 						local pos = self.object:getpos()
 						pos.y = pos.y + 0.5
-						local obj = minetest.add_item(pos, ItemStack("wool:"..shpcolor.." "..math.random(2,3)))
+						local obj = minetest.add_item(pos, ItemStack("wool:"..shpcolor.." "..math.random(1,3)))
 						if obj then
 							obj:setvelocity({
 								x = math.random(-1,1),

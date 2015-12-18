@@ -45,11 +45,16 @@ mobs:register_mob("mobs:creeper", {
 	light_damage = 0,
 	-- model animation
 	animation = {
-		stand_start = 0,		stand_end = 24,
-		walk_start = 25,		walk_end = 47,
-		run_start = 48,			run_end = 62,
-		punch_start = 48,		punch_end = 62,
-		speed_normal = 15,		speed_run = 15,
+		stand_start = 0,
+		stand_end = 24,
+		walk_start = 25,
+		walk_end = 47,
+		run_start = 48,
+		run_end = 62,
+		punch_start = 48,
+		punch_end = 62,
+		speed_normal = 15,
+		speed_run = 15,
 	},
 })
 mobs:spawn_specific("mobs:creeper", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 20000, 1, -31000, 31000, false)

@@ -157,7 +157,7 @@ local mobs_shoot_egg = function (item, player, pointed_thing)
 	local ent = obj:get_luaentity()
 	local dir = player:get_look_dir()
 	ent.velocity = egg_VELOCITY -- needed for api internal timing
-	ent.switch = 1
+	ent.switch = 1 -- needed so that egg doesn't despawn straight away
 	obj:setvelocity({
 		x = dir.x * egg_VELOCITY,
 		y = dir.y * egg_VELOCITY,

@@ -35,12 +35,16 @@ mobs:register_mob("mobs:bunny", {
 	water_damage = 1,
 	lava_damage = 4,
 	light_damage = 0,
+	fear_height = 2,
 	-- model animation
 	animation = {
 		speed_normal = 15,
-		stand_start = 1,		stand_end = 15,
-		walk_start = 16,		walk_end = 24,
-		punch_start = 16,		punch_end = 24,
+		stand_start = 1,
+		stand_end = 15,
+		walk_start = 16,
+		walk_end = 24,
+		punch_start = 16,
+		punch_end = 24,
 	},
 	-- follows carrot from farming redo
 	follow = {"farming:carrot", "farming_plus:carrot_item"},

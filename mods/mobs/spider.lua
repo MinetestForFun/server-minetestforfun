@@ -20,7 +20,7 @@ mobs:register_mob("mobs:spider", {
 	textures = {
 		{"mobs_spider.png"},
 	},
-	visual_size = {x=7,y=7},
+	visual_size = {x = 7, y = 7},
 	blood_texture = "mobs_blood.png",
 	-- sounds
 	makes_footstep_sound = true,
@@ -37,7 +37,7 @@ mobs:register_mob("mobs:spider", {
 	view_range = 16,
 	floats = 0,
 	-- drops string with a chance of sandstone or crystal spike if Ethereal installed
-    	drops = {
+	drops = {
 		{name = "farming:string",
 		chance = 2, min = 1, max = 3,},
 		{name = "mobs:meat_raw",
@@ -51,11 +51,16 @@ mobs:register_mob("mobs:spider", {
 	light_damage = 0,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 1,		stand_end = 1,
-		walk_start = 20,		walk_end = 40,
-		run_start = 20,			run_end = 40,
-		punch_start = 50,		punch_end = 90,
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 1,
+		stand_end = 1,
+		walk_start = 20,
+		walk_end = 40,
+		run_start = 20,
+		run_end = 40,
+		punch_start = 50,
+		punch_end = 90,
 	},
 })
 -- spawn on jungleleaves/jungletree, between 0 and 5 light, 1 in 10000 chance, 1 in area up to 31000 in height

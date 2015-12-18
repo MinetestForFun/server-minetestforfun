@@ -65,16 +65,23 @@ mobs:register_mob("mobs:npc", {
 	-- set owner and order
 	owner = "",
 	order = "follow",
+	fear_height = 3,
 	-- model animation
 	animation = {
-		speed_normal = 30,		speed_run = 30,
-		stand_start = 0,		stand_end = 79,
-		walk_start = 168,		walk_end = 187,
-		run_start = 168,		run_end = 187,
-		punch_start = 200,		punch_end = 219,
+		speed_normal = 30,
+		speed_run = 30,
+		stand_start = 0,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 200,
+		punch_end = 219,
 	},
 	-- right clicking with "cooked meat" or "bread" will give npc more health
 	on_rightclick = function(self, clicker)
+
 		local item = clicker:get_wielded_item()
 		local name = clicker:get_player_name()
 		if item:get_name() == "default:diamond" then --/MFF (Crabman|07/14/2015) tamed with diamond
@@ -102,7 +109,7 @@ mobs:register_mob("mobs:npc", {
 				local pos = self.object:getpos()
 				pos.y = pos.y + 0.5
 				minetest.add_item(pos, {
-					name = mobs.npc_drops[math.random(1,#mobs.npc_drops)]
+					name = mobs.npc_drops[math.random(1, #mobs.npc_drops)]
 				})
 				return
 			-- if owner switch between follow and stand

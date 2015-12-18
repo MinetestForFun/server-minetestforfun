@@ -46,11 +46,16 @@ mobs:register_mob("mobs:oerkki", {
 	light_damage = 1,
 	-- model animation
 	animation = {
-		stand_start = 0,		stand_end = 23,
-		walk_start = 24,		walk_end = 36,
-		run_start = 37,			run_end = 49,
-		punch_start = 37,		punch_end = 49,
-		speed_normal = 15,		speed_run = 15,
+		stand_start = 0,
+		stand_end = 23,
+		walk_start = 24,
+		walk_end = 36,
+		run_start = 37,
+		run_end = 49,
+		punch_start = 37,
+		punch_end = 49,
+		speed_normal = 15,
+		speed_run = 15,
 	},
 	-- replace torch with air (remove)
 	replace_rate = 50,

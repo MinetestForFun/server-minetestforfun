@@ -36,11 +36,14 @@ mobs:register_mob("mobs:kitten", {
 	-- damaged by
 	water_damage = 1,
 	lava_damage = 5,
+	fear_height = 3,
 	-- model animation
 	animation = {
 		speed_normal = 42,
-		stand_start = 97,		stand_end = 192,
-		walk_start = 0,			walk_end = 96,
+		stand_start = 97,
+		stand_end = 192,
+		walk_start = 0,
+		walk_end = 96,
 	},
 	-- follows Rat and Raw Fish
 	follow = {"mobs:rat", "ethereal:fish_raw"},

@@ -33,6 +33,7 @@ mobs:register_mob("mobs:rat", {
 	water_damage = 0,
 	lava_damage = 4,
 	light_damage = 0,
+	fear_height = 2,
 	-- right click to pick up rat
 	on_rightclick = function(self, clicker)
 		mobs:capture_mob(self, clicker, 25, 80, 0, true, nil)

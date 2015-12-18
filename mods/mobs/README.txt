@@ -28,6 +28,7 @@ This mod contains the following additions:
 
 Changelog:
 
+1.21- Added some more error checking to reduce serialize.h error and added height checks for falling off cliffs (thanks cmdskp)
 1.20- Error checking added to remove bad mobs, out of map limit mobs and stop serialize.h error
 1.19- Chickens now drop egg items instead of placing the egg, also throwing eggs result in 1/8 chance of spawning chick
 1.18- Added docile_by_day flag so that monsters will not attack automatically during daylight hours unless hit first

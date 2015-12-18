@@ -43,13 +43,19 @@ mobs:register_mob("mobs:sand_monster", {
 	water_damage = 3,
 	lava_damage = 4,
 	light_damage = 0,
+	fear_height = 3,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 0,		stand_end = 39,
-		walk_start = 41,		walk_end = 72,
-		run_start = 74,			run_end = 105,
-		punch_start = 74,		punch_end = 105,
+		speed_normal = 15,
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 39,
+		walk_start = 41,
+		walk_end = 72,
+		run_start = 74,
+		run_end = 105,
+		punch_start = 74,
+		punch_end = 105,
 	},
 })
 -- spawns on desert sand between -1 and 20 light, 1 in 15000 chance, 1 sand monster in area up to 31000 in height

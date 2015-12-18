@@ -47,12 +47,16 @@ mobs:register_mob("mobs:pumba", {
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
+	fear_height = 2,
 	-- model animation
 	animation = {
 		speed_normal = 15,
-		stand_start = 25,		stand_end = 55,
-		walk_start = 70,		walk_end = 100,
-		punch_start = 70,		punch_end = 100,
+		stand_start = 25,
+		stand_end = 55,
+		walk_start = 70,
+		walk_end = 100,
+		punch_start = 70,
+		punch_end = 100,
 	},
 	-- can be tamed by feeding 8 wheat (will not attack when tamed)
 	on_rightclick = function(self, clicker)

@@ -60,12 +60,17 @@ mobs:register_mob("mobs:dungeon_master", {
 	water_damage = 1,
 	lava_damage = 1,
 	light_damage = 0,
+	fear_height = 3,
 	-- model animation
 	animation = {
-		stand_start = 0,		stand_end = 19,
-		walk_start = 20,		walk_end = 35,
-		punch_start = 36,		punch_end = 48,
-		speed_normal = 15,		speed_run = 15,
+		stand_start = 0,
+		stand_end = 19,
+		walk_start = 20,
+		walk_end = 35,
+		punch_start = 36,
+		punch_end = 48,
+		speed_normal = 15,
+		speed_run = 15,
 	},
 })
 -- spawn on stone between 20 and -1 light, 1 in 7000 chance, 1 dungeon master in area starting at -100 and below
