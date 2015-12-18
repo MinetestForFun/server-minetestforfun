@@ -1,4 +1,4 @@
--- Mobs Api (9th December 2015)
+-- Mobs Api (15th December 2015)
 mobs = {}
 mobs.mod = "redo"
 
@@ -357,7 +357,7 @@ do_jump = function(self)
 	end
 end
 
-function calc_velocity(pos1, pos2, old_vel, power)
+function calc_velocity(pos1, pos2, old_vel, power) --MFF we use this function
 	local vel = vector.direction(pos1, pos2)
 	vel = vector.normalize(vel)
 	vel = vector.multiply(vel, power)
@@ -613,7 +613,6 @@ function day_docile(self)
 end
 
 -- register mob function
-
 function mobs:register_mob(name, def)
 
 minetest.register_entity(name, {
@@ -693,7 +692,7 @@ minetest.register_entity(name, {
 	on_step = function(self, dtime)
 
 		local pos = self.object:getpos()
-		local yaw = 0
+		local yaw = self.object:getyaw() or 0
 
 		-- when lifetimer expires remove mob (except npc and tamed)
 		if self.type ~= "npc"
@@ -794,6 +793,7 @@ minetest.register_entity(name, {
 
 			self.timer = 0
 		end
+
 		-- never go over 100
 		if self.timer > 100 then
 			self.timer = 1
@@ -975,6 +975,7 @@ minetest.register_entity(name, {
 			and follow_holding(self, self.following) == false then
 				self.following = nil
 			end
+
 		end
 
 		-- follow that thing
@@ -1000,15 +1001,23 @@ minetest.register_entity(name, {
 				if dist > self.view_range then
 					self.following = nil
 				else
-					local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
+					local vec = {
+						x = p.x - s.x,
+						y = p.y - s.y,
+						z = p.z - s.z
+					}
 
-					yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
+					if vec.x ~= 0
+					and vec.z ~= 0 then
 
-					if p.x > s.x then
-						yaw = yaw + pi
+						yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
+
+						if p.x > s.x then
+							yaw = yaw + pi
+						end
+
+						self.object:setyaw(yaw)
 					end
-
-					self.object:setyaw(yaw)
 
 					-- anyone but standing npc's can move along
 					if dist > self.reach
@@ -1067,12 +1076,20 @@ minetest.register_entity(name, {
 				-- look at any players nearby, otherwise turn randomly
 				if lp then
 
-					local vec = {x = lp.x - s.x, y = lp.y - s.y, z = lp.z - s.z}
+					local vec = {
+						x = lp.x - s.x,
+						y = lp.y - s.y,
+						z = lp.z - s.z
+					}
 
-					yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
+					if vec.x ~= 0
+					and vec.z ~= 0 then
 
-					if lp.x > s.x then
-						yaw = yaw + pi
+						yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
+
+						if lp.x > s.x then
+							yaw = yaw + pi
+						end
 					end
 				else
 					yaw = self.object:getyaw() + ((math.random(0, 360) - 180) / 180 * pi)
@@ -1125,20 +1142,29 @@ minetest.register_entity(name, {
 			-- if water nearby then turn away
 			if lp then
 
-				local vec = {x = lp.x - s.x, y = lp.y - s.y, z = lp.z - s.z}
+				local vec = {
+					x = lp.x - s.x,
+					y = lp.y - s.y,
+					z = lp.z - s.z
+				}
 
-				yaw = math.atan(vec.z / vec.x) + 3 * pi / 2 - self.rotate
+				if vec.x ~= 0
+				and vec.z ~= 0 then
 
-				if lp.x > s.x then
-					yaw = yaw + pi
+					yaw = math.atan(vec.z / vec.x) + 3 * pi / 2 - self.rotate
+
+					if lp.x > s.x then
+						yaw = yaw + pi
+					end
+
+					self.object:setyaw(yaw)
 				end
-
-				self.object:setyaw(yaw)
 
 			-- otherwise randomly turn
 			elseif math.random(1, 100) <= 30 then
 
 				yaw = self.object:getyaw() + ((math.random(0, 360) - 180) / 180 * pi)
+
 				self.object:setyaw(yaw)
 			end
 
@@ -1173,7 +1199,7 @@ minetest.register_entity(name, {
 		local p = self.attack:getpos() or s
 		local dist = vector.distance(p, s)
 
-		-- stop attacking if no player or out of range
+		-- stop attacking if player or out of range
 		if dist > self.view_range
 		or not self.attack
 		or not self.attack:getpos()
@@ -1193,15 +1219,23 @@ minetest.register_entity(name, {
 
 		if self.attack_type == "explode" then
 
-			local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
+			local vec = {
+				x = p.x - s.x,
+				y = p.y - s.y,
+				z = p.z - s.z
+			}
 
-			yaw = math.atan(vec.z / vec.x) + pi / 2 - self.rotate
+			if vec.x ~= 0
+			and vec.z ~= 0 then
 
-			if p.x > s.x then
-				yaw = yaw + pi
+				yaw = math.atan(vec.z / vec.x) + pi / 2 - self.rotate
+
+				if p.x > s.x then
+					yaw = yaw + pi
+				end
+
+				self.object:setyaw(yaw)
 			end
-
-			self.object:setyaw(yaw)
 
 			if dist > self.reach then
 
@@ -1335,15 +1369,23 @@ minetest.register_entity(name, {
 			end
 			-- end fly bit
 
-			local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
+			local vec = {
+				x = p.x - s.x,
+				y = p.y - s.y,
+				z = p.z - s.z
+			}
 
-			yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
+			if vec.x ~= 0
+			and vec.z ~= 0 then
 
-			if p.x > s.x then
-				yaw = yaw + pi
+				yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
+
+				if p.x > s.x then
+					yaw = yaw + pi
+				end
+
+				self.object:setyaw(yaw)
 			end
-
-			self.object:setyaw(yaw)
 
 			-- move towards enemy if beyond mob reach
 			if dist > self.reach then
@@ -1409,15 +1451,24 @@ minetest.register_entity(name, {
 			s.y = s.y + .5
 
 			local dist = vector.distance(p, s)
-			local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
+			local vec = {
+				x = p.x - s.x,
+				y = p.y - s.y,
+				z = p.z - s.z
+			}
 
-			yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
+			if vec.x ~= 0
+			and vec.z ~= 0 then
 
-			if p.x > s.x then
-				yaw = yaw + pi
+				yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
+
+				if p.x > s.x then
+					yaw = yaw + pi
+				end
+
+				self.object:setyaw(yaw)
 			end
 
-			self.object:setyaw(yaw)
 			set_velocity(self, 0)
 
 			if self.shoot_interval
@@ -1704,6 +1755,7 @@ mobs.spawning_mobs = {}
 
 function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 	interval, chance, active_object_count, min_height, max_height, spawn_in_area) --MFF crabman
+
 	mobs.spawning_mobs[name] = true
 
 	-- chance override in minetest.conf for registered mob
