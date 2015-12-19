@@ -1,17 +1,18 @@
 ---Planned on the Server---
-Add an another Unic boss : The Ent
-Spawning monsters egg for weak agressive monsters (Sand Monster, Dirt Monster, etc...)
+Add another Unique boss : The Ent
+Add eggs to spawn weak agressive monsters (Sand Monster, Dirt Monster, etc...)
 
 ---Important News---
 Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
 
 ---Patch Notes---
 ---xx/12/2015--- (NOT YET MERGED)
+Update of "eventobjects" (New textures)
 Update of "mff_game/creative" (Update it to load faster)
 Update of "mobs" (Error checking added to remove bad mobs, out of map limit mobs and stop serialize.h error and Further vec checks)
-Update of "jukebox" (Lighter trololol song )
+Update of "jukebox" (Lighter trololol song)
 Update of "christmas_craft" (Replace unknown items)
-Update of "mff_game/nodes" (Cleaner fix for leaves drop )
+Update of "mff_game/nodes" (Cleaner fix for leaves drop)
 Update of "automappercolors" (Bugfix)
 
 ---05/12/2015--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
