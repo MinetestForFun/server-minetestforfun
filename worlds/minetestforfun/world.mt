@@ -219,6 +219,7 @@ load_mod_money = true
 load_mod_beds = true
 load_mod_builtin_item = true
 load_mod_chatplus = true
+load_mod_email = true
 
 load_mod_snowdrift = false
 load_mod_snow = true
