@@ -209,7 +209,7 @@ chest_locked.on_metadata_inventory_take = function(pos, _, _, _, player)
 end
 chest_locked.on_rightclick = function(pos, _, clicker)
 	local meta = minetest.get_meta(pos)
-	if clicker:get_player_name() == meta:get_string("owner") then
+	if clicker:get_player_name() == meta:get_string("owner") or clicker:get_player_name() == minetest.setting_get("name") then
 		minetest.show_formspec(
 			clicker:get_player_name(),
 			"connected_chests:chest_locked_left",
