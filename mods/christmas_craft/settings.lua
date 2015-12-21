@@ -1,116 +1,57 @@
 
 print (" ---- Overrider christmas_craft = true! ---- ")
 
-minetest.after(0, function()
-minetest.register_node(":default:dirt_with_grass", {
-	description = "Dirt with Grass",
-	tiles = {"snow.png", "default_dirt.png", "grass_w_snow_side.png"},
-	is_ground_content = true,
-	groups = {crumbly=3,soil=1},
-	drop = {
-		max_items = 3, items = {
-			{items = {'default:dirt'},	rarity = 0,},
-			{items = {'christmas_craft:snowball'},	rarity = 0,},
-			--{items = {'snow:snowball_entity'},	rarity = 2,},
-		}},
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_grass_footstep", gain=0.4},
-	}),
-})
+local dirttiles = {"snow.png", "default_dirt.png", {name = "default_dirt.png^grass_w_snow_side.png", tileable_vertical = false}}
+local snowballdrop = {items = {'christmas_craft:snowball'}, rarity = 0}
 
-minetest.register_node(":default:dirt_with_dry_grass", {
-	description = "Dirt with Dry Grass",
-	tiles = {"snow.png", "default_dirt.png", {name = "grass_w_snow_side.png", tileable_vertical = false}},
-	groups = {crumbly = 3, soil = 1},
-	drop = {
-		max_items = 3, items = {
-			{items = {'default:dirt'},	rarity = 0,},
-			{items = {'christmas_craft:snowball'},	rarity = 0,},
-			--{items = {'snow:snowball_entity'},	rarity = 2,},
-		}},
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name = "default_grass_footstep", gain = 0.4},
-	}),
-})
-
-
--- remplace leaves (normal)
-minetest.register_node(":default:leaves", {
-	description = "Leaves",
-	drawtype = "nodebox",
-	visual_scale = 1.3,
-	tiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"},
-	paramtype = "light",
-	walkable = false,
-	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				-- player will get sapling with 1/40 chance
-				items = {'default:sapling'},
-				rarity = 40,
-			},
-			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
-				items = {'default:leaves'},
+local add_drop = function (def)
+	if type(def.drop) == "table" then
+		if def.drop.max_items then
+			def.drop.max_items = def.drop.max_items + 1
+		end
+		table.insert(def.drop.items, snowballdrop)
+	elseif type(def.drop) == "string" then
+		def.drop = {
+			items = {
+				{items = {def.drop}, rarity = 0},
+				snowballdrop
 			}
 		}
-	},
-	sounds = default.node_sound_leaves_defaults(),
-		node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-		},
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-		},
-	},
-})
--- remplace jungleleaves
-minetest.register_node(":default:jungleleaves", {
-	description = "Jungle Leaves",
-	drawtype = "nodebox",
-	visual_scale = 1.3,
-	tiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"},
-	paramtype = "light",
-	walkable = false,
-	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				-- player will get sapling with 1/40 chance
-				items = {'moretrees:jungletree_sapling'},
-				rarity = 40,
-			},
-			{
-				-- player will get leaves only if he get no saplings,
-				-- this is because max_items is 1
-				items = {'moretrees:jungletree_leaves_green'},
+	else
+		def.drop = {
+			items = {
+				snowballdrop
 			}
 		}
-	},
-	sounds = default.node_sound_leaves_defaults(),
-		node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-		},
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-		},
-	},
-})
-end)
+	end
+end
+
+local dirt_with_grass = minetest.registered_items["default:dirt_with_grass"]
+minetest.override_item("default:dirt_with_grass", {tiles = dirttiles})
+add_drop(dirt_with_grass)
+
+local dirt_with_dry_grass = minetest.registered_items["default:dirt_with_dry_grass"]
+minetest.override_item("default:dirt_with_dry_grass", {tiles = dirttiles})
+add_drop(dirt_with_dry_grass)
+
+local leavetiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"}
+
+-- Replace leaves
+minetest.override_item("default:leaves", {tiles = leavetiles})
+
+-- Replace jungleleaves
+minetest.override_item("default:jungleleaves", {tiles = leavetiles})
+
+-- Replace grass
+for i=1,5 do
+	minetest.override_item("default:grass_" .. i, {tiles = {"christmas_grass_"..i..".png"}})
+end
+
+-- Replace youngtrees
+if minetest.registered_items["youngtrees:youngtree_top"] then
+	minetest.override_item("youngtrees:youngtree_top", {tiles = {"christmas_youngtree16xa.png"}})
+	minetest.override_item("youngtrees:youngtree_middle", {tiles = {"christmas_youngtree16xb.png"}})
+end
 
 print (" ---- Overrider christmas_craft [OK] ---- ")
 
