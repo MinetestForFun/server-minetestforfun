@@ -11,11 +11,41 @@ minetest.register_node(":default:dirt_with_grass", {
 		max_items = 3, items = {
 			{items = {'default:dirt'},	rarity = 0,},
 			{items = {'christmas_craft:snowball'},	rarity = 0,},
-			{items = {'snow:snowball_entity'},	rarity = 2,},
+			--{items = {'snow:snowball_entity'},	rarity = 2,},
 		}},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.4},
 	}),
+})
+
+minetest.register_node(":default:dirt_with_dry_grass", {
+	description = "Dirt with Dry Grass",
+	tiles = {"snow.png", "default_dirt.png", {name = "grass_w_snow_side.png", tileable_vertical = false}},
+	groups = {crumbly = 3, soil = 1},
+	drop = {
+		max_items = 3, items = {
+			{items = {'default:dirt'},	rarity = 0,},
+			{items = {'christmas_craft:snowball'},	rarity = 0,},
+			--{items = {'snow:snowball_entity'},	rarity = 2,},
+		}},
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name = "default_grass_footstep", gain = 0.4},
+	}),
+})
+
+minetest.register_node(":default:dirt", {
+	description = "Dirt",
+	tiles = {"snow.png", "default_dirt.png", "grass_w_snow_side.png"},
+	groups = {crumbly=3, soil=1},
+	drop = {
+		items = {
+			{items = {"default:dirt"}},
+			{items = {"maptools:copper_coin"}, rarity = 32},
+			{items = {'christmas_craft:snowball'},	rarity = 0,},
+			--{items = {'snow:snowball_entity'},	rarity = 2,},
+		},
+	},
+	sounds = default.node_sound_dirt_defaults(),
 })
 
 -- remplace leaves (normal)
