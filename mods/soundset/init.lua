@@ -102,17 +102,17 @@ end
 local formspec = "size[6,6]"..
 				"label[2,0;Sound Menu]"..
 				"label[0,1.2;MUSIC]"..
-				"image_button[1.6,1;1,1;soundset_dec.png;vmusic;-]"..
+				"button[1.6,1;1,1;vmusic;-]"..
 				"label[2.7,1.2;%s]"..
-				"image_button[3.5,1;1,1;soundset_inc.png;vmusic;+]"..
+				"button[3.5,1;1,1;vmusic;+]"..
 				"label[0,2.2;AMBIENCE]"..
-				"image_button[1.6,2;1,1;soundset_dec.png;vambience;-]"..
+				"button[1.6,2;1,1;vambience;-]"..
 				"label[2.7,2.2;%s]"..
-				"image_button[3.5,2;1,1;soundset_inc.png;vambience;+]"..
+				"button[3.5,2;1,1;vambience;+]"..
 				"label[0,3.2;OTHER]"..
-				"image_button[1.6,3;1,1;soundset_dec.png;vother;-]"..
+				"button[1.6,3;1,1;vother;-]"..
 				"label[2.7,3.2;%s]"..
-				"image_button[3.5,3;1,1;soundset_inc.png;vother;+]"..
+				"button[3.5,3;1,1;vother;+]"..
 				"button_exit[0.5,5.2;1.5,1;abort;Abort]"..
 				"button_exit[4,5.2;1.5,1;abort;Ok]"
 
