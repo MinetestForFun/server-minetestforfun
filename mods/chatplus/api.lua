@@ -189,7 +189,7 @@ function chatplus.send(from, msg)
 	end
 
 	-- Loop through possible receivers
-	for to, value in pairs(chatplus.loggedin) do
+	for to, value in pairs(minetest.get_connected_players()) do
 		if to ~= from then
 			-- Run handlers
 			local res = nil
@@ -203,24 +203,19 @@ function chatplus.send(from, msg)
 				end
 			end
 
-			-- Send message
+			--[[ DON'T Send message
 			if res == nil or res == true then
 				minetest.chat_send_player(to, "<" .. from .. "> " .. msg)
-			end
+			end]]
 		end
 	end
 	return true
 end
 
 
--- Minetest callbacks
-minetest.register_on_chat_message(function(...)
-	local ret = chatplus.send(...)
-	if ret and minetest.global_exists("irc") and irc.on_chatmessage then
-		irc.on_chatmessage(...)
-	end
-	return ret
-end)
+-- Minetest callbacks (modified for MFF)
+minetest.register_on_chat_message(chatplus.send)
+
 minetest.register_on_joinplayer(function(player)
 	chatplus.log(player:get_player_name() .. " joined")
 end)
