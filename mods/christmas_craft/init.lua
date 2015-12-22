@@ -716,6 +716,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 
 -- complex node  --
 
+-- disable christmas_craft:snowball and make alias to default:snow
+minetest.register_alias("christmas_craft:snowball", "default:snow")
+--[[
 snowball_DAMAGE=0.5
 snowball_GRAVITY=9
 snowball_VELOCITY=19
@@ -777,6 +780,7 @@ minetest.register_craftitem("christmas_craft:snowball", {
 	inventory_image = "snowball.png",
 	on_use = snow_shoot_snowball,
 })
+--]]
 
 --Snow.
 minetest.register_node("christmas_craft:snow", {
@@ -790,7 +794,7 @@ minetest.register_node("christmas_craft:snow", {
 	--1 = Moss
 	groups = {crumbly=3,melts=1,falling_node=1},
 	buildable_to = true,
-	drop = 'christmas_craft:snowball',
+	drop = 'default:snow',
 	node_box = {
 		type = "fixed",
 		fixed = {

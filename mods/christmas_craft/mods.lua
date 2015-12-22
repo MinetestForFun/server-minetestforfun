@@ -29,7 +29,7 @@ minetest.register_node(":4seasons:grass_winter", {
 	drop = {
 		max_items = 2, items = {
 			{items = {'default:dirt'},	rarity = 0,},
-			{items = {'christmas_craft:snowball'},	rarity = 0,},
+			{items = {'default:snow'},	rarity = 0,},
 		}},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.4},
@@ -45,7 +45,7 @@ minetest.register_node(":4seasons:sand_winter", {
 	drop = {'default:sand',
 	max_items = 2, items = {
 			{items = {'default:sand'},	rarity = 0,},
-			{items = {'christmas_craft:snowball'},	rarity = 0,},
+			{items = {'default:snow'},	rarity = 0,},
 		}},
 
 	sounds = default.node_sound_dirt_defaults({
@@ -61,7 +61,7 @@ minetest.register_node(":4seasons:desertsand_winter", {
 	drop = {'default:desert_sand',
 	max_items = 2, items = {
 			{items = {'default:desert_sand'},	rarity = 0,},
-			{items = {'christmas_craft:snowball'},	rarity = 0,},
+			{items = {'default:snow'},	rarity = 0,},
 		}},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.4},
@@ -78,7 +78,7 @@ minetest.register_node(":4seasons:cactus_winter", {
 	drop = {'default:cactus',
 	max_items = 2, items = {
 			{items = {'default:cactus'},	rarity = 0,},
-			{items = {'christmas_craft:snowball'},	rarity = 0,},
+			{items = {'default:snow'},	rarity = 0,},
 		}},
 	sounds = default.node_sound_wood_defaults(),
 })

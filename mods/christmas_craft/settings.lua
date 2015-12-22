@@ -2,7 +2,7 @@
 print (" ---- Overrider christmas_craft = true! ---- ")
 
 local dirttiles = {"snow.png", "default_dirt.png", {name = "default_dirt.png^grass_w_snow_side.png", tileable_vertical = false}}
-local snowballdrop = {items = {'christmas_craft:snowball'}, rarity = 0}
+local snowballdrop = {items = {'default:snow'}, rarity = 0}
 
 local add_drop = function (def)
 	if type(def.drop) == "table" then
@@ -52,6 +52,28 @@ if minetest.registered_items["youngtrees:youngtree_top"] then
 	minetest.override_item("youngtrees:youngtree_top", {tiles = {"christmas_youngtree16xa.png"}})
 	minetest.override_item("youngtrees:youngtree_middle", {tiles = {"christmas_youngtree16xb.png"}})
 end
+
+-- Replace woodsoils
+if minetest.registered_items["woodsoils:grass_with_leaves_1"] then
+	minetest.override_item("woodsoils:grass_with_leaves_1", {tiles = {"snow.png", "default_dirt.png", "default_dirt.png^grass_w_snow_side.png"}})
+	add_drop(minetest.registered_items["woodsoils:grass_with_leaves_1"])
+end
+
+if minetest.registered_items["woodsoils:grass_with_leaves_2"] then
+	minetest.override_item("woodsoils:grass_with_leaves_2", {tiles = {"snow.png", "default_dirt.png", "default_dirt.png^grass_w_snow_side.png"}})
+	add_drop(minetest.registered_items["woodsoils:grass_with_leaves_2"])
+end
+
+if minetest.registered_items["woodsoils:dirt_with_leaves_1"] then
+	minetest.override_item("woodsoils:dirt_with_leaves_1", {tiles = {"snow.png", "default_dirt.png", "default_dirt.png^grass_w_snow_side.png^woodsoils_ground_cover_side.png"}})
+	add_drop(minetest.registered_items["woodsoils:dirt_with_leaves_1"])
+end
+
+if minetest.registered_items["woodsoils:dirt_with_leaves_2"] then
+	minetest.override_item("woodsoils:dirt_with_leaves_2", {tiles = {"snow.png", "default_dirt.png", "default_dirt.png^grass_w_snow_side.png^woodsoils_ground_cover_side.png"}})
+	add_drop(minetest.registered_items["woodsoils:dirt_with_leaves_2"])
+end
+
 
 print (" ---- Overrider christmas_craft [OK] ---- ")
 
