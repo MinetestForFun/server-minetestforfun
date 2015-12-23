@@ -119,7 +119,6 @@ function snow_snowball_ENTITY.on_step(self, dtime)
 	if self.timer > 0.15 then
 		for i, v in pairs(minetest.get_objects_inside_radius(self.object:getpos(), 1)) do
 			if v ~= self.object and v:get_entity_name() ~= "__builtin:item" then
-				print("moo")
 				v:punch(minetest.get_player_by_name(self.thrower), 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=1} })
 				minetest.add_item(self.object:getpos(), "default:snow")
 				self.object:remove()
