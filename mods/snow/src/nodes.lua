@@ -14,11 +14,6 @@ local nodedef = {
 		max_items = 1,
 		items = {
 			{
-				-- player will get sapling with 1/20 chance
-				items = {'snow:sapling_pine'},
-				rarity = 20,
-			},
-			{
 				items = {'snow:needles'},
 			}
 		}
@@ -32,7 +27,7 @@ If christmas_content is enabled, then this next part will override the pine need
 The Xmas tree needles are registred and defined a farther down in this nodes.lua file.
 
 ~ LazyJ
-]]
+
 if snow.christmas_content then
 	table.insert(nodedef.drop.items, 1, {
 		-- player will get xmas tree with 1/120 chance
@@ -40,7 +35,7 @@ if snow.christmas_content then
 		rarity = 120,
 	})
 end
-
+]]
 minetest.register_node("snow:needles", table.copy(nodedef))
 
 
@@ -75,7 +70,7 @@ nodedef.drop.items[#nodedef.drop.items] = {items = {'snow:needles_decorated'}}
 minetest.register_node("snow:needles_decorated", nodedef)
 
 
--- Saplings
+--[[ Saplings
 
 nodedef = {
 	description = "Pine Sapling",
@@ -101,7 +96,7 @@ nodedef.inventory_image = "snow_xmas_tree.png"
 nodedef.wield_image = "snow_xmas_tree.png"
 
 minetest.register_node("snow:xmas_tree", nodedef)
-
+]]
 
 nodedef = {
 	description = "Star",
