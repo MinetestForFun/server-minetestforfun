@@ -1,2 +1,0 @@
-Adds ignoring and email style inboxes. Also provides a powerful API,
-and optionally allows distance limiting.
