@@ -34,13 +34,26 @@ local dirt_with_dry_grass = minetest.registered_items["default:dirt_with_dry_gra
 minetest.override_item("default:dirt_with_dry_grass", {tiles = dirttiles})
 add_drop(dirt_with_dry_grass)
 
-local leavetiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"}
+local nodebox = {
+	type = "fixed",
+	fixed = {
+		{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
+	}
+}
+local leavesoverride = {
+	drawtype = "nodebox",
+	visual_scale = 1,
+	tiles = {"snow.png", "christmas_craft_leaves_top.png", "christmas_craft_leaves_side.png"},
+	paramtype = "light",
+	node_box = nodebox,
+	selection_box = nodebox
+}
 
 -- Replace leaves
-minetest.override_item("default:leaves", {tiles = leavetiles})
+minetest.override_item("default:leaves", leavesoverride)
 
 -- Replace jungleleaves
-minetest.override_item("default:jungleleaves", {tiles = leavetiles})
+minetest.override_item("default:jungleleaves", leavesoverride)
 
 -- Replace grass
 for i=1,5 do
