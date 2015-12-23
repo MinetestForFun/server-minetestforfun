@@ -6,7 +6,14 @@ Add eggs to spawn weak agressive monsters (Sand Monster, Dirt Monster, etc...)
 Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
 
 ---Patch Notes---
----xx/12/2015--- (NOT YET MERGED)
+---23/12/2015---
+Update of "connected_chests" (Admins/modos can now see into "Locked Double Chest" if necesary)
+Activation of "christmas_craft" (Snow everywhere for christmas ! Use overrides, add more snow)
+Addition "report" (you can now report bad players to administrators/moderators using the "Report" button in your inventory)
+Addition "email" (and improved version on /mail /inbox with a windowed GUI)
+Update of "chatplus" (update to the new version with API, bugfix the API)
+Update of "fishing" (bugfix)
+Update of "3d_armor" (new features, not used yet)
 Update of "eventobjects" (New textures)
 Update of "mff_game/creative" (Update it to load faster)
 Update of "mobs" (Error checking added to remove bad mobs, out of map limit mobs and stop serialize.h error and Further vec checks)
