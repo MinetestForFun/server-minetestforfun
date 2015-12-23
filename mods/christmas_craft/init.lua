@@ -59,13 +59,14 @@ minetest.register_node("christmas_craft:christmas_star", {
 	sounds = default.node_sound_sand_defaults(),
 })
 
-minetest.register_node("christmas_craft:snow_block", {
+--[[minetest.register_node("christmas_craft:snow_block", {
 	description = "snow block",
 	tiles = {"snow.png"},
 	is_ground_content = true,
 	groups = {crumbly=3},
 	sounds = default.node_sound_sand_defaults(),
-})
+})]]
+minetest.register_alias("christmas_craft:snow_block", "default:snowblock")
 
 minetest.register_node("christmas_craft:christmas_leaves", {
 	description = "Christmas leaves",

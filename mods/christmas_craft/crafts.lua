@@ -24,14 +24,14 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+--[[minetest.register_craft({
 	output = "christmas_craft:snow_block",
 	recipe = {
 		{"default:snow","default:snow","default:snow"},
 		{"default:snow","default:snow","default:snow"},
 		{"default:snow","default:snow","default:snow"},
 	}
-})
+})]]
 
 minetest.register_craft({
 	output = "christmas_craft:snowman",
@@ -52,12 +52,12 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+--[[minetest.register_craft({
 	output = "default:snow 9",
 	recipe = {
 		{"christmas_craft:snow_block"},
 	}
-})
+})]]
 
 
 --------------------------
