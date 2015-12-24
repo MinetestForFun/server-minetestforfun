@@ -50,23 +50,21 @@ end
 -- Set single player
 function pclasses.api.set_player_class(pname, cname)
 	if pclasses.api.get_class_by_name(cname) then
-		if pclasses.api.get_player_class(pname) ~= cname then
-			if pclasses.api.get_player_class(pname) and pclasses.classes[pclasses.api.get_player_class(pname)].on_unassigned then
-				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
-			end
-			pclasses.data.players[pname] = cname
-			pclasses.api.get_class_by_name(cname).on_assigned(pname)
-
-			local ref = minetest.get_player_by_name(pname)
-			local armor_inv = minetest.get_inventory({type = "detached", name = pname .. "_armor"})
-			local inv = ref:get_inventory()
-			vacuum_inventory(pname, inv, "armor", true)
-			vacuum_inventory(pname, armor_inv, "armor", false) -- Don't move to the graveyard
-			armor:set_player_armor(ref)
-			armor:update_inventory(ref)
-
-			pclasses.api.vacuum_graveyard(minetest.get_player_by_name(pname))
+		if pclasses.api.get_player_class(pname) then
+			pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
 		end
+		pclasses.data.players[pname] = cname
+		pclasses.api.get_class_by_name(cname).on_assigned(pname)
+	
+		local ref = minetest.get_player_by_name(pname)
+		local armor_inv = minetest.get_inventory({type = "detached", name = pname .. "_armor"})
+		local inv = ref:get_inventory()
+		vacuum_inventory(pname, inv, "armor", true)
+		vacuum_inventory(pname, armor_inv, "armor", false) -- Don't move to the graveyard
+		armor:set_player_armor(ref)
+		armor:update_inventory(ref)
+
+		pclasses.api.vacuum_graveyard(minetest.get_player_by_name(pname))
 		return true
 	end
 	return false

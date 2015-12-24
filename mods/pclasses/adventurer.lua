@@ -10,6 +10,8 @@ pclasses.api.register_class("adventurer", {
 	},
 	on_assigned = function(pname)
 		minetest.chat_send_player(pname, "You are now an adventurer")
+	end,
+	on_unassigned = function(pname)
 	end
 })
 

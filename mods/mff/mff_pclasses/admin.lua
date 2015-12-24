@@ -10,6 +10,8 @@ pclasses.api.register_class("admin", {
 	on_assigned = function(pname)
 		minetest.chat_send_player(pname, "Hello admin.")
 	end,
+	on_unassigned = function(pname)
+	end,
 	switch_params = {
 		color = {r = 255, g = 00, b = 224},
 		holo_item = "maptools:pick_admin"

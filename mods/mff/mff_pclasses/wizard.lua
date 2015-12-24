@@ -13,6 +13,8 @@ pclasses.api.register_class("wizard", {
 		-- Add specs here
 		minetest.log("action", "[PClasses] Player " .. pname .. " becomes a wizard")
 	end,
+	on_unassigned = function(pname)
+	end,
 	switch_params = {
 		color = {r = 230, g = 230, b = 0},
 		holo_item = "default:book"

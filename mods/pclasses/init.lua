@@ -75,10 +75,14 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	local pname = player:get_player_name()
-	if pclasses.api.get_class_by_name(pclasses.conf.default_class) and pclasses.api.get_player_class(pname) == nil then
-		 pclasses.api.set_player_class(pname, pclasses.conf.default_class)
+	pclasses.api.create_graveyard_inventory(player) --create inventory before
+	
+	local cname = pclasses.api.get_player_class(pname)
+	if cname ~= nil and pclasses.api.get_class_by_name(cname) then
+		pclasses.api.set_player_class(pname, cname)
+	elseif pclasses.api.get_class_by_name(pclasses.conf.default_class) then
+		pclasses.api.set_player_class(pname, pclasses.conf.default_class)
 	end
-	pclasses.api.create_graveyard_inventory(player)
 end)
 
 minetest.register_on_shutdown(function()
