@@ -75,7 +75,7 @@ function email.get_formspec(name)
 	local fs = "size[12,8]"
 	fs  = fs .. "vertlabel[0,0;email Mail]"
 
-	function row(fs, c1, date, from, msg)
+	local function row(fs, c1, date, from, msg)
 		date = minetest.formspec_escape(date)
 		from = minetest.formspec_escape(from)
 		msg = minetest.formspec_escape(msg)
