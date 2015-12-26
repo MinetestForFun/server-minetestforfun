@@ -37,7 +37,7 @@ mobs:register_mob("mobs:pumpking", {
 	drops = {
 		-- Ressource & Decoration drops
 		{name = "farming:jackolantern", chance = 1, min = 1, max = 1},
-		{name = "default:diamond_block", chance = 2, min = 1, max = 3},
+		{name = "default:diamondblock", chance = 2, min = 1, max = 3},
 		-- Hunter drops
 		{name = "3d_armor:helmet_hardenedleather", chance = 10, min = 1, max = 1},
 		{name = "3d_armor:chestplate_hardenedleather", chance = 10, min = 1, max = 1},
