@@ -19,7 +19,7 @@ local l_anims = {
 	run_start = 80,		run_end = 160
 }
 local l_model			= "mobs_shark.b3d"
-local l_egg_texture		= "mobs_shark_shark_item.png"
+local l_egg_texture		= "mobs_shark_shark_inv.png"
 local l_spawn_in		= {"default:water_source"}
 local l_spawn_near		= {"default:water_flowing","default:water_source","seawrecks:woodship","seawrecks:uboot"}
 local l_spawn_chance	= 500000
@@ -66,7 +66,7 @@ mobs:register_mob("mobs:shark_lg", {
 })
 --name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 mobs:spawn_specific("mobs:shark_lg", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -50, -1)
-mobs:register_egg("mobs:shark_lg", "Shark (large)", l_egg_texture, 0)
+mobs:register_egg("mobs:shark_lg", "Shark (large)", l_egg_texture, 1)
 
 -- medium
 mobs:register_mob("mobs:shark_md", {
@@ -97,4 +97,4 @@ mobs:register_mob("mobs:shark_md", {
 })
 --name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 mobs:spawn_specific("mobs:shark_md", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -50, -1)
-mobs:register_egg("mobs:shark_md", "Shark (medium)", l_egg_texture, 0)
+mobs:register_egg("mobs:shark_md", "Shark (medium)", l_egg_texture, 1)

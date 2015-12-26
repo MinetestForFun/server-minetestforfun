@@ -102,7 +102,9 @@ minetest.register_node("mobs:tree_monster_spawner", {
 -- Boss
 -- spawn on mobs:ent_spawner between 1 and 20 light, 4 interval, 1 chance, 1 ent in area up to 31000 in height
 mobs:spawn_specific("mobs:ent", {"mobs:ent_spawner"}, {"air"}, 1, 20, 300, 1, 100, -31000, 31000, true)
+mobs:register_egg("mobs:ent", "Ent", "mobs_ent_inv.png", 1)
 
 -- Minions
 -- spawn on mobs:pumpboom_spawner between 1 and 20 light, 4 interval, 1 chance, 1 pumpboom in area up to 31000 in height
 mobs:spawn_specific("mobs:tree_monster", {"mobs:tree_monster_spawner"}, {"air"}, 1, 20, 10, 4, 100, -31000, 31000, true)
+

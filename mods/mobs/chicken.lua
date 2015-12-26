@@ -45,6 +45,7 @@ mobs:register_mob("mobs:chicken", {
 	light_damage = 0,
 	fall_damage = 0,
 	fall_speed = -8,
+	fear_height = 5,
 	-- model animation
 	animation = {
 		speed_normal = 15,
