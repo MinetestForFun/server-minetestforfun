@@ -56,3 +56,6 @@ alias("jumping:cushion", "wool:dark_green")
 for i = 1, 6 do
 	alias("jumping:trampoline_" .. i, "default:wood")
 end
+
+-- Remove "xmas_tree" from snow mod
+alias("snow:xmas_tree", "default:dirt")
