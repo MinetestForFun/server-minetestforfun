@@ -118,12 +118,18 @@ function snow_snowball_ENTITY.on_step(self, dtime)
 
 	if self.timer > 0.15 then
 		for i, v in pairs(minetest.get_objects_inside_radius(self.object:getpos(), 1)) do
-			if v:get_entity_name() ~= "snow:snowball_entity" and v:get_entity_name() ~= "__builtin:item"
-				and v:get_entity_name() ~= "gauges:hp_bar") then
-				v:punch(minetest.get_player_by_name(self.thrower), 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=1} })
-				minetest.add_item(self.object:getpos(), "default:snow")
-				self.object:remove()
-				return
+			if v ~= self.object then
+				local entity_name = v:get_entity_name()
+				if v:get_entity_name() ~= "__builtin:item"
+					and entity_name ~= "snow:snowball_entity"
+					and entity_name ~= "gauges:hp_bar" then
+					if self.thrower then
+						v:punch(minetest.get_player_by_name(self.thrower), 1.0,{full_punch_interval=1.0, damage_groups = {fleshy=1}})
+					end
+					minetest.add_item(self.object:getpos(), "default:snow")
+					self.object:remove()
+					return
+				end
 			end
 		end
 	end
