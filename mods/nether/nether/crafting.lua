@@ -138,6 +138,14 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "nether:torch",
+	recipe = {
+		{"nether:bark"},
+		{"group:stick"},
+	}
+})
+
+minetest.register_craft({
 	output = "nether:forest_wood",
 	recipe = {
 		{"nether:forest_planks", "nether:forest_planks", "nether:forest_planks"},
@@ -162,36 +170,38 @@ minetest.register_craft({
 
 local sound_allowed = true
 minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
-	if itemstack:get_name() == "nether:forest_planks"
-	and itemstack:get_count() == 7 then
-		local tree
-		for i = 1,9 do
-			if old_craft_grid[i]:get_name() == "nether:tree" then
-				tree = i
-				break
-			end
-		end
-		if not tree then	-- do nth if theres no tree
-			return
-		end
-		local rdif = math.random(-1,1)	-- add a bit randomness
-		local barkstack = ItemStack("nether:bark "..4-rdif)
-		local inv = player:get_inventory()
-		if not inv:room_for_item("main", barkstack) then	-- disallow crafting if there's not enough free space
-			craft_inv:set_list("craft", old_craft_grid)
-			itemstack:set_name("")
-			return
-		end
-		itemstack:set_count(7+rdif)
-		inv:add_item("main", barkstack)
-		if sound_allowed then
-			minetest.sound_play("default_wood_footstep", {pos=player:getpos(),  gain=0.25})
-			sound_allowed = false
-			minetest.after(0, function()
-				sound_allowed = true
-			end)
+	if itemstack:get_name() ~= "nether:forest_planks"
+	or itemstack:get_count() ~= 7 then
+		return
+	end
+	local tree
+	for i = 1,9 do
+		if old_craft_grid[i]:get_name() == "nether:tree" then
+			tree = i
+			break
 		end
 	end
+	if not tree then	-- do nth if theres no tree
+		return
+	end
+	local rdif = math.random(-1,1)	-- add a bit randomness
+	local barkstack = ItemStack("nether:bark "..4-rdif)
+	local inv = player:get_inventory()
+	if not inv:room_for_item("main", barkstack) then	-- disallow crafting if there's not enough free space
+		craft_inv:set_list("craft", old_craft_grid)
+		itemstack:set_name("")
+		return
+	end
+	itemstack:set_count(7+rdif)
+	inv:add_item("main", barkstack)
+	if not sound_allowed then	-- avoid playing the sound multiple times, e.g. when middle mouse click
+		return
+	end
+	minetest.sound_play("default_wood_footstep", {pos=player:getpos(),  gain=0.25})
+	sound_allowed = false
+	minetest.after(0, function()
+		sound_allowed = true
+	end)
 end)
 
 minetest.register_craft({

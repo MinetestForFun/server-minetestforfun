@@ -11,6 +11,8 @@
 -- godkiller447 (ideas)
 -- If I didn't list you, please let me know!
 
+local load_time_start = os.clock()
+
 if not rawget(_G, "nether") then
 	nether = {}
 end
@@ -1029,4 +1031,11 @@ dofile(path.."/crafting.lua")
 dofile(path.."/portal.lua")
 dofile(path.."/guide.lua")
 
-nether:inform("loaded!", 1)
+
+local time = math.floor(tonumber(os.clock()-load_time_start)*100+0.5)/100
+local msg = "[nether] loaded after ca. "..time
+if time > 0.05 then
+	minetest.log("warning", msg)
+else
+	minetest.log("info", msg)
+end

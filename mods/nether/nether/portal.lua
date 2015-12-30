@@ -37,7 +37,7 @@ local function save_nether_players()
 end
 
 local update_background
-if damage_enabled then
+--if damage_enabled then
 	function update_background(player, down)
 		if down then
 			player:set_sky({r=15, g=0, b=0}, "plain")
@@ -45,11 +45,11 @@ if damage_enabled then
 			player:set_sky(nil, "regular")
 		end
 	end
-else
-	function update_background()end
-end
+--else
+--	function update_background()end
+--end
 
-local function player_to_nether(player, safe)
+function nether.player_to_nether(player, safe)
 	local pname = player:get_player_name()
 	if table.icontains(players_in_nether, pname) then
 		return
@@ -63,7 +63,7 @@ local function player_to_nether(player, safe)
 	update_background(player, true)
 end
 
-local function player_from_nether(player)
+function nether.player_from_nether(player)
 	local pname = player:get_player_name()
 	local changes
 	for n,i in ipairs(players_in_nether) do
@@ -79,7 +79,7 @@ local function player_from_nether(player)
 end
 
 
-if damage_enabled then
+--if damage_enabled then
 local function player_exists(name)
 	for _,player in pairs(minetest.get_connected_players()) do
 		if player:get_player_name() == name then
@@ -93,50 +93,38 @@ end
 -- Chatcommands removed
 --[[ Chatcommands (edited) written by sss
 minetest.register_chatcommand("to_hell", {
-	params = "",
+	params = "[<player_name>]",
 	description = "Send someone to hell",
 	func = function(name, pname)
-		if not minetest.get_player_privs(name).nether then
-			local self_player = minetest.get_player_by_name(name)
-			if self_player then
-				return false, "You can't send anyone to hell."
-			else
-				return false, "Something went wrong."
-			end
+		if not minetest.check_player_privs(name, {nether=true}) then
+			return false, "You need the nether priv to execute this chatcommand."
 		end
 		if not player_exists(pname) then
 			pname = name
 		end
 		local player = minetest.get_player_by_name(pname)
 		if not player then
-			minetest.chat_send_player(name, "Something went wrong.")
-			return false
+			return false, "Something went wrong."
 		end
 		minetest.chat_send_player(pname, "Go to hell !!!")
 		player_to_nether(player)
-		return true
+		return true, pname.." is now in the nether."
 	end
 })
 
 minetest.register_chatcommand("from_hell", {
-	params = "",
+	params = "[<player_name>]",
 	description = "Extract from hell",
 	func = function(name, pname)
-		if not minetest.get_player_privs(name).nether then
-			local self_player = minetest.get_player_by_name(name)
-			if self_player then
-				return false, "You can't extract anyone from hell"
-			else
-				return false, "Something went wrong."
-			end
+		if not minetest.check_player_privs(name, {nether=true}) then
+			return false, "You need the nether priv to execute this chatcommand."
 		end
 		if not player_exists(pname) then
 			pname = name
 		end
 		local player = minetest.get_player_by_name(pname)
 		if not player then
-			minetest.chat_send_player(name, "Something went wrong.")
-			return false
+			return false, "Something went wrong."
 		end
 		minetest.chat_send_player(pname, "You are free now")
 		player_from_nether(player)
@@ -220,6 +208,7 @@ minetest.register_abm({
 	nodenames = {"nether:portal"},
 	interval = 1,
 	chance = 2,
+	catch_up = false,
 	action = function(pos, node)
 		if not abm_allowed then
 			return
@@ -259,7 +248,7 @@ minetest.register_abm({
 						remove_portal_essence(pos)
 
 						minetest.sound_play("nether_portal_usual", {to_player=pname, gain=1})
-						player_to_nether(obj)
+						nether.player_to_nether(obj)
 						--obj:setpos(target)
 
 					end, obj, pos, target)
@@ -458,7 +447,7 @@ minetest.after(0.1, function()
 		end
 	})
 end)
-end
+--end
 
 
 vector.square = vector.square or
@@ -520,11 +509,22 @@ local function netherport(pos)
 	return true
 end
 
+-- cache known portals
+local known_portals_d = {}
+local known_portals_u = {}
+local function get_portal(t, z,x)
+	return t[z] and t[z][x]
+end
+local function set_portal(t, z,x, y)
+	t[z] = t[z] or {}
+	t[z][x] = y
+end
+
 function nether_port(player, pos)
 	if not player
 	or not pos
 	or not pos.x then
-		print("[nether] something failed.")
+		minetest.log("error", "[nether] nether_port: something failed.")
 		return
 	end
 	if not netherport(pos) then
@@ -533,7 +533,7 @@ function nether_port(player, pos)
 	minetest.sound_play("nether_teleporter", {to_player=player:get_player_name()}) --MFF crabman (5/09/2015) fix positional sound don't work to player
 	minetest.sound_play("nether_teleporter", {pos=pos})
 	if pos.y < nether.start then
-		player_from_nether(player)
+		nether.player_from_nether(player)
 		local pos_togo = {x = 0, y = 35, z = -7}
 		if minetest.setting_getbool("static_spawnpoint") ~= nil then
 			local stsp_conf = minetest.setting_get("static_spawnpoint")
@@ -541,8 +541,11 @@ function nether_port(player, pos)
 		end
 		player:moveto(pos_togo)
 	else
-		player:moveto({x=pos.x, y=portal_target+math.random(4), z=pos.z})
+		set_portal(known_portals_u, pos.z,pos.x, pos.y)
+		pos.y = get_portal(known_portals_d, pos.z,pos.x) or portal_target+math.random(4)
+		player:moveto(pos)
 		player_to_nether(player, true)
 	end
+	minetest.sound_play("nether_teleporter", {pos=pos})
 	return true
 end
