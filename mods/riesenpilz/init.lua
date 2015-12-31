@@ -2,11 +2,12 @@ local load_time_start = os.clock()
 local MAX_SIZE = 3
 
 riesenpilz = {}
-dofile(minetest.get_modpath("riesenpilz").."/settings.lua")
-dofile(minetest.get_modpath("riesenpilz").."/functions.lua")
+local modpath = minetest.get_modpath("riesenpilz").."/"
+dofile(modpath.."settings.lua")
+dofile(modpath.."functions.lua")
 
 
---Growing Functions
+-- Growing Functions
 
 local function r_area(manip, width, height, pos)
 	local emerged_pos1, emerged_pos2 = manip:read_from_map(
@@ -19,13 +20,14 @@ end
 local function set_vm_data(manip, nodes, pos, t1, name)
 	manip:set_data(nodes)
 	manip:write_to_map()
-	riesenpilz.inform("a "..name.." mushroom grew at ("..pos.x.."|"..pos.y.."|"..pos.z..")", 3, t1)
+	riesenpilz.inform("a giant "..name.." mushroom grew at "..vector.pos_to_string(pos), 3, t1)
 	local t1 = os.clock()
 	manip:update_map()
 	riesenpilz.inform("map updated", 3, t1)
 end
 
 
+-- contents become added later
 local c
 
 function riesenpilz.red(pos, nodes, area, w)
@@ -143,7 +145,7 @@ local function riesenpilz_minecraft_fliegenpilz(pos)
 	manip:set_param2_data(param2s)
 	manip:write_to_map()
 	manip:update_map()
-	riesenpilz.inform("a fly agaric grew at ("..pos.x.."|"..pos.y.."|"..pos.z..")", 3, t1)
+	riesenpilz.inform("a fly agaric grew at "..vector.pos_to_string(pos), 3, t1)
 end
 
 
@@ -280,7 +282,7 @@ function riesenpilz.parasol(pos, nodes, area, w, h)
 		nodes[i] = c.stem
 	end
 
-	local w = w or math.random(MAX_SIZE+1,MAX_SIZE+2)
+	local w = w or MAX_SIZE+math.random(2)
 	local bhead1 = w-1
 	local bhead2 = math.random(1,w-2)
 
@@ -313,7 +315,7 @@ end
 local function riesenpilz_parasol(pos)
 	local t1 = os.clock()
 
-	local w = math.random(MAX_SIZE+1,MAX_SIZE+2)
+	local w = MAX_SIZE+math.random(2)
 	local h = 6+math.random(MAX_SIZE)
 
 	local manip = minetest.get_voxel_manip()
@@ -323,6 +325,86 @@ local function riesenpilz_parasol(pos)
 	riesenpilz.parasol(pos, nodes, area, w, h)
 
 	set_vm_data(manip, nodes, pos, t1, "parasol")
+end
+
+
+function riesenpilz.red45(pos, nodes, area, h1, h2)
+	local walkspace = h1 or math.random(2,MAX_SIZE)
+	local toph = h2 or math.random(MAX_SIZE)
+	local h = walkspace+toph+4
+
+	-- stem
+	for i in area:iterp(pos, {x=pos.x, y=pos.y+h, z=pos.z}) do
+		nodes[i] = c.stem_red
+	end
+
+	for i = -1,1,2 do
+		for l = 0, 1 do
+			if math.random(2) == 1 then
+				nodes[area:index(pos.x+i, pos.y, pos.z-l*i)] = c.stem_red
+				if math.random(2) == 1 then
+					nodes[area:index(pos.x+i, pos.y+1, pos.z-l*i)] = c.stem_red
+				end
+			end
+			if math.random(2) == 1 then
+				nodes[area:index(pos.x+l*i, pos.y, pos.z+i)] = c.stem_red
+				if math.random(2) == 1 then
+					nodes[area:index(pos.x+l*i, pos.y+1, pos.z+i)] = c.stem_red
+				end
+			end
+			nodes[area:index(pos.x+i, pos.y+walkspace+2, pos.z-l*i)] = c.head_red
+			nodes[area:index(pos.x+l*i, pos.y+walkspace+2, pos.z+i)] = c.head_red
+		end
+		nodes[area:index(pos.x, pos.y+walkspace+3, pos.z+i)] = c.head_red
+		nodes[area:index(pos.x+i, pos.y+walkspace+3, pos.z)] = c.head_red
+		for j = -1,1,2 do
+			nodes[area:index(pos.x+j, pos.y+walkspace+1, pos.z+i)] = c.head_red
+			nodes[area:index(pos.x+j*3, pos.y+walkspace+1, pos.z+i*3)] = c.head_red
+			for z = 1,2 do
+				for x = 1,2 do
+					for y = h-toph, h-1 do
+						nodes[area:index(pos.x+x*j, pos.y+y, pos.z+z*i)] = c.head_red
+					end
+					if z ~= 2
+					or x ~= 2
+					or math.random(4) ~= 2 then
+						nodes[area:index(pos.x+x*j, pos.y+h, pos.z+z*i)] = c.head_red
+					end
+					local z = z+1
+					x = x+1
+					nodes[area:index(pos.x+x*j, pos.y+walkspace+2, pos.z+z*i)] = c.head_red
+					if z ~= 3
+					or x ~= 3
+					or math.random(2) == 1 then
+						nodes[area:index(pos.x+x*j, pos.y+walkspace+3, pos.z+z*i)] = c.head_red
+					end
+				end
+			end
+		end
+	end
+
+	-- top
+	for z = -1,1 do
+		for x = -1,1 do
+			nodes[area:index(pos.x+x, pos.y+h+1, pos.z+z)] = c.head_red
+		end
+	end
+end
+
+local function riesenpilz_red45(pos)
+	local t1 = os.clock()
+
+	local h1 = math.random(2,MAX_SIZE)
+	local h2 = math.random(MAX_SIZE)
+	local h = h1+h2+5
+
+	local manip = minetest.get_voxel_manip()
+	local area = r_area(manip, 3, h, pos)
+	local nodes = manip:get_data()
+
+	riesenpilz.red45(pos, nodes, area, h1, h2)
+
+	set_vm_data(manip, nodes, pos, t1, "red45")
 end
 
 
@@ -371,40 +453,45 @@ local function riesenpilz_apple(pos)
 
 	manip:set_data(nodes)
 	manip:write_to_map()
-	riesenpilz.inform("an apple grew at ("..pos.x.."|"..pos.y.."|"..pos.z..")", 3, t1)
+	riesenpilz.inform("an apple grew at "..vector.pos_to_string(pos), 3, t1)
 	manip:update_map()
 end
 
 
 
---3D apple [3apple]
+-- 3D apple [3apple]
 
 
-minetest.override_item("default:apple", {
-	drawtype = "nodebox",
-	tiles = {"3apple_apple_top.png","3apple_apple_bottom.png","3apple_apple.png"},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-3/16,	-7/16,	-3/16,	3/16,	1/16,	3/16},
-			{-4/16,	-6/16,	-3/16,	4/16,	0,		3/16},
-			{-3/16,	-6/16,	-4/16,	3/16,	0,		4/16},
-			{-1/32,	1/16,	-1/32,	1/32,	4/16,	1/32},
-			{-1/16,	1.6/16,	0,		1/16,	1.8/16,	1/16},
-			{-2/16,	1.4/16,	1/16,	1/16,	1.6/16,	2/16},
-			{-2/16,	1.2/16,	2/16,	0,		1.4/16,	3/16},
-			{-1.5/16,	1/16,	.5/16,	0.5/16,		1.2/16,	2.5/16},
-		}
-	},
-})
+if riesenpilz.change_apple then
+	minetest.override_item("default:apple", {
+		drawtype = "nodebox",
+		tiles = {"3apple_apple_top.png", "3apple_apple_bottom.png", "3apple_apple.png"},
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-3/16,	-7/16,	-3/16,	3/16,	1/16,	3/16},
+				{-4/16,	-6/16,	-3/16,	4/16,	0,		3/16},
+				{-3/16,	-6/16,	-4/16,	3/16,	0,		4/16},
+				{-1/32,	1/16,	-1/32,	1/32,	4/16,	1/32},
+				{-1/16,	1.6/16,	0,		1/16,	1.8/16,	1/16},
+				{-2/16,	1.4/16,	1/16,	1/16,	1.6/16,	2/16},
+				{-2/16,	1.2/16,	2/16,	0,		1.4/16,	3/16},
+				{-1.5/16,	1/16,	.5/16,	0.5/16,		1.2/16,	2.5/16},
+			}
+		},
+	})
+end
 
 
 
---Mushroom Nodes
+-- Mushroom Nodes
 
 
-local mushrooms_list = {
-	["brown"] = {
+local abm_allowed = true
+local disallowed_ps = {}
+
+for name,i in pairs({
+	brown = {
 		description = "brown mushroom",
 		box = {
 			{-0.15, -0.2, -0.15, 0.15, -0.1, 0.15},
@@ -420,7 +507,7 @@ local mushrooms_list = {
 			chance = 18,
 		},
 	},
-	["red"] = {
+	red = {
 		description = "red mushroom",
 		box = {
 			{-1/16, -8/16, -1/16, 1/16, -6/16, 1/16},
@@ -438,7 +525,7 @@ local mushrooms_list = {
 			chance = 30,
 		},
 	},
-	["fly_agaric"] = {
+	fly_agaric = {
 		description = "fly agaric",
 		box = {
 			{-0.05, -0.5, -0.05, 0.05, 1/20, 0.05},
@@ -454,7 +541,7 @@ local mushrooms_list = {
 			chance = 30,
 		},
 	},
-	["lavashroom"] = {
+	lavashroom = {
 		description = "Lavashroom",
 		box = {
 			{-1/16, -8/16, -1/16, 1/16, -6/16, 1/16},
@@ -471,16 +558,16 @@ local mushrooms_list = {
 			chance = 60,
 		},
 	},
-	["glowshroom"] = {
+	glowshroom = {
 		description = "Glowshroom",
 		box = {
-			{-1/16, -8/16, -1/16, 1/16, -1/16, 1/16},
-			{-2/16, -3/16, -2/16, 2/16, -2/16, 2/16},
-			{-3/16, -5/16, -3/16, 3/16, -3/16, 3/16},
+			{-1/16, -8/16, -1/16,  1/16, -1/16, 1/16},
+			{-2/16, -3/16, -2/16,  2/16, -2/16, 2/16},
+			{-3/16, -5/16, -3/16,  3/16, -3/16, 3/16},
 			{-3/16, -7/16, -3/16, -2/16, -5/16, -2/16},
-			{3/16, -7/16, -3/16, 2/16, -5/16, -2/16},
-			{-3/16, -7/16, 3/16, -2/16, -5/16, 2/16},
-			{3/16, -7/16, 3/16, 2/16, -5/16, 2/16}
+			{3/16,  -7/16, -3/16,  2/16, -5/16, -2/16},
+			{-3/16, -7/16,  3/16, -2/16, -5/16, 2/16},
+			{3/16,  -7/16,  3/16,  2/16, -5/16, 2/16}
 		},
 		growing = {
 			r = 3,
@@ -491,7 +578,7 @@ local mushrooms_list = {
 			chance = 320,
 		},
 	},
-	["nether_shroom"] = {
+	nether_shroom = {
 		description = "Nether mushroom",
 		box = {
 			{-1/16, -8/16, -1/16, 1/16, -2/16, 1/16},
@@ -504,7 +591,7 @@ local mushrooms_list = {
 		},
 		burntime = 6,
 	},
-	["parasol"] = {
+	parasol = {
 		description = "white parasol mushroom",
 		box = {
 			{-1/16, -8/16, -1/16, 1/16,  0, 1/16},
@@ -522,15 +609,15 @@ local mushrooms_list = {
 			chance = 36,
 		},
 	},
-	["red45"] = {
+	red45 = {
 		description = "45 red mushroom",
 		box = {
-			{-1/16, -0.5, -1/16, 1/16, 1/8, 1/16},
-			{-3/16, 1/8, -3/16, 3/16, 1/4, 3/16},
+			{-1/16, -0.5, -1/16,  1/16, 1/8, 1/16},
+			{-3/16,  1/8, -3/16,  3/16, 1/4, 3/16},
 			{-5/16, -1/4, -5/16, -1/16, 1/8, -1/16},
-			{1/16, -1/4, -5/16, 5/16, 1/8, -1/16},
-			{-5/16, -1/4, 1/16, -1/16, 1/8, 5/16},
-			{1/16, -1/4, 1/16, 5/16, 1/8, 5/16}
+			{1/16,  -1/4, -5/16,  5/16, 1/8, -1/16},
+			{-5/16, -1/4,  1/16, -1/16, 1/8, 5/16},
+			{1/16,  -1/4,  1/16,  5/16, 1/8, 5/16}
 		},
 		growing = {
 			r = {min=3, max=4},
@@ -541,14 +628,14 @@ local mushrooms_list = {
 			chance = 180,
 		},
 	},
-	["brown45"] = {
+	brown45 = {
 		description = "45 brown mushroom",
 		box = {
 			{-1/16, -0.5, -1/16, 1/16, 1/16, 1/16},
-			{-3/8, 1/8, -7/16, 3/8, 1/4, 7/16},
-			{-7/16, 1/8, -3/8, 7/16, 1/4, 3/8},
-			{-3/8, 1/4, -3/8, 3/8, 5/16, 3/8},
-			{-3/8, 1/16, -3/8, 3/8, 1/8, 3/8}
+			{-3/8,   1/8, -7/16,  3/8,  1/4, 7/16},
+			{-7/16,  1/8,  -3/8, 7/16,  1/4, 3/8},
+			{-3/8,   1/4,  -3/8,  3/8, 5/16, 3/8},
+			{-3/8,  1/16,  -3/8,  3/8,  1/8, 3/8}
 		},
 		growing = {
 			r = {min=2, max=3},
@@ -559,11 +646,7 @@ local mushrooms_list = {
 			chance = 20,
 		},
 	},
-}
-
-local abm_allowed = true
-local disallowed_ps = {}
-for name,i in pairs(mushrooms_list) do
+}) do
 	local burntime = i.burntime or 1
 	local box = {
 		type = "fixed",
@@ -737,10 +820,19 @@ end)
 
 
 
---Mushroom Nodes
+-- Big Mushroom Nodes
 
 
-local pilznode_list = {
+local head_sounds = default.node_sound_wood_defaults({
+	footstep = {name="riesenpilz_head", gain=0.1},
+	place = {name="default_place_node", gain=0.5},
+	dig = {name="riesenpilz_head", gain=0.2},
+	dug = {name="riesenpilz_stem", gain=0.1}
+})
+local add_fence = minetest.register_fence
+local node_groups = {oddly_breakable_by_hand=3, fall_damage_add_percent=-80, bouncy=10}
+
+for _,i in pairs({
 	{
 		typ = "stem",
 		description = "white",
@@ -750,11 +842,18 @@ local pilznode_list = {
 		typ = "stem",
 		name = "brown",
 		textures = {"stem_top.png", "stem_top.png", "stem_brown.png"},
+		fence = false,
 	},
 	{
 		typ = "stem",
 		name = "blue",
 		textures = {"stem_top.png","stem_top.png","stem_blue.png"},
+		fence = false,
+	},
+	{
+		typ = "stem",
+		name = "red",
+		textures = {"stem_red45_top.png","stem_red45_top.png","stem_red45.png"},
 	},
 	{
 		name = "lamellas",
@@ -784,14 +883,15 @@ local pilznode_list = {
 		typ = "head",
 		name = "brown",
 		textures = {"brown_top.png", "lamellas.png", "brown_top.png"},
-		sapling = "brown"
+		sapling = "brown",
 	},
 	{
 		typ = "head",
 		name = "brown_full",
 		description = "full brown",
 		textures = "brown_top.png",
-		sapling = "brown"
+		sapling = "brown",
+		fence = false,
 	},
 	{
 		typ = "head",
@@ -825,16 +925,7 @@ local pilznode_list = {
 		textures = {"head_brown_bright.png", "head_white.png", "head_brown_bright.png"},
 		sapling = "parasol"
 	},
-}
-
-local head_sounds = default.node_sound_wood_defaults({
-	footstep = {name="riesenpilz_head", gain=0.1},
-	place = {name="default_place_node", gain=0.5},
-	dig = {name="riesenpilz_head", gain=0.2},
-	dug = {name="riesenpilz_stem", gain=0.1}
-})
-
-for _,i in pairs(pilznode_list) do
+}) do
 	-- fill missing stuff
 	local textures = i.textures
 	i.description = i.description or i.name
@@ -870,10 +961,15 @@ for _,i in pairs(pilznode_list) do
 	minetest.register_node(nodename, {
 		description = desctiption,
 		tiles = textures,
-		groups = {oddly_breakable_by_hand=3, fall_damage_add_percent=-80},
+		groups = node_groups,
 		drop = drop,
 		sounds = sounds,
 	})
+
+	if add_fence
+	and i.fence ~= false then
+		add_fence({fence_of = nodename})
+	end
 end
 
 minetest.register_node("riesenpilz:head_red_side", {
@@ -881,7 +977,7 @@ minetest.register_node("riesenpilz:head_red_side", {
 	tiles = {"riesenpilz_head.png",	"riesenpilz_lamellas.png",	"riesenpilz_head.png",
 					"riesenpilz_head.png",	"riesenpilz_head.png",	"riesenpilz_lamellas.png"},
 	paramtype2 = "facedir",
-	groups = {oddly_breakable_by_hand=3, fall_damage_add_percent=-80},
+	groups = node_groups,
 	drop = {max_items = 1,
 		items = {{items = {"riesenpilz:fly_agaric"},rarity = 20,},
 		{items = {"riesenpilz:head_red"},rarity = 1,}}},
@@ -892,7 +988,9 @@ minetest.register_node("riesenpilz:head_red_side", {
 
 minetest.register_node("riesenpilz:ground", {
 	description = "dirt with rotten grass",
-	tiles = {"riesenpilz_ground_top.png","default_dirt.png","default_dirt.png^riesenpilz_ground_side.png"},
+	tiles = {"riesenpilz_ground_top.png","default_dirt.png",
+		{name="default_dirt.png^riesenpilz_ground_side.png", tileable_vertical = false}
+	},
 	groups = {crumbly=3},
 	sounds = default.node_sound_dirt_defaults(),
 	drop = 'default:dirt'
@@ -923,6 +1021,8 @@ c = {
 	head_binge = minetest.get_content_id("riesenpilz:head_binge"),
 	head_brown_bright = minetest.get_content_id("riesenpilz:head_brown_bright"),
 
+	stem_red = minetest.get_content_id("riesenpilz:stem_red"),
+
 	red = minetest.get_content_id("default:copperblock"),
 	brown = minetest.get_content_id("default:desert_stone"),
 	tree = minetest.get_content_id("default:tree"),
@@ -930,7 +1030,7 @@ c = {
 
 
 
---Growing
+-- Growing
 
 
 minetest.register_tool("riesenpilz:growingtool", {
@@ -938,31 +1038,61 @@ minetest.register_tool("riesenpilz:growingtool", {
 	inventory_image = "riesenpilz_growingtool.png",
 })
 
-minetest.register_on_punchnode(function(pos, node, puncher)
-	if puncher:get_wielded_item():get_name() == "riesenpilz:growingtool" then
-		local name = node.name
-		if name == "riesenpilz:red" then
-			riesenpilz_hybridpilz(pos)
-		elseif name == "riesenpilz:fly_agaric" then
-			riesenpilz_minecraft_fliegenpilz(pos)
-		elseif name == "riesenpilz:brown" then
-			riesenpilz_brauner_minecraftpilz(pos)
-		elseif name == "riesenpilz:lavashroom" then
-			riesenpilz_lavashroom(pos)
-		elseif name == "riesenpilz:glowshroom" then
-			riesenpilz_glowshroom(pos)
-		elseif name == "riesenpilz:parasol" then
-			riesenpilz_parasol(pos)
-		elseif name == "default:apple" then
-			riesenpilz_apple(pos)
-		end
+minetest.register_on_punchnode(function(pos, node, player)
+	if player:get_wielded_item():get_name() ~= "riesenpilz:growingtool"
+	or minetest.is_protected(pos, player:get_player_name()) then
+		return
+	end
+
+	local name = node.name
+	if name == "riesenpilz:red" then
+		riesenpilz_hybridpilz(pos)
+	elseif name == "riesenpilz:fly_agaric" then
+		riesenpilz_minecraft_fliegenpilz(pos)
+	elseif name == "riesenpilz:brown" then
+		riesenpilz_brauner_minecraftpilz(pos)
+	elseif name == "riesenpilz:lavashroom" then
+		riesenpilz_lavashroom(pos)
+	elseif name == "riesenpilz:glowshroom" then
+		riesenpilz_glowshroom(pos)
+	elseif name == "riesenpilz:parasol" then
+		riesenpilz_parasol(pos)
+	elseif name == "riesenpilz:red45" then
+		riesenpilz_red45(pos)
+	elseif name == "default:apple" then
+		riesenpilz_apple(pos)
 	end
 end)
 
 
 
+-- Food
+
+
+minetest.register_craftitem("riesenpilz:mush45_meal", {
+	description = "Mushroom Meal",
+	inventory_image = "riesenpilz_mush45_meal.png",
+	on_use = minetest.item_eat(6),
+})
+
+minetest.register_craft({
+	output = "riesenpilz:mush45_meal 4",
+	recipe = {
+		{"riesenpilz:brown45", "riesenpilz:red45"},
+		{"riesenpilz:red45", "riesenpilz:brown45"},
+	}
+})
+
+
+
 if riesenpilz.enable_mapgen then
-	dofile(minetest.get_modpath("riesenpilz") .. "/mapgen.lua")
+	dofile(modpath.."mapgen.lua")
 end
 
-riesenpilz.inform("loaded", 1, load_time_start)
+local time = math.floor(tonumber(os.clock()-load_time_start)*100+0.5)/100
+local msg = "[riesenpilz] loaded after ca. "..time
+if time > 0.05 then
+	minetest.log("warning", msg)
+else
+	minetest.log("info", msg)
+end
