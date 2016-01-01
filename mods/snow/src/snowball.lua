@@ -126,7 +126,7 @@ function snow_snowball_ENTITY.on_step(self, dtime)
 					and entity_name ~= "__builtin:item"
 					and entity_name ~= "gauges:hp_bar" then
 					local puncher = self.object
-					if self.thrower and self.thrower ~= "" and minetest.get_player_by_name(self.thrower) then
+					if minetest.get_player_by_name(self.thrower or "") then
 						puncher = minetest.get_player_by_name(self.thrower)
 					end
 					v:punch(puncher, 1.0, {full_punch_interval=1.0, damage_groups = {fleshy=1} })
