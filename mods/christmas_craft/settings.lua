@@ -60,6 +60,10 @@ for i=1,5 do
 	minetest.override_item("default:grass_" .. i, {tiles = {"christmas_grass_"..i..".png"}})
 end
 
+-- Replace junglegrass
+minetest.override_item("default:junglegrass", {tiles = {"christmas_junglegrass.png"}})
+
+
 -- Replace youngtrees
 if minetest.registered_items["youngtrees:youngtree_top"] then
 	minetest.override_item("youngtrees:youngtree_top", {tiles = {"christmas_youngtree16xa.png"}})
