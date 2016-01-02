@@ -1,5 +1,5 @@
 if pipeworks.enable_detector_tube then
-	local detector_tube_step = 2 * tonumber(minetest.setting_get("dedicated_server_step"))
+	local detector_tube_step = 1 --MFF crabman(2/1/2016 bug,step too short) 2 * tonumber(minetest.setting_get("dedicated_server_step"))
 	pipeworks.register_tube("pipeworks:detector_tube_on", {
 			description = "Detecting Pneumatic Tube Segment on (you hacker you)",
 			inventory_image = "pipeworks_detector_tube_inv.png",
