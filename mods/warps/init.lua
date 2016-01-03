@@ -46,15 +46,17 @@ do_warp_queue = function()
 	local t = minetest.get_us_time()
 	for i = table.getn(warps_queue),1,-1 do
 		local e = warps_queue[i]
-		if e and e.p and e.p:getpos() and e.p:getpos().x == e.pos.x and e.p:getpos().y == e.pos.y and e.p:getpos().z == e.pos.z then
-			if t > e.t then
-				warp(e.p, e.w)
+		if e.p:getpos() then
+			if e.p:getpos().x == e.pos.x and e.p:getpos().y == e.pos.y and e.p:getpos().z == e.pos.z then
+				if t > e.t then
+					warp(e.p, e.w)
+					table.remove(warps_queue, i)
+				end
+			else
+				minetest.sound_stop(e.sh)
+				minetest.chat_send_player(e.p:get_player_name(), "You have to stand still for " .. warps_freeze .. " seconds!")
 				table.remove(warps_queue, i)
 			end
-		else
-			minetest.sound_stop(e.sh)
-			minetest.chat_send_player(e.p:get_player_name(), "You have to stand still for " .. warps_freeze .. " seconds!")
-			table.remove(warps_queue, i)
 		end
 	end
 	if table.getn(warps_queue) == 0 then
@@ -137,6 +139,7 @@ minetest.register_chatcommand("setwarp", {
 	description = "Set a warp location to the players location",
 	privs = { warp_admin = true },
 	func = function(name, param)
+		param = param:gsub("%W", "")
 		local h = "created"
 		for i = 1,table.getn(warps) do
 			if warps[i].name == param then
@@ -147,9 +150,6 @@ minetest.register_chatcommand("setwarp", {
 		end
 		local player = minetest.get_player_by_name(name)
 		local pos = player:getpos()
-		if not pos then
-			return false, "Internal error while getting your position. Please try again later"
-		end
 		table.insert(warps, { name = param, x = pos.x, y = pos.y, z = pos.z, yaw = player:get_look_yaw(), pitch = player:get_look_pitch() })
 		save()
 		minetest.log("action", name .. " " .. h .. " warp \"" .. param .. "\": " .. pos.x .. ", " .. pos.y .. ", " .. pos.z)
