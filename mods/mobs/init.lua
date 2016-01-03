@@ -16,6 +16,7 @@ dofile(path.."/bunny.lua") -- ExeterDad
 dofile(path.."/kitten.lua") -- Jordach/BFD
 dofile(path.."/goat.lua") -- ???
 dofile(path.."/shark.lua") -- blert2112 (animal_modpack)
+dofile(path.."/pig.lua") -- farfadet46
 
 -- Monsters
 
