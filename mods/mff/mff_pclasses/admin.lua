@@ -7,8 +7,10 @@
 --
 
 pclasses.api.register_class("admin", {
-	on_assigned = function(pname)
-		minetest.chat_send_player(pname, "Hello admin.")
+	on_assigned = function(pname, inform)
+		if inform then
+			minetest.chat_send_player(pname, "Hello admin.")
+		end
 	end,
 	on_unassigned = function(pname)
 	end,

@@ -48,7 +48,7 @@ minetest.register_entity("pclasses:item", {
 			"class_switch_" .. clicker:get_player_name(),
 			3600,
 			pclasses.api.set_player_class,
-			{clicker:get_player_name(), self.class}
+			{clicker:get_player_name(), self.class, true}
 		)
 	end,
 	on_activate = function(self, staticdata)

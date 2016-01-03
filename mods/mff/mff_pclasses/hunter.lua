@@ -7,9 +7,11 @@
 --
 
 pclasses.api.register_class("hunter", {
-	on_assigned = function(pname)
-		minetest.chat_send_player(pname, "You are now a hunter")
-		minetest.sound_play("pclasses_full_hunter")
+	on_assigned = function(pname, inform)
+		if inform then
+			minetest.chat_send_player(pname, "You are now a hunter")
+			minetest.sound_play("pclasses_full_hunter", {to_player=pname, gain=1})
+		end
 		local reinforced = pclasses.api.util.does_wear_full_armor(pname, "reinforcedleather", true)
 		if reinforced then
 			sprint.increase_maxstamina(pname, 20)

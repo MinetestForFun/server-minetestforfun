@@ -7,9 +7,11 @@
 --
 
 pclasses.api.register_class("warrior", {
-	on_assigned = function(pname)
-		minetest.sound_play("pclasses_full_warrior")
-		minetest.chat_send_player(pname, "You are now a warrior")
+	on_assigned = function(pname, inform)
+		if inform then
+			minetest.sound_play("pclasses_full_warrior", {to_player=pname, gain=1})
+			minetest.chat_send_player(pname, "You are now a warrior")
+		end
 		sprint.set_maxstamina(pname, 20)
 		minetest.log("action", "[PClasses] Player " .. pname .. " becomes a warrior")
 	end,
