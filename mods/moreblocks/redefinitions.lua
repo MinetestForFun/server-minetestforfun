@@ -10,9 +10,9 @@ Licensed under the zlib license. See LICENSE.md for more information.
 minetest.register_craft({
 	output = "default:sign_wall 4",
 	recipe = {
-		{"default:wood", "default:wood", "default:wood"},
-		{"default:wood", "default:wood", "default:wood"},
-		{"", "default:stick", ""},
+		{"group:wood", "group:wood", "group:wood"},
+		{"group:wood", "group:wood", "group:wood"},
+		{"", "group:stick", ""},
 	}
 })
 
