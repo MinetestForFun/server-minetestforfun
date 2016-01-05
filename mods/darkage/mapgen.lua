@@ -238,6 +238,7 @@ local function generate_ore(data, varea, name, wherein, minp, maxp, seed, chunks
 end
 
 function darkage_mapgen(data, area, minp, maxp, seed) -- public function, to be used by Lua mapgens
+	if minp.y < -19600 then return end
 	local t1 = os.clock()
 	generate_claylike(data, area, "darkage:mud", minp, maxp, seed+1, 4, 0, 2, 0)
 	generate_claylike(data, area, "darkage:silt", minp, maxp, seed+2, 4, -1, 1, 1)
