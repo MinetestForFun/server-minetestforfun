@@ -242,6 +242,23 @@ function cart:calc_rail_direction(pos, vel)
 				p = cart_func.v3:add(p, {x=0, y=-1, z=0})
 				return self:calc_rail_direction(p, vel)
 			end
+			-- NOW the hack gets even dirtier
+			if cart_func:is_rail(cart_func.v3:add(p, {x=0, y=3, z=0})) and vel.y >= 0 then
+				p = cart_func.v3:add(p, {x=0, y=1, z=0})
+				return self:calc_rail_direction(p, vel)
+			end
+			if cart_func:is_rail(cart_func.v3:add(p, {x=0, y=-3, z=0})) and vel.y <= 0 then
+				p = cart_func.v3:add(p, {x=0, y=-1, z=0})
+				return self:calc_rail_direction(p, vel)
+			end
+			if cart_func:is_rail(cart_func.v3:add(p, {x=0, y=4, z=0})) and vel.y >= 0 then
+				p = cart_func.v3:add(p, {x=0, y=1, z=0})
+				return self:calc_rail_direction(p, vel)
+			end
+			if cart_func:is_rail(cart_func.v3:add(p, {x=0, y=-4, z=0})) and vel.y <= 0 then
+				p = cart_func.v3:add(p, {x=0, y=-1, z=0})
+				return self:calc_rail_direction(p, vel)
+			end
 
 			return {x=0, y=0, z=0}, p
 		end
