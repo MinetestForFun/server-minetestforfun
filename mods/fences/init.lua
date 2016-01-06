@@ -78,7 +78,6 @@ local p5 = {2/16, 1/2, 2/16, 2/16, 1/2+8/16, 2/16}
 local x1 = {-2/16, 1/2-4/16, 1/16, -1/2, 1/2-1/16, -1/16}   --oben(quer) -x
 local x12 = {-2/16, -1/2+6/16, 1/16, -1/2, -1/2+9/16, -1/16} --unten(quer) -x
 local x2 = {2/16, 1/2-4/16, -1/16, 1/2, 1/2-1/16, 1/16}   --oben(quer) x
-local x21 = {0, 0, 0, 0, 0, 0} -- just to fix global var use
 local x22 = {2/16, -1/2+6/16, -1/16, 1/2, -1/2+9/16, 1/16} --unten(quer) x
 local z1 = {1/16, 1/2-4/16, -2/16, -1/16, 1/2-1/16, -1/2}   --oben(quer) -z
 local z12 = {1/16, -1/2+6/16, -2/16, -1/16, -1/2+9/16, -1/2} --unten(quer) -z
@@ -450,7 +449,7 @@ minetest.register_node("fences:fence_wood_33", {  --left(1)+top+bottom(32)=33
 		type = "fixed",
 		fixed = {
 				p0,p1,p2,p3,p4,p5,
-				z1,z12,x1,x12,x2,x21,
+				z1,z12,x1,x12,x2,x22,
 				bz1,bz11,bx1,bx11,bx2,bx21,
 			}
 	},
@@ -534,7 +533,7 @@ minetest.register_node("fences:fence_wood_13", {  --right(2)+top(11)=13
 		type = "fixed",
 		fixed = {
 				p0,p1,p2,p3,p4,p5,
-				z2,z22,x1,x22,
+				z2,z22,x1,x12,
 				bz1,bz11,bx1,bx11,
 			}
 	},
