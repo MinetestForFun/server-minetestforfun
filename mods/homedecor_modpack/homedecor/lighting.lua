@@ -482,10 +482,6 @@ local function reg_lamp(suffix, nxt, tilesuffix, light, color)
 
 	minetest.register_alias("homedecor:standing_lamp_bottom"..lampcolor.."_"..suffix, "homedecor:standing_lamp"..lampcolor.."_"..suffix)
 	minetest.register_alias("homedecor:standing_lamp_top"..lampcolor.."_"..suffix, "air")
-	minetest.register_alias("homedecor:standing_lamp_"..suffix, "homedecor:standing_lamp_white_"..suffix)
-	minetest.register_alias("homedecor:standing_lamp_whiteoff", "homedecor:standing_lamp_white_off")
-	minetest.register_alias("homedecor:table_lamp_"..suffix, "homedecor:table_lamp_white_"..suffix)
-	minetest.register_alias("homedecor:table_lamp_whiteoff", "homedecor:table_lamp_white_off")
 
 	-- for old maps that had the original 3dforniture mod
 	if lampcolor == "" then
