@@ -105,9 +105,9 @@ minetest.register_node("more_chests:shared", {
 minetest.register_craft({
 	output = 'more_chests:shared',
 	recipe = {
-		{'default:wood','default:leaves','default:wood'},
-		{'default:wood','default:steel_ingot','default:wood'},
-		{'default:wood','default:wood','default:wood'}
+		{'group:wood','group:leaves','group:wood'},
+		{'group:wood','group:ingot','group:wood'},
+		{'group:wood','group:wood','group:wood'}
 	}
 })
 
