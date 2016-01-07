@@ -183,6 +183,11 @@ end)
 
 -- respawn player at bed if enabled and valid position is found
 minetest.register_on_respawnplayer(function(player)
+	--MFF DEBUT crabman(8/01/2016 ) respawn player in special area(event) if a spawn is set.
+	if ((minetest.get_modpath("areas") ~= nil) and (areas:onRespawn(player))) then
+		return true
+	end
+
 	if not enable_respawn then
 		return false
 	end
