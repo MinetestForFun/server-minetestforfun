@@ -182,6 +182,8 @@ minetest.register_on_punchplayer(function(player, hitter, time,
 			death_message = string.format(messages.monsters_whacking[math.random(1, #messages.monsters_whacking)], player_name, entity_name, player_name, entity_name)
 		end
 		broadcast_death(death_message)
+		minetest.sound_play(sounds[math.random(1,#sounds)],{to_player=player:get_player_name(),gain=soundset.get_gain(player:get_player_name(),"other")})
+		sound_play_all(player:get_player_name())
 		whacked[player_name] = true
 	end
 end)
@@ -230,9 +232,10 @@ if RANDOM_MESSAGES == true then
 			-- Actually tell something
 			death_message = string.format(death_message, player_name, player_name)
 			broadcast_death(death_message)
+			minetest.sound_play(sounds[math.random(1,#sounds)],{to_player=player_name,gain=soundset.get_gain(player_name, "other")})
+			sound_play_all(player_name)
+			whacked[player_name] = true
 		end
-		minetest.sound_play(sounds[math.random(1,#sounds)],{to_player=player:get_player_name(),gain=soundset.get_gain(player:get_player_name(),"other")})
-		sound_play_all(player:get_player_name())
 	end)
 
 else
