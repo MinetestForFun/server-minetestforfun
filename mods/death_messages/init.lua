@@ -118,6 +118,7 @@ messages.monsters_whacking = {
 
 local monsters = {
 	["mobs:fireball"] = "dungeon master",
+	["mobs:dungeon_master"] = "dungeon master",
 	["mobs:spider"] = "spider",
 	["mobs:sand_monster"] = "sand monster",
 	["mobs:cow"] = "cow",
