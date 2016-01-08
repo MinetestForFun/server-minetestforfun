@@ -155,7 +155,9 @@ minetest.register_abm(
     action = function(pos, node, active_object_count, active_object_count_wider)
     local objs = minetest.get_objects_inside_radius(pos, 1)
         for k, obj in pairs(objs) do
-        obj:set_hp(obj:get_hp()-1)
+        if obj:get_hp() > 0 then --MFF (crabman 8/1/2016) dont re-kill dead player
+        	obj:set_hp(obj:get_hp()-1)
+        end
         minetest.sound_play("bobblocks_trap_fall",
 	    {pos = pos, gain = 1.0, max_hear_distance = 3,})
     end
@@ -169,7 +171,9 @@ minetest.register_abm(
     action = function(pos, node, active_object_count, active_object_count_wider)
     local objs = minetest.get_objects_inside_radius(pos, 1)
         for k, obj in pairs(objs) do
-            obj:set_hp(obj:get_hp()-100)
+        	if obj:get_hp() > 0 then --MFF (crabman 8/1/2016) dont re-kill dead player
+	            obj:set_hp(obj:get_hp()-100)
+    		end
         minetest.sound_play("bobblocks_trap_fall",
 	    {pos = pos, gain = 1.0, max_hear_distance = 3,})
         end
@@ -185,7 +189,9 @@ minetest.register_abm(
 		pos.y = pos.y-1.2
 		local objs = minetest.get_objects_inside_radius(pos, 1)
 		for k, obj in pairs(objs) do
-			obj:set_hp(obj:get_hp()-100)
+			if obj:get_hp() > 0 then --MFF (crabman 8/1/2016) dont re-kill dead player
+				obj:set_hp(obj:get_hp()-100)
+			end
 			minetest.sound_play("bobblocks_trap_fall",
 			{pos = pos, gain = 1.0, max_hear_distance = 3,})
 		end
