@@ -2,17 +2,19 @@ local load_time_start = os.clock()
 
 local creative_enabled = minetest.setting_getbool("creative_mode")
 
+local big_formspec = "size[13,9]"..
+	"list[current_name;main;0,0;13,5;]"..
+	"list[current_player;main;2.5,5.2;8,4;]"..
+	"listring[current_name;main]"..
+	"listring[current_player;main]"
+
 local chests = {
 	["default:chest"] = function(pu, pa, par, stuff)
 		minetest.add_node(pu, {name="connected_chests:chest_left", param2=par})
 		minetest.add_node(pa, {name="connected_chests:chest_right", param2=par})
 
 		local meta = minetest.get_meta(pu)
-		meta:set_string("formspec",
-			"size[13,9]"..
-			"list[current_name;main;0,0;13,5;]"..
-			"list[current_player;main;2.5,5.2;8,4;]"
-		)
+		meta:set_string("formspec", big_formspec)
 		meta:set_string("infotext", "Big Chest")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 65)
@@ -25,6 +27,7 @@ local chests = {
 
 		local meta = minetest.get_meta(pu)
 		meta:set_string("owner", owner)
+		meta:set_string("formspec", big_formspec)
 		meta:set_string("infotext", "Big Locked Chest (owned by "..
 				meta:get_string("owner")..")")
 		local inv = meta:get_inventory()
@@ -40,10 +43,9 @@ local function get_pointed_info(pointed_thing, name)
 	end
 	local pu = minetest.get_pointed_thing_position(pointed_thing)
 	local pa = minetest.get_pointed_thing_position(pointed_thing, true)
-	if not (pu and pa) then
-		return
-	end
-	if pu.y ~= pa.y then
+	if not pu
+	or not pa
+	or pu.y ~= pa.y then
 		return
 	end
 	local nd_u = minetest.get_node(pu)
@@ -90,11 +92,11 @@ for name,_ in pairs(chests) do
 				return
 			end
 			local pu, pa, par2 = get_pointed_info(pointed_thing, name)
-			if not (pu and placer:get_player_control().sneak) then
+			if not pu
+			or not placer:get_player_control().sneak then
 				return place_chest(itemstack, placer, pointed_thing)
 			end
-			local protected = minetest.is_protected(pa, placer:get_player_name())
-			if protected then
+			if minetest.is_protected(pa, placer:get_player_name()) then
 				return
 			end
 			connect_chests(pu, pa, par2, name)
@@ -223,6 +225,30 @@ end
 minetest.register_node("connected_chests:chest_locked_left", chest_locked)
 
 
+local tube_to_left, tube_to_left_locked, tube_update, tube_groups
+if minetest.global_exists("pipeworks") then
+	tube_to_left_locked = {
+		insert_object = function(pos, node, stack)
+			local x, z = unpack(string.split(param_tab2[node.param2], " "))
+			return minetest.get_meta({x=pos.x+x, y=pos.y, z=pos.z+z}):get_inventory():add_item("main", stack)
+		end,
+		can_insert = function(pos, node, stack)
+			local x, z = unpack(string.split(param_tab2[node.param2], " "))
+			return minetest.get_meta({x=pos.x+x, y=pos.y, z=pos.z+z}):get_inventory():room_for_item("main", stack)
+		end,
+		connect_sides = {right = 1, back = 1, front = 1, bottom = 1, top = 1}
+	}
+
+	tube_to_left = table.copy(tube_to_left_locked)
+	tube_to_left.input_inventory = "main"
+
+	tube_update = pipeworks.scan_for_tube_objects
+
+	tube_groups = {tubedevice=1, tubedevice_receiver=1}
+else
+	function tube_update() end
+end
+
 minetest.register_node("connected_chests:chest_right", {
 	tiles = {top_texture.."^[transformFX", top_texture.."^[transformFX", "default_chest_side.png",
 		"default_obsidian_glass.png", side_texture, side_texture.."^connected_chests_front.png^[transformFX"},
@@ -242,7 +268,9 @@ minetest.register_node("connected_chests:chest_right", {
 		if node_left.name ~= "connected_chests:chest_left"
 		or node_left.param2 ~= node.param2 then
 			minetest.remove_node(pos)
+			return
 		end
+		tube_update(pos)
 	end,
 	after_destruct = function(pos, oldnode)
 		if oldnode.param2 > 3 then
@@ -254,8 +282,12 @@ minetest.register_node("connected_chests:chest_right", {
 		and node_left.param2 == oldnode.param2
 		and minetest.get_node(pos).name == "air" then
 			minetest.set_node(pos, oldnode)
+			return
 		end
-	end
+		tube_update(pos)
+	end,
+	tube = tube_to_left,
+	groups = tube_groups,
 })
 
 minetest.register_node("connected_chests:chest_locked_right", {
@@ -269,6 +301,7 @@ minetest.register_node("connected_chests:chest_locked_right", {
 		local node = minetest.get_node(pos)
 		if node.param2 > 3 then
 			node.param2 = node.param2%4
+			-- ↓ calls the on_construct from the beginning again
 			minetest.set_node(pos, node)
 			return
 		end
@@ -277,7 +310,9 @@ minetest.register_node("connected_chests:chest_locked_right", {
 		if node_left.name ~= "connected_chests:chest_locked_left"
 		or node_left.param2 ~= node.param2 then
 			minetest.remove_node(pos)
+			return
 		end
+		tube_update(pos)
 	end,
 	after_destruct = function(pos, oldnode)
 		if oldnode.param2 > 3 then
@@ -289,8 +324,12 @@ minetest.register_node("connected_chests:chest_locked_right", {
 		and node_left.param2 == oldnode.param2
 		and minetest.get_node(pos).name == "air" then
 			minetest.set_node(pos, oldnode)
+			return
 		end
-	end
+		tube_update(pos)
+	end,
+	tube = tube_to_left_locked,
+	groups = tube_groups,
 })
 
 -- abms to fix half chests
