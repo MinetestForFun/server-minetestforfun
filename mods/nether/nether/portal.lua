@@ -544,7 +544,7 @@ function nether_port(player, pos)
 		set_portal(known_portals_u, pos.z,pos.x, pos.y)
 		pos.y = get_portal(known_portals_d, pos.z,pos.x) or portal_target+math.random(4)
 		player:moveto(pos)
-		player_to_nether(player, true)
+		nether.player_to_nether(player, true)
 	end
 	minetest.sound_play("nether_teleporter", {pos=pos})
 	return true
