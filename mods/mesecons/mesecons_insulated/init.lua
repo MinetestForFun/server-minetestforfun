@@ -30,7 +30,7 @@ minetest.register_node("mesecons_insulated:insulated_on", {
 		type = "fixed",
 		fixed = { -16/32-0.001, -17/32, -3/32, 16/32+0.001, -13/32, 3/32 }
 	},
-	groups = {dig_immediate = 3, not_in_creative_inventory = 1},
+	groups = {dig_immediate = 2, not_in_creative_inventory = 1}, --MFF
 	drop = "mesecons_insulated:insulated_off",
 	mesecons = {conductor = {
 		state = mesecon.state.on,
@@ -62,7 +62,7 @@ minetest.register_node("mesecons_insulated:insulated_off", {
 		type = "fixed",
 		fixed = { -16/32-0.001, -17/32, -3/32, 16/32+0.001, -13/32, 3/32 }
 	},
-	groups = {dig_immediate = 3},
+	groups = {dig_immediate = 2}, --MFF
 	mesecons = {conductor = {
 		state = mesecon.state.off,
 		onstate = "mesecons_insulated:insulated_on",

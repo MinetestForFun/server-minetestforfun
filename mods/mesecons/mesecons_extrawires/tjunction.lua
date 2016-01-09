@@ -38,7 +38,7 @@ minetest.register_node("mesecons_extrawires:tjunction_on", {
 	sunlight_propagates = true,
 	selection_box = tjunction_selectionbox,
 	node_box = tjunction_nodebox,
-	groups = {dig_immediate = 3, not_in_creative_inventory = 1},
+	groups = {dig_immediate = 2, not_in_creative_inventory = 1}, --MFF
 	drop = "mesecons_extrawires:tjunction_off",
 	mesecons = {conductor =
 	{
@@ -65,7 +65,7 @@ minetest.register_node("mesecons_extrawires:tjunction_off", {
 	sunlight_propagates = true,
 	selection_box = tjunction_selectionbox,
 	node_box = tjunction_nodebox,
-	groups = {dig_immediate = 3},
+	groups = {dig_immediate = 2}, --MFF
 	mesecons = {conductor =
 	{
 		state = mesecon.state.off,
