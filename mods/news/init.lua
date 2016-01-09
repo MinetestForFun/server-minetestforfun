@@ -32,7 +32,7 @@ load_news()
 
 local function show_formspec(player, page)
 	local name = player:get_player_name()
-	if not name then return end
+	if not name or (player:get_hp() <= 0) then return end
 	local nb_pages = #news
 	local formspec = "size[12,10;]"
 	formspec = formspec.."background[-0.22,-0.60;13,11.3;news_background.jpg]"
