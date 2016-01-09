@@ -28,19 +28,19 @@ function doors3.get_pos(pos, dir, p1, b)
 	else
 		if p1 == 1 then
 			if dir == 1 then
-				pos2.x=pos2.x+1--ok
+				pos2.x=pos2.x+1
 			elseif dir == 2 then
 				pos2.z=pos2.z-1
 			elseif dir == 3 then
 				pos2.x=pos2.x-1
 			else
-				pos2.z=pos2.z+1--ok
+				pos2.z=pos2.z+1
 			end
 		else
 			if dir == 1 then
 				pos2.z=pos2.z+1
 			elseif dir == 2 then
-				pos2.x=pos2.x+1--ok
+				pos2.x=pos2.x+1
 			elseif dir == 3 then
 				pos2.z=pos2.z-1
 			else
@@ -246,11 +246,6 @@ function doors3.register_door(name, def)
 			snd_2 = def.sound_close_door
 		end
 		local b = minetest.get_meta(pos):get_int("right")
-		if b ~= 0 then
-			minetest.sound_play(snd_1, {pos = pos, gain = 0.3, max_hear_distance = 10})
-		else
-			minetest.sound_play(snd_2, {pos = pos, gain = 0.3, max_hear_distance = 10})
-		end
 
 		local pos2 = doors3.get_pos(pos, oldparam2, params[1], b)
 		local node = minetest.get_node_or_nil(pos2)
@@ -260,6 +255,13 @@ function doors3.register_door(name, def)
 					return minetest.registered_nodes[node.name].on_rightclick(pos2, node, clicker)
 				end
 			end
+		end
+
+		--if double doors, only 2eme play sound
+		if b ~= 0 then
+			minetest.sound_play(snd_1, {pos = pos, gain = 0.3, max_hear_distance = 10})
+		else
+			minetest.sound_play(snd_2, {pos = pos, gain = 0.3, max_hear_distance = 10})
 		end
 	end
 
