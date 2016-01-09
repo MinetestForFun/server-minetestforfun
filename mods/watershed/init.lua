@@ -658,7 +658,7 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 						local yrq = 79
 						local qixyz = zrq * 6400 + yrq * 80 + xrq + 1 -- quantised 3D index
 						local qixz = zrq * 80 + xrq + 1
-						if math.abs(nvals_fissure[qixyz]) < nvals_humid[qixz] * 0.1 then
+						if nvals_fissure[qixyz] and math.abs(nvals_fissure[qixyz]) < nvals_humid[qixz] * 0.1 then
 							data[vi] = c_wscloud
 						end
 						stable[si] = 0
