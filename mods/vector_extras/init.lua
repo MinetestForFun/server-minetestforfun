@@ -1,7 +1,9 @@
 local load_time_start = os.clock()
 
-function vector.pos_to_string(pos)
-	return "{x="..pos.x.."; y="..pos.y.."; z="..pos.z.."}"
+local funcs = {}
+
+function funcs.pos_to_string(pos)
+	return "("..pos.x.."|"..pos.y.."|"..pos.z..")"
 end
 
 local r_corr = 0.25 --remove a bit more nodes (if shooting diagonal) to let it look like a hole (sth like antialiasing)
@@ -118,7 +120,7 @@ local function return_fine_line(pos, dir, range, scale)
 	return ps2
 end
 
-function vector.fine_line(pos, dir, range, scale)
+function funcs.fine_line(pos, dir, range, scale)
 	--assert_vector(pos)
 	if not range then --dir = pos2
 		dir = vector.direction(pos, dir)
@@ -127,7 +129,7 @@ function vector.fine_line(pos, dir, range, scale)
 	return return_fine_line(pos, dir, range, scale)
 end
 
-function vector.line(pos, dir, range, alt)
+function funcs.line(pos, dir, range, alt)
 	--assert_vector(pos)
 	if alt then
 		if not range then --dir = pos2
@@ -149,7 +151,7 @@ function vector.line(pos, dir, range, alt)
 end
 
 local twolines = {}
-function vector.twoline(x, y)
+function funcs.twoline(x, y)
 	local pstr = x.." "..y
 	local line = twolines[pstr]
 	if line then
@@ -183,7 +185,7 @@ function vector.twoline(x, y)
 end
 
 local threelines = {}
-function vector.threeline(x, y, z)
+function funcs.threeline(x, y, z)
 	local pstr = x.." "..y.." "..z
 	local line = threelines[pstr]
 	if line then
@@ -218,16 +220,104 @@ function vector.threeline(x, y, z)
 	return line
 end
 
-function vector.straightdelay(s, v, a)
+function funcs.sort(ps, preferred_coords)
+	preferred_coords = preferred_coords or {"z", "y", "x"}
+	local a,b,c = unpack(preferred_coords)
+	local function ps_sorting(p1, p2)
+		if p1[a] == p2[a] then
+			if p1[b] == p2[a] then
+				if p1[c] < p2[c] then
+					return true
+				end
+			elseif p1[b] < p2[b] then
+				return true
+			end
+		elseif p1[a] < p2[a] then
+			return true
+		end
+	end
+	table.sort(ps, ps_sorting)
+end
+
+function funcs.scalar(v1, v2)
+	return v1.x*v2.x + v1.y*v2.y + v1.z*v2.z
+end
+
+function funcs.cross(v1, v2)
+	return {
+		x = v1.y*v2.z - v1.z*v2.y,
+		y = v1.z*v2.x - v1.x*v2.z,
+		z = v1.x*v2.y - v1.y*v2.x
+	}
+end
+
+--not optimized
+--local areas = {}
+function funcs.plane(ps)
+	-- sort positions and imagine the first one (A) as vector.zero
+	ps = vector.sort(ps)
+	local pos = ps[1]
+	local B = vector.subtract(ps[2], pos)
+	local C = vector.subtract(ps[3], pos)
+
+	-- get the positions for the fors
+	local cube_p1 = {x=0, y=0, z=0}
+	local cube_p2 = {x=0, y=0, z=0}
+	for i in pairs(cube_p1) do
+		cube_p1[i] = math.min(B[i], C[i], 0)
+		cube_p2[i] = math.max(B[i], C[i], 0)
+	end
+	cube_p1 = vector.apply(cube_p1, math.floor)
+	cube_p2 = vector.apply(cube_p2, math.ceil)
+
+	local vn = vector.normalize(vector.cross(B, C))
+
+	local nAB = vector.normalize(B)
+	local nAC = vector.normalize(C)
+	local angle_BAC = math.acos(vector.scalar(nAB, nAC))
+
+	local nBA = vector.multiply(nAB, -1)
+	local nBC = vector.normalize(vector.subtract(C, B))
+	local angle_ABC = math.acos(vector.scalar(nBA, nBC))
+
+	for z = cube_p1.z, cube_p2.z do
+		for y = cube_p1.y, cube_p2.y do
+			for x = cube_p1.x, cube_p2.x do
+				local p = {x=x, y=y, z=z}
+				local n = -vector.scalar(p, vn)/vector.scalar(vn, vn)
+				if math.abs(n) <= 0.5 then
+					local ep = vector.add(p, vector.multiply(vn, n))
+					local nep = vector.normalize(ep)
+					local angle_BAep = math.acos(vector.scalar(nAB, nep))
+					local angle_CAep = math.acos(vector.scalar(nAC, nep))
+					local angldif = angle_BAC - (angle_BAep+angle_CAep)
+					if math.abs(angldif) < 0.001 then
+						ep = vector.subtract(ep, B)
+						nep = vector.normalize(ep)
+						local angle_ABep = math.acos(vector.scalar(nBA, nep))
+						local angle_CBep = math.acos(vector.scalar(nBC, nep))
+						local angldif = angle_ABC - (angle_ABep+angle_CBep)
+						if math.abs(angldif) < 0.001 then
+							table.insert(ps, vector.add(pos, p))
+						end
+					end
+				end
+			end
+		end
+	end
+	return ps
+end
+
+function funcs.straightdelay(s, v, a)
 	if not a then
 		return s/v
 	end
 	return (math.sqrt(v*v+2*a*s)-v)/a
 end
 
-vector.zero = {x=0, y=0, z=0}
+vector.zero = vector.new()
 
-function vector.sun_dir(time)
+function funcs.sun_dir(time)
 	if not time then
 		time = minetest.get_timeofday()
 	end
@@ -240,7 +330,7 @@ function vector.sun_dir(time)
 	return {x=tmp, y=math.sqrt(1-tmp*tmp), z=0}
 end
 
-function vector.inside(pos, minp, maxp)
+function funcs.inside(pos, minp, maxp)
 	for _,i in pairs({"x", "y", "z"}) do
 		if pos[i] < minp[i]
 		or pos[i] > maxp[i] then
@@ -250,8 +340,8 @@ function vector.inside(pos, minp, maxp)
 	return true
 end
 
-function vector.minmax(p1, p2)
-	local p1 = vector.new(p1) --Are these 2 redefinitions necessary?
+function funcs.minmax(p1, p2)
+	local p1 = vector.new(p1)
 	local p2 = vector.new(p2)
 	for _,i in ipairs({"x", "y", "z"}) do
 		if p1[i] > p2[i] then
@@ -261,7 +351,7 @@ function vector.minmax(p1, p2)
 	return p1, p2
 end
 
-function vector.move(p1, p2, s)
+function funcs.move(p1, p2, s)
 	return vector.round(
 		vector.add(
 			vector.multiply(
@@ -276,8 +366,12 @@ function vector.move(p1, p2, s)
 	)
 end
 
+function funcs.from_number(i)
+	return {x=i, y=i, z=i}
+end
+
 local explosion_tables = {}
-function vector.explosion_table(r)
+function funcs.explosion_table(r)
 	local table = explosion_tables[r]
 	if table then
 		return table
@@ -308,8 +402,92 @@ function vector.explosion_table(r)
 	return tab
 end
 
+local default_nparams = {
+   offset = 0,
+   scale = 1,
+   seed = 1337,
+   octaves = 6,
+   persist = 0.6
+}
+function funcs.explosion_perlin(rmin, rmax, nparams)
+	local t1 = os.clock()
+
+	local r = math.ceil(rmax)
+	nparams = nparams or {}
+	for i,v in pairs(default_nparams) do
+		nparams[i] = nparams[i] or v
+	end
+	nparams.spread = nparams.spread or vector.from_number(r*5)
+
+	local pos = {x=math.random(-30000, 30000), y=math.random(-30000, 30000), z=math.random(-30000, 30000)}
+	local map = minetest.get_perlin_map(nparams, vector.from_number(r+r+1)):get3dMap_flat(pos)
+
+	local id = 1
+
+	local bare_maxdist = rmax*rmax
+	local bare_mindist = rmin*rmin
+
+	local mindist = math.sqrt(bare_mindist)
+	local dist_diff = math.sqrt(bare_maxdist)-mindist
+	mindist = mindist/dist_diff
+
+	local pval_min, pval_max
+
+	local tab, n = {}, 1
+	for z=-r,r do
+		local bare_dist = z*z
+		for y=-r,r do
+			local bare_dist = bare_dist+y*y
+			for x=-r,r do
+				local bare_dist = bare_dist+x*x
+				local add = bare_dist < bare_mindist
+				local pval, distdiv
+				if not add
+				and bare_dist <= bare_maxdist then
+					distdiv = math.sqrt(bare_dist)/dist_diff-mindist
+					pval = math.abs(map[id]) -- strange perlin values…
+					if not pval_min then
+						pval_min = pval
+						pval_max = pval
+					else
+						pval_min = math.min(pval, pval_min)
+						pval_max = math.max(pval, pval_max)
+					end
+					add = true--distdiv < 1-math.abs(map[id])
+				end
+
+				if add then
+					tab[n] = {{x=x, y=y, z=z}, pval, distdiv}
+					n = n+1
+				end
+				id = id+1
+			end
+		end
+	end
+
+	-- change strange values
+	local pval_diff = pval_max - pval_min
+	pval_min = pval_min/pval_diff
+
+	for n,i in pairs(tab) do
+		if i[2] then
+			local new_pval = math.abs(i[2]/pval_diff - pval_min)
+			if i[3]+0.33 < new_pval then
+				tab[n] = {i[1]}
+			elseif i[3] < new_pval then
+				tab[n] = {i[1], true}
+			else
+				tab[n] = nil
+			end
+		end
+	end
+
+	minetest.log("info", string.format("[vector_extras] table created after ca. %.2fs", os.clock() - t1))
+	return tab
+end
+
 local circle_tables = {}
-function vector.circle(r)
+function funcs.circle(r)
 	local table = circle_tables[r]
 	if table then
 		return table
@@ -332,7 +510,7 @@ function vector.circle(r)
 end
 
 local ring_tables = {}
-function vector.ring(r)
+function funcs.ring(r)
 	local table = ring_tables[r]
 	if table then
 		return table
@@ -373,10 +551,156 @@ function vector.ring(r)
 	return tab2
 end
 
-function vector.chunkcorner(pos)
+function funcs.chunkcorner(pos)
 	return {x=pos.x-pos.x%16, y=pos.y-pos.y%16, z=pos.z-pos.z%16}
 end
 
+function funcs.point_distance_minmax(p1, p2)
+	local p1 = vector.new(p1)
+	local p2 = vector.new(p2)
+	local min, max, vmin, vmax, num
+	for _,i in ipairs({"x", "y", "z"}) do
+		num = math.abs(p1[i] - p2[i])
+		if not vmin or num < vmin then
+			vmin = num
+			min = i
+		end
+		if not vmax or num > vmax then
+			vmax = num
+			max = i
+		end
+	end
+	return min, max
+end
+
+function funcs.collision(p1, p2)
+	local clear, node_pos, collision_pos, max, min, dmax, dcmax, pt
+	clear, node_pos = minetest.line_of_sight(p1, p2)
+	if clear then
+		return false
+	end
+	collision_pos = {}
+	min, max = funcs.point_distance_minmax(node_pos, p2)
+	if node_pos[max] > p2[max] then
+		collision_pos[max] = node_pos[max] - 0.5
+	else
+		collision_pos[max] = node_pos[max] + 0.5
+	end
+	dmax = p2[max] - node_pos[max]
+	dcmax = p2[max] - collision_pos[max]
+	pt = dcmax/dmax
+
+	for _,i in ipairs({"x", "y", "z"}) do
+		collision_pos[i] = p2[i] - (p2[i] - node_pos[i]) * pt
+	end
+	return true, collision_pos, node_pos
+end
+
+function funcs.get_data_from_pos(tab, z,y,x)
+	local data = tab[z]
+	if data then
+		data = data[y]
+		if data then
+			return data[x]
+		end
+	end
+end
+
+function funcs.set_data_to_pos(tab, z,y,x, data)
+	if tab[z] then
+		if tab[z][y] then
+			tab[z][y][x] = data
+			return
+		end
+		tab[z][y] = {[x] = data}
+		return
+	end
+	tab[z] = {[y] = {[x] = data}}
+end
+
+function funcs.set_data_to_pos_optional(tab, z,y,x, data)
+	if vector.get_data_from_pos(tab, z,y,x) ~= nil then
+		return
+	end
+	funcs.set_data_to_pos(tab, z,y,x, data)
+end
+
+function funcs.remove_data_from_pos(tab, z,y,x)
+	if vector.get_data_from_pos(tab, z,y,x) == nil then
+		return
+	end
+	tab[z][y][x] = nil
+	if not next(tab[z][y]) then
+		tab[z][y] = nil
+	end
+	if not next(tab[z]) then
+		tab[z] = nil
+	end
+end
+
+function funcs.get_data_pos_table(tab)
+	local t,n = {},1
+	local minz, miny, minx, maxz, maxy, maxx
+	for z,yxs in pairs(tab) do
+		if not minz then
+			minz = z
+			maxz = z
+		else
+			minz = math.min(minz, z)
+			maxz = math.max(maxz, z)
+		end
+		for y,xs in pairs(yxs) do
+			if not miny then
+				miny = y
+				maxy = y
+			else
+				miny = math.min(miny, y)
+				maxy = math.max(maxy, y)
+			end
+			for x,v in pairs(xs) do
+				if not minx then
+					minx = x
+					maxx = x
+				else
+					minx = math.min(minx, x)
+					maxx = math.max(maxx, x)
+				end
+				t[n] = {z,y,x, v}
+				n = n+1
+			end
+		end
+	end
+	return t, {x=minx, y=miny, z=minz}, {x=maxx, y=maxy, z=maxz}, n-1
+end
+
+function funcs.update_minp_maxp(minp, maxp, pos)
+	for _,i in pairs({"z", "y", "x"}) do
+		minp[i] = math.min(minp[i], pos[i])
+		maxp[i] = math.max(maxp[i], pos[i])
+	end
+end
+
+function funcs.quickadd(pos, z,y,x)
+	if z then
+		pos.z = pos.z+z
+	end
+	if y then
+		pos.y = pos.y+y
+	end
+	if x then
+		pos.x = pos.x+x
+	end
+end
+
+function funcs.unpack(pos)
+	return pos.z, pos.y, pos.x
+end
+
+
 dofile(minetest.get_modpath("vector_extras").."/vector_meta.lua")
+
+for name,func in pairs(funcs) do
+	vector[name] = vector[name] or func
+end
 
 minetest.log("info", string.format("[vector_extras] loaded after ca. %.2fs", os.clock() - load_time_start))

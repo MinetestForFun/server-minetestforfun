@@ -1,2 +1,2 @@
 TODO:
-— add things to this list
+— maybe make the explosion table function return a perlin explosion table
