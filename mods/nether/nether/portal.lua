@@ -652,7 +652,7 @@ function nether_port(player, pos)
 	local meta = minetest.get_meta({x=pos.x, y=pos.y-1, z=pos.z})
 	if pos.y < nether.start then
 		set_portal(known_portals_d, pos.z,pos.x, pos.y)
-		player_from_nether(player)
+		nether.player_from_nether(player)
 
 		local my = tonumber(meta:get_string("y"))
 		local y = get_portal(known_portals_u, pos.z,pos.x)
