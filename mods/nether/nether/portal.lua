@@ -1,6 +1,10 @@
 --code copied from Pilzadam's nether mod and edited
+
+-- kills the player if he uses PilzAdam portal
 local portal_target = nether.buildings+1
-local damage_enabled = minetest.setting_getbool("enable_damage")
+local nether_prisons = minetest.setting_getbool("enable_damage")
+local obsidian_portal_kills = nether_prisons and true
+local mclike_portal = false
 
 local abm_allowed
 minetest.after(5, function()
@@ -17,12 +21,15 @@ table.icontains = table.icontains or function(t, v)
 end
 
 local players_in_nether = {}
-local file = io.open(minetest.get_worldpath()..'/nether_players', "r")
-if file then
-	local contents = file:read('*all')
-	io.close(file)
-	if contents then
-		players_in_nether = string.split(contents, " ")
+-- only get info from file if nether prisons
+if nether_prisons then
+	local file = io.open(minetest.get_worldpath()..'/nether_players', "r")
+	if file then
+		local contents = file:read('*all')
+		io.close(file)
+		if contents then
+			players_in_nether = string.split(contents, " ")
+		end
 	end
 end
 
@@ -37,7 +44,7 @@ local function save_nether_players()
 end
 
 local update_background
---if damage_enabled then
+--if nether_prisons then
 	function update_background(player, down)
 		if down then
 			player:set_sky({r=15, g=0, b=0}, "plain")
@@ -49,16 +56,59 @@ local update_background
 --	function update_background()end
 --end
 
+-- returns nodename if area is generated, else calls generation function
+local function generated_or_generate(pos)
+	local name = minetest.get_node(pos).name
+	if name ~= "ignore" then
+		return name
+	end
+	minetest.get_voxel_manip():read_from_map(pos, pos)
+	name = minetest.get_node_or_nil(pos)
+	if not name then
+		minetest.emerge_area(vector.subtract(pos, 80), vector.add(pos, 80))
+		return false
+	end
+	return name.name
+end
+
+-- where the player appears after dying
+local function get_player_died_target(player)
+	local target = vector.add(player:getpos(), {x=math.random(-100,100), y=0, z=math.random(-100,100)})
+	target.y = portal_target + math.random(4)
+	return target
+end
+
+-- used for obsidian portal
+local function obsidian_teleport(player, pname)
+	minetest.chat_send_player(pname, "For any reason you arrived here. Type /nether_help to find out things like craft recipes.")
+	if obsidian_portal_kills then
+		player:set_hp(0)
+		return true
+	end
+	if not mclike_portal then
+		local target = vector.round(get_player_died_target(player))
+		if generated_or_generate(target) then
+			player:moveto(target)
+			return true
+		end
+	end
+	return false
+end
+
+-- teleports players to nether or helps it
 function nether.player_to_nether(player, safe)
 	local pname = player:get_player_name()
 	if table.icontains(players_in_nether, pname) then
 		return
 	end
-	table.insert(players_in_nether, pname)
+	players_in_nether[#players_in_nether+1] = pname
 	save_nether_players()
 	if not safe then
 		minetest.chat_send_player(pname, "For any reason you arrived here. Type /nether_help to find out things like craft recipes.")
 		player:set_hp(0)
+		if not nether_prisons then
+			player:moveto(get_player_died_target(player))
+		end
 	end
 	update_background(player, true)
 end
@@ -79,7 +129,6 @@ function nether.player_from_nether(player)
 end
 
 
---if damage_enabled then
 local function player_exists(name)
 	for _,player in pairs(minetest.get_connected_players()) do
 		if player:get_player_name() == name then
@@ -128,69 +177,95 @@ minetest.register_chatcommand("from_hell", {
 		end
 		minetest.chat_send_player(pname, "You are free now")
 		player_from_nether(player)
-		local pos_togo = {x = 0, y = 35, z = -7}
-		if minetest.setting_getbool("static_spawnpoint") ~= nil then
-			local stsp_conf = minetest.setting_get("static_spawnpoint")
-			pos_togo = {x = stsp_conf:split(",")[1]+0,y = stsp_conf:split(",")[2]+0,z = stsp_conf:split(",")[3]+0}
-		end
-		player:moveto(pos_togo)
-		return true
+		local pos = player:getpos()
+		player:moveto({x=pos.x, y=100, z=pos.z})
+		return true, pname.." is now out of the nether."
 	end
 })]]
 
-minetest.register_on_respawnplayer(function(player)
-	local pname = player:get_player_name()
-	if not table.icontains(players_in_nether, pname) then
-		return
-	end
-	local target = vector.add(player:getpos(), {x=math.random(-100,100), y=0, z=math.random(-100,100)})
-	target.y = portal_target + math.random(4)
-	player:moveto(target)
-	minetest.after(0, function(pname, target)
-		local player = minetest.get_player_by_name(pname)
-		if player then
-			player:moveto(target)
-		end
-	end, pname, target)
-	return true
-end)
 
-local function update_players()
-	for _,player in ipairs(minetest.get_connected_players()) do
+if nether_prisons then
+	-- randomly set player position when he/she dies in nether
+	minetest.register_on_respawnplayer(function(player)
 		local pname = player:get_player_name()
-		local ppos = player:getpos()
-		if table.icontains(players_in_nether, pname) then
-			if ppos.y > nether.start then
-				player:moveto({x=ppos.x, y=portal_target, z=ppos.z})
-				update_background(player, true)
-				--[[minetest.kick_player(pname, "\n1. Maybe you were not allowed to teleport out of the nether."..
+		if not table.icontains(players_in_nether, pname) then
+			return
+		end
+		local target = get_player_died_target(player)
+		player:moveto(target)
+		minetest.after(0, function(pname, target)
+			-- fixes respawn bug
+			local player = minetest.get_player_by_name(pname)
+			if player then
+				player:moveto(target)
+			end
+		end, pname, target)
+		return true
+	end)
+
+	-- function for teleporting players where they belong to
+	local function update_players()
+		for _,player in pairs(minetest.get_connected_players()) do
+			local pname = player:get_player_name()
+			local ppos = player:getpos()
+			if table.icontains(players_in_nether, pname) then
+				if ppos.y > nether.start then
+					player:moveto({x=ppos.x, y=portal_target, z=ppos.z})
+					update_background(player, true)
+					--[[minetest.kick_player(pname, "\n1. Maybe you were not allowed to teleport out of the nether."..
+						"\n2. Maybe the server lagged."..
+						"\n3. please rejoin")]]
+				end
+			elseif ppos.y < nether.start then
+				update_background(player)
+				player:moveto({x=ppos.x, y=20, z=ppos.z})
+				--[[minetest.kick_player(pname, "\n1. Maybe you were not allowed to teleport to the nether."..
 					"\n2. Maybe the server lagged."..
 					"\n3. please rejoin")]]
 			end
-		elseif ppos.y < nether.start then
-			update_background(player)
-			player:moveto({x=ppos.x, y=20, z=ppos.z})
-			--[[minetest.kick_player(pname, "\n1. Maybe you were not allowed to teleport to the nether."..
-				"\n2. Maybe the server lagged."..
-				"\n3. please rejoin")]]
 		end
 	end
-end
 
-local function tick()
-	update_players()
-	minetest.after(2, tick)
-end
-tick()
-
-minetest.register_on_joinplayer(function(player)
-	minetest.after(0, function(player)
-		if player:getpos().y < nether.start then
-			update_background(player, true)
+	-- fix wrong player positions
+	local timer = 0	--doesn't work if the server lags
+	minetest.register_globalstep(function(dtime)
+		timer = timer + dtime;
+		if timer >= 2 then
+			--minetest.after(1, update_players)
+			update_players()
+			timer = 0
 		end
-	end, player)
-end)
+	end)
 
+	-- set background when player joins
+	minetest.register_on_joinplayer(function(player)
+		minetest.after(0, function(player)
+			if player:getpos().y < nether.start then
+				update_background(player, true)
+			end
+		end, player)
+	end)
+else
+	-- test if player is in nether when he/she joins
+	minetest.register_on_joinplayer(function(player)
+		minetest.after(0, function(player)
+			if player:getpos().y < nether.start then
+				if not table.icontains(players_in_nether, pname) then
+					players_in_nether[#players_in_nether+1] = pname
+				end
+				return
+			end
+			for i,name in pairs(players_in_nether) do
+				if name == pname then
+					players_in_nether[i] = nil
+					return
+				end
+			end
+		end, player)
+	end)
+end
+
+-- removes the violet stuff from the obsidian portal
 local function remove_portal_essence(pos)
 	for z = -1,1 do
 		for y = -2,2 do
@@ -204,6 +279,50 @@ local function remove_portal_essence(pos)
 	end
 end
 
+-- change parts of the particledefinition instead of recreating it every time
+local particledef = {
+	amount = 32,
+	time = 4,
+	minvel = {x=0, y=1, z=0},
+	maxvel = {x=0, y=2, z=0},
+	minacc = {x=-0.5,y=-3,z=-0.3},
+	maxacc = {x=0.5,y=-0.4,z=0.3},
+	minexptime = 1,
+	maxexptime = 1,
+	minsize = 0.4,
+	maxsize = 3,
+	collisiondetection = true,
+}
+
+-- teleports player to neter (obsidian portal)
+local function obsi_teleport_player(player, pos, target)
+	local pname = player:get_player_name()
+	if table.icontains(players_in_nether, pname) then
+		return
+	end
+
+	local objpos = player:getpos()
+	objpos.y = objpos.y+0.1 -- Fix some glitches at -8000
+	if minetest.get_node(vector.round(objpos)).name ~= "nether:portal" then
+		return
+	end
+
+	if not obsidian_teleport(player, pname) then
+		-- e.g. ungenerated area
+		return
+	end
+
+	players_in_nether[#players_in_nether+1] = pname
+	save_nether_players()
+	update_background(player, true)
+
+	remove_portal_essence(pos)
+
+	minetest.sound_play("nether_portal_usual", {to_player=pname, gain=1})
+	--obj:setpos(target)
+end
+
+-- abm for particles of the obsidian portal essence and for teleporting
 minetest.register_abm({
 	nodenames = {"nether:portal"},
 	interval = 1,
@@ -213,45 +332,16 @@ minetest.register_abm({
 		if not abm_allowed then
 			return
 		end
-		minetest.add_particlespawner({
-			amount = 32,
-			time = 4,
-			minpos = {x=pos.x-0.25, y=pos.y-0.5, z=pos.z-0.25},
-			maxpos = {x=pos.x+0.25, y=pos.y+0.34, z=pos.z+0.25},
-			minvel = {x=0, y=1, z=0},
-			maxvel = {x=0, y=2, z=0},
-			minacc = {x=-0.5,y=-3,z=-0.3},
-			maxacc = {x=0.5,y=-0.4,z=0.3},
-			minexptime = 1,
-			maxexptime = 1,
-			minsize = 0.4,
-			maxsize = 3,
-			collisiondetection = true,
-			texture = "nether_portal_particle.png^[transform"..math.random(0,7),
-		})
+		particledef.minpos = {x=pos.x-0.25, y=pos.y-0.5, z=pos.z-0.25}
+		particledef.maxpos = {x=pos.x+0.25, y=pos.y+0.34, z=pos.z+0.25}
+		particledef.texture = "nether_portal_particle.png^[transform"..math.random(0,7)
+		minetest.add_particlespawner(particledef)
 		for _,obj in pairs(minetest.get_objects_inside_radius(pos, 1)) do
 			if obj:is_player() then
 				local meta = minetest.get_meta(pos)
 				local target = minetest.string_to_pos(meta:get_string("target"))
 				if target then
-					minetest.after(3, function(obj, pos, target)
-						local pname = obj:get_player_name()
-						if table.icontains(players_in_nether, pname) then
-							return
-						end
-						local objpos = obj:getpos()
-						objpos.y = objpos.y+0.1 -- Fix some glitches at -8000
-						if minetest.get_node(vector.round(objpos)).name ~= "nether:portal" then
-							return
-						end
-
-						remove_portal_essence(pos)
-
-						minetest.sound_play("nether_portal_usual", {to_player=pname, gain=1})
-						nether.player_to_nether(obj)
-						--obj:setpos(target)
-
-					end, obj, pos, target)
+					minetest.after(3, obsi_teleport_player, obj, pos, target)
 				end
 			end
 		end
@@ -299,6 +389,7 @@ local function check_portal(p1, p2)
 	return true
 end
 
+-- tests if it's an obsidian portal
 local function is_portal(pos)
 	for d=-3,3 do
 		for y=-4,4 do
@@ -314,6 +405,15 @@ local function is_portal(pos)
 	end
 end
 
+-- put here the function for creating a second portal
+local create_second_portal
+if mclike_portal then
+	function create_second_portal(target)
+		-- change target here
+	end
+end
+
+-- adds the violet portal essence
 local function make_portal(pos)
 	local p1, p2 = is_portal(pos)
 	if not p1
@@ -322,7 +422,10 @@ local function make_portal(pos)
 		return false
 	end
 
-	if p1.y < nether.start then
+	local in_nether = p1.y < nether.start
+
+	if in_nether
+	and not mclike_portal then
 		print("[nether] aborted, obsidian portals can't be used to get out")
 		return
 	end
@@ -350,7 +453,17 @@ local function make_portal(pos)
 
 	local target = {x=p1.x, y=p1.y, z=p1.z}
 	target.x = target.x + 1
-	target.y = portal_target + math.random(4)
+	if in_nether then
+		target.y = 0
+		create_second_portal(target)
+	else
+		target.y = portal_target + math.random(4)
+	end
+
+	if not generated_or_generate(target)
+	and mclike_portal then
+		return false
+	end
 
 	for d=0,3 do
 	for y=p1.y,p2.y do
@@ -373,6 +486,7 @@ local function make_portal(pos)
 	return true
 end
 
+-- destroy the portal when destroying obsidian
 minetest.override_item("default:obsidian", {
 	on_destruct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -426,12 +540,13 @@ minetest.override_item("default:obsidian", {
 	end
 })
 
+-- override mese crystal fragment for making an obsidian portal
 minetest.after(0.1, function()
 	minetest.override_item("default:mese_crystal_fragment", {
 		on_place = function(stack, player, pt)
 			if pt.under
 			and minetest.get_node(pt.under).name == "default:obsidian" then
-				print("[nether] tries to enable a portal")
+				--print("[nether] tries to enable a portal")
 				local done = make_portal(pt.under)
 				if done then
 					minetest.chat_send_player(
@@ -447,9 +562,9 @@ minetest.after(0.1, function()
 		end
 	})
 end)
---end
 
 
+-- a not filled square
 vector.square = vector.square or
 function(r)
 	local tab, n = {}, 1
@@ -464,20 +579,21 @@ function(r)
 	return tab
 end
 
+-- detects if it's a portal
 local function netherport(pos)
 	local x, y, z = pos.x, pos.y, pos.z
-	for _,i in ipairs({-1, 3}) do
+	for _,i in pairs({-1, 3}) do
 		if minetest.get_node({x=x, y=y+i, z=z}).name ~= "nether:white" then
 			return
 		end
 	end
-	for _,sn in ipairs(vector.square(1)) do
+	for _,sn in pairs(vector.square(1)) do
 		if minetest.get_node({x=x+sn[1], y=y-1, z=z+sn[2]}).name ~= "nether:netherrack"
 		or minetest.get_node({x=x+sn[1], y=y+3, z=z+sn[2]}).name ~= "nether:blood_cooked" then
 			return
 		end
 	end
-	for _,sn in ipairs(vector.square(2)) do
+	for _,sn in pairs(vector.square(2)) do
 		if minetest.get_node({x=x+sn[1], y=y-1, z=z+sn[2]}).name ~= "nether:netherrack_black"
 		or minetest.get_node({x=x+sn[1], y=y+3, z=z+sn[2]}).name ~= "nether:wood_empty" then
 			return
@@ -520,6 +636,7 @@ local function set_portal(t, z,x, y)
 	t[z][x] = y
 end
 
+-- used when a player eats that fruit in a portal
 function nether_port(player, pos)
 	if not player
 	or not pos
@@ -532,17 +649,37 @@ function nether_port(player, pos)
 	end
 	minetest.sound_play("nether_teleporter", {to_player=player:get_player_name()}) --MFF crabman (5/09/2015) fix positional sound don't work to player
 	minetest.sound_play("nether_teleporter", {pos=pos})
+	local meta = minetest.get_meta({x=pos.x, y=pos.y-1, z=pos.z})
 	if pos.y < nether.start then
-		nether.player_from_nether(player)
-		local pos_togo = {x = 0, y = 35, z = -7}
-		if minetest.setting_getbool("static_spawnpoint") ~= nil then
-			local stsp_conf = minetest.setting_get("static_spawnpoint")
-			pos_togo = minetest.string_to_pos(stsp_conf)
+		set_portal(known_portals_d, pos.z,pos.x, pos.y)
+		player_from_nether(player)
+
+		local my = tonumber(meta:get_string("y"))
+		local y = get_portal(known_portals_u, pos.z,pos.x)
+		if y then
+			if y ~= my then
+				meta:set_string("y", y)
+			end
+		else
+			y = my or 100
 		end
-		player:moveto(pos_togo)
+		pos.y = y
+
+		player:moveto(pos)
 	else
 		set_portal(known_portals_u, pos.z,pos.x, pos.y)
-		pos.y = get_portal(known_portals_d, pos.z,pos.x) or portal_target+math.random(4)
+
+		local my = tonumber(meta:get_string("y"))
+		local y = get_portal(known_portals_d, pos.z,pos.x)
+		if y then
+			if y ~= my then
+				meta:set_string("y", y)
+			end
+		else
+			y = my or portal_target+math.random(4)
+		end
+		pos.y = y
+
 		player:moveto(pos)
 		nether.player_to_nether(player, true)
 	end

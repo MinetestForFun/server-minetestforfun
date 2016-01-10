@@ -55,6 +55,9 @@ local mushroom_rarity = 80
 -- Frequency of trees in the nether forest (higher is less frequent)
 local tree_rarity = 200
 
+local abm_tree_interval = 864
+local abm_tree_chance = 100
+
 -- height of the nether generation's end
 nether.start = f_h_max+100
 
@@ -690,6 +693,10 @@ function nether.grow_netherstructure(pos, generated)
 end
 
 
+local set = vector.set_data_to_pos
+local get = vector.get_data_from_pos
+local remove = vector.remove_data_from_pos
+
 local function soft_node(id)
 	return id == c.air or id == c.ignore
 end
@@ -699,7 +706,6 @@ local function update_minmax(min, max, p)
 	max.x = math.max(max.x, p.x)
 	min.z = math.min(min.z, p.z)
 	max.z = math.max(max.z, p.z)
-	return min, max
 end
 
 local fruit_chances = {}
@@ -742,62 +748,69 @@ function nether.grow_tree(pos, generated)
 	local trunks = {}
 	local trunk_corners = {}
 	local h_stem = math.random(h_stem_min, h_stem_max)
-	local stems = {{x=pos.x, y=pos.y+h_stem, z=pos.z}}
-	local fi
-	while not fi do
-		for n,p in pairs(stems) do
-			local used_dirs = {}
-			for _,dir in pairs(dirs) do
-				if math.random(1,2) == 1 then
-					table.insert(used_dirs, dir)
-				end
+	local todo,n = {{x=pos.x, y=pos.y+h_stem, z=pos.z}},1
+	while n do
+		local p = todo[n]
+		todo[n] = nil
+		n = next(todo)
+
+		local used_dirs,u = {},1
+		for _,dir in pairs(dirs) do
+			if math.random(1,2) == 1 then
+				used_dirs[u] = dir
+				u = u+1
 			end
-			if not used_dirs[1] then
-				local dir1 = math.random(4)
-				local dir2 = math.random(3)
-				if dir1 <= dir2 then
-					dir2 = dir2+1
-				end
-				used_dirs[1] = dirs[dir1]
-				used_dirs[2] = dirs[dir2]
-			end
-			for _,dir in pairs(used_dirs) do
-				local p = vector.new(p)
-				local r = math.random(r_arm_min, r_arm_max)
-				for j = 1,r do
-					local x = p.x+j*dir[1]
-					local z = p.z+j*dir[2]
-					trunks[x.." "..p.y.." "..z] = dir[3]
-				end
-				r = r+1
-				p.x = p.x+r*dir[1]
-				p.z = p.z+r*dir[2]
-				trunk_corners[p.x.." "..p.y.." "..p.z] = dir[4] or dir[3]
-				local h = math.random(h_arm_min, h_arm_max)
-				for i = 1,h do
-					trunks[p.x.." "..p.y+i.." "..p.z] = true
-				end
-				p.y = p.y+h
-				table.insert(stems, p)
-			end
-			if p.y > pos.y+h_trunk_max then
-				fi = true
-				break
-			end
-			stems[n] = nil
 		end
+		if not used_dirs[1] then
+			local dir1 = math.random(4)
+			local dir2 = math.random(3)
+			if dir1 <= dir2 then
+				dir2 = dir2+1
+			end
+			used_dirs[1] = dirs[dir1]
+			used_dirs[2] = dirs[dir2]
+		end
+		for _,dir in pairs(used_dirs) do
+			local p = vector.new(p)
+			local r = math.random(r_arm_min, r_arm_max)
+			for j = 1,r do
+				local x = p.x+j*dir[1]
+				local z = p.z+j*dir[2]
+				set(trunks, z,p.y,x, dir[3])
+			end
+			r = r+1
+			p.x = p.x+r*dir[1]
+			p.z = p.z+r*dir[2]
+			set(trunk_corners, p.z,p.y,p.x, dir[4] or dir[3])
+			local h = math.random(h_arm_min, h_arm_max)
+			for i = 1,h do
+				set(trunks, p.z,p.y+i,p.x, true)
+			end
+			p.y = p.y+h
+			--n = #todo+1 -- caused small trees
+			todo[#todo+1] = p
+		end
+		if p.y > pos.y+h_trunk_max then
+			break
+		end
+
+		n = n or next(todo)
 	end
 	local leaves = {}
 	local fruits = {}
 	local trunk_ps = {}
 	local count = 0
-	for n,par in pairs(trunks) do
-		local p = {}
-		p.x, p.y, p.z = unpack(string.split(n, " "))
-		if par ~= true then
-			p.par = par
+	local ps, trmin, trmax, trunk_count = vector.get_data_pos_table(trunks)
+
+	update_minmax(min, max, trmin)
+	update_minmax(min, max, trmax)
+
+	for _,d in pairs(ps) do
+		if d[4] == true then
+			d[4] = nil
 		end
-		table.insert(trunk_ps, p)
+		trunk_ps[#trunk_ps+1] = d
+		local pz, py, px = unpack(d)
 		count = count+1
 		if count > leaf_thickness then
 			count = 0
@@ -805,18 +818,21 @@ function nether.grow_tree(pos, generated)
 				local fruit_chance = fruit_chances[y]
 				for z = -2,2 do
 					for x = -2,2 do
-						local dist = math.sqrt(x*x+y*y+z*z)
-						if math.floor(dist) ~= 0
-						and math.random(1, dist) == 1 then
-							local pstr = p.x+x.." "..p.y+y.." "..p.z+z
-							if not trunks[pstr] then
-								if math.random(1, fruit_rarity) == 1
-								and fruit_chance
+						local distq = x*x+y*y+z*z
+						if distq ~= 0
+						and math.random(1, math.sqrt(distq)) == 1 then
+							local x = x+px
+							local y = y+py
+							local z = z+pz
+							if not get(trunks, z,y,x) then
+								if fruit_chance
+								and math.random(1, fruit_rarity) == 1
 								and math.random(1, fruit_chance) == 1 then
-									fruits[pstr] = true
+									set(fruits, z,y,x, true)
 								else
-									leaves[pstr] = true
+									set(leaves, z,y,x, true)
 								end
+								update_minmax(min, max, {x=x, z=z})
 							end
 						end
 					end
@@ -825,37 +841,8 @@ function nether.grow_tree(pos, generated)
 		end
 	end
 
-	local leaf_ps = {}
-	for n,_ in pairs(leaves) do
-		local p = {}
-		p.x, p.y, p.z = unpack(string.split(n, " "))
-		table.insert(leaf_ps, p)
-		min, max = update_minmax(min, max, p)
-	end
-
-	for n,_ in pairs(trunks) do
-		local p = {}
-		p.x, _, p.z = unpack(string.split(n, " "))
-		min, max = update_minmax(min, max, p)
-	end
-
 	for i = -1,h_stem+1 do
-		table.insert(trunk_ps, {x=pos.x, y=pos.y+i, z=pos.z, par=0})
-	end
-
-	local trunk_corner_ps = {}
-	for n,par in pairs(trunk_corners) do
-		local p = {}
-		p.x, p.y, p.z = unpack(string.split(n, " "))
-		p.par = par
-		table.insert(trunk_corner_ps, p)
-	end
-
-	local fruit_ps = {}
-	for n,_ in pairs(fruits) do
-		local p = {}
-		p.x, p.y, p.z = unpack(string.split(n, " "))
-		table.insert(fruit_ps, p)
+		trunk_ps[#trunk_ps+1] = {pos.z, pos.y+i, pos.x, 0} -- par 0 because of leaves
 	end
 
 	local manip = minetest.get_voxel_manip()
@@ -864,8 +851,8 @@ function nether.grow_tree(pos, generated)
 	local nodes = manip:get_data()
 	local param2s = manip:get_param2_data()
 
-	for _,p in pairs(leaf_ps) do
-		p = area:indexp(p)
+	for _,p in pairs(vector.get_data_pos_table(leaves)) do
+		p = area:index(p[3], p[2], p[1])
 		if soft_node(nodes[p]) then
 			nodes[p] = c.nether_leaves
 			param2s[p] = math.random(0,179)
@@ -873,30 +860,28 @@ function nether.grow_tree(pos, generated)
 		end
 	end
 
-	for _,p in pairs(fruit_ps) do
-		p = area:indexp(p)
+	for _,p in pairs(vector.get_data_pos_table(fruits)) do
+		p = area:index(p[3], p[2], p[1])
 		if soft_node(nodes[p]) then
 			nodes[p] = c.nether_apple
 		end
 	end
 
 	for _,p in pairs(trunk_ps) do
-		local par = p.par
-		p = area:indexp(p)
+		local par = p[4]
+		p = area:index(p[3], p[2], p[1])
 		if par then
 			param2s[p] = par
 		end
 		nodes[p] = c.nether_tree
 	end
 
-	for _,p in pairs(trunk_corner_ps) do
-		local par = p.par
-		p = area:indexp(p)
-		nodes[p] = c.nether_tree_corner
-		param2s[p] = par
+	for _,p in pairs(vector.get_data_pos_table(trunk_corners)) do
+		local vi = area:index(p[3], p[2], p[1])
+		nodes[vi] = c.nether_tree_corner
+		param2s[vi] = p[4]
 	end
 
-	--calculating took ca. 0.07 - 0.18 [s]
 	manip:set_data(nodes)
 	manip:set_param2_data(param2s)
 	manip:write_to_map()
@@ -904,7 +889,7 @@ function nether.grow_tree(pos, generated)
 	if generated then
 		spam = 3
 	end
-	nether:inform("a nether tree grew at ("..pos.x.."|"..pos.y.."|"..pos.z..")", spam, t1)
+	nether:inform("a nether tree with "..trunk_count.." branch trunk nodes grew at ("..pos.x.."|"..pos.y.."|"..pos.z..")", spam, t1)
 	if not generated then
 		local t1 = os.clock()
 		manip:update_map()
@@ -933,8 +918,8 @@ minetest.register_abm({
 minetest.register_abm({
 	nodenames = {"nether:tree_sapling"},
 	neighbors = {"group:nether_dirt"},
-	interval = 864,
-	chance = 100,
+	interval = abm_tree_interval,
+	chance = abm_tree_chance,
 	action = function(pos)
 		if minetest.get_node({x=pos.x, y=pos.y+2, z=pos.z}).name == "air"
 		and minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" then

@@ -18,4 +18,5 @@ If you got ideas or found bugs, please tell them to me.
 
 
 TODO:  
-— find a way to get the perlin noise inside [-1; 1] or use another noise
+— find a way to get the perlin noise inside [-1; 1] or use another noise  
+— add something containing items to that buildings

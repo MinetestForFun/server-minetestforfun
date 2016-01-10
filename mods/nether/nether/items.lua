@@ -539,6 +539,7 @@ minetest.register_node("nether:leaves", {
 	inventory_image = "nether_leaves.png",
 	wield_image = "nether_leaves.png",
 	paramtype = "light",
+	paramtype2 = "degrotate",
 	is_ground_content = false,
 	groups = {snappy=3, leafdecay=3, leaves=1},
 	drop = {
