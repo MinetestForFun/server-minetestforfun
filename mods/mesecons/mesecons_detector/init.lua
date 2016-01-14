@@ -7,8 +7,8 @@ local GET_COMMAND = "GET"
 local object_detector_make_formspec = function (pos)
 	local meta = minetest.get_meta(pos)
 	meta:set_string("formspec", "size[9,2.5]" ..
-		"field[0.3,  0;9,2;scanname;Name of player to scan for (empty for any):;${scanname}]"..
-		"field[0.3,1.5;4,2;digiline_channel;Digiline Channel (optional):;${digiline_channel}]"..
+		"field[0.3,  0;12,2;scanname;Name of player(s) to scan for (empty for any, separate with comma):;${scanname}]"..
+		"field[0.3,1.5;4 ,2;digiline_channel;Digiline Channel (optional):;${digiline_channel}]"..
 		"button_exit[7,0.75;2,3;;Save]")
 end
 
@@ -26,11 +26,23 @@ local object_detector_scan = function (pos)
 	local objs = minetest.get_objects_inside_radius(pos, mesecon.setting("detector_radius", 6))
 	for k, obj in pairs(objs) do
 		local isname = obj:get_player_name() -- "" is returned if it is not a player; "" ~= nil!
-		local scanname = minetest.get_meta(pos):get_string("scanname")
-		if (isname == scanname and isname ~= "") or (isname  ~= "" and scanname == "") then -- player with scanname found or not scanname specified
+		local scanname = minetest.get_meta(pos):get_string("scanname"):gsub(' ', "")
+		if (scanname == "" and isname ~= "") then
+			minetest.get_meta(pos):set_string("scanedname", "")
+			return true
+		end
+		local founds = {}
+		for _, name in pairs(scanname:split(',')) do
+			if (isname == name and isname ~= "") then
+				table.insert(founds, isname)
+			end
+		end
+		if #founds > 0 then
+			minetest.get_meta(pos):set_string("scannedname", table.concat(founds, ','))
 			return true
 		end
 	end
+	minetest.get_meta(pos):set_string("scanedname", "")
 	return false
 end
 
@@ -41,7 +53,7 @@ local object_detector_digiline = {
 			local meta = minetest.get_meta(pos)
 			local active_channel = meta:get_string("digiline_channel")
 			if channel == active_channel then
-				meta:set_string("scanname", msg)
+				meta:set_string("scanedname", msg)
 				object_detector_make_formspec(pos)
 			end
 		end,
