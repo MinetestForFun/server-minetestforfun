@@ -92,7 +92,7 @@ function pclasses.register_class_switch(cname, params)
 			pos.y = pos.y + 1
 
 			-- Clean remaining entities
-			for _,ref in pairs(minetest.get_objects_inside_radius(pos, 1)) do
+			for _,ref in pairs(minetest.get_objects_inside_radius(pos, 0.3)) do
 				local e = ref:get_luaentity()
 				if e and e.name == "pclasses:item" then
 					ref:remove()
@@ -110,7 +110,7 @@ function pclasses.register_class_switch(cname, params)
 		end,
 		on_timer = function(pos)
 			pos.y = pos.y + 1
-			for _,ref in pairs(minetest.get_objects_inside_radius(pos, 1)) do
+			for _,ref in pairs(minetest.get_objects_inside_radius(pos, 0.3)) do
 				local e = ref:get_luaentity()
 				if e and e.name == "pclasses:item" then
 					return true
@@ -126,7 +126,7 @@ function pclasses.register_class_switch(cname, params)
 		end,
 		on_destruct = function(pos)
 			pos.y = pos.y + 1
-			for _,ref in pairs(minetest.get_objects_inside_radius(pos, 1)) do
+			for _,ref in pairs(minetest.get_objects_inside_radius(pos, 0.3)) do
 				local e = ref:get_luaentity()
 				if e and e.name == "pclasses:item" then
 					ref:remove()
