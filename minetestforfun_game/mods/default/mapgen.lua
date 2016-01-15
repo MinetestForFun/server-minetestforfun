@@ -2,6 +2,7 @@
 -- Aliases for map generator outputs
 --
 
+minetest.register_alias("mapgen_air", "air")
 minetest.register_alias("mapgen_stone", "default:stone")
 minetest.register_alias("mapgen_dirt", "default:dirt")
 minetest.register_alias("mapgen_dirt_with_grass", "default:dirt_with_grass")
@@ -74,10 +75,11 @@ function default.register_ores()
 
 	-- Sand
 
-	minetest.register_ore({
-		ore_type         = "blob",
-		ore              = "default:sand",
-		wherein          = {"default:stone"},
+	minetest.register_ore({ 
+		ore_type        = "blob",
+		ore             = "default:sand",
+		wherein         = {"default:stone", "default:sandstone",
+			"default:desert_stone"},
 		clust_scarcity   = 24 * 24 * 24,
 		clust_size       = 7,
 		y_min            = -63,
@@ -96,9 +98,9 @@ function default.register_ores()
 	-- Dirt
 
 	minetest.register_ore({
-		ore_type         = "blob",
-		ore              = "default:dirt",
-		wherein          = {"default:stone"},
+		ore_type        = "blob",
+		ore             = "default:dirt",
+		wherein         = {"default:stone", "default:sandstone"},
 		clust_scarcity   = 24 * 24 * 24,
 		clust_size       = 7,
 		y_min            = -63,
@@ -117,9 +119,9 @@ function default.register_ores()
 	-- Gravel
 
 	minetest.register_ore({
-		ore_type         = "blob",
-		ore              = "default:gravel",
-		wherein          = {"default:stone"},
+		ore_type        = "blob",
+		ore             = "default:gravel",
+		wherein         = {"default:stone"},
 		clust_scarcity   = 24 * 24 * 24,
 		clust_size       = 7,
 		y_min            = -31000,
@@ -773,8 +775,26 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
-		y_min = 5,
+		y_min = 6,
 		y_max = 31000,
+		heat_point = 40,
+		humidity_point = 35,
+	})
+
+	minetest.register_biome({
+		name = "stone_grassland_dunes",
+		--node_dust = "",
+		node_top = "default:sand",
+		depth_top = 1,
+		node_filler = "default:sand",
+		depth_filler = 2,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		y_min = 5,
+		y_max = 5,
 		heat_point = 40,
 		humidity_point = 35,
 	})
@@ -810,8 +830,26 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
-		y_min = 5,
+		y_min = 6,
 		y_max = 31000,
+		heat_point = 40,
+		humidity_point = 65,
+	})
+
+	minetest.register_biome({
+		name = "coniferous_forest_dunes",
+		--node_dust = "",
+		node_top = "default:sand",
+		depth_top = 1,
+		node_filler = "default:sand",
+		depth_filler = 3,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		y_min = 5,
+		y_max = 5,
 		heat_point = 40,
 		humidity_point = 65,
 	})
@@ -847,8 +885,26 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
-		y_min = 5,
+		y_min = 6,
 		y_max = 31000,
+		heat_point = 60,
+		humidity_point = 35,
+	})
+
+	minetest.register_biome({
+		name = "sandstone_grassland_dunes",
+		--node_dust = "",
+		node_top = "default:sand",
+		depth_top = 1,
+		node_filler = "default:sand",
+		depth_filler = 2,
+		node_stone = "default:sandstone",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		y_min = 5,
+		y_max = 5,
 		heat_point = 60,
 		humidity_point = 35,
 	})
@@ -1227,7 +1283,9 @@ local function register_grass_decoration(offset, scale, length)
 			persist = 0.6
 		},
 		biomes = {"stone_grassland", "sandstone_grassland",
-			"deciduous_forest", "coniferous_forest"},
+			"deciduous_forest", "coniferous_forest",
+			"stone_grassland_dunes", "sandstone_grassland_dunes",
+			"coniferous_forest_dunes"},
 		y_min = 1,
 		y_max = 31000,
 		decoration = "default:grass_"..length,
@@ -1257,7 +1315,7 @@ end
 function default.register_decorations()
 	minetest.clear_registered_decorations()
 
-	-- Apple tree
+	-- Apple tree and log
 
 	minetest.register_decoration({
 		deco_type = "schematic",
@@ -1278,7 +1336,40 @@ function default.register_decorations()
 		flags = "place_center_x, place_center_z",
 	})
 
-	-- Jungle tree
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.002,
+			scale = 0.001,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = {
+			size = { x = 3, y = 3, z = 1},
+			data = {
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "default:tree", param2 = 12, prob = 191 },
+				{ name = "default:tree", param2 = 12 },
+				{ name = "default:tree", param2 = 12, prob = 127 },
+				{ name = "air", prob = 0 },
+				{ name = "flowers:mushroom_brown", prob = 63 },
+				{ name = "air", prob = 0 },
+			},
+		},
+		flags = "place_center_x",
+		rotation = "random",
+	})
+
+	-- Jungle tree and log
 
 	minetest.register_decoration({
 		deco_type = "schematic",
@@ -1293,7 +1384,33 @@ function default.register_decorations()
 		rotation = "random",
 	})
 
-	-- Taiga and temperate coniferous forest pine tree
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass", "default:dirt"},
+		sidelen = 80,
+		fill_ratio = 0.01,
+		biomes = {"rainforest", "rainforest_swamp"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = {
+			size = { x = 3, y = 3, z = 1},
+			data = {
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "default:jungletree", param2 = 12, prob = 191 },
+				{ name = "default:jungletree", param2 = 12 },
+				{ name = "default:jungletree", param2 = 12, prob = 127 },
+				{ name = "air", prob = 0 },
+				{ name = "flowers:mushroom_brown", prob = 127 },
+				{ name = "air", prob = 0 },
+			},
+		},
+		flags = "place_center_x",
+		rotation = "random",
+	})
+
+	-- Taiga and temperate coniferous forest pine tree and log
 
 	minetest.register_decoration({
 		deco_type = "schematic",
@@ -1314,7 +1431,33 @@ function default.register_decorations()
 		flags = "place_center_x, place_center_z",
 	})
 
-	-- Acacia tree
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_snow", "default:dirt_with_grass"},
+		sidelen = 80,
+		fill_ratio = 0.003,
+		biomes = {"taiga", "coniferous_forest"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = {
+			size = { x = 3, y = 3, z = 1},
+			data = {
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "default:pine_tree", param2 = 12, prob = 191 },
+				{ name = "default:pine_tree", param2 = 12 },
+				{ name = "default:pine_tree", param2 = 12, prob = 127 },
+				{ name = "air", prob = 0 },
+				{ name = "flowers:mushroom_red", prob = 63 },
+				{ name = "air", prob = 0 },
+			},
+		},
+		flags = "place_center_x",
+		rotation = "random",
+	})
+
+	-- Acacia tree and log
 
 	minetest.register_decoration({
 		deco_type = "schematic",
@@ -1336,6 +1479,90 @@ function default.register_decorations()
 		rotation = "random",
 	})
 
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_dry_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0,
+			scale = 0.001,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"savanna"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = {
+			size = { x = 3, y = 2, z = 1},
+			data = {
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "default:acacia_tree", param2 = 12, prob = 191 },
+				{ name = "default:acacia_tree", param2 = 12 },
+				{ name = "default:acacia_tree", param2 = 12, prob = 127 },
+			},
+		},
+		flags = "place_center_x",
+		rotation = "random",
+	})
+
+	-- Aspen tree and log
+
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.01,
+			scale = -0.02,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("default").."/schematics/aspen_tree.mts",
+		flags = "place_center_x, place_center_z",
+		rotation = "random",
+	})
+
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = -0.001,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = {
+			size = { x = 3, y = 3, z = 1},
+			data = {
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "air", prob = 0 },
+				{ name = "default:aspen_tree", param2 = 12 },
+				{ name = "default:aspen_tree", param2 = 12 },
+				{ name = "default:aspen_tree", param2 = 12, prob = 127 },
+				{ name = "flowers:mushroom_red", prob = 63 },
+				{ name = "flowers:mushroom_brown", prob = 63 },
+				{ name = "air", prob = 0 },
+			},
+		},
+		flags = "place_center_x",
+		rotation = "random",
+	})
 	-- Large cactus
 
 	minetest.register_decoration({

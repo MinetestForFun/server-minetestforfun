@@ -148,6 +148,14 @@ BlockMen (CC BY-SA 3.0):
   heart.png
   gui_*.png
 
+sofar (CC BY-SA 3.0):
+  default_book_written.png, based on default_book.png
+  default_aspen_sapling
+  default_aspen_leaves
+  default_aspen_tree
+  default_aspen_tree_top, derived from default_pine_tree_top (by paramat)
+  default_aspen_wood, derived from default_pine_wood (by paramat)
+
 Neuromancer (CC BY-SA 2.0):
   default_cobble.png, based on texture by Brane praefect
   default_mossycobble.png, based on texture by Brane praefect
