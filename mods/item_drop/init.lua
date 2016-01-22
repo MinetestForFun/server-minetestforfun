@@ -188,7 +188,7 @@ end
 
 local mt_item_drop = minetest.item_drop
 function minetest.item_drop(itemstack, dropper, pos)
-	if dropper.is_player then
+	if dropper and dropper.is_player then
 		local v = dropper:get_look_dir()
 		local p = {x=pos.x, y=pos.y+1.2, z=pos.z}
 		local cs = itemstack:get_count()
