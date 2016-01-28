@@ -73,3 +73,12 @@ if not minetest.get_modpath("ethereal") then
 	minetest.register_alias("ethereal:tree_sapling", "default:sapling")
 	minetest.register_alias("ethereal:jungle_tree_sapling", "default:junglesapling")
 end
+
+minetest.register_craft({
+	output = "mobs:tree_monster",
+	recipe = {
+		{"default:tree", "default:tree", "default:tree"},
+		{"default:tree", "default:nyancat_rainbow", "default:tree"},
+		{"default:tree", "default:tree", "default:tree"}
+	}
+})

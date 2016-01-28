@@ -66,3 +66,12 @@ mobs:register_mob("mobs:stone_monster", {
 mobs:spawn_specific("mobs:stone_monster", {"default:stone", "default:sandstone"}, {"air"}, -1, 5, 30, 7000, 1, -31000, -25, false)
 -- register spawn egg
 mobs:register_egg("mobs:stone_monster", "Stone Monster", "mobs_stone_monster_inv.png", 1)
+
+minetest.register_craft({
+	output = "mobs:stone_monster",
+	recipe = {
+		{"default:stone", "default:stone", "default:stone"},
+		{"default:stone", "default:nyancat_rainbow", "default:stone"},
+		{"default:stone", "default:stone", "default:stone"}
+	}
+})

@@ -62,3 +62,12 @@ mobs:register_mob("mobs:sand_monster", {
 mobs:spawn_specific("mobs:sand_monster", {"default:desert_sand", "default:sand"}, {"air"}, -1, 20, 30, 20000, 1, -31000, 31000, false)
 -- register spawn egg
 mobs:register_egg("mobs:sand_monster", "Sand Monster", "mobs_sand_monster_inv.png", 1)
+
+minetest.register_craft({
+	output = "mobs:sand_monster",
+	recipe = {
+		{"group:sand", "group:sand", "group:sand"},
+		{"group:sand", "default:nyancat_rainbow", "group:sand"},
+		{"group:sand", "group:sand", "group:sand"}
+	}
+})

@@ -62,3 +62,12 @@ mobs:register_mob("mobs:dirt_monster", {
 mobs:spawn_specific("mobs:dirt_monster", {"default:dirt_with_grass", "default:dirt_with_dry_grass"}, {"air"}, -1, 5, 30, 10000, 1, -31000, 31000, false)
 -- register spawn egg
 mobs:register_egg("mobs:dirt_monster", "Dirt Monster", "mobs_dirt_monster_inv.png", 1)
+
+minetest.register_craft({
+	output = "mobs:dirt_monster",
+	recipe = {
+		{"default:dirt", "default:dirt", "default:dirt"},
+		{"default:dirt", "default:nyancat_rainbow", "default:dirt"},
+		{"default:dirt", "default:dirt", "default:dirt"}
+	}
+})
