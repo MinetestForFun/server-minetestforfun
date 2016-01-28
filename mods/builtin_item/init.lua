@@ -74,7 +74,7 @@ minetest.register_entity(":__builtin:item", {
 			is_visible = true,
 			visual = "wielditem",
 			textures = {(itemname or "unknown_item.png")},
-			visual_size = {x=0.25, y=0.25},
+			visual_size = {x=0.175, y=0.175},
 			automatic_rotate = math.pi * 0.5,
 		}
 		self.object:set_properties(prop)
