@@ -159,6 +159,7 @@ armor.set_player_armor = function(self, player)
 	local armor_level = 0
 	local armor_heal = 0
 	local armor_fire = 0
+	local armor_water = 0
 	local state = 0
 	local items = 0
 	local elements = {}
@@ -246,6 +247,7 @@ armor.set_player_armor = function(self, player)
 	self.def[name].speed = physics_o.speed
 	self.def[name].gravity = physics_o.gravity
 	self.def[name].fire = armor_fire
+	self.def[name].water = armor_water
 	self:update_player_visuals(player)
 end
 
@@ -483,6 +485,7 @@ minetest.register_on_joinplayer(function(player)
 		speed = 1,
 		gravity = 1,
 		fire = 0,
+		water = 0,
 	}
 	armor.textures[name] = {
 		skin = armor.default_skin..".png",
@@ -625,42 +628,53 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 	return hp_change
 end, true)
 
--- Fire Protection, added by TenPlus1
+-- Fire Protection and water breating, added by TenPlus1
 
 if ARMOR_FIRE_PROTECT == true then
 	-- override hot nodes so they do not hurt player anywhere but mod
-	for _, row in ipairs(ARMOR_FIRE_NODES) do
+	for _, row in pairs(ARMOR_FIRE_NODES) do
 		if minetest.registered_nodes[row[1]] then
 			minetest.override_item(row[1], {damage_per_second = 0})
 		end
 	end
-	minetest.register_globalstep(function(dtime)
-		armor.timer = armor.timer + dtime
-		if armor.timer > ARMOR_UPDATE_TIME then
-			for _,player in ipairs(minetest.get_connected_players()) do
-				local name = player:get_player_name()
-				local pos = player:getpos()
-				local hp = player:get_hp()
-				if name and pos and hp then
-					pos.y = pos.y + 1.4 -- head level
-					local node_head = minetest.get_node(pos).name
-					pos.y = pos.y - 1.2 -- feet level
-					local node_feet = minetest.get_node(pos).name
-					-- is player inside a hot node?
-					for _, row in ipairs(ARMOR_FIRE_NODES) do
-						-- check fire protection, if not enough then get hurt
-						if row[1] == node_head or row[1] == node_feet then
-							if hp > 0 and armor.def[name].fire < row[2] then
-								hp = hp - row[3] * ARMOR_UPDATE_TIME
-								player:set_hp(hp)
-								break
-							end
-						end
+else
+	minetest.log("info", "[3d_armor] Fire Nodes disabled")
+end
+
+minetest.register_globalstep(function(dtime)
+	armor.timer = armor.timer + dtime
+	if armor.timer < ARMOR_UPDATE_TIME then
+		return
+	end
+	for _,player in pairs(minetest.get_connected_players()) do
+		local name = player:get_player_name()
+		local pos = player:getpos()
+		local hp = player:get_hp()
+		-- water breathing
+		if name and armor.def[name].water > 0 then
+			if player:get_breath() < 10 then
+				player:set_breath(10)
+			end
+		end
+		-- fire protection
+		if ARMOR_FIRE_PROTECT == true
+		and name and pos and hp then
+			pos.y = pos.y + 1.4 -- head level
+			local node_head = minetest.get_node(pos).name
+			pos.y = pos.y - 1.2 -- feet level
+			local node_feet = minetest.get_node(pos).name
+			-- is player inside a hot node?
+			for _, row in pairs(ARMOR_FIRE_NODES) do
+				-- check fire protection, if not enough then get hurt
+				if row[1] == node_head or row[1] == node_feet then
+					if hp > 0 and armor.def[name].fire < row[2] then
+						hp = hp - row[3] * ARMOR_UPDATE_TIME
+						player:set_hp(hp)
+						break
 					end
 				end
 			end
-			armor.timer = 0
 		end
-	end)
-end
-
+	end
+	armor.timer = 0
+end)
