@@ -10,10 +10,10 @@ unified_inventory.register_page("bags", {
 		local player_name = player:get_player_name()
 		local formspec = "background[0.06,0.99;7.92,7.52;ui_bags_main_form.png]"
 		formspec = formspec.."label[0,0;"..S("Bags").."]"
-		formspec = formspec.."button[0,2;2,0.5;bag1;Bag 1]"
-		formspec = formspec.."button[2,2;2,0.5;bag2;Bag 2]"
-		formspec = formspec.."button[4,2;2,0.5;bag3;Bag 3]"
-		formspec = formspec.."button[6,2;2,0.5;bag4;Bag 4]"
+		formspec = formspec.."button[0,2;2,0.5;bag1;Bag 1]" .. "button[0,3;2,0.5;unequip_bag1;Unequip]"
+		formspec = formspec.."button[2,2;2,0.5;bag2;Bag 2]" .. "button[2,3;2,0.5;unequip_bag2;Unequip]"
+		formspec = formspec.."button[4,2;2,0.5;bag3;Bag 3]" .. "button[4,3;2,0.5;unequip_bag3;Unequip]"
+		formspec = formspec.."button[6,2;2,0.5;bag4;Bag 4]" .. "button[6,3;2,0.5;unequip_bag4;Unequip]"
 		formspec = formspec.."listcolors[#00000000;#00000000]"
 		formspec = formspec.."list[detached:"..minetest.formspec_escape(player_name).."_bags;bag1;0.5,1;1,1;]"
 		formspec = formspec.."list[detached:"..minetest.formspec_escape(player_name).."_bags;bag2;2.5,1;1,1;]"
@@ -129,6 +129,29 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 			unified_inventory.set_inventory_formspec(player, "bag"..i)
 			return
+		elseif fields["unequip_bag" .. i] then
+			local stack = player:get_inventory():get_stack("bag"..i, 1)
+			if not stack:get_definition().groups.bagslots then
+				return
+			end
+			local pinv = player:get_inventory()
+			if not pinv:room_for_item("main", stack) then
+				minetest.chat_send_player(player:get_player_name(), "You need one free slot in your main inventory")
+				return
+			end
+
+			local inv = pinv:get_list("bag" .. i .. "contents")
+			local list = {}
+			for i, item in pairs(inv) do
+				list[i] = item:to_table()
+			end
+
+			pinv:remove_item("bag" .. i, stack)
+			minetest.get_inventory({type = "detached", name = minetest.formspec_escape(player:get_player_name()) .. "_bags"}):set_stack("bag" .. i, 1, nil)
+			pinv:set_list("bag" .. i .. "contents", {})
+
+			stack:set_metadata(minetest.serialize(list))
+			pinv:add_item("main", stack)
 		end
 	end
 end)
@@ -137,23 +160,24 @@ minetest.register_on_joinplayer(function(player)
 	local player_inv = player:get_inventory()
 	local bags_inv = minetest.create_detached_inventory(player:get_player_name().."_bags",{
 		on_put = function(inv, listname, index, stack, player)
-			player:get_inventory():set_stack(listname, index, stack)
-			player:get_inventory():set_size(listname.."contents",
+			local pinv = player:get_inventory()
+			pinv:set_stack(listname, index, stack)
+			pinv:set_size(listname.."contents",
 					stack:get_definition().groups.bagslots)
+
+			-- Retrieve the serialized inventory if any
+			if stack:get_metadata() ~= "" then
+				for i, item in pairs(minetest.deserialize(stack:get_metadata())) do
+					pinv:set_stack(listname .. "contents", i, ItemStack(item))
+				end
+			end
 		end,
-		on_take = function(inv, listname, index, stack, player)
-			player:get_inventory():set_stack(listname, index, nil)
+		allow_take = function()
+			return 0
 		end,
 		allow_put = function(inv, listname, index, stack, player)
 			if stack:get_definition().groups.bagslots then
 				return 1
-			else
-				return 0
-			end
-		end,
-		allow_take = function(inv, listname, index, stack, player)
-			if player:get_inventory():is_empty(listname.."contents") then
-				return stack:get_count()
 			else
 				return 0
 			end
@@ -216,4 +240,3 @@ minetest.register_craft({
 		{"farming:cotton", "unified_inventory:bag_medium", "farming:cotton"},
     },
 })
-
