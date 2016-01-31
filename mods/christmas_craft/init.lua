@@ -1,6 +1,6 @@
 --dofile(minetest.get_modpath("christmas_craft").."/mods.lua")--disabled because 4seasons is not installed
 dofile(minetest.get_modpath("christmas_craft").."/crafts.lua") --temporary disabled because cristmas is over--
-dofile(minetest.get_modpath("christmas_craft").."/settings.lua") -- makes it snow
+--dofile(minetest.get_modpath("christmas_craft").."/settings.lua") -- makes it snow
 -- blocks --
 
 minetest.register_node("christmas_craft:snowman", {
