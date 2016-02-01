@@ -8,7 +8,6 @@ mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:a
 					"default:cobble", "default:gravel", "default:clay_lump", "default:sand", "default:dirt_with_grass",
 					"default:dirt", "default:chest", "default:torch"}
 
-mobs.npc_max_hp = 20
 
 mobs:register_mob("mobs:npc", {
 	-- animal, monster, npc
@@ -20,7 +19,9 @@ mobs:register_mob("mobs:npc", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health & armor
-	hp_min = 20, hp_max = 20, armor = 100,
+	hp_min = 20,
+	hp_max = 20,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
 	visual = "mesh",
@@ -106,6 +107,7 @@ mobs:register_mob("mobs:npc", {
 					item:take_item()
 					clicker:set_wielded_item(item)
 				end
+
 				local pos = self.object:getpos()
 				pos.y = pos.y + 0.5
 				minetest.add_item(pos, {
@@ -122,6 +124,7 @@ mobs:register_mob("mobs:npc", {
 			end
 			mobs:capture_mob(self, clicker, 0, 5, 80, false, nil)
 		end
+
 	end,
 })
 

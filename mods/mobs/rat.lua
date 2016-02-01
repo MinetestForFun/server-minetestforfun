@@ -26,6 +26,8 @@ mobs:register_mob("mobs:rat", {
 	},
 	-- speed and jump
 	walk_velocity = 1,
+	run_velocity = 2,
+	runaway = true,
 	jump = true,
 	-- no drops
 	drops = {},

@@ -6,7 +6,7 @@ local all_colours = {
 
 -- Sheep by PilzAdam
 
-for _, col in ipairs(all_colours) do
+for _, col in pairs(all_colours) do
 
 	mobs:register_mob("mobs:sheep_"..col, {
 		-- animal, monster, npc, barbarian
@@ -36,6 +36,7 @@ for _, col in ipairs(all_colours) do
 		-- speed and jump
 		walk_velocity = 1,
 		run_velocity = 2,
+		runaway = true,
 		jump = true,
 		-- drops raw meat and woll of its color when dead
 		drops = {
@@ -117,7 +118,10 @@ for _, col in ipairs(all_colours) do
 
 			--are we coloring?
 			if itemname:find("dye:") then
-				if self.gotten == false and self.child == false and self.tamed == true and name == self.owner then
+				if self.gotten == false
+				and self.child == false
+				and self.tamed == true
+				and name == self.owner then
 					local col = string.split(itemname,":")[2]
 					for _,c in pairs(all_colours) do
 						if c == col then

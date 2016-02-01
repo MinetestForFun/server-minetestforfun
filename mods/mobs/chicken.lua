@@ -33,6 +33,8 @@ mobs:register_mob("mobs:chicken", {
 	},
 	-- speed and jump
 	walk_velocity = 1,
+	run_velocity = 3,
+	runaway = true,
 	jump = true,
 	-- drops raw chicken when dead
 	drops = {
@@ -59,7 +61,9 @@ mobs:register_mob("mobs:chicken", {
 	view_range = 5,
 
 	on_rightclick = function(self, clicker)
-		mobs:feed_tame(self, clicker, 8, true, true)
+		if mobs:feed_tame(self, clicker, 8, true, true) then
+			return
+		end
 		mobs:capture_mob(self, clicker, 30, 50, 80, false, nil)
 	end,
 
@@ -137,12 +141,12 @@ mobs:register_arrow("mobs:egg_entity", {
 	end
 })
 
--- snowball throwing item
+-- egg throwing item
 
 local egg_GRAVITY = 9
 local egg_VELOCITY = 19
 
--- shoot snowball
+-- shoot egg
 local mobs_shoot_egg = function (item, player, pointed_thing)
 	local playerpos = player:getpos()
 	minetest.sound_play("default_place_node_hard", {

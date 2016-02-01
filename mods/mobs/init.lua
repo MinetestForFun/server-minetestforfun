@@ -62,6 +62,9 @@ dofile(path.."/creeper.lua")
 -- Mob Items
 dofile(path.."/crafts.lua")
 
+-- Spawner
+dofile(path.."/spawner.lua")
+
 -- Mob menu spawner special MFF
 dofile(path.."/mff_menu.lua")
 
