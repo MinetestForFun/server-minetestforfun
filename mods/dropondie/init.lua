@@ -46,7 +46,7 @@ minetest.register_on_dieplayer(function(player)
    -- Drop unified_inventory bags and their contents
    if minetest.get_modpath("unified_inventory") then
 
-      local bag_id = {"bag1", "bag2", "bag3", "bag4"}
+    --[[  local bag_id = {"bag1", "bag2", "bag3", "bag4"}
       local contents_id = ""
       local n = 0
 
@@ -61,7 +61,13 @@ minetest.register_on_dieplayer(function(player)
             end
          end
       end
-
+      ]]
+      for n = 1, 4 do
+         local stack = unified_inventory.extract_bag(player, n)
+         if stack then
+            drop(pos, stack)
+         end
+      end
    end
 
 end)

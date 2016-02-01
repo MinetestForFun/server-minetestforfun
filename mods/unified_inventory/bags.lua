@@ -130,28 +130,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			unified_inventory.set_inventory_formspec(player, "bag"..i)
 			return
 		elseif fields["unequip_bag" .. i] then
-			local stack = player:get_inventory():get_stack("bag"..i, 1)
-			if not stack:get_definition().groups.bagslots then
+			local stack = unified_inventory.extract_bag(player, i)
+			if not stack then
 				return
-			end
-			local pinv = player:get_inventory()
-			if not pinv:room_for_item("main", stack) then
+			elseif not player:get_inventory():room_for_item("main", stack) then
 				minetest.chat_send_player(player:get_player_name(), "You need one free slot in your main inventory")
 				return
 			end
-
-			local inv = pinv:get_list("bag" .. i .. "contents")
-			local list = {}
-			for i, item in pairs(inv) do
-				list[i] = item:to_table()
-			end
-
-			pinv:remove_item("bag" .. i, stack)
-			minetest.get_inventory({type = "detached", name = minetest.formspec_escape(player:get_player_name()) .. "_bags"}):set_stack("bag" .. i, 1, nil)
-			pinv:set_list("bag" .. i .. "contents", {})
-
-			stack:set_metadata(minetest.serialize(list))
-			pinv:add_item("main", stack)
+			player:get_inventory():add_item("main", stack)
 		end
 	end
 end)
@@ -240,3 +226,32 @@ minetest.register_craft({
 		{"farming:cotton", "unified_inventory:bag_medium", "farming:cotton"},
     },
 })
+
+function unified_inventory.extract_bag(player, id)
+	if not player then
+		minetest.log("error", "[u_inv] Invalid player for bag extraction : nil")
+		return
+	end
+	if tonumber(id) == nil or id > 4 or id < 0 then
+		minetest.log("error", "Invalid id: " .. (id or 'nil'))
+		return
+	end
+
+	local stack = player:get_inventory():get_stack("bag"..id, 1)
+	if not stack:get_definition().groups.bagslots then
+		return
+	end
+	local pinv = player:get_inventory()
+	local inv = pinv:get_list("bag" .. id .. "contents")
+	local list = {}
+	for i, item in pairs(inv) do
+		list[i] = item:to_table()
+	end
+
+	pinv:remove_item("bag" .. id, stack)
+	minetest.get_inventory({type = "detached", name = minetest.formspec_escape(player:get_player_name()) .. "_bags"}):set_stack("bag" .. id, 1, nil)
+	pinv:set_list("bag" .. id .. "contents", {})
+
+	stack:set_metadata(minetest.serialize(list))
+	return stack
+end
