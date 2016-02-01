@@ -6,7 +6,62 @@ Add eggs to spawn weak agressive monsters (Sand Monster, Dirt Monster, etc...)
 Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
 
 ---Patch Notes---
----23/12/2015---
+---??/??/201?--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ??/??)
+Update of "dropondie" (bags are dropped on death with their contents instead of the content itself)
+Update of "mobs"
+
+---31/01/2016--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
+Update of "christmas_craft" (christmas season overrides deactivated)
+Update of "3dmushrooms" (aliases created for unknown nodes)
+Update of "unified_inventory" (store items inside bag items when they are unequiped)
+Update of "mobs" (4 eggs can be crafted to spawn monsters for dist, tree, sand and stone monsters)
+Update of "3d_armor" (drowning protection added with admin helmets)
+Update of "builtin_item" (visual fixed)
+Update of "plantlife_modpack" (fern trees can be dug entirely in one cut)
+Update of "fences" (nodebox coordinates fixed for falling entities)
+Update of "pipeworks" (fix to prevent crash)
+
+---15/01/2016--- (Thanks to : LeMagnesium/Mg, crabman77/crabman)
+Update of "minetestforfun_game"
+Update of "pclasses" (pedestal items fixed)
+Update of "mesecons" (player detectors can now detect multiple players)
+Update of "chesttools"
+Update of "nether"
+Update of "vectors_extra"
+Update of "mobs" (removal of undefined loot items)
+Update of "news" (news are shown to alive players only)
+Update of "doors" (fix sound)
+Update of "mesecons" (dig time slightly increased)
+Update of "connected_chests" (pipeworks support added)
+Update of "death_messages" (messages are only sent once in case of multiple deaths)
+Update of "bobblocks" (prevent multiple deaths in a row)
+Update of "unifieddyes" (show dyes in the creative inventory)
+Update of "more_chests" (allow to use any kind of wood and leaves)
+
+---06/01/2016--- (Thanks to : younishd, LeMagnesium/Mg, crabman77/crabman)
+Update of "homedecor"
+Update of "fences" (fix nodebox coordinates)
+Update of "carts" (carts don't leave rails and hang in the air any more)
+Update of "darkage" (prevent map generation in the nether)
+Update of "moreblocks" (fix double recipe for wall sign)
+Update of "pclasses" (sound fixed)
+
+---03/01/2016--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
+Update of "warps"
+Update of "pipeworks" (fix pipe timing)
+Update of "riesenpilz"
+Update of "nether"
+Update of "snow" (throwing mechanism and damages fixed)
+Update of "_misc" (alias created to replace old xmas saplings)
+Update of "mobs" (addition of a pig mob instead of warthogs)
+Update of "pclasses"
+
+---24/12/2015--- (Thanks to : gravgun, LeMagnesium/Mg, crabman77/crabman)
+Update of "christmas_craft" (balancing of snow[balls] craft recipes)
+Update of "snow" (snowballs now inflict damages)
+Removal of "chatplus"
+
+---23/12/2015--- (Thanks to : ObaniGemini/Obani, crabman77/crabman, LeMagnesium/Mg, gravgun)
 Update of "connected_chests" (Admins/modos can now see into "Locked Double Chest" if necesary)
 Activation of "christmas_craft" (Snow everywhere for christmas ! Use overrides, add more snow)
 Addition "report" (you can now report bad players to administrators/moderators using the "Report" button in your inventory)
