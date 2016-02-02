@@ -30,8 +30,8 @@ minetest.register_abm({
 	nodenames = {"default:sapling", "default:junglesapling",
 		"default:pine_sapling", "default:acacia_sapling",
 		"default:aspen_sapling"},
-	interval = 10,
-	chance = 50,
+	interval = 5,
+	chance = 40,
 	action = function(pos, node)
 		if not default.can_grow(pos) then
 			return
