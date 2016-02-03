@@ -37,7 +37,7 @@ mobs:register_mob("mobs:mese_monster", {
 	jump_height = 8,
 	fall_damage = 0,
 	fall_speed = -6,
-	stepheight = 3,
+	stepheight = 2.1,
 	-- drops mese when dead
 	drops = {
 		{name = "default:mese_crystal",

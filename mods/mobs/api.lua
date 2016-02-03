@@ -1,4 +1,4 @@
--- Mobs Api (29th January 2016)
+-- Mobs Api (2nd February 2016)
 mobs = {}
 mobs.mod = "redo"
 
@@ -35,21 +35,12 @@ end
 
 set_velocity = function(self, v)
 
-	local x = 0
-	local z = 0
-
-	if v and v ~= 0 then
-
-		local yaw = (self.object:getyaw() + self.rotate) or 0
-
-		x = math.sin(yaw) * -v
-		z = math.cos(yaw) * v
-	end
+	local yaw = (self.object:getyaw() + self.rotate) or 0
 
 	self.object:setvelocity({
-		x = x,
+		x = math.sin(yaw) * -v,
 		y = self.object:getvelocity().y,
-		z = z
+		z = math.cos(yaw) * v
 	})
 end
 
@@ -775,6 +766,19 @@ minetest.register_entity(name, {
 
 			if self.lifetimer <= 0 then
 
+				-- only despawn away from player
+				local objs = minetest.get_objects_inside_radius(pos, 10)
+
+				for _,oir in pairs(objs) do
+
+					if oir:is_player() then
+
+						self.lifetimer = 20
+
+						return
+					end
+				end
+
 				minetest.log("action",
 					"lifetimer expired, removed " .. self.name)
 
@@ -1073,7 +1077,7 @@ minetest.register_entity(name, {
 					}
 
 					if vec.x ~= 0
-					or vec.z ~= 0 then
+					and vec.z ~= 0 then
 
 						yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
 
@@ -1142,7 +1146,7 @@ minetest.register_entity(name, {
 					}
 
 					if vec.x ~= 0
-					or vec.z ~= 0 then
+					and vec.z ~= 0 then
 
 						yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
 
@@ -1151,7 +1155,7 @@ minetest.register_entity(name, {
 						end
 					end
 				else
-					yaw = self.object:getyaw() + ((math.random(0, 360) - 180) / 180 * pi)
+					yaw = (math.random(0, 360) - 180) / 180 * pi
 				end
 
 				self.object:setyaw(yaw)
@@ -1205,7 +1209,7 @@ minetest.register_entity(name, {
 				}
 
 				if vec.x ~= 0
-				or vec.z ~= 0 then
+				and vec.z ~= 0 then
 
 					yaw = math.atan(vec.z / vec.x) + 3 * pi / 2 - self.rotate
 
@@ -1219,7 +1223,7 @@ minetest.register_entity(name, {
 			-- otherwise randomly turn
 			elseif math.random(1, 100) <= 30 then
 
-				yaw = self.object:getyaw() + ((math.random(0, 360) - 180) / 180 * pi)
+				yaw = (math.random(0, 360) - 180) / 180 * pi
 
 				self.object:setyaw(yaw)
 			end
@@ -1307,7 +1311,7 @@ minetest.register_entity(name, {
 			}
 
 			if vec.x ~= 0
-			or vec.z ~= 0 then
+			and vec.z ~= 0 then
 
 				yaw = math.atan(vec.z / vec.x) + pi / 2 - self.rotate
 
@@ -1456,7 +1460,7 @@ minetest.register_entity(name, {
 			}
 
 			if vec.x ~= 0
-			or vec.z ~= 0 then
+			and vec.z ~= 0 then
 
 				yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
 
@@ -1538,7 +1542,7 @@ minetest.register_entity(name, {
 			}
 
 			if vec.x ~= 0
-			or vec.z ~= 0 then
+			and vec.z ~= 0 then
 
 				yaw = (math.atan(vec.z / vec.x) + pi / 2) - self.rotate
 
@@ -1573,8 +1577,7 @@ minetest.register_entity(name, {
 
 				local obj = minetest.add_entity(p, self.arrow)
 				local ent = obj:get_luaentity()
-
-				local amount = (vec.x ^ 2 + vec.y ^ 2 + vec.z ^ 2) ^ 0.5
+				local amount = (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z) ^ 0.5
 				local v = ent.velocity
 				ent.switch = 1
 
@@ -1670,7 +1673,7 @@ minetest.register_entity(name, {
 			}
 
 			if vec.x ~= 0
-			or vec.z ~= 0 then
+			and vec.z ~= 0 then
 
 				local yaw = math.atan(vec.z / vec.x) + 3 * pi / 2 - self.rotate
 
@@ -1791,8 +1794,8 @@ minetest.register_entity(name, {
 		self.object:set_hp(self.health)
 		self.object:set_armor_groups({fleshy = self.armor})
 		self.old_y = self.object:getpos().y
-		self.object:setyaw(math.random(1, 360) / 180 * pi)
-		self.sounds.distance = (self.sounds.distance or 10)
+		self.object:setyaw((math.random(0, 360) - 180) / 180 * pi)
+		self.sounds.distance = self.sounds.distance or 10
 		self.textures = textures
 		self.mesh = mesh
 		self.collisionbox = colbox
@@ -1892,6 +1895,16 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 
 			-- spawn above node
 			pos.y = pos.y + 1
+
+			-- only spawn away from player
+			local objs = minetest.get_objects_inside_radius(pos, 10)
+
+			for _,oir in pairs(objs) do
+
+				if oir:is_player() then
+					return
+				end
+			end
 
 			-- mobs cannot spawn in protected areas when enabled
 			if spawn_protected == 1

@@ -1,6 +1,6 @@
 -- mob spawner
 
-local spawner_default = "mobs:pig 10 15 0"
+local spawner_default = "mobs:pig 10 15 0 0"
 
 minetest.register_node("mobs:spawner", {
 	tiles = {"mob_spawner.png"},
@@ -15,13 +15,18 @@ minetest.register_node("mobs:spawner", {
 		local meta = minetest.get_meta(pos)
 
 		-- text entry formspec
-		meta:set_string("formspec", "field[text;mob_name   min_light   max_light   amount;${command}]")
+		meta:set_string("formspec", "field[text;Mob MinLight MaxLight Amount PlayerDist;${command}]")
 		meta:set_string("infotext", "Spawner Not Active (enter settings)")
 		meta:set_string("command", spawner_default)
 	end,
 
 	on_right_click = function(pos, placer)
-		local meta = minetest.get_meta(pos)
+
+		if minetest.is_protected(pos, placer:get_player_name()) then
+			return
+		end
+
+--		local meta = minetest.get_meta(pos)
 	end,
 
 	on_receive_fields = function(pos, formname, fields, sender)
@@ -39,15 +44,17 @@ minetest.register_node("mobs:spawner", {
 			return
 		end
 
-		local mob = comm[1]
-		local mlig = tonumber(comm[2])
-		local xlig = tonumber(comm[3])
-		local num = tonumber(comm[4])
+		local mob = comm[1] -- mob to spawn
+		local mlig = tonumber(comm[2]) -- min light
+		local xlig = tonumber(comm[3]) -- max light
+		local num = tonumber(comm[4]) -- total mobs in area
+		local pla = tonumber(comm[5])-- player distance (0 to disable)
 
-		if mob and mob ~= ""
+		if mob and mob ~= "" and mobs.spawning_mobs[mob] == true
 		and num and num >= 0 and num <= 10
 		and mlig and mlig >= 0 and mlig <= 15
-		and xlig and xlig >= 0 and xlig <= 15 then
+		and xlig and xlig >= 0 and xlig <= 15
+		and pla and pla >=0 and pla <= 20 then
 
 			meta:set_string("command", fields.text)
 			meta:set_string("infotext", "Spawner Active (" .. mob .. ")")
@@ -79,6 +86,7 @@ minetest.register_abm({
 		local mlig = tonumber(comm[2])
 		local xlig = tonumber(comm[3])
 		local num = tonumber(comm[4])
+		local pla = tonumber(comm[5]) or 0
 
 		-- if amount is 0 then do nothing
 		if num == 0 then
@@ -88,7 +96,7 @@ minetest.register_abm({
 		local count = 0
 		local ent = nil
 
-		-- count objects of same type in area
+		-- count mob objects of same type in area
 		for k, obj in pairs(objs) do
 
 			ent = obj:get_luaentity()
@@ -103,6 +111,28 @@ minetest.register_abm({
 			return
 		end
 
+		-- spawn mob if player detected and in range
+		if pla > 0 then
+
+			local in_range = 0
+			local objs = minetest.get_objects_inside_radius(pos, pla)
+
+			for _,oir in pairs(objs) do
+
+				if oir:is_player() then
+
+					in_range = 1
+
+					break
+				end
+			end
+
+			-- player not found
+			if in_range == 0 then
+				return
+			end
+		end
+
 		-- find air blocks within 5 nodes of spawner
 		local air = minetest.find_nodes_in_area(
 			{x = pos.x - 5, y = pos.y, z = pos.z - 5},
@@ -113,12 +143,12 @@ minetest.register_abm({
 		if air and #air > 0 then
 
 			local pos2 = air[math.random(#air)]
-			local lig = minetest.get_node_light(pos2)
+			local lig = minetest.get_node_light(pos2) or 0
 
 			pos2.y = pos2.y + 0.5
 
 			-- only if light levels are within range
-			if lig and lig >= mlig and lig <= xlig then
+			if lig >= mlig and lig <= xlig then
 				minetest.add_entity(pos2, mob)
 			end
 		end
