@@ -10,3 +10,6 @@
 [submodule "mods/irc_modpack"]
 	path = mods/irc_modpack
 	url = https://github.com/MinetestForFun/irc_modpack.git
+[submodule "mods/time_regulation"]
+	path = mods/time_regulation
+	url = git://github.com/MinetestForFun/time_regulation.git

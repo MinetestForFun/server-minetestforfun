@@ -203,6 +203,7 @@ load_mod_death_messages = true
 load_mod_shutdown = true
 load_mod_irc = true
 load_mod_irc_commands = true
+load_mod_time_regulation = true
 
 load_mod_soundset = true
 load_mod_ambience = true
