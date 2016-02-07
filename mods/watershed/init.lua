@@ -335,6 +335,8 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 	local nixz = 1
 	local stable = {} -- stability table of true/false. is node supported from below by 2 stone or nodes on 2 stone?
 	local under = {} -- biome table. biome number of previous fine material placed in column
+	local increment_y = (x1 - x0 + 1)
+	local increment_z = increment_y * (y1 - y0 + 1)
 	for z = z0, z1 do -- for each xy plane progressing northwards
 		for y = y0 - 1, y1 + 1 do -- for each x row progressing upwards
 			local vi = area:index(x0, y, z) -- voxelmanip index for first node in this x row
@@ -655,9 +657,9 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 					elseif density < 0 and CLOUDS and y == y1 and y >= YCLOMIN then -- clouds
 						local xrq = 16 * math.floor((x - x0) / 16) -- quantise to 16x16 lattice
 						local zrq = 16 * math.floor((z - z0) / 16)
-						local yrq = 79
-						local qixyz = zrq * 6400 + yrq * 80 + xrq + 1 -- quantised 3D index
-						local qixz = zrq * 80 + xrq + 1
+						local yrq = y1 - y0
+						local qixyz = zrq * increment_z + yrq * increment_y + xrq + 1 -- quantised 3D index
+						local qixz = zrq * increment_y + xrq + 1
 						if nvals_fissure[qixyz] and math.abs(nvals_fissure[qixyz]) < nvals_humid[qixz] * 0.1 then
 							data[vi] = c_wscloud
 						end
