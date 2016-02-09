@@ -706,55 +706,6 @@ function watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
 end
 
 
--- Regenerate chunk by chat command. Dependant on chunksize = 5.
-
-minetest.register_chatcommand("regen",{
-	description = "Regenerate player's current mapchunk",
-	privs = {server = true, rollback = true},
-	func = function(name, params)
-		local t1 = os.clock()
-
-		local player = minetest.get_player_by_name(name)
-		local pos = player:getpos()
-		local plax = math.floor(pos.x + 0.5)
-		local play = math.floor(pos.y + 0.5)
-		local plaz = math.floor(pos.z + 0.5)
-		local x0 = (80 * math.floor((plax + 32) / 80)) - 32
-		local y0 = (80 * math.floor((play + 32) / 80)) - 32
-		local z0 = (80 * math.floor((plaz + 32) / 80)) - 32
-		local x1 = x0 + 79
-		local y1 = y0 + 79
-		local z1 = z0 + 79
-
-		if y0 < YMIN or y1 > YMAX then
-			return
-		end
-
-		print ("[watershed] regenerate mapchunk")
-
-		local vm = minetest.get_voxel_manip()
-		local pos1 = {x = x0, y = y0 - 1, z = z0}
-		local pos2 = {x = x1, y = y1 + 1, z = z1}
-		local emin, emax = vm:read_from_map(pos1, pos2)
-		local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
-		local data = vm:get_data()
-
-		watershed_chunkgen(x0, y0, z0, x1, y1, z1, area, data)
-
-		vm:set_data(data)
-		minetest.generate_ores(vm, minp, maxp)
-		minetest.generate_decorations(vm, minp, maxp)
-		vm:set_lighting({day = 0, night = 0})
-		vm:calc_lighting()
-		vm:write_to_map()
-		vm:update_map()
-
-		local chugent = math.ceil((os.clock() - t1) * 1000)
-		print ("[watershed] "..chugent.." ms")
-	end
-})
-
-
 -- On generated function
 
 minetest.register_on_generated(function(minp, maxp, seed)
