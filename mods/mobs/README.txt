@@ -28,6 +28,7 @@ This mod contains the following additions:
 
 Changelog:
 
+1.26- Pathfinding feature added thanks to rnd, when monsters attack they become scary smart in finding you :)
 1.25- Mobs no longer spawn within 12 blocks of player or despawn within same range, spawners now have player detection, Code tidy and tweak.
 1.24- Added feature where certain animals run away when punched (runaway = true in mob definition)
 1.23- Added mob spawner block for admin to setup spawners in-game (place and right click to enter settings)
