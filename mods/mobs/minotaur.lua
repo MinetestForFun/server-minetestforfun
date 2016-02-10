@@ -38,14 +38,10 @@ mobs:register_mob("mobs:minotaur", {
 	knock_back = 0.05,	--this is a test
 	-- drops desert_sand and coins when dead
 	drops = {
-		{name = "maptools:gold_coin",
-		chance = 40, min = 1, max = 1,},
-		{name = "mobs:minotaur_eye",
-		chance = 2, min = 1, max = 2,},
-		{name = "mobs:minotaur_horn",
-		chance = 4, min = 1, max = 2,},
-		{name = "mobs:minotaur_fur",
-		chance = 1, min = 1, max = 3,},
+		{name = "maptools:gold_coin", chance = 40, min = 1, max = 1,},
+		{name = "mobs:minotaur_eye", chance = 2, min = 1, max = 2,},
+		{name = "mobs:minotaur_horn", chance = 4, min = 1, max = 2,},
+		{name = "mobs:minotaur_fur", chance = 1, min = 1, max = 3,},
 	},
 	water_damage = 0,
 	lava_damage = 5,

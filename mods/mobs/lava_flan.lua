@@ -36,8 +36,7 @@ mobs:register_mob("mobs:lava_flan", {
 	floats = 1,
 	-- chance of dropping lava orb when dead
 	drops = {
-		{name = "mobs:lava_orb",
-		chance = 15, min = 1, max = 1},
+		{name = "mobs:lava_orb", chance = 15, min = 1, max = 1},
 	},
 	-- damaged by
 	water_damage = 5,

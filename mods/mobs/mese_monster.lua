@@ -40,14 +40,10 @@ mobs:register_mob("mobs:mese_monster", {
 	stepheight = 2.1,
 	-- drops mese when dead
 	drops = {
-		{name = "default:mese_crystal",
-		chance = 9, min = 1, max = 3,},
-		{name = "default:mese_crystal_fragment",
-		chance = 1, min = 1, max = 9,},
-		{name = "maptools:silver_coin",
-		chance = 1, min = 1, max = 2,},
-		{name = "returnmirror:mirror_inactive",
-		chance = 50, min = 1, max = 1,},
+		{name = "default:mese_crystal", chance = 9, min = 1, max = 3,},
+		{name = "default:mese_crystal_fragment", chance = 1, min = 1, max = 9,},
+		{name = "maptools:silver_coin", chance = 1, min = 1, max = 2,},
+		{name = "returnmirror:mirror_inactive", chance = 50, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,

@@ -6,8 +6,8 @@ mobs:register_mob("mobs:pig", {
 	type = "animal",
 	-- aggressive, does 5 damage to player when threatened
 	passive = false,
-	group_attack = true,
 	attack_type = "dogfight",
+	group_attack = true,
 	reach = 2,
 	damage = 4,
 	-- health & armor
@@ -39,10 +39,8 @@ mobs:register_mob("mobs:pig", {
 	view_range = 10,
 	-- drops raw pork when dead
 	drops = {
-		{name = "mobs:pork_raw",
-		chance = 1, min = 2, max = 3,},
-		{name = "maptools:silver_coin",
-		chance = 10, min = 1, max = 1,},
+		{name = "mobs:pork_raw", chance = 1, min = 2, max = 3,},
+		{name = "maptools:silver_coin", chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -52,18 +50,27 @@ mobs:register_mob("mobs:pig", {
 	-- model animation
 	animation = {
 		speed_normal = 15,
-		stand_start = 25,		stand_end = 55,
-		walk_start = 60,		walk_end = 100,
-		punch_start = 60,		punch_end = 100,
+		stand_start = 25,
+		stand_end = 55,
+		walk_start = 60,
+		walk_end = 100,
+		punch_start = 60,
+		punch_end = 100,
 	},
 	-- can be tamed by feeding 8 wheat (will not attack when tamed)
 	on_rightclick = function(self, clicker)
-		mobs:feed_tame(self, clicker, 8, true, true)
+
+		if mobs:feed_tame(self, clicker, 8, true, true) then
+			return
+		end
+
 		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
 	end,
 })
+
 -- spawns on dirt or junglegrass, between 8 and 20 light, 1 in 15000 chance, 1 in area up to 31000 in height
-mobs:spawn_specific("mobs:pig", {"default:dirt", "default:junglegrass", "default:dirt_with_dry_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:pig", {"default:dirt", "default:junglegrass", "default:dirt_with_dry_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true, true)
+
 -- register spawn egg
 mobs:register_egg("mobs:pig", "Pig", "mobs_pig_inv.png", 1)
 

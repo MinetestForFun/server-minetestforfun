@@ -18,7 +18,6 @@ for _, col in pairs(all_colours) do
 		hp_max = 15,
 		armor = 200,
 		-- textures and model
-		--collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
 		collisionbox = {-0.5, -1, -0.5, 0.5, 0.3, 0.5},
 		visual = "mesh",
 		mesh = "mobs_sheep.b3d",
@@ -40,10 +39,8 @@ for _, col in pairs(all_colours) do
 		jump = true,
 		-- drops raw meat and woll of its color when dead
 		drops = {
-			{name = "mobs:meat_raw",
-			chance = 1, min = 2, max = 3},
-			{name = "wool:"..col,
-			chance = 1, min = 1, max = 1},
+			{name = "mobs:meat_raw", chance = 1, min = 2, max = 3},
+			{name = "wool:"..col, chance = 1, min = 1, max = 1},
 		},
 		-- damaged by
 		water_damage = 1,
@@ -75,6 +72,7 @@ for _, col in pairs(all_colours) do
 
 			--are we feeding?
 			if mobs:feed_tame(self, clicker, 8, true, true) then
+
 				--if full grow fuzz
 				if self.gotten == false then
 					self.object:set_properties({
@@ -82,6 +80,7 @@ for _, col in pairs(all_colours) do
 						mesh = "mobs_sheep.b3d",
 					})
 				end
+
 				return
 			end
 
@@ -90,12 +89,18 @@ for _, col in pairs(all_colours) do
 
 			--are we giving a haircut>
 			if itemname == "mobs:shears" then
+
 				if self.gotten == false and self.child == false then
+
 					self.gotten = true -- shaved
+
 					if minetest.get_modpath("wool") then
+
 						local pos = self.object:getpos()
 						pos.y = pos.y + 0.5
+
 						local obj = minetest.add_item(pos, ItemStack("wool:"..shpcolor.." "..math.random(1,3)))
+
 						if obj then
 							obj:setvelocity({
 								x = math.random(-1,1),
@@ -103,14 +108,18 @@ for _, col in pairs(all_colours) do
 								z = math.random(-1,1)
 							})
 						end
+
 						item:add_wear(650) -- 100 uses
+
 						clicker:set_wielded_item(item)
 					end
+
 					self.object:set_properties({
 						textures = {"mobs_sheep_shaved.png"},
 						mesh = "mobs_sheep_shaved.b3d",
 					})
 				end
+
 				return
 			end
 
@@ -118,28 +127,39 @@ for _, col in pairs(all_colours) do
 
 			--are we coloring?
 			if itemname:find("dye:") then
+
 				if self.gotten == false
 				and self.child == false
 				and self.tamed == true
 				and name == self.owner then
+
 					local col = string.split(itemname,":")[2]
+
 					for _,c in pairs(all_colours) do
+
 						if c == col then
+
 							local pos = self.object:getpos()
+
 							self.object:remove()
+
 							local mob = minetest.add_entity(pos, "mobs:sheep_"..col)
 							local ent = mob:get_luaentity()
+
 							ent.owner = name
 							ent.tamed = true
+
 							-- take item
 							if not minetest.setting_getbool("creative_mode") then
 								item:take_item()
 								clicker:set_wielded_item(item)
 							end
+
 							break
 						end
 					end
 				end
+
 				return
 			end
 
@@ -152,7 +172,7 @@ for _, col in pairs(all_colours) do
 
 end
 
-mobs:spawn_specific("mobs:sheep_white", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true)
+mobs:spawn_specific("mobs:sheep_white", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true, true)
 
 -- compatibility (item and entity)
 minetest.register_alias("mobs:sheep", "mobs:sheep_white")
@@ -168,25 +188,13 @@ minetest.register_entity("mobs:sheep", {
 	velocity = {x = 0, y = 0, z = 0},
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.3, 0.4},
 	is_visible = true,
-	speed = 0,
-	timer = 0,
 
-	on_rightclick = function(self, clicker)
-		clicker:get_inventory():add_item("main", "mobs:sheep_white")
+	on_activate = function(self, staticdata, dtime_s)
+
+		local pos = self.object:getpos()
+
 		self.object:remove()
-	end,
 
-	on_step = function(self, dtime)
-
-		self.timer = self.timer + dtime
-		if self.timer >= 1 then
-			self.timer = 0
-			self.object:setacceleration({
-				x = 0,
-				y = -10,
-				z = 0
-			})
-		end
-	end,
-
+		minetest.add_entity(pos, "mobs:sheep_white")
+	end
 })

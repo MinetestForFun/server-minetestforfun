@@ -22,7 +22,8 @@ mobs:register_mob("mobs:lavasmall", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health and armor
-	hp_min = 4, hp_max = 8,
+	hp_min = 4,
+	hp_max = 8,
 	armor = 100,
 	-- textures and model
 	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
@@ -46,10 +47,8 @@ mobs:register_mob("mobs:lavasmall", {
 	floats = 1,
 	-- chance of dropping lava orb and coins
 	drops = {
-		{name = "mobs:lava_orb",
-		chance = 15, min = 1, max = 1,},
-		{name = "maptools:silver_coin",
-		chance = 4, min = 1, max = 1,},
+		{name = "mobs:lava_orb", chance = 15, min = 1, max = 1,},
+		{name = "maptools:silver_coin", chance = 4, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 10,
@@ -70,7 +69,8 @@ mobs:register_mob("mobs:lavamedium", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health and armor
-	hp_min = 16, hp_max = 32,
+	hp_min = 16,
+	hp_max = 32,
 	armor = 90,
 	-- textures and model
 	collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
@@ -162,6 +162,7 @@ mobs:register_mob("mobs:lavabig", {
 		end
 	end,
 })
+
 mobs:register_egg("mobs:lavabig", "Big Lava Slime", "mobs_lava_slime_big_inv.png", 1)
 
 --mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)

@@ -37,12 +37,9 @@ mobs:register_mob("mobs:stone_monster", {
 	drops = {
 		{name = "default:torch",
 		chance = 10, min = 3, max = 5,},
-		{name = "default:iron_lump",
-		chance = 5, min = 1, max = 2,},
-		{name = "default:coal_lump",
-		chance = 3, min = 1, max = 3,},
-		{name = "maptools:silver_coin",
-		chance = 1, min = 1, max = 1,},
+		{name = "default:iron_lump", chance = 5, min = 1, max = 2,},
+		{name = "default:coal_lump", chance = 3, min = 1, max = 3,},
+		{name = "maptools:silver_coin", chance = 1, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,
@@ -62,8 +59,10 @@ mobs:register_mob("mobs:stone_monster", {
 		punch_end = 63,
 	},
 })
+
 -- spawns on stone between -1 and 5 light, 1 in 7000 chance, 1 in area below -25
 mobs:spawn_specific("mobs:stone_monster", {"default:stone", "default:sandstone"}, {"air"}, -1, 5, 30, 7000, 1, -31000, -25, false)
+
 -- register spawn egg
 mobs:register_egg("mobs:stone_monster", "Stone Monster", "mobs_stone_monster_inv.png", 1)
 

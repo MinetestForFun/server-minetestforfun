@@ -26,8 +26,7 @@ mobs:register_mob("mobs:bee", {
 	jump = true,
 	-- drops honey when killed
 	drops = {
-		{name = "mobs:honey",
-		chance = 1, min = 1, max = 2},
+		{name = "mobs:honey", chance = 1, min = 1, max = 2},
 	},
 	-- damage
 	water_damage = 1,
@@ -49,7 +48,7 @@ mobs:register_mob("mobs:bee", {
 	end,
 })
 -- spawn on group:flowers between 4 and 20 light, 1 in 5000 chance, 1 bee in area up to 31000 in height
-mobs:spawn_specific("mobs:bee", {"group:flower"}, {"air"}, 4, 20, 30, 5000, 2, -31000, 31000, true)
+mobs:spawn_specific("mobs:bee", {"group:flower"}, {"air"}, 4, 20, 30, 5000, 2, -31000, 31000, true, true)
 -- register spawn egg
 mobs:register_egg("mobs:bee", "Bee", "mobs_bee_inv.png", 1)
 
@@ -73,9 +72,13 @@ minetest.register_node("mobs:beehive", {
 	groups = {fleshy=3,dig_immediate=3},
 	on_use = minetest.item_eat(4),
 	sounds = default.node_sound_defaults(),
+
 	after_place_node = function(pos, placer, itemstack)
+
 		if placer:is_player() then
+
 			minetest.set_node(pos, {name = "mobs:beehive", param2 = 1})
+
 			if math.random(1, 5) == 1 then
 				minetest.add_entity(pos, "mobs:bee")
 			end

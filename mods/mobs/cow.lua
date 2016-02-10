@@ -35,12 +35,9 @@ mobs:register_mob("mobs:cow", {
 	jump = true,
 	-- drops raw meat when dead
 	drops = {
-		{name = "mobs:meat_raw",
-		chance = 1, min = 5, max = 10},
-		{name = "mobs:leather",
-		chance = 1, min = 0, max = 3},
-		{name = "maptools:silver_coin",
-		chance = 10, min = 1, max = 1,},
+		{name = "mobs:meat_raw", chance = 1, min = 5, max = 10},
+		{name = "mobs:leather", chance = 1, min = 0, max = 3},
+		{name = "maptools:silver_coin", chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -110,7 +107,7 @@ mobs:register_mob("mobs:cow", {
 })
 
 -- spawn on default;green;prairie grass between 0 and 20 light, 1 in 11000 chance, 1 cow in area up to 31000 in height
-mobs:spawn_specific("mobs:cow", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true)
+mobs:spawn_specific("mobs:cow", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true, true)
 -- register spawn egg
 mobs:register_egg("mobs:cow", "Cow", "mobs_cow_inv.png", 1)
 

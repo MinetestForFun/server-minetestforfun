@@ -35,10 +35,8 @@ mobs:register_mob("mobs:oerkki", {
 	jump = true,
 	-- chance of dropping obsidian and coins
 	drops = {
-		{name = "default:obsidian",
-		chance = 3, min = 1, max = 2,},
-		{name = "maptools:silver_coin",
-		chance = 1, min = 1, max = 1},
+		{name = "default:obsidian", chance = 3, min = 1, max = 2,},
+		{name = "maptools:silver_coin", chance = 1, min = 1, max = 1},
 	},
 	-- damaged by
 	water_damage = 2,

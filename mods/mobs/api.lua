@@ -1,4 +1,4 @@
--- Mobs Api (8th February 2016)
+-- Mobs Api (9th February 2016)
 mobs = {}
 mobs.mod = "redo"
 
@@ -1986,7 +1986,7 @@ end -- END mobs:register_mob function
 mobs.spawning_mobs = {}
 
 function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
-	interval, chance, active_object_count, min_height, max_height, spawn_in_area) --MFF crabman
+	interval, chance, active_object_count, min_height, max_height, spawn_in_area, day_toggle) --MFF crabman "spawn_in_area"
 
 	mobs.spawning_mobs[name] = true
 
@@ -1995,7 +1995,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 
 	if new_chance ~= nil then
 
-		if chance == 0 then
+		if new_chance == 0 then
 			--print("[Mobs Redo] " .. name .. " has spawning disabled")
 			return
 		end
@@ -2020,6 +2020,24 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 			or not mobs.spawning_mobs[name]
 			or not pos then --MFF fix crash
 				return
+			end
+
+			-- if toggle set to nil then ignore day/night check
+			if day_toggle ~= nil then
+
+				local tod = (minetest.get_timeofday() or 0) * 24000
+
+				if tod > 4500 and tod < 19500 then
+					-- daylight, but mob wants night
+					if day_toggle == false then
+						return
+					end
+				else
+					-- night time but mob wants day
+					if day_toggle == true then
+						return
+					end
+				end
 			end
 
 			-- spawn above node
@@ -2082,10 +2100,10 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 end
 
 -- compatibility with older mob registration
-function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_object_count, max_height)
+function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_object_count, max_height, spawn_in_area, day_toggle)
 
 	mobs:spawn_specific(name, nodes, {"air"}, min_light, max_light, 30,
-		chance, active_object_count, -31000, max_height)
+		chance, active_object_count, -31000, max_height, spawn_in_area, day_toggle)
 end
 
 -- set content id's

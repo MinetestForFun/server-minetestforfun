@@ -33,16 +33,11 @@ mobs:register_mob("mobs:tree_monster", {
 	view_range = 16,
 	-- drops saplings, junglesapling, apple and/or silver coin
 	drops = {
-		{name = "default:sapling",
-		chance = 2, min = 1, max = 2},
-		{name = "default:junglesapling",
-		chance = 2, min = 1, max = 2},
-		{name = "default:apple",
-		chance = 2, min = 2, max = 3,},
-		{name = "maptools:superapple",
-		chance = 4, min = 1, max = 1,},
-		{name = "maptools:silver_coin",
-		chance = 3, min = 1, max = 1,},
+		{name = "default:sapling", chance = 2, min = 1, max = 2},
+		{name = "default:junglesapling", chance = 2, min = 1, max = 2},
+		{name = "default:apple", chance = 2, min = 2, max = 3,},
+		{name = "maptools:superapple", chance = 4, min = 1, max = 1,},
+		{name = "maptools:silver_coin", chance = 3, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -63,8 +58,10 @@ mobs:register_mob("mobs:tree_monster", {
 		punch_end = 62,
 	},
 })
+
 -- spawn on leaves and beech_leaves, between 0 and 5 light, 1 in 8000 chance, 1 in area up to 31000 in height
-mobs:spawn_specific("mobs:tree_monster", {"default:leaves", "moretrees:beech_leaves"}, {"air"}, 0, 5, 30, 8000, 1, -31000, 31000, false)
+mobs:spawn_specific("mobs:tree_monster", {"default:leaves", "moretrees:beech_leaves"}, {"air"}, 0, 5, 30, 8000, 1, -31000, 31000, false, false)
+
 -- register spawn egg
 mobs:register_egg("mobs:tree_monster", "Tree Monster", "mobs_tree_monster_inv.png", 1)
 

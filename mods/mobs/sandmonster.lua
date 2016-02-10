@@ -34,10 +34,8 @@ mobs:register_mob("mobs:sand_monster", {
 	floats = 0,
 	-- drops desert sand when dead
 	drops = {
-		{name = "default:desert_sand",
-		chance = 1, min = 3, max = 5,},
-		{name = "maptools:silver_coin",
-		chance = 10, min = 1, max = 1,},
+		{name = "default:desert_sand", chance = 1, min = 3, max = 5,},
+		{name = "maptools:silver_coin", chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 3,
@@ -58,8 +56,10 @@ mobs:register_mob("mobs:sand_monster", {
 		punch_end = 105,
 	},
 })
+
 -- spawns on desert sand between -1 and 20 light, 1 in 15000 chance, 1 sand monster in area up to 31000 in height
 mobs:spawn_specific("mobs:sand_monster", {"default:desert_sand", "default:sand"}, {"air"}, -1, 20, 30, 20000, 1, -31000, 31000, false)
+
 -- register spawn egg
 mobs:register_egg("mobs:sand_monster", "Sand Monster", "mobs_sand_monster_inv.png", 1)
 

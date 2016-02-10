@@ -47,14 +47,10 @@ mobs:register_mob("mobs:npc", {
 	jump = true,
 	-- drops wood and chance of apples when dead
 	drops = {
-		{name = "default:wood",
-		chance = 1, min = 1, max = 3},
-		{name = "default:apple",
-		chance = 2, min = 1, max = 2},
-		{name = "default:axe_stone",
-		chance = 3, min = 1, max = 1},
-		{name = "maptools:silver_coin",
-		chance = 10, min = 1, max = 1,},
+		{name = "default:wood", chance = 1, min = 1, max = 3},
+		{name = "default:apple", chance = 2, min = 1, max = 2},
+		{name = "default:axe_stone", chance = 3, min = 1, max = 1},
+		{name = "maptools:silver_coin", chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,
@@ -129,6 +125,6 @@ mobs:register_mob("mobs:npc", {
 })
 
 -- spawning enable for now
-mobs:spawn_specific("mobs:npc", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 300000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:npc", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 300000, 1, -31000, 31000, true, true)
 -- register spawn egg
 mobs:register_egg("mobs:npc", "Npc", "mobs_npc_male_inv.png", 1)

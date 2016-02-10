@@ -44,10 +44,8 @@ mobs:register_mob("mobs:greensmall", {
 	floats = 1,
 	-- chance of dropping glue and coins
 	drops = {
-		{name = "mesecons_materials:glue",
-		chance = 4, min = 1, max = 2},
-		{name = "maptools:silver_coin",
-		chance = 4, min = 1, max = 1,},
+		{name = "mesecons_materials:glue", chance = 4, min = 1, max = 2},
+		{name = "maptools:silver_coin", chance = 4, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,

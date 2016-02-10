@@ -31,8 +31,7 @@ mobs:register_mob("mobs:bunny", {
 	jump = true,
 	-- drops meat when dead
 	drops = {
-		{name = "mobs:meat_raw",
-		chance = 1, min = 1, max = 2},
+		{name = "mobs:meat_raw", chance = 1, min = 1, max = 2},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -90,5 +89,5 @@ mobs:register_mob("mobs:bunny", {
 	attack_type = "dogfight",
 	damage = 5,
 })
-mobs:spawn_specific("mobs:bunny", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true)
+mobs:spawn_specific("mobs:bunny", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true, true)
 mobs:register_egg("mobs:bunny", "Bunny", "mobs_bunny_inv.png", 1)

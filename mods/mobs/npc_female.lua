@@ -8,7 +8,6 @@ mobs.npc_drops = { 	"farming:meat", "farming:donut", "farming:bread", "default:a
 					"default:cobble", "default:gravel", "default:clay_lump", "default:sand", "default:dirt_with_grass",
 					"default:dirt", "default:chest", "default:torch"}
 
-mobs.npc_max_hp = 20
 
 mobs:register_mob("mobs:npc_female", {
 	-- animal, monster, npc
@@ -20,7 +19,9 @@ mobs:register_mob("mobs:npc_female", {
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health & armor
-	hp_min = 20, hp_max = 20, armor = 100,
+	hp_min = 20,
+	hp_max = 20,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
 	visual = "mesh",
@@ -46,18 +47,12 @@ mobs:register_mob("mobs:npc_female", {
 	jump = true,
 	-- drops wood and chance of apples when dead
 	drops = {
-		{name = "default:wood",
-		chance = 1, min = 1, max = 3},
-		{name = "default:apple",
-		chance = 2, min = 1, max = 2},
-		{name = "flowers:tulip",
-		chance = 4, min = 1, max = 2},
-		{name = "flowers:rose",
-		chance = 4, min = 1, max = 2},
-		{name = "default:axe_stone",
-		chance = 6, min = 1, max = 1},
-		{name = "maptools:silver_coin",
-		chance = 10, min = 1, max = 1,},
+		{name = "default:wood", chance = 1, min = 1, max = 3},
+		{name = "default:apple", chance = 2, min = 1, max = 2},
+		{name = "flowers:tulip", chance = 4, min = 1, max = 2},
+		{name = "flowers:rose", chance = 4, min = 1, max = 2},
+		{name = "default:axe_stone", chance = 6, min = 1, max = 1},
+		{name = "maptools:silver_coin", chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,
@@ -110,6 +105,7 @@ mobs:register_mob("mobs:npc_female", {
 					item:take_item()
 					clicker:set_wielded_item(item)
 				end
+
 				local pos = self.object:getpos()
 				pos.y = pos.y + 0.5
 				minetest.add_item(pos, {
@@ -126,10 +122,11 @@ mobs:register_mob("mobs:npc_female", {
 			end
 			mobs:capture_mob(self, clicker, 0, 5, 80, false, nil)
 		end
+
 	end,
 })
 
 -- spawning enable for now
-mobs:spawn_specific("mobs:npc_female", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000, true)
+mobs:spawn_specific("mobs:npc_female", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000, true, true)
 -- register spawn egg
 mobs:register_egg("mobs:npc_female", "Npc", "mobs_npc_female_inv.png", 1)

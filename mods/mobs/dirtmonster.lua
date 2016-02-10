@@ -33,10 +33,8 @@ mobs:register_mob("mobs:dirt_monster", {
 	jump = true,
 	-- drops dirt and coins when dead
 	drops = {
-		{name = "default:dirt",
-		chance = 1, min = 3, max = 5,},
-		{name = "maptools:silver_coin",
-		chance = 2, min = 1, max = 1,},
+		{name = "default:dirt", chance = 1, min = 3, max = 5,},
+		{name = "maptools:silver_coin", chance = 2, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 1,
@@ -59,7 +57,7 @@ mobs:register_mob("mobs:dirt_monster", {
 })
 
 -- spawn on dirt_with_grass and drygrass between -1 and 5 light, 1 in 10000 change, 1 dirt monster in area up to 31000 in height
-mobs:spawn_specific("mobs:dirt_monster", {"default:dirt_with_grass", "default:dirt_with_dry_grass"}, {"air"}, -1, 5, 30, 10000, 1, -31000, 31000, false)
+mobs:spawn_specific("mobs:dirt_monster", {"default:dirt_with_grass", "default:dirt_with_dry_grass"}, {"air"}, -1, 5, 30, 10000, 1, -31000, 31000, false, false)
 -- register spawn egg
 mobs:register_egg("mobs:dirt_monster", "Dirt Monster", "mobs_dirt_monster_inv.png", 1)
 

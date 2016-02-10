@@ -38,12 +38,9 @@ mobs:register_mob("mobs:spider", {
 	floats = 0,
 	-- drops string with a chance of sandstone or crystal spike if Ethereal installed
 	drops = {
-		{name = "farming:string",
-		chance = 2, min = 1, max = 3,},
-		{name = "mobs:meat_raw",
-		chance = 4, min = 1, max = 2,},
-		{name = "maptools:silver_coin",
-		chance = 3, min = 1, max = 1,},
+		{name = "farming:string", chance = 2, min = 1, max = 3,},
+		{name = "mobs:meat_raw", chance = 4, min = 1, max = 2,},
+		{name = "maptools:silver_coin", chance = 3, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 5,
@@ -63,8 +60,10 @@ mobs:register_mob("mobs:spider", {
 		punch_end = 90,
 	},
 })
+
 -- spawn on jungleleaves/jungletree, between 0 and 5 light, 1 in 10000 chance, 1 in area up to 31000 in height
 mobs:spawn_specific("mobs:spider", {"default:jungleleaves", "default:jungletree"}, {"air"}, -1, 20, 30, 7500, 1, -31000, 31000, false)
+
 -- register spawn egg
 mobs:register_egg("mobs:spider", "Spider", "mobs_spider_inv.png", 1)
 
