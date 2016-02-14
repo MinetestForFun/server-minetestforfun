@@ -278,6 +278,10 @@ runes.functions.save_detached_inventory = function(player)
 	local player_inv = player:get_inventory()
 	local datafile = io.open(minetest.get_worldpath().."/runes/"..name.."_rune.inv", "w")
 	local rune_inv_data = minetest.get_inventory({type = "detached", name=name.."_runes"})
+	if not rune_inv_data then
+		minetest.log("error", "[runes] Couldn't save rune inventory for player " .. name .. " : data unavailable")
+		return false
+	end
 	local translated_rune_data = {}
 	for index, data in pairs(rune_inv_data:get_list("runes")) do
 		translated_rune_data[index] = data:get_name() .. " " .. data:get_count()
