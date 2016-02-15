@@ -877,6 +877,15 @@ minetest.register_node("default:aspen_sapling", {
 	wield_image = "default_aspen_sapling.png",
 	paramtype = "light",
 	sunlight_propagates = true,
+	walkable = false,
+	is_ground_content = true,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
+	},
+	groups = {snappy = 3, flammable=2,
+		attached_node = 1, sapling = 1},
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 -- From BFD, cherry tree
