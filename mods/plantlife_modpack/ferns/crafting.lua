@@ -2,7 +2,7 @@
 -- Ferns - Crafting 0.0.5
 -----------------------------------------------------------------------------------------------
 -- (by Mossmanikin)
--- License (everything): 	WTFPL			
+-- License (everything): 	WTFPL
 -----------------------------------------------------------------------------------------------
 minetest.register_craft({
 	type = "shapeless",

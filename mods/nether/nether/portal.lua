@@ -178,7 +178,12 @@ minetest.register_chatcommand("from_hell", {
 		minetest.chat_send_player(pname, "You are free now")
 		player_from_nether(player)
 		local pos = player:getpos()
-		player:moveto({x=pos.x, y=100, z=pos.z})
+		local pos_togo = {x=pos.x, y=100, z=pos.z}
+		if minetest.setting_getbool("static_spawnpoint") ~= nil then
+			local stsp_conf = minetest.setting_get("static_spawnpoint")
+			pos_togo = {x = stsp_conf:split(",")[1]+0,y = stsp_conf:split(",")[2]+0,z = stsp_conf:split(",")[3]+0}
+		end
+		player:moveto(pos_togo)
 		return true, pname.." is now out of the nether."
 	end
 })]]
@@ -227,15 +232,11 @@ if nether_prisons then
 	end
 
 	-- fix wrong player positions
-	local timer = 0	--doesn't work if the server lags
-	minetest.register_globalstep(function(dtime)
-		timer = timer + dtime;
-		if timer >= 2 then
-			--minetest.after(1, update_players)
-			update_players()
-			timer = 0
-		end
-	end)
+	local function tick()
+		update_players()
+		minetest.after(2, tick)
+	end
+	tick()
 
 	-- set background when player joins
 	minetest.register_on_joinplayer(function(player)
@@ -654,17 +655,21 @@ function nether_port(player, pos)
 		set_portal(known_portals_d, pos.z,pos.x, pos.y)
 		nether.player_from_nether(player)
 
-		local my = tonumber(meta:get_string("y"))
-		local y = get_portal(known_portals_u, pos.z,pos.x)
-		if y then
-			if y ~= my then
-				meta:set_string("y", y)
-			end
+		if minetest.setting_getbool("static_spawnpoint") then
+			local stsp_conf = minetest.setting_get("static_spawnpoint")
+			pos = minetest.string_to_pos(stsp_conf)
 		else
-			y = my or 100
+			local my = tonumber(meta:get_string("y"))
+			local y = get_portal(known_portals_u, pos.z,pos.x)
+			if y then
+				if y ~= my then
+					meta:set_string("y", y)
+				end
+			else
+				y = my or 100
+			end
+			pos.y = y
 		end
-		pos.y = y
-
 		player:moveto(pos)
 	else
 		set_portal(known_portals_u, pos.z,pos.x, pos.y)

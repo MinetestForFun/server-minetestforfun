@@ -2,10 +2,10 @@
 -- Dry Plants - Recipes 0.1.0 -- Short Grass -> Dirt
 -----------------------------------------------------------------------------------------------
 -- by Mossmanikin
--- License (everything): 	WTFPL		
+-- License (everything): 	WTFPL
 -- Looked at code from:		darkage, default, farming, sickle, stairs
 -- Dependencies: 			default, farming
--- Supports:				flint, stoneage, sumpf			
+-- Supports:				flint, stoneage, sumpf
 -----------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------------
@@ -220,7 +220,7 @@ for i in pairs(ReeD) do
 		recipe = {
 			{slab},
 		}
-	})	
+	})
 -----------------------------------------------------------------------------------------------
 -- Roof Corner
 -----------------------------------------------------------------------------------------------
@@ -343,7 +343,7 @@ minetest.register_craft({
 	burntime = 2,
 })
 -----------------------------------------------------------------------------------------------
--- Dandelion Leave 
+-- Dandelion Leave
 -----------------------------------------------------------------------------------------------
 --[[minetest.register_craftitem("dryplants:dandelion_leave", {
 	description = "Dandelion Leave",

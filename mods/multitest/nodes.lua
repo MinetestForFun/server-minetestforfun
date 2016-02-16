@@ -24,7 +24,7 @@ minetest.register_node("multitest:blackstone_paved", {
     description = "Paved Blackstone",
 	tiles = {"multitest_blackstone_paved.png"},
 	groups = {cracky=2, stone=1},
-	sounds = default.node_sound_stone_defaults(),	
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("multitest:blackstone_paved", {
@@ -122,28 +122,28 @@ minetest.register_node("multitest:sandstone_carved", {
 })
 
 -- stairs:stair_blackstone
-stairs.register_stair_and_slab("blackstone", "multitest:blackstone", 
-	{cracky=3, stone=1}, 
-	{"multitest_blackstone.png"}, 
-	"Blackstone Stairs", 
+stairs.register_stair_and_slab("blackstone", "multitest:blackstone",
+	{cracky=3, stone=1},
+	{"multitest_blackstone.png"},
+	"Blackstone Stairs",
 	"Blackstone Slab", nil)
 
-stairs.register_stair_and_slab("blackcobble", "multitest:blackcobble", 
-	{cracky=3, stone=1}, 
-	{"multitest_blackcobble.png"}, 
-	"Black Cobble Stairs", 
+stairs.register_stair_and_slab("blackcobble", "multitest:blackcobble",
+	{cracky=3, stone=1},
+	{"multitest_blackcobble.png"},
+	"Black Cobble Stairs",
 	"Black Cobble Slab", nil)
 
-stairs.register_stair_and_slab("blackstone_bricks", "multitest:blackstone_brick", 
-	{cracky=3, stone=1}, 
-	{"multitest_blackstone_brick.png"}, 
-	"Blackstonestone brick Stairs", 
+stairs.register_stair_and_slab("blackstone_bricks", "multitest:blackstone_brick",
+	{cracky=3, stone=1},
+	{"multitest_blackstone_brick.png"},
+	"Blackstonestone brick Stairs",
 	"Blackstone Brick Slab", nil)
 
-stairs.register_stair_and_slab("blackstone_paved", "multitest:blackstone_paved", 
-	{cracky=3, stone=1}, 
-	{"multitest_blackstone_paved.png"}, 
-	"Paved Blackstone Stairs", 
+stairs.register_stair_and_slab("blackstone_paved", "multitest:blackstone_paved",
+	{cracky=3, stone=1},
+	{"multitest_blackstone_paved.png"},
+	"Paved Blackstone Stairs",
 	"Paved Blackstone Slab", nil)
 
 -- others

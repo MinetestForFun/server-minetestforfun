@@ -603,5 +603,5 @@ minetest.register_node("maptools:chest",{
 	on_metadata_inventory_move = chestdef.on_metadata_inventory_move,
 	on_metadata_inventory_put  = chestdef.on_metadata_inventory_put,
 	on_metadata_inventory_take = chestdef.on_metadata_inventory_take,
-	groups = {unbreakable = 1},
+	groups = {unbreakable = 1, not_in_creative_inventory = 1},
 })

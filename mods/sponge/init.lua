@@ -28,7 +28,7 @@ minetest.register_node("sponge:sponge", {
 			p = {x=pos.x+i, y=pos.y, z=pos.z}
 			n = minetest.get_node(p)
 			-- On verifie si il y a de l'eau
-			if (n.name=="default:water_flowing") or (n.name == "default:water_source") 
+			if (n.name=="default:water_flowing") or (n.name == "default:water_source")
 				or (n.name == "default:river_water_flowing") or (n.name == "default:river_water_source") then
 				on_water = true
 			end

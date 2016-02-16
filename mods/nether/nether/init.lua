@@ -142,15 +142,16 @@ local function do_ws_func(depth, a, x)
 	return SIZE*y/math.pi
 end
 
+local chunksize = minetest.setting_get("chunksize") or 5
 local ws_lists = {}
-local function get_ws_list(a,x, sidelength)
+local function get_ws_list(a,x)
         ws_lists[a] = ws_lists[a] or {}
         local v = ws_lists[a][x]
         if v then
                 return v
         end
         v = {}
-        for x=x,x + (sidelength - 1) do
+        for x=x,x + (chunksize*16 - 1) do
 		local y = do_ws_func(ssize, a, x)
                 v[x] = y
         end

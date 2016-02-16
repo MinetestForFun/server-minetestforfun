@@ -1,7 +1,7 @@
 multitest = {}
 
-multitest.colors = {"black", "blue", "brown", "cyan", "dark_green", 
-"dark_grey", "green", "grey", "magenta", "orange", 
+multitest.colors = {"black", "blue", "brown", "cyan", "dark_green",
+"dark_grey", "green", "grey", "magenta", "orange",
 "pink", "red", "violet", "white", "yellow"}
 
 multitest.colornames = {"Black", "Blue", "Brown", "Cyan", "Dark Green",

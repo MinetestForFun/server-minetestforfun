@@ -139,7 +139,6 @@ minetest.register_chatcommand("setwarp", {
 	description = "Set a warp location to the players location",
 	privs = { warp_admin = true },
 	func = function(name, param)
-		param = param:gsub("%W", "")
 		local h = "created"
 		for i = 1,table.getn(warps) do
 			if warps[i].name == param then
@@ -150,6 +149,9 @@ minetest.register_chatcommand("setwarp", {
 		end
 		local player = minetest.get_player_by_name(name)
 		local pos = player:getpos()
+		if not pos then
+			return false, "Internal error while getting your position. Please try again later"
+		end
 		table.insert(warps, { name = param, x = pos.x, y = pos.y, z = pos.z, yaw = player:get_look_yaw(), pitch = player:get_look_pitch() })
 		save()
 		minetest.log("action", name .. " " .. h .. " warp \"" .. param .. "\": " .. pos.x .. ", " .. pos.y .. ", " .. pos.z)

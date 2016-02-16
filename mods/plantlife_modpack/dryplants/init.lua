@@ -7,10 +7,10 @@ local mname		= "dryplants"
 -- textures & ideas partly by Neuromancer
 
 -- License (everything): 	WTFPL
--- Contains code from: 		default, farming 
+-- Contains code from: 		default, farming
 -- Looked at code from:		darkage, sickle, stairs
 -- Dependencies: 			default, farming, biome_lib
--- Supports:				
+-- Supports:
 -----------------------------------------------------------------------------------------------
 abstract_dryplants = {}
 

@@ -356,24 +356,14 @@ minetest.register_node("maptools:ladder", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("maptools:permanent_fire", {
-	description = S("Permanent Fire"),
-	range = 12,
-	stack_max = 10000,
-	drawtype = "plantlike",
-	paramtype = "light",
-	tiles = {{
-		name="fire_basic_flame_animated.png",
-		animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=1},
-	}},
-	inventory_image = "fire_basic_flame.png",
-	light_source = 14,
-	drop = "",
-	groups = {unbreakable = 1, not_in_creative_inventory = maptools.creative},
-	sunlight_propagates = true,
-	walkable = false,
-	damage_per_second = 4,
-})
+local permafire = table.copy(minetest.registered_nodes["fire:basic_flame"])
+permafire.damage_per_second = 4
+permafire.stack_max = 10000
+permafire.range = 12
+permafire.description = S("Permanent Fire")
+permafire.groups = {unbreakable = 1, not_in_creative_inventory = maptools.creative}
+
+minetest.register_node("maptools:permanent_fire", permafire)
 
 minetest.register_node("maptools:fake_fire", {
 	description = S("Fake Fire"),

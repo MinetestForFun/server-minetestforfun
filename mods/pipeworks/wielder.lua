@@ -408,7 +408,17 @@ if pipeworks.enable_deployer then
 		sneak = false,
 		act = function(virtplayer, pointed_thing)
 			local wieldstack = virtplayer:get_wielded_item()
-			virtplayer:set_wielded_item((minetest.registered_items[wieldstack:get_name()] or {on_place=minetest.item_place}).on_place(wieldstack, virtplayer, pointed_thing) or wieldstack)
+			if not minetest.setting_getbool("creative_mode") then
+				virtplayer:set_wielded_item((minetest.registered_items[wieldstack:get_name()] or {on_place=minetest.item_place}).on_place(wieldstack, virtplayer, pointed_thing) or wieldstack)
+			else
+				local stack = (minetest.registered_items[wieldstack:get_name()] or {on_place=minetest.item_place}).on_place(wieldstack, virtplayer, pointed_thing)
+				if stack:get_name() ~= wieldstack:get_name() or stack:get_count() ~= wieldstack:get_count() then
+					virtplayer:set_wielded_item(stack)
+				else -- Manual decrease
+					wieldstack:take_item(1)
+					virtplayer:set_wielded_item(wieldstack)
+				end
+			end
 		end,
 		eject_drops = false,
 	})

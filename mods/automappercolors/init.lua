@@ -9,7 +9,7 @@ function amc_dumpnodes()
 	local n = 0
 	for name, def in pairs(minetest.registered_nodes) do
 		if def.drawtype ~= 'airlike' then
-			local tile = def.tiles
+			local tile = def.tiles or def.tile_images
 			if type(tile) == 'table' then
 				tile = tile[1]
 				if type(tile) == 'table' then
