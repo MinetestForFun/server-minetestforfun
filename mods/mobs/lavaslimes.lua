@@ -18,6 +18,7 @@ mobs:register_mob("mobs:lavasmall", {
 	type = "monster",
 	-- aggressive, deals 2 damage to player when hit
 	passive = false,
+	reach = 2,
 	damage = 2,
 	attack_type = "dogfight",
 	attacks_monsters = true,
@@ -65,6 +66,7 @@ mobs:register_mob("mobs:lavamedium", {
 	type = "monster",
 	-- aggressive, deals 4 damage to player when hit
 	passive = false,
+	reach = 2,
 	damage = 4,
 	attack_type = "dogfight",
 	attacks_monsters = true,
@@ -109,6 +111,7 @@ mobs:register_mob("mobs:lavamedium", {
 		end
 	end,
 })
+
 mobs:register_egg("mobs:lavamedium", "Medium Lava Slime", "mobs_lava_slime_medium_inv.png", 1)
 
 -- register big lava slime
@@ -117,6 +120,7 @@ mobs:register_mob("mobs:lavabig", {
 	type = "monster",
 	-- aggressive, deals 6 damage to player when hit
 	passive = false,
+	reach = 2,
 	damage = 6,
 	attack_type = "dogfight",
 	attacks_monsters = true,

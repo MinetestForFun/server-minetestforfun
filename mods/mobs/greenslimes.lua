@@ -18,6 +18,7 @@ mobs:register_mob("mobs:greensmall", {
 	type = "monster",
 	-- aggressive, deals 2 damage to player when hit
 	passive = false,
+	reach = 2,
 	damage = 2,
 	attack_type = "dogfight",
 	attacks_monsters = true,
@@ -62,6 +63,7 @@ mobs:register_mob("mobs:greenmedium", {
 	type = "monster",
 	-- aggressive, deals 4 damage to player when hit
 	passive = false,
+	reach = 2,
 	damage = 4,
 	attack_type = "dogfight",
 	attacks_monsters = true,
@@ -111,6 +113,7 @@ mobs:register_mob("mobs:greenbig", {
 	type = "monster",
 	-- aggressive, deals 6 damage to player when hit
 	passive = false,
+	reach = 2,
 	damage = 6,
 	attack_type = "dogfight",
 	attacks_monsters = true,
