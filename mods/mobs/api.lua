@@ -1,4 +1,4 @@
--- Mobs Api (16th February 2016)
+-- Mobs Api (17th February 2016)
 mobs = {}
 mobs.mod = "redo"
 
@@ -917,6 +917,7 @@ minetest.register_entity(name, {
 	fear_height = def.fear_height or 0,
 	runaway = def.runaway,
 	runaway_timer = 0,
+	pathfinding = def.pathfinding,
 
 	on_step = function(self, dtime)
 
@@ -1669,7 +1670,9 @@ minetest.register_entity(name, {
 			if dist > self.reach then
 
 				-- path finding by rnd
-				if enable_pathfinding then
+				if self.pathfinding -- only if mob has pathfinding enabled
+				and enable_pathfinding then
+
 					smart_mobs(self, s, p, dist, dtime)
 				end
 

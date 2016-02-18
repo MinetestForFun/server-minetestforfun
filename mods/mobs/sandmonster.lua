@@ -7,6 +7,7 @@ mobs:register_mob("mobs:sand_monster", {
 	-- aggressive, deals 5 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
+	pathfinding = true,
 	reach = 2,
 	damage = 4,
 	-- health & armor

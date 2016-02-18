@@ -1,14 +1,28 @@
 
 local all_colours = {
-	"grey", "black", "red", "yellow", "green", "cyan", "blue", "magenta",
-	"white", "orange", "violet", "brown", "pink", "dark_grey", "dark_green"
+	{"black",      "Black",      "#000000b0"},
+	{"blue",       "Blue",       "#015dbb70"},
+	{"brown",      "Brown",      "#663300a0"},
+	{"cyan",       "Cyan",       "#01ffd870"},
+	{"dark_green", "Dark Green", "#005b0770"},
+	{"dark_grey",  "Dark Grey",  "#303030b0"},
+	{"green",      "Green",      "#61ff0170"},
+	{"grey",       "Grey",       "#5b5b5bb0"},
+	{"magenta",    "Magenta",    "#ff05bb70"},
+	{"orange",     "Orange",     "#ff840170"},
+	{"pink",       "Pink",       "#ff65b570"},
+	{"red",        "Red",        "#ff0000a0"},
+	{"violet",     "Violet",     "#2000c970"},
+	{"white",      "White",      "#abababc0"},
+	{"yellow",     "Yellow",     "#e3ff0070"},
 }
 
--- Sheep by PilzAdam
+-- Sheep by PilzAdam, texture converted to minetest by AMMOnym from Summerfield pack
 
 for _, col in pairs(all_colours) do
 
-	mobs:register_mob("mobs:sheep_"..col, {
+	mobs:register_mob("mobs:sheep_"..col[1], {
+
 		-- animal, monster, npc, barbarian
 		type = "animal",
 		-- not aggressive
@@ -22,7 +36,7 @@ for _, col in pairs(all_colours) do
 		visual = "mesh",
 		mesh = "mobs_sheep.b3d",
 		textures = {
-			{"mobs_sheep_"..col..".png"},
+			{"mobs_sheep_wool.png^[colorize:" .. col[3] .. "^mobs_sheep_base.png"},
 		},
 		-- specific texture and mesh for gotten
 		gotten_texture = {"mobs_sheep_shaved.png"},
@@ -40,7 +54,7 @@ for _, col in pairs(all_colours) do
 		-- drops raw meat and woll of its color when dead
 		drops = {
 			{name = "mobs:meat_raw", chance = 1, min = 2, max = 3},
-			{name = "wool:"..col, chance = 1, min = 1, max = 1},
+			{name = "wool:"..col[1], chance = 1, min = 1, max = 1},
 		},
 		-- damaged by
 		water_damage = 1,
@@ -65,7 +79,9 @@ for _, col in pairs(all_colours) do
 		replace_offset = -1,
 		fear_height = 3,
 		on_rightclick = function(self, clicker)
+
 			local shpcolor = string.split(self.name,"_")[2]
+
 			if shpcolor =="dark" then
 				shpcolor = shpcolor.."_"..string.split(self.name,"_")[3]
 			end
@@ -76,7 +92,7 @@ for _, col in pairs(all_colours) do
 				--if full grow fuzz
 				if self.gotten == false then
 					self.object:set_properties({
-						textures = {"mobs_sheep_"..shpcolor..".png"},
+						textures = {"mobs_sheep_wool.png^[colorize:" .. col[3] .. "^mobs_sheep_base.png"},
 						mesh = "mobs_sheep.b3d",
 					})
 				end
@@ -133,17 +149,17 @@ for _, col in pairs(all_colours) do
 				and self.tamed == true
 				and name == self.owner then
 
-					local col = string.split(itemname,":")[2]
+					local colr = string.split(itemname,":")[2]
 
 					for _,c in pairs(all_colours) do
 
-						if c == col then
+						if c[1] == colr then
 
 							local pos = self.object:getpos()
 
 							self.object:remove()
 
-							local mob = minetest.add_entity(pos, "mobs:sheep_"..col)
+							local mob = minetest.add_entity(pos, "mobs:sheep_"..colr)
 							local ent = mob:get_luaentity()
 
 							ent.owner = name
@@ -168,7 +184,7 @@ for _, col in pairs(all_colours) do
 		end
 	})
 
-	mobs:register_egg("mobs:sheep_"..col, "Sheep ("..col..")", "mobs_sheep_"..col.."_inv.png", 1)
+	mobs:register_egg("mobs:sheep_"..col[1], col[2] .. "Sheep", "mobs_sheep_white_inv.png^[colorize:" .. col[3], 1)
 
 end
 

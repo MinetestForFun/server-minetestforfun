@@ -7,6 +7,7 @@ mobs:register_mob("mobs:stone_monster", {
 	-- aggressive, deals 8 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
+	pathfinding = true,
 	reach = 2,
 	damage = 6,
 	-- health & armor
@@ -19,6 +20,7 @@ mobs:register_mob("mobs:stone_monster", {
 	mesh = "mobs_stone_monster.b3d",
 	textures = {
 		{"mobs_stone_monster.png"},
+		{"mobs_stone_monster2.png"}, -- by AMMOnym
 	},
 	blood_texture = "default_stone.png",
 	-- sounds
@@ -61,7 +63,7 @@ mobs:register_mob("mobs:stone_monster", {
 })
 
 -- spawns on stone between -1 and 5 light, 1 in 7000 chance, 1 in area below -25
-mobs:spawn_specific("mobs:stone_monster", {"default:stone", "default:sandstone"}, {"air"}, -1, 5, 30, 7000, 1, -31000, -25, false)
+mobs:spawn_specific("mobs:stone_monster", {"default:stone", "default:desert_stone"}, {"air"}, -1, 5, 30, 7000, 1, -31000, -25, false)
 
 -- register spawn egg
 mobs:register_egg("mobs:stone_monster", "Stone Monster", "mobs_stone_monster_inv.png", 1)

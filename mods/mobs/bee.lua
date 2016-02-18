@@ -73,6 +73,20 @@ minetest.register_node("mobs:beehive", {
 	on_use = minetest.item_eat(4),
 	sounds = default.node_sound_defaults(),
 
+	on_construct = function(pos)
+
+		local meta = minetest.get_meta(pos)
+
+		meta:set_string("formspec", "size[8,6]"
+			..default.gui_bg..default.gui_bg_img..default.gui_slots
+			.. "image[3,0.8;0.8,0.8;mobs_bee_inv.png]"
+			.. "list[current_name;beehive;4,0.5;1,1;]"
+			.. "list[current_player;main;0,2.35;8,4;]"
+			.. "listring[]")
+
+		meta:get_inventory():set_size("beehive", 1)
+	end,
+
 	after_place_node = function(pos, placer, itemstack)
 
 		if placer:is_player() then
@@ -84,7 +98,30 @@ minetest.register_node("mobs:beehive", {
 			end
 		end
 	end,
-	
+
+	on_punch = function(pos, node, puncher)
+
+		-- yep, bee's don't like having their home punched by players
+		puncher:set_hp(puncher:get_hp() - 4)
+	end,
+
+	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+
+		if listname == "beehive" then
+			return 0
+		end
+
+		return stack:get_count()
+	end,
+
+	can_dig = function(pos,player)
+
+		local meta = minetest.get_meta(pos)
+
+		-- only dig beehive if no honey inside
+		return meta:get_inventory():is_empty("beehive")
+	end,
+
 })
 
 minetest.register_craft({
@@ -116,4 +153,38 @@ minetest.register_craft({
 	recipe = {
 		{"mobs:honey_block"},
 	}
+})
+
+-- beehive workings
+minetest.register_abm({
+	nodenames = {"mobs:beehive"},
+	interval = 6,
+	chance = 5,
+	catch_up = false,
+	action = function(pos, node)
+
+		-- bee's only make honey during the day
+		local tod = (minetest.get_timeofday() or 0) * 24000
+
+		if tod < 4500 or tod > 19500 then
+			return
+		end
+
+		-- find flowers in area around hive
+		local flowers = minetest.find_nodes_in_area_under_air(
+			{x = pos.x - 10, y = pos.y - 5, z = pos.z - 10},
+			{x = pos.x + 10, y = pos.y + 5, z = pos.z + 10},
+			"group:flower")
+
+		-- no flowers no honey, nuff said!
+		if #flowers > 3 then
+
+			local meta = minetest.get_meta(pos)
+
+			-- error check just incase it's an old beehive
+			if meta then
+				meta:get_inventory():add_item("beehive", "mobs:honey")
+			end
+		end
+	end
 })
