@@ -30,6 +30,7 @@ mobs:register_mob("mobs:pumpking", {
 	lava_damage = 0,
 	fall_damage = 0,
 	damage = 9,
+	pathfinding = true,
 	reach = 5,
 	attack_type = "dogfight",
 	view_range = 25,

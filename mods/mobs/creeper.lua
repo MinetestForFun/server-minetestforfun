@@ -7,6 +7,7 @@ mobs:register_mob("mobs:creeper", {
 	-- agressive, does 21 damage to player when explode
 	passive = false,
 	attack_type = "explode",
+	pathfinding = true,
 	damage = 21,
 	-- health & armor
 	hp_min = 30, hp_max = 40, armor = 90,
