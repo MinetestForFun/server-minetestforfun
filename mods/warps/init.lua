@@ -13,7 +13,7 @@ of the license, or (at your option) any later version.
 warps = {}
 warps_queue = {}
 queue_state = 0
-local warps_freeze = 5
+local warps_freeze = 1
 -- t = time in usec
 -- p = player obj
 -- w = warp name
