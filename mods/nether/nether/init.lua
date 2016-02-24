@@ -142,16 +142,15 @@ local function do_ws_func(depth, a, x)
 	return SIZE*y/math.pi
 end
 
-local chunksize = minetest.setting_get("chunksize") or 5
 local ws_lists = {}
-local function get_ws_list(a,x)
+local function get_ws_list(a,x, sidelength)
         ws_lists[a] = ws_lists[a] or {}
         local v = ws_lists[a][x]
         if v then
                 return v
         end
         v = {}
-        for x=x,x + (chunksize*16 - 1) do
+        for x=x,x + (sidelength - 1) do
 		local y = do_ws_func(ssize, a, x)
                 v[x] = y
         end
@@ -407,14 +406,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	if forest_possible then
 		perlin_f_bottom = minetest.get_perlin(11, 3, 0.8, tmp2)
 		pmap_f_top = minetest.get_perlin_map(perlins.forest_top, map_lengths_xyz):get2dMap_flat({x=minp.x, y=minp.z})
-		strassx = get_ws_list(2, minp.x)
-		strassz = get_ws_list(2, minp.z)
+		strassx = get_ws_list(2, minp.x, side_length)
+		strassz = get_ws_list(2, minp.z, side_length)
 	end
 
 	local num2, tab2
 	if buildings >= 1 then
 		num2 = 1
-		tab2 = nether_weird_noise({x=minp.x, y=nether.buildings-79, z=minp.z}, pymg, 200, 8, 10, 79)
+		tab2 = nether_weird_noise({x=minp.x, y=nether.buildings-(maxp.y-minp.y), z=minp.z}, pymg, 200, 8, 10, maxp.y-minp.y)
 	end
 
 	local count = 0
