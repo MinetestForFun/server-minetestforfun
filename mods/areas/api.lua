@@ -134,6 +134,33 @@ function areas:canInteractInArea(pos1, pos2, name, allow_open)
 end
 
 
+function areas:canMakeArea(pos1, pos2, name) --MFF crabman(25/02/2016) fix areas in areas
+	if name and minetest.check_player_privs(name, self.adminPrivs) then
+		return true
+	end
+	areas:sortPos(pos1, pos2)
+
+	local id_areas_intersect = {}
+	local areas = self:getAreasForArea(pos1, pos2)
+
+	if not areas then return true end
+
+	for id, area in pairs(areas) do
+		if area.owner == name and self:isSubarea(pos1, pos2, id) then
+			return true
+		end
+		if not area.open and not self:isAreaOwner(id, name) then
+			table.insert(id_areas_intersect, id)
+		end
+	end
+
+	if #id_areas_intersect > 0 then
+		return false, id_areas_intersect[1]
+	end
+
+	return true
+end
+
 
 --MFF DEBUT crabman(17/09/2015 ) respawn player in special area(event) if a spawn is set.
 --1 party (2 party in beds mod)
