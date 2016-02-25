@@ -1939,7 +1939,7 @@ minetest.register_node("default:torch", {
 	},
 	groups = {choppy = 2, dig_immediate = 3, flammable = 1, attached_node = 1,
 		hot = 2},
-	legacy_wallmounter = true,
+	legacy_wallmounted = true,
 	sounds = default.node_sound_wood_defaults(),
 })
 
