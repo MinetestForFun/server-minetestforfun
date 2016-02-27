@@ -26,8 +26,10 @@ end
 
 local u = 6
 
+local bounces = {90, 100, 110, 120, 130, 140}
+
 for i = 1, u do
-	local bnc_pct = math.ceil((150/u)*i)+25
+	local bnc_pct = bounces[i]
 	minetest.register_node("jumping:trampoline_" .. i, {
 		description = "Trampoline (bounce : " .. bnc_pct .. "%)",
 		drawtype = "nodebox",
@@ -41,7 +43,7 @@ for i = 1, u do
 			"jumping_trampoline_sides.png^jumping_trampoline_sides_overlay_" .. i .. ".png",
 		},
 		drop = "jumping:trampoline_1",
-		groups = {dig_immediate = 2, bouncy = bnc_pct, fall_damage_add_percent = -65, disable_jump = 1},
+		groups = {dig_immediate = 2, bouncy = bnc_pct, fall_damage_add_percent = -95},
 	})
 end
 
