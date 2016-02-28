@@ -184,7 +184,7 @@ function areas:canPlayerAddArea(pos1, pos2, name)
 	end
 
 	-- Check intersecting areas
-	local can, id = self:canInteractInArea(pos1, pos2, name)
+	local can, id = self:canMakeArea(pos1, pos2, name)  --MFF crabman(25/02/2016) fix areas in areas
 	if not can then
 		local area = self.areas[id]
 		return false, ("The area intersects with %s [%u] (%s).")
