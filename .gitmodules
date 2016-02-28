@@ -13,6 +13,3 @@
 [submodule "mods/time_regulation"]
 	path = mods/time_regulation
 	url = git://github.com/MinetestForFun/time_regulation.git
-[submodule "mods/unified_inventory"]
-	path = mods/unified_inventory
-	url = git://github.com/MinetestForFun/unified_inventory.git
