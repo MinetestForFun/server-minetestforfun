@@ -85,6 +85,7 @@ function unified_inventory.get_formspec(player, page)
 	formspec[n] = fsdata.formspec
 	n = n+1
 
+	local privs = minetest.get_player_privs(player_name) --Modif MFF (Crabman 13/10/2015) not show if player has not privs requiered
 	local button_row = 0
 	local button_col = 0
 
@@ -93,16 +94,20 @@ function unified_inventory.get_formspec(player, page)
 	local filtered_inv_buttons = {}
 
 	for i, def in pairs(unified_inventory.buttons) do
-		if not (draw_lite_mode and def.hide_lite) then 
+		if not (draw_lite_mode and def.hide_lite) and (not def.show_with or (privs[def.show_with] and privs[def.show_with] == true)) then --Modif MFF (Crabman 13/10/2015) not show if player has not privs requiered
 			table.insert(filtered_inv_buttons, def)
 		end
 	end
 
-	for i, def in pairs(filtered_inv_buttons) do
+	local i = 1 --Modif MFF (Crabman 13/10/2015) 12 buttons max by row
+	for _, def in pairs(filtered_inv_buttons) do --Modif MFF (Crabman 13/10/2015)
 
 		if draw_lite_mode and i > 4 then
 			button_row = 1
 			button_col = 1
+		elseif not draw_lite_mode and i > 12 then --Modif MFF (Crabman 13/10/2015)
+			button_row = 1
+			i = 1
 		end
 
 		if def.type == "image" then
@@ -115,6 +120,7 @@ function unified_inventory.get_formspec(player, page)
 			formspec[n+6] = ";"..(def.tooltip or "").."]"
 			n = n+7
 		end
+		i = i + 1 --Modif MFF (Crabman 13/10/2015)
 	end
 
 	if fsdata.draw_inventory ~= false then
@@ -125,6 +131,16 @@ function unified_inventory.get_formspec(player, page)
 	end
 
 	if fsdata.draw_item_list == false then
+		return table.concat(formspec, "")
+	end
+
+	if not unified_inventory.hidden_guide[player_name] then --MFF crabman(29/11/2015) hide guide, textfield bug
+		formspec[n] = "image_button[13.2,0.1;.8,.8;ui_on_icon.png;hidebutton;]"
+				.. "tooltip[hidebutton;" ..S("Hide guide") .. "]"
+		n = n+1
+	else
+		formspec[n] = "image_button[13.2,0.1;.8,.8;ui_off_icon.png;hidebutton;]"
+				.. "tooltip[hidebutton;" ..S("Show guide") .. "]"
 		return table.concat(formspec, "")
 	end
 

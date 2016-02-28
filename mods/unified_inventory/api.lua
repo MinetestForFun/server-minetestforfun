@@ -24,9 +24,22 @@ minetest.after(0.01, function()
 
 						for _,chk in pairs(recipe.items) do
 							local groupchk = string.find(chk, "group:")
-							if (not groupchk and not minetest.registered_items[chk])
-							  or (groupchk and not unified_inventory.get_group_item(string.gsub(chk, "group:", "")).item) then
+							if groupchk then
+								for _,groupname in pairs(string.gsub(chk, "group:", ""):split(",")) do
+									if not unified_inventory.get_group_item(groupname).item then
+										unknowns = true
+										if minetest.setting_getbool("show_unknown_craftrecipes") then
+											minetest.log("error", "Recipe for item " .. recipe.output .. " contains unknown group " .. groupname)
+										end
+										break
+									end
+								end
+							elseif not minetest.registered_items[chk] then
 								unknowns = true
+								if minetest.setting_getbool("show_unknown_craftrecipes") then
+									minetest.log("error", "Recipe for item " .. recipe.output .. " contains unknown item " .. chk)
+								end
+								break
 							end
 						end
 
@@ -40,7 +53,7 @@ minetest.after(0.01, function()
 	end
 	table.sort(unified_inventory.items_list)
 	unified_inventory.items_list_size = #unified_inventory.items_list
-	print("Unified Inventory. inventory size: "..unified_inventory.items_list_size)
+	minetest.log("Unified Inventory. inventory size: "..unified_inventory.items_list_size)
 	for _, name in ipairs(unified_inventory.items_list) do
 		local def = minetest.registered_items[name]
 		if type(def.drop) == "string" then

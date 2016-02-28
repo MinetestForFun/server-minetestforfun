@@ -6,15 +6,12 @@ local dtimes = {}
 local dlimit = 3  -- HUD element will be hidden after this many seconds
 local air_hud_mod = minetest.get_modpath("4air")
 local hud_mod = minetest.get_modpath("hud")
-local hudbars_mod = minetest.get_modpath("hudbars")
 
 local function set_hud(player)
-	local player_name = player:get_player_name() 
+	local player_name = player:get_player_name()
 	local off = {x=0, y=-70}
 	if air_hud_mod or hud_mod then
 		off.y = off.y - 20
-	elseif hudbars_mod then
-		off.y = off.y + 13
 	end
 	huds[player_name] = player:hud_add({
 		hud_elem_type = "text",
@@ -45,7 +42,7 @@ minetest.register_globalstep(function(dtime)
 		if wstack ~= wield[player_name] then
 			wield[player_name] = wstack
 			dtimes[player_name] = 0
-			if huds[player_name] then 
+			if huds[player_name] then
 				local def = minetest.registered_items[wstack]
 				local desc = def and def.description or ""
 				player:hud_change(huds[player_name], 'text', desc)
