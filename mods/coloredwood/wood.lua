@@ -15,7 +15,7 @@ local neutral_block = "default:wood"
 local colored_block_sunlight = "false"
 local colored_block_walkable = "true"
 local colored_block_groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2}
-local colored_block_sound = "default.node_sound_wood_defaults()"
+local colored_block_sound = default.node_sound_wood_defaults()
 
 -- Show the wood planks in the crafting guide:
 -- Value copy the groups table to another one to pass to stairsplus:register_all()
