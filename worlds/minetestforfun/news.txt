@@ -8,7 +8,7 @@ Introduce the Wizard class
 Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
 
 ---Patch Notes---
----29/02/2016--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ??/??)
+---29/02/2016--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Gael-de-Sailly, ObaniGemini/Obani, ElementW)
 Update of "coloredwood" (bugfix the sounds of this mod nodes)
 Addition of "Jumping" (cushions are back and debugged!)
 Update of "areas" (player in the spawn island can now add they own areas without the admin/moderator help)
