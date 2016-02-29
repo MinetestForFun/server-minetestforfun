@@ -1,14 +1,27 @@
 ---Planned on the Server---
+Improve the mapgen speed and reduce the freeze time when new chuncks are loaded
+Add Big Meru mountains to the server
 Add another Unique boss : The Ent
-Add eggs to spawn weak agressive monsters (Sand Monster, Dirt Monster, etc...)
+Introduce the Wizard class
 
 ---Important News---
 Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
 
 ---Patch Notes---
----??/??/201?--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ??/??)
+---29/02/2016--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ??/??)
+Update of "coloredwood" (bugfix the sounds of this mod nodes)
+Addition of "Jumping" (cushions are back and debugged!)
+Update of "areas" (player in the spawn island can now add they own areas without the admin/moderator help)
+Update of "warps" (warp crystal now teleport you in 1sec instead of 5sec before, new warps sound)
+Update of some mapgen mods (we will reduce the lag in the future with this tweaks, not activated yet)
+Update of "fishing" (crashfix when you fish on a boat)
+Update of "mobs" (Pathfinding feature added, when monsters attack they become scary smart in finding you!)
+Addition of "time_regulation" (not activated yet)
+Update of "quests" (crashfix)
+Update of "mobs" (Mobs no longer spawn within 12 blocks of player or despawn within same range)
+Update of "minetestforfun_game" (trees grow two times faster)
 Update of "dropondie" (bags are dropped on death with their contents instead of the content itself)
-Update of "mobs"
+
 
 ---31/01/2016--- (Thanks to : crabman77/crabman, LeMagnesium/Mg)
 Update of "christmas_craft" (christmas season overrides deactivated)
