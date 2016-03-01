@@ -61,7 +61,7 @@ function default.register_ores()
 		clust_size       = 7,
 		y_min            = -15,
 		y_max            = 0,
-		noise_threshhold = 0.0,
+		noise_treshold = 0.0,
 		noise_params     = {
 			offset = 0.35,
 			scale = 0.2,
@@ -83,7 +83,7 @@ function default.register_ores()
 		clust_size       = 7,
 		y_min            = -63,
 		y_max            = 4,
-		noise_threshhold = 0,
+		noise_treshold = 0,
 		noise_params     = {
 			offset = 0.35,
 			scale = 0.2,
@@ -104,7 +104,7 @@ function default.register_ores()
 		clust_size       = 7,
 		y_min            = -63,
 		y_max            = 31000,
-		noise_threshhold = 0,
+		noise_treshold = 0,
 		noise_params     = {
 			offset = 0.35,
 			scale = 0.2,
@@ -125,7 +125,7 @@ function default.register_ores()
 		clust_size       = 7,
 		y_min            = -31000,
 		y_max            = 31000,
-		noise_threshhold = 0,
+		noise_treshold = 0,
 		noise_params     = {
 			offset = 0.35,
 			scale = 0.2,
