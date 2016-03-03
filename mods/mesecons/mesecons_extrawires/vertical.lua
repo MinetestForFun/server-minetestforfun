@@ -42,33 +42,37 @@ local vertical_updatepos = function (pos)
 	local node = minetest.get_node(pos)
 	if minetest.registered_nodes[node.name]
 	and minetest.registered_nodes[node.name].is_vertical_conductor then
-		local node_above = minetest.get_node(mesecon.addPosRule(pos, vertical_rules[1]))
-		local node_below = minetest.get_node(mesecon.addPosRule(pos, vertical_rules[2]))
-		local namestate = minetest.registered_nodes[node.name].vertical_conductor_state
+		local node_above = minetest.get_node(vector.add(pos, vertical_rules[1]))
+		local node_below = minetest.get_node(vector.add(pos, vertical_rules[2]))
 
 		local above = minetest.registered_nodes[node_above.name]
 			and minetest.registered_nodes[node_above.name].is_vertical_conductor
 		local below = minetest.registered_nodes[node_below.name]
 			and minetest.registered_nodes[node_below.name].is_vertical_conductor
 
-		local basename = "mesecons_extrawires:vertical_"
+		mesecon.on_dignode(pos, node)
+
+		-- Always place offstate conductor and let mesecon.on_placenode take care
+		local newname = "mesecons_extrawires:vertical_"
 		if above and below then -- above and below: vertical mesecon
-			minetest.add_node(pos, {name = basename .. namestate})
+			newname = newname .. "off"
 		elseif above and not below then -- above only: bottom
-			minetest.add_node(pos, {name = basename .. "bottom_" .. namestate})
+			newname = newname .. "bottom_off"
 		elseif not above and below then -- below only: top
-			minetest.add_node(pos, {name = basename .. "top_" .. namestate})
+			newname = newname .. "top_off"
 		else -- no vertical wire above, no vertical wire below: use bottom
-			minetest.add_node(pos, {name = basename .. "bottom_" .. namestate})
+			newname = newname .. "bottom_off"
 		end
-		mesecon.update_autoconnect(pos)
+
+		minetest.set_node(pos, {name = newname})
+		mesecon.on_placenode(pos, {name = newname})
 	end
 end
 
 local vertical_update = function (pos, node)
 	vertical_updatepos(pos) -- this one
-	vertical_updatepos(mesecon.addPosRule(pos, vertical_rules[1])) -- above
-	vertical_updatepos(mesecon.addPosRule(pos, vertical_rules[2])) -- below
+	vertical_updatepos(vector.add(pos, vertical_rules[1])) -- above
+	vertical_updatepos(vector.add(pos, vertical_rules[2])) -- below
 end
 
 -- Vertical wire
@@ -87,7 +91,6 @@ mesecon.register_node("mesecons_extrawires:vertical", {
 },{
 	tiles = {"mesecons_wire_off.png"},
 	groups = {dig_immediate=2}, --MFF
-	vertical_conductor_state = "off",
 	mesecons = {conductor = {
 		state = mesecon.state.off,
 		onstate = "mesecons_extrawires:vertical_on",
@@ -96,7 +99,6 @@ mesecon.register_node("mesecons_extrawires:vertical", {
 },{
 	tiles = {"mesecons_wire_on.png"},
 	groups = {dig_immediate=2, not_in_creative_inventory=1}, --MFF
-	vertical_conductor_state = "on",
 	mesecons = {conductor = {
 		state = mesecon.state.on,
 		offstate = "mesecons_extrawires:vertical_off",
@@ -120,7 +122,6 @@ mesecon.register_node("mesecons_extrawires:vertical_top", {
 	after_dig_node = vertical_update
 },{
 	tiles = {"mesecons_wire_off.png"},
-	vertical_conductor_state = "off",
 	mesecons = {conductor = {
 		state = mesecon.state.off,
 		onstate = "mesecons_extrawires:vertical_top_on",
@@ -128,7 +129,6 @@ mesecon.register_node("mesecons_extrawires:vertical_top", {
 	}}
 },{
 	tiles = {"mesecons_wire_on.png"},
-	vertical_conductor_state = "on",
 	mesecons = {conductor = {
 		state = mesecon.state.on,
 		offstate = "mesecons_extrawires:vertical_top_off",
@@ -152,7 +152,6 @@ mesecon.register_node("mesecons_extrawires:vertical_bottom", {
 	after_dig_node = vertical_update
 },{
 	tiles = {"mesecons_wire_off.png"},
-	vertical_conductor_state = "off",
 	mesecons = {conductor = {
 		state = mesecon.state.off,
 		onstate = "mesecons_extrawires:vertical_bottom_on",
@@ -160,7 +159,6 @@ mesecon.register_node("mesecons_extrawires:vertical_bottom", {
 	}}
 },{
 	tiles = {"mesecons_wire_on.png"},
-	vertical_conductor_state = "on",
 	mesecons = {conductor = {
 		state = mesecon.state.on,
 		offstate = "mesecons_extrawires:vertical_bottom_off",

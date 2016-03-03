@@ -23,7 +23,7 @@ function mesecon.queue:add_action(pos, func, params, time, overwritecheck, prior
 	-- Otherwise, add the action to the queue
 	if overwritecheck then -- check if old action has to be overwritten / removed:
 		for i, ac in ipairs(mesecon.queue.actions) do
-			if(mesecon.cmpPos(pos, ac.pos)
+			if(vector.equals(pos, ac.pos)
 			and mesecon.cmpAny(overwritecheck, ac.owcheck)) then
 				toremove = i
 				break
@@ -94,25 +94,8 @@ end
 -- Store and read the ActionQueue to / from a file
 -- so that upcoming actions are remembered when the game
 -- is restarted
-
-local wpath = minetest.get_worldpath()
-local function file2table(filename)
-	local f = io.open(filename, "r")
-	if f==nil then return {} end
-	local t = f:read("*all")
-	f:close()
-	if t=="" or t==nil then return {} end
-	return minetest.deserialize(t)
-end
-
-local function table2file(filename, table)
-	local f = io.open(filename, "w")
-	f:write(minetest.serialize(table))
-	f:close()
-end
-
-mesecon.queue.actions = file2table(wpath.."/mesecon_actionqueue")
+mesecon.queue.actions = mesecon.file2table("mesecon_actionqueue")
 
 minetest.register_on_shutdown(function()
-	mesecon.queue.actions = table2file(wpath.."/mesecon_actionqueue", mesecon.queue.actions)
+	mesecon.table2file("mesecon_actionqueue", mesecon.queue.actions)
 end)

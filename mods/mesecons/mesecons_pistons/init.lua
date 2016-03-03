@@ -57,7 +57,7 @@ end
 local piston_remove_pusher = function(pos, node)
 	local pistonspec = minetest.registered_nodes[node.name].mesecons_piston
 	local dir = piston_get_direction(pistonspec.dir, node)
-	local pusherpos = mesecon.addPosRule(pos, dir)
+	local pusherpos = vector.add(pos, dir)
 	local pushername = minetest.get_node(pusherpos).name
 
 	-- make sure there actually is a pusher (for compatibility reasons mainly)
@@ -78,12 +78,12 @@ local piston_on = function(pos, node)
 	local pistonspec = minetest.registered_nodes[node.name].mesecons_piston
 
 	local dir = piston_get_direction(pistonspec.dir, node)
-	local np = mesecon.addPosRule(pos, dir)
+	local np = vector.add(pos, dir)
 	local maxpush = mesecon.setting("piston_max_push", 15)
 	local success, stack, oldstack = mesecon.mvps_push(np, dir, maxpush)
 	if success then
-		minetest.add_node(pos, {param2 = node.param2, name = pistonspec.onname})
-		minetest.add_node(np,  {param2 = node.param2, name = pistonspec.pusher})
+		minetest.set_node(pos, {param2 = node.param2, name = pistonspec.onname})
+		minetest.set_node(np,  {param2 = node.param2, name = pistonspec.pusher})
 		minetest.sound_play("piston_extend", {
 			pos = pos,
 			max_hear_distance = 20,
@@ -96,7 +96,7 @@ end
 
 local piston_off = function(pos, node)
 	local pistonspec = minetest.registered_nodes[node.name].mesecons_piston
-	minetest.add_node(pos, {param2 = node.param2, name = pistonspec.offname})
+	minetest.set_node(pos, {param2 = node.param2, name = pistonspec.offname})
 	piston_remove_pusher(pos, node)
 
 	if pistonspec.sticky then
@@ -117,10 +117,16 @@ local piston_orientate = function(pos, placer)
 
 	local node = minetest.get_node(pos)
 	local pistonspec = minetest.registered_nodes[node.name].mesecons_piston
-	if pitch > 55 then --looking upwards
-		minetest.add_node(pos, {name=pistonspec.piston_down})
-	elseif pitch < -55 then --looking downwards
-		minetest.add_node(pos, {name=pistonspec.piston_up})
+
+	-- looking upwards (pitch > 55) / looking downwards (pitch < -55)
+	local nn = nil
+	if pitch > 55 then nn = {name = pistonspec.piston_down} end
+	if pitch < -55 then nn = {name = pistonspec.piston_up} end
+
+	if nn then
+		minetest.set_node(pos, nn)
+		-- minetest.after, because on_placenode for unoriented piston must be processed first
+		minetest.after(0, mesecon.on_placenode, pos, nn)
 	end
 end
 
@@ -719,12 +725,12 @@ end
 local piston_get_stopper = function (node, dir, stack, stackid)
 	pistonspec = minetest.registered_nodes[node.name].mesecons_piston
 	dir = piston_get_direction(pistonspec.dir, node)
-	local pusherpos  = mesecon.addPosRule(stack[stackid].pos, dir)
+	local pusherpos  = vector.add(stack[stackid].pos, dir)
 	local pushernode = minetest.get_node(pusherpos)
 
 	if minetest.registered_nodes[node.name].mesecons_piston.pusher == pushernode.name then
 		for _, s in ipairs(stack) do
-			if  mesecon.cmpPos(s.pos, pusherpos) -- pusher is also to be pushed
+			if  vector.equals(s.pos, pusherpos) -- pusher is also to be pushed
 			and s.node.param2 == node.param2 then
 				return false
 			end

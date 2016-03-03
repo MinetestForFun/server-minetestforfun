@@ -15,10 +15,16 @@ end
 
 -- Nodes that cannot be pushed / pulled by movestones, pistons
 function mesecon.is_mvps_stopper(node, pushdir, stack, stackid)
+	-- unknown nodes are always stoppers
+	if not minetest.registered_nodes[node.name] then
+		return true
+	end
+
 	local get_stopper = mesecon.mvps_stoppers[node.name]
 	if type (get_stopper) == "function" then
 		get_stopper = get_stopper(node, pushdir, stack, stackid)
 	end
+
 	return get_stopper
 end
 
@@ -47,6 +53,17 @@ function mesecon.mvps_process_stack(stack)
 	end
 end
 
+-- tests if the node can be pushed into, e.g. air, water, grass
+local function node_replaceable(name)
+	if name == "ignore" then return true end
+
+	if minetest.registered_nodes[name] then
+		return minetest.registered_nodes[name].buildable_to or false
+	end
+
+	return false
+end
+
 function mesecon.mvps_get_stack(pos, dir, maximum, all_pull_sticky)
 	-- determine the number of nodes to be pushed
 	local nodes = {}
@@ -56,9 +73,7 @@ function mesecon.mvps_get_stack(pos, dir, maximum, all_pull_sticky)
 		local np = frontiers[1]
 		local nn = minetest.get_node(np)
 
-		if nn.name ~= "air"
-		and minetest.registered_nodes[nn.name]
-		and minetest.registered_nodes[nn.name].liquidtype == "none" then
+		if not node_replaceable(nn.name) then
 			table.insert(nodes, {node = nn, pos = np})
 			if #nodes > maximum then return nil end
 
@@ -160,9 +175,9 @@ function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, all_pull_sti
 
 	-- add nodes
 	for _, n in ipairs(nodes) do
-		local np = mesecon.addPosRule(n.pos, movedir)
+		local np = vector.add(n.pos, movedir)
 
-		minetest.add_node(np, n.node)
+		minetest.set_node(np, n.node)
 		minetest.get_meta(np):from_table(n.meta)
 	end
 
@@ -171,7 +186,7 @@ function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, all_pull_sti
 	for i in ipairs(nodes) do
 		moved_nodes[i] = {}
 		moved_nodes[i].oldpos = nodes[i].pos
-		nodes[i].pos = mesecon.addPosRule(nodes[i].pos, movedir)
+		nodes[i].pos = vector.add(nodes[i].pos, movedir)
 		moved_nodes[i].pos = nodes[i].pos
 		moved_nodes[i].node = nodes[i].node
 		moved_nodes[i].meta = nodes[i].meta
@@ -192,12 +207,8 @@ end)
 function mesecon.mvps_move_objects(pos, dir, nodestack)
 	local objects_to_move = {}
 
-	-- Move object at tip of stack
-	local pushpos = mesecon.addPosRule(pos, -- get pos at tip of stack
-		{x = dir.x * #nodestack,
-		 y = dir.y * #nodestack,
-		 z = dir.z * #nodestack})
-
+	-- Move object at tip of stack, pushpos is position at tip of stack
+	local pushpos = vector.add(pos, vector.multiply(dir, #nodestack))
 
 	local objects = minetest.get_objects_inside_radius(pushpos, 1)
 	for _, obj in ipairs(objects) do
@@ -208,7 +219,7 @@ function mesecon.mvps_move_objects(pos, dir, nodestack)
 	if tonumber(minetest.setting_get("movement_gravity")) > 0 and dir.y == 0 then
 		-- If gravity positive and dir horizontal, push players standing on the stack
 		for _, n in ipairs(nodestack) do
-			local p_above = mesecon.addPosRule(n.pos, {x=0, y=1, z=0})
+			local p_above = vector.add(n.pos, {x=0, y=1, z=0})
 			local objects = minetest.get_objects_inside_radius(p_above, 1)
 			for _, obj in ipairs(objects) do
 				table.insert(objects_to_move, obj)
@@ -219,7 +230,7 @@ function mesecon.mvps_move_objects(pos, dir, nodestack)
 	for _, obj in ipairs(objects_to_move) do
 		local entity = obj:get_luaentity()
 		if not entity or not mesecon.is_mvps_unmov(entity.name) then
-			local np = mesecon.addPosRule(obj:getpos(), dir)
+			local np = vector.add(obj:getpos(), dir)
 
 			--move only if destination is not solid
 			local nn = minetest.get_node(np)
