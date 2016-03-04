@@ -60,7 +60,7 @@ mobs:register_mob("mobs:cow", {
 	view_range = 7,
 	replace_rate = 10,
 	replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "farming:wheat_8"},
-	replace_with = "air",
+	replace_with = "mobs:dung",
 	fear_height = 2,
 	on_rightclick = function(self, clicker)
 

@@ -22,7 +22,6 @@ local all_colours = {
 for _, col in pairs(all_colours) do
 
 	mobs:register_mob("mobs:sheep_"..col[1], {
-
 		-- animal, monster, npc, barbarian
 		type = "animal",
 		-- not aggressive
@@ -36,7 +35,7 @@ for _, col in pairs(all_colours) do
 		visual = "mesh",
 		mesh = "mobs_sheep.b3d",
 		textures = {
-			{"mobs_sheep_wool.png^[colorize:" .. col[3] .. "^mobs_sheep_base.png"},
+			{"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:" .. col[3] .. ")"},
 		},
 		-- specific texture and mesh for gotten
 		gotten_texture = {"mobs_sheep_shaved.png"},
