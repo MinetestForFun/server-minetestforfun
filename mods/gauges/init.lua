@@ -8,6 +8,9 @@ local hp_bar = {
 	textures = {"20.png"}, -- The texture is changed later in the code.
 	visual_size = {x = 1.5, y = 0.09375, z = 1.5}, -- Y value is (1 / 16) * 1.5.
 	wielder = nil,
+	on_activate = function(self)
+		self.object:set_armor_groups({immortal = 1})
+	end,
 }
 
 function hp_bar:on_step(dtime)
