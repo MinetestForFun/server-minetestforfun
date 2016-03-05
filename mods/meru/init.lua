@@ -2,10 +2,10 @@
 
 local COORD = false -- Print tower co-ordinates to terminal (cheat)
 
-local XMIN = 0 -- Area for random spawn
-local XMAX = 0
-local ZMIN = 0
-local ZMAX = 0
+local XMIN = -1000 -- Area for random spawn
+local XMAX = 1000
+local ZMIN = -1000
+local ZMAX = 1000
 
 local BASRAD = 64 -- Average radius at y = -32
 local HEIGHT = 2048 -- Approximate height measured from y = -32
@@ -55,14 +55,18 @@ local np_biome = {
 
 -- Stuff
 
-local cxmin = math.floor((XMIN + 32) / 80) -- limits in chunk co-ordinates
-local czmin = math.floor((ZMIN + 32) / 80)
-local cxmax = math.floor((XMAX + 32) / 80)
-local czmax = math.floor((ZMAX + 32) / 80)
-local cxav = (cxmin + cxmax) / 2 -- spawn area midpoint in chunk co-ordinates
-local czav = (czmin + czmax) / 2
-local xnom = (cxmax - cxmin) / 4 -- noise multipliers
-local znom = (czmax - czmin) / 4
+local xmid = (XMIN + XMAX) / 2
+local zmid = (ZMIN + ZMAX) / 2
+local xrad = xmid - XMIN
+local zrad = zmid - ZMIN
+
+local merux -- The position of the mountain is calculated on first mapgen
+local meruz
+
+local merux_min
+local merux_max
+local meruz_min
+local meruz_max
 
 -- Nodes
 
@@ -93,24 +97,26 @@ local nobj_biome = nil
 -- On generated function
 
 minetest.register_on_generated(function(minp, maxp, seed)
-	if maxp.x < XMIN or minp.x > XMAX
-	or maxp.z < ZMIN or minp.z > ZMAX then
-		return
+	if not merux and not meruz then -- on first mapgen
+		local persist = math.sqrt(1.25) - 0.5 -- golden ratio - 1, solves the equation x²+x+1 = 2
+
+		local locnoise = minetest.get_perlin(5839090, 3, persist, 1)
+		local noisex = locnoise:get2d({x = 31, y = 23}) / 2
+		local noisez = locnoise:get2d({x = 17, y = 11}) / 2
+
+		merux = math.floor(xmid + noisex * xrad + 0.5)
+		meruz = math.floor(zmid + noisez * zrad + 0.5)
+		merux_min = merux - BASRAD
+		merux_max = merux + BASRAD
+		meruz_min = meruz - BASRAD
+		meruz_max = meruz + BASRAD
+
+		if COORD then
+			print ("[meru] at x " .. merux .. " z " .. meruz)
+		end
 	end
 
-	local locnoise = minetest.get_perlin(5839090, 2, 0.5, 3)
-	local noisex = locnoise:get2d({x = 31, y = 23})
-	local noisez = locnoise:get2d({x = 17, y = 11})
-	local cx = cxav + math.floor(noisex * xnom) -- chunk co ordinates
-	local cz = czav + math.floor(noisez * znom)
-	local merux = 80 * cx + 8
-	local meruz = 80 * cz + 8
-	if COORD then
-		print ("[meru] at x " .. merux .. " z " .. meruz)
-	end
-	if minp.x < merux - 120 or minp.x > merux + 40
-	or minp.z < meruz - 120 or minp.z > meruz + 40
-	or minp.y < -32 or minp.y > HEIGHT * 1.2 then
+	if minp.x > merux_max or maxp.x < merux_min or minp.z > meruz_max or maxp.z < meruz_min then
 		return
 	end
 
