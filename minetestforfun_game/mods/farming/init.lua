@@ -437,14 +437,19 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	local under = minetest.get_node(pt.under)
 	local above = minetest.get_node(pt.above)
 
-	-- check if pointing at the top of the node
-	if pt.above.y ~= pt.under.y + 1 then
-		return
-	end
-
 	-- return if any of the nodes is not registered
 	if not minetest.registered_nodes[under.name]
 	or not minetest.registered_nodes[above.name] then
+		return
+	end
+
+	-- is there an on_rightclick callback?
+	if minetest.registered_nodes[under.name].on_rightclick and not placer:get_player_control().sneak then
+		return minetest.registered_nodes[under.name].on_rightclick(pt.under, under, placer, itemstack, pointed_thing)
+	end
+
+	-- check if pointing at the top of the node
+	if pt.above.y ~= pt.under.y + 1 then
 		return
 	end
 
@@ -472,6 +477,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 				)
 			end -- END refill
 		end
+
 		return itemstack
 	end
 end
