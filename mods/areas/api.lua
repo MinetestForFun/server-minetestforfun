@@ -162,32 +162,13 @@ function areas:canMakeArea(pos1, pos2, name) --MFF crabman(25/02/2016) fix areas
 end
 
 
---MFF DEBUT crabman(17/09/2015 ) respawn player in special area(event) if a spawn is set.
+--MFF crabman(5/03/2016 ) return special area pos if a spawn is set.
 --1 party (2 party in beds mod)
-local dead_players = {}
-minetest.register_on_dieplayer(function(player)
-	local player_name = player:get_player_name()
-	if not player_name then return end
-	local pos = player:getpos()
-	if pos then
-		dead_players[player_name] = pos
-	end
-end)
-
-
-function areas:onRespawn(player)
-	local player_name = player:get_player_name()
-	if not player_name or not dead_players[player_name] then return false end
-	local pos = dead_players[player_name]
-	dead_players[player_name] = nil
-	if pos then
-		for _, area in pairs(areas:getAreasAtPos(pos)) do
-			if area.spawn then
-				player:setpos(area.spawn)
-				return true
-			end
+function areas:getSpawn(pos)
+	for _, area in pairs(areas:getAreasAtPos(pos)) do
+		if area.spawn and area.spawn.x then
+			return area.spawn
 		end
 	end
-	return false
+	return nil
 end
---FIN

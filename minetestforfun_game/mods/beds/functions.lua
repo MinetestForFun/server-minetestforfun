@@ -181,13 +181,27 @@ minetest.register_on_joinplayer(function(player)
 	beds.read_spawns()
 end)
 
--- respawn player at bed if enabled and valid position is found
-minetest.register_on_respawnplayer(function(player)
-	--MFF DEBUT crabman(8/01/2016 ) respawn player in special area(event) if a spawn is set.
-	if ((minetest.get_modpath("areas") ~= nil) and (areas:onRespawn(player))) then
-		return true
-	end
 
+local dead_players = {}
+local have_areas_mod = false
+if (minetest.get_modpath("areas") ~= nil) and areas.getSpawn then
+	have_areas_mod = true
+end
+
+
+local function teleport_player(player, clear)
+	local name = player:get_player_name()
+	if not name or name == "" then return false end
+	if have_areas_mod and dead_players[name] ~= nil then
+		local pos = areas:getSpawn(dead_players[name])
+		if clear then
+			dead_players[name] = nil
+		end
+		if pos then
+			player:setpos(pos)
+			return true
+		end
+	end
 	if not enable_respawn then
 		return false
 	end
@@ -197,7 +211,30 @@ minetest.register_on_respawnplayer(function(player)
 		player:setpos(pos)
 		return true
 	end
+	--if not areas or bed spawnpoint, tp to the spawn
+	local spawn = minetest.string_to_pos(minetest.setting_get("static_spawnpoint") or "0,0,0")
+	player:setpos(spawn)
+	return false
+end
+
+
+minetest.register_on_dieplayer(function(player)
+	local name = player:get_player_name()
+	if not name or name == "" then return end
+	if have_areas_mod then
+		local pos = player:getpos()
+		if pos then
+			dead_players[name] = pos
+		end
+	end
+	minetest.after(0.20, teleport_player, player) -- tp after all others on_dieplayer callback otherwise their pos is wrong
 end)
+
+-- respawn player at bed if enabled and valid position is found
+minetest.register_on_respawnplayer(function(player)
+	return teleport_player(player, true)
+end)
+
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
