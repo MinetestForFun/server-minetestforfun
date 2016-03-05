@@ -61,7 +61,7 @@ minetest.register_node("farming:jackolantern", {
 	sounds = default.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher)
 		node.name = "farming:jackolantern_on"
-		minetest.set_node(pos, node)
+		minetest.swap_node(pos, node)
 	end,
 })
 
@@ -82,7 +82,7 @@ minetest.register_node("farming:jackolantern_on", {
 	drop = "farming:jackolantern",
 	on_punch = function(pos, node, puncher)
 		node.name = "farming:jackolantern"
-		minetest.set_node(pos, node)
+		minetest.swap_node(pos, node)
 	end,
 })
 

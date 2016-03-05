@@ -1,5 +1,5 @@
 --[[
-	Minetest Farming Redo Mod 1.22 (26th October 2015)
+	Minetest Farming Redo Mod 1.22 (8th December 2015)
 	by TenPlus1
 	NEW growing routine by prestidigitator
 	auto-refill by crabman77
@@ -21,7 +21,9 @@ local DEBUG_abm_runs   = 0
 local DEBUG_abm_time   = 0
 local DEBUG_timer_runs = 0
 local DEBUG_timer_time = 0
+
 if farming.DEBUG then
+
 	function farming.DEBUG.reset_times()
 		DEBUG_abm_runs = 0
 		DEBUG_abm_time = 0
@@ -30,6 +32,7 @@ if farming.DEBUG then
 	end
 
 	function farming.DEBUG.report_times()
+
 		local abm_n     = DEBUG_abm_runs
 		local abm_dt    = DEBUG_abm_time
 		local abm_avg   = (abm_n > 0 and abm_dt / abm_n) or 0
@@ -37,15 +40,15 @@ if farming.DEBUG then
 		local timer_dt  = DEBUG_timer_time
 		local timer_avg = (timer_n > 0 and timer_dt / timer_n) or 0
 		local dt = abm_dt + timer_dt
-		print("ABM ran for "..abm_dt.."µs over "..abm_n.." runs: "..
-		      abm_avg.."µs/run")
-		print("Timer ran for "..timer_dt.."µs over "..timer_n.." runs: "..
-		      timer_avg.."µs/run")
+
+		print("ABM ran for "..abm_dt.."µs over "..abm_n.." runs: "..abm_avg.."µs/run")
+		print("Timer ran for "..timer_dt.."µs over "..timer_n.." runs: "..timer_avg.."µs/run")
 		print("Total farming time: "..dt.."µs")
 	end
 end
 
 local statistics = dofile(farming.path.."/statistics.lua")
+
 dofile(farming.path.."/soil.lua")
 dofile(farming.path.."/hoes.lua")
 dofile(farming.path.."/grass.lua")
@@ -95,12 +98,14 @@ end
  --    If true, count elapsed day time.  Otherwise, count elapsed night time.
  -- @return
  --    The amount of day or night time that has elapsed.
- --
-local function day_or_night_time(t_game, t_day, dt, count_day)
-	local t1_day = t_day - dt / SECS_PER_CYCLE
 
+local function day_or_night_time(t_game, t_day, dt, count_day)
+
+	local t1_day = t_day - dt / SECS_PER_CYCLE
 	local t1_c, t2_c  -- t1_c < t2_c and t2_c always in [0, 1)
+
 	if count_day then
+
 		if t_day < 0.25 then
 			t1_c = t1_day + 0.75  -- Relative to sunup, yesterday
 			t2_c = t_day  + 0.75
@@ -119,6 +124,7 @@ local function day_or_night_time(t_game, t_day, dt, count_day)
 	end
 
 	local dt_c = clamp(t2_c, 0, 0.5) - clamp(t1_c, 0, 0.5)  -- this cycle
+
 	if t1_c < -0.5 then
 		local nc = math.floor(-t1_c)
 		t1_c = t1_c + nc
@@ -166,10 +172,13 @@ local MAX_LIGHT = 1000
  --    Node or position table, or node name.
  -- @return
  --    List (plant_name, stage), or nothing (nil) if node isn't loaded
- --
+
 local function plant_name_stage(node)
+
 	local name
+
 	if type(node) == 'table' then
+
 		if node.name then
 		   name = node.name
 		elseif node.x and node.y and node.z then
@@ -179,11 +188,15 @@ local function plant_name_stage(node)
 	else
 		name = tostring(node)
 	end
+
 	if not name or name == "ignore" then return nil end
 
 	local sep_pos = name:find("_[^_]+$")
+
 	if sep_pos and sep_pos > 1 then
+
 		local stage = tonumber(name:sub(sep_pos + 1))
+
 		if stage and stage >= 0 then
 			return name:sub(1, sep_pos - 1), stage
 		end
@@ -195,6 +208,7 @@ end
 --- Map from node name to
  -- { plant_name = ..., name = ..., stage = n, stages_left = { node_name, ... } }
 local plant_stages = {}
+
 farming.plant_stages = plant_stages
 
 --- Registers the stages of growth of a (possible plant) node.
@@ -204,21 +218,26 @@ farming.plant_stages = plant_stages
  -- @return
  --    The (possibly zero) number of stages of growth the plant will go through
  --    before being fully grown, or nil if not a plant.
- --
+
 local register_plant_node
+
 -- Recursive helper
 local function reg_plant_stages(plant_name, stage, force_last)
+
 	local node_name = plant_name and plant_name .. "_" .. stage
 	local node_def = node_name and minetest.registered_nodes[node_name]
+
 	if not node_def then return nil end
 
 	local stages = plant_stages[node_name]
+
 	if stages then return stages end
 
 	if minetest.get_item_group(node_name, "growing") > 0 then
-		local ns = reg_plant_stages(plant_name, stage + 1, true)
 
+		local ns = reg_plant_stages(plant_name, stage + 1, true)
 		local stages_left = (ns and { ns.name, unpack(ns.stages_left) }) or {}
+
 		stages = {
 			plant_name = plant_name,
 			name = node_name,
@@ -227,8 +246,10 @@ local function reg_plant_stages(plant_name, stage, force_last)
 		}
 
 		if #stages_left > 0 then
+
 			local old_constr = node_def.on_construct
 			local old_destr  = node_def.on_destruct
+
 			minetest.override_item(node_name,
 				{
 					on_construct = function(pos)
@@ -246,7 +267,9 @@ local function reg_plant_stages(plant_name, stage, force_last)
 					end,
 				})
 		end
+
 	elseif force_last then
+
 		stages = {
 			plant_name = plant_name,
 			name = node_name,
@@ -258,11 +281,14 @@ local function reg_plant_stages(plant_name, stage, force_last)
 	end
 
 	plant_stages[node_name] = stages
+
 	return stages
 end
 
 register_plant_node = function(node)
+
 	local plant_name, stage = plant_name_stage(node)
+
 	if plant_name then
 		local stages = reg_plant_stages(plant_name, stage, false)
 		return stages and #stages.stages_left
@@ -272,15 +298,22 @@ register_plant_node = function(node)
 end
 
 local function set_growing(pos, stages_left)
+
 	if not stages_left then return end
 
 	local timer = minetest.get_node_timer(pos)
+
 	if stages_left > 0 then
+
 		if not timer:is_started() then
+
 			local stage_length = statistics.normal(STAGE_LENGTH_AVG, STAGE_LENGTH_DEV)
+
 			stage_length = clamp(stage_length, 0.5 * STAGE_LENGTH_AVG, 3.0 * STAGE_LENGTH_AVG)
+
 			timer:set(stage_length, -0.5 * math.random() * STAGE_LENGTH_AVG)
 		end
+
 	elseif timer:is_started() then
 		timer:stop()
 	end
@@ -292,10 +325,13 @@ end
  --    The node's position.
  -- @param node
  --    The cached node table if available, or nil.
- --
+
 function farming.handle_growth(pos, node)
+
 	if not pos then return end
+
 	local stages_left = register_plant_node(node or pos)
+
 	if stages_left then set_growing(pos, stages_left) end
 end
 
@@ -307,14 +343,19 @@ minetest.after(0,
 	end)
 
 local abm_func = farming.handle_growth
+
 if farming.DEBUG then
+
 	local normal_abm_func = abm_func
+
 	abm_func = function(...)
 		local t0 = minetest.get_us_time()
 		local r = { normal_abm_func(...) }
 		local t1 = minetest.get_us_time()
+
 		DEBUG_abm_runs = DEBUG_abm_runs + 1
 		DEBUG_abm_time = DEBUG_abm_time + (t1 - t0)
+
 		return unpack(r)
 	end
 end
@@ -322,39 +363,51 @@ end
 -- Just in case a growing type or added node is missed (also catches existing
 -- nodes added to map before timers were incorporated).
 minetest.register_abm({
+
 	nodenames = { "group:growing" },
-	interval  = 300,
-	chance    = 1,
-	action = abm_func})
+	interval = 300,
+	chance = 1,
+	action = abm_func
+})
 
 --- Plant timer function.
  --
  -- Grows plants under the right conditions.
- --
+
 function farming.plant_growth_timer(pos, elapsed, node_name)
+
 	local stages = plant_stages[node_name]
+
 	if not stages then return false end
 
 	local max_growth = #stages.stages_left
+
 	if max_growth <= 0 then return false end
 
 	if stages.plant_name == "farming:cocoa" then
+
 		if not minetest.find_node_near(pos, 1, { "default:jungletree", "moretrees:jungletree_leaves_green" }) then
 			return true
 		end
 	else
 		local under = minetest.get_node_or_nil({ x = pos.x, y = pos.y - 1, z = pos.z })
+
 		if not under or under.name ~= "farming:soil_wet" then return true end
 	end
 
 	local growth
-
 	local light_pos = { x = pos.x, y = pos.y, z = pos.z }
 	local lambda = elapsed / STAGE_LENGTH_AVG
+
 	if lambda < 0.1 then return true end
+
 	if max_growth == 1 or lambda < 2.0 then
+
 		local light = (minetest.get_node_light(light_pos) or 0) -- CHANGED
+		--print ("light level:", light)
+
 		if not in_range(light, MIN_LIGHT, MAX_LIGHT) then return true end
+
 		growth = 1
 	else
 		local night_light  = (minetest.get_node_light(light_pos, 0) or 0) -- CHANGED
@@ -370,51 +423,68 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 		end
 
 		growth = statistics.poisson(lambda, max_growth)
+
 		if growth < 1 then return true end
 	end
 
-	minetest.swap_node(pos, { name = stages.stages_left[growth] })
+	if minetest.registered_nodes[stages.stages_left[growth]] then
+		minetest.swap_node(pos, { name = stages.stages_left[growth] })
+	else
+		return true
+	end
 
 	return growth ~= max_growth
 end
 
 if farming.DEBUG then
+
 	local timer_func = farming.plant_growth_timer;
+
 	farming.plant_growth_timer = function(pos, elapsed, node_name)
+
 		local t0 = minetest.get_us_time()
-
 		local r = { timer_func(pos, elapsed, node_name) }
-
 		local t1 = minetest.get_us_time()
+
 		DEBUG_timer_runs = DEBUG_timer_runs + 1
 		DEBUG_timer_time = DEBUG_timer_time + (t1 - t0)
+
 		return unpack(r)
 	end
 end
 
 -- refill placed plant by crabman (26/08/2015)
 local can_refill_plant = {
-	["farming:blueberry_1"] =  "farming:blueberries",
-	["farming:carrot_1"] =  "farming:carrot",
-	["farming:coffee_1"] =  "farming:coffee_beans",
+	["farming:blueberry_1"] = "farming:blueberries",
+	["farming:carrot_1"] = "farming:carrot",
+	["farming:coffee_1"] = "farming:coffee_beans",
 	["farming:corn_1"] =  "farming:corn",
-	["farming:cotton_1"] =  "farming:seed_cotton",
-	["farming:cucumber_1"] =  "farming:cucumber",
-	["farming:melon_1"] =  "farming:melon_slice",
-	["farming:potato_1"] =  "farming:potato",
-	["farming:pumpkin_1"] =  "farming:pumpkin_slice",
-	["farming:raspberry_1"] =  "farming:raspberries",
-	["farming:rhubarb_1"] =  "farming:rhubarb",
-	["farming:tomato_1"] =  "farming:tomato",
-	["farming:wheat_1"] =  "farming:seed_wheat"
+	["farming:cotton_1"] = "farming:seed_cotton",
+	["farming:cucumber_1"] = "farming:cucumber",
+	["farming:melon_1"] = "farming:melon_slice",
+	["farming:potato_1"] = "farming:potato",
+	["farming:pumpkin_1"] = "farming:pumpkin_slice",
+	["farming:raspberry_1"] = "farming:raspberries",
+	["farming:rhubarb_1"] = "farming:rhubarb",
+	["farming:tomato_1"] = "farming:tomato",
+	["farming:wheat_1"] = "farming:seed_wheat",
+	["farming:grapes_1"] = "farming:grapes",
+	["farming:beans_1"] = "farming:beans",
+	["farming:rhubarb_1"] = "farming:rhubarb",
+	["farming:cocoa_1"] = "farming:cocoa_beans",
 }
 
 function farming.refill_plant(player, plantname, index)
+
 	local inv = player:get_inventory()
 	local old_stack = inv:get_stack("main", index)
+
 	if old_stack:get_name() ~= "" then return end
-	for i,stack in ipairs(inv:get_list("main")) do
+
+	for i, stack in pairs(inv:get_list("main")) do
+
 		if stack:get_name() == plantname and i ~= index then
+
 			inv:set_stack("main", index, stack)
 			stack:clear()
 			inv:set_stack("main", i, stack)
@@ -427,6 +497,7 @@ end -- END refill
 -- Place Seeds on Soil
 
 function farming.place_seed(itemstack, placer, pointed_thing, plantname)
+
 	local pt = pointed_thing
 
 	-- check if pointing at a node
@@ -463,19 +534,24 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 	-- if not protected then add node and remove 1 item from the itemstack
 	if not minetest.is_protected(pt.above, placer:get_player_name()) then
+
 		minetest.set_node(pt.above, {name = plantname, param2 = 1})
+
 		if not minetest.setting_getbool("creative_mode") then
+
 			itemstack:take_item()
+
 			-- check for refill
 			if itemstack:get_count() == 0
 			and can_refill_plant[plantname] then
+
 				minetest.after(0.10,
 					farming.refill_plant,
 					placer,
 					can_refill_plant[plantname],
 					placer:get_wield_index()
 				)
-			end -- END refill
+			end
 		end
 
 		return itemstack
@@ -485,6 +561,7 @@ end
 -- Function to register plants (for compatibility)
 
 farming.register_plant = function(name, def)
+
 	local mname = name:split(":")[1]
 	local pname = name:split(":")[2]
 
@@ -492,15 +569,18 @@ farming.register_plant = function(name, def)
 	if not def.description then
 		def.description = "Seed"
 	end
+
 	if not def.inventory_image then
 		def.inventory_image = "unknown_item.png"
 	end
+
 	if not def.steps then
 		return nil
 	end
 
 	-- Register seed
 	minetest.register_node(":" .. mname .. ":seed_" .. pname, {
+
 		description = def.description,
 		tiles = {def.inventory_image},
 		inventory_image = def.inventory_image,
@@ -512,6 +592,7 @@ farming.register_plant = function(name, def)
 		walkable = false,
 		sunlight_propagates = true,
 		selection_box = farming.select,
+
 		on_place = function(itemstack, placer, pointed_thing)
 			return farming.place_seed(itemstack, placer, pointed_thing, mname .. ":"..pname.."_1")
 		end
@@ -525,6 +606,7 @@ farming.register_plant = function(name, def)
 
 	-- Register growing steps
 	for i = 1, def.steps do
+
 		local drop = {
 			items = {
 				{items = {mname .. ":" .. pname}, rarity = 9 - i},
@@ -535,12 +617,14 @@ farming.register_plant = function(name, def)
 		}
 
 		local g = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, growing = 1}
+
 		-- Last step doesn't need growing=1 so Abm never has to check these
 		if i == def.steps then
 			g = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1}
 		end
 
 		local node_name = mname .. ":" .. pname .. "_" .. i
+
 		minetest.register_node(node_name, {
 			drawtype = "plantlike",
 			waving = 1,
@@ -553,6 +637,7 @@ farming.register_plant = function(name, def)
 			groups = g,
 			sounds = default.node_sound_leaves_defaults(),
 		})
+
 		register_plant_node(node_name)
 	end
 
