@@ -46,6 +46,12 @@ function beds.register_bed(name, def)
 				minetest.remove_node(p)
 			end
 		end,
+		after_dig_node = function(pos, oldnode, oldmetadata, digger)
+			local name = digger:get_player_name()
+			if not name or name == "" then return end
+			beds.spawn[name] = nil
+			beds.save_spawns()
+		end,
 		on_rightclick = function(pos, node, clicker)
 			beds.on_rightclick(pos, clicker)
 		end,
