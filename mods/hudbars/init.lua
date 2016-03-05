@@ -335,9 +335,11 @@ local function update_hud(player)
 end
 
 minetest.register_on_joinplayer(function(player)
+	local name = player:get_player_name()
+	if not name or name == "" then return end
 	hide_builtin(player)
 	custom_hud(player)
-	hb.players[player:get_player_name()] = player
+	hb.players[name] = player
 end)
 
 minetest.register_on_leaveplayer(function(player)
