@@ -134,7 +134,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			if not stack then
 				return
 			elseif not player:get_inventory():room_for_item("main", stack) then
-				minetest.chat_send_player(player:get_player_name(), "You need one free slot in your main inventory")
+				local pos = player:getpos()
+				pos.y = pos.y + 2
+				minetest.add_item(pos, stack)
 				return
 			end
 			player:get_inventory():add_item("main", stack)
