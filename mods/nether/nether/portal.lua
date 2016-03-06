@@ -240,7 +240,7 @@ if nether_prisons then
 	-- set background when player joins
 	minetest.register_on_joinplayer(function(player)
 		minetest.after(0, function(player)
-			if player:getpos().y < nether.start then
+			if player and player:getpos() and player:getpos().y < nether.start then
 				update_background(player, true)
 			end
 		end, player)
