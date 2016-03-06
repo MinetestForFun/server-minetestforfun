@@ -6,7 +6,7 @@ mobs:register_mob("mobs:dungeon_master", {
 	type = "monster",
 	-- aggressive, shoots fireballs at player, deal 13 damages
 	passive = false,
-	pathfinding = true,
+	pathfinding = false,
 	damage = 12,
 	attack_type = "dogshoot",
 	reach = 3,

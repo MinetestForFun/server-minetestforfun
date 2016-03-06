@@ -18,7 +18,7 @@ mobs:register_mob("mobs:lavasmall", {
 	type = "monster",
 	-- aggressive, deals 2 damage to player when hit
 	passive = false,
-	pathfinding = true,
+	pathfinding = false,
 	reach = 2,
 	damage = 2,
 	attack_type = "dogfight",

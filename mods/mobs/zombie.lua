@@ -7,7 +7,7 @@ mobs:register_mob("mobs:zombie", {
 	-- aggressive, deals 6 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	pathfinding = true,
+	pathfinding = false,
 	damage = 5,
 	-- health & armor
 	hp_min = 30,

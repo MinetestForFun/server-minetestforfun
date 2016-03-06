@@ -8,7 +8,7 @@ mobs:register_mob("mobs:yeti", {
 	passive = false,
 	damage = 6,
 	attack_type = "dogshoot",
-	pathfinding = true,
+	pathfinding = false,
 	reach = 2,
 	shoot_interval = .75,
 	arrow = "mobs:snowball",

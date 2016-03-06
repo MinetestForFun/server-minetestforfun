@@ -18,7 +18,7 @@ mobs:register_mob("mobs:npc", {
 	damage = 5,					-- 3 damages if tamed
 	attack_type = "dogfight",
 	attacks_monsters = true,
-	pathfinding = true,
+	pathfinding = false,
 	-- health & armor
 	hp_min = 20,
 	hp_max = 20,
