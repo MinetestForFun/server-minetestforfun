@@ -8,6 +8,18 @@ Introduce the Wizard class
 Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
 
 ---Patch Notes---
+---06/03/2016--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Gael-de-Sailly)
+Update of "u_inv" (bugfix bags when you die)
+Update of "nether" (Bugfix the Nether portals)
+Update of "mobs" (Disable pathfinding for the moment, because source of many bugs)
+Update of "gauges" (Small improves)
+Update of "farming" (You can now open doors even if you wear seeds in your hand)
+Update of "hudbars" (Bugfix)
+Update of "beds" (Fully debuged spawn point)
+Addition of "cozy" (just for roleplay, you can sit or lay down/sleep with the commands /sit and /lay)
+Update of "mobs" (re-add cow dungs)
+
+---Patch Notes---
 ---29/02/2016--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Gael-de-Sailly, ObaniGemini/Obani, ElementW)
 Update of "coloredwood" (bugfix the sounds of this mod nodes)
 Addition of "Jumping" (cushions are back and debugged!)
