@@ -2,10 +2,10 @@
 
 local COORD = false -- Print tower co-ordinates to terminal (cheat)
 
-local XMIN = -1000 -- Area for random spawn
-local XMAX = 1000
-local ZMIN = -1000
-local ZMAX = 1000
+local XMIN = -640 -- Area for random spawn
+local XMAX = -640
+local ZMIN = -450
+local ZMAX = -450
 
 local BASRAD = 64 -- Average radius at y = -32
 local HEIGHT = 2048 -- Approximate height measured from y = -32
