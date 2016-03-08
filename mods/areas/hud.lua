@@ -11,7 +11,7 @@ local function tick()
 		local area_owner_name = ""
 		local mod_owner = 0
 		local mod_open = 0
-		local mod_arming = 0
+		local mod_farming = 0
 
 		local nb_areas = 0
 		for id, area in pairs(areas:getAreasAtPos(pos)) do
@@ -24,7 +24,7 @@ local function tick()
 				mod_open = 1
 			end
 			if area.openfarming then
-				mod_arming = 1
+				mod_farming = 1
 			end
 
 			if not area.parent then
@@ -35,7 +35,7 @@ local function tick()
 		local icon = "areas_1_0_1.png"
 		if nb_areas > 0 then
 			area_text = ("nb area:%u\nowner:%s"):format(nb_areas, area_owner_name)
-			icon = ("areas_%u_%u_%u.png"):format(mod_owner, mod_open, mod_arming)
+			icon = ("areas_%u_%u_%u.png"):format(mod_owner, mod_open, mod_farming)
 		end
 		if not areas.hud[name] then
 			areas.hud[name] = {}
