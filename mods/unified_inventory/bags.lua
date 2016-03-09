@@ -201,6 +201,32 @@ minetest.register_tool("unified_inventory:bag_large", {
 	groups = {bagslots=24},
 })
 
+local colours = {"orange", "blue", "green", "purple"}
+
+for _, colour in pairs(colours) do
+	minetest.register_tool("unified_inventory:bag_small_" .. colour, {
+		description = S("Small Bag"),
+		inventory_image = "bags_small_" .. colour .. ".png",
+		groups = {bagslots=8},
+	})
+
+	minetest.register_tool("unified_inventory:bag_medium_" .. colour, {
+		description = S("Medium Bag"),
+		inventory_image = "bags_medium_" .. colour .. ".png",
+		groups = {bagslots=16},
+	})
+
+	minetest.register_tool("unified_inventory:bag_large_" .. colour, {
+		description = S("Large Bag"),
+		inventory_image = "bags_large_" .. colour .. ".png",
+		groups = {bagslots=24},
+	})
+end
+
+--minetest.register_alias("unified_inventory:bag_small", "unified_inventory:bad_small_red")
+--minetest.register_alias("unified_inventory:bag_medium", "unified_inventory:bad_medium_red")
+--minetest.register_alias("unified_inventory:bag_large", "unified_inventory:bad_large_red")
+
 -- register bag crafts
 minetest.register_craft({
 	output = "unified_inventory:bag_small",
