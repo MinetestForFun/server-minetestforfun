@@ -133,6 +133,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			local stack = unified_inventory.extract_bag(player, i)
 			if not stack then
 				return
+			elseif stack == "overflow" then
+				minetest.chat_send_player(player:get_player_name(), "You bag is too heavy to be unequipped... Remove some items and retry")
+				return
 			elseif not player:get_inventory():room_for_item("main", stack) then
 				local pos = player:getpos()
 				pos.y = pos.y + 2
@@ -274,6 +277,10 @@ function unified_inventory.extract_bag(player, id)
 	local list = {}
 	for i, item in pairs(inv) do
 		list[i] = item:to_table()
+	end
+	if minetest.serialize(list):len() >= 4096 then
+		minetest.log("warning", "[U_Inv] Preventing metadata overflow with bag metadata")
+		return "overflow"
 	end
 
 	pinv:remove_item("bag" .. id, stack)
