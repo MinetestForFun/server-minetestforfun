@@ -5,7 +5,7 @@
 u_skins = {}
 u_skins.modpath = minetest.get_modpath("u_skins")
 u_skins.file = minetest.get_worldpath().."/u_skins.mt"
-u_skins.default = "character_1"
+u_skins.default = "character_3"
 u_skins.pages = {}
 u_skins.u_skins = {}
 u_skins.file_save = false
