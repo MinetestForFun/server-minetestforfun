@@ -1,6 +1,4 @@
 ---Planned on the Server---
-Improve the mapgen speed and reduce the freeze time when new chuncks are loaded
-Add Big Meru mountains to the server
 Add another Unique boss : The Ent
 Introduce the Wizard class
 
@@ -8,6 +6,16 @@ Introduce the Wizard class
 Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
 
 ---Patch Notes---
+---16/03/2016--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, eZam, ObaniGemini/Obani)
+Update of "mesecons" (Avoid lag if the chests are full and no trsh are installed, limit items in a pipe to 50, the next items in the pipe will be erased)
+Update of "throwing" (Add +3 damages to all arrows, improve the arrow drop rate when you hit something with your arrows, and reduce the reload time for the 3 best bows)
+Update of "u_skin" (Remove more than 100 useless/ugly/bugged skins, this will reduce the launching time and the inventory skin access time)
+Compress all images (Now the launching time will be faster)
+Update of "u_inv" (Add coloured bags - blue, orange, purple, green)
+Update of "meru" (Activate the mod, and set/spawn a mountain)
+Update of "hudbars" (Crashfix)
+Update of the chunksize (Now set to 3, no more freeze when a player is generating map)
+
 ---06/03/2016--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Gael-de-Sailly)
 Update of "u_inv" (bugfix bags when you die)
 Update of "nether" (Bugfix the Nether portals)
