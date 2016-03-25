@@ -205,6 +205,17 @@ local function safe_date()
 	return(os.date("*t",os.time()))
 end
 
+-- string.rep(str, n) with a high value for n can be used to DoS
+-- the server. Therefore, limit max. length of generated string.
+local function safe_string_rep(str, n)
+	if #str * n > mesecon.setting("luacontroller_string_rep_max", 64000) then
+		debug.sethook() -- Clear hook
+		error("string.rep: string length overflow", 2)
+	end
+
+	return string.rep(str, n)
+end
+
 local function remove_functions(x)
 	local tp = type(x)
 	if tp == "table" then
@@ -249,8 +260,8 @@ end
 
 
 local safe_globals = {
-	"assert", "error", "ipairs", "next", "pairs", "pcall", "select",
-	"tonumber", "tostring", "type", "unpack", "_VERSION", "xpcall",
+	"assert", "error", "ipairs", "next", "pairs", "select",
+	"tonumber", "tostring", "type", "unpack", "_VERSION"
 }
 local function create_environment(pos, mem, event)
 	-- Gather variables for the environment
@@ -275,11 +286,10 @@ local function create_environment(pos, mem, event)
 			byte = string.byte,
 			char = string.char,
 			format = string.format,
-			gsub = string.gsub,
 			len = string.len,
 			lower = string.lower,
 			upper = string.upper,
-			rep = string.rep,
+			rep = safe_string_rep,
 			reverse = string.reverse,
 			sub = string.sub,
 		},
@@ -339,18 +349,18 @@ end
 
 
 local function timeout()
-	debug.sethook()  -- Clear hook
-	error("Code timed out!")
+	debug.sethook() -- Clear hook
+	error("Code timed out!", 2)
 end
 
 
 local function code_prohibited(code)
 	-- LuaJIT doesn't increment the instruction counter when running
 	-- loops, so we have to sanitize inputs if we're using LuaJIT.
-	if not jit then
+	if not rawget(_G, "jit") then
 		return false
 	end
-	local prohibited = {"while", "for", "do", "repeat", "until", "goto"}
+	local prohibited = {"while", "for", "repeat", "until", "goto"}
 	code = " "..code.." "
 	for _, p in ipairs(prohibited) do
 		if string.find(code, "[^%w_]"..p.."[^%w_]") then
@@ -369,10 +379,26 @@ local function create_sandbox(code, env)
 	setfenv(f, env)
 
 	return function(...)
-		debug.sethook(timeout, "", 10000)
+		-- Normal Lua: Use instruction counter to stop execution
+		-- after luacontroller_maxevents.
+		-- LuaJIT: Count function calls instead of instructions, allows usage
+		-- of function keyword. However, LuaJIT still doesn't trigger
+		-- lines events when using infinite loops.
+		local maxevents = mesecon.setting("luacontroller_maxevents", 10000)
+		if not rawget(_G, "jit") then
+			debug.sethook(timeout, "", maxevents)
+		else
+			local events = 0
+			debug.sethook(function ()
+				events = events + 1
+				if events > maxevents then
+					timeout()
+				end
+			end, "c")
+		end
 		local ok, ret = pcall(f, ...)
 		debug.sethook()  -- Clear hook
-		if not ok then error(ret) end
+		if not ok then error(ret, 0) end
 		return ret
 	end
 end
