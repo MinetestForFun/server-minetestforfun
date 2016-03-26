@@ -214,7 +214,7 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "cooking",
-	output = "default:coal",
+	output = "default:coal_lump",
 	recipe = "nether:tree",
 })
 
