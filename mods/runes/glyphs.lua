@@ -74,7 +74,7 @@ function register_glyph(name, basics, tab)
 	runes.glyphs[name] = {}
 	runes.glyphs[name].mana_cost = basics.mana_cost or 0
 
-	def = table.copy(tab)
+	local def = table.copy(tab)
 	def.groups.glyph = 1
 
 	def.description = basics.description or "Mysterious Glyph"

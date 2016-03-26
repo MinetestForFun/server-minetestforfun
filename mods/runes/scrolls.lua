@@ -6,7 +6,7 @@ runes.scrolls = {}
 function register_scroll(name, type, data)
 	if not data then return end
 
-	def = {
+	local def = {
 		inventory_image = (data.texture or "runes_scroll_unknown.png"),
 		groups = {scroll = 1},
 		description = (data.description or "Mysterious Scroll"),
