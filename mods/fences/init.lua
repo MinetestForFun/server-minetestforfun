@@ -101,7 +101,7 @@ minetest.register_node("fences:fence_wood", {
 	inventory_image = "default_fence.png",
 	wield_image = "default_fence.png",
 	paramtype = "light",
-	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,fences=1},
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=2,fences=1,not_in_creative_inventory=1},
 	drop = 'fences:fence_wood',
 	sunlight_propagates = true,
 	drawtype = "nodebox",
@@ -550,7 +550,7 @@ minetest.register_node("fences:fence_wood_13", {  --right(2)+top(11)=13
 })
 
 
-
+--[[
 minetest.register_craft({
 	output = 'fences:fence_wood 2',
 	recipe = {
@@ -558,7 +558,7 @@ minetest.register_craft({
 		{'default:stick', 'default:stick', 'default:stick'},
 		{'', '', ''},
 	}
-})
+})]]
 
 minetest.register_craft({
 	output = 'fences:fencegate',
