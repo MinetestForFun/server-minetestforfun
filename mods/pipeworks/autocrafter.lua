@@ -223,7 +223,7 @@ local function upgrade_autocrafter(pos, meta)
 			if not recipe then return end
 			for idx, stack in ipairs(recipe) do
 				if not stack:is_empty() then
-					minetest.item_drop(stack, "", pos)
+					minetest.add_item(pos, stack)
 					stack:set_count(1)
 					stack:set_wear(0)
 					inv:set_stack("recipe", idx, stack)

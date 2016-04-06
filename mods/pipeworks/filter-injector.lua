@@ -28,7 +28,7 @@ end
 -- todo SOON: this function has *way too many* parameters
 local function grabAndFire(data,slotseq_mode,filtmeta,frominv,frominvname,frompos,fromnode,filterfor,fromtube,fromdef,dir,fakePlayer,all)
 	local sposes = {}
-	for spos,stack in ipairs(frominv:get_list(frominvname)) do
+	for spos,stack in ipairs(frominv:get_list(frominvname) or {}) do -- Modification made for https://github.com/MinetestForFun/server-minetestforfun/issues/426 (Mg|06/04/2016)
 		local matches
 		if filterfor == "" then
 			matches = stack:get_name() ~= ""

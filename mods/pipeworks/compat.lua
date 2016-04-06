@@ -15,6 +15,10 @@ minetest.override_item("default:furnace", {
 		insert_object = function(pos, node, stack, direction)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
+			local timer = minetest.get_node_timer(pos)
+			if not timer:is_started() then
+				timer:start(1.0)
+			end
 			if direction.y == 1 then
 				return inv:add_item("fuel",stack)
 			else
@@ -60,6 +64,10 @@ minetest.override_item("default:furnace_active", {
 		insert_object = function(pos,node,stack,direction)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
+			local timer = minetest.get_node_timer(pos)
+			if not timer:is_started() then
+				timer:start(1.0)
+			end
 			if direction.y == 1 then
 				return inv:add_item("fuel", stack)
 			else
