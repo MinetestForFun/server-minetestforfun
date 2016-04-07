@@ -76,8 +76,14 @@ for i in ipairs(bedcolors) do
 				return homedecor.bed_expansion(pos, placer, itemstack, pointed_thing, color)
 			end
 		end,
-		after_dig_node = function(pos)
+		after_dig_node = function(pos, oldnode, oldmetadata, digger)
 			homedecor.unextend_bed(pos, color)
+			if minetest.get_modpath("beds") then -- MFF (crabman 7/04/2016) remove bed spawn on dig
+				local name = digger:get_player_name()
+				if not name or name == "" then return end
+				beds.spawn[name] = nil
+				beds.save_spawns()
+			end
 		end,
 		on_rightclick = function(pos, node, clicker)
 			if minetest.get_modpath("beds") then
