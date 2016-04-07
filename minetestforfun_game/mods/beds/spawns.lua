@@ -56,3 +56,5 @@ function beds.set_spawns()
 	end
 	beds.save_spawns()
 end
+
+beds.read_spawns()

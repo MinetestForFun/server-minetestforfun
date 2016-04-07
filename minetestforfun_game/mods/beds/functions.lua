@@ -176,10 +176,11 @@ end
 
 
 -- callbacks
-
+--[[ --MFF (Crabman) It's useless to read each join player, read only once at load. function moved/called in spawn.lua
 minetest.register_on_joinplayer(function(player)
 	beds.read_spawns()
 end)
+--]]
 
 
 local dead_players = {}
