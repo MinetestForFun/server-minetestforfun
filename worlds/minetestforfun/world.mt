@@ -175,6 +175,7 @@ load_mod_spears = true
 load_mod_pclasses = true
 load_mod_mff_pclasses = true
 load_mod_3d_armor = true
+load_mod_3d_armor_stand = true
 load_mod_reinforcedleather = true
 load_mod_blackmithril = true
 load_mod_technic_armor = false
