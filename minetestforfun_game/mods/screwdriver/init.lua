@@ -22,7 +22,7 @@ local USES = 200
 local USES_perfect = 10000
 
 -- Handles rotation
-local function screwdriver_handler(itemstack, user, pointed_thing, mode)
+screwdriver.handler = function(itemstack, user, pointed_thing, mode, uses)
 	if pointed_thing.type ~= "node" then
 		return
 	end
@@ -37,7 +37,7 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	local node = minetest.get_node(pos)
 	local ndef = minetest.registered_nodes[node.name]
 	-- verify node is facedir (expected to be rotatable)
-	if ndef.paramtype2 ~= "facedir" then
+	if not ndef or ndef.paramtype2 ~= "facedir" then
 		return
 	end
 	-- Compute param2
@@ -91,12 +91,12 @@ local function screwdriver_handler(itemstack, user, pointed_thing, mode)
 	return itemstack
 end
 
--- Screwdriver (en steel à 200 utilisation)
+-- Screwdriver
 minetest.register_tool("screwdriver:screwdriver", {
 	description = "Screwdriver (left-click rotates face, right-click rotates axis)",
 	inventory_image = "screwdriver.png",
 	on_use = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_FACE)
+		screwdriver.handler(itemstack, user, pointed_thing, screwdriver.ROTATE_FACE, 200)
 		return itemstack
 	end,
 	on_place = function(itemstack, user, pointed_thing)
@@ -110,11 +110,11 @@ minetest.register_tool("screwdriver:screwdriver_perfect", {
 	description = "Perfect Screwdriver (left-click rotates face, right-click rotates axis)",
 	inventory_image = "screwdriver_perfect.png",
 	on_use = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_FACE)
+		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_FACE, 10000)
 		return itemstack
 	end,
 	on_place = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_AXIS)
+		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_AXIS, 10000)
 		return itemstack
 	end,
 })

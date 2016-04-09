@@ -23,7 +23,7 @@ minetest.register_alias("bookshelf", "default:bookshelf")
 minetest.register_alias("glass", "default:glass")
 minetest.register_alias("wooden_fence", "default:fence_wood")
 minetest.register_alias("rail", "default:rail")
-minetest.register_alias("ladder", "default:ladder")
+minetest.register_alias("ladder", "default:ladder_wood")
 minetest.register_alias("wood", "default:wood")
 minetest.register_alias("mese", "default:mese")
 minetest.register_alias("cloud", "default:cloud")
@@ -32,7 +32,7 @@ minetest.register_alias("water_source", "default:water_source")
 minetest.register_alias("lava_flowing", "default:lava_flowing")
 minetest.register_alias("lava_source", "default:lava_source")
 minetest.register_alias("torch", "default:torch")
-minetest.register_alias("sign_wall", "default:sign_wall")
+minetest.register_alias("sign_wall", "default:sign_wall_wood")
 minetest.register_alias("furnace", "default:furnace")
 minetest.register_alias("chest", "default:chest")
 minetest.register_alias("locked_chest", "default:chest_locked")
@@ -68,9 +68,13 @@ minetest.register_alias("steel_ingot", "default:steel_ingot")
 minetest.register_alias("clay_brick", "default:clay_brick")
 minetest.register_alias("snow", "default:snow")
 
+-- 'mese_block' was used for a while for the block form of mese
+minetest.register_alias("default:mese_block", "default:mese")
+
 -- Aliases for corrected pine node names
 minetest.register_alias("default:pinetree", "default:pine_tree")
 minetest.register_alias("default:pinewood", "default:pine_wood")
 
--- Mese now comes in the form of blocks, ore, crystal and fragments
-minetest.register_alias("default:mese", "default:mese_block")
+minetest.register_alias("default:ladder", "default:ladder_wood")
+minetest.register_alias("default:sign_wall", "default:sign_wall_wood")
+

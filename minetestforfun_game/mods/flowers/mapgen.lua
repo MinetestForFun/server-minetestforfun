@@ -216,7 +216,7 @@ minetest.register_decoration({
 
 -- Mods using singlenode mapgen can call these functions to enable
 -- the use of minetest.generate_ores or minetest.generate_decorations
--- Enable in mapgen v6 only
+
 local mg_params = minetest.get_mapgen_params()
 if mg_params.mgname == "v6" then
 	flowers.register_mgv6_decorations()
