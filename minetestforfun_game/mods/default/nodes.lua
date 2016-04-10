@@ -2324,12 +2324,18 @@ minetest.register_node("default:nyancat", {
 
 minetest.register_node("default:nyancat_rainbow", {
 	description = "Nyan Cat Rainbow",
+	drawtype = "glasslike",
 	tiles = {
 		"default_nc_rb.png^[transformR90", "default_nc_rb.png^[transformR90",
 		"default_nc_rb.png", "default_nc_rb.png"
 	},
+	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 2},
+	sunlight_propagate = true,
+	walkable = false,
+	use_texture_alpha = true,
+	climbable = true,
 	is_ground_content = false,
 	post_effect_color = {a = 128, r= 255, g= 128, b= 255},
 	sounds = default.node_sound_defaults(),
