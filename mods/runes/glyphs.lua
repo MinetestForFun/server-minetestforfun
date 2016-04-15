@@ -63,6 +63,56 @@ minetest.register_craft({
 	},
 })
 
+minetest.register_craftitem("runes:recharge_wand", {
+	description = "Recharge wand",
+	inventory_image = "runes_recharge_wand.png",
+	on_use = function(itemstack, user, pointed_thing)
+		if not pointed_thing.type == "node" then
+			return
+		end
+
+		local node = minetest.get_node_or_nil(pointed_thing.under)
+		if not node or not minetest.registered_nodes[node.name]
+			or minetest.get_item_group(node.name, "glyph") == 0 then
+			return
+		end
+
+		local meta = minetest.get_meta(pointed_thing.under)
+		local charge = meta:get_int("charge")
+		local rname = node.name:sub(13)
+		local msg = "Rune already charged at maximum capacity"
+
+		if charge < runes.glyphs[rname].max_charge then
+			local pmana = mana.get(user:get_player_name())
+			-- Lower the index of pmana if it is higher than 20 (to simplify calculations)
+			if pmana > 20 then
+				pmana = 20
+			end
+			local delta = runes.glyphs[rname].max_charge - charge
+
+			if delta < pmana then
+				meta:set_int("charge", runes.glyphs[rname].max_charge)
+				mana.subtract(user:get_player_name(), delta)
+				msg = "Rune recharged at maximum capacity"
+			else
+				meta:set_int("charge", charge + pmana)
+				mana.subtract(user:get_player_name(), 20)
+				msg = "Rune recharged"
+			end
+		end				
+		minetest.chat_send_player(user:get_player_name(), msg)
+	end,
+})
+
+minetest.register_craft({
+	output = "runes:recharge_wand",
+	recipe = {
+		{"", "", "default:diamond"},
+		{"", "default:mese_crystal_fragment", ""},
+		{"default:stick", "", ""},
+	},
+})
+
 function register_glyph(name, basics, tab)
 	--[[ Basics can contain :
 		- texture = "runes_glyph_unknown.png",
@@ -73,6 +123,7 @@ function register_glyph(name, basics, tab)
 
 	runes.glyphs[name] = {}
 	runes.glyphs[name].mana_cost = basics.mana_cost or 0
+	runes.glyphs[name].max_charge = basics.maximum_charge or 100
 
 	local def = table.copy(tab)
 	def.groups.glyph = 1
@@ -103,7 +154,8 @@ end
 register_glyph("watchdog", {
 		description = "Watch Dog Glyph",
 		texture = "runes_glyph_watchdog.png",
-		initial_charge = 250,
+		initial_charge = 300,
+		maximum_charge = 300,
 		mana_cost = 10,
 	}, {
 		light_source = 8,
@@ -112,6 +164,7 @@ register_glyph("watchdog", {
 			minetest.get_node_timer(pos):start(0.2)
 		end,
 		on_timer = function(pos, elapsed)
+			local vel = 2
 			local meta = minetest.get_meta(pos)
 			if meta:get_int("charge") <= 0 then
 				minetest.add_particlespawner({
@@ -161,6 +214,7 @@ register_glyph("manasucker", {
 		description = "Mana Sucker Glyph",
 		texture = "runes_glyph_manasucker.png",
 		initial_charge = 100,
+		maximum_charge = 100,
 		mana_cost = 20,
 	}, {
 		groups = {snappy = 1},
