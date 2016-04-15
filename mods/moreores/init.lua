@@ -17,6 +17,8 @@ end
 
 local modpath = minetest.get_modpath("moreores")
 
+dofile(modpath .. "/_config.txt")
+
 -- `mg` support:
 if minetest.get_modpath("mg") then
 	dofile(modpath .. "/mg.lua")
@@ -163,37 +165,43 @@ local function add_ore(modname, description, mineral_name, oredef)
 		})
 	end
 
+	oredef.oredef.ore_type = "scatter"
+	oredef.oredef.ore = modname .. ":mineral_" .. mineral_name
+	oredef.oredef.wherein = "default:stone"
+
+	minetest.register_ore(oredef.oredef)
+
 	for tool_name, tooldef in pairs(oredef.tools) do
 		local tdef = {
 			description = "",
 			inventory_image = toolimg_base .. tool_name .. ".png",
 			tool_capabilities = {
 				max_drop_level = 3,
-				groupcaps = tooldef.groupcaps
+				groupcaps = tooldef
 			}
 		}
 
 		if tool_name == "sword" then
-			tdef.tool_capabilities.full_punch_interval = tooldef.full_punch_interval
-			tdef.tool_capabilities.damage_groups = tooldef.damage_groups
+			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Sword"):format(S(description))
 		end
 
 		if tool_name == "pick" then
-			tdef.tool_capabilities.full_punch_interval = tooldef.full_punch_interval
-			tdef.tool_capabilities.damage_groups = tooldef.damage_groups
+			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Pickaxe"):format(S(description))
 		end
 
 		if tool_name == "axe" then
-			tdef.tool_capabilities.full_punch_interval = tooldef.full_punch_interval
-			tdef.tool_capabilities.damage_groups = tooldef.damage_groups
+			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Axe"):format(S(description))
 		end
 
 		if tool_name == "shovel" then
-			tdef.tool_capabilities.full_punch_interval = tooldef.full_punch_interval
-			tdef.tool_capabilities.damage_groups = tooldef.damage_groups
+			tdef.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Shovel"):format(S(description))
 		end
 
@@ -205,6 +213,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 				return hoe_on_use(itemstack, user, pointed_thing, uses)
 			end
 		end
+
 		local fulltool_name = tool_base .. tool_name .. tool_post
 		minetest.register_tool(fulltool_name, tdef)
 		minetest.register_alias(tool_name .. tool_post, fulltool_name)
@@ -224,89 +233,77 @@ local oredefs = {
 	silver = {
 		description = "Silver",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
+		oredef = {clust_scarcity = moreores_silver_chunk_size * moreores_silver_chunk_size * moreores_silver_chunk_size,
+			clust_num_ores = moreores_silver_ore_per_chunk,
+			clust_size     = moreores_silver_chunk_size,
+			y_min     = moreores_silver_min_depth,
+			y_max     = moreores_silver_max_depth
+			},
 		tools = {
 			pick = {
-				groupcaps = {
-					cracky = {times = {[1] = 3.0, [2] = 1.20, [3] = 0.70}, uses = 90, maxlevel= 2},
-					crumbly = {times = {[1] = 1.75, [2] = 0.80, [3] = 0.65}, uses = 90, maxlevel= 2}
-				},
-				damage_groups = {fleshy = 3},
-				full_punch_interval = 0.8,
+				cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel= 1}
 			},
 			hoe = {
 				uses = 300
 			},
 			shovel = {
-				groupcaps = {
-					crumbly = {times = {[1] = 1.50, [2] = 0.60, [3] = 0.35}, uses = 90, maxlevel= 2}
-				},
-				damage_groups = {fleshy = 3},
-				full_punch_interval = 0.8,
+				crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1}
 			},
 			axe = {
-				groupcaps = {
-					choppy = {times = {[1] = 3.30, [2] = 1.32, [3] = 0.77}, uses = 90, maxlevel= 2},
-					fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel= 1}
-				},
-				damage_groups = {fleshy = 3},
-				full_punch_interval = 0.8,
+				choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel= 1},
+				fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel= 1}
 			},
 			sword = {
-				groupcaps = {
-					fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
-					snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
-					choppy = {times = {[3] = 0.80}, uses = 40, maxlevel= 0}
-				},
-				damage_groups = {fleshy = 5},
-				full_punch_interval = 0.85,
-			}
+				fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
+				snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
+				choppy = {times = {[3] = 0.80}, uses = 100, maxlevel= 0}
+			},
 		},
+		full_punch_interval = 1.0,
+		damage_groups = {fleshy = 6},
 	},
 	tin = {
 		description = "Tin",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		tools = {}
+		oredef = {clust_scarcity = moreores_tin_chunk_size * moreores_tin_chunk_size * moreores_tin_chunk_size,
+			clust_num_ores = moreores_tin_ore_per_chunk,
+			clust_size     = moreores_tin_chunk_size,
+			y_min     = moreores_tin_min_depth,
+			y_max     = moreores_tin_max_depth
+			},
+		tools = {},
 	},
 	mithril = {
 		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+		oredef = {clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
+			clust_num_ores = moreores_mithril_ore_per_chunk,
+			clust_size     = moreores_mithril_chunk_size,
+			y_min     = moreores_mithril_min_depth,
+			y_max     = moreores_mithril_max_depth
+			},
 		tools = {
 			pick = {
-				groupcaps = {
-					cracky = {times = {[1] = 1.50, [2] = 0.80, [3] = 0.35}, uses = 200, maxlevel= 3},
-					crumbly = {times = {[1] = 1.00, [2] = 0.60, [3] = 0.25}, uses = 200, maxlevel= 3}
-				},
-				damage_groups = {fleshy = 5},
-				full_punch_interval = 0.5,
+				cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel= 1}
 			},
 			hoe = {
 				uses = 1000
 			},
 			shovel = {
-				groupcaps = {
-					crumbly = {times = {[1] = 0.75, [2] = 0.4, [3] = 0.17}, uses = 200, maxlevel= 3}
-				},
-				damage_groups = {fleshy = 5},
-				full_punch_interval = 0.5,
+				crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel= 1}
 			},
 			axe = {
-				groupcaps = {
-					choppy = {times = {[1] = 1.65, [2] = 0.88, [3] = 0.39}, uses = 200, maxlevel= 3},
-					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel= 1}
-				},
-				damage_groups = {fleshy = 5},
-				full_punch_interval = 0.5,
+				choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel= 1},
+				fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel= 1}
 			},
 			sword = {
-				groupcaps = {
-					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel= 1},
-					snappy = {times = {[2] = 0.70, [3] = 0.25}, uses = 200, maxlevel= 1},
-					choppy = {times = {[3] = 0.65}, uses = 200, maxlevel= 0}
-				},
-				damage_groups = {fleshy = 9},
-				full_punch_interval = 0.5,
+				fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel= 1},
+				snappy = {times = {[2] = 0.70, [3] = 0.25}, uses = 200, maxlevel= 1},
+				choppy = {times = {[3] = 0.65}, uses = 200, maxlevel= 0}
 			}
 		},
+		full_punch_interval = 0.45,
+		damage_groups = {fleshy = 9},
 	}
 }
 

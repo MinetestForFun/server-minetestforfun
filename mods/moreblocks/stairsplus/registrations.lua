@@ -46,12 +46,18 @@ for _, name in pairs(default_nodes) do
 		if type(ndef.drop) == "string" then
 			drop = ndef.drop:split(" ")[1]:sub(9)
 		end
+
+		local tiles = ndef.tiles
+		if #ndef.tiles > 1 and ndef.drawtype:find("glass") then
+			tiles = { ndef.tiles[1] }
+		end
+
 		stairsplus:register_all("moreblocks", name, nodename, {
 			description = ndef.description,
 			drop = drop,
 			groups = ndef.groups,
 			sounds = ndef.sounds,
-			tiles = ndef.tiles,
+			tiles = tiles,
 			sunlight_propagates = true,
 			light_source = ndef.light_source
 		})

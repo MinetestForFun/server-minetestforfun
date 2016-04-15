@@ -1,0 +1,27 @@
+------------------------------------------------------------------------------
+------------------------------ CONFIGURATION ---------------------------------
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+-------- Change settings by changing the values after the "=". ---------------
+------------------------------------------------------------------------------
+
+-- Chunk sizes for ore generation (bigger = ore deposits are more scattered around)
+moreores_tin_chunk_size = 7
+moreores_silver_chunk_size = 11
+moreores_mithril_chunk_size = 11
+
+-- Amount of ore per chunk (higher = bigger ore deposits)
+moreores_tin_ore_per_chunk = 3
+moreores_silver_ore_per_chunk = 4
+moreores_mithril_ore_per_chunk = 1
+
+-- Minimal depths of ore generation (Y coordinate, 0 being sea level by default)
+moreores_tin_min_depth = -31000
+moreores_silver_min_depth = -31000
+moreores_mithril_min_depth = -31000
+
+-- Maximal depths of ore generation (Y coordinate, 0 being sea level by default)
+moreores_tin_max_depth = 12
+moreores_silver_max_depth = -12
+moreores_mithril_max_depth = -1024

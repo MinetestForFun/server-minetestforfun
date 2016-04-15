@@ -1,5 +1,5 @@
 Columnia (2014 by Glunggi) is a Fork of Stairs ..in principle is its Stairs with other Nodes.
-So i will to keep the old Stairs- Licences for this chanced Mode.. include all of my Chances.
+So i will to keep the old Stairs- Licenses for this chanced Mode.. include all of my Chances.
 
 Minetest 0.4 mod: stairs
 =========================
@@ -25,5 +25,3 @@ Authors of media files
 -----------------------
 Everything not listed in here:
 Copyright (C) 2010-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
-
-
