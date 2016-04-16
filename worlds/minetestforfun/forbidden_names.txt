@@ -58,3 +58,9 @@ fillesdepute
 fillesdeputes
 fillesdespute
 fillesdesputes
+admin
+admins
+moderator
+moderators
+moderateur
+moderateurs
