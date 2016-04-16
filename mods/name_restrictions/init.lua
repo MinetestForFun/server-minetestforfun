@@ -36,6 +36,8 @@ local disallowed = {
 	                   " Please choose a proper name and try again.",
 	["[4a]dm[1il]n"] = "Misleading name." ..
 					   " Please choose a proper name and try again.",
+	["moder[4a]tor"] = "Misleading name." ..
+					   " Please choose a proper name and try again.",
 	["[0o]wn[e3]r"]  = "Misleading name." ..
 					   " Please choose a proper name and try again.",
 	["^[0-9]+$"]     = "All-numeric names are disallowed on this server." ..
@@ -96,7 +98,7 @@ minetest.register_chatcommand("choosecase", {
 ------------------------
 -- Anti-impersonation --
 ------------------------
--- Prevents names that are too similar to annother player's name.
+-- Prevents names that are too similar to another player's name.
 
 local similar_chars = {
 	-- Only A-Z, a-z, 1-9, dash, and underscore are allowed in playernames
