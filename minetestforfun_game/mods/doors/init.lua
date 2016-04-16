@@ -145,7 +145,7 @@ function _doors.door_toggle(pos, clicker)
 		state = tonumber(state)
 	end
 
-	if clicker and not minetest.check_player_privs(clicker, "protection_bypass") then
+	if clicker and not minetest.check_player_privs(clicker:get_player_name(), {protection_bypass = true}) then
 		local owner = meta:get_string("doors_owner")
 		if owner ~= "" then
 			if clicker:get_player_name() ~= owner then
