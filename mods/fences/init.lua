@@ -670,7 +670,6 @@ minetest.register_node("fences:fencegate", {
 			}
 	},
 	on_construct = function(pos)
-		me2 = minetest.get_node(pos)
 		meta2 = minetest.get_meta(pos)
 		meta2:set_int("state", 0)
 		state2 = 0
