@@ -16,7 +16,15 @@ function inventory_icon.get_inventory_state(inv, listname)
 end
 
 function inventory_icon.replace_icon(name)
-	return "inventory_icon_"..name
+	local icon = ""
+	if name:find("small") then
+		icon = "inventory_icon_bags_small.png"
+	elseif name:find("medium") then
+		icon = "inventory_icon_bags_medium.png"
+	elseif name:find("large") then
+		icon = "inventory_icon_bags_large.png"
+	end
+	return icon
 end
 
 minetest.register_on_joinplayer(function(player)
@@ -60,7 +68,7 @@ minetest.register_on_joinplayer(function(player)
 				scale = { x = 1, y = 1 }
 				local occupied, size = inventory_icon.get_inventory_state(player:get_inventory(), "bag"..i.."contents")
 				text = string.format("%d/%d", occupied, size)
-				icon = inventory_icon.replace_icon(minetest.registered_items[bag:get_name()].inventory_image)
+				icon = inventory_icon.replace_icon(bag:get_name())
 				if occupied >= size then
 					icon = icon .. "^" .. inventory_icon.COLORIZE_STRING
 				end
@@ -119,7 +127,7 @@ local function tick()
 						scale = { x = 1, y = 1 }
 						local occupied, size = inventory_icon.get_inventory_state(player:get_inventory(), "bag"..i.."contents")
 						text = string.format("%d/%d", occupied, size)
-						icon = inventory_icon.replace_icon(minetest.registered_items[bag:get_name()].inventory_image)
+						icon = inventory_icon.replace_icon(bag:get_name())
 						if occupied >= size then
 							icon = icon .. "^" .. inventory_icon.COLORIZE_STRING
 						end
