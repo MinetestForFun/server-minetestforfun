@@ -23,7 +23,6 @@ minetest.register_node("bobblocks:btm", {
 		"bobblocks_btm_sides.png", "bobblocks_btm_sides.png", "bobblocks_btm.png"},
 	inventory_image = "bobblocks_btm.png",
 	paramtype2 = "facedir",
-	material = minetest.digprop_dirtlike(1.0),
 	legacy_facedir_simple = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
 

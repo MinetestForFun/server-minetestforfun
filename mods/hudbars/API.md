@@ -1,4 +1,4 @@
-API documentation for the HUD bars mod 1.0.2
+API documentation for the HUD bars mod 1.2.1
 ============================================
 
 ## Introduction
@@ -59,8 +59,9 @@ manually in a reliable way.
 * `text_color`: A 3-octet number defining the color of the text. The octets denote, in this order red, green and blue and range from `0x00` (complete lack of this component) to `0xFF` (full intensity of this component). Example: `0xFFFFFF` for white.
 * `label`: A string which is displayed on the HUD bar itself to describe the HUD bar. Try to keep this string short.
 * `textures`: A table with the following fields:
- * `bar`: The file name of the bar image (as string).
- * `icon`: The file name of the icon, as string. This field can be `nil`, in which case no icon will be used.
+ * `bar`: The file name of the bar image (as string). This is only used for the `progress_bar` bar type (see `README.txt`, settings section).
+ * `icon`: The file name of the icon, as string. For the `progress_bar` type, it is shown as single image left of the bar, for the two statbar bar types, it is used as the statbar icon and will be repeated. This field can be `nil`, in which case no icon will be used, but this is not recommended, because the HUD bar will be invisible if the one of the statbar bar types is used.
+ * `bgicon`: The file name of the background icon, it is used as the background for the modern statbar mode only. This field can be `nil`, in which case no background icon will be displayed in this mode.
 * `default_start_value`: If this HUD bar is added to a player, and no initial value is specified, this value will be used as initial current value
 * `default_max_value`: If this HUD bar is added to a player, and no initial maximum value is specified, this value will be used as initial maximum value
 * `default_start_hidden`: The HUD bar will be initially start hidden by default when added to a player. Use `hb.unhide_hudbar` to unhide it.

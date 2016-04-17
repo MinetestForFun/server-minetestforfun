@@ -43,3 +43,24 @@ as of version 2.0.0 of the standard <http://semver.org/>.
 -----
 - Fix other HUD elements disappearing for rejoining players
 - Remove pointless delays for initializing the HUD for new or rejoining players
+
+1.0.3
+-----
+- Adjust default HUD bars position for Minetest 0.4.12
+
+1.1.0
+-----
+- Add boolean minetest.conf setting support (hudbars_autohide_breathbar) to control whether the breath bar is automatically hidden when full (default: yes)
+
+1.2.0
+-----
+- New setting: hudbars_sorting. You can now manually sort all the HUD bars. Useful if you don't like automatic order
+- New setting: hudbars_bar_type. You now can change the appearance of the HUD bars.
+- New HUD bar types, slightly experimental: Classic statbars and modern [hud]-style statbars
+- New experimental/unfinished setting: hudbars_alignment_pattern: You can now make the HUD bars stack vertically instead of the current zig-zag pattern. Note you probably need to change source code to productively use this feature
+- Various position-related HUD bar settings (see README.txt)
+- Remove hudbars.conf support and hudbars.conf.example (was never officially supported anyways)
+
+1.2.1
+-----
+- Fix crash when enable_damage is changed in mid-game

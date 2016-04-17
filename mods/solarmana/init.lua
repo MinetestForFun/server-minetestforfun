@@ -86,7 +86,7 @@ local function tick()
 		for key, value in pairs(mana_from_node) do
 			if key:split(":")[1] == "group" then
 				local groupname = key:split(":")[2]
-				if minetest.get_node_group(node.name, groupname) > 0 then
+				if minetest.get_item_group(node.name, groupname) > 0 then
 					if nodemana then
 						nodemana = math.max(nodemana, value) -- We get the greater one (if the node is part of 2 or more groups)
 					else
