@@ -6,6 +6,21 @@ Introduce the Wizard class
 Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
 
 ---Patch Notes---
+---17/04/2016--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ObaniGemini/Obani)
+Update of "MFF_Game" (Many bugfix & crashfix)
+Update of "name_restriction" (Add some forbdden names and disallowed moderator like nicknames)
+Update of "inventory_icon" (bugfix with the new colored bags)
+Update of "columnia" (New columns with moretrees ressources)
+Update of "moreores" & "moreblocks" (Code modularity & performance improvments)
+Update of "nether" (New nether guide by Obani)
+Update of "mesecons" (Improve the luacontroller)
+Update of "3d_armor" (Add stand node & code improvments)
+Update of "pipeworks" (crashfix & add a lag reduction fix)
+Update of "snow" (Add some aliases to avoid unknow nodes)
+Update of "beds" (Improve the set spawn feature of this mod to be more reactive and pleasant to use)
+Update of "thrwoing" (Fix the class drop bows/arbalets, now not dropped anymore)
+Update of "random_messages" (Fix and ad some new random messages)
+
 ---16/03/2016--- (Thanks to : LeMagnesium/Mg, crabman77/crabman, eZam, ObaniGemini/Obani)
 Update of "mesecons" (Avoid lag if the chests are full and no trsh are installed, limit items in a pipe to 50, the next items in the pipe will be erased)
 Update of "throwing" (Add +3 damages to all arrows, improve the arrow drop rate when you hit something with your arrows, and reduce the reload time for the 3 best bows)
