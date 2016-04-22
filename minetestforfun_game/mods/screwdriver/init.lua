@@ -100,7 +100,7 @@ minetest.register_tool("screwdriver:screwdriver", {
 		return itemstack
 	end,
 	on_place = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_AXIS)
+		screwdriver.handler(itemstack, user, pointed_thing, screwdriver.ROTATE_AXIS)
 		return itemstack
 	end,
 })
@@ -110,11 +110,11 @@ minetest.register_tool("screwdriver:screwdriver_perfect", {
 	description = "Perfect Screwdriver (left-click rotates face, right-click rotates axis)",
 	inventory_image = "screwdriver_perfect.png",
 	on_use = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_FACE, 10000)
+		screwdriver.handler(itemstack, user, pointed_thing, screwdriver.ROTATE_FACE, 10000)
 		return itemstack
 	end,
 	on_place = function(itemstack, user, pointed_thing)
-		screwdriver_handler(itemstack, user, pointed_thing, screwdriver.ROTATE_AXIS, 10000)
+		screwdriver.handler(itemstack, user, pointed_thing, screwdriver.ROTATE_AXIS, 10000)
 		return itemstack
 	end,
 })
