@@ -95,3 +95,7 @@ minetest.register_alias("farming_plus:tomato", "farming:tomato_8")
 
 -- Weed
 minetest.register_alias("farming:weed", "default:grass_2")
+
+-- Moreores
+minetest.register_alias("moreores:hoe_silver", "farming:hoe_silver")
+minetest.register_alias("moreores:hoe_mithril", "farming:hoe_mithril")

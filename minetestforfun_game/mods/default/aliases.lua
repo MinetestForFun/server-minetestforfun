@@ -80,7 +80,7 @@ minetest.register_alias("default:sign_wall", "default:sign_wall_wood")
 
 -- Those lines are for moreores integration
 minetest.register_alias("moreores:pick_silver", "default:pick_silver")
-minetest.register_alias("moreores:pick_mithril", "defaut:pick_mithril")
+minetest.register_alias("moreores:pick_mithril", "default:pick_mithril")
 minetest.register_alias("moreores:shovel_silver", "default:shovel_silver")
 minetest.register_alias("moreores:shovel_mithril", "default:shovel_mithril")
 minetest.register_alias("moreores:axe_silver", "default:axe_silver")
@@ -96,3 +96,7 @@ minetest.register_alias("moreores:tin_ingot", "default:tin_ingot")
 minetest.register_alias("moreores:mithril_lump", "default:mithril_lump")
 minetest.register_alias("moreores:silver_lump", "default:silver_lump")
 minetest.register_alias("moreores:tin_lump", "default:tin_lump")
+minetest.register_alias("moreores:mithril_block", "default:mithrilblock")
+minetest.register_alias("moreores:silver_block", "default:silverblock")
+minetest.register_alias("moreores:tin_block", "default:tinblock")
+
