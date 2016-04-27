@@ -105,7 +105,19 @@ default:steelblock
 default:stone_with_copper
 default:desert_stone_with_copper
 default:copperblock
+
+default:stone_with_tin
+default:desert_stone_with_tin
+default:tinblock
+
 default:bronzeblock
+
+default:stone_with_silver
+default:desert_stone_with_silver
+default:silverblock
+
+default:stone_with_mithril
+default:mithrilblock
 
 default:stone_with_gold
 default:goldblock
@@ -1059,6 +1071,81 @@ minetest.register_node("default:bronzeblock", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("default:stone_with_tin", {
+	description = "Tin Ore",
+	tiles = {"default_stone.png^default_mineral_tin.png"},
+	is_ground_content = true,
+	groups = {cracky = 3},
+	drop = {
+		items = {
+			{items = {"default:cobble"}},
+			{items = {"default:tin_lump"}},
+			{items = {"maptools:copper_coin 3"}},
+		},
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("default:desert_stone_with_tin", {
+	description = "Tin Ore",
+	tiles = {"default_desert_stone.png^default_mineral_tin.png"},
+	is_ground_content = true,
+	groups = {crumbly = 1, cracky = 3},
+	drop = {
+		items = {
+			{items = {"default:desert_cobble"}},
+			{items = {"default:tin_lump"}},
+			{items = {"maptools:copper_coin 3"}},
+		},
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("default:tinblock", {
+	description = "Tin Block",
+	tiles = {"default_tin_block.png"},
+	is_ground_content = false,
+	groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("default:stone_with_silver", {
+	description = "Silver Ore",
+	tiles = {"default_stone.png^default_mineral_silver.png"},
+	is_ground_content = true,
+	groups = {cracky = 3},
+	drop = {
+		items = {
+			{items = {"default:cobble"}},
+			{items = {"default:silver_lump"}},
+			{items = {"maptools:copper_coin 3"}},
+		},
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("default:desert_stone_with_silver", {
+	description = "Silver Ore",
+	tiles = {"default_desert_stone.png^default_mineral_silver.png"},
+	is_ground_content = true,
+	groups = {crumbly = 1, cracky = 3},
+	drop = {
+		items = {
+			{items = {"default:desert_cobble"}},
+			{items = {"default:silver_lump"}},
+			{items = {"maptools:copper_coin 3"}},
+		},
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("default:silverblock", {
+	description = "Silver Block",
+	tiles = {"default_silver_block.png"},
+	is_ground_content = false,
+	groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
 
 minetest.register_node("default:stone_with_mese", {
 	description = "Mese Ore",
@@ -1137,6 +1224,28 @@ minetest.register_node("default:goldblock", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("default:stone_with_mithril", {
+	description = "Tin Ore",
+	tiles = {"default_stone.png^default_mineral_mithril.png"},
+	is_ground_content = true,
+	groups = {cracky = 3},
+	drop = {
+		items = {
+			{items = {"default:cobble"}},
+			{items = {"default:mithril_lump"}},
+			{items = {"maptools:copper_coin 3"}},
+		},
+	},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("default:mithrilblock", {
+	description = "Mithril Block",
+	tiles = {"default_mithril_block.png"},
+	is_ground_content = false,
+	groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
 
 minetest.register_node("default:stone_with_diamond", {
 	description = "Diamond Ore",

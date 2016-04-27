@@ -151,6 +151,13 @@ farming.register_hoe(":farming:hoe_bronze", {
 	material = "default:bronze_ingot"
 })
 
+farming.register_hoe(":farming:hoe_silver", {
+	description = "Silver Hoe",
+	inventory_image = "farming_tool_silverhoe.png",
+	max_uses = 300,
+	material = "moreores:silver_ingot"
+})
+
 farming.register_hoe(":farming:hoe_mese", {
 	description = "Mese Hoe",
 	inventory_image = "farming_tool_mesehoe.png",
@@ -163,4 +170,11 @@ farming.register_hoe(":farming:hoe_diamond", {
 	inventory_image = "farming_tool_diamondhoe.png",
 	max_uses = 500,
 	material = "default:diamond"
+})
+
+farming.register_hoe(":farming:hoe_mithril", {
+	description = "Mithril Hoe",
+	inventory_image = "farming_tool_mithrilhoe.png",
+	max_uses = 1000,
+	material = "moreores:mithril_ingot"
 })

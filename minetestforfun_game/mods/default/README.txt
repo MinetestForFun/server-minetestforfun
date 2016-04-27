@@ -64,6 +64,7 @@ Calinou (CC BY-SA):
   default_papyrus.png
   default_mineral_copper.png
   default_glass_detail.png
+  default_tool_goldsword.png
 
 MirceaKitsune (WTFPL):
   character.x

@@ -3,7 +3,6 @@ backend = redis
 redis_hash = IGNORED
 redis_address = localhost
 
-load_mod_moreores = true
 load_mod_darkage = true
 load_mod_quartz = true
 load_mod_moreblocks = true
