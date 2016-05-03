@@ -208,7 +208,6 @@ load_mod_time_regulation = true
 
 load_mod_soundset = true
 load_mod_ambience = true
-load_mod_jukebox = true
 load_mod_music = true
 
 load_mod_areas = true
