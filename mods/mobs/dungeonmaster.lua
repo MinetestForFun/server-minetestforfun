@@ -65,8 +65,8 @@ mobs:register_mob("mobs:dungeon_master", {
 		speed_run = 15,
 	},
 })
--- spawn on stone between 20 and -1 light, 1 in 7000 chance, 1 dungeon master in area starting at -100 and below
-mobs:spawn_specific("mobs:dungeon_master", {"default:stone", "default:sandstone", "nether:netherrack"}, {"air"}, -1, 20, 30, 7000, 1, -31000, -250, false)
+-- spawn on stone between 20 and -1 light, 1 in 10000 chance, 1 dungeon master in area starting at -100 and below
+mobs:spawn_specific("mobs:dungeon_master", {"default:stone", "default:sandstone", "nether:netherrack"}, {"air"}, -1, 20, 30, 10000, 1, -31000, -250, false)
 -- register spawn egg
 mobs:register_egg("mobs:dungeon_master", "Dungeon Master", "mobs_dongeon_master_inv.png", 1)
 

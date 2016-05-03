@@ -57,8 +57,8 @@ mobs:register_mob("mobs:dirt_monster", {
 	},
 })
 
--- spawn on dirt_with_grass and drygrass between -1 and 5 light, 1 in 10000 change, 1 dirt monster in area up to 31000 in height
-mobs:spawn_specific("mobs:dirt_monster", {"default:dirt_with_grass", "default:dirt_with_dry_grass"}, {"air"}, -1, 5, 30, 10000, 1, -31000, 31000, false, false)
+-- spawn on dirt_with_grass and drygrass between -1 and 5 light, 1 in 12500 change, 1 dirt monster in area up to 31000 in height
+mobs:spawn_specific("mobs:dirt_monster", {"default:dirt_with_grass", "default:dirt_with_dry_grass"}, {"air"}, -1, 5, 30, 12500, 1, -31000, 31000, false, false)
 -- register spawn egg
 mobs:register_egg("mobs:dirt_monster", "Dirt Monster", "mobs_dirt_monster_inv.png", 1)
 

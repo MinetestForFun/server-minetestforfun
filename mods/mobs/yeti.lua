@@ -60,7 +60,7 @@ mobs:register_mob("mobs:yeti", {
 	},
 })
 -- spawn on stone between 20 and -1 light, 1 in 7000 chance, 1 in area below 31000
-mobs:spawn_specific("mobs:yeti", {"default:dirt_with_snow", "default:snow", "default:snowblock"}, {"air"}, -1, 20, 30, 30000, 1, -31000, 31000, false)
+mobs:spawn_specific("mobs:yeti", {"default:dirt_with_snow", "default:snow", "default:snowblock"}, {"air"}, -1, 20, 30, 50000, 1, -31000, 31000, false)
 -- register spawn egg
 mobs:register_egg("mobs:yeti", "Yeti", "mobs_yeti_inv.png", 1)
 

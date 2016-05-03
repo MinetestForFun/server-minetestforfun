@@ -69,7 +69,7 @@ mobs:register_mob("mobs:pig", {
 })
 
 -- spawns on dirt or junglegrass, between 8 and 20 light, 1 in 15000 chance, 1 in area up to 31000 in height
-mobs:spawn_specific("mobs:pig", {"default:dirt", "default:junglegrass", "default:dirt_with_dry_grass"}, {"air"}, 8, 20, 30, 10000, 1, -31000, 31000, true, true)
+mobs:spawn_specific("mobs:pig", {"default:dirt", "default:junglegrass", "default:dirt_with_dry_grass"}, {"air"}, 8, 20, 30, 15000, 1, -31000, 31000, true, true)
 
 -- register spawn egg
 mobs:register_egg("mobs:pig", "Pig", "mobs_pig_inv.png", 1)

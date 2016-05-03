@@ -48,8 +48,8 @@ mobs:register_mob("mobs:rat", {
 --]]
 })
 
--- spawn on stone between 1 and 20 light, 1 in 7000 chance, 1 per area up to 31000 in height
-mobs:spawn_specific("mobs:rat", {"default:stone", "default:sandstone"}, {"air"}, 0, 20, 30, 10000, 1, -31000, 31000, true)
+-- spawn on stone between 1 and 20 light, 1 in 20000 chance, 1 per area up to 31000 in height
+mobs:spawn_specific("mobs:rat", {"default:stone", "default:sandstone"}, {"air"}, 0, 20, 30, 20000, 1, -31000, 31000, true)
 
 -- register spawn egg
 mobs:register_egg("mobs:rat", "Rat", "mobs_rat_inv.png", 1)

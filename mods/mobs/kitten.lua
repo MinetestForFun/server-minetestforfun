@@ -61,5 +61,5 @@ mobs:register_mob("mobs:kitten", {
 		mobs:capture_mob(self, clicker, 50, 50, 90, false, nil)
 	end
 })
-mobs:spawn_specific("mobs:kitten", {"default:dirt_with_grass"}, {"air"}, 0, 20, 30, 10000, 1, -31000, 31000, true, true)
+mobs:spawn_specific("mobs:kitten", {"default:dirt_with_grass"}, {"air"}, 0, 20, 30, 15000, 1, -31000, 31000, true, true)
 mobs:register_egg("mobs:kitten", "Kitten", "mobs_kitten_inv.png", 0)

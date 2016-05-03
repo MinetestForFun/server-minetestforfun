@@ -171,8 +171,8 @@ mobs:register_mob("mobs:lavabig", {
 mobs:register_egg("mobs:lavabig", "Big Lava Slime", "mobs_lava_slime_big_inv.png", 1)
 
 --mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height)
-mobs:spawn_specific("mobs:lavabig", {"default:lava_source"},{"default:lava_flowing"}, -1, 20, 30, 4000, 1, -32000, 32000, false)
-mobs:spawn_specific("mobs:lavamedium", {"default:lava_source"},{"default:lava_flowing"}, -1, 20, 30, 4000, 2, -32000, 32000, false)
+mobs:spawn_specific("mobs:lavabig", {"default:lava_source"},{"default:lava_flowing"}, -1, 20, 30, 5000, 1, -32000, 32000, false)
+mobs:spawn_specific("mobs:lavamedium", {"default:lava_source"},{"default:lava_flowing"}, -1, 20, 30, 5000, 2, -32000, 32000, false)
 --mobs:spawn_specific("mobs:lavasmall", {"default:lava_source"},{"default:lava_flowing"}, -1, 20, 30, 10s000, 2, -32000, 32000, false)
 
 -- lava orb

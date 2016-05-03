@@ -106,8 +106,8 @@ mobs:register_mob("mobs:cow", {
 	end,
 })
 
--- spawn on default;green;prairie grass between 0 and 20 light, 1 in 11000 chance, 1 cow in area up to 31000 in height
-mobs:spawn_specific("mobs:cow", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 10000, 2, -31000, 31000, true, true)
+-- spawn on default;green;prairie grass between 0 and 20 light, 1 in 15000 chance, 1 cow in area up to 31000 in height
+mobs:spawn_specific("mobs:cow", {"default:dirt_with_grass"}, {"air"}, 8, 20, 30, 15000, 2, -31000, 31000, true, true)
 -- register spawn egg
 mobs:register_egg("mobs:cow", "Cow", "mobs_cow_inv.png", 1)
 

@@ -63,8 +63,8 @@ mobs:register_mob("mobs:mese_monster", {
 		punch_end = 63,
 	},
 })
--- spawn on stone between 20 and -1 light, 1 in 7000 chance, 1 in area below -25
-mobs:spawn_specific("mobs:mese_monster", {"default:stone", "default:sandstone"}, {"air"}, -1, 20, 30, 7000, 1, -31000, -125, false)
+-- spawn on stone between 20 and -1 light, 1 in 8000 chance, 1 in area below -25
+mobs:spawn_specific("mobs:mese_monster", {"default:stone", "default:sandstone"}, {"air"}, -1, 20, 30, 8000, 1, -31000, -125, false)
 -- register spawn egg
 mobs:register_egg("mobs:mese_monster", "Mese Monster", "mobs_mese_monster_inv.png", 1)
 

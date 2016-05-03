@@ -128,6 +128,6 @@ mobs:register_mob("mobs:npc_female", {
 })
 
 -- spawning enable for now
-mobs:spawn_specific("mobs:npc_female", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 100000, 1, -31000, 31000, true, true)
+mobs:spawn_specific("mobs:npc_female", {"default:dirt_with_grass", "default:dirt", "default:junglegrass", "default:sand"}, {"air"}, -1, 20, 30, 500000, 1, -31000, 31000, true, true)
 -- register spawn egg
 mobs:register_egg("mobs:npc_female", "Npc", "mobs_npc_female_inv.png", 1)

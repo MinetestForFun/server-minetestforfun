@@ -22,7 +22,7 @@ local l_model			= "mobs_shark.b3d"
 local l_egg_texture		= "mobs_shark_shark_inv.png"
 local l_spawn_in		= {"default:water_source"}
 local l_spawn_near		= {"default:water_flowing","default:water_source","seawrecks:woodship","seawrecks:uboot"}
-local l_spawn_chance	= 500000
+local l_spawn_chance	= 1000000
 
 -- large
 mobs:register_mob("mobs:shark_lg", {
