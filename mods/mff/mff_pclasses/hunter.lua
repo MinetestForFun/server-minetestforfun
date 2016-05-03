@@ -14,9 +14,9 @@ pclasses.api.register_class("hunter", {
 		end
 		local reinforced = pclasses.api.util.does_wear_full_armor(pname, "reinforcedleather", true)
 		if reinforced then
-			sprint.increase_maxstamina(pname, 20)
+			sprint.increase_maxstamina(pname, 40)
 		else
-			sprint.increase_maxstamina(pname, 10)
+			sprint.increase_maxstamina(pname, 30)
 		end
 		minetest.log("action", "[PClasses] Player " .. pname .. " become a hunter")
 	end,
