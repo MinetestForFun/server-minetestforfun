@@ -3,7 +3,7 @@ home = {}
 home.homes_file = {["real"] = minetest.get_worldpath() .. "/realhomes",
 		["nether"] = minetest.get_worldpath() .. "/netherhomes"}
 home.homepos = {["real"] = {}, ["nether"] = {}}
-home.time = 20 * 60
+home.time = 2 * 60 --MFF 04/05/2016 2 minutes plus 20 minutes
 
 home.sethome = function(name)
 	local player = minetest.get_player_by_name(name)
