@@ -7,8 +7,8 @@ mobs:register_mob("mobs:kitten", {
 	-- is it aggressive
 	passive = true,
 	-- health & armor
-	hp_min = 4,
-	hp_max = 8,
+	hp_min = 5,
+	hp_max = 10,
 	armor = 200,
 	-- textures and model
 	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},

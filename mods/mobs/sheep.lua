@@ -27,8 +27,8 @@ for _, col in pairs(all_colours) do
 		-- not aggressive
 		passive = true,
 		-- health & armor
-		hp_min = 10,
-		hp_max = 15,
+		hp_min = 8,
+		hp_max = 10,
 		armor = 200,
 		-- textures and model
 		collisionbox = {-0.5, -1, -0.5, 0.5, 0.3, 0.5},

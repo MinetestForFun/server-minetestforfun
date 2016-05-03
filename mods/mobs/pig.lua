@@ -9,10 +9,10 @@ mobs:register_mob("mobs:pig", {
 	attack_type = "dogfight",
 	group_attack = true,
 	reach = 2,
-	damage = 4,
+	damage = 3,
 	-- health & armor
-	hp_min = 15,
-	hp_max = 20,
+	hp_min = 10,
+	hp_max = 15,
 	armor = 200,
 	-- textures and model
 	collisionbox = {-0.8, -0.01, -0.8, 0.8, 1.1, 0.8},

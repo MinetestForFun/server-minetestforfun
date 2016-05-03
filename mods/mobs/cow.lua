@@ -11,8 +11,8 @@ mobs:register_mob("mobs:cow", {
 	reach = 2,
 	damage = 4,
 	-- health & armor
-	hp_min = 25,
-	hp_max = 30,
+	hp_min = 15,
+	hp_max = 20,
 	armor = 200,
 	-- textures and model
 	collisionbox = {-0.8, 0, -0.8, 0.8, 1.6, 0.8}, --Modif MFF (debug)

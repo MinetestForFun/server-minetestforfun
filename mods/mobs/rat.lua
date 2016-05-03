@@ -8,7 +8,7 @@ mobs:register_mob("mobs:rat", {
 	passive = true,
 	-- health & armor
 	hp_min = 1,
-	hp_max = 4,
+	hp_max = 2,
 	armor = 200,
 	-- textures and model
 	collisionbox = {-0.2, -1, -0.2, 0.2, -0.8, 0.2},
