@@ -15,7 +15,7 @@ mobs:register_mob("mobs:npc_female", {
 	-- aggressive, deals 6 damage to player/monster when hit
 	passive = false,
 	group_attack = true,
-	damage = 5,					-- 3 damages if tamed
+	damage = 4,					-- 3 damages if tamed
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	pathfinding = false,
