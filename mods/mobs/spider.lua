@@ -9,10 +9,10 @@ mobs:register_mob("mobs:spider", {
 	attack_type = "dogfight",
 	pathfinding = false,
 	reach = 2,
-	damage = 5,
+	damage = 4,
 	-- health & armor
-	hp_min = 30,
-	hp_max = 40,
+	hp_min = 25,
+	hp_max = 35,
 	armor = 200,
 	-- textures and model
 	collisionbox = {-0.9, -0.01, -0.7, 0.7, 0.6, 0.7},

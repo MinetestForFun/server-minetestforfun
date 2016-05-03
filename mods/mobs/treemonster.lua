@@ -9,11 +9,11 @@ mobs:register_mob("mobs:tree_monster", {
 	attack_type = "dogfight",
 	pathfinding = false,
 	reach = 2,
-	damage = 8,
+	damage = 5,
 	-- health & armor
-	hp_min = 40,
-	hp_max = 50,
-	armor = 80,
+	hp_min = 20,
+	hp_max = 30,
+	armor = 90,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
 	visual = "mesh",
@@ -28,7 +28,7 @@ mobs:register_mob("mobs:tree_monster", {
 		random = "mobs_treemonster",
 	},
 	-- speed and jump
-	walk_velocity = 0.5,
+	walk_velocity = 1,
 	run_velocity = 2.5,
 	jump = true,
 	view_range = 16,

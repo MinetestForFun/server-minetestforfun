@@ -9,9 +9,9 @@ mobs:register_mob("mobs:goat", {
 	group_attack = true,
 	attack_type = "dogfight",
 	reach = 2,
-	damage = 4,
+	damage = 3,
 	-- health & armor
-	hp_min = 15,
+	hp_min = 10,
 	hp_max = 20,
 	armor = 200,
 	-- textures and model

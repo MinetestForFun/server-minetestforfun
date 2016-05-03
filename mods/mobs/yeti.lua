@@ -6,7 +6,7 @@ mobs:register_mob("mobs:yeti", {
 	type = "monster",
 	-- agressive, deals 7 damage to player when hit
 	passive = false,
-	damage = 6,
+	damage = 3,
 	attack_type = "dogshoot",
 	pathfinding = false,
 	reach = 2,
@@ -14,9 +14,9 @@ mobs:register_mob("mobs:yeti", {
 	arrow = "mobs:snowball",
 	shoot_offset = 2,
 	-- health & armor
-	hp_min = 25,
-	hp_max = 30,
-	armor = 90,
+	hp_min = 20,
+	hp_max = 25,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.42,-1.2,-0.42, 0.42,0.96,0.42},
 	visual = "mesh",

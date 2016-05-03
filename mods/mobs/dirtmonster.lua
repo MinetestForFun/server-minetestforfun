@@ -13,7 +13,7 @@ mobs:register_mob("mobs:dirt_monster", {
 	-- health & armor
 	hp_min = 25,
 	hp_max = 30,
-	armor = 90,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
 	visual = "mesh",
@@ -29,8 +29,8 @@ mobs:register_mob("mobs:dirt_monster", {
 	},
 	-- speed and jump
 	view_range = 16,
-	walk_velocity = 2.5,
-	run_velocity = 4,
+	walk_velocity = 1.5,
+	run_velocity = 3,
 	jump = true,
 	-- drops dirt and coins when dead
 	drops = {

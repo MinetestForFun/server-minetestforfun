@@ -8,7 +8,7 @@ mobs:register_mob("mobs:dog", {
 	passive = false,
 	attacks_monsters = true,
 	attack_type = "dogfight",
-	damage = 2, -- 2 damage less than wolf
+	damage = 2, -- 1 damage less than wolf
 	-- health & armor
 	hp_min = 15, hp_max = 20, armor = 200,
 	-- textures and model
@@ -28,8 +28,8 @@ mobs:register_mob("mobs:dog", {
 		war_cry = "mobs_wolf_attack",
 	},
 	-- speed and jump
-	walk_velocity = 3,
-	run_velocity = 5,
+	walk_velocity = 2,
+	run_velocity = 4,
 	jump = true,
 	stepheight = 1.2,
 	step = 1.2,

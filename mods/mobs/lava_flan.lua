@@ -8,10 +8,10 @@ mobs:register_mob("mobs:lava_flan", {
 	passive = false,
 	attack_type = "dogfight",
 	reach = 2,
-	damage = 5,
+	damage = 4,
 	-- health and armor
 	hp_min = 20,
-	hp_max = 35,
+	hp_max = 25,
 	armor = 80,
 	-- textures and model
 	collisionbox = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5},
@@ -61,7 +61,7 @@ mobs:register_mob("mobs:lava_flan", {
 	end,
 })
 -- spawns in lava between -1 and 20 light, 1 in 2000 chance, 3 in area below 31000 in height
-mobs:spawn_specific("mobs:lava_flan", {"default:lava_source"}, {"air"}, -1, 20, 30, 2500, 3, -31000, 31000, false)
+--mobs:spawn_specific("mobs:lava_flan", {"default:lava_source"}, {"air"}, -1, 20, 30, 2500, 3, -31000, 31000, false) --DISABLE SPAWN MFF !
 -- register spawn egg
 mobs:register_egg("mobs:lava_flan", "Lava Flan", "default_lava.png", 1)
 

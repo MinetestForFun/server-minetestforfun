@@ -31,7 +31,7 @@ mobs:register_mob("mobs:pig", {
 		attack = "mobs_pig_angry",
 	},
 	-- speed and jump
-	walk_velocity = 2,
+	walk_velocity = 1,
 	run_velocity = 3,
 	jump = true,
 	-- follows apple and potato

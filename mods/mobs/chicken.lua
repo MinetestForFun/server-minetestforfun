@@ -33,7 +33,7 @@ mobs:register_mob("mobs:chicken", {
 	},
 	-- speed and jump
 	walk_velocity = 1,
-	run_velocity = 3,
+	run_velocity = 2,
 	runaway = true,
 	jump = true,
 	-- drops raw chicken when dead

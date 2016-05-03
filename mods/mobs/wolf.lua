@@ -9,7 +9,7 @@ mobs:register_mob("mobs:wolf", {
 	attack_type = "dogfight",
 	pathfinding = false,
 	reach = 2,
-	damage = 4,					-- 2 damages if tamed
+	damage = 3,					-- 2 damages if tamed
 	-- health & armor
 	hp_min = 15, hp_max = 20, armor = 200,
 	-- textures and model
@@ -29,8 +29,8 @@ mobs:register_mob("mobs:wolf", {
 		attack = "mobs_wolf_attack",
 	},
 	-- speed and jump
-	walk_velocity = 3,
-	run_velocity = 5,
+	walk_velocity = 2.5,
+	run_velocity = 4.5,
 	jump = true,
 	view_range = 16,
 	-- drops mese or diamond when dead

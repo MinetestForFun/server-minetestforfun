@@ -22,7 +22,7 @@ mobs:register_mob("mobs:npc_female", {
 	-- health & armor
 	hp_min = 20,
 	hp_max = 20,
-	armor = 100,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
 	visual = "mesh",

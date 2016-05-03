@@ -9,11 +9,11 @@ mobs:register_mob("mobs:stone_monster", {
 	attack_type = "dogfight",
 	pathfinding = false,
 	reach = 2,
-	damage = 6,
+	damage = 4,
 	-- health & armor
 	hp_min = 20,
 	hp_max = 25,
-	armor = 70,
+	armor = 80,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
 	visual = "mesh",
@@ -30,8 +30,8 @@ mobs:register_mob("mobs:stone_monster", {
 		attack = "mobs_stonemonster_attack",
 	},
 	-- speed and jump, sinks in water
-	walk_velocity = 2,
-	run_velocity = 4,
+	walk_velocity = 1,
+	run_velocity = 3,
 	jump = true,
 	floats = 0,
 	view_range = 16,

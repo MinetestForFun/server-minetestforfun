@@ -10,7 +10,7 @@ mobs:register_mob("mobs:creeper", {
 	pathfinding = false,
 	damage = 21,
 	-- health & armor
-	hp_min = 30, hp_max = 40, armor = 90,
+	hp_min = 30, hp_max = 40, armor = 100,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
 	visual = "mesh",
@@ -27,8 +27,8 @@ mobs:register_mob("mobs:creeper", {
 		explode= "tnt_explode",
 	},
 	-- speed and jump
-	walk_velocity = 1.5,
-	run_velocity = 3.5,
+	walk_velocity = 1,
+	run_velocity = 2.5,
 	jump = true,
 	view_range = 16,
 	-- drops mese or diamond when dead

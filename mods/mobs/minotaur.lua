@@ -9,10 +9,10 @@ mobs:register_mob("mobs:minotaur", {
 	attack_type = "dogfight",
 	pathfinding = false,
 	reach = 2,
-	damage = 7,
+	damage = 6,
 	-- health & armor
-	hp_min = 60,
-	hp_max = 70,
+	hp_min = 45,
+	hp_max = 55,
 	armor = 90,
 	-- textures and model
 	collisionbox = {-0.9,-0.01,-0.9, 0.9,2.5,0.9},
@@ -32,8 +32,8 @@ mobs:register_mob("mobs:minotaur", {
 		-- death = "mobs_zombie_death",
 	-- },
 	-- speed and jump
-	walk_velocity = 2.5,
-	run_velocity = 3.5,
+	walk_velocity = 1,
+	run_velocity = 3,
 	jump = true,
 	floats = 1,
 	view_range = 16,

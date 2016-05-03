@@ -9,11 +9,11 @@ mobs:register_mob("mobs:oerkki", {
 	attack_type = "dogfight",
 	pathfinding = false,
 	reach = 2,
-	damage = 6,
+	damage = 5,
 	-- health & armor
-	hp_min = 40,
-	hp_max = 50,
-	armor = 90,
+	hp_min = 30,
+	hp_max = 40,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.9, 0.4},
 	visual = "mesh",
@@ -30,8 +30,8 @@ mobs:register_mob("mobs:oerkki", {
 		shoot_attack = "mobs_oerkki_attack",
 	},
 	-- speed and jump
-	walk_velocity = 2,
-	run_velocity = 4,
+	walk_velocity = 1,
+	run_velocity = 3,
 	view_range = 16,
 	jump = true,
 	-- chance of dropping obsidian and coins

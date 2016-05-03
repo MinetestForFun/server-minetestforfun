@@ -26,7 +26,7 @@ mobs:register_mob("mobs:lavasmall", {
 	-- health and armor
 	hp_min = 4,
 	hp_max = 8,
-	armor = 100,
+	armor = 200,
 	-- textures and model
 	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
 	visual = "cube",
@@ -68,13 +68,13 @@ mobs:register_mob("mobs:lavamedium", {
 	-- aggressive, deals 4 damage to player when hit
 	passive = false,
 	reach = 2,
-	damage = 4,
+	damage = 3,
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health and armor
-	hp_min = 16,
-	hp_max = 32,
-	armor = 90,
+	hp_min = 15,
+	hp_max = 25,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 	visual = "cube",
@@ -122,12 +122,12 @@ mobs:register_mob("mobs:lavabig", {
 	-- aggressive, deals 6 damage to player when hit
 	passive = false,
 	reach = 2,
-	damage = 6,
+	damage = 5,
 	attack_type = "dogfight",
 	attacks_monsters = true,
 	-- health and armor
-	hp_min = 32, hp_max = 64,
-	armor = 90,
+	hp_min = 30, hp_max = 50,
+	armor = 100,
 	-- textures and model
 	collisionbox = {-1, -1, -1, 1, 1, 1},
 	visual = "cube",

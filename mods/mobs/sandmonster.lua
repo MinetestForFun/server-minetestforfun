@@ -9,10 +9,10 @@ mobs:register_mob("mobs:sand_monster", {
 	attack_type = "dogfight",
 	pathfinding = false,
 	reach = 2,
-	damage = 4,
+	damage = 2,
 	-- health & armor
-	hp_min = 15,
-	hp_max = 20,
+	hp_min = 10,
+	hp_max = 15,
 	armor = 100,
 	-- textures and model
 	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
@@ -28,8 +28,8 @@ mobs:register_mob("mobs:sand_monster", {
 		random = "mobs_sandmonster",
 	},
 	-- speed and jump, sinks in water
-	walk_velocity = 2.5,
-	run_velocity = 4.5,
+	walk_velocity = 2,
+	run_velocity = 4,
 	view_range = 16,
 	jump = true,
 	floats = 0,

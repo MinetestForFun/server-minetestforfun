@@ -6,14 +6,14 @@ mobs:register_mob("mobs:mese_monster", {
 	type = "monster",
 	-- agressive, deals 9 damage to player when hit
 	passive = false,
-	damage = 7,
+	damage = 4,
 	attack_type = "shoot",
 	shoot_interval = 1.0,
 	arrow = "mobs:mese_arrow",
 	shoot_offset = 2,
 	-- health & armor
-	hp_min = 30,
-	hp_max = 40,
+	hp_min = 20,
+	hp_max = 25,
 	armor = 80,
 	-- textures and model
 	collisionbox = {-0.5, -1.5, -0.5, 0.5, 0.5, 0.5},
@@ -31,7 +31,7 @@ mobs:register_mob("mobs:mese_monster", {
 	},
 	-- speed and jump
 	view_range = 16,
-	walk_velocity = 0.5,
+	walk_velocity = 1,
 	run_velocity = 2,
 	jump = true,
 	jump_height = 8,

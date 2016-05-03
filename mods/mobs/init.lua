@@ -38,7 +38,7 @@ dofile(path.."/minotaur.lua") -- Kalabasa
 
 -- The bosses
 dofile(path.."/pumpkins.lua")
-dofile(path.."/ent.lua")
+--dofile(path.."/mese_dragon.lua")
 
 -- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead

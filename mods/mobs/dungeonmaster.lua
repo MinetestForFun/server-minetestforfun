@@ -7,15 +7,15 @@ mobs:register_mob("mobs:dungeon_master", {
 	-- aggressive, shoots fireballs at player, deal 13 damages
 	passive = false,
 	pathfinding = false,
-	damage = 12,
+	damage = 9,
 	attack_type = "dogshoot",
 	reach = 3,
 	shoot_interval = 2.5,
 	arrow = "mobs:fireball",
 	shoot_offset = 1,
 	-- health & armor
-	hp_min = 50,
-	hp_max = 60,
+	hp_min = 30,
+	hp_max = 40,
 	armor = 80,
 	-- textures and model
 	collisionbox = {-0.7, -1, -0.7, 0.7, 1.6, 0.7},

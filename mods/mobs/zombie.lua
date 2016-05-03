@@ -8,7 +8,7 @@ mobs:register_mob("mobs:zombie", {
 	passive = false,
 	attack_type = "dogfight",
 	pathfinding = false,
-	damage = 5,
+	damage = 4,
 	-- health & armor
 	hp_min = 30,
 	hp_max = 40,
