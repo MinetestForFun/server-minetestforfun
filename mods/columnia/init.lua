@@ -676,6 +676,17 @@ columnia.register_column_ia("pinewood", "default:pine_wood",
         "Pineewood Column Linkdown",
         default.node_sound_wood_defaults())
 
+columnia.register_column_ia("acacia", "default:acacia_wood",
+        {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+        {"default_acacia_wood.png"},
+        "Acacia Column",
+        "Acacia Column Top",
+        "Acacia Column Bottom",
+        "Acacia Column Crosslink",
+        "Acacia Column Link",
+        "Acacia Column Linkdown",
+        default.node_sound_wood_defaults())
+
 if core.get_modpath( 'moretrees' ) then
 	local morewood = {
 		{ name='beech', description='Beech Tree' },
@@ -686,7 +697,6 @@ if core.get_modpath( 'moretrees' ) then
 		{ name='palm', description='Palm Tree', },
 		{ name='spruce', description='Spruce Tree' },
 		{ name='willow', description='Willow Tree' },
-		{ name='acacia', description='Acacia Tree' },
 		{ name='rubber_tree',	description='Rubber Tree' },
 		{ name='fir', description='Douglas Fir' }
 	}
