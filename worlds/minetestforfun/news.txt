@@ -1,11 +1,23 @@
----Planned on the Server---
-Add another Unique boss : The Ent
-Introduce the Wizard class
+### Come and visit our website "xorhub.com"! ###
+### Venez visiter notre site "xorhub.com" ! ###
 
----Important News---
-Come and visit our website "xorhub.com" ! Venez visiter notre site "xorhub.com" !
+---Planned on the Server---
+The server will be more easier now (we will nerf monsters and introduce more easier way to have the ultimates weapons/armors)
+Add another Unique boss is coming : The Mese Dragon
+Introduce the Wizard class : do you like magic things ?
 
 ---Patch Notes---
+---04/05/2016--- (Thanks to : LeMagnesium/Mg)
+Update of "hudbars" (Increase the Stamina, new values : Adventurer=10, Warrior=20, Hunter=30, Hunter+full armor set=40)
+Deletion of "jukebox" (Not very useful, and makes the server lighter)
+Update of "sethome" (the "/home" cooldown is now set to 2 minutes/120seconds)
+Update of "mobs" (Nerf all mobs, there are now 10~30% more powerful than the initial "mobs_redo" mod, before they were 200~400% more powerful than "mobs_redo" - the damages, armors, hit points, walk/run speed, spawn rate has been descreased. We don't touch the Boss stats because it's a group challenge)
+Update of "moretrees" & "moretrees"(Bugfixs about "Acacia tree")
+Update of "MFF_Game" (Add again the "desert sand <-> sand" recipe)
+Addition of "moreores" (Code improvments)
+Addition of "time_regulation" (Crashfix)
+Update of "hudbars" & "bobblocks" & "solarmana" & "sprint" (Prepare for "Minetest-0.4.14-stable")
+
 ---17/04/2016--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ObaniGemini/Obani)
 Update of "MFF_Game" (Many bugfix & crashfix)
 Update of "name_restriction" (Add some forbdden names and disallowed moderator like nicknames)
