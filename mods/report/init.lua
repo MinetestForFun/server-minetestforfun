@@ -51,8 +51,12 @@ if minetest.get_modpath("unified_inventory") then
 
 	unified_inventory.register_page("report", {
 		get_formspec = function(player)
-			local form = "field[2,4;5,1;text;Text about what to report:;]" ..
-				"button[2,5;2,0.5;report;Send]"
+			local form = "label[3,0;Report a Bug/Grief]"..
+				"label[0,2;You can ask questions to moderators, report floods and spams,"..
+				"\nor report usebug from players\nDo not report grief because it's allowed on our server !"..
+				"\ndon't abuse/flood Report messages or you will be punished]"..
+				"field[2,5;5,1;text;Text about what to report:;]" ..
+				"button[3,6;2,0.5;report;Send]"
 			return {formspec = form, draw_inventory = false}
 		end
 	})
