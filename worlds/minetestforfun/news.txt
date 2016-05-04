@@ -7,6 +7,9 @@ Add another Unique boss is coming : The Mese Dragon
 Introduce the Wizard class : do you like magic things ?
 
 ---Patch Notes---
+---??/05/2016--- (Thanks to : crabman77/crabman)
+Update of "throwing" (Bows now does damages) //need to reduce all arrow damages by 1
+
 ---04/05/2016--- (Thanks to : LeMagnesium/Mg)
 Update of "hudbars" (Increase the Stamina, new values : Adventurer=10, Warrior=20, Hunter=30, Hunter+full armor set=40)
 Deletion of "jukebox" (Not very useful, and makes the server lighter)
