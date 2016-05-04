@@ -39,6 +39,7 @@ local function throwing_register_fireworks(color, desc)
 		lastpos={},
 		collisionbox = {0,0,0,0,0,0},
 		player = "",
+		bow_damage = 0,
 	}
 
 	local radius = 0.5
@@ -100,6 +101,9 @@ local function throwing_register_fireworks(color, desc)
 				for k, obj in pairs(objs) do
 					if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
 						local damage = 2
+						if self.bow_damage and self.bow_damage > 0 then
+							damage = damage + (self.bow_damage/12)
+						end
 						obj:punch(self.object, 1.0, {
 							full_punch_interval=1.0,
 							damage_groups={fleshy=damage},

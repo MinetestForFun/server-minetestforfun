@@ -38,6 +38,7 @@ local THROWING_ARROW_ENTITY={
 	lastpos={},
 	collisionbox = {0,0,0,0,0,0},
 	player = "",
+	bow_damage = 0,
 }
 
 local radius = 1
@@ -80,6 +81,9 @@ THROWING_ARROW_ENTITY.on_step = function(self, dtime)
 				if throwing_is_player(self.player, obj) or throwing_is_entity(obj) then
 					local speed = vector.length(self.object:getvelocity())
 					local damage = ((speed + 5)^1.2)/10 + 12
+					if self.bow_damage and self.bow_damage > 0 then
+						damage = damage + (self.bow_damage/12)
+					end
 					obj:punch(self.object, 1.0, {
 						full_punch_interval=1.0,
 						damage_groups={fleshy=damage},

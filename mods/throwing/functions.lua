@@ -49,7 +49,7 @@ function throwing_touch(pos, objpos)
 	local rx = pos.x - objpos.x
 	local ry = pos.y - (objpos.y+1)
 	local rz = pos.z - objpos.z
-	if (ry < 1 and ry > -1) and (rx < 0.4 and rx > -0.4) and (rz < 0.4 and rz > -0.4) then
+	if (ry < 1 and ry > -1) and (rx < 1 and rx > -1) and (rz < 1 and rz > -1) then
 		return true
 	end
 	return false
@@ -77,6 +77,7 @@ function throwing_shoot_arrow (itemstack, player, stiffness, is_cross)
 		obj:get_luaentity().inventory = player:get_inventory()
 		obj:get_luaentity().stack = player:get_inventory():get_stack("main", player:get_wield_index()-1)
 		obj:get_luaentity().lastpos = {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}
+		obj:get_luaentity().bow_damage = stiffness
 	end
 	return true
 end

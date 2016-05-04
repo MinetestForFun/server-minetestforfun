@@ -39,6 +39,7 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 		lastpos={},
 		collisionbox = {0,0,0,0,0,0},
 		player = "",
+		bow_damage = 0,
 	}
 
 	THROWING_ARROW_ENTITY.on_step = function(self, dtime)
@@ -55,9 +56,13 @@ function throwing_register_arrow_standard (kind, desc, eq, toughness, craft)
 							if self.player and minetest.get_player_by_name(self.player) then
 								puncher = minetest.get_player_by_name(self.player)
 							end
+							local damage = eq
+							if self.bow_damage and self.bow_damage > 0 then
+								damage = damage + (self.bow_damage/12)
+							end
 							obj:punch(puncher, 1.0, {
 								full_punch_interval=1.0,
-								damage_groups={fleshy=eq},
+								damage_groups={fleshy=damage},
 							}, nil)
 							if math.random() < toughness then
 								if math.random(0,100) % 2 == 0 then

@@ -37,6 +37,7 @@ local THROWING_ARROW_ENTITY={
 	lastpos={},
 	collisionbox = {0,0,0,0,0,0},
 	player = "",
+	bow_damage = 0,
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)

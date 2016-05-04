@@ -41,6 +41,7 @@ local THROWING_ARROW_ENTITY={
 	player = "",
 	inventory = false,
 	stack = false,
+	bow_damage = 0,
 }
 
 THROWING_ARROW_ENTITY.on_step = function(self, dtime)
