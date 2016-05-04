@@ -1,11 +1,9 @@
 local path = minetest.get_modpath("mobs")
 
 -- Mob Api
-
 dofile(path.."/api.lua")
 
 -- Animals
-
 dofile(path.."/chicken.lua") -- JKmurray
 dofile(path.."/cow.lua") -- KrupnoPavel
 dofile(path.."/rat.lua") -- PilzAdam
@@ -18,7 +16,6 @@ dofile(path.."/goat.lua") -- ???
 dofile(path.."/shark.lua") -- blert2112 (animal_modpack)
 
 -- Monsters
-
 dofile(path.."/dirtmonster.lua") -- PilzAdam
 dofile(path.."/dungeonmaster.lua") -- PilzAdam
 dofile(path.."/oerkki.lua") -- PilzAdam
@@ -38,7 +35,7 @@ dofile(path.."/minotaur.lua") -- Kalabasa
 
 -- The bosses
 dofile(path.."/pumpkins.lua")
---dofile(path.."/mese_dragon.lua")
+--dofile(path.."/mese_dragon.lua") NOT DONE YET
 
 -- begin slimes mobs compatibility changes
 -- cannot find mesecons?, craft glue instead

@@ -11,7 +11,7 @@ mobs:register_mob("mobs:pumpking", {
 	animation = {
 		speed_normal = 15,	speed_run = 30,
 		stand_start = 165,	stand_end = 210,
-		walk_start = 61,	walk_end = 110,	
+		walk_start = 61,	walk_end = 110,
 		run_start = 0,		run_end = 50,
 		punch_start = 150,	punch_end = 165
 	},
@@ -38,7 +38,7 @@ mobs:register_mob("mobs:pumpking", {
 	drops = {
 		-- Ressource & Decoration drops
 		{name = "farming:jackolantern", chance = 1, min = 1, max = 1},
-		{name = "default:diamondblock", chance = 2, min = 1, max = 3},
+		{name = "default:diamondblock", chance = 2, min = 1, max = 2},
 		-- Hunter drops
 		{name = "3d_armor:helmet_hardenedleather", chance = 10, min = 1, max = 1},
 		{name = "3d_armor:chestplate_hardenedleather", chance = 10, min = 1, max = 1},
@@ -68,7 +68,7 @@ mobs:register_mob("mobs:pumpboom", {
 	animation = {
 		speed_normal = 15,	speed_run = 30,
 		stand_start = 0,	stand_end = 30,
-		walk_start = 81,	walk_end = 97,	
+		walk_start = 81,	walk_end = 97,
 		run_start = 81,		run_end = 97,
 		punch_start = 100,	punch_end = 120
 	},
@@ -136,4 +136,3 @@ mobs:register_egg("mobs:pumpking", "Pumpking", "mobs_pumpking_inv.png", 1)
 -- spawn on mobs:pumpboom_spawner between 1 and 20 light, 4 interval, 1 chance, 100 pumpboom in area up to 31000 in height
 mobs:spawn_specific("mobs:pumpboom", {"mobs:pumpboom_spawner"}, {"air"}, 1, 20, 10, 4, 100, -31000, 31000, true)
 mobs:register_egg("mobs:pumpboom", "Pumpboom", "mobs_pumpboom_inv.png", 1)
-

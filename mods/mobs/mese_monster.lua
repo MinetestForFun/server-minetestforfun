@@ -4,7 +4,7 @@
 mobs:register_mob("mobs:mese_monster", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- agressive, deals 9 damage to player when hit
+	-- agressive, deals 4 damage to player when hit
 	passive = false,
 	damage = 4,
 	attack_type = "shoot",
