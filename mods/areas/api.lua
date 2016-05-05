@@ -1,9 +1,9 @@
 
 --plants to place in openfarming
-local plants = { ["farming:blueberries"]=1, ["farming:carrot"]=1, ["farming:coffee_beans"]=1, ["farming:corn"]=1, ["farming:cucumber"]=1,
-				 ["farming:melon_slice"]=1, ["farming:potato"]=1, ["farming:pumpkin_slice"]=1, ["farming:raspberries"]=1, ["farming:rhubarb"]=1,
-				 ["farming:tomato"]=1, ["farming:seed_cotton"]=1, ["farming:seed_wheat"]=1,["default:papyrus"]=1, ["farming:trellis"]=1,
-				 ["farming:grapes"]=1, ["farming:beanpole"]=1, ["farming:beans"]=1,
+local plants = { ["farming:blueberries"]="air", ["farming:carrot"]="air", ["farming:coffee_beans"]="air", ["farming:corn"]="air", ["farming:cucumber"]="air",
+				 ["farming:melon_slice"]="air", ["farming:potato"]="air", ["farming:pumpkin_slice"]="air", ["farming:raspberries"]="air", ["farming:rhubarb"]="air",
+				 ["farming:tomato"]="air", ["farming:seed_cotton"]="air", ["farming:seed_wheat"]="air",["default:papyrus"]="air", ["farming:trellis"]="air",
+				 ["farming:grapes"]="farming:trellis", ["farming:beanpole"]="air", ["farming:beans"]="farming:beanpole",
 				}
 
 -- Returns a list of areas that include the provided position
@@ -77,7 +77,7 @@ function areas:canInteract(pos, name)
 			end
 
 			--on_place
-			if node == "air" and plants[wstack] ~= nil then
+			if plants[wstack] ~= nil and plants[wstack] == node then
 				return true
 			end
 

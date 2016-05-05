@@ -63,18 +63,19 @@ minetest.register_node("farming:beanpole", {
 	groups = {snappy = 3, flammable = 2, attached_node = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	on_place = function(itemstack, placer, pointed_thing)
-		if minetest.is_protected(pointed_thing.under, placer:get_player_name()) then
+		local top = {
+			x = pointed_thing.above.x,
+			y = pointed_thing.above.y + 1,
+			z = pointed_thing.above.z
+		}	
+		if minetest.is_protected(pointed_thing.above, placer:get_player_name()) or minetest.is_protected(top, placer:get_player_name()) then
 			return
 		end
 		local nod = minetest.get_node_or_nil(pointed_thing.under)
 		if nod and minetest.get_item_group(nod.name, "soil") < 2 then
 			return
 		end
-		local top = {
-			x = pointed_thing.above.x,
-			y = pointed_thing.above.y + 1,
-			z = pointed_thing.above.z
-		}
+
 		nod = minetest.get_node_or_nil(top)
 		if nod and nod.name ~= "air" then return end
 		minetest.set_node(pointed_thing.above, {name = "farming:beanpole"})
