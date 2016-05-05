@@ -20,6 +20,7 @@ mobs:register_mob("mobs:tree_monster", {
 	mesh = "mobs_tree_monster.b3d",
 	textures = {
 		{"mobs_tree_monster.png"},
+		{"mobs_tree_monster2.png"},
 	},
 	blood_texture = "default_wood.png",
 	-- sounds

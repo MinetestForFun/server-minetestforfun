@@ -6,7 +6,6 @@ dofile(path.."/api.lua")
 -- Animals
 dofile(path.."/chicken.lua") -- JKmurray
 dofile(path.."/cow.lua") -- KrupnoPavel
-dofile(path.."/rat.lua") -- PilzAdam
 dofile(path.."/sheep.lua") -- PilzAdam
 dofile(path.."/pig.lua") -- farfadet46
 dofile(path.."/bee.lua") -- KrupnoPavel
@@ -24,7 +23,6 @@ dofile(path.."/stonemonster.lua") -- PilzAdam
 dofile(path.."/treemonster.lua") -- PilzAdam
 dofile(path.."/wolf.lua") -- PilzAdam
 dofile(path.."/dog.lua") -- CProgrammerRU
---dofile(path.."/lava_flan.lua") -- Zeg9 --Remplaced by Lava Slimes
 dofile(path.."/mese_monster.lua") -- Zeg9
 dofile(path.."/spider.lua") -- AspireMint
 dofile(path.."/greenslimes.lua") -- davedevils/TomasJLuis/TenPlus1
@@ -64,5 +62,8 @@ dofile(path.."/spawner.lua")
 
 -- Mob menu spawner special MFF
 dofile(path.."/mff_menu.lua")
+
+minetest.register_alias("mobs:rat","mobs:chicken") -- aliases removed rat
+minetest.register_alias("mobs:rat_cooked", "mobs:chicken_cooked")
 
 minetest.log("action", "[MOD] Mobs Redo loaded")

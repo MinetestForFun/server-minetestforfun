@@ -49,7 +49,15 @@ mobs:register_mob("mobs:kitten", {
 		walk_end = 96,
 	},
 	-- follows Rat and Raw Fish
-	follow = {"mobs:rat", "ethereal:fish_raw"},
+	follow = {
+		"fishing:fish_raw",
+		"fishing:clownfish_raw",
+		"fishing:bluewhite_raw",
+		"fishing:exoticfish_raw",
+		"fishing:carp_raw",
+		"fishing:perch_raw",
+		"fishing:catfish_raw",
+	},
 	view_range = 10,
 	-- feed with raw fish to tame or right click to pick up
 	on_rightclick = function(self, clicker)

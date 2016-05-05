@@ -2463,7 +2463,7 @@ function mobs:register_egg(mob, desc, background, addegg)
 	local invimg = background
 
 	if addegg == 1 then
-		invimg = invimg .. "^mobs_chicken_egg.png" -- MFF
+		invimg = invimg .. "^mobs_egg_inv.png" -- MFF
 	end
 
 	minetest.register_craftitem(mob, {
