@@ -16,7 +16,7 @@ mobs:register_mob("mobs:mese_dragon", {
 	collisionbox = {-1, 0, -1, 1, 5, 1}, --A VERIFIER/CORRIGER
 	visual = "mesh",
 	mesh = "mese_dragon.x",
-	-- rotate = 270, => besoin ou pas avec le modèle de farfadet ?
+	rotate = 180, --Needed because B3D bugs
 	textures = {
 		{"mese_dragon.png"},
 	},
@@ -64,26 +64,18 @@ mobs:register_mob("mobs:mese_dragon", {
 	lava_damage = 0,
 	light_damage = 0,
 	-- model animation
-	animation = { -- Bonne valeurs à mettre ici, voir avec farfadet
+	animation = { -- Ajouté avec valeurs farfadet, voir si crachat+griffe possible en une animation d'attaque
 		speed_normal = 15,
-		speed_run = 25,
-		stand_start = 60,
-		stand_end = 120,
-		walk_start = 161,
-		walk_end = 205,
-		run_start = 206,
-		run_end = 242,
-		punch_start = 242,
-		punch_end = 275,
-		punch1_start = 330,
-		punch1_end = 370,
-    		dattack_start = 120,
-    		dattack_end = 160,
-	}
-
-	--maxus = true, => C'est quoi ça ?!
-	--putter = true, => C'est quoi ça ?!
-	--drawtype = "front", => C'est quoi ça ?!
+		speed_run = 15,
+		stand_start = 0,
+		stand_end = 80,
+		walk_start = 180,
+		walk_end = 200,
+		run_start = 180,
+		run_end = 200,
+		punch_start = 140,
+		punch_end = 170,
+	},
 })
 
 -- mese arrow (weapon) --Remplacer par fireball du DM mais enlever son et mettre texture "mese flamme"
