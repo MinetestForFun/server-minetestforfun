@@ -252,7 +252,7 @@ luaentity.register_entity("pipeworks:tubed_item", {
 					-- Using add_item instead of item_drop since this makes pipeworks backward
 					-- compatible with Minetest 0.4.13.
 					-- Using item_drop here makes Minetest 0.4.13 crash.
-					minetest.add_item(drop_pos, stack)
+					--minetest.add_item(drop_pos, stack) --Don't drop pipeworks items to reduce lag.
 					self:remove()
 					return
 				end
