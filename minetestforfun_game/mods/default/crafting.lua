@@ -516,6 +516,16 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = "default:sword_nyan",
+	recipe = {
+		{"default:nyancat"},
+		{"default:nyancat"},
+		{"group:stick"},
+	}
+})
+
+
 minetest.register_craft({ 			-- Ultimate Warrior weapon
 	output = 'default:dungeon_master_s_blood_sword',
 	recipe = {
