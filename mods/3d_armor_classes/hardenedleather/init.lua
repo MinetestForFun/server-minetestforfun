@@ -39,8 +39,8 @@ minetest.register_craftitem(":3d_armor:hardenedleather", {
 minetest.register_craft({
 	output = "3d_armor:hardenedleather",
 	recipe = {
-		{"default:steel_ingot",		"mobs:leather", 	"default:bronze_ingot"	},
-		{"mobs:leather", 		"mobs:leather", 	"mobs:leather"		},
-		{"default:bronze_ingot", 	"mobs:leather", 	"default:steel_ingot"	},
+		{"default:steel_ingot",		"mobs:leather", 	"default:bronze_ingot"},
+		{"mobs:leather", 					"mobs:leather", 	"mobs:leather"				},
+		{"default:bronze_ingot", 	"mobs:leather", 	"default:steel_ingot"	}
 	}
 })

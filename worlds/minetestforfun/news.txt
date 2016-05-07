@@ -9,8 +9,10 @@ Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
 ---??/05/2016--- (Thanks to : crabman77/crabman, farfadet46)
-update of "hudbars" (fix wrong textures/positions)
-update of "mobs" (Add the "Mese Dragon" Boss, need ot be improved, not available ingame for now, remove some unused textures/models, bugfix and reduce lags)
+update of "mff_quests" (More rewards for all daily quests)
+Update of "mff_classes" (BlackMithril & Reinforced Leather now more easily craftable)
+Update of "hudbars" (fix wrong textures/positions)
+Update of "mobs" (Add the "Mese Dragon" Boss, need ot be improved, not available ingame for now, remove some unused textures/models, bugfix and reduce lags)
 Update of "throwing" (Bows now does damages)
 
 ---04/05/2016--- (Thanks to : LeMagnesium/Mg)

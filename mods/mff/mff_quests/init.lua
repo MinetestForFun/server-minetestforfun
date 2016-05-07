@@ -8,13 +8,15 @@ quests.set_hud_offset(-200, 0)
 mff.quests.quests = {
 	still_testing_quests = {
 		title = "Stone digger",
-		description = "TEST QUEST!\nGet a Super Apple at the end!",
+		description = "DAILY QUEST!\nGet five Super Apple at the end!",
 		repeating = 60*60*24,
-		awards = {["maptools:superapple"] = 1},
+		awards = {
+			["maptools:superapple"] = 5;
+		},
 		tasks = {
 			diggy = {
 				title = "Dig 100 stone",
-				description = "Show you can dig through stone",
+				description = "Old man : Show me you can dig through stone, and I will reward you.",
 				max = 100,
 				objective = {
 					dig = {"default:stone"}
@@ -24,14 +26,17 @@ mff.quests.quests = {
 	},
 	still_testing_quests2 = {
 		title = "Coal digger",
-		description = "TEST QUEST!\nGet a Diamond at the end!",
+		description = "DAILY QUEST!\nGet two Diamond and a Mese Crystal at the end!",
 		repeating = 60*60*24,
-		awards = {["default:diamond"] = 1},
+		awards = {
+			["default:diamond"] = 2;
+			["default:mese_crystal"] = 1
+		},
 		tasks = {
 			diggy = {
-				title = "Dig 20 coal",
-				description = "Get the fire mineral",
-				max = 20,
+				title = "Dig 25 coal",
+				description = "Natsu, the Pyromancer : I like fire more than anything in the world! Prove me it's also your case and I will reward you.",
+				max = 25,
 				objective = {
 					dig = {"default:stone_with_coal"}
 				}
@@ -40,13 +45,15 @@ mff.quests.quests = {
 	},
 	still_testing_quests3 = {
 		title = "Shiny diamonds",
-		description = "TEST QUEST!\nGet a mithril ingot at the end!",
+		description = "DAILY QUEST!\nGet two mithril ingot at the end!",
 		repeating = 60*60*24,
-		awards = {["moreores:mithril_ingot"] = 1},
+		awards = {
+			["moreores:mithril_ingot"] = 2
+		},
 		tasks = {
 			diggy = {
-				title = "Dig 5 diamonds",
-				description = "Yarr harr fiddle dee-dee, being a pirate is alright with me! Do what you want 'cause a pirate is free, you are a pirate! Go get the precious booty... underground. Mine it :/",
+				title = "Dig 10 diamonds",
+				description = "Masamune, the Blachsmith : Hello little adventurer. Aaarrh, I hate diamonds ! I work only with strong materials, dig diamonds and I will reward you with my favorite mineral",
 				max = 5,
 				objective = {
 					dig = {"default:stone_with_diamond"}

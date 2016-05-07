@@ -39,8 +39,8 @@ minetest.register_craftitem(":3d_armor:reinforcedleather", {
 minetest.register_craft({
 	output = "3d_armor:reinforcedleather",
 	recipe = {
-		{"technic:brass_ingot",		"moreores:mithril_ingot", 	"darkage:chain"		},
-		{"mobs:leather", 		"mobs:minotaur_eye", 		"mobs:leather"		},
-		{"darkage:chain", 		"moreores:mithril_ingot", 	"technic:brass_ingot"	},
+		{"moreores:mithril_ingot",	"technic:brass_ingot",	""},
+		{"darkage:chain", 					"mobs:minotaur_eye",		""},
+		{"", 												"", 										""}
 	}
 })

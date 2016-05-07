@@ -40,8 +40,8 @@ minetest.register_craftitem(":3d_armor:blackmithril_ingot", {
 minetest.register_craft({
 	output = "3d_armor:blackmithril_ingot",
 	recipe = {
-		{"moreores:mithril_ingot","mobs:dungeon_master_blood"	,"default:obsidian"	},
-		{		      "", "mobs:dungeon_master_diamond"	, ""			},
-		{"default:obsidian"	, "mobs:dungeon_master_blood"	,"moreores:mithril_ingot"}
+		{"moreores:mithril_ingot", 			"mobs:dungeon_master_blood",	""},
+		{"mobs:dungeon_master_diamond", "default:obsidian",						""},
+		{"", 														"",														""}
 	}
 })
