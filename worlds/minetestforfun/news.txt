@@ -2,13 +2,16 @@
 ### Venez visiter notre site "xorhub.com" ! ###
 
 ---Planned on the Server---
-The server will be more easier now (we will nerf monsters and introduce more easier way to have the ultimates weapons/armors)
+The server will be more easier now (we will nerf monsters and introduce more easier way to have the ultimates weapons/armors, quests rewards will also be increased)
 Add another Unique boss is coming : The Mese Dragon
 Introduce the Wizard class : do you like magic things ?
+Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
----??/05/2016--- (Thanks to : crabman77/crabman)
-Update of "throwing" (Bows now does damages) //need to reduce all arrow damages by 1
+---??/05/2016--- (Thanks to : crabman77/crabman, farfadet46)
+update of "hudbars" (fix wrong textures/positions)
+update of "mobs" (Add the "Mese Dragon" Boss, need ot be improved, not available ingame for now, remove some unused textures/models, bugfix and reduce lags)
+Update of "throwing" (Bows now does damages)
 
 ---04/05/2016--- (Thanks to : LeMagnesium/Mg)
 Update of "hudbars" (Increase the Stamina, new values : Adventurer=10, Warrior=20, Hunter=30, Hunter+full armor set=40)
