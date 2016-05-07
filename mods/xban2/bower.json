@@ -1,0 +1,15 @@
+{
+  "name": "xban2",
+  "description": "Ban system extension with support for temporary bans.",
+  "keywords": [
+    "ban",
+    "administration",
+    "system",
+    "server"
+  ],
+  "homepage": "http://github.com/kaeza/minetest-xban2.git",
+  "authors": [
+    "Diego Martínez <lkaezadl3@yahoo.com>"
+  ],
+  "license": "BSD 2-Clause"
+}

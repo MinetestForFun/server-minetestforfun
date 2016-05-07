@@ -283,8 +283,12 @@ local function save_db()
 	local f, e = io.open(DB_FILENAME, "wt")
 	db.timestamp = os.time()
 	if f then
-		local ok = f:write(xban.serialize(db))
-		WARNING("Unable to save database: %s", "Write failed")
+		local ok, err = f:write(xban.serialize(db))
+		if not ok then
+			WARNING("Unable to save database: %s", err)
+		end
+	else
+		WARNING("Unable to save database: %s", e)
 	end
 	if f then f:close() end
 	return
