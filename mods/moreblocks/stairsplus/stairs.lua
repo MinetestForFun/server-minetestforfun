@@ -86,15 +86,7 @@ function stairsplus:register_stair(modname, subname, recipeitem, fields)
 				},
 			},
 		},
-		["_alt_2"] = {
-			node_box = {
-				type = "fixed",
-				fixed = {
-					{-0.5, -0.125, -0.5, 0.5, 0, 0},
-					{-0.5, 0.375, 0, 0.5, 0.5, 0.5},
-				},
-			},
-		},
+		["_alt_2"] = {legacy = "_alt_1"},
 		["_alt_4"] = {
 			node_box = {
 				type = "fixed",
@@ -108,19 +100,24 @@ function stairsplus:register_stair(modname, subname, recipeitem, fields)
 
 	local desc = S("%s Stairs"):format(fields.description)
 	for alternate, def in pairs(defs) do
-		for k, v in pairs(fields) do
-			def[k] = v
+		if def.legacy then
+			minetest.register_alias(modname .. ":stair_" .. subname .. alternate,
+				modname .. ":stair_" .. subname .. def.legacy)
+		else
+			for k, v in pairs(fields) do
+				def[k] = v
+			end
+			def.drawtype = "nodebox"
+			def.paramtype = "light"
+			def.paramtype2 = "facedir"
+			def.on_place = minetest.rotate_node
+			def.description = desc
+			def.groups = stairsplus:prepare_groups(fields.groups)
+			if fields.drop then
+				def.drop = modname .. ":stair_" .. fields.drop .. alternate
+			end
+			minetest.register_node(":" .. modname .. ":stair_" .. subname .. alternate, def)
 		end
-		def.drawtype = "nodebox"
-		def.paramtype = "light"
-		def.paramtype2 = "facedir"
-		def.on_place = minetest.rotate_node
-		def.description = desc
-		def.groups = stairsplus:prepare_groups(fields.groups)
-		if fields.drop then
-			def.drop = modname .. ":stair_" .. fields.drop .. alternate
-		end
-		minetest.register_node(":" .. modname .. ":stair_" .. subname .. alternate, def)
 	end
 	minetest.register_alias("stairs:stair_" .. subname, modname .. ":stair_" .. subname)
 

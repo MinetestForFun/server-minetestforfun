@@ -26,32 +26,37 @@ function stairsplus:register_slab(modname, subname, recipeitem, fields)
 		["_quarter"] = 4,
 		["_three_quarter"] = 12,
 		["_1"] = 1,
-		["_2"] = 2,
-		["_14"] = 14,
+		["_2"] = "_1",
+		["_14"] = "_three_quarter",
 		["_15"] = 15,
 	}
 
 	local desc_base = S("%s Slab"):format(fields.description)
 	for alternate, num in pairs(defs) do
-		local def = {
-			node_box = {
-				type = "fixed",
-				fixed = {-0.5, -0.5, -0.5, 0.5, (num/16)-0.5, 0.5},
+		if type(num) == type("moo") then
+			minetest.register_alias(modname .. ":slab_" .. subname .. alternate,
+				modname .. ":slab_" .. subname .. num)
+		else
+			local def = {
+				node_box = {
+					type = "fixed",
+					fixed = {-0.5, -0.5, -0.5, 0.5, (num/16)-0.5, 0.5},
+				}
 			}
-		}
-		for k, v in pairs(fields) do
-			def[k] = v
+			for k, v in pairs(fields) do
+				def[k] = v
+			end
+			def.drawtype = "nodebox"
+			def.paramtype = "light"
+			def.paramtype2 = "facedir"
+			def.on_place = minetest.rotate_node
+			def.description = ("%s (%d/16)"):format(desc_base, num)
+			def.groups = stairsplus:prepare_groups(fields.groups)
+			if fields.drop then
+					def.drop = modname.. ":slab_" .. fields.drop .. alternate
+			end
+			minetest.register_node(":" .. modname .. ":slab_" .. subname .. alternate, def)
 		end
-		def.drawtype = "nodebox"
-		def.paramtype = "light"
-		def.paramtype2 = "facedir"
-		def.on_place = minetest.rotate_node
-		def.description = ("%s (%d/16)"):format(desc_base, num)
-		def.groups = stairsplus:prepare_groups(fields.groups)
-		if fields.drop then
-			def.drop = modname.. ":slab_" .. fields.drop .. alternate
-		end
-		minetest.register_node(":" .. modname .. ":slab_" .. subname .. alternate, def)
 	end
 	minetest.register_alias("stairs:slab_" .. subname, modname .. ":slab_" .. subname)
 

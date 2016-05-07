@@ -34,30 +34,15 @@ function stairsplus:register_panel(modname, subname, recipeitem, fields)
 				fixed = {-0.5, -0.5, 0, 0.5, -0.4375, 0.5},
 			},
 		},
-		["_2"] = {
-			node_box = {
-				type = "fixed",
-				fixed = {-0.5, -0.5, 0, 0.5, -0.375, 0.5},
-			},
-		},
-		["_4"] = {
-			node_box = {
-				type = "fixed",
-				fixed = {-0.5, -0.5, 0, 0.5, -0.25, 0.5},
-			},
-		},
+		["_2"] = {legacy = "_1"},
+		["_4"] = {legacy = ""},
 		["_12"] = {
 			node_box = {
 				type = "fixed",
 				fixed = {-0.5, -0.5, 0, 0.5, 0.25, 0.5},
 			},
 		},
-		["_14"] = {
-			node_box = {
-				type = "fixed",
-				fixed = {-0.5, -0.5, 0, 0.5, 0.375, 0.5},
-			},
-		},
+		["_14"] = {legacy = "_15"},
 		["_15"] = {
 			node_box = {
 				type = "fixed",
@@ -68,19 +53,24 @@ function stairsplus:register_panel(modname, subname, recipeitem, fields)
 
 	local desc = S("%s Panel"):format(fields.description)
 	for alternate, def in pairs(defs) do
-		for k, v in pairs(fields) do
-			def[k] = v
+		if def.legacy then
+			minetest.register_alias(modname .. ":panel_" .. subname .. alternate,
+				modname .. ":panel_" .. subname .. def.legacy)
+		else
+			for k, v in pairs(fields) do
+				def[k] = v
+			end
+			def.drawtype = "nodebox"
+			def.paramtype = "light"
+			def.paramtype2 = "facedir"
+			def.on_place = minetest.rotate_node
+			def.description = desc
+			def.groups = stairsplus:prepare_groups(fields.groups)
+			if fields.drop then
+				def.drop = modname.. ":panel_" ..fields.drop..alternate
+			end
+			minetest.register_node(":" ..modname.. ":panel_" ..subname..alternate, def)
 		end
-		def.drawtype = "nodebox"
-		def.paramtype = "light"
-		def.paramtype2 = "facedir"
-		def.on_place = minetest.rotate_node
-		def.description = desc
-		def.groups = stairsplus:prepare_groups(fields.groups)
-		if fields.drop then
-			def.drop = modname.. ":panel_" ..fields.drop..alternate
-		end
-		minetest.register_node(":" ..modname.. ":panel_" ..subname..alternate, def)
 	end
 	minetest.register_alias(modname.. ":panel_" ..subname.. "_bottom", modname.. ":panel_" ..subname)
 

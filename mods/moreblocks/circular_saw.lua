@@ -31,36 +31,33 @@ circular_saw.cost_in_microblocks = {
 	6, 2, 1, 3, 4,
 }
 
+-- This parameter is legacy node
 circular_saw.names = {
 	{"micro", "_1"},
 	{"panel", "_1"},
-	{"micro", "_2"},
-	{"panel", "_2"},
-	{"micro", "_4"},
-	{"panel", "_4"},
 	{"micro", ""},
 	{"panel", ""},
+
 	{"micro", "_12"},
 	{"panel", "_12"},
-	{"micro", "_14"},
-	{"panel", "_14"},
 	{"micro", "_15"},
 	{"panel", "_15"},
+
 	{"stair", "_outer"},
 	{"stair", ""},
 	{"stair", "_inner"},
+
 	{"slab", "_1"},
-	{"slab", "_2"},
 	{"slab", "_quarter"},
 	{"slab", ""},
 	{"slab", "_three_quarter"},
-	{"slab", "_14"},
 	{"slab", "_15"},
+
 	{"stair", "_half"},
 	{"stair", "_alt_1"},
-	{"stair", "_alt_2"},
 	{"stair", "_alt_4"},
 	{"stair", "_alt"},
+
 	{"slope", ""},
 	{"slope", "_half"},
 	{"slope", "_half_raised"},
@@ -100,12 +97,14 @@ function circular_saw:get_output_inv(modname, material, amount, max)
 
 	for i = 1, #circular_saw.names do
 		local t = circular_saw.names[i]
-		local cost = circular_saw.cost_in_microblocks[i]
-		local balance = math.min(math.floor(amount/cost), max)
-		local nodename = modname .. ":" .. t[1] .. "_" .. material .. t[2]
-		if  minetest.registered_nodes[nodename] then
-			pos = pos + 1
-			list[pos] = nodename .. " " .. balance
+		if not t[3] then
+			local cost = circular_saw.cost_in_microblocks[i]
+			local balance = math.min(math.floor(amount/cost), max)
+			local nodename = modname .. ":" .. t[1] .. "_" .. material .. t[2]
+			if  minetest.registered_nodes[nodename] then
+				pos = pos + 1
+				list[pos] = nodename .. " " .. balance
+			end
 		end
 	end
 	return list
