@@ -6,7 +6,7 @@ mobs:register_mob("mobs:mese_dragon", {
 	attack_type = "dogshoot",
 	reach = 3,
 	shoot_interval = 2.5,
-	arrow = "mobs:mese_arrow", --Remplacer par fireball du DM mais enlever son et mettre texture "mese flamme"
+	arrow = "mobs:mese_arrow",		--Remplacer par fireball du DM mais enlever son et mettre texture "mese flamme"
 	shoot_offset = 2,
 	-- health & armor
 	hp_min = 175,
