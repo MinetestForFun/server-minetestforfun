@@ -11,7 +11,7 @@ function report.send(sender, message)
 			minetest.chat_send_player(name, "-!- " .. sender .. " reported: " .. message)
 		end
 	end
-	
+
 	if #mods > 0 then
 		local mod_list = table.concat(mods, ", ")
 		email.send_mail(sender, minetest.setting_get("name"),
@@ -51,11 +51,13 @@ if minetest.get_modpath("unified_inventory") then
 
 	unified_inventory.register_page("report", {
 		get_formspec = function(player)
-			local form = "label[3,0;Report a Bug/Grief]"..
-				"label[0,2;You can ask questions to moderators, report floods and spams,"..
-				"\nor report usebug from players\nDo not report grief because it's allowed on our server !"..
-				"\ndon't abuse/flood Report messages or you will be punished]"..
-				"field[2,5;5,1;text;Text about what to report:;]" ..
+			local form = "label[3,0;Report a Bug/Player]"..
+				"label[0,1.5;DO NOT report a player until you have read the rules posted"..
+				"\nat the spawn area! Don't report griefing, it's allowed on"..
+				"\nour server! You can ask questions to moderators and report"..
+				"\nflooding/spam, cheating, etc. Don't abuse/spam Report messages"..
+				"\nor you will be punished. LIMIT: One report per 5 minutes.]"..
+				"field[2,5;5,1;text;Type report here:;]" ..
 				"button[3,6;2,0.5;report;Send]"
 			return {formspec = form, draw_inventory = false}
 		end
