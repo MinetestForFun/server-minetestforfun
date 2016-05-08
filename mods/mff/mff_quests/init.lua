@@ -16,7 +16,7 @@ mff.quests.quests = {
 		tasks = {
 			diggy = {
 				title = "Dig 100 stone",
-				description = "Old man : Sbhow me you can dig through stone, and I will reward you.",
+				description = "Old man : Show me you can dig through stone, and I will reward you.",
 				max = 100,
 				objective = {
 					dig = {"default:stone"}
@@ -54,7 +54,7 @@ mff.quests.quests = {
 			diggy = {
 				title = "Dig 10 diamonds",
 				description = "Masamune, the Blacksmith : Hello little adventurer. Aaarrh, I hate diamonds ! I work only with strong materials, dig diamonds and I will reward you with my favorite mineral",
-				max = 5,
+				max = 10,
 				objective = {
 					dig = {"default:stone_with_diamond"}
 				}
