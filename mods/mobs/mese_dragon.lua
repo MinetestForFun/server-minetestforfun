@@ -1,6 +1,6 @@
 mobs:register_mob("mobs:mese_dragon", {
 	type = "monster",
-	-- agressive, deals 4 damage to player when hit
+	-- agressive, deals 12 damage to player when hit
 	passive = false,
 	damage = 12,
 	attack_type = "dogshoot",
@@ -13,9 +13,9 @@ mobs:register_mob("mobs:mese_dragon", {
 	hp_max = 225,
 	armor = 70,
 	-- textures and model
-	collisionbox = {-1, 0, -1, 1, 5, 1}, --A VERIFIER/CORRIGER
+	collisionbox = {-0.8, 0, -0.8, 0.8, 4, 0.8}, --A VERIFIER/CORRIGER
 	visual = "mesh",
-	mesh = "mese_dragon.x",
+	mesh = "mese_dragon.b3d",
 	rotate = 180, --Needed because B3D bugs
 	textures = {
 		{"mese_dragon.png"},
