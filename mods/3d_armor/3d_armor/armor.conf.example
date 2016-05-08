@@ -9,7 +9,7 @@ ARMOR_MATERIALS = {
 	bronze = "default:bronze_ingot",
 	diamond = "default:diamond",
 	gold = "default:gold_ingot",
-	mithril = "moreores:mithril_ingot",
+	mithril = "default:mithril_ingot",
 	crystal = "ethereal:crystal_ingot",
 }
 

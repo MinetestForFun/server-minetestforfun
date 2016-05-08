@@ -20,7 +20,7 @@ ARMOR_MATERIALS = {
 	bronze = "default:bronze_ingot",
 	diamond = "default:diamond",
 	gold = "default:gold_ingot",
-	mithril = "moreores:mithril_ingot",
+	mithril = "default:mithril_ingot",
 	crystal = "ethereal:crystal_ingot",
 	-- Hunter armors (A déc-ommenter quand activation de l'armure au total)
 	hardenedleather = "3d_armor:hardenedleather",
@@ -58,9 +58,6 @@ if input then
 	dofile(worldpath.."/armor.conf")
 	input:close()
 	input = nil
-end
-if not minetest.get_modpath("moreores") then
-	ARMOR_MATERIALS.mithril = nil
 end
 if not minetest.get_modpath("ethereal") then
 	ARMOR_MATERIALS.crystal = nil

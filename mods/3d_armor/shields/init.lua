@@ -1,5 +1,3 @@
-local use_moreores = minetest.get_modpath("moreores")
-
 -- Regisiter Shields
 
 minetest.register_tool("shields:shield_admin", {
