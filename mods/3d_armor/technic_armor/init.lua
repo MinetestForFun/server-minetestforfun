@@ -11,12 +11,10 @@ if minetest.get_modpath("technic") then
 		carbon="technic:carbon_steel_ingot",
 		stainless="technic:stainless_steel_ingot",
 	}
-	if minetest.get_modpath("moreores") then
-		stats.tin = { name="Tin", armor=1.6, heal=0, use=750 }
-		stats.silver = { name="Silver", armor=1.8, heal=0, use=650 }
-		mats.tin = "moreores:tin_ingot"
-		mats.silver = "moreores:silver_ingot"
-	end
+	stats.tin = { name="Tin", armor=1.6, heal=0, use=750 }
+	stats.silver = { name="Silver", armor=1.8, heal=0, use=650 }
+	mats.tin = "default:tin_ingot"
+	mats.silver = "default:silver_ingot"
 
 	for k, v in pairs(stats) do
 		minetest.register_tool("technic_armor:helmet_"..k, {
