@@ -1,12 +1,12 @@
 mobs:register_mob("mobs:mese_dragon", {
 	type = "monster",
-	-- agressive, deals 12 damage to player when hit
+	-- agressive, deals 13 damage to player when hit
 	passive = false,
-	damage = 12,
+	damage = 13,
 	attack_type = "dogshoot",
 	reach = 3,
-	shoot_interval = 2.5,
-	arrow = "mobs:mese_arrow",		--Remplacer par fireball du DM mais enlever son et mettre texture "mese flamme"
+	shoot_interval = 2,
+	arrow = "mobs:fireball_mese_dragon",
 	shoot_offset = 2,
 	-- health & armor
 	hp_min = 175,
@@ -77,27 +77,30 @@ mobs:register_mob("mobs:mese_dragon", {
 	},
 })
 
--- mese arrow (weapon) --Remplacer par fireball du DM mais enlever son et mettre texture "mese flamme"
-mobs:register_arrow("mobs:mese_arrow", {
+-- fireball_mese_dragon (weapon)
+mobs:register_arrow("mobs:fireball_mese_dragon", {
 	visual = "sprite",
-	visual_size = {x = 0.5, y = 0.5},
-	textures = {"default_mese_crystal_fragment.png"},
-	velocity = 8, --default 6
+	visual_size = {x = 1, y = 1},
+	textures = {"mobs_fireball.png"},
+	velocity = 8,
 
+	-- direct hit, no fire... just plenty of pain
 	hit_player = function(self, player)
-		player:punch(self.object, 1.0, {
-			full_punch_interval = 1.0,
-			damage_groups = {fleshy = 12},     --Modif MFF
+		player:punch(self.object, 1.0, {		-- Mettre à 2.0 aussi ?
+			full_punch_interval = 2.0,			-- Modif MFF
+			damage_groups = {fleshy = 13},		-- Modif MFF
 		}, nil)
 	end,
 
 	hit_mob = function(self, player)
-		player:punch(self.object, 1.0, {
-			full_punch_interval = 1.0,
-			damage_groups = {fleshy = 12},     --Modif MFF
+		player:punch(self.object, 1.0, {		-- Mettre à 2.0 aussi ?
+			full_punch_interval = 2.0,			-- Modif MFF
+			damage_groups = {fleshy = 13},		-- Modif MFF
 		}, nil)
 	end,
 
+	-- node hit, bursts into flame
 	hit_node = function(self, pos, node)
+		mobs:explosion(pos, 1, 1, 0)
 	end
 })
