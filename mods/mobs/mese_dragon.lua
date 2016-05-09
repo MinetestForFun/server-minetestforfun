@@ -16,7 +16,6 @@ mobs:register_mob("mobs:mese_dragon", {
 	collisionbox = {-0.8, 0, -0.8, 0.8, 4, 0.8}, --A VERIFIER/CORRIGER
 	visual = "mesh",
 	mesh = "mese_dragon.b3d",
-	rotate = 180, --Needed because B3D bugs
 	textures = {
 		{"mese_dragon.png"},
 	},
