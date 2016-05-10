@@ -1,5 +1,6 @@
 -- NODES
 
+-- Lightened nodes for MFF
 local sea_light_source = 5
 
 minetest.register_node("seaplants:kelpgreen", {
@@ -244,8 +245,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	y_max          = -14,
-	y_min          = -31000,
+	y_max     = -14,
+	y_min     = -31000,
 })
 
 minetest.register_ore({
@@ -255,8 +256,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	y_max          = -14,
-	y_min          = -31000,
+	y_max     = -14,
+	y_min     = -31000,
 })
 
 minetest.register_ore({
@@ -266,8 +267,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	y_max          = -14,
-	y_min          = -31000,
+	y_max     = -14,
+	y_min     = -31000,
 })
 
 minetest.register_ore({
@@ -277,8 +278,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	y_max          = -14,
-	y_min          = -31000,
+	y_max     = -14,
+	y_min     = -31000,
 })
 
 minetest.register_ore({
@@ -288,8 +289,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	y_max          = -14,
-	y_min          = -31000,
+	y_max     = -14,
+	y_min     = -31000,
 })
 
 minetest.register_ore({
@@ -299,8 +300,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	y_max          = -14,
-	y_min          = -31000,
+	y_max     = -14,
+	y_min     = -31000,
 })
 
 minetest.register_ore({
@@ -310,8 +311,8 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	y_max          = -14,
-	y_min          = -31000,
+	y_max     = -14,
+	y_min     = -31000,
 })
 
 minetest.register_ore({
@@ -321,16 +322,16 @@ minetest.register_ore({
 	clust_scarcity = 10*10*10,
 	clust_num_ores = 24,
 	clust_size     = 4,
-	y_max          = -14,
-	y_min          = -31000,
+	y_max     = -14,
+	y_min     = -31000,
 })
 
-local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, chunk_size, ore_per_chunk, height_min, height_max)
-	if maxp.y < height_min or minp.y > height_max then
+local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, chunk_size, ore_per_chunk, y_min, y_max)
+	if maxp.y < y_min or minp.y > y_max then
 		return
 	end
-	local y_min = math.max(minp.y, height_min)
-	local y_max = math.min(maxp.y, height_max)
+	local y_min = math.max(minp.y, y_min)
+	local y_max = math.min(maxp.y, y_max)
 	if chunk_size >= y_max - y_min + 1 then
 		return
 	end
@@ -340,7 +341,7 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	local inverse_chance = math.floor(chunk_size*chunk_size*chunk_size / ore_per_chunk)
 	for i=1,num_chunks do
 		local y0 = pr:next(y_min, y_max-chunk_size+1)
-		if y0 >= height_min and y0 <= height_max then
+		if y0 >= y_min and y0 <= y_max then
 			local x0 = pr:next(minp.x, maxp.x-chunk_size+1)
 			local z0 = pr:next(minp.z, maxp.z-chunk_size+1)
 			local p0 = {x=x0, y=y0, z=z0}
@@ -412,9 +413,9 @@ action = function(pos, node, active_object_count, active_object_count_wider)
 			minetest.get_node(yyp).name == "noairblocks:water_sourcex") then
 				if (minetest.get_node(yyyp).name == "default:water_source" or
 				minetest.get_node(yyyp).name == "noairblocks:water_sourcex") then
-					minetest.add_node(pos, {name = "seaplants:kelpgreenmiddle"})
+					minetest.add_node(pos, {name = "seaplants:kelpgreenmiddle"}) 
 					pos.y = pos.y + 1
-					minetest.add_node(pos, {name = "seaplants:kelpgreen"})
+					minetest.add_node(pos, {name = "seaplants:kelpgreen"}) 
 				else
 				return
 			end
@@ -468,9 +469,9 @@ action = function(pos, node, active_object_count, active_object_count_wider)
 			minetest.get_node(yyp).name == "noairblocks:water_sourcex") then
 				if (minetest.get_node(yyyp).name == "default:water_source" or
 				minetest.get_node(yyyp).name == "noairblocks:water_sourcex") then
-					minetest.add_node(pos, {name = "seaplants:kelpbrownmiddle"})
+					minetest.add_node(pos, {name = "seaplants:kelpbrownmiddle"}) 
 					pos.y = pos.y + 1
-					minetest.add_node(pos, {name = "seaplants:kelpbrown"})
+					minetest.add_node(pos, {name = "seaplants:kelpbrown"}) 
 				else
 				return
 			end
