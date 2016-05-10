@@ -10,7 +10,7 @@ end
 
 local function set_wielder_formspec(data, meta)
 	meta:set_string("formspec",
-			"invsize[8,"..(6+data.wield_inv_height)..";]"..
+			"size[8,"..(6+data.wield_inv_height)..";]"..
 			"item_image[0,0;1,1;"..data.name_base.."_off]"..
 			"label[1,0;"..minetest.formspec_escape(data.description).."]"..
 			"list[current_name;"..minetest.formspec_escape(data.wield_inv_name)..";"..((8-data.wield_inv_width)*0.5)..",1;"..data.wield_inv_width..","..data.wield_inv_height..";]"..
