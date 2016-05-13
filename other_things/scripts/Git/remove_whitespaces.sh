@@ -5,10 +5,10 @@
 
 # Go to repo root
 mydir="`dirname "$0"`"
-test -d "$mydir" && cd "$mydir/../../"
+test -d "$mydir" && cd "$mydir/../../../"
 
 # Get all lua file's names
-luafiles=$(mucro '.lua'$ -r . -b)
+luafiles=$(find -type f -name "*.lua")
 sed -i 's/[ \t]*$//' $luafiles
 
 # Done
