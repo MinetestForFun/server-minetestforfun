@@ -33,7 +33,6 @@ for _, s in pairs({"asphalt", "terracotta", "wood"}) do
 		wield_image = "homedecor_shingles_"..s..".png",
 		inventory_image = "homedecor_shingles_"..s.."_inv.png",
 		paramtype = "light",
-		walkable = false,
 		groups = { snappy = 3 },
 		sounds = default.node_sound_wood_defaults(),
 		selection_box = homedecor.nodebox.slab_y(0.1),
