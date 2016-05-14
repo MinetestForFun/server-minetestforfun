@@ -41,6 +41,7 @@ unified_inventory.register_button("craftguide", {
 	show_with = false, --Modif MFF (Crabman 30/06/2015)
 })
 
+--[[
 unified_inventory.register_button("home_gui_set", {
 	type = "image",
 	image = "ui_sethome_icon.png",
@@ -69,6 +70,18 @@ unified_inventory.register_button("home_gui_go", {
 			minetest.sound_play("teleport",
 				{to_player=player:get_player_name(), gain = 1.0})
 		end
+	end,
+})
+--]]
+
+unified_inventory.register_button("home_gui_set", { --new h2omes
+	type = "image",
+	image = "ui_gohome_icon.png",
+	tooltip = S("My Homes"),
+	hide_lite=true,
+	show_with = "home", --Modif MFF (Crabman 30/06/2015)
+	action = function(player)
+		h2omes.show_formspec_home(player:get_player_name())
 	end,
 })
 
