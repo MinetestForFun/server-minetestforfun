@@ -13,8 +13,8 @@ local object_detector_make_formspec = function (pos)
 		"button_exit[7,0.75;2,3;;Save]")
 end
 
-local object_detector_on_receive_fields = function(pos, formname, fields)
-	if not fields.scanname or not fields.digiline_channel then return end;
+local function object_detector_on_receive_fields(pos, _, fields)
+	if not fields.scanname or not fields.digiline_channel then return end
 
 	local meta = minetest.get_meta(pos)
 	meta:set_string("scanname", fields.scanname)
@@ -23,7 +23,7 @@ local object_detector_on_receive_fields = function(pos, formname, fields)
 end
 
 -- returns true if player was found, false if not
-local object_detector_scan = function (pos)
+local function object_detector_scan(pos)
 	local objs = minetest.get_objects_inside_radius(pos, mesecon.setting("detector_radius", 6))
 	for k, obj in pairs(objs) do
 		local isname = obj:get_player_name() -- "" is returned if it is not a player; "" ~= nil!

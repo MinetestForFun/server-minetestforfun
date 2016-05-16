@@ -43,9 +43,9 @@ minetest.register_chatcommand("hp", {
 })
 
 local function initialize_data(meta)
-	local commands = meta:get_string("commands")
+	local commands = minetest.formspec_escape(meta:get_string("commands"))
 	meta:set_string("formspec",
-		"size[9,5;]" ..
+		"invsize[9,5;]" ..
 		"textarea[0.5,0.5;8.5,4;commands;Commands;"..commands.."]" ..
 		"label[1,3.8;@nearest, @farthest, and @random are replaced by the respective player names]" ..
 		"button_exit[3.3,4.5;2,1;submit;Submit]")
