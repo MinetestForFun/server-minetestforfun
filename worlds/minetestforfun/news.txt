@@ -9,7 +9,8 @@ Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
 ---17/05/2016--- (Thanks to : crabman77/crabman, farfadet46, LeMagnesium/Mg, Ombridride/MinetestForFun)
-Addition of "h2omes" replacing "homes" (Players can manage different homes for mines and overworld)
+The server was upgraded to a 0.4.14-Stable Minetest version
+Addition of "h2omes" replacing "homes" (Players can manage different homes for mines and overworld, be carful you old sethome was reseted)
 Update of "homedecor" (Shingles are now walkable)
 Update of "mesecons" (Blinky plants tick less frequently)
 Update of "pipeworks" (Entities are picked up less frequently by sand pipes)
@@ -25,7 +26,7 @@ Update of "report" (New message in the form)
 Update of "mff_quests" (More rewards for all daily quests)
 Update of "mff_classes" (BlackMithril & Reinforced Leather now more easily craftable)
 Update of "hudbars" (fix wrong textures/positions)
-Update of "mobs" (Add the "Mese Dragon" Boss, need ot be improved, not available ingame for now, remove some unused textures/models, bugfix and reduce lags)
+Update of "mobs" (Add the "Mese Dragon" Boss, need to be improved, not available ingame for now, remove some unused textures/models, bugfix and reduce lags)
 Update of "throwing" (Bows now does damages)
 
 ---04/05/2016--- (Thanks to : LeMagnesium/Mg)
