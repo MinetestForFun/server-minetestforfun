@@ -8,8 +8,21 @@ Introduce the Wizard class : do you like magic things ?
 Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
----??/05/2016--- (Thanks to : crabman77/crabman, farfadet46)
-update of "mff_quests" (More rewards for all daily quests)
+---17/05/2016--- (Thanks to : crabman77/crabman, farfadet46, LeMagnesium/Mg, Ombridride/MinetestForFun)
+Addition of "h2omes" replacing "homes" (Players can manage different homes for mines and overworld)
+Update of "homedecor" (Shingles are now walkable)
+Update of "mesecons" (Blinky plants tick less frequently)
+Update of "pipeworks" (Entities are picked up less frequently by sand pipes)
+Update of "sea" (Code cleanup)
+Update of "quest" (Quest engine updated with typo fixes)
+Update of "3d_armors" (Mithril armors are back after default's update, technic's unactivated armors are removed)
+Update of "random_messages" (New informations)
+Update of "default" (Nyan sword craftable again)
+Update of "xban2" (GUI now does linewrap)
+Update of "moreblocks" (Removal of very similar cut nodes)
+Update of "areas" (Fixes related to openfarming and treillis/beanpoles)
+Update of "report" (New message in the form)
+Update of "mff_quests" (More rewards for all daily quests)
 Update of "mff_classes" (BlackMithril & Reinforced Leather now more easily craftable)
 Update of "hudbars" (fix wrong textures/positions)
 Update of "mobs" (Add the "Mese Dragon" Boss, need ot be improved, not available ingame for now, remove some unused textures/models, bugfix and reduce lags)
