@@ -9,7 +9,7 @@ Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
 ---17/05/2016--- (Thanks to : crabman77/crabman, farfadet46, LeMagnesium/Mg, Ombridride/MinetestForFun)
-The server was upgraded to a 0.4.14-Stable Minetest version
+/!\ The server has been upgraded to a 0.4.14-Stable Minetest version /!\
 Addition of "h2omes" replacing "homes" (Players can manage different homes for mines and overworld, be carful you old sethome was reseted)
 Update of "homedecor" (Shingles are now walkable)
 Update of "mesecons" (Blinky plants tick less frequently)
