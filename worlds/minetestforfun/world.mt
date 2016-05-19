@@ -195,7 +195,6 @@ load_mod_name_restrictions = true
 load_mod_whoison = true
 load_mod_player_inactive = true
 load_mod_track_players = true
-load_mod_spawn = true
 load_mod__misc = true
 load_mod_interact = true
 load_mod_news = true
