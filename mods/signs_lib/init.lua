@@ -116,7 +116,7 @@ signs_lib.gettext = S
 -- the list of standard sign nodes
 
 signs_lib.sign_node_list = {
-		"default:sign_wall",
+		"default:sign_wall_wood",
 		"signs:sign_yard",
 		"signs:sign_hanging",
 		"signs:sign_wall_green",
@@ -129,6 +129,17 @@ signs_lib.sign_node_list = {
 		"signs:sign_wall_brown",
 		"locked_sign:sign_wall_locked"
 }
+
+local default_sign, default_sign_image
+
+-- Default sign was renamed in 0.4.14. Support both & old versions.
+if minetest.registered_nodes["default:sign_wall_wood"] then
+	default_sign = "default:sign_wall_wood"
+	default_sign_image = "default_sign_wood.png"
+else
+	default_sign = "default:sign_wall"
+	default_sign_image = "default_sign_wall.png"
+end
 
 --table copy
 
@@ -501,7 +512,7 @@ signs_lib.update_sign = function(pos, fields, owner)
 	elseif signnode.name == "signs:sign_hanging" then
 		sign_info = signs_lib.hanging_sign_model.textpos[minetest.get_node(pos).param2 + 1]
 	elseif string.find(signnode.name, "sign_wall") then
-		if signnode.name == "default:sign_wall" 
+		if signnode.name == default_sign
 		  or signnode.name == "locked_sign:sign_wall_locked" then
 			sign_info = signs_lib.regular_wall_sign_model.textpos[minetest.get_node(pos).param2 + 1]
 		else
@@ -570,13 +581,13 @@ function signs_lib.determine_sign_type(itemstack, placer, pointed_thing, locked)
 		local pt_name = minetest.get_node(under).name
 		local signname = itemstack:get_name()
 
-		if fences_with_sign[pt_name] and signname == "default:sign_wall" then
+		if fences_with_sign[pt_name] and signname == default_sign then
 			minetest.add_node(under, {name = fences_with_sign[pt_name], param2 = fdir})
-		elseif wdir == 0 and signname == "default:sign_wall" then
+		elseif wdir == 0 and signname == default_sign then
 			minetest.add_node(above, {name = "signs:sign_hanging", param2 = fdir})
-		elseif wdir == 1 and signname == "default:sign_wall" then
+		elseif wdir == 1 and signname == default_sign then
 			minetest.add_node(above, {name = "signs:sign_yard", param2 = fdir})
-		elseif signname ~= "default:sign_wall"
+		elseif signname ~= default_sign
 		  and signname ~= "locked_sign:sign_wall_locked" then -- it's a metal wall sign.
 			minetest.add_node(above, {name = signname, param2 = fdir})
 		else -- it must be a default or locked wooden wall sign
@@ -616,10 +627,10 @@ function signs_lib.receive_fields(pos, formname, fields, sender, lock)
 	end
 end
 
-minetest.register_node(":default:sign_wall", {
+minetest.register_node(":"..default_sign, {
 	description = S("Sign"),
-	inventory_image = "default_sign_wall.png",
-	wield_image = "default_sign_wall.png",
+	inventory_image = default_sign_image,
+	wield_image = default_sign_image,
 	node_placement_prediction = "",
 	sunlight_propagates = true,
 	paramtype = "light",
@@ -659,7 +670,7 @@ minetest.register_node(":signs:sign_yard", {
 	},
     tiles = {"signs_top.png", "signs_bottom.png", "signs_side.png", "signs_side.png", "signs_back.png", "signs_front.png"},
     groups = {choppy=2, dig_immediate=2},
-    drop = "default:sign_wall",
+    drop = default_sign,
 
     on_construct = function(pos)
         signs_lib.construct_sign(pos)
@@ -694,7 +705,7 @@ minetest.register_node(":signs:sign_hanging", {
 		"signs_hanging_front.png"
 	},
     groups = {choppy=2, dig_immediate=2},
-    drop = "default:sign_wall",
+    drop = default_sign,
 
     on_construct = function(pos)
         signs_lib.construct_sign(pos)
@@ -728,7 +739,7 @@ minetest.register_node(":signs:sign_post", {
     drop = {
 		max_items = 2,
 		items = {
-			{ items = { "default:sign_wall" }},
+			{ items = { default_sign }},
 			{ items = { "default:fence_wood" }},
 		},
     },
@@ -909,7 +920,7 @@ function signs_lib.register_fence_with_sign(fencename, fencewithsignname)
 	    node.name = fencename
 	    minetest.add_node(pos, node)
 	end
-    def_sign.drop = "default:sign_wall"
+    def_sign.drop = default_sign
 	minetest.register_node(":"..fencename, def)
 	minetest.register_node(":"..fencewithsignname, def_sign)
 	table.insert(signs_lib.sign_node_list, fencewithsignname)
@@ -950,7 +961,7 @@ minetest.register_craft({
 minetest.register_craft({
     	output = "locked_sign:sign_wall_locked",
     	recipe = {
-        	{"default:sign_wall"},
+        	{default_sign},
         	{"default:steel_ingot"},
     },
 })
