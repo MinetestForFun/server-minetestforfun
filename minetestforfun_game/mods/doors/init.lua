@@ -518,7 +518,7 @@ doors.register("door_obsidian_glass", {
 doors.register("door_cherry", {
 	tiles = { "doors_door_cherry.png" },
 	description = "Cherry Door",
-	inventory_image = "doors_wood_cherry.png",
+	inventory_image = "doors_item_cherry.png",
 	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
 	sounds = default.node_sound_wood_defaults(),
 	recipe = {
@@ -531,9 +531,9 @@ minetest.register_alias("doors:door_wood_cherry", "doors:door_cherry")
 
 -- doors tin MFF
 doors.register("door_tin", {
-	tiles = { "doors_tin.png" },
+	tiles = { "doors_door_tin.png" },
 	description = "Tin Door",
-	inventory_image = "doors_tin.png",
+	inventory_image = "doors_item_tin.png",
 	groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1},
 	protected = true,
 	sounds = default.node_sound_stone_defaults(),
@@ -547,9 +547,9 @@ doors.register("door_tin", {
 
 -- doors prison MFF
 doors.register("door_prison", {
-	tiles = { "doors_prison.png" },	
+	tiles = { "doors_door_prison.png" },
 	description = "Prison Door",
-	inventory_image = "doors_prison_inv.png",
+	inventory_image = "doors_item_prison.png",
 	groups = {snappy=1,bendy=2,cracky=1,melty=2,level=2,door=1},
 	protected = true,
 	sounds = default.node_sound_stone_defaults(),
@@ -563,9 +563,9 @@ doors.register("door_prison", {
 
 -- MFF gardengate white
 doors.register("doors:door_gardengate_white", {
-	tiles = { "doors_gardengate_white.png" },
+	tiles = { "doors_door_gardengate_white.png" },
 	description = "Garden Gate White Door",
-	inventory_image = "doors_gardengate_white_inv.png",
+	inventory_image = "doors_item_gardengate_white.png",
 	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=2,door=1},
 	sounds = default.node_sound_wood_defaults(),
 	recipe = {
