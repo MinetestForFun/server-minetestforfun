@@ -1,8 +1,6 @@
 
 -- Dungeon Master by PilzAdam
 
--- Node which cannot be destroyed by DungeonMasters' fireballs
-local excluded = {"nether:netherrack","default:obsidian_glass","default:obsidian", "default:obsidian_cooled", "default:bedrock", "doors:door_steel_b_1", "doors:door_steel_t_1", "doors:door_steel_b_2", "doors:door_steel_t_2","default:chest_locked"}
 
 mobs:register_mob("mobs:dungeon_master", {
 	-- animal, monster, npc, barbarian

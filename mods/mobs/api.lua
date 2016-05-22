@@ -2472,9 +2472,6 @@ function mobs:register_egg(mob, desc, background, addegg)
 		inventory_image = invimg,
 
 		on_place = function(itemstack, placer, pointed_thing)
-			if not minetest.check_player_privs(placer:get_player_name(), {server=true}) then -- MFF
-				return
-			end
 			local pos = pointed_thing.above
 
 			if pos
