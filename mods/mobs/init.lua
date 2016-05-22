@@ -66,4 +66,19 @@ dofile(path.."/mff_menu.lua")
 minetest.register_alias("mobs:rat","mobs:chicken") -- aliases removed rat
 minetest.register_alias("mobs:rat_cooked", "mobs:chicken_cooked")
 
+
+local function remove_old(name)
+	minetest.register_entity(name, {
+		name = name,
+		on_activate = function(self, staticdata, dtime_s)
+			self.object:remove()
+			return
+		end,
+	})
+end
+
+remove_old("mobs:pumba")
+remove_old("mobs:rat")
+
+
 minetest.log("action", "[MOD] Mobs Redo loaded")
