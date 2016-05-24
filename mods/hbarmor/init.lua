@@ -88,26 +88,21 @@ minetest.register_on_leaveplayer(function(player)
 	hbarmor.player_active[name] = false
 end)
 
-local main_timer = 0
-local timer = 0
-minetest.register_globalstep(function(dtime)
-	main_timer = main_timer + dtime
-	timer = timer + dtime
-	if main_timer > hbarmor.tick or timer > 4 then
-		if minetest.setting_getbool("enable_damage") then
-			if main_timer > hbarmor.tick then main_timer = 0 end
-			for _,player in ipairs(minetest.get_connected_players()) do
-				local name = player:get_player_name()
-				if hbarmor.player_active[name] == true then
-					local ret = hbarmor.get_armor(player)
-					if ret == false then
-						minetest.log("error", "[hbarmor] Call to hbarmor.get_armor in globalstep returned with false!")
-					end
-					-- update all hud elements
-					update_hud(player)
+local function hbarmor_step()
+	if minetest.setting_getbool("enable_damage") then
+		for _,player in ipairs(minetest.get_connected_players()) do
+			local name = player:get_player_name()
+			if hbarmor.player_active[name] == true then
+				local ret = hbarmor.get_armor(player)
+				if ret == false then
+					minetest.log("error", "[hbarmor] Call to hbarmor.get_armor in step returned with false!")
 				end
+				-- update all hud elements
+				update_hud(player)
 			end
 		end
 	end
-	if timer > 4 then timer = 0 end
-end)
+
+	minetest.after(hbarmor.tick, hbarmor_step)
+end
+minetest.after(0, hbarmor_step)

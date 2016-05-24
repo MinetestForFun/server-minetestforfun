@@ -64,13 +64,12 @@ minetest.register_on_joinplayer(function(player)
 	end, player)
 end)
 
-minetest.register_globalstep(function(dtime)
-	time = time + dtime
-	if time > update_time then
-		for _,player in ipairs(minetest.get_connected_players()) do
-			wieldview:update_wielded_item(player)
-		end
-		time = 0
+function step()
+	for _,player in ipairs(minetest.get_connected_players()) do
+		wieldview:update_wielded_item(player)
 	end
-end)
+	time = 0
+	minetest.after(update_time, step)
+end
+minetest.after(0, step)
 

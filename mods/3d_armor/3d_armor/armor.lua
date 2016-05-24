@@ -653,11 +653,7 @@ else
 	minetest.log("info", "[3d_armor] Fire Nodes disabled")
 end
 
-minetest.register_globalstep(function(dtime)
-	armor.timer = armor.timer + dtime
-	if armor.timer < ARMOR_UPDATE_TIME then
-		return
-	end
+function armor_step()
 	for _,player in pairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
 		local pos = player:getpos()
@@ -688,8 +684,12 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 	end
-	armor.timer = 0
-end)
+	minetest.after(ARMOR_UPDATE_TIME, armor_step)
+end
+
+-- Launch once started
+minetest.after(0, armor_step)
+
 
 -- kill player when command issued
 minetest.register_chatcommand("kill", {
