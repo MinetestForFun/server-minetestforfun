@@ -1,1 +1,0 @@
-A mana regeneration controller: only regenerate mana in sunlight or on special nodes
