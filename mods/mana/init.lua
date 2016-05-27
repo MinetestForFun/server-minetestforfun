@@ -240,34 +240,31 @@ end)
 
 mana.regen_timer = 0
 
-minetest.register_globalstep(function(dtime)
-	mana.regen_timer = mana.regen_timer + dtime
-	if mana.regen_timer >= mana.settings.regen_timer then
-		local factor = math.floor(mana.regen_timer / mana.settings.regen_timer)
-		local players = minetest.get_connected_players()
-		for i=1, #players do
-			local name = players[i]:get_player_name()
-			if mana.playerlist[name] ~= nil then
-				if players[i]:get_hp() > 0 then
-					local plus = mana.playerlist[name].regen * factor
-					-- Compability check for version <= 1.0.2 which did not have the remainder field
-					if mana.playerlist[name].remainder ~= nil then
-						plus = plus + mana.playerlist[name].remainder
-					end
-					local plus_now = math.floor(plus)
-					local floor = plus - plus_now
-					if plus_now > 0 then
-						mana.add_up_to(name, plus_now)
-					else
-						mana.subtract_up_to(name, math.abs(plus_now))
-					end
-					mana.playerlist[name].remainder = floor
+function mana_regen_step()
+	local players = minetest.get_connected_players()
+	for i=1, #players do
+		local name = players[i]:get_player_name()
+		if mana.playerlist[name] ~= nil then
+			if players[i]:get_hp() > 0 then
+				local plus = mana.playerlist[name].regen
+				-- Compability check for version <= 1.0.2 which did not have the remainder field
+				if mana.playerlist[name].remainder ~= nil then
+					plus = plus + mana.playerlist[name].remainder
 				end
+				local plus_now = math.floor(plus)
+				local floor = plus - plus_now
+				if plus_now > 0 then
+					mana.add_up_to(name, plus_now)
+				else
+					mana.subtract_up_to(name, math.abs(plus_now))
+				end
+				mana.playerlist[name].remainder = floor
 			end
 		end
-		mana.regen_timer = mana.regen_timer % mana.settings.regen_timer
 	end
-end)
+	minetest.after(mana.settings.regen_timer, mana_regen_step)
+end
+minetest.after(0, mana_regen_step)
 
 --[===[
 	HUD functions
