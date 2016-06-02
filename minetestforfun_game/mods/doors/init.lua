@@ -130,6 +130,58 @@ local transform = {
 	},
 }
 
+
+function doors.get_pos(pos, dir, p1, b)
+	local pos2 = {x=pos.x, y=pos.y, z=pos.z}
+	if b == "a" then
+		if p1 == 0 then
+			if dir == 1 then
+				pos2.z=pos2.z-1
+			elseif dir == 2 then
+				pos2.x=pos2.x-1
+			elseif dir == 3 then
+				pos2.z=pos2.z+1
+			else
+				pos2.x=pos2.x+1
+			end
+		elseif p1 == 3 then
+			if dir == 1 then
+				pos2.x=pos2.x+1
+			elseif dir == 2 then
+				pos2.z=pos2.z-1
+			elseif dir == 3 then
+				pos2.x=pos2.x-1
+			else
+				pos2.z=pos2.z+1
+			end
+		end
+	else
+		if p1 == 1 then
+			if dir == 1 then
+				pos2.x=pos2.x+1
+			elseif dir == 2 then
+				pos2.z=pos2.z-1
+			elseif dir == 3 then
+				pos2.x=pos2.x-1
+			else
+				pos2.z=pos2.z+1
+			end
+		elseif p1 == 2 then
+			if dir == 1 then
+				pos2.z=pos2.z+1
+			elseif dir == 2 then
+				pos2.x=pos2.x+1
+			elseif dir == 3 then
+				pos2.z=pos2.z-1
+			else
+				pos2.x=pos2.x-1
+			end
+		end
+	end
+	return pos2
+end
+
+
 function _doors.door_toggle(pos, clicker)
 	local meta = minetest.get_meta(pos)
 	local def = minetest.registered_nodes[minetest.get_node(pos).name]
@@ -163,17 +215,34 @@ function _doors.door_toggle(pos, clicker)
 	end
 
 	local dir = minetest.get_node(pos).param2
-	if state % 2 == 0 then
-		minetest.sound_play(def.door.sounds[1], {pos = pos, gain = 0.3, max_hear_distance = 10})
-	else
-		minetest.sound_play(def.door.sounds[2], {pos = pos, gain = 0.3, max_hear_distance = 10})
-	end
 
 	minetest.swap_node(pos, {
 		name = name .. transform[state + 1][dir+1].v,
 		param2 = transform[state + 1][dir+1].param2
 	})
 	meta:set_int("state", state)
+
+	--MFF double porte
+	local b = string.sub(def.name, -1)
+	local pos2 = doors.get_pos(pos, dir, old, b)
+	local node = minetest.get_node_or_nil(pos2)
+	if node and string.sub(node.name, 0, -3) == name then
+		if b ~= string.sub(node.name, -1) then
+			local state2 = minetest.get_meta(pos2):get_int("state")
+			if (old % 2) == (state2 % 2) then
+				if minetest.registered_nodes[node.name].on_rightclick then
+					return minetest.registered_nodes[node.name].on_rightclick(pos2, node, clicker)
+				end
+			end
+		end
+	end
+	-- /double porte
+
+	if state % 2 == 0 then
+		minetest.sound_play(def.door.sounds[1], {pos = pos, gain = 0.3, max_hear_distance = 10})
+	else
+		minetest.sound_play(def.door.sounds[2], {pos = pos, gain = 0.3, max_hear_distance = 10})
+	end
 
 	return true
 end
