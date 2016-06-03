@@ -58,6 +58,6 @@ if not DISABLE_OBSIDIAN_SPEAR then
 end
 
 if not DISABLE_MITHRIL_SPEAR then
-	spears_register_spear('mithril', 'Mithril (Hunter)', 8, 200, 'moreores:mithril_ingot') --MFF crabman(28/09/2015) damage and wear
+	spears_register_spear('mithril', 'Mithril (Hunter)', 8, 200, 'default:mithril_ingot') --MFF crabman(28/09/2015) damage and wear
 end
 

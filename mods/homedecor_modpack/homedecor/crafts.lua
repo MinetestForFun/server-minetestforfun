@@ -155,12 +155,12 @@ if not minetest.get_modpath("technic") then
 		inventory_image = "homedecor_brass_ingot.png",
 	})
 
-	if minetest.get_modpath("moreores") then
+	if minetest.get_modpath("default") then
 		minetest.register_craft( {
 			type = "shapeless",
 			output = "technic:brass_ingot 2",
 			recipe = {
-				"moreores:silver_ingot",
+				"default:silver_ingot",
 				"default:copper_ingot",
 			},
 		})

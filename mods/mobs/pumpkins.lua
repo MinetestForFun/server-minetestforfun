@@ -46,7 +46,7 @@ mobs:register_mob("mobs:pumpking", {
 		-- Warrior drops
 		{name = "3d_armor:helmet_mithril", chance = 10, min = 1, max = 1},
 		{name = "3d_armor:chestplate_mithril", chance = 10, min = 1, max = 1},
-		{name = "moreores:sword_mithril", chance = 33, min = 1, max = 1},
+		{name = "default:sword_mithril", chance = 33, min = 1, max = 1},
 	},
 	lifetimer = 300,		-- 5 minutes
 	--shoot_interval = 1000,	-- (lifetimer - (lifetimer / 4)), borrowed for do_custom timer

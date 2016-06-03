@@ -42,7 +42,7 @@ end
 if not DISABLE_MINOTAUR_HORN_BOW then
 	throwing_register_bow ('bow_minotaur_horn', 'Minotaur Horn Bow (Hunter)', {x=1, y=1.5, z=0.5}, 35, 1.2, 1000, false, {
 			{'farming:string', 'mobs:minotaur_horn', 'mobs:minotaur_horn'},
-			{'farming:string', '', 'moreores:mithril_ingot'},
+			{'farming:string', '', 'default:mithril_ingot'},
 			{'farming:string', 'mobs:minotaur_horn', 'mobs:minotaur_horn'},
 		})
 end

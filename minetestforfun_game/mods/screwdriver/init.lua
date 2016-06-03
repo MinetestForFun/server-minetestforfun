@@ -131,7 +131,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "screwdriver:screwdriver_perfect",
 	recipe = {
-		{"moreores:mithril_ingot"},
+		{"default:mithril_ingot"},
 		{"group:stick"}
 	}
 })

@@ -4,7 +4,7 @@ minetest.register_craft({
   description = "Mithril String",
   inventory_image = "string_mithril.png",
   type = "shapeless",
-  recipe = {"moreores:mithril_ingot", "farming:string"},
+  recipe = {"default:mithril_ingot", "farming:string"},
 })
 
 minetest.register_craftitem("throwing:string_mithril", {

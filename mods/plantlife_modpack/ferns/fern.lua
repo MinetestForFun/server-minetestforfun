@@ -133,8 +133,8 @@ if abstract_ferns.config.lady_ferns_near_ores == true then -- this one causes a 
 			"default:mossycobble",
 			"default:stone_with_coal",
 			"default:stone_with_iron",
-			"moreores:mineral_tin",
-			"moreores:mineral_silver",
+			"default:stone_with_tin",
+			"default:stone_with_silver",
 			"sumpf:sumpf"
 		},
 		max_count = 1200,--1600, -- maybe too much? :D
@@ -146,9 +146,9 @@ if abstract_ferns.config.lady_ferns_near_ores == true then -- this one causes a 
 			--"default:stone_with_mese",
 			--"default:stone_with_gold",
 			--"default:stone_with_diamond",
-			"moreores:mineral_tin",
-			"moreores:mineral_silver"
-			--"moreores:mineral_mithril"
+			"default:stone_with_tin",
+			"default:stone_with_silver"
+			--"default:mineral_mithril"
 		},
 		near_nodes_size = 2,
 		near_nodes_vertical = 4,--5,--6,
@@ -171,8 +171,8 @@ if abstract_ferns.config.lady_ferns_in_groups == true then -- this one is meant 
 			"default:mossycobble",
 			"default:stone_with_coal",
 			"default:stone_with_iron",
-			"moreores:mineral_tin",
-			"moreores:mineral_silver",
+			"default:stone_with_tin",
+			"default:stone_with_silver",
 			"sumpf:sumpf"
 		},
 		max_count = 70,

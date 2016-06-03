@@ -130,5 +130,5 @@ if not DISABLE_DIAMOND_ARROW then
 end
 
 if not DISABLE_MITHRIL_ARROW then
-	throwing_register_arrow_standard ('mithril', 'Mithril (Hunter)', 8, 0.80, 'moreores:mithril_ingot')
+	throwing_register_arrow_standard ('mithril', 'Mithril (Hunter)', 8, 0.80, 'default:mithril_ingot')
 end

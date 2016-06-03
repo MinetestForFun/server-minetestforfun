@@ -25,7 +25,7 @@ pclasses.api.register_class("warrior", {
 	}
 })
 
-pclasses.api.reserve_item("warrior", "moreores:sword_mithril")
+pclasses.api.reserve_item("warrior", "default:sword_mithril")
 pclasses.api.reserve_item("warrior", "default:dungeon_master_s_blood_sword")
 
 for _, i in pairs({"helmet", "chestplate", "boots", "leggings"}) do

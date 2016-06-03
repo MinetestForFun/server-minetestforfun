@@ -112,7 +112,7 @@ treasurer.register_treasure("farming:rhubarb_pie", 0.02, 5, {1,5}, nil, raw_food
 treasurer.register_treasure("nether:sword_sywtonic", 0.05, 8, 1, nil, melee_weapons)			--rare
 treasurer.register_treasure("default:sword_nyan", 0.05, 6, nil, melee_weapons)					--rare
 treasurer.register_treasure("nether:sword_netherrack_blue", 0.075, 6, nil, melee_weapons)		--uncommon
-treasurer.register_treasure("moreores:sword_silver", 0.075, 5, nil, melee_weapons)				--uncommon
+treasurer.register_treasure("default:sword_silver", 0.075, 5, nil, melee_weapons)				--uncommon
 treasurer.register_treasure("default:sword_bronze", 0.075, 5, nil, melee_weapons)				--uncommon
 treasurer.register_treasure("default:sword_steel", 0.15, 4, nil, melee_weapons)					--common
 treasurer.register_treasure("nether:sword_netherrack", 0.15, nil, melee_weapons)					--common
@@ -121,7 +121,7 @@ treasurer.register_treasure("default:sword_stone", 0.15, 3, nil, melee_weapons)	
 treasurer.register_treasure("nether:sword_sywtonic", 0.1, 8, 1, nil, ranged_weapon)				--rare
 treasurer.register_treasure("default:sword_nyan", 0.1, 6, 1, nil, ranged_weapon)				--rare
 treasurer.register_treasure("nether:sword_netherrack_blue", 0.1, 6, 1, nil, ranged_weapon)		--uncommon
-treasurer.register_treasure("moreores:sword_silver", 0.1, 5, 1, nil, ranged_weapon)				--uncommon
+treasurer.register_treasure("default:sword_silver", 0.1, 5, 1, nil, ranged_weapon)				--uncommon
 treasurer.register_treasure("default:sword_bronze", 0.1, 5, 1, nil, ranged_weapon)				--uncommon
 treasurer.register_treasure("default:sword_steel", 0.1, 4, 1, nil, ranged_weapon)				--common
 treasurer.register_treasure("nether:sword_netherrack", 0.1, 1, nil, ranged_weapon)				--common
@@ -135,9 +135,9 @@ treasurer.register_treasure("default:shovel_mese", 0.025, 6, 1, nil, minetool)		
 treasurer.register_treasure("farming:hoe_mese", 0.05, 6, 1, nil, minetool)						--uncommon
 treasurer.register_treasure("default:pick_nyan", 0.05, 6, 1, nil, minetool)						--uncommon
 treasurer.register_treasure("default:axe_nyan", 0.05, 6, 1, nil, minetool)						--uncommon
-treasurer.register_treasure("moreores:pick_silver", 0.05, 5, 1, nil, minetool)					--uncommon
-treasurer.register_treasure("moreores:axe_silver", 0.05, 5, 1, nil, minetool)					--uncommon
-treasurer.register_treasure("moreores:shovel_silver", 0.05, 5, 1, nil, minetool)				--uncommon
+treasurer.register_treasure("default:pick_silver", 0.05, 5, 1, nil, minetool)					--uncommon
+treasurer.register_treasure("default:axe_silver", 0.05, 5, 1, nil, minetool)					--uncommon
+treasurer.register_treasure("default:shovel_silver", 0.05, 5, 1, nil, minetool)				--uncommon
 treasurer.register_treasure("farming:hoe_bronze", 0.1, 5, 1, nil, minetool)						--common
 treasurer.register_treasure("default:axe_steel", 0.1, 4, 1, nil, minetool)						--common
 treasurer.register_treasure("default:shovel_stone", 0.1, 3, 1, nil, minetool)					--common

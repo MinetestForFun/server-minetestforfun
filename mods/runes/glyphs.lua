@@ -57,7 +57,7 @@ minetest.register_tool("runes:stylus", {
 minetest.register_craft({
 	output = "runes:stylus",
 	recipe = {
-		{"", "default:obsidian_shard", "moreores:mithril_ingot"},
+		{"", "default:obsidian_shard", "default:mithril_ingot"},
 		{"default:obsidian_shard", "default:nyancat_rainbow", "default:obsidian_shard"},
 		{"default:obsidian_shard", "default:obsidian_shard", ""},
 	},

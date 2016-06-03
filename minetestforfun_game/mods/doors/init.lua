@@ -608,9 +608,9 @@ doors.register("door_tin", {
 	sounds = default.node_sound_stone_defaults(),
 	sunlight = false,
 	recipe = {
-		{"moreores:tin_ingot", "moreores:tin_ingot"},
-		{"moreores:tin_ingot", "moreores:tin_ingot"},
-		{"moreores:tin_ingot", "moreores:tin_ingot"}
+		{"default:tin_ingot", "default:tin_ingot"},
+		{"default:tin_ingot", "default:tin_ingot"},
+		{"default:tin_ingot", "default:tin_ingot"}
 	}
 })
 

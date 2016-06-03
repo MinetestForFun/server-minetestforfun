@@ -9,8 +9,8 @@ minetest.register_craft({
 	output = "runes:silver_cross_amulet",
 	recipe = {
 		{"", "farming:cotton", ""},
-		{"moreores:silver_ingot", "moreores:silver_ingot", "moreores:silver_ingot"},
-		{"", "moreores:silver_ingot", ""},
+		{"default:silver_ingot", "default:silver_ingot", "default:silver_ingot"},
+		{"", "default:silver_ingot", ""},
 	}
 })
 
@@ -37,7 +37,7 @@ minetest.register_craft({
 	recipe = {
 		{"", "runes:hellfire_amulet", ""},
 		{"nether:white", "runes:black_magic_block", "nether:white"},
-		{"", "moreores:mithril_block", ""},
+		{"", "default:mithrilblock", ""},
 	}
 })
 
@@ -46,7 +46,7 @@ minetest.register_craft({
 	recipe = {
 		{"nether:white", "runes:hellfire_amulet", "default:obsidian"},
 		{"default:nyancat", "nether:tree", "default:mese"},
-		{"default:obsidian", "moreores:mithril_block", "nether:white"},
+		{"default:obsidian", "default:mithrilblock", "nether:white"},
 	}
 })
 

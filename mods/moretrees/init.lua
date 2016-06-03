@@ -66,8 +66,8 @@ moretrees.cutting_tools = {
 	"default:axe_steel",
 --	"glooptest:axe_alatro",
 --	"glooptest:axe_arol",
-	"moreores:axe_mithril",
-	"moreores:axe_silver",
+	"default:axe_mithril",
+	"default:axe_silver",
 --	"titanium:axe",
 }
 -- Cutting tools disabled. They are unknown //MFF(Mg|08/09/15)

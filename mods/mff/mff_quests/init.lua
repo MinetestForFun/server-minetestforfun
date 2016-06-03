@@ -48,7 +48,7 @@ mff.quests.quests = {
 		description = "DAILY QUEST!\nGet two mithril ingot at the end!",
 		repeating = 60*60*24,
 		awards = {
-			["moreores:mithril_ingot"] = 2
+			["default:mithril_ingot"] = 2
 		},
 		tasks = {
 			diggy = {

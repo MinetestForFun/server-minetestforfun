@@ -531,7 +531,7 @@ minetest.register_craft({ 			-- Ultimate Warrior weapon
 	recipe = {
 		{"mobs:dungeon_master_blood", "nether:white", "mobs:dungeon_master_blood"},
 		{"mobs:dungeon_master_blood", "mobs:dungeon_master_diamond", "mobs:dungeon_master_blood"},
-		{"moreores:mithril_block", "mobs:zombie_tibia", "moreores:mithril_block"},
+		{"default:mithrilblock", "mobs:zombie_tibia", "default:mithril_block"},
 	}
 })
 
