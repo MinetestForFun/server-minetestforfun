@@ -29,7 +29,7 @@ local function read_entities()
 end
 
 local function write_entities()
-	for _, entity in pairs(luaentity.entities) do
+        for _, entity in pairs(luaentity.entities or {}) do
 		setmetatable(entity, nil)
 		for _, attached in pairs(entity._attached_entities) do
 			if attached.entity then
