@@ -48,11 +48,11 @@ mobs:register_mob("mobs:goat", {
 	light_damage = 0,
 	-- model animation
 	animation = {
-		speed_normal = 15,		speed_run = 15,
-		stand_start = 1,		stand_end = 60, -- head down/up
-		walk_start = 122,		walk_end = 182, -- walk
-		run_start = 122,		run_end = 182, -- walk
-		punch_start = 183,		punch_end = 267, -- attack
+		speed_normal = 25,		speed_run = 30,
+		stand_start = 0,		stand_end = 60, -- head down/up
+		walk_start = 80,		walk_end = 110, -- walk
+		run_start = 160,		run_end = 198, -- walk
+		punch_start = 120,		punch_end = 150, -- attack
 	},
 	-- follows wheat
 	follow = "farming:wheat",
@@ -61,6 +61,44 @@ mobs:register_mob("mobs:goat", {
 	replace_rate = 50,
 	replace_what = {"group:flora"},
 	replace_with = "air",
+	on_rightclick = function(self, clicker)
+		-- feed or tame
+		if mobs:feed_tame(self, clicker, 8, true, true) then
+			return
+		end
+
+		local tool = clicker:get_wielded_item()
+
+		-- milk goat with empty bucket
+		if tool:get_name() == "bucket:bucket_empty" then
+			if self.child == true then
+				return
+			end
+
+			if self.gotten == true then
+				minetest.chat_send_player(clicker:get_player_name(),
+						"Goat already milked!")
+				return
+			end
+
+			local inv = clicker:get_inventory()
+
+			inv:remove_item("main", "bucket:bucket_empty")
+
+			if inv:room_for_item("main", {name = "mobs:bucket_milk"}) then
+				clicker:get_inventory():add_item("main", "mobs:bucket_milk")
+			else
+				local pos = self.object:getpos()
+				pos.y = pos.y + 0.5
+				minetest.add_item(pos, {name = "mobs:bucket_milk"})
+			end
+
+			self.gotten = true -- milked
+			return
+		end
+
+		mobs:capture_mob(self, clicker, 0, 5, 60, false, nil)
+	end,
 })
 -- spawn on dirt_with_grass between -1 and 20 light, 1 in 20000 chance, 1 goat in area up to 31000 in height
 mobs:spawn_specific("mobs:goat", {"default:dirt_with_grass"}, {"air"}, -1, 20, 30, 20000, 1, -31000, 31000, true)
