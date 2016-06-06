@@ -24,7 +24,9 @@ minetest.register_node("more_chests:cobble", {
 		meta:set_string("formspec",
 				"size[8,9]"..
 				"list[current_name;main;0,0;8,4;]"..
-				"list[current_player;main;0,5;8,4;]")
+				"list[current_player;main;0,5;8,4;]"..
+				"listring[current_name;main]"..
+				"listring[current_player;main]")
 --		meta:set_string("infotext", "Locked Chest")
 		meta:set_string("owner", "")
 		local inv = meta:get_inventory()

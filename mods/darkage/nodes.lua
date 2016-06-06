@@ -266,7 +266,9 @@ minetest.register_node("darkage:box", {
 		meta:set_string("formspec",
 				"size[8,8]"..
 				"list[current_name;main;0,0;8,3;]"..
-				"list[current_player;main;0,4;8,4;]")
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[current_name;main]" ..
+				"listring[current_player;main]")
 		meta:set_string("infotext", "Box")
 		local inv = meta:get_inventory()
 		inv:set_size("main", 16)
@@ -305,7 +307,11 @@ minetest.register_node("darkage:wood_shelves", {
 				"size[8,10]"..
 				"list[context;up;0,0;8,3;]"..
 				"list[context;down;0,3;8,3;]"..
-				"list[current_player;main;0,6;8,4;]")
+				"list[current_player;main;0,6;8,4;]"..
+				"listring[context;down]"..
+				"listring[current_player;main]"..
+				"listring[context;up]"..
+				"listring[current_player;main]")
 		meta:set_string("infotext", "Wooden Shelves")
 		local inv = meta:get_inventory()
 		inv:set_size("up", 16)

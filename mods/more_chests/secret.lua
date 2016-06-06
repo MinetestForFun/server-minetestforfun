@@ -8,6 +8,8 @@ end
 local open =  "size[8,10]"..
 	"list[current_name;main;0,0;8,4;]"..
 	"list[current_player;main;0,5;8,4;]"..
+	"listring[current_name;main]" ..
+	"listring[current_player;main]"..
 	"button[3,9;2,1;open;close]"
 local closed = "size[2,1]"..
 	"button[0,0;2,1;open;open]"

@@ -13,7 +13,9 @@ minetest.register_node("more_chests:wifi", {
 		meta:set_string("formspec",
 				"size[8,9]"..
 				"list[current_player;more_chests:wifi;0,0;8,4;]"..
-				"list[current_player;main;0,5;8,4;]")
+				"list[current_player;main;0,5;8,4;]"..
+				"listring[current_player;more_chests:wifi]" ..
+				"listring[current_player;main]")
 		meta:set_string("infotext", "Wifi Chest")
 	end,
 	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)

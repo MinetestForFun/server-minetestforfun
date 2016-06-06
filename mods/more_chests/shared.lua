@@ -15,6 +15,8 @@ local function get_formspec(string)
 	return "size[8,10]"..
 		"list[current_name;main;0,0;8,4;]"..
 		"list[current_player;main;0,5;8,4;]"..
+		"listring[current_name;main]" ..
+		"listring[current_player;main]"..
 		"field[.25,9.5;6,1;shared;Shared with (separate names with spaces):;"..string.."]"..
 		"button[6,9;2,1;submit;submit]"
 end
