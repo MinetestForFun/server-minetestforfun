@@ -1135,7 +1135,7 @@ minetest.register_craft({
 
 minetest.register_craft({
         type = "shapeless",
-        output = "default:stick 4",
+        output = "default:stick 9", -- Balanced for MFF
         recipe = {
 		"homedecor:wood_table_small_round",
 		"homedecor:wood_table_small_round",
@@ -1145,7 +1145,7 @@ minetest.register_craft({
 
 minetest.register_craft({
         type = "shapeless",
-        output = "default:stick 4",
+        output = "default:stick 9", -- Balanced for MFF
         recipe = {
 		"homedecor:wood_table_small_square",
 		"homedecor:wood_table_small_square",
@@ -1155,7 +1155,7 @@ minetest.register_craft({
 
 minetest.register_craft({
         type = "shapeless",
-        output = "default:stick 4",
+        output = "default:stick 9", -- Balanced for MFF
         recipe = {
 		"homedecor:wood_table_large",
 		"homedecor:wood_table_large",
