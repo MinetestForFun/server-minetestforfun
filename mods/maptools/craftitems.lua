@@ -48,8 +48,9 @@ minetest.register_craft({
 
 -- Coin based craft recipes
 -- //MFF_BEG(Mg|07/24/15)
---
+-- //MFF_BEG(Darcidride|07/06/16)
 
+--[[
 -- 9CC -> 1SC
 minetest.register_craft({
 	output = "maptools:silver_coin",
@@ -88,3 +89,5 @@ minetest.register_craft({
 
 --
 -- //MFF_END(Mg|07/24/15)
+-- //MFF_END(Darcidride|07/06/16)
+--]] 
