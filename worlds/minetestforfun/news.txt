@@ -8,6 +8,20 @@ Introduce the Wizard class : do you like magic things ?
 Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
+---07/06/2016--- (Thanks to : crabman77/crabman, farfadet46, LeMagnesium/Mg, Ombridride/MinetestForFun)
+Update of "nether/h2omes" (Bugfix the Nether spawn point)
+update of "moretrees" (Code improvments and a new tree : the cedar)
+Update of "maptools" (Comment the craft/uncraft recipe for old coins sytem, the new system will come soon)
+update of "darkage" (Add shift + left click support, 0.4.14 new feature)
+Update of "homedecor_modpack" (Balance the wood table craft)
+Update of "fishing" (Small fix about moreores)
+Update of "MFF_game" (Add the new and improved doors code + improve our diamonds tools textures)
+Deletion of "solarmana" (This mod wasn't useful and make harder the gameplay, the mana regeneration is now boosted)
+Update of "unified_inventory" (Add our redesigned textures)
+Update of "mobs" (Add a function to remove old mobs and improve the Goat animation)
+Update of "MFF_game" (Improve some mods, better textures & bugfixs)
+Update of "fences" ()
+
 ---17/05/2016--- (Thanks to : crabman77/crabman, farfadet46, LeMagnesium/Mg, Ombridride/MinetestForFun)
 /!\ The server has been upgraded to a 0.4.14-Stable Minetest version /!\
 Addition of "h2omes" replacing "homes" (Players can manage different homes for mines and overworld, be carful you old sethome was reseted)
