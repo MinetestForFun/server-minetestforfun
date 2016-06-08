@@ -20,7 +20,7 @@ Deletion of "solarmana" (This mod wasn't useful and make harder the gameplay, th
 Update of "unified_inventory" (Add our redesigned textures)
 Update of "mobs" (Add a function to remove old mobs and improve the Goat animation)
 Update of "MFF_game" (Improve some mods, better textures & bugfixs)
-Update of "fences" ()
+Update of "fences" (New improved code)
 
 ---17/05/2016--- (Thanks to : crabman77/crabman, farfadet46, LeMagnesium/Mg, Ombridride/MinetestForFun)
 /!\ The server has been upgraded to a 0.4.14-Stable Minetest version /!\
