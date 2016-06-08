@@ -355,7 +355,17 @@ minetest.register_privilege("home", "Can use /sethome, /home, /setpit and /pit")
 minetest.register_chatcommand("spawn", {
 	description = "Teleport a player to the defined spawnpoint",
 	func = function(name)
-		local to_pos = minetest.setting_get_pos("static_spawnpoint")
+		local to_pos
+
+		if minetest.get_modpath("nether") ~= nil and table.icontains(nether.players_in_nether, name) then
+			if nether.spawn_point then
+				to_pos = nether.spawn_point
+			end
+			-- Otherwise error about no spawn
+		else
+			to_pos = minetest.setting_get_pos("static_spawnpoint")
+		end
+
 		if not to_pos then
 			minetest.chat_send_player(name, "ERROR: No spawn point is set on this server!")
 			return false

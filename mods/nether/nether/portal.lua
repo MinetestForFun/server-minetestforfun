@@ -11,6 +11,9 @@ minetest.after(5, function()
 	abm_allowed = true
 end)
 
+nether.spawn_point = minetest.string_to_pos(minetest.setting_get("nether_static_spawnpoint") or "")
+-- If nil then we use random spawn points
+
 table.icontains = table.icontains or function(t, v)
 	for _,i in ipairs(t) do
 		if i == v then
@@ -20,7 +23,7 @@ table.icontains = table.icontains or function(t, v)
 	return false
 end
 
-local players_in_nether = {}
+nether.players_in_nether = {}
 -- only get info from file if nether prisons
 if nether_prisons then
 	local file = io.open(minetest.get_worldpath()..'/nether_players', "r")
@@ -28,14 +31,14 @@ if nether_prisons then
 		local contents = file:read('*all')
 		io.close(file)
 		if contents then
-			players_in_nether = string.split(contents, " ")
+			nether.players_in_nether = string.split(contents, " ")
 		end
 	end
 end
 
 local function save_nether_players()
 	local output = ''
-	for _,name in ipairs(players_in_nether) do
+	for _,name in ipairs(nether.players_in_nether) do
 		output = output..name..' '
 	end
 	local f = io.open(minetest.get_worldpath()..'/nether_players', "w")
@@ -77,6 +80,7 @@ local function get_player_died_target(player)
 	target.y = portal_target + math.random(4)
 	return target
 end
+nether.get_player_died_target = get_player_died_target
 
 -- used for obsidian portal
 local function obsidian_teleport(player, pname)
@@ -86,11 +90,12 @@ local function obsidian_teleport(player, pname)
 		return true
 	end
 	if not mclike_portal then
+		-- Pick random for obsidian, poor people gotta suffer
 		local target = vector.round(get_player_died_target(player))
 		if generated_or_generate(target) then
 			player:moveto(target)
-			return true
 		end
+		return true
 	end
 	return false
 end
@@ -98,16 +103,20 @@ end
 -- teleports players to nether or helps it
 function nether.player_to_nether(player, safe)
 	local pname = player:get_player_name()
-	if table.icontains(players_in_nether, pname) then
+	if table.icontains(nether.players_in_nether, pname) then
 		return
 	end
-	players_in_nether[#players_in_nether+1] = pname
+	nether.players_in_nether[#nether.players_in_nether+1] = pname
 	save_nether_players()
 	if not safe then
 		minetest.chat_send_player(pname, "For any reason you arrived here. Type /nether_help to find out things like craft recipes.")
 		player:set_hp(0)
 		if not nether_prisons then
-			player:moveto(get_player_died_target(player))
+		   if nether.spawn_point then
+		      player:moveto(nether.spawn_point)
+		   else
+		      player:moveto(get_player_died_target(player))
+		   end
 		end
 	end
 	update_background(player, true)
@@ -116,9 +125,9 @@ end
 function nether.player_from_nether(player)
 	local pname = player:get_player_name()
 	local changes
-	for n,i in ipairs(players_in_nether) do
+	for n,i in ipairs(nether.players_in_nether) do
 		if i == pname then
-			table.remove(players_in_nether, n)
+			table.remove(nether.players_in_nether, n)
 			changes = true
 		end
 	end
@@ -193,10 +202,15 @@ if nether_prisons then
 	-- randomly set player position when he/she dies in nether
 	minetest.register_on_respawnplayer(function(player)
 		local pname = player:get_player_name()
-		if not table.icontains(players_in_nether, pname) then
+		if not table.icontains(nether.players_in_nether, pname) then
 			return
 		end
-		local target = get_player_died_target(player)
+		local target
+		if nether.spawn_point then
+		   target = nether.spawn_point
+		else
+		   target = get_player_died_target(player)
+		end
 		player:moveto(target)
 		minetest.after(0, function(pname, target)
 			-- fixes respawn bug
@@ -213,7 +227,7 @@ if nether_prisons then
 		for _,player in pairs(minetest.get_connected_players()) do
 			local pname = player:get_player_name()
 			local ppos = player:getpos()
-			if table.icontains(players_in_nether, pname) then
+			if table.icontains(nether.players_in_nether, pname) then
 				if ppos.y > nether.start then
 					player:moveto({x=ppos.x, y=portal_target, z=ppos.z})
 					update_background(player, true)
@@ -241,7 +255,7 @@ if nether_prisons then
 	-- set background when player joins
 	minetest.register_on_joinplayer(function(player)
 		minetest.after(0, function(player)
-			if player and player:getpos() and player:getpos().y < nether.start then
+			if player:getpos().y < nether.start then
 				update_background(player, true)
 			end
 		end, player)
@@ -250,15 +264,16 @@ else
 	-- test if player is in nether when he/she joins
 	minetest.register_on_joinplayer(function(player)
 		minetest.after(0, function(player)
+			local pname = player:get_player_name()
 			if player:getpos().y < nether.start then
-				if not table.icontains(players_in_nether, pname) then
-					players_in_nether[#players_in_nether+1] = pname
+				if not table.icontains(nether.players_in_nether, pname) then
+					nether.players_in_nether[#nether.players_in_nether+1] = pname
 				end
 				return
 			end
-			for i,name in pairs(players_in_nether) do
+			for i,name in pairs(nether.players_in_nether) do
 				if name == pname then
-					players_in_nether[i] = nil
+					nether.players_in_nether[i] = nil
 					return
 				end
 			end
@@ -298,7 +313,7 @@ local particledef = {
 -- teleports player to neter (obsidian portal)
 local function obsi_teleport_player(player, pos, target)
 	local pname = player:get_player_name()
-	if table.icontains(players_in_nether, pname) then
+	if table.icontains(nether.players_in_nether, pname) then
 		return
 	end
 
@@ -313,7 +328,7 @@ local function obsi_teleport_player(player, pos, target)
 		return
 	end
 
-	players_in_nether[#players_in_nether+1] = pname
+	nether.players_in_nether[#nether.players_in_nether+1] = pname
 	save_nether_players()
 	update_background(player, true)
 
@@ -671,6 +686,8 @@ function nether_port(player, pos)
 			pos.y = y
 		end
 		player:moveto(pos)
+	elseif nether.spawn_point then
+		player:moveto(nether.spawn_point)
 	else
 		set_portal(known_portals_u, pos.z,pos.x, pos.y)
 
