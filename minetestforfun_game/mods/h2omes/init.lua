@@ -118,14 +118,30 @@ function h2omes.get_home(name, home_type)
 	return nil
 end
 
+--function getspawn
+function h2omes.getspawn(name)
+	local player = minetest.get_player_by_name(name)
+	if not player then return nil end
+	local pos = player:getpos()
+	if not pos then return nil end
+	local spawn_pos
+	if pos.y < -19600 and h2omes.have_nether then
+		spawn_pos = minetest.string_to_pos(minetest.setting_get("nether_static_spawnpoint") or "")
+	elseif minetest.setting_get_pos("static_spawnpoint") then
+		spawn_pos = minetest.setting_get_pos("static_spawnpoint")
+	end
+	return spawn_pos
+end
+
 
 --function to_spawn
 function h2omes.to_spawn(name)
 	local player = minetest.get_player_by_name(name)
 	if not player then return false end
-	if minetest.setting_get_pos("static_spawnpoint") then
+	local spawn_pos = h2omes.getspawn(name)
+	if spawn_pos then
 		minetest.chat_send_player(name, "Teleporting to spawn...")
-		player:setpos(minetest.setting_get_pos("static_spawnpoint"))
+		player:setpos(spawn_pos)
 		minetest.sound_play("teleport", {to_player=name, gain = 1.0})
 		minetest.log("action","Player ".. name .." respawned. Next allowed respawn in ".. h2omes.time_spawn .." seconds.")
 		return true
@@ -210,14 +226,10 @@ function h2omes.show_formspec_home(name)
 	local pos = player:getpos()
 	--spawn
 	table.insert(formspec, "label[3.45,0.8;TO SPAWN]")
-	local spawn_pos = minetest.setting_get_pos("static_spawnpoint")
+	local spawn_pos = h2omes.getspawn(name)
 	if spawn_pos then
-		if h2omes.can_teleport(pos, spawn_pos) then
-			table.insert(formspec, string.format("label[2.9,1.3;x:%s, y:%s, z:%s]", math.floor(spawn_pos.x), math.floor(spawn_pos.y), math.floor(spawn_pos.z) ))
-			table.insert(formspec, "button_exit[6,1.1;1.5,1;to_spawn;To Spawn]")
-		else
-			table.insert(formspec, "label[1.5,1.3;teleport between 2 worlds(real/nether) is not allowed]")
-		end
+		table.insert(formspec, string.format("label[2.9,1.3;x:%s, y:%s, z:%s]", math.floor(spawn_pos.x), math.floor(spawn_pos.y), math.floor(spawn_pos.z) ))
+		table.insert(formspec, "button_exit[6,1.1;1.5,1;to_spawn;To Spawn]")
 	else
 		table.insert(formspec, "label[3.3,1.3;No spawn set]")
 	end
@@ -290,11 +302,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		if fields["set_home"] then
 			--h2omes.set_home(name, "home")
 			action_timers.wrapper(name, "sethome", "sethome_" .. name, h2omes.time_home, h2omes.set_home, {name, "home"})
-			h2omes.show_formspec_home(name)
 		elseif fields["set_pit"] then
 			--h2omes.set_home(name, "pit")
 			action_timers.wrapper(name, "setpit", "sethome_" .. name, h2omes.time_home, h2omes.set_home, {name, "pit"})
-			h2omes.show_formspec_home(name)
 		elseif fields["to_home"] then
 			--h2omes.to_home(name, "home")
 			action_timers.wrapper(name, "home", "tohome_" .. name, h2omes.time_home, h2omes.to_home, {name, "home"})
@@ -355,28 +365,12 @@ minetest.register_privilege("home", "Can use /sethome, /home, /setpit and /pit")
 minetest.register_chatcommand("spawn", {
 	description = "Teleport a player to the defined spawnpoint",
 	func = function(name)
-		local to_pos
-
-		if minetest.get_modpath("nether") ~= nil and table.icontains(nether.players_in_nether, name) then
-			if nether.spawn_point then
-				to_pos = nether.spawn_point
-			end
-			-- Otherwise error about no spawn
-		else
-			to_pos = minetest.setting_get_pos("static_spawnpoint")
-		end
-
-		if not to_pos then
-			minetest.chat_send_player(name, "ERROR: No spawn point is set on this server!")
-			return false
-		end
-		local player = minetest.get_player_by_name(name)
-		if not player then return end
-		from_pos = player:getpos()
-		if h2omes.can_teleport(from_pos, to_pos) then
+		local spawn_pos = h2omes.getspawn(name)
+		if spawn_pos then
 			action_timers.wrapper(name, "spawn", "tospawn_" .. name, h2omes.time_spawn, h2omes.to_spawn, {name})
 		else
-			minetest.chat_send_player(name, "Sorry, teleport between 2 worlds(real/nether) is not allowed!")
+			minetest.chat_send_player(name, "ERROR: No spawn point is set on this server!")
+			return false
 		end
 	end
 })
