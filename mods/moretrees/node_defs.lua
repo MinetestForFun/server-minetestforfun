@@ -10,12 +10,12 @@ moretrees.treelist = {
 	{"birch",		"Birch Tree"},
 	{"palm",		"Palm Tree",		"coconut",		"Coconut",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	1.0 },
 	{"spruce",		"Spruce Tree",		"spruce_cone",	"Spruce Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
+	{"cedar",		"Cedar Tree",		"cedar_cone",	"Cedar Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2}, 0.8 },
 	{"willow",		"Willow Tree"},
 	{"rubber_tree",	"Rubber Tree"},
 	{"fir",			"Douglas Fir",		"fir_cone",		"Fir Cone",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
 
 	{"jungletree",	"Jungle Tree",		nil,			nil,			nil,								nil, "default_junglesapling.png"  },
-	{"pine",		"Pine Tree",		"pine_cone",	"Pine Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8, "default_pine_sapling.png"   },
 	{"acacia",		"Acacia Tree",		nil,			nil,			nil,								nil, "default_acacia_sapling.png" },
 }
 
@@ -424,10 +424,12 @@ minetest.register_alias("moretrees:acacia_planks",				"default:acacia_wood")
 minetest.register_alias("moretrees:acacia_sapling",				"default:acacia_sapling")
 minetest.register_alias("moretrees:acacia_leaves",				"default:acacia_leaves")
 
-minetest.register_alias("moretrees:pine_trunk",					"default:pine_tree")
-minetest.register_alias("moretrees:pine_planks",				"default:pine_wood")
-minetest.register_alias("moretrees:pine_sapling",				"default:pine_sapling")
-minetest.register_alias("moretrees:pine_leaves",				"default:pine_needles")
+minetest.register_alias("moretrees:pine_trunk",					"moretrees:cedar_trunk")
+minetest.register_alias("moretrees:pine_planks",				"moretrees:cedar_planks")
+minetest.register_alias("moretrees:pine_sapling",				"moretrees:cedar_sapling")
+minetest.register_alias("moretrees:pine_leaves",				"moretrees:cedar_leaves")
+minetest.register_alias("moretrees:pine_cone",					"moretrees:cedar_cone")
+minetest.register_alias("moretrees:pine_nuts",					"moretrees:cedar_nuts")
 
 -- Overriding moretrees' palm leaves:
 minetest.override_item("moretrees:palm_leaves",{walkable = false})

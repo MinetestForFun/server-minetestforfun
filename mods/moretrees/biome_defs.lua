@@ -150,7 +150,7 @@ moretrees.spruce_biome = {
 	max_count = 5,
 }
 
-moretrees.pine_biome = {
+moretrees.cedar_biome = {
 	surface = "default:dirt_with_grass",
 	avoid_nodes = moretrees.avoidnodes,
 	avoid_radius = 10,

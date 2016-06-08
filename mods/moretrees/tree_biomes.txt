@@ -11,7 +11,7 @@ oak		  0 to +10	+ 4 to +16	  n/a		n/a	dirt_with grass		332		15
 sequoia		  0 to +10	-30 to +50	  n/a		n/a	dirt_with grass		333		10
 birch		+10 to +15	-20 to +10	  n/a		n/a	dirt_with grass		334		 5
 spruce		 above +20	-20 to +10	  n/a		n/a	dirt_with grass		335		10
-pine		    n/a		    n/a		water, 15	   5	dirt_with grass		336		10
+cedar		    n/a		    n/a		water, 15	   5	dirt_with grass		336		10
 willow		- 5 to + 5	    n/a		water, 15	   5	dirt_with grass		337		20
 acacia		    n/a		    n/a		  n/a		n/a	dirt_with_grass,
 									desert_sand		n/a		15
@@ -32,3 +32,6 @@ where the humidity is low (but not bone dry).
 
 Fir trees appear in a snow biome only with older versions of SPlizard's Snow Biomes mod.  In more recent versions,
 these trees will not grow, due to an engine bug.
+
+Cedar trees replace, and are identical to, the original pine trees, as the minetest default game now has (a completely
+different type of) pine trees.

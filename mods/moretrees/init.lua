@@ -86,7 +86,7 @@ if moretrees.spawn_saplings then
 	moretrees.spawn_oak_object = "moretrees:oak_sapling_ongen"
 	moretrees.spawn_sequoia_object = "moretrees:sequoia_sapling_ongen"
 	moretrees.spawn_palm_object = "moretrees:palm_sapling_ongen"
-	moretrees.spawn_pine_object = "moretrees:pine_sapling_ongen"
+	moretrees.spawn_cedar_object = "moretrees:cedar_sapling_ongen"
 	moretrees.spawn_rubber_tree_object = "moretrees:rubber_tree_sapling_ongen"
 	moretrees.spawn_willow_object = "moretrees:willow_sapling_ongen"
 	moretrees.spawn_acacia_object = "moretrees:acacia_sapling_ongen"
@@ -101,7 +101,7 @@ else
 	moretrees.spawn_oak_object = moretrees.oak_model
 	moretrees.spawn_sequoia_object = moretrees.sequoia_model
 	moretrees.spawn_palm_object = moretrees.palm_model
-	moretrees.spawn_pine_object = moretrees.pine_model
+	moretrees.spawn_cedar_object = moretrees.cedar_model
 	moretrees.spawn_rubber_tree_object = moretrees.rubber_tree_model
 	moretrees.spawn_willow_object = moretrees.willow_model
 	moretrees.spawn_acacia_object = moretrees.acacia_model
@@ -132,8 +132,8 @@ if moretrees.enable_palm then
 	biome_lib:register_generate_plant(moretrees.palm_biome, moretrees.spawn_palm_object)
 end
 
-if moretrees.enable_pine then
-	biome_lib:register_generate_plant(moretrees.pine_biome, moretrees.spawn_pine_object)
+if moretrees.enable_cedar then
+	biome_lib:register_generate_plant(moretrees.cedar_biome, moretrees.spawn_cedar_object)
 end
 
 if moretrees.enable_rubber_tree then

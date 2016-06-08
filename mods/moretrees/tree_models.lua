@@ -138,20 +138,20 @@ moretrees.spruce_model2={
 	fruit_chance=8
 }
 
-moretrees.pine_model={
+moretrees.cedar_model={
 	axiom="FFFFFcccdddB///cFdFB////cFdFB///cFdFB///cFdFA///cFdFA///cFdFB[FF]f",
 	rules_a="[&&&TTTT[++^TFdd][--&TFd]//Tdd[+^Fd][--&Fdd]]",
 	rules_b="[&&&TTT[++^Fdd][--&Fdd]//dd[+^d][--&Fd]]",
 	rules_c="/",
 	rules_d="F",
-	trunk="default:pine_tree",
-	leaves="default:pine_needles",
+	trunk="moretrees:cedar_trunk",
+	leaves="moretrees:cedar_leaves",
 	angle=30,
 	iterations=2,
 	random_level=0,
 	trunk_type="single",
 	thin_branches=true,
-	fruit="moretrees:pine_cone",
+	fruit="moretrees:cedar_cone",
 	fruit_chance=8
 }
 
