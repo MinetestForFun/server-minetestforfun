@@ -2,31 +2,36 @@
 -- Server Misc Mod --
 ---------------------
 
+local cwd = minetest.get_modpath("_misc")
+
 -- Give initial stuff
-dofile(minetest.get_modpath("_misc").."/give_initial_stuff.lua")
+dofile(cwd.."/give_initial_stuff.lua")
 
 -- Chat Commands
-dofile(minetest.get_modpath("_misc").."/chatcommands.lua")
+dofile(cwd.."/chatcommands.lua")
 
 -- No Interact Messages
-dofile(minetest.get_modpath("_misc").."/nointeract_messages.lua")
+dofile(cwd.."/nointeract_messages.lua")
 
 -- irc
-dofile(minetest.get_modpath("_misc").."/irc.lua")
+dofile(cwd.."/irc.lua")
 -- No Shout Messages
-dofile(minetest.get_modpath("_misc").."/noshout_messages.lua")
+dofile(cwd.."/noshout_messages.lua")
 
 -- Aliases
-dofile(minetest.get_modpath("_misc").."/aliases.lua")
+dofile(cwd.."/aliases.lua")
 
 -- Craft Obsidian
-dofile(minetest.get_modpath("_misc").."/craft_obsidian.lua")
+dofile(cwd.."/craft_obsidian.lua")
 
 -- UnCraft Woll
-dofile(minetest.get_modpath("_misc").."/uncraft_woll.lua")
+dofile(cwd.."/uncraft_woll.lua")
 
 -- List players
-dofile(minetest.get_modpath("_misc").."/list_players.lua")
+dofile(cwd.."/list_players.lua")
 
 -- Desert Sand/Sand swap
-dofile(minetest.get_modpath("_misc").."/sand_swapping.lua")
+dofile(cwd.."/sand_swapping.lua")
+
+-- Sapling craft recipes
+dofile(cwd.."/sapling_crafts.lua")
