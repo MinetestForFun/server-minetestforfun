@@ -272,9 +272,3 @@ minetest.register_node("flowers:waterlily", {
 		return itemstack
 	end
 })
-
-
-
-
-
-
