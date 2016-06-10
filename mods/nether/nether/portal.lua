@@ -686,22 +686,24 @@ function nether_port(player, pos)
 			pos.y = y
 		end
 		player:moveto(pos)
-	elseif nether.spawn_point then
-		player:moveto(nether.spawn_point)
 	else
-		set_portal(known_portals_u, pos.z,pos.x, pos.y)
-
-		local my = tonumber(meta:get_string("y"))
-		local y = get_portal(known_portals_d, pos.z,pos.x)
-		if y then
-			if y ~= my then
-				meta:set_string("y", y)
-			end
+		if nether.spawn_point then
+			pos = nether.spawn_point
 		else
-			y = my or portal_target+math.random(4)
-		end
-		pos.y = y
+			set_portal(known_portals_u, pos.z,pos.x, pos.y)
 
+			local my = tonumber(meta:get_string("y"))
+			local y = get_portal(known_portals_d, pos.z,pos.x)
+			if y then
+				if y ~= my then
+					meta:set_string("y", y)
+				end
+			else
+				y = my or portal_target+math.random(4)
+			end
+			pos.y = y
+
+		end
 		player:moveto(pos)
 		nether.player_to_nether(player, true)
 	end
