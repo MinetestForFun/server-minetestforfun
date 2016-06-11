@@ -13,3 +13,6 @@
 [submodule "mods/time_regulation"]
 	path = mods/time_regulation
 	url = git://github.com/MinetestForFun/time_regulation.git
+[submodule "mods/minercantile"]
+	path = mods/minercantile
+	url = https://github.com/MinetestForFun/minercantile.git

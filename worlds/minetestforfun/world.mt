@@ -215,6 +215,7 @@ load_mod_builtin_falling = true
 load_mod_building_blocks = true
 load_mod_inbox = true
 load_mod_money = true
+load_mod_minercantile = true
 load_mod_beds = true
 load_mod_builtin_item = true
 load_mod_email = true
