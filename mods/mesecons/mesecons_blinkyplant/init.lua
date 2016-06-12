@@ -10,11 +10,23 @@ local toggle_timer = function (pos)
 end
 
 local on_timer = function (pos)
-	local node = minetest.get_node(pos)
-	if(mesecon.flipstate(pos, node) == "on") then
-		mesecon.receptor_on(pos)
-	else
-		mesecon.receptor_off(pos)
+	local activate = false
+	for _, player in pairs(minetest.get_connected_players()) do
+		local p = player:getpos()
+		local dist = ((p.x-pos.x)^2 + (p.y-pos.y)^2 + (p.z-pos.z)^2)^0.5
+		if dist < 40 then
+			activate = true
+			break
+		end
+	end
+
+	if activate then
+		local node = minetest.get_node(pos)
+		if(mesecon.flipstate(pos, node) == "on") then
+			mesecon.receptor_on(pos)
+		else
+			mesecon.receptor_off(pos)
+		end
 	end
 	toggle_timer(pos)
 end
