@@ -35,6 +35,8 @@ do
 end
 
 
+minetest.mkdir(minetest.get_worldpath() .. "/mana/")
+
 --[===[
 	API functions
 ]===]
@@ -157,40 +159,39 @@ end
 
 
 -- Load the playerlist from a previous session, if available.
-function mana.load_file()
-	local filepath = minetest.get_worldpath().."/mana.mt"
+function mana.load_file(playername)
+	local filepath = minetest.get_worldpath().."/mana/" .. playername
 	local file = io.open(filepath, "r")
 	if file then
-		minetest.log("action", "[mana] mana.mt opened.")
+		minetest.log("action", "[mana] File opened for player " .. playername .. ".")
 		local string = file:read()
 		io.close(file)
 		if(string ~= nil) then
 			local savetable = minetest.deserialize(string)
-			if savetable and type(savetable) == "table" and savetable.playerlist and type(savetable.playerlist) == "table" then
-				minetest.log("action", "[mana] mana.mt successfully read.")
-				return savetable.playerlist
+			if savetable and type(savetable) == "table" then
+				minetest.log("action", "[mana] Data successfully read.")
+				return savetable
 			end
 		end
 	end
 	return {}
 end
 
-mana.playerlist = mana.load_file()
+mana.playerlist = {}
 
-function mana.save_to_file()
-	local savetable = {}
-	savetable.playerlist = mana.playerlist
+function mana.save_to_file(playername)
+	local savetable = mana.playerlist[playername]
 
 	local savestring = minetest.serialize(savetable)
 
-	local filepath = minetest.get_worldpath().."/mana.mt"
+	local filepath = minetest.get_worldpath().."/mana/" .. playername
 	local file = io.open(filepath, "w")
 	if file then
 		file:write(savestring)
 		io.close(file)
-		minetest.log("action", "[mana] Wrote mana data into "..filepath..".")
+		minetest.log("action", "[mana] Wrote mana data for "..playername..".")
 	else
-		minetest.log("error", "[mana] Failed to write mana data into "..filepath..".")
+		minetest.log("error", "[mana] Failed to write mana data for "..playername..".")
 	end
 end
 
@@ -207,19 +208,21 @@ minetest.register_on_leaveplayer(function(player)
 	if not minetest.get_modpath("hudbars") ~= nil then
 		mana.hud_remove(playername)
 	end
-	mana.save_to_file()
+	mana.save_to_file(playername)
 end)
 
 minetest.register_on_shutdown(function()
-	minetest.log("action", "[mana] Server shuts down. Rescuing data into mana.mt")
-	mana.save_to_file()
+      minetest.log("action", "[mana] Server shuts down. Rescuing data into mana.mt")
+      for _, pref in pairs(minetest.get_connected_players()) do
+	 mana.save_to_file(pref:get_player_name())
+      end
 end)
 
 minetest.register_on_joinplayer(function(player)
 	local playername = player:get_player_name()
 
-	if mana.playerlist[playername] == nil then
-		mana.playerlist[playername] = {}
+	mana.playerlist[playername] = mana.load_file(playername)
+	if not mana.playerlist[playername].mana then
 		mana.playerlist[playername].mana = 0
 		mana.playerlist[playername].maxmana = mana.settings.default_max
 		mana.playerlist[playername].regen = mana.settings.default_regen
