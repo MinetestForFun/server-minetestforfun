@@ -74,6 +74,19 @@ meseconify_door("doors:door_steel")
 meseconify_door("doors:door_glass")
 meseconify_door("doors:door_obsidian_glass")
 
+--MFF meseconify all doors, crabman 12/06/2016 
+meseconify_door("doors:door_cherry")
+meseconify_door("doors:door_tin")
+meseconify_door("doors:door_prison")
+meseconify_door("doors:door_gardengate_white")
+meseconify_door("doors:door3_wood")
+meseconify_door("doors:door3_steel")
+meseconify_door("doors:door3_glass")
+meseconify_door("doors:door3_obsidian_glass")
+meseconify_door("doors:door3_cherry")
+meseconify_door("doors:door3_prison")
+
+
 -- Trapdoor
 local function trapdoor_switch(pos, node)
 	local state = minetest.get_meta(pos):get_int("state")
