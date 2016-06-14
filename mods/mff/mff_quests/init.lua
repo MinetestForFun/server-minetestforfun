@@ -61,6 +61,63 @@ mff.quests.quests = {
 			}
 		}
 	},
+	still_testing_quests4 = {
+		title = "Gold fever",
+		description = "DAILY QUEST!\nGet one locked furnace at the end!",
+		repeating = 60*60*24,
+		awards = {
+			["default:furnace_locked"] = 1
+		},
+		tasks = {
+			diggy = {
+				title = "Dig 30 Gold",
+				description = "Go search for some gold, but don't catch the gold fever!",
+				max = 30,
+				objective = {
+					dig = {"default:stone_with_gold"}
+				}
+			}
+		}
+	},
+	still_testing_quests5 = {
+		title = "Great miner",
+		description = "DAILY QUEST!\nGet one mithril pickaxe at the end!",
+		repeating = 60*60*24,
+		awards = {
+			["default:pick_mithril"] = 1
+		},
+		tasks = {
+			diggy = {
+				title = "Dig 10 mithril",
+				description = "Prove That You're a great miner, Find the Most Precious ore.",
+				max = 10,
+				objective = {
+					dig = {"default:stone_with_mithril"}
+				}
+			}
+		}
+	},
+	still_testing_quests6 = {
+		title = "Woodsman",
+		description = "DAILY QUEST!\nGet one locked chest at the end!",
+		repeating = 60*60*24,
+		awards = {
+			["default:chest_locked"] = 1
+		},
+		tasks = {
+			diggy = {
+				title = "Dig 30 jungletree",
+				description = "Go into the jungle and cut tree, We always need wood.",
+				max = 30,
+				objective = {
+					dig = {
+						"default:jungletree",
+						"moretrees:jungletree_trunk",
+					}
+				}
+			}
+		}
+	},
 	--[[ Disabled, Mesecons levers now use right click
 	levermaniac = {
 		title = "Levermaniac",
@@ -177,7 +234,7 @@ end)
 
 minetest.register_on_joinplayer(function (player)
 	local playername = player:get_player_name()
-	for _, qname in ipairs({"still_testing_quests", "still_testing_quests2", "still_testing_quests3", "levermaniac"}) do
+	for qname, _ in pairs(mff.quests.quests) do
 		if not quests.quest_restarting_in(playername, mff.QPREFIX .. qname) then
 			mff.quests.start_quest(playername, qname)
 		end
