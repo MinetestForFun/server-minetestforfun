@@ -644,7 +644,7 @@ columnia.register_column_ia("wood", "default:wood",
 		default.node_sound_wood_defaults())
 
 columnia.register_column_ia("tree", "default:tree",
-		{choppy = 2, oddly_breakable_by_hande = 1, flammable = 2},
+		{choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 		{"default_tree.png"},
 		"Tree Column",
 		"Tree Column Top",

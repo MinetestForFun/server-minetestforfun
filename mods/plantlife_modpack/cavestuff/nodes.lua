@@ -64,7 +64,7 @@ minetest.register_node("cavestuff:desert_pebble_2",{
     tiles = {"default_desert_stone.png"},
     paramtype = "light",
 	paramtype2 = "facedir",
-    groups = {cracky=3, stone=1, not_in_creative__inventory=1},
+    groups = {cracky=3, stone=1, not_in_creative_inventory=1},
 	selection_box = cbox,
 	collision_box = cbox,
     sounds = default.node_sound_stone_defaults(),

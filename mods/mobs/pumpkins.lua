@@ -105,7 +105,7 @@ minetest.register_node("mobs:pumpking_spawner", {
 		"farming_pumpkin_face_on.png"
 	},
 	is_ground_content = false,
-	groups = {unbkreakable = 1, mob_spawner=1},
+	groups = {unbreakable = 1, mob_spawner=1},
 	sounds = default.node_sound_stone_defaults({
 		dug = {name="mobs_king", gain=0.25}
 	})
