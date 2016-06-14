@@ -1225,7 +1225,7 @@ minetest.register_node("default:goldblock", {
 })
 
 minetest.register_node("default:stone_with_mithril", {
-	description = "Tin Ore",
+	description = "Mithril Ore",
 	tiles = {"default_stone.png^default_mineral_mithril.png"},
 	is_ground_content = true,
 	groups = {cracky = 3},
