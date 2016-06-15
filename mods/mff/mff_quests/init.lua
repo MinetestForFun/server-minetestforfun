@@ -11,7 +11,7 @@ mff.quests.quests = {
 		description = "DAILY QUEST!\nGet five Super Apple at the end!",
 		repeating = 60*60*24,
 		awards = {
-			["maptools:superapple"] = 5;
+			["maptools:superapple"] = 5
 		},
 		tasks = {
 			diggy = {
@@ -29,7 +29,7 @@ mff.quests.quests = {
 		description = "DAILY QUEST!\nGet two Diamond and a Mese Crystal at the end!",
 		repeating = 60*60*24,
 		awards = {
-			["default:diamond"] = 2;
+			["default:diamond"] = 2,
 			["default:mese_crystal"] = 1
 		},
 		tasks = {
@@ -146,6 +146,14 @@ end
 
 function mff.quests.handle_quest_end(playername, questname, metadata)
 	for item, count in pairs(mff.quests.quests[mff.QNOPREFIX(questname)].awards) do
+		if type(count) == 'table' and type(count.either) == 'table' then
+			local keyset = {}
+			for k in pairs(count.either) do
+				table.insert(keyset, k)
+			end
+			item = keyset[math.random(#keyset)]
+			count = count.either[item]
+		end
 		local p = minetest.get_player_by_name(playername)
 		if p then
 			minetest.add_item(p:getpos(), {name=item, count=count, wear=0, metadata=""})
