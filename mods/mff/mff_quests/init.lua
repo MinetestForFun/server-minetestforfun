@@ -45,10 +45,10 @@ mff.quests.quests = {
 	},
 	still_testing_quests3 = {
 		title = "Shiny diamonds",
-		description = "DAILY QUEST!\nGet two mithril ingot at the end!",
+		description = "DAILY QUEST!\nGet one mithril ingot at the end!",
 		repeating = 60*60*24,
 		awards = {
-			["default:mithril_ingot"] = 2
+			["default:mithril_ingot"] = 1
 		},
 		tasks = {
 			diggy = {
@@ -81,10 +81,10 @@ mff.quests.quests = {
 	},
 	still_testing_quests5 = {
 		title = "Great miner",
-		description = "DAILY QUEST!\nGet one mithril pickaxe at the end!",
+		description = "DAILY QUEST!\nGet two mithril ingot at the end!",
 		repeating = 60*60*24,
 		awards = {
-			["default:pick_mithril"] = 1
+			["default:mithril_ingot"] = 2
 		},
 		tasks = {
 			diggy = {
