@@ -204,7 +204,7 @@ minetest.register_tool("unified_inventory:bag_large", {
 	groups = {bagslots=24},
 })
 
-local colours = {"orange", "blue", "green", "purple"}
+local colours = {"orange", "blue", "green", "violet"}
 
 for _, colour in pairs(colours) do
 	minetest.register_tool("unified_inventory:bag_small_" .. colour, {
@@ -223,6 +223,32 @@ for _, colour in pairs(colours) do
 		description = S("Large Bag"),
 		inventory_image = "bags_large_" .. colour .. ".png",
 		groups = {bagslots=24},
+	})
+	
+	-- register bag crafts
+	minetest.register_craft({
+		output = "unified_inventory:bag_small_" .. colour,
+		recipe = {
+			{"dye:"..colour,           "unified_inventory:bag_small"},
+		},
+	})
+	
+	minetest.register_craft({
+		output = "unified_inventory:bag_medium_" .. colour,
+		recipe = {
+			{"",              "",                            ""},
+			{"farming:cotton", "unified_inventory:bag_small_" .. colour, "farming:cotton"},
+			{"farming:cotton", "unified_inventory:bag_small_" .. colour, "farming:cotton"},
+		},
+	})
+
+	minetest.register_craft({
+		output = "unified_inventory:bag_large_" .. colour,
+		recipe = {
+			{"",              "",                             ""},
+			{"farming:cotton", "unified_inventory:bag_medium_" .. colour, "farming:cotton"},
+			{"farming:cotton", "unified_inventory:bag_medium_" .. colour, "farming:cotton"},
+	    },
 	})
 end
 
