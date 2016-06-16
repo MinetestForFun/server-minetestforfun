@@ -1,6 +1,12 @@
+local modpath = minetest.get_modpath("news")
+local md5 = dofile(modpath .. "/md5.lua")
+
 local news = {}
+local checksum
 local caracteres_max = 5000
 local pages_players = {}
+
+local seen_checksum
 
 function load_news()
 	local newsfile = io.open(minetest.get_worldpath().."/news.txt","r")
@@ -13,6 +19,9 @@ function load_news()
 	if content == nil or string.len(content) == 0 then
 		return
 	end
+	checksum = md5.sumhexa(content)
+	minetest.log("verbose", "[news] checksum is " .. checksum)
+
 	local nb = 1
 	news[nb] = ""
 	local commit = string.split(content, "\n\n")
@@ -28,6 +37,34 @@ function load_news()
 end
 
 load_news()
+
+---- Loading/storage of seen news checksums. Write "return nil" into news.seen
+---- to disable the feature.
+-- Inbefore https://github.com/minetest/minetest/pull/4155
+-- Bet this issue won't be fixed before early 2017
+do
+	local file = io.open(minetest.get_worldpath().."/news.seen","r")
+	if file == nil then
+		seen_checksum = {}
+	else
+		local content = file:read("*a")
+		file:close()
+		seen_checksum = minetest.deserialize(content)
+	end
+	local type_seen = type(seen_checksum)
+	if type_seen ~= 'table' and type_seen ~= 'nil' then
+		minetest.log("error", "[news] Loading news.seen returned a " ..
+			type_seen .. ", expected table. Disabling \"seen\" feature.")
+		seen_checksum = nil
+	end
+end
+minetest.register_on_shutdown(function()
+	if seen_checksum then
+		local file = io.open(minetest.get_worldpath().."/news.seen", "w")
+		file:write(minetest.serialize(seen_checksum))
+		file:close()
+	end
+end)
 
 
 local function show_formspec(player, page)
@@ -101,7 +138,11 @@ minetest.register_chatcommand("news",{
 
 
 minetest.register_on_joinplayer(function (player)
-	if minetest.get_player_privs(player:get_player_name()).interact == true then
-		minetest.after(6,show_formspec,player, 1)
+	local name = player:get_player_name()
+	if minetest.get_player_privs(name).interact then
+		if seen_checksum and seen_checksum[name] ~= checksum then
+			seen_checksum[name] = checksum
+			minetest.after(6,show_formspec,player, 1)
+		end
 	end
 end)
