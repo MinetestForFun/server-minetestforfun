@@ -36,7 +36,7 @@ local function tick()
 	local heure = os.date("%H")
 	local minute = os.date("%M")
 	-- Warn every days
-	if heure == "04" then
+	if heure == "06" then
 		if minute == "00" then
 			send("Rappel : Redémarrage journalier du serveur dans 30 minutes. (Dure 30 minutes)", "#ffff00")
 			send("Reminder : Daily reboot of the server in 30 minutes. (Lasts 30 minutes)", "#ffff00")
