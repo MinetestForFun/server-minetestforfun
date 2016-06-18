@@ -177,6 +177,7 @@ for _, m in ipairs(materials) do
 	})
 end
 
+--[[ --MFF|Darcidride(18/06/2016) Commented because "Flint and Steel" is now on the default "fire" mod
 -- FLINT and STEEL
 minetest.register_tool("fake_fire:flint_and_steel", {
 	description = "Flint and steel",
@@ -218,9 +219,9 @@ minetest.register_craft({
         "default:coal_lump",
         "group:wool"
     }
-	-- /MFF (Mg|06/24/2015)
-})
+}) --]] --MFF|Darcidride(18/06/2016) Commented because "Flint and Steel" is now on the default "fire" mod
 
+-- /MFF (Mg|06/24/2015)
 minetest.register_craft({
 	type = "shapeless",
 	output = 'fake_fire:embers',
@@ -238,4 +239,4 @@ minetest.register_alias("fake_fire:smokeless_fire", "fake_fire:fake_fire")
 minetest.register_alias("fake_fire:smokeless_ice_fire", "fake_fire:ice_fire")
 minetest.register_alias("fake_fire:smokeless_chimney_top_stone", "fake_fire:chimney_top_stone")
 minetest.register_alias("fake_fire:smokeless_chimney_top_sandstone", "fake_fire:chimney_top_sandstone")
-minetest.register_alias("fake_fire:flint", "fake_fire:flint_and_steel")
+--minetest.register_alias("fake_fire:flint", "fake_fire:flint_and_steel") --MFF|Darcidride(18/06/2016) Commented because "Flint and Steel" is now on the default "fire" mod

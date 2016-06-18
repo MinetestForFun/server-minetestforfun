@@ -59,3 +59,6 @@ end
 
 -- Remove "xmas_tree" from snow mod
 alias("snow:xmas_tree", "default:dirt")
+
+-- remove "fake_fire:flint_and_steel" from homedecor_modpack mod
+alias("fake_fire:flint_and_steel", "fire:flint_and_steel")
