@@ -32,7 +32,7 @@ local function tick()
 			end
 		end
 
-		local icon = "areas_1_0_1.png"
+		local icon = "areas_not_area.png"
 		if nb_areas > 0 then
 			area_text = ("nb area:%u\nowner:%s\nname:%s"):format(nb_areas, area_owner_name, area_name)
 			icon = ("areas_%u_%u_%u.png"):format(mod_owner, mod_open, mod_farming)
