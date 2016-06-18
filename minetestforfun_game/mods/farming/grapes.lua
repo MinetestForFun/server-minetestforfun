@@ -68,8 +68,13 @@ minetest.register_node("farming:trellis", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_place = function(itemstack, placer, pointed_thing)
-
-		if minetest.is_protected(pointed_thing.under, placer:get_player_name()) then
+		local top = {
+			x = pointed_thing.above.x,
+			y = pointed_thing.above.y + 1,
+			z = pointed_thing.above.z
+		}
+		if minetest.is_protected(pointed_thing.above, placer:get_player_name())
+		or minetest.is_protected(top, placer:get_player_name()) then -- MFF crabman(18/06/2015)
 			return
 		end
 
@@ -78,12 +83,6 @@ minetest.register_node("farming:trellis", {
 		if minetest.get_item_group(nodename, "soil") < 2 then
 			return
 		end
-
-		local top = {
-			x = pointed_thing.above.x,
-			y = pointed_thing.above.y + 1,
-			z = pointed_thing.above.z
-		}
 
 		nodename = minetest.get_node(top).name
 
