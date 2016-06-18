@@ -1,6 +1,9 @@
+
+local S = farming.intllib
+
 -- normal soil
 minetest.register_node("farming:soil", {
-	description = "Soil",
+	description = S("Soil"),
 	tiles = {"default_dirt.png^farming_soil.png", "default_dirt.png"},
 	drop = "default:dirt",
 	groups = {crumbly = 3, not_in_creative_inventory = 1, soil = 2},
@@ -9,7 +12,7 @@ minetest.register_node("farming:soil", {
 
 -- wet soil
 minetest.register_node("farming:soil_wet", {
-	description = "Wet Soil",
+	description = S("Wet Soil"),
 	tiles = {"default_dirt.png^farming_soil_wet.png", "default_dirt.png^farming_soil_wet_side.png"},
 	drop = "default:dirt",
 	groups = {crumbly = 3, not_in_creative_inventory = 1, soil = 3},

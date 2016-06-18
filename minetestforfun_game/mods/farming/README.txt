@@ -13,6 +13,7 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 Changelog:
 
+1.23 - Huge code tweak and tidy done and added barley seeds to be found in dry grass, barley can make flour for bread also.
 1.22 - Added grape bushes at high climates which can be cultivated into grape vines using trellis (9 sticks).
 1.21 - Added auto-refill code for planting crops (thanks crabman77), also fixed a few bugs
 1.20b- Tidied code, made api compatible with new 0.4.13 changes and changed to soil texture overlays

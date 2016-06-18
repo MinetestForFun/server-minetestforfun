@@ -1,22 +1,19 @@
 
---= Coffee
+local S = farming.intllib
 
+-- coffee
 minetest.register_craftitem("farming:coffee_beans", {
-	description = "Coffee Beans",
+	description = S("Coffee Beans"),
 	inventory_image = "farming_coffee_beans.png",
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:coffee_1")
 	end,
 })
 
---= Glass Cup
---minetest.register_craftitem("farming:drinking_cup", {
---	description = "Drinking Cup",
---	inventory_image = "vessels_drinking_cup.png",
---})
 
+-- drinking cup
 minetest.register_node("farming:drinking_cup", {
-	description = "Drinking Cup (empty)",
+	description = S("Drinking Cup (empty)"),
 	drawtype = "plantlike",
 	tiles = {"vessels_drinking_cup.png"},
 	inventory_image = "vessels_drinking_cup.png",
@@ -39,15 +36,9 @@ minetest.register_craft( {
 	}
 })
 
---= Cold Cup of Coffee
---minetest.register_craftitem("farming:coffee_cup", {
---	description = "Cold Cup of Coffee",
---	inventory_image = "farming_coffee_cup.png",
---	on_use = minetest.item_eat(2, "farming:drinking_cup"),
---})
-
+-- cold cup of coffee
 minetest.register_node("farming:coffee_cup", {
-	description = "Cup of Coffee (cold)",
+	description = S("Cold Cup of Coffee"),
 	drawtype = "plantlike",
 	tiles = {"farming_coffee_cup.png"},
 	inventory_image = "farming_coffee_cup.png",
@@ -67,8 +58,6 @@ minetest.register_craft( {
 	output = "farming:coffee_cup",
 	recipe = {
 		{"farming:drinking_cup", "farming:coffee_beans","bucket:bucket_water"},
-		{"","",""},
-		{"","",""}
 	},
 	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}}
 })
@@ -80,15 +69,9 @@ minetest.register_craft({
 	recipe = "farming:coffee_cup"
 })
 
---= Hot Cup of Coffee
---minetest.register_craftitem("farming:coffee_cup_hot", {
---	description = "Hot Cup of Coffee",
---	inventory_image = "farming_coffee_cup_hot.png",
---	on_use = minetest.item_eat(3, "farming:drinking_cup"),
---})
-
+-- hot cup of coffee
 minetest.register_node("farming:coffee_cup_hot", {
-	description = "Cup of Coffee (hot)",
+	description = S("Hot Cup of Coffee"),
 	drawtype = "plantlike",
 	tiles = {"farming_coffee_cup_hot.png"},
 	inventory_image = "farming_coffee_cup_hot.png",
@@ -104,9 +87,8 @@ minetest.register_node("farming:coffee_cup_hot", {
 	sounds = default.node_sound_glass_defaults(),
 })
 
--- Define Coffee growth stages
-
-minetest.register_node("farming:coffee_1", {
+-- coffee definition
+local crop_def = {
 	drawtype = "plantlike",
 	tiles = {"farming_coffee_1.png"},
 	paramtype = "light",
@@ -119,81 +101,32 @@ minetest.register_node("farming:coffee_1", {
 		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults(),
-})
+	sounds = default.node_sound_leaves_defaults()
+}
 
-minetest.register_node("farming:coffee_2", {
-	drawtype = "plantlike",
-	tiles = {"farming_coffee_2.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	waving = 1,
-	walkable = false,
-	buildable_to = true,
-	drop = "",
-	selection_box = farming.select,
-	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
-		not_in_creative_inventory = 1, growing = 1
-	},
-	sounds = default.node_sound_leaves_defaults(),
-})
+-- stage 1
+minetest.register_node("farming:coffee_1", table.copy(crop_def))
 
-minetest.register_node("farming:coffee_3", {
-	drawtype = "plantlike",
-	tiles = {"farming_coffee_3.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	waving = 1,
-	walkable = false,
-	buildable_to = true,
-	drop = "",
-	selection_box = farming.select,
-	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
-		not_in_creative_inventory = 1, growing = 1
-	},
-	sounds = default.node_sound_leaves_defaults(),
-})
+-- stage 2
+crop_def.tiles = {"farming_coffee_2.png"}
+minetest.register_node("farming:coffee_2", table.copy(crop_def))
 
-minetest.register_node("farming:coffee_4", {
-	drawtype = "plantlike",
-	tiles = {"farming_coffee_4.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	waving = 1,
-	walkable = false,
-	buildable_to = true,
-	drop = "",
-	selection_box = farming.select,
-	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
-		not_in_creative_inventory = 1, growing = 1
-	},
-	sounds = default.node_sound_leaves_defaults(),
-})
+-- stage 3
+crop_def.tiles = {"farming_coffee_3.png"}
+minetest.register_node("farming:coffee_3", table.copy(crop_def))
 
--- Last stage of growth doesn not have growing group so abm never checks these
+-- stage 4
+crop_def.tiles = {"farming_coffee_4.png"}
+minetest.register_node("farming:coffee_4", table.copy(crop_def))
 
-minetest.register_node("farming:coffee_5", {
-	drawtype = "plantlike",
-	tiles = {"farming_coffee_5.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	waving = 1,
-	walkable = false,
-	buildable_to = true,
-	drop = {
-		items = {
-			{items = {'farming:coffee_beans 2'}, rarity = 1},
-			{items = {'farming:coffee_beans 2'}, rarity = 2},
-			{items = {'farming:coffee_beans 2'}, rarity = 3},
-		}
-	},
-	selection_box = farming.select,
-	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
-		not_in_creative_inventory=1
-	},
-	sounds = default.node_sound_leaves_defaults(),
-})
+-- stage 5 (final)
+crop_def.tiles = {"farming_coffee_5.png"}
+crop_def.groups.growing = 0
+crop_def.drop = {
+	items = {
+		{items = {'farming:coffee_beans 2'}, rarity = 1},
+		{items = {'farming:coffee_beans 2'}, rarity = 2},
+		{items = {'farming:coffee_beans 2'}, rarity = 3},
+	}
+}
+minetest.register_node("farming:coffee_5", table.copy(crop_def))

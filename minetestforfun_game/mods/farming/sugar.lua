@@ -1,8 +1,10 @@
 
+local S = farming.intllib
+
 --= Sugar
 
 minetest.register_craftitem("farming:sugar", {
-	description = "Sugar",
+	description = S("Sugar"),
 	inventory_image = "farming_sugar.png",
 })
 
