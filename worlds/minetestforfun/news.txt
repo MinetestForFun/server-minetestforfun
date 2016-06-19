@@ -1052,7 +1052,7 @@ MAJ de "hud/hunger" (unification des valeurs de faim terminée)
 ---30/11/2014---
 MAJ de "u_skins" (suppression des skins inappropriés pour un serveur JcJ, ils avaient été remis suite à une erreur de manipulation)
 MAJ de "mobs" (nouvelle texture pour le dirt_monster, le phacochère, l'oerkki)
-EVENEMENT => Venez voter pour la prochaine texture du Dungeon Master ! (section EVENEMENT du site, ou directement à cette adresse : http://xorhub.com/news/evenements)
+EVENEMENT => Venez voter pour la prochaine texture du Dungeon Master ! (section EVENEMENT du site, ou directement à cette adresse : http://xorhub.com/news/)
 
 ---29/11/2014---
 MAJ de "mesecons" (nombreux bugfix)
