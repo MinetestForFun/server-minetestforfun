@@ -28,6 +28,12 @@ end
 
 local timer = 0
 
+if not core.colorize then
+   core.colorize = function(c, m)
+      return m
+   end
+end
+
 local function send(msg, col)
    core.chat_send_all(core.colorize(col, msg))
 end
