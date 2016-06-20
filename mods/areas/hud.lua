@@ -6,7 +6,7 @@ local function tick()
 	for _, player in pairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
 		local pos = vector.round(player:getpos())
-		local area_text = "no areas\n\n"
+		local area_text = "No area(s)\n\n"
 		local area_owner_name = ""
 		local mod_owner = 0
 		local mod_open = 0
@@ -34,7 +34,7 @@ local function tick()
 
 		local icon = "areas_not_area.png"
 		if nb_areas > 0 then
-			area_text = ("nb area:%u\nowner:%s\nname:%s"):format(nb_areas, area_owner_name, area_name)
+			area_text = ("Nb area(s): %u\nOwner: %s\nName: %s"):format(nb_areas, area_owner_name, area_name)
 			icon = ("areas_%u_%u_%u.png"):format(mod_owner, mod_open, mod_farming)
 		end
 		if not areas.hud[name] then
