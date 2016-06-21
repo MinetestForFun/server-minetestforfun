@@ -73,6 +73,18 @@ unified_inventory.register_button("home_gui_go", {
 	end,
 })
 --]]
+if minetest.get_modpath("news") then
+   unified_inventory.register_button("news", {
+					type = "image",
+					image = "ui_news_icon.png",
+					tooltip = S("News"),
+					hide_lite = true,
+					show_with = "interact",
+					action = function(player)
+					   core.chatcommands["news"].func(player:get_player_name())
+					end,
+   })
+end
 
 unified_inventory.register_button("home_gui_set", { --new h2omes
 	type = "image",
