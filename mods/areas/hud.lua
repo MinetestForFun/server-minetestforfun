@@ -34,7 +34,11 @@ local function tick()
 
 		local icon = "areas_not_area.png"
 		if nb_areas > 0 then
-			area_text = ("Nb area(s): %u\nOwner: %s\nName: %s"):format(nb_areas, area_owner_name, area_name)
+			local plural = ""
+			if nb_areas > 1 then
+				plural = "s"
+			end
+			area_text = ("%s\nOwner: %s\n%u area" .. plural):format(area_name, area_owner_name, nb_areas)
 			icon = ("areas_%u_%u_%u.png"):format(mod_owner, mod_open, mod_farming)
 		end
 		if not areas.hud[name] then
