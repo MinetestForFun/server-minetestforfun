@@ -108,12 +108,12 @@ mobs:register_arrow("mobs:fireball_mese_dragon", {
 minetest.register_node("mobs:mese_dragon_spawner", {
 	description = "Mese Dragon Spawner",
 	tiles = {
-		"farming_pumpkin_top.png", -- need to change all the textures
-		"farming_pumpkin_top.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_face_off.png"
+		"mese_block_top.png", -- need to change all the textures
+		"mese_block_top.png",
+		"mese_block_side.png",
+		"mese_block_side.png",
+		"mese_block_side.png",
+		"mese_block_face_off.png"
 	},
 	is_ground_content = false,
 	groups = {unbreakable = 1, mob_spawner=1},
