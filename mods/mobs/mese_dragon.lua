@@ -13,13 +13,13 @@ mobs:register_mob("mobs:mese_dragon", {
 	hp_max = 225,
 	armor = 70,
 	-- textures and model
-	collisionbox = {-0.8, 0, -0.8, 0.8, 4, 0.8}, --A VERIFIER/CORRIGER
+	collisionbox = {-0.6, 0, -0.6, 0.6, 5, 0.6},
 	visual = "mesh",
 	mesh = "mese_dragon.b3d",
 	textures = {
 		{"mese_dragon.png"},
 	},
-	visual_size = {x=8, y=8}, --default (x=10,y=10)
+	visual_size = {x=3, y=3},
 	blood_texture = "default_mese_crystal_fragment.png",
 	-- sounds
 	makes_footstep_sound = true,
