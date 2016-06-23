@@ -7,7 +7,7 @@ mobs:register_mob("mobs:pumpking", {
 		{"mobs_pumpking.png"}
 	},
 	visual_size = {x=3, y=3},
-	collisionbox = {-0.85, 0.00, -0.85, 0.85, 5.3, 0.85},
+	collisionbox = {-0.5, 0.00, -0.5, 0.5, 4.5, 0.5},
 	animation = {
 		speed_normal = 15,	speed_run = 30,
 		stand_start = 165,	stand_end = 210,
