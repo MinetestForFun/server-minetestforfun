@@ -63,7 +63,7 @@ mobs:register_mob("mobs:mese_dragon", {
 	lava_damage = 0,
 	light_damage = 0,
 	-- model animation
-	animation = { -- Ajouté avec valeurs farfadet, voir si crachat+griffe possible en une animation d'attaque
+	animation = {
 		speed_normal = 15,
 		speed_run = 15,
 		stand_start = 0,
@@ -104,3 +104,25 @@ mobs:register_arrow("mobs:fireball_mese_dragon", {
 		mobs:explosion(pos, 1, 1, 0)
 	end
 })
+
+minetest.register_node("mobs:mese_dragon_spawner", {
+	description = "Mese Dragon Spawner",
+	tiles = {
+		"farming_pumpkin_top.png", -- need to change all the textures
+		"farming_pumpkin_top.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_face_off.png"
+	},
+	is_ground_content = false,
+	groups = {unbreakable = 1, mob_spawner=1},
+	sounds = default.node_sound_stone_defaults({
+		dug = {name="mobs_boom", gain=0.25} -- to be changed
+	})
+})
+
+--(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height, spawn_in_area)
+-- spawn on mobs:mese_dragon_spawner between 1 and 20 light, interval 300, 1 chance, 1 mese_dragon_spawner in area up to 31000 in height
+mobs:spawn_specific("mobs:mese_dragon", {"mobs:mese_dragon_spawner"}, {"air"}, 1, 20, 300, 1, 100, -31000, 31000, true)
+mobs:register_egg("mobs:mese_dragon", "Mese Dragon", "mobs_mese_dragon_inv.png", 1)
