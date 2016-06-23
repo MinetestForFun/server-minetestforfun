@@ -6,7 +6,7 @@ mobs:register_mob("mobs:mese_dragon", {
 	attack_type = "dogshoot",
 	reach = 3,
 	shoot_interval = 2,
-	arrow = "mobs:fireball_mese_dragon",
+	arrow = "mobs:mese_dragon_fireball",
 	shoot_offset = 2,
 	-- health & armor
 	hp_min = 175,
@@ -77,11 +77,11 @@ mobs:register_mob("mobs:mese_dragon", {
 	},
 })
 
--- fireball_mese_dragon (weapon)
-mobs:register_arrow("mobs:fireball_mese_dragon", {
+-- mese_dragon_fireball (weapon)
+mobs:register_arrow("mobs:mese_dragon_fireball", {
 	visual = "sprite",
 	visual_size = {x = 1, y = 1},
-	textures = {"mobs_fireball.png"},
+	textures = {"mobs_mese_dragon_fireball.png"},
 	velocity = 8,
 
 	-- direct hit, no fire... just plenty of pain
