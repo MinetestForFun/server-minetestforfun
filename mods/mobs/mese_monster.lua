@@ -66,14 +66,7 @@ mobs:register_mob("mobs:mese_monster", {
 
 minetest.register_node("mobs:mese_monster_spawner", {
 	description = "Mese Monster Spawner",
-	tiles = {
-		"mese_block_top.png",
-		"mese_block_top.png",
-		"mese_block_side.png",
-		"mese_block_side.png",
-		"mese_block_side.png",
-		"mese_block_face_off.png"
-	},
+	tiles = {"mese_block.png"},
 	is_ground_content = false,
 	groups = {unbreakable = 1, mob_spawner=1},
 	sounds = default.node_sound_stone_defaults({

@@ -107,14 +107,7 @@ mobs:register_arrow("mobs:fireball_mese_dragon", {
 
 minetest.register_node("mobs:mese_dragon_spawner", {
 	description = "Mese Dragon Spawner",
-	tiles = {
-		"mese_block_top.png",
-		"mese_block_top.png",
-		"mese_block_side.png",
-		"mese_block_side.png",
-		"mese_block_side.png",
-		"mese_block_face_off.png"
-	},
+	tiles = {"default_mese_block.png"},
 	is_ground_content = false,
 	groups = {unbreakable = 1, mob_spawner=1},
 	sounds = default.node_sound_stone_defaults({
