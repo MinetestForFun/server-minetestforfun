@@ -8,6 +8,22 @@ Introduce the Wizard class : do you like magic things ?
 Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
+---??/06/2016--- 
+
+---19/06/2016--- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ElementW)
+Update of "nether" (Bugfix teleport to nether and nether spawnpoint)
+Update of "MFF_game" (Add craft recipe for some forgotten saplings)
+Addition of the mod "minercantile"
+Update of "mana" (save data per player and not with a file for everyone, avoid some issues)
+Update of "mesecons_modpack" (the blinky plant is now disabled if a player isn't near it, this feature dractically reduced the server lag, now often less than 0.5sec maxlag)
+Update of "mff_quests" (Add 3 new daily quests)
+Update of "forbidden_names" (a huge new list of forbidden bad names added)
+Update of "shutdown" mod (bugfixes then crashfix, also adjust the warnings to our new daily reboot at 6:30AM France/Paris TimeZone)
+Update of "news" (Now the news will be only displayed if this file is updated, we also add a button inside your inventory if you want remember you lastest server improvements)
+Update of "unifie_inventory" (Add colored bag crafts)
+Update of "farming" (Code improvements and new vegetable : the barley)
+Update of "areas" (New properties system, you will now see an icon, the name of the area, and the main owner of the area, you will not see anymore the huge list of areas/subareas, if you want more informations about an area, use a boundary cube, or a area book to check an area ownship. This system is clearly more user friendly than before !)
+
 ---07/06/2016--- (Thanks to : crabman77/crabman, farfadet46, LeMagnesium/Mg, Ombridride/MinetestForFun)
 Update of "nether/h2omes" (Bugfix the Nether spawn point)
 update of "moretrees" (Code improvments and a new tree : the cedar)
