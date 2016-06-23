@@ -8,7 +8,7 @@ Introduce the Wizard class : do you like magic things ?
 Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
----??/06/2016-- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ElementW, ezam/ezamlinux)
+---??/06/2016-- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ElementW, ezam/ezamlinux, cessna151)
 Update of "u_skins" (Removal of more than 200 skins and keep the best skins)
 Update of "mobs" (Small bugfixes for the PumpKing Boss, and the Mese Dragon is now done and ready to fight !)
 
