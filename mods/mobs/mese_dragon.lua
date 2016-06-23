@@ -108,7 +108,7 @@ mobs:register_arrow("mobs:fireball_mese_dragon", {
 minetest.register_node("mobs:mese_dragon_spawner", {
 	description = "Mese Dragon Spawner",
 	tiles = {
-		"mese_block_top.png", -- need to change all the textures
+		"mese_block_top.png",
 		"mese_block_top.png",
 		"mese_block_side.png",
 		"mese_block_side.png",
