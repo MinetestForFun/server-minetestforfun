@@ -25,8 +25,22 @@ Contributors
   > Gardener, creepers' father and chickens' friend.
 - Obani
   > Audio bit king.
-- gravgun
+- gravgun/ElementW
   > Database warrior and mod maintenancer.
+- Cyberpangolin
+  > Sound provider
+- farfadet46
+  > Model creator, mobs caretaker and economist
+- ezamlinux
+  > Texture enhancer and sorter
+- paly2
+  > Mathematics wizard, broomstick crafter
+- dan-g
+  > Texture creator, who gave us some of [our website](https://xorhub.com/)'s logos and banners
+- fabienwang
+  > Someone whose name we misspelt
+- younishd
+  > Cart fixer
 
 minetestforfun_game sous-jeu et mods
 ===================
@@ -53,5 +67,19 @@ Contributeurs
   > Jardinier, père des creeper et ami des poulets.
 - Obani
   > Roi du bit audio.
-- gravgun
+- gravgun/ElementW
   > Guerrier des base de données et entretienneur de mods.
+- Cyberpangolin
+  > Fournisseur de sons
+- farfadet46
+  > Créateur de modèle, gardien des mobs et économiste
+- ezamlinux
+  > Améliorateur et trieur de textures
+- paly2
+  > Magicien des mathématiques, fabricant de balais volant
+- dan-g
+  > Créateur de textures, qui nous a fait certain des logos et bannières de [notre site](https://xorhub.com/)
+- fabienwang
+  > Quelqu'un dont on a mal écrit le nom
+- younishd
+  > Réparateur de carts
