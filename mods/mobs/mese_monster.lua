@@ -63,8 +63,28 @@ mobs:register_mob("mobs:mese_monster", {
 		punch_end = 63,
 	},
 })
+
+minetest.register_node("mobs:mese_monster_spawner", {
+	description = "Mese Monster Spawner",
+	tiles = {
+		"mese_block_top.png",
+		"mese_block_top.png",
+		"mese_block_side.png",
+		"mese_block_side.png",
+		"mese_block_side.png",
+		"mese_block_face_off.png"
+	},
+	is_ground_content = false,
+	groups = {unbreakable = 1, mob_spawner=1},
+	sounds = default.node_sound_stone_defaults({
+		dug = {name="mobs_boom", gain=0.25} -- to be changed
+	})
+})
+
 -- spawn on stone between 20 and -1 light, 1 in 8000 chance, 1 in area below -25
 mobs:spawn_specific("mobs:mese_monster", {"default:stone", "default:sandstone"}, {"air"}, -1, 20, 30, 8000, 1, -31000, -125, false)
+-- Spawn in spawner
+mobs:spawn_specific("mobs:mese_monster", {"mobs:mese_monster_spawner"}, {"air"}, 1, 20, 300, 1, 100, -31000, 31000, true)
 -- register spawn egg
 mobs:register_egg("mobs:mese_monster", "Mese Monster", "mobs_mese_monster_inv.png", 1)
 
