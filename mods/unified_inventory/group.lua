@@ -25,6 +25,7 @@ unified_inventory.registered_group_items = {
 	mesecon_conductor_craftable = "mesecons:wire_00000000_off",
 	stone = "default:cobble",
 	wool = "wool:white",
+	ingot = "default:steel_ingot",
 }
 
 function unified_inventory.register_group_item(groupname, itemname)
