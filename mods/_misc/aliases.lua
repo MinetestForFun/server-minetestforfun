@@ -62,3 +62,6 @@ alias("snow:xmas_tree", "default:dirt")
 
 -- remove "fake_fire:flint_and_steel" from homedecor_modpack mod
 alias("fake_fire:flint_and_steel", "fire:flint_and_steel")
+
+-- remove ongen pine saplings from moretrees
+alias("moretrees:pine_sapling_ongen", "default:pine_sapling")
