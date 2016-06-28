@@ -67,7 +67,7 @@ minetest.register_craftitem("runes:recharge_wand", {
 	description = "Recharge wand",
 	inventory_image = "runes_recharge_wand.png",
 	on_use = function(itemstack, user, pointed_thing)
-		if not pointed_thing.type == "node" then
+		if not pointed_thing.type == "node" or not pointed_thing.under then
 			return
 		end
 
@@ -109,6 +109,58 @@ minetest.register_craft({
 	recipe = {
 		{"", "", "default:diamond"},
 		{"", "default:mese_crystal_fragment", ""},
+		{"default:stick", "", ""},
+	},
+})
+
+minetest.register_craftitem("runes:info_wand", {
+			       description = "Information wand",
+			       inventory_image = "runes_info_wand.png",
+			       on_use = function(itemstack, user, pointed_thing)
+				  if not pointed_thing.type == "node" then
+				     return
+				  end
+
+				  local node = minetest.get_node_or_nil(pointed_thing.under)
+				  if not node or not minetest.registered_nodes[node.name]
+				  or minetest.get_item_group(node.name, "glyph") == 0 then
+				     return
+				  end
+
+				  local meta = minetest.get_meta(pointed_thing.under)
+				  local metas = meta:to_table().fields
+				  local owner = meta:get_string("master")
+				  if owner == "" then
+				     owner = "nobody"
+				  end
+				  local rname = node.name:sub(13)
+
+				  local formspec = "size[7,7]" ..
+				     "label[0,0; Rune informations :]" ..
+				     "button_exit[3, 6.6; 1, 0.6; rune_info_exit; Exit]" .. 
+				     "textlist[0, 0.5; 6.8, 5.9; runes_info;" ..
+				     "Rune : " .. rname .. "," ..
+				     "Charge : " .. metas["charge"] .. "/" .. runes.glyphs[rname].max_charge .. "," ..
+				     "Owner : " .. owner
+				  local i = 4
+				  for field, value in pairs(metas) do
+				     if field ~= "master" and field ~= "charge" then
+					formspec = formspec .. "," .. field .. " (meta) : " .. value
+					i = i + 1
+				     end
+				  end
+
+				  formspec = formspec .. ";]"
+
+				  minetest.show_formspec(user:get_player_name(), "runes:glyph_info", formspec)
+			       end,
+})
+
+minetest.register_craft({
+	output = "runes:info_wand",
+	recipe = {
+		{"", "", "default:grass"},
+		{"", "default:mithril_ingot", ""},
 		{"default:stick", "", ""},
 	},
 })
@@ -286,3 +338,36 @@ register_glyph("manasucker", {
 		end
 	}
 )
+
+register_glyph("spontafire", {
+		  description = "Spontaneous Fire Glyph",
+		  texture = "runes_glyph_spontafire.png",
+		  initial_charge = 0,
+		  maximum_charge = 500,
+		  mana_cost = 20,
+		}, {
+		  groups = {snappy = 1},
+		  on_construct = function(pos)
+		     minetest.get_node_timer(pos):start(1)
+		  end,
+		  on_timer = function(pos, elapsed)
+		     local meta = minetest.get_meta(pos)
+		     local charge = meta:get_int("charge")
+
+		     for _, ref in pairs(minetest.get_objects_inside_radius(pos, 10)) do
+			if ((not ref:is_player()) and ref:get_entity_name() ~= "gauges:hp_bar")
+			or (ref:get_player_name() ~= "" and ref:get_player_name() ~= meta:get_string("master")) then
+			   local rpos = vector.round(ref:getpos())
+			   rpos.y = rpos.y - 1
+			   local node = minetest.get_node(rpos)
+			   if node.name == "air" and (not minetest.is_protected(rpos, meta:get_string("master")))
+			   and charge >= runes.glyphs["spontafire"].mana_cost then
+			      minetest.add_node(rpos, {name = "fire:basic_flame"})
+			      charge = charge - runes.glyphs["spontafire"].mana_cost
+			   end
+			end
+		     end
+		     meta:set_int("charge", charge)
+		     return true
+		  end,
+})

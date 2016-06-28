@@ -24,3 +24,10 @@ pclasses.api.register_class("wizard", {
 })
 
 -- Reserved items here 
+pclasses.api.reserve_item("wizard", "runes:info_wand")
+pclasses.api.reserve_item("wizard", "runes:recharge_wand")
+pclasses.api.reserve_item("wizard", "runes:stylus")
+
+for scroll, _ in pairs(runes.scrolls) do
+   pclasses.api.reserve_item("wizard", "runes:scroll_" .. scroll)
+end

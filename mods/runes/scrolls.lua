@@ -33,3 +33,9 @@ register_scroll("manasucker", "knowledge", {
 	texture = "runes_scroll_manasucker.png",
 	description = "Mana Sucker Knowledge Scroll",
 })
+
+register_scroll("spontafire", "knowledge", {
+		   glyph = "runes:glyph_spontafire",
+		   texture = "runes_scroll_spontafire.png",
+		   description = "Spontaneous Fire Knowledge Scroll",
+})
