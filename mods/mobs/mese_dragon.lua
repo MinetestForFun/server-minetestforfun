@@ -4,7 +4,7 @@ mobs:register_mob("mobs:mese_dragon", {
 	passive = false,
 	damage = 13,
 	attack_type = "dogshoot",
-	reach = 3,
+	reach = 4,
 	shoot_interval = 2,
 	arrow = "mobs:mese_dragon_fireball",
 	shoot_offset = 2,
@@ -86,16 +86,16 @@ mobs:register_arrow("mobs:mese_dragon_fireball", {
 
 	-- direct hit, no fire... just plenty of pain
 	hit_player = function(self, player)
-		player:punch(self.object, 1.0, {		-- Mettre à 2.0 aussi ?
-			full_punch_interval = 2.0,			-- Modif MFF
-			damage_groups = {fleshy = 13},		-- Modif MFF
+		player:punch(self.object, 2.0, {              -- Modif MFF
+			full_punch_interval = 2.0,            -- Modif MFF
+			damage_groups = {fleshy = 13},         -- Modif MFF
 		}, nil)
 	end,
 
 	hit_mob = function(self, player)
-		player:punch(self.object, 1.0, {		-- Mettre à 2.0 aussi ?
-			full_punch_interval = 2.0,			-- Modif MFF
-			damage_groups = {fleshy = 13},		-- Modif MFF
+		player:punch(self.object, 2.0, {              -- Modif MFF
+			full_punch_interval = 2.0,            -- Modif MFF
+			damage_groups = {fleshy = 13},         -- Modif MFF
 		}, nil)
 	end,
 
