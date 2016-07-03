@@ -216,22 +216,7 @@ register_glyph("watchdog", {
 			minetest.get_node_timer(pos):start(0.2)
 		end,
 		on_timer = function(pos, elapsed)
-			local vel = 2
 			local meta = minetest.get_meta(pos)
-			if meta:get_int("charge") <= 0 then
-				minetest.add_particlespawner({
-					amount = 10,
-					minpos = pos, maxpos = pos,
-					minvel = vel, maxvel = vector.multiply(vel, 3),
-					minacc = 0, maxacc = 0,
-					minexptime = 3, maxexptime = 4,
-					minsize = 1, maxsize = 1,
-					collisiondetection = true,
-					vertical = false,
-					texture = "runes_glyph_watchdog.png",
-				})
-				return
-			end
 
 			for _, ref in pairs(minetest.get_objects_inside_radius(pos, 3)) do
 				if ref and not ref:get_armor_groups().immortal then
