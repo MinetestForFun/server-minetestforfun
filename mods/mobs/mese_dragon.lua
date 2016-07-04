@@ -7,7 +7,7 @@ mobs:register_mob("mobs:mese_dragon", {
 	reach = 4,
 	shoot_interval = 2,
 	arrow = "mobs:mese_dragon_fireball",
-	shoot_offset = 2,
+	shoot_offset = -0.5,
 	-- health & armor
 	hp_min = 175,
 	hp_max = 225,
