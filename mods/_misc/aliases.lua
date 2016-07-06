@@ -65,3 +65,6 @@ alias("fake_fire:flint_and_steel", "fire:flint_and_steel")
 
 -- remove ongen pine saplings from moretrees
 alias("moretrees:pine_sapling_ongen", "default:pine_sapling")
+
+-- Remove bedrock mod
+alias("bedrock:bedrock", "default:cobble")
