@@ -10,7 +10,6 @@ load_mod_unifieddyes = true
 load_mod_coloredwood = true
 load_mod_colouredstonebricks = true
 load_mod_colormachine = true
-load_mod_bedrock = true
 
 load_mod_metatools = true
 load_mod_worldedit = true

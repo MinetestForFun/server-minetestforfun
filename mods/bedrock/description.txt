@@ -1,1 +1,0 @@
-Adds an indestructable bedrock layer at the bottom of the world.
