@@ -102,3 +102,5 @@ minetest.register_abm({
 	end,
 })
 
+minetest.register_alias("moreblocks:jungle_stick", "default:stick")
+minetest.register_alias("moreblocks:fence_jungle_wood", "default:fence_junglewood")
