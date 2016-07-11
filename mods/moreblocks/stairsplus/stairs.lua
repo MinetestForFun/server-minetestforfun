@@ -126,7 +126,7 @@ function stairsplus:register_stair(modname, subname, recipeitem, fields)
 	-- Some saw-less recipes:
 
 	minetest.register_craft({
-		output = modname .. ":stair_" .. subname .. " 8",
+		output = modname .. ":stair_" .. subname .. " 6",
 		recipe = {
 			{recipeitem, "", ""},
 			{recipeitem, recipeitem, ""},
@@ -135,7 +135,7 @@ function stairsplus:register_stair(modname, subname, recipeitem, fields)
 	})
 
 	minetest.register_craft({
-		output = modname .. ":stair_" .. subname .. " 8",
+		output = modname .. ":stair_" .. subname .. " 6",
 		recipe = {
 			{"", "", recipeitem},
 			{"", recipeitem, recipeitem},
