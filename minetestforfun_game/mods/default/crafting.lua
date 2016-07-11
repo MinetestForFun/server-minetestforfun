@@ -1,7 +1,7 @@
 -- mods/default/crafting.lua
 
 minetest.register_craft({
-	output = 'default:wood 9',
+	output = 'default:wood 4',
 	recipe = {
 		{'default:tree'},
 	}
