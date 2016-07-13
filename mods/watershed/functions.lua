@@ -50,7 +50,7 @@ function watershed_appletree(x, y, z, area, data)
 			local vit = area:index(x, y + j, z)
 			-- MFF: Prevent trees from destroying existing blocks
 			if j == 0 then
-				-- MFF: the positioon of the sapling itself, replace it without checking.
+				-- MFF: the position of the sapling itself, replace it without checking.
 				data[vit] = c_tree
 			else
 				safely_set_block(data, vit, c_tree)
@@ -219,9 +219,7 @@ local SINGLENODE = true
 if SINGLENODE then
 	-- Set mapgen parameters
 
-	minetest.register_on_mapgen_init(function(mgparams)
-		minetest.set_mapgen_params({mgname="singlenode", flags="nolight"})
-	end)
+	minetest.set_mapgen_params({mgname="singlenode", flags="nolight"})
 
 	-- Spawn player function is useless in minetestforfun
 end
@@ -233,10 +231,10 @@ end
 		local y = pos.y
 		local z = pos.z
 		local vm = minetest.get_voxel_manip()
-		local pos1 = {x=x-2, y=y-2, z=z-2}
-		local pos2 = {x=x+2, y=y+4, z=z+2}
+		local pos1 = {x = x - 2, y = y - 2, z = z - 2}
+		local pos2 = {x = x + 2, y = y + 4, z = z + 2}
 		local emin, emax = vm:read_from_map(pos1, pos2)
-		local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
+		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})
 		local data = vm:get_data()
 		watershed_appletree(x, y, z, area, data)
 		vm:set_data(data)
@@ -251,8 +249,8 @@ end
 		local y = pos.y
 		local z = pos.z
 		local vm = minetest.get_voxel_manip()
-		local pos1 = {x=x-2, y=y-4, z=z-2}
-		local pos2 = {x=x+2, y=y+17, z=z+2}
+		local pos1 = {x = x - 2, y = y - 4, z = z - 2}
+		local pos2 = {x = x + 2, y = y + 17, z = z + 2}
 		local emin, emax = vm:read_from_map(pos1, pos2)
 		local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
 		local data = vm:get_data()
@@ -271,10 +269,10 @@ end
 		local y = pos.y
 		local z = pos.z
 		local vm = minetest.get_voxel_manip()
-		local pos1 = {x=x-2, y=y-5, z=z-2}
-		local pos2 = {x=x+2, y=y+23, z=z+2}
+		local pos1 = {x = x - 2, y = y - 5, z = z - 2}
+		local pos2 = {x = x + 2, y = y + 23, z = z + 2}
 		local emin, emax = vm:read_from_map(pos1, pos2)
-		local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
+		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})
 		local data = vm:get_data()
 		watershed_jungletree(x, y, z, area, data)
 		vm:set_data(data)
