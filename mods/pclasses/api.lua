@@ -14,6 +14,10 @@ function pclasses.api.register_class(cname, def)
 			cname .. ". Reason : no definition table.")
 		return
 	end
+	if cname == "infos" then
+	   minetest.log("error", "[PClasses] Error registering class with reserved name : infos")
+	   return
+	end
 	pclasses.register_class_switch(cname, def.switch_params)
 
 	pclasses.classes[cname] = def

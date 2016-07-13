@@ -85,3 +85,65 @@ function pclasses.api.vacuum_graveyard(player)
 		end
 	end
 end
+
+-- Inventory description buttons
+local pbutton_form = "size[10,10]" ..
+   "button_exit[4.5,9.5;1,0.5;pmenu_leave;Leave]" ..
+   "tabheader[0,0;pmenu_header;infos"
+
+function textify(text)
+   return "textarea[0.5,0.2;9.6,10;pmenu_data;;" .. text .. "]"
+end
+
+local pbuttons = {}
+local pforms = {}
+local pinfo = textify(
+   "PClasses (Player Classes) allows you to become a member of specific classes implemented with abilities, advantages, and reserved items. " ..
+      "Each one of the classes defined grants the right to carry items, called reserved items, tied to the abilities of a class. A hunter will be " ..
+      "able to use arrows, whereas a warrior can own powerful weapons. Each time you switch classes, you will lose your stats and items, the latter " ..
+      "being transfered into a special part of your inventory, the graveyard. Once you return to a class that allows you to use those items, they will " ..
+      "return in your main inventory.\n" ..
+      "You can use this menu to navigate between classes and read informations about what abilities come with specific classes."
+)
+
+
+minetest.after(0, function()
+		  for cname, cdef in pairs(pclasses.classes) do
+		     if cname ~= pclasses.conf.superuser_class then
+			pbutton_form = pbutton_form .. ',' .. cname
+			table.insert(pbuttons, cname)
+		     end
+		  end
+		  pbutton_form = pbutton_form .. ";1]"
+		  minetest.log("action", pbutton_form)
+end)
+
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+      if formname ~= "" then return end
+
+      if fields.pmenu_header then
+	 minetest.log(fields.pmenu_header)
+	 if fields.pmenu_header + 0 == 1 then
+	    player:set_inventory_formspec(pbutton_form .. pinfo)
+	 else
+	    player:set_inventory_formspec(string.sub(pbutton_form, 1, -3) .. fields.pmenu_header .. "]" .. textify(pclasses.classes[pbuttons[fields.pmenu_header-1]].informations or "No informations available"))
+	 end
+	 return
+
+      elseif fields.pmenu_leave then
+	 player:set_inventory_formspec(pforms[player:get_player_name()])
+	 pforms[player:get_player_name()] = nil
+      end
+end)
+
+unified_inventory.register_button("pclasses", {
+				  type = "image",
+				  image = "pclasses_inv.png",
+				  tooltip = "Player Classes Descriptions",
+				  action = function(player)
+				      if not pforms[player:get_player_name()] then
+					 pforms[player:get_player_name()] = player:get_inventory_formspec()
+					 player:set_inventory_formspec(pbutton_form .. pinfo)
+				      end
+				   end
+})
