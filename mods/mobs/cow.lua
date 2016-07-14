@@ -58,7 +58,7 @@ mobs:register_mob("mobs:cow", {
 	},
 	follow = "farming:wheat",
 	view_range = 7,
-	replace_rate = 10,
+	replace_rate = 100,
 	replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "farming:wheat_8"},
 	replace_with = "mobs:dung",
 	fear_height = 2,
