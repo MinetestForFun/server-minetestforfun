@@ -174,6 +174,11 @@ if minetest.get_modpath("bushes_classic") then
 	end
 end
 
+if minetest.get_modpath("flowers") ~= nil then
+	overwrite("flowers:mushroom_brown", 1)
+	overwrite("flowers:mushroom_red", 1, "", 3)
+end
+
 if minetest.get_modpath("mushroom") ~= nil then
 	overwrite("mushroom:brown", 1)
 	overwrite("mushroom:red", 1, "", 3)

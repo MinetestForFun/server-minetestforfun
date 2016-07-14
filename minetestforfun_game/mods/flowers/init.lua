@@ -213,7 +213,8 @@ minetest.register_abm({
 		end
 		if minetest.get_item_group(node_under.name, "soil") ~= 0 and
 				minetest.get_node_light(pos, nil) <= 9 and
-				minetest.get_node_light(random, nil) <= 9 then
+				minetest.get_node_light(random, nil) <= 9 and
+				not minetest.is_protected(random, "") then
 			minetest.set_node(random, {name = node.name})
 		end
 	end
