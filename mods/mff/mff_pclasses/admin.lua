@@ -17,7 +17,8 @@ pclasses.api.register_class("admin", {
 	switch_params = {
 		color = {r = 255, g = 00, b = 224},
 		holo_item = "maptools:pick_admin"
-	}
+	},
+	informations = "There's not much to say"
 })
 
 pclasses.api.reserve_item("admin", "3d_armor:helmet_admin")
