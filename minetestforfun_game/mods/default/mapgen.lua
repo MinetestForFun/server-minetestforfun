@@ -550,7 +550,34 @@ function default.register_ores()
 
 	-- Underground springs:
 
-	minetest.register_ore({
+	-- The fissures noise from watershed mapgen. Used to avoid liquid ores near fissures, that would sink for hundreds of nodes below.
+	local noise_fissure = {
+		offset         = 0,
+		scale          = 1,
+		spread         = {x=256,y=512,z=256},
+		persist        = 0.5,
+		octaves        = 5,
+		seed           = 20099,
+	}
+
+	-- Inverted fissure noise to generate ores on both sides of the fissures
+	local noise_fissure_inv = table.copy(noise_fissure)
+	noise_fissure_inv.scale = - noise_fissure.scale
+
+	local threshold = 0.08
+
+	local function register_liquid_ore(oredef)
+		neworedef = table.copy(oredef) -- Do not modify original table
+		neworedef.noise_params = noise_fissure -- Fissure noise
+		neworedef.noise_threshold = threshold
+		minetest.register_ore(neworedef)
+
+		neworedef = table.copy(neworedef)
+		neworedef.noise_params = noise_fissure_inv -- Inverted fissure noise
+		minetest.register_ore(neworedef)
+	end
+
+	register_liquid_ore({
 		ore_type       = "scatter",
 		ore            = "default:water_source",
 		ore_param2     = 128,
@@ -562,7 +589,7 @@ function default.register_ores()
 		y_max          = -10,
 	})
 
-	minetest.register_ore({
+	register_liquid_ore({
 		ore_type       = "scatter",
 		ore            = "default:lava_source",
 		ore_param2     = 128,
@@ -667,7 +694,7 @@ function default.register_ores()
 
 	-- Acid lakes in gravel:
 
-	minetest.register_ore({
+	register_liquid_ore({
 		ore_type       = "scatter",
 		ore            = "default:acid_source",
 		wherein        = "default:gravel",
