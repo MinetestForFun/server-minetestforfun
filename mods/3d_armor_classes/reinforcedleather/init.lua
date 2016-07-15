@@ -30,7 +30,7 @@ if ARMOR_MATERIALS.reinforcedleather then
 end
 
 minetest.register_craftitem(":3d_armor:reinforcedleather", {
-	description = "Reinforced Leather Ingot",
+	description = "Reinforced Leather",
 	inventory_image = "3d_armor_reinforcedleather.png",
 	stack_max = 99,
 })
