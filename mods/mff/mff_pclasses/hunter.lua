@@ -38,7 +38,7 @@ pclasses.api.register_class("hunter", {
 	   "pieces, with the satation consumption of wearing nothing.\n" ..
 	"If you want to risk it and become a hunter, you should look for a green pedestal with a bow so fancy over it " ..
 	"that you can already tell that we're gonna make you use loads of ores for it. (actually you need to fight a " ..
-	   "super strong mob, but it's just details...)
+	   "super strong mob, but it's just details...)"
 })
 
 
