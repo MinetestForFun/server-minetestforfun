@@ -567,7 +567,7 @@ function default.register_ores()
 	local threshold = 0.08
 
 	local function register_liquid_ore(oredef)
-		neworedef = table.copy(oredef) -- Do not modify original table
+		local neworedef = table.copy(oredef) -- Do not modify original table
 		neworedef.noise_params = noise_fissure -- Fissure noise
 		neworedef.noise_threshold = threshold
 		minetest.register_ore(neworedef)
