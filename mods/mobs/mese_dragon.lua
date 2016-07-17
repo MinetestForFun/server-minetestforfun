@@ -82,20 +82,20 @@ mobs:register_arrow("mobs:mese_dragon_fireball", {
 	visual = "sprite",
 	visual_size = {x = 1, y = 1},
 	textures = {"mobs_mese_dragon_fireball.png"},
-	velocity = 8,
+	velocity = 10,
 
 	-- direct hit, no fire... just plenty of pain
 	hit_player = function(self, player)
-		player:punch(self.object, 2.0, {              -- Modif MFF
-			full_punch_interval = 2.0,            -- Modif MFF
-			damage_groups = {fleshy = 13},         -- Modif MFF
+		player:punch(self.object, 2.0, {            -- Modif MFF
+			full_punch_interval = 2.0,              -- Modif MFF
+			damage_groups = {fleshy = 13},          -- Modif MFF
 		}, nil)
 	end,
 
 	hit_mob = function(self, player)
-		player:punch(self.object, 2.0, {              -- Modif MFF
-			full_punch_interval = 2.0,            -- Modif MFF
-			damage_groups = {fleshy = 13},         -- Modif MFF
+		player:punch(self.object, 2.0, {            -- Modif MFF
+			full_punch_interval = 2.0,              -- Modif MFF
+			damage_groups = {fleshy = 13},          -- Modif MFF
 		}, nil)
 	end,
 
@@ -111,7 +111,7 @@ minetest.register_node("mobs:mese_dragon_spawner", {
 	is_ground_content = false,
 	groups = {unbreakable = 1, mob_spawner=1},
 	sounds = default.node_sound_stone_defaults({
-		dug = {name="mobs_boom", gain=0.25} -- to be changed
+		dug = {name="mobs_boom", gain=0.25}
 	})
 })
 
