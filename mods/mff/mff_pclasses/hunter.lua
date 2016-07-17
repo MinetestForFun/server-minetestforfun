@@ -29,13 +29,13 @@ pclasses.api.register_class("hunter", {
 		holo_item = "throwing:bow_minotaur_horn_improved"
 	},
 	informations = "Being a hunter is mostly being tactical, or just kicking in and firing arrows like madness. " ..
-	   "Being a hunter, you're in the only class which member can use remote attack weapons, like spears, " ..
+	   "Being a hunter, you're in the only class which member can use new and exclusive ranged weapons, like spears, " ..
 	"arbalests and bows. Your stamina is increased to 40, you're a sport person, able to sprint for a long " ..
 	   "time, which is found to be useful when you hunt down animals and mobs who can't run faster than you " ..
 	   "walk.. and even more when you need to cowardly run away... anyway. The point is, being a hunter is " ..
-	   "great, since you can access new and exclusive weapons, and leather armors, crafted from leather ingots. " ..
-	   "Yet, 'ingots'. Because.. reasons. Those clothes are pretty strong, and will protect you more than wooden " ..
-	   "pieces, with the satation consumption of wearing nothing.\n" ..
+	   "great, since you can access new and exclusive weapons, and leather armors, crafted from leather. " ..
+	   "Obviously.. Those clothes are pretty strong, and will protect you more than wooden " ..
+	   "pieces (at least the reinforced one), with the satation consumption of wearing nothing.\n" ..
 	"If you want to risk it and become a hunter, you should look for a green pedestal with a bow so fancy over it " ..
 	"that you can already tell that we're gonna make you use loads of ores for it. (actually you need to fight a " ..
 	   "super strong mob, but it's just details...)"

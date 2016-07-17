@@ -26,7 +26,7 @@ pclasses.api.register_class("warrior", {
 	informations = "'Warriors' is a class of players designed to improve fighting parameters of players " ..
 	   "who chose to belong to it. You become a big tank, of human shape. Not only can you wear stronger " ..
 	   "protections (like the Black Mithril armor's pieces, because Black Mithril is a thing here), and " ..
-	   "use more powerful weapons (such as the Dungeon Master's blood sword, because yes, you are going " ..
+	   "use more powerful hand-to-hand weapons (such as the Dungeon Master's blood sword, because yes, you are going " ..
 	   "to fight Dungeon Masters and drain their blood), but your stamina bar is boosted up to 20! Trust us, " ..
 	   "running away is an important part of fighting a Dungeon Master. Being a warrior, you regenerate " ..
 	   "health faster, which is, again, quite handy, at the cost of needing to eat more frequently (less handy).\n" ..
