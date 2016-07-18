@@ -34,6 +34,10 @@ end
 local disallowed = {
 	["^guest[0-9]+"] = "Guest accounts are disallowed on this server." ..
 	                   " Please choose a proper name and try again.",
+	["^sadie[0-9]+"] = "Guest accounts are disallowed on this server." ..
+			   " Please choose a proper name (and client) and try again.",
+	["^player[0-9]+"] = "Guest accounts are disallowed on this server." ..
+			   " Please choose a proper name (and client) and try again.",
 	["[4a]dm[1il]n"] = "Misleading name." ..
 					   " Please choose a proper name and try again.",
 	["moder[4a]tor"] = "Misleading name." ..
