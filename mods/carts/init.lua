@@ -425,7 +425,7 @@ function cart:on_step(dtime)
   end
   --a = a*minetest.setting_get("movement_acceleration_default") -- pour plus tard
   a = a*0.5
-  minetest.chat_send_all(a)
+  --minetest.chat_send_all(a)
    
   --[[local t = tonumber(minetest.get_meta(pos):get_string("cart_touring_velocity"))
   if not t then t=0 end
@@ -551,7 +551,7 @@ function cart:on_step(dtime)
 	end
 
 	self.object:setvelocity(self.velocity)
-	minetest.chat_send_all(self.velocity.x.." "..self.velocity.y.." "..self.velocity.z)
+	--minetest.chat_send_all(self.velocity.x.." "..self.velocity.y.." "..self.velocity.z)
 
 	self.old_pos = self.object:getpos()
 	self.old_velocity = cart_func.v3:copy(self.velocity)
@@ -902,11 +902,11 @@ if minetest.setting_getbool("log_mods") then
 end
 
 -- temporary
-minetest.register_abm({
+--[[minetest.register_abm({
 	nodes = {"group:rail"},
 	func = function(pos)
 		local name = minetest.get_node(pos).name
 		minetest.remove_node(pos)
 		minetest.place_node(pos,{name = name})
 	end
-})
+})--]]
