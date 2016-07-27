@@ -12,7 +12,7 @@ local cart = {
 	old_pos = nil,
 	old_velocity = nil,
 	pre_stop_dir = nil,
-	MAX_V = 9.6, -- Limit of the velocity (speed).
+	MAX_V = minetest.setting_get("movement_speed_walk")*2.5, -- Limit of the velocity (speed). default: 3 times the walk speed
 	TARGET_TOUR_V = 6, -- Target touring velocity, currently unused.
 	railcount = 0,
 	ignorekeypos = nil,
@@ -279,7 +279,7 @@ function pos_to_string(pos)
 end --pos_to_string
 
 function cart:on_step(dtime)
-
+	
 	local pos = self.object:getpos()
 	local dir = cart_func:velocity_to_dir(self.velocity)
 
@@ -318,7 +318,7 @@ function cart:on_step(dtime)
 	if dir.y == 0 then
 		if math.abs(self.velocity.x) < 0.1 and  math.abs(self.velocity.z) < 0.1 then
 			-- Start the cart if powered from mesecons.
-			local a = tonumber(minetest.get_meta(pos):get_string("cart_acceleration"))
+			local a = 0--tonumber(minetest.get_meta(pos):get_string("cart_acceleration"))
 			if a and a ~= 0 then
 				if self.pre_stop_dir and cart_func.v3:equal(self:get_rail_direction(self.object:getpos(), self.pre_stop_dir), self.pre_stop_dir) then
 					self.velocity = {
@@ -411,12 +411,25 @@ function cart:on_step(dtime)
 	dir = cart_func:velocity_to_dir(self.velocity)
 
 	-- Accelerate or decelerate the cart according to the pitch and acceleration of the rail node
-  local a = tonumber(minetest.get_meta(pos):get_string("cart_acceleration"))
+  --[[local a = tonumber(minetest.get_meta(pos):get_string("cart_acceleration"))
   if not a then
       a = 0
+  end--]]
+  
+  -- get rail type and set acceleration
+  local rail = minetest.get_node(pos)
+  local a = 0
+  if rail.name == "carts:rail_power" then a = 1
+  elseif rail.name == "carts:rail_brake" then a = -1
+  else a = 0
   end
-  local t = tonumber(minetest.get_meta(pos):get_string("cart_touring_velocity"))
+  --a = a*minetest.setting_get("movement_acceleration_default") -- pour plus tard
+  a = a*0.5
+  minetest.chat_send_all(a)
+   
+  --[[local t = tonumber(minetest.get_meta(pos):get_string("cart_touring_velocity"))
   if not t then t=0 end
+  t = 0
   if t>0 then
     local vx=math.abs(self.velocity.x)
     local vy=math.abs(self.velocity.y)
@@ -457,7 +470,7 @@ function cart:on_step(dtime)
       a=a*1.5  --if big difference, play catchup fast!
     end --diff<a
     a=a*acelordecl
-  end -- if t>0
+  end -- if t>0--]]
 
   -- Check if down arrow is being pressed (handbrake).
   if self.driver then
@@ -482,9 +495,9 @@ function cart:on_step(dtime)
 		}
 	else
 		self.velocity = {
-			x = self.velocity.x + (a-0.03)*cart_func:get_sign(self.velocity.x),
-			y = self.velocity.y + (a-0.03)*cart_func:get_sign(self.velocity.y),
-			z = self.velocity.z + (a-0.03)*cart_func:get_sign(self.velocity.z),
+			x = self.velocity.x + (a-0.0)*cart_func:get_sign(self.velocity.x), --0.03 (frottements)
+			y = self.velocity.y + (a-0.0)*cart_func:get_sign(self.velocity.y),
+			z = self.velocity.z + (a-0.0)*cart_func:get_sign(self.velocity.z),
 		}
 
 		-- Place the cart exactly on top of the rail
@@ -538,6 +551,7 @@ function cart:on_step(dtime)
 	end
 
 	self.object:setvelocity(self.velocity)
+	minetest.chat_send_all(self.velocity.x.." "..self.velocity.y.." "..self.velocity.z)
 
 	self.old_pos = self.object:getpos()
 	self.old_velocity = cart_func.v3:copy(self.velocity)
@@ -629,10 +643,6 @@ minetest.register_craft({
 	},
 })
 
---
--- Mesecon support
---
-
 minetest.register_node(":default:rail", {
 	description = "Rail",
 	drawtype = "raillike",
@@ -648,7 +658,7 @@ minetest.register_node(":default:rail", {
 		fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	groups = {bendy = 2, snappy = 1, dig_immediate = 2, rail = 1, connect_to_raillike = 1},
-	mesecons = {
+	--[[mesecons = {
 		effector = {
 			action_off = function(pos, node)
 				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
@@ -659,7 +669,7 @@ minetest.register_node(":default:rail", {
 				minetest.get_meta(pos):set_string("cart_acceleration", "0")
 			end,
 		},
-	},
+	},--]]
 })
 
 minetest.register_node("carts:rail_copper", {
@@ -716,11 +726,11 @@ minetest.register_node("carts:rail_power", {
 	groups = {bendy = 2, snappy = 1, dig_immediate = 2, rail = 1, connect_to_raillike = 1},
 
 	after_place_node = function(pos, placer, itemstack)
-		minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
+		minetest.get_meta(pos):set_string("cart_acceleration", "1")
 		minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
 	end,
 
-	mesecons = {
+	--[[mesecons = {
 		effector = {
 			action_off = function(pos, node)
 				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
@@ -730,7 +740,7 @@ minetest.register_node("carts:rail_power", {
 				minetest.get_meta(pos):set_string("cart_acceleration", "0")
 			end,
 		},
-	},
+	},--]]
 })
 
 minetest.register_node("carts:rail_power_invisible", {
@@ -775,11 +785,11 @@ minetest.register_node("carts:rail_brake", {
 	groups = {bendy = 2, snappy = 1, dig_immediate = 2, rail = 1, connect_to_raillike = 1},
 
 	after_place_node = function(pos, placer, itemstack)
-		minetest.get_meta(pos):set_string("cart_acceleration", "-0.2")
+		minetest.get_meta(pos):set_string("cart_acceleration", "-1")
 		minetest.get_meta(pos):set_string("cart_touring_velocity", cart.TARGET_TOUR_V)
 	end,
 
-	mesecons = {
+	--[[mesecons = {
 		effector = {
 			action_off = function(pos, node)
 				minetest.get_meta(pos):set_string("cart_acceleration", "-0.2")
@@ -789,7 +799,7 @@ minetest.register_node("carts:rail_brake", {
 				minetest.get_meta(pos):set_string("cart_acceleration", "0")
 			end,
 		},
-	},
+	},--]]
 })
 
 minetest.register_node("carts:rail_brake_invisible", {
@@ -817,8 +827,7 @@ minetest.register_node("carts:rail_brake_invisible", {
 	end,
 })
 
---[[
-minetest.register_node("carts:rail_tour", {
+--[[minetest.register_node("carts:rail_tour", {
     description = "Touring Rail",
     drawtype = "raillike",
     tiles = {"carts_rail_tour.png", "carts_rail_curved_tour.png", "carts_rail_t_junction_tour.png", "carts_rail_crossing_tour.png"},
@@ -876,17 +885,17 @@ minetest.register_craft({
 	recipe = {"group:rail", "default:coal_lump"},
 })
 
-minetest.register_craft({
+--[[minetest.register_craft({
 	type = "shapeless",
 	output = "carts:rail_tour",
 	recipe = {"group:rail", "default:clay_lump"},
-})
+})--]]
 
 minetest.register_alias("carts:powerrail", "carts:rail_power")
 minetest.register_alias("carts:power_rail", "carts:rail_power")
 minetest.register_alias("carts:brakerail", "carts:rail_brake")
 minetest.register_alias("carts:brake_rail", "carts:rail_power")
-minetest.register_alias("carts:tourrail", "carts:rail_tour")
+--minetest.register_alias("carts:tourrail", "carts:rail_tour")
 
 if minetest.setting_getbool("log_mods") then
 	minetest.log("action", "Carbone: [carts] loaded.")
