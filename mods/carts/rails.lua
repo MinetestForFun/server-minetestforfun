@@ -82,7 +82,7 @@ minetest.register_node("carts:rail_power", {
 
 	after_place_node = function(pos, placer, itemstack)
 		minetest.get_meta(pos):set_string("cart_acceleration", "1")
-		minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
+		--minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
 	end,
 
 	--[[mesecons = {
@@ -119,7 +119,7 @@ minetest.register_node("carts:rail_power_invisible", {
 
 	after_place_node = function(pos, placer, itemstack)
 		minetest.get_meta(pos):set_string("cart_acceleration", "10")
-		minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
+		--minetest.get_meta(pos):set_string("cart_touring_velocity", cart:get_staticdata().velocity)
 	end,
 })
 
