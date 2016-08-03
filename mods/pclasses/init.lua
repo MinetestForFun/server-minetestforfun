@@ -52,7 +52,7 @@ function pclasses.data.save()
 			players = pclasses.data.players,
 		}))
 		file:close()
-		minetest.log("action", "[PClasses] Saved data")
+		--minetest.log("action", "[PClasses] Saved data")
 	else
 		minetest.log("error", "[PClasses] Data save failed: open failed: " .. err)
 	end
