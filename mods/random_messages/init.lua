@@ -103,14 +103,11 @@ end
 random_messages.set_interval()
 random_messages.read_messages()
 
-local TIMER = 0
-minetest.register_globalstep(function(dtime)
-	TIMER = TIMER + dtime;
-	if TIMER > MESSAGE_INTERVAL then
-		random_messages.show_message()
-		TIMER = 0
-	end
-end)
+local function step()
+	random_messages.show_message()
+	minetest.after(MESSAGE_INTERVAL, step)
+end
+minetest.after(0, step)
 
 local register_chatcommand_table = {
 	params = "viewmessages | removemessage <number> | addmessage <number>",

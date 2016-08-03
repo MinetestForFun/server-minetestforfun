@@ -53,7 +53,6 @@ end
 
 local active_blocks = {} -- These only contain active blocks near players (i.e., not forceloaded ones)
 local handle_active_blocks_step = 2
-local handle_active_blocks_timer = 0
 local function active_blocks_step()
 	local active_block_range = tonumber(minetest.setting_get("active_block_range")) or 2
 	local new_active_blocks = {}
