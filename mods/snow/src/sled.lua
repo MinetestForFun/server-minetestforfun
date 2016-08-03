@@ -113,9 +113,8 @@ local function leave_sled(self, player)
 	player:get_inventory():add_item("main", "snow:sled")
 end
 
-function sled:on_rightclick(player)
-	if self.driver
-	or not snow.sleds then
+local function sled_rightclick(self, player)
+	if self.driver then
 		return
 	end
 	join_sled(self, player)
@@ -134,6 +133,27 @@ function sled:on_rightclick(player)
 		direction = 0,
 	})
 -- End part 1
+end
+
+local on_sled_click
+if snow.sleds then
+	on_sled_click = sled_rightclick
+else
+	on_sled_click = function() end
+end
+
+snow.register_on_configuring(function(name, v)
+	if name == "sleds" then
+		if v then
+			on_sled_click = sled_rightclick
+		else
+			on_sled_click = function() end
+		end
+	end
+end)
+
+function sled:on_rightclick(player)
+	on_sled_click(self, player)
 end
 
 function sled:on_activate(staticdata, dtime_s)

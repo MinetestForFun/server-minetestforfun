@@ -26,7 +26,8 @@ minetest.register_alias("icysnow", "snow:snow_cobble")
 minetest.register_alias("snowcobble", "snow:snow_cobble")
 minetest.register_alias("snowycobble", "snow:snow_cobble")
 minetest.register_alias("cobblesnow", "snow:snow_cobble")
-
+minetest.register_alias("snow:leaves", "default:pine_needles")
+minetest.register_alias("snow:sapling_pine", "default:pine_sapling")
 
 -- To clean up my first stairsplus attempt.
 -- Stair

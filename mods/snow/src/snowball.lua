@@ -8,13 +8,30 @@
 
 local creative_mode = minetest.setting_getbool("creative_mode")
 
+
+local snowball_velocity, entity_attack_delay
+local function update_snowball_vel(v)
+	snowball_velocity = v
+	local walkspeed = tonumber(minetest.setting_get("movement_speed_walk")) or 4
+	entity_attack_delay = (walkspeed+1)/v
+end
+update_snowball_vel(snow.snowball_velocity)
+
+local snowball_gravity = snow.snowball_gravity
+snow.register_on_configuring(function(name, v)
+	if name == "snowball_velocity" then
+		update_snowball_vel(v)
+	elseif name == "snowball_gravity" then
+		snowball_gravity = v
+	end
+end)
+
 local function get_gravity()
 	local grav = tonumber(minetest.setting_get("movement_gravity")) or 9.81
-	return grav*snow.snowball_gravity
+	return grav*snowball_gravity
 end
 
-local someone_throwing
-local timer = 0
+local someone_throwing, just_acitvated
 
 --Shoot snowball
 local function snow_shoot_snowball(item, player)
@@ -25,13 +42,13 @@ local function snow_shoot_snowball(item, player)
 	addp.z = -dir.x/dif -- + (math.random()-0.5)/5
 	local pos = vector.add(player:getpos(), addp)
 	local obj = minetest.add_entity(pos, "snow:snowball_entity")
-	obj:get_luaentity().thrower = player:get_player_name()
-	obj:setvelocity(vector.multiply(dir, snow.snowball_velocity))
+	obj:setvelocity(vector.multiply(dir, snowball_velocity))
 	obj:setacceleration({x=dir.x*-3, y=-get_gravity(), z=dir.z*-3})
+	obj:get_luaentity().thrower = player:get_player_name()
 	if creative_mode then
 		if not someone_throwing then
 			someone_throwing = true
-			timer = -0.5
+			just_acitvated = true
 		end
 		return
 	end
@@ -40,13 +57,7 @@ local function snow_shoot_snowball(item, player)
 end
 
 if creative_mode then
-	local function update_step(dtime)
-		timer = timer+dtime
-		if timer < 0.006 then
-			return
-		end
-		timer = 0
-
+	local function update_step()
 		local active
 		for _,player in pairs(minetest.get_connected_players()) do
 			if player:get_player_control().LMB then
@@ -66,13 +77,21 @@ if creative_mode then
 		end
 	end
 
-	-- do automatic throwing using a globalstep
-	minetest.register_globalstep(function(dtime)
+	-- do automatic throwing using minetest.after
+	local function do_step()
+		local timer
 		-- only if one holds left click
-		if someone_throwing then
-			update_step(dtime)
+		if someone_throwing
+		and not just_acitvated then
+			update_step()
+			timer = 0.006
+		else
+			timer = 0.5
+			just_acitvated = false
 		end
-	end)
+		minetest.after(timer, do_step)
+	end
+	minetest.after(3, do_step)
 end
 
 --The snowball Entity
@@ -80,7 +99,6 @@ local snow_snowball_ENTITY = {
 	physical = false,
 	timer = 0,
 	collisionbox = {-5/16,-5/16,-5/16, 5/16,5/16,5/16},
-	thrower = "",
 }
 
 function snow_snowball_ENTITY.on_activate(self)
@@ -118,25 +136,6 @@ function snow_snowball_ENTITY.on_step(self, dtime)
 		return
 	end
 
-	if self.timer > 0.15 then
-		for i, v in pairs(minetest.get_objects_inside_radius(self.object:getpos(), 1)) do
-			if v ~= self.object then
-				local entity_name = v:get_entity_name()
-				if entity_name and entity_name ~= "snow:snowball_entity"
-					and entity_name ~= "__builtin:item"
-					and entity_name ~= "gauges:hp_bar" then
-					local puncher = self.object
-					if minetest.get_player_by_name(self.thrower or "") then
-						puncher = minetest.get_player_by_name(self.thrower)
-					end
-					v:punch(puncher, 1.0, {full_punch_interval=1.0, damage_groups = {fleshy=1} })
-					minetest.add_item(self.object:getpos(), "default:snow")
-					self.object:remove()
-					return
-				end
-			end
-		end
-	end
 	if self.physical then
 		local fell = self.object:getvelocity().y == 0
 		if not fell then
@@ -163,13 +162,41 @@ function snow_snowball_ENTITY.on_step(self, dtime)
 		--self.object:setvelocity({x=0, y=0, z=0})
 		pos = self.lastpos
 		self.object:setpos(pos)
-		local gain = vector.length(self.object:getvelocity())/30
-		minetest.sound_play("default_snow_footstep", {pos=pos, gain=gain})
+		minetest.sound_play("default_snow_footstep", {pos=pos, gain=vector.length(self.object:getvelocity())/30})
 		self.object:set_properties({physical = true})
 		self.physical = true
 		return
 	end
 	self.lastpos = vector.new(pos)
+
+	if self.timer < entity_attack_delay then
+		return
+	end
+	for _,v in pairs(minetest.get_objects_inside_radius(pos, 1.73)) do
+		if v ~= self.object then
+			local entity_name = v:get_entity_name()
+			if entity_name ~= "snow:snowball_entity"
+			and entity_name ~= "__builtin:item"
+			and entity_name ~= "gauges:hp_bar" then
+				local vvel = v:getvelocity() or v:get_player_velocity()
+				local veldif = self.object:getvelocity()
+				if vvel then
+					veldif = vector.subtract(veldif, vvel)
+				end
+				local gain = vector.length(veldif)/20
+				v:punch(
+					(self.thrower and minetest.get_player_by_name(self.thrower))
+						or self.object,
+					1,
+					{full_punch_interval=1, damage_groups = {fleshy=math.ceil(gain)}}
+				)
+				minetest.sound_play("default_snow_footstep", {pos=pos, gain=gain})
+				spawn_falling_node(pos, {name = "default:snow"})
+				self.object:remove()
+				return
+			end
+		end
+	end
 end
 
 

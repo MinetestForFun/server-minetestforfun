@@ -1,5 +1,6 @@
 -- https://github.com/paramat/meru/blob/master/init.lua#L52
---[[ Parameters must match mgv6 biome noise
+-- Parameters must match mgv6 biome noise
+
 local np_default = {
 	offset = 0,
 	scale = 1,
@@ -9,16 +10,20 @@ local np_default = {
 	persist = 0.5
 }
 
+
 -- 2D noise for coldness
 
+local mg = snow.mapgen
+local scale = mg.perlin_scale
 local np_cold = {
 	offset = 0,
-	scale = -1,
-	spread = {x=256, y=256, z=256},
+	scale = 1,
+	spread = {x=scale, y=scale, z=scale},
 	seed = 112,
 	octaves = 3,
 	persist = 0.5
 }
+
 
 -- 2D noise for icetype
 
@@ -31,29 +36,39 @@ local np_ice = {
 	persist = 0.5
 }
 
--- Debugging function
-
-local biome_strings = {
-	{"snowy", "plain", "alpine", "normal", "normal"},
-	{"cool", "icebergs", "icesheet", "icecave", "icehole"}
-}
-local function biome_to_string(num,num2)
-	local biome = biome_strings[1][num] or "unknown "..num
-	return biome
-end
-
 
 local function do_ws_func(a, x)
-	local n = x/(16000)
+	local n = math.pi * x / 16000
 	local y = 0
-	for k=1,1000 do
-		y = y + 1000*math.sin(math.pi * k^a * n)/(math.pi * k^a)
+	for k = 1,1000 do
+		y = y + math.sin(k^a * n)/(k^a)
 	end
-	return y
+	return 1000*y/math.pi
 end
 
 
+-- caching functions
+
+local ws_values = {}
+local function get_ws_value(a, x)
+	local v = ws_values[a]
+	if v then
+		v = v[x]
+		if v then
+			return v
+		end
+	else
+		ws_values[a] = {}
+		-- weak table, see https://www.lua.org/pil/17.1.html
+		setmetatable(ws_values[a], {__mode = "kv"})
+	end
+	v = do_ws_func(a, x)
+	ws_values[a][x] = v
+	return v
+end
+
 local plantlike_ids = {}
+setmetatable(plantlike_ids, {__mode = "kv"})
 local function is_plantlike(id)
 	if plantlike_ids[id] ~= nil then
 		return plantlike_ids[id]
@@ -74,6 +89,7 @@ local function is_plantlike(id)
 end
 
 local snowable_ids = {}
+setmetatable(snowable_ids, {__mode = "kv"})
 local function is_snowable(id)
 	if snowable_ids[id] ~= nil then
 		return snowable_ids[id]
@@ -95,7 +111,8 @@ local function is_snowable(id)
 	return true
 end
 
-local c, replacements
+
+local c, replacements, mg_debug, biome_to_string
 local function define_contents()
 	c = {
 		dirt_with_grass = minetest.get_content_id("default:dirt_with_grass"),
@@ -120,7 +137,40 @@ local function define_contents()
 		desert_sand = minetest.get_content_id("default:desert_sand"),
 	}
 	replacements = snow.known_plants or {}
+
+	mg_debug = snow.debug
 end
+
+local smooth = snow.smooth_biomes
+local smooth_rarity_max = mg.smooth_rarity_max
+local smooth_rarity_min = mg.smooth_rarity_min
+local smooth_rarity_dif = mg.smooth_rarity_dif
+local nosmooth_rarity = mg.nosmooth_rarity
+
+snow.register_on_configuring(function(name, v)
+	if name == "debug" then
+		mg_debug = v
+	elseif name == "mapgen_rarity"
+	or name == "mapgen_size"
+	or name == "smooth_biomes" then
+		minetest.after(0, function()
+			smooth = snow.smooth_biomes
+			smooth_rarity_max = mg.smooth_rarity_max
+			smooth_rarity_min = mg.smooth_rarity_min
+			smooth_rarity_dif = mg.smooth_rarity_dif
+			nosmooth_rarity = mg.nosmooth_rarity
+			local scale = mg.perlin_scale
+			np_cold = {
+				offset = 0,
+				scale = 1,
+				spread = {x=scale, y=scale, z=scale},
+				seed = 112,
+				octaves = 3,
+				persist = 0.5
+			}
+		end)
+	end
+end)
 
 minetest.register_on_generated(function(minp, maxp, seed)
 	local t1 = os.clock()
@@ -130,23 +180,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local x1 = maxp.x
 	local z1 = maxp.z
 
-	local smooth = snow.smooth_biomes
-
 	if not c then
 		define_contents()
 	end
 
-	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
-	local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
+	local vm, emin, emax = minetest.get_mapgen_object"voxelmanip"
+	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	local data = vm:get_data()
 	local param2s = vm:get_param2_data()
+
+	local heightmap = minetest.get_mapgen_object"heightmap"
 
 	local snow_tab,num = {},1
 	local pines_tab,pnum = {},1
 
 	local sidelen = x1 - x0 + 1
 	local chulens = {x=sidelen, y=sidelen, z=sidelen}
-	local nvals_default = minetest.get_perlin_map(np_default, chulens):get2dMap_flat({x=x0+150, y=z0+50})
+	local nvals_default = minetest.get_perlin_map(np_default, chulens):get2dMap_flat{x=x0+150, y=z0+50}
 	local nvals_cold, nvals_ice
 
 	-- Choose biomes
@@ -162,24 +212,30 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	-- Reseed random
 	pr = PseudoRandom(seed+68)
 
+	local nodes_added
+
 	-- Loop through columns in chunk
+	local smooth = smooth and not snowy
 	local write_to_map = false
 	local ni = 1
 	for z = z0, z1 do
 	for x = x0, x1 do
-	        local in_biome = false
-	        local test
-	        if nvals_default[ni] < 0.35 then
+		local in_biome = false
+		local test
+		if nvals_default[ni] < 0.35 then
 			if not nvals_cold then
-				nvals_cold = minetest.get_perlin_map(np_cold, chulens):get2dMap_flat({x=x0, y=z0})
+				nvals_cold = minetest.get_perlin_map(np_cold, chulens):get2dMap_flat{x=x0, y=z0}
 			end
 			test = math.min(nvals_cold[ni], 1)
-			if smooth
-			and not snowy then
-				if (test > 0.73 or (test > 0.43 and pr:next(0,29) > (0.73 - test) * 100 )) then
+			if smooth then
+				if test >= smooth_rarity_max
+				or (
+					test > smooth_rarity_min
+					and pr:next(1, 1000) <= ((test-smooth_rarity_min)/smooth_rarity_dif)*1000
+				) then
 					in_biome = true
 				end
-			elseif test > 0.53 then
+			elseif test > nosmooth_rarity then
 				in_biome = true
 			end
 		end
@@ -187,25 +243,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		if not in_biome then
 			if alpine
 			and test
-			and test > 0.43 then
+			and test > smooth_rarity_min then
 				-- remove trees near alpine
-				local ground_y = nil
-				for y = maxp.y, minp.y, -1 do
-					local nodid = data[area:index(x, y, z)]
-					if nodid ~= c.air
-					and nodid ~= c.ignore then
-						ground_y = y
-						break
+				local ground_y
+				if data[area:index(x, maxp.y, z)] == c.air then
+					for y = math.min(heightmap[ni]+20, maxp.y), math.max(minp.y, heightmap[ni]-5), -1 do
+						if data[area:index(x, y, z)] ~= c.air then
+							ground_y = y
+							break
+						end
 					end
-				end
-				if ground_y == maxp.y then -- avoid awful snow layers at chunk boundaries underground
-					ground_y = nil
 				end
 
 				if ground_y then
 					local vi = area:index(x, ground_y, z)
 					if data[vi] == c.leaves
 					or data[vi] == c.jungleleaves then
+						nodes_added = true
 						for y = ground_y, -16, -1 do
 							local vi = area:index(x, y, z)
 							local id = data[vi]
@@ -224,27 +278,29 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 			end
 		else
+			nodes_added = true
 			write_to_map = true
 			if not nvals_ice then
-				nvals_ice = minetest.get_perlin_map(np_ice, chulens):get2dMap_flat({x=x0, y=z0})
+				nvals_ice = minetest.get_perlin_map(np_ice, chulens):get2dMap_flat{x=x0, y=z0}
 			end
-	        	local icetype = nvals_ice[ni]
+			local icetype = nvals_ice[ni]
 			local cool = icetype > 0 -- only spawns ice on edge of water
 			local icebergs = icetype > -0.2 and icetype <= 0
 			local icehole = icetype > -0.4 and icetype <= -0.2 -- icesheet with holes
 			local icesheet = icetype > -0.6 and icetype <= -0.4
 			local icecave = icetype <= -0.6
 
+
 			local ground_y
-			for y = maxp.y, minp.y, -1 do
-				local nodid = data[area:index(x, y, z)]
-				if nodid ~= c.air and nodid ~= c.ignore then
-					ground_y = y
-					break
+			-- avoid generating underground
+			if data[area:index(x, maxp.y, z)] == c.air then
+				-- search for non air node from 20 m above ground down to 5 m below ground (confined by minp and maxp)
+				for y = math.min(heightmap[ni]+20, maxp.y), math.max(minp.y, heightmap[ni]-5), -1 do
+					if data[area:index(x, y, z)] ~= c.air then
+						ground_y = y
+						break
+					end
 				end
-			end
-			if ground_y == maxp.y then -- avoid awful snow layers at chunk boundaries underground
-				ground_y = nil
 			end
 
 			if ground_y then
@@ -253,7 +309,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 				if c_ground == c.dirt_with_grass then
 					if alpine
-					and test > 0.53 then
+					and test > nosmooth_rarity then
 						snow_tab[num] = {ground_y, z, x, test}
 						num = num+1
 						-- generate stone ground
@@ -274,7 +330,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						data[area:index(x, ground_y+1, z)] = c.dry_shrub
 					else
 						if snowy
-						or test > 0.8 then
+						or test > smooth_rarity_max then
 							-- more, deeper snow
 							data[node] = c.snow_block
 						else
@@ -363,7 +419,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							break
 						end
 					end
---[[				elseif alpine then
+				elseif alpine then
 					-- make stone pillars out of trees and other stuff
 					for y = ground_y, math.max(-6, minp.y-6), -1 do
 						local stone = area:index(x, y, z)
@@ -374,7 +430,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 					-- put snow onto it
 					snow_tab[num] = {ground_y, z, x, test}
-					num = num+1					--]] -- MFF (06/10/2015)
+					num = num+1
 				elseif c_ground ~= c.desert_sand then
 					if is_snowable(c_ground) then
 						-- put snow onto it
@@ -414,19 +470,26 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 	end
 
+	-- abort if mapgen doesn't change sth
+	if not nodes_added then
+		return
+	end
+
+	-- try to fix oom memory crashes
+	minetest.after(0, collectgarbage)
+
 	if num ~= 1 then
 		for _,i in pairs(snow_tab) do
 			-- set snow
 			data[area:index(i[3], i[1]+1, i[2])] = c.snow
 		end
-		local wsz, wsx
 		for _,i in pairs(snow_tab) do
 			local y,z,x,test = unpack(i)
-			test = (test-0.53)/0.47 -- /(1-0.53)
+			test = (test-nosmooth_rarity)/(1-nosmooth_rarity) -- /(1-0.53)
 			if test > 0 then
 				local maxh = math.floor(test*10)%10+1
 				if maxh ~= 1 then
-					local h = math.floor( do_ws_func(2, x) + do_ws_func(5, z)*5)%10+1
+					local h = math.floor(get_ws_value(2, x) + get_ws_value(5, z)*5)%10+1
 					if h ~= 1 then
 						-- search for nearby snow
 						y = y+1
@@ -477,10 +540,21 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:write_to_map()
 
 	if write_to_map
-	and snow.debug then -- print if any column of mapchunk was snow biome
+	and mg_debug then -- print if any column of mapchunk was snow biome
 		local biome_string = biome_to_string(biome)
 		local chugent = math.ceil((os.clock() - t1) * 1000)
 		print("[snow] "..biome_string.." x "..minp.x.." z "..minp.z.." time "..chugent.." ms")
 	end
 end)
 
+
+-- Debugging function
+
+local biome_strings = {
+	{"snowy", "plain", "alpine", "normal", "normal"},
+	{"cool", "icebergs", "icesheet", "icecave", "icehole"}
+}
+function biome_to_string(num,num2)
+	local biome = biome_strings[1][num] or "unknown "..num
+	return biome
+end

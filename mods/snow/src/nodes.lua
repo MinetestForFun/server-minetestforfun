@@ -38,17 +38,27 @@ end
 ]]
 minetest.register_node("snow:needles", table.copy(nodedef))
 
-
-
-
-
-	--Christmas easter egg
-	minetest.register_on_mapgen_init( function()
-		if rawget(_G, "skins") then
-			skins.add("character_snow_man")
+snow.register_on_configuring(function(name, v)
+	if name == "christmas_content" then
+		local drop = minetest.registered_nodes["snow:needles"].drop
+		if v then
+			table.insert(drop.items, 1, {
+				items = {"snow:xmas_tree"},
+				rarity = 120,
+			})
+		else
+			table.remove(drop.items, 1)
 		end
+		minetest.override_item("snow:needles", {drop = drop})
 	end
-	)
+end)
+
+
+
+	-- Christmas egg
+	if minetest.global_exists"skins" then
+		skins.add"character_snow_man"
+	end
 
 
 -- Decorated Pine Leaves
@@ -181,6 +191,7 @@ minetest.register_node("snow:shrub", table.copy(nodedef))
 nodedef.tiles = {"snow_shrub.png^snow_shrub_covering.png"}
 nodedef.inventory_image = "snow_shrub.png^snow_shrub_covering.png"
 nodedef.wield_image = "snow_shrub.png^snow_shrub_covering.png"
+nodedef.paramtype2 = "degrotate"
 nodedef.drop = "snow:shrub"
 nodedef.furnace_burntime = 3
 minetest.register_node("snow:shrub_covered", nodedef)
@@ -198,6 +209,7 @@ if rawget(_G, "flowers") then
 			tiles = { "snow_" .. name .. ".png" },
 			sunlight_propagates = true,
 			paramtype = "light",
+			paramtype2 = "degrotate",
 			walkable = false,
 			drop = "",
 			groups = {snappy=3, attached_node = 1},
@@ -232,6 +244,7 @@ nodedef = {
 	drawtype = "plantlike",
 	tiles = {"snow_apple.png"},
 	paramtype = "light",
+	paramtype2 = "degrotate",
 	walkable = false,
 	sunlight_propagates = apple.sunlight_propagates,
 	selection_box = apple.selection_box,

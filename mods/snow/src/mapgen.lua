@@ -10,27 +10,68 @@ saplings grow into trees. --]]
 -- ~ LazyJ, 2014_05_13
 
 
---[[ Part 1: To disable the mapgen, add the *starting* comment under this line.
+-- Part 1: To disable the mapgen, add the *starting* comment under this line.
+
+
+snow.mapgen = snow.mapgen or {}
+local mg = snow.mapgen
+
+-- perlin noise "hills" are not peaks but looking like sinus curve
+local function upper_rarity(rarity)
+	return math.sign(rarity)*math.sin(math.abs(rarity)*math.pi/2)
+end
+
+local rarity = snow.mapgen_rarity
+local size = snow.mapgen_size
+local smooth = snow.smooth_biomes
+
+local nosmooth_rarity, perlin_scale
+local function calc_values()
+	nosmooth_rarity = 1-rarity/50
+	perlin_scale = size*100/rarity
+	mg.perlin_scale = perlin_scale
+	local smooth_rarity_max, smooth_rarity_min, smooth_rarity_dif
+	if smooth then
+		local smooth_trans_size = 4 --snow.smooth_trans_size
+		mg.smooth_rarity_max = upper_rarity(nosmooth_rarity+smooth_trans_size*2/perlin_scale)
+		mg.smooth_rarity_min = upper_rarity(nosmooth_rarity-smooth_trans_size/perlin_scale)
+		mg.smooth_rarity_dif = mg.smooth_rarity_max-mg.smooth_rarity_min
+	end
+	nosmooth_rarity = upper_rarity(nosmooth_rarity)
+	mg.nosmooth_rarity = nosmooth_rarity
+end
+calc_values()
+
+snow.register_on_configuring(function(name, v)
+	if name == "mapgen_rarity" then
+		rarity = v
+	elseif name == "mapgen_size" then
+		size = v
+	elseif name == "smooth_biomes" then
+		smooth = v
+	else
+		return
+	end
+	-- TODO: if e.g. size and rarity get changed at once, don't calculate the values more times
+	calc_values()
+end)
 
 
 --Identify the mapgen.
-minetest.register_on_mapgen_init(function(MapgenParams)
-	local mgname = MapgenParams.mgname
-	if not mgname then
-		io.write("[MOD] Snow Biomes: WARNING! mapgen could not be identifyed!\n")
-	end
-	if mgname == "v7" then
-		--Load mapgen_v7 compatibility.
-		dofile(minetest.get_modpath("snow").."/src/mapgen_v7.lua")
-	else
-		--Load mapgen_v6 compatibility.
-		dofile(minetest.get_modpath("snow").."/src/mapgen_v6.lua")
-	end
-end)
+local mgname = minetest.get_mapgen_setting"mg_name"
+if not mgname then
+	minetest.log("error", "[MOD] Snow Biomes: WARNING! mapgen could not be identifyed!")
+end
+local path = minetest.get_modpath"snow"
+if mgname == "v7" then
+	--Load mapgen_v7 compatibility.
+	dofile(path.."/src/mapgen_v7.lua")
+else
+	--Load mapgen_v6 compatibility.
+	dofile(path.."/src/mapgen_v6.lua")
+end
 
 -- To complete the commenting-out add the *closing* comment under this line.
-
-
 
 
 local pine_tree = {
@@ -66,7 +107,6 @@ local xmas_tree = {
 --Makes pine tree
 function snow.make_pine(pos,snow,xmas)
 	local minetest = minetest
-	local perlin1 = minetest.get_perlin(112,3, 0.5, 150)
 	local try_node = function(pos, node)
 		local n = minetest.get_node(pos).name
 		if n == "air"
@@ -95,7 +135,7 @@ function snow.make_pine(pos,snow,xmas)
 	if xmas then
 		try_node({x=pos.x,y=pos.y+7,z=pos.z},{name="snow:star_lit"}) -- Added lit star. ~ LazyJ
 	elseif snow
-	and perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
+	and minetest.get_perlin(112,3, 0.5, perlin_scale):get2d({x=pos.x,y=pos.z}) > nosmooth_rarity then
 		try_node({x=pos.x,y=pos.y+7,z=pos.z},{name="default:snow"})
 	end
 end
@@ -109,7 +149,7 @@ function snow.voxelmanip_pine(pos,a,data)
 	local c_pinetree = minetest.get_content_id("default:pinetree")
 	local c_air = minetest.get_content_id("air")
 
-	local perlin1 = minetest.get_perlin(112,3, 0.5, 150)
+	local perlin1 = minetest.get_perlin(112,3, 0.5, perlin_scale)
 	for z = -1,1 do
 		local z = pos.z + z
 		for x = -1,1 do
@@ -120,7 +160,7 @@ function snow.voxelmanip_pine(pos,a,data)
 				data[a:index(x,pos.y+i,z)] = c_pine_needles
 				if x ~= 0
 				and z ~= 0
-				and perlin1:get2d({x=x,y=z}) > 0.53 then
+				and perlin1:get2d({x=x,y=z}) > nosmooth_rarity then
 					local abovenode = a:index(x,pos.y+i+1,z)
 					data[abovenode] = c_snow
 				end
@@ -135,16 +175,16 @@ function snow.voxelmanip_pine(pos,a,data)
 		data[a:index(x-1,y,z)] = c_pine_needles
 		data[a:index(x,y,z+1)] = c_pine_needles
 		data[a:index(x,y,z-1)] = c_pine_needles
-		if perlin1:get2d({x=x+1,y=z}) > 0.53 then
+		if perlin1:get2d({x=x+1,y=z}) > nosmooth_rarity then
 			data[a:index(x+1,y+1,z)] = c_snow
 		end
-		if perlin1:get2d({x=x+1,y=z}) > 0.53 then
+		if perlin1:get2d({x=x+1,y=z}) > nosmooth_rarity then
 			data[a:index(x-1,y+1,z)] = c_snow
 		end
-		if perlin1:get2d({x=x,y=z+1}) > 0.53 then
+		if perlin1:get2d({x=x,y=z+1}) > nosmooth_rarity then
 			data[a:index(x,y+1,z+1)] = c_snow
 		end
-		if perlin1:get2d({x=x,y=z-1}) > 0.53 then
+		if perlin1:get2d({x=x,y=z-1}) > nosmooth_rarity then
 			data[a:index(x,y+1,z-1)] = c_snow
 		end
 	end
@@ -153,8 +193,7 @@ function snow.voxelmanip_pine(pos,a,data)
 	end
 	data[a:index(pos.x,pos.y+5,pos.z)] = c_pine_needles
 	data[a:index(pos.x,pos.y+6,pos.z)] = c_pine_needles
-	if perlin1:get2d({x=pos.x,y=pos.z}) > 0.53 then
+	if perlin1:get2d({x=pos.x,y=pos.z}) > nosmooth_rarity then
 		data[a:index(pos.x,pos.y+7,pos.z)] = c_snow
 	end
 end
-]]
