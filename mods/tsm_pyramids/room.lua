@@ -1,6 +1,6 @@
 pyramids.saved_chests = {}
-pyramids.timer = 0
 pyramids.max_time = 30*60
+
 
 local room = {"a","a","a","a","a","a","a","a","a",
 	"a","c","a","c","a","c","a","c","a",
@@ -62,10 +62,7 @@ minetest.register_on_shutdown(function()
 	savechests()
 end)
 
-minetest.register_globalstep(function(dtime)
-	pyramids.timer = pyramids.timer + dtime
-	if pyramids.timer < pyramids.max_time then return end
-	pyramids.timer = 0
+local function chests_reload()
 	-- It might happen that chests are not loaded
 	if pyramids.saved_chests then
 		for _,k in ipairs(pyramids.saved_chests) do
@@ -75,7 +72,9 @@ minetest.register_globalstep(function(dtime)
 		pyramids.saved_chests = loadchests() or {}
 	end
 	minetest.log("action","[tsm_pyramids] Chests reloaded")
-end)
+	minetest.after(pyramids.max_time, chests_reload)
+end
+minetest.after(0, chests_reload)
 
 local function replace(str,iy)
 	local out = "default:"
