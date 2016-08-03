@@ -152,7 +152,7 @@ minetest.register_abm({
 
 
 
-
+--[[
 --Grow Pine Saplings
 minetest.register_abm({
 	nodenames = {"snow:sapling_pine"},
@@ -171,7 +171,7 @@ minetest.register_abm({
 		end
 		-- 'then' let the sapling grow into a tree. ~ LazyJ
 
-		snow.make_pine(pos,false)
+		-- snow.make_pine(pos,false)
 		-- This finds the sapling under the grown tree. ~ LazyJ
 		if minetest.get_node(pos).name == "snow:sapling_pine" then
 			   -- This switches the sapling to a tree trunk. ~ LazyJ
@@ -181,11 +181,11 @@ minetest.register_abm({
 			   minetest.log("action", "A pine sapling grows into a tree at "..minetest.pos_to_string(pos))
 		end
 	end
-})
+})]]
 
 
 
-
+--[[
 --Grow Christmas Tree Saplings
 minetest.register_abm({
 	nodenames = {"snow:xmas_tree"},
@@ -201,14 +201,14 @@ minetest.register_abm({
 		end
 		-- 'then' let the sapling grow into a tree. ~ LazyJ
 
-		snow.make_pine(pos,false,true)
+		--snow.make_pine(pos,false,true)
 		minetest.log("action", "A pine sapling grows into a Christmas tree at "..minetest.pos_to_string(pos)) -- ~ LazyJ
 		--else  -- 'Else', if there isn't air in each of the 8 nodes above the sapling,
 				-- then don't anything; including not allowing the sapling to grow.
 				-- ~ LazyJ, 2014_04_10
 		--end
 	end
-})
+})]]
 
 
 
