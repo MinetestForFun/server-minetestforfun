@@ -48,14 +48,15 @@ function action_timers.api.get_timer(name)
 	return action_timers.timers[name]
 end
 
-minetest.register_globalstep(function(dtime)
+local function step()
 	for name, _ in pairs(action_timers.timers) do
-		action_timers.timers[name] = action_timers.timers[name] - dtime
-		if action_timers.timers[name] < 0 then
-			action_timers.timers[name] = 0
+		if (action_timers.timers[name] > 0) then
+			action_timers.timers[name] = action_timers.timers[name] - 1
 		end
 	end
-end)
+	minetest.after(1, step)
+end
+minetest.after(0, step)
 
 minetest.log("action", "[ACTimers] Loaded")
 
