@@ -10,7 +10,7 @@
 
 biome_lib = {}
 
-plantslib = setmetatable({}, { __index=function(t,k) minetest.log("warning", "Use of deprecated function:", k) return biome_lib[k] end })
+plantslib = setmetatable({}, { __index=function(t,k) print("Use of deprecated function:", k) return biome_lib[k] end })
 
 biome_lib.blocklist_aircheck = {}
 biome_lib.blocklist_no_aircheck = {}
@@ -127,7 +127,7 @@ end
 
 function biome_lib:register_generate_plant(biomedef, nodes_or_function_or_model)
 
-	-- if calling code passes an undefined node for a surface or
+	-- if calling code passes an undefined node for a surface or 
 	-- as a node to be spawned, don't register an action for it.
 
 	if type(nodes_or_function_or_model) == "string"
@@ -289,7 +289,7 @@ function biome_lib:populate_surfaces(biome, nodes_or_function_or_model, snodes, 
 
 					if objtype == "table" then
 						if nodes_or_function_or_model.axiom then
-							biome_lib:generate_tree(pos, nodes_or_function_or_model)
+							biome_lib:generate_tree(p_top, nodes_or_function_or_model)
 							spawned = true
 						else
 							local fdir = nil

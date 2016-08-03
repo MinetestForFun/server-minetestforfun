@@ -14,8 +14,8 @@ It is primarily intended for mapgen v6, but it should work fine when used with m
 
 **Dependencies**: default from minetest_game
 
-**Recommends**: [Plantlife Modpack](https://github.com/VanessaE/plantlife_modpack), 
-[More Trees](https://github.com/VanessaE/moretrees)
+**Recommends**: [Plantlife Modpack](https://github.com/minetest-mods/plantlife_modpack), 
+[More Trees](https://github.com/minetest-mods/moretrees)
 
 **License**: WTFPL
 
@@ -27,4 +27,4 @@ It is primarily intended for mapgen v6, but it should work fine when used with m
 * biome_lib:find_valid_wall()
 * biome_lib:is_node_loaded()
 
-For a complete description of these functions as well as several of the internal variables within the mod, [read the API.txt document](https://raw.githubusercontent.com/VanessaE/biome_lib/master/API.txt) included in this package.
+For a complete description of these functions as well as several of the internal variables within the mod, [read the API.txt document](https://raw.githubusercontent.com/minetest-mods/biome_lib/master/API.txt) included in this package.
