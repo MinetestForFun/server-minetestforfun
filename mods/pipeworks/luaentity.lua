@@ -29,7 +29,7 @@ local function read_entities()
 end
 
 local function write_entities()
-        for _, entity in pairs(luaentity.entities or {}) do
+	for _, entity in pairs(luaentity.entities or {}) do
 		setmetatable(entity, nil)
 		for _, attached in pairs(entity._attached_entities) do
 			if attached.entity then
@@ -54,30 +54,29 @@ end
 local active_blocks = {} -- These only contain active blocks near players (i.e., not forceloaded ones)
 local handle_active_blocks_step = 2
 local handle_active_blocks_timer = 0
-minetest.register_globalstep(function(dtime)
-	handle_active_blocks_timer = handle_active_blocks_timer + dtime
-	if handle_active_blocks_timer >= handle_active_blocks_step then
-		handle_active_blocks_timer = handle_active_blocks_timer - handle_active_blocks_step
-		local active_block_range = tonumber(minetest.setting_get("active_block_range")) or 2
-		local new_active_blocks = {}
-		for _, player in ipairs(minetest.get_connected_players()) do
-			local blockpos = get_blockpos(player:getpos())
-			local minp = vector.subtract(blockpos, active_block_range)
-			local maxp = vector.add(blockpos, active_block_range)
+local function active_blocks_step()
+	local active_block_range = tonumber(minetest.setting_get("active_block_range")) or 2
+	local new_active_blocks = {}
+	for _, player in ipairs(minetest.get_connected_players()) do
+		local blockpos = get_blockpos(player:getpos())
+		local minp = vector.subtract(blockpos, active_block_range)
+		local maxp = vector.add(blockpos, active_block_range)
 
-			for x = minp.x, maxp.x do
-			for y = minp.y, maxp.y do
-			for z = minp.z, maxp.z do
-				local pos = {x = x, y = y, z = z}
-				new_active_blocks[minetest.hash_node_position(pos)] = pos
-			end
-			end
-			end
+		for x = minp.x, maxp.x do
+		for y = minp.y, maxp.y do
+		for z = minp.z, maxp.z do
+			local pos = {x = x, y = y, z = z}
+			new_active_blocks[minetest.hash_node_position(pos)] = pos
 		end
-		active_blocks = new_active_blocks
-		-- todo: callbacks on block load/unload
+		end
+		end
 	end
-end)
+	active_blocks = new_active_blocks
+	-- todo: callbacks on block load/unload
+
+	minetest.after(handle_active_blocks_step, active_blocks_step)
+end
+minetest.after(0, active_blocks_step)
 
 local function is_active(pos)
 	return active_blocks[minetest.hash_node_position(get_blockpos(pos))] ~= nil
