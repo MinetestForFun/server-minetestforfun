@@ -58,10 +58,59 @@ if pipeworks.enable_detector_tube then
 	})
 
 	minetest.register_craft( {
-		output = "pipeworks:conductor_tube_off_1 6",
+		output = "pipeworks:detector_tube_off_1 2",
 		recipe = {
 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
-			{ "mesecons:mesecon", "mesecons:mesecon", "mesecons:mesecon" },
+			{ "mesecons:mesecon", "mesecons_materials:silicon", "mesecons:mesecon" },
+			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+		},
+	})
+end
+
+if minetest.get_modpath("digilines") and pipeworks.enable_digiline_detector_tube then
+	pipeworks.register_tube("pipeworks:digiline_detector_tube", {
+			description = "Digiline Detecting Pneumatic Tube Segment",
+			inventory_image = "pipeworks_digiline_detector_tube_inv.png",
+			plain = { "pipeworks_digiline_detector_tube_plain.png" },
+			node_def = {
+				tube = {can_go = function(pos, node, velocity, stack)
+						local meta = minetest.get_meta(pos)
+
+						local setchan = meta:get_string("channel")
+
+						digiline:receptor_send(pos, digiline.rules.default, setchan, stack:to_string())
+
+						return pipeworks.notvel(pipeworks.meseadjlist, velocity)
+					end},
+				on_construct = function(pos)
+					local meta = minetest.get_meta(pos)
+					meta:set_string("formspec",
+						"size[8.6,2.2]"..
+						"field[0.6,0.6;8,1;channel;Channel:;${channel}]"..
+						"image[0.3,1.3;1,1;pipeworks_digiline_detector_tube_inv.png]"..
+						"label[1.6,1.2;Digiline Detecting Tube]"
+					)
+				end,
+				on_receive_fields = function(pos, formname, fields, sender)
+					if fields.channel then
+						minetest.get_meta(pos):set_string("channel", fields.channel)
+					end
+				end,
+				groups = {},
+				digiline = {
+					receptor = {},
+					effector = {
+						action = function(pos,node,channel,msg) end
+					}
+				},
+			},
+	})
+
+	minetest.register_craft( {
+		output = "pipeworks:digiline_detector_tube_1 2",
+		recipe = {
+			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+			{ "digilines:wire_std_00000000", "mesecons_materials:silicon", "digilines:wire_std_00000000" },
 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
 		},
 	})
@@ -99,10 +148,10 @@ if pipeworks.enable_conductor_tube then
 	})
 
 	minetest.register_craft( {
-		output = "pipeworks:detector_tube_off_1 2",
+		output = "pipeworks:conductor_tube_off_1 6",
 		recipe = {
 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
-			{ "mesecons:mesecon", "mesecons_materials:silicon", "mesecons:mesecon" },
+			{ "mesecons:mesecon", "mesecons:mesecon", "mesecons:mesecon" },
 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
 		},
 	})

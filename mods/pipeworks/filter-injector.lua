@@ -12,7 +12,30 @@ end
 
 local function set_filter_formspec(data, meta)
 	local itemname = data.wise_desc.." Filter-Injector"
-	local formspec = "size[8,8.5]"..
+
+	local formspec
+	if data.digiline then
+		formspec = "size[8,2.7]"..
+			"item_image[0,0;1,1;pipeworks:"..data.name.."]"..
+			"label[1,0;"..minetest.formspec_escape(itemname).."]"..
+			"field[0.3,1.5;8.0,1;channel;Channel;${channel}]"..
+			fs_helpers.cycling_button(meta, "button[0,2;4,1", "slotseq_mode",
+				{"Sequence slots by Priority",
+				 "Sequence slots Randomly",
+				 "Sequence slots by Rotation"})..
+			fs_helpers.cycling_button(meta, "button[4,2;4,1", "exmatch_mode",
+				{"Exact match - off",
+				 "Exact match - on "})
+	else
+		local exmatch_button = ""
+		if data.stackwise then
+			exmatch_button =
+				fs_helpers.cycling_button(meta, "button[4,3.5;4,1", "exmatch_mode",
+					{"Exact match - off",
+					 "Exact match - on "})
+		end
+
+		formspec = "size[8,8.5]"..
 			"item_image[0,0;1,1;pipeworks:"..data.name.."]"..
 			"label[1,0;"..minetest.formspec_escape(itemname).."]"..
 			"label[0,1;Prefer item types:]"..
@@ -21,14 +44,16 @@ local function set_filter_formspec(data, meta)
 				{"Sequence slots by Priority",
 				 "Sequence slots Randomly",
 				 "Sequence slots by Rotation"})..
+			exmatch_button..
 			"list[current_player;main;0,4.5;8,4;]"
+	end
 	meta:set_string("formspec", formspec)
 end
 
 -- todo SOON: this function has *way too many* parameters
-local function grabAndFire(data,slotseq_mode,filtmeta,frominv,frominvname,frompos,fromnode,filterfor,fromtube,fromdef,dir,fakePlayer,all)
+local function grabAndFire(data,slotseq_mode,exmatch_mode,filtmeta,frominv,frominvname,frompos,fromnode,filterfor,fromtube,fromdef,dir,fakePlayer,all)
 	local sposes = {}
-	for spos,stack in ipairs(frominv:get_list(frominvname) or {}) do -- Modification made for https://github.com/MinetestForFun/server-minetestforfun/issues/426 (Mg|06/04/2016)
+	for spos,stack in ipairs(frominv:get_list(frominvname)) do
 		local matches
 		if filterfor == "" then
 			matches = stack:get_name() ~= ""
@@ -79,7 +104,11 @@ local function grabAndFire(data,slotseq_mode,filtmeta,frominv,frominvname,frompo
 				if all then
 					count = math.min(stack:get_count(), doRemove)
 					if filterfor.count and filterfor.count > 1 then
-						count = math.min(filterfor.count, count)
+						if exmatch_mode ~= 0 and filterfor.count > count then
+							return false
+						else
+							count = math.min(filterfor.count, count)
+						end
 					end
 				else
 					count = 1
@@ -103,7 +132,7 @@ local function grabAndFire(data,slotseq_mode,filtmeta,frominv,frominvname,frompo
 	return false
 end
 
-local function punch_filter(data, filtpos, filtnode)
+local function punch_filter(data, filtpos, filtnode, msg)
 	local filtmeta = minetest.get_meta(filtpos)
 	local filtinv = filtmeta:get_inventory()
 	local owner = filtmeta:get_string("owner")
@@ -119,21 +148,110 @@ local function punch_filter(data, filtpos, filtnode)
 	if not fromdef then return end
 	local fromtube = fromdef.tube
 	if not (fromtube and fromtube.input_inventory) then return end
+
+	local slotseq_mode
+	local exact_match
+
 	local filters = {}
-	for _, filterstack in ipairs(filtinv:get_list("main")) do
-		local filtername = filterstack:get_name()
-		local filtercount = filterstack:get_count()
-		if filtername ~= "" then table.insert(filters, {name = filtername, count = filtercount}) end
+	if data.digiline then
+		local t_msg = type(msg)
+		if t_msg == "table" then
+			local slotseq = msg.slotseq
+			local t_slotseq = type(slotseq)
+			if t_slotseq == "number" and slotseq >= 0 and slotseq <= 2 then
+				slotseq_mode = slotseq
+			elseif t_slotseq == "string" then
+				slotseq = string.lower(slotseq)
+				if slotseq == "priority" then
+					slotseq_mode = 0
+				elseif slotseq == "random" then
+					slotseq_mode = 1
+				elseif slotseq == "rotation" then
+					slotseq_mode = 2
+				end
+			end
+
+			local exmatch = msg.exmatch
+			local t_exmatch = type(exmatch)
+			if t_exmatch == "number" and exmatch >= 0 and exmatch <= 1 then
+				exact_match = exmatch
+			elseif t_exmatch == "boolean" then
+				exact_match = exmatch and 1 or 0
+			end
+
+			local slotseq_index = msg.slotseq_index
+			if type(slotseq_index) == "number" then
+				-- This should allow any valid index, but I'm not completely sure what
+				-- constitutes a valid index, so I'm only allowing resetting it to 1.
+				if slotseq_index == 1 then
+					filtmeta:set_int("slotseq_index", slotseq_index)
+					set_filter_infotext(data, filtmeta)
+				end
+			end
+
+			if slotseq_mode ~= nil then
+				filtmeta:set_int("slotseq_mode", slotseq_mode)
+			end
+
+			if exact_match ~= nil then
+				filtmeta:set_int("exmatch_mode", exact_match)
+			end
+
+			if slotseq_mode ~= nil or exact_match ~= nil then
+				set_filter_formspec(data, filtmeta)
+			end
+
+			if msg.nofire then
+				return
+			end
+
+			if type(msg.name) == "string" then
+				table.insert(filters, {name = msg.name, count = tonumber(msg.count) or 1})
+			else
+				for _, filter in ipairs(msg) do
+					local t_filter = type(filter)
+					if t_filter == "table" then
+						if type(filter.name) == "string" then
+							table.insert(filters, {name = filter.name, count = tonumber(filter.count) or 1})
+						end
+					elseif t_filter == "string" then
+						local filterstack = ItemStack(filter)
+						local filtername = filterstack:get_name()
+						local filtercount = filterstack:get_count()
+						if filtername ~= "" then table.insert(filters, {name = filtername, count = filtercount}) end
+					end
+				end
+			end
+		elseif t_msg == "string" then
+			local filterstack = ItemStack(msg)
+			local filtername = filterstack:get_name()
+			local filtercount = filterstack:get_count()
+			if filtername ~= "" then table.insert(filters, {name = filtername, count = filtercount}) end
+		end
+	else
+		for _, filterstack in ipairs(filtinv:get_list("main")) do
+			local filtername = filterstack:get_name()
+			local filtercount = filterstack:get_count()
+			if filtername ~= "" then table.insert(filters, {name = filtername, count = filtercount}) end
+		end
 	end
 	if #filters == 0 then table.insert(filters, "") end
-	local slotseq_mode = filtmeta:get_int("slotseq_mode")
+
+	if slotseq_mode == nil then
+		slotseq_mode = filtmeta:get_int("slotseq_mode")
+	end
+
+	if exact_match == nil then
+		exact_match = filtmeta:get_int("exmatch_mode")
+	end
+
 	local frommeta = minetest.get_meta(frompos)
 	local frominv = frommeta:get_inventory()
 	if fromtube.before_filter then fromtube.before_filter(frompos) end
 	for _, frominvname in ipairs(type(fromtube.input_inventory) == "table" and fromtube.input_inventory or {fromtube.input_inventory}) do
 		local done = false
 		for _, filterfor in ipairs(filters) do
-			if grabAndFire(data, slotseq_mode, filtmeta, frominv, frominvname, frompos, fromnode, filterfor, fromtube, fromdef, dir, fakePlayer, data.stackwise) then
+			if grabAndFire(data, slotseq_mode, exact_match, filtmeta, frominv, frominvname, frompos, fromnode, filterfor, fromtube, fromdef, dir, fakePlayer, data.stackwise) then
 				done = true
 				break
 			end
@@ -154,8 +272,14 @@ for _, data in ipairs({
 		wise_desc = "Stackwise",
 		stackwise = true,
 	},
+	{ -- register even if no digilines
+		name = "digiline_filter",
+		wise_desc = "Digiline",
+		stackwise = true,
+		digiline = true,
+	},
 }) do
-	minetest.register_node("pipeworks:"..data.name, {
+	local node = {
 		description = data.wise_desc.." Filter-Injector",
 		tiles = {
 			"pipeworks_"..data.name.."_top.png",
@@ -181,14 +305,6 @@ for _, data in ipairs({
 			pipeworks.after_place(pos)
 		end,
 		after_dig_node = pipeworks.after_dig,
-		on_receive_fields = function(pos, formname, fields, sender)
-			if not pipeworks.may_configure(pos, sender) then return end
-			fs_helpers.on_receive_fields(pos, fields)
-			local meta = minetest.get_meta(pos)
-			meta:set_int("slotseq_index", 1)
-			set_filter_formspec(data, meta)
-			set_filter_infotext(data, meta)
-		end,
 		allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 			if not pipeworks.may_configure(pos, player) then return 0 end
 			return stack:get_count()
@@ -206,18 +322,63 @@ for _, data in ipairs({
 			local inv = meta:get_inventory()
 			return inv:is_empty("main")
 		end,
-		mesecons = {
+		tube = {connect_sides = {right = 1}},
+	}
+
+	if data.digiline then
+		node.groups.mesecon = nil
+		if not minetest.get_modpath("digilines") then
+			node.groups.not_in_creative_inventory = 1
+		end
+
+		node.on_receive_fields = function(pos, formname, fields, sender)
+			if not pipeworks.may_configure(pos, sender) then return end
+			fs_helpers.on_receive_fields(pos, fields)
+
+			if fields.channel then
+				minetest.get_meta(pos):set_string("channel", fields.channel)
+			end
+
+			local meta = minetest.get_meta(pos)
+			--meta:set_int("slotseq_index", 1)
+			set_filter_formspec(data, meta)
+			set_filter_infotext(data, meta)
+		end
+		node.digiline = {
+			effector = {
+				action = function(pos, node, channel, msg)
+					local meta = minetest.get_meta(pos)
+					local setchan = meta:get_string("channel")
+					if setchan ~= channel then return end
+
+					punch_filter(data, pos, node, msg)
+				end,
+			},
+		}
+	else
+		node.on_receive_fields = function(pos, formname, fields, sender)
+			if not pipeworks.may_configure(pos, sender) then return end
+			fs_helpers.on_receive_fields(pos, fields)
+			local meta = minetest.get_meta(pos)
+			meta:set_int("slotseq_index", 1)
+			set_filter_formspec(data, meta)
+			set_filter_infotext(data, meta)
+		end
+		node.mesecons = {
 			effector = {
 				action_on = function(pos, node)
 					punch_filter(data, pos, node)
 				end,
 			},
-		},
-		tube = {connect_sides = {right = 1}},
-		on_punch = function (pos, node, puncher)
+		}
+		node.on_punch = function (pos, node, puncher)
 			punch_filter(data, pos, node)
-		end,
-	})
+		end
+	end
+
+
+
+	minetest.register_node("pipeworks:"..data.name, node)
 end
 
 minetest.register_craft( {
@@ -237,3 +398,14 @@ minetest.register_craft( {
 	        { "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" }
 	},
 })
+
+if minetest.get_modpath("digilines") then
+	minetest.register_craft( {
+		output = "pipeworks:digiline_filter 2",
+		recipe = {
+			{ "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" },
+			{ "group:stick", "digilines:wire_std_00000000", "homedecor:plastic_sheeting" },
+			{ "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" }
+		},
+	})
+end

@@ -71,7 +71,7 @@ pipeworks.spigot_check = function(pos, node)
 	local belowname = minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z}).name
 	if belowname and (belowname == "air" or belowname == "default:water_flowing" or belowname == "default:water_source") then
 		local spigotname = minetest.get_node(pos).name
-		local fdir=node.param2
+		local fdir=node.param2 % 4
 		local check = {
 			{x=pos.x,y=pos.y,z=pos.z+1},
 			{x=pos.x+1,y=pos.y,z=pos.z},
