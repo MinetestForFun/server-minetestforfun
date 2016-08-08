@@ -1,17 +1,20 @@
-Minetest 0.4 mod: carts
-=======================
-by PilzAdam
-This version is modified by Kilarin (Donald Hines), all changes CC-0
-modifications include:
-  New Controls:LEFT or RIGHT to switch track at junction
-               DOWN for hand break
-               JUMP lock the users view to the view of the cart
-               SNEAK unlock the users view from the cart
-  Touring Rails: Try to maintain a speed of 4.5
-  Chat notification of controls when cart is placed
-  Track rail count in debug.txt  
-  punch by driver patch from spillz
-  get_voxel when hit ignore patch by minermoder27  
+Minetest mod: carts for MFF
+===========================
+
+Based on boost_cart and modified to fully *replace* carts (@Coethium)
+ - desactivate mesecons
+ - power_rail: accelerate, max_speed set in init.lua
+ - brake_rail: deccelerate, min_speed set in init.lua (so the cart doesn't stop and runs at very low speed)
+ - default:rail / rail_cooper : no friction, keep the current speed
+ - no collision (avoid the "walled_in" bug)
+
+
+
+Boost_cart
+==========
+
+Based on (and fully compatible with) the mod "carts" by PilzAdam
+Target: Run smoothly and do not use too much CPU
 
 License of source code:
 -----------------------
@@ -31,6 +34,3 @@ kddekadenz:
 Zeg9:
   cart.x
   cart.png
-
-rarkenin:
-  cart_rail_*.png
