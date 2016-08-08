@@ -3,11 +3,27 @@
 
 ---Planned on the Server---
 We're working hard to make lighter the server!
-Add another Unique boss is coming : The Mese Dragon
 Introduce the Wizard class : do you like magic things ?
 Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
+---08/08/2016-- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Coethium, ElementW, ezam/ezamlinux)
+Update of "boost_cart" (Do not need mesecons to activate power rails, rails accelerate and max speed set to an highter value, brake rails now deccelerate correctly and add a minimum speed feature on brake rails, all rails -except brakes rails- don't have frictions, so they keep their speed indefinitly, finally, we removed collision to erased the "walled_in" bug)
+Addition of "boost_cart" (Less CPU utilization, less buggy, more up-to-date)
+Deletion of "carts" (poorly made carts mod)
+Performance improvments : Convert many "globalsteps" into "minetest.after", and remove some useless ABMs
+Addition of "stacktraceplus" (For better debugging lines, more verbose and helpful for our devs)
+Update of "mesecons" (Update this mod, some performences improvments made)
+Update of "name_restrictions" (disallow Sadie*** connection to our server)
+Update of "watershed" (Do not generate anymore liquids into fissures because create lags)
+Update of "mobs" ("mobs:dungs" from cows are now 10 times rarer, but it's now 10 times a better fuel)
+---> Mese Dragon Boss now available in its Mese square Room ! <---
+Update of "risenpilz" (disable mushrooms spawning in protected areas)
+Update of "pclasses" (Add information menu)
+Update of "stairs" (bugfix)
+Update of "darkage" (Improve ores textures)
+Deletion of "bedrocks" (Useless and use ressources)
+
 ---06/07/2016-- (Thanks to : crabman77/crabman, LeMagnesium/Mg, ElementW, ezam/ezamlinux, cessna151)
 Update of "runes" (crashfix)
 Update of "mobs" (Last Mese Dragon fixes, now ready !)
