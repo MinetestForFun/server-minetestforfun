@@ -3,7 +3,7 @@ carts = {}
 carts.modpath = minetest.get_modpath("carts")
 
 -- Maximal speed of the cart in m/s
-carts.speed_max = minetest.setting_get("movement_speed_walk")*3
+carts.speed_max = minetest.setting_get("movement_speed_walk")*3*0.9
 -- Minimal speed of the cart on brake rail
 carts.brake_speed_min = minetest.setting_get("movement_speed_walk")/2
 -- Set to nil to disable punching the cart from inside (min = -1)
