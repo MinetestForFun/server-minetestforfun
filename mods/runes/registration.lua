@@ -55,15 +55,6 @@ runes.datas.items = {
 		},
 		type = "craftitem"
 	},
-	["popper"] = {
-		description = "Popper",
-		img = {
-			["minor"] = "default_grass.png",
-			["medium"] = "default_grass.png",
-			["major"] = "default_grass.png"
-		},
-		type = "plate"
-	},
 }
 
 for key, value in pairs(runes.datas.items) do

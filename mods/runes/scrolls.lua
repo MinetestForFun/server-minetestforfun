@@ -1,5 +1,5 @@
 -- Scrolls for Runes Redo
--- 
+--
 
 runes.scrolls = {}
 
@@ -38,4 +38,10 @@ register_scroll("spontafire", "knowledge", {
 		   glyph = "runes:glyph_spontafire",
 		   texture = "runes_scroll_spontafire.png",
 		   description = "Spontaneous Fire Knowledge Scroll",
+})
+
+register_scroll("prankster", "knowledge", {
+		   glyph = "runes:glyph_prankster",
+		   texture = "runes_scroll_prankster.png",
+		   description = "Prankster Knowledge Scroll",
 })

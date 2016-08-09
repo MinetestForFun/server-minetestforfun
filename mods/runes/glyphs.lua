@@ -99,7 +99,7 @@ minetest.register_craftitem("runes:recharge_wand", {
 				mana.subtract(user:get_player_name(), 20)
 				msg = "Rune recharged"
 			end
-		end				
+		end
 		minetest.chat_send_player(user:get_player_name(), msg)
 	end,
 })
@@ -137,7 +137,7 @@ minetest.register_craftitem("runes:info_wand", {
 
 				  local formspec = "size[7,7]" ..
 				     "label[0,0; Rune informations :]" ..
-				     "button_exit[3, 6.6; 1, 0.6; rune_info_exit; Exit]" .. 
+				     "button_exit[3, 6.6; 1, 0.6; rune_info_exit; Exit]" ..
 				     "textlist[0, 0.5; 6.8, 5.9; runes_info;" ..
 				     "Rune : " .. rname .. "," ..
 				     "Charge : " .. metas["charge"] .. "/" .. runes.glyphs[rname].max_charge .. "," ..
@@ -226,7 +226,7 @@ register_glyph("watchdog", {
 						local collisionbox = ref:get_properties().collisionbox
 						local refpos = ref:getpos()
 						refpos.y = refpos.y + (((collisionbox[4] or 0) - (collisionbox[3] or 0)) / 2)
-				
+
 						local vel = vector.subtract(refpos, pos)
 						minetest.add_particlespawner({
 							amount = 30,
@@ -275,7 +275,7 @@ register_glyph("manasucker", {
 				end
 
 				meta:set_int("mana", u)
-			end		
+			end
 		end,
 		on_timer = function(pos, elapsed)
 			local meta = minetest.get_meta(pos)
@@ -301,7 +301,7 @@ register_glyph("manasucker", {
 						local collisionbox = ref:get_properties().collisionbox
 						local refpos = ref:getpos()
 						refpos.y = refpos.y + (((collisionbox[4] or 0) - (collisionbox[3] or 0)) / 2)
-				
+
 						local vel = vector.subtract(pos, refpos)
 						minetest.add_particlespawner({
 							amount = 30,
@@ -355,4 +355,49 @@ register_glyph("spontafire", {
 		     meta:set_int("charge", charge)
 		     return true
 		  end,
+})
+
+register_glyph("prankster", {
+	description = "Prankster Glyph",
+	texture = "runes_glyph_prankster.png",
+	initial_charge = 600,
+	maximum_charge = 1200,
+	mana_cost = 20,
+},{
+	groups = {snappy = 1},
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(5)
+	end,
+	on_timer = function(pos, elapsed)
+		local meta = minetest.get_meta(pos)
+		local charge = meta:get_int("charge")
+
+		for _, ref in pairs(minetest.get_objects_inside_radius(pos, 10)) do
+			if charge >= runes.glyphs["prankster"].mana_cost and ref:is_player() and ref:get_player_name() ~= meta:get_string("master") then
+				local thieff = math.random(1,32)
+				local inv = ref:get_inventory()
+				if inv then
+					local stolen = inv:get_stack("main", thieff)
+					inv:set_stack("main", thieff, nil)
+					if stolen:get_count() > 0 then
+						local pos = ref:getpos()
+						local obj = minetest.add_item({x = pos.x, y = pos.y + 2.5, z = pos.z}, stolen)
+						if obj then
+							obj:setvelocity({x = math.random(-5,5), y = math.random(3,5), z = math.random(-5,5)})
+						end
+						charge = charge - runes.glyphs["prankster"].mana_cost
+						minetest.chat_send_player(ref:get_player_name(), "The Prankster attacked you and stole " .. stolen:get_count() .. " "
+							.. (minetest.registered_items[stolen:get_name()].description or " of something")
+						)
+					else
+						minetest.chat_send_player(ref:get_player_name(), "The Prankster attacked you but failed at stealing from you..")
+					end
+				else
+					minetest.log("Inventory retrieval failed")
+				end
+			end
+		end
+		meta:set_int("charge", charge)
+		return true
+	end,
 })
