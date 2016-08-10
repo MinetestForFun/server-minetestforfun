@@ -111,7 +111,6 @@ local function furnace_node_timer(pos, elapsed)
 	local inv = meta:get_inventory()
 	local srclist = inv:get_list("src")
 	local fuellist = inv:get_list("fuel")
-	local dstlist = inv:get_list("dst")
 
 	--
 	-- Cooking
@@ -172,7 +171,7 @@ local function furnace_node_timer(pos, elapsed)
 	-- Update formspec, infotext and node
 	--
 	local formspec = inactive_formspec
-	local item_state = ""
+	local item_state
 	local item_percent = 0
 	if cookable then
 		item_percent = math.floor(src_time / cooked.time * 100)
@@ -259,6 +258,15 @@ minetest.register_node("default:furnace", {
 		-- start timer function, it will sort out whether furnace can burn or not.
 		local timer = minetest.get_node_timer(pos)
 		timer:start(1.0)
+	end,
+	on_blast = function(pos)
+		local drops = {}
+		default.get_inventory_drops(pos, "src", drops)
+		default.get_inventory_drops(pos, "fuel", drops)
+		default.get_inventory_drops(pos, "dst", drops)
+		drops[#drops+1] = "default:furnace"
+		minetest.remove_node(pos)
+		return drops
 	end,
 
 	allow_metadata_inventory_put = allow_metadata_inventory_put,

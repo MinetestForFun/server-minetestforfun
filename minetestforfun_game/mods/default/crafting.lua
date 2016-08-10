@@ -959,10 +959,28 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = 'default:stone_block 9',
+	recipe = {
+		{'default:stone', 'default:stone', 'default:stone'},
+		{'default:stone', 'default:stone', 'default:stone'},
+		{'default:stone', 'default:stone', 'default:stone'},
+	}
+})
+
+minetest.register_craft({
 	output = 'default:desert_stonebrick 4',
 	recipe = {
 		{'default:desert_stone', 'default:desert_stone'},
 		{'default:desert_stone', 'default:desert_stone'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:desert_stone_block 9',
+	recipe = {
+		{'default:desert_stone', 'default:desert_stone', 'default:desert_stone'},
+		{'default:desert_stone', 'default:desert_stone', 'default:desert_stone'},
+		{'default:desert_stone', 'default:desert_stone', 'default:desert_stone'},
 	}
 })
 

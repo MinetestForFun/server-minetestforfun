@@ -4,6 +4,11 @@
 
 local cwd = minetest.get_modpath("_misc")
 
+-- Code extracted from edits done in the default mod
+dofile(cwd.."/carbone_init.lua")
+dofile(cwd.."/commands.lua")
+dofile(cwd.."/forbid_underwater_torch.lua")
+
 -- Give initial stuff
 dofile(cwd.."/give_initial_stuff.lua")
 

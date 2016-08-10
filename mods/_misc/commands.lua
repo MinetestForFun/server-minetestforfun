@@ -2,7 +2,7 @@ minetest.register_privilege("physics", {
     description = "Allows player to set their gravity, jump height and movement speed"})
 
 -- Infotool code by PilzAdam:
-minetest.register_craftitem("default:infotool", {
+minetest.register_craftitem(":default:infotool", {
     description = "Infotool",
     inventory_image = "default_infotool.png",
     wield_image = "default_infotool.png^[transformR90",

@@ -58,6 +58,8 @@ VanessaE (WTFPL):
   default_desert_sand.png
   default_desert_stone.png
   default_sand.png
+  default_mese_crystal.png
+  default_mese_crystal_fragment.png
 
 Calinou (CC BY-SA):
   default_brick.png
@@ -99,7 +101,7 @@ Zeg9 (CC BY-SA 3.0):
   default_gold_block.png
 
 paramat (CC BY-SA 3.0):
-  wieldhand.png copied from character.png by Jordach (CC BY-SA 3.0)
+  wieldhand.png -- Copied from character.png by Jordach (CC BY-SA 3.0)
   default_pinetree.png
   default_pinetree_top.png
   default_pinewood.png
@@ -114,6 +116,10 @@ paramat (CC BY-SA 3.0):
   default_obsidian_brick.png
   default_stone_brick.png
   default_desert_stone_brick.png
+  default_sandstone_block.png
+  default_obsidian_block.png
+  default_stone_block.png
+  default_desert_stone_block.png
   default_river_water.png
   default_river_water_source_animated.png
   default_river_water_flowing_animated.png
@@ -122,6 +128,8 @@ paramat (CC BY-SA 3.0):
   default_dry_grass_*.png
   default_grass.png
   default_grass_side.png
+  default_snow_side.png
+  default_mese_block.png
 
 brunob.santos (CC BY-SA 4.0):
   default_desert_cobble.png
@@ -183,6 +191,9 @@ Gambit (WTFPL):
 
 asl97 (WTFPL):
   default_ice.png
+
+KevDoy (CC BY-SA 3.0)
+  heart.png
 
 Glass breaking sounds (CC BY 3.0):
   1: http://www.freesound.org/people/cmusounddesign/sounds/71947/

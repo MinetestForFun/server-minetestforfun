@@ -42,14 +42,14 @@ minetest.register_alias("mapgen_stair_sandstonebrick", "stairs:stair_sandstonebr
 -- Register ores
 --
 
--- All mapgens except singlenode
--- Blob ore first to avoid other ores inside blobs
-
 function default.register_ores()
+	-- Blob ores
+	-- These first to avoid other ores in blobs
 
 	-- Clay
+	-- This first to avoid clay in sand blobs
 
-	minetest.register_ore({ 
+	minetest.register_ore({
 		ore_type        = "blob",
 		ore             = "default:clay",
 		wherein         = {"default:sand"},
@@ -70,7 +70,7 @@ function default.register_ores()
 
 	-- Sand
 
-	minetest.register_ore({ 
+	minetest.register_ore({
 		ore_type        = "blob",
 		ore             = "default:sand",
 		wherein         = {"default:stone", "default:sandstone",
@@ -131,6 +131,8 @@ function default.register_ores()
 			persist = 0.0
 		},
 	})
+
+	-- Scatter ores
 
 	-- Coal
 
@@ -225,6 +227,8 @@ function default.register_ores()
 		y_max          = -64,
 	})
 
+	-- Copper
+
 	minetest.register_ore({
 		ore_type       = "scatter",
 		ore            = "default:stone_with_iron",
@@ -259,6 +263,8 @@ function default.register_ores()
 		y_min          = -1024,
 		y_max          = -256,
 	})
+
+	-- Gold
 
 	minetest.register_ore({
 		ore_type       = "scatter",
@@ -730,6 +736,8 @@ function default.register_biomes()
 		depth_water_top = 10,
 		--node_water = "",
 		node_river_water = "default:ice",
+		node_riverbed = "default:gravel",
+		depth_riverbed = 2,
 		y_min = -8,
 		y_max = 31000,
 		heat_point = 0,
@@ -768,6 +776,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:gravel",
+		depth_riverbed = 2,
 		y_min = 2,
 		y_max = 31000,
 		heat_point = 15,
@@ -786,6 +796,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:gravel",
+		depth_riverbed = 2,
 		y_min = -3,
 		y_max = 1,
 		heat_point = 15,
@@ -804,6 +816,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:gravel",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = -4,
 		heat_point = 15,
@@ -823,6 +837,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 2,
 		y_max = 31000,
 		heat_point = 15,
@@ -841,6 +857,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = 1,
 		heat_point = 15,
@@ -861,6 +879,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 6,
 		y_max = 31000,
 		heat_point = 40,
@@ -879,6 +899,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 5,
 		y_max = 5,
 		heat_point = 40,
@@ -897,6 +919,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = 4,
 		heat_point = 40,
@@ -916,6 +940,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 6,
 		y_max = 31000,
 		heat_point = 40,
@@ -934,6 +960,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 5,
 		y_max = 5,
 		heat_point = 40,
@@ -952,6 +980,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = 4,
 		heat_point = 40,
@@ -971,6 +1001,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 6,
 		y_max = 31000,
 		heat_point = 60,
@@ -989,6 +1021,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 5,
 		y_max = 5,
 		heat_point = 60,
@@ -1007,6 +1041,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = 4,
 		heat_point = 60,
@@ -1026,6 +1062,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 1,
 		y_max = 31000,
 		heat_point = 60,
@@ -1044,6 +1082,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -3,
 		y_max = 0,
 		heat_point = 60,
@@ -1062,6 +1102,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = -4,
 		heat_point = 60,
@@ -1082,6 +1124,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 5,
 		y_max = 31000,
 		heat_point = 85,
@@ -1100,6 +1144,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = 4,
 		heat_point = 85,
@@ -1119,6 +1165,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 1,
 		y_max = 31000,
 		heat_point = 85,
@@ -1137,6 +1185,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -3,
 		y_max = 0,
 		heat_point = 85,
@@ -1155,6 +1205,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = -4,
 		heat_point = 85,
@@ -1174,6 +1226,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = 1,
 		y_max = 31000,
 		heat_point = 85,
@@ -1192,6 +1246,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -3,
 		y_max = 0,
 		heat_point = 85,
@@ -1210,6 +1266,8 @@ function default.register_biomes()
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
 		y_min = -112,
 		y_max = -4,
 		heat_point = 85,

@@ -49,6 +49,18 @@ function default.node_sound_sand_defaults(table)
 	return table
 end
 
+function default.node_sound_gravel_defaults(table)
+	table = table or {}
+	table.footstep = table.footstep or
+			{name = "default_gravel_footstep", gain = 0.5}
+	table.dug = table.dug or
+			{name = "default_gravel_footstep", gain = 1.0}
+	table.place = table.place or
+			{name = "default_place_node", gain = 1.0}
+	default.node_sound_defaults(table)
+	return table
+end
+
 function default.node_sound_wood_defaults(table)
 	table = table or {}
 	table.footstep = table.footstep or
@@ -99,6 +111,7 @@ default.cool_lava = function(pos, node)
 end
 
 minetest.register_abm({
+	label = "Lava cooling",
 	nodenames = {"default:lava_source", "default:lava_flowing"},
 	neighbors = {"group:water"},
 	interval = 1,
@@ -109,6 +122,21 @@ minetest.register_abm({
 	end,
 })
 
+
+--
+-- optimized helper to put all items in an inventory into a drops list
+--
+function default.get_inventory_drops(pos, inventory, drops)
+	local inv = minetest.get_meta(pos):get_inventory()
+	local n = #drops
+	for i = 1, inv:get_size(inventory) do
+		local stack = inv:get_stack(inventory, i)
+		if stack:get_count() > 0 then
+			drops[n+1] = stack:to_table()
+			n = n + 1
+		end
+	end
+end
 
 --
 -- Papyrus and cactus growing
@@ -163,6 +191,7 @@ function default.grow_papyrus(pos, node)
 end
 
 minetest.register_abm({
+	label = "Grow cactus",
 	nodenames = {"default:cactus"},
 	neighbors = {"group:sand", "default:dirt_with_dry_grass"}, --MFF
 	interval = 12,
@@ -173,6 +202,7 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
+	label = "Grow papyrus",
 	nodenames = {"default:papyrus"},
 	neighbors = {"default:dirt", "default:dirt_with_grass", "default:sand", "default:desert_sand"}, --MFF
 	interval = 14,
@@ -277,6 +307,7 @@ default.after_place_leaves = function(pos, placer, itemstack, pointed_thing)
 end
 
 minetest.register_abm({
+	label = "Leaf decay",
 	nodenames = {"group:leafdecay"},
 	neighbors = {"air", "group:liquid"},
 	-- A low interval and a high inverse chance spreads the load
@@ -358,49 +389,74 @@ minetest.register_abm({
 })
 
 
-minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
-	if newnode.name ~= "default:torch" or minetest.get_item_group(oldnode.name, "water") == 0 then
-		return
-	end
-	minetest.remove_node(pos, newnode)
-	minetest.set_node(pos, oldnode)
-	minetest.add_item(pos, "default:torch")
-end)
-
 --
--- Grass growing on well-lit dirt
+-- Convert dirt to something that fits the environment
 --
 
 minetest.register_abm({
+	label = "Grass spread",
 	nodenames = {"default:dirt"},
-	neighbors = {"air"},
+	neighbors = {
+		"default:dirt_with_grass",
+		"default:dirt_with_dry_grass",
+		"default:dirt_with_snow",
+		"group:grass",
+		"group:dry_grass",
+		"default:snow",
+	},
 	interval = 6,
 	chance = 67,
 	catch_up = false,
 	action = function(pos, node)
+		-- Most likely case, half the time it's too dark for this.
 		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-		local name = minetest.get_node(above).name
-		local nodedef = minetest.registered_nodes[name]
-		if nodedef and (nodedef.sunlight_propagates or nodedef.paramtype == "light") and
-				nodedef.liquidtype == "none" and
-				pos.y >= 0 and
-				(minetest.get_node_light(above) or 0) >= 12 then
-			if name == "default:snow" or name == "default:snowblock" then
-				minetest.set_node(pos, {name = "default:dirt_with_snow"})
-			else
-				minetest.set_node(pos, {name = "default:dirt_with_grass"})
+		if (minetest.get_node_light(above) or 0) < 13 then
+			return
+		end
+
+		-- Look for likely neighbors.
+		local p2 = minetest.find_node_near(pos, 1, {"default:dirt_with_grass",
+				"default:dirt_with_dry_grass", "default:dirt_with_snow"})
+		if p2 then
+			-- But the node needs to be under air in this case.
+			local n2 = minetest.get_node(above)
+			if n2 and n2.name == "air" then
+				local n3 = minetest.get_node(p2)
+				minetest.set_node(pos, {name = n3.name})
+				return
 			end
+		end
+
+		-- Anything on top?
+		local n2 = minetest.get_node(above)
+		if not n2 then
+			return
+		end
+
+		local name = n2.name
+		-- Snow check is cheapest, so comes first.
+		if name == "default:snow" then
+			minetest.set_node(pos, {name = "default:dirt_with_snow"})
+		-- Most likely case first.
+		elseif minetest.get_item_group(name, "grass") ~= 0 then
+			minetest.set_node(pos, {name = "default:dirt_with_grass"})
+		elseif minetest.get_item_group(name, "dry_grass") ~= 0 then
+			minetest.set_node(pos, {name = "default:dirt_with_dry_grass"})
 		end
 	end
 })
-
 
 --
 -- Grass and dry grass removed in darkness
 --
 
 minetest.register_abm({
-	nodenames = {"default:dirt_with_grass", "default:dirt_with_dry_grass"},
+	label = "Grass covered",
+	nodenames = {
+		"default:dirt_with_grass",
+		"default:dirt_with_dry_grass",
+		"default:dirt_with_snow",
+	},
 	interval = 8,
 	chance = 50,
 	catch_up = false,
@@ -422,12 +478,59 @@ minetest.register_abm({
 --
 
 minetest.register_abm({
-	nodenames = {"default:cobble"},
+	label = "Moss growth",
+	nodenames = {"default:cobble", "stairs:slab_cobble", "stairs:stair_cobble"},
 	neighbors = {"group:water"},
 	interval = 16,
 	chance = 200,
 	catch_up = false,
 	action = function(pos, node)
-		minetest.set_node(pos, {name = "default:mossycobble"})
+		if node.name == "default:cobble" then
+			minetest.set_node(pos, {name = "default:mossycobble"})
+		elseif node.name == "stairs:slab_cobble" then
+			minetest.set_node(pos, {name = "stairs:slab_mossycobble", param2 = node.param2})
+		elseif node.name == "stairs:stair_cobble" then
+			minetest.set_node(pos, {name = "stairs:stair_mossycobble", param2 = node.param2})
+		end
 	end
 })
+
+
+--
+-- Checks if specified volume intersects a protected volume
+--
+
+function default.intersects_protection(minp, maxp, player_name, interval)
+	-- 'interval' is the largest allowed interval for the 3D lattice of checks
+
+	-- Compute the optimal float step 'd' for each axis so that all corners and
+	-- borders are checked. 'd' will be smaller or equal to 'interval'.
+	-- Subtracting 1e-4 ensures that the max co-ordinate will be reached by the
+	-- for loop (which might otherwise not be the case due to rounding errors).
+	local d = {}
+	for _, c in pairs({"x", "y", "z"}) do
+		if maxp[c] > minp[c] then
+			d[c] = (maxp[c] - minp[c]) / math.ceil((maxp[c] - minp[c]) / interval) - 1e-4
+		elseif maxp[c] == minp[c] then
+			d[c] = 1 -- Any value larger than 0 to avoid division by zero
+		else -- maxp[c] < minp[c], print error and treat as protection intersected
+			minetest.log("error", "maxp < minp in 'default.intersects_protection()'")
+			return true
+		end
+	end
+
+	for zf = minp.z, maxp.z, d.z do
+		local z = math.floor(zf + 0.5)
+		for yf = minp.y, maxp.y, d.y do
+			local y = math.floor(yf + 0.5)
+			for xf = minp.x, maxp.x, d.x do
+				local x = math.floor(xf + 0.5)
+				if minetest.is_protected({x = x, y = y, z = z}, player_name) then
+					return true
+				end
+			end
+		end
+	end
+
+	return false
+end
