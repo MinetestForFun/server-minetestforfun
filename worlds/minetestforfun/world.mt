@@ -225,3 +225,5 @@ load_mod_snow = true
 load_mod_sounds = false
 
 load_mod_rofl = false
+
+load_mod_profilerdumper = true
