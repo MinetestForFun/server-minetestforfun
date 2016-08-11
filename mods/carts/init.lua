@@ -63,6 +63,8 @@ function carts.cart:on_rightclick(clicker)
 	if self.driver and player_name == self.driver then
 		self.driver = nil
 		carts:manage_attachment(clicker, false)
+		self.object:setacceleration({x=0, y=0, z=0}) -- Stops the cart when we leave it
+		self.object:setvelocity({x=0, y=0, z=0})
 	elseif not self.driver then
 		self.driver = player_name
 		carts:manage_attachment(clicker, true, self.object)
