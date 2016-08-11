@@ -140,7 +140,7 @@ function carts.cart:on_punch(puncher, time_from_last_punch, tool_capabilities, d
 		if math.abs(vel.x + vel.z) > carts.punch_speed_min then
 			return
 		end
-	end
+	--end --Only the driver can punch
 
 	local punch_dir = carts:velocity_to_dir(puncher:get_look_dir())
 	punch_dir.y = 0
@@ -160,6 +160,7 @@ function carts.cart:on_punch(puncher, time_from_last_punch, tool_capabilities, d
 	self.old_dir = cart_dir
 	self.old_pos = nil
 	self.punched = true
+	end
 end
 
 function carts.cart:on_step(dtime)
