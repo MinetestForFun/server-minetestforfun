@@ -63,6 +63,8 @@ function carts.cart:on_rightclick(clicker)
 	if self.driver and player_name == self.driver then
 		self.driver = nil
 		carts:manage_attachment(clicker, false)
+		self.object:setacceleration({x=0, y=0, z=0}) -- Stops the cart when we leave it
+		self.object:setvelocity({x=0, y=0, z=0})
 	elseif not self.driver then
 		self.driver = player_name
 		carts:manage_attachment(clicker, true, self.object)
@@ -138,7 +140,7 @@ function carts.cart:on_punch(puncher, time_from_last_punch, tool_capabilities, d
 		if math.abs(vel.x + vel.z) > carts.punch_speed_min then
 			return
 		end
-	end
+	--end --Only the driver can punch
 
 	local punch_dir = carts:velocity_to_dir(puncher:get_look_dir())
 	punch_dir.y = 0
@@ -158,6 +160,7 @@ function carts.cart:on_punch(puncher, time_from_last_punch, tool_capabilities, d
 	self.old_dir = cart_dir
 	self.old_pos = nil
 	self.punched = true
+	end
 end
 
 function carts.cart:on_step(dtime)
