@@ -210,24 +210,13 @@ biome_lib:register_generate_plant({
   abstract_bushes.grow_bush
 )
 
- abstract_bushes.grow_youngtree2 = function(pos,unforceful)
+ abstract_bushes.grow_youngtree2 = function(pos)
 	local height = math.random(4,5)
-	return abstract_bushes.grow_youngtree_node2(pos,height,unforceful)
+	return abstract_bushes.grow_youngtree_node2(pos,height)
 end
 
-abstract_bushes.grow_youngtree_node2 = function(pos, height,unforceful)
+abstract_bushes.grow_youngtree_node2 = function(pos, height)
 
-	if unforceful then
-		for y = 1, 4 do
-			local m = 0
-			if (y > 2) then m = 1 end
-			for z = 0, m do
-				if minetest.get_node({x = pos.x, y = pos.y+y, z = pos.z+z}).name ~= "air" then
-					return
-				end
-			end
-		end
-	end
 
 	local right_here = {x=pos.x, y=pos.y+1, z=pos.z}
 	local above_right_here = {x=pos.x, y=pos.y+2, z=pos.z}
@@ -245,32 +234,10 @@ abstract_bushes.grow_youngtree_node2 = function(pos, height,unforceful)
 				minetest.set_node(two_above_right_here_south, {name="bushes:bushbranches2"  , param2=0})
 				minetest.set_node(three_above_right_here, {name="bushes:BushLeaves1" })
 				minetest.set_node(three_above_right_here_south, {name="bushes:BushLeaves1" })
-				return true
 		end
 
 	end
 end
-
-minetest.register_craftitem("bushes:youngtree", {
-	description = "Young tree",
-	inventory_image = "bushes_youngtree.png",
-	on_use = function(stack, _, pointed_thing)
-		if (pointed_thing.type ~= "node") then return end
-		if (abstract_bushes.grow_youngtree2(pointed_thing.under, true)) then
-			stack:set_count(stack:get_count() - 1)
-			return stack
-		end
-	end,
-})
-
-minetest.register_craft({
-	output = "bushes:youngtree",
-	recipe = {
-		{"bushes:BushLeaves1", "default:stick", "bushes:BushLeaves1"},
-		{"", "default:stick", ""},
-		{"", "default:stick", ""},
-	},
-})
 
 biome_lib:register_generate_plant({
     surface = {

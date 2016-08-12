@@ -40,3 +40,6 @@ dofile(cwd.."/sand_swapping.lua")
 
 -- Sapling craft recipes
 dofile(cwd.."/sapling_crafts.lua")
+
+-- Bush seeds
+dofile(cwd.."/bush_seeds.lua")
