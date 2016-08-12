@@ -1,7 +1,7 @@
 minetest.register_craftitem(":bushes:youngtree", {
 	description = "Young tree",
 	inventory_image = "bushes_youngtree.png",
-	on_use = function(stack, _, pointed_thing)
+	on_use = function(stack, user, pointed_thing)
 		if pointed_thing.type ~= "node" then return end
 		local pos = pointed_thing.under
 	
@@ -9,7 +9,7 @@ minetest.register_craftitem(":bushes:youngtree", {
 			local m = 0
 			if (y > 2) then m = 1 end
 			for z = 0, m do
-				if minetest.get_node({x = pos.x, y = pos.y+y, z = pos.z+z}).name ~= "air" then
+				if minetest.get_node({x = pos.x, y = pos.y+y, z = pos.z+z}).name ~= "air" or minetest.is_protected({x = pos.x, y = pos.y+y, z = pos.z+z}, user:get_player_name()) then
 					return
 				end
 			end
