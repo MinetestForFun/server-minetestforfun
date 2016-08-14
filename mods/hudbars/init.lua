@@ -17,7 +17,7 @@ hb.settings.start_offset_left = { x = -175, y = -100 }
 hb.settings.start_offset_right = { x = 15, y = -100 }
 
 hb.settings.vmargin = 24
-hb.settings.tick = 0.1
+hb.settings.tick = 0.5
 
 -- Table which contains all players with active default HUD bars (only for internal use)
 --hb.players = {}
