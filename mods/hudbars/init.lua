@@ -34,6 +34,41 @@ function hb.get_hudtable(identifier)
 	return hb.hudtables[identifier]
 end
 
+-- Local functions
+
+-- update built-in HUD bars
+local function update_hud(player)
+	if minetest.setting_getbool("enable_damage") then
+		--air
+		local breath = player:get_breath()
+
+		if breath == 11 then
+			hb.hide_hudbar(player, "breath")
+		elseif breath then
+			hb.unhide_hudbar(player, "breath")
+			hb.change_hudbar(player, "breath", math.min(breath, 10))
+		end
+
+		--health
+		hb.change_hudbar(player, "health", player:get_hp())
+	end
+end
+
+local function hb_step()
+	--for playername, player in pairs(hb.players) do --MFF (6/03/2016) removed cause server register(bug/lag?) table hb.players[""]
+	for _,player in ipairs(minetest.get_connected_players()) do
+		-- only proceed if damage is enabled
+		if minetest.setting_getbool("enable_damage") then
+		-- update all hud elements
+			update_hud(player)
+		end
+	end
+	minetest.after(hb.settings.tick, hb_step)
+	--minetest.chat_send_all("test")
+end
+
+-- end local functions
+
 function hb.register_hudbar(identifier, text_color, label, textures, default_start_value, default_start_max, default_start_hidden, format_string)
 	local hudtable = {}
 	local pos, offset
@@ -165,6 +200,7 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 	hb.hudbars_count= hb.hudbars_count + 1
 
 	hb.hudtables[identifier] = hudtable
+	minetest.after(0, hb_step)
 end
 
 function hb.init_hudbar(player, identifier, start_value, start_max, start_hidden)
@@ -317,24 +353,6 @@ local function custom_hud(player)
 end
 
 
--- update built-in HUD bars
-local function update_hud(player)
-	if minetest.setting_getbool("enable_damage") then
-		--air
-		local breath = player:get_breath()
-
-		if breath == 11 then
-			hb.hide_hudbar(player, "breath")
-		elseif breath then
-			hb.unhide_hudbar(player, "breath")
-			hb.change_hudbar(player, "breath", math.min(breath, 10))
-		end
-
-		--health
-		hb.change_hudbar(player, "health", player:get_hp())
-	end
-end
-
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	if not name or name == "" then return end
@@ -348,25 +366,6 @@ minetest.register_on_leaveplayer(function(player)
 	hb.players[player:get_player_name()] = nil
 end)
 --]]
-
-local main_timer = 0
-local timer = 0
-minetest.register_globalstep(function(dtime)
-	main_timer = main_timer + dtime
-	timer = timer + dtime
-	if main_timer > hb.settings.tick or timer > 4 then
-		if main_timer > hb.settings.tick then main_timer = 0 end
-		--for playername, player in pairs(hb.players) do --MFF (6/03/2016) removed cause server register(bug/lag?) table hb.players[""]
-		for _,player in ipairs(minetest.get_connected_players()) do
-			-- only proceed if damage is enabled
-			if minetest.setting_getbool("enable_damage") then
-			-- update all hud elements
-				update_hud(player)
-			end
-		end
-	end
-	if timer > 4 then timer = 0 end
-end)
 
 -- Our legacy
 dofile(minetest.get_modpath("hudbars").."/hud_legacy.lua")
