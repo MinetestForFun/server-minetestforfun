@@ -9,10 +9,6 @@ dofile(cwd.."/carbone_init.lua")
 dofile(cwd.."/commands.lua")
 dofile(cwd.."/forbid_underwater_torch.lua")
 
--- Inventory refill function override
--- see https://github.com/MinetestForFun/server-minetestforfun/issues/462
-dofile(cwd.."/inventory_rotate_node.lua")
-
 -- Give initial stuff
 dofile(cwd.."/give_initial_stuff.lua")
 

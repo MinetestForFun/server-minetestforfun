@@ -19,4 +19,4 @@ function minetest.rotate_node(itemstack, placer, pointed_thing)
 		end
 	end
 	return ret
-end 
+end
