@@ -995,6 +995,23 @@ minetest.register_node("default:aspen_sapling", {
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1},
 	sounds = default.node_sound_leaves_defaults(),
+
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(math.random(2400,4800))
+	end,
+
+	on_place = function(itemstack, placer, pointed_thing)
+		itemstack = default.sapling_on_place(itemstack, placer, pointed_thing,
+			"default:aspen_sapling",
+			-- minp, maxp to be checked, relative to sapling pos
+			-- minp_relative.y = 1 because sapling pos has been checked
+			{x = -2, y = 1, z = -2},
+			{x = 2, y = 12, z = 2},
+			-- maximum interval of interior volume check
+			4)
+
+		return itemstack
+	end,
 })
 
 -- From BFD, cherry tree
@@ -1557,7 +1574,8 @@ minetest.register_node("default:dry_grass_1", {
 	sunlight_propagates = true,
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy = 3, flammable = 3, flora = 1, attached_node = 1, dry_grass = 1},
+	groups = {snappy = 3, flammable = 3, flora = 1,
+		attached_node = 1, dry_grass = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1585,8 +1603,8 @@ for i = 2, 5 do
 		sunlight_propagates = true,
 		walkable = false,
 		buildable_to = true,
-		groups = {snappy = 3, flammable = 3, flora = 1,
-			attached_node = 1, not_in_creative_inventory=1, dry_grass = 1},
+		groups = {snappy = 3, flammable = 3, flora = 1, attached_node = 1,
+			not_in_creative_inventory=1, dry_grass = 1},
 		drop = "default:dry_grass_1",
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = {
