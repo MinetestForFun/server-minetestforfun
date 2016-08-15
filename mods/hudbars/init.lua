@@ -200,7 +200,6 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 	hb.hudbars_count= hb.hudbars_count + 1
 
 	hb.hudtables[identifier] = hudtable
-	minetest.after(0, hb_step)
 end
 
 function hb.init_hudbar(player, identifier, start_value, start_max, start_hidden)
@@ -360,6 +359,8 @@ minetest.register_on_joinplayer(function(player)
 	custom_hud(player)
 --	hb.players[name] = player
 end)
+
+minetest.after(0, hb_step)
 
 --[[
 minetest.register_on_leaveplayer(function(player)
