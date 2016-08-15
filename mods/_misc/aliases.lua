@@ -51,12 +51,6 @@ alias("wiki:wiki", "default:bookshelf")
 -- Remove "building_blocks:knife"
 alias("building_blocks:knife", "default:sword_steel")
 
--- Remove "jumping" mod
-alias("jumping:cushion", "wool:dark_green")
-for i = 1, 6 do
-	alias("jumping:trampoline_" .. i, "default:wood")
-end
-
 -- Remove "xmas_tree" from snow mod
 alias("snow:xmas_tree", "default:dirt")
 
