@@ -174,9 +174,9 @@ load_mod_mff_pclasses = true
 load_mod_3d_armor = true
 load_mod_3d_armor_stand = true
 load_mod_reinforcedleather = true
+load_mod_hardenedleather = true
 load_mod_blackmithril = true
 load_mod_technic_armor = false
-load_mod_hardenedleather = true
 load_mod_magicmithril = false
 load_mod_obsidian = false
 load_mod_shields = true
@@ -220,9 +220,7 @@ load_mod_builtin_item = true
 load_mod_email = true
 load_mod_report = true
 
-load_mod_snowdrift = false
 load_mod_snow = true
-load_mod_sounds = false
 
 load_mod_rofl = false
 
