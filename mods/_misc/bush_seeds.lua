@@ -1,7 +1,7 @@
 minetest.register_craftitem(":bushes:youngtree", {
 	description = "Young tree",
 	inventory_image = "bushes_youngtree.png",
-	on_use = function(stack, user, pointed_thing)
+	on_place = function(stack, user, pointed_thing)
 		if pointed_thing.type ~= "node" then return end
 		local pos = pointed_thing.under
 	
