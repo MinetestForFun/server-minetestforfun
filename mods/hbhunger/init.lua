@@ -94,15 +94,11 @@ minetest.register_on_respawnplayer(function(player)
 	hbhunger.exhaustion[name] = 0
 end)
 
-local main_timer = 0
 local timer = 0
 local timer2 = 0
-minetest.register_globalstep(function(dtime)
-	main_timer = main_timer + dtime
-	timer = timer + dtime
-	timer2 = timer2 + dtime
-	if main_timer > HUNGER_HUD_TICK or timer > 10 or timer2 > HUNGER_HUNGER_TICK then
-		if main_timer > HUNGER_HUD_TICK then main_timer = 0 end
+local function hunger_step()
+	timer = timer + HUNGER_HUD_TICK
+	timer2 = timer2 + HUNGER_HUD_TICK
 		for _,player in ipairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
 
@@ -144,9 +140,11 @@ minetest.register_globalstep(function(dtime)
 				hbhunger.handle_node_actions(nil, nil, player)
 			end
 		end
-	end
+	--end
 	if timer > 10 then timer = 0 end
 	if timer2 > HUNGER_HUNGER_TICK then timer2 = 0 end
-end)
+	minetest.after(HUNGER_HUD_TICK, hunger_step)
+end
+minetest.after(0, hunger_step)
 
 end
