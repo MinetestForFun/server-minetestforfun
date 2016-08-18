@@ -222,6 +222,4 @@ load_mod_report = true
 
 load_mod_snow = true
 
-load_mod_rofl = false
-
 load_mod_profilerdumper = true
