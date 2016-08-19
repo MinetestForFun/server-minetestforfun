@@ -17,7 +17,7 @@
 	path = mods/minercantile
 	url = https://github.com/MinetestForFun/minercantile.git
 [submodule "minetestforfun_game/mods/stacktraceplus"]
-	path = minetestforfun_game/mods/stacktraceplus
+	path = mods/stacktraceplus
 	url = https://github.com/MinetestForFun/stacktraceplus.git
 [submodule "mods/profilerdumper"]
 	path = mods/profilerdumper

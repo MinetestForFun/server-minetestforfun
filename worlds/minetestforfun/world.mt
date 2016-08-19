@@ -223,3 +223,4 @@ load_mod_report = true
 load_mod_snow = true
 
 load_mod_profilerdumper = true
+load_mod_stacktraceplus = true
