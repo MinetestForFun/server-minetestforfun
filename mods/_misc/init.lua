@@ -43,3 +43,6 @@ dofile(cwd.."/sapling_crafts.lua")
 
 -- Bush seeds
 dofile(cwd.."/bush_seeds.lua")
+
+--Locked furnace
+dofile(cwd.."/furnace_locked.lua")

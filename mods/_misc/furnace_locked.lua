@@ -47,18 +47,30 @@ local inactive_formspec =
 --
 -- Node callback functions that are the same for active and inactive furnace
 --
+local function has_locked_furnace_privilege(meta, player)
+	if player:get_player_name() ~= meta:get_string("owner") and player:get_player_name() ~= minetest.setting_get("name") then
+		return false
+	end
+	return true
+end
+
 
 local function can_dig(pos, player)
-	local meta = minetest.get_meta(pos);
+	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
-	return inv:is_empty("fuel") and inv:is_empty("dst") and inv:is_empty("src")
+	return has_locked_furnace_privilege(meta, player) and inv:is_empty("fuel") and inv:is_empty("dst") and inv:is_empty("src")
 end
 
 local function allow_metadata_inventory_put(pos, listname, index, stack, player)
-	if minetest.is_protected(pos, player:get_player_name()) then
+	local meta = minetest.get_meta(pos)
+	if not has_locked_furnace_privilege(meta, player) then
+		minetest.log("action", player:get_player_name()..
+				" tried to access a locked furnace belonging to "..
+				meta:get_string("owner").." at "..
+				minetest.pos_to_string(pos) .. ".")
 		return 0
 	end
-	local meta = minetest.get_meta(pos)
+
 	local inv = meta:get_inventory()
 	if listname == "fuel" then
 		if minetest.get_craft_result({method="fuel", width=1, items={stack}}).time ~= 0 then
@@ -84,7 +96,12 @@ local function allow_metadata_inventory_move(pos, from_list, from_index, to_list
 end
 
 local function allow_metadata_inventory_take(pos, listname, index, stack, player)
-	if minetest.is_protected(pos, player:get_player_name()) then
+	local meta = minetest.get_meta(pos)
+	if not has_locked_furnace_privilege(meta, player) then
+		minetest.log("action", player:get_player_name()..
+				" tried to access a locked furnace belonging to "..
+				meta:get_string("owner").." at "..
+				minetest.pos_to_string(pos) .. ".")
 		return 0
 	end
 	return stack:get_count()
@@ -193,20 +210,20 @@ local function furnace_node_timer(pos, elapsed)
 		local fuel_percent = math.floor(fuel_time / fuel_totaltime * 100)
 		fuel_state = fuel_percent .. "%"
 		formspec = active_formspec(fuel_percent, item_percent)
-		swap_node(pos, "default:furnace_active")
+		swap_node(pos, "default:furnace_locked_active")
 		-- make sure timer restarts automatically
 		result = true
 	else
 		if not fuellist[1]:is_empty() then
 			fuel_state = "0%"
 		end
-		swap_node(pos, "default:furnace")
+		swap_node(pos, "default:furnace_locked")
 		-- stop timer on the inactive furnace
 		local timer = minetest.get_node_timer(pos)
 		timer:stop()
 	end
 
-	local infotext = "Furnace " .. active .. "(Item: " .. item_state .. "; Fuel: " .. fuel_state .. ")"
+	local infotext = "Locked Furnace " .. active .."(Item: " .. item_state .. "; Fuel: " .. fuel_state .. ")\n(owned by "..meta:get_string("owner") .. ")"
 
 	--
 	-- Set meta values
@@ -216,7 +233,6 @@ local function furnace_node_timer(pos, elapsed)
 	meta:set_float("src_time", src_time)
 	meta:set_string("formspec", formspec)
 	meta:set_string("infotext", infotext)
-
 	return result
 end
 
@@ -224,23 +240,26 @@ end
 -- Node definitions
 --
 
-minetest.register_node("default:furnace", {
-	description = "Furnace",
+minetest.register_node(":default:furnace_locked", {
+	description = "Locked Furnace",
 	tiles = {
 		"default_furnace_top.png", "default_furnace_bottom.png",
 		"default_furnace_side.png", "default_furnace_side.png",
-		"default_furnace_side.png", "default_furnace_front.png"
+		"default_furnace_side.png", "default_furnace_locked_front.png"
 	},
 	paramtype2 = "facedir",
 	groups = {cracky=2},
 	legacy_facedir_simple = true,
 	is_ground_content = false,
 	sounds = default.node_sound_stone_defaults(),
-
 	can_dig = can_dig,
 
 	on_timer = furnace_node_timer,
-
+	after_place_node = function(pos, placer)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("owner", placer:get_player_name())
+		meta:set_string("infotext", "Locked Furnace (owned by " .. placer:get_player_name() .. ")")
+	end,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec", inactive_formspec)
@@ -264,7 +283,7 @@ minetest.register_node("default:furnace", {
 		default.get_inventory_drops(pos, "src", drops)
 		default.get_inventory_drops(pos, "fuel", drops)
 		default.get_inventory_drops(pos, "dst", drops)
-		drops[#drops+1] = "default:furnace"
+		drops[#drops+1] = "default:furnace_locked"
 		minetest.remove_node(pos)
 		return drops
 	end,
@@ -274,14 +293,14 @@ minetest.register_node("default:furnace", {
 	allow_metadata_inventory_take = allow_metadata_inventory_take,
 })
 
-minetest.register_node("default:furnace_active", {
-	description = "Furnace",
+minetest.register_node(":default:furnace_locked_active", {
+	description = "Locked Furnace",
 	tiles = {
 		"default_furnace_top.png", "default_furnace_bottom.png",
 		"default_furnace_side.png", "default_furnace_side.png",
 		"default_furnace_side.png",
 		{
-			image = "default_furnace_front_active.png",
+			image = "default_furnace_locked_front_active.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -293,7 +312,7 @@ minetest.register_node("default:furnace_active", {
 	},
 	paramtype2 = "facedir",
 	light_source = 8,
-	drop = "default:furnace",
+	drop = "default:furnace_locked",
 	groups = {cracky=2, not_in_creative_inventory=1},
 	legacy_facedir_simple = true,
 	is_ground_content = false,
@@ -307,3 +326,18 @@ minetest.register_node("default:furnace_active", {
 	allow_metadata_inventory_take = allow_metadata_inventory_take,
 })
 
+
+minetest.register_craft({
+	output = "default:furnace_locked",
+	recipe = {
+		{"group:stone", "group:stone", "group:stone"},
+		{"group:stone", "group:ingot", "group:stone"},
+		{"group:stone", "group:stone", "group:stone"},
+	},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "default:furnace_locked",
+	recipe = {"default:furnace", "group:ingot"},
+})
