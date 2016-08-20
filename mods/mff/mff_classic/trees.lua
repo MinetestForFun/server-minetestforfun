@@ -2,7 +2,7 @@ local modname = minetest.get_current_modname()
 
 -- From BFD:
 
-minetest.register_node(modname .. 'mg_cherry_sapling', {
+minetest.register_node(modname .. ':mg_cherry_sapling', {
   description = "Impossible to get node.",
   drawtype = 'airlike',
   paramtype = 'light',
@@ -10,7 +10,7 @@ minetest.register_node(modname .. 'mg_cherry_sapling', {
   groups = {not_in_creative_inventory=1},
 })
 
-local c_mg_cherry_sapling = minetest.get_content_id(modname .. 'mg_cherry_sapling')
+local c_mg_cherry_sapling = minetest.get_content_id(modname .. ':mg_cherry_sapling')
 
 minetest.register_on_generated(function(minp, maxp, seed)
   local timer = os.clock()
