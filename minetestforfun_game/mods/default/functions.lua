@@ -126,6 +126,7 @@ minetest.register_abm({
 --
 -- optimized helper to put all items in an inventory into a drops list
 --
+
 function default.get_inventory_drops(pos, inventory, drops)
 	local inv = minetest.get_meta(pos):get_inventory()
 	local n = #drops
@@ -230,6 +231,7 @@ end
 --
 -- Fence registration helper
 --
+
 function default.register_fence(name, def)
 	minetest.register_craft({
 		output = name .. " 4",
@@ -305,6 +307,8 @@ default.after_place_leaves = function(pos, placer, itemstack, pointed_thing)
 		minetest.set_node(pos, node)
 	end
 end
+
+-- Leafdecay ABM
 
 minetest.register_abm({
 	label = "Leaf decay",
@@ -445,6 +449,7 @@ minetest.register_abm({
 		end
 	end
 })
+
 
 --
 -- Grass and dry grass removed in darkness
