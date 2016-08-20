@@ -523,9 +523,9 @@ minetest.register_node(":maptools:unbreakable_rail", {
 minetest.register_node(":maptools:unbreakable_rail_copper", {
 	description = "Unbreakable Copper Rail",
 	drawtype = "raillike",
-	tiles = {"carts_rail_copper.png", "carts_rail_copper_curved.png", "carts_rail_copper_t_junction.png", "carts_rail_copper_crossing.png"},
-	inventory_image = "carts_rail_copper.png",
-	wield_image = "carts_rail_copper.png",
+	tiles = {"carts_rail_cp.png", "carts_rail_curved_cp.png", "carts_rail_t_junction_cp.png", "carts_rail_crossing_cp.png"},
+	inventory_image = "carts_rail_cp.png",
+	wield_image = "carts_rail_cp.png",
 	paramtype = "light",
 	stack_max = 10000,
 	sunlight_propagates = true,
