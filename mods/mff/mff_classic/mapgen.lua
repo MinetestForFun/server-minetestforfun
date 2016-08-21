@@ -224,7 +224,7 @@ function thismod.generate_nyancats(minp, maxp, seed)
       local y0 = pr:next(minp.y, maxp.y)
       local z0 = pr:next(minp.z, maxp.z)
       local p0 = {x = x0, y = y0, z = z0}
-      default.make_nyancat(p0, pr:next(0, 3), pr:next(10, 15))
+      thismod.make_nyancat(p0, pr:next(0, 3), pr:next(10, 15))
     end
   end
 end

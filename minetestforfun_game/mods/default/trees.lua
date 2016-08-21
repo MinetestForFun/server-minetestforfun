@@ -157,6 +157,7 @@ local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
 	end
 end
 
+default.add_trunk_and_leaves = add_trunk_and_leaves -- MFF edit 2016-08-21
 
 -- Apple tree
 

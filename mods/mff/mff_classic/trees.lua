@@ -1,4 +1,5 @@
 local modname = minetest.get_current_modname()
+local thismod = _G[modname]
 
 -- From BFD:
 
@@ -24,7 +25,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
         local p_pos = area:index(x,y,z)
         local content_id = data[p_pos]
         if content_id == c_mg_cherry_sapling then
-          minetest.after(1, default.grow_cherry_tree,
+          minetest.after(1, thismod.grow_cherry_tree,
             {x=x, y=y, z=z},
             false,
             modname .. ':cherry_tree',
@@ -40,7 +41,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
   minetest.log('action', trees_grown..geninfo)
 end)
 
-function default.grow_cherry_tree(pos, is_apple_tree, trunk_node, leaves_node)
+function thismod.grow_cherry_tree(pos, is_apple_tree, trunk_node, leaves_node)
   --[[
     NOTE: Tree-placing code is currently duplicated in the engine
     and in games that have saplings; both are deprecated but not
@@ -60,7 +61,7 @@ function default.grow_cherry_tree(pos, is_apple_tree, trunk_node, leaves_node)
   local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
   local data = vm:get_data()
 
-  add_trunk_and_leaves(data, a, pos, c_tree, c_leaves, height, 2, 8, is_apple_tree)
+  default.add_trunk_and_leaves(data, a, pos, c_tree, c_leaves, height, 2, 8, is_apple_tree)
 
   vm:set_data(data)
   vm:write_to_map()
