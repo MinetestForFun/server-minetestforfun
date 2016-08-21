@@ -130,6 +130,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			if string.sub(clicked_item, 1, 6) == "group:" then
 				minetest.sound_play("click", {to_player=player_name, gain = 0.1})
 				unified_inventory.apply_filter(player, clicked_item, new_dir)
+				unified_inventory.current_searchbox[player_name] = clicked_item
+				unified_inventory.set_inventory_formspec(player,
+					unified_inventory.current_page[player_name])
 				return
 			end
 			if new_dir == "recipe"
@@ -163,15 +166,21 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 	if fields.searchbutton then
 		unified_inventory.apply_filter(player, unified_inventory.current_searchbox[player_name], "nochange")
-		unified_inventory.current_searchbox[player_name] = ""
 		unified_inventory.set_inventory_formspec(player,
 				unified_inventory.current_page[player_name])
 		minetest.sound_play("paperflip2",
 				{to_player=player_name, gain = 1.0})
+	elseif fields.searchresetbutton then
+		unified_inventory.apply_filter(player, "", "nochange")
+		unified_inventory.current_searchbox[player_name] = ""
+		unified_inventory.set_inventory_formspec(player,
+				unified_inventory.current_page[player_name])
+		minetest.sound_play("click",
+				{to_player=player_name, gain = 0.1})
 	end
 
-	-- alternate button
-	if not fields.alternate then
+	-- alternate buttons
+	if not (fields.alternate or fields.alternate_prev) then
 		return
 	end
 	minetest.sound_play("click",
@@ -188,12 +197,28 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if alternates <= 1 then
 		return
 	end
-	local alternate = unified_inventory.alternate[player_name] + 1
-	if alternate > alternates then
-		alternate = 1
+	local alternate
+	if fields.alternate then
+		alternate = unified_inventory.alternate[player_name] + 1
+		if alternate > alternates then
+			alternate = 1
+		end
+	elseif fields.alternate_prev then
+		alternate = unified_inventory.alternate[player_name] - 1
+		if alternate < 1 then
+			alternate = alternates
+		end
 	end
 	unified_inventory.alternate[player_name] = alternate
 	unified_inventory.set_inventory_formspec(player,
 			unified_inventory.current_page[player_name])
 end)
 
+if minetest.delete_detached_inventory then
+	minetest.register_on_leaveplayer(function(player)
+		local player_name = player:get_player_name()
+		minetest.delete_detached_inventory(player_name.."_bags")
+		minetest.delete_detached_inventory(player_name.."craftrecipe")
+		minetest.delete_detached_inventory(player_name.."refill")
+	end)
+end

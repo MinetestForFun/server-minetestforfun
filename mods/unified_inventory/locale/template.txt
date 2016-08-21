@@ -1,5 +1,8 @@
 # Translation by
 
+### api.lua ###
+Digging (by chance) = 
+
 # Template
 ### bags.lua ###
 Bags = 
@@ -23,16 +26,21 @@ Page =
 %s of %s = 
 Filter = 
 Search = 
+Reset search and display everything = 
 
 ### register.lua ###
 Can use the creative inventory = 
+Forces Unified Inventory to be displayed in Full mode if Lite mode is configured globally =
 Home position set to: %s = 
 Time of day set to 6am = 
 You don't have the settime priviledge! = 
 Time of day set to 9pm = 
 This button has been disabled outside of creative mode to prevent accidental inventory trashing.\nUse the trash slot instead. = 
-Inventory Cleared! = 
+Inventory cleared! = 
 Crafting = 
+Digging = 
+Cooking = 
+Mixing = 
 Trash: = 
 Refill: = 
 Crafting Guide = 
@@ -44,9 +52,35 @@ cooking =
 alloy cooking = 
 Copy to craft grid: = 
 All = 
-Recipe %s of %s = 
 Alternate = 
 Crafting Grid =  
+Show next recipe = 
+Show next usage = 
+Show previous recipe = 
+Show previous usage = 
+# Shown for huge crafting recipes; try to keep the line length short and use multiple line breaks as needed
+This recipe is too\nlarge to be displayed. = 
+# %s = group name (e.g. wool)
+Any item belonging to the %s group = 
+# %s = List of “and”-concatenated group names
+Any item belonging to the groups %s =
+Recipe %d of %d = 
+Usage %d of %d = 
+No recipes =
+No usages =
+Result =
+Ingredient =
+Set time to day =
+Set time to night =
+Set home position =
+Go home =
+Clear inventory =
+Give me: =
+To craft grid: =
+
+### group.lua ###
+# Logical connective, example: “Any item belonging to the groups foo and bar”
+\sand\s = 
 
 ### waypoints.lua ###
 White = 
@@ -55,6 +89,7 @@ Red =
 Green = 
 Blue = 
 Waypoints = 
+Waypoint %d = 
 Waypoint active = 
 Waypoint inactive = 
 World position = 

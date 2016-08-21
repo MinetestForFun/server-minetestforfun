@@ -4,16 +4,17 @@
 -- License: GPLv3
 
 local S = unified_inventory.gettext
+local F = unified_inventory.fgettext
 
 unified_inventory.register_page("bags", {
 	get_formspec = function(player)
 		local player_name = player:get_player_name()
 		local formspec = "background[0.06,0.99;7.92,7.52;ui_bags_main_form.png]"
-		formspec = formspec.."label[0,0;"..S("Bags").."]"
-		formspec = formspec.."button[0,2;2,0.5;bag1;Bag 1]" .. "button[0,3;2,0.5;unequip_bag1;Unequip]"
-		formspec = formspec.."button[2,2;2,0.5;bag2;Bag 2]" .. "button[2,3;2,0.5;unequip_bag2;Unequip]"
-		formspec = formspec.."button[4,2;2,0.5;bag3;Bag 3]" .. "button[4,3;2,0.5;unequip_bag3;Unequip]"
-		formspec = formspec.."button[6,2;2,0.5;bag4;Bag 4]" .. "button[6,3;2,0.5;unequip_bag4;Unequip]"
+		formspec = formspec.."label[0,0;"..F("Bags").."]"
+		formspec = formspec.."button[0,2;2,0.5;bag1;"..F("Bag 1").."]" .. "button[0,3;2,0.5;unequip_bag1;Unequip]"
+		formspec = formspec.."button[2,2;2,0.5;bag2;"..F("Bag 2").."]" .. "button[2,3;2,0.5;unequip_bag2;Unequip]"
+		formspec = formspec.."button[4,2;2,0.5;bag3;"..F("Bag 3").."]" .. "button[4,3;2,0.5;unequip_bag3;Unequip]"
+		formspec = formspec.."button[6,2;2,0.5;bag4;"..F("Bag 4").."]" .. "button[6,3;2,0.5;unequip_bag4;Unequip]"
 		formspec = formspec.."listcolors[#00000000;#00000000]"
 		formspec = formspec.."list[detached:"..minetest.formspec_escape(player_name).."_bags;bag1;0.5,1;1,1;]"
 		formspec = formspec.."list[detached:"..minetest.formspec_escape(player_name).."_bags;bag2;2.5,1;1,1;]"
@@ -37,7 +38,7 @@ unified_inventory.register_button("bags", {
 			local stack = player:get_inventory():get_stack("bag1", 1)
 			local image = stack:get_definition().inventory_image
 			local formspec = "image[7,0;1,1;"..image.."]"
-			formspec = formspec.."label[0,0;Bag 1]"
+			formspec = formspec.."label[0,0;"..F("Bag 1").."]"
 			formspec = formspec.."listcolors[#00000000;#00000000]"
 			formspec = formspec.."list[current_player;bag1contents;0,1;8,3;]"
 			formspec = formspec.."listring[current_name;bag1contents]"
@@ -58,7 +59,7 @@ unified_inventory.register_button("bags", {
 			local stack = player:get_inventory():get_stack("bag2", 1)
 			local image = stack:get_definition().inventory_image
 			local formspec = "image[7,0;1,1;"..image.."]"
-			formspec = formspec.."label[0,0;Bag 2]"
+			formspec = formspec.."label[0,0;"..F("Bag 2").."]"
 			formspec = formspec.."listcolors[#00000000;#00000000]"
 			formspec = formspec.."list[current_player;bag2contents;0,1;8,3;]"
 			formspec = formspec.."listring[current_name;bag2contents]"
@@ -79,7 +80,7 @@ unified_inventory.register_button("bags", {
 			local stack = player:get_inventory():get_stack("bag3", 1)
 			local image = stack:get_definition().inventory_image
 			local formspec = "image[7,0;1,1;"..image.."]"
-			formspec = formspec.."label[0,0;Bag 3]"
+			formspec = formspec.."label[0,0;"..F("Bag 3").."]"
 			formspec = formspec.."listcolors[#00000000;#00000000]"
 			formspec = formspec.."list[current_player;bag3contents;0,1;8,3;]"
 			formspec = formspec.."listring[current_name;bag3contents]"
@@ -100,7 +101,7 @@ unified_inventory.register_button("bags", {
 			local stack = player:get_inventory():get_stack("bag4", 1)
 			local image = stack:get_definition().inventory_image
 			local formspec = "image[7,0;1,1;"..image.."]"
-			formspec = formspec.."label[0,0;Bag 4]"
+			formspec = formspec.."label[0,0;"..F("Bag 4").."]"
 			formspec = formspec.."listcolors[#00000000;#00000000]"
 			formspec = formspec.."list[current_player;bag4contents;0,1;8,3;]"
 			formspec = formspec.."listring[current_name;bag4contents]"
@@ -232,7 +233,7 @@ for _, colour in pairs(colours) do
 			{"dye:"..colour,           "unified_inventory:bag_small"},
 		},
 	})
-	
+
 	minetest.register_craft({
 		output = "unified_inventory:bag_medium_" .. colour,
 		recipe = {

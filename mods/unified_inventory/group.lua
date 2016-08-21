@@ -1,3 +1,5 @@
+local S = unified_inventory.gettext
+
 function unified_inventory.canonical_item_spec_matcher(spec)
 	local specname = ItemStack(spec):get_name()
 	if specname:sub(1, 6) == "group:" then
@@ -21,9 +23,36 @@ function unified_inventory.item_matches_spec(item, spec)
 	return unified_inventory.canonical_item_spec_matcher(spec)(itemname)
 end
 
+function unified_inventory.extract_groupnames(groupname)
+	local specname = ItemStack(groupname):get_name()
+	if specname:sub(1, 6) == "group:" then
+		local group_names = specname:sub(7):split(",")
+		if #group_names == 1 then
+			return group_names[1], 1
+		end
+		local s = ""
+		for g=1,#group_names do
+			if g > 1 then
+				-- List connector
+				s = s .. S(" and ")
+			end
+			s = s .. group_names[g]
+		end
+		return s, #group_names
+	else
+		return nil, 0
+	end
+end
+
 unified_inventory.registered_group_items = {
 	mesecon_conductor_craftable = "mesecons:wire_00000000_off",
 	stone = "default:cobble",
+	wood = "default:wood",
+	book = "default:book",
+	sand = "default:sand",
+	leaves = "default:leaves",
+	tree = "default:tree",
+	vessel = "vessels:glass_bottle",
 	wool = "wool:white",
 	ingot = "default:steel_ingot",
 }
