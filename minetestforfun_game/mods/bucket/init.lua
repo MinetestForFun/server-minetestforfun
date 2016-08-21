@@ -3,6 +3,7 @@
 
 minetest.register_alias("bucket", "bucket:bucket_empty")
 minetest.register_alias("bucket_water", "bucket:bucket_water")
+minetest.register_alias("bucket_acid", "bucket:bucket_acid")
 minetest.register_alias("bucket_lava", "bucket:bucket_lava")
 
 minetest.register_craft({
@@ -52,7 +53,6 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 			stack_max = 1,
 			liquids_pointable = true,
 			groups = groups,
-
 			on_place = function(itemstack, user, pointed_thing)
 				-- Must be pointing to node
 				if pointed_thing.type ~= "node" then
@@ -60,8 +60,10 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 				end
 
 				local node = minetest.get_node_or_nil(pointed_thing.under)
-				local ndef = node and minetest.registered_nodes[node.name]
-
+				local ndef
+				if node then
+					ndef = minetest.registered_nodes[node.name]
+				end
 				-- Call on_rightclick if the pointed node defines it
 				if ndef and ndef.on_rightclick and
 				   user and not user:get_player_control().sneak then
@@ -104,6 +106,8 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 	end
 end
 
+-- Empty Bucket code by Casimir.
+
 minetest.register_craftitem("bucket:bucket_empty", {
 	description = "Empty Bucket",
 	inventory_image = "bucket.png",
@@ -141,7 +145,7 @@ minetest.register_craftitem("bucket:bucket_empty", {
 				else
 					local pos = user:getpos()
 					pos.y = math.floor(pos.y + 0.5)
-					minetest.add_item(pos, liquiddef.itemname)
+					core.add_item(pos, liquiddef.itemname)
 				end
 
 				-- set to return empty buckets minus 1
@@ -182,6 +186,24 @@ bucket.register_liquid(
 	"Lava Bucket"
 )
 
+bucket.register_liquid(
+	"default:acid_source",
+	"default:acid_flowing",
+	"bucket:bucket_acid",
+	"bucket_acid.png",
+	"Acid Bucket",
+	{not_in_creative_inventory = 1}
+)
+
+bucket.register_liquid(
+	"default:sand_source",
+	"default:sand_flowing",
+	"bucket:bucket_sand",
+	"bucket_sand.png",
+	"Sand Bucket",
+	{not_in_creative_inventory = 1}
+)
+
 minetest.register_craft({
 	type = "fuel",
 	recipe = "bucket:bucket_lava",
@@ -189,3 +211,11 @@ minetest.register_craft({
 	replacements = {{"bucket:bucket_lava", "bucket:bucket_empty"}},
 })
 
+minetest.register_craft({
+	output = "bucket:bucket_sand",
+	recipe = {
+		{"group:sand"},
+		{"group:sand"},
+		{"bucket:bucket_water"},
+	},
+})

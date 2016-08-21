@@ -124,12 +124,12 @@ local monsters = {
 	["mobs:cow"] = "cow",
 	["mobs:creeper"] = "creeper",
 	["mobs:dog"] = "dog",
-	["mobs:greenbig"] = "big green slime",
-	["mobs:greenmedium"] = "medium green slime",
-	["mobs:greensmall"] = "small green slime",
-	["mobs:lavabig"] = "big lava slime",
-	["mobs:lavamedium"] = "medium lava slime",
-	["mobs:lavasmall"] = "small lava slime",
+	["mobs:greenbig"] = "big green slim",
+	["mobs:greenmedium"] = "medium green slim",
+	["mobs:greensmall"] = "small green slim",
+	["mobs:lavabig"] = "big lava slim",
+	["mobs:lavamedium"] = "medium lava slim",
+	["mobs:lavasmall"] = "small lava slim",
 	["mobs:yeti"] = "yeti",
 	["mobs:snowball"] = "yeti",
 	["mobs:npc"] = "npc",
@@ -197,11 +197,6 @@ minetest.register_on_respawnplayer(function(player)
 	whacked[player:get_player_name()] = nil
 end)
 
-local function equiv(what, to)
-	what = (type(what) ~= 'string') and what.name or what
-	return what == to or minetest.registered_aliases[what] == to
-end
-
 if RANDOM_MESSAGES == true then
 	minetest.register_on_dieplayer(function(player)
 		local player_name = player:get_player_name()
@@ -224,10 +219,10 @@ if RANDOM_MESSAGES == true then
 			elseif player:get_breath() == 0 and node.groups.water then
 				death_message = messages.water[math.random(1,#messages.water)]
 			-- Death by fire
-			elseif equiv(node, "fire:basic_flame") then
+			elseif node.name == "fire:basic_flame" then
 				death_message = messages.fire[math.random(1,#messages.fire)]
 			-- Death in quicksand
-			elseif player:get_breath() == 0 and equiv(node, "default:sand_source") or equiv(node, "default:sand_flowing") then
+			elseif player:get_breath() == 0 and node.name == "default:sand_source" or node.name == "default:sand_flowing" then
 				death_message = messages.sand[math.random(1,#messages.sand)]
 			-- Death by something else
 			else
@@ -259,7 +254,7 @@ else
 			elseif player:get_breath() == 0 then
 				minetest.chat_send_all(player_name .. " ran out of air.")
 			-- Death by fire
-			elseif equiv(node, "fire:basic_flame") then
+			elseif node.name == "fire:basic_flame" then
 				minetest.chat_send_all(player_name .. " burned to a crisp.")
 			-- Death by something else
 			else

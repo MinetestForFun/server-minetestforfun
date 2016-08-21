@@ -301,6 +301,150 @@ function default.register_ores()
 		flags          = "absheight",
 	})
 
+	-- Beware of Meze
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:meze",
+		wherein        = "default:stone",
+		clust_scarcity = 40 * 40 * 40,
+		clust_num_ores = 3,
+		clust_size     = 2,
+		y_min          = 0,
+		y_max          = 64,
+		flags          = "absheight",
+	})
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:meze",
+		wherein        = "default:desert_stone",
+		clust_scarcity = 40 * 40 * 40,
+		clust_num_ores = 3,
+		clust_size     = 2,
+		y_min          = 0,
+		y_max          = 64,
+		flags          = "absheight",
+	})
+
+
+	-- Tin
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_tin",
+		wherein	       = "default:stone",
+		clust_scarcity = 7 * 7 * 7,
+		clust_num_ores = 3,
+		clust_size     = 7,
+		y_min	       = -31000,
+		y_max          = 12,
+	})
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:desert_stone_with_tin",
+		wherein	       = "default:desert_stone",
+		clust_scarcity = 7 * 7 * 7,
+		clust_num_ores = 3,
+		clust_size     = 7,
+		y_min	       = -31000,
+		y_max          = 12,
+	})
+
+	-- Silver
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_silver",
+		wherein	       = "default:stone",
+		clust_scarcity = 11 * 11 * 11,
+		clust_num_ores = 4,
+		clust_size     = 11,
+		y_min	       = -31000,
+		y_max          = -12,
+	})
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:desert_stone_with_silver",
+		wherein	       = "default:desert_stone",
+		clust_scarcity = 11 * 11 * 11,
+		clust_num_ores = 4,
+		clust_size     = 11,
+		y_min	       = -31000,
+		y_max          = -12,
+	})
+
+	-- Mithril
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_mithril",
+		wherein	       = "default:stone",
+		clust_scarcity = 11 * 11 * 11,
+		clust_num_ores = 1,
+		clust_size     = 11,
+		y_min	       = -31000,
+		y_max          = -1024,
+	})
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_mithril",
+		wherein	       = "default:stone",
+		clust_scarcity = 15 * 15 * 15,
+		clust_num_ores = 2,
+		clust_size     = 3,
+		y_min	       = -31000,
+		y_max          = -2048,
+	})
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_mithril",
+		wherein	       = "default:stone",
+		clust_scarcity = 22 * 22 * 22,
+		clust_num_ores = 5,
+		clust_size     = 5,
+		y_min	       = -31000,
+		y_max          = -4096,
+	})
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_mithril",
+		wherein	       = "default:stone",
+		clust_scarcity = 28 * 28 * 28,
+		clust_num_ores = 20,
+		clust_size     = 7,
+		y_min	       = -31000,
+		y_max          = -12288,
+	})
+
+	-- Gold
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_gold",
+		wherein        = "default:stone",
+		clust_scarcity = 15 * 15 * 15,
+		clust_num_ores = 3,
+		clust_size     = 2,
+		y_min          = -255,
+		y_max          = -64,
+	})
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_gold",
+		wherein        = "default:stone",
+		clust_scarcity = 13 * 13 * 13,
+		clust_num_ores = 5,
+		clust_size     = 3,
+		y_min          = -30000,
+		y_max          = -256,
+	})
 
 	-- Diamond
 
@@ -370,6 +514,20 @@ function default.register_ores()
 		clust_size     = 3,
 		y_min          = -30000,
 		y_max          = -64,
+	})
+
+	-- Gold Coins
+
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "default:stone_with_coin",
+		wherein        = "default:stone",
+		clust_scarcity = 26 * 26 * 26,
+		clust_num_ores = 1,
+		clust_size     = 1,
+		y_min          = -30000,
+		y_max          = 0,
+		flags          = "absheight",
 	})
 
 	-- Super Apples
@@ -1230,6 +1388,23 @@ function default.register_mgv6_decorations()
 		y_max = 30,
 		decoration = "default:dry_shrub",
 	})
+
+	-- Cherry tree
+	minetest.register_decoration({
+		deco_type = "simple",
+		place_on = "default:dirt_with_grass",
+		sidelen = 16,
+		noise_params = {
+			offset = 0,
+			scale = 0.005,
+			spread = {x=100, y=100, z=100},
+			seed = 278,
+			octaves = 2,
+			persist = 0.7
+		},
+		decoration = "default:mg_cherry_sapling",
+		height = 1,
+	})
 end
 
 -- All mapgens except mgv6 and singlenode
@@ -1650,15 +1825,72 @@ end
 
 
 --
+-- Generate nyan cats
+--
+
+-- All mapgens except singlenode
+
+function default.make_nyancat(pos, facedir, length)
+	local tailvec = {x = 0, y = 0, z = 0}
+	if facedir == 0 then
+		tailvec.z = 1
+	elseif facedir == 1 then
+		tailvec.x = 1
+	elseif facedir == 2 then
+		tailvec.z = -1
+	elseif facedir == 3 then
+		tailvec.x = -1
+	else
+		facedir = 0
+		tailvec.z = 1
+	end
+	local p = {x = pos.x, y = pos.y, z = pos.z}
+	minetest.set_node(p, {name = "default:nyancat", param2 = facedir})
+	for i = 1, length do
+		p.x = p.x + tailvec.x
+		p.z = p.z + tailvec.z
+		minetest.set_node(p, {name = "default:nyancat_rainbow", param2 = facedir})
+	end
+end
+
+function default.generate_nyancats(minp, maxp, seed)
+	local height_min = -19600
+	local height_max = 30000
+	if maxp.y < height_min or minp.y > height_max then
+		return
+	end
+	local y_min = math.max(minp.y, height_min)
+	local y_max = math.min(maxp.y, height_max)
+	local volume = (maxp.x - minp.x + 1) * (y_max - y_min + 1) * (maxp.z - minp.z + 1)
+	local pr = PseudoRandom(seed + 9324342)
+	local max_num_nyancats = math.floor(volume / (16 * 16 * 16))
+	for i = 1, max_num_nyancats do
+		if pr:next(0, 1000) == 0 then
+			local x0 = pr:next(minp.x, maxp.x)
+			local y0 = pr:next(minp.y, maxp.y)
+			local z0 = pr:next(minp.z, maxp.z)
+			local p0 = {x = x0, y = y0, z = z0}
+			default.make_nyancat(p0, pr:next(0, 3), pr:next(10, 15))
+		end
+	end
+end
+
+
+--
 -- Detect mapgen to select functions
 --
 
-local mg_name = minetest.get_mapgen_params().name
-if mg_name == "v6" then
+-- Mods using singlenode mapgen can call these functions to enable
+-- the use of minetest.generate_ores or minetest.generate_decorations
+
+local mg_params = minetest.get_mapgen_params()
+if mg_params.mgname == "v6" then
 	default.register_ores()
 	default.register_mgv6_decorations()
-else
+	minetest.register_on_generated(default.generate_nyancats)
+elseif mg_params.mgname ~= "singlenode" then
 	default.register_biomes()
 	default.register_ores()
 	default.register_decorations()
+	minetest.register_on_generated(default.generate_nyancats)
 end
