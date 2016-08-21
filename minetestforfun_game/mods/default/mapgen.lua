@@ -1230,23 +1230,6 @@ function default.register_mgv6_decorations()
 		y_max = 30,
 		decoration = "default:dry_shrub",
 	})
-
-	-- Cherry tree
-	minetest.register_decoration({
-		deco_type = "simple",
-		place_on = "default:dirt_with_grass",
-		sidelen = 16,
-		noise_params = {
-			offset = 0,
-			scale = 0.005,
-			spread = {x=100, y=100, z=100},
-			seed = 278,
-			octaves = 2,
-			persist = 0.7
-		},
-		decoration = "default:mg_cherry_sapling",
-		height = 1,
-	})
 end
 
 -- All mapgens except mgv6 and singlenode
@@ -1667,72 +1650,15 @@ end
 
 
 --
--- Generate nyan cats
---
-
--- All mapgens except singlenode
-
-function default.make_nyancat(pos, facedir, length)
-	local tailvec = {x = 0, y = 0, z = 0}
-	if facedir == 0 then
-		tailvec.z = 1
-	elseif facedir == 1 then
-		tailvec.x = 1
-	elseif facedir == 2 then
-		tailvec.z = -1
-	elseif facedir == 3 then
-		tailvec.x = -1
-	else
-		facedir = 0
-		tailvec.z = 1
-	end
-	local p = {x = pos.x, y = pos.y, z = pos.z}
-	minetest.set_node(p, {name = "default:nyancat", param2 = facedir})
-	for i = 1, length do
-		p.x = p.x + tailvec.x
-		p.z = p.z + tailvec.z
-		minetest.set_node(p, {name = "default:nyancat_rainbow", param2 = facedir})
-	end
-end
-
-function default.generate_nyancats(minp, maxp, seed)
-	local height_min = -19600
-	local height_max = 30000
-	if maxp.y < height_min or minp.y > height_max then
-		return
-	end
-	local y_min = math.max(minp.y, height_min)
-	local y_max = math.min(maxp.y, height_max)
-	local volume = (maxp.x - minp.x + 1) * (y_max - y_min + 1) * (maxp.z - minp.z + 1)
-	local pr = PseudoRandom(seed + 9324342)
-	local max_num_nyancats = math.floor(volume / (16 * 16 * 16))
-	for i = 1, max_num_nyancats do
-		if pr:next(0, 1000) == 0 then
-			local x0 = pr:next(minp.x, maxp.x)
-			local y0 = pr:next(minp.y, maxp.y)
-			local z0 = pr:next(minp.z, maxp.z)
-			local p0 = {x = x0, y = y0, z = z0}
-			default.make_nyancat(p0, pr:next(0, 3), pr:next(10, 15))
-		end
-	end
-end
-
-
---
 -- Detect mapgen to select functions
 --
 
--- Mods using singlenode mapgen can call these functions to enable
--- the use of minetest.generate_ores or minetest.generate_decorations
-
-local mg_params = minetest.get_mapgen_params()
-if mg_params.mgname == "v6" then
+local mg_name = minetest.get_mapgen_params().name
+if mg_name == "v6" then
 	default.register_ores()
 	default.register_mgv6_decorations()
-	minetest.register_on_generated(default.generate_nyancats)
-elseif mg_params.mgname ~= "singlenode" then
+else
 	default.register_biomes()
 	default.register_ores()
 	default.register_decorations()
-	minetest.register_on_generated(default.generate_nyancats)
 end

@@ -188,16 +188,6 @@ minetest.register_craftitem("default:copper_lump", {
 	inventory_image = "default_copper_lump.png",
 })
 
-minetest.register_craftitem("default:tin_lump", {
-	description = "Tin Lump",
-	inventory_image = "default_tin_lump.png",
-})
-
-minetest.register_craftitem("default:silver_lump", {
-	description = "Silver Lump",
-	inventory_image = "default_silver_lump.png",
-})
-
 minetest.register_craftitem("default:mese_crystal", {
 	description = "Mese Crystal",
 	inventory_image = "default_mese_crystal.png",
@@ -206,11 +196,6 @@ minetest.register_craftitem("default:mese_crystal", {
 minetest.register_craftitem("default:gold_lump", {
 	description = "Gold Lump",
 	inventory_image = "default_gold_lump.png",
-})
-
-minetest.register_craftitem("default:mithril_lump", {
-	description = "Mithril Lump",
-	inventory_image = "default_mithril_lump.png",
 })
 
 minetest.register_craftitem("default:diamond", {
@@ -236,21 +221,9 @@ minetest.register_craftitem("default:copper_ingot", {
 	groups = {ingot = 1},
 })
 
-minetest.register_craftitem("default:tin_ingot", {
-	description = "Tin Ingot",
-	inventory_image = "default_tin_ingot.png",
-	groups = {ingot = 1},
-})
-
 minetest.register_craftitem("default:bronze_ingot", {
 	description = "Bronze Ingot",
 	inventory_image = "default_bronze_ingot.png",
-	groups = {ingot = 1},
-})
-
-minetest.register_craftitem("default:silver_ingot", {
-	description = "Silver Ingot",
-	inventory_image = "default_silver_ingot.png",
 	groups = {ingot = 1},
 })
 
@@ -265,20 +238,9 @@ minetest.register_craftitem("default:mese_crystal_fragment", {
 	inventory_image = "default_mese_crystal_fragment.png",
 })
 
-minetest.register_craftitem("default:mithril_ingot", {
-	description = "Mithril Ingot",
-	groups = {ingot = 1},
-	inventory_image = "default_mithril_ingot.png",
-})
-
 minetest.register_craftitem("default:clay_brick", {
 	description = "Clay Brick",
 	inventory_image = "default_clay_brick.png",
-})
-
-minetest.register_craftitem("default:scorched_stuff", {
-	description = "Scorched Stuff",
-	inventory_image = "default_scorched_stuff.png",
 })
 
 minetest.register_craftitem("default:obsidian_shard", {

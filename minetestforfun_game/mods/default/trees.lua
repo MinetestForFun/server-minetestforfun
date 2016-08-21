@@ -429,6 +429,7 @@ function default.grow_new_aspen_tree(pos)
 		path, "0", nil, false)
 end
 
+
 --
 -- Sapling 'on place' function to check protection of node and resulting tree volume
 --
