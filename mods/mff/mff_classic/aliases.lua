@@ -33,3 +33,8 @@ do -- moreores
   minetest.register_alias('silver_block', modname .. ':silverblock')
   minetest.register_alias('tin_block', modname .. ':tinblock')
 end
+
+minetest.register_alias('bucket_acid', modname .. ':bucket_acid')
+minetest.register_alias('bucket:bucket_acid', modname .. ':bucket_acid')
+minetest.register_alias('bucket_sand', modname .. ':bucket_sand')
+minetest.register_alias('bucket:bucket_sand', modname .. ':bucket_sand')
