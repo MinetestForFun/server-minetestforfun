@@ -1,6 +1,7 @@
 local modname = minetest.get_current_modname()
 local thismod = _G[modname]
 
+local random = math.random
 -- From BFD:
 
 minetest.register_node(modname .. ':mg_cherry_sapling', {

@@ -142,7 +142,7 @@ minetest.register_node(modname .. ':cherry_tree', {
   is_ground_content = false,
   groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
   sounds = default.node_sound_wood_defaults(),
-  drop = modname .. 'cherry_log'
+  drop = modname .. ':cherry_log'
 })
 
 minetest.register_node(modname .. ':cherry_log', {
@@ -202,7 +202,7 @@ minetest.register_node(modname .. ':cherry_leaves_deco', {
   is_ground_content = false,
   groups = {snappy=3, flammable=2, leaves=1},
   sounds = default.node_sound_leaves_defaults(),
-  drop = {modname .. 'cherry_blossom_leaves'},
+  drop = {modname .. ':cherry_blossom_leaves'},
 })
 
 minetest.register_node(modname .. ':cherry_sapling', {
