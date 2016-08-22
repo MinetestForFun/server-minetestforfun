@@ -22,3 +22,6 @@
 [submodule "mods/profilerdumper"]
 	path = mods/profilerdumper
 	url = https://github.com/MinetestForFun/profilerdumper.git
+[submodule "mods/xban2"]
+	path = mods/xban2
+	url = https://github.com/MinetestForFun/xban2.git
