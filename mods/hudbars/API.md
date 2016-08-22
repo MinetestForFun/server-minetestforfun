@@ -1,4 +1,4 @@
-API documentation for the HUD bars mod 1.2.1
+API documentation for the HUD bars mod 1.4.1
 ============================================
 
 ## Introduction
@@ -50,8 +50,9 @@ This function registers a new custom HUD bar definition to the HUD bars mod, so 
 and unhidden on a per-player basis.
 Note this does not yet display the HUD bar.
 
-The HUD bars will be displayed in a “first come, first serve” order. This mod does not allow fow a custom order or a way to set it
-manually in a reliable way.
+The HUD bars will be displayed in a “first come, first serve” order. This API does not allow fow a custom order or a way to set it
+manually in a reliable way. However, you can use the setting `hudbars_sorting` for this. See the advanced setting menu in Minetest
+for more information.
 
 
 #### Parameters
@@ -99,22 +100,39 @@ Always `nil`.
 
 
 ## Modifying a HUD bar
-After a HUD bar has been added, you can change the current and maximum value on a per-player basis.
+After a HUD bar has been added, you can change the current and maximum value and other attributes on a per-player basis.
 You use the function `hb.change_hudbar` for this.
 
-### `hb.change_hudbar(player, identifier, new_value, new_max_value)`
-Changes the values of an initialized HUD bar for a certain player. `new_value` and `new_max_value`
-can be `nil`; if one of them is `nil`, that means the value is unchanged. If both values
-are `nil`, this function is a no-op.
-This function also tries minimize the amount of calls to `hud_change` of the Minetest Lua API, and
-therefore, network traffic. `hud_change` is only called if it is actually needed, i.e. when the
-actual length of the bar or the displayed string changed, so you do not have to worry about it.
+### `hb.change_hudbar(player, identifier, new_value, new_max_value, new_icon, new_bgicon, new_bar, new_label, new_text_color)`
+Changes the values and the appearance of an initialized HUD bar for a certain player. `new_value`
+and `new_max_value` are the most important parameters as they specify the new current and maximum new values, you do not need
+to worry too much about the other parameters.
+
+The following parameters are less important and provided for styling the HUD bar after registration (if
+this is desired). The “styling” parameters parallel the parameters of `hb.register_hudbar`. It is
+recommended to not change the style of a HUD bar too often as this can be distracting or confusing
+for players.
+
+`new_value`, `new_max_value` `new_icon`, `new_bgicon`, `new_bar`, `new_label` and `new_text_color` can be
+`nil`; if one of them is `nil`, that means the value is unchanged. If all those values are `nil`, this
+function is a no-op.
+
+This function tries to minimize the amount of calls to `hud_change` of the Minetest Lua API
+(and thus, network traffic), when you only change the value and/or  maximum value. In this case,
+`hud_change` is only called if it is actually needed, e.g. when the actual length of the bar
+or the displayed string changed, so you do not have to worry about it. There is, however, no
+such network optimization for the “styling” parameters, so keep this in mind.
 
 #### Parameters
 * `player`: `ObjectRef` of the player to which the HUD bar belongs to
 * `identifier`: The identifier of the HUD bar type to change, as specified in `hb.register_hudbar`.
 * `new_value`: The new current value of the HUD bar
 * `new_max_value`: The new maximum value of the HUD bar
+* `new_icon`: File name of the new icon
+* `new_bgicon`: File name of the new background icon for the modern-style statbar
+* `new_bar`: File name of the new bar segment image
+* `new_label`: A new text label of the HUD bar. Note the format string still applies
+* `new_text_color`: A 3-octet number defining the new color of the text.
 
 #### Return value
 Always `nil`.

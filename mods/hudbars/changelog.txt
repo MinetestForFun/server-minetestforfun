@@ -64,3 +64,20 @@ as of version 2.0.0 of the standard <http://semver.org/>.
 1.2.1
 -----
 - Fix crash when enable_damage is changed in mid-game
+
+1.3.0
+-----
+- Make all settings avaialbe in Minetest's advanced settings menu
+- Fix HUD bars overlap when both hudbars_tick and hudbars_vmargin were set
+- Use Markdown syntax in readme file
+- Fix some factual mistakes in readme file
+- Add metadata: mod.conf, description.txt, screenshot.png
+
+1.4.0
+-----
+- Allow to change HUD bar images and label after it has been registered
+- Minor API.md correction
+
+1.4.1
+-----
+- Fix bug in hb.change_hudbar being a no-op if new_value and new_max value are nil
