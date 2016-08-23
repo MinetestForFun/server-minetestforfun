@@ -25,3 +25,9 @@
 [submodule "mods/xban2"]
 	path = mods/xban2
 	url = https://github.com/MinetestForFun/xban2.git
+[submodule "mods/areas"]
+	path = mods/areas
+	url = https://github.com/MinetestForFun/areas.git
+[submodule "mods/name_restrictions"]
+	path = mods/name_restrictions
+	url = https://github.com/MinetestForFun/name_restrictions.git
