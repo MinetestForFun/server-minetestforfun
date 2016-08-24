@@ -7,6 +7,16 @@ Introduce the Wizard class : do you like magic things ?
 Introduce the Ingineer class : do you like build and dig things ?
 
 ---Patch Notes---
+---24/08/2016-- (Thanks to : ElementW, crabman77/crabman, LeMagnesium/Mg)
+Addition of "mysql_auth" (Now user nickname/password/privileges/... are stored in a secure and fast MariaDB database)
+Update of "areas", "name_restrictions" and xban2 (Now compatible with mysql_auth)
+Update of "hudbars" (Remove old duplicated code/textures, the HUD will be faster than before)
+Update of "mff_classic" (Fix unknow item and missing var, on the mapgen we fix nyancats and cherry tree generation)
+Update "unified_inventory" (Code improvments)
+Update of "irc_modpack" (Fix crash on auth_table, code improvments)
+Update of "mff_classic/furnace" (Remove old furnace ABMs and rewrite locked furnace code, performance improvments)
+Update of "carts" (Added missing textures and change textures name because remplaced by boost_carts textures)
+
 ---08/08/2016-- (Thanks to : LeMagnesium/Mg, crabman77/crabman, Coethium, ElementW, ezam/ezamlinux)
 Update of "boost_cart" (Do not need mesecons to activate power rails, rails accelerate and max speed set to an highter value, brake rails now deccelerate correctly and add a minimum speed feature on brake rails, all rails -except brakes rails- don't have frictions, so they keep their speed indefinitly, finally, we removed collision to erased the "walled_in" bug)
 Addition of "boost_cart" (Less CPU utilization, less buggy, more up-to-date)
