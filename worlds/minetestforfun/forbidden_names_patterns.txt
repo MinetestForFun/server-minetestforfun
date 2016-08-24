@@ -1,0 +1,19 @@
+return {
+	["^guest[0-9]+"] = "Guest accounts are disallowed on this server." ..
+	                   " Please choose a proper name and try again.",
+	["^sadie[0-9]+"] = "Guest accounts are disallowed on this server." ..
+			   " Please choose a proper name (and client) and try again.",
+	["^player[0-9]+"] = "Guest accounts are disallowed on this server." ..
+			   " Please choose a proper name (and client) and try again.",
+	["[4a]dm[1il]n"] = "Misleading name." ..
+					   " Please choose a proper name and try again.",
+	["moder[4a]tor"] = "Misleading name." ..
+					   " Please choose a proper name and try again.",
+	["[0o]wn[e3]r"]  = "Misleading name." ..
+					   " Please choose a proper name and try again.",
+	["^[0-9]+$"]     = "All-numeric names are disallowed on this server." ..
+					   " Please choose a proper name and try again.",
+	["[0-9].-[0-9].-[0-9].-[0-9].-[0-9].-[0-9]"] = "Too many numbers in your name (must be 5 at most)." ..
+					   " Please choose a proper name and try again.",
+	["^[_-]+$"]      = "Your name cannot contain characters - and _ only. Please choose a proper name and try again.",
+}
