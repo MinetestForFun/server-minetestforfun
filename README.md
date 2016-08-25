@@ -37,8 +37,6 @@ Contributors
   > Mathematics wizard, broomstick crafter
 - dan-g
   > Texture creator, who gave us some of [our website](https://xorhub.com/)'s logos and banners
-- fabienwang
-  > Someone whose name we misspelt
 - younishd
   > Cart fixer
 
@@ -79,7 +77,5 @@ Contributeurs
   > Magicien des mathématiques, fabricant de balais volant
 - dan-g
   > Créateur de textures, qui nous a fait certain des logos et bannières de [notre site](https://xorhub.com/)
-- fabienwang
-  > Quelqu'un dont on a mal écrit le nom
 - younishd
   > Réparateur de carts
