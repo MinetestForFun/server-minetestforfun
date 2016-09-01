@@ -45,7 +45,8 @@ local function set_filter_formspec(data, meta)
 				 "Sequence slots Randomly",
 				 "Sequence slots by Rotation"})..
 			exmatch_button..
-			"list[current_player;main;0,4.5;8,4;]"
+			"list[current_player;main;0,4.5;8,4;]" ..
+			"listring[]"
 	end
 	meta:set_string("formspec", formspec)
 end

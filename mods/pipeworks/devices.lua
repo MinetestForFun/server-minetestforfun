@@ -35,6 +35,8 @@ local pipes_devicelist = {
 	"storage_tank_10"
 }
 
+local rules = pipeworks.mesecons_rules -- Enough with the undefined global variable // MFF (Mg|01/07/2016 for #68)
+
 -- Now define the nodes.
 
 local states = { "on", "off" }

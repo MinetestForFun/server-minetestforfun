@@ -183,7 +183,14 @@ local function update_meta(meta, enabled)
 			default.gui_bg_img..
 			default.gui_slots..
 			default.get_hotbar_bg(0,7) ..
-			"list[current_player;main;0,7;8,4;]")
+			"list[current_player;main;0,7;8,4;]" ..
+			"listring[current_player;main]"..
+			"listring[context;src]" ..
+			"listring[context;dst]" ..
+			"listring[current_player;main]"..
+			"listring[context;recipe]" ..
+			"listring[context;output]"
+			)
 
 	-- toggling the button doesn't quite call for running a recipe change check
 	-- so instead we run a minimal version for infotext setting only
