@@ -273,7 +273,7 @@ end
 
 
 local function get_digiline_send(pos)
-	if not digiline then return end
+	if not rawget(_G, "digiline") then return end
 	return function(channel, msg)
 		minetest.after(0, function()
 			digiline:receptor_send(pos, digiline.rules.default, channel, msg)
