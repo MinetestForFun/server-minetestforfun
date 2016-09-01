@@ -29,7 +29,7 @@ minetest.register_node("lrfurn:coffeetable_back", {
 		local node = minetest.get_node(pos)
 		local param2 = node.param2
 
-		if lrfurn.check_forward(pos, fdir, false, placer) then
+		if lrfurn.check_forward(pos, nil, false, placer) then
 
 			node.name = "lrfurn:coffeetable_front"
 			if param2 == 0 then
