@@ -1,7 +1,81 @@
 dofile(minetest.get_modpath("profnsched").."/queue.lua")
+dofile(minetest.get_modpath("profnsched").."/after.lua")
 
-local jobs = {}
 local durations = {}
+local active = minetest.setting_get("profnsched_activate")
+local dump_delay = minetest.setting_get("profnsched_dump_delay")
+if not active then active = false end
+if not dump_delay then dump_delay = 60*5 end
+
+
+local mathfloor = math.floor
+
+-- Usefull funcs
+
+local function dump_durations(current) --param: current durations or nil (to dump global durations)
+	if current then
+		local avg = 0
+		local dt = 0
+		for i,v in pairs(current) do
+			dt = mathfloor(v[3])/1000
+			avg = mathfloor(durations[v[1]][v[2]].us/durations[v[1]][v[2]].n)/1000
+			minetest.log("[Profnsched] "..dt.."ms (avg: "..avg.." ; "..durations[v[1]][v[2]].n.." calls) "..v[1].." "..v[2])
+		end	
+	else
+		for i,md in pairs(durations) do
+			for j,fn in pairs(md) do
+				avg = mathfloor(fn.us/fn.n)/1000
+				minetest.log("[Profnsched] avg: "..avg.." ; "..fn.n.." calls ; "..i.." "..j)
+			end
+		end
+	end
+end
+
+local function activate()
+	if active then
+		if dump_delay ~= 0 then
+			minetest.log("[Profnsched] Will dump global stats in "..dump_delay.."s")
+			minetest.after(dump_delay, dump_durations)
+		else
+			minetest.log("[Profnsched] Now will dump RT stats")
+		end
+	end
+end
+activate()
+
+minetest.register_chatcommand("profnsched", {
+	params = "<text>",
+	description = "Activate mods profiling",
+	func = function(name, param)
+		active = true
+		if param == "" then
+			dump_delay = minetest.setting_get("profnsched_dump_delay")
+			if not dump_delay then dump_delay = 60*5 end
+		else
+			dump_delay = tonumber(param)
+		end
+		activate()
+	end
+})
+
+
+
+	
+local function update_durations(mod_name, func_id, dtime)
+	if not durations[mod_name] then
+		durations[mod_name] = {}
+	end
+	if not durations[mod_name][func_id] then
+		durations[mod_name][func_id] = {
+			us = 0,
+			n = 0,
+			cur = 0
+		}
+	end
+	durations[mod_name][func_id].us = durations[mod_name][func_id].us + dtime
+	durations[mod_name][func_id].n = durations[mod_name][func_id].n + 1
+	durations[mod_name][func_id].cur = dtime	
+end
 
 --------------------------------------------------------------
 -- Move olds globalsteps and redefine minetest internal caller
@@ -27,37 +101,7 @@ function minetest.register_globalstep(func)
 	}	
 end
 
--- Usefull func
 
-local function update_durations(mod_name, func_id, dtime)
-	if not durations[mod_name] then
-		durations[mod_name] = {}
-	end
-	if not durations[mod_name][func_id] then
-		durations[mod_name][func_id] = {
-			us = 0,
-			n = 0,
-			cur = 0
-		}
-	end
-	durations[mod_name][func_id].us = durations[mod_name][func_id].us + dtime
-	durations[mod_name][func_id].n = durations[mod_name][func_id].n + 1
-	durations[mod_name][func_id].cur = dtime
-end
-
-
--- For minetest.after replacement
-local function check_expired_jobs()
-	local time = core.get_us_time()
-	for i,job in pairs(jobs) do
-		if time >= job.expire then
-			scheduler.add(1, job)
-			jobs[i] = nil
-		end
-	end
-	scheduler.asap(4, check_expired_jobs)
-end
-scheduler.asap(4, check_expired_jobs)
 
 -- Main code
 
@@ -78,7 +122,9 @@ old_globalstep(function(dtime)
 	for i,v in pairs(gs) do
 		tbegin = core.get_us_time()
 		v.func_code(dtime+(core.get_us_time()-tbegin)/1000000)
-		current_durations[#current_durations+1] = {v.mod_name, v.func_id, core.get_us_time()-tbegin}
+		if active then
+			current_durations[#current_durations+1] = {v.mod_name, v.func_id, core.get_us_time()-tbegin}
+		end
 	end
 		
 	-- Others jobs
@@ -111,18 +157,15 @@ old_globalstep(function(dtime)
 	end
 		
 	if (elapsed > tick_dtime) then --overload ?
-		local mathfloor = math.floor
 		if last_internal_server_dtime < tick_dtime then -- caused by profiled mods ?
-			minetest.log("[Profnsched] Overload ! "..mathfloor(elapsed)/1000 .."ms")
-			local avg = 0
-			local dt = 0
-			for i,v in pairs(current_durations) do
-				dt = mathfloor(v[3])/1000
-				avg = mathfloor(durations[v[1]][v[2]].us/durations[v[1]][v[2]].n)/1000
-				minetest.log("[Profnsched] "..dt.."ms (avg: "..avg.." ; "..durations[v[1]][v[2]].n.." calls) "..v[1].." "..v[2])
+			if active and dump_delay == 0 then
+				minetest.log("[Profnsched] Overload ! "..mathfloor(elapsed)/1000 .."ms")
+				dump_durations(current_durations)
 			end
 		else
-			minetest.log("[Profnsched] Overload ! Caused by server or not profiled mods : "..mathfloor(last_internal_server_dtime)/1000 .."ms")
+			if active and dump_delay == 0 then
+				minetest.log("[Profnsched] Overload ! Caused by server or not profiled mods : "..mathfloor(last_internal_server_dtime)/1000 .."ms")
+			end
 		end
 	end
 	
@@ -133,18 +176,3 @@ old_globalstep(function(dtime)
 	last_elapsed_local_dtime = core.get_us_time() - begin_time
 end)
 
-
--- redefine core.after function
-function minetest.after(after, func, ...)
-		assert(type(func) == "function",
-			"Invalid core.after invocation")
-	local fname = debug.getinfo(2, "S").linedefined --imprecis
-	local job = {
-		func_code = func,
-		expire = core.get_us_time() + after*1000000,
-		arg = {...},
-		mod_name = core.get_last_run_mod(),
-		func_id = "#"..fname
-	}
-	jobs[#jobs+1] = job
-end

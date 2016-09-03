@@ -27,8 +27,17 @@ Concepts :
 
 Fonctions utiles :
 ==================
- * scheduler.add(class, job) -- ajoute le travail 'job' dans la file n° 'class' (job = {mod_name, func_id, func_code[, args]})
- * scheduler.asap(class, func_code) -- ajoute une fonction à exécuter dans la file n° 'class'
+ * Pour programmer :
+	* scheduler.add(class, job) -- ajoute le travail 'job' dans la file n° 'class' (job = {mod_name, func_id, func_code[, args]})
+	* scheduler.asap(class, func_code) -- ajoute une fonction à exécuter dans la file n° 'class'
+ * Pour profiler (commande chat) :
+	/profnsched (génère un dump de stats au bout du nombre de secondes définies dans minetest.conf)
+	/profnsched n (génère un dump de stats au bout de n secondes)
+	/profnsched 0 (dump les stats en temps réel en cas de surcharge)
+ * Pour profiler (minetest.conf)
+	profnsched_activate = true/false
+	profnsched_dump_delay = n (dump des stats au bout de n secondes (si activé))
+	
  
 Comparaisons :
 ==============

@@ -20,7 +20,7 @@ end
 function scheduler.asap(priority, func)
 	scheduler.add(priority, {
 		mod_name = core.get_last_run_mod(),
-		func_id = "todo",
+		func_id = "#"..debug.getinfo(2, "S").linedefined, --imprecis
 		func_code = func,
 		arg = {},
 	})
