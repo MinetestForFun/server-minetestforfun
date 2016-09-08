@@ -75,6 +75,9 @@ mobs:register_mob("mobs:mese_dragon", {
 		punch_start = 140,
 		punch_end = 170,
 	},
+	on_die = function(self)
+		minetest.chat_send_all("A group of players killed a Mese Dragon!")
+	end
 })
 
 -- mese_dragon_fireball (weapon)

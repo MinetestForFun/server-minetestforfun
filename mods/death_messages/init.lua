@@ -149,6 +149,7 @@ local monsters = {
 	["mobs:shark_md"] = "medium shark",
 	["mobs:pumpking"] = "pumpking",
 	["mobs:pumpboom"] = "pumpboom",
+	["mobs:mese_dragon"] = "mese_dragon",
 }
 
 local function broadcast_death(msg)
