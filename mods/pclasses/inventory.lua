@@ -91,19 +91,27 @@ local pbutton_form = "size[10,10]" ..
    "button_exit[4.5,9.5;1,0.5;pmenu_leave;Leave]" ..
    "tabheader[0,0;pmenu_header;infos"
 
-function textify(text)
-   return "textarea[0.5,0.2;9.6,10;pmenu_data;;" .. text .. "]"
+function pclasses.api.textify(text)
+	--return "textarea[0.5,0.2;9.6,10;pmenu_data;;" .. text .. "]"
+	local returned = ""
+	for i, line in pairs(text:split('\n')) do
+		returned = ("%slabel[0.2,%f;%s]"):format(returned, 0.2 + (i-1)*0.5, line)
+	end
+	return returned
 end
 
 local pbuttons = {}
 local pforms = {}
-local pinfo = textify(
-   "PClasses (Player Classes) allows you to become a member of specific classes implemented with abilities, advantages, and reserved items. " ..
-      "Each one of the classes defined grants the right to carry items, called reserved items, tied to the abilities of a class. A hunter will be " ..
-      "able to use arrows, whereas a warrior can own powerful weapons. Each time you switch classes, you will lose your stats and items, the latter " ..
-      "being transfered into a special part of your inventory, the graveyard. Once you return to a class that allows you to use those items, they will " ..
-      "return in your main inventory.\n" ..
-      "You can use this menu to navigate between classes and read informations about what abilities come with specific classes."
+local pinfo = pclasses.api.textify(
+      "PClasses (Player Classes) allows you to become a member of specific classes implemented\n" ..
+      "with abilities, advantages, and reserved items. Each one of the classes defined grants\n" ..
+      "the right to carry items, called reserved items, tied to the abilities of a class. A \n" ..
+      "hunter will be able to use arrows, whereas a warrior can own powerful weapons. Each time\n" ..
+      "you switch classes, you will lose your stats and items, the latter being transfered into\n" ..
+      "a special part of your inventory, the graveyard. Once you return to a class that allows\n" ..
+      "you to use those items, they will return in your main inventory.\n" ..
+      "You can use this menu to navigate between classes and read informations about what\n" ..
+      "abilities come with specific classes."
 )
 
 
@@ -126,7 +134,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	 if fields.pmenu_header + 0 == 1 then
 	    player:set_inventory_formspec(pbutton_form .. pinfo)
 	 else
-	    player:set_inventory_formspec(string.sub(pbutton_form, 1, -3) .. fields.pmenu_header .. "]" .. textify(pclasses.classes[pbuttons[fields.pmenu_header-1]].informations or "No informations available"))
+	    player:set_inventory_formspec(string.sub(pbutton_form, 1, -3) .. fields.pmenu_header .. "]" .. (pclasses.classes[pbuttons[fields.pmenu_header-1]].informations or "No informations available"))
 	 end
 	 return
 
