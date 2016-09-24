@@ -28,19 +28,19 @@ pclasses.api.register_class("hunter", {
 		tile = "default_wood.png",
 		holo_item = "throwing:bow_minotaur_horn_improved"
 	},
-	informations = pclasses.api.textify("Being a hunter is mostly being tactical, or just kicking in and firing arrows like madness.\n" ..
-		"Being a hunter, you're in the only class which member can use new and exclusive\n" ..
-		"ranged weapons, like spears, arbalests and bows. Your stamina is increased to\n" ..
-		"40, you're a sport person, able to sprint for a long time, which is found to be\n" ..
-		"useful when you hunt down animals and mobs who can't run faster than you walk..\n" ..
-		"and even more when you need to cowardly run away... anyway. The point is, being\n" ..
-		"a hunter is great, since you can access new and exclusive weapons, and leather\n" ..
-		"armors, crafted from leather. Obviously.. Those clothes are pretty strong, and\n" ..
-		"will protect you more than wooden pieces (at least the reinforced one), with the\n" ..
-		"satation consumption of wearing nothing. If you want to risk it and become a\n" ..
-		"hunter, you should look for a green pedestal with a bow so fancy over it that you\n" ..
-		"can already tell that we're gonna make you use loads of ores for it. (actually\n" ..
-		"you need to fight a super strong mob, but it's just details...)")
+	informations = pclasses.api.textify("Being a hunter is mostly being tactical, or just kicking in and firing arrows like madness." ..
+		"Being a hunter, you're in the only class which member can use new and exclusive" ..
+		"ranged weapons, like spears, arbalests and bows. Your stamina is increased to" ..
+		"40, you're a sport person, able to sprint for a long time, which is found to be" ..
+		"useful when you hunt down animals and mobs who can't run faster than you walk.." ..
+		"and even more when you need to cowardly run away... anyway. The point is, being" ..
+		"a hunter is great, since you can access new and exclusive weapons, and leather" ..
+		"armors, crafted from leather. Obviously.. Those clothes are pretty strong, and" ..
+		"will protect you more than wooden pieces (at least the reinforced one), with the" ..
+		"satation consumption of wearing nothing. If you want to risk it and become a" ..
+		"hunter, you should look for a green pedestal with a bow so fancy over it that you" ..
+		"can already tell that we're gonna make you use loads of ores for it. (actually" ..
+		"you need to fight a super strong mob, but it's just details...)") .. "image[2.4,5.6;6,4;pclasses_showcase_hunter.png]"
 })
 
 

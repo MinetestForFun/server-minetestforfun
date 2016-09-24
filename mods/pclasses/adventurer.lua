@@ -21,6 +21,6 @@ pclasses.api.register_class("adventurer", {
 		"read what's in it. You'll still be able to come back to this boilerplate class whenever you\n" ..
 		"want to (minus actual cooldown regulation of.. an hour between two changes) if you like\n" ..
 		"being hurt, or hardcore gaming, which, from afar, look alike.... The pedestal has a backpack\n" ..
-		"over it, because, yay adventures!")
+		"over it, because, yay adventures!") .. "image[2.4,5.6;6,4;pclasses_showcase_adventurer.png]"
 })
 

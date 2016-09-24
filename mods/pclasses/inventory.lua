@@ -92,27 +92,24 @@ local pbutton_form = "size[10,10]" ..
    "tabheader[0,0;pmenu_header;infos"
 
 function pclasses.api.textify(text)
-	--return "textarea[0.5,0.2;9.6,10;pmenu_data;;" .. text .. "]"
-	local returned = ""
-	for i, line in pairs(text:split('\n')) do
-		returned = ("%slabel[0.2,%f;%s]"):format(returned, 0.2 + (i-1)*0.5, line)
-	end
-	return returned
+	return ("textarea[0.5,0.2;9.6,5.8;pmenu_data;;%s]"):format(text)
 end
 
 local pbuttons = {}
 local pforms = {}
 local pinfo = pclasses.api.textify(
-      "PClasses (Player Classes) allows you to become a member of specific classes implemented\n" ..
-      "with abilities, advantages, and reserved items. Each one of the classes defined grants\n" ..
-      "the right to carry items, called reserved items, tied to the abilities of a class. A \n" ..
-      "hunter will be able to use arrows, whereas a warrior can own powerful weapons. Each time\n" ..
-      "you switch classes, you will lose your stats and items, the latter being transfered into\n" ..
-      "a special part of your inventory, the graveyard. Once you return to a class that allows\n" ..
+      "PClasses (Player Classes) allows you to become a member of specific classes implemented " ..
+      "with abilities, advantages, and reserved items. Each one of the classes defined grants " ..
+      "the right to carry items, called reserved items, tied to the abilities of a class. A " ..
+      "hunter will be able to use arrows, whereas a warrior can own powerful weapons. Each time " ..
+      "you switch classes, you will lose your stats and items, the latter being transfered into " ..
+      "a special part of your inventory, the graveyard. Once you return to a class that allows " ..
       "you to use those items, they will return in your main inventory.\n" ..
-      "You can use this menu to navigate between classes and read informations about what\n" ..
-      "abilities come with specific classes."
-)
+      "You can use this menu to navigate between classes and read informations about what " ..
+      "abilities come with specific classes.\n" ..
+      "You can see on this man the location of all class buildings available, containing their " ..
+      "respective class pedestals."
+) .. "image[2.4,5.6;6,4;pclasses_buildings.png]"
 
 
 minetest.after(0, function()
@@ -123,14 +120,12 @@ minetest.after(0, function()
 		     end
 		  end
 		  pbutton_form = pbutton_form .. ";1]"
-		  minetest.log("action", pbutton_form)
 end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
       if formname ~= "" then return end
 
       if fields.pmenu_header then
-	 minetest.log(fields.pmenu_header)
 	 if fields.pmenu_header + 0 == 1 then
 	    player:set_inventory_formspec(pbutton_form .. pinfo)
 	 else
