@@ -1449,6 +1449,25 @@ minetest.register_node("default:cactus", {
 	end,
 })
 
+minetest.register_node("default:cactus_spiky", {
+	description = "Spiky Cactus",
+	tiles = {"default_cactus_top.png", "default_cactus_top.png",
+		"default_cactus_spiky.png"},
+	paramtype2 = "facedir",
+	groups = {snappy = 1, choppy = 3, flammable = 2},
+	drop = {
+		items = {
+			{items = {"default:cactus_spiky"}},
+		},
+	},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node,
+
+	after_dig_node = function(pos, node, metadata, digger)
+		default.dig_up(pos, node, digger)
+	end,
+})
+
 minetest.register_node("default:papyrus", {
 	description = "Papyrus",
 	drawtype = "plantlike",

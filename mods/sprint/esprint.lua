@@ -104,9 +104,9 @@ minetest.register_globalstep(function(dtime)
 			if gameTime > 0.4 then
 				local pos = player:getpos()
 				-- From playerplus :
-				-- am I near a cactus?
+				-- am I near a spiky cactus?
 				pos.y = pos.y + 0.1
-				if minetest.find_node_near(pos, 1, "default:cactus") and player:get_hp() > 0 then
+				if minetest.find_node_near(pos, 1, "default:cactus_spiky") and player:get_hp() > 0 then
 					player:set_hp(player:get_hp()-1)
 				end
 

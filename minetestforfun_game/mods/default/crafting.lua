@@ -785,6 +785,20 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:cactus 2",
+	recipe = {
+		{"default:cactus_spiky", "default:cactus_spiky"},
+	},
+})
+
+minetest.register_craft({
+	output = "default:cactus_spiky 2",
+	recipe = {
+		{"default:cactus", "default:cactus"},
+	},
+})
+
+minetest.register_craft({
 	output = 'default:clay',
 	recipe = {
 		{'default:clay_lump', 'default:clay_lump'},
