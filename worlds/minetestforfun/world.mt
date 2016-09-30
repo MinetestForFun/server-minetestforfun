@@ -226,4 +226,4 @@ load_mod_snow = true
 
 load_mod_profilerdumper = false
 load_mod_stacktraceplus = true
-load_mod_profnsched = true
+load_mod_profnsched = false
