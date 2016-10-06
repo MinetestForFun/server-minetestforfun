@@ -1488,7 +1488,7 @@ minetest.register_entity(name, {
 		local p = self.attack:getpos() or s
 		local dist = get_distance(p, s)
 
-		-- stop attacking if player or out of range
+		--[[ stop attacking if player or out of range
 		if dist > self.view_range
 		or not self.attack
 		or not self.attack:getpos()
@@ -1504,7 +1504,7 @@ minetest.register_entity(name, {
 			self.blinktimer = 0
 
 			return
-		end
+		end]] -- MFF(Mg|06/10/2016) #509
 
 		if self.attack_type == "explode" then
 
@@ -1526,7 +1526,7 @@ minetest.register_entity(name, {
 				self.object:setyaw(yaw)
 			end
 
-			if dist > self.reach then
+			--[[if dist > self.reach then
 
 				if not self.v_start then
 
@@ -1550,7 +1550,7 @@ minetest.register_entity(name, {
 				end
 
 				set_animation(self, "run")
-			else
+			else]] -- MFF(Mg|06/10/2016) #509
 				set_velocity(self, 0)
 				self.timer = self.timer + dtime
 				self.blinktimer = (self.blinktimer or 0) + dtime
@@ -1603,7 +1603,7 @@ minetest.register_entity(name, {
 
 					return
 				end
-			end
+			--end
 
 		elseif self.attack_type == "dogfight"
 		or (self.attack_type == "dogshoot" and dist <= self.reach) then
