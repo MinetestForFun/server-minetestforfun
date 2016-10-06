@@ -1488,11 +1488,11 @@ minetest.register_entity(name, {
 		local p = self.attack:getpos() or s
 		local dist = get_distance(p, s)
 
-		--[[ stop attacking if player or out of range
-		if dist > self.view_range
+		-- stop attacking if player or out of range
+		if (dist > self.view_range
 		or not self.attack
 		or not self.attack:getpos()
-		or self.attack:get_hp() <= 0 then
+		or self.attack:get_hp() <= 0) and not self.attack_type == "explode" then -- MFF
 
 			--print(" ** stop attacking **", dist, self.view_range)
 			self.state = "stand"
@@ -1504,7 +1504,7 @@ minetest.register_entity(name, {
 			self.blinktimer = 0
 
 			return
-		end]] -- MFF(Mg|06/10/2016) #509
+		end
 
 		if self.attack_type == "explode" then
 
