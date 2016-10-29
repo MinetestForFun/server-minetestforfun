@@ -131,24 +131,26 @@ old_globalstep(function(dtime)
 	local njb = scheduler.waitingjobs()
 	local jbdone = 0
 	for class,q in ipairs(scheduler.queue) do
-		local grp = q.groups[q.first]
-		for i,job in pairs(grp) do
+		--local grp = q.cur
+		for i,job in pairs(q.cur) do
 			tbegin = core.get_us_time()
 			core.set_last_run_mod(job.mod_name)
 			job.func_code(unpack(job.arg))
 			jbdone = jbdone+1
 			current_durations[#current_durations+1] = {job.mod_name, job.func_id, core.get_us_time()-tbegin}
-			grp[i] = nil
+			q.cur[i] = nil
 			if class > 1 and ((core.get_us_time()-launch_dtime) >  tick_dtime) then --class 1 fully processed even on overload
 				break
 			end 
 		end
 		if ((core.get_us_time()-launch_dtime) >  tick_dtime) then
 			break
-		end 
+		end
 	end
+	--minetest.debug("[Profnsched] "..scheduler.waitingjobs()+getnjobs())
 	scheduler.shift()
-
+	--minetest.debug("[Profnsched] "..scheduler.waitingjobs()+getnjobs())
+	
 	local elapsed = (core.get_us_time()-launch_dtime)
 	
 	-- update all durations
@@ -161,6 +163,7 @@ old_globalstep(function(dtime)
 			if active and dump_delay == 0 then
 				minetest.log("[Profnsched] Overload ! "..mathfloor(elapsed)/1000 .."ms")
 				dump_durations(current_durations)
+				--scheduler.fulldebug()
 			end
 		else
 			if active and dump_delay == 0 then

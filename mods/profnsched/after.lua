@@ -3,15 +3,23 @@ dofile(minetest.get_modpath("profnsched").."/queue.lua")
 local jobs = {}
 local scheduler = scheduler
 
+function getnjobs()
+	return #jobs
+end
+
 -- For minetest.after replacement
 local function check_expired_jobs()
 	local time = core.get_us_time()
+	local tjobs = {}
 	for i,job in pairs(jobs) do
 		if time >= job.expire then
 			scheduler.add(1, job)
-			jobs[i] = nil
+			--jobs[i] = nil
+		else
+			tjobs[#tjobs+1] = job
 		end
 	end
+	jobs = tjobs
 	scheduler.asap(4, check_expired_jobs)
 end
 scheduler.asap(4, check_expired_jobs)
