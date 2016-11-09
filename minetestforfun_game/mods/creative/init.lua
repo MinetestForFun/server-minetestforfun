@@ -2,19 +2,21 @@
 
 creative = {}
 local player_inventory = {}
+local creative_mode = minetest.setting_getbool("creative_mode")
 
 -- Create detached creative inventory after loading all mods
-creative.init_creative_inventory = function(player)
-	local player_name = player:get_player_name()
-	player_inventory[player_name] = {}
-	player_inventory[player_name].size = 0
-	player_inventory[player_name].filter = ""
-	player_inventory[player_name].start_i = 1
-	player_inventory[player_name].tab_id = 2
+creative.init_creative_inventory = function(owner)
+	local owner_name = owner:get_player_name()
+	player_inventory[owner_name] = {
+		size = 0,
+		filter = "",
+		start_i = 1,
+		tab_id = 2,
+	}
 
-	minetest.create_detached_inventory("creative_" .. player_name, {
+	minetest.create_detached_inventory("creative_" .. owner_name, {
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-			if minetest.setting_getbool("creative_mode") and not to_list == "main" then
+			if creative_mode and not to_list == "main" then
 				return count
 			else
 				return 0
@@ -24,7 +26,7 @@ creative.init_creative_inventory = function(player)
 			return 0
 		end,
 		allow_take = function(inv, listname, index, stack, player)
-			if minetest.setting_getbool("creative_mode") then
+			if creative_mode then
 				return -1
 			else
 				return 0
@@ -44,7 +46,7 @@ creative.init_creative_inventory = function(player)
 		end,
 	})
 
-	creative.update_creative_inventory(player_name)
+	creative.update_creative_inventory(owner_name)
 	--print("creative inventory size: " .. player_inventory[player_name].size)
 end
 
@@ -86,7 +88,7 @@ local trash = minetest.create_detached_inventory("creative_trash", {
 	-- Allow the stack to be placed and remove it in on_put()
 	-- This allows the creative inventory to restore the stack
 	allow_put = function(inv, listname, index, stack, player)
-		if minetest.setting_getbool("creative_mode") then
+		if creative_mode then
 			return stack:get_count()
 		else
 			return 0
@@ -97,6 +99,8 @@ local trash = minetest.create_detached_inventory("creative_trash", {
 	end,
 })
 trash:set_size("main", 1)
+
+creative.formspec_add = ""
 
 creative.set_creative_formspec = function(player, start_i)
 	local player_name = player:get_player_name()
@@ -121,13 +125,15 @@ creative.set_creative_formspec = function(player, start_i)
 		tooltip[creative_clear;Reset]
 		listring[current_player;main]
 		]] ..
-		"field[0.3,3.5;2.2,1;creative_filter;;" .. inv.filter .. "]" ..
+		"field[0.3,3.5;2.2,1;creative_filter;;" .. minetest.formspec_escape(inv.filter) .. "]" ..
+		"field_close_on_enter[creative_filter;false]" ..
 		"listring[detached:creative_" .. player_name .. ";main]" ..
 		"tabheader[0,0;creative_tabs;Crafting,All,Nodes,Tools,Items;" .. tostring(inv.tab_id) .. ";true;false]" ..
 		"list[detached:creative_" .. player_name .. ";main;0,0;8,3;" .. tostring(start_i) .. "]" ..
 		"table[6.05,3.35;1.15,0.5;pagenum;#FFFF00," .. tostring(pagenum) .. ",#FFFFFF,/ " .. tostring(pagemax) .. "]" ..
 		default.get_hotbar_bg(0,4.7) ..
 		default.gui_bg .. default.gui_bg_img .. default.gui_slots
+		.. creative.formspec_add
 	)
 end
 
@@ -152,7 +158,7 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	-- If in creative mode, modify player's inventory forms
-	if not minetest.setting_getbool("creative_mode") then
+	if not creative_mode then
 		return
 	end
 	creative.init_creative_inventory(player)
@@ -160,12 +166,19 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if formname ~= "" or not minetest.setting_getbool("creative_mode") then
+	if formname ~= "" or not creative_mode then
 		return
 	end
 
 	local player_name = player:get_player_name()
 	local inv = player_inventory[player_name]
+
+	-- If creative is turned on mid game
+	if not inv then
+		creative.init_creative_inventory(player)
+		creative.set_creative_formspec(player, 0)
+		return
+	end
 
 	if fields.quit then
 		if inv.tab_id == 1 then
@@ -174,6 +187,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	elseif fields.creative_tabs then
 		local tab = tonumber(fields.creative_tabs)
 		inv.tab_id = tab
+		player_inventory[player_name].start_i = 1
 
 		if tab == 1 then
 			creative.set_crafting_formspec(player)
@@ -182,17 +196,18 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			creative.set_creative_formspec(player, 0)
 		end
 	elseif fields.creative_clear then
+		player_inventory[player_name].start_i = 1
 		inv.filter = ""
 		creative.update_creative_inventory(player_name)
 		creative.set_creative_formspec(player, 0)
-	elseif fields.creative_search then
+	elseif fields.creative_search or
+			fields.key_enter_field == "creative_filter" then
+		player_inventory[player_name].start_i = 1
 		inv.filter = fields.creative_filter:lower()
 		creative.update_creative_inventory(player_name)
 		creative.set_creative_formspec(player, 0)
 	else
-		local formspec = player:get_inventory_formspec()
-		local start_i = formspec:match("list%[.-" .. player_name .. ";.-;(%d+)%]")
-		start_i = tonumber(start_i) or 0
+		local start_i = player_inventory[player_name].start_i or 0
 
 		if fields.creative_prev then
 			start_i = start_i - 3*8
@@ -209,11 +224,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 
+		player_inventory[player_name].start_i = start_i
 		creative.set_creative_formspec(player, start_i)
 	end
 end)
 
-if minetest.setting_getbool("creative_mode") then
+if creative_mode then
 	local digtime = 0.5
 	local caps = {times = {digtime, digtime, digtime}, uses = 0, maxlevel = 3}
 

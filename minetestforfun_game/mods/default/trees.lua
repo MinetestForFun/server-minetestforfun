@@ -27,10 +27,8 @@ end
 -- 'is snow nearby' function
 
 local function is_snow_nearby(pos)
-	return #minetest.find_nodes_in_area(
-		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-		{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
-		{"default:snow", "default:snowblock", "default:dirt_with_snow"}) > 0
+	return minetest.find_node_near(pos, 1,
+		{"default:snow", "default:snowblock", "default:dirt_with_snow"})
 end
 
 
@@ -43,8 +41,7 @@ function default.grow_sapling(pos)
 		return
 	end
 
-	--local mg_name = minetest.get_mapgen_setting("mg_name") --new function in > 0.4.14 stable ???
-	local mg_name = minetest.get_mapgen_params().mgname
+	local mg_name = minetest.get_mapgen_setting("mg_name")
 	local node = minetest.get_node(pos)
 	if node.name == "default:sapling" then
 		minetest.log("action", "A sapling grows into a tree at "..
@@ -429,6 +426,7 @@ function default.grow_new_aspen_tree(pos)
 		path, "0", nil, false)
 end
 
+
 --
 -- Sapling 'on place' function to check protection of node and resulting tree volume
 --
@@ -437,12 +435,17 @@ function default.sapling_on_place(itemstack, placer, pointed_thing,
 		sapling_name, minp_relative, maxp_relative, interval)
 	-- Position of sapling
 	local pos = pointed_thing.under
-	local node = minetest.get_node(pos)
-	local pdef = minetest.registered_nodes[node.name]
+	local node = minetest.get_node_or_nil(pos)
+	local pdef = node and minetest.registered_nodes[node.name]
+
+	if pdef and pdef.on_rightclick and not placer:get_player_control().sneak then
+		return pdef.on_rightclick(pos, node, placer, itemstack, pointed_thing)
+	end
+
 	if not pdef or not pdef.buildable_to then
 		pos = pointed_thing.above
-		node = minetest.get_node(pos)
-		pdef = minetest.registered_nodes[node.name]
+		node = minetest.get_node_or_nil(pos)
+		pdef = node and minetest.registered_nodes[node.name]
 		if not pdef or not pdef.buildable_to then
 			return itemstack
 		end

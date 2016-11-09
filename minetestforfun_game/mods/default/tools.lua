@@ -32,6 +32,7 @@ minetest.register_tool("default:pick_wood", {
 		},
 		damage_groups = {fleshy=2},
 	},
+	groups = {flammable = 2},
 })
 minetest.register_tool("default:pick_stone", {
 	description = "Stone Pickaxe",
@@ -167,6 +168,7 @@ minetest.register_tool("default:shovel_wood", {
 		},
 		damage_groups = {fleshy = 2},
 	},
+	groups = {flammable = 2},
 })
 minetest.register_tool("default:shovel_stone", {
 	description = "Stone Shovel",
@@ -302,6 +304,7 @@ minetest.register_tool("default:axe_wood", {
 		},
 		damage_groups = {fleshy = 2},
 	},
+	groups = {flammable = 2},
 })
 minetest.register_tool("default:axe_stone", {
 	description = "Stone Axe",
