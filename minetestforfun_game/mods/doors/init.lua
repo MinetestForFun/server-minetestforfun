@@ -173,7 +173,7 @@ function _doors.door_toggle(pos, node, clicker)
 
 	--MFF double porte
 	local b = string.sub(def.name, -1)
-	local pos2 = doors.get_pos(pos, dir, old, b)
+	local pos2 = doors.get(pos) --_pos(pos, dir, old, b)
 	local node = minetest.get_node_or_nil(pos2)
 	if node and string.sub(node.name, 0, -3) == name then
 		if b ~= string.sub(node.name, -1) then
