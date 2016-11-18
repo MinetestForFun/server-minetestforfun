@@ -19,6 +19,7 @@ minetest.register_node("sponge:sponge", {
 		end
 		local change = false
 		local on_water = false
+		local p, n
 		-- verifier si il est dans l'eau ou a cotée
 		if string.find(minetest.get_node(pointed_thing.above).name, "water_source")
 		or  string.find(minetest.get_node(pointed_thing.above).name, "water_flowing") then
