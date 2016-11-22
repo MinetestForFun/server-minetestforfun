@@ -437,6 +437,9 @@ minetest.register_on_joinplayer(function(player)
 
 			--MFF (crabman/27/11/2015) no same item type. *helmet*
 			local ptype = name:split(":")[2]:split("_")[1]
+			if ptype == "enchanted" then
+			   ptype = name:split(":")[2]:split("_")[2]
+			end
 			for i=1, size do
 				local stack = player_inv:get_stack(listname, i)
 				if stack:get_count() > 0 then
