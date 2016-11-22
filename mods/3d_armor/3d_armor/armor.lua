@@ -181,6 +181,11 @@ armor.set_player_armor = function(self, player)
 					local level = def.groups["armor_"..k]
 					if level then
 						local texture = item:gsub("%:", "_")
+						if texture:find("enchanted") then --MFF xdecor enchanting preview fix
+							texture = texture:gsub("_enchanted", "")
+							texture = texture:gsub("_strong", "")
+							texture = texture:gsub("_speed", "")
+						end
 						table.insert(textures, texture..".png")
 						if preview == "" then
 							preview = texture .. "_preview.png"
