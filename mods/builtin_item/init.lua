@@ -1,6 +1,6 @@
 local time = tonumber(minetest.setting_get("remove_items"))
 if not time then
-	time = 900 -- set to 30 minutes the time before remove a dropped item
+	time = 1800 -- set to 30 minutes the time before remove a dropped item
 end
 
 unwalkable_nodes = {}
