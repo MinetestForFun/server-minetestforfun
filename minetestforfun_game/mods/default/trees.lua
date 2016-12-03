@@ -41,7 +41,8 @@ function default.grow_sapling(pos)
 		return
 	end
 
-	local mg_name = minetest.get_mapgen_setting("mg_name")
+	--local mg_name = minetest.get_mapgen_setting("mg_name") --IMPORTANT new function only in > 0.4.14 stable
+	local mg_name = minetest.get_mapgen_params().mgname
 	local node = minetest.get_node(pos)
 	if node.name == "default:sapling" then
 		minetest.log("action", "A sapling grows into a tree at "..
