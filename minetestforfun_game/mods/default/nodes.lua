@@ -504,7 +504,7 @@ minetest.register_node("default:clay", {
 	groups = {crumbly=3},
 	drop = {
 		items = {
-			{items = {"default:clay_lump 8"}},
+			{items = {"default:clay_lump 4"}},
 		},
 	},
 	stack_max = 200, -- /MFF(Mg|07/24/25)
