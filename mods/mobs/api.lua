@@ -476,6 +476,15 @@ do_jump = function(self)
 end
 
 function calc_velocity(pos1, pos2, old_vel, power) --MFF we use this function
+	-- If the two positions are equal the vector will contain nan and crash the game
+	if (pos1.x == pos2.x and pos1.y == pos2.y and pos1.z == pos2.z) then
+		return {
+			x = 0,
+			y = 0,
+			z = 0
+		}
+	end
+
 	local vel = vector.direction(pos1, pos2)
 	vel = vector.normalize(vel)
 	vel = vector.multiply(vel, power)
