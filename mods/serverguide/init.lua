@@ -76,25 +76,34 @@ minetest.register_tool("serverguide:book", {
 	description = serverguide_Book_title,
 	inventory_image = "default_book.png",
 	on_use = function(itemstack, user, pointed_thing)
-	serverguide_guide(user,1)
-	return itemstack
+		if pointed_thing.type == "node" then
+			local pos = pointed_thing.under
+			local node = minetest.get_node_or_nil(pos)
+			local def = node and minetest.registered_nodes[node.name]
+			if def and def.on_punch then
+				minetest.registered_nodes[node.name].on_punch(pos, node, user, pointed_thing)
+				return itemstack
+			end
+		end
+		serverguide_guide(user,1)
+		return itemstack
 	end,
-on_place = function(itemstack, placer, pointed_thing)
-	local pos = pointed_thing.under
-	local node = minetest.get_node_or_nil(pos)
-	local def = node and minetest.registered_nodes[node.name]
-	if not def or not def.buildable_to then
-		pos = pointed_thing.above
-		node = minetest.get_node_or_nil(pos)
-		def = node and minetest.registered_nodes[node.name]
-		if not def or not def.buildable_to then return itemstack end
+	on_place = function(itemstack, placer, pointed_thing)
+		local pos = pointed_thing.under
+		local node = minetest.get_node_or_nil(pos)
+		local def = node and minetest.registered_nodes[node.name]
+		if not def or not def.buildable_to then
+			pos = pointed_thing.above
+			node = minetest.get_node_or_nil(pos)
+			def = node and minetest.registered_nodes[node.name]
+			if not def or not def.buildable_to then return itemstack end
+		end
+		if minetest.is_protected(pos, placer:get_player_name()) then return itemstack end
+		local fdir = minetest.dir_to_facedir(placer:get_look_dir())
+		minetest.set_node(pos, {name = "serverguide:guide",param2 = fdir,})
+		itemstack:take_item()
+		return itemstack
 	end
-	if minetest.is_protected(pos, placer:get_player_name()) then return itemstack end
-	local fdir = minetest.dir_to_facedir(placer:get_look_dir())
-	minetest.set_node(pos, {name = "serverguide:guide",param2 = fdir,})
-	itemstack:take_item()
-	return itemstack
-end
 })
 minetest.register_alias("guide", "serverguide:book")
 minetest.register_craft({output = "serverguide:book",recipe = {{"default:stick","default:stick"},}})
