@@ -1832,7 +1832,7 @@ if mg_params.mgname == "v6" then --(1)
 	default.register_ores()
 	default.register_mgv6_decorations()
 else
-	default.register_biomes()
+	--default.register_biomes() -- MFF
 	default.register_ores()
-	default.register_decorations()
+	--default.register_decorations() MFF: Causes extremely dense forests everywhere (since biomes are not used, decorations are generated everywhere).
 end
