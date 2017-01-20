@@ -127,7 +127,7 @@ dofile(modpath.."/cobweb.lua")
 dofile(modpath.."/books.lua")
 dofile(modpath.."/exterior.lua")
 dofile(modpath.."/trash_cans.lua")
--- dofile(modpath.."/wardrobe.lua") --MFF crabman(30/07/2015) disabled wardrobe, duplicate with u_skin
+dofile(modpath.."/wardrobe.lua")
 
 dofile(modpath.."/crafts.lua")
 

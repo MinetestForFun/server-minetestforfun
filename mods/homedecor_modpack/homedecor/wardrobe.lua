@@ -5,6 +5,11 @@ local wd_cbox = {
 	fixed = { -0.5, -0.5, -0.5, 0.5, 1.5, 0.5 }
 }
 
+
+--MFF crabman(30/07/2015) disabled wardrobe, duplicate with u_skin
+minetest.register_alias("homedecor:wardrobe", "air")
+
+--[[
 homedecor.register("wardrobe", {
 	mesh = "homedecor_bedroom_wardrobe.obj",
 	tiles = {
@@ -48,7 +53,7 @@ homedecor.register("wardrobe", {
 		local armor_mod = minetest.get_modpath("3d_armor")
 
 		for i = 1,5 do
-			if fields[skins[i]] then
+			if fields[skins[i] ] then
 				if armor_mod then -- if 3D_armor's installed, let it set the skin
 					armor.textures[playerName].skin = "homedecor_clothes_"..skins[i]..".png"
 					armor:update_player_visuals(sender)
@@ -56,7 +61,7 @@ homedecor.register("wardrobe", {
 				end
 				default.player_set_textures(sender, { "homedecor_clothes_"..skins[i]..".png" })
 				break
-			elseif fields["fe"..skins[i]] then
+			elseif fields["fe"..skins[i] ] then
 				if armor_mod then
 					armor.textures[playerName].skin = "homedecor_clothes_fe"..skins[i]..".png"
 					armor:update_player_visuals(sender)
@@ -68,6 +73,6 @@ homedecor.register("wardrobe", {
 		end
 	end
 })
-
+--]]
 minetest.register_alias("homedecor:wardrobe_bottom", "homedecor:wardrobe")
 minetest.register_alias("homedecor:wardrobe_top", "air")
