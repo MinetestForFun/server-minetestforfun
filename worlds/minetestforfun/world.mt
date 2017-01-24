@@ -160,7 +160,7 @@ load_mod_cozy = true
 load_mod_unified_inventory = true
 load_mod_inventory_icon = true
 load_mod_u_skins = true
-load_mod_dropondie = true
+load_mod_bones = true
 load_mod_item_drop = true
 
 load_mod_mff_core = true
