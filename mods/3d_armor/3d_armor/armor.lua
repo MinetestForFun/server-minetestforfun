@@ -545,7 +545,7 @@ minetest.register_on_joinplayer(function(player)
 		end, player)
 	end
 end)
-
+--[[
 if ARMOR_DROP == true or ARMOR_DESTROY == true then
 	armor.drop_armor = function(pos, stack)
 		local obj = minetest.add_item(pos, stack)
@@ -602,6 +602,7 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
 		end
 	end)
 end
+--]]
 
 minetest.register_on_player_hpchange(function(player, hp_change)
 	local name, player_inv, armor_inv = armor:get_valid_player(player, "[on_hpchange]")

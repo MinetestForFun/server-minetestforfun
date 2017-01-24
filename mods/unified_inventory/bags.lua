@@ -311,7 +311,11 @@ function unified_inventory.extract_bag(player, id)
 	end
 
 	pinv:remove_item("bag" .. id, stack)
-	minetest.get_inventory({type = "detached", name = minetest.formspec_escape(player:get_player_name()) .. "_bags"}):set_stack("bag" .. id, 1, nil)
+	local dinv = minetest.get_inventory({type = "detached", name = minetest.formspec_escape(player:get_player_name()) .. "_bags"})
+	if dinv then
+		dinv:set_stack("bag" .. id, 1, nil)
+	end	
+	
 	pinv:set_list("bag" .. id .. "contents", {})
 
 	stack:set_metadata(minetest.serialize(list))
