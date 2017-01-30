@@ -3,12 +3,12 @@
 mobs:register_mob("tsm_pyramids:mummy", {
 	-- animal, monster, npc, barbarian
 	type = "monster",
-	-- aggressive, deals 5 damage to player when hit
+	-- aggressive, deals 4 damage to player when hit
 	passive = false,
 	attack_type = "dogfight",
-	damage = 5,
+	damage = 4,
 	-- health & armor
-	hp_min = 15, hp_max = 20, armor = 80,
+	hp_min = 15, hp_max = 20, armor = 100,
 	-- textures and model
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.9, 0.4},
 	visual = "mesh",
@@ -25,8 +25,8 @@ mobs:register_mob("tsm_pyramids:mummy", {
 		random = "mummy",
 	},
 	-- speed and jump, sinks in water
-	walk_velocity = 0.5, -- A tester si assez lent / trop lent, valeur actuel = moitié moins que les Tree Monster
-	run_velocity = 1,
+	walk_velocity = 0.4,
+	run_velocity = 0.8,
 	view_range = 16,
 	jump = false,
 	floats = 0,
@@ -34,14 +34,14 @@ mobs:register_mob("tsm_pyramids:mummy", {
 	-- drops papyrus when dead
 	drops = {
 		{name = "default:papyrus",
-		chance = 1, min = 3, max = 5,},
+		chance = 2, min = 4, max = 6,},
 		{name = "maptools:silver_coin",
 		chance = 10, min = 1, max = 1,},
 	},
 	-- damaged by
 	water_damage = 0,
-	lava_damage = 5,
-	light_damage = 10,
+	lava_damage = 15,
+	light_damage = 15,
 	-- model animation
 	animation = {
 		speed_normal = 15,		speed_run = 15,
@@ -60,7 +60,7 @@ mobs:register_mob("tsm_pyramids:mummy", {
 if not minetest.setting_getbool("only_peaceful_mobs") then
  minetest.register_abm({
 	nodenames = {"tsm_pyramids:spawner_mummy"},
-	interval = 2.0,
+	interval = 10.0,
 	chance = 20,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		local player_near = false
