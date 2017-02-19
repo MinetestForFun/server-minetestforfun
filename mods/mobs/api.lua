@@ -1859,7 +1859,14 @@ minetest.register_entity(name, {
 		dir = dir or {x = 0, y = 0, z = 0}
 
 		-- weapon wear
-		hitter:set_detach() --MFF (crabman|27/7/2015) anti usebug, immortal if attached
+		local attach = hitter:get_attach()
+		if attach and attach:get_luaentity() then
+			local luaentity = attach:get_luaentity()
+			if luaentity.driver then
+				luaentity.driver = nil
+			end
+			hitter:set_detach() --MFF (crabman|27/7/2015) anti usebug, immortal if attached
+		end
 		local weapon = hitter:get_wielded_item()
 		local punch_interval = 1.4
 
