@@ -118,7 +118,7 @@ minetest.register_node("mobs:mese_dragon_spawner", {
 	})
 })
 
---(name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height, spawn_in_area)
--- spawn on mobs:mese_dragon_spawner between 1 and 20 light, interval 300, 1 chance, 1 mese_dragon_spawner in area up to 31000 in height
-mobs:spawn_specific("mobs:mese_dragon", {"mobs:mese_dragon_spawner"}, {"air"}, 1, 20, 300, 1, 100, -31000, 31000, true)
+--(name, nodes, neighbors, interval, chance, active_object_count)
+-- spawn on mobs:mese_dragon_spawner, interval 300, 1 chance, 1 mese_dragon_spawner
+mobs:spawn_special("mobs:mese_dragon", {"mobs:mese_dragon_spawner"}, {"air"}, 300, 1, 1)
 mobs:register_egg("mobs:mese_dragon", "Mese Dragon", "mobs_mese_dragon_inv.png", 1)

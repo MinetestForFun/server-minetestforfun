@@ -133,6 +133,6 @@ minetest.register_node("mobs:pumpboom_spawner", {
 mobs:spawn_specific("mobs:pumpking", {"mobs:pumpking_spawner"}, {"air"}, 1, 20, 300, 1, 100, -31000, 31000, true)
 mobs:register_egg("mobs:pumpking", "Pumpking", "mobs_pumpking_inv.png", 1)
 
--- spawn on mobs:pumpboom_spawner between 1 and 20 light, 4 interval, 1 chance, 100 pumpboom in area up to 31000 in height
-mobs:spawn_specific("mobs:pumpboom", {"mobs:pumpboom_spawner"}, {"air"}, 1, 20, 10, 4, 100, -31000, 31000, true)
+-- spawn on mobs:pumpboom_spawner, 4 interval, 1 chance, 30 pumpboom in area
+mobs:spawn_special("mobs:pumpboom", {"mobs:pumpboom_spawner"}, {"air"}, 10, 4, 30)
 mobs:register_egg("mobs:pumpboom", "Pumpboom", "mobs_pumpboom_inv.png", 1)

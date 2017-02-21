@@ -2142,6 +2142,62 @@ end -- END mobs:register_mob function
 
 mobs.spawning_mobs = {}
 
+function mobs:spawn_special(name, nodes, neighbors, interval, chance, active_object_count) -- MFF to special mobs
+	mobs.spawning_mobs[name] = true
+	-- chance override in minetest.conf for registered mob
+	local new_chance = tonumber(minetest.setting_get(name .. "_chance"))
+	if new_chance ~= nil then
+		if new_chance == 0 then
+			return
+		end
+		chance = new_chance
+	end
+
+	minetest.register_abm({
+		nodenames = nodes,
+		neighbors = neighbors,
+		interval = interval,
+		chance = chance,
+		action = function(pos, node, _, active_object_count_wider)
+			-- do not spawn if too many active entities in area
+			local count = 0
+			local objs = minetest.get_objects_inside_radius(pos, 60)
+			for k, obj in pairs(objs) do
+				if obj:get_luaentity() ~= nil and obj:get_luaentity().name == name then
+					count = count + 1
+				end
+			end
+			if count > active_object_count then
+				return
+			end
+			-- spawn above node
+			pos.y = pos.y + 1
+			-- only spawn away from player
+			local objs = minetest.get_objects_inside_radius(pos, 10)
+			for _,oir in pairs(objs) do
+				if oir:is_player() then
+					return
+				end
+			end
+
+			-- are we spawning inside solid nodes?
+			if minetest.registered_nodes[node_ok(pos).name].walkable == true then
+				return
+			end
+
+			pos.y = pos.y + 1
+			if minetest.registered_nodes[node_ok(pos).name].walkable == true then
+				return
+			end
+
+			-- spawn mob half block higher than ground
+			pos.y = pos.y - 0.5
+			minetest.add_entity(pos, name)
+		end
+	})
+end
+
+
 function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 	interval, chance, active_object_count, min_height, max_height, spawn_in_area, day_toggle) --MFF crabman "spawn_in_area"
 
