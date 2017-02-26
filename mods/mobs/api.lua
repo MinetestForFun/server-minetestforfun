@@ -1501,7 +1501,7 @@ minetest.register_entity(name, {
 		if (dist > self.view_range
 		or not self.attack
 		or not self.attack:getpos()
-		or self.attack:get_hp() <= 0) and not self.attack_type == "explode" then -- MFF
+		or self.attack:get_hp() <= 0) and not self.exploding then -- MFF
 
 			--print(" ** stop attacking **", dist, self.view_range)
 			self.state = "stand"
@@ -1535,7 +1535,7 @@ minetest.register_entity(name, {
 				self.object:setyaw(yaw)
 			end
 
-			--[[if dist > self.reach then
+			if dist > self.reach and not self.exploding then
 
 				if not self.v_start then
 
@@ -1559,7 +1559,8 @@ minetest.register_entity(name, {
 				end
 
 				set_animation(self, "run")
-			else]] -- MFF(Mg|06/10/2016) #509
+			else -- MFF(Mg|06/10/2016) #509
+				self.exploding = true --MFF
 				set_velocity(self, 0)
 				self.timer = self.timer + dtime
 				self.blinktimer = (self.blinktimer or 0) + dtime
@@ -1612,7 +1613,7 @@ minetest.register_entity(name, {
 
 					return
 				end
-			--end
+			end
 
 		elseif self.attack_type == "dogfight"
 		or (self.attack_type == "dogshoot" and dist <= self.reach) then
