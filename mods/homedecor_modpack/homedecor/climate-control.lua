@@ -111,7 +111,7 @@ homedecor.register("ceiling_fan", {
 		}
 	},
 	groups = { snappy = 3 },
-	light_source = LIGHT_MAX-1,
+	light_source = default.LIGHT_MAX-1,
 	sounds = default.node_sound_glass_defaults(),
 })
 

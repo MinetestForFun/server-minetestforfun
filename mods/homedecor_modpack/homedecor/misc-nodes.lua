@@ -195,7 +195,7 @@ homedecor.register("fishtank_lighted", {
 		"homedecor_fishtank_water_top_lighted.png",
 		"homedecor_fishtank_sides_lighted.png",
 	},
-	light_source = LIGHT_MAX-4,
+	light_source = default.LIGHT_MAX-4,
 	use_texture_alpha = true,
 	selection_box = ft_cbox,
 	collision_box = ft_cbox,

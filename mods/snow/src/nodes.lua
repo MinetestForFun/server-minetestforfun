@@ -132,7 +132,7 @@ minetest.register_node("snow:star", table.copy(nodedef))
 
 -- Star (Lit Version) on Xmas Trees
 nodedef.description = nodedef.description.." Lighted"
-nodedef.light_source = LIGHT_MAX
+nodedef.light_source = default.LIGHT_MAX
 nodedef.tiles = {"snow_star_lit.png"}
 nodedef.drop = "snow:star"
 nodedef.groups.not_in_creative_inventory = 1

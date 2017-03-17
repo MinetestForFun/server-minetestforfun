@@ -14,7 +14,7 @@ minetest.register_node("sealamps:torch", {
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	walkable = false,
-	light_source = LIGHT_MAX-1,
+	light_source = default.LIGHT_MAX-1,
 	selection_box = {
 		type = "wallmounted",
 		wall_top = {-0.1, 0.5-0.6, -0.1, 0.1, 0.5, 0.1},
@@ -40,7 +40,7 @@ minetest.register_node("sealamps:lantern", {
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	walkable = false,
-	light_source = LIGHT_MAX-1,
+	light_source = default.LIGHT_MAX-1,
 	selection_box = {
 		type = "wallmounted",
 		wall_top = {-0.1, 0.5-0.6, -0.1, 0.1, 0.5, 0.1},

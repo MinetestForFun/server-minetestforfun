@@ -290,7 +290,7 @@ local nodes = {
 		tiles = {"moreblocks_super_glow_glass.png", "moreblocks_super_glow_glass_detail.png"}, --MFF connected glass
 		paramtype = "light",
 		sunlight_propagates = true,
-		light_source = 15,
+		light_source = default.LIGHT_MAX,
 		groups = {snappy = 2, cracky = 3, oddly_breakable_by_hand = 3},
 		sounds = sound_glass,
 	},
@@ -300,7 +300,7 @@ local nodes = {
 		tiles = {"moreblocks_trap_super_glow_glass.png", "moreblocks_super_glow_glass_detail.png"}, --MFF connected glass
 		paramtype = "light",
 		sunlight_propagates = true,
-		light_source = 15,
+		light_source = default.LIGHT_MAX,
 		walkable = false,
 		groups = {snappy = 2, cracky = 3, oddly_breakable_by_hand = 3},
 		sounds = sound_glass,
