@@ -140,11 +140,11 @@ function setState(playerName, state) --Sets the state of a player (0=stopped, 1=
 	if players[playerName] then
 		players[playerName]["state"] = state
 		if state == 0 then--Stopped
-			player:set_physics_override({speed=1.0,jump=1.0})
+			player_physics.set_stats(player, "sprint", {speed=0, jump=0})
 		elseif state == 2 then --Primed
 			players[playerName]["timeOut"] = gameTime
 		elseif state == 3 then --Sprinting
-			player:set_physics_override({speed=SPRINT_SPEED,jump=SPRINT_JUMP})
+			player_physics.set_stats(player, "sprint", {speed=SPRINT_SPEED, jump=SPRINT_JUMP})
 		end
 		return true
 	end

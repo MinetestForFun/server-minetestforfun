@@ -244,7 +244,8 @@ armor.set_player_armor = function(self, player)
 		armor_groups.radiation = 100 - armor_radiation
 	end
 	player:set_armor_groups(armor_groups)
-	player:set_physics_override(physics_o)
+	--player:set_physics_override(physics_o)
+	player_physics.set_stats(player, "3d_armor", {speed=physics_o.speed-1, jump=physics_o.jump-1, gravity=physics_o.gravity-1})
 	self.textures[name].armor = armor_texture
 	self.textures[name].preview = preview
 	self.def[name].state = state

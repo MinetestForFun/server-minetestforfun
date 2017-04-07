@@ -182,35 +182,12 @@ end)
 
 function setSprinting(playerName, sprinting) --Sets the state of a player (0=stopped/moving, 1=sprinting)
 	local player = minetest.get_player_by_name(playerName)
-	local bonus_speed = 0
-	local bonus_jump = 0
-	if minetest.get_modpath("3d_armor") then
-		local player_inv = player:get_inventory()
-		if player_inv then
-			for i=1, player_inv:get_size("armor") do
-				local stack = player_inv:get_stack("armor", i)
-				if stack:get_count() > 0 then
-					local def = stack:get_definition()
-					if def and def.groups then
-						if def.groups["physics_speed"] then
-							bonus_speed = bonus_speed + def.groups["physics_speed"]
-						end
-
-						if def.groups["physics_jump"] then
-							bonus_jump = bonus_jump + def.groups["physics_jump"]
-						end
-					end
-				end
-			end
-		end
-	end
-
 	if sprint.players[playerName] then
 		sprint.players[playerName]["sprinting"] = sprinting
 		if sprinting == true then
-			player:set_physics_override({speed=SPRINT_SPEED + bonus_speed,jump=SPRINT_JUMP + bonus_jump})
+			player_physics.set_stats(player, "sprint", {speed=SPRINT_SPEED, jump=SPRINT_JUMP})
 		elseif sprinting == false then
-			player:set_physics_override({speed=1.0 + bonus_speed,jump=1.0 + bonus_jump})
+			player_physics.set_stats(player, "sprint", {speed=0, jump=0})
 		end
 		return true
 	end

@@ -1,4 +1,5 @@
 default
+player_physics
 inventory_plus?
 unified_inventory?
 fire?
