@@ -42,6 +42,7 @@ Yet another class mod for Minetest.
  - Def is a definition table that can contain many functions/values :
     - `on_assigned` which is a function, receiving as argument the player name
     - `on_unassigned` which is a function, receiving as argument the player name
+    - `on_update` which is a function, receiving as argument the player name
     - `switch_params`, which is a table, containing parameters for the switch pedestal :
       - `holo_item` is mandatory. It's the itemstring of the item to be put over the pedestal
       - `color` is optional. Default is white. It's a RGB table.
@@ -77,6 +78,10 @@ Yet another class mod for Minetest.
 ### pclasses.api.util.can_have_item
  - Arguments : pname, itemname
  - Returns true if player `pname` can have items `itemstring` in his main inventory, according to his class
+
+###  pclasses.api.util.on_update
+ - Arguments : pname
+ - Update player's stats
 
 ### pclasses.api.reserve_item
  - Arguments : cname, itemstring

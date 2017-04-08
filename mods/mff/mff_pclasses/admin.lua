@@ -11,8 +11,11 @@ pclasses.api.register_class("admin", {
 		if inform then
 			minetest.chat_send_player(pname, "Hello admin.")
 		end
+		pclasses.api.util.on_update(pname)
 	end,
 	on_unassigned = function(pname)
+	end,
+	on_update = function(pname)
 	end,
 	switch_params = {
 		color = {r = 255, g = 00, b = 224},

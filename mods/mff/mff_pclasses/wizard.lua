@@ -13,11 +13,17 @@ pclasses.api.register_class("wizard", {
 			minetest.chat_send_player(pname, "You are now a wizard.")
 		end
 		-- Add specs here
-		mana.setmax(pname, mana.getmax(pname)+100)
+		pclasses.api.util.on_update(pname)
 		minetest.log("action", "[PClasses] Player " .. pname .. " becomes a wizard")
 	end,
 	on_unassigned = function(pname)
 		mana.setmax(pname, mana.getmax(pname)-100)
+	end,
+	on_update = function(pname)
+		local staminavalue = 30
+		local manavalue = 200
+		sprint.set_maxstamina(pname, staminavalue)
+		mana.setmax(pname, manavalue)
 	end,
 	switch_params = {
 		color = {r = 230, g = 230, b = 0},

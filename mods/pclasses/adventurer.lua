@@ -12,8 +12,15 @@ pclasses.api.register_class("adventurer", {
 		if inform then
 			minetest.chat_send_player(pname, "You are now an adventurer")
 		end
+		pclasses.api.util.on_update(pname)
 	end,
 	on_unassigned = function(pname)
+	end,
+	on_update = function(pname)
+		local staminavalue = 10
+		local manavalue = 100
+		sprint.set_maxstamina(pname, staminavalue)
+		mana.setmax(pname, manavalue)
 	end,
 	informations = pclasses.api.textify("Adventurer, the casual players, or hardcore players. Whatever end of the spectrum\n" ..
 		"you're in, adventurer will bring you what you want : no advantages, no help. Maybe you\n" ..

@@ -249,6 +249,7 @@ armor.set_player_armor = function(self, player)
 	player:set_armor_groups(armor_groups)
 	--player:set_physics_override(physics_o)
 	player_physics.set_stats(player, "3d_armor", {speed=physics_o.speed-1, jump=physics_o.jump-1, gravity=physics_o.gravity-1})
+	pclasses.api.util.on_update(name)
 	self.textures[name].armor = armor_texture
 	self.textures[name].preview = preview
 	self.def[name].state = state

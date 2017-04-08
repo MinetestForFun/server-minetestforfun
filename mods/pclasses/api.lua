@@ -100,6 +100,13 @@ function pclasses.api.util.can_have_item(pname, itemname)
 	return false
 end
 
+function pclasses.api.util.on_update(pname)
+	local cname = pclasses.api.get_player_class(pname)
+	if cname ~= nil and pclasses.api.get_class_by_name(cname) and pclasses.api.get_class_by_name(cname).on_update then
+		pclasses.api.get_class_by_name(cname).on_update(pname)
+	end
+end
+
 -- TEMPORARY CLASS SHIFT SYSTEM
 -- Used to test on local servers
 --

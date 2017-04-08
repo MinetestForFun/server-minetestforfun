@@ -12,16 +12,23 @@ pclasses.api.register_class("hunter", {
 			minetest.chat_send_player(pname, "You are now a hunter")
 			minetest.sound_play("pclasses_full_hunter", {to_player=pname, gain=1})
 		end
-		local reinforced = pclasses.api.util.does_wear_full_armor(pname, "reinforcedleather", true)
-		if reinforced then
-			sprint.increase_maxstamina(pname, 40)
-		else
-			sprint.increase_maxstamina(pname, 30)
-		end
+		pclasses.api.util.on_update(pname)
 		minetest.log("action", "[PClasses] Player " .. pname .. " become a hunter")
 	end,
 	on_unassigned = function(pname)
 		sprint.set_default_maxstamina(pname)
+	end,
+	on_update = function(pname)
+		local staminavalue = 30
+		local manavalue = 100
+		local reinforced = pclasses.api.util.does_wear_full_armor(pname, "reinforcedleather", true)
+		if reinforced then
+			staminavalue = staminavalue + 20
+		else
+			staminavalue = staminavalue + 10
+		end
+		sprint.set_maxstamina(pname, staminavalue)
+		mana.setmax(pname, manavalue)
 	end,
 	switch_params = {
 		color = {r = 30, g = 170, b = 00},
