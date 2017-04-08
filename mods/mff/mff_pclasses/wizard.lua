@@ -20,7 +20,7 @@ pclasses.api.register_class("wizard", {
 		mana.setmax(pname, mana.getmax(pname)-100)
 	end,
 	on_update = function(pname)
-		local staminavalue = 30
+		local staminavalue = 10
 		local manavalue = 200
 		sprint.set_maxstamina(pname, staminavalue)
 		mana.setmax(pname, manavalue)
