@@ -150,6 +150,9 @@ local function punch_filter(data, filtpos, filtnode, msg)
 		local v_mul = vector.multiply(dir, 2)
 		frompos = vector.subtract(filtpos, v_mul)
 		fromnode = minetest.get_node(frompos)
+		if fromnode and fromnode.name ~= "connected_chests:chest_left" then
+			return
+		end
 	end
 	
 	if not fromnode then return end
