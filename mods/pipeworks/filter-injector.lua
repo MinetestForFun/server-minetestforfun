@@ -144,6 +144,17 @@ local function punch_filter(data, filtpos, filtnode, msg)
 	local dir = minetest.facedir_to_right_dir(filtnode.param2)
 	local frompos = vector.subtract(filtpos, dir)
 	local fromnode = minetest.get_node(frompos)
+
+	-- Fix crash with connected_chests (sys4 fix for MFF)
+	if fromnode and fromnode.name == "connected_chests:chest_right" then
+		local v_mul = vector.multiply(dir, 2)
+		frompos = vector.subtract(filtpos, v_mul)
+		fromnode = minetest.get_node(frompos)
+		if fromnode and fromnode.name ~= "connected_chests:chest_left" then
+			return
+		end
+	end
+	
 	if not fromnode then return end
 	local fromdef = minetest.registered_nodes[fromnode.name]
 	if not fromdef then return end
