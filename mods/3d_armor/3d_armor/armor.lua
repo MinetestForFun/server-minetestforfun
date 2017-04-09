@@ -109,9 +109,12 @@ elseif minetest.get_modpath("unified_inventory") then
 				.."list[detached:"..name.."_armor;armor;0,"..fy..";2,3;]"
 				.."image[2.5,"..(fy - 0.25)..";2,4;"..armor.textures[name].preview.."]"
 				.."label[5.0,"..(fy + 0.0)..";Level: "..armor.def[name].level.."]"
-				.."label[5.0,"..(fy + 0.5)..";Heal:  "..armor.def[name].heal.."]"
-				.."label[5.0,"..(fy + 1.0)..";Fire:  "..armor.def[name].fire.."]"
-				.."label[5.0,"..(fy + 1.5)..";Radiation:  "..armor.def[name].radiation.."]"
+				.."label[5.0,"..(fy + 0.4)..";Heal:  "..armor.def[name].heal.."]"
+				.."label[5.0,"..(fy + 0.8)..";Fire:  "..armor.def[name].fire.."]"
+				.."label[5.0,"..(fy + 1.2)..";Radiation:  "..armor.def[name].radiation.."]"
+				.."label[5.0,"..(fy + 1.6)..";Speed:  "..armor.def[name].speed.."]"
+				.."label[5.0,"..(fy + 2)..";Jump:  "..armor.def[name].jump.."]"
+				.."label[5.0,"..(fy + 2.4)..";Gravity:  "..armor.def[name].gravity.."]"
 				.."listring[current_player;main]"
 				.."listring[detached:"..name.."_armor;armor]"
 			return {formspec=formspec}
@@ -302,6 +305,9 @@ armor.get_armor_formspec = function(self, name)
 	formspec = formspec:gsub("armor_heal", armor.def[name].heal)
 	formspec = formspec:gsub("armor_fire", armor.def[name].fire)
 	formspec = formspec:gsub("armor_radiation", armor.def[name].radiation)
+	formspec = formspec:gsub("armor_speed", armor.def[name].speed)
+	formspec = formspec:gsub("armor_jump", armor.def[name].jump)
+	formspec = formspec:gsub("armor_gravity", armor.def[name].gravity)
 	return formspec
 end
 
