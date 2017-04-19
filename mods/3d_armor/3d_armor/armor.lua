@@ -77,6 +77,7 @@ armor = {
 	textures = {},
 	default_skin = "character",
 	version = "0.4.5",
+	hooks = {}
 }
 
 if minetest.get_modpath("inventory_plus") then
@@ -138,6 +139,10 @@ armor.def = {
 	state = 0,
 	count = 0,
 }
+
+armor.register_hook = function(self, funcs)
+	table.insert(armor.hooks, 1, funcs)
+end
 
 armor.update_player_visuals = function(self, player)
 	if not player then
@@ -249,7 +254,12 @@ armor.set_player_armor = function(self, player)
 	player:set_armor_groups(armor_groups)
 	--player:set_physics_override(physics_o)
 	player_physics.set_stats(player, "3d_armor", {speed=physics_o.speed-1, jump=physics_o.jump-1, gravity=physics_o.gravity-1})
-	pclasses.api.util.on_update(name)
+
+	-- Full set for hunters
+	for _, hook in pairs(armor.hooks) do
+		hook(player)
+	end
+
 	self.textures[name].armor = armor_texture
 	self.textures[name].preview = preview
 	self.def[name].state = state
@@ -361,6 +371,17 @@ armor.get_valid_player = function(self, player, msg)
 		return
 	end
 	return name, player_inv, armor_inv, pos
+end
+
+-- Know whether or not a player wears a full set
+-- (<MFF>)
+armor.does_wear_full_armor = function(self, player, material, noshield)
+	local pname, pinv = armor:get_valid_player(player, "[does_wear_full_armor]")
+	local full_armor = true
+	for _, piece in pairs({"chestplate", "leggings", "boots", "helmet"}) do
+		full_armor = full_armor and pinv:contains_item("armor", "3d_armor:" .. piece .. "_" .. material)
+	end
+	return full_armor and (pinv:contains_item("armor", "shields:shield_" .. material) or noshield)
 end
 
 -- Register Player Model
