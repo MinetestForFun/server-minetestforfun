@@ -61,21 +61,27 @@ minetest.register_node("runes:black_magic_block", {
 })
 
 -- Globalstep checking for the amulets
-minetest.register_globalstep(function(dtime)
+tmpdata = {}
+loop = function()
 	for _, player in pairs(minetest.get_connected_players()) do
 		local inv = player:get_inventory()
-		local basemana = mana.settings.default_max
+		local pname = player:get_player_name()
+		local basemana = mana.getmax(pname) - (tmpdata[pname] or 0) -- Baseline mana, without any amulets
+		local addons = 0
 		for index, item in pairs(inv:get_list("main")) do
 			local itemname = item:get_name()
 			local itemcount = item:get_count()
 			for name, manadiff in pairs(runes.datas.amulets) do
 				if itemname == "runes:" .. name .. "_amulet" then
-					basemana = basemana + (manadiff * itemcount)
+					addons = addons + (manadiff * itemcount)
+					print("Detected " .. name)
 				end
 			end
 		end
-		if basemana ~= mana.settings.default_max then
-			mana.setmax(player:get_player_name(), basemana)
-		end
+		mana.setmax(pname, basemana + addons)
+		tmpdata[pname] = addons
 	end
-end)
+	minetest.after(1, loop)
+end
+
+minetest.after(0, loop)
