@@ -13,7 +13,6 @@ pclasses.api.register_class("wizard", {
 			minetest.chat_send_player(pname, "You are now a wizard.")
 		end
 		-- Add specs here
-		pclasses.api.util.on_update(pname)
 		minetest.log("action", "[PClasses] Player " .. pname .. " becomes a wizard")
 	end,
 	on_unassigned = function(pname)

@@ -12,7 +12,6 @@ pclasses.api.register_class("warrior", {
 			minetest.sound_play("pclasses_full_warrior", {to_player=pname, gain=1})
 			minetest.chat_send_player(pname, "You are now a warrior")
 		end
-		pclasses.api.util.on_update(pname)
 		minetest.log("action", "[PClasses] Player " .. pname .. " becomes a warrior")
 	end,
 	on_unassigned = function(pname)
