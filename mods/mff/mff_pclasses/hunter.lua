@@ -54,6 +54,9 @@ pclasses.api.register_class("hunter", {
 		"you need to fight a super strong mob, but it's just details...)") .. "image[2.4,5.6;6,4;pclasses_showcase_hunter.png]"
 })
 
+minetest.register_on_leaveplayer(function(player)
+	tmp[player:get_player_name()] = false
+end)
 
 pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn")
 pclasses.api.reserve_item("hunter", "throwing:bow_minotaur_horn_loaded")
