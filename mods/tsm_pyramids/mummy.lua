@@ -52,10 +52,31 @@ mobs:register_mob("tsm_pyramids:mummy", {
 		sit_start = 81,			sit_end = 160,
 		lay_start = 162,		lay_end = 166,
 		mine_start = 74,		mine_end = 105,
-		walk_mine_start = 74,		walk_mine_end = 105,
+		walk_mine_start = 74,	walk_mine_end = 105,
 	},
 })
 
+--MFF ABM to replace old maptools:chest
+minetest.register_abm({
+	nodenames = {"tsm_pyramids:spawner_mummy"},
+	interval = 10.0,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		local chests = minetest.find_nodes_in_area(
+						{x=pos.x-4, y=pos.y-3, z=pos.z-10},
+						{x=pos.x+4, y=pos.y, z=pos.z},
+						"maptools:chest"
+					)
+		for _, cpos in ipairs(chests) do
+			local p2 = 0
+			local n = minetest.get_node_or_nil(cpos)
+			if n and n.param2 then
+				p2 = n.param2
+			end
+			minetest.set_node(cpos, {name="tsm_pyramids:chest", param2=p2})
+		end
+	end
+})
 -- spawner (spawn in pyramids, near the spawner)
 if not minetest.setting_getbool("only_peaceful_mobs") then
  minetest.register_abm({
@@ -101,10 +122,10 @@ minetest.register_node("tsm_pyramids:spawner_mummy", {
 	drop = "",
 	on_construct = function(pos)
 		pos.y = pos.y - 0.28
-		minetest.env:add_entity(pos,"tsm_pyramids:mummy_spawner")
+		minetest.add_entity(pos,"tsm_pyramids:mummy_spawner")
 	end,
 	on_destruct = function(pos)
-		for  _,obj in ipairs(minetest.env:get_objects_inside_radius(pos, 1)) do
+		for  _,obj in ipairs(minetest.get_objects_inside_radius(pos, 1)) do
 			if not obj:is_player() then
 				if obj ~= nil and obj:get_luaentity().m_name == "dummy" then
 					obj:remove()
@@ -122,7 +143,7 @@ minetest.register_craftitem("tsm_pyramids:spawn_egg", {
 	stack_max = 99,
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type == "node" then
-			minetest.env:add_entity(pointed_thing.above,"tsm_pyramids:mummy")
+			minetest.add_entity(pointed_thing.above,"tsm_pyramids:mummy")
 			if not minetest.setting_getbool("creative_mode") then itemstack:take_item() end
 			return itemstack
 		end
