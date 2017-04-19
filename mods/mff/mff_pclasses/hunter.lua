@@ -19,6 +19,10 @@ pclasses.api.register_class("hunter", {
 	end,
 	on_unassigned = function(pname)
 		sprint.decrease_maxstamina(pname, 10)
+		if tmp[pname] then
+			sprint.decrease_maxstamina(pname, 10)
+			tmp[pname] = nil
+		end
 	end,
 	on_update = function(pname)
 		local reinforced = pclasses.api.util.does_wear_full_armor(pname, "reinforcedleather", true)

@@ -55,8 +55,8 @@ end
 function pclasses.api.set_player_class(pname, cname, inform)
 	if pclasses.api.get_class_by_name(cname) then
 		if pclasses.api.get_player_class(pname) then
-			pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
-			pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_update(pname)
+				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_update(pname)
+				pclasses.api.get_class_by_name(pclasses.api.get_player_class(pname)).on_unassigned(pname)
 		end
 		pclasses.data.players[pname] = cname
 		local newclass = pclasses.api.get_class_by_name(cname)
