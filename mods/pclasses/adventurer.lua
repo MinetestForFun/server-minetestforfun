@@ -12,7 +12,6 @@ pclasses.api.register_class("adventurer", {
 		if inform then
 			minetest.chat_send_player(pname, "You are now an adventurer")
 		end
-		pclasses.api.util.on_update(pname)
 	end,
 	on_unassigned = function(pname)
 	end,

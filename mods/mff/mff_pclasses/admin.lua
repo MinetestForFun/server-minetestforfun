@@ -14,6 +14,9 @@ pclasses.api.register_class("admin", {
 	end,
 	on_unassigned = function(pname)
 	end,
+	on_update = function(pname)
+		-- No specific armor changes, no code
+	end,
 	switch_params = {
 		color = {r = 255, g = 00, b = 224},
 		holo_item = "maptools:pick_admin"

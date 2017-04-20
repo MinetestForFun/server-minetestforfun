@@ -14,11 +14,11 @@ pclasses.api.register_class("hunter", {
 			minetest.chat_send_player(pname, "You are now a hunter")
 			minetest.sound_play("pclasses_full_hunter", {to_player=pname, gain=1})
 		end
-		sprint.increase_maxstamina(pname, 10)
+		sprint.increase_maxstamina(pname, 20)
 		minetest.log("action", "[PClasses] Player " .. pname .. " become a hunter")
 	end,
 	on_unassigned = function(pname)
-		sprint.decrease_maxstamina(pname, 10)
+		sprint.decrease_maxstamina(pname, 20)
 		if tmp[pname] then
 			sprint.decrease_maxstamina(pname, 10)
 			tmp[pname] = nil
