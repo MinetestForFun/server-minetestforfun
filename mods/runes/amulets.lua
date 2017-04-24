@@ -74,7 +74,7 @@ loop = function()
 			for name, manadiff in pairs(runes.datas.amulets) do
 				if itemname == "runes:" .. name .. "_amulet" then
 					addons = addons + (manadiff * itemcount)
-					print("Detected " .. name)
+					--print("Detected " .. name)
 				end
 			end
 		end
@@ -85,3 +85,10 @@ loop = function()
 end
 
 minetest.after(0, loop)
+
+minetest.register_on_leaveplayer(function(player)
+	local pname = player:get_player_name()
+	mana.setmax(pname, mana.getmax(pname) - tmpdata[pname]) -- Reset
+	tmpdata[pname] = nil
+	mana.save_to_file(pname) -- Double class since we aren't sure mana hasn't already saved (it probably did)
+end)
