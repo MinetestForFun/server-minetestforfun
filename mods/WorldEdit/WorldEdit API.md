@@ -45,6 +45,12 @@ Copies the region defined by positions `pos1` and `pos2` along the `axis` axis (
 
 Returns the number of nodes copied.
 
+### count = worldedit.copy2(pos1, pos2, off)
+
+Copies the region defined by positions `pos1` and `pos2` by the offset vector `off`.
+
+Returns the number of nodes copied.
+
 ### count = worldedit.move(pos1, pos2, axis, amount)
 
 Moves the region defined by positions `pos1` and `pos2` along the `axis` axis ("x" or "y" or "z") by `amount` nodes.
@@ -127,9 +133,9 @@ Adds a cylinder at `pos` along the `axis` axis ("x" or "y" or "z") with length `
 
 Returns the number of nodes added.
 
-### count = worldedit.pyramid(pos, axis, height, node_name)
+### count = worldedit.pyramid(pos, axis, height, node_name, hollow)
 
-Adds a pyramid centered at `pos` along the `axis` axis ("x" or "y" or "z") with height `height`.
+Adds a pyramid centered at `pos` along the `axis` axis ("x" or "y" or "z") with height `height`, composed of `node_name`.
 
 Returns the number of nodes added.
 

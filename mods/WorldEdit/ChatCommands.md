@@ -22,6 +22,9 @@ Many commands also have shorter names that can be typed faster. For example, if 
 | `//hdo`    | `//hollowdome`     |
 | `//do`     | `//dome`           |
 | `//hcyl`   | `//hollowcylinder` |
+| `//cyl`    | `//cylinder`       |
+| `//hpyr`   | `//hollowpyramid`  |
+| `//pyr`    | `//pyramid`        |
 
 ### `//about`
 
@@ -100,7 +103,7 @@ Display the volume of the current WorldEdit region.
 
 ### `//deleteblocks`
 
-Delete the MapBlocks (16x16x16 units) that contain the selected region. This means that mapgen will be invoked for that area. As only whole MapBlocks get removed, the deleted area is usually larger than the selected one. Also, mapgen can trigger mechanisms like mud reflow or cavegen, which affects nodes (up to 112 nodes away) outside the MapBlock, so dont use this near buildings.
+Delete the MapBlocks (16x16x16 units) that contain the selected region. This means that mapgen will be invoked for that area. As only whole MapBlocks get removed, the deleted area is usually larger than the selected one. Also, mapgen can trigger mechanisms like mud reflow or cavegen, which affects nodes (up to 112 nodes away) outside the MapBlock, so dont use this near buildings. Note that active entities are not part of a MapBlock and do not get deleted.
 
     //deleteblocks
 
@@ -190,6 +193,15 @@ Add cylinder at WorldEdit position 1 along the x/y/z/? axis with length `<length
     //cylinder z -12 3 mesecons:wire_00000000_off
     //cylinder ? 2 4 default:stone
     
+### `//hollowpyramid x/y/z? <height> <node>`
+
+Add hollow pyramid centered at WorldEdit position 1 along the x/y/z/? axis with height `<height>`, composed of `<node>`.
+
+    //hollowpyramid x 8 Diamond Block
+    //hollowpyramid y -5 glass
+    //hollowpyramid z 2 mesecons:wire_00000000_off
+    //hollowpyramid ? 12 mesecons:wire_00000000_off
+
 ### `//pyramid x/y/z? <height> <node>`
 
 Add pyramid centered at WorldEdit position 1 along the x/y/z/? axis with height `<height>`, composed of `<node>`.
@@ -291,6 +303,12 @@ Fixes the lighting in the current WorldEdit region.
 
     //fixlight
 
+### `//drain`
+
+Removes any fluid node within the current WorldEdit region.
+
+    //drain
+
 ### `//hide`
 
 Hide all nodes in the current WorldEdit region non-destructively.
@@ -380,3 +398,38 @@ This mode can be left with `//mtschemprob finish`. `//mtschemprob get` will disp
 Clears all objects within the WorldEdit region.
 
     //clearobjects
+    
+### `//shift x/y/z/?/up/down/left/right/front/back [+|-]<amount>`
+
+Shifts the selection area by `[+|-]<amount>` without touching its contents. The shifting axis can be absolute (`x/y/z`) or 
+relative (`up/down/left/right/front/back`). 
+
+		//shift left 5
+
+### `//expand [+|-]x/y/z/?/up/down/left/right/front/back <amount> [reverse-amount]`
+
+Expands the selection by `<amount>` in the selected absolute or relative axis. If specified, the selection can be expanded in the
+opposite direction over the same axis by `[reverse-amount]`.
+
+		//expand right 7 5
+		
+### `//contract [+|-]x/y/z/?/up/down/left/right/front/back <amount> [reverse-amount]`
+
+Contracts the selection by `<amount>` in the selected absolute or relative axis. If specified, the selection can be contracted in the
+opposite direction over the same axis by `[reverse-amount]`.
+
+		//expand right 7 5
+		
+### `//outset [hv] <amount>`
+
+Expands the selection in all directions by `<amount>`. If specified, the selection can be expanded horizontally in the x and z axes `[h]`
+or vertically in the y axis `[v]`.
+
+		//outset v 5
+		
+### `//inset [hv] <amount>`
+
+Contracts the selection in all directions by `<amount>`. If specified, the selection can be contracted horizontally in the x and z axes `[h]`
+or vertically in the y axis `[v]`.
+
+		//outset v 5
