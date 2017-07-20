@@ -382,6 +382,8 @@ minetest.register_abm({
 -- we need our own copy of that node, which moretrees will match against.
 
 local jungle_tree = moretrees.clone_node("default:jungletree")
+jungle_tree.drop = jungle_tree.drop or { items = {} }
+table.insert(jungle_tree.drop.items, { items = {"default:jungletree"}})
 minetest.register_node("moretrees:jungletree_trunk", jungle_tree)
 
 -- For compatibility with old nodes, recently-changed nodes, and default nodes
