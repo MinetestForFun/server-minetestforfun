@@ -315,13 +315,13 @@ for n,data in ipairs(guide_infos) do
 		elseif typ == "x" then
 			x = math.max(x, content)
 		elseif typ == "text" then
-			local tab = minetest.splittext(content, guide_size.fx)
+			--local tab = minetest.splittext(content, guide_size.fx)
 			local l = guide_size.cx
-			for _,str in ipairs(tab) do
+			--[[for _,str in ipairs(tab) do
 				form = form.."label["..guide_size.cx ..","..guide_size.cy+y..";"..str.."]"
 				y = y+guide_size.fy
 				l = math.max(l, #str)
-			end
+			end]]
 			x = math.max(x, l/font_size)
 		elseif typ == "image" then
 			local w, h, texture_name, px, py = unpack(content)
