@@ -37,3 +37,6 @@
 [submodule "mods/mapfix"]
 	path = mods/mapfix
 	url = https://github.com/minetest-mods/mapfix.git
+[submodule "mods/mysql_base"]
+	path = mods/mysql_base
+	url = https://github.com/MinetestForFun/mysql_base.git
