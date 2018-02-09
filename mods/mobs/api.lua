@@ -2381,7 +2381,18 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 			local on_blast = minetest.registered_nodes[n].on_blast
 
 			if on_blast then
-				return on_blast(p)
+				local drops = on_blast(p) -- MFF(Lymkwi) : Chests and bones return their drops now
+				for _, name in ipairs(drops) do
+					local obj = minetest.add_item(p, ItemStack(name))
+					if obj then
+						obj:setvelocity({
+							x = math.random(-2, 2),
+							y = 7,
+							z = math.random(-2, 2)
+						})
+					end
+				end
+				return
 			end
 
 			if not minetest.is_protected(p, "") --/MFF (Crabman|06/23/2015) re-added node protected in areas
