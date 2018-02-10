@@ -2381,7 +2381,7 @@ function mobs:explosion(pos, radius, fire, smoke, sound)
 			local on_blast = minetest.registered_nodes[n].on_blast
 
 			if on_blast then
-				local drops = on_blast(p) -- MFF(Lymkwi) : Chests and bones return their drops now
+				local drops = on_blast(p) or {} -- MFF(Lymkwi) : Chests and bones return their drops now
 				for _, name in ipairs(drops) do
 					local obj = minetest.add_item(p, ItemStack(name))
 					if obj then
