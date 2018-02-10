@@ -36,7 +36,7 @@ function whoison.loadLastSeen()
 		local ls = f:read("*all")
 		f:close()
 		if ( ls ~= nil and ls ~= "" ) then
-			whoison.lastseen = minetest.deserialize(ls)
+			whoison.lastseen = minetest.deserialize(ls) or {}
 		end
 	end
 end
