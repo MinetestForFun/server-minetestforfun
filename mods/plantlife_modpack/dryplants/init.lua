@@ -14,6 +14,9 @@ local mname		= "dryplants"
 -----------------------------------------------------------------------------------------------
 abstract_dryplants = {}
 
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 dofile(minetest.get_modpath("dryplants").."/crafting.lua")
 dofile(minetest.get_modpath("dryplants").."/settings.txt")
 dofile(minetest.get_modpath("dryplants").."/reed.lua")
@@ -111,7 +114,7 @@ local function sickle_on_use(itemstack, user, pointed_thing, uses)
 end
 -- the tool
 minetest.register_tool("dryplants:sickle", {
-	description = "Sickle",
+	description = S("Sickle"),
 	inventory_image = "dryplants_sickle.png",
 	on_use = function(itemstack, user, pointed_thing)
 		return sickle_on_use(itemstack, user, pointed_thing, 220)
@@ -122,7 +125,7 @@ minetest.register_tool("dryplants:sickle", {
 -- Cut Grass
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:grass", {
-	description = "Cut Grass",
+	description = S("Cut Grass"),
 	inventory_image = "dryplants_grass.png",
 	wield_image = "dryplants_grass.png",
 	paramtype = "light",
@@ -153,7 +156,7 @@ minetest.register_abm({
 -- Hay
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:hay", {
-	description = "Hay",
+	description = S("Hay"),
 	inventory_image = "dryplants_hay.png",
 	wield_image = "dryplants_hay.png",
 	paramtype = "light",
@@ -172,7 +175,7 @@ minetest.register_node("dryplants:hay", {
 -- Short Grass
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:grass_short", {
-	description = "Short Grass",
+	description = S("Short Grass"),
 	tiles = {"default_grass.png^dryplants_grass_short.png", "default_dirt.png", "default_dirt.png^default_grass_side.png^dryplants_grass_short_side.png"},
 	is_ground_content = true,
 	groups = {crumbly=3,soil=1,not_in_creative_inventory=1},
@@ -199,5 +202,5 @@ minetest.register_abm({
 })
 
 -----------------------------------------------------------------------------------------------
-minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
+minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...") --MFF
 -----------------------------------------------------------------------------------------------

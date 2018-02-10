@@ -1,7 +1,10 @@
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 abstract_youngtrees = {}
 
 minetest.register_node("youngtrees:bamboo", {
-	description = "Young Bamboo Tree",
+	description = S("Young Bamboo Tree"),
 	drawtype="nodebox",
 	tiles = {"bamboo.png"},
 	paramtype = "light",
@@ -21,7 +24,7 @@ minetest.register_node("youngtrees:bamboo", {
 })
 
 minetest.register_node("youngtrees:youngtree2_middle",{
-	description = "Young Tree 2 (middle)",
+	description = S("Young Tree 2 (middle)"),
 	drawtype="nodebox",
 	tiles = {"youngtree2branch.png"},
 	inventory_image = "youngtree2branch.png",
@@ -43,7 +46,7 @@ minetest.register_node("youngtrees:youngtree2_middle",{
 })
 
 minetest.register_node("youngtrees:youngtree_top", {
-	description = "Young Tree (top)",
+	description = S("Young Tree (top)"),
 	drawtype = "plantlike",
 	tiles = {"youngtree16xa.png"},
 	inventory_image = "youngtree16xa.png",
@@ -62,7 +65,7 @@ minetest.register_node("youngtrees:youngtree_top", {
 
 
 minetest.register_node("youngtrees:youngtree_middle", {
-	description = "Young Tree (middle)",
+	description = S("Young Tree (middle)"),
 	drawtype = "plantlike",
 	tiles = {"youngtree16xb.png"},
 	inventory_image = "youngtree16xb.png",
@@ -82,7 +85,7 @@ minetest.register_node("youngtrees:youngtree_middle", {
 
 
 minetest.register_node("youngtrees:youngtree_bottom", {
-	description = "Young Tree (bottom)",
+	description = S("Young Tree (bottom)"),
 	drawtype = "plantlike",
 	tiles = {"youngtree16xc.png"},
 	inventory_image = "youngtree16xc.png",

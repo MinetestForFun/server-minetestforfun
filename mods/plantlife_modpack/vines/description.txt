@@ -1,0 +1,1 @@
+Adds climbable vines that are spawned on trees.

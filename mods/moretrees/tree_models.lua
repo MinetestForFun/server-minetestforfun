@@ -43,6 +43,37 @@ moretrees.oak_model={
 	fruit_chance=3,
 }
 
+moretrees.poplar_model={
+	axiom="TTTaaBCCCCCCCCCCCcccBBB[[f]&&G++f++Gf++Gf++Gf++G--]G[[f]&&G++f++Gf++Gf++Gf++G--]Gff",
+	rules_a="T",
+	rules_b="[[T]&&G++f++ff++ff++ff++f--]G",
+	rules_c="[[T]&&G++f++ff++ff++ff++f--G++[d]G[d]G++G[d]G[d]G[d]G++G[d]G[d]G[d]G++G[d]G[d]G[d]G++G[d]G]G",
+	rules_d="f",
+	trunk="air",
+	trunk="moretrees:poplar_trunk",
+	leaves="moretrees:poplar_leaves",
+	angle=45,
+	iterations=0,
+	random_level=0,
+	trunk_type="single",
+	thin_branches=false,
+}
+
+moretrees.poplar_small_model={
+	axiom="TT[T]BCCCCccBBff",
+	rules_a="T",
+	rules_b="[[f]&&G++f++Gf++Gf++Gf++G--]G",
+	rules_c="[[T]&&G++f++[d]Gf++[d]Gf++[d]Gf++[d]G--]G",
+	rules_d="f",
+	trunk="moretrees:poplar_trunk",
+	leaves="moretrees:poplar_leaves",
+	angle=45,
+	iterations=0,
+	random_level=0,
+	trunk_type="single",
+	thin_branches=false,
+}
+
 moretrees.sequoia_model={
 	axiom="FFFFFFFFFFddccA///cccFddcFA///ddFcFA/cFFddFcdBddd/A/ccdcddd/ccAddddcFBcccAccFdFcFBcccc/BFdFFcFFdcccc/B",
 	rules_a="[&&&GGF[++^FFdd][--&Fddd]//Fdd[+^Fd][--&Fdd]]////[&&&GGF[++^FFdd][--&Fddd]//Fdd[+^Fd][--&Fdd]]////[&&&GGF[++^FFdd][--&Fddd]//Fdd[+^Fd][--&Fdd]]",
@@ -88,8 +119,13 @@ moretrees.birch_model2={
 	thin_branches=true
 }
 
+-- Coconuts can't be generated as fruit, because there is no support for the
+-- special fruit trunks that allow coconuts to regrow at the correct position
+-- in the tree.
+-- So, a placeholder fruit trunk is spawned. An ABM will convert it to the final
+-- fruit trunk, and generate the actual coconuts.
 moretrees.palm_model={
-	axiom="FFcccccc&FFFFFddd[^&&&GR][^///&&&GR][^//////&&&GR][^***&&&GR]FA//A//A//A//A//A",
+	axiom="FFcccccc&FFFFFdddRA//A//A//A//A//A",
 	rules_a="[&fb&bbb[++f--&ffff&ff][--f++&ffff&ff]&ffff&bbbb&b]",
 	rules_b="f",
 	rules_c="/",
@@ -101,7 +137,32 @@ moretrees.palm_model={
 	random_level=0,
 	trunk_type="single",
 	thin_branches=true,
-	fruit="moretrees:coconut",
+	fruit="moretrees:palm_fruit_trunk_gen",
+	fruit_chance=0
+}
+
+-- Dates can't be generated as fruit, because there is no support for the
+-- special (male and female) fruit trunks that allow dates to regrow at the
+-- correct position in the tree.
+-- So, a generic fruit trunk is spawned. An ABM will convert it to a male
+-- or female fruit trunk, and generate the actual dates.
+moretrees.date_palm_model={
+	axiom="TTTTddddddddddccccccccccRT[TGGGGT]"..
+		"ccccc[&&a]ccccc[&&a]ccccc[&&a]ccccc[&&a]ccccc[&&a]ccccc[&&a]"..
+		"GGccccc[&a]ccccc[&a]ccccc[&a]ccccc[&a]ccccc[&a]ccccc[&a]"..
+		"GGccccc[a]ccccc[a]ccccc[a]ccccc[a]ccccc[a]ccccc[a]",
+	rules_a="Gffb&bbb[++f--&ffff&ff][--f++&ffff&ff]&ff&ff&bb&bb&bb",
+	rules_b="f",
+	rules_c="/",
+	rules_d="F",
+	trunk="moretrees:date_palm_trunk",
+	leaves="moretrees:date_palm_leaves",
+	angle=18,
+	iterations=1,
+	random_level=0,
+	trunk_type="single",
+	thin_branches=false,
+	fruit="moretrees:date_palm_fruit_trunk",
 	fruit_chance=0
 }
 
@@ -167,37 +228,6 @@ moretrees.willow_model={
 	random_level=0,
 	trunk_type="crossed",
 	thin_branches=true
-}
-
-moretrees.acacia_model={
-	axiom="FFFFFFccccA",
-	rules_a = "[B]//[B]//[B]//[B]",
-	rules_b = "&TTTT&TT^^G&&----GGGGGG++GGG++"	-- line up with the "canvas" edge
-			.."fffffffGG++G++"					-- first layer, drawn in a zig-zag raster pattern
-			.."Gffffffff--G--"
-			.."ffffffffG++G++"
-			.."fffffffff--G--"
-			.."fffffffff++G++"
-			.."fffffffff--G--"
-			.."ffffffffG++G++"
-			.."Gffffffff--G--"
-			.."fffffffGG"
-			.."^^G&&----GGGGGGG++GGGGGG++"		-- re-align to second layer canvas edge
-			.."ffffGGG++G++"					-- second layer
-			.."GGfffff--G--"
-			.."ffffffG++G++"
-			.."fffffff--G--"
-			.."ffffffG++G++"
-			.."GGfffff--G--"
-			.."ffffGGG",
-	rules_c = "/",
-	trunk="default:acacia_tree",
-	leaves="default:acacia_leaves",
-	angle=45,
-	iterations=3,
-	random_level=0,
-	trunk_type="single",
-	thin_branches=true,
 }
 
 moretrees.rubber_tree_model={

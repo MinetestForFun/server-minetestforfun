@@ -18,7 +18,7 @@ REEDMACE_FOR_OASES_PER_MAPBLOCK		=	35		-- plants per 80x80x80 nodes (absolute ma
 REEDMACE_FOR_OASES_RARITY			=	90		-- percent
 
 -- growing of reedmace sapling
-REEDMACE_GROWING_TIME 				= 	16800  	-- seconds
+REEDMACE_GROWING_TIME 				= 	16800  	-- seconds --MFF
 REEDMACE_GROWING_CHANCE 			= 	5		-- percent
 
 
@@ -40,8 +40,8 @@ TALL_GRASS_RARITY					=	75		-- percent
 
 
 -- short grass becomes dirt with grass again
-GRASS_REGROWING_TIME 				= 	16800 	-- seconds
-GRASS_REGROWING_CHANCE 				= 	0.5		-- percent
+GRASS_REGROWING_TIME 				= 	16800 	-- seconds --MFF
+GRASS_REGROWING_CHANCE 				= 	0.5		-- percent --MFF
 
 HAY_DRYING_TIME 					= 	3600 	-- seconds
 

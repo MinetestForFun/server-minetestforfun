@@ -9,6 +9,9 @@
 -- Looked at code from:		default
 -----------------------------------------------------------------------------------------------
 
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 abstract_dryplants.grow_juncus = function(pos)
 	local juncus_type = math.random(2,3)
 	local right_here = {x=pos.x, y=pos.y+1, z=pos.z}
@@ -23,9 +26,9 @@ abstract_dryplants.grow_juncus = function(pos)
 end
 
 minetest.register_node("dryplants:juncus", {
-	description = "Juncus",
+	description = S("Juncus"),
 	drawtype = "plantlike",
-	visual_scale = 2,
+	visual_scale = math.sqrt(8),
 	paramtype = "light",
 	tiles = {"dryplants_juncus_03.png"},
 	inventory_image = "dryplants_juncus_inv.png",
@@ -65,9 +68,9 @@ minetest.register_node("dryplants:juncus", {
 	end,
 })
 minetest.register_node("dryplants:juncus_02", {
-	description = "Juncus",
+	description = S("Juncus"),
 	drawtype = "plantlike",
-	visual_scale = 2,
+	visual_scale = math.sqrt(8),
 	paramtype = "light",
 	tiles = {"dryplants_juncus_02.png"},
 	walkable = false,

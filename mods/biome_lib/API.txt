@@ -481,6 +481,12 @@ Set this to true if you want the mod to spam your console with debug info :-)
 
 	plantlife_debug = false
 
+To slow down the playback of the queue (e.g. for really slow machines where
+the 0.2 second max limiter isn't enough), set:
+
+	biome_lib_queue_run_ratio = <some value 1 to 100>
+
+Default is 100 (basically percent of maximum runtime)
 
 ======================
 Fertile Ground Mapping

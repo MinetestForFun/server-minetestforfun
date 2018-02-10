@@ -1,4 +1,3 @@
-xpanes = {}
 
 local function is_pane(pos)
 	return minetest.get_item_group(minetest.get_node(pos).name, "pane") > 0
@@ -105,6 +104,7 @@ function xpanes.register_pane(name, def)
 		groups = flatgroups,
 		drop = "xpanes:" .. name .. "_flat",
 		sounds = def.sounds,
+		use_texture_alpha = def.use_texture_alpha or false,
 		node_box = {
 			type = "fixed",
 			fixed = {{-1/2, -1/2, -1/32, 1/2, 1/2, 1/32}},
@@ -129,6 +129,7 @@ function xpanes.register_pane(name, def)
 		groups = groups,
 		drop = "xpanes:" .. name .. "_flat",
 		sounds = def.sounds,
+		use_texture_alpha = def.use_texture_alpha or false,
 		node_box = {
 			type = "connected",
 			fixed = {{-1/32, -1/2, -1/32, 1/32, 1/2, 1/32}},
@@ -148,23 +149,36 @@ end
 
 xpanes.register_pane("pane", {
 	description = "Glass Pane",
-	textures = {"default_glass.png","xpanes_pane_half.png","xpanes_white.png"},
+	textures = {"default_glass.png","xpanes_pane_half.png","xpanes_edge.png"},
 	inventory_image = "default_glass.png",
 	wield_image = "default_glass.png",
 	sounds = default.node_sound_glass_defaults(),
-	groups = {snappy=2, cracky=3, oddly_breakable_by_hand=3, pane=1},
+	groups = {snappy=2, cracky=3, oddly_breakable_by_hand=3},
 	recipe = {
 		{"default:glass", "default:glass", "default:glass"},
 		{"default:glass", "default:glass", "default:glass"}
 	}
 })
 
+xpanes.register_pane("obsidian_pane", {
+	description = "Obsidian Glass Pane",
+	textures = {"default_obsidian_glass.png","xpanes_pane_half.png","xpanes_edge_obsidian.png"},
+	inventory_image = "default_obsidian_glass.png",
+	wield_image = "default_obsidian_glass.png",
+	sounds = default.node_sound_glass_defaults(),
+	groups = {snappy=2, cracky=3},
+	recipe = {
+		{"default:obsidian_glass", "default:obsidian_glass", "default:obsidian_glass"},
+		{"default:obsidian_glass", "default:obsidian_glass", "default:obsidian_glass"}
+	}
+})
+
 xpanes.register_pane("bar", {
-	description = "Iron bar",
+	description = "Iron Bar",
 	textures = {"xpanes_bar.png","xpanes_bar.png","xpanes_bar_top.png"},
 	inventory_image = "xpanes_bar.png",
 	wield_image = "xpanes_bar.png",
-	groups = {cracky=3, pane=1}, -- //MFF
+	groups = {cracky=2},
 	sounds = default.node_sound_metal_defaults(),
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
@@ -172,3 +186,14 @@ xpanes.register_pane("bar", {
 	}
 })
 
+minetest.register_lbm({
+	name = "xpanes:gen2",
+	nodenames = {"group:pane"},
+	action = function(pos, node)
+		update_pane(pos)
+		for i = 0, 3 do
+			local dir = minetest.facedir_to_dir(i)
+			update_pane(vector.add(pos, dir))
+		end
+	end
+})

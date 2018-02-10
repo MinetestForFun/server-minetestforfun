@@ -1,7 +1,8 @@
 -- This file supplies poison ivy for the plantlife modpack
 -- Last revision:  2013-01-24
 
-local S = biome_lib.intllib
+-- support for i18n
+local S = plantlife_i18n.gettext
 
 local SPAWN_DELAY = 1000
 local SPAWN_CHANCE = 200
@@ -100,4 +101,4 @@ biome_lib:grow_plants({
 	ground_nodes = {"default:dirt_with_grass"}
 })
 
-minetest.log("action", S("[Poison Ivy] Loaded."))
+minetest.log("action", S("[Poison Ivy] Loaded.")) --MFF

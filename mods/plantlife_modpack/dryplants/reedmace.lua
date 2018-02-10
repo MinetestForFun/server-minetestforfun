@@ -18,6 +18,9 @@
 -- Typha stems and leaves can be used to make paper
 -- The seed hairs were used by some Native American groups as tinder for starting fires
 
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 -----------------------------------------------------------------------------------------------
 -- REEDMACE SHAPES
 -----------------------------------------------------------------------------------------------
@@ -79,7 +82,7 @@ end
 -- REEDMACE SPIKES
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace_spikes", {
-	description = "Reedmace",
+	description = S("Reedmace"),
 	drawtype = "plantlike",
 	paramtype = "light",
 	tiles = {"dryplants_reedmace_spikes.png"},
@@ -101,7 +104,7 @@ minetest.register_node("dryplants:reedmace_spikes", {
 -- REEDMACE height: 1
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace_top", {
-	description = "Reedmace, height: 1",
+	description = S("Reedmace, height: 1"),
 	drawtype = "plantlike",
 	paramtype = "light",
 	tiles = {"dryplants_reedmace_top.png"},
@@ -123,9 +126,9 @@ minetest.register_node("dryplants:reedmace_top", {
 -- REEDMACE height: 2
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace_height_2", {
-	description = "Reedmace, height: 2",
+	description = S("Reedmace, height: 2"),
 	drawtype = "plantlike",
-	visual_scale = 2,
+	visual_scale = math.sqrt(8),
 	paramtype = "light",
 	tiles = {"dryplants_reedmace_height_2.png"},
 	inventory_image = "dryplants_reedmace_top.png",
@@ -146,9 +149,9 @@ minetest.register_node("dryplants:reedmace_height_2", {
 -- REEDMACE height: 3
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace_height_3", {
-	description = "Reedmace, height: 3",
+	description = S("Reedmace, height: 3"),
 	drawtype = "plantlike",
-	visual_scale = 2,
+	visual_scale = math.sqrt(8),
 	paramtype = "light",
 	tiles = {"dryplants_reedmace_height_3.png"},
 	inventory_image = "dryplants_reedmace_top.png",
@@ -169,9 +172,9 @@ minetest.register_node("dryplants:reedmace_height_3", {
 -- REEDMACE height: 3 & Spikes
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace_height_3_spikes", {
-	description = "Reedmace, height: 3 & Spikes",
+	description = S("Reedmace, height: 3 & Spikes"),
 	drawtype = "plantlike",
-	visual_scale = 2,
+	visual_scale = math.sqrt(8),
 	paramtype = "light",
 	tiles = {"dryplants_reedmace_height_3_spikes.png"},
 	inventory_image = "dryplants_reedmace_top.png",
@@ -192,7 +195,7 @@ minetest.register_node("dryplants:reedmace_height_3_spikes", {
 -- REEDMACE STEMS
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace", {
-	description = "Reedmace",
+	description = S("Reedmace"),
 	drawtype = "plantlike",
 	paramtype = "light",
 	tiles = {"dryplants_reedmace.png"},
@@ -222,7 +225,7 @@ minetest.register_node("dryplants:reedmace", {
 -- REEDMACE BOTTOM
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace_bottom", {
-	description = "Reedmace",
+	description = S("Reedmace"),
 	drawtype = "plantlike",
 	paramtype = "light",
 	tiles = {"dryplants_reedmace_bottom.png"},
@@ -253,7 +256,7 @@ minetest.register_node("dryplants:reedmace_bottom", {
 -- REEDMACE "SAPLING" (the drop from the above)
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace_sapling", {
-	description = "Reedmace",
+	description = S("Reedmace"),
 	drawtype = "plantlike",
 	paramtype = "light",
 	tiles = {"dryplants_reedmace_sapling.png"},
@@ -293,7 +296,7 @@ minetest.register_abm({
 -- REEDMACE WATER (for entity)
 -----------------------------------------------------------------------------------------------
 minetest.register_node("dryplants:reedmace_water", {
-	description = "Reedmace",
+	description = S("Reedmace"),
 	drawtype = "plantlike",
 	paramtype = "light",
 	tiles = {"dryplants_reedmace_water.png"},

@@ -1,6 +1,0 @@
-default
-mobs
-maptools
-farming?
-treasurer?
-watershed?

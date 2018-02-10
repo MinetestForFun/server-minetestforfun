@@ -6,6 +6,9 @@ local mname		= "woodsoils" -- former "forestsoils"
 
 abstract_woodsoils = {}
 
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 dofile(minetest.get_modpath("woodsoils").."/nodes.lua")
 dofile(minetest.get_modpath("woodsoils").."/generating.lua")
 
@@ -25,5 +28,5 @@ print("/____  >____/|__|____/____  >")
 print("     \\/                   \\/")]]
 
 -----------------------------------------------------------------------------------------------
-minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
+minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...") --MFF
 -----------------------------------------------------------------------------------------------

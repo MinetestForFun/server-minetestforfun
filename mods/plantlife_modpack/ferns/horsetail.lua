@@ -11,6 +11,8 @@
 
 assert(abstract_ferns.config.enable_horsetails == true)
 
+-- support for i18n
+local S = plantlife_i18n.gettext
 -----------------------------------------------------------------------------------------------
 -- HORSETAIL  (EQUISETUM)
 -----------------------------------------------------------------------------------------------
@@ -33,13 +35,13 @@ local function create_nodes()
 		local node_drop = "ferns:horsetail_04"
 
 		if i == 1 then
-			node_desc = "Young Horsetail (Equisetum)"
+			node_desc = S("Young Horsetail (Equisetum)")
 			node_on_use = minetest.item_eat(1) -- young ones edible https://en.wikipedia.org/wiki/Equisetum
 			node_drop = node_name
 		elseif i == 4 then
-			node_desc = "Horsetail (Equisetum)"
+			node_desc = S("Horsetail (Equisetum)")
 		else
-			node_desc = "Horsetail (Equisetum) ".. string.format("%02d", i)
+			node_desc = S("Horsetail (Equisetum)").." ".. string.format("%02d", i)
 		end
 
 		node_names[i] = node_name

@@ -10,6 +10,8 @@ abstract_molehills = {}
 
 dofile(minetest.get_modpath("molehills").."/molehills_settings.txt")
 
+-- support for i18n
+local S = plantlife_i18n.gettext
 -----------------------------------------------------------------------------------------------
 -- NoDe
 -----------------------------------------------------------------------------------------------
@@ -22,7 +24,7 @@ local mh_cbox = {
 minetest.register_node("molehills:molehill",{
 	drawtype = "mesh",
 	mesh = "molehill_molehill.obj",
-	description = "Mole Hill",
+	description = S("Mole Hill"),
 	inventory_image = "molehills_side.png",
 	tiles = { "molehills_dirt.png" },
 	paramtype = "light",
@@ -74,7 +76,7 @@ biome_lib:register_generate_plant({
 )
 
 biome_lib:register_generate_plant({
-    surface = {"default:dirt_with_dry_grass"},
+    surface = {"default:dirt_with_dry_grass"}, --MFF
     max_count = Molehills_Max_Count,
     rarity = 97,
     min_elevation = 1,
@@ -87,5 +89,5 @@ biome_lib:register_generate_plant({
 )
 
 -----------------------------------------------------------------------------------------------
-minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...")
+minetest.log("action", "[Mod] "..title.." ["..version.."] ["..mname.."] Loaded...") --MFF
 -----------------------------------------------------------------------------------------------

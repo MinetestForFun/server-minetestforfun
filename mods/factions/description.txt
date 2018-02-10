@@ -1,5 +1,0 @@
-Version 1.1.5
-
-Mod for handling in game factions and reputation
-
-

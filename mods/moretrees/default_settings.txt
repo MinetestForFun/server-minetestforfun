@@ -6,19 +6,21 @@ moretrees.enable_apple_tree		= true
 moretrees.enable_oak			= true
 moretrees.enable_sequoia		= true
 moretrees.enable_palm			= true
+moretrees.enable_date_palm		= true
 moretrees.enable_cedar			= true
 moretrees.enable_rubber_tree	= true
 moretrees.enable_willow			= true
-moretrees.enable_acacia			= true
 moretrees.enable_birch			= true
 moretrees.enable_spruce			= true
 moretrees.enable_jungle_tree	= true
 moretrees.enable_fir			= true
+moretrees.enable_poplar			= true
 moretrees.enable_beech			= false
 
 -- set this to true to make moretrees spawn saplings at mapgen time instead
 -- of fully-grown trees, which will grow into full trees after a very short
--- delay.  This reduces mapgen lag in some situations.
+-- delay.  This reduces mapgen lag in some situations, and fixes situations
+-- where the mapgen conflicts with the tree generator.
 
 moretrees.spawn_saplings		= false
 
@@ -56,6 +58,67 @@ moretrees.palm_leafdecay_radius		= 10
 moretrees.firs_remove_default_trees	= false
 moretrees.firs_remove_interval		= 2
 moretrees.firs_remove_chance		= 150
+
+-- Cocos palm settings
+
+moretrees.coconuts_regrow		= true
+moretrees.coconuts_convert_existing_palms = true	-- Converting existing palm trees will make coconuts regrow on them as well
+							-- Else, they will only regrow on newly-spawned palms
+							-- However, conversion is not an exact science, and although an attempt is
+							-- made to detect whether a trunk belongs to an actual palm, some coconut trunks
+							-- and some coconuts may be incorrectly converted.
+moretrees.coconut_flower_interval	= 59
+moretrees.coconut_flower_chance		= 67
+moretrees.coconut_grow_interval		= 2 * moretrees.coconut_flower_interval * moretrees.coconut_flower_chance
+							-- Actual interval will randomly vary between 67% and 133% of this value
+							-- 2 * 59 * 67 ~ 2 hours. So flowers become coconuts in about 6 hours
+moretrees.coconut_item_drop_ichance	= 10 		-- inverse probability of ripe coconuts dropping as items (instead of disappearing)
+
+-- Date palm settings
+
+-- Suggested configuration alternatives:
+-- - Dates grow only when pollinated:
+--   - Set dates_regrow_pollinated to true
+--   - Set dates_regrow_unpollinated_percent to 0
+-- - Dates grow without pollination. Pollination disabled:
+--   - Set dates_regrow_pollinated to false
+--   - Set dates_regrow_unpollinated_percent to some larger positive value, e.g. 95
+-- - Dates grow, but more and faster if male flowers are nearby
+--   - Set dates_regrow_pollinated to true
+--   - Set dates_regrow_unpollinated_percent to some small positive value, e.g. 33
+--   - Optional but recommended: Reduce the pollination distance, e.g. to 30
+
+-- Note that it should not be necessary to disable pollination for performance
+-- reasons. A lot of effort has gone into ensuring that date growing will not cause lag.
+--
+-- If lag is suspected, use the chat command '/dates_stats' to obtain the male dates
+-- search time, as well as the counts of total number of searches requested and the
+-- number of searches actually performed.
+
+moretrees.dates_regrow_pollinated	= true		-- Enable pollination. If enabled, male trees are required for dates to grow.
+							-- If disabled, dates_regrow_unpollinated_percent must be non-zero for dates to regrow.
+moretrees.dates_regrow_unpollinated_percent	= 0	-- Percentage of female dates becoming dates without being pollinated.
+							-- If 0, dates_regrow_pollinated must be enabled for dates to grow.
+moretrees.dates_female_percent		= 57		-- Ratio of female to male trees - tune this to improve # of generated trees that actually bear fruit
+							-- ~57% gives near optimal results for groups of 3 random trees, while it is only slightly suboptimal
+							-- for groups of 2 and 4 random trees (~2% less fruit than optimal).
+							-- Optimal values per group size: 2: 50%, 3: 57.78%, 4: 63%, 5: 66.9%, 6: 69.9%, [...], 12: 79.8%
+							-- So 57% is optimal for small groups of trees. As larger groups have more female palms anyway, a
+							-- less than optimal proportion of female to male trees is not a problem.
+moretrees.dates_pollination_distance	= 120
+moretrees.dates_blossom_search_time_treshold = 1000	-- If average male blossom search time (in microseconds) exceeds this, start limiting the search load.
+moretrees.dates_blossom_search_iload = 10		-- Inverse fraction of CPU time that male blossom searching search may consume.
+							-- As searching a large area (radius: dates_pollination_distance/3 per attempt) can cause lag,
+							-- this limits the search frequency server-wide so that the impact on server lag is minimised
+							-- For personal servers, this can be set lower, or even to 1 or 0 (0 disables load limiting).
+							-- Obtain the current average search time using /dates_stats
+moretrees.dates_flower_interval		= 59
+moretrees.dates_flower_chance		= 181
+moretrees.dates_grow_interval		= 2 * moretrees.dates_flower_interval * moretrees.dates_flower_chance
+							-- As date palms have a high yield, don't grow dates too fast
+							-- The actual interval will vary randomly between 67% and 133% of this value.
+							-- 2 * 59 * 181 ~ 6 hours. So by default flowers become dates in about one (human) day.
+moretrees.dates_item_drop_ichance	= 10 		-- inverse probability of ripe dates dropping as items (instead of disappearing)
 
 -- Sapling settings
 

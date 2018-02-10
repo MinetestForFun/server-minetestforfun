@@ -4,7 +4,17 @@ Minetest mod moretrees
 All source code:
 	© 2013, Vanessa Ezekowitz <vanessaezekowitz@gmail.com>
 	Published under the terms and conditions of the WTFPL.
-All sapling textures (textures/*_sapling.png):
+Date & cocos palm code (date_palm.lua, cocos_palm.lua)
+	© 2016, Rogier <rogier777@gmail.com>
+	Published under the terms and conditions of the WTFPL.
+All date & date palm textures, date-based food, cocos flower & green coconuts,
+and all poplar textures:
+	© 2016, Rogier <rogier777@gmail.com>
+	Published under the terms and conditions of CC-BY-SA-3.0 Unported.
+	- Three of the date palm textures are modifications of existing moretrees textures
+	- The green coconuts are a modification of the brown coconut
+	- The date cake batter is a modification of the acorn muffin batter
+All other sapling textures (textures/*_sapling.png):
 	© 2013, Tim Huppertz <mitroman@naturalnet.de>
 	Published under the terms and conditions of CC-BY-SA-3.0 Unported.
 All other textures:

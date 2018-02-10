@@ -2,7 +2,6 @@
 
 minetest.register_craftitem("default:stick", {
 	description = "Stick",
-	stack_max = 1000,
 	inventory_image = "default_stick.png",
 	groups = {stick = 1, flammable = 2},
 })
@@ -17,9 +16,17 @@ minetest.register_craftitem("default:paper", {
 local lpp = 14 -- Lines per book's page
 local function book_on_use(itemstack, user)
 	local player_name = user:get_player_name()
-	local data = minetest.deserialize(itemstack:get_metadata())
+	local meta = itemstack:get_meta()
 	local title, text, owner = "", "", player_name
 	local page, page_max, lines, string = 1, 1, {}, ""
+
+	-- Backwards compatibility
+	local old_data = minetest.deserialize(itemstack:get_metadata())
+	if old_data then
+		meta:from_table({ fields = old_data })
+	end
+
+	local data = meta:to_table().fields
 
 	if data.owner then
 		title = data.title
@@ -65,6 +72,7 @@ local function book_on_use(itemstack, user)
 	end
 
 	minetest.show_formspec(player_name, "default:book", formspec)
+	return itemstack
 end
 
 local max_text_size = 10000
@@ -87,7 +95,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				new_stack = ItemStack("default:book_written")
 			end
 		else
-			data = minetest.deserialize(stack:get_metadata())
+			data = stack:get_meta():to_table().fields
 		end
 
 		if data and data.owner and data.owner ~= player:get_player_name() then
@@ -104,23 +112,23 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		end
 		data.description = "\""..short_title.."\" by "..data.owner
 		data.text = fields.text:sub(1, max_text_size)
+		data.text = data.text:gsub("\r\n", "\n"):gsub("\r", "\n")
 		data.page = 1
 		data.page_max = math.ceil((#data.text:gsub("[^\n]", "") + 1) / lpp)
 
 		if new_stack then
-			new_stack:set_metadata(minetest.serialize(data))
+			new_stack:get_meta():from_table({ fields = data })
 			if inv:room_for_item("main", new_stack) then
 				inv:add_item("main", new_stack)
 			else
 				minetest.add_item(player:getpos(), new_stack)
 			end
 		else
-			stack:set_metadata(minetest.serialize(data))
+			stack:get_meta():from_table({ fields = data })
 		end
 
 	elseif fields.book_next or fields.book_prev then
-		local data
-		data = minetest.deserialize(stack:get_metadata())
+		local data = stack:get_meta():to_table().fields
 		if not data or not data.page then
 			return
 		end
@@ -140,7 +148,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 
-		stack:set_metadata(minetest.serialize(data))
+		stack:get_meta():from_table({fields = data})
 		stack = book_on_use(stack, player)
 	end
 
@@ -243,7 +251,7 @@ minetest.register_craftitem("default:skeleton_key", {
 				end -- else: added to inventory successfully
 			end
 
-			return itemstack -- FIXME: See if this return is a problem
+			return itemstack
 		end
 	end
 })
@@ -269,11 +277,6 @@ minetest.register_craftitem("default:tin_lump", {
 	inventory_image = "default_tin_lump.png",
 })
 
-minetest.register_craftitem("default:silver_lump", {
-	description = "Silver Lump",
-	inventory_image = "default_silver_lump.png",
-})
-
 minetest.register_craftitem("default:mese_crystal", {
 	description = "Mese Crystal",
 	inventory_image = "default_mese_crystal.png",
@@ -284,11 +287,6 @@ minetest.register_craftitem("default:gold_lump", {
 	inventory_image = "default_gold_lump.png",
 })
 
-minetest.register_craftitem("default:mithril_lump", {
-	description = "Mithril Lump",
-	inventory_image = "default_mithril_lump.png",
-})
-
 minetest.register_craftitem("default:diamond", {
 	description = "Diamond",
 	inventory_image = "default_diamond.png",
@@ -296,43 +294,31 @@ minetest.register_craftitem("default:diamond", {
 
 minetest.register_craftitem("default:clay_lump", {
 	description = "Clay Lump",
-	stack_max = 200,
 	inventory_image = "default_clay_lump.png",
 })
 
 minetest.register_craftitem("default:steel_ingot", {
 	description = "Steel Ingot",
 	inventory_image = "default_steel_ingot.png",
-	groups = {ingot = 1},
 })
 
 minetest.register_craftitem("default:copper_ingot", {
 	description = "Copper Ingot",
 	inventory_image = "default_copper_ingot.png",
-	groups = {ingot = 1},
 })
 
 minetest.register_craftitem("default:tin_ingot", {
 	description = "Tin Ingot",
 	inventory_image = "default_tin_ingot.png",
-	groups = {ingot = 1},
 })
 
 minetest.register_craftitem("default:bronze_ingot", {
 	description = "Bronze Ingot",
 	inventory_image = "default_bronze_ingot.png",
-	groups = {ingot = 1},
-})
-
-minetest.register_craftitem("default:silver_ingot", {
-	description = "Silver Ingot",
-	inventory_image = "default_silver_ingot.png",
-	groups = {ingot = 1},
 })
 
 minetest.register_craftitem("default:gold_ingot", {
 	description = "Gold Ingot",
-	groups = {ingot = 1},
 	inventory_image = "default_gold_ingot.png"
 })
 
@@ -341,20 +327,9 @@ minetest.register_craftitem("default:mese_crystal_fragment", {
 	inventory_image = "default_mese_crystal_fragment.png",
 })
 
-minetest.register_craftitem("default:mithril_ingot", {
-	description = "Mithril Ingot",
-	groups = {ingot = 1},
-	inventory_image = "default_mithril_ingot.png",
-})
-
 minetest.register_craftitem("default:clay_brick", {
 	description = "Clay Brick",
 	inventory_image = "default_clay_brick.png",
-})
-
-minetest.register_craftitem("default:scorched_stuff", {
-	description = "Scorched Stuff",
-	inventory_image = "default_scorched_stuff.png",
 })
 
 minetest.register_craftitem("default:obsidian_shard", {

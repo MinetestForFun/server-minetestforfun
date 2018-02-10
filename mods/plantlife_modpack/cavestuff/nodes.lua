@@ -1,3 +1,6 @@
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 --Rocks
 
 local cbox = {
@@ -6,7 +9,7 @@ local cbox = {
 }
 
 minetest.register_node("cavestuff:pebble_1",{
-	description = "Pebble",
+	description = S("Pebble"),
 	drawtype = "mesh",
 	mesh = "cavestuff_pebble.obj",
     tiles = {"undergrowth_pebble.png"},
@@ -39,7 +42,7 @@ minetest.register_node("cavestuff:pebble_2",{
 })
 
 minetest.register_node("cavestuff:desert_pebble_1",{
-	description = "Desert Pebble",
+	description = S("Desert Pebble"),
 	drawtype = "mesh",
 	mesh = "cavestuff_pebble.obj",
     tiles = {"default_desert_stone.png"},
@@ -76,7 +79,7 @@ minetest.register_node("cavestuff:stalactite_1",{
 	drawtype="nodebox",
 	tiles = {"undergrowth_pebble.png"},
 	groups = {cracky=3,attached_node=1},
-	description = "Stalactite",
+	description = S("Stalactite"),
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	node_box = {
@@ -140,6 +143,3 @@ minetest.register_node("cavestuff:stalactite_3",{
 })
 
 --Stalagmites
-
-
-

@@ -1,29 +1,31 @@
 local pi = math.pi
 local player_in_bed = 0
 local is_sp = minetest.is_singleplayer()
-local enable_respawn = minetest.setting_getbool("enable_bed_respawn")
+local enable_respawn = minetest.settings:get_bool("enable_bed_respawn")
 if enable_respawn == nil then
 	enable_respawn = true
 end
 
-
--- helper functions
+-- Helper functions
 
 local function get_look_yaw(pos)
-	local n = minetest.get_node(pos)
-	if n.param2 == 1 then
-		return pi/2, n.param2
-	elseif n.param2 == 3 then
-		return -pi/2, n.param2
-	elseif n.param2 == 0 then
-		return pi, n.param2
+	local rotation = minetest.get_node(pos).param2
+	if rotation > 3 then
+		rotation = rotation % 4 -- Mask colorfacedir values
+	end
+	if rotation == 1 then
+		return pi / 2, rotation
+	elseif rotation == 3 then
+		return -pi / 2, rotation
+	elseif rotation == 0 then
+		return pi, rotation
 	else
-		return 0, n.param2
+		return 0, rotation
 	end
 end
 
 local function is_night_skip_enabled()
-	local enable_night_skip = minetest.setting_getbool("enable_bed_night_skip")
+	local enable_night_skip = minetest.settings:get_bool("enable_bed_night_skip")
 	if enable_night_skip == nil then
 		enable_night_skip = true
 	end
@@ -70,8 +72,8 @@ local function lay_down(player, pos, bed_pos, state, skip)
 		end
 
 		-- physics, eye_offset, etc
-		player:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
-		player:set_look_yaw(math.random(1, 180)/100)
+		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+		player:set_look_horizontal(math.random(1, 180) / 100)
 		default.player_attached[name] = false
 		player:set_physics_override(1, 1, 1)
 		hud_flags.wielditem = true
@@ -84,11 +86,11 @@ local function lay_down(player, pos, bed_pos, state, skip)
 		player_in_bed = player_in_bed + 1
 
 		-- physics, eye_offset, etc
-		player:set_eye_offset({x=0,y=-13,z=0}, {x=0,y=0,z=0})
+		player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
 		local yaw, param2 = get_look_yaw(bed_pos)
-		player:set_look_yaw(yaw)
+		player:set_look_horizontal(yaw)
 		local dir = minetest.facedir_to_dir(param2)
-		local p = {x=bed_pos.x+dir.x/2,y=bed_pos.y,z=bed_pos.z+dir.z/2}
+		local p = {x = bed_pos.x + dir.x / 2, y = bed_pos.y, z = bed_pos.z + dir.z / 2}
 		player:set_physics_override(0, 0, 0)
 		player:setpos(p)
 		default.player_attached[name] = true
@@ -101,18 +103,16 @@ end
 
 local function update_formspecs(finished)
 	local ges = #minetest.get_connected_players()
-	local form_n = ""
-	local is_majority = (ges/2) < player_in_bed
+	local form_n
+	local is_majority = (ges / 2) < player_in_bed
 
 	if finished then
-		form_n = beds.formspec ..
-			"label[2.7,11; Good morning.]"
+		form_n = beds.formspec .. "label[2.7,11; Good morning.]"
 	else
-		form_n = beds.formspec ..
-			"label[2.2,11;"..tostring(player_in_bed).." of "..tostring(ges).." players are in bed]"
+		form_n = beds.formspec .. "label[2.2,11;" .. tostring(player_in_bed) ..
+			" of " .. tostring(ges) .. " players are in bed]"
 		if is_majority and is_night_skip_enabled() then
-			form_n = form_n ..
-				"button_exit[2,8;4,0.75;force;Force night skip]"
+			form_n = form_n .. "button_exit[2,8;4,0.75;force;Force night skip]"
 		end
 	end
 
@@ -122,10 +122,10 @@ local function update_formspecs(finished)
 end
 
 
--- public functions
+-- Public functions
 
 function beds.kick_players()
-	for name,_ in pairs(beds.player) do
+	for name, _ in pairs(beds.player) do
 		local player = minetest.get_player_by_name(name)
 		lay_down(player, nil, nil, false)
 	end
@@ -133,7 +133,6 @@ end
 
 function beds.skip_night()
 	minetest.set_timeofday(0.23)
-	beds.set_spawns()
 end
 
 function beds.on_rightclick(pos, player)
@@ -152,6 +151,7 @@ function beds.on_rightclick(pos, player)
 	-- move to bed
 	if not beds.player[name] then
 		lay_down(player, ppos, pos)
+		beds.set_spawns() -- save respawn positions when entering bed
 	else
 		lay_down(player, nil, nil, false)
 	end
@@ -175,67 +175,19 @@ function beds.on_rightclick(pos, player)
 end
 
 
--- callbacks
---[[ --MFF (Crabman) It's useless to read each join player, read only once at load. function moved/called in spawn.lua
-minetest.register_on_joinplayer(function(player)
-	beds.read_spawns()
-end)
---]]
-
-
-local dead_players = {}
-local have_areas_mod = false
-if (minetest.get_modpath("areas") ~= nil) and areas.getSpawn then
-	have_areas_mod = true
-end
-
-
-local function teleport_player(player, clear)
-	local name = player:get_player_name()
-	if not name or name == "" then return false end
-	if have_areas_mod and dead_players[name] ~= nil then
-		local pos = areas:getSpawn(dead_players[name])
-		if clear then
-			dead_players[name] = nil
-		end
+-- Callbacks
+-- Only register respawn callback if respawn enabled
+if enable_respawn then
+	-- respawn player at bed if enabled and valid position is found
+	minetest.register_on_respawnplayer(function(player)
+		local name = player:get_player_name()
+		local pos = beds.spawn[name]
 		if pos then
 			player:setpos(pos)
 			return true
 		end
-	end
-	if not enable_respawn then
-		return false
-	end
-	local name = player:get_player_name()
-	local pos = beds.spawn[name] or nil
-	if pos then
-		player:setpos(pos)
-		return true
-	end
-	--if not areas or bed spawnpoint, tp to the spawn
-	local spawn = minetest.string_to_pos(minetest.setting_get("static_spawnpoint") or "0,0,0")
-	player:setpos(spawn)
-	return false
+	end)
 end
-
-
-minetest.register_on_dieplayer(function(player)
-	local name = player:get_player_name()
-	if not name or name == "" then return end
-	if have_areas_mod then
-		local pos = player:getpos()
-		if pos then
-			dead_players[name] = pos
-		end
-	end
-	minetest.after(0.20, teleport_player, player) -- tp after all others on_dieplayer callback otherwise their pos is wrong
-end)
-
--- respawn player at bed if enabled and valid position is found
-minetest.register_on_respawnplayer(function(player)
-	return teleport_player(player, true)
-end)
-
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()

@@ -1,4 +1,0 @@
-mana
-default
-mobs
-farming

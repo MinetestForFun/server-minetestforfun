@@ -23,3 +23,24 @@ LIGHT_MAX = default.LIGHT_MAX
 
 -- Formspecs
 default.gui_suvival_form = default.gui_survival_form
+
+-- Players
+if minetest.get_modpath("player_api") then
+	default.registered_player_models = player_api.registered_models
+	default.player_register_model    = player_api.register_model
+	default.player_attached          = player_api.player_attached
+	default.player_get_animation     = player_api.get_animation
+	default.player_set_model         = player_api.set_model
+	default.player_set_textures      = player_api.set_textures
+	default.player_set_animation     = player_api.set_animation
+end
+
+-- Chests
+default.register_chest = default.chest.register_chest
+
+-- Check for a volume intersecting protection
+function default.intersects_protection(minp, maxp, player_name, interval)
+	minetest.log("warning", "default.intersects_protection() is " ..
+		"deprecated, use minetest.intersects_protection() instead.")
+	minetest.intersects_protection(minp, maxp, player_name, interval)
+end

@@ -7,6 +7,9 @@
 -- Looked at code from:		default	, trees
 -----------------------------------------------------------------------------------------------
 
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 assert(abstract_ferns.config.enable_treefern == true)
 
 abstract_ferns.grow_tree_fern = function(pos)
@@ -26,15 +29,24 @@ abstract_ferns.grow_tree_fern = function(pos)
 	local crown = ({ "ferns:tree_fern_leaves", "ferns:tree_fern_leaves_02" })[math.random(1, 2)]
 
 	local i = 1
-	while (i < size-1) do
-		if minetest.get_node({x = pos.x, y = pos.y + i + 1, z = pos.z}).name ~= "air" then
+	local brk = false
+	while (i < size) do
+		print(minetest.get_node({x = pos.x, y = pos.y + i, z = pos.z}).name)
+		if minetest.get_node({x = pos.x, y = pos.y + i, z = pos.z}).name ~= "air" then
+			brk = true
+			print("break!")
 			break
 		end
+		print("set trunk node at:")
+		print(dump({x = pos.x, y = pos.y + i, z = pos.z}))
 		minetest.set_node({x = pos.x, y = pos.y + i, z = pos.z}, { name = "ferns:fern_trunk" })
 		i = i + 1
 	end
-
-	minetest.set_node({x = pos.x, y = pos.y + i, z = pos.z}, { name = crown })
+	if not brk then
+		print("set crown node at:")
+		print(dump({x = pos.x, y = pos.y + i, z = pos.z}))
+		minetest.set_node({x = pos.x, y = pos.y + i - 1, z = pos.z}, { name = crown })
+	end
 end
 
 -----------------------------------------------------------------------------------------------
@@ -44,9 +56,9 @@ end
 -- TODO: Both of these nodes look the same?
 
 minetest.register_node("ferns:tree_fern_leaves", {
-	description = "Tree Fern Crown (Dicksonia)",
+	description = S("Tree Fern Crown (Dicksonia)"),
 	drawtype = "plantlike",
-	visual_scale = 2,
+	visual_scale = math.sqrt(8),
 	paramtype = "light",
 	paramtype2 = "facedir",
 	--tiles = {"[combine:32x32:0,0=top_left.png:0,16=bottom_left.png:16,0=top_right.png:16,16=bottom_right.png"},
@@ -68,7 +80,7 @@ minetest.register_node("ferns:tree_fern_leaves", {
 				items = {"ferns:sapling_tree_fern"},
 			},
 --			{
---				items = {"ferns:tree_fern_leaves"},
+--MFF				items = {"ferns:tree_fern_leaves"},
 --			}
 		}
 	},
@@ -80,7 +92,7 @@ minetest.register_node("ferns:tree_fern_leaves", {
 })
 minetest.register_node("ferns:tree_fern_leaves_02", {
 	drawtype = "plantlike",
-	visual_scale = 2,
+	visual_scale = math.sqrt(8),
 	paramtype = "light",
 	tiles = {"ferns_fern_big.png"},
 	walkable = false,
@@ -99,7 +111,7 @@ minetest.register_node("ferns:tree_fern_leaves_02", {
 				items = {"ferns:sapling_tree_fern"},
 			},
 --			{
---				items = {"ferns:tree_fern_leaves"},
+--MFF				items = {"ferns:tree_fern_leaves"},
 --			}
 		}
 	},
@@ -113,7 +125,7 @@ minetest.register_node("ferns:tree_fern_leaves_02", {
 -- FERN TRUNK
 -----------------------------------------------------------------------------------------------
 minetest.register_node("ferns:fern_trunk", {
-	description = "Fern Trunk (Dicksonia)",
+	description = S("Fern Trunk (Dicksonia)"),
 	drawtype = "nodebox",
 	paramtype = "light",
 	tiles = {
@@ -131,10 +143,11 @@ minetest.register_node("ferns:fern_trunk", {
 	},
 	groups = {tree=1,choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
 	sounds = default.node_sound_wood_defaults(),
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+	after_destruct = function(pos,oldnode)
         local node = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z})
         if node.name == "ferns:fern_trunk" then
-            minetest.node_dig({x=pos.x,y=pos.y+1,z=pos.z}, node, digger)
+            minetest.dig_node({x=pos.x,y=pos.y+1,z=pos.z})
+            minetest.add_item(pos,"ferns:fern_trunk")
         end
     end,
 })
@@ -143,7 +156,7 @@ minetest.register_node("ferns:fern_trunk", {
 -- TREE FERN SAPLING
 -----------------------------------------------------------------------------------------------
 minetest.register_node("ferns:sapling_tree_fern", {
-	description = "Tree Fern Sapling (Dicksonia)",
+	description = S("Tree Fern Sapling (Dicksonia)"),
 	drawtype = "plantlike",
 	paramtype = "light",
 	paramtype2 = "facedir",

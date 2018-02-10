@@ -27,22 +27,20 @@ end
 -- 'is snow nearby' function
 
 local function is_snow_nearby(pos)
-	return minetest.find_node_near(pos, 1,
-		{"default:snow", "default:snowblock", "default:dirt_with_snow"})
+	return minetest.find_node_near(pos, 1, {"group:snowy"})
 end
 
 
--- Sapling ABM
+-- Grow sapling
 
 function default.grow_sapling(pos)
 	if not default.can_grow(pos) then
-		-- try a bit later again
-		minetest.get_node_timer(pos):start(math.random(240, 600))
+		-- try again 5 min later
+		minetest.get_node_timer(pos):start(300)
 		return
 	end
 
-	--local mg_name = minetest.get_mapgen_setting("mg_name") --IMPORTANT new function only in > 0.4.14 stable
-	local mg_name = minetest.get_mapgen_params().mgname
+	local mg_name = minetest.get_mapgen_setting("mg_name")
 	local node = minetest.get_node(pos)
 	if node.name == "default:sapling" then
 		minetest.log("action", "A sapling grows into a tree at "..
@@ -79,6 +77,14 @@ function default.grow_sapling(pos)
 		minetest.log("action", "An aspen sapling grows into a tree at "..
 			minetest.pos_to_string(pos))
 		default.grow_new_aspen_tree(pos)
+	elseif node.name == "default:bush_sapling" then
+		minetest.log("action", "A bush sapling grows into a bush at "..
+			minetest.pos_to_string(pos))
+		default.grow_bush(pos)
+	elseif node.name == "default:acacia_bush_sapling" then
+		minetest.log("action", "An acacia bush sapling grows into a bush at "..
+			minetest.pos_to_string(pos))
+		default.grow_acacia_bush(pos)
 	end
 end
 
@@ -88,7 +94,7 @@ minetest.register_lbm({
 			"default:pine_sapling", "default:acacia_sapling",
 			"default:aspen_sapling"},
 	action = function(pos)
-		minetest.get_node_timer(pos):start(math.random(1200, 2400))
+		minetest.get_node_timer(pos):start(math.random(300, 1500))
 	end
 })
 
@@ -330,7 +336,7 @@ function default.grow_pine_tree(pos, snow)
 		end
 	end
 
-	local dev = 2
+	dev = 2
 	for yy = my + 1, my + 2 do
 		for zz = z - dev, z + dev do
 			local vi = a:index(x - dev, yy, zz)
@@ -374,7 +380,7 @@ function default.grow_new_apple_tree(pos)
 	local path = minetest.get_modpath("default") ..
 		"/schematics/apple_tree_from_sapling.mts"
 	minetest.place_schematic({x = pos.x - 2, y = pos.y - 1, z = pos.z - 2},
-		path, "0", nil, false)
+		path, "random", nil, false)
 end
 
 
@@ -428,6 +434,29 @@ function default.grow_new_aspen_tree(pos)
 end
 
 
+-- Bushes do not need 'from sapling' schematic variants because
+-- only the stem node is force-placed in the schematic.
+
+-- Bush
+
+function default.grow_bush(pos)
+	local path = minetest.get_modpath("default") ..
+		"/schematics/bush.mts"
+	minetest.place_schematic({x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+		path, "0", nil, false)
+end
+
+
+-- Acacia bush
+
+function default.grow_acacia_bush(pos)
+	local path = minetest.get_modpath("default") ..
+		"/schematics/acacia_bush.mts"
+	minetest.place_schematic({x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+		path, "0", nil, false)
+end
+
+
 --
 -- Sapling 'on place' function to check protection of node and resulting tree volume
 --
@@ -439,7 +468,9 @@ function default.sapling_on_place(itemstack, placer, pointed_thing,
 	local node = minetest.get_node_or_nil(pos)
 	local pdef = node and minetest.registered_nodes[node.name]
 
-	if pdef and pdef.on_rightclick and not placer:get_player_control().sneak then
+	if pdef and pdef.on_rightclick and
+			not (placer and placer:is_player() and
+			placer:get_player_control().sneak) then
 		return pdef.on_rightclick(pos, node, placer, itemstack, pointed_thing)
 	end
 
@@ -452,161 +483,55 @@ function default.sapling_on_place(itemstack, placer, pointed_thing,
 		end
 	end
 
-	local player_name = placer:get_player_name()
+	local player_name = placer and placer:get_player_name() or ""
 	-- Check sapling position for protection
 	if minetest.is_protected(pos, player_name) then
 		minetest.record_protection_violation(pos, player_name)
 		return itemstack
 	end
 	-- Check tree volume for protection
-	if not default.intersects_protection(
+	if minetest.intersects_protection(
 			vector.add(pos, minp_relative),
 			vector.add(pos, maxp_relative),
 			player_name,
 			interval) then
-		minetest.set_node(pos, {name = sapling_name})
-		if not minetest.setting_getbool("creative_mode") then
-			itemstack:take_item()
-		end
-	else
 		minetest.record_protection_violation(pos, player_name)
 		-- Print extra information to explain
 		minetest.chat_send_player(player_name, "Tree will intersect protection")
+		return itemstack
+	end
+
+	minetest.log("action", player_name .. " places node "
+			.. sapling_name .. " at " .. minetest.pos_to_string(pos))
+
+	local take_item = not (creative and creative.is_enabled_for
+		and creative.is_enabled_for(player_name))
+	local newnode = {name = sapling_name}
+	local ndef = minetest.registered_nodes[sapling_name]
+	minetest.set_node(pos, newnode)
+
+	-- Run callback
+	if ndef and ndef.after_place_node then
+		-- Deepcopy place_to and pointed_thing because callback can modify it
+		if ndef.after_place_node(table.copy(pos), placer,
+				itemstack, table.copy(pointed_thing)) then
+			take_item = false
+		end
+	end
+
+	-- Run script hook
+	for _, callback in ipairs(minetest.registered_on_placenodes) do
+		-- Deepcopy pos, node and pointed_thing because callback can modify them
+		if callback(table.copy(pos), table.copy(newnode),
+				placer, table.copy(node or {}),
+				itemstack, table.copy(pointed_thing)) then
+			take_item = false
+		end
+	end
+
+	if take_item then
+		itemstack:take_item()
 	end
 
 	return itemstack
 end
-
-
-
-
--- From BFD:
-
-minetest.register_node("default:mg_cherry_sapling", {
-	description = "Impossible to get node.",
-	drawtype = "airlike",
-	paramtype = "light",
-	tiles = {"xfences_space.png"},
-	groups = {not_in_creative_inventory=1},
-})
-
-local c_mg_cherry_sapling = minetest.get_content_id("default:mg_cherry_sapling")
-
-minetest.register_on_generated(function(minp, maxp, seed)
-	local timer = os.clock()
-	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
-	local data = vm:get_data()
-	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
-	local trees_grown = 0
-	for z=minp.z, maxp.z, 1 do
-		for y=minp.y, maxp.y, 1 do
-			for x=minp.x, maxp.x, 1 do
-				local p_pos = area:index(x,y,z)
-				local content_id = data[p_pos]
-				if content_id == c_mg_cherry_sapling then
-					minetest.after(1, default.grow_cherry_tree,
-						{x=x, y=y, z=z},
-						false,
-						"default:cherry_tree",
-						"default:cherry_blossom_leaves")
-					trees_grown = trees_grown + 1
-				else
-					-- nope
-				end
-			end
-		end
-	end
-	local geninfo = string.format(" trees grown after: %.2fs", os.clock() - timer)
-	minetest.log("action", trees_grown..geninfo)
-end)
-
-function default.grow_cherry_tree(pos, is_apple_tree, trunk_node, leaves_node)
-	--[[
-		NOTE: Tree-placing code is currently duplicated in the engine
-		and in games that have saplings; both are deprecated but not
-		replaced yet
-	--]]
-
-	local x, y, z = pos.x, pos.y, pos.z
-	local height = random(4, 5)
-	local c_tree = minetest.get_content_id(trunk_node)
-	local c_leaves = minetest.get_content_id(leaves_node)
-
-	local vm = minetest.get_voxel_manip()
-	local minp, maxp = vm:read_from_map(
-		{x = pos.x - 2, y = pos.y, z = pos.z - 2},
-		{x = pos.x + 2, y = pos.y + height + 1, z = pos.z + 2}
-	)
-	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
-	local data = vm:get_data()
-
-	add_trunk_and_leaves(data, a, pos, c_tree, c_leaves, height, 2, 8, is_apple_tree)
-
-	vm:set_data(data)
-	vm:write_to_map()
-	vm:update_map()
-end
-
-minetest.register_abm({
-	nodenames = {"default:cherry_sapling", "default:mg_cherry_sapling"},
-	interval = 80,
-	chance = 3,
-	action = function(pos, node)
-
-		local nu =  minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
-		local is_soil = minetest.get_item_group(nu, "soil")
-
-		if is_soil == 0 then
-			return
-		end
-
-
-		minetest.remove_node({x=pos.x, y=pos.y, z=pos.z})
-		default.grow_cherry_tree(pos, false, "default:cherry_tree", "default:cherry_blossom_leaves")
-	end,
-})
-
-minetest.register_biome({
-	name = "cherry_blossom_forest",
-	node_shore_filler = "default:sand",
-	node_top = "default:grass",
-	depth_top = 1,
-	node_filler = "default:dirt",
-	depth_filler = 3,
-	node_dust = "air",
-	node_underwater = "default:gravel",
-	y_min = 1,
-	y_max = 40,
-	heat_point = 50,
-	humidity_point = 55,
-})
-
-minetest.register_biome({
-	name = "cherry_blossom_forest_floral",
-	node_shore_filler = "default:sand",
-	node_top = "default:grass",
-	depth_top = 1,
-	node_filler = "default:dirt",
-	depth_filler = 3,
-	node_dust = "air",
-	node_underwater = "default:gravel",
-	y_min = 1,
-	y_max = 40,
-	heat_point = 47,
-	humidity_point = 50,
-})
-
-minetest.register_biome({
-	name = "cherry_blossom_forest_grassy",
-	node_shore_filler = "default:sand",
-	node_top = "default:grass",
-	depth_top = 1,
-	node_filler = "default:dirt",
-	depth_filler = 3,
-	node_dust = "air",
-	node_underwater = "default:gravel",
-	y_min = 1,
-	y_max = 42,
-	heat_point = 55,
-	humidity_point = 55,
-})

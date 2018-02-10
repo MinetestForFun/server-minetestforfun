@@ -1,3 +1,5 @@
+-- support for i18n
+local S = plantlife_i18n.gettext
 -----------------------------------------------------------------------------------------------
 -- Ferns - Crafting 0.0.5
 -----------------------------------------------------------------------------------------------
@@ -27,7 +29,7 @@ minetest.register_craft({
 minetest.register_alias("archaeplantae:fiddlehead",      "ferns:fiddlehead")
 
 minetest.register_craftitem("ferns:fiddlehead", {
-	description = "Fiddlehead",
+	description = S("Fiddlehead"),
 	inventory_image = "ferns_fiddlehead.png",
 	on_use = minetest.item_eat(-1), -- slightly poisonous when raw
 })
@@ -38,7 +40,7 @@ minetest.register_craft({
 	cooktime = 1,
 })
 minetest.register_craftitem("ferns:fiddlehead_roasted", {
-	description = "Roasted Fiddlehead",
+	description = S("Roasted Fiddlehead"),
 	inventory_image = "ferns_fiddlehead_roasted.png",
 	on_use = minetest.item_eat(1), -- edible when cooked
 })
@@ -48,7 +50,7 @@ minetest.register_craftitem("ferns:fiddlehead_roasted", {
 minetest.register_alias("archaeplantae:ferntuber",      "ferns:ferntuber")
 
 minetest.register_craftitem("ferns:ferntuber", {
-	description = "Fern Tuber",
+	description = S("Fern Tuber"),
 	inventory_image = "ferns_ferntuber.png",
 })
 minetest.register_craft({
@@ -61,7 +63,7 @@ minetest.register_craft({
 minetest.register_alias("archaeplantae:ferntuber_roasted",      "ferns:ferntuber_roasted")
 
 minetest.register_craftitem("ferns:ferntuber_roasted", {
-	description = "Roasted Fern Tuber",
+	description = S("Roasted Fern Tuber"),
 	inventory_image = "ferns_ferntuber_roasted.png",
 	on_use = minetest.item_eat(3),
 })
@@ -101,4 +103,3 @@ minetest.register_craft({
 	output = "farming:hoe_wood",
 	recipe = {"farming:hoe_wood","group:horsetail","farming:string","default:stick"},
 })]]
-

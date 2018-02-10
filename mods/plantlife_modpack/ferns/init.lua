@@ -9,6 +9,9 @@ local mname		= "ferns" -- former "archaeplantae"
 
 abstract_ferns = {}
 
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 dofile(minetest.get_modpath("ferns").."/settings.lua")
 
 if abstract_ferns.config.enable_lady_fern == true then
@@ -43,7 +46,7 @@ if run_tests then
 
 	-- Check node names
 	if abstract_ferns.config.enable_horsetails then
-		minetest.log("action", "[Mod] " ..title.. " Checking horsetail item strings")
+		minetest.log("action", "[Mod] " ..title.. " Checking horsetail item strings") --MFF: All the following logging is changed
 		assert(minetest.registered_items["ferns:horsetail_01"] ~= nil)
 		assert(minetest.registered_items["ferns:horsetail_02"] ~= nil)
 		assert(minetest.registered_items["ferns:horsetail_03"] ~= nil)

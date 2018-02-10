@@ -1,4 +1,6 @@
 -- Code by Mossmanikin & Neuromancer
+-- support for i18n
+local S = plantlife_i18n.gettext
 -----------------------------------------------------------------------------------------------
 -- TWiGS
 -----------------------------------------------------------------------------------------------
@@ -13,7 +15,7 @@ for i in pairs(NoDe) do
 	local NR = NoDe[i][1]
 	local iNV = NR - 1
 	minetest.register_node("trunks:twig_"..NR, {
-		description = "Twig",
+		description = S("Twig"),
 		inventory_image = "trunks_twig_"..NR..".png",
 		wield_image = "trunks_twig_"..NR..".png",
 		drawtype = "nodebox",
@@ -58,7 +60,7 @@ end
 local flat_moss = {-1/2, -1/2, -1/2, 1/2, -15/32--[[<-flickers if smaller]], 1/2}
 
 minetest.register_node("trunks:moss", {
-	description = "Moss",
+	description = S("Moss"),
 	drawtype = "nodebox",--"signlike",
 	tiles = {"trunks_moss.png"},
 	inventory_image = "trunks_moss.png",
@@ -77,7 +79,7 @@ minetest.register_node("trunks:moss", {
 -- MoSS & FuNGuS
 -----------------------------------------------------------------------------------------------
 minetest.register_node("trunks:moss_fungus", {
-	description = "Moss with Fungus",
+	description = S("Moss with Fungus"),
 	drawtype = "nodebox",--"signlike",
 	tiles = {"trunks_moss_fungus.png"},
 	inventory_image = "trunks_moss_fungus.png",
@@ -98,7 +100,7 @@ minetest.register_node("trunks:moss_fungus", {
 minetest.register_alias("woodstuff:twigs",	"trunks:twigs")
 
 minetest.register_node("trunks:twigs", {
-	description = "Twigs Block",
+	description = S("Twigs Block"),
 	paramtype2 = "facedir",
 	tiles = {"trunks_twigs.png"},
 	groups = {choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
@@ -111,7 +113,7 @@ minetest.register_node("trunks:twigs", {
 minetest.register_alias("woodstuff:twigs_slab",	"trunks:twigs_slab")
 
 minetest.register_node("trunks:twigs_slab", {
-	description = "Twigs Slab",
+	description = S("Twigs Slab"),
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -130,7 +132,7 @@ minetest.register_node("trunks:twigs_slab", {
 minetest.register_alias("woodstuff:twigs_roof",	"trunks:twigs_roof")
 
 minetest.register_node("trunks:twigs_roof", {
-	description = "Twigs Roof",
+	description = S("Twigs Roof"),
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -153,7 +155,7 @@ minetest.register_node("trunks:twigs_roof", {
 minetest.register_alias("woodstuff:twigs_roof_corner",	"trunks:twigs_roof_corner")
 
 minetest.register_node("trunks:twigs_roof_corner", {
-	description = "Twigs Roof Corner 1",
+	description = S("Twigs Roof Corner 1"),
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -181,7 +183,7 @@ minetest.register_node("trunks:twigs_roof_corner", {
 minetest.register_alias("woodstuff:twigs_roof_corner_2",	"trunks:twigs_roof_corner_2")
 
 minetest.register_node("trunks:twigs_roof_corner_2", {
-	description = "Twigs Roof Corner 2",
+	description = S("Twigs Roof Corner 2"),
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -332,7 +334,7 @@ for i in pairs(TRuNKS) do
 			local des = node.description
 
 			minetest.register_node("trunks:"..TRuNK.."root", {
-				description = des.." Root",
+				description = des.." "..S("Root"),
 				paramtype = "light",
 				paramtype2 = "facedir",
 				tiles = {
@@ -347,7 +349,7 @@ for i in pairs(TRuNKS) do
 				selection_box = {type = "fixed", fixed = roots_cube},
 				node_box = {type = "fixed", fixed = roots_sheet},
 				groups = {
-					tree_root=1,
+					tree=1,
 					snappy=1,
 					choppy=2,
 					oddly_breakable_by_hand=1,

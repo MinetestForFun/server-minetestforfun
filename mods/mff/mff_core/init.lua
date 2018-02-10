@@ -1,2 +1,0 @@
-mff = {}
-mff.core = {}

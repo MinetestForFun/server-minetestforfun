@@ -1,7 +1,10 @@
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 -- nodes
 
 minetest.register_node("woodsoils:dirt_with_leaves_1", {
-	description = "Forest Soil 1",
+	description = S("Forest Soil 1"),
 	tiles = {
 		"default_dirt.png^woodsoils_ground_cover.png",
 		"default_dirt.png",
@@ -19,7 +22,7 @@ minetest.register_node("woodsoils:dirt_with_leaves_1", {
 })
 
 minetest.register_node("woodsoils:dirt_with_leaves_2", {
-	description = "Forest Soil 2",
+	description = S("Forest Soil 2"),
 	tiles = {
 		"woodsoils_ground.png",
 		"default_dirt.png",
@@ -37,7 +40,7 @@ minetest.register_node("woodsoils:dirt_with_leaves_2", {
 })
 
 minetest.register_node("woodsoils:grass_with_leaves_1", {
-	description = "Forest Soil 3",
+	description = S("Forest Soil 3"),
 	tiles = {
 		"default_grass.png^woodsoils_ground_cover2.png",
 		"default_dirt.png",
@@ -55,7 +58,7 @@ minetest.register_node("woodsoils:grass_with_leaves_1", {
 })
 
 minetest.register_node("woodsoils:grass_with_leaves_2", {
-	description = "Forest Soil 4",
+	description = S("Forest Soil 4"),
 	tiles = {
 		"default_grass.png^woodsoils_ground_cover.png",
 		"default_dirt.png",

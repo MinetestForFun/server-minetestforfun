@@ -31,6 +31,8 @@ biome_lib.modpath = minetest.get_modpath("biome_lib")
 
 biome_lib.total_no_aircheck_calls = 0
 
+biome_lib.queue_run_ratio = tonumber(minetest.settings:get("biome_lib_queue_run_ratio")) or 100
+
 -- Boilerplate to support localized strings if intllib mod is installed.
 local S
 if minetest.get_modpath("intllib") then
@@ -44,7 +46,7 @@ local DEBUG = false --... except if you want to spam the console with debugging 
 
 function biome_lib:dbg(msg)
 	if DEBUG then
-		minetest.log("info", "[Plantlife] "..msg)
+		minetest.log("info", "[Plantlife] "..msg) --MFF
 		minetest.log("verbose", "[Plantlife] "..msg)
 	end
 end
@@ -66,7 +68,7 @@ local humidity_persistence = 0.5
 local humidity_scale = 250
 
 local time_scale = 1
-local time_speed = tonumber(minetest.setting_get("time_speed"))
+local time_speed = tonumber(minetest.settings:get("time_speed"))
 
 if time_speed and time_speed > 0 then
 	time_scale = 72 / time_speed
@@ -427,8 +429,9 @@ end)
 -- "Play" them back, populating them with new stuff in the process
 
 minetest.register_globalstep(function(dtime)
-	if dtime < 0.2 and    -- don't attempt to populate if lag is already too high
-	  (#biome_lib.blocklist_aircheck > 0 or #biome_lib.blocklist_no_aircheck > 0) then
+	if dtime < 0.2    -- don't attempt to populate if lag is already too high
+	  and math.random(100) <= biome_lib.queue_run_ratio
+	  and (#biome_lib.blocklist_aircheck > 0 or #biome_lib.blocklist_no_aircheck > 0) then
 		biome_lib.globalstep_start_time = minetest.get_us_time()
 		biome_lib.globalstep_runtime = 0
 		while (#biome_lib.blocklist_aircheck > 0 or #biome_lib.blocklist_no_aircheck > 0)
@@ -448,20 +451,24 @@ end)
 -- to prevent unpopulated map areas
 
 minetest.register_on_shutdown(function()
-	minetest.log("action", "[biome_lib] Stand by, playing out the rest of the aircheck mapblock log")
-	minetest.log("action", "(there are "..#biome_lib.blocklist_aircheck.." entries)...")
-	while true do
-		biome_lib:generate_block_with_air_checking(0.1)
-		if #biome_lib.blocklist_aircheck == 0 then return end
+	if #biome_lib.blocklist_aircheck > 0 then
+		minetest.log("action", "[biome_lib] Stand by, playing out the rest of the aircheck mapblock log") --MFF
+		minetest.log("action", "(there are "..#biome_lib.blocklist_aircheck.." entries)...")
+		while true do
+			biome_lib:generate_block_with_air_checking(0.1)
+			if #biome_lib.blocklist_aircheck == 0 then return end
+		end
 	end
 end)
 
 minetest.register_on_shutdown(function()
-	minetest.log("action", "[biome_lib] Stand by, playing out the rest of the no-aircheck mapblock log")
-	minetest.log("action", "(there are "..#biome_lib.blocklist_aircheck.." entries)...")
-	while true do
-		biome_lib:generate_block_no_aircheck(0.1)
-		if #biome_lib.blocklist_no_aircheck == 0 then return end
+	if #biome_lib.blocklist_no_aircheck > 0 then
+		minetest.log("action", "[biome_lib] Stand by, playing out the rest of the no-aircheck mapblock log") --MFF
+		minetest.log("action", "(there are "..#biome_lib.blocklist_aircheck.." entries)...")
+		while true do
+			biome_lib:generate_block_no_aircheck(0.1)
+			if #biome_lib.blocklist_no_aircheck == 0 then return end
+		end
 	end
 end)
 
@@ -713,7 +720,7 @@ end
 
 -- Check for infinite stacks
 
-if minetest.get_modpath("unified_inventory") or not minetest.setting_getbool("creative_mode") then
+if minetest.get_modpath("unified_inventory") or not minetest.settings:get_bool("creative_mode") then
 	biome_lib.expect_infinite_stacks = false
 else
 	biome_lib.expect_infinite_stacks = true
@@ -728,7 +735,7 @@ function biome_lib:get_nodedef_field(nodename, fieldname)
 	return minetest.registered_nodes[nodename][fieldname]
 end
 
-minetest.log("action", "[Biome Lib] Loaded")
+minetest.log("action", "[Biome Lib] Loaded") --MFF:print->minetest.log
 
 minetest.after(0, function()
 	minetest.log("action", "[Biome Lib] Registered a total of "..(#biome_lib.surfaceslist_aircheck)+(#biome_lib.surfaceslist_no_aircheck).." surface types to be evaluated, spread")

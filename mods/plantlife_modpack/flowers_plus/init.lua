@@ -1,4 +1,5 @@
-local S = biome_lib.intllib
+-- support for i18n
+local S = plantlife_i18n.gettext
 
 -- This file supplies a few additional plants and some related crafts
 -- for the plantlife modpack.  Last revision:  2013-04-24
@@ -63,6 +64,7 @@ for i in ipairs(lilies_list) do
 			fixed = { -0.5, -0.49, -0.5, 0.5, -0.49, 0.5 },
 		},
 		buildable_to = true,
+		node_placement_prediction = "",
 
 		liquids_pointable = true,
 		drop = "flowers:waterlily",
@@ -231,7 +233,7 @@ if minetest.registered_items["farming:seed_spelt"] then
 end
 
 minetest.register_node(":flowers:sunflower", {
-	description = "Sunflower",
+	description = S("Sunflower"),
 	drawtype = "mesh",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -476,4 +478,4 @@ minetest.register_alias("flowers:cotton", "farming:string")
 minetest.register_alias("flowers:cotton_wad", "farming:string")
 minetest.register_alias("sunflower:sunflower", "flowers:sunflower")
 
-minetest.log("action", S("[Flowers] Loaded."))
+minetest.log("action", S("[Flowers] Loaded.")) --MFF

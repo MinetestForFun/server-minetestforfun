@@ -1,5 +1,8 @@
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 vines.register_vine( 'root', {
-  description = "Roots",
+  description = S("Roots"),
   average_length = 9,
 },{
   choose_random_wall = true,
@@ -17,7 +20,7 @@ vines.register_vine( 'root', {
 })
 
 vines.register_vine( 'vine', {
-  description = "Vines",
+  description = S("Vines"),
   average_length = 5,
 },{
   choose_random_wall = true,
@@ -26,6 +29,7 @@ vines.register_vine( 'vine', {
   spawn_delay = 500,
   spawn_chance = 100,
   spawn_surfaces = {
+    "default:leaves",
     "default:jungleleaves",
     "moretrees:jungletree_leaves_red",
     "moretrees:jungletree_leaves_yellow",
@@ -37,16 +41,16 @@ vines.register_vine( 'vine', {
 })
 
 vines.register_vine( 'side', {
-  description = "Vines",
+  description = S("Vines"),
   average_length = 6,
 },{
   choose_random_wall = true,
   avoid_nodes = {"group:vines", "default:apple"},
-  choose_random_wall = true,
   avoid_radius = 3,
   spawn_delay = 500,
   spawn_chance = 100,
   spawn_surfaces = {
+    "default:leaves",
     "default:jungleleaves",
     "moretrees:jungletree_leaves_red",
     "moretrees:jungletree_leaves_yellow",
@@ -58,7 +62,7 @@ vines.register_vine( 'side', {
 })
 
 vines.register_vine( "jungle", {
-  description = "Jungle Vines",
+  description = S("Jungle Vines"),
   average_length = 7,
 },{
   choose_random_wall = true,
@@ -85,7 +89,7 @@ vines.register_vine( "jungle", {
 })
 
 vines.register_vine( 'willow', {
-  description = "Willow Vines",
+  description = S("Willow Vines"),
   average_length = 9,
 },{
   choose_random_wall = true,

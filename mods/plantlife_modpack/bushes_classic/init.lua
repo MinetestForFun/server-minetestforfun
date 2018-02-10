@@ -3,12 +3,13 @@
 --
 -- License:  WTFPL
 
-local S = biome_lib.intllib
-
 bushes_classic = {}
 
+-- support for i18n
+local S = plantlife_i18n.gettext
+
 bushes_classic.bushes = {
-    "strawberry",
+  "strawberry",
 	"blackberry",
 	"blueberry",
 	"raspberry",
@@ -17,12 +18,12 @@ bushes_classic.bushes = {
 }
 
 bushes_classic.bushes_descriptions = {
-    "Strawberry",
-	"Blackberry",
-	"Blueberry",
-	"Raspberry",
-	"Gooseberry",
-	"Mixed Berry"
+	{S("Strawberry"),  S("Raw Strawberry pie"),  S("Cooked Strawberry pie"),  S("Slice of Strawberry pie"),  S("Basket with Strawberry pies"),  S("Strawberry Bush")},
+	{S("Blackberry"),  S("Raw Blackberry pie"),  S("Cooked Blackberry pie"),  S("Slice of Blackberry pie"),  S("Basket with Blackberry pies"),  S("Blackberry Bush")},
+	{S("Blueberry"),   S("Raw Blueberry pie"),   S("Cooked Blueberry pie"),   S("Slice of Blueberry pie"),   S("Basket with Blueberry pies"),   S("Blueberry Bush")},
+	{S("Raspberry"),   S("Raw Raspberry pie"),   S("Cooked Raspberry pie"),   S("Slice of Raspberry pie"),   S("Basket with Raspberry pies"),   S("Raspberry Bush")},
+	{S("Gooseberry"),  S("Raw Gooseberry pie"),  S("Cooked Gooseberry pie"),  S("Slice of Gooseberry pie"),  S("Basket with Gooseberry pies"),  S("Gooseberry Bush")},
+	{S("Mixed Berry"), S("Raw Mixed Berry pie"), S("Cooked Mixed Berry pie"), S("Slice of Mixed Berry pie"), S("Basket with Mixed Berry pies"), S("Currently fruitless Bush")}
 }
 
 bushes_classic.spawn_list = {}
@@ -56,4 +57,4 @@ biome_lib:spawn_on_surfaces({
 
 minetest.register_alias("bushes:basket_pies", "bushes:basket_strawberry")
 
-minetest.log("action", S("[Bushes] Loaded."))
+minetest.log("action", S("[Bushes] Loaded.")) --MFF

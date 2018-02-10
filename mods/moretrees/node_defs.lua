@@ -3,20 +3,21 @@ local S = moretrees.intllib
 moretrees.avoidnodes = {}
 
 moretrees.treelist = {
-	{"beech",		"Beech Tree"},
-	{"apple_tree",	"Apple Tree"},
-	{"oak",			"Oak Tree",			"acorn",		"Acorn",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
-	{"sequoia",		"Giant Sequoia"},
-	{"birch",		"Birch Tree"},
-	{"palm",		"Palm Tree",		"coconut",		"Coconut",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	1.0 },
-	{"spruce",		"Spruce Tree",		"spruce_cone",	"Spruce Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
-	{"cedar",		"Cedar Tree",		"cedar_cone",	"Cedar Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2}, 0.8 },
-	{"willow",		"Willow Tree"},
-	{"rubber_tree",	"Rubber Tree"},
-	{"fir",			"Douglas Fir",		"fir_cone",		"Fir Cone",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
-
-	{"jungletree",	"Jungle Tree",		nil,			nil,			nil,								nil, "default_junglesapling.png"  },
-	{"acacia",		"Acacia Tree",		nil,			nil,			nil,								nil, "default_acacia_sapling.png" },
+	{"beech",			"Beech Tree"},
+	{"apple_tree",		"Apple Tree"},
+	{"oak",				"Oak Tree",			"acorn",					"Acorn",			{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
+	{"sequoia",			"Giant Sequoia"},
+	{"birch",			"Birch Tree"},
+	{"palm",			"Palm Tree",		"palm_fruit_trunk_gen",		"Palm Tree",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	1.0 },
+	{"date_palm",		"Date Palm Tree",	"date_palm_fruit_trunk",	"Date Palm Tree",	{0, 0, 0, 0, 0, 0},	0.0 },
+	{"spruce",			"Spruce Tree",		"spruce_cone",				"Spruce Cone",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
+	{"cedar",			"Cedar Tree",		"cedar_cone",				"Cedar Cone",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
+	{"poplar",			"Poplar Tree"},
+	{"poplar_small",	"Poplar Tree"},
+	{"willow",			"Willow Tree"},
+	{"rubber_tree",		"Rubber Tree"},
+	{"fir",				"Douglas Fir",		"fir_cone",					"Fir Cone",			{-0.2, -0.5, -0.2, 0.2, 0, 0.2},	0.8 },
+	{"jungletree",		"Jungle Tree",		nil,						nil,				nil,								nil, "default_junglesapling.png"  },
 }
 
 local dirs1 = { 21, 20, 23, 22, 21 }
@@ -28,7 +29,7 @@ local moretrees_plantlike_leaves_visual_scale = 1
 
 if moretrees.plantlike_leaves then
 	moretrees_new_leaves_drawtype = "plantlike"
-	moretrees_plantlike_leaves_visual_scale = 1.189
+	moretrees_plantlike_leaves_visual_scale = math.sqrt(2)
 end
 
 -- redefine default leaves to handle plantlike and/or leaf decay options
@@ -37,11 +38,7 @@ if moretrees.plantlike_leaves then
 	minetest.override_item("default:leaves", {
 		inventory_image = minetest.inventorycube("default_leaves.png"),
 		drawtype = "plantlike",
-		visual_scale = 1.189
-	})
-else
-	minetest.override_item("default:leaves", {
-		waving = 1
+		visual_scale = math.sqrt(2)
 	})
 end
 
@@ -51,11 +48,7 @@ if moretrees.plantlike_leaves then
 	minetest.override_item("default:jungleleaves", {
 		inventory_image = minetest.inventorycube("default_jungleleaves.png"),
 		drawtype = "plantlike",
-		visual_scale = 1.189
-	})
-else
-	minetest.override_item("default:jungleleaves", {
-		waving = 1
+		visual_scale = math.sqrt(2)
 	})
 end
 
@@ -69,8 +62,22 @@ for i in ipairs(moretrees.treelist) do
 
 	local saptex = moretrees.treelist[i][7]
 
-	if treename ~= "jungletree"  -- the default game provides jungle tree, acacia, and pine trunk/planks nodes.
-		and treename ~= "acacia"
+	-- player will get a sapling with 1/100 chance
+	-- player will get leaves only if he/she gets no saplings,
+	-- this is because max_items is 1
+
+	local droprarity = 100
+	local decay = moretrees.leafdecay_radius
+
+	if treename == "palm" then
+		droprarity = 20
+		decay = moretrees.palm_leafdecay_radius
+	elseif treename == "date_palm" then
+		decay = moretrees.palm_leafdecay_radius
+	end
+
+	if treename ~= "jungletree"  -- the default game provides jungle tree and pine trunk/planks nodes.
+		and treename ~= "poplar_small"
 		and treename ~= "pine" then
 
 		saptex = "moretrees_"..treename.."_sapling.png"
@@ -83,7 +90,7 @@ for i in ipairs(moretrees.treelist) do
 				"moretrees_"..treename.."_trunk.png"
 			},
 			paramtype2 = "facedir",
-			is_ground_content = true,
+			is_ground_content = false,
 			groups = {tree=1,snappy=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
 			sounds = default.node_sound_wood_defaults(),
 			on_place = minetest.rotate_node,
@@ -92,7 +99,7 @@ for i in ipairs(moretrees.treelist) do
 		minetest.register_node("moretrees:"..treename.."_planks", {
 			description = S(treedesc.." Planks"),
 			tiles = {"moretrees_"..treename.."_wood.png"},
-			is_ground_content = true,
+			is_ground_content = false,
 			groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3,wood=1},
 			sounds = default.node_sound_wood_defaults(),
 		})
@@ -105,6 +112,7 @@ for i in ipairs(moretrees.treelist) do
 			paramtype = "light",
 			paramtype2 = "waving",
 			walkable = false,
+			is_ground_content = true,
 			selection_box = {
 				type = "fixed",
 				fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
@@ -112,18 +120,6 @@ for i in ipairs(moretrees.treelist) do
 			groups = {snappy=2,dig_immediate=3,flammable=2,attached_node=1,sapling=1},
 			sounds = default.node_sound_defaults(),
 		})
-
-		-- player will get a sapling with 1/100 chance
-		-- player will get leaves only if he/she gets no saplings,
-		-- this is because max_items is 1
-
-		local droprarity = 100
-		local decay = moretrees.leafdecay_radius
-
-		if treename == "palm" then
-			droprarity = 20
-			decay = moretrees.palm_leafdecay_radius
-		end
 
 		local moretrees_leaves_inventory_image = nil
 		local moretrees_new_leaves_waving = nil
@@ -142,7 +138,8 @@ for i in ipairs(moretrees.treelist) do
 			tiles = { "moretrees_"..treename.."_leaves.png" },
 			inventory_image = moretrees_leaves_inventory_image,
 			paramtype = "light",
-			groups = {snappy = 3, flammable = 2, leaves = 1, moretrees_leaves = 1, leafdecay = decay},
+			is_ground_content = false,
+			groups = {snappy = 3, flammable = 2, leaves = 1, moretrees_leaves = 1, leafdecay = 1},
 			sounds = default.node_sound_leaves_defaults(),
 
 			drop = {
@@ -215,13 +212,14 @@ for i in ipairs(moretrees.treelist) do
 	end
 
 	minetest.register_node("moretrees:"..treename.."_sapling_ongen", {
-		description = S(treedesc.." Sapling"),
+		description = S(treedesc.." Sapling (on-generated)"),
 		drawtype = "plantlike",
 		tiles = {saptex},
 		inventory_image = saptex,
 		paramtype = "light",
 		paramtype2 = "waving",
 		walkable = false,
+		is_ground_content = true,
 		selection_box = {
 			type = "fixed",
 			fixed = {-0.3, -0.5, -0.3, 0.3, 0.35, 0.3}
@@ -231,8 +229,10 @@ for i in ipairs(moretrees.treelist) do
 		drop = "moretrees:"..treename.."_sapling"
 	})
 
+	local fruitname = nil
 	if fruit then
-		minetest.register_node("moretrees:"..fruit, {
+		fruitname = "moretrees:"..fruit
+		minetest.register_node(fruitname, {
 			description = S(fruitdesc),
 			drawtype = "plantlike",
 			tiles = { "moretrees_"..fruit..".png" },
@@ -241,14 +241,25 @@ for i in ipairs(moretrees.treelist) do
 			visual_scale = vscale,
 			paramtype = "light",
 			sunlight_propagates = true,
+			is_ground_content = false,
 			walkable = false,
 			selection_box = {
 				type = "fixed",
 					fixed = selbox
 				},
-			groups = {fleshy=3,dig_immediate=3,flammable=2, attached_node=1},
+			groups = {fleshy=3,dig_immediate=3,flammable=2, attached_node=1, leafdecay = 1, leafdecay_drop = 1},
 			sounds = default.node_sound_defaults(),
 		})
+	end
+
+	if treename ~= "jungletree"
+		and treename ~= "poplar_small"
+		and treename ~= "pine" then
+			default.register_leafdecay({
+				trunks = { "moretrees:"..treename.."_trunk" },
+				leaves = { "moretrees:"..treename.."_leaves", fruitname },
+				radius = decay,
+			})
 	end
 
 	minetest.register_abm({
@@ -257,7 +268,7 @@ for i in ipairs(moretrees.treelist) do
 		chance = 1,
 		action = function(pos, node, active_object_count, active_object_count_wider)
 			local fdir = node.param2 or 0
-			local nfdir = dirs2[fdir+1]
+				nfdir = dirs2[fdir+1]
 			minetest.add_node(pos, {name = "moretrees:"..treename.."_trunk", param2 = nfdir})
 		end,
 	})
@@ -269,6 +280,45 @@ for i in ipairs(moretrees.treelist) do
 			table.insert(moretrees.avoidnodes, "moretrees:"..treename.."_sapling_ongen")
 	end
 end
+
+-- Add small poplar saplings
+
+local poplar_sapling = minetest.registered_nodes["moretrees:poplar_sapling"]
+local poplar_sapling_ongen = minetest.registered_nodes["moretrees:poplar_sapling_ongen"]
+local poplar_small_sapling = {}
+local poplar_small_sapling_ongen = {}
+for k,v in pairs(poplar_sapling) do
+	poplar_small_sapling[k] = v
+end
+for k,v in pairs(poplar_sapling_ongen) do
+	poplar_small_sapling_ongen[k] = v
+end
+poplar_small_sapling.tiles = {"moretrees_poplar_small_sapling.png"}
+poplar_small_sapling.inventory_image = "moretrees_poplar_small_sapling.png"
+poplar_small_sapling.is_ground_content = true
+poplar_small_sapling_ongen.tiles_ongen = {"moretrees_poplar_small_sapling.png"}
+poplar_small_sapling_ongen.inventory_image_ongen = "moretrees_poplar_small_sapling.png"
+poplar_small_sapling_ongen.drop = "moretrees:poplar_small_sapling"
+poplar_small_sapling_ongen.is_ground_content = true
+
+minetest.register_node("moretrees:poplar_small_sapling", poplar_small_sapling)
+minetest.register_node("moretrees:poplar_small_sapling_ongen", poplar_small_sapling_ongen)
+if moretrees.spawn_saplings then
+	table.insert(moretrees.avoidnodes, "moretrees:poplar_sapling")
+	table.insert(moretrees.avoidnodes, "moretrees:poplar_small_sapling_ongen")
+end
+
+local poplar_leaves_drop = minetest.registered_nodes["moretrees:poplar_leaves"].drop
+minetest.override_item("moretrees:poplar_leaves", {
+	drop = {
+		max_items = poplar_leaves_drop.maxitems,
+		items = {
+			{items = {"moretrees:poplar_sapling"}, rarity = 1.33 * poplar_leaves_drop.items[1].rarity },
+			{items = {"moretrees:poplar_small_sapling"}, rarity = 1.33 * poplar_leaves_drop.items[1].rarity },
+			{items = {"moretrees:poplar_leaves"} }
+		}
+	}
+})
 
 -- Extra nodes for jungle trees:
 
@@ -293,7 +343,8 @@ for color = 1, #jungleleaves do
 		tiles = {"moretrees_jungletree_leaves_"..jungleleaves[color]..".png"},
 		inventory_image = moretrees_leaves_inventory_image,
 		paramtype = "light",
-		groups = {snappy = 3, flammable = 2, leaves = 1, moretrees_leaves = 1, leafdecay = moretrees.leafdecay_radius },
+		is_ground_content = false,
+		groups = {snappy = 3, flammable = 2, leaves = 1, moretrees_leaves = 1, leafdecay = 3 },
 		drop = {
 			max_items = 1,
 			items = {
@@ -304,6 +355,18 @@ for color = 1, #jungleleaves do
 		sounds = default.node_sound_leaves_defaults(),
 	})
 end
+
+-- To get Moretrees to generate its own jungle trees among the default mapgen
+-- we need our own copy of that node, which moretrees will match against.
+
+local jungle_tree = table.copy(minetest.registered_nodes["default:jungletree"])
+minetest.register_node("moretrees:jungletree_trunk", jungle_tree)
+
+default.register_leafdecay({
+	trunks = { "default:jungletree", "moretrees:jungletree_trunk" },
+	leaves = { "default:jungleleaves", "moretrees:jungletree_leaves_yellow", "moretrees:jungletree_leaves_red" },
+	radius = moretrees.leafdecay_radius,
+})
 
 -- Extra needles for firs
 
@@ -321,7 +384,8 @@ minetest.register_node("moretrees:fir_leaves_bright", {
 	tiles = { "moretrees_fir_leaves_bright.png" },
 	inventory_image = moretrees_leaves_inventory_image,
 	paramtype = "light",
-	groups = {snappy = 3, flammable = 2, leaves = 1, moretrees_leaves = 1, leafdecay = moretrees.leafdecay_radius },
+	is_ground_content = false,
+	groups = {snappy = 3, flammable = 2, leaves = 1, moretrees_leaves = 1, leafdecay = 3 },
 	drop = {
 		max_items = 1,
 		items = {
@@ -331,6 +395,13 @@ minetest.register_node("moretrees:fir_leaves_bright", {
 	},
 	sounds = default.node_sound_leaves_defaults()
 })
+
+default.register_leafdecay({
+	trunks = { "moretrees:fir_trunk" },
+	leaves = { "moretrees:fir_leaves", "moretrees:fir_leaves_bright" },
+	radius = moretrees.leafdecay_radius,
+})
+
 
 if moretrees.enable_redefine_apple then
 	local appledef = moretrees.clone_node("default:apple")
@@ -345,10 +416,9 @@ table.insert(moretrees.avoidnodes, "moretrees:fir_trunk")
 table.insert(moretrees.avoidnodes, "default:tree")
 
 if moretrees.spawn_saplings then
-		table.insert(moretrees.avoidnodes, "snow:sapling_pine")
-		table.insert(moretrees.avoidnodes, "default:junglesapling")
-		table.insert(moretrees.avoidnodes, "default:pine_sapling")
-		table.insert(moretrees.avoidnodes, "default:acacia_sapling")
+	table.insert(moretrees.avoidnodes, "snow:sapling_pine")
+	table.insert(moretrees.avoidnodes, "default:junglesapling")
+	table.insert(moretrees.avoidnodes, "default:pine_sapling")
 end
 
 -- "empty" (tapped) rubber tree nodes
@@ -364,6 +434,7 @@ minetest.register_node("moretrees:rubber_tree_trunk_empty", {
 	groups = {tree=1,snappy=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
 	sounds = default.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	on_place = minetest.rotate_node,
 })
 
@@ -377,14 +448,6 @@ minetest.register_abm({
 		minetest.add_node(pos, {name = "moretrees:rubber_tree_trunk_empty", param2 = nfdir})
 	end,
 })
-
--- To get Moretrees to generate its own jungle trees among the default mapgen
--- we need our own copy of that node, which moretrees will match against.
-
-local jungle_tree = moretrees.clone_node("default:jungletree")
-jungle_tree.drop = jungle_tree.drop or { items = {} }
-table.insert(jungle_tree.drop.items, { items = {"default:jungletree"}})
-minetest.register_node("moretrees:jungletree_trunk", jungle_tree)
 
 -- For compatibility with old nodes, recently-changed nodes, and default nodes
 
@@ -432,6 +495,8 @@ minetest.register_alias("moretrees:pine_sapling",				"moretrees:cedar_sapling")
 minetest.register_alias("moretrees:pine_leaves",				"moretrees:cedar_leaves")
 minetest.register_alias("moretrees:pine_cone",					"moretrees:cedar_cone")
 minetest.register_alias("moretrees:pine_nuts",					"moretrees:cedar_nuts")
+minetest.register_alias("moretrees:pine_sapling_ongen",			"moretrees:cedar_sapling_ongen")
 
--- Overriding moretrees' palm leaves:
+minetest.register_alias("moretrees:dates",					"moretrees:dates_f4")
+-- Overriding moretrees' palm leaves: (MFF)
 minetest.override_item("moretrees:palm_leaves",{walkable = false})

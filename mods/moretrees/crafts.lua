@@ -66,6 +66,35 @@ minetest.register_craftitem("moretrees:raw_coconut", {
 	on_use = minetest.item_eat(4),
 })
 
+minetest.register_craftitem("moretrees:date", {
+	description = S("Date"),
+	inventory_image = "moretrees_date.png",
+	on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem("moretrees:date_nut_snack", {
+	description = S("Date & nut snack"),
+	inventory_image = "moretrees_date_nut_snack.png",
+	on_use = minetest.item_eat(4),
+})
+
+minetest.register_craftitem("moretrees:date_nut_batter", {
+	description = S("Date-nut cake batter"),
+	inventory_image = "moretrees_date_nut_batter.png",
+})
+
+minetest.register_craftitem("moretrees:date_nut_cake", {
+	description = S("Date-nut cake"),
+	inventory_image = "moretrees_date_nut_cake.png",
+	on_use = minetest.item_eat(32),
+})
+
+minetest.register_craftitem("moretrees:date_nut_bar", {
+	description = S("Date-nut energy bar"),
+	inventory_image = "moretrees_date_nut_bar.png",
+	on_use = minetest.item_eat(4),
+})
+
 minetest.register_craftitem("moretrees:acorn_muffin_batter", {
 	description = S("Acorn Muffin batter"),
 	inventory_image = "moretrees_acorn_muffin_batter.png",
@@ -111,6 +140,60 @@ for i in ipairs(moretrees.cutting_tools) do
 		}
 	})
 end
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "moretrees:date_nut_snack",
+	recipe = {
+		"moretrees:date",
+		"moretrees:date",
+		"moretrees:date",
+		"moretrees:spruce_nuts",
+		"moretrees:cedar_nuts",
+		"moretrees:fir_nuts",
+	}
+})
+
+-- The date-nut cake is an exceptional food item due to its highly
+-- concentrated nature (32 food units). Because of that, it requires
+-- many different ingredients, and, starting from the base ingredients
+-- found or harvested in nature, it requires many steps to prepare.
+local flour
+if minetest.registered_nodes["farming:flour"] then
+	flour = "farming:flour"
+else
+	flour = "moretrees:acorn_muffin_batter"
+end
+minetest.register_craft({
+	type = "shapeless",
+	output = "moretrees:date_nut_batter",
+	recipe = {
+		"moretrees:date_nut_snack",
+		"moretrees:date_nut_snack",
+		"moretrees:date_nut_snack",
+		"moretrees:coconut_milk",
+		"moretrees:date_nut_snack",
+		"moretrees:raw_coconut",
+		"moretrees:coconut_milk",
+		flour,
+		"moretrees:raw_coconut",
+	},
+	replacements = {
+		{ "moretrees:coconut_milk", "vessels:drinking_glass 2" }
+	}
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "moretrees:date_nut_cake",
+	recipe = "moretrees:date_nut_batter",
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "moretrees:date_nut_bar 8",
+	recipe = {"moretrees:date_nut_cake"},
+})
 
 minetest.register_craft({
 	type = "shapeless",

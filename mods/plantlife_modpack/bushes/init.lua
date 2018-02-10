@@ -4,11 +4,13 @@
 -- bush leaf textures are cc-by-sa 3.0.  from VannessaE's moretrees mod.  (Leaf texture created by RealBadAngel or VanessaE)
 -- Branch textures created by Neuromancer.
 -- Licence for Code and Non-Bush leaf code is WTFPL.
-
-  abstract_bushes = {}
+ 
+-- support for i18n
+local S = plantlife_i18n.gettext
+  abstract_bushes = {} 
 
   minetest.register_node("bushes:youngtree2_bottom", {
-	description = "Young Tree 2 (bottom)",
+	description = S("Young Tree 2 (bottom)"),
  drawtype="nodebox",
  tiles = {"bushes_youngtree2trunk.png"},
  	inventory_image = "bushes_youngtree2trunk_inv.png",
@@ -33,7 +35,7 @@ for i in pairs(BushBranchCenter) do
 	local Num 		= BushBranchCenter[i][1]
 	local TexNum 	= BushBranchCenter[i][2]
 	minetest.register_node("bushes:bushbranches"..Num, {
-		description = "Bush Branches "..Num,
+		description = S("Bush Branches @1", Num),
 		drawtype = "nodebox",
 		tiles = {
 			"bushes_leaves_"..TexNum..".png",
@@ -70,7 +72,7 @@ for i in pairs(BushBranchSide) do
 	local Num 		= BushBranchSide[i][1]
 	local TexNum 	= BushBranchSide[i][2]
 	minetest.register_node("bushes:bushbranches"..Num, {
-		description = "Bush Branches "..Num,
+		description = S("Bush Branches @1", Num),
 		drawtype = "nodebox",
 		tiles = {
 --[[top]] 	"bushes_leaves_"..TexNum..".png",
@@ -112,7 +114,7 @@ local BushLeafNode 			= { {1}, {2}}
 for i in pairs(BushLeafNode) do
 	local Num = BushLeafNode[i][1]
 	minetest.register_node("bushes:BushLeaves"..Num, {
-		description = "Bush Leaves "..Num,
+		description = S("Bush Leaves @1", Num),
 		drawtype = "allfaces_optional",
 		tiles = {"bushes_leaves_"..Num..".png"},
 		paramtype = "light",
@@ -239,13 +241,14 @@ abstract_bushes.grow_youngtree_node2 = function(pos, height)
 	end
 end
 
+
 biome_lib:register_generate_plant({
     surface = {
 		"default:dirt_with_grass",
 		"stoneage:grass_with_silex",
 		"sumpf:peat",
 		"sumpf:sumpf",
-		"default:dirt_with_dry_grass"
+		"default:dirt_with_dry_grass" --MFF
 	},
     max_count = 55,  --10,15
     rarity = 101 - 4,  --3,4

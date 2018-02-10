@@ -1,0 +1,5 @@
+# Translation by inpos
+
+someone = кто-то 
+Sorry, %s owns that spot. = Извините, но %s уже является владельцем этой точки.
+[Plantlife Library] Loaded = [Plantlife Library] Загружена

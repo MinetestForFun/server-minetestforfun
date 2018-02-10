@@ -1,0 +1,487 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-03 14:07+0200\n"
+"PO-Revision-Date: 2017-08-03 14:08+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"Last-Translator: fat115 <fat115@framasoft.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: pt\n"
+
+#: ../bushes/init.lua
+msgid "Young Tree 2 (bottom)"
+msgstr ""
+
+#: ../bushes/init.lua
+msgid "Bush Branches @1"
+msgstr ""
+
+#: ../bushes/init.lua
+msgid "Bush Leaves @1"
+msgstr ""
+
+#: ../bushes_classic/cooking.lua
+msgid "Sugar"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Basket with Strawberry pies"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Cooked Strawberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Raw Strawberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Slice of Strawberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Strawberry"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Strawberry Bush"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Basket with Blackberry pies"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Blackberry"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Blackberry Bush"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Cooked Blackberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Raw Blackberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Slice of Blackberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Basket with Blueberry pies"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Blueberry"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Blueberry Bush"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Cooked Blueberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Raw Blueberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Slice of Blueberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Basket with Raspberry pies"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Cooked Raspberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Raspberry"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Raspberry Bush"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Raw Raspberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Slice of Raspberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Basket with Gooseberry pies"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Cooked Gooseberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Gooseberry"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Gooseberry Bush"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Raw Gooseberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Slice of Gooseberry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Basket with Mixed Berry pies"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Cooked Mixed Berry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Currently fruitless Bush"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Mixed Berry"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Raw Mixed Berry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "Slice of Mixed Berry pie"
+msgstr ""
+
+#: ../bushes_classic/init.lua
+msgid "[Bushes] Loaded."
+msgstr ""
+
+#: ../bushes_classic/nodes.lua
+msgid "Basket"
+msgstr ""
+
+#: ../cavestuff/nodes.lua
+msgid "Pebble"
+msgstr ""
+
+#: ../cavestuff/nodes.lua
+msgid "Desert Pebble"
+msgstr ""
+
+#: ../cavestuff/nodes.lua
+msgid "Stalactite"
+msgstr ""
+
+#: ../dryplants/init.lua
+msgid "Sickle"
+msgstr ""
+
+#: ../dryplants/init.lua
+msgid "Cut Grass"
+msgstr ""
+
+#: ../dryplants/init.lua
+msgid "Hay"
+msgstr ""
+
+#: ../dryplants/init.lua
+msgid "Short Grass"
+msgstr ""
+
+#: ../dryplants/juncus.lua
+msgid "Juncus"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Wet Reed"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Wet Reed Slab"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Wet Reed Roof"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Wet Reed Roof Corner"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Wet Reed Roof Corner 2"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Reed"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Reed Slab"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Reed Roof"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Reed Roof Corner"
+msgstr ""
+
+#: ../dryplants/reed.lua
+msgid "Reed Roof Corner 2"
+msgstr ""
+
+#: ../dryplants/reedmace.lua
+msgid "Reedmace"
+msgstr ""
+
+#: ../dryplants/reedmace.lua
+msgid "Reedmace, height: 1"
+msgstr ""
+
+#: ../dryplants/reedmace.lua
+msgid "Reedmace, height: 2"
+msgstr ""
+
+#: ../dryplants/reedmace.lua
+msgid "Reedmace, height: 3"
+msgstr ""
+
+#: ../dryplants/reedmace.lua
+msgid "Reedmace, height: 3 & Spikes"
+msgstr ""
+
+#: ../ferns/crafting.lua
+msgid "Fiddlehead"
+msgstr ""
+
+#: ../ferns/crafting.lua
+msgid "Roasted Fiddlehead"
+msgstr ""
+
+#: ../ferns/crafting.lua
+msgid "Fern Tuber"
+msgstr ""
+
+#: ../ferns/crafting.lua
+msgid "Roasted Fern Tuber"
+msgstr ""
+
+#: ../ferns/fern.lua
+msgid "Lady-fern (Athyrium)"
+msgstr ""
+
+#: ../ferns/gianttreefern.lua ../ferns/treefern.lua
+msgid "Tree Fern Crown (Dicksonia)"
+msgstr ""
+
+#: ../ferns/gianttreefern.lua
+msgid "Giant Tree Fern Leaves"
+msgstr ""
+
+#: ../ferns/gianttreefern.lua
+msgid "Giant Tree Fern Leave End"
+msgstr ""
+
+#: ../ferns/gianttreefern.lua
+msgid "Giant Fern Trunk"
+msgstr ""
+
+#: ../ferns/gianttreefern.lua
+msgid "Giant Tree Fern Sapling"
+msgstr ""
+
+#: ../ferns/horsetail.lua
+msgid "Young Horsetail (Equisetum)"
+msgstr ""
+
+#: ../ferns/horsetail.lua
+msgid "Horsetail (Equisetum)"
+msgstr ""
+
+#: ../ferns/treefern.lua
+msgid "Fern Trunk (Dicksonia)"
+msgstr ""
+
+#: ../ferns/treefern.lua
+msgid "Tree Fern Sapling (Dicksonia)"
+msgstr ""
+
+#: ../flowers_plus/init.lua
+msgid "Waterlily"
+msgstr ""
+
+#: ../flowers_plus/init.lua
+msgid "Seaweed"
+msgstr ""
+
+#: ../flowers_plus/init.lua
+msgid "Sunflower"
+msgstr ""
+
+#: ../flowers_plus/init.lua
+msgid "[Flowers] Loaded."
+msgstr ""
+
+#: ../molehills/init.lua
+msgid "Mole Hill"
+msgstr ""
+
+#: ../molehills/init.lua
+msgid "Loaded..."
+msgstr ""
+
+#: ../nature_classic/blossom.lua
+msgid "Apple blossoms"
+msgstr ""
+
+#: ../nature_classic/init.lua
+msgid "[Nature Classic] loaded!"
+msgstr ""
+
+#: ../poisonivy/init.lua
+msgid "Poison ivy (seedling)"
+msgstr "Hera venenosa (plantilha)"
+
+#: ../poisonivy/init.lua
+msgid "Poison ivy (sproutling)"
+msgstr "Hera venenosa (brotando)"
+
+#: ../poisonivy/init.lua
+msgid "Poison ivy (climbing plant)"
+msgstr "Hera venenosa (planta trepadeira)"
+
+#: ../poisonivy/init.lua
+msgid "[Poison Ivy] Loaded."
+msgstr "[Poison Ivy] Carregado"
+
+#: ../trunks/nodes.lua
+msgid "Twig"
+msgstr ""
+
+#: ../trunks/nodes.lua
+msgid "Moss"
+msgstr ""
+
+#: ../trunks/nodes.lua
+msgid "Moss with Fungus"
+msgstr ""
+
+#: ../trunks/nodes.lua
+msgid "Twigs Block"
+msgstr ""
+
+#: ../trunks/nodes.lua
+msgid "Twigs Slab"
+msgstr ""
+
+#: ../trunks/nodes.lua
+msgid "Twigs Roof"
+msgstr ""
+
+#: ../trunks/nodes.lua
+msgid "Twigs Roof Corner 1"
+msgstr ""
+
+#: ../trunks/nodes.lua
+msgid "Twigs Roof Corner 2"
+msgstr ""
+
+#: ../trunks/nodes.lua
+msgid "Root"
+msgstr ""
+
+#: ../vines/crafts.lua ../vines/vines.lua
+msgid "Vines"
+msgstr ""
+
+#: ../vines/functions.lua
+msgid "Matured"
+msgstr ""
+
+#: ../vines/init.lua
+msgid "[Vines] Loaded!"
+msgstr ""
+
+#: ../vines/nodes.lua
+msgid "Rope"
+msgstr ""
+
+#: ../vines/shear.lua
+msgid "Shears"
+msgstr ""
+
+#: ../vines/vines.lua
+msgid "Roots"
+msgstr ""
+
+#: ../vines/vines.lua
+msgid "Jungle Vines"
+msgstr ""
+
+#: ../vines/vines.lua
+msgid "Willow Vines"
+msgstr ""
+
+#: ../woodsoils/nodes.lua
+msgid "Forest Soil 1"
+msgstr ""
+
+#: ../woodsoils/nodes.lua
+msgid "Forest Soil 2"
+msgstr ""
+
+#: ../woodsoils/nodes.lua
+msgid "Forest Soil 3"
+msgstr ""
+
+#: ../woodsoils/nodes.lua
+msgid "Forest Soil 4"
+msgstr ""
+
+#: ../youngtrees/init.lua
+msgid "Young Bamboo Tree"
+msgstr ""
+
+#: ../youngtrees/init.lua
+msgid "Young Tree 2 (middle)"
+msgstr ""
+
+#: ../youngtrees/init.lua
+msgid "Young Tree (top)"
+msgstr ""
+
+#: ../youngtrees/init.lua
+msgid "Young Tree (middle)"
+msgstr ""
+
+#: ../youngtrees/init.lua
+msgid "Young Tree (bottom)"
+msgstr ""
