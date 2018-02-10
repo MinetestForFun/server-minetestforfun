@@ -58,7 +58,7 @@ function whoison.updateStats(name)
 end
 
 function whoison.updateFormat(name)
-	if ( type(whoison.lastseen[name]) ~= "table" ) then
+	if ( whoison.lastseen and type(whoison.lastseen[name]) ~= "table" ) then
 		-- update old data to new format
 		minetest.log("action",name.." lastseen is not a table... fixing...")
 		local lo = whoison.lastseen[name]
