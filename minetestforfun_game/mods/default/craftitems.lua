@@ -17,17 +17,9 @@ minetest.register_craftitem("default:paper", {
 local lpp = 14 -- Lines per book's page
 local function book_on_use(itemstack, user)
 	local player_name = user:get_player_name()
-	local meta = itemstack:get_meta()
+	local data = minetest.deserialize(itemstack:get_metadata())
 	local title, text, owner = "", "", player_name
 	local page, page_max, lines, string = 1, 1, {}, ""
-
-	-- Backwards compatibility
-	local old_data = minetest.deserialize(itemstack:get_metadata())
-	if old_data then
-		meta:from_table({ fields = old_data })
-	end
-
-	local data = meta:to_table().fields
 
 	if data.owner then
 		title = data.title
@@ -95,7 +87,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				new_stack = ItemStack("default:book_written")
 			end
 		else
-			data = stack:get_meta():to_table().fields
+			data = minetest.deserialize(stack:get_metadata())
 		end
 
 		if data and data.owner and data.owner ~= player:get_player_name() then
@@ -116,18 +108,19 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		data.page_max = math.ceil((#data.text:gsub("[^\n]", "") + 1) / lpp)
 
 		if new_stack then
-			new_stack:get_meta():from_table({ fields = data })
+			new_stack:set_metadata(minetest.serialize(data))
 			if inv:room_for_item("main", new_stack) then
 				inv:add_item("main", new_stack)
 			else
 				minetest.add_item(player:getpos(), new_stack)
 			end
 		else
-			stack:get_meta():from_table({ fields = data })
+			stack:set_metadata(minetest.serialize(data))
 		end
 
 	elseif fields.book_next or fields.book_prev then
-		local data = stack:get_meta():to_table().fields
+		local data
+		data = minetest.deserialize(stack:get_metadata())
 		if not data or not data.page then
 			return
 		end
@@ -147,7 +140,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 
-		stack:get_meta():from_table({fields = data})
+		stack:set_metadata(minetest.serialize(data))
 		stack = book_on_use(stack, player)
 	end
 
