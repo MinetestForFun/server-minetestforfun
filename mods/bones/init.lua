@@ -134,13 +134,13 @@ end
 
 
 minetest.register_on_dieplayer(function(player)
-	if minetest.setting_getbool("creative_mode") or not player then
+	if minetest.settings:get_bool("creative_mode") or not player then
 		return
 	end
 	local player_name = player:get_player_name()
 	if player_name == "" then return end
 
-	local pos = player:getpos()
+	local pos = player:get_pos()
 	pos.y = math.floor(pos.y + 0.5)
 
 	minetest.chat_send_player(player_name, 'Died at '..math.floor(pos.x)..','..math.floor(pos.y)..','..math.floor(pos.z))
@@ -202,21 +202,19 @@ minetest.register_on_dieplayer(function(player)
 
 	--3d_armor
 	if minetest.get_modpath("3d_armor") then
-		local name, player_inv, armor_inv, pos = armor:get_valid_player(player, "[on_dieplayer]")
+		local name, armor_inv = armor:get_valid_player(player, "[on_dieplayer]")
 		if name then
 			for i=1, player_inv:get_size("armor") do
 				local stack = armor_inv:get_stack("armor", i)
 				if stack:get_count() > 0 and (not pclasses.data.reserved_items[stack:get_name()] or
 				not pclasses.api.util.can_have_item(name, stack:get_name())) then
 					bones_inv:add_item("main", stack)
-					armor_inv:set_stack("armor", i, nil)
 					player_inv:set_stack("armor", i, nil)
 				end
 			end
 			armor:set_player_armor(player)
 		end
 	end
-	minetest.chat_send_player(player_name, 'Your bones is at '..math.floor(bones_pos.x)..','..math.floor(bones_pos.y)..','..math.floor(bones_pos.z))
+	minetest.chat_send_player(player_name, 'Your bones are at '..math.floor(bones_pos.x)..','..math.floor(bones_pos.y)..','..math.floor(bones_pos.z))
 	minetest.get_node_timer(bones_pos):start(10)
 end)
-

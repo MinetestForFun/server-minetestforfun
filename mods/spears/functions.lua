@@ -1,21 +1,20 @@
-function spears_shot (itemstack, player)
+function spears_shot(itemstack, player)
 	local spear = itemstack:get_name() .. '_entity'
-	local playerpos = player:getpos()
+	local playerpos = player:get_pos()
 	local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, spear)
 	local dir = player:get_look_dir()
 	local sp = 14
 	local dr = .3
 	local gravity = 9.8
-	obj:setvelocity({x=dir.x*sp, y=dir.y*sp, z=dir.z*sp})
-	obj:setacceleration({x=-dir.x*dr, y=-gravity, z=-dir.z*dr})
-	obj:setyaw(player:get_look_yaw()+math.pi)
+	obj:set_velocity({x=dir.x*sp, y=dir.y*sp, z=dir.z*sp})
+	obj:set_acceleration({x=-dir.x*dr, y=-gravity, z=-dir.z*dr})
+	obj:set_yaw(player:get_look_horizontal()+math.pi)
 	obj:get_luaentity().wear = itemstack:get_wear()
 	obj:get_luaentity().player = player:get_player_name()
 	obj:get_luaentity().lastpos = {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}
 	minetest.sound_play("spears_sound", {pos=playerpos})
 	return true
 end
-
 
 function spears_set_entity(kind, eq, toughness)
 	local SPEAR_ENTITY={
@@ -44,13 +43,13 @@ function spears_set_entity(kind, eq, toughness)
 
 
 	SPEAR_ENTITY.on_step = function(self, dtime)
-		local pos = self.object:getpos()
+		local pos = self.object:get_pos()
 		local node = minetest.get_node(pos)
 		if not self.wear then
 			self.object:remove()
 			return
 		end
-		local newpos = self.object:getpos()
+		local newpos = self.object:get_pos()
 		if self.lastpos.x ~= nil then
 			for _, pos in pairs(spears_get_trajectoire(self, newpos)) do
 				local node = minetest.get_node(pos)
@@ -73,7 +72,7 @@ function spears_set_entity(kind, eq, toughness)
 
 				local objs = minetest.get_objects_inside_radius({x=pos.x,y=pos.y,z=pos.z}, 2)
 				for k, obj in pairs(objs) do
-					local objpos = obj:getpos()
+					local objpos = obj:get_pos()
 					if spears_is_player(self.player, obj) or spears_is_entity(obj) then
 						if spears_touch(pos, objpos) then
 							local puncher = self.object
@@ -148,4 +147,3 @@ function spears_touch(pos, objpos)
 	end
 	return false
 end
-

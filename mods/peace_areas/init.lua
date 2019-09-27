@@ -6,7 +6,7 @@
 peace_areas = {areas = {}}
 
 function is_in_peace_area(player)
-	local pos = player:getpos() 
+	local pos = player:get_pos() 
 	if pos == nil then return false end
 	for name, positions in pairs(peace_areas.areas) do
 		local pos1 = positions["pos1"]
@@ -55,7 +55,7 @@ end
 minetest.register_on_punchplayer(function(player, hitter)
 	if is_in_peace_area(player) and hitter:is_player() then
 		minetest.chat_send_player(hitter:get_player_name(), "You cannot punch player " ..
-			player:get_player_name() .. ". They are in area '" .. peace_area(player:getpos()) .. "'.")
+			player:get_player_name() .. ". They are in area '" .. peace_area(player:get_pos()) .. "'.")
 		return true
 		--[[
 		Note:

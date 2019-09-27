@@ -143,6 +143,10 @@ end
 -------------------------------------------
 
 function vacuum_inventory(name, inv, invname, bury)
+	if inv == nil then
+		minetest.log("warning", "[pclasses/api] Inventory given to `vacuum_inventory` is nil")
+		return
+	end
 	local ref = minetest.get_player_by_name(name)
 	for i = 1, inv:get_size(invname) do
 		local stack = inv:get_stack(invname, i)

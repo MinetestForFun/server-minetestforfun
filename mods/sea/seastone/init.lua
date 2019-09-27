@@ -1,5 +1,6 @@
+--------
 -- NODES
-
+--------
 
 minetest.register_node("seastone:seastone", {
 	description = "Seastone",
@@ -64,9 +65,9 @@ minetest.register_node("seastone:seastone_redviolet", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-
+---------
 -- STAIRS
-
+---------
 
 stairs.register_stair_and_slab("seastone", "seastone:seastone",
 		{cracky=3, stone=1},
@@ -117,9 +118,9 @@ stairs.register_stair_and_slab("seastone_redviolet", "seastone:seastone_redviole
 		"Seastone slab redviolet",
 		default.node_sound_stone_defaults())
 
-
+-----------
 -- CRAFTING
-
+-----------
 
 local register_seastone_craft = function(output,recipe)
     minetest.register_craft({
@@ -145,8 +146,9 @@ register_seastone_craft("seastone:seastone_aqua", {'clams:crushedwhite', 'defaul
 register_seastone_craft("seastone:seastone_skyblue", {'clams:crushedwhite', 'default:stone','dye:skyblue'})
 register_seastone_craft("seastone:seastone_redviolet", {'clams:crushedwhite', 'default:stone','dye:redviolet'})
 
+----------
 -- COOKING
-
+----------
 
 local register_smoothblock_cooking = function(output,recipe)
     minetest.register_craft({

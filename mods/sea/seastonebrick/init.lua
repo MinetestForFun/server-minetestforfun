@@ -1,5 +1,6 @@
+--------
 -- NODES
-
+--------
 
 minetest.register_node("seastonebrick:seastonebrick", {
 	description = "Seastone brick",
@@ -58,9 +59,9 @@ minetest.register_node("seastonebrick:seastonebrick_redviolet", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-
+---------
 -- STAIRS
-
+---------
 
 stairs.register_stair_and_slab("seastonebrick", "seastonebrick:seastonebrick",
 		{cracky=3, stone=1},
@@ -111,9 +112,9 @@ stairs.register_stair_and_slab("seastonebrick_redviolet", "seastonebrick:seaston
 		"Seastonebrick slab redviolet",
 		default.node_sound_stone_defaults())
 
-
+-----------
 -- CRAFTING
-
+-----------
 
 local register_blockbrick_craft = function(output,recipe)
     minetest.register_craft({

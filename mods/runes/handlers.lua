@@ -28,8 +28,8 @@ end
 
 earthquake = function(runelevel, itemstack, user, pointed_thing)
 	for name,entity in pairs(minetest.get_objects_inside_radius(user:getpos(),10)) do
-		local v = entity:getvelocity() or {x=0,y=0,z=0}
-		entity:setvelocity({x=v.x, y=v.y+50, z=v.z})
+		local v = entity:get_velocity() or {x=0,y=0,z=0}
+		entity:set_velocity({x=v.x, y=v.y+50, z=v.z})
 	end
 end
 
@@ -74,7 +74,7 @@ set_manamax = function(runelevel, itemstack, user, pointed_thing)
 			-- Violent reaction if not admin
 			user:set_hp(1)
 			user:set_breath(1)
-			local userpos = user:getpos()
+			local userpos = user:get_pos()
 			local useritem = user:get_wielded_item()
 			user:setpos({x=userpos.x+math.random(-50,50),y = userpos.y + math.random(1,20),z = userpos.z + math.random(-50,50)})
 		end
@@ -89,7 +89,7 @@ set_manamax = function(level, itemstack, user, pointed_thing)
 			-- Violent reaction if not admin
 			user:set_hp(1)
 			user:set_breath(1)
-			local userpos = user:getpos()
+			local userpos = user:get_pos()
 			local useritem = user:get_wielded_item()
 			user:setpos({x=userpos.x+math.random(-50,50),y = userpos.y + math.random(1,20),z = userpos.z + math.random(-50,50)})
 		end

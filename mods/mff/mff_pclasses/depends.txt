@@ -1,3 +1,0 @@
-mff_core
-pclasses
-runes

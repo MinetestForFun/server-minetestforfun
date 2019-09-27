@@ -155,7 +155,7 @@ function vector.meta.remove_node(pos)
 			vector.meta.nodes[pos.x] = nil
 		end
 	else
-		print("[vector_extras] Warning: The node at "..vector.pos_to_string(pos).." wasn't stored in vector.meta.nodes.")
+		minetest.log("error", "[vector_extras] Warning: The node at " .. vector.pos_to_string(pos) .. " wasn't stored in vector.meta.nodes")
 	end
 end
 

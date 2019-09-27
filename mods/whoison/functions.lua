@@ -1,5 +1,6 @@
+------------
 -- Functions
---
+------------
 
 function whoison.functions.load(param)
     --[[
@@ -51,7 +52,7 @@ function whoison.functions.save(param)
                 -- Erase line
                 local i = 0
                 whoison.presence_file:seek(string.len(line),"cur")
-                print("removing " .. string.len(line))
+                minetest.log("action", "Removing " .. string.len(line))
                 while i < string.len(line) do
                     whoison.presence_file:write("\b")
                     i = i + 1

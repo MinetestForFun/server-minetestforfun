@@ -1,3 +1,0 @@
-mff_core
-default
-quests

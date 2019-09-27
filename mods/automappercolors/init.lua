@@ -42,9 +42,7 @@ minetest.register_chatcommand("amcdumpnodes", {
 
 minetest.after(1, function(args)
 	amc_dumpnodes()
-	if minetest.setting_getbool("log_mods") then
+	if minetest.settings:get_bool("log_mods") then
 		minetest.log("action", "[automappercolors] nodes dumped")
 	end
 end)
-
-

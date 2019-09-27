@@ -1,10 +1,8 @@
---more_signs by addi
---Code and Textures are under the CC by-sa 3.0 licence
---see: http://creativecommons.org/licenses/by-sa/3.0/
+-- more_signs by addi
+-- Code and Textures are under the CC by-sa 3.0 licence
+-- see: http://creativecommons.org/licenses/by-sa/3.0/
 
-
-
-arrow_signs={}
+arrow_signs = {}
 
 arrow_signs.formspec = "field[text;Sign text:;${text}]";
 
@@ -97,7 +95,7 @@ arrow_signs_on_place = function(itemstack, placer, pointed_thing)
 		itemstack:take_item()
 	end
 
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode") then
 		return itemstack
 	end
 
@@ -106,9 +104,10 @@ end
  function arrow_signs:savetext(pos, formname, fields, sender)
 
 		if not minetest.get_player_privs(sender:get_player_name())["interact"] then
-			minetest.chat_send_player(sender:get_player_name(), "error: you don't have permission to edit the sign. you need the interact priv")
-		return
+				minetest.chat_send_player(sender:get_player_name(), "Insufficient privileges (missing privilege: interact).")
+			return
 		end
+		
 		local meta = minetest.get_meta(pos)
 		fields.text = fields.text or ""
 		print((sender:get_player_name() or "").." wrote \""..fields.text..
@@ -183,7 +182,7 @@ minetest.register_craft({
 	}
 })
 
---Redefinition
+-- Redefinition
 minetest.register_abm({
 	nodenames = {"arrow_signs:wall_right", "arrow_signs:wall_left", "arrow_signs:wall_up", "arrow_signs:wall_down",
 		"more_signs:wall_right","more_signs:wall_left","more_signs:wall_up"	,"more_signs:wall_down"

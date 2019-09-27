@@ -476,9 +476,9 @@ function hbhunger.handle_node_actions(pos, oldnode, player, ext)
 
 	-- Armor's exhaus
 	if minetest.get_modpath("3d_armor") then
-		local name, inv, arminv, pos = armor:get_valid_player(player, "[exhaus]")
-		local armorinv = arminv:get_list("armor")
---		table.foreach(armorinv, print)
+		-- arminv is null now, get_valid_player only returns name and inv (Mg, 05/10/2019)
+		local name, inv = armor:get_valid_player(player, "[exhaus]")
+		local armorinv = inv:get_list("armor")
 		for index, stack in ipairs(armorinv) do
 			if stack:get_count() > 0 and (stack:get_name():split(":")[1] == "3d_armor" or stack:get_name():split(":")[1] == "shields") then
 				local itemname = stack:get_name():split(":")[2]:split("_")[1]

@@ -4,7 +4,7 @@ local fifo_path = "/home/quentinbd/mff/worlds/minetestforfun/mt_players_fifo"
 function players_data()
     local ps = {}
     for _, player in ipairs(minetest.get_connected_players()) do
-        local pos = player:getpos()
+        local pos = player:get_pos()
         local pname = player:get_player_name()
         local data = {
             name = pname,

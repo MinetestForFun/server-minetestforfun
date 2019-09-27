@@ -1,5 +1,6 @@
+--------
 -- NODES
-
+--------
 
 minetest.register_node("seawrecks:woodship", {
 	description = "Sand for the wooden ship",
@@ -154,9 +155,9 @@ meta:from_table({
 	end,
 })
 
-
+-------------------
 -- WRECK GENERATION
-
+-------------------
 
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -218,9 +219,9 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	end
 end
 
-
+--------
 -- ABM'S
-
+--------
 
 minetest.register_abm({
 nodenames = {"seawrecks:woodship"},
