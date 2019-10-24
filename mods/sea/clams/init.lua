@@ -1,4 +1,6 @@
+--------
 -- NODES
+--------
 
 minetest.register_node("clams:sandalgae", {
 	description = "Sandalgae",
@@ -56,9 +58,9 @@ minetest.register_node("clams:dirtalgaeused", {
 	sounds = default.node_sound_dirt_defaults(),
 })
 
-
+-----------
 -- ENTITIES
-
+-----------
 
 -- The registration of the entities' code is copied from celeron55's mob (the DM's fireball)
 
@@ -92,7 +94,7 @@ minetest.register_entity("clams:whiteshell", {
 			if self.phase >= 3 then
 				self.phase = 0
 			end
-			self.object:setsprite({x=0, y=self.phase})
+			self.object:set_sprite({x=0, y=self.phase})
 			local phasearmor = {
 				[0]={fleshy=0},
 				[1]={fleshy=30},
@@ -114,7 +116,7 @@ minetest.register_entity("clams:whiteshell", {
 					for _,drop in ipairs(self.drops) do
 						if math.random(1, drop.chance) == 1 then
 							for i=1,math.random(drop.min, drop.max) do
-								local obj = minetest.add_item(self.object:getpos(), drop.name)
+								local obj = minetest.add_item(self.object:get_pos(), drop.name)
 								if obj then
 									obj:get_luaentity().collect = true
 									local x = math.random(1, 5)
@@ -125,7 +127,7 @@ minetest.register_entity("clams:whiteshell", {
 									if math.random(1,2) == 1 then
 										z = -z
 									end
-									obj:setvelocity({x=1/x, y=obj:getvelocity().y, z=1/z})
+									obj:set_velocity({x=1/x, y=obj:get_velocity().y, z=1/z})
 								end
 							end
 						end
@@ -135,9 +137,9 @@ minetest.register_entity("clams:whiteshell", {
 		end,
 })
 
-
+--------------
 -- CRAFT ITEMS
-
+--------------
 
 minetest.register_craftitem("clams:collectedalgae", {
 	description = "Collected algae",
@@ -149,9 +151,9 @@ minetest.register_craftitem("clams:crushedwhite", {
 	inventory_image = "clams_crushedwhite.png",
 })
 
-
+-------------------
 -- ALGAE GENERATION
-
+-------------------
 
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -214,9 +216,9 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	end
 end
 
-
---ABM's
-
+--------
+-- ABM's
+--------
 
 minetest.register_abm({
 	nodenames = {"clams:sandalgaeused"},
@@ -294,9 +296,9 @@ minetest.register_abm({
 	end,
 })
 
-
+----------
 -- ALIASES
-
+----------
 
 minetest.register_alias("clams:yellowalgae","clams:collectedalgae")
 minetest.register_alias("clams:redalgae","clams:collectedalgae")

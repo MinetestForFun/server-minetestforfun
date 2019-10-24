@@ -78,9 +78,9 @@ minetest.register_node("seagravel:seagravel_redviolet", {
 	}),
 })
 
-
+---------
 -- STAIRS
-
+---------
 
 stairs.register_stair_and_slab("seagravel", "seagravel:seagravel",
 		{crumbly=2, falling_node=1},
@@ -152,9 +152,9 @@ stairs.register_stair_and_slab("seagravel_redviolet", "seagravel:seagravel_redvi
 		dug = {name="default_gravel_footstep", gain=1.0},
 }))
 
-
+-----------
 -- CRAFTING
-
+-----------
 
 local register_seagravel_craft = function(output,recipe)
     minetest.register_craft({

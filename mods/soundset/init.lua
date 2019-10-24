@@ -1,9 +1,11 @@
-minetest.log("action","[mod soundset] Loading...")
+minetest.log("action","[soundset] Loading...")
 
 soundset = {}
 soundset.file = minetest.get_worldpath() .. "/sounds_config.txt"
 soundset.gainplayers = {}
+
 local tmp = {}
+
 tmp["music"] = {}
 tmp["ambience"]  = {}
 tmp["other"] = {}
@@ -34,22 +36,22 @@ load_sounds_config()
 
 soundset.set_sound = function(name, param)
 	if param == "" then
-		minetest.chat_send_player(name, "/setsound <music|ambience|mobs|other> <number>")
+		minetest.chat_send_player(name, "/setsound <music | ambience | mobs | other> <number>")
 		return
 	end
 	local param_name, param_value = param:match("^(%S+)%s(%S+)$")
 	if param_name == nil or param_value == nil then
-		minetest.chat_send_player(name, "invalid param, /setsound <music|ambience|mobs|other> <number>")
+		minetest.chat_send_player(name, "Invalid parameters, see help /setsound")
 		return
 	end
 
 	if param_name ~= "music" and param_name ~= "ambience" and param_name ~= "mobs" and param_name ~= "other" then
-		minetest.chat_send_player(name, "invalid param " .. param_name)
+		minetest.chat_send_player(name, "Invalid param " .. param_name)
 		return
 	end
 	local value = tonumber(param_value)
 	if value == nil then
-		minetest.chat_send_player(name, "invalid value, " ..param_value .. " must be number")
+		minetest.chat_send_player(name, "Invalid value, " ..param_value .. " must be number")
 		return
 	end
 
@@ -60,12 +62,12 @@ soundset.set_sound = function(name, param)
 	end
 
 	if soundset.gainplayers[name][param_name] == value then
-		minetest.chat_send_player(name, "volume " .. param_name .. " already set to " .. value)
+		minetest.chat_send_player(name, "Volume " .. param_name .. " already set to " .. value)
 		return
 	end
 
 	soundset.gainplayers[name][param_name] = value
-	minetest.chat_send_player(name, "sound " .. param_name .. " set to " .. value)
+	minetest.chat_send_player(name, "Sound " .. param_name .. " set to " .. value)
 	save_sounds_config()
 end
 
@@ -178,7 +180,7 @@ if (minetest.get_modpath("unified_inventory")) then
 		type = "image",
 		image = "soundset_menu_icon.png",
 		tooltip = "sounds menu ",
-		show_with = false, --Modif MFF (Crabman 30/06/2015)
+		show_with = false, -- Modif MFF (Crabman 30/06/2015)
 		action = function(player)
 			local name = player:get_player_name()
 			if not name then return end
@@ -190,7 +192,7 @@ end
 minetest.register_chatcommand("soundset", {
 	params = "",
 	description = "Display volume menu formspec",
-	privs = {interact=true},
+	privs = {interact = true},
 	func = function(name, param)
 		if not name then return end
 		on_show_settings(name, soundset.gainplayers[name]["music"], soundset.gainplayers[name]["ambience"], soundset.gainplayers[name]["other"])
@@ -199,15 +201,15 @@ minetest.register_chatcommand("soundset", {
 
 
 minetest.register_chatcommand("soundsets", {
-	params = "<music|ambience|mobs|other> <number>",
-	description = "Set volume sound <music|ambience|mobs|other>",
-	privs = {interact=true},
+	params = "<music | ambience | mobs | other> <number>",
+	description = "Set volume sound.",
+	privs = {interact = true},
 	func = soundset.set_sound,
 })
 
 minetest.register_chatcommand("soundsetg", {
 	params = "",
-	 description = "Display volume sound <music|ambience|mobs|other>",
+	description = "Display volume sound <music | ambience | mobs| other>",
 	privs = {interact=true},
 	func = function(name, param)
 		local conf = ""
@@ -215,7 +217,7 @@ minetest.register_chatcommand("soundsetg", {
 			conf = conf .. " " .. k .. ":" .. v
 		end
 		minetest.chat_send_player(name, "sounds conf " .. conf)
-		minetest.log("action","Player ".. name .. " sound conf " .. conf)
+		minetest.log("action", "Player ".. name .. " sound conf " .. conf)
 	end
 })
 
@@ -226,5 +228,4 @@ minetest.register_on_joinplayer(function(player)
 	end
 end)
 
-minetest.log("action","[mod soundset] Loaded")
-
+minetest.log("action","[soundset] Loaded")

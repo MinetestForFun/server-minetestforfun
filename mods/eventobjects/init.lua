@@ -76,7 +76,7 @@ minetest.register_node("eventobjects:surprise_node", {
 				local obj = minetest.spawn_item({x=pos.x, y = pos.y + 1,z=pos.z},stack)
 				inv:remove_item("main",stack)
 				if obj then
-					obj:setvelocity({x = math.random(-0.4,0.4), y = math.random(2,9), z = math.random(-0.4,0.4)})
+					obj:set_velocity({x = math.random(-0.4,0.4), y = math.random(2,9), z = math.random(-0.4,0.4)})
 				end
 			end
 		end

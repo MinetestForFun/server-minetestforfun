@@ -32,6 +32,4 @@ minetest.register_alias("watershed:lava", "default:lava_source")
 minetest.register_alias("watershed:lavaflow", "default:lava_flowing")
 
 -- Items
-
 minetest.register_alias("watershed:luxcrystal", "default:cobble")
-

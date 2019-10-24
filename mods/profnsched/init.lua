@@ -2,8 +2,8 @@ dofile(minetest.get_modpath("profnsched").."/queue.lua")
 dofile(minetest.get_modpath("profnsched").."/after.lua")
 
 local durations = {}
-local active = minetest.setting_get("profnsched_activate")
-local dump_delay = minetest.setting_get("profnsched_dump_delay")
+local active = minetest.settings:get("profnsched_activate")
+local dump_delay = minetest.settings:get("profnsched_dump_delay")
 if not active then active = false end
 if not dump_delay then dump_delay = 60*5 end
 
@@ -49,7 +49,7 @@ minetest.register_chatcommand("profnsched", {
 	func = function(name, param)
 		active = true
 		if param == "" then
-			dump_delay = minetest.setting_get("profnsched_dump_delay")
+			dump_delay = minetest.settings:get("profnsched_dump_delay")
 			if not dump_delay then dump_delay = 60*5 end
 		else
 			dump_delay = tonumber(param)
@@ -58,9 +58,6 @@ minetest.register_chatcommand("profnsched", {
 	end
 })
 
-
-
-	
 local function update_durations(mod_name, func_id, dtime)
 	if not durations[mod_name] then
 		durations[mod_name] = {}
@@ -101,17 +98,15 @@ function minetest.register_globalstep(func)
 	}	
 end
 
-
-
 -- Main code
 
 local last_elapsed_local_dtime = 0
 local last_internal_server_dtime = 0
-local tick_dtime = minetest.setting_get("dedicated_server_step")*1000000
+local tick_dtime = minetest.settings:get("dedicated_server_step") * 1000000
 
 old_globalstep(function(dtime)
 	local begin_time = core.get_us_time()
-	last_internal_server_dtime = dtime*1000000 - last_elapsed_local_dtime
+	last_internal_server_dtime = dtime * 1000000 - last_elapsed_local_dtime
 	local launch_dtime = begin_time - last_internal_server_dtime
 	
 	local current_durations = {}

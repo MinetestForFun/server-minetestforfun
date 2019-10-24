@@ -1,5 +1,6 @@
+--------
 -- NODES
-
+--------
 
 minetest.register_node("whiteshell:whiteshell", {
 	description = "White shell",
@@ -22,8 +23,9 @@ minetest.register_node("whiteshell:whiteshell", {
 	sounds = default.node_sound_sand_defaults(),
 })
 
+------------------------
 -- WHITESHELL GENERATION
-
+------------------------
 
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -35,7 +37,6 @@ minetest.register_ore({
 	y_max     = 31000,
 	y_min     = -31000,
 })
-
 
 local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, chunk_size, ore_per_chunk, y_min, y_max)
 	if maxp.y < y_min or minp.y > y_max then
@@ -75,10 +76,13 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	end
 end
 
-
+----------
 -- ALIASES
-
+----------
 
 minetest.register_alias("clams:whiteshell","whiteshell:whiteshell")
 
-minetest.log("action", "[Mod] Sea Loaded.")
+-- Log
+if minetest.settings:get_bool("log_mods") then
+	minetest.log("action", "[Mod] Sea Loaded.")
+end

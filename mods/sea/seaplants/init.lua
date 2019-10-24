@@ -1,4 +1,6 @@
+--------
 -- NODES
+--------
 
 -- Lightened nodes for MFF
 local sea_light_source = 5
@@ -215,9 +217,9 @@ minetest.register_node("seaplants:seaplantsdirtseagrassred", {
 	sounds = default.node_sound_dirt_defaults(),
 })
 
-
+--------------
 -- CRAFT ITEMS
-
+--------------
 
 minetest.register_craftitem("seaplants:seasaladmix", {
 	description = "Sea salad mix",
@@ -225,8 +227,9 @@ minetest.register_craftitem("seaplants:seasaladmix", {
 	on_use = minetest.item_eat(6)
 })
 
-
+-----------
 -- CRAFTING
+-----------
 
 minetest.register_craft({
 	type = "shapeless",
@@ -234,9 +237,9 @@ minetest.register_craft({
 	recipe = {"seaplants:kelpgreen", "seaplants:kelpbrown", "seaplants:seagrassgreen", "seaplants:seagrassred"}
 })
 
-
+-------------------------------------
 -- SEAPLANTS SAND AND DIRT GENERATION
-
+-------------------------------------
 
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -364,9 +367,9 @@ local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, 
 	end
 end
 
-
+--------
 -- ABM'S
-
+--------
 
 minetest.register_abm({
 nodenames = {"seaplants:seaplantsdirtkelpgreen"},
@@ -540,9 +543,9 @@ action = function(pos, node, active_object_count, active_object_count_wider)
 end
 })
 
-
+----------
 -- ALIASES
-
+----------
 
 minetest.register_alias("seaplants:stemsgreen","default:sand")
 minetest.register_alias("seaplants:stemsbrown","default:dirt")

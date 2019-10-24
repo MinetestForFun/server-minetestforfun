@@ -1,4 +1,6 @@
+--------
 -- NODES
+--------
 
 minetest.register_node("sealamps:torch", {
 	description = "Sea torch",
@@ -52,9 +54,9 @@ minetest.register_node("sealamps:lantern", {
 	sounds = default.node_sound_defaults(),
 })
 
-
+-----------
 -- CRAFTING
-
+-----------
 
 minetest.register_craft({
 	output = 'sealamps:torch 8',

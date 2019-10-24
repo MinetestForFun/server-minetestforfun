@@ -9,7 +9,7 @@ function whoison.createFile(loopit)
 	local file = io.open(filename, "w")
 	file:write(os.time().."\n")
 	file:write(minetest.get_server_status().."\n")
-	for _,player in ipairs(minetest.get_connected_players()) do
+	for _, player in ipairs(minetest.get_connected_players()) do
 
 		local name = player:get_player_name()
 		whoison.updateStats(name)

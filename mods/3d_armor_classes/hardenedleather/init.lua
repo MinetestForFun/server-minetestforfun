@@ -1,31 +1,28 @@
-if ARMOR_MATERIALS.hardenedleather then
-	-- Register helmets :
-	minetest.register_tool(":3d_armor:helmet_hardenedleather", {
+if armor.materials.hardenedleather then
+
+	-- Register helmets
+	armor:register_armor(":3d_armor:helmet_hardenedleather", {
 		description = "Hardened Leather Helmet (Hunter)",
 		inventory_image = "3d_armor_inv_helmet_hardenedleather.png",
 		groups = {armor_head = 5, armor_heal = 0, armor_use = 250},
-		wear = 0,
 	})
-	-- Register chestplates :
-	minetest.register_tool(":3d_armor:chestplate_hardenedleather", {
+	-- Register chestplates
+	armor:register_armor(":3d_armor:chestplate_hardenedleather", {
 		description = "Hardened Leather Chestplate (Hunter)",
 		inventory_image = "3d_armor_inv_chestplate_hardenedleather.png",
 		groups = {armor_torso = 8, armor_heal = 0, armor_use = 250},
-		wear = 0,
 	})
-	-- Register leggings :
-	minetest.register_tool(":3d_armor:leggings_hardenedleather", {
+	-- Register leggings
+	armor:register_armor(":3d_armor:leggings_hardenedleather", {
 		description = "Hardened Leather Leggings (Hunter)",
 		inventory_image = "3d_armor_inv_leggings_hardenedleather.png",
 		groups = {armor_legs = 8, armor_heal = 0, armor_use = 250},
-		wear = 0,
 	})
-	-- Register boots :
-		minetest.register_tool(":3d_armor:boots_hardenedleather", {
+	-- Register boots
+		armor:register_armor(":3d_armor:boots_hardenedleather", {
 		description = "Hardened Leather Boots (Hunter)",
 		inventory_image = "3d_armor_inv_boots_hardenedleather.png",
 		groups = {armor_feet = 5, armor_heal = 0, armor_use = 250},
-		wear = 0,
 	})
 end
 

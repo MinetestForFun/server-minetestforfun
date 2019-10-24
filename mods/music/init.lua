@@ -1,7 +1,7 @@
-
 local players = {}
 local music_volume = 1
 local SOUNDVOLUME = 1
+
 -- compatibility with soundset mod
 local get_volume
 if (minetest.get_modpath("soundset")) ~= nil then

@@ -1,6 +1,6 @@
 --dofile(minetest.get_modpath("christmas_craft").."/mods.lua")--disabled because 4seasons is not installed
 dofile(minetest.get_modpath("christmas_craft").."/crafts.lua") --temporary disabled because cristmas is over--
-if minetest.setting_getbool("is_winter") then
+if minetest.settings:get_bool("is_winter") then
 	dofile(minetest.get_modpath("christmas_craft").."/settings.lua") -- makes it snow
 end
 
@@ -15,7 +15,6 @@ minetest.register_node("christmas_craft:snowman", {
 	groups = {crumbly=3},
 	sounds = default.node_sound_sand_defaults(),
 })
-
 
 
 minetest.register_node("christmas_craft:christmas_lights", {
@@ -164,7 +163,6 @@ minetest.register_node("christmas_craft:green_baubles", {
 	},
 })
 
-
 minetest.register_node("christmas_craft:blue_baubles", {
 	description = "Blue Baubles",
 	drawtype = "nodebox",
@@ -300,21 +298,21 @@ minetest.register_node("christmas_craft:silver_baubles", {
 	},
 })
 
-------------
---nodes--
+---------------
+-- nodes --
+-- presents --
+---------------
 
-	-- presents --
-
-	minetest.register_node("christmas_craft:present_box", {
+minetest.register_node("christmas_craft:present_box", {
 		description = "Present Box",
 		tiles = {"christmas_craft_present_box.png"},
 		is_ground_content = true,
 		paramtype = "light",
 		groups = {crumbly=3},
 		sounds = default.node_sound_sand_defaults(),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present", {
+minetest.register_node("christmas_craft:Christmas_present", {
 		description = "Christmas Present",
 		tiles = {"christmas_craft_present_wh.png^christmas_craft_bow_top.png", "christmas_craft_present_wh.png^christmas_craft_bow_bottom.png", "christmas_craft_present_wh.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -344,9 +342,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present_green", {
+minetest.register_node("christmas_craft:Christmas_present_green", {
 		description = "Christmas Present Green ",
 		tiles = {"christmas_craft_present_gr.png^christmas_craft_bow_top.png", "christmas_craft_present_gr.png^christmas_craft_bow_bottom.png", "christmas_craft_present_gr.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -376,9 +374,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present_red", {
+minetest.register_node("christmas_craft:Christmas_present_red", {
 		description = "Christmas Present Red ",
 		tiles = {"christmas_craft_present_re.png^christmas_craft_bow_top.png", "christmas_craft_present_re.png^christmas_craft_bow_bottom.png", "christmas_craft_present_re.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -408,9 +406,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present_blue", {
+minetest.register_node("christmas_craft:Christmas_present_blue", {
 		description = "Christmas Present Blue ",
 		tiles = {"christmas_craft_present_bl.png^christmas_craft_bow_top.png", "christmas_craft_present_bl.png^christmas_craft_bow_bottom.png", "christmas_craft_present_bl.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -440,9 +438,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present_yellow", {
+minetest.register_node("christmas_craft:Christmas_present_yellow", {
 		description = "Christmas Present Yellow ",
 		tiles = {"christmas_craft_present_ye.png^christmas_craft_bow_top.png", "christmas_craft_present_ye.png^christmas_craft_bow_bottom.png", "christmas_craft_present_ye.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -472,9 +470,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present_red", {
+minetest.register_node("christmas_craft:Christmas_present_red", {
 		description = "Christmas Present Red ",
 		tiles = {"christmas_craft_present_re.png^christmas_craft_bow_top.png", "christmas_craft_present_re.png^christmas_craft_bow_bottom.png", "christmas_craft_present_re.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -504,9 +502,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present_violet", {
+minetest.register_node("christmas_craft:Christmas_present_violet", {
 		description = "Christmas Present Violet ",
 		tiles = {"christmas_craft_present_vi.png^christmas_craft_bow_top.png", "christmas_craft_present_vi.png^christmas_craft_bow_bottom.png", "christmas_craft_present_vi.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -536,9 +534,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present_orange", {
+minetest.register_node("christmas_craft:Christmas_present_orange", {
 		description = "Christmas Present Orange ",
 		tiles = {"christmas_craft_present_or.png^christmas_craft_bow_top.png", "christmas_craft_present_or.png^christmas_craft_bow_bottom.png", "christmas_craft_present_or.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -568,9 +566,9 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
+})
 
-	minetest.register_node("christmas_craft:Christmas_present_pink", {
+minetest.register_node("christmas_craft:Christmas_present_pink", {
 		description = "Christmas Present Pink ",
 		tiles = {"christmas_craft_present_pi.png^christmas_craft_bow_top.png", "christmas_craft_present_pi.png^christmas_craft_bow_bottom.png", "christmas_craft_present_pi.png^christmas_craft_bow_side.png"},
 		is_ground_content = true,
@@ -600,80 +598,79 @@ minetest.register_node("christmas_craft:silver_baubles", {
 		sounds = default.node_sound_dirt_defaults({
 			footstep = {name="default_grass_footstep", gain=0.4},
 		}),
-	})
-------------
+})
 
 ------------
---Items--
+-- Items --
+-- paper --
+------------
 
-	-- paper --
-
-	minetest.register_craftitem("christmas_craft:paper_blue", {
+minetest.register_craftitem("christmas_craft:paper_blue", {
 		description = "Blue paper",
 		inventory_image = "christmas_craft_paper_bl.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
-	minetest.register_craftitem("christmas_craft:paper_yellow", {
+minetest.register_craftitem("christmas_craft:paper_yellow", {
 		description = "Yellow paper",
 		inventory_image = "christmas_craft_paper_ye.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
-	minetest.register_craftitem("christmas_craft:paper_green", {
+minetest.register_craftitem("christmas_craft:paper_green", {
 		description = "Green paper",
 		inventory_image = "christmas_craft_paper_gr.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
-	minetest.register_craftitem("christmas_craft:paper_red", {
+minetest.register_craftitem("christmas_craft:paper_red", {
 		description = "Red paper",
 		inventory_image = "christmas_craft_paper_re.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
-	minetest.register_craftitem("christmas_craft:paper_violet", {
+minetest.register_craftitem("christmas_craft:paper_violet", {
 		description = "Violet paper",
 		inventory_image = "christmas_craft_paper_vi.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
-	minetest.register_craftitem("christmas_craft:paper_orange", {
+minetest.register_craftitem("christmas_craft:paper_orange", {
 		description = "Orange paper",
 		inventory_image = "christmas_craft_paper_or.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
-	minetest.register_craftitem("christmas_craft:paper_pink", {
+minetest.register_craftitem("christmas_craft:paper_pink", {
 		description = "Pink paper",
 		inventory_image = "christmas_craft_paper_pi.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
 	-- string --
 
-		minetest.register_craftitem("christmas_craft:red_ribbon", {
+	minetest.register_craftitem("christmas_craft:red_ribbon", {
 		description = "Red Ribbon",
 		inventory_image = "christmas_craft_red_ribbon.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
 	-- wish list --
 
-	minetest.register_craftitem("christmas_craft:wish_list", {
+minetest.register_craftitem("christmas_craft:wish_list", {
 		description = "Wish list",
 		inventory_image = "christmas_craft_which_list.png",
 		stack_max = 99,
 		liquids_pointable = false,
-	})
+})
 
 ------------
 
@@ -786,7 +783,7 @@ minetest.register_craftitem("christmas_craft:snowball", {
 })
 --]]
 
---Snow.
+-- Snow.
 minetest.register_node("christmas_craft:snow", {
 	tiles = {"snow.png"},
 	drawtype = "nodebox",

@@ -1,4 +1,4 @@
-print (" ---- mods override is Loading! ---- ")
+print(" ---- mods override is Loading! ---- ")
 
 -- leaves --
 
@@ -36,7 +36,7 @@ minetest.register_node(":4seasons:grass_winter", {
 	}),
 })
 
---normal sand
+-- normal sand
 minetest.register_node(":4seasons:sand_winter", {
 	description = "Sand with snow",
 	tiles = {"4seasons_snow.png", "default_sand.png", "default_sand.png^4seasons_sand_w_snow_side.png"},
@@ -52,7 +52,7 @@ minetest.register_node(":4seasons:sand_winter", {
 		footstep = {name="default_grass_footstep", gain=0.4},
 	}),
 })
---desert sand
+-- desert sand
 minetest.register_node(":4seasons:desertsand_winter", {
 	description = "Desert Sand with snow",
 	tiles = {"4seasons_snow.png", "default_desert_sand.png", "default_desert_sand.png^4seasons_desertsand_w_snow_side.png"},
@@ -68,7 +68,7 @@ minetest.register_node(":4seasons:desertsand_winter", {
 	}),
 })
 
---cactus winter
+-- cactus winter
 
 minetest.register_node(":4seasons:cactus_winter", {
 	description = "Cactus",

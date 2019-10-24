@@ -1,27 +1,27 @@
 --[[
-
 shutdown par turbogus, code sous licence gpl2 ou sup
 déclaration du "timer" par Jat ( du mod annonce )
 
 Affiche l'heure dans le chat toute les minutes et
 arrête votre serveur "proprement" à une heure précise afin de créer
 une sauvegarde
-
 ]]--
+
 -- compatibility with soundset mod
 local SOUNDVOLUME = 1
 local get_volume
+
 if (minetest.get_modpath("soundset")) ~= nil then
 	get_volume = soundset.get_gain
 else
-	get_volume = function (player_name, sound_type) return SOUNDVOLUME end
+	get_volume = function(player_name, sound_type) return SOUNDVOLUME end
 end
 
 local function sound_play_all(sound)
 	for _, p in ipairs(minetest.get_connected_players()) do
 		local player_name = p:get_player_name()
 		if player_name then
-			minetest.sound_play(sound, {to_player=player_name, gain=get_volume(player_name, "other")})
+			minetest.sound_play(sound, {to_player = player_name, gain = get_volume(player_name, "other")})
 		end
 	end
 end

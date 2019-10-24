@@ -1,3 +1,7 @@
+-- DEPRECATED, will not be supported in future versions
+
+-- See README.txt for new configuration options.
+
 -- Armor Configuration (defaults)
 
 -- You can remove any unwanted armor materials from this table.
@@ -9,7 +13,7 @@ ARMOR_MATERIALS = {
 	bronze = "default:bronze_ingot",
 	diamond = "default:diamond",
 	gold = "default:gold_ingot",
-	mithril = "default:mithril_ingot",
+	mithril = "moreores:mithril_ingot",
 	crystal = "ethereal:crystal_ingot",
 }
 
@@ -55,3 +59,7 @@ ARMOR_LEVEL_MULTIPLIER = 1
 -- eg: ARMOR_HEAL_MULTIPLIER = 0 will disable healing altogether.
 ARMOR_HEAL_MULTIPLIER = 1
 
+-- You can use this to increase or decrease overall armor radiation protection,
+-- eg: ARMOR_RADIATION_MULTIPLIER = 0 will completely disable radiation protection.
+-- Note: patched technic mod is required
+ARMOR_RADIATION_MULTIPLIER = 1

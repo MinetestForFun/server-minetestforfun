@@ -241,22 +241,22 @@ local nobj_magma   = nil
 
 -- Localise noise buffers
 
-local nbuf_terrain
-local nbuf_fissure
-local nbuf_temp
-local nbuf_humid
-local nbuf_seam
-local nbuf_strata
+local nbuf_terrain = {}
+local nbuf_fissure = {}
+local nbuf_temp = {}
+local nbuf_humid = {}
+local nbuf_seam = {}
+local nbuf_strata = {}
 
 local nbuf_cave1
 local nbuf_cave2
 local nbuf_cave3
 local nbuf_cave4
 	
-local nbuf_mid
-local nbuf_base
-local nbuf_xlscale
-local nbuf_magma
+local nbuf_mid = {}
+local nbuf_base = {}
+local nbuf_xlscale = {}
+local nbuf_magma = {}
 
 
 -- Mapchunk generation function
@@ -742,7 +742,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local y0 = minp.y
 	local z0 = minp.z
 
-	print ("[watershed] generate mapchunk minp (" .. x0 .. " " .. y0 .. " " .. z0 .. ")")
+	minetest.log("action", "[watershed] generate mapchunk minp (" .. x0 .. " " .. y0 .. " " .. z0 .. ")")
 
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge = emin, MaxEdge = emax}
@@ -759,11 +759,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:update_liquids()
 
 	local chugent = math.ceil((os.clock() - t1) * 1000)
-	print ("[watershed] " .. chugent .. " ms")
+	minetest.log("action", "[watershed] " .. chugent .. " ms")
 end)
 
 default.register_ores()
 farming.register_mgv6_decorations()
+
 -- cherry tree
 minetest.register_decoration({
 	deco_type = "simple",

@@ -1,13 +1,13 @@
 local time = 0
-local update_time = tonumber(minetest.setting_get("wieldview_update_time"))
+local update_time = tonumber(minetest.settings:get("wieldview_update_time"))
 if not update_time then
 	update_time = 2
-	minetest.setting_set("wieldview_update_time", tostring(update_time))
+	minetest.settings:set("wieldview_update_time", tostring(update_time))
 end
-local node_tiles = minetest.setting_getbool("wieldview_node_tiles")
+local node_tiles = minetest.settings:get_bool("wieldview_node_tiles")
 if not node_tiles then
 	node_tiles = false
-	minetest.setting_set("wieldview_node_tiles", "false")
+	minetest.settings:set("wieldview_node_tiles", "false")
 end
 
 wieldview = {
@@ -29,8 +29,15 @@ wieldview.get_item_texture = function(self, item)
 				texture = minetest.inventorycube(minetest.registered_items[item].tiles[1])
 			end
 		end
-		if wieldview.transform[item] then
-			texture = texture.."^[transform"..wieldview.transform[item]
+		-- Get item image transformation, first from group, then from transform.lua
+		local transform = minetest.get_item_group(item, "wieldview_transform")
+		if transform == 0 then
+			transform = wieldview.transform[item]
+		end
+		if transform then
+			-- This actually works with groups ratings because transform1, transform2, etc.
+			-- have meaning and transform0 is used for identidy, so it can be ignored
+			texture = texture.."^[transform"..tostring(transform)
 		end
 	end
 	return texture
@@ -64,12 +71,13 @@ minetest.register_on_joinplayer(function(player)
 	end, player)
 end)
 
-function step()
-	for _,player in ipairs(minetest.get_connected_players()) do
-		wieldview:update_wielded_item(player)
+minetest.register_globalstep(function(dtime)
+	time = time + dtime
+	if time > update_time then
+		for _,player in ipairs(minetest.get_connected_players()) do
+			wieldview:update_wielded_item(player)
+		end
+		time = 0
 	end
-	time = 0
-	minetest.after(update_time, step)
-end
-minetest.after(0, step)
+end)
 

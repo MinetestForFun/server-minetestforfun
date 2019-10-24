@@ -156,7 +156,7 @@ function mff.quests.handle_quest_end(playername, questname, metadata)
 		end
 		local p = minetest.get_player_by_name(playername)
 		if p then
-			minetest.add_item(p:getpos(), {name=item, count=count, wear=0, metadata=""})
+			minetest.add_item(p:get_pos(), {name=item, count=count, wear=0, metadata=""})
 		end
 	end
 end

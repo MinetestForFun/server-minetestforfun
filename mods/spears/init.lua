@@ -8,15 +8,14 @@ if input then
 end
 
 dofile(minetest.get_modpath("spears").."/functions.lua")
-
 dofile(minetest.get_modpath("spears").."/tools.lua")
 
 
-if minetest.setting_get("log_mods") then
-	minetest.log("action", "spears loaded")
+if minetest.settings:get_bool("log_mods") then
+	minetest.log("action", "[spears] Loaded.")
 end
 
---alias
+-- Aliases
 minetest.register_alias("throwing:spear_stone", "spears:spear_stone")
 minetest.register_alias("throwing:spear_steel", "spears:spear_steel")
 minetest.register_alias("throwing:spear_diamond", "spears:spear_diamond")

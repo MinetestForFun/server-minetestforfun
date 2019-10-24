@@ -1,4 +1,0 @@
-default
-stairs
-seastone
-colormachine?

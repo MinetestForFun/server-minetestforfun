@@ -224,7 +224,7 @@ register_glyph("watchdog", {
 						ref:set_hp(ref:get_hp() - 1)
 						meta:set_int("charge", (meta:get_int("charge") or 1) - 1)
 						local collisionbox = ref:get_properties().collisionbox
-						local refpos = ref:getpos()
+						local refpos = ref:get_pos()
 						refpos.y = refpos.y + (((collisionbox[4] or 0) - (collisionbox[3] or 0)) / 2)
 
 						local vel = vector.subtract(refpos, pos)
@@ -299,7 +299,7 @@ register_glyph("manasucker", {
 						end
 
 						local collisionbox = ref:get_properties().collisionbox
-						local refpos = ref:getpos()
+						local refpos = ref:get_pos()
 						refpos.y = refpos.y + (((collisionbox[4] or 0) - (collisionbox[3] or 0)) / 2)
 
 						local vel = vector.subtract(pos, refpos)
@@ -342,7 +342,7 @@ register_glyph("spontafire", {
 		     for _, ref in pairs(minetest.get_objects_inside_radius(pos, 10)) do
 			if ((not ref:is_player()) and ref:get_entity_name() ~= "gauges:hp_bar")
 			or (ref:get_player_name() ~= "" and ref:get_player_name() ~= meta:get_string("master")) then
-			   local rpos = vector.round(ref:getpos())
+			   local rpos = vector.round(ref:get_pos())
 			   rpos.y = rpos.y - 1
 			   local node = minetest.get_node(rpos)
 			   if node.name == "air" and (not minetest.is_protected(rpos, meta:get_string("master")))
@@ -380,10 +380,10 @@ register_glyph("prankster", {
 					local stolen = inv:get_stack("main", thieff)
 					inv:set_stack("main", thieff, nil)
 					if stolen:get_count() > 0 then
-						local pos = ref:getpos()
+						local pos = ref:get_pos()
 						local obj = minetest.add_item({x = pos.x, y = pos.y + 2.5, z = pos.z}, stolen)
 						if obj then
-							obj:setvelocity({x = math.random(-5,5), y = math.random(3,5), z = math.random(-5,5)})
+							obj:set_velocity({x = math.random(-5,5), y = math.random(3,5), z = math.random(-5,5)})
 						end
 						charge = charge - runes.glyphs["prankster"].mana_cost
 						minetest.chat_send_player(ref:get_player_name(), "The Prankster attacked you and stole " .. stolen:get_count() .. " "
